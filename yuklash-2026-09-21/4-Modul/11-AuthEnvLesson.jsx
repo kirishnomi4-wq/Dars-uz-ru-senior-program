@@ -1,0 +1,4565 @@
+// ============================================================
+//  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG.
+//  Manba:  src/4-Modull/AuthEnvLesson.jsx
+//  Kompilyator: yo'q (dars uni import qilmaydi)
+//  Qayta yig'ish:  node scripts/build-lms.mjs src/4-Modull/AuthEnvLesson.jsx
+//  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
+// ============================================================
+// src/4-Modull/AuthEnvLesson.jsx
+import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useMemo, createContext as createContext2, useContext as useContext2, useCallback as useCallback2 } from "react";
+
+// src/live/liveClient.js
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
+var LIVE_ENABLED = !!LIVE_API_URL;
+var LIVE_POLL_MS = 2500;
+var LIVE_POLL_MAX_MS = 15e3;
+var LIVE_HEARTBEAT_MS = 1e4;
+var LIVE_STALE_MS = 18e4;
+var LMS_SOLO_RECHECK_MS = 2e4;
+var API = `${LIVE_API_URL}/api/v1/live`;
+async function errorFrom(r, fallback) {
+  let msg = "";
+  try {
+    msg = (await r.json()).message || "";
+  } catch {
+  }
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
+}
+async function liveRpc(fn, body) {
+  const r = await fetch(`${API}/rpc/${fn}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body || {})
+  });
+  if (!r.ok) throw await errorFrom(r, `${fn}: ${r.status}`);
+  if (r.status === 204) return null;
+  const t = await r.text();
+  return t ? JSON.parse(t) : null;
+}
+async function liveGet(pin) {
+  const r = await fetch(`${API}/session/${encodeURIComponent(pin)}`);
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`get: ${r.status}`);
+  return r.json();
+}
+async function liveList(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`list: ${r.status}`);
+  return r.json();
+}
+var livePlayers = (pin) => liveList(`${API}/players/${encodeURIComponent(pin)}`);
+var liveAnswers = (pin, screenIdx) => liveList(`${API}/answers/${encodeURIComponent(pin)}${screenIdx == null ? "" : `?screen=${encodeURIComponent(screenIdx)}`}`);
+var liveQuizAnswers = (pin) => liveList(`${API}/answers/${encodeURIComponent(pin)}?range=arena`);
+async function lmsFetch(method, url, liveToken, body) {
+  const r = await fetch(url, {
+    method,
+    headers: { Authorization: `Bearer ${liveToken}`, ...body ? { "Content-Type": "application/json" } : {} },
+    body: body ? JSON.stringify(body) : void 0
+  });
+  let data = null;
+  try {
+    data = await r.json();
+  } catch {
+  }
+  if (!r.ok) {
+    const e = new Error(data && data.message || `lms: ${r.status}`);
+    e.code = data && data.error || `http_${r.status}`;
+    e.status = r.status;
+    throw e;
+  }
+  return data;
+}
+var lmsJoin = (liveToken, body) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/join`, liveToken, body);
+var lmsRestart = (liveToken, lessonId) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId });
+async function progressPut(liveToken, body, { keepalive = false } = {}) {
+  const r = await fetch(`${LIVE_API_URL}/api/v1/me/progress`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${liveToken}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+    keepalive
+  });
+  let data = null;
+  try {
+    data = await r.json();
+  } catch {
+  }
+  if (!r.ok) {
+    const e = new Error(data && data.message || `progress: ${r.status}`);
+    e.code = data && data.error || `http_${r.status}`;
+    e.status = r.status;
+    throw e;
+  }
+  return data;
+}
+function peekTokenRole(liveToken) {
+  try {
+    const part = String(liveToken).split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const role = JSON.parse(atob(part)).role;
+    return role === "mentor" || role === "student" ? role : null;
+  } catch {
+    return null;
+  }
+}
+var _lsKey = (id) => `liveSession:${id}`;
+var liveRead = (id) => {
+  try {
+    return JSON.parse(localStorage.getItem(_lsKey(id)) || "null");
+  } catch {
+    return null;
+  }
+};
+var liveStore = (id, o) => {
+  try {
+    localStorage.setItem(_lsKey(id), JSON.stringify(o));
+  } catch {
+  }
+};
+var liveClear = (id) => {
+  try {
+    localStorage.removeItem(_lsKey(id));
+  } catch {
+  }
+};
+var fmtPin = (p) => p ? String(p).replace(/(\d{3})(\d{3})/, "$1 $2") : "";
+var PROG_TTL_MS = 6 * 60 * 60 * 1e3;
+var _progKey = (id) => `ccProgress:${id}`;
+var progRead = (id, total) => {
+  try {
+    const p = JSON.parse(localStorage.getItem(_progKey(id)) || "null");
+    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
+    return p;
+  } catch {
+    return null;
+  }
+};
+var _progWriteHook = null;
+var setProgWriteHook = (fn) => {
+  _progWriteHook = typeof fn === "function" ? fn : null;
+};
+var progWrite = (id, o) => {
+  try {
+    localStorage.setItem(_progKey(id), JSON.stringify(o));
+  } catch {
+  }
+  try {
+    if (_progWriteHook) _progWriteHook(id, o);
+  } catch {
+  }
+};
+var progClear = (id) => {
+  try {
+    localStorage.removeItem(_progKey(id));
+  } catch {
+  }
+};
+var LIVE_NICK_KEY = "liveNickname";
+var nickRead = () => {
+  try {
+    return localStorage.getItem(LIVE_NICK_KEY) || "";
+  } catch {
+    return "";
+  }
+};
+var nickStore = (n) => {
+  try {
+    localStorage.setItem(LIVE_NICK_KEY, n);
+  } catch {
+  }
+};
+
+// src/live/i18n.js
+import React from "react";
+var liveLang = "uz";
+var setLiveLang = (lang) => {
+  liveLang = lang === "ru" ? "ru" : "uz";
+};
+var getLiveLang = () => liveLang;
+var tr = (node) => {
+  if (node === null || node === void 0) return "";
+  if (typeof node === "string") return node;
+  if (React.isValidElement(node)) return node;
+  return node[liveLang] ?? node.uz ?? node.ru ?? "";
+};
+
+// src/live/resultDetails.js
+var LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 36e5 };
+var cut = (v, n) => typeof v === "string" ? v.slice(0, n) : void 0;
+var iso = (t) => new Date(t || Date.now()).toISOString().replace(/\.\d{3}Z$/, "Z");
+var optText = (o, lang) => o && typeof o === "object" ? String(o[lang] ?? o.uz ?? "") : String(o ?? "");
+var attemptsByLesson = /* @__PURE__ */ new Map();
+var earnedAtByLesson = /* @__PURE__ */ new Map();
+var arenaByLesson = /* @__PURE__ */ new Map();
+var ARENA_Q = /^quiz-(\d+)$/;
+var KEY = (lessonId) => `ccDetails:${lessonId}`;
+var store = () => {
+  try {
+    return typeof localStorage !== "undefined" ? localStorage : null;
+  } catch {
+    return null;
+  }
+};
+var loaded = /* @__PURE__ */ new Set();
+function load(lessonId) {
+  if (loaded.has(lessonId)) return;
+  loaded.add(lessonId);
+  const st = store();
+  if (!st) return;
+  let o = null;
+  try {
+    o = JSON.parse(st.getItem(KEY(lessonId)) || "null");
+  } catch {
+    return;
+  }
+  if (!o || typeof o !== "object") return;
+  const am = attemptsByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [k, list] of Object.entries(o.attempts || {})) {
+    const idx = Number(k);
+    if (!Number.isInteger(idx) || !Array.isArray(list) || am.has(idx)) continue;
+    am.set(idx, list.filter((t) => t && typeof t === "object" && Number.isFinite(t.at)).slice(0, LIM.attempts));
+  }
+  attemptsByLesson.set(lessonId, am);
+  const em = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [id, t] of Object.entries(o.earnedAt || {})) if (Number.isFinite(t) && !em.has(id)) em.set(id, t);
+  earnedAtByLesson.set(lessonId, em);
+  const ar = arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [k, e] of Object.entries(o.arena || {})) {
+    const qi = Number(k);
+    if (!Number.isInteger(qi) || ar.has(qi) || !e || typeof e !== "object" || !Number.isFinite(e.at)) continue;
+    ar.set(qi, { option: Number.isInteger(e.option) ? e.option : -1, correct: e.correct === true, elapsed_ms: Number.isFinite(e.elapsed_ms) ? e.elapsed_ms : 0, at: e.at });
+  }
+  arenaByLesson.set(lessonId, ar);
+}
+function persist(lessonId) {
+  const st = store();
+  if (!st) return;
+  const attempts = {};
+  for (const [k, v] of attemptsByLesson.get(lessonId) || []) attempts[k] = v;
+  const earnedAt = Object.fromEntries(earnedAtByLesson.get(lessonId) || []);
+  const arena = {};
+  for (const [k, v] of arenaByLesson.get(lessonId) || []) arena[k] = v;
+  try {
+    st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt, arena }));
+  } catch {
+  }
+}
+function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {}) {
+  if (!lessonId || !Number.isInteger(screenIdx)) return;
+  load(lessonId);
+  if (!attemptsByLesson.has(lessonId)) attemptsByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const m = attemptsByLesson.get(lessonId);
+  if (!m.has(screenIdx)) m.set(screenIdx, []);
+  const list = m.get(screenIdx);
+  if (list.length >= LIM.attempts) return;
+  list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  persist(lessonId);
+}
+function logArena(lessonId, questionId, { picked, correct, elapsedMs } = {}) {
+  const m = ARENA_Q.exec(String(questionId || ""));
+  if (!lessonId || !m) return false;
+  const qi = Number(m[1]);
+  load(lessonId);
+  if (!arenaByLesson.has(lessonId)) arenaByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const ar = arenaByLesson.get(lessonId);
+  if (ar.has(qi) || ar.size >= LIM.questions) return false;
+  ar.set(qi, { option: Number.isInteger(picked) ? picked : -1, correct: correct === true, elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  persist(lessonId);
+  return true;
+}
+function noteEarned(lessonId, ids) {
+  if (!lessonId || !Array.isArray(ids)) return;
+  load(lessonId);
+  if (!earnedAtByLesson.has(lessonId)) earnedAtByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const m = earnedAtByLesson.get(lessonId);
+  const now = Date.now();
+  let changed = false;
+  for (const raw of ids) {
+    const id = String(raw);
+    if (!m.has(id)) {
+      m.set(id, now);
+      changed = true;
+    }
+  }
+  if (changed) persist(lessonId);
+}
+function resetResultDetails(lessonId) {
+  attemptsByLesson.delete(lessonId);
+  earnedAtByLesson.delete(lessonId);
+  arenaByLesson.delete(lessonId);
+  loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId);
+  try {
+    store()?.removeItem(KEY(lessonId));
+  } catch {
+  }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
+}
+var sealedByLesson = /* @__PURE__ */ new Map();
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== "object") return payload;
+  try {
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
+    if (held && held.key === key) return JSON.parse(held.json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
+  } catch {
+    return payload;
+  }
+}
+function unsealPayload(lessonId) {
+  sealedByLesson.delete(lessonId);
+}
+function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
+  const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
+  const finish = now || Date.now();
+  load(lessonId);
+  const log = attemptsByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  const questions = [];
+  (screenMeta || []).forEach((meta, i) => {
+    if (!meta || !meta.scored) return;
+    const a = answers && answers[i];
+    if (!a || typeof a !== "object" || !Number.isInteger(a.picked)) return;
+    if (questions.length >= LIM.questions) return;
+    const correctIdx = Number.isInteger(a.correctIndex) ? a.correctIndex : Number.isInteger(a.correctIdx) ? a.correctIdx : null;
+    const raw = (log.get(i) || []).slice().sort((x, y) => x.at - y.at).slice(0, LIM.attempts);
+    const options = Array.isArray(a.options) ? a.options.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : void 0;
+    const correct = a.correct === true;
+    const last = Number.isInteger(a.lastPicked) ? a.lastPicked : a.picked;
+    const eventually = correctIdx !== null ? last === correctIdx : a.solved === true;
+    const baseAt = Number.isInteger(a.at) ? a.at : finish;
+    const fallback = correct || !eventually ? [{ option: last, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: baseAt }] : [{ option: -1, elapsed_ms: 0, at: baseAt, correct: false }, { option: last, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: baseAt, correct: true }];
+    const attempts = (raw.length ? raw : fallback).map((t, n) => {
+      const o = { n: n + 1, option: t.option, correct: typeof t.correct === "boolean" ? t.correct : correctIdx !== null ? t.option === correctIdx : false, elapsed_ms: t.elapsed_ms, at: iso(t.at) };
+      const ans = t.answer ?? (options && t.option >= 0 ? options[t.option] : void 0);
+      if (typeof ans === "string") o.answer = ans.slice(0, LIM.text);
+      return o;
+    });
+    if (attempts[0]) attempts[0].correct = correct;
+    if (correctIdx === null && eventually && !attempts.some((t) => t.correct)) attempts[attempts.length - 1].correct = true;
+    const q = {
+      question_id: meta.id && String(meta.id) || `s${i}`,
+      kind: "test",
+      order: questions.length + 1,
+      correct,
+      solved: attempts.some((t) => t.correct),
+      // F-0909-03: dars bayrog'i emas, urinish-dalili (server result-builder.js:356 bilan bir xil)
+      attempts
+    };
+    const qt = cut(typeof a.question === "string" ? a.question : optText(a.question, lang), LIM.text);
+    if (qt) q.question = qt;
+    if (options) q.options = options;
+    if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
+    const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
+    if (ca) q.correct_answer = ca;
+    if (correctIdx === null) return;
+    questions.push(q);
+  });
+  const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
+  for (const [qi, e] of arena) {
+    if (questions.length >= LIM.questions) break;
+    const bank = Array.isArray(arenaBank) ? arenaBank[qi] : null;
+    const rawOpts = bank && (Array.isArray(bank.opts) ? bank.opts : Array.isArray(bank.options) ? bank.options : null);
+    const options = rawOpts ? rawOpts.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : void 0;
+    const correctIdx = bank && Number.isInteger(bank.correct) ? bank.correct : null;
+    const attempt = { n: 1, option: e.option, correct: e.correct, elapsed_ms: e.elapsed_ms, at: iso(e.at) };
+    if (options && e.option >= 0 && e.option < options.length) attempt.answer = options[e.option];
+    const q = { question_id: `quiz-${qi}`, kind: "arena", order: questions.length + 1, correct: e.correct, solved: e.correct, attempts: [attempt] };
+    const qt = bank ? cut(typeof (bank.q ?? bank.question) === "string" ? bank.q ?? bank.question : optText(bank.q ?? bank.question, lang), LIM.text) : void 0;
+    if (qt) q.question = qt;
+    if (options) q.options = options;
+    if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
+    if (options && correctIdx !== null && options[correctIdx]) q.correct_answer = options[correctIdx];
+    questions.push(q);
+  }
+  const at = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  const seen = /* @__PURE__ */ new Set();
+  const list = [];
+  for (const raw of earned instanceof Set ? [...earned] : Array.isArray(earned) ? earned : []) {
+    const id = String(raw).toLowerCase();
+    if (!/^[a-z0-9_-]{1,32}$/.test(id) || seen.has(id)) continue;
+    seen.add(id);
+    const def = achievements && (achievements[raw] || achievements[id]) || null;
+    const desc = def && def.desc;
+    const title = typeof desc === "string" ? desc : desc && (desc[lang] || desc.uz) || def && def.name || id;
+    list.push({ id, name: String(def && def.name || id).slice(0, LIM.name), title: String(title).slice(0, LIM.title), earned_at: iso(at.get(String(raw)) ?? at.get(id) ?? finish) });
+  }
+  list.sort((x, y) => x.earned_at < y.earned_at ? -1 : x.earned_at > y.earned_at ? 1 : 0);
+  return { lang, questions, achievements: list.slice(0, LIM.achievements) };
+}
+
+// src/live/progressSync.js
+var DEBOUNCE_MS = 2e3;
+var channels = /* @__PURE__ */ new Map();
+function setProgressChannel(lessonId, ch) {
+  const prev = channels.get(lessonId);
+  if (prev) {
+    clearTimeout(prev.timer);
+    flush(lessonId, { keepalive: true });
+  }
+  if (!ch) {
+    channels.delete(lessonId);
+    return;
+  }
+  channels.set(lessonId, { ...ch, timer: null, pending: null, inFlight: false });
+}
+function queueProgress(lessonId, obj) {
+  if (obj && Array.isArray(obj.earned)) noteEarned(lessonId, obj.earned);
+  const ch = channels.get(lessonId);
+  if (!ch || ch.status !== "active" || !obj) return;
+  ch.pending = {
+    lesson_id: lessonId,
+    attempt_id: ch.attemptId,
+    screen: Number.isInteger(obj.screen) ? obj.screen : 0,
+    total: Number.isInteger(obj.total) && obj.total > 0 ? obj.total : void 0,
+    answers: obj.answers && typeof obj.answers === "object" ? obj.answers : {},
+    earned: Array.isArray(obj.earned) ? obj.earned.map(String) : [],
+    started_at_ms: Number.isInteger(obj.startedAt) ? obj.startedAt : void 0,
+    client_ts: Date.now()
+  };
+  clearTimeout(ch.timer);
+  ch.timer = setTimeout(() => flush(lessonId), DEBOUNCE_MS);
+}
+async function flush(lessonId, { keepalive = false } = {}) {
+  const ch = channels.get(lessonId);
+  if (!ch || !ch.pending || ch.inFlight) return;
+  const body = ch.pending;
+  ch.pending = null;
+  ch.inFlight = true;
+  try {
+    const r = await progressPut(ch.token, body, { keepalive });
+    if (r && r.status === "finished") {
+      ch.status = "finished";
+      ch.onFinished?.({ reason: r.finish_reason || "completed" });
+    }
+  } catch (e) {
+    if (e && (e.status === 409 || e.status === 404 || e.status === 401 || e.status === 403)) {
+      ch.status = "finished";
+      if (e.status === 409) ch.onFinished?.({ reason: "server" });
+    } else {
+      if (!ch.pending) ch.pending = body;
+    }
+    ch.onError?.(e);
+  } finally {
+    ch.inFlight = false;
+    if (ch.pending && ch.status === "active" && !ch.timer) ch.timer = setTimeout(() => {
+      ch.timer = null;
+      flush(lessonId);
+    }, DEBOUNCE_MS);
+  }
+}
+function flushAll(keepalive) {
+  for (const id of channels.keys()) {
+    const ch = channels.get(id);
+    clearTimeout(ch.timer);
+    ch.timer = null;
+    flush(id, { keepalive });
+  }
+}
+if (typeof window !== "undefined") {
+  window.addEventListener("pagehide", () => flushAll(true));
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) flushAll(true);
+  });
+}
+setProgWriteHook(queueProgress);
+
+// src/live/useLiveSession.js
+import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
+var LiveGateCtx = createContext(null);
+var STORED_MODES = ["self", "student", "mentor", "solo", "review"];
+function useLiveSession(lessonId, answerKey, opts = {}) {
+  const liveToken = opts.liveToken || null;
+  const lessonVersion = opts.lessonVersion || null;
+  const keyRef = useRef(answerKey);
+  keyRef.current = answerKey;
+  useEffect(() => {
+    unsealPayload(lessonId);
+  }, [lessonId]);
+  const initRef = useRef(void 0);
+  if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
+  const init = initRef.current;
+  const [mode, setMode] = useState(() => {
+    if (!LIVE_ENABLED) return "self";
+    if (init && STORED_MODES.includes(init.mode)) return init.mode;
+    return "choosing";
+  });
+  const [pin, setPin] = useState(init?.pin || null);
+  const tokenRef = useRef(init?.token || null);
+  const playerRef = useRef(init?.playerId ? { id: init.playerId, token: init.playerToken } : null);
+  const nickRef = useRef(init?.nickname || "");
+  const [mentorScreen, setMentorScreen] = useState(init?.lastScreen || 0);
+  const [mentorMax, setMentorMax] = useState(init?.maxScreen ?? init?.lastScreen ?? 0);
+  const [status, setStatus] = useState("live");
+  const [mentorAlive, setMentorAlive] = useState(true);
+  const [connected, setConnected] = useState(true);
+  const [ended, setEnded] = useState(false);
+  const [joinError, setJoinError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [quiz, setQuiz] = useState({ state: "off", q: -1 });
+  const [revealScreen, setRevealScreen] = useState(-1);
+  const lastSeenRef = useRef(Date.now());
+  const lastUpdatedRef = useRef(null);
+  const mentorScreenOf = (row) => typeof row.cur_screen === "number" ? row.cur_screen : row.max_screen;
+  const syncQuiz = useCallback((row) => {
+    const qs = row?.quiz_state || "off", qq = row?.quiz_q ?? -1;
+    setQuiz((p) => p.state === qs && p.q === qq ? p : { state: qs, q: qq });
+    const rv = row?.reveal_screen ?? -1;
+    setRevealScreen((p) => p === rv ? p : rv);
+  }, []);
+  useEffect(() => {
+    if (mode !== "student" || !pin) return;
+    let on = true, timer = null, delay = LIVE_POLL_MS;
+    const schedule = () => {
+      if (on) timer = setTimeout(tick, delay);
+    };
+    const tick = async () => {
+      if (typeof document !== "undefined" && document.hidden) {
+        schedule();
+        return;
+      }
+      try {
+        const row = await liveGet(pin);
+        if (!on) return;
+        delay = LIVE_POLL_MS;
+        setConnected(true);
+        if (!row) {
+          setStatus((p) => p === "ended" ? p : "ended");
+          schedule();
+          return;
+        }
+        const mScr = mentorScreenOf(row);
+        const mMax = Math.max(row.max_screen ?? 0, mScr);
+        setMentorScreen((p) => p === mScr ? p : mScr);
+        setMentorMax((p) => mMax > p ? mMax : p);
+        setStatus((p) => p === row.status ? p : row.status);
+        syncQuiz(row);
+        if (row.updated_at !== lastUpdatedRef.current) {
+          lastUpdatedRef.current = row.updated_at;
+          lastSeenRef.current = Date.now();
+          liveStore(lessonId, { mode: "student", pin, lastScreen: mScr, maxScreen: mMax, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current });
+        }
+        const alive = Date.now() - lastSeenRef.current < LIVE_STALE_MS;
+        setMentorAlive((p) => p === alive ? p : alive);
+      } catch {
+        if (!on) return;
+        setConnected(false);
+        delay = Math.min(delay * 2, LIVE_POLL_MAX_MS);
+      }
+      schedule();
+    };
+    tick();
+    const onVis = () => {
+      if (!document.hidden) {
+        clearTimeout(timer);
+        delay = LIVE_POLL_MS;
+        tick();
+      }
+    };
+    if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
+    return () => {
+      on = false;
+      clearTimeout(timer);
+      if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [mode, pin, lessonId]);
+  useEffect(() => {
+    if (mode !== "mentor" || !pin) return;
+    let on = true;
+    liveGet(pin).then((row) => {
+      if (!on) return;
+      if (!row || row.status === "ended") {
+        liveClear(lessonId);
+        setPin(null);
+        tokenRef.current = null;
+        setMode("choosing");
+        setEnded(false);
+        return;
+      }
+      syncQuiz(row);
+    }).catch(() => {
+    });
+    const beat = () => {
+      liveRpc("session_heartbeat", { p_pin: pin, p_token: tokenRef.current }).catch(() => {
+      });
+    };
+    beat();
+    const id = setInterval(beat, LIVE_HEARTBEAT_MS);
+    const onVis = () => {
+      if (typeof document !== "undefined" && !document.hidden) beat();
+    };
+    if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
+    return () => {
+      on = false;
+      clearInterval(id);
+      if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [mode, pin, lessonId]);
+  const startMentor = useCallback(async (mentorCode) => {
+    setBusy(true);
+    setJoinError("");
+    try {
+      const res = await liveRpc("create_session", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim() });
+      const row = Array.isArray(res) ? res[0] : res;
+      if (!row?.pin) throw new Error("no pin");
+      tokenRef.current = row.token;
+      setPin(row.pin);
+      setMode("mentor");
+      setEnded(false);
+      liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
+      if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
+      });
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
+    } finally {
+      setBusy(false);
+    }
+  }, [lessonId]);
+  const joinStudent = useCallback(async (raw, rawNick) => {
+    const p = (raw || "").replace(/\D/g, "");
+    const nick = (rawNick || "").trim();
+    if (p.length < 4) {
+      setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: "Введите код полностью." }));
+      return;
+    }
+    if (nick.length < 2) {
+      setJoinError(tr({ uz: "Ismingizni kiriting (kamida 2 harf).", ru: "Введите имя (минимум 2 буквы)." }));
+      return;
+    }
+    setBusy(true);
+    setJoinError("");
+    try {
+      const row = await liveGet(p);
+      if (!row) {
+        setJoinError(tr({ uz: "Bunday kod topilmadi.", ru: "Такой код не найден." }));
+        setBusy(false);
+        return;
+      }
+      if (row.lesson_id && row.lesson_id !== lessonId) {
+        setJoinError(tr({ uz: "Bu kod boshqa darsga tegishli.", ru: "Этот код относится к другому уроку." }));
+        setBusy(false);
+        return;
+      }
+      if (row.status !== "live") {
+        setJoinError(tr({ uz: "Bu dars allaqachon yakunlangan.", ru: "Этот урок уже завершён." }));
+        setBusy(false);
+        return;
+      }
+      const res = await liveRpc("join_session", { p_pin: p, p_nickname: nick });
+      const player = Array.isArray(res) ? res[0] : res;
+      if (!player?.player_id) throw new Error("no player");
+      playerRef.current = { id: player.player_id, token: player.token };
+      nickRef.current = nick;
+      nickStore(nick);
+      lastUpdatedRef.current = row.updated_at;
+      lastSeenRef.current = Date.now();
+      const jScr = mentorScreenOf(row), jMax = Math.max(row.max_screen ?? 0, jScr);
+      setPin(p);
+      setMentorScreen(jScr);
+      setMentorMax(jMax);
+      setStatus(row.status);
+      setMode("student");
+      liveStore(lessonId, { mode: "student", pin: p, lastScreen: jScr, maxScreen: jMax, playerId: player.player_id, playerToken: player.token, nickname: nick });
+    } catch (e) {
+      const m = String(e?.message || "");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: "Не удалось подключиться. Проверьте интернет." }));
+    } finally {
+      setBusy(false);
+    }
+  }, [lessonId]);
+  const selfStudy = useCallback(() => {
+    setMode("self");
+    liveStore(lessonId, { mode: "self" });
+  }, [lessonId]);
+  const reportScreen = useCallback((idx) => {
+    if (mode === "mentor" && pin) liveRpc("advance_session", { p_pin: pin, p_token: tokenRef.current, p_screen: idx }).catch(() => {
+    });
+  }, [mode, pin]);
+  const endSession = useCallback(() => {
+    if (mode === "mentor" && pin) {
+      liveRpc("end_session", { p_pin: pin, p_token: tokenRef.current }).catch(() => {
+      });
+      setEnded(true);
+    }
+  }, [mode, pin]);
+  const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
+    if (mode === "student") logArena(lessonId, questionId, { picked, correct, elapsedMs });
+    if (mode !== "student" && mode !== "solo" || !pin || !playerRef.current) return;
+    const body = {
+      p_pin: pin,
+      p_player_id: playerRef.current.id,
+      p_token: playerRef.current.token,
+      p_screen: screenIdx,
+      p_question_id: questionId || "",
+      p_picked: picked,
+      p_correct: !!correct,
+      p_elapsed_ms: Math.max(0, Math.round(elapsedMs || 0))
+    };
+    const attempt2 = (n) => {
+      liveRpc("submit_answer", body).catch(() => {
+        if (n < 3) setTimeout(() => attempt2(n + 1), 3e3 * (n + 1));
+      });
+    };
+    attempt2(0);
+  }, [mode, pin, lessonId]);
+  const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
+    logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs });
+    if (mode !== "student" && mode !== "solo" || !pin || !playerRef.current) return;
+    const cut2 = (v) => typeof v === "string" ? v.slice(0, 300) : void 0;
+    const t = texts && typeof texts === "object" ? {
+      question: cut2(texts.question),
+      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut2(String(o ?? ""))) : void 0,
+      picked: cut2(texts.picked),
+      correct: cut2(texts.correct),
+      lang: texts.lang === "ru" ? "ru" : "uz"
+    } : void 0;
+    if (t) {
+      for (const k of Object.keys(t)) if (t[k] === void 0) delete t[k];
+    }
+    const body = {
+      p_pin: pin,
+      p_player_id: playerRef.current.id,
+      p_token: playerRef.current.token,
+      p_screen: screenIdx,
+      p_question_id: questionId || "",
+      p_picked: picked,
+      p_elapsed_ms: Math.max(0, Math.round(elapsedMs || 0)),
+      ...t ? { p_texts: t } : {}
+    };
+    const attempt2 = (n) => {
+      liveRpc("record_attempt", body).catch(() => {
+        if (n < 3) setTimeout(() => attempt2(n + 1), 3e3 * (n + 1));
+      });
+    };
+    attempt2(0);
+  }, [mode, pin]);
+  const quizControl = useCallback(async (state, q) => {
+    if (mode !== "mentor" || !pin) throw new Error("mentor emas");
+    await liveRpc("quiz_control", { p_pin: pin, p_token: tokenRef.current, p_state: state, p_q: q ?? -1 });
+    setQuiz({ state, q: q ?? -1 });
+  }, [mode, pin]);
+  const mentorReveal = useCallback((screenIdx) => {
+    if (mode !== "mentor" || !pin) return;
+    setRevealScreen(screenIdx);
+    liveRpc("reveal_screen", { p_pin: pin, p_token: tokenRef.current, p_screen: screenIdx }).catch(() => {
+    });
+  }, [mode, pin]);
+  const [lms, setLms] = useState({ state: "idle", choices: null, message: "" });
+  const [attempt, setAttempt] = useState(null);
+  const [serverProgress, setServerProgress] = useState(null);
+  const lmsTokenRef = useRef(null);
+  const openChannel = useCallback((tok, att) => {
+    if (!att || att.status !== "active") {
+      setProgressChannel(lessonId, null);
+      return;
+    }
+    setProgressChannel(lessonId, {
+      token: tok,
+      attemptId: att.id,
+      status: "active",
+      onFinished: (info) => setAttempt((a) => a && a.id === att.id ? { ...a, status: "finished", finish_reason: info?.reason || "completed" } : a)
+    });
+  }, [lessonId]);
+  const applyServerSession = useCallback((p, tok) => {
+    if (!p || typeof p !== "object") return false;
+    const prog = p.progress ? { ...p.progress, seq: Date.now() + Math.random() } : null;
+    if (p.mode === "mentor" && p.pin && p.token) {
+      tokenRef.current = p.token;
+      setPin(p.pin);
+      setEnded(false);
+      setJoinError("");
+      setMode("mentor");
+      liveStore(lessonId, { mode: "mentor", pin: p.pin, token: p.token });
+      setAttempt(null);
+      setProgressChannel(lessonId, null);
+      return true;
+    }
+    if (p.mode === "student" && p.pin && p.playerId && p.playerToken) {
+      playerRef.current = { id: p.playerId, token: p.playerToken };
+      nickRef.current = p.nickname || "";
+      if (p.nickname) nickStore(p.nickname);
+      lastUpdatedRef.current = null;
+      lastSeenRef.current = Date.now();
+      const scr = p.lastScreen || 0, mx = Math.max(p.maxScreen || 0, scr);
+      setPin(p.pin);
+      setMentorScreen(scr);
+      setMentorMax(mx);
+      setStatus("live");
+      setJoinError("");
+      setMode("student");
+      liveStore(lessonId, { mode: "student", pin: p.pin, lastScreen: scr, maxScreen: mx, playerId: p.playerId, playerToken: p.playerToken, nickname: p.nickname, attemptId: p.attempt?.id });
+      setAttempt(p.attempt || null);
+      if (prog) setServerProgress(prog);
+      openChannel(tok, p.attempt);
+      return true;
+    }
+    if (p.mode === "solo" && p.pin && p.playerId && p.playerToken) {
+      playerRef.current = { id: p.playerId, token: p.playerToken };
+      nickRef.current = p.nickname || "";
+      if (p.nickname) nickStore(p.nickname);
+      setPin(p.pin);
+      setStatus("live");
+      setJoinError("");
+      setMode("solo");
+      liveStore(lessonId, { mode: "solo", pin: p.pin, playerId: p.playerId, playerToken: p.playerToken, nickname: p.nickname, attemptId: p.attempt?.id });
+      setAttempt(p.attempt || null);
+      if (prog) setServerProgress(prog);
+      openChannel(tok, p.attempt);
+      return true;
+    }
+    if (p.mode === "review") {
+      setJoinError("");
+      setMode("review");
+      liveStore(lessonId, { mode: "review", attemptId: p.attempt?.id });
+      setAttempt(p.attempt || null);
+      if (prog) setServerProgress(prog);
+      setProgressChannel(lessonId, null);
+      return true;
+    }
+    return false;
+  }, [lessonId, openChannel]);
+  const joinWithToken = useCallback(async (sessionId) => {
+    const tok = lmsTokenRef.current;
+    if (!tok) return;
+    setLms((s) => ({ ...s, state: "joining", message: "" }));
+    try {
+      const body = { lesson_id: lessonId };
+      if (lessonVersion) body.lesson_version = lessonVersion;
+      if (sessionId) body.session_id = sessionId;
+      if (keyRef.current && peekTokenRole(tok) === "mentor") body.answer_key = keyRef.current;
+      const res = await lmsJoin(tok, body);
+      if (res && Array.isArray(res.choose)) {
+        setLms({ state: "choose", choices: res.choose, message: "" });
+        return;
+      }
+      if (applyServerSession(res, tok)) {
+        setLms({ state: "joined", choices: null, message: "" });
+        return;
+      }
+      setLms({ state: "error", choices: null, message: "" });
+    } catch (e) {
+      const code = e && e.code || "";
+      setLms({ state: code === "no_active_session" ? "none" : "error", choices: null, message: String(e && e.message || "") });
+    }
+  }, [lessonId, lessonVersion, applyServerSession]);
+  const restartAttempt = useCallback(async () => {
+    resetResultDetails(lessonId);
+    const tok = lmsTokenRef.current;
+    if (!tok) return false;
+    setBusy(true);
+    try {
+      const res = await lmsRestart(tok, lessonId);
+      return applyServerSession(res, tok);
+    } catch (e) {
+      setJoinError(String(e && e.message || tr({ uz: "Qaytadan boshlab bo'lmadi.", ru: "Не удалось начать заново." })));
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }, [lessonId, applyServerSession]);
+  useEffect(() => {
+    if (!LIVE_ENABLED || !liveToken || lmsTokenRef.current === liveToken) return;
+    lmsTokenRef.current = liveToken;
+    joinWithToken();
+  }, [liveToken, joinWithToken]);
+  const [liveJoinedNote, setLiveJoinedNote] = useState(false);
+  const attemptId = attempt?.id || null, attemptStatus = attempt?.status || null;
+  useEffect(() => {
+    if (mode !== "solo" || lms.state !== "joined" || !attemptId || attemptStatus !== "active") return;
+    const tok = lmsTokenRef.current;
+    if (!tok || peekTokenRole(tok) !== "student") return;
+    let on = true, inFlight = false;
+    const recheck = async () => {
+      if (!on || inFlight || typeof document !== "undefined" && document.hidden) return;
+      inFlight = true;
+      try {
+        const body = { lesson_id: lessonId };
+        if (lessonVersion) body.lesson_version = lessonVersion;
+        const res = await lmsJoin(tok, body);
+        if (!on || !res || res.mode !== "student") return;
+        resetResultDetails(lessonId);
+        if (applyServerSession(res, tok)) setLiveJoinedNote(true);
+      } catch {
+      } finally {
+        inFlight = false;
+      }
+    };
+    const id = setInterval(recheck, LMS_SOLO_RECHECK_MS);
+    const onVis = () => {
+      if (typeof document !== "undefined" && !document.hidden) recheck();
+    };
+    if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
+    return () => {
+      on = false;
+      clearInterval(id);
+      if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [mode, lms.state, attemptId, attemptStatus, lessonId, lessonVersion, applyServerSession]);
+  useEffect(() => {
+    if (!liveJoinedNote) return;
+    const t = setTimeout(() => setLiveJoinedNote(false), 8e3);
+    return () => clearTimeout(t);
+  }, [liveJoinedNote]);
+  useEffect(() => () => setProgressChannel(lessonId, null), [lessonId]);
+  return {
+    mode,
+    pin,
+    mentorScreen,
+    mentorMax,
+    status,
+    mentorAlive,
+    connected,
+    ended,
+    joinError,
+    busy,
+    startMentor,
+    joinStudent,
+    selfStudy,
+    reportScreen,
+    endSession,
+    submitAnswer,
+    recordAttempt,
+    quiz,
+    quizControl,
+    revealScreen,
+    mentorReveal,
+    playerId: playerRef.current?.id || null,
+    nickname: nickRef.current,
+    lms,
+    joinWithToken,
+    hasLmsToken: !!liveToken,
+    attempt,
+    serverProgress,
+    restartAttempt,
+    liveJoinedNote
+  };
+}
+
+// src/live/useServerProgress.js
+import { useEffect as useEffect2, useRef as useRef2 } from "react";
+function useServerProgress(live, refs) {
+  const seenRef = useRef2(null);
+  const p = live && live.serverProgress;
+  useEffect2(() => {
+    if (!p || !p.seq || seenRef.current === p.seq) return;
+    seenRef.current = p.seq;
+    const { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total } = refs || {};
+    let answers = p.answers && typeof p.answers === "object" ? p.answers : {};
+    let earned = Array.isArray(p.earned) ? p.earned : [];
+    let screen = Number.isInteger(p.screen) ? p.screen : 0;
+    if (p.total && total && p.total !== total) {
+      answers = {};
+      earned = [];
+      screen = 0;
+    }
+    if (total) screen = Math.min(Math.max(screen, 0), total - 1);
+    if (typeof setAnswers === "function") setAnswers(answers);
+    if (typeof setScreen === "function") setScreen(screen);
+    if (earnedRef && typeof earnedRef === "object") earnedRef.current = new Set(earned);
+    if (typeof setEarned === "function") setEarned(new Set(earned));
+    if (startTimeRef && typeof startTimeRef === "object") startTimeRef.current = Number.isInteger(p.startedAt) ? p.startedAt : Date.now();
+  }, [p]);
+}
+
+// src/live/LiveUI.jsx
+import React2, { useState as useState2, useEffect as useEffect3 } from "react";
+var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
+var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
+function LiveBigCode({ pin, onClose }) {
+  const digits = String(pin || "").split("");
+  const overlay = { position: "fixed", inset: 0, zIndex: 1e4, background: LT.ink, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "clamp(16px,4vw,40px)", textAlign: "center" };
+  const box = { background: LT.paper, color: LT.ink, borderRadius: "clamp(10px,1.6vw,18px)", fontFamily: "monospace", fontWeight: 800, lineHeight: 1, fontSize: "clamp(48px,13vw,150px)", padding: "clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)", boxShadow: "0 10px 40px -10px rgba(0,0,0,0.5)" };
+  return <div style={overlay}>
+      <div style={{ fontSize: "clamp(13px,2vw,18px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: LT.accent, marginBottom: "clamp(14px,3vw,28px)" }}>{tr({ uz: "Jonli darsga qo'shilish", ru: "Подключение к живому уроку" })}</div>
+      <div style={{ display: "flex", gap: "clamp(6px,1.4vw,16px)", justifyContent: "center", flexWrap: "wrap" }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
+      <p style={{ color: "#fff", opacity: 0.85, fontSize: "clamp(15px,2.2vw,22px)", maxWidth: 640, margin: "clamp(20px,4vw,36px) 0 0", lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: "#fff" }}>«👨‍🎓 O'quvchiman»</b> → shu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: "#fff" }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: "clamp(22px,4vw,40px)", background: LT.accent, color: "#fff", border: "none", borderRadius: 14, padding: "clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)", fontSize: "clamp(15px,1.8vw,18px)", fontWeight: 700, cursor: "pointer" }}>{tr({ uz: "Darsni boshlash →", ru: "Начать урок →" })}</button>
+    </div>;
+}
+function LiveGate({ live, title = "Jonli dars" }) {
+  const [code, setCode] = useState2("");
+  const [nick, setNick] = useState2(() => nickRead());
+  const [mentorCode, setMentorCode] = useState2("");
+  const [role, setRole] = useState2("student");
+  const card = { position: "relative", width: "100%", maxWidth: 420, background: LT.paper, borderRadius: 20, padding: "clamp(24px,4vw,36px)", boxShadow: "0 10px 40px -12px rgba(58,53,48,0.22)", display: "flex", flexDirection: "column", gap: 18 };
+  const wrap = { minHeight: "calc(100dvh / var(--lz, 1))", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 };
+  const link = { background: "none", border: "none", color: LT.ink3, fontSize: 13, cursor: "pointer", alignSelf: "center" };
+  const lms = live.lms || { state: "idle" };
+  const [pinFallback, setPinFallback] = useState2(false);
+  if (lms.state === "joining" || live.hasLmsToken && lms.state === "idle") {
+    return <div style={wrap}><div style={card} data-live="lms-joining">
+      <div style={{ textAlign: "center" }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(22px,3vw,28px)", color: LT.ink, margin: "6px 0 4px" }}>{tr({ uz: "Darsga ulanmoqda…", ru: "Подключение к уроку…" })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: "LMS orqali avtomatik kirish. Bir necha soniya.", ru: "Автоматический вход через LMS. Несколько секунд." })}</p></div>
+    </div></div>;
+  }
+  if (lms.state === "choose" && !pinFallback && Array.isArray(lms.choices)) {
+    const when = (iso2) => {
+      try {
+        return new Date(iso2).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      } catch {
+        return "";
+      }
+    };
+    return <div style={wrap}><div style={card} data-live="lms-choose">
+      <div style={{ textAlign: "center" }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(22px,3vw,28px)", color: LT.ink, margin: "6px 0 4px" }}>{tr({ uz: "Qaysi darsga kirasiz?", ru: "На какой урок войти?" })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: "Hozir bir nechta jonli dars ketmoqda.", ru: "Сейчас идёт несколько живых уроков." })}</p></div>
+      {lms.choices.map((c) => <button key={c.session_id} onClick={() => live.joinWithToken(c.session_id)} style={{ ..._liveBtnPri, display: "flex", justifyContent: "space-between", gap: 12 }}>
+          <span>{tr(c.lesson_title) || tr(title)}</span><span style={{ opacity: 0.8, fontWeight: 600 }}>{when(c.started_at)}</span>
+        </button>)}
+      <button onClick={() => setPinFallback(true)} style={link}>{tr({ uz: "Kod bilan kiraman →", ru: "Войду по коду →" })}</button>
+    </div></div>;
+  }
+  const lmsNote = lms.state === "none" ? tr({ uz: "Guruhingizda hozir jonli dars yo'q. Kod bilan kiring yoki o'zingiz ko'ring.", ru: "В вашей группе сейчас нет живого урока. Войдите по коду или смотрите сами." }) : lms.state === "error" ? tr({ uz: "Avtomatik kirish bo'lmadi. Kod bilan kiring.", ru: "Автоматический вход не удался. Войдите по коду." }) : "";
+  if (role === "mentor") {
+    return <div style={wrap}><div style={card}>
+      <div style={{ textAlign: "center" }}><h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(22px,3vw,28px)", color: LT.ink, margin: "0 0 4px" }}>{tr({ uz: "🧑‍🏫 Mentor kirishi", ru: "🧑‍🏫 Вход для ментора" })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: "Mentor kodini kiriting.", ru: "Введите код ментора." })}</p></div>
+      <input value={mentorCode} onChange={(e) => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: "Mentor kodi", ru: "Код ментора" })} onKeyDown={(e) => {
+      if (e.key === "Enter") live.startMentor(mentorCode);
+    }} style={{ width: "100%", padding: "14px", border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: "center", outline: "none" }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: "Tekshirilmoqda…", ru: "Проверка…" }) : tr({ uz: "Kirish →", ru: "Войти →" })}</button>
+      {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: "center" }}>{live.joinError}</div>}
+      <button onClick={() => {
+      setRole("student");
+      setMentorCode("");
+    }} style={link}>{tr({ uz: "← Orqaga", ru: "← Назад" })}</button>
+    </div></div>;
+  }
+  return <div style={wrap}><div style={card}>
+    <div style={{ textAlign: "center" }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(22px,3vw,28px)", color: LT.ink, margin: "6px 0 4px" }}>{tr({ uz: "Darsga qo'shilish", ru: "Присоединиться к уроку" })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: "Mentor bergan kodni va ismingizni kiriting.", ru: "Введите код от ментора и своё имя." })}</p></div>
+    <input value={code} onChange={(e) => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: "100%", padding: "16px 14px", border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: "monospace", fontWeight: 700, letterSpacing: "0.12em", textAlign: "center", outline: "none" }} />
+    <input value={nick} onChange={(e) => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: "Ismingiz (masalan: Ali)", ru: "Ваше имя (например: Али)" })} onKeyDown={(e) => {
+    if (e.key === "Enter") live.joinStudent(code, nick);
+  }} style={{ width: "100%", padding: "13px 14px", border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: "center", outline: "none" }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: "Ulanmoqda…", ru: "Подключение…" }) : tr({ uz: "Qo'shilish →", ru: "Присоединиться →" })}</button>
+    {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: "center" }}>{live.joinError}</div>}
+    {lmsNote && <div data-live="lms-note" style={{ color: LT.ink2, fontSize: 13, textAlign: "center", background: LT.bg, borderRadius: 10, padding: "8px 10px" }}>{lmsNote}</div>}
+    {
+    /* Jonli dars bo'lmasa (uyda, keyinroq) — darsni kodsiz ochish yo'li. Ilgari bu yo'l yo'q edi (F-0903-01). */
+  }
+    <button data-live="self" onClick={() => live.selfStudy()} style={link}>{tr({ uz: "Kodsiz, o'zim ko'raman →", ru: "Без кода, смотрю сам →" })}</button>
+    <button onClick={() => {
+    setRole("mentor");
+    setCode("");
+  }} title="Mentor" aria-label="Mentor" style={{ position: "absolute", bottom: 10, right: 12, background: "none", border: "none", fontSize: 16, opacity: 0.3, cursor: "pointer", lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
+  </div></div>;
+}
+function LiveBadge({ live, total }) {
+  const [bigOpen, setBigOpen] = useState2(false);
+  const [nPlayers, setNPlayers] = useState2(null);
+  useEffect3(() => {
+    if (live.mode !== "mentor" || !live.pin || live.ended) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const rows = await livePlayers(live.pin);
+        if (on) setNPlayers(rows.length);
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 6e3);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, [live.mode, live.pin, live.ended]);
+  if (live.mode === "mentor") {
+    if (live.ended) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: "🔓 Ученики отпущены" })}</div>;
+    return <>
+      {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
+      <div data-tour="live" className="live-badge" style={_liveBadgeS}>
+        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: "monospace", letterSpacing: "0.08em" }}>{fmtPin(live.pin)}</b>
+        {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: "Показать код крупно" })} style={{ marginLeft: 6, background: LT.ink, color: "#fff", border: "none", borderRadius: 99, padding: "4px 10px", fontSize: 12, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>{tr({ uz: "📺 Ko'rsatish", ru: "📺 Показать" })}</button>
+        <button onClick={() => {
+      if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: "Отпустить учеников? Они продолжат самостоятельно." }))) live.endSession();
+    }} style={{ background: LT.accentSoft, color: LT.accent, border: "none", borderRadius: 99, padding: "4px 10px", fontSize: 12, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>{tr({ uz: "🔓 Erkin qilish", ru: "🔓 Отпустить" })}</button>
+      </div>
+    </>;
+  }
+  const restartBtn = <button data-live="restart" disabled={live.busy} onClick={() => live.restartAttempt && live.restartAttempt()} style={{ background: LT.accentSoft, color: LT.accent, border: "none", borderRadius: 99, padding: "4px 10px", fontSize: 12, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>{tr({ uz: "↻ Qaytadan boshlash", ru: "↻ Начать заново" })}</button>;
+  if (live.mode === "solo") {
+    const done = live.attempt && live.attempt.status === "finished";
+    return <div data-tour="live" data-live="badge-solo" className="live-badge" style={_liveBadgeS}>
+      <span style={_liveDot(done ? LT.ink3 : LT.success)} /> {done ? tr({ uz: "✓ Yakunlandi — javoblaringiz saqlandi", ru: "✓ Завершено — ответы сохранены" }) : tr({ uz: "📘 Mustaqil rejim", ru: "📘 Самостоятельный режим" })}
+      {!done && live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}
+      {done && restartBtn}
+    </div>;
+  }
+  if (live.mode === "review") {
+    return <div data-tour="live" data-live="badge-review" className="live-badge" style={_liveBadgeS}>
+      <span style={_liveDot(LT.ink3)} /> {tr({ uz: "👁 Ko'rish rejimi — oldingi javoblaringiz", ru: "👁 Режим просмотра — ваши прежние ответы" })}
+      {restartBtn}
+    </div>;
+  }
+  if (live.mode === "student") {
+    if (live.liveJoinedNote) return <div data-tour="live" data-live="badge-joined" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🎉 Mentor darsni boshladi — jonli darsga ulandingiz", ru: "🎉 Ментор начал урок — вы подключены к живому уроку" })}</div>;
+    if (live.status === "ended") return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: "🔓 Свободный режим — продолжайте сами" })}</div>;
+    if (!live.mentorAlive) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "⚠️ Mentor uzildi — erkin rejim", ru: "⚠️ Ментор отключился — свободный режим" })}</div>;
+    if (!live.connected) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot("#FFD380")} /> {tr({ uz: "🔄 Qayta ulanmoqda…", ru: "🔄 Переподключение…" })}</div>;
+    return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "👨‍🏫 Mentor:", ru: "👨‍🏫 Ментор:" })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+  }
+  return null;
+}
+
+// src/4-Modull/AuthEnvLesson.jsx
+var MENTOR_IMG = "https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png";
+var T = {
+  bg: "#F6F4EF",
+  ink: "#0E0E10",
+  ink2: "#5A5A60",
+  ink3: "#A7A6A2",
+  paper: "#FFFFFF",
+  accent: "#FF4F28",
+  accentSoft: "#FFE8E1",
+  accentVivid: "#FF4F28",
+  success: "#1F7A4D",
+  successSoft: "#E3F0E8",
+  blue: "#019ACB",
+  blueSoft: "#E2F4FA",
+  link: "#1a56db",
+  danger: "#C2362B",
+  dangerSoft: "#FBE7DE",
+  purple: "#7C5CBF",
+  line: "#E9E6DF",
+  // B1 (F-0820-224): modul-toni — m4-09/13/14 bilan bir xil
+  shadowBase: "58, 53, 48"
+};
+var CODE = { bg: "#1A2436", text: "#E8E5DD", tag: "#FF7755", attr: "#FFD380", str: "#7DD181", comment: "#6B7585", punct: "#9FB4D8", kw: "#C586C0", fn: "#DCDCAA" };
+var METHODS = { GET: T.success, POST: T.accent, PUT: T.blue, DELETE: T.danger };
+var STAT = { 200: ["200 OK", T.success], 201: ["201 Created", T.success], 401: ["401 Unauthorized", T.danger], 403: ["403 Forbidden", T.danger], 404: ["404 Not Found", T.danger] };
+var __lang = "uz";
+var tr2 = (node) => {
+  if (node === null || node === void 0) return "";
+  if (typeof node === "string") return node;
+  if (React3.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? "";
+};
+var LangContext = createContext2("uz");
+var MentorCtx = createContext2(null);
+var AchCtx = createContext2(null);
+var AchMissCtx = createContext2(null);
+var fmtCode = (s) => typeof s === "string" && s.includes("`") ? s.split("`").map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p) : s;
+var useAudio = () => ({ muted: true, isPlaying: false, currentSegment: null, waitingFor: null, triggerEvent: () => {
+}, replay: () => {
+}, toggleMute: () => {
+} });
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState3(typeof window !== "undefined" ? window.innerWidth < breakpoint : false);
+  useEffect4(() => {
+    if (typeof window === "undefined") return;
+    const onResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [breakpoint]);
+  return isMobile;
+}
+var LESSON_META = { lessonId: "auth-env-04-07-v18", lessonTitle: { uz: "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar", ru: "Аутентификация и .env — логин, JWT, секреты" } };
+var HW_TOKENS = [
+  { t: { uz: "amaliyot", ru: "практика" }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: "loyiha", ru: "проект" }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: "mashq", ru: "упражнение" }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: "natija", ru: "результат" }, l: 78, tp: 68, s: 13, d: 6.8 }
+];
+var SCREEN_META = [
+  { id: "s0", type: "hook", template: "custom", scored: false, scope: "hook" },
+  { id: "s1", type: "rule", template: "custom", scored: false, scope: null },
+  { id: "s2", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s3", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s4", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
+  { id: "s5", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s5b", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
+  { id: "s6", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s7", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s8", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s9", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
+  { id: "s10", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s11", type: "case", template: "custom", scored: false, scope: null },
+  { id: "s12", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
+  { id: "s13", type: "challenge", template: "custom", scored: false, scope: null },
+  { id: "s14", type: "rule", template: "custom", scored: false, scope: null },
+  { id: "s15", type: "test", template: "custom", scored: true, scope: "final" },
+  { id: "practice", type: "practice", template: "custom", scored: false, scope: null },
+  { id: "podium", type: "stats", template: "custom", scored: false, scope: null },
+  { id: "sflash", type: "flashcards", template: "custom", scored: false, scope: null },
+  { id: "s16", type: "summary", template: "custom", scored: false, scope: null }
+];
+var TOTAL_SCREENS = SCREEN_META.length;
+var SCORED_IDX = SCREEN_META.map((m, i) => m.scored ? i : null).filter((i) => i !== null);
+var Split = ({ children }) => <div className="split">{children}</div>;
+var Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : void 0}>{children}</div>;
+function AchCounter() {
+  const earned = useContext2(AchCtx);
+  const gate = useContext2(LiveGateCtx);
+  const count = earned ? earned.size : 0;
+  const total = Object.keys(ACHIEVEMENTS).length;
+  const prevRef = useRef3(count);
+  const [bump, setBump] = useState3(false);
+  const [open, setOpen] = useState3(false);
+  useEffect4(() => {
+    if (count > prevRef.current) {
+      setBump(true);
+      const t = setTimeout(() => setBump(false), 800);
+      prevRef.current = count;
+      return () => clearTimeout(t);
+    }
+    prevRef.current = count;
+  }, [count]);
+  if (gate && gate.live && gate.live.mode === "mentor") return null;
+  return <div className="ach-cnt-wrap">
+      <button className={`ach-counter ${bump ? "bump" : ""} ${count > 0 ? "has" : ""}`} onClick={() => setOpen((o) => !o)} aria-label="Badges" title="Badges">
+        <span className="ach-cnt-ic">🏅</span><b>{count}</b><span className="ach-cnt-tot">/{total}</span>
+      </button>
+      {open && <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
+          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          {Object.entries(ACHIEVEMENTS).map(([id, a]) => {
+    const got = !!(earned && earned.has(id));
+    return <div key={id} className={`ach-pop-row ${got ? "got" : ""}`}><span className="ach-pop-ic">{got ? a.icon : "🔒"}</span><span className="ach-pop-nm">{a.name}</span></div>;
+  })}
+        </div>}
+    </div>;
+}
+var Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
+  const isMobile = useIsMobile();
+  const isNarrow = useIsMobile(768);
+  const collapseOn = isNarrow && !mentorStatic;
+  const padH = isMobile ? 12 : 60;
+  const [mCollapsed, setMCollapsed] = useState3(false);
+  const contentRef = useRef3(null);
+  useEffect4(() => {
+    setMCollapsed(false);
+  }, [screen]);
+  const setCollapsed = useCallback2((v) => {
+    setMCollapsed(v);
+    if (v === false && contentRef.current) {
+      const el = contentRef.current;
+      requestAnimationFrame(() => {
+        if (el) el.scrollTo({ top: 0, behavior: "auto" });
+      });
+    }
+  }, []);
+  const onContentClick = (e) => {
+    if (!collapseOn || mCollapsed) return;
+    if (e.target && e.target.closest && e.target.closest(".mentor")) return;
+    setMCollapsed(true);
+  };
+  const onContentScroll = () => {
+    if (!collapseOn || mCollapsed) return;
+    const el = contentRef.current;
+    if (el && el.scrollTop > 6) setMCollapsed(true);
+  };
+  return <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <div className="stage">
+        <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
+          <div className="progress-track"><div className="progress-bar" style={{ width: `${(screen + 1) / totalScreens * 100}%` }} /></div>
+          <div className="chrome">
+            <div className="chrome-left eyebrow"><span className="dot" /><span>{eyebrow}</span></div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <AchCounter />
+              <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, "0")} / {String(totalScreens).padStart(2, "0")}</div>
+            </div>
+          </div>
+        </div>
+        <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? "narrow" : ""}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
+        {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
+      </div>
+    </MentorCtx.Provider>;
+};
+var NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: "clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr2({ uz: "Orqaga", ru: "Назад" })}</button>;
+var NavNext = ({ disabled, label = { uz: "Davom etish", ru: "Продолжить" }, onClick, optionalLive }) => {
+  const gate = useContext2(LiveGateCtx);
+  const locked = !!(gate && gate.locked);
+  const live = gate && gate.live;
+  const freeRide = !!(optionalLive && live && live.mode === "student" && live.status !== "ended" && live.mentorAlive);
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr2({ uz: "Mentor hali bu sahifaga o'tmadi", ru: "Ментор ещё не перешёл на эту страницу" }) : void 0} style={{ padding: "clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)", fontSize: "clamp(13px,1.5vw,15px)", marginLeft: "auto" }}>{locked ? tr2({ uz: "⏳ Mentorni kuting", ru: "⏳ Ждите ментора" }) : freeRide && disabled ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : tr2(label)}</button>;
+};
+var FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
+  const [mounted, setMounted] = useState3(show);
+  const [visible, setVisible] = useState3(false);
+  const ref = useRef3(null);
+  useEffect4(() => {
+    if (show) {
+      setMounted(true);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        setVisible(true);
+        setTimeout(() => {
+          if (ref.current) ref.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }, 350);
+      }));
+    } else {
+      setVisible(false);
+      const t = setTimeout(() => setMounted(false), 400);
+      return () => clearTimeout(t);
+    }
+  }, [show]);
+  if (!mounted) return null;
+  return <div ref={ref} className={`feedback-block ${visible ? "visible" : ""}`}><div className={neutral ? "frame-wait" : isCorrect ? "frame-success" : "frame-soft"}>{children}</div></div>;
+};
+var INLINE_KEYS = { s4: 0, s5b: 1, s9: 3, s12: 2, s15: -1, practice: -1 };
+var MSTATS_COLORS = ["#019ACB", "#8B5CF6", "#E8A13A", "#E0559A"];
+var RECAP_NEED_PCT = 60;
+var RECAP_GOOD_PCT = 75;
+var RECAP_MIN_ANSWERS = 3;
+var RECAPS = {
+  4: {
+    title: "Login → token",
+    cards: [
+      { ic: "🎫", h: { uz: "Login → bilaguzuk", ru: "Логин → браслет" }, body: { uz: <>Email va parol to'g'ri bo'lsa, server <b>token (bilaguzuk)</b> beradi. Endi parol emas — shu token ishlatiladi.</>, ru: <>Если email и пароль верны, сервер выдаёт <b>токен (браслет)</b>. Дальше работает не пароль, а этот токен.</> } },
+      { ic: "🔁", h: { uz: "Parol bir marta", ru: "Пароль — один раз" }, body: { uz: <>Parolni har safar yubormaysiz. Bir marta login → token → keyingi so'rovlar shu token bilan.</>, ru: <>Вы не отправляете пароль каждый раз. Один раз логин → токен → следующие запросы с этим токеном.</> } },
+      { ic: "✍️", h: { uz: "jwt.sign yasaydi", ru: "jwt.sign создаёт" }, body: { uz: <>Server <span className="mono">jwt.sign</span> bilan tokenni <b>userId + SECRET</b>dan yasaydi.</>, ru: <>Сервер создаёт токен через <span className="mono">jwt.sign</span> из <b>userId + SECRET</b>.</> }, ask: { uz: "Login muvaffaqiyatli — server nima qaytaradi?", ru: "Логин успешен — что возвращает сервер?" } }
+    ]
+  },
+  6: {
+    title: { uz: "JWT tuzilishi — imzo himoyasi", ru: "Структура JWT — защита подписью" },
+    cards: [
+      { ic: "🧩", h: "header.payload.signature", body: { uz: <>JWT uch qism: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — nuqta bilan ajratilgan.</>, ru: <>JWT — три части: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — разделены точками.</> } },
+      { ic: "👁️", h: { uz: "Payload o'qiladi", ru: "Payload читается" }, body: { uz: <>Payload ichida userId turadi — o'qiladi, lekin <b>o'zgartirib bo'lmaydi</b>.</>, ru: <>Внутри payload лежит userId — он читается, но <b>изменить его нельзя</b>.</> } },
+      { ic: "🔏", h: { uz: "Signature to'sadi", ru: "Signature защищает" }, body: { uz: <>Imzo maxfiy kalit (<span className="mono">JWT_SECRET</span>) bilan yasaladi. Tokenni o'zgartirsangiz — imzo buziladi, server rad etadi.</>, ru: <>Подпись делается секретным ключом (<span className="mono">JWT_SECRET</span>). Измените токен — подпись сломается, сервер откажет.</> }, ask: { uz: "Nega soxta token yasab bo'lmaydi?", ru: "Почему нельзя сделать поддельный токен?" } }
+    ]
+  },
+  10: {
+    title: "Guard · 401 · Bearer",
+    cards: [
+      { ic: "🎟️", h: { uz: "Bearer bilan yuborish", ru: "Отправка с Bearer" }, body: { uz: <>Har so'rovda token <span className="mono">Authorization: Bearer &lt;token&gt;</span> sarlavhasida ketadi.</>, ru: <>В каждом запросе токен едет в заголовке <span className="mono">Authorization: Bearer &lt;token&gt;</span>.</> } },
+      { ic: "🛡️", h: { uz: "Guard tekshiradi", ru: "Guard проверяет" }, body: { uz: <>Himoyalangan route oldida qo'riqchi <span className="mono">jwt.verify(token, SECRET)</span> bilan imzoni tekshiradi.</>, ru: <>Перед защищённым route охранник проверяет подпись через <span className="mono">jwt.verify(token, SECRET)</span>.</> } },
+      { ic: "⛔", h: { uz: "Tokensiz → 401", ru: "Без токена → 401" }, body: { uz: <>Token yo'q yoki soxta bo'lsa — <b>401 Unauthorized</b>. Kira olmaysiz.</>, ru: <>Токена нет или он поддельный — <b>401 Unauthorized</b>. Вход закрыт.</> }, ask: { uz: "Tokensiz himoyalangan route — qaysi status?", ru: "Защищённый route без токена — какой статус?" } }
+    ]
+  },
+  13: {
+    title: { uz: "Maxfiy kalit · .env · process.env", ru: "Секретный ключ · .env · process.env" },
+    cards: [
+      { ic: "🔑", h: { uz: "JWT_SECRET — imzo muhri", ru: "JWT_SECRET — печать подписи" }, body: { uz: <>Butun himoya <b>maxfiy kalit</b>ga bog'liq. U kodda ochiq tursa va GitHub'ga ketsa — hamma soxta bilaguzuk (token) yasay oladi.</>, ru: <>Вся защита держится на <b>секретном ключе</b>. Если он открыт в коде и попадёт на GitHub — каждый сможет делать поддельные браслеты (токены).</> } },
+      { ic: "🗄️", h: { uz: ".env — yashirin tortma", ru: ".env — потайной ящик" }, body: { uz: <>Maxfiy kalitlar <span className="mono">.env</span> faylida. Kod ularni <span className="mono">process.env</span> orqali o'qiydi.</>, ru: <>Секретные ключи — в файле <span className="mono">.env</span>. Код читает их через <span className="mono">process.env</span>.</> } },
+      { ic: "🙈", h: { uz: ".gitignore saqlaydi", ru: ".gitignore бережёт" }, body: { uz: <><span className="mono">.gitignore</span>'ga <span className="mono">.env</span> qo'shiladi — u GitHub'ga hech qachon ketmaydi.</>, ru: <>В <span className="mono">.gitignore</span> добавляется <span className="mono">.env</span> — он никогда не попадёт на GitHub.</> }, ask: { uz: "Maxfiy kalitlarni qayerda saqlaymiz?", ru: "Где мы храним секретные ключи?" } }
+    ]
+  }
+};
+function RecapOverlay({ screenIdx, onClose }) {
+  const rc = RECAPS[screenIdx];
+  const [i, setI] = useState3(0);
+  useEffect4(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowRight") setI((p) => Math.min(p + 1, rc.cards.length - 1));
+      else if (e.key === "ArrowLeft") setI((p) => Math.max(p - 1, 0));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose, rc]);
+  if (!rc) return null;
+  const card = rc.cards[i];
+  const last = i === rc.cards.length - 1;
+  return <div className="rc-overlay">
+      <div className="rc-head">
+        <span className="rc-tag">{tr2({ uz: "📖 Qayta tushuntirish", ru: "📖 Объяснение заново" })}</span>
+        <span className="rc-title">{tr2(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr2({ uz: "Yopish", ru: "Закрыть" })}>✕</button>
+      </div>
+      <div className="rc-card" key={i}>
+        <div className="rc-ic">{card.ic}</div>
+        <h2 className="rc-h">{tr2(card.h)}</h2>
+        <p className="rc-body">{tr2(card.body)}</p>
+        {card.vis && <div className="rc-vis">{card.vis}</div>}
+        {card.ask && <div className="rc-ask">{tr2({ uz: "🗣️ Sinfga savol:", ru: "🗣️ Вопрос классу:" })} {tr2(card.ask)}</div>}
+      </div>
+      <div className="rc-nav">
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr2({ uz: "← Oldingi", ru: "← Предыдущая" })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? "cur" : k < i ? "fill" : ""}`} onClick={() => setI(k)} aria-label={tr2({ uz: `${k + 1}-karta`, ru: `карта ${k + 1}` })} />)}</div>
+        {last ? <button className="rc-btn done" onClick={onClose}>{tr2({ uz: "✓ Tushunarli — davom etamiz", ru: "✓ Понятно — продолжаем" })}</button> : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr2({ uz: "Keyingisi →", ru: "Следующая →" })}</button>}
+      </div>
+    </div>;
+}
+function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onReveal, onOpenRecap }) {
+  const [data, setData] = useState3({ players: null, rows: [] });
+  useEffect4(() => {
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, answers] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, screenIdx)]);
+        if (on) setData({ players, rows: answers });
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 3e3);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, [live.pin, screenIdx]);
+  if (data.players === null) return null;
+  const total = data.players.length;
+  const answered = data.rows.length;
+  const ok = data.rows.filter((a) => a.picked === correctIdx).length;
+  const bad = answered - ok;
+  const allIn = total > 0 && answered >= total;
+  const struggling = answered >= 2 && bad > ok;
+  const answeredIds = new Set(data.rows.map((r) => r.player_id));
+  const waiting = data.players.filter((p) => !answeredIds.has(p.id));
+  const maxN = Math.max(1, ...options.map((_, i) => data.rows.filter((a) => a.picked === i).length));
+  return <div className="mstats fade-up">
+      <div className="mstats-head">
+        <span className="mstats-lbl">{tr2({ uz: "📊 Jonli natija", ru: "📊 Живой результат" })}</span>
+        <span className="mstats-n">{allIn ? tr2({ uz: "✓ Hamma javob berdi", ru: "✓ Все ответили" }) : <>{tr2({ uz: "Javob berdi:", ru: "Ответили:" })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? "ready" : ""}`} onClick={onReveal}>{tr2({ uz: "🔓 Natijani ochish", ru: "🔓 Открыть результат" })}</button>}
+      </div>
+      <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? "full" : ""}`} style={{ width: `${total ? Math.round(answered / total * 100) : 0}%` }} /></div>
+      {reveal ? <div className="mstats-big">
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr2({ uz: "to'g'ri ✅", ru: "верно ✅" })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr2({ uz: "xato ❌", ru: "ошибки ❌" })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr2({ uz: "kutilmoqda ⏳", ru: "ждём ⏳" })}</span></div>
+        </div> : <div className="mstats-big">
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr2({ uz: "javob berdi 📨", ru: "ответили 📨" })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr2({ uz: "kutilmoqda ⏳", ru: "ждём ⏳" })}</span></div>
+        </div>}
+      {!reveal && answered > 0 && <p className="mstats-hidden">{tr2({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: "🙈 Кто что выбрал и сколько ✅/❌ — скрыто. По нажатию «Открыть результат» всё откроется сразу и у вас, и на экранах учеников." })}</p>}
+      {reveal && <div className="mstats-bars">
+        {options.map((opt, i) => {
+    const n = data.rows.filter((a) => a.picked === i).length;
+    const pct = answered ? Math.round(n / answered * 100) : 0;
+    const isC = reveal && i === correctIdx;
+    const col = isC ? T.success : MSTATS_COLORS[i % 4];
+    return <div key={i} className={`mstats-row ${reveal && !isC ? "dimmed" : ""}`}>
+              <span className="mstats-abc" style={{ background: col }}>{isC ? "✓" : String.fromCharCode(65 + i)}</span>
+              <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round(n / maxN * 100) : 0}%`, background: col }} /></span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : void 0}>{n > 0 ? tr2({ uz: `${n} o'quvchi · ${pct}%`, ru: `${n} уч. · ${pct}%` }) : "—"}</span>
+            </div>;
+  })}
+      </div>}
+      {reveal && answered > 0 && (() => {
+    const pct = Math.round(ok / answered * 100);
+    const level = answered < RECAP_MIN_ANSWERS ? "few" : pct < RECAP_NEED_PCT ? "need" : pct < RECAP_GOOD_PCT ? "maybe" : "good";
+    return <div className={`mstats-verdict ${level}`}>
+            {level === "need" && <p className="mstats-verdict-t">{tr2({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась классу непонятной. Перед продолжением коротко повторите.</> })}</p>}
+            {level === "maybe" && <p className="mstats-verdict-t">{tr2({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите тему перед продолжением.</> })}</p>}
+            {level === "good" && <p className="mstats-verdict-t">{tr2({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
+            {level === "few" && <p className="mstats-verdict-t">{tr2({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — судить по процентам сложно. Оцените сами.</> })}</p>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr2({ uz: "📖 Qayta tushuntirish", ru: "📖 Объяснить заново" })}</button>}
+          </div>;
+  })()}
+      {waiting.length > 0 && answered > 0 && <div className="mstats-waitrow">
+          <span className="mstats-wait-lbl">{tr2({ uz: "⏳ Kutilmoqda:", ru: "⏳ Ждём:" })}</span>
+          {waiting.slice(0, 8).map((p) => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
+          {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
+        </div>}
+      {reveal && struggling && <p className="mstats-warn">{tr2({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: "⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните ещё раз." })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr2({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: "Ответы учеников появятся здесь вживую…" })}</p>}
+    </div>;
+}
+var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, audioText, audioOk, audioWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _am = useContext2(AchMissCtx);
+  const fpPractice = !!(_am && _am.practice);
+  const audio = useAudio(audioText ? [{ id: `s${screen}_intro`, text: audioText, trigger: "on_mount", waits_for: { type: "option_picked" } }] : null);
+  const gate = useContext2(LiveGateCtx) || {};
+  const live = gate.live;
+  const oneShot = !!(live && live.mode === "student");
+  const isMentorLive = !!(live && live.mode === "mentor");
+  const mountTs = useRef3(Date.now());
+  const [picked, setPicked] = useState3(storedAnswer?.lastPicked ?? storedAnswer?.picked ?? null);
+  const [solved, setSolved] = useState3(storedAnswer ? storedAnswer.solved ?? storedAnswer.picked === correctIdx : false);
+  const firstCorrectRef = useRef3(storedAnswer ? storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null : null);
+  const [mReveal, setMReveal] = useState3(() => !!(isMentorLive && storedAnswer));
+  const [recapOpen, setRecapOpen] = useState3(false);
+  const hasRecap = !!RECAPS[screen];
+  const doReveal = () => {
+    setMReveal(true);
+    if (live) live.mentorReveal(screen);
+    if (storedAnswer === void 0) onAnswer(screen, { mentorRevealed: true });
+  };
+  const liveRevealScreen = live ? live.revealScreen : -1;
+  useEffect4(() => {
+    if (isMentorLive && liveRevealScreen === screen) setMReveal(true);
+  }, [isMentorLive, liveRevealScreen, screen]);
+  const pick = (i) => {
+    if (solved || isMentorLive) return;
+    const isCorrect = i === correctIdx;
+    setPicked(i);
+    if (firstCorrectRef.current === null) firstCorrectRef.current = isCorrect;
+    if (oneShot) {
+      setSolved(true);
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+    } else {
+      if (isCorrect) setSolved(true);
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
+    }
+    if (live && live.recordAttempt && !fpPractice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
+  };
+  const wrongLocked = oneShot && solved && picked !== correctIdx;
+  const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === "ended" || !live.mentorAlive));
+  const waiting = oneShot && solved && !revealed;
+  return <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : void 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? mReveal ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Avval natijani oching", ru: "Сначала откройте результат" } : solved ? { uz: "Davom etish", ru: "Продолжить" } : oneShot ? { uz: "Javob tanlang", ru: "Выберите ответ" } : { uz: "To'g'ri javobni toping", ru: "Найдите правильный ответ" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
+        <div className="fade-up">{question}</div>
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
+          {options.map((opt, i) => {
+    let cls = "option";
+    if (isMentorLive) {
+      if (mReveal) {
+        if (i === correctIdx) cls += " option-correct";
+        else cls += " option-wrong";
+      }
+    } else if (solved) {
+      if (waiting) {
+        if (i === picked) cls += " option-wait";
+      } else {
+        if (i === correctIdx) cls += " option-correct";
+        else cls += " option-wrong";
+        if (wrongLocked && i === picked) cls += " option-picked-wrong";
+      }
+    } else if (i === picked) cls += " option-picked-wrong";
+    const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+                <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
+                <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
+              </button>;
+  })}
+        </div>
+        <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : solved && !wrongLocked} neutral={waiting}>
+          <p className="small mono" style={{ margin: "0 0 6px", fontWeight: 600, color: waiting ? T.blue : isMentorLive || solved && !wrongLocked ? T.success : T.accent, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+            {isMentorLive ? <>{tr2({ uz: "✓ To'g'ri javob:", ru: "✓ Правильный ответ:" })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</> : waiting ? tr2({ uz: "📨 Javobingiz qabul qilindi", ru: "📨 Ваш ответ принят" }) : wrongLocked ? <>{tr2({ uz: "To'g'ri javob:", ru: "Правильный ответ:" })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</> : solved ? tr2({ uz: "To'g'ri", ru: "Верно" }) : tr2({ uz: "Qaytadan urinib ko'ring", ru: "Попробуйте ещё раз" })}
+          </p>
+          <p className="body" style={{ margin: 0 }}>
+            {isMentorLive ? fmtCode(explainCorrect) : waiting ? tr2({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: "Сейчас узнаете правильный ответ." }) : wrongLocked ? fmtCode(explainWrong[picked] ?? explainWrong.default) : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
+          </p>
+          {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr2({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "📖 Короткое повторение — ещё раз взглянуть на тему" })}</button>}
+        </FeedbackBlock>
+        {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+      </div>
+    </Stage>;
+};
+function ScoreRing({ correct, total }) {
+  const PCT = total ? correct / total : 0;
+  const col = PCT >= 0.6 ? T.success : T.accent;
+  const R = 50, ST = 9, C = 2 * Math.PI * R;
+  const [off, setOff] = useState3(C);
+  useEffect4(() => {
+    const t = setTimeout(() => setOff(C * (1 - PCT)), 200);
+    return () => clearTimeout(t);
+  }, [C, PCT]);
+  return <div className="ring-wrap">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + "40"} strokeWidth={ST} />
+        <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: "stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)" }} />
+      </svg>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr2({ uz: "to'g'ri javob", ru: "верных ответов" })}</div></div>
+    </div>;
+}
+var Zoomable = ({ children }) => {
+  const [big, setBig] = useState3(false);
+  useEffect4(() => {
+    if (!big) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setBig(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [big]);
+  return <>
+      {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
+      <div className={`zoomable ${big ? "zoom-on" : ""}`}>
+        <button type="button" className="zoom-btn" onClick={() => setBig((b) => !b)} aria-label={big ? tr2({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr2({ uz: "Kattalashtirish", ru: "Увеличить" })} title={big ? tr2({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr2({ uz: "Kattalashtirish", ru: "Увеличить" })}>{big ? "✕" : "⛶"}</button>
+        {children}
+      </div>
+    </>;
+};
+var Mentor = ({ children }) => {
+  const ctx = useContext2(MentorCtx) || {};
+  const enabled = !!ctx.enabled;
+  const collapsed = enabled && ctx.collapsed;
+  const expand = (e) => {
+    e.stopPropagation();
+    if (ctx.setCollapsed) ctx.setCollapsed(false);
+  };
+  return <div className={`mentor fade-up ${enabled ? "mentor-mob" : ""} ${collapsed ? "is-collapsed" : ""}`} onClick={collapsed ? expand : void 0} role={collapsed ? "button" : void 0}>
+      <div className="mentor-ava" aria-hidden="true">
+        <img src={MENTOR_IMG} alt="" />
+      </div>
+      <div className="mentor-col">
+        <span className="mentor-name">{tr2({ uz: "Mentor", ru: "Ментор" })}{collapsed && <span className="mentor-cue">{tr2({ uz: " · ko'rsatmani ochish ▾", ru: " · открыть подсказку ▾" })}</span>}</span>
+        <div className="mentor-msg body">{children}</div>
+      </div>
+    </div>;
+};
+var Win = ({ title, children, minH, hotTitle }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title" style={hotTitle ? { color: T.accent, fontWeight: 700 } : void 0}>{title}</span></div><div className="bp-body" style={{ minHeight: minH, position: "relative" }}>{children}</div></div>;
+var Kw = ({ children }) => <span style={{ color: CODE.kw }}>{children}</span>;
+var Fn = ({ children }) => <span style={{ color: CODE.fn }}>{children}</span>;
+var St = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
+var At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
+var Cm = ({ children }) => <span style={{ color: CODE.comment }}>{children}</span>;
+var StatusBadge = ({ code }) => {
+  const s = STAT[code] || ["", T.ink2];
+  return <span className={`status-badge ${code >= 400 ? "err" : "ok"}`} style={{ color: s[1], background: s[1] + "1e" }}>{s[0]}</span>;
+};
+var JsonBox = ({ data, sm }) => {
+  const txt = JSON.stringify(data, null, 2);
+  return <pre className={`json-box ${sm ? "sm" : ""}`}>{txt.split("\n").map((ln, i) => {
+    const m = ln.match(/^(\s*)"([^"]+)":\s?(.*)$/);
+    if (m) {
+      const v = m[3];
+      const isStr = v.startsWith('"');
+      return <div key={i}>{m[1]}<span className="j-key">"{m[2]}"</span>: <span className={isStr ? "j-str" : "j-num"}>{v}</span></div>;
+    }
+    return <div key={i}>{ln}</div>;
+  })}</pre>;
+};
+var TOKEN = { h: "eyJhbG", p: "eyJ1c2VySWQiOjF9", s: "aB3xK9zQ" };
+var TokenCard = ({ active, onPart, small }) => <div className={`tokencard ${small ? "sm" : ""}`}>
+    <span className="tk-ic">🎫</span>
+    <div className="tk-jwt">
+      <button className={`jwt-part h ${active === "h" ? "on" : ""}`} onClick={onPart ? () => onPart("h") : void 0}>{TOKEN.h}</button>
+      <span className="jwt-dot">.</span>
+      <button className={`jwt-part p ${active === "p" ? "on" : ""}`} onClick={onPart ? () => onPart("p") : void 0}>{TOKEN.p}</button>
+      <span className="jwt-dot">.</span>
+      <button className={`jwt-part s ${active === "s" ? "on" : ""}`} onClick={onPart ? () => onPart("s") : void 0}>{TOKEN.s}</button>
+    </div>
+  </div>;
+var Postman = ({ method, url, authRow, sending, sent, status, children, onSend, sendDisabled, sendLabel = "Send" }) => <div className="postman fade-up">
+    <div className="pm-chrome">
+      <span className="bb-dots"><i /><i /><i /></span>
+      <span className="pm-app">Postman</span>
+      <span className="pm-tab mono">{url}</span>
+    </div>
+    <div className="pm-bar">
+      <span className="pm-method" style={{ color: METHODS[method] }}>{method}</span>
+      <span className="pm-url mono">{url}</span>
+      <button className="pm-send" disabled={sendDisabled || sending} onClick={onSend}>{sending ? "…" : sendLabel}</button>
+    </div>
+    {authRow && <div className="pm-auth">{authRow}</div>}
+    <div className="pm-resp">
+      <div className="pm-resp-h"><span className="pm-resp-lbl">{tr2({ uz: "Javob (Response)", ru: "Ответ (Response)" })}</span>{sent && status ? <StatusBadge code={status} /> : null}</div>
+      {sending ? <div className="pm-loading">{tr2({ uz: "📨 Yuborilmoqda…", ru: "📨 Отправляем…" })}</div> : sent ? <div className="pm-respbody fade-step">{children}</div> : <div className="pm-empty">{tr2({ uz: "▸ Send bosing — server javobi shu yerda chiqadi", ru: "▸ Нажмите Send — ответ сервера появится здесь" })}</div>}
+    </div>
+  </div>;
+var VALVE_TIP_SEC = 40;
+var VALVE_TIP_IDLE = 25;
+var VALVE_RES_SEC = 110;
+var VALVE_RES_IDLE = 60;
+function useStuckValve(done, progress = 0) {
+  const _gate = useContext2(LiveGateCtx) || {};
+  const isMentor = !!(_gate.live && _gate.live.mode === "mentor");
+  const [sec, setSec] = useState3(0);
+  const [idle, setIdle] = useState3(0);
+  const lastProg = useRef3(progress);
+  useEffect4(() => {
+    if (lastProg.current !== progress) {
+      lastProg.current = progress;
+      setIdle(0);
+    }
+  }, [progress]);
+  useEffect4(() => {
+    if (done || isMentor) return;
+    const t = setInterval(() => {
+      setSec((v) => v + 1);
+      setIdle((v) => v + 1);
+    }, 1e3);
+    return () => clearInterval(t);
+  }, [done, isMentor]);
+  const live = !done && !isMentor;
+  return {
+    tip: live && (sec >= VALVE_TIP_SEC || idle >= VALVE_TIP_IDLE),
+    rescue: live && (sec >= VALVE_RES_SEC || idle >= VALVE_RES_IDLE),
+    isMentor
+  };
+}
+var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
+  const [phase, setPhase] = useState3(storedAnswer ? "done" : "idle");
+  const [picked, setPicked] = useState3(storedAnswer?.picked ?? null);
+  const tried = phase === "done";
+  const attack = () => {
+    if (phase !== "idle") return;
+    setPhase("attack");
+    setTimeout(() => setPhase("done"), 1100);
+  };
+  const OPTS = [
+    { id: "a", label: tr2({ uz: "Hech narsa — har kim mahsulot qo'sha va o'chira oladi", ru: "Ничего — пусть каждый может добавлять и удалять товары" }) },
+    { id: "b", label: tr2({ uz: "Login qo'shamiz — faqat kirgan (ruxsatli) odam o'zgartira oladi", ru: "Добавим логин — менять сможет только вошедший (авторизованный)" }) },
+    { id: "c", label: tr2({ uz: "Saytni yopib, mahsulotlarni faqat qog'ozda yuritamiz", ru: "Закроем сайт и будем вести товары только на бумаге" }) }
+  ];
+  const correct = "b";
+  const pick = (v) => {
+    if (picked !== null || !tried) return;
+    setPicked(v);
+    onAnswer(screen, { stage: "hook", screenIdx: screen, picked: v, correct: v === correct });
+  };
+  return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} />}>
+      <div className="screen">
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Do'koningizga <span className="italic" style={{ color: T.accent }}>begona</span> kirib, hammasini o'chirib tashlasa-chi?</>, ru: <>А если в ваш магазин зайдёт <span className="italic" style={{ color: T.accent }}>чужак</span> и всё удалит?</> })}</h1>
+        <Mentor>{tr2({ uz: <>O'tgan darsda <span className="mono">POST /api/products</span> bilan mahsulot qo'shdik — lekin buni <b style={{ color: T.danger }}>HAR KIM</b> qila oladi! Tugmani bosing: begona kelib mahsulotlarni o'chirib ketadi. Bunday bo'lmasligi uchun nima qilamiz?</>, ru: <>На прошлом уроке мы добавляли товары через <span className="mono">POST /api/products</span> — но это может сделать <b style={{ color: T.danger }}>КТО УГОДНО</b>! Нажмите кнопку: чужак придёт и удалит товары. Что сделать, чтобы такого не случилось?</> })}</Mentor>
+        <Zoomable>
+        <Split>
+          <Col>
+            <Win title={tr2({ uz: "zakaz-shop.uz — himoyasiz", ru: "zakaz-shop.uz — без защиты" })} minH={150} hotTitle={phase === "done"}>
+              <div className="shopmock">
+                {phase === "done" ? <div className="empty-shop fade-step">{tr2({ uz: "🗑️ Mahsulotlar o'chirib tashlandi!", ru: "🗑️ Товары удалены!" })}</div> : [tr2({ uz: "Klaviatura", ru: "Клавиатура" }), tr2({ uz: "Sichqoncha", ru: "Мышка" }), tr2({ uz: "Quloqchin", ru: "Наушники" })].map((n) => <div key={n} className={`shop-card ${phase === "attack" ? "shaking" : ""}`}><div className="shop-name">{n}</div></div>)}
+              </div>
+            </Win>
+            {phase === "idle" && <button className="btn danger" style={{ alignSelf: "flex-start" }} onClick={attack}>{tr2({ uz: "😈 Begona: DELETE /api/products", ru: "😈 Чужак: DELETE /api/products" })}</button>}
+            {phase === "attack" && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr2({ uz: "Begona o'chiryapti…", ru: "Чужак удаляет…" })}</p>}
+            {phase === "done" && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr2({ uz: "✕ Hamma narsa o'chdi — chunki hech qanday himoya yo'q edi!", ru: "✕ Всё стёрто — ведь никакой защиты не было!" })}</p>}
+          </Col>
+          <Col>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr2({ uz: "Buning oldini qanday olamiz?", ru: "Как это предотвратить?" })}</p>
+            <div className="fade-up delay-3" style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+              {OPTS.map((o) => {
+    const on = picked === o.id;
+    return <button key={o.id} className={`hook-option ${on ? "on" : ""}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}>
+                    <span className="radio">{on && <span className="radio-dot" />}</span>
+                    <span>{o.label}</span>
+                  </button>;
+  })}
+            </div>
+            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Avval hujumni ko'ring ←", ru: "Сначала посмотрите атаку ←" })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr2({ uz: <>To'g'ri! <b>Autentifikatsiya</b> qo'shamiz: faqat login qilgan odam o'zgartira oladi. Login qilganga sayt maxsus bilaguzuk beradi — bugun shuni yasaymiz.</>, ru: <>Верно! Добавим <b>аутентификацию</b>: изменять сможет только тот, кто вошёл. Вошедшему сайт выдаёт особый браслет — сегодня мы его и сделаем.</> }) : tr2({ uz: <>To'g'ri yo'l — <b>login (autentifikatsiya)</b> qo'shish: faqat login qilgan odam o'zgartira oladi. Bugun shuni o'rganamiz.</>, ru: <>Правильный путь — добавить <b>логин (аутентификацию)</b>: изменять сможет только вошедший. Этому сегодня и научимся.</> })}</p>}
+          </Col>
+        </Split>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen1 = ({ screen, onNext, onPrev }) => {
+  const STEPS = [
+    { text: tr2({ uz: "Autentifikatsiya — siz kimsiz?", ru: "Аутентификация — кто вы?" }), tag: "login" },
+    { text: tr2({ uz: "JWT token — raqamli bilaguzuk", ru: "JWT-токен — цифровой браслет" }), tag: "sign" },
+    { text: tr2({ uz: "Tokenni ko'rsatish — eshik (route) himoyasi", ru: "Показ токена — защита двери (route)" }), tag: "Bearer · 401" },
+    { text: tr2({ uz: "Maxfiy kalit va .env", ru: "Секретный ключ и .env" }), tag: "JWT_SECRET" },
+    { text: tr2({ uz: "O'zingiz .env'ga ko'chirasiz", ru: "Сами переносите секрет в .env" }), tag: "process.env" }
+  ];
+  const isNarrow = useIsMobile(768);
+  const [showSteps, setShowSteps] = useState3(false);
+  const PreviewBlock = <Col>
+      <p className="flow-label">{tr2({ uz: "Dars oxirida — siz login qo'shasiz va kalitni yashirasiz", ru: "К концу урока вы добавите логин и спрячете ключ" })}</p>
+      <Win title={tr2({ uz: "himoyalangan sayt", ru: "защищённый сайт" })} minH={150}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
+          <TokenCard small />
+          <p className="mono small" style={{ color: T.success, margin: 0 }}>{tr2({ uz: "✓ login → bilaguzuk (token) → himoyalangan route", ru: "✓ логин → браслет (токен) → защищённый route" })}</p>
+        </div>
+      </Win>
+    </Col>;
+  const StepsBlock = <Col>
+      <p className="flow-label">{tr2({ uz: "Bugungi 5 qadam", ru: "5 шагов на сегодня" })}</p>
+      <ol className="roadmap">
+        {STEPS.map((s, i) => <li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, "0")}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>)}
+      </ol>
+    </Col>;
+  return <Stage eyebrow={tr2({ uz: "Reja", ru: "План" })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: "Boshlaymiz →", ru: "Начинаем →" }} onClick={onNext} /></>}>
+      <div className="screen">
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Saytni <span className="italic" style={{ color: T.accent }}>himoyalashni</span> o'rganamiz</>, ru: <>Учимся <span className="italic" style={{ color: T.accent }}>защищать</span> сайт</> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Dars oxirida siz saytga <b style={{ color: T.ink }}>login</b> qo'sha olasiz va maxfiy kalitlarni <b style={{ color: T.ink }}>.env</b>'ga yashira olasiz — GitHub'da hech kim ko'rmaydi. Asosiy g'oya: <b style={{ color: T.accent }}>bilaguzuk (token)</b>.</>, ru: <>К концу урока вы сможете добавить на сайт <b style={{ color: T.ink }}>логин</b> и спрятать секретные ключи в <b style={{ color: T.ink }}>.env</b> — на GitHub их никто не увидит. Главная идея: <b style={{ color: T.accent }}>браслет (токен)</b>.</> })}</Mentor>
+        {!isNarrow ? <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable> : !showSteps ? <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: "clamp(12px,2vw,16px)" }}>
+            {PreviewBlock}
+            <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(true)}>{tr2({ uz: "Bugungi 5 qadamni ko'rish", ru: "Посмотреть 5 шагов на сегодня" })}</button>
+          </div> : <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: "clamp(12px,2vw,16px)" }}>
+            <button className="btn-soft" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(false)}>{tr2({ uz: "↩ Natijani ko'rish", ru: "↩ Посмотреть результат" })}</button>
+            {StepsBlock}
+          </div>}
+      </div>
+    </Stage>;
+};
+var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const PARTS = [
+    { k: "hujjat", label: tr2({ uz: "1. Hujjat ko'rsatish", ru: "1. Показать документ" }), desc: tr2({ uz: "Konsert kirishida hujjatingizni ko'rsatasiz. Saytda — email va parol. Bu — login.", ru: "На входе на концерт вы показываете документ. На сайте — email и пароль. Это — логин." }) },
+    { k: "bilaguzuk", label: tr2({ uz: "2. Bilaguzuk olish", ru: "2. Получить браслет" }), desc: tr2({ uz: "Hujjat to'g'ri bo'lsa — bilaguzuk (token) berishadi. Endi har safar hujjat emas, bilaguzukni ko'rsatasiz.", ru: "Если документ в порядке — вам выдают браслет (токен). Теперь каждый раз показываете не документ, а браслет." }) },
+    { k: "zona", label: tr2({ uz: "3. Zonalarga kirish", ru: "3. Вход в зоны" }), desc: tr2({ uz: "Har eshikda bilaguzukni ko'rsatasiz. Qo'riqchi tekshiradi — haqiqiymi? Haqiqiy bo'lsa — kirasiz.", ru: "У каждой двери показываете браслет. Охранник проверяет — настоящий ли? Настоящий — проходите." }) }
+  ];
+  const [seen, setSeen] = useState3(storedAnswer ? /* @__PURE__ */ new Set(["hujjat", "bilaguzuk", "zona"]) : /* @__PURE__ */ new Set());
+  const [active, setActive] = useState3(storedAnswer ? "bilaguzuk" : null);
+  const done = seen.size >= 3;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const tap = (k) => {
+    setActive(k);
+    setSeen((s) => new Set(s).add(k));
+  };
+  const cur = PARTS.find((p) => p.k === active);
+  const firstUnseen = (PARTS.find((p) => !seen.has(p.k)) || {}).k;
+  return <Stage eyebrow={tr2({ uz: "Autentifikatsiya", ru: "Аутентификация" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: `${seen.size}/3 qadamni ko'ring`, ru: `Посмотрите шаги: ${seen.size}/3` }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Sayt sizni <span className="italic" style={{ color: T.accent }}>qanday tanidi?</span></>, ru: <>Как сайт вас <span className="italic" style={{ color: T.accent }}>узнал?</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <><b style={{ color: T.ink }}>Autentifikatsiya</b> = "siz kimsiz?" degan savolga javob. Xuddi konsertga kirish kabi: hujjat ko'rsatasiz → bilaguzuk olasiz → har joyda shuni ko'rsatasiz. (Eslatma: "kim NIMA qila oladi" — bu <b style={{ color: T.purple }}>avtorizatsiya</b>, keyingi modulda.) Qadamlarni bosib ko'ring.</>, ru: <><b style={{ color: T.ink }}>Аутентификация</b> = ответ на вопрос «кто вы?». Как вход на концерт: показываете документ → получаете браслет → показываете его везде. (Заметка: «кто ЧТО может делать» — это <b style={{ color: T.purple }}>авторизация</b>, в следующем модуле.) Понажимайте на шаги.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Uch qadamdan qolganini bosing — hujjat, bilaguzuk, zona.", ru: "💡 Нажмите оставшиеся шаги — документ, браслет, зона." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="authsteps">
+              {PARTS.map((p) => <button key={p.k} className={`authstep ${active === p.k ? "on" : ""} ${seen.has(p.k) ? "seen" : ""} ${p.k === firstUnseen ? "tap-hint" : ""}`} onClick={() => tap(p.k)}>{p.label} {seen.has(p.k) ? "✓" : ""}</button>)}
+            </div>
+            {cur && <div className="sk-info fade-step" key={cur.k}><p className="body" style={{ color: T.ink, margin: 0 }}>{cur.desc}</p></div>}
+          </Col>
+          <Col>
+            {done ? <div className="takeaway fade-step"><div className="ta-bulb">🎫</div><p className="ta-h">{tr2({ uz: "Login → bilaguzuk → har joyda ko'rsatish", ru: "Логин → браслет → показывать везде" })}</p><p className="ta-sub">{tr2({ uz: 'Autentifikatsiya = "siz kimsiz?"', ru: "Аутентификация = «кто вы?»" })}</p></div> : <div className="frame-dash" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: "italic", textAlign: "center", margin: 0 }}>{tr2({ uz: "← Qadamlarni bosib o'rganing", ru: "← Нажимайте на шаги и изучайте" })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [sending, setSending] = useState3(false);
+  const [done2, setDone2] = useState3(!!storedAnswer);
+  const done = done2;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, done2 ? 1 : 0);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const login = () => {
+    if (done2 || sending) return;
+    setSending(true);
+    setTimeout(() => {
+      setSending(false);
+      setDone2(true);
+    }, 950);
+  };
+  return <Stage eyebrow={tr2({ uz: "Login · jwt.sign", ru: "Логин · jwt.sign" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Kirish bosing", ru: "Нажмите «Войти»" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Parolni <span className="italic" style={{ color: T.accent }}>har safar</span> yuborasizmi?</>, ru: <>Отправлять пароль <span className="italic" style={{ color: T.accent }}>каждый раз?</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Yo'q — bir marta login qilasiz, server sizga <b style={{ color: T.accent }}>token (bilaguzuk)</b> beradi. So'rov: <span className="mono">POST /api/login</span> {"{ email, parol }"}. Server tekshiradi va <span className="mono">jwt.sign</span> bilan token yasab qaytaradi. Pastdagi formani to'ldirib, Kirish bosing.</>, ru: <>Нет — вы входите один раз, и сервер выдаёт вам <b style={{ color: T.accent }}>токен (браслет)</b>. Запрос: <span className="mono">POST /api/login</span> {"{ email, parol }"}. Сервер проверяет и возвращает токен, созданный через <span className="mono">jwt.sign</span>. Заполните форму внизу и нажмите «Войти».</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 «→ Kirish» tugmasini bosing — server bilaguzuk (token) beradi.", ru: "💡 Нажмите «→ Войти» — сервер выдаст браслет (токен)." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="loginform fade-up">
+              <span className="lf-lbl">Email</span>
+              <div className="lf-field">ali@shop.uz</div>
+              <span className="lf-lbl">{tr2({ uz: "Parol", ru: "Пароль" })}</span>
+              <div className="lf-field">••••••••</div>
+              {!done2 && <button className="btn" style={{ marginTop: 4 }} onClick={login}>{sending ? tr2({ uz: "⏳ Tekshirilmoqda…", ru: "⏳ Проверяем…" }) : tr2({ uz: "→ Kirish", ru: "→ Войти" })}</button>}
+              {done2 && <div className="lf-token fade-step"><span className="mono small" style={{ color: T.success }}>{tr2({ uz: "✓ Token berildi:", ru: "✓ Токен выдан:" })}</span><TokenCard small /></div>}
+            </div>
+          </Col>
+          <Col>
+            <p className="flow-label">{tr2({ uz: "Server kodi (login)", ru: "Код сервера (логин)" })}</p>
+            <pre className="code-box">{`app.`}<Fn>post</Fn>{`(`}<St>'/api/login'</St>{`, (req, res) => {`}{"\n"}{`  `}<Cm>{tr2({ uz: "// email + parolni tekshir", ru: "// проверить email + пароль" })}</Cm>{"\n"}{`  `}<Kw>const</Kw>{` token = `}<At>jwt</At>{`.`}<Fn>sign</Fn>{`(`}{"\n"}{`    { userId: `}<At>1</At>{` },        `}<Cm>{tr2({ uz: "// kim", ru: "// кто" })}</Cm>{"\n"}{`    `}<At>JWT_SECRET</At>{`           `}<Cm>{tr2({ uz: "// maxfiy imzo", ru: "// секретная подпись" })}</Cm>{"\n"}{`  )`}{"\n"}{`  res.`}<Fn>json</Fn>{`({ token })`}{"\n"}{`})`}</pre>
+            {done2 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><span className="mono">jwt.sign</span> ikki narsadan token yasaydi: <b>kim</b> (userId) + <b>maxfiy imzo</b> (SECRET). Endi parol kerak emas — token yetarli.</>, ru: <><span className="mono">jwt.sign</span> делает токен из двух вещей: <b>кто</b> (userId) + <b>секретная подпись</b> (SECRET). Пароль больше не нужен — токена достаточно.</> })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen4 = (props) => <QuestionScreen
+  {...props}
+  idx={4}
+  scope="module-mikro"
+  eyebrow={tr2({ uz: "Mashq · 1-savol", ru: "Практика · вопрос 1" })}
+  questionText={tr2({ uz: "Login muvaffaqiyatli bo'lsa, server nima qaytaradi?", ru: "Если логин успешен, что возвращает сервер?" })}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите правильный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: <>Email va parol to'g'ri bo'lsa, server sizga <span className="italic" style={{ color: T.accent }}>nima beradi?</span></>, ru: <>Если email и пароль верны, что сервер вам <span className="italic" style={{ color: T.accent }}>выдаёт?</span></> })}</h2></>}
+  options={[tr2({ uz: "Token (bilaguzuk) beradi — keyingi so'rovlar uchun", ru: "Выдаёт токен (браслет) — для следующих запросов" }), tr2({ uz: "Parolni qaytadan so'rab, kirishni butunlay bekor qiladi", ru: "Снова спрашивает пароль и полностью отменяет вход" }), tr2({ uz: "Hech narsa bermaydi — parolni har safar so'rayveradi", ru: "Ничего не выдаёт — каждый раз спрашивает пароль" }), tr2({ uz: "Butun ma'lumotlar bazasini yuklab yuboradi", ru: "Отправляет всю базу данных" })]}
+  correctIdx={0}
+  explainCorrect={tr2({ uz: "To'g'ri! Login muvaffaqiyatli bo'lsa, server JWT token (bilaguzuk) beradi. Endi har so'rovda shu tokenni ko'rsatasiz — parol kerak emas.", ru: "Верно! При успешном логине сервер выдаёт JWT-токен (браслет). Теперь в каждом запросе вы показываете этот токен — пароль не нужен." })}
+  explainWrong={{
+    1: tr2({ uz: "Parolni har safar so'ramaydi — bir marta login qilasiz, token olasiz.", ru: "Пароль не спрашивается каждый раз — вы входите один раз и получаете токен." }),
+    2: tr2({ uz: "Aksincha — token beradi, shu bilan kim ekanligingizni isbotlaysiz.", ru: "Наоборот — сервер выдаёт токен, им вы доказываете, кто вы." }),
+    3: tr2({ uz: "Yo'q — faqat token (bilaguzuk) qaytaradi, butun baza emas.", ru: "Нет — возвращается только токен (браслет), а не вся база." }),
+    default: tr2({ uz: "Login → token (bilaguzuk).", ru: "Логин → токен (браслет)." })
+  }}
+/>;
+var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const PARTS = {
+    h: tr2({ uz: "HEADER — bilaguzukning yorlig'i: bu JWT token ekanini va imzo qaysi usulda qo'yilganini aytadi.", ru: "HEADER — этикетка браслета: говорит, что это JWT-токен и каким способом поставлена подпись." }),
+    p: tr2({ uz: "PAYLOAD — bilaguzukka yozilgan ISM: ichida userId, email turadi. Buni o'qish mumkin (maxfiy emas!), lekin o'zgartirib bo'lmaydi.", ru: "PAYLOAD — ИМЯ, записанное на браслете: внутри userId, email. Его можно прочитать (не секрет!), но изменить нельзя." }),
+    s: tr2({ uz: "SIGNATURE — MUHR (imzo): maxfiy kalit (JWT_SECRET) bilan bosiladi. Soxta bilaguzuk yasab bo'lmaydi — chunki bu kalit faqat serverda.", ru: "SIGNATURE — ПЕЧАТЬ (подпись): ставится секретным ключом (JWT_SECRET). Подделать браслет нельзя — ведь этот ключ только на сервере." })
+  };
+  const [active, setActive] = useState3(null);
+  const [seen, setSeen] = useState3(storedAnswer ? /* @__PURE__ */ new Set(["h", "p", "s"]) : /* @__PURE__ */ new Set());
+  const done = seen.size >= 3;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const tap = (k) => {
+    setActive(k);
+    setSeen((s) => new Set(s).add(k));
+  };
+  const firstUnseen = ["h", "p", "s"].find((k) => !seen.has(k));
+  return <Stage eyebrow={tr2({ uz: "JWT token", ru: "JWT-токен" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: `${seen.size}/3 qismni ko'ring`, ru: `Посмотрите части: ${seen.size}/3` }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Bilaguzuk (token) ichida <span className="italic" style={{ color: T.accent }}>nima bor?</span></>, ru: <>Что внутри <span className="italic" style={{ color: T.accent }}>браслета (токена)?</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>JWT token uchta qismdan iborat, nuqta bilan ajratilgan: <span className="mono">header.payload.signature</span>. Eng muhimi — <b style={{ color: T.success }}>imzo (signature)</b>: u maxfiy kalit bilan yasaladi, shuning uchun soxta token yasab bo'lmaydi. Qismlarni bosib ko'ring.</>, ru: <>JWT-токен состоит из трёх частей, разделённых точкой: <span className="mono">header.payload.signature</span>. Самое важное — <b style={{ color: T.success }}>подпись (signature)</b>: она создаётся секретным ключом, поэтому подделать токен нельзя. Понажимайте на части.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Bilaguzukning uch qismini bosing — header, payload, signature.", ru: "💡 Нажмите три части браслета — header, payload, signature." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <TokenCard active={active} onPart={tap} />
+            <div style={{ display: "flex", gap: 7, flexWrap: "wrap" }}>
+              <button className={`chip ${active === "h" ? "chip-on" : ""} ${firstUnseen === "h" ? "tap-hint" : ""}`} onClick={() => tap("h")}>header {seen.has("h") ? "✓" : ""}</button>
+              <button className={`chip ${active === "p" ? "chip-on" : ""} ${firstUnseen === "p" ? "tap-hint" : ""}`} onClick={() => tap("p")}>payload {seen.has("p") ? "✓" : ""}</button>
+              <button className={`chip ${active === "s" ? "chip-on" : ""} ${firstUnseen === "s" ? "tap-hint" : ""}`} onClick={() => tap("s")}>signature {seen.has("s") ? "✓" : ""}</button>
+            </div>
+          </Col>
+          <Col>
+            {active ? <div className="sk-info fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0 }}>{PARTS[active]}</p></div> : <div className="frame-dash" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: "italic", textAlign: "center", margin: 0 }}>{tr2({ uz: "← Token qismlarini bosing", ru: "← Нажмите на части токена" })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Payload o'qiladi (kim), lekin imzo tufayli <b>o'zgartirib bo'lmaydi</b>. Birov "men adminman" deb yozsa — imzo buziladi, server rad etadi.</>, ru: <>Payload читается (кто), но из-за подписи его <b>нельзя изменить</b>. Напишет кто-то «я админ» — подпись сломается, сервер откажет.</> })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen5b = (props) => <QuestionScreen
+  {...props}
+  idx={6}
+  scope="module-mikro"
+  eyebrow={tr2({ uz: "Mashq · 2-savol", ru: "Практика · вопрос 2" })}
+  questionText={tr2({ uz: "Nega birov soxta token yasab, o'zini boshqa odam qilib ko'rsata olmaydi?", ru: "Почему нельзя сделать поддельный токен и выдать себя за другого?" })}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите правильный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: <>Tokenni o'zgartirsa, server buni <span className="italic" style={{ color: T.accent }}>qanday sezadi?</span></>, ru: <>Если токен изменить, как сервер это <span className="italic" style={{ color: T.accent }}>заметит?</span></> })}</h2></>}
+  options={[tr2({ uz: "Token juda uzun — uni to'liq ko'chirib yozib bo'lmaydi", ru: "Токен слишком длинный — его не переписать целиком" }), tr2({ uz: "Imzo (signature) maxfiy kalit bilan yasaladi — kalitsiz to'g'ri imzo chiqmaydi", ru: "Подпись (signature) делается секретным ключом — без ключа верная подпись не получится" }), tr2({ uz: "Token ko'rinmaydi — uni umuman hech kim o'qiy olmaydi", ru: "Токен невидим — его вообще никто не может прочитать" }), tr2({ uz: "Server har bir berilgan tokenni bazasida eslab qolib, kelgan so'rov bilan solishtiradi", ru: "Сервер запоминает каждый выданный токен в базе и сверяет с запросом" })]}
+  correctIdx={1}
+  explainCorrect={tr2({ uz: "To'g'ri! Signature maxfiy kalit (JWT_SECRET) bilan yasaladi. Kalit faqat serverda. Tokenni o'zgartirsangiz — imzo mos kelmaydi, server rad etadi (401).", ru: "Верно! Signature создаётся секретным ключом (JWT_SECRET). Ключ только на сервере. Измените токен — подпись не совпадёт, сервер откажет (401)." })}
+  explainWrong={{
+    0: tr2({ uz: "Uzunlik emas — gap imzoda. Imzo kalitsiz to'g'ri chiqmaydi.", ru: "Дело не в длине, а в подписи. Без ключа верную подпись не сделать." }),
+    2: tr2({ uz: "Token ko'rinadi (payload o'qiladi), lekin imzo tufayli o'zgartirib bo'lmaydi.", ru: "Токен виден (payload читается), но из-за подписи его нельзя изменить." }),
+    3: tr2({ uz: "Server odatda tokenni eslab qolmaydi — u imzoni tekshiradi.", ru: "Обычно сервер токены не запоминает — он проверяет подпись." }),
+    default: tr2({ uz: "Imzo (signature) + maxfiy kalit = soxta token mumkin emas.", ru: "Подпись (signature) + секретный ключ = поддельный токен невозможен." })
+  }}
+/>;
+var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [hasToken, setHasToken] = useState3(false);
+  const [sending, setSending] = useState3(false);
+  const [sentNo, setSentNo] = useState3(false);
+  const [sentYes, setSentYes] = useState3(!!storedAnswer);
+  const done = sentYes;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, (hasToken ? 1 : 0) + (sentNo ? 1 : 0) + (sentYes ? 1 : 0));
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const send = () => {
+    if (sending) return;
+    setSending(true);
+    setTimeout(() => {
+      setSending(false);
+      if (hasToken) setSentYes(true);
+      else setSentNo(true);
+    }, 800);
+  };
+  const sent = hasToken ? sentYes : sentNo;
+  const status = hasToken ? 201 : 401;
+  return <Stage eyebrow={tr2({ uz: "Himoyalangan route", ru: "Защищённый route" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Token bilan yuboring", ru: "Отправьте с токеном" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Mahsulot qo'shish uchun <span className="italic" style={{ color: T.accent }}>bilaguzuk kerak</span></>, ru: <>Чтобы добавить товар, <span className="italic" style={{ color: T.accent }}>нужен браслет</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Endi <span className="mono">POST /api/products</span> himoyalangan: bu <b style={{ color: T.ink }}>route</b> (server eshigi) oldida qo'riqchi turibdi. O'tgan darsdagi konvert (so'rov) o'sha — endi uning sarlavhasiga bilaguzukni ilasiz: <b style={{ color: T.ink }}>Authorization: Bearer {"<token>"}</b>. <b style={{ color: T.danger }}>Tokensiz</b> → 401. Avval tokensiz sinab ko'ring, keyin tokenni yoqib qayta yuboring.</>, ru: <>Теперь <span className="mono">POST /api/products</span> защищён: перед этим <b style={{ color: T.ink }}>route</b> (дверью сервера) стоит охранник. Конверт (запрос) с прошлого урока тот же — теперь вы вешаете на его заголовок браслет: <b style={{ color: T.ink }}>Authorization: Bearer {"<token>"}</b>. <b style={{ color: T.danger }}>Без токена</b> → 401. Сначала попробуйте без токена, потом включите токен и отправьте снова.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Avval tokensiz Send bosing (401 ni ko'ring), keyin katakchani belgilab, yana Send.", ru: "💡 Сначала нажмите Send без токена (увидите 401), затем отметьте галочку и снова Send." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <Postman
+    method="POST"
+    url="/api/products"
+    sending={sending}
+    sent={sent}
+    status={status}
+    onSend={send}
+    sendLabel="Send"
+    authRow={<label className="authtoggle">
+                  <input type="checkbox" checked={hasToken} onChange={(e) => {
+      setHasToken(e.target.checked);
+      setSentNo(false);
+    }} />
+                  <span>Authorization: Bearer {hasToken ? <span className="mono" style={{ color: T.success }}>{TOKEN.h}.{TOKEN.p}…</span> : <span style={{ color: T.danger }}>{tr2({ uz: "(token yo'q)", ru: "(нет токена)" })}</span>}</span>
+                </label>}
+  >
+              {hasToken ? <JsonBox data={{ id: 4, nom: tr2({ uz: "Mikrofon", ru: "Микрофон" }), narx: 6e4 }} /> : <JsonBox data={{ error: "Unauthorized", message: tr2({ uz: "Token kerak", ru: "Нужен токен" }) }} />}
+            </Postman>
+          </Col>
+          <Col>
+            <div className={`guarddoor ${sent ? hasToken ? "open" : "block" : ""}`}>
+              <span className="gd-ic">{sent ? hasToken ? "🔓" : "⛔" : "🚪"}</span>
+              <span className="gd-lbl">{sent ? hasToken ? tr2({ uz: "Qo'riqchi: bilaguzuk haqiqiy — kiring!", ru: "Охранник: браслет настоящий — проходите!" }) : tr2({ uz: "Qo'riqchi: bilaguzuk yo'q — to'xtang!", ru: "Охранник: браслета нет — стойте!" }) : tr2({ uz: "Eshikda qo'riqchi (guard) turibdi", ru: "У двери стоит охранник (guard)" })}</span>
+            </div>
+            {sentNo && !hasToken && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>401 Unauthorized</b> — tokensiz kira olmaysiz. Yuqoridagi katakchani belgilang (token qo'shing) va qayta yuboring.</>, ru: <><b>401 Unauthorized</b> — без токена не войти. Отметьте галочку выше (добавьте токен) и отправьте снова.</> })}</p></div>}
+            {sentYes && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>201 Created</b> — bilaguzuk haqiqiy, mahsulot qo'shildi! Endi begona hech narsa qila olmaydi.</>, ru: <><b>201 Created</b> — браслет настоящий, товар добавлен! Теперь чужак ничего не сможет сделать.</> })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var GUARD_SHIFT = [
+  {
+    id: "v1",
+    who: { uz: "Haqiqiy mehmon", ru: "Настоящий гость" },
+    sub: { uz: "imzo mos · muddat bor", ru: "подпись совпадает · срок в порядке" },
+    ok: true,
+    seg: { p: true, s: true },
+    line: "ok",
+    good: { uz: "✓ 201 — eshik ochildi. jwt.verify imzoni tasdiqladi.", ru: "✓ 201 — дверь открылась. jwt.verify подтвердил подпись." },
+    bad: { uz: "Haqiqiy mehmonni qaytardingiz! Imzo mos, muddat joyida edi — kiritish kerak edi.", ru: "Вы отказали настоящему гостю! Подпись совпадала, срок в порядке — надо было впустить." }
+  },
+  {
+    id: "v2",
+    who: { uz: "Bilaguzuksiz", ru: "Без браслета" },
+    sub: { uz: "token umuman yo'q", ru: "токена вообще нет" },
+    ok: false,
+    seg: null,
+    line: "check",
+    good: { uz: "⛔ 401 — token yo'q. if(!token) darrov to'sdi.", ru: "⛔ 401 — токена нет. if(!token) сразу преградил путь." },
+    bad: { uz: "Tokensiz kirdi! Himoyalangan route tokensiz ochilmasligi shart.", ru: "Вошёл без токена! Защищённый route без токена открываться не должен." }
+  },
+  {
+    id: "v3",
+    who: { uz: "Soxta imzo", ru: "Поддельная подпись" },
+    sub: { uz: "SECRET'siz yasalgan imzo", ru: "подпись сделана без SECRET" },
+    ok: false,
+    seg: { p: true, s: false },
+    line: "verify",
+    good: { uz: "⛔ 401 — imzo soxta. jwt.verify(token, SECRET) rad etdi.", ru: "⛔ 401 — подпись поддельная. jwt.verify(token, SECRET) отказал." },
+    bad: { uz: "Soxta imzoli tokenni kiritdingiz — SECRET faqat serverda, bu imzo mos kelmaydi.", ru: "Вы впустили токен с поддельной подписью — SECRET только на сервере, эта подпись не совпадает." }
+  },
+  {
+    id: "v4",
+    who: { uz: "Muddati o'tgan", ru: "Просроченный" },
+    sub: { uz: "exp vaqti tugagan", ru: "время exp истекло" },
+    ok: false,
+    seg: { p: true, s: true },
+    line: "verify",
+    good: { uz: "⛔ 401 — muddati o'tgan. jwt.verify eskirgan tokenni rad etadi.", ru: "⛔ 401 — срок истёк. jwt.verify отклоняет устаревший токен." },
+    bad: { uz: "Muddati o'tgan bilaguzukni kiritdingiz — u endi yaroqsiz.", ru: "Вы впустили просроченный браслет — он уже недействителен." }
+  },
+  {
+    id: "v5",
+    who: { uz: "«admin» deb o'zgartirilgan", ru: "Изменён на «admin»" },
+    sub: { uz: "payload buzilgan", ru: "payload повреждён" },
+    ok: false,
+    seg: { p: false, s: false },
+    line: "verify",
+    good: { uz: "⛔ 401 — payload o'zgartirilgan, imzo buzildi. jwt.verify rad etdi.", ru: "⛔ 401 — payload изменён, подпись сломалась. jwt.verify отказал." },
+    bad: { uz: "Payload'ni «admin»ga o'zgartirgan — imzo endi mos emas, kiritmaslik kerak.", ru: "Payload изменён на «admin» — подпись больше не совпадает, впускать нельзя." }
+  }
+];
+var GUARD_CODE = [
+  { k: "check", el: <>{"  "}<Kw>if</Kw>{` (!token) `}<Kw>return</Kw>{` res.`}<Fn>status</Fn>{`(`}<At>401</At>{`)`}</> },
+  { k: "verify", el: <>{"  "}<Kw>const</Kw>{` data = `}<At>jwt</At>{`.`}<Fn>verify</Fn>{`(token, `}<At>JWT_SECRET</At>{`)`}</> },
+  { k: "ok", el: <>{"  "}<Kw>const</Kw>{` userId = data.userId  `}<Cm>// kim</Cm></> }
+];
+var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
+  const [i, setI] = useState3(storedAnswer ? GUARD_SHIFT.length : 0);
+  const [verdict, setVerdict] = useState3(null);
+  const [okCount, setOkCount] = useState3(storedAnswer ? storedAnswer.okCount ?? GUARD_SHIFT.length : 0);
+  const [mistakes, setMistakes] = useState3(storedAnswer ? storedAnswer.mistakes ?? 0 : 0);
+  const total = GUARD_SHIFT.length;
+  const doneAll = i >= total;
+  const { tip: _tip, rescue: _resc } = useStuckValve(doneAll, i);
+  const perfect = doneAll && mistakes === 0;
+  const savedRef = useRef3(!!storedAnswer);
+  useEffect4(() => {
+    if (doneAll && !savedRef.current) {
+      savedRef.current = true;
+      onAnswer(screen, { stage: "exploration", screenIdx: screen, correct: mistakes === 0, solved: true, picked: true, okCount, mistakes });
+    }
+  }, [doneAll]);
+  const cur = !doneAll ? GUARD_SHIFT[i] : null;
+  const decide = (letIn) => {
+    if (verdict || !cur) return;
+    const correct = letIn === cur.ok;
+    setVerdict({ correct, item: cur, letIn });
+    if (correct) setOkCount((c) => c + 1);
+    else {
+      setMistakes((m) => m + 1);
+      if (achMiss) achMiss.miss(screen);
+    }
+  };
+  const nextCard = () => {
+    setVerdict(null);
+    setI((n) => n + 1);
+  };
+  const restart = () => {
+    setI(0);
+    setVerdict(null);
+    setOkCount(0);
+    setMistakes(0);
+    savedRef.current = false;
+  };
+  const activeLine = verdict ? verdict.item.line : null;
+  return <Stage eyebrow={tr2({ uz: "Qo'riqchi smenasi · jwt.verify", ru: "Смена охранника · jwt.verify" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll && !_resc} label={doneAll || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: `${okCount}/${total} hukm`, ru: `${okCount}/${total} вердиктов` }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>qo'riqchi</span> — sizsiz. Har bilaguzukni hukm qiling.</>, ru: <>Сегодня <span className="italic" style={{ color: T.accent }}>охранник</span> — это вы. Вынесите вердикт каждому браслету.</> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Siz — <b style={{ color: T.ink }}>qo'riqchi (guard)</b>, ya'ni <span className="mono">jwt.verify</span>. Navbatda bilaguzuklar keladi: haqiqiy, soxta, muddati o'tgan... Har biriga <b style={{ color: T.success }}>KIRIT</b> yoki <b style={{ color: T.danger }}>RAD</b> qarorini bering. To'g'ri hukm — o'ngdagi kod qaysi qatori ishlaganini ko'rsatadi.</>, ru: <>Вы — <b style={{ color: T.ink }}>охранник (guard)</b>, то есть <span className="mono">jwt.verify</span>. В очереди браслеты: настоящие, поддельные, просроченные... Каждому выносите решение <b style={{ color: T.success }}>ВПУСТИТЬ</b> или <b style={{ color: T.danger }}>ОТКАЗАТЬ</b>. Верный вердикт покажет, какая строка кода справа сработала.</> })}</Mentor>
+        {_tip && !doneAll && <p className="bhint fade-step">{tr2({ uz: "💡 Har bilaguzukni tekshiring: imzo va muddat joyidami? KIRIT yoki RAD ni bosing.", ru: "💡 Проверьте каждый браслет: подпись и срок в порядке? Нажмите ВПУСТИТЬ или ОТКАЗАТЬ." })}</p>}
+        {_resc && !doneAll && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="gq-counter">
+              {GUARD_SHIFT.map((g, k) => <span key={g.id} className={`gq-dot ${k < i ? "done" : ""} ${k === i && !doneAll ? "cur" : ""}`}>{k < i ? "✓" : k + 1}</span>)}
+              <span className="gq-score mono" key={`sc-${okCount}`}>✓ {okCount}/{total}</span>
+            </div>
+            {cur ? <div className={`gq-card ${verdict ? verdict.correct ? "gq-ok" : "gq-bad" : ""} ${verdict ? `judged ${verdict.letIn ? "gq-in" : "gq-out"}` : ""}`} key={cur.id}>
+                <div className="gq-who"><span className="gq-ic">🎫</span><div><p className="gq-who-t">{tr2(cur.who)}</p><p className="gq-who-s">{tr2(cur.sub)}</p></div></div>
+                {cur.seg ? <div className="gq-seg"><span className="gq-s h">header</span><span className={`gq-s p ${cur.seg.p ? "" : "x"}`}>payload</span><span className={`gq-s s ${cur.seg.s ? "" : "x"}`}>signature</span></div> : <div className="gq-seg"><span className="gq-s none">{tr2({ uz: "— bilaguzuk yo'q —", ru: "— браслета нет —" })}</span></div>}
+                {
+    /* 🚧 qo'riqchi to'sig'i: KIRIT → ko'tariladi (201) · RAD → tushib to'sadi (401 zarbasi) */
+  }
+                <div className={`gq-gate ${verdict ? verdict.letIn ? "lift" : "drop" : ""}`} aria-hidden="true">
+                  <span className="gq-post" />
+                  <span className="gq-bar" />
+                  <span className="gq-code">{verdict ? verdict.letIn ? "201" : "401" : ""}</span>
+                </div>
+                {!verdict ? <div className="gq-choices"><button className="gq-btn rad" onClick={() => decide(false)}>{tr2({ uz: "⛔ RAD", ru: "⛔ ОТКАЗАТЬ" })}</button><button className="gq-btn kirit" onClick={() => decide(true)}>{tr2({ uz: "✓ KIRIT", ru: "✓ ВПУСТИТЬ" })}</button></div> : <div className={`gq-verdict ${verdict.correct ? "ok" : "bad"}`}><p className="body" style={{ margin: 0, color: T.ink }}>{tr2(verdict.correct ? cur.good : cur.bad)}</p><button className="btn" style={{ alignSelf: "flex-start", marginTop: 8 }} onClick={nextCard}>{i >= total - 1 ? tr2({ uz: "Smenani yakunlash →", ru: "Завершить смену →" }) : tr2({ uz: "Keyingi bilaguzuk →", ru: "Следующий браслет →" })}</button></div>}
+              </div> : <div className={`gq-final fade-step ${perfect ? "perfect" : ""}`}>
+                <div className="gq-final-ic">{perfect ? "🛡️" : "📋"}</div>
+                <p className="gq-final-h">{perfect ? tr2({ uz: `Barakalla — ${total}/${total} to'g'ri hukm!`, ru: `Браво — ${total}/${total} верных вердиктов!` }) : tr2({ uz: `Smena tugadi: ${okCount}/${total} to'g'ri`, ru: `Смена окончена: ${okCount}/${total} верно` })}</p>
+                <p className="gq-final-s">{perfect ? tr2({ uz: "Aynan shunday jwt.verify har so'rovda bilaguzukni tekshiradi.", ru: "Именно так jwt.verify проверяет браслет в каждом запросе." }) : tr2({ uz: "Ba'zi hukmlar xato bo'ldi — soxta yoki eskirgan bilaguzuk RAD etilishi kerak.", ru: "Часть вердиктов была ошибочной — поддельный или просроченный браслет нужно ОТКЛОНЯТЬ." })}</p>
+                {!perfect && <button className="btn-soft" onClick={restart}>{tr2({ uz: "↻ Smenani qaytadan", ru: "↻ Смену заново" })}</button>}
+              </div>}
+            {!doneAll && <AchRule screen={screen} />}
+          </Col>
+          <Col>
+            <p className="flow-label">{tr2({ uz: "Qo'riqchi kodi — qaysi qator ishladi?", ru: "Код охранника — какая строка сработала?" })}</p>
+            <pre className="code-box clickable">
+              {GUARD_CODE.map((l, k) => <React3.Fragment key={l.k}><span className={`cl-line ${activeLine === l.k ? "on" : ""}`}>{l.el}</span>{k < GUARD_CODE.length - 1 ? "\n" : ""}</React3.Fragment>)}
+            </pre>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr2({ uz: <>Har hukm — koddagi bir qatorning ishlashi: token yo'q → <span className="mono">401</span>; imzo soxta/eskirgan → <span className="mono">jwt.verify</span> rad etadi; hammasi joyida → <span className="mono">userId</span> aniqlanadi.</>, ru: <>Каждый вердикт — работа одной строки кода: токена нет → <span className="mono">401</span>; подпись поддельная/просроченная → <span className="mono">jwt.verify</span> отказывает; всё в порядке → определяется <span className="mono">userId</span>.</> })}</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr2({ uz: <>Nest'da bu bitta qatorga aylanadi: <span className="mono" style={{ color: T.purple }}>@UseGuards(AuthGuard)</span> — keyingi modul.</>, ru: <>В Nest это превращается в одну строку: <span className="mono" style={{ color: T.purple }}>@UseGuards(AuthGuard)</span> — следующий модуль.</> })}</p>
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [pushed, setPushed] = useState3(!!storedAnswer);
+  const done = pushed;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, pushed ? 1 : 0);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  return <Stage eyebrow={tr2({ uz: "Maxfiy kalit · xavf", ru: "Секретный ключ · риск" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "GitHub'ga yuklab ko'ring", ru: "Загрузите на GitHub" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Maxfiy kalit kodda tursa — <span className="italic" style={{ color: T.danger }}>nima bo'ladi?</span></>, ru: <>Если секретный ключ лежит в коде — <span className="italic" style={{ color: T.danger }}>что будет?</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Butun himoya <b style={{ color: T.ink }}>maxfiy kalit</b>ga (<span className="mono">JWT_SECRET</span>) bog'liq — u bilaguzukka muhr bosadigan asbob. Agar kalit kod ichida yozilgan bo'lsa va kodni <b style={{ color: T.danger }}>GitHub'ga</b> yuklasangiz — har kim muhrni ko'radi va o'ziga soxta bilaguzuk bosib oladi! Kodni GitHub'ga "push" qilib ko'ring.</>, ru: <>Вся защита держится на <b style={{ color: T.ink }}>секретном ключе</b> (<span className="mono">JWT_SECRET</span>) — это инструмент, которым ставят печать на браслет. Если ключ записан прямо в коде, а код вы загрузите на <b style={{ color: T.danger }}>GitHub</b> — печать увидит каждый и наштампует себе поддельных браслетов! Попробуйте сделать «push» кода на GitHub.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 «⬆ GitHub'ga push qilish» tugmasini bosing — kalit qayerda ko'rinishini ko'ring.", ru: "💡 Нажмите «⬆ Сделать push на GitHub» — увидите, где окажется ключ." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <p className="flow-label">server.js</p>
+            <pre className="code-box">{`  `}<Kw>const</Kw>{` JWT_SECRET = `}<St>"super-secret-key-123"</St>{"\n"}{`  `}<Cm>{tr2({ uz: "// ⚠ kod ichida ochiq yozilgan!", ru: "// ⚠ открыто записан прямо в коде!" })}</Cm></pre>
+            {!pushed && <button className="btn danger" style={{ alignSelf: "flex-start" }} onClick={() => setPushed(true)}>{tr2({ uz: "⬆ GitHub'ga push qilish", ru: "⬆ Сделать push на GitHub" })}</button>}
+          </Col>
+          <Col>
+            <p className="flow-label">github.com/siz/zakaz-shop</p>
+            {pushed ? <div className="ghub danger fade-step"><div className="gh-row"><span className="gh-eye">👁️</span><span className="mono small">JWT_SECRET = "super-secret-key-123"</span></div><p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{tr2({ uz: <><b style={{ color: T.danger }}>Hamma ko'rdi!</b> Muhr o'g'irlandi: endi istalgan odam shu kalit bilan o'ziga soxta "admin" bilaguzuk yasab, saytingizni egallashi mumkin. Kalitni yashirishimiz shart.</>, ru: <><b style={{ color: T.danger }}>Все увидели!</b> Печать украдена: теперь любой сделает себе этим ключом поддельный «admin»-браслет и захватит ваш сайт. Ключ обязательно нужно спрятать.</> })}</p></div> : <div className="frame-dash" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: "italic", textAlign: "center", margin: 0 }}>{tr2({ uz: "Push qiling — GitHub'da nima ko'rinishini ko'ring", ru: "Сделайте push — посмотрите, что видно на GitHub" })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen9 = (props) => <QuestionScreen
+  {...props}
+  idx={9}
+  scope="module-mikro"
+  eyebrow={tr2({ uz: "Mashq · 3-savol", ru: "Практика · вопрос 3" })}
+  questionText={tr2({ uz: "Himoyalangan route'ga tokensiz so'rov yuborilsa, server qaysi status qaytaradi?", ru: "Если отправить запрос на защищённый route без токена, какой статус вернёт сервер?" })}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите правильный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: <>Bilaguzuksiz himoyalangan eshikka kelsangiz, qo'riqchi <span className="italic" style={{ color: T.accent }}>nima deydi?</span></>, ru: <>Если прийти к защищённой двери без браслета, что скажет <span className="italic" style={{ color: T.accent }}>охранник?</span></> })}</h2></>}
+  options={[tr2({ uz: "200 OK — hammasi joyida, bemalol kiravering", ru: "200 OK — всё в порядке, спокойно заходите" }), tr2({ uz: "404 Not Found — bunday manzil serverda umuman topilmadi", ru: "404 Not Found — такого адреса на сервере вообще нет" }), tr2({ uz: "201 Created — mahsulot muvaffaqiyatli qo'shildi", ru: "201 Created — товар успешно добавлен" }), tr2({ uz: "401 Unauthorized — token yo'q, kira olmaysiz", ru: "401 Unauthorized — токена нет, вход закрыт" })]}
+  correctIdx={3}
+  explainCorrect={tr2({ uz: "To'g'ri! Token bo'lmasa (yoki soxta bo'lsa) → 401 Unauthorized. Qo'riqchi sizni kiritmaydi.", ru: "Верно! Нет токена (или он поддельный) → 401 Unauthorized. Охранник вас не впустит." })}
+  explainWrong={{
+    0: tr2({ uz: "200 — hammasi joyida degani. Tokensiz kira olmaysiz.", ru: "200 значит «всё в порядке». Без токена не войти." }),
+    1: tr2({ uz: "404 — manzil topilmadi degani. Bu yerda manzil bor, lekin token yo'q → 401.", ru: "404 значит «адрес не найден». Здесь адрес есть, но нет токена → 401." }),
+    2: tr2({ uz: "201 — yangi narsa yaratildi. Lekin avval kirish kerak (token).", ru: "201 — создано что-то новое. Но сначала нужно войти (токен)." }),
+    default: tr2({ uz: "Tokensiz → 401 Unauthorized.", ru: "Без токена → 401 Unauthorized." })
+  }}
+/>;
+var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const PARTS = [
+    { k: "env", label: tr2({ uz: ".env fayli", ru: "файл .env" }), desc: tr2({ uz: "Maxfiy kalitlar shu yashirin faylda saqlanadi: JWT_SECRET=... Bu fayl kompyuteringizda qoladi.", ru: "Секретные ключи хранятся в этом скрытом файле: JWT_SECRET=... Файл остаётся на вашем компьютере." }) },
+    { k: "code", label: "process.env", desc: tr2({ uz: "Kod kalitni to'g'ridan-to'g'ri emas, process.env.JWT_SECRET orqali o'qiydi. Kodda maxfiy kalitning o'zi ko'rinmaydi.", ru: "Код читает ключ не напрямую, а через process.env.JWT_SECRET. Сам секретный ключ в коде не виден." }) },
+    { k: "git", label: ".gitignore", desc: tr2({ uz: "Bu faylga .env qo'shiladi → .env hech qachon GitHub'ga ketmaydi. Maxfiy qoladi.", ru: "В этот файл добавляется .env → .env никогда не попадёт на GitHub. Останется секретным." }) }
+  ];
+  const [seen, setSeen] = useState3(storedAnswer ? /* @__PURE__ */ new Set(["env", "code", "git"]) : /* @__PURE__ */ new Set());
+  const [active, setActive] = useState3(storedAnswer ? "env" : null);
+  const done = seen.size >= 3;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const tap = (k) => {
+    setActive(k);
+    setSeen((s) => new Set(s).add(k));
+  };
+  const cur = PARTS.find((p) => p.k === active);
+  const firstUnseen = (PARTS.find((p) => !seen.has(p.k)) || {}).k;
+  return <Stage eyebrow=".env" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: `${seen.size}/3 qismni ko'ring`, ru: `Посмотрите части: ${seen.size}/3` }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Maxfiy kalitni qayerda <span className="italic" style={{ color: T.success }}>yashiramiz?</span></>, ru: <>Где <span className="italic" style={{ color: T.success }}>спрячем</span> секретный ключ?</> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Yechim — <b style={{ color: T.ink }}>.env</b> fayli: maxfiy kalitlar uchun yashirin tortma. Kod undan <span className="mono">process.env</span> orqali o'qiydi, fayl esa <span className="mono">.gitignore</span> tufayli GitHub'ga ketmaydi. Uch qismni bosib ko'ring.</>, ru: <>Решение — файл <b style={{ color: T.ink }}>.env</b>: потайной ящик для секретных ключей. Код читает из него через <span className="mono">process.env</span>, а сам файл благодаря <span className="mono">.gitignore</span> не попадает на GitHub. Понажимайте на три части.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Uch qutini bosing — .env, process.env, .gitignore.", ru: "💡 Нажмите три блока — .env, process.env, .gitignore." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <p className="flow-label">{tr2({ uz: ".env (yashirin)", ru: ".env (скрытый)" })}</p>
+            <pre className={`code-box envfile ${active === "env" ? "hi" : ""} ${firstUnseen === "env" ? "tap-hint" : ""}`} onClick={() => tap("env")}><At>JWT_SECRET</At>{`=`}<St>super-secret-key-123</St></pre>
+            <p className="flow-label">server.js</p>
+            <pre className={`code-box envfile ${active === "code" ? "hi" : ""} ${firstUnseen === "code" ? "tap-hint" : ""}`} onClick={() => tap("code")}>{`  `}<Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></pre>
+            <pre className={`code-box envfile ${active === "git" ? "hi" : ""} ${firstUnseen === "git" ? "tap-hint" : ""}`} onClick={() => tap("git")}><Cm># .gitignore</Cm>{"\n"}.env</pre>
+          </Col>
+          <Col>
+            {cur ? <div className="sk-info fade-step" key={cur.k}><span className="sk-tagbig"><span className="sk-wordbadge">{cur.label}</span></span><p className="body" style={{ color: T.ink, margin: "9px 0 0" }}>{cur.desc}</p></div> : <div className="frame-dash" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: "italic", textAlign: "center", margin: 0 }}>{tr2({ uz: "← Qismlarni bosing", ru: "← Нажмите на части" })}</p></div>}
+            {done && <div className="ghub safe fade-step"><div className="gh-row"><span className="gh-eye">🔒</span><span className="mono small">{tr2({ uz: "JWT_SECRET endi GitHub'da ko'rinmaydi", ru: "JWT_SECRET больше не виден на GitHub" })}</span></div></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var AFLOW = [
+  { ic: "📝", t: { uz: "Login", ru: "Логин" }, note: { uz: "Email + parol yuborasiz: POST /api/login", ru: "Вы отправляете email + пароль: POST /api/login" } },
+  { ic: "🏭", t: { uz: "Server", ru: "Сервер" }, note: { uz: "Server tekshiradi, jwt.sign(SECRET) → token yasaydi", ru: "Сервер проверяет, jwt.sign(SECRET) → создаёт токен" } },
+  { ic: "🎫", t: { uz: "Token", ru: "Токен" }, note: { uz: "Siz bilaguzuk (token) olasiz", ru: "Вы получаете браслет (токен)" } },
+  { ic: "📨", t: { uz: "So'rov", ru: "Запрос" }, note: "POST /api/products + Authorization: Bearer token" },
+  { ic: "🛡️", t: "Guard", note: { uz: "Qo'riqchi jwt.verify(SECRET) bilan imzoni tekshiradi", ru: "Охранник проверяет подпись через jwt.verify(SECRET)" } },
+  { ic: "✅", t: { uz: "Ruxsat", ru: "Доступ" }, note: { uz: "Imzo to'g'ri → 201 Created. Mahsulot qo'shildi!", ru: "Подпись верна → 201 Created. Товар добавлен!" } }
+];
+var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [step, setStep] = useState3(storedAnswer ? AFLOW.length - 1 : -1);
+  const [playing, setPlaying] = useState3(false);
+  const timer = useRef3(null);
+  const done = step >= AFLOW.length - 1;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, step);
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  useEffect4(() => () => {
+    if (timer.current) clearInterval(timer.current);
+  }, []);
+  const play = () => {
+    if (playing) return;
+    setPlaying(true);
+    setStep(0);
+    let s = 0;
+    timer.current = setInterval(() => {
+      s += 1;
+      if (s >= AFLOW.length) {
+        clearInterval(timer.current);
+        setPlaying(false);
+        return;
+      }
+      setStep(s);
+    }, 900);
+  };
+  const cur = step >= 0 ? AFLOW[step] : null;
+  return <Stage eyebrow={tr2({ uz: "To'liq oqim", ru: "Полный поток" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Oqimni ko'ring (▶)", ru: "Посмотрите поток (▶)" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(12px,2vw,18px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Login'dan himoyalangan so'rovgacha — <span className="italic" style={{ color: T.accent }}>to'liq yo'l</span></>, ru: <>От логина до защищённого запроса — <span className="italic" style={{ color: T.accent }}>весь путь</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Hammasi birlashganda shunday bo'ladi: login → token → tokenni ko'rsatish → qo'riqchi tekshiradi (maxfiy kalit bilan) → ruxsat. <b style={{ color: T.accent }}>▶ tugmasini</b> bosib, butun oqimni kuzating.</>, ru: <>Когда всё соединяется, получается так: логин → токен → показ токена → охранник проверяет (секретным ключом) → доступ. Нажмите <b style={{ color: T.accent }}>кнопку ▶</b> и наблюдайте весь поток.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 ▶ tugmasini bosing — oqim login'dan ruxsatgacha o'zi yuradi, kuzating.", ru: "💡 Нажмите ▶ — поток сам пройдёт от логина до доступа, наблюдайте." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <div className="aflow">
+          {AFLOW.map((n, i) => <div key={i} className={`afnode ${step === i ? "on" : ""} ${step > i ? "past" : ""}`}>
+              <span className="afnode-ic">{n.ic}</span>
+              <span className="afnode-lbl">{tr2(n.t)}</span>
+            </div>)}
+        </div>
+        <div className="jnote">
+          {cur ? <p className="body fade-step" key={step} style={{ margin: 0, color: T.ink }}><span className="mono" style={{ color: T.accent, fontWeight: 700 }}>{step + 1}/{AFLOW.length}</span> &nbsp;{tr2(cur.note)}</p> : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: "italic" }}>{tr2({ uz: "▶ tugmasini bosing — himoya oqimini boshlang", ru: "▶ нажмите — запустите поток защиты" })}</p>}
+        </div>
+        <div style={{ display: "flex", gap: 10 }}>
+          {!playing && <button className="btn" onClick={play}>{step < 0 ? tr2({ uz: "▶ Oqimni boshlash", ru: "▶ Запустить поток" }) : tr2({ uz: "↻ Qaytadan", ru: "↻ Заново" })}</button>}
+          {done && !playing && <span className="mono small" style={{ color: T.success, alignSelf: "center" }}>{tr2({ uz: "✓ Ruxsat berildi — 201 Created", ru: "✓ Доступ разрешён — 201 Created" })}</span>}
+        </div>
+      </div>
+    </Stage>;
+};
+var Screen12 = (props) => <QuestionScreen
+  {...props}
+  idx={12}
+  scope="module-mikro"
+  eyebrow={tr2({ uz: "Mashq · 4-savol", ru: "Практика · вопрос 4" })}
+  questionText={tr2({ uz: "Maxfiy kalitlarni (JWT_SECRET) qayerda saqlash to'g'ri?", ru: "Где правильно хранить секретные ключи (JWT_SECRET)?" })}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите правильный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: <>JWT_SECRET kabi maxfiy kalitlarni <span className="italic" style={{ color: T.accent }}>qayerga yozamiz?</span></>, ru: <>Секретные ключи вроде JWT_SECRET — <span className="italic" style={{ color: T.accent }}>куда их писать?</span></> })}</h2></>}
+  options={[tr2({ uz: "To'g'ridan-to'g'ri kod ichiga yozamiz — bu eng qulay va ishonchli usul", ru: "Прямо в код — это самый удобный и надёжный способ" }), tr2({ uz: "Saytning HTML sahifasiga — brauzer uni o'zi yashirib beradi", ru: "В HTML-страницу сайта — браузер сам её спрячет" }), tr2({ uz: ".env fayliga — kod uni process.env orqali o'qiydi, GitHub'ga ketmaydi", ru: "В файл .env — код читает его через process.env, на GitHub он не попадает" }), tr2({ uz: "Hech qayerda saqlamaymiz — kalitsiz ham ishlayveradi", ru: "Нигде не хранить — и без ключа всё будет работать" })]}
+  correctIdx={2}
+  explainCorrect={tr2({ uz: "To'g'ri! Maxfiy kalitlar .env faylida saqlanadi. Kod ularni process.env orqali o'qiydi, .gitignore esa .env'ni GitHub'dan saqlaydi.", ru: "Верно! Секретные ключи хранятся в файле .env. Код читает их через process.env, а .gitignore бережёт .env от GitHub." })}
+  explainWrong={{
+    0: tr2({ uz: "Kod ichida bo'lsa — GitHub'ga ketadi va hamma ko'radi. Xavfli!", ru: "В коде — значит попадёт на GitHub, и увидят все. Опасно!" }),
+    1: tr2({ uz: "HTML — bu eng ochiq joy, brauzerda hamma ko'radi. Eng xavflisi.", ru: "HTML — самое открытое место, в браузере видно всем. Самый опасный вариант." }),
+    3: tr2({ uz: "Kalit kerak (imzo uchun), faqat uni xavfsiz — .env'da saqlaymiz.", ru: "Ключ нужен (для подписи), просто храним его безопасно — в .env." }),
+    default: tr2({ uz: "Maxfiy kalitlar → .env (process.env + .gitignore).", ru: "Секретные ключи → .env (process.env + .gitignore)." })
+  }}
+/>;
+var FLOW_STEPS = [
+  {
+    id: "f1",
+    label: { uz: "1-qadam · POST /api/products — bilaguzuksiz", ru: "Шаг 1 · POST /api/products — без браслета" },
+    ask: { uz: "Tokensiz so'rov yuboryapsiz. Qo'riqchi qanday javob qaytaradi?", ru: "Вы отправляете запрос без токена. Что ответит охранник?" },
+    opts: [
+      { t: { uz: "201 Created — mahsulot qo'shildi", ru: "201 Created — товар добавлен" }, why: { uz: "Yo'q. Himoyalangan route avval bilaguzukni so'raydi — tokensiz hech narsa yaratilmaydi.", ru: "Нет. Защищённый route сначала спрашивает браслет — без токена ничего не создаётся." } },
+      { t: { uz: "401 Unauthorized — token yo'q", ru: "401 Unauthorized — токена нет" }, ok: true },
+      { t: { uz: "404 Not Found — bunday manzil yo'q", ru: "404 Not Found — такого адреса нет" }, why: { uz: "Manzil bor, muammo manzilda emas — token yo'q. Javob 401 bo'ladi.", ru: "Адрес есть, проблема не в адресе — нет токена. Ответ будет 401." } }
+    ],
+    good: { uz: "✓ 401 Unauthorized. if (!token) return res.status(401) — qo'riqchi darrov to'sdi.", ru: "✓ 401 Unauthorized. if (!token) return res.status(401) — охранник сразу преградил путь." }
+  },
+  {
+    id: "f2",
+    label: { uz: "2-qadam · POST /api/login — email va parol", ru: "Шаг 2 · POST /api/login — email и пароль" },
+    ask: { uz: "Email va parol to'g'ri. Server javobida nima qaytaradi?", ru: "Email и пароль верны. Что вернёт сервер в ответе?" },
+    opts: [
+      { t: { uz: "Parolning o'zini — keyingi so'rovlarga qo'shamiz", ru: "Сам пароль — будем добавлять его в следующие запросы" }, why: { uz: "Parol hech qachon qaytarilmaydi va so'rovlarga qo'shilmaydi. Server imzolangan token beradi.", ru: "Пароль никогда не возвращается и в запросы не добавляется. Сервер выдаёт подписанный токен." } },
+      { t: { uz: "`jwt.sign` bilan imzolangan token — bilaguzuk", ru: "Токен, подписанный через `jwt.sign`, — браслет" }, ok: true },
+      { t: { uz: "Hech narsa — server sizni endi eslab qoladi", ru: "Ничего — сервер теперь вас запомнит" }, why: { uz: "Server hech kimni eslab qolmaydi (stateless). Login'ning maqsadi — token berish.", ru: "Сервер никого не запоминает (stateless). Цель логина — выдать токен." } }
+    ],
+    good: { uz: "✓ jwt.sign(...) imzolangan token qaytardi. Mana shu — sizning bilaguzugingiz.", ru: "✓ jwt.sign(...) вернул подписанный токен. Вот это — ваш браслет." }
+  },
+  {
+    id: "f3",
+    label: { uz: "3-qadam · POST /api/products — token bilan", ru: "Шаг 3 · POST /api/products — с токеном" },
+    ask: { uz: "Tokenni so'rovning qayeriga qo'yasiz?", ru: "Куда в запросе вы поместите токен?" },
+    opts: [
+      { t: { uz: "URL oxiriga: /api/products?token=…", ru: "В конец URL: /api/products?token=…" }, why: { uz: "URL brauzer tarixida va server loglarida qoladi — token sizib ketadi. To'g'ri joy: Authorization sarlavhasi.", ru: "URL остаётся в истории браузера и логах сервера — токен утечёт. Правильное место: заголовок Authorization." } },
+      { t: { uz: "Authorization: Bearer <token> sarlavhasiga", ru: "В заголовок Authorization: Bearer <token>" }, ok: true },
+      { t: { uz: "Hech qayerga — token brauzerda saqlangan, yetarli", ru: "Никуда — токен сохранён в браузере, этого хватит" }, why: { uz: "Saqlangani yetmaydi: har so'rovda bilaguzukni o'zingiz ko'rsatishingiz kerak.", ru: "Того, что он сохранён, мало: в каждом запросе браслет нужно показывать самому." } }
+    ],
+    good: { uz: "✓ 201 Created. Authorization: Bearer … → jwt.verify imzoni tasdiqladi, eshik ochildi.", ru: "✓ 201 Created. Authorization: Bearer … → jwt.verify подтвердил подпись, дверь открылась." }
+  }
+];
+var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
+  const LAST = FLOW_STEPS.length - 1;
+  const [step, setStep] = useState3(storedAnswer ? LAST : 0);
+  const [phase, setPhase] = useState3(storedAnswer ? "sent" : "predict");
+  const [busy, setBusy] = useState3(false);
+  const [wrong, setWrong] = useState3(null);
+  const [mistakes, setMistakes] = useState3(storedAnswer ? storedAnswer.mistakes ?? 0 : 0);
+  const [done, setDone] = useState3(!!storedAnswer);
+  const savedRef = useRef3(!!storedAnswer);
+  useEffect4(() => {
+    if (done && !savedRef.current) {
+      savedRef.current = true;
+      onAnswer(screen, { stage: "practice", screenIdx: screen, correct: mistakes === 0, solved: true, picked: true, mistakes });
+    }
+  }, [done]);
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, step + (phase === "sent" ? 1 : 0) + mistakes);
+  const cur = FLOW_STEPS[step];
+  const sent = phase === "sent";
+  const choose = (i) => {
+    if (phase !== "predict" || busy) return;
+    if (cur.opts[i].ok) {
+      setWrong(null);
+      setPhase("ready");
+    } else {
+      setWrong(i);
+      setMistakes((m) => m + 1);
+      if (achMiss) achMiss.miss(screen);
+    }
+  };
+  const send = () => {
+    if (phase !== "ready" || busy) return;
+    setBusy(true);
+    setTimeout(() => {
+      setBusy(false);
+      setPhase("sent");
+      if (step === LAST) setDone(true);
+    }, 850);
+  };
+  const nextStep = () => {
+    if (!sent || step >= LAST) return;
+    setStep((s) => s + 1);
+    setPhase("predict");
+    setWrong(null);
+  };
+  const restart = () => {
+    setStep(0);
+    setPhase("predict");
+    setWrong(null);
+    setBusy(false);
+    setMistakes(0);
+    setDone(false);
+    savedRef.current = false;
+  };
+  const perfect = done && mistakes === 0;
+  return <Stage eyebrow={tr2({ uz: "Amaliyot", ru: "Практика" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : { uz: `${step + (sent ? 1 : 0)}/3 qadam`, ru: `${step + (sent ? 1 : 0)}/3 шага` }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>To'liq yo'lni <span className="italic" style={{ color: T.accent }}>o'zingiz bosib o'ting</span></>, ru: <>Пройдите <span className="italic" style={{ color: T.accent }}>весь путь сами</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Har qadamda avval <b style={{ color: T.ink }}>qaror</b> qabul qilasiz — server nima qaytaradi, tokenni qayerga qo'yasiz. To'g'ri tanlasangiz so'rov yuboriladi. Xatosiz uchta qadam — tokensiz 401, login → token, token bilan 201.</>, ru: <>На каждом шаге вы сначала принимаете <b style={{ color: T.ink }}>решение</b> — что вернёт сервер, куда поместить токен. Выберете верно — запрос отправится. Три шага без ошибок: без токена 401, логин → токен, с токеном 201.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Avval qaror tanlang (xato bo'lsa sabab chiqadi), keyin Send yoki «→ Kirish».", ru: "💡 Сначала выберите решение (при ошибке появится причина), затем Send или «→ Войти»." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="stepbar">
+              {FLOW_STEPS.map((s, i) => <span key={s.id} className={`stepdot ${i < step || i === step && sent ? "done" : ""} ${i === step && !sent ? "cur" : ""}`}>{i < step || i === step && sent ? "✓" : i + 1}</span>)}
+            </div>
+            {step === 0 && <Postman method="POST" url="/api/products" sent={sent} status={401} onSend={send} sending={busy} sendDisabled={phase !== "ready"} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.danger }}>{tr2({ uz: "Authorization: (token yo'q)", ru: "Authorization: (нет токена)" })}</span>}><JsonBox data={{ error: "Unauthorized" }} /></Postman>}
+            {step === 1 && <div className="loginform"><span className="lf-lbl">Email</span><div className="lf-field">ali@shop.uz</div><span className="lf-lbl">{tr2({ uz: "Parol", ru: "Пароль" })}</span><div className="lf-field">••••••••</div>{!sent ? <button className="btn" onClick={send} disabled={phase !== "ready" || busy}>{busy ? "⏳…" : tr2({ uz: "→ Kirish", ru: "→ Войти" })}</button> : <div className="lf-token"><span className="mono small" style={{ color: T.success }}>{tr2({ uz: "✓ Token olindi", ru: "✓ Токен получен" })}</span><TokenCard small /></div>}</div>}
+            {step === 2 && <Postman method="POST" url="/api/products" sent={sent} status={201} onSend={send} sending={busy} sendDisabled={phase !== "ready"} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.success }}>Authorization: Bearer {TOKEN.h}…</span>}><JsonBox data={{ id: 4, nom: tr2({ uz: "Mikrofon", ru: "Микрофон" }) }} /></Postman>}
+          </Col>
+          <Col>
+            <p className="flow-label">{tr2(cur.label)}</p>
+            {done ? <div className={perfect ? "frame-success fade-step" : "frame-soft fade-step"}>
+                <p className="body" style={{ margin: 0, color: T.ink }}>
+                  {perfect ? tr2({ uz: "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li.", ru: "🎉 Без ошибок! Без токена → 401, логин → токен, с токеном → 201. Вот он — полный путь защиты сайта." }) : tr2({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni yana bir bor — endi xatosiz — mashq qiling.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Потренируйтесь пройти шаги ещё раз — теперь без ошибок.` })}
+                </p>
+                {!perfect && <button className="btn-soft" style={{ alignSelf: "flex-start", marginTop: 10 }} onClick={restart}>{tr2({ uz: "↻ Qaytadan", ru: "↻ Заново" })}</button>}
+              </div> : sent ? <div className="frame-success fade-step">
+                <p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr2(cur.good))}</p>
+                <button className="btn" style={{ alignSelf: "flex-start", marginTop: 10 }} onClick={nextStep}>{tr2({ uz: "Keyingi qadam →", ru: "Следующий шаг →" })}</button>
+              </div> : <>
+                <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(cur.ask)}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {cur.opts.map((o, i) => <button
+    key={i}
+    className={`option ${phase === "ready" && o.ok ? "option-correct" : ""} ${wrong === i ? "option-picked-wrong" : ""}`}
+    disabled={phase !== "predict"}
+    onClick={() => choose(i)}
+    style={{ padding: "clamp(10px,1.5vw,14px) clamp(12px,2vw,16px)", fontSize: "clamp(13px,1.5vw,15px)", display: "flex", alignItems: "center", gap: 10 }}
+  >
+                      <span className="mono small" style={{ minWidth: 18, color: T.ink3 }}>{String.fromCharCode(65 + i)}</span>
+                      <span style={{ flex: 1 }}>{fmtCode(tr2(o.t))}</span>
+                    </button>)}
+                </div>
+                {phase === "ready" ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>To'g'ri qaror. Endi so'rovni yuboring — chapdagi <b style={{ color: T.ink }}>{step === 1 ? tr2({ uz: "→ Kirish", ru: "→ Войти" }) : "Send"}</b> tugmasini bosing.</>, ru: <>Верное решение. Теперь отправьте запрос — нажмите слева кнопку <b style={{ color: T.ink }}>{step === 1 ? tr2({ uz: "→ Kirish", ru: "→ Войти" }) : "Send"}</b>.</> })}</p></div> : wrong !== null ? <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr2(cur.opts[wrong].why))}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: "Avval qaror qiling — so'rov shundan keyin yuboriladi.", ru: "Сначала примите решение — запрос отправится после этого." })}</p></div>}
+              </>}
+            {!done && <AchRule screen={screen} />}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
+  const [found, setFound] = useState3(!!storedAnswer);
+  const [fixed, setFixed] = useState3(!!storedAnswer);
+  const [wrong, setWrong] = useState3(false);
+  const done = fixed;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (fixed ? 1 : 0));
+  useEffect4(() => {
+    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, [done]);
+  const LINES = [
+    { id: "l1", el: <><Kw>const</Kw>{` app = `}<Fn>express</Fn>{`()`}</>, bug: false },
+    { id: "l2", el: <><Kw>const</Kw>{` JWT_SECRET = `}<St>"super-secret-key-123"</St></>, bug: true },
+    { id: "l3", el: <>{`app.`}<Fn>listen</Fn>{`(`}<At>3000</At>{`)`}</>, bug: false }
+  ];
+  return <Stage eyebrow={tr2({ uz: "Tekshiruv · maxfiylik", ru: "Проверка · секретность" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? { uz: "Davom etish", ru: "Продолжить" } : found ? { uz: "Tuzating", ru: "Исправьте" } : { uz: "Xatoni toping", ru: "Найдите ошибку" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>AI kod yozdi — lekin bitta qator <span className="italic" style={{ color: T.danger }}>xavfli</span></>, ru: <>ИИ написал код — но одна строка <span className="italic" style={{ color: T.danger }}>опасна</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>AI server kodini yozdi va GitHub'ga yuklamoqchi. Lekin bir qatorda <b style={{ color: T.danger }}>maxfiy kalit ochiq</b> turibdi — bu GitHub'da hammaga ko'rinadi! Xavfli qatorni toping va tuzating.</>, ru: <>ИИ написал код сервера и собирается загрузить его на GitHub. Но в одной строке <b style={{ color: T.danger }}>секретный ключ лежит открыто</b> — на GitHub его увидят все! Найдите опасную строку и исправьте.</> })}</Mentor>
+        {_tip && wrong && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Kalit qiymati ochiq yozilgan qatorni bosing, keyin «🔧» bilan tuzating.", ru: "💡 Нажмите строку, где значение ключа записано открыто, затем исправьте через «🔧»." })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="ai-card fade-up delay-1">
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">server.js:</span></div>
+              <div className="ai-code">
+                {LINES.map((l) => {
+    if (l.bug && fixed) return <div key={l.id} className="ai-line ok" style={{ cursor: "default" }}><Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></div>;
+    return <div key={l.id} className={`ai-line ${found && l.bug ? "bad" : ""}`} onClick={() => {
+      if (found) return;
+      if (!l.bug) {
+        setWrong(true);
+        if (achMiss) achMiss.miss(screen);
+      }
+      setFound(l.bug);
+    }}>{l.el}</div>;
+  })}
+              </div>
+              {!found && <p className="ai-prompt">{wrong ? tr2({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: "В этой строке ошибки нет — посмотрите ещё раз." }) : tr2({ uz: "Qaysi qator maxfiylikni buzadi? Bosing.", ru: "Какая строка нарушает секретность? Нажмите." })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setFixed(true)}>{tr2({ uz: "🔧 process.env.JWT_SECRET'ga o'zgartirish", ru: "🔧 Заменить на process.env.JWT_SECRET" })}</button>}
+            </div>
+            {!done && <AchRule screen={screen} />}
+          </Col>
+          <Col>
+            {!found ? wrong && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: "Подсказка: ищите строку, где значение ключа записано прямо в коде." })}</p></div> : !fixed ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</>, ru: <>Ключ открыт в коде — попадёт на GitHub, и увидят все. Перенесём его в .env и будем читать через <span className="mono">process.env</span>. Нажмите кнопку слева →</> })}</p></div> : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">{tr2({ uz: "Maxfiy kalit endi .env'da", ru: "Секретный ключ теперь в .env" })}</p><p className="ta-sub">{tr2({ uz: "Kodda hech qachon maxfiy kalitni ochiq qoldirmang", ru: "Никогда не оставляйте секретный ключ открытым в коде" })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [value, setValue] = useState3(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
+  const [passed, setPassed] = useState3(!!storedAnswer?.correct);
+  const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
+  const hasKey = /JWT_SECRET\s*=\s*\S+/.test(v);
+  const valid = hasKey;
+  useEffect4(() => {
+    if (valid && !passed) {
+      setPassed(true);
+      onAnswer(screen, { stage: "final", screenIdx: screen, question: tr2({ uz: "Maxfiy kalitni .env'ga ko'chiring", ru: "Перенесите секретный ключ в .env" }), studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
+    }
+  }, [valid]);
+  const navLabel = passed ? { uz: "Davom etish", ru: "Продолжить" } : { uz: ".env qatorini yozing", ru: "Напишите строку .env" };
+  return <Stage eyebrow={tr2({ uz: "Yakuniy · amaliy", ru: "Финал · практика" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={navLabel} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Maxfiy kalitni <span className="italic" style={{ color: T.success }}>.env'ga ko'chiring</span></>, ru: <>Перенесите секретный ключ <span className="italic" style={{ color: T.success }}>в .env</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Kodda <span className="mono">JWT_SECRET</span> ochiq turibdi (chapda). Uni xavfsiz qiling: <b style={{ color: T.ink }}>.env</b> fayliga <span className="mono">JWT_SECRET=super-secret-key-123</span> deb yozing. Yozishingiz bilan kod avtomatik <span className="mono">process.env</span> orqali o'qishga o'tadi.</>, ru: <>В коде <span className="mono">JWT_SECRET</span> лежит открыто (слева). Сделайте его безопасным: запишите в файл <b style={{ color: T.ink }}>.env</b> строку <span className="mono">JWT_SECRET=super-secret-key-123</span>. Как только напишете — код автоматически перейдёт на чтение через <span className="mono">process.env</span>.</> })}</Mentor>
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <div className="vsc fade-up delay-1">
+              <div className="vsc-bar"><span className="vsc-tab on"><span style={{ color: "#E2C08D" }}>📄</span> server.js</span><span className="vsc-tab"><span style={{ color: "#8CC84B" }}>🔒</span> .env</span></div>
+              <div className="vsc-body">
+                <div className="vsc-line"><span className="vsc-ln">1</span><span style={{ whiteSpace: "pre" }}><span style={{ color: "#C586C0" }}>const</span> JWT_SECRET = {valid ? <span className="vsc-swap" style={{ color: "#9CDCFE" }}>process.env.JWT_SECRET</span> : <span className="vsc-leak" style={{ color: "#CE9178", background: "rgba(194,54,43,0.25)", borderRadius: 4, padding: "0 3px" }}>"super-secret-key-123"</span>}</span></div>
+              </div>
+            </div>
+            <p className="flow-label" style={{ marginTop: 2 }}>{tr2({ uz: ".env fayliga yozing", ru: "Запишите в файл .env" })}</p>
+            <div className="envinput-wrap">
+              <span className="envinput-ic">🔒</span>
+              <input className={`envinput ${valid ? "ok" : ""}`} value={value} onChange={(e) => setValue(e.target.value)} placeholder="KALIT=qiymat" spellCheck={false} autoCapitalize="off" autoCorrect="off" />
+            </div>
+          </Col>
+          <Col>
+            <div className="fade-up delay-2" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <span className="tagpill" style={{ opacity: hasKey ? 1 : 0.4 }}>{hasKey ? "✓" : "1"} JWT_SECRET=...</span>
+              <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? "✓" : "2"} {tr2({ uz: "kod process.env'ga o'tdi", ru: "код перешёл на process.env" })}</span>
+            </div>
+            <div className={`ghub ${valid ? "safe" : "danger"}`}>
+              <div className="gh-row"><span className="gh-eye">{valid ? "🔒" : "👁️"}</span><span className="mono small">{valid ? tr2({ uz: "GitHub: maxfiy kalit ko'rinmaydi", ru: "GitHub: секретный ключ не виден" }) : tr2({ uz: "GitHub: maxfiy kalit ochiq ko'rinadi!", ru: "GitHub: секретный ключ виден всем!" })}</span></div>
+            </div>
+            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>🎉 Tabriklaymiz! Kalit endi <b>.env</b>'da, kod <span className="mono">process.env</span> orqali o'qiydi. <span className="mono">.gitignore</span>'ga <b>.env</b> qo'shing — va u hech qachon GitHub'ga ketmaydi. Siz saytni himoyaladingiz!</>, ru: <>🎉 Поздравляем! Ключ теперь в <b>.env</b>, код читает его через <span className="mono">process.env</span>. Добавьте <b>.env</b> в <span className="mono">.gitignore</span> — и он никогда не попадёт на GitHub. Вы защитили сайт!</> })}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>.env qatorini <span className="mono">KALIT=qiymat</span> ko'rinishida yozing — kalit nomi chapdagi kodda turibdi.</>, ru: <>Напишите строку .env в виде <span className="mono">КЛЮЧ=значение</span> — имя ключа есть в коде слева.</> })}</p></div>}
+          </Col>
+        </div>
+        </Zoomable>
+      </div>
+    </Stage>;
+};
+var PRACTICE_BASE = 500;
+var MentorPracticeStats = ({ live, screen }) => {
+  const [data, setData] = useState3({ players: null, doneIds: /* @__PURE__ */ new Set() });
+  useEffect4(() => {
+    if (!live || live.mode !== "mentor" || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players2, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ players: players2, doneIds: new Set(rows.map((r) => r.player_id)) });
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 3e3);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== "mentor") return null;
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
+  const doers = players.filter((p) => data.doneIds.has(p.id));
+  const waiting = players.filter((p) => !data.doneIds.has(p.id));
+  return <div className="lp-mstats fade-up">
+      <div className="card-lbl" style={{ color: T.blue }}>{tr2({ uz: "👀 Kim bajardi", ru: "👀 Кто выполнил" })} — {doers.length}/{players.length}</div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+        {doers.map((p) => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
+        {waiting.map((p) => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
+      </div>
+    </div>;
+};
+var StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState3(null);
+  useEffect4(() => {
+    if (!live || live.mode !== "student" || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map((r) => r.player_id)).size });
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 3e3);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== "student" || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return <div className="done-mini fade-up">
+      👥 {tr2({ uz: "Sinfda:", ru: "В классе:" })} <b>{data.done}</b> {tr2({ uz: "bajardi", ru: "выполнили" })}
+      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr2({ uz: "hali bajarmoqda", ru: "ещё выполняют" })}</span>}
+    </div>;
+};
+function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
+  const _gate = useContext2(LiveGateCtx) || {};
+  const _live = live || _gate.live;
+  const isMentor = !!(_live && _live.mode === "mentor");
+  const [checked, setChecked] = useState3(() => /* @__PURE__ */ new Set());
+  const [done, setDone] = useState3(!!(storedAnswer && storedAnswer.solved));
+  const toggle = (i) => setChecked((prev) => {
+    const s = new Set(prev);
+    if (s.has(i)) s.delete(i);
+    else s.add(i);
+    return s;
+  });
+  const complete = () => {
+    if (done) return;
+    setDone(true);
+    onAnswer(screen, { stage: "practice", screenIdx: screen, practice: title && title.uz || title, solved: true, correct: true, picked: true });
+    if (_live && _live.mode === "student") _live.submitAnswer(PRACTICE_BASE + screen, "practice", 0, true, 0);
+  };
+  return <Stage eyebrow={tr2({ uz: "Amaliyot · VS Code", ru: "Практика · VS Code" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Avval bajaring", ru: "Сначала выполните" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(12px,2vw,18px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2(title)}</h2></div>
+        <Mentor>{isMentor ? tr2({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr2({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Endi o'z saytingiz eshigida qo'riqchi turadi!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Выполняйте и отмечайте каждый этап. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает. Теперь у двери вашего сайта будет стоять охранник!</> })}</Mentor>
+        <div className="split">
+          <Col>
+            <div className="lp-task fade-up delay-1">
+              <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
+            </div>
+            {!isMentor && <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
+              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Выполнено — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Выполнил" })}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Juda yaxshi! Loyihangiz eshigiga qo'riqchi qo'ydingiz va muhrni yashirdingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Вы поставили охранника у двери проекта и спрятали печать. Наставник проверит и переведёт вас на следующий шаг." })}</p></div>}
+            <MentorPracticeStats live={_live} screen={screen} />
+            <StudentPracticePulse live={_live} screen={screen} />
+          </Col>
+          <Col>
+            <p className="flow-label">{tr2({ uz: "Bosqichlar — belgilab boring", ru: "Этапы — отмечайте по ходу" })}</p>
+            <div className="lp-steps fade-up delay-2">
+              {checklist.map((c, i) => {
+    const on = checked.has(i);
+    return <button key={i} className={`lp-step ${on ? "on" : ""}`} onClick={() => toggle(i)}>
+                    <span className="lp-check">{on ? "✓" : i + 1}</span>
+                    <span className="lp-step-t">{fmtCode(tr2(c))}</span>
+                  </button>;
+  })}
+            </div>
+          </Col>
+        </div>
+      </div>
+    </Stage>;
+}
+var ScreenAuthPractice = (props) => <ScreenLivePractice
+  {...props}
+  title={{ uz: "Loyihangizni himoyalang — .env + guard", ru: "Защитите свой проект — .env + guard" }}
+  task={{ uz: "zakaz-shop loyihangizda maxfiy kalitni .env'ga ko'chiring va POST /api/products eshigini himoyalang: tokensiz → 401, token bilan → 201. Bularni o'z kompyuteringizda bajaring.", ru: "В своём проекте zakaz-shop перенесите секретный ключ в .env и защитите дверь POST /api/products: без токена → 401, с токеном → 201. Сделайте это на своём компьютере." }}
+  checklist={[
+    { uz: "VS Code'da loyiha ildizida `.env` faylini yarating", ru: "В VS Code создайте файл `.env` в корне проекта" },
+    { uz: "`.env` ichiga `JWT_SECRET=super-secret-key-123` deb yozing", ru: "Внутри `.env` запишите `JWT_SECRET=super-secret-key-123`" },
+    { uz: "Kodda kalitni `process.env.JWT_SECRET` orqali o'qing", ru: "В коде читайте ключ через `process.env.JWT_SECRET`" },
+    { uz: "`.env` ni `.gitignore` ga qo'shing — GitHub'ga ketmasin", ru: "Добавьте `.env` в `.gitignore` — чтобы не попал на GitHub" },
+    { uz: "`POST /api/products` ga qo'riqchi (guard) qo'ying: tokensiz → 401", ru: "Поставьте охранника (guard) на `POST /api/products`: без токена → 401" },
+    { uz: "Postman'da sinang: tokensiz → 401, token bilan → 201", ru: "Проверьте в Postman: без токена → 401, с токеном → 201" }
+  ]}
+/>;
+var FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+var FC_VOCAB = /* @__PURE__ */ new Set(["let", "const", "var", "string", "number", "boolean", "true", "false", "null", "undefined", "function", "return", "for", "while", "if", "else"]);
+var fcIsCode = (s) => {
+  if (FC_VOCAB.has(s.toLowerCase())) return true;
+  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
+  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
+};
+var fcTier = (s) => s.length <= 8 ? "t1" : s.length <= 16 ? "t2" : s.length <= 32 ? "t3" : "t4";
+var fcAnswer = (raw) => {
+  const s = String(raw ?? "");
+  const oneToken = !/\s/.test(s) && fcIsCode(s);
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? "mono-all" : "prose"}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);
+  return <span className={cls}>
+      {parts.map((p, i) => i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p)}
+    </span>;
+};
+function Flashcards({ cards }) {
+  const [queue, setQueue] = useState3(() => cards.map((_, i) => i));
+  const [flipped, setFlipped] = useState3(false);
+  const [known, setKnown] = useState3(0);
+  const [exiting, setExiting] = useState3(null);
+  const swapRef = useRef3(0);
+  const total = cards.length;
+  const cur = queue[0];
+  const card = cur != null ? cards[cur] : null;
+  const advance = (removed) => {
+    if (exiting) return;
+    setExiting(removed ? "knew" : "again");
+    setTimeout(() => {
+      setExiting(null);
+      setFlipped(false);
+      swapRef.current++;
+      if (removed) setKnown((k) => k + 1);
+      setQueue((q) => {
+        const [first, ...rest] = q;
+        return removed ? rest : [...rest, first];
+      });
+    }, 420);
+  };
+  const knew = () => advance(true);
+  const again = () => advance(false);
+  const restart = () => {
+    setQueue(cards.map((_, i) => i));
+    setKnown(0);
+    setFlipped(false);
+  };
+  if (!card) return <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr2({ uz: "Hammasini bilasiz!", ru: "Вы знаете всё!" })}</p><p className="fc-done-s">{total}/{total} {tr2({ uz: "atama yodlandi", ru: "терминов выучено" })}</p><button className="fc-btn ghost" onClick={restart}>{tr2({ uz: "↻ Qaytadan takrorlash", ru: "↻ Повторить заново" })}</button></div>;
+  return <div className="fc fade-up">
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr2({ uz: "↻ O'rganilmoqda", ru: "↻ Учим" })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr2({ uz: "✓ Bildim", ru: "✓ Знаю" })} · <b>{known}</b></span></div>
+      <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${known / total * 100}%` }} /></div>
+      <div className="fc-cardwrap">
+        <div className={`fc-fly ${exiting === "knew" ? "out-knew" : ""} ${exiting === "again" ? "out-again" : ""}`} key={swapRef.current}>
+        <div className={`fc-card ${flipped ? "flip" : ""}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
+          <div className="fc-face fc-front"><span className="fc-q">{tr2(card.front)}</span><span className="fc-cue">{tr2({ uz: <>Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></>, ru: <>Подумайте над ответом 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
+          <div className="fc-face fc-back">{fcAnswer(tr2(card.back))}{card.note && <span className="fc-note">{tr2(card.note)}</span>}</div>
+        </div>
+        </div>
+      </div>
+      {flipped ? <div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr2({ uz: "✗ Takrorlash", ru: "✗ Повторить" })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr2({ uz: "✓ Bildim", ru: "✓ Знаю" })}</button></div> : <p className="fc-hint">{tr2({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: "👆 Нажмите на карту — увидите ответ" })}</p>}
+    </div>;
+}
+var AUTH_FLASHCARDS = [
+  { front: { uz: "Email va parol to'g'ri bo'lsa, server sizga nima beradi?", ru: "Что даёт вам сервер, если email и пароль верны?" }, back: { uz: "Token (bilaguzuk)", ru: "Токен (браслет)" }, note: { uz: "Keyingi so'rovlarda parol emas, shu token ishlaydi", ru: "В следующих запросах работает не пароль, а этот токен" } },
+  { front: { uz: "Login uchun qaysi manzilga qaysi so'rov yuboriladi?", ru: "Какой запрос и на какой адрес отправляется для логина?" }, back: "POST /api/login", note: { uz: "Ichida email va parol ketadi", ru: "Внутри едут email и пароль" } },
+  { front: { uz: "JWT token necha qismdan iborat?", ru: "Из скольких частей состоит JWT-токен?" }, back: { uz: "3 qism", ru: "3 части" }, note: "header.payload.signature" },
+  { front: { uz: "Tokenning qaysi qismida kim ekaningiz yozilgan?", ru: "В какой части токена записано, кто вы?" }, back: "Payload", note: { uz: "userId shu yerda: o'qiladi, lekin o'zgartirib bo'lmaydi", ru: "Здесь лежит userId: читается, но изменить нельзя" } },
+  { front: { uz: "Tokenning qaysi qismi uni soxta yasashga yo'l qo'ymaydi?", ru: "Какая часть токена не даёт его подделать?" }, back: "Signature", note: { uz: "Imzo maxfiy kalit bilan qo'yiladi", ru: "Подпись ставится секретным ключом" } },
+  { front: { uz: "Server tokenni qaysi buyruq bilan yasaydi?", ru: "Какой командой сервер создаёт токен?" }, back: "jwt.sign", note: { uz: "userId va maxfiy kalitdan yasaydi", ru: "Создаёт из userId и секретного ключа" } },
+  { front: { uz: "Qo'riqchi (guard) tokenni qaysi buyruq bilan tekshiradi?", ru: "Какой командой охранник (guard) проверяет токен?" }, back: "jwt.verify(token, SECRET)", note: { uz: "Imzo mos kelmasa — ichkariga kiritmaydi", ru: "Подпись не совпала — внутрь не пустит" } },
+  { front: { uz: "Har so'rovda token qaysi sarlavhada yuboriladi?", ru: "В каком заголовке токен едет в каждом запросе?" }, back: "Authorization: Bearer", note: { uz: "So'rov sarlavhasida, manzilda emas", ru: "В заголовке запроса, а не в адресе" } },
+  { front: { uz: "Himoyalangan route'ga tokensiz kirsangiz qaysi status keladi?", ru: "Какой статус придёт, если войти на защищённый route без токена?" }, back: "401 Unauthorized", note: { uz: "Token yo'q yoki soxta — kira olmaysiz", ru: "Токена нет или он поддельный — вход закрыт" } },
+  { front: { uz: "Imzo qo'yiladigan maxfiy kalit qanday nomlanadi?", ru: "Как называется секретный ключ, которым ставится подпись?" }, back: "JWT_SECRET", note: { uz: "Faqat serverda turadi, hech kimga ko'rsatilmaydi", ru: "Хранится только на сервере, никому не показывается" } },
+  { front: { uz: "Maxfiy kalitlarni qaysi faylda saqlaysiz?", ru: "В каком файле вы храните секретные ключи?" }, back: ".env", note: { uz: "Kod ularni process.env orqali o'qiydi", ru: "Код читает их через process.env" } },
+  { front: { uz: ".env fayli GitHub'ga chiqmasligi uchun uni qayerga yozasiz?", ru: "Куда вписать .env, чтобы он не попал на GitHub?" }, back: ".gitignore", note: { uz: "Ro'yxatdagi fayl GitHub'ga hech qachon yuklanmaydi", ru: "Файл из этого списка никогда не уходит на GitHub" } }
+];
+var ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  useEffect4(() => {
+    if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
+  }, []);
+  return <Stage eyebrow={tr2({ uz: "Takrorlash", ru: "Повторение" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: "Yakunlash →", ru: "Завершить →" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
+        <div className="fc-center"><Flashcards cards={AUTH_FLASHCARDS} /></div>
+      </div>
+    </Stage>;
+};
+var ACHIEVEMENTS = {
+  gatekeeper: { icon: "🛡️", name: "Gatekeeper!", desc: { uz: "Qo'riqchi smenasini to'liq to'g'ri o'tdingiz", ru: "Вы прошли смену охранника без единой ошибки" } },
+  tokenforged: { icon: "🎫", name: "Token Forged!", desc: { uz: "Login → token → 201 yo'lini xatosiz bosib o'tdingiz", ru: "Вы прошли путь логин → токен → 201 без ошибок" } },
+  secretkeeper: { icon: "🔐", name: "Secret Keeper!", desc: { uz: "Kodda ochiq qolgan maxfiy kalitni topib tuzatdingiz", ru: "Вы нашли и исправили открытый секретный ключ в коде" } },
+  vaultsealed: { icon: "🔒", name: "Vault Sealed!", desc: { uz: "Maxfiy kalitni .env'ga muhrladingiz", ru: "Вы запечатали секретный ключ в .env" } }
+};
+var ACH_TRIGGERS = { s7: "gatekeeper", s13: "tokenforged", s14: "secretkeeper", s15: "vaultsealed" };
+var AchRule = ({ screen, once }) => {
+  const earned = useContext2(AchCtx);
+  const am = useContext2(AchMissCtx);
+  const gate = useContext2(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || gate.live && gate.live.mode === "mentor" || earned && earned.has(ach)) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? "lost" : ""}`}>{lost ? once ? tr2({ uz: "Nishon birinchi urinish uchun edi.", ru: "Значок давался за первую попытку." }) : tr2({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: "Значок давался за первую попытку — теперь спокойно найдите верный ответ." }) : tr2({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "🏅 Справитесь с первой попытки — значок ваш." })}</p>;
+};
+function AchCelebrate({ ach, onDone }) {
+  useEffect4(() => {
+    const t = setTimeout(onDone, 4e3);
+    return () => clearTimeout(t);
+  }, []);
+  return <div className="acu-overlay" onClick={onDone} role="status" aria-label={`${tr2({ uz: "Yangi nishon:", ru: "Новый значок:" })} ${ach.name}`}>
+      <div className="acu-rays" aria-hidden="true" />
+      <div className="acu-glow" aria-hidden="true" />
+      <div className="acu-ring" aria-hidden="true" />
+      <div className="acu-ring d2" aria-hidden="true" />
+      <div className="acu-stage">
+        <div className="acu-medal-wrap">
+          <div className="acu-medal">{ach.icon}<span className="acu-shine" /></div>
+          {Array.from({ length: 14 }).map((_, i) => <span key={i} className="acu-spark" style={{ "--a": `${i * (360 / 14)}deg`, animationDelay: `${0.18 + i % 5 * 0.05}s` }}>✦</span>)}
+        </div>
+        <div className="acu-txt">
+          <span className="acu-name">{ach.name}</span>
+          {ach.desc && <span className="acu-desc">{tr2(ach.desc)}</span>}
+        </div>
+        <span className="acu-tap">{tr2({ uz: "bosib davom eting", ru: "нажмите, чтобы продолжить" })}</span>
+      </div>
+    </div>;
+}
+function AchToasts({ toasts, onDone }) {
+  const t = toasts[0];
+  const a = t && ACHIEVEMENTS[t.id];
+  if (!a) return null;
+  return <AchCelebrate key={t.k} ach={a} onDone={() => onDone(t.k)} />;
+}
+var Confetti = () => {
+  const COLORS = [T.accent, T.success, T.blue, "#FFD380", "#FF7755", "#7DD181"];
+  return <div className="confetti" aria-hidden="true">
+      {Array.from({ length: 44 }).map((_, i) => {
+    const left = (i * 2.31 + i % 7 * 4) % 100;
+    const size = 6 + i % 4 * 2;
+    return <span key={i} className="confetti-bit" style={{
+      left: `${left}%`,
+      background: COLORS[i % COLORS.length],
+      width: size,
+      height: size * 1.5,
+      animationDelay: `${i % 11 * 0.16}s`,
+      animationDuration: `${2.4 + i % 6 * 0.45}s`,
+      borderRadius: i % 2 ? "2px" : "50%"
+    }} />;
+  })}
+    </div>;
+};
+var Q_LABELS = { 4: { uz: "1 — login", ru: "1 — логин" }, 6: { uz: "2 — imzo", ru: "2 — подпись" }, 10: "3 — 401", 13: "4 — .env", 16: { uz: "5 — final", ru: "5 — финал" } };
+var QUIZ_MS = 15e3;
+var QZ_BG_SHAPES = [
+  { ch: "JWT", l: 5, t: 10, s: 30, d: 19, dl: 0 },
+  { ch: "Bearer", l: 84, t: 7, s: 28, d: 23, dl: 1.5 },
+  { ch: "401", l: 8, t: 72, s: 30, d: 27, dl: 0.8 },
+  { ch: ".env", l: 78, t: 68, s: 30, d: 21, dl: 2.2 },
+  { ch: "jwt.verify", l: 42, t: 86, s: 24, d: 25, dl: 1.1 },
+  { ch: "jwt.sign", l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
+  { ch: "process.env", l: 20, t: 34, s: 20, d: 20, dl: 1.9 },
+  { ch: ".gitignore", l: 55, t: 5, s: 22, d: 22, dl: 0.6 },
+  { ch: "Authorization", l: 88, t: 44, s: 16, d: 24, dl: 1.3 },
+  { ch: "🔐", l: 2, t: 45, s: 30, d: 26, dl: 2.6 }
+];
+var QUIZ_BANK = [
+  { q: { uz: "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?", ru: "Логин (email+пароль) верный — что вернёт сервер?" }, opts: [{ uz: "token (bilaguzuk)", ru: "токен (браслет)" }, { uz: "yangi parol", ru: "новый пароль" }, { uz: "faqat xato xabari", ru: "только сообщение об ошибке" }, { uz: "sahifani qayta yuklaydi", ru: "перезагрузит страницу" }], correct: 0 },
+  { q: { uz: "Token har so'rovda qayerda yuboriladi?", ru: "Где токен отправляется в каждом запросе?" }, opts: [{ uz: "URL manzil ichida — brauzer tarixiga yozilib qoladi", ru: "внутри URL — останется в истории браузера" }, { uz: "Authorization: Bearer sarlavhasida", ru: "в заголовке Authorization: Bearer" }, { uz: "parol maydonida", ru: "в поле пароля" }, { uz: "cookie nomida", ru: "в имени cookie" }], correct: 1 },
+  { q: { uz: "`jwt.sign` token yasashda nimalardan foydalanadi?", ru: "Что использует `jwt.sign` при создании токена?" }, opts: [{ uz: "brauzer nomi va operatsion tizim versiyasi", ru: "имя браузера и версию ОС" }, { uz: "IP manzil", ru: "IP-адрес" }, { uz: "faqat parol", ru: "только пароль" }, { uz: "userId va maxfiy kalit (`JWT_SECRET`)", ru: "userId и секретный ключ (`JWT_SECRET`)" }], correct: 3 },
+  { q: { uz: "Himoyalangan route'ga tokensiz so'rov kelsa?", ru: "Запрос на защищённый route без токена — что будет?" }, opts: ["200 OK", { uz: "yangi token beradi", ru: "выдаст новый токен" }, "401 Unauthorized", { uz: "parolni so'raydi", ru: "спросит пароль" }], correct: 2 },
+  { q: { uz: "Guard tokenni qanday tekshiradi?", ru: "Как guard проверяет токен?" }, opts: [{ uz: "har so'rovda bazadan qidirib solishtiradi", ru: "ищет в базе и сверяет при каждом запросе" }, { uz: "`jwt.verify(token, SECRET)` bilan", ru: "через `jwt.verify(token, SECRET)`" }, { uz: "parolni so'raydi", ru: "спрашивает пароль" }, { uz: "tekshirmaydi", ru: "никак не проверяет" }], correct: 1 },
+  { q: { uz: "Nega soxta imzoli token rad etiladi?", ru: "Почему токен с поддельной подписью отклоняется?" }, opts: [{ uz: "token juda uzun", ru: "токен слишком длинный" }, { uz: "internet sekin", ru: "интернет медленный" }, { uz: "brauzer soxta tokenlarni avtomatik bloklaydi", ru: "браузер сам блокирует поддельные токены" }, { uz: "SECRET faqat serverda — imzo mos kelmaydi", ru: "SECRET только на сервере — подпись не совпадёт" }], correct: 3 },
+  { q: { uz: "JWT token necha qismdan iborat?", ru: "Из скольких частей состоит JWT-токен?" }, opts: [{ uz: "1 ta", ru: "1" }, { uz: "2 ta", ru: "2" }, { uz: "3 ta (header.payload.signature)", ru: "3 (header.payload.signature)" }, { uz: "4 ta (header, payload, signature, maxfiy kalit)", ru: "4 (header, payload, signature, секретный ключ)" }], correct: 2 },
+  { q: { uz: "Nega JWT'ni soxta yasab bo'lmaydi?", ru: "Почему JWT нельзя подделать?" }, opts: [{ uz: "signature SECRET bilan yasaladi", ru: "signature создаётся с SECRET" }, { uz: "juda qisqa", ru: "слишком короткий" }, { uz: "har kuni avtomatik ravishda o'zgarib turadi", ru: "каждый день меняется автоматически" }, { uz: "u ko'rinmaydi", ru: "он невидим" }], correct: 0 },
+  { q: { uz: "Payload ichida nima saqlanadi?", ru: "Что хранится в payload?" }, opts: [{ uz: "server paroli", ru: "пароль сервера" }, { uz: "parol", ru: "пароль" }, { uz: "maxfiy kalit va server sozlamalari", ru: "секретный ключ и настройки сервера" }, { uz: "userId (kim ekaningiz)", ru: "userId (кто вы)" }], correct: 3 },
+  { q: { uz: "`JWT_SECRET` qayerda saqlanishi kerak?", ru: "Где должен храниться `JWT_SECRET`?" }, opts: [{ uz: "kod ichida ochiq", ru: "открыто в коде" }, { uz: ".env faylida", ru: "в файле .env" }, { uz: "HTML sahifada", ru: "на HTML-странице" }, { uz: "URL manzilida", ru: "в URL-адресе" }], correct: 1 },
+  { q: { uz: "Kod `.env` qiymatini qanday o'qiydi?", ru: "Как код читает значение из `.env`?" }, opts: [{ uz: "fetch bilan", ru: "через fetch" }, { uz: "import qilib", ru: "через import" }, { uz: "`process.env.JWT_SECRET` orqali", ru: "через `process.env.JWT_SECRET`" }, { uz: "console.log bilan faylni chop etib", ru: "печатая файл через console.log" }], correct: 2 },
+  { q: { uz: "`.env`ni `.gitignore`ga qo'shmasa nima xavf?", ru: "Чем опасно не добавить `.env` в `.gitignore`?" }, opts: [{ uz: "maxfiy kalit GitHub'ga chiqib, soxta token yasaladi", ru: "секретный ключ утечёт на GitHub — сделают поддельные токены" }, { uz: "kod ishlamaydi", ru: "код не заработает" }, { uz: "hech qanday xavf yo'q, hammasi joyida ishlayveradi", ru: "никакой опасности, всё продолжит работать" }, { uz: "sayt sekinlashadi", ru: "сайт станет медленнее" }], correct: 0 }
+];
+var CsNeonBolt = ({ flip }) => <span className={`csn-boltwrap ${flip ? "flip" : ""}`} aria-hidden="true">
+    <svg className="csn-bolt" viewBox="0 0 60 100">
+      <defs><linearGradient id="csnb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFFFFF" /><stop offset="1" stopColor="#B08CFF" /></linearGradient></defs>
+      <path d="M38 4 L10 52 L27 52 L20 96 L52 40 L33 40 Z" fill="url(#csnb)" stroke="rgba(255,255,255,.65)" strokeWidth="1.6" strokeLinejoin="round" />
+    </svg>
+    <i className="cs-spark s1" /><i className="cs-spark s2" /><i className="cs-spark s3" />
+  </span>;
+var CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn = false }) => {
+  const clickable = !!onClick && !disabled;
+  const [charge, setCharge] = useState3(false);
+  const fire = () => {
+    if (!clickable || charge) return;
+    setCharge(true);
+    setTimeout(onClick, 430);
+    setTimeout(() => setCharge(false), 900);
+  };
+  return <div
+    className={`cs-cap ${clickable ? "cs-clickable" : ""} ${disabled ? "cs-off" : ""} ${liveOn ? "cs-live" : ""} ${charge ? "cs-charging" : ""}`}
+    {...clickable ? { role: "button", tabIndex: 0, onClick: fire, onKeyDown: (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        fire();
+      }
+    } } : {}}
+  >
+      <span className="cs-ring" aria-hidden="true" />
+      <div className="cs-sky" aria-hidden="true">
+        {QZ_BG_SHAPES.map((s, i) => <span key={i} className={`cs-tok ${i % 2 ? "back" : "front"}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, "--d": `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{s.ch}</span>)}
+        {[[14, 30, 24], [38, 66, 15], [57, 20, 27], [76, 60, 18], [88, 36, 13]].map(([l, t, w], i) => <i key={i} className="cs-dash" style={{ left: `${l}%`, top: `${t}%`, width: w, animationDelay: `-${i * 1.7}s` }} />)}
+        <span className="cs-thunder" />
+      </div>
+      <div className="cs-row">
+        {bolt && <CsNeonBolt />}
+        <div className="cs-word" data-text="CODE STRIKE" aria-label="CodeStrike">CODE STRIKE</div>
+        {bolt && <CsNeonBolt flip />}
+      </div>
+      {stats && <div className="cs-hud">
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr2({ uz: "SAVOL", ru: "ВОПРОСОВ" })}</span>
+          <span className="cs-hud-dot">·</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1e3}</b> {tr2({ uz: "SONIYA", ru: "СЕКУНД" })}</span>
+          <span className="cs-hud-dot">·</span>
+          <span className="cs-hud-i">{tr2({ uz: "🏆 PODIUM", ru: "🏆 ПОДИУМ" })}</span>
+        </div>}
+      {hint && <span className={`cs-enter ${disabled ? "wait" : ""}`}>{hint}</span>}
+      {liveOn && <span className="cs-livedot"><i />LIVE</span>}
+      {charge && <span className="cs-portal" aria-hidden="true" />}
+    </div>;
+};
+var QUIZ_BASE_IDX = 100;
+var QUIZ_COLORS = ["#FF5A2C", "#0FA6D6", "#F5A623", "#22A05C"];
+var QUIZ_SHAPES = ["▲", "◆", "●", "■"];
+var quizPts = (elapsedMs) => elapsedMs <= 500 ? 1e3 : Math.max(0, Math.round(1e3 * (1 - Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS / 2)));
+var quizScore = (rows) => {
+  const byQ = {};
+  rows.forEach((r) => {
+    byQ[r.screen_idx - QUIZ_BASE_IDX] = r;
+  });
+  let pts = 0, streak = 0, maxStreak = 0, ok = 0;
+  for (let i = 0; i < QUIZ_BANK.length; i++) {
+    const a = byQ[i];
+    if (a && a.correct) {
+      streak++;
+      maxStreak = Math.max(maxStreak, streak);
+      ok++;
+      pts += quizPts(a.elapsed_ms) + (streak >= 2 ? 100 : 0);
+    } else streak = 0;
+  }
+  return { pts, ok, maxStreak };
+};
+function QzTimer({ remaining }) {
+  const R = 26, C = 2 * Math.PI * R;
+  const frac = Math.max(0, Math.min(1, remaining / QUIZ_MS));
+  const sec = Math.ceil(remaining / 1e3);
+  const col = remaining > 1e4 ? "#2BD97C" : remaining > 5e3 ? "#FFC94D" : "#FF5A5A";
+  return <div className={`qz-timer ${remaining <= 5e3 && remaining > 0 ? "urgent" : ""}`}>
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r={R} fill="none" stroke="rgba(255,255,255,0.16)" strokeWidth="6" />
+        <circle cx="32" cy="32" r={R} fill="none" stroke={col} strokeWidth="6" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - frac)} transform="rotate(-90 32 32)" style={{ transition: "stroke-dashoffset 0.12s linear, stroke 0.4s" }} />
+      </svg>
+      <span className="qz-timer-n" style={{ color: col }}>{sec}</span>
+    </div>;
+}
+function QzFX() {
+  const ref = useRef3(null);
+  useEffect4(() => {
+    const cv = ref.current;
+    if (!cv) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+    const ctx = cv.getContext("2d");
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    let W = 1, H = 1, raf = 0;
+    const size = () => {
+      W = cv.width = Math.max(1, cv.offsetWidth * DPR);
+      H = cv.height = Math.max(1, cv.offsetHeight * DPR);
+    };
+    size();
+    window.addEventListener("resize", size);
+    const TOK = ["JWT", "Bearer", "401", ".env", "jwt.verify", "jwt.sign", "process.env", ".gitignore", "Authorization", "🎫"];
+    const em = [], toks = [];
+    for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: 0.3 + Math.random() * 0.7, ph: Math.random() * 6.28, sw: 0.3 + Math.random() * 0.6 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: 0.4 + Math.random() * 0.9, vx: (Math.random() - 0.5) * 0.16, t: TOK[i % TOK.length], r: (Math.random() - 0.5) * 0.5 });
+    const draw = (tm) => {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of em) {
+        p.y -= (0.15 + p.z * 0.35) * DPR;
+        p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * 0.35;
+        if (p.y < -12) {
+          p.y = H + 12;
+          p.x = Math.random() * W;
+        }
+      }
+      ctx.lineWidth = 1 * DPR;
+      for (let a = 0; a < em.length; a++) for (let b = a + 1; b < em.length; b++) {
+        const dx = em[a].x - em[b].x, dy = em[a].y - em[b].y, d = Math.sqrt(dx * dx + dy * dy), mx = 95 * DPR;
+        if (d < mx) {
+          ctx.strokeStyle = "rgba(150,95,255," + 0.11 * (1 - d / mx) + ")";
+          ctx.beginPath();
+          ctx.moveTo(em[a].x, em[a].y);
+          ctx.lineTo(em[b].x, em[b].y);
+          ctx.stroke();
+        }
+      }
+      for (const p of em) {
+        const s = (1.3 + p.z * 2.2) * DPR, tw = 0.22 + p.z * 0.3 + Math.sin(tm / 600 + p.ph) * 0.1;
+        ctx.fillStyle = "rgba(205,175,255," + tw + ")";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, s, 0, 6.29);
+        ctx.fill();
+      }
+      for (const t of toks) {
+        t.x += t.vx * DPR;
+        t.y -= (0.08 + t.z * 0.12) * DPR;
+        if (t.y < -34) t.y = H + 34;
+        if (t.x < -50) t.x = W + 50;
+        if (t.x > W + 50) t.x = -50;
+        ctx.save();
+        ctx.translate(t.x, t.y);
+        ctx.rotate(t.r * 0.12);
+        ctx.font = "700 " + (13 + t.z * 22) * DPR + 'px "JetBrains Mono",monospace';
+        ctx.fillStyle = "rgba(190,150,255," + (0.05 + t.z * 0.07) + ")";
+        ctx.textAlign = "center";
+        ctx.fillText(t.t, 0, 0);
+        ctx.restore();
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", size);
+    };
+  }, []);
+  return <canvas ref={ref} className="qz-fx" aria-hidden="true" />;
+}
+function QuizArena({ live, onClose, startSolo }) {
+  const isMentor = live.mode === "mentor";
+  const isStudent = live.mode === "student";
+  const [soloMode, setSoloMode] = useState3(!!startSolo);
+  const solo = soloMode || !isMentor && !isStudent;
+  const soloRef = useRef3(solo);
+  soloRef.current = solo;
+  const [phase, setPhase] = useState3("lobby");
+  const [qi, setQi] = useState3(-1);
+  const [remaining, setRemaining] = useState3(QUIZ_MS);
+  const [myAnswers, setMyAnswers] = useState3({});
+  const [players, setPlayers] = useState3([]);
+  const [qRows, setQRows] = useState3([]);
+  const [answeredN, setAnsweredN] = useState3(0);
+  const [classEnded, setClassEnded] = useState3(false);
+  const seenQRef = useRef3(-1);
+  const qStartRef = useRef3(0);
+  const deadlineRef = useRef3(0);
+  const phaseRef = useRef3(phase);
+  phaseRef.current = phase;
+  useEffect4(() => {
+    if (!isStudent || solo || !live.playerId) return;
+    liveQuizAnswers(live.pin).then((rows) => {
+      const mine = {};
+      rows.filter((r) => r.player_id === live.playerId).forEach((r) => {
+        mine[r.screen_idx - QUIZ_BASE_IDX] = { picked: r.picked, correct: r.correct, elapsed: r.elapsed_ms };
+      });
+      setMyAnswers((m) => ({ ...mine, ...m }));
+    }).catch(() => {
+    });
+  }, []);
+  useEffect4(() => {
+    if (soloRef.current) return;
+    let on = true, t = null;
+    const tick = async () => {
+      if (soloRef.current) return;
+      try {
+        const row = await liveGet(live.pin);
+        if (!on) return;
+        if (row) {
+          const st = row.quiz_state || "off", q = row.quiz_q ?? -1;
+          if (st === "q" && q !== seenQRef.current) {
+            seenQRef.current = q;
+            qStartRef.current = Date.now();
+            deadlineRef.current = Date.now() + QUIZ_MS - (isMentor ? 0 : 700);
+            setQi(q);
+            setRemaining(deadlineRef.current - Date.now());
+            setPhase("q");
+            setAnsweredN(0);
+          } else if (st === "r") {
+            if (q !== seenQRef.current) {
+              seenQRef.current = q;
+              setQi(q);
+            }
+            setPhase((p) => p === "done" ? p : "reveal");
+          } else if (st === "done") {
+            setPhase("done");
+          }
+        }
+        const st1 = row ? row.quiz_state || "off" : null;
+        const ph = st1 === "r" ? "reveal" : st1 === "done" ? "done" : st1 === "lobby" ? "lobby" : st1 === "q" ? "q" : phaseRef.current;
+        if (on) setClassEnded(!row || row.status === "ended");
+        if (ph === "lobby" || ph === "reveal" || ph === "done" || phaseRef.current === "reveal") {
+          const [pl, qa] = await Promise.all([livePlayers(live.pin), liveQuizAnswers(live.pin)]);
+          if (on) {
+            setPlayers(pl);
+            setQRows(qa);
+          }
+        } else if (ph === "q" && isMentor) {
+          const [pl, qa] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, QUIZ_BASE_IDX + seenQRef.current)]);
+          if (on) {
+            setPlayers(pl);
+            setAnsweredN(qa.length);
+          }
+        }
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 1200);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, []);
+  useEffect4(() => {
+    if (phase !== "q") return;
+    const iv = setInterval(() => {
+      const rem = deadlineRef.current - Date.now();
+      setRemaining(rem > 0 ? rem : 0);
+      if (rem <= 0) {
+        clearInterval(iv);
+        setPhase("reveal");
+        if (isMentor && !soloRef.current) ctrl("r", seenQRef.current);
+      }
+    }, 100);
+    return () => clearInterval(iv);
+  }, [phase, qi]);
+  const ctrl = async (state, q) => {
+    try {
+      await live.quizControl(state, q);
+      if (state === "q") {
+        seenQRef.current = q;
+        qStartRef.current = Date.now();
+        deadlineRef.current = Date.now() + QUIZ_MS;
+        setQi(q);
+        setRemaining(QUIZ_MS);
+        setPhase("q");
+        setAnsweredN(0);
+      } else if (state === "r" || state === "done") {
+        setPhase(state === "r" ? "reveal" : "done");
+        Promise.all([livePlayers(live.pin), liveQuizAnswers(live.pin)]).then(([pl, qa]) => {
+          setPlayers(pl);
+          setQRows(qa);
+        }).catch(() => {
+        });
+      }
+    } catch {
+    }
+  };
+  const soloStart = (i) => {
+    seenQRef.current = i;
+    qStartRef.current = Date.now();
+    deadlineRef.current = Date.now() + QUIZ_MS;
+    setQi(i);
+    setRemaining(QUIZ_MS);
+    setPhase("q");
+  };
+  const soloNext = () => {
+    const n = qi + 1;
+    if (n >= QUIZ_BANK.length) setPhase("done");
+    else soloStart(n);
+  };
+  const soloReplay = () => {
+    setMyAnswers({});
+    soloStart(0);
+  };
+  const startPractice = () => {
+    setSoloMode(true);
+    setMyAnswers({});
+    soloStart(0);
+  };
+  const answer = (i) => {
+    if (phase !== "q" || isMentor || myAnswers[qi]) return;
+    const elapsed = Math.min(QUIZ_MS, Date.now() - qStartRef.current);
+    const correct = i === QUIZ_BANK[qi].correct;
+    setMyAnswers((m) => ({ ...m, [qi]: { picked: i, correct, elapsed } }));
+    if (isStudent && !solo) live.submitAnswer(QUIZ_BASE_IDX + qi, `quiz-${qi}`, i, correct, elapsed);
+    if (solo) setPhase("reveal");
+  };
+  const streakUpTo = (k) => {
+    let s = 0;
+    for (let i = 0; i <= k; i++) {
+      if (myAnswers[i]?.correct) s++;
+      else s = 0;
+    }
+    return s;
+  };
+  const myPtsFor = (k) => {
+    const a = myAnswers[k];
+    if (!a || !a.correct) return 0;
+    return quizPts(a.elapsed) + (streakUpTo(k) >= 2 ? 100 : 0);
+  };
+  const board = players.map((p) => {
+    const s = quizScore(qRows.filter((r) => r.player_id === p.id));
+    return { id: p.id, nickname: p.nickname, ...s };
+  }).sort((a, b) => b.pts - a.pts || b.ok - a.ok);
+  const myRank = live.playerId ? board.findIndex((b) => b.id === live.playerId) : -1;
+  const soloRows = Object.entries(myAnswers).map(([k, v]) => ({ player_id: "me", screen_idx: QUIZ_BASE_IDX + Number(k), correct: v.correct, elapsed_ms: v.elapsed }));
+  const soloScore = quizScore(soloRows);
+  const Q = qi >= 0 && qi < QUIZ_BANK.length ? QUIZ_BANK[qi] : null;
+  const counts = Q ? Q.opts.map((_, i) => {
+    if (solo) return myAnswers[qi]?.picked === i ? 1 : 0;
+    let n = qRows.filter((r) => r.screen_idx === QUIZ_BASE_IDX + qi && r.picked === i).length;
+    const mine = myAnswers[qi];
+    if (mine && mine.picked === i && live.playerId && !qRows.some((r) => r.player_id === live.playerId && r.screen_idx === QUIZ_BASE_IDX + qi)) n++;
+    return n;
+  }) : [];
+  const lastQ = qi >= QUIZ_BANK.length - 1;
+  const my = qi >= 0 ? myAnswers[qi] : null;
+  const closeArena = () => {
+    if (isMentor && !solo && phase !== "done") {
+      if (typeof window !== "undefined" && !window.confirm(tr2({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?", ru: "Тест ещё не завершён — если закроете, ученики останутся ждать в арене.\nВсё равно закрыть?" }))) return;
+    }
+    onClose();
+  };
+  return <div className="qz-arena">
+      <div className="qz-bg" aria-hidden="true">
+        {QZ_BG_SHAPES.map((s, i) => <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{s.ch}</span>)}
+      </div>
+      <QzFX />
+      <button className="qz-x" onClick={closeArena} aria-label={tr2({ uz: "Yopish", ru: "Закрыть" })}>✕</button>
+      {classEnded && isStudent && !solo && phase !== "done" && <div className="qz-endnote fade-step">
+          <span>{tr2({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: "⚠️ Живой урок завершён — продолжите тест сами:" })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr2({ uz: "📖 Mashq rejimida davom etish", ru: "📖 Продолжить в режиме практики" })}</button>
+        </div>}
+      {phase === "lobby" && <div className="qz-view fade-step">
+          <CsWordmark />
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr2({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: "Чем быстрее верный ответ — тем больше баллов. Верные ответы подряд дают 🔥 бонус!" })}</p>
+          {!solo && <div className="qz-lobby-players">
+              {players.map((p) => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? "me" : ""}`}>{p.nickname}</span>)}
+              {players.length === 0 && <span className="qz-dimtxt">{tr2({ uz: "O'quvchilar kutilmoqda…", ru: "Ждём учеников…" })}</span>}
+            </div>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl("q", 0)}>{tr2({ uz: "▶ Testni boshlash", ru: "▶ Начать тест" })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr2({ uz: "⏳ Mentor testni boshlashini kuting…", ru: "⏳ Ждите, пока ментор начнёт тест…" })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr2({ uz: "▶ Boshlash", ru: "▶ Начать" })}</button>}
+        </div>}
+      {phase === "q" && Q && <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
+          <div className="qz-top">
+            <span className="qz-count">{tr2({ uz: "Savol", ru: "Вопрос" })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <QzTimer remaining={remaining} />
+            {isMentor ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span> : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : " "}</span>}
+          </div>
+          <h2 className="qz-q">{fmtCode(tr2(Q.q))}</h2>
+          <div className="qz-grid">
+            {Q.opts.map((o, i) => {
+    const pickedThis = my && my.picked === i;
+    return <button key={i} className={`qz-tile ${my ? pickedThis ? "picked" : "faded" : ""}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
+                  <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
+                  <span className="qz-opt">{fmtCode(tr2(o))}</span>
+                  {pickedThis && <span className="qz-pbadge">✔</span>}
+                </button>;
+  })}
+          </div>
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr2({ uz: "✔ Javob qabul qilindi — natijani kuting…", ru: "✔ Ответ принят — ждите результат…" })}</p>}
+          {isMentor && <div className="qz-mrow">
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr2({ uz: "✓ Hamma javob berdi!", ru: "✓ Все ответили!" })}</span>}
+              <button className="qz-btn" onClick={() => ctrl("r", qi)}>{tr2({ uz: "⏹ Natijani ochish", ru: "⏹ Открыть результат" })}</button>
+            </div>}
+        </div>}
+      {phase === "reveal" && Q && <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
+          <div className="qz-top">
+            <span className="qz-count">{tr2({ uz: "Savol", ru: "Вопрос" })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr2({ uz: "natija", ru: "результат" })}</span>
+          </div>
+          <h2 className="qz-q">{fmtCode(tr2(Q.q))}</h2>
+          <div className="qz-grid">
+            {Q.opts.map((o, i) => {
+    const win = i === Q.correct;
+    const pickedThis = my && my.picked === i;
+    return <div key={i} className={`qz-tile rv ${win ? "win" : "lose"} ${pickedThis ? "picked" : ""}`} style={{ background: QUIZ_COLORS[i] }}>
+                  <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
+                  <span className="qz-opt">{fmtCode(tr2(o))}</span>
+                  <span className="qz-cnt">{win ? "✓ " : ""}{counts[i]}</span>
+                </div>;
+  })}
+          </div>
+          {!isMentor && <div className={`qz-res ${my?.correct ? "good" : "bad"}`}>
+              {my?.correct ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr2({ uz: "ball", ru: "баллов" })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ""}</span></> : <span className="qz-res-t">{my ? tr2({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: "Ошибка — 0 баллов. Возьмёте на следующем! 💪" }) : tr2({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: "Время вышло — 0 баллов. Побыстрее! ⏱" })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr2({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: место ${myRank + 1}` })}</span>}
+            </div>}
+          {!solo && <div className="qz-board">
+              <div className="qz-board-h">🏆 TOP-5</div>
+              {board.slice(0, 5).map((b, i) => <div key={b.id} className={`qz-brow ${b.id === live.playerId ? "me" : ""}`}>
+                  <span className="qz-brank">{i + 1}</span><span className="qz-bname">{b.nickname}</span>
+                  {b.maxStreak >= 2 && <span className="qz-bstreak">🔥</span>}
+                  <span className="qz-bpts">{b.pts}</span>
+                </div>)}
+            </div>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl("done", qi) : ctrl("q", qi + 1)}>{lastQ ? tr2({ uz: "🏁 G'oliblarni e'lon qilish", ru: "🏁 Объявить победителей" }) : tr2({ uz: "Keyingi savol →", ru: "Следующий вопрос →" })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr2({ uz: "🏁 Natijani ko'rish", ru: "🏁 Посмотреть результат" }) : tr2({ uz: "Keyingi →", ru: "Далее →" })}</button>}
+        </div>}
+      {phase === "done" && <div className="qz-view fade-step">
+          <Confetti />
+          <h2 className="qz-h">{tr2({ uz: "🏆 Test yakunlandi!", ru: "🏆 Тест завершён!" })}</h2>
+          {solo ? <div className="qz-solo-res">
+              <div className="qz-solo-pts">{soloScore.pts}</div>
+              <p className="qz-sub">{tr2({ uz: "ball", ru: "баллов" })} · {soloScore.ok}/{QUIZ_BANK.length} {tr2({ uz: "to'g'ri", ru: "верно" })}{soloScore.maxStreak >= 2 ? tr2({ uz: ` · eng uzun streak 🔥x${soloScore.maxStreak}`, ru: ` · лучший стрик 🔥x${soloScore.maxStreak}` }) : ""}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr2({ uz: "↻ Qayta ishlash", ru: "↻ Пройти ещё раз" })}</button>
+            </div> : <>
+              <div className="qz-pod">
+                {[1, 0, 2].map((rank) => {
+    const b = board[rank];
+    return <div key={rank} className={`qz-pod-col p${rank + 1} ${b && b.id === live.playerId ? "me" : ""}`}>
+                      {rank === 0 && <span className="qz-crown">👑</span>}
+                      <span className="qz-pod-medal">{["🥇", "🥈", "🥉"][rank]}</span>
+                      <span className="qz-pod-name">{b ? b.nickname : "—"}</span>
+                      {b && <span className="qz-pod-pts">{b.pts} {tr2({ uz: "ball", ru: "баллов" })} · {b.ok}/{QUIZ_BANK.length}</span>}
+                      <div className="qz-pod-bar" />
+                    </div>;
+  })}
+              </div>
+              {myRank >= 0 && <p className="qz-mypl">{tr2({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>место {myRank + 1}</b> · {board[myRank].pts} баллов</> })}</p>}
+              <div className="qz-board wide">
+                {board.map((b, i) => <div key={b.id} className={`qz-brow ${b.id === live.playerId ? "me" : ""}`}>
+                    <span className="qz-brank">{i + 1}</span><span className="qz-bname">{b.nickname}</span>
+                    {b.maxStreak >= 2 && <span className="qz-bstreak">🔥x{b.maxStreak}</span>}
+                    <span className="qz-bok">{b.ok}/{QUIZ_BANK.length}</span>
+                    <span className="qz-bpts">{b.pts}</span>
+                  </div>)}
+              </div>
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr2({ uz: "↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)", ru: "↻ Пройти тест ещё раз — практика (в таблицу не идёт)" })}</button>}
+            </>}
+          <button className="qz-btn ghost" onClick={closeArena}>{tr2({ uz: "Arenani yopish", ru: "Закрыть арену" })}</button>
+        </div>}
+    </div>;
+}
+var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
+  const gate = useContext2(LiveGateCtx) || {};
+  const live = gate.live;
+  const isLive = !!(live && (live.mode === "student" || live.mode === "mentor") && live.pin);
+  const livePin = live ? live.pin : null;
+  const [players, setPlayers] = useState3([]);
+  const [rows, setRows] = useState3([]);
+  const [loaded2, setLoaded] = useState3(false);
+  useEffect4(() => {
+    if (!isLive || !livePin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [p, a] = await Promise.all([livePlayers(livePin), liveAnswers(livePin)]);
+        if (on) {
+          setPlayers(p);
+          setRows(a);
+          setLoaded(true);
+        }
+      } catch {
+      }
+      if (on) t = setTimeout(tick, 3e3);
+    };
+    tick();
+    return () => {
+      on = false;
+      clearTimeout(t);
+    };
+  }, [isLive, livePin]);
+  const totalQ = SCORED_IDX.length;
+  const board = players.map((p) => {
+    const mine = rows.filter((a) => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const okCount = mine.filter((a) => a.correct).length;
+    const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
+    return { id: p.id, nickname: p.nickname, okCount, time };
+  }).sort((x, y) => y.okCount - x.okCount || x.time - y.time);
+  const fmtT = (ms) => `${(ms / 1e3).toFixed(1)}s`;
+  const top3 = board.slice(0, 3);
+  const myIdx = live && live.playerId ? board.findIndex((b) => b.id === live.playerId) : -1;
+  const selfCorrect = SCORED_IDX.filter((i) => answers[i]?.correct).length;
+  return <Stage eyebrow={tr2({ uz: "Natijalar", ru: "Результаты" })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: "clamp(14px,2.2vw,20px)" }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        {!isLive ? <div className="fade-up" style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
+            <ScoreRing correct={selfCorrect} total={totalQ} />
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.", ru: "Вы в самостоятельном режиме. В живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉." })}</p></div>
+          </div> : !loaded2 ? <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr2({ uz: "Natijalar yuklanmoqda…", ru: "Результаты загружаются…" })}</p> : board.length === 0 ? <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: "К этой сессии пока никто не присоединился." })}</p></div> : <>
+            <Confetti />
+            <div className="pod-stage fade-up">
+              {[1, 0, 2].map((rank) => {
+    const b = top3[rank];
+    return <div key={rank} className={`pod-col pod-${rank + 1} ${b && live.playerId === b.id ? "me" : ""}`}>
+                    <span className="pod-medal">{["🥇", "🥈", "🥉"][rank]}</span>
+                    <span className="pod-name">{b ? b.nickname : "—"}</span>
+                    {b && <span className="pod-score mono">{b.okCount}/{totalQ} · {fmtT(b.time)}</span>}
+                    <div className="pod-bar" />
+                  </div>;
+  })}
+            </div>
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr2({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>место {myIdx + 1}</b> ({board[myIdx].okCount}/{totalQ} верно)</> })}</p>}
+            <div className="card fade-up d1">
+              <div className="card-lbl" style={{ color: T.accent }}>{tr2({ uz: "🏆 To'liq reyting", ru: "🏆 Полный рейтинг" })}</div>
+              <div className="pod-list">
+                {board.map((b, i) => <div key={b.id} className={`pod-row ${live.playerId === b.id ? "me" : ""}`}>
+                    <span className="mono pod-rank">{i + 1}</span>
+                    <span className="pod-row-name">{b.nickname}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map((q) => {
+    const a = rows.find((r) => r.player_id === b.id && r.screen_idx === q);
+    return <span key={q} className={`pod-dot ${a ? a.correct ? "ok" : "bad" : ""}`} title={tr2(Q_LABELS[q])} />;
+  })}</span>
+                    <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
+                    <span className="mono pod-row-time">{fmtT(b.time)}</span>
+                  </div>)}
+              </div>
+            </div>
+          </>}
+      </div>
+    </Stage>;
+};
+var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+  const [hwOpen, setHwOpen] = useState3(false);
+  const [hwCharge, setHwCharge] = useState3(false);
+  const fireHw = () => {
+    if (hwCharge || hwOpen) return;
+    setHwCharge(true);
+    setTimeout(() => {
+      setHwOpen(true);
+      setHwCharge(false);
+    }, 500);
+  };
+  const _gate = useContext2(LiveGateCtx) || {};
+  const _live = _gate.live;
+  const [arena, setArena] = useState3(false);
+  const [arenaSolo, setArenaSolo] = useState3(false);
+  const quizSt = _live && _live.quiz && _live.quiz.state || "off";
+  const isStudentL = _live && _live.mode === "student";
+  const isMentorL = _live && _live.mode === "mentor";
+  const classOver = !!(_live && (_live.status === "ended" || !_live.mentorAlive));
+  const studentSolo = isStudentL && classOver && quizSt !== "done";
+  const studentLive = isStudentL && !studentSolo && quizSt !== "off";
+  const studentWait = isStudentL && !studentSolo && quizSt === "off";
+  const openArena = async () => {
+    if (isMentorL && quizSt === "off") {
+      try {
+        await _live.quizControl("lobby", -1);
+      } catch {
+        return;
+      }
+    }
+    setArenaSolo(studentSolo);
+    setArena(true);
+  };
+  const RECAP = [
+    tr2({ uz: "Autentifikatsiya = «siz kimsiz?» (login)", ru: "Аутентификация = «кто вы?» (логин)" }),
+    tr2({ uz: "Login → JWT token (bilaguzuk): header.payload.signature", ru: "Логин → JWT-токен (браслет): header.payload.signature" }),
+    tr2({ uz: "Har so'rovda: Authorization: Bearer <token>", ru: "В каждом запросе: Authorization: Bearer <token>" }),
+    tr2({ uz: "Tokensiz himoyalangan route → 401; qo'riqchi (guard) jwt.verify bilan tekshiradi", ru: "Защищённый route без токена → 401; охранник (guard) проверяет через jwt.verify" }),
+    tr2({ uz: "Maxfiy kalitlar .env'da (process.env), GitHub'ga ketmaydi", ru: "Секретные ключи в .env (process.env), на GitHub не попадают" })
+  ];
+  const HOMEWORK = [
+    { b: tr2({ uz: "Login qo'shing", ru: "Добавьте логин" }), t: tr2({ uz: "— loyihangizga POST /api/login va token tekshiruvini qo'shing", ru: "— добавьте в проект POST /api/login и проверку токена" }) },
+    { b: tr2({ uz: "Kalitlarni .env'ga", ru: "Ключи в .env" }), t: tr2({ uz: "— barcha maxfiy kalitlarni .env'ga ko'chiring", ru: "— перенесите все секретные ключи в .env" }) },
+    { b: ".gitignore", t: tr2({ uz: "— .env'ni .gitignore'ga qo'shing, hech qachon commit qilmang", ru: "— добавьте .env в .gitignore и никогда не коммитьте" }) }
+  ];
+  const correct = SCORED_IDX.filter((i) => answers[i]?.correct).length;
+  const total = SCORED_IDX.length;
+  const PASSED = (total ? correct / total : 0) >= 0.6;
+  return <Stage eyebrow={tr2({ uz: "Tayyor", ru: "Готово" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: "clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr2({ uz: "Qaytadan", ru: "Заново" })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: "auto", padding: "clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr2({ uz: "Yakunlash ✓", ru: "Завершить ✓" })}</button></>}>
+      <div className="screen">
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr2({ uz: "Dars tugadi", ru: "Урок завершён" })}</span><h2 className="title h-title fade-up d1">{tr2({ uz: <>Endi saytingiz <span className="italic" style={{ color: T.accent }}>himoyalangan</span>.</>, ru: <>Теперь ваш сайт <span className="italic" style={{ color: T.accent }}>защищён</span>.</> })}</h2>{
+    /* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */
+  }</div><ScoreRing correct={correct} total={total} /></div>
+        <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? "ready" : ""}`}>
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? void 0 : openArena} hint={studentWait ? tr2({ uz: "⏳ Mentorni kuting", ru: "⏳ Ждите ментора" }) : void 0} />
+        </div>
+        {arena && <QuizArena live={_live || { mode: "self" }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: "50%", background: T.success, color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 10 }}>✓</span> {tr2({ uz: "Endi siz bilasiz", ru: "Теперь вы знаете" })}</div><ul className="recap">{RECAP.map((r, i) => <li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>)}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? "charging" : ""}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, "--d": `${k.d}s` }}>{tr2(k.t)}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">{tr2({ uz: "Uyga vazifa", ru: "Домашнее задание" })}</span>
+            <span className="hw-big-s">{tr2({ uz: "Amaliy topshiriqni bajarish →", ru: "Выполнить практическое задание →" })}</span>
+          </button>
+        </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr2({ uz: "📝 Uyga vazifa", ru: "📝 Домашнее задание" })}</div><ul>{HOMEWORK.map((h, i) => <li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>)}</ul><p className="hw-note">{tr2({ uz: "Modul 5 (NestJS): @UseGuards, JWT strategy, role guard — autentifikatsiya va ruxsatlar haqiqiy loyihadagidek, tartibli yoziladi! 🚀", ru: "Модуль 5 (NestJS): @UseGuards, JWT strategy, role guard — аутентификация и права пишутся как в настоящем проекте, аккуратно! 🚀" })}</p></div>}
+        {!isMentorL && <div className="card ach-coll fade-up d3">
+          <div className="card-lbl" style={{ color: T.accent }}>{tr2({ uz: "🏅 Nishonlaringiz", ru: "🏅 Ваши значки" })} — {achievements ? achievements.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="ach-grid">
+            {Object.entries(ACHIEVEMENTS).map(([id, a]) => {
+    const got = !!(achievements && achievements.has(id));
+    return <div key={id} className={`ach-badge ${got ? "got" : "locked"}`} title={tr2(a.desc)}>
+                <span className="ach-badge-ic">{got ? a.icon : "🔒"}</span>
+                <span className="ach-badge-name">{a.name}</span>
+                {got && <span className="ach-badge-desc">{tr2(a.desc)}</span>}
+              </div>;
+  })}
+          </div>
+        </div>}
+      </div>
+    </Stage>;
+};
+function AuthEnvLesson({ lang: langProp, onFinished, liveToken }) {
+  const lang = langProp || "uz";
+  __lang = lang;
+  setLiveLang(lang);
+  const savedRef = useRef3(void 0);
+  if (savedRef.current === void 0) {
+    const p = progRead(LESSON_META.lessonId, TOTAL_SCREENS);
+    if (p) {
+      const li = LIVE_ENABLED ? liveRead(LESSON_META.lessonId) : null;
+      if (li && li.mode === "student" && typeof li.lastScreen === "number")
+        p.screen = Math.min(p.screen || 0, Math.max(0, li.lastScreen - 1));
+    }
+    savedRef.current = p;
+  }
+  const saved = savedRef.current;
+  const [screen, setScreen] = useState3(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [answers, setAnswers] = useState3(() => saved && saved.answers || {});
+  const startTimeRef = useRef3(saved?.startedAt || Date.now());
+  const firstPassRef = useRef3(saved?.firstPass || null);
+  const soloSentRef = useRef3(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState3(!!saved?.firstPass);
+  const earnedRef = useRef3(new Set(saved?.earned || []));
+  const [earned, setEarned] = useState3(() => new Set(saved?.earned || []));
+  const [achToasts, setAchToasts] = useState3([]);
+  const achKeyRef = useRef3(0);
+  const earn = useCallback2((id) => {
+    if (firstPassRef.current) return;
+    if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
+    earnedRef.current.add(id);
+    setEarned(new Set(earnedRef.current));
+    setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
+  }, []);
+  const missedRef = useRef3(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState3(() => new Set(saved?.missed || []));
+  const missTry = useCallback2((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
+  useEffect4(() => {
+    const upd = () => {
+      const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1e3)));
+      document.documentElement.style.setProperty("--lz", String(Math.round(z * 1e3) / 1e3));
+    };
+    upd();
+    window.addEventListener("resize", upd);
+    return () => window.removeEventListener("resize", upd);
+  }, []);
+  const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken });
+  useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS });
+  const isStudentLive = live.mode === "student" && live.status !== "ended" && live.mentorAlive;
+  const locked = isStudentLive && screen + 1 > live.mentorScreen;
+  useEffect4(() => {
+    live.reportScreen(screen);
+  }, [screen, live.mode, live.pin]);
+  const FLASH_IDX = SCREEN_META.findIndex((m) => m.id === "sflash");
+  const flashHidden = () => live.mode === "student" && live.status !== "ended" && live.mentorAlive;
+  const next = () => setScreen((s) => {
+    let n = Math.min(s + 1, TOTAL_SCREENS - 1);
+    if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1);
+    return n;
+  });
+  const prev = () => setScreen((s) => {
+    let n = Math.max(s - 1, 0);
+    if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0);
+    return n;
+  });
+  const recordAnswer = (idx, data) => {
+    setAnswers((a) => ({ ...a, [idx]: data }));
+    const _m = SCREEN_META[idx];
+    if (_m && _m.scored && live.mode === "solo" && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) {
+        soloSentRef.current.add(idx);
+        live.submitAnswer(idx, _m.id, key < 0 ? 0 : data.correct ? key : key === 0 ? 1 : 0, !!data.correct, data.elapsedMs || 0);
+      }
+    }
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
+    if (_m && _m.scope === "final" && data && data.solved && live.mode === "student") live.submitAnswer(idx, _m.id, 0, !!data.correct, 0);
+  };
+  const reset = () => {
+    if (!firstPassRef.current) {
+      firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3) };
+      setFpPractice(true);
+    }
+    progClear(LESSON_META.lessonId);
+    setAnswers({});
+    setScreen(0);
+    startTimeRef.current = Date.now();
+  };
+  useEffect4(() => {
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, fpPractice]);
+  const finishLesson = () => {
+    progClear(LESSON_META.lessonId);
+    live.endSession();
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
+    const scoredMeta = SCREEN_META.filter((s) => s.scored);
+    const finalMeta = scoredMeta.filter((s) => s.scope === "final");
+    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? ans[i] : null).filter(Boolean);
+    const correctAnswers = scoredAnswers.filter((a) => a.correct).length;
+    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? ans[i] : null).filter(Boolean);
+    const finalCorrect = finalAnswers.filter((a) => a.correct).length;
+    const payload = {
+      lessonId: LESSON_META.lessonId,
+      lessonTitle: LESSON_META.lessonTitle,
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1e3),
+      totalQuestions: scoredMeta.length,
+      correctAnswers,
+      scorePercent: scoredMeta.length ? Math.round(correctAnswers / scoredMeta.length * 100) : 0,
+      finalScore: finalCorrect,
+      finalTotal: finalMeta.length,
+      passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
+      answers: SCREEN_META.map((s, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+    };
+    if (typeof onFinished === "function") onFinished(sealPayload(LESSON_META.lessonId, payload));
+  };
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenAuthPractice, ScreenPodium, ScreenFlashcards, Screen16];
+  const Current = screens[screen];
+  return <LangContext.Provider value={lang}>
+      <style>{`        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        html, body { margin: 0; padding: 0; }
+        .lesson-root, .lesson-root * { box-sizing: border-box; }
+        .lesson-root { font-family: 'Manrope', system-ui, sans-serif; color: ${T.ink}; background: ${T.bg}; zoom: var(--lz, 1); height: calc(100dvh / var(--lz, 1)); overflow: hidden; -webkit-font-smoothing: antialiased; font-feature-settings: "ss01","cv11"; }
+        .lesson-root h1,.lesson-root h2,.lesson-root h3,.lesson-root h4,.lesson-root h5,.lesson-root h6,.lesson-root p,.lesson-root ul,.lesson-root ol { margin: 0; padding: 0; }
+
+        .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
+        .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
+        @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-step { animation: fade-step 0.3s ease-out; }
+        .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; } .d3 { animation-delay: 0.36s; } .d4 { animation-delay: 0.48s; }
+        @keyframes shakex { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .shaking { animation: shakex 0.4s ease-in-out infinite; }
+
+        .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
+        .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
+
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        /* 134-qonun — xavfli amal roli (begona hujumi, GitHub push): inline emas, klass (F-0820-223) */
+        .btn.danger { background: ${T.danger}; }
+        .btn.danger:hover:not(:disabled) { background: #A52D23; box-shadow: 0 10px 24px -4px rgba(194,54,43,0.45); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+        .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
+        .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
+        .btn-white-accent:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.14); }
+        .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
+        .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
+        .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
+        .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
+
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .option:hover:not(:disabled) { background: #FDFBF7; box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
+        .option:disabled { cursor: default; }
+        .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -6px rgba(31,122,77,0.32) !important; }
+        .option-wrong { background: ${T.paper} !important; color: ${T.ink3} !important; opacity: 0.55 !important; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.08) !important; }
+        .option-picked-wrong { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.38) !important; }
+
+        .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .chip:hover:not(:disabled) { transform: translateY(-1px); }
+        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .tagpill { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
+
+        .mentor { display: flex; gap: 12px; align-items: flex-start; }
+        .zoomable { position: relative; }
+        .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
+        .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
+        @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+
+        .mentor-ava { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: ${T.accentSoft}; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.28); }
+        .mentor-ava img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .mentor-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+        .mentor-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: ${T.accent}; letter-spacing: 0.01em; }
+        .mentor-msg { background: ${T.paper}; border-radius: 4px 14px 14px 14px; padding: 13px 16px; color: ${T.ink}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.16); }
+
+        .hook-option { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,16px) clamp(15px,2.2vw,18px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .hook-option:hover:not(:disabled):not(.on) { box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
+        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        .hook-option:disabled { cursor: default; }
+        .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
+        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
+        .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
+
+        .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
+        .bp-bar { background: #f0eee8; padding: 8px 11px; display: flex; align-items: center; gap: 9px; }
+        .bb-dots { display: flex; gap: 5px; }
+        .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
+        .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
+        .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; transition: color 0.3s; }
+        .bp-body { padding: clamp(12px,2.2vw,18px); }
+
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
+        .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
+        .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
+        .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+        .small { font-size: clamp(12.5px,1.4vw,13.5px); }
+
+        .stage { max-width: 1100px; margin: 0 auto; height: calc(100dvh / var(--lz, 1)); display: flex; flex-direction: column; }
+        .stage-header { flex-shrink: 0; background: ${T.bg}; padding-top: clamp(12px,2vw,18px); padding-bottom: clamp(8px,1.5vw,12px); }
+        .stage-content { flex: 1; min-height: 0; padding-top: clamp(10px,1.7vw,16px); padding-bottom: clamp(17px,3.4vw,34px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+        .stage-content.narrow { max-width: 680px; width: 100%; margin: 0 auto; }
+        .stage-nav { flex-shrink: 0; background: ${T.bg}; border-top: 1px solid rgba(167,166,162,0.25); padding-top: clamp(12px,2vw,15px); padding-bottom: clamp(12px,2vw,15px); display: flex; gap: 12px; align-items: center; }
+        .chrome { display: flex; align-items: center; justify-content: space-between; }
+        .chrome-left { display: flex; align-items: center; gap: 10px; color: ${T.ink2}; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: ${T.accent}; box-shadow: 0 0 8px rgba(255,79,40,0.55); }
+        .progress-track { height: 3px; background: rgba(167,166,162,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
+        .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
+
+        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
+        .head { display: flex; flex-direction: column; gap: 6px; }
+        .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
+        .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
+        @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
+        .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+
+        .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
+        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
+
+        .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
+        .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+        .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
+        .hint { background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        /* 🔓 klapan ipuchasi (m4-08 bilan bir xil): .bhint — ipucha, .bhint.calm — «Davom etish» ochildi */
+        .bhint.bhint { margin: 0; align-self: flex-start; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 14px; box-shadow: inset 0 0 0 1.5px ${T.accent}33; }
+        .bhint.bhint.calm { color: ${T.ink2}; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; font-style: italic; }
+
+        .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
+        .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+        .ai-line { font-family: 'JetBrains Mono'; font-size: 12.5px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; } .ai-line:hover { background: rgba(255,255,255,0.06); }
+        .ai-line.bad { background: rgba(194,54,43,0.22); box-shadow: inset 0 0 0 1px ${T.danger}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
+        .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
+        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
+
+        .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+        .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+        .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
+        .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+        .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
+        .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
+        .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+
+        /* === 4-MODUL · 7-DARS: AUTH + .env === */
+        .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.45vw,13px); line-height: 1.7; padding: 12px 14px; border-radius: 10px; overflow-x: auto; white-space: pre; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
+        .code-box.clickable .cl-line { display: block; cursor: pointer; border-radius: 6px; padding: 2px 5px; margin: 0 -5px; transition: background 0.15s; }
+        .code-box.clickable .cl-line:hover { background: rgba(255,255,255,0.06); }
+        .code-box.clickable .cl-line.on { background: rgba(255,79,40,0.18); box-shadow: inset 0 0 0 1px ${T.accent}; }
+        .code-box.envfile { cursor: pointer; transition: box-shadow 0.18s; }
+        .code-box.hi { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 22px -6px rgba(255,79,40,0.3); }
+
+        .json-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.45vw,13px); line-height: 1.6; padding: 11px 13px; border-radius: 10px; margin: 0; overflow-x: auto; white-space: pre; }
+        .json-box.sm { font-size: 11.5px; padding: 9px 11px; }
+        .json-box .j-key { color: ${CODE.attr}; } .json-box .j-str { color: ${CODE.str}; } .json-box .j-num { color: #7FB3FF; }
+
+        .status-badge { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11.5px; padding: 3px 9px; border-radius: 7px; white-space: nowrap; }
+        /* 401/4xx — rad etilgan so'rov: qiya "muhr" ko'rinishi (oqibat ko'zga tashlansin) */
+        .status-badge.err { border: 1.5px solid currentColor; box-shadow: inset 0 0 0 1.5px ${T.paper}; letter-spacing: 0.04em; transform: rotate(-1.6deg); }
+        .status-badge.ok { box-shadow: inset 0 0 0 1px currentColor; }
+
+        /* token = bilaguzuk */
+        .tokencard { display: flex; align-items: center; gap: 10px; background: ${CODE.bg}; border-radius: 12px; padding: 12px 14px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.22); overflow-x: auto; }
+        .tokencard.sm { padding: 9px 11px; }
+        .tk-ic { font-size: 22px; flex-shrink: 0; padding-right: 11px; border-right: 1.5px dashed rgba(255,255,255,0.2); }
+        .tk-jwt { font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+        .jwt-part { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; border: none; border-radius: 5px; padding: 3px 6px; cursor: pointer; transition: all 0.15s; background: transparent; }
+        /* bilaguzuk 3 segmenti — bir ma'no, bir rang: header=ko'k · payload=oq · signature=yashil muhr */
+        .jwt-part.h { color: #7FB3FF; } .jwt-part.p { color: ${CODE.text}; } .jwt-part.s { color: ${CODE.str}; }
+        .jwt-part.on { box-shadow: inset 0 0 0 1.5px currentColor; }
+        .jwt-part:hover { background: rgba(255,255,255,0.08); }
+        .jwt-dot { color: ${CODE.punct}; font-weight: 700; }
+
+        /* login forma */
+        .loginform { background: ${T.paper}; border-radius: 13px; padding: 16px 18px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); }
+        .lf-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; }
+        .lf-field { font-family: 'JetBrains Mono'; font-size: 13px; color: ${T.ink}; background: ${T.bg}; border-radius: 8px; padding: 9px 12px; box-shadow: inset 0 0 0 1px #EFECE5; }
+        .lf-token { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+
+        /* postman (id33 davomi) */
+        .postman { background: #fff; border-radius: 13px; overflow: hidden; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.18); }
+        /* Postman ilova oynasi — chrome: dots + ilova nomi + so'rov tab'i (m4-09 bilan bir xil, B2 · F-0820-235) */
+        .pm-chrome { display: flex; align-items: center; gap: 9px; padding: 8px 11px 0; background: #f0eee8; }
+        .pm-app { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.04em; color: ${T.ink2}; padding-bottom: 8px; }
+        .pm-app::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: ${T.accent}; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.85); }
+        .pm-chrome .bb-dots { padding-bottom: 8px; }
+        .pm-tab { margin-left: auto; max-width: 58%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10.5px; font-weight: 600; color: ${T.ink2}; background: #FBFAF7; border-radius: 7px 7px 0 0; padding: 6px 11px; }
+        .pm-bar { display: flex; align-items: center; gap: 8px; padding: 9px 10px; background: #FBFAF7; border-bottom: 1px solid #EFECE5; }
+        .pm-method { font-family: 'JetBrains Mono'; font-weight: 800; font-size: 13px; padding: 5px 10px; border-radius: 8px; background: ${T.bg}; flex-shrink: 0; }
+        .pm-url { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 600; color: ${T.ink}; overflow-x: auto; white-space: nowrap; padding: 4px 8px; background: #fff; border-radius: 7px; box-shadow: inset 0 0 0 1px #EFECE5; }
+        .pm-send { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: #fff; background: ${T.accent}; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; flex-shrink: 0; transition: all 0.16s; }
+        .pm-send:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(255,79,40,0.5); }
+        .pm-send:disabled { opacity: 0.4; cursor: not-allowed; }
+        .pm-auth { padding: 8px 11px; border-bottom: 1px solid #EFECE5; font-size: 12px; background: #FFFDFA; }
+        .authtoggle { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.ink2}; }
+        .authtoggle input { width: 15px; height: 15px; accent-color: ${T.success}; cursor: pointer; }
+        .pm-resp { padding: 10px 12px; }
+        .pm-resp-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+        .pm-resp-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: ${T.ink3}; }
+        .pm-loading { font-family: 'JetBrains Mono'; font-size: 13px; color: ${T.accent}; padding: 14px 4px; }
+        .pm-empty { font-size: 12.5px; color: ${T.ink3}; font-style: italic; padding: 12px 4px; }
+        .pm-respbody { display: block; }
+
+        /* qo'riqchi posti — to'siq chizig'i + chiroq (KIRIT=yashil · RAD/401=qizil) */
+        .guarddoor { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 8px; background: ${T.paper}; border-radius: 13px; padding: 26px 18px 18px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); transition: all 0.25s; }
+        .guarddoor::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 12px; background: repeating-linear-gradient(-45deg, ${T.ink3} 0 8px, ${T.paper} 8px 16px); opacity: 0.55; transition: background 0.25s, opacity 0.25s; }
+        .guarddoor.open { background: ${T.successSoft}; box-shadow: 0 0 0 2px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25); }
+        .guarddoor.open::before { background: repeating-linear-gradient(-45deg, ${T.success} 0 8px, ${T.successSoft} 8px 16px); opacity: 1; }
+        .guarddoor.block { background: ${T.dangerSoft}; box-shadow: 0 0 0 2px ${T.danger}, 0 8px 20px -6px rgba(194,54,43,0.25); }
+        .guarddoor.block::before { background: repeating-linear-gradient(-45deg, ${T.danger} 0 8px, ${T.dangerSoft} 8px 16px); opacity: 1; }
+        .gd-ic { font-size: 34px; width: 62px; height: 62px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.bg}; box-shadow: inset 0 0 0 2px rgba(${T.shadowBase},0.1); transition: box-shadow 0.25s, background 0.25s; }
+        .guarddoor.open .gd-ic { background: ${T.paper}; box-shadow: inset 0 0 0 2px ${T.success}, 0 0 20px -2px rgba(31,122,77,0.45); }
+        .guarddoor.block .gd-ic { background: ${T.paper}; box-shadow: inset 0 0 0 2px ${T.danger}, 0 0 20px -2px rgba(194,54,43,0.45); }
+        .gd-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink}; text-align: center; }
+        .guarddoor.open .gd-lbl { color: ${T.success}; font-weight: 700; }
+        .guarddoor.block .gd-lbl { color: ${T.danger}; font-weight: 700; }
+
+        /* GitHub indikatori */
+        .ghub { border-radius: 12px; padding: 13px 15px; }
+        .ghub.danger { background: ${T.dangerSoft}; box-shadow: inset 0 0 0 1.5px ${T.danger}; }
+        .ghub.safe { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .gh-row { display: flex; align-items: center; gap: 9px; } .gh-eye { font-size: 18px; }
+
+        /* auth qadamlar (s2) */
+        .authsteps { display: flex; flex-direction: column; gap: 8px; }
+        .authstep { font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; text-align: left; border: none; border-radius: 11px; padding: 13px 15px; cursor: pointer; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); transition: all 0.16s; }
+        .authstep:hover { transform: translateX(2px); }
+        .authstep.on { background: ${T.accent}; color: #fff; box-shadow: 0 8px 18px -5px rgba(255,79,40,0.4); }
+        .authstep.seen:not(.on) { background: ${T.bg}; color: ${T.ink2}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.1); }
+
+        /* auth oqim animatsiyasi (s11) */
+        .aflow { display: flex; justify-content: space-between; gap: 5px; flex-wrap: wrap; }
+        .afnode { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; background: ${T.paper}; border-radius: 12px; padding: 12px 4px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); transition: all 0.25s; opacity: 0.5; }
+        .afnode.on { opacity: 1; box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.3); transform: translateY(-2px); }
+        .afnode.past { opacity: 1; box-shadow: 0 0 0 1.5px ${T.success}; }
+        .afnode-ic { font-size: 22px; } .afnode-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.ink}; text-align: center; }
+        .jnote { background: ${T.paper}; border-radius: 11px; padding: 12px 15px; min-height: 46px; display: flex; align-items: center; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.12); }
+
+        /* stepbar (s13) */
+        .stepbar { display: flex; gap: 8px; }
+        .stepdot { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.14); }
+        .stepdot.cur { background: ${T.accent}; color: #fff; box-shadow: none; }
+        .stepdot.done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+
+        /* do'kon (hook) */
+        .shopmock { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-height: 60px; }
+        .shop-card { flex: 1; min-width: 84px; background: #fff; border-radius: 11px; padding: 12px; box-shadow: 0 4px 14px -6px rgba(${T.shadowBase},0.18); }
+        .shop-name { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 13.5px; color: ${T.ink}; }
+        .empty-shop { width: 100%; text-align: center; font-family: 'Manrope'; font-weight: 700; color: ${T.danger}; font-size: 15px; padding: 18px; }
+
+        /* VS Code mock + .env input (final) */
+        .vsc { background: #1E1E1E; border-radius: 13px; overflow: hidden; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.3); }
+        .vsc-bar { background: #252526; display: flex; align-items: flex-end; }
+        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 8px 13px; display: inline-flex; align-items: center; gap: 6px; }
+        .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
+        .vsc-body { padding: 12px 14px 14px 8px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.5vw,13px); color: #D4D4D4; line-height: 2; }
+        .vsc-line { display: flex; align-items: center; }
+        .vsc-ln { color: #6E7681; min-width: 22px; text-align: right; margin-right: 14px; font-size: 11px; flex-shrink: 0; user-select: none; }
+        .envinput-wrap { display: flex; align-items: center; gap: 8px; background: ${CODE.bg}; border-radius: 10px; padding: 4px 6px 4px 11px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
+        .envinput-ic { font-size: 16px; }
+        .envinput { flex: 1; min-width: 0; background: transparent; border: 1px dashed #4b5563; border-radius: 7px; color: ${CODE.str}; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13px); padding: 8px 10px; outline: none; transition: border-color 0.2s; }
+        .envinput::placeholder { color: #5A6374; }
+        .envinput.ok { border: 1.5px solid ${T.success}; }
+
+        /* MOBIL: yig'iladigan Mentor */
+        .mentor-mob .mentor-msg { overflow: hidden; max-height: 360px; transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.25s ease, padding 0.38s ease, box-shadow 0.3s ease; }
+        .mentor-mob.is-collapsed { align-items: center; cursor: pointer; }
+        .mentor-mob.is-collapsed .mentor-col { gap: 0; }
+        .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
+        .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
+
+        /* === s7: QO'RIQCHI SMENASI (guard queue o'yini) === */
+        .gq-counter { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+        .gq-dot { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.14); }
+        .gq-dot.cur { background: ${T.accent}; color: #fff; box-shadow: none; }
+        .gq-dot.done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .gq-score { margin-left: auto; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
+        .gq-card { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); border-left: 4px solid ${T.ink3}; transition: border-color .2s; }
+        .gq-card.gq-ok { border-left-color: ${T.success}; }
+        .gq-card.gq-bad { border-left-color: ${T.danger}; }
+        .gq-who { display: flex; align-items: center; gap: 11px; }
+        .gq-ic { font-size: 30px; }
+        .gq-who-t { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,19px); color: ${T.ink}; margin: 0; }
+        .gq-who-s { font-size: 12.5px; color: ${T.ink2}; margin: 2px 0 0; }
+        /* 🎫 bilaguzuk tasmasi: qora tasma + 3 segment (header=ko'k · payload=oq · signature=yashil muhr) */
+        .gq-seg { display: flex; gap: 3px; align-items: stretch; padding: 3px; border-radius: 99px; background: ${T.ink}; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.5), inset 0 1px 0 rgba(255,255,255,0.12); }
+        .gq-s { flex: 1; min-width: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; padding: 7px 8px; border-radius: 99px; }
+        .gq-s.h { background: ${T.blueSoft}; color: ${T.blue}; }
+        .gq-s.p { background: ${T.paper}; color: ${T.ink2}; }
+        .gq-s.s { background: ${T.successSoft}; color: ${T.success}; }
+        .gq-s.x { background: ${T.dangerSoft}; color: ${T.danger}; text-decoration: line-through; }
+        .gq-s.none { background: transparent; color: ${T.paper}; opacity: 0.72; font-style: italic; }
+        .gq-choices { display: flex; gap: 10px; }
+        .gq-btn { flex: 1; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); border: none; border-radius: 12px; padding: 13px; cursor: pointer; transition: transform .14s, box-shadow .2s; }
+        .gq-btn:hover { transform: translateY(-2px); }
+        .gq-btn.kirit { background: ${T.success}; color: #fff; box-shadow: 0 8px 20px -8px ${T.success}; }
+        .gq-btn.rad { background: ${T.paper}; color: ${T.danger}; box-shadow: inset 0 0 0 2px ${T.danger}66; }
+        .gq-btn.rad:hover { background: ${T.dangerSoft}; }
+        .gq-verdict { display: flex; flex-direction: column; border-radius: 12px; padding: 12px 14px; }
+        .gq-verdict.ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
+        .gq-verdict.bad { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; }
+        .gq-final { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; background: ${T.bg}; border-radius: 16px; padding: 24px; box-shadow: inset 0 0 0 1.5px ${T.ink3}44; }
+        .gq-final.perfect { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
+        .gq-final-ic { font-size: 40px; }
+        .gq-final-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(17px,2.4vw,20px); color: ${T.ink}; margin: 0; }
+        .gq-final-s { font-size: 13.5px; color: ${T.ink2}; margin: 0 0 6px; max-width: 340px; }
+
+        /* ===== 🎬 KONSEPT HARAKATI — «QO'RIQCHI SMENASI» =====
+           Navbat chapdan suriladi · to'siq KIRIT'da ko'tariladi / RAD'da tushadi ·
+           401 muhr bo'lib uriladi · bilaguzuk segmentlari ketma-ket yonadi. */
+
+        /* 🎫 navbatdagi bilaguzuk chapdan surilib keladi (key={cur.id} → har mehmonda qayta) */
+        .gq-card { animation: gq-slide-in 0.44s cubic-bezier(.3,1.25,.4,1) both; }
+        @keyframes gq-slide-in { 0% { opacity: 0; transform: translateX(-40px) rotate(-1.2deg); } 60% { opacity: 1; } 100% { opacity: 1; transform: translateX(0) rotate(0); } }
+        /* hukm oqibati: KIRIT → mehmon ichkariga siljiydi · RAD → to'siq zarbasi (block-shake) */
+        .gq-card.gq-in { animation: gq-pass 0.5s cubic-bezier(.3,1.2,.4,1); }
+        @keyframes gq-pass { 0% { transform: translateX(0); } 45% { transform: translateX(10px); } 100% { transform: translateX(0); } }
+        .gq-card.gq-out { animation: gq-block 0.45s cubic-bezier(.36,.07,.19,.97); }
+        @keyframes gq-block { 0%,100% { transform: translateX(0); } 16% { transform: translateX(-7px); } 34% { transform: translateX(7px); } 52% { transform: translateX(-4px); } 72% { transform: translateX(4px); } 88% { transform: translateX(-2px); } }
+
+        /* 🔆 bilaguzuk segmentlari ketma-ket yonadi (header → payload → signature) */
+        .gq-seg .gq-s { animation: gq-seg-light 0.42s cubic-bezier(.3,1.4,.4,1) both; }
+        .gq-seg .gq-s:nth-child(1) { animation-delay: 0.10s; }
+        .gq-seg .gq-s:nth-child(2) { animation-delay: 0.21s; }
+        .gq-seg .gq-s:nth-child(3) { animation-delay: 0.32s; }
+        @keyframes gq-seg-light { 0% { opacity: 0; transform: translateY(6px) scale(0.9); } 55% { transform: translateY(-2px) scale(1.04); } 100% { opacity: 1; transform: none; } }
+        /* 💥 soxta/buzilgan segment — hukmdan keyin qizarib chatnaydi */
+        .gq-card.judged .gq-s.x { animation: gq-seg-crack 0.62s cubic-bezier(.36,.07,.19,.97) 0.06s both; }
+        @keyframes gq-seg-crack { 0% { transform: none; box-shadow: 0 0 0 0 ${T.danger}00; } 14% { transform: translateX(-3px) skewX(5deg); box-shadow: 0 0 0 3px ${T.danger}55; } 30% { transform: translateX(3px) skewX(-5deg); } 46% { transform: translateX(-2px) skewX(2deg); box-shadow: 0 0 0 5px ${T.danger}00; } 64% { transform: translateX(2px); } 100% { transform: none; box-shadow: 0 0 0 0 ${T.danger}00; } }
+
+        /* 🚧 TO'SIQ (shlagbaum): pastda = tekshiruv · ko'tarilgan = o'tkazildi */
+        .gq-gate { position: relative; display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 11px; background: ${T.bg}; overflow: hidden; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.08); transition: background 0.3s; }
+        .gq-gate::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: repeating-linear-gradient(-45deg, ${T.ink3} 0 6px, transparent 6px 12px); opacity: 0.35; }
+        .gq-post { position: absolute; left: 13px; top: 9px; bottom: 9px; width: 6px; border-radius: 3px; background: ${T.ink3}; opacity: 0.65; }
+        .gq-bar { position: absolute; left: 16px; top: 50%; z-index: 1; width: calc(100% - 30px); height: 8px; border-radius: 4px; transform-origin: left center; transform: translateY(-50%) rotate(0deg); background: repeating-linear-gradient(-45deg, ${T.danger} 0 9px, ${T.paper} 9px 18px); box-shadow: 0 4px 10px -4px rgba(${T.shadowBase},0.35); }
+        .gq-gate.lift { background: ${T.successSoft}; }
+        .gq-gate.lift .gq-bar { animation: gq-gate-lift 0.62s cubic-bezier(.3,1.25,.4,1) forwards; }
+        @keyframes gq-gate-lift { 0% { transform: translateY(-50%) rotate(0); } 58% { transform: translateY(-50%) rotate(-79deg); } 100% { transform: translateY(-50%) rotate(-72deg); } }
+        .gq-gate.drop { animation: gq-gate-jolt 0.4s cubic-bezier(.36,.07,.19,.97) 0.1s; }
+        .gq-gate.drop .gq-bar { animation: gq-gate-drop 0.5s cubic-bezier(.3,1.6,.5,1); }
+        @keyframes gq-gate-drop { 0% { transform: translateY(-50%) rotate(-30deg); } 46% { transform: translateY(-50%) rotate(3.5deg); } 64% { transform: translateY(-50%) rotate(-6deg); } 80% { transform: translateY(-50%) rotate(2deg); } 100% { transform: translateY(-50%) rotate(0); } }
+        @keyframes gq-gate-jolt { 0%,100% { transform: translateX(0); } 22% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 76% { transform: translateX(-2px); } }
+        /* ⛔ 401 ZARBASI — muhr urilgandek tushadi · ✓ 201 — yumshoq pop */
+        .gq-code { position: relative; z-index: 2; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 15px; letter-spacing: 0.06em; padding: 3px 11px; border-radius: 7px; opacity: 0; }
+        .gq-gate.lift .gq-code { color: ${T.success}; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.success}; animation: gq-code-pop 0.4s cubic-bezier(.3,1.6,.5,1) 0.34s both; }
+        @keyframes gq-code-pop { 0% { opacity: 0; transform: translateY(7px) scale(0.8); } 100% { opacity: 1; transform: none; } }
+        .gq-gate.drop .gq-code { color: ${T.danger}; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.danger}; animation: gq-401-punch 0.46s cubic-bezier(.3,1.5,.5,1) 0.12s both; }
+        @keyframes gq-401-punch { 0% { opacity: 0; transform: scale(2.7) rotate(-9deg); } 42% { opacity: 1; transform: scale(0.86) rotate(-3deg); } 64% { transform: scale(1.1) rotate(-3deg); } 100% { opacity: 1; transform: scale(1) rotate(-3deg); } }
+
+        /* 🔢 jonli hisoblagich: joriy mehmon pulsatsiyasi · hukm qilingani ✓ pop · ball bump */
+        .gq-dot.cur { animation: gq-dot-cur 1.8s ease-in-out infinite; }
+        @keyframes gq-dot-cur { 0%,100% { box-shadow: 0 0 0 0 ${T.accent}00; } 50% { box-shadow: 0 0 0 4px ${T.accent}33; } }
+        .gq-dot.done { animation: gq-dot-pop 0.4s cubic-bezier(.3,1.6,.5,1); }
+        @keyframes gq-dot-pop { 0% { transform: scale(0.62) rotate(-12deg); } 55% { transform: scale(1.24) rotate(6deg); } 100% { transform: scale(1) rotate(0); } }
+        .gq-score { animation: gq-score-bump 0.5s cubic-bezier(.34,1.6,.4,1); }
+        @keyframes gq-score-bump { 0% { transform: scale(1); } 34% { transform: scale(1.22); } 100% { transform: scale(1); } }
+        .gq-final-ic { animation: gq-final-pop 0.62s cubic-bezier(.28,1.5,.4,1) both; }
+        @keyframes gq-final-pop { 0% { transform: scale(0) rotate(-30deg); } 60% { transform: scale(1.18) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
+        .gq-final.perfect .gq-final-ic { animation: gq-final-pop 0.62s cubic-bezier(.28,1.5,.4,1) both, gq-shield-glow 2.6s ease-in-out 0.62s infinite; }
+        @keyframes gq-shield-glow { 0%,100% { filter: none; } 50% { filter: drop-shadow(0 6px 14px rgba(31,122,77,0.5)); } }
+
+        /* 🚪 s6 QO'RIQCHI POSTI: KIRIT → to'siq ko'tariladi (yuguruvchi chiroq) · RAD → to'siq tushadi + zarba */
+        .guarddoor.open::before { left: -26px; right: -26px; animation: gd-lights 1.2s linear infinite; }
+        @keyframes gd-lights { from { transform: translateX(0); } to { transform: translateX(22.63px); } }
+        .guarddoor.open .gd-ic { animation: gd-ic-open 0.55s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes gd-ic-open { 0% { transform: scale(0.82) rotate(-14deg); } 50% { transform: scale(1.16) rotate(6deg); } 100% { transform: scale(1) rotate(0); } }
+        .guarddoor.block { animation: gd-block-shake 0.46s cubic-bezier(.36,.07,.19,.97); }
+        @keyframes gd-block-shake { 0%,100% { transform: translateX(0); } 15% { transform: translateX(-6px); } 32% { transform: translateX(6px); } 50% { transform: translateX(-4px); } 68% { transform: translateX(4px); } 85% { transform: translateX(-2px); } }
+        .guarddoor.block::before { animation: gd-bar-slam 0.5s cubic-bezier(.3,1.6,.5,1); }
+        @keyframes gd-bar-slam { 0% { transform: translateY(-14px); } 50% { transform: translateY(2px); } 74% { transform: translateY(-1px); } 100% { transform: translateY(0); } }
+        .guarddoor.block .gd-ic { animation: gd-ic-block 0.5s cubic-bezier(.3,1.6,.5,1); }
+        @keyframes gd-ic-block { 0% { transform: scale(1.9); } 45% { transform: scale(0.9); } 70% { transform: scale(1.08); } 100% { transform: scale(1); } }
+
+        /* ⛔ 401 ZARBASI har joyda: status-badge muhr bo'lib uriladi · 201 — pop */
+        .status-badge.err { animation: st-401-punch 0.5s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes st-401-punch { 0% { opacity: 0; transform: scale(2.4) rotate(-9deg); } 44% { opacity: 1; transform: scale(0.9) rotate(-1.6deg); } 68% { transform: scale(1.09) rotate(-1.6deg); } 100% { transform: scale(1) rotate(-1.6deg); } }
+        .status-badge.ok { animation: st-ok-pop 0.42s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes st-ok-pop { 0% { opacity: 0; transform: scale(0.62); } 55% { transform: scale(1.14); } 100% { opacity: 1; transform: scale(1); } }
+
+        /* 🎫 BILAGUZUK: 3 segment ketma-ket yonadi (har TokenCard paydo bo'lganda) */
+        .tokencard .jwt-part { animation: tk-seg-light 0.5s cubic-bezier(.3,1.4,.4,1) both; }
+        .tokencard .jwt-part.h { animation-delay: 0.06s; }
+        .tokencard .jwt-part.p { animation-delay: 0.2s; }
+        .tokencard .jwt-part.s { animation-delay: 0.34s; }
+        @keyframes tk-seg-light { 0% { opacity: 0; transform: translateY(5px) scale(0.9); } 55% { transform: translateY(-1px) scale(1.05); } 100% { opacity: 1; transform: none; } }
+        .tokencard .jwt-dot { animation: fade-step 0.4s 0.28s both; }
+        /* login → bilaguzuk berildi: kartochka pastdan chiqadi */
+        .lf-token .tokencard { animation: tk-issue 0.5s cubic-bezier(.3,1.3,.4,1); }
+        @keyframes tk-issue { 0% { opacity: 0; transform: translateY(12px) scale(0.96); } 100% { opacity: 1; transform: none; } }
+
+        /* 👁️ GitHub: secret oshkor bo'ldi — signal · 🔒 muhrlandi — qulf tushadi */
+        .gh-eye { display: inline-block; }
+        .ghub.danger { animation: gh-alarm 0.7s cubic-bezier(.36,.07,.19,.97); }
+        @keyframes gh-alarm { 0% { transform: scale(0.97); box-shadow: inset 0 0 0 1.5px ${T.danger}, 0 0 0 0 ${T.danger}66; } 26% { transform: translateX(-5px); } 48% { transform: translateX(5px); box-shadow: inset 0 0 0 1.5px ${T.danger}, 0 0 0 9px ${T.danger}00; } 68% { transform: translateX(-3px); } 100% { transform: none; box-shadow: inset 0 0 0 1.5px ${T.danger}, 0 0 0 0 ${T.danger}00; } }
+        .ghub.danger .gh-eye { animation: gh-eye-pop 0.6s cubic-bezier(.3,1.6,.5,1) 0.1s both; }
+        @keyframes gh-eye-pop { 0% { transform: scale(0) rotate(-20deg); } 55% { transform: scale(1.35) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
+        .ghub.safe .gh-eye { animation: gh-lock 0.55s cubic-bezier(.3,1.6,.5,1); }
+        @keyframes gh-lock { 0% { transform: translateY(-10px) scale(1.3); } 55% { transform: translateY(2px) scale(0.92); } 100% { transform: none; } }
+        .envinput.ok { animation: env-lock 0.6s cubic-bezier(.3,1.3,.4,1); }
+        @keyframes env-lock { 0% { box-shadow: 0 0 0 0 ${T.success}66; } 60% { box-shadow: 0 0 0 7px ${T.success}00; } 100% { box-shadow: 0 0 0 0 ${T.success}00; } }
+        /* 🔁 secret → process.env almashinuvi swap-in bilan (kontent «sakramaydi») */
+        .vsc-swap { display: inline-block; animation: vsc-swapin 0.5s cubic-bezier(.3,1.4,.4,1); }
+        @keyframes vsc-swapin { 0% { opacity: 0; transform: translateY(-9px) scale(0.9); } 55% { transform: translateY(1px) scale(1.04); } 100% { opacity: 1; transform: none; } }
+        .vsc-leak { display: inline-block; animation: vsc-leak-blink 2.4s ease-in-out infinite; }
+        @keyframes vsc-leak-blink { 0%,100% { opacity: 1; } 50% { opacity: 0.62; } }
+
+        /* 😈 hook: hujum oqibati · 🐞 s14 debug: xatoli qator tebranadi, tuzatilgani flip bilan almashadi */
+        .empty-shop { animation: es-punch 0.5s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes es-punch { 0% { opacity: 0; transform: scale(1.55); } 45% { opacity: 1; transform: scale(0.95); } 100% { transform: scale(1); } }
+        .ai-line.bad { animation: ai-bad-shake 0.45s cubic-bezier(.36,.07,.19,.97); }
+        @keyframes ai-bad-shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 45% { transform: translateX(5px); } 70% { transform: translateX(-3px); } }
+        .ai-line.ok { transform-origin: left center; animation: ai-fix-flip 0.55s cubic-bezier(.4,0,.2,1); }
+        @keyframes ai-fix-flip { 0% { transform: rotateX(-88deg); opacity: 0; } 55% { transform: rotateX(10deg); opacity: 1; } 100% { transform: rotateX(0); } }
+        .ta-bulb { display: inline-block; animation: ta-pop 0.6s cubic-bezier(.28,1.5,.4,1) both; }
+        @keyframes ta-pop { 0% { transform: scale(0) rotate(-25deg); } 60% { transform: scale(1.2) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
+
+        /* ▶ s11 to'liq oqim: faol tugun sakraydi · s13 qadam nuqtalari */
+        .afnode.on { animation: af-pop 0.45s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes af-pop { 0% { transform: translateY(0) scale(0.94); } 55% { transform: translateY(-5px) scale(1.07); } 100% { transform: translateY(-2px) scale(1); } }
+        .afnode.on .afnode-ic { animation: af-ic 0.5s ease-out; }
+        @keyframes af-ic { 0% { transform: scale(0.8) rotate(-8deg); } 50% { transform: scale(1.2) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
+        .stepdot.done { animation: gq-dot-pop 0.4s cubic-bezier(.3,1.6,.5,1); }
+        .stepdot.cur { animation: gq-dot-cur 1.8s ease-in-out infinite; }
+
+        /* ♿ TINCH VARIANT — harakat kamaytirilganda hammasi jim, lekin holat ko'rinadi */
+        @media (prefers-reduced-motion: reduce) {
+          .gq-card, .gq-card.gq-in, .gq-card.gq-out, .gq-seg .gq-s, .gq-card.judged .gq-s.x,
+          .gq-gate.drop, .gq-gate.lift .gq-bar, .gq-gate.drop .gq-bar, .gq-gate.lift .gq-code, .gq-gate.drop .gq-code,
+          .gq-dot.cur, .gq-dot.done, .gq-score, .gq-final-ic, .gq-final.perfect .gq-final-ic,
+          .guarddoor.open::before, .guarddoor.open .gd-ic, .guarddoor.block, .guarddoor.block::before, .guarddoor.block .gd-ic,
+          .status-badge.err, .status-badge.ok, .tokencard .jwt-part, .tokencard .jwt-dot, .lf-token .tokencard,
+          .ghub.danger, .ghub.danger .gh-eye, .ghub.safe .gh-eye, .envinput.ok, .vsc-swap, .vsc-leak,
+          .empty-shop, .ai-line.bad, .ai-line.ok, .ta-bulb, .afnode.on, .afnode.on .afnode-ic, .stepdot.done, .stepdot.cur
+          { animation: none !important; }
+          .gq-card, .gq-seg .gq-s, .tokencard .jwt-part, .ta-bulb, .gq-final-ic, .gq-code { opacity: 1 !important; transform: none !important; }
+          .gq-gate.lift .gq-bar { transform: translateY(-50%) rotate(-72deg) !important; }
+        }
+
+        /* ===== ⚡ v18 QATLAM CSS (drag-drop · debug · flashcard · badge · podium · recap · mstats · CodeStrike arena) ===== */
+        /* 👆 tap-hint — bosilmagan joy «meni bos» deb pulsatsiya qiladi (affordance) */
+        .tap-hint { animation: tap-hint 1.9s ease-in-out infinite; }
+        @keyframes tap-hint { 0%,100% { box-shadow: 0 0 0 0 ${T.accent}00; } 50% { box-shadow: 0 0 0 3px ${T.accent}30; } }
+        @media (prefers-reduced-motion: reduce) { .tap-hint { animation: none !important; } }
+        /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task-h { display: flex; align-items: center; gap: 8px; }
+        .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
+        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
+        .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
+        .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
+        @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
+        .lp-step-t { flex: 1; min-width: 0; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
+        @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
+        .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        /* O'quvchi ko'radigan sinf-pulsi (StudentPracticePulse, 4-Modul standarti) */
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
+
+        /* === 🐞 DEBUG CHALLENGE (reusable) === */
+        .dbg { display: flex; flex-direction: column; gap: 10px; }
+        .dbg-code { background: ${CODE.bg}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 26px -14px rgba(${T.shadowBase},0.4); overflow-x: auto; }
+        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
+        .dbg-line:hover { background: rgba(255,255,255,0.06); }
+        .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
+        @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; animation: dbg-door-open .6s cubic-bezier(.34,1.3,.4,1); }
+        /* 🔁 tabelka @Get→@Post morph (flip) + eshik ochilishi */
+        @keyframes dbg-door-open { 0% { box-shadow: 0 0 0 0 ${T.success}00; } 26% { box-shadow: 0 0 0 3px ${T.success}44, 0 0 20px -2px ${T.success}77; } 100% { box-shadow: 0 0 0 0 ${T.success}00; } }
+        .dbg-line.fixed .dbg-txt { display: inline-block; transform-origin: left center; animation: dbg-flip .5s cubic-bezier(.4,0,.2,1); }
+        @keyframes dbg-flip { 0% { transform: rotateX(-90deg); opacity: 0; } 55% { transform: rotateX(12deg); opacity: 1; } 100% { transform: rotateX(0); } }
+        .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
+        .dbg-txt { flex: 1; }
+        .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }
+        .dbg-hint { margin: 0; font-size: 13px; color: ${T.ink3}; font-style: italic; }
+        .dbg-ok { font-weight: 700; color: ${T.success}; font-size: 14px; background: ${T.successSoft}; border-radius: 12px; padding: 10px 14px; }
+        @media (prefers-reduced-motion: reduce) { .dd-slot.ok, .dd-slot.ok .dd-chip, .dd-slot.bad, .dd-wrong .pechat-404, .dbg-line.fixed, .dbg-line.fixed .dbg-txt, .dbg-line.wrong { animation: none !important; } }
+
+        /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
+        .fc-top { display: flex; justify-content: space-between; align-items: center; }
+        .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
+        .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
+        .fc-pill.learn { background: ${T.accentSoft}; color: ${T.accent}; border: 1.5px solid ${T.accent}44; }
+        .fc-pill.knew { background: ${T.successSoft}; color: ${T.success}; border: 1.5px solid ${T.success}44; }
+        @keyframes fc-pill-pop { 40% { transform: scale(1.16); } }
+        .fc-bar { height: 7px; background: ${T.line}; border-radius: 99px; overflow: hidden; }
+        .fc-bar-fill { display: block; height: 100%; background: linear-gradient(90deg, #FF8A3D, ${T.accent}); border-radius: 99px; transition: width .4s cubic-bezier(.34,1.2,.4,1); }
+        .fc-cardwrap { perspective: 1200px; position: relative; }
+        .fc-cardwrap::before, .fc-cardwrap::after { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 20px; background: ${T.paper}; border: 2px solid ${T.line}; z-index: -1; }
+        .fc-cardwrap::before { transform: translateY(7px) scale(0.965); opacity: 0.7; }
+        .fc-cardwrap::after { transform: translateY(15px) scale(0.93); opacity: 0.4; }
+        .fc-fly { position: relative; animation: fc-in 0.3s ease; }
+        @keyframes fc-in { from { opacity: 0; transform: translateY(10px) scale(0.97); } }
+        .fc-fly.out-knew { animation: fc-out-knew 0.42s ease forwards; }
+        .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
+        @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
+        @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
+        .fc-fly.out-knew::after, .fc-fly.out-again::after { position: absolute; top: 50%; left: 50%; z-index: 6; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: #fff; pointer-events: none; animation: fc-stamp 0.3s cubic-bezier(.34,1.6,.4,1); transform: translate(-50%, -50%); }
+        .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
+        .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
+        @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card.flip { transform: rotateY(180deg); }
+        .fc-card:not(.flip):hover { transform: translateY(-3px); }
+        .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
+        .fc-front { background: ${T.paper}; border: 2px solid ${T.line}; box-shadow: 0 14px 34px -18px rgba(${T.shadowBase},0.4); }
+        .fc-back { background: linear-gradient(160deg, #FF8A3D, ${T.accent}); color: #fff; transform: rotateY(180deg); box-shadow: 0 16px 36px -16px rgba(255,79,40,0.6); }
+        .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
+        .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
+        .fc-tap { color: ${T.accent}; font-weight: 700; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
+        .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
+        .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
+        .fc-btn:hover { transform: translateY(-2px); }
+        .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
+        .fc-btn.again { background: ${T.paper}; border: 2px solid ${T.accent}66; color: ${T.accent}; }
+        .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
+        .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
+        .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
+        .fc-done-emoji { font-size: 40px; }
+        .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
+        .fc-done-s { font-family: 'Manrope'; color: ${T.ink2}; margin: 0 0 8px; font-size: 14px; }
+
+        /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
+        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+
+        /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
+        .ach-cnt-wrap { position: relative; }
+        .ach-counter { display: inline-flex; align-items: center; gap: 4px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 99px; padding: 5px 11px 5px 9px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+        .ach-counter.has { border-color: ${T.accent}66; }
+        .ach-counter:hover { border-color: ${T.accent}; box-shadow: 0 6px 16px -8px rgba(255,79,40,0.4); }
+        .ach-counter b { color: ${T.accent}; font-size: 14px; font-variant-numeric: tabular-nums; }
+        .ach-cnt-tot { color: ${T.ink3}; font-size: 11.5px; }
+        .ach-cnt-ic { font-size: 14px; }
+        .ach-counter.bump { animation: ach-bump 0.8s cubic-bezier(.34,1.6,.4,1); }
+        @keyframes ach-bump { 0% { transform: scale(1); } 30% { transform: scale(1.35) rotate(-6deg); box-shadow: 0 0 0 6px rgba(255,79,40,0.18); } 60% { transform: scale(0.96) rotate(3deg); } 100% { transform: scale(1) rotate(0); box-shadow: 0 0 0 0 rgba(255,79,40,0); } }
+        .ach-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 200; width: 222px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 14px; padding: 10px; box-shadow: 0 18px 44px -14px rgba(${T.shadowBase},0.4); display: flex; flex-direction: column; gap: 3px; animation: fade-step 0.22s ease; }
+        .ach-pop-h { font-family: 'Manrope'; font-weight: 800; font-size: 12px; color: ${T.accent}; padding: 2px 6px 6px; }
+        .ach-pop-row { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 9px; }
+        .ach-pop-row.got { background: ${T.accentSoft}66; }
+        .ach-pop-ic { font-size: 17px; width: 20px; text-align: center; }
+        .ach-pop-row:not(.got) .ach-pop-ic { filter: grayscale(1) opacity(0.5); font-size: 13px; }
+        .ach-pop-nm { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; }
+        .ach-pop-row:not(.got) .ach-pop-nm { color: ${T.ink3}; }
+        .ach-coll { display: flex; flex-direction: column; gap: 10px; }
+        .ach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        @media (max-width: 560px) { .ach-grid { grid-template-columns: repeat(2, 1fr); } }
+        .ach-badge { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; border-radius: 14px; padding: 14px 10px; transition: transform 0.15s; }
+        .ach-badge.got { background: linear-gradient(160deg, ${T.accentSoft}, #FFF3EC); border: 1.5px solid ${T.accent}55; }
+        .ach-badge.got:hover { transform: translateY(-3px); }
+        .ach-badge.locked { background: ${T.bg}; border: 1.5px dashed ${T.line}; opacity: 0.75; }
+        .ach-badge-ic { font-size: 30px; line-height: 1; }
+        .ach-badge.locked .ach-badge-ic { filter: grayscale(1) opacity(0.55); font-size: 22px; }
+        .ach-badge-name { font-family: 'Manrope'; font-weight: 800; font-size: 13px; color: ${T.ink}; }
+        .ach-badge.locked .ach-badge-name { color: ${T.ink3}; }
+        .ach-badge-desc { font-family: 'Manrope'; font-size: 10.5px; color: ${T.ink2}; line-height: 1.3; }
+        .acu-overlay { position: fixed; inset: 0; z-index: 11000; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer;
+          background: radial-gradient(circle at 50% 42%, rgba(20,14,6,0.34) 0%, rgba(10,8,14,0.72) 62%, rgba(8,6,12,0.86) 100%);
+          animation: acu-bg-in 0.35s ease-out, acu-bg-out 0.55s ease-in 3.45s forwards; }
+        @keyframes acu-bg-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes acu-bg-out { to { opacity: 0; } }
+        .acu-rays { position: absolute; top: 50%; left: 50%; width: 170vmax; height: 170vmax; transform: translate(-50%,-50%); pointer-events: none;
+          background: repeating-conic-gradient(from 0deg, rgba(255,201,77,0.16) 0deg 7deg, transparent 7deg 20deg);
+          -webkit-mask-image: radial-gradient(circle, #000 8%, rgba(0,0,0,0.55) 30%, transparent 62%); mask-image: radial-gradient(circle, #000 8%, rgba(0,0,0,0.55) 30%, transparent 62%);
+          animation: acu-spin 16s linear infinite, acu-fade 0.6s ease-out; }
+        @keyframes acu-spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+        @keyframes acu-fade { from { opacity: 0; } to { opacity: 1; } }
+        .acu-glow { position: absolute; top: 42%; left: 50%; width: 78vmin; height: 78vmin; transform: translate(-50%,-50%); pointer-events: none; filter: blur(4px);
+          background: radial-gradient(circle, rgba(255,224,150,0.62) 0%, rgba(255,150,60,0.30) 38%, rgba(255,120,40,0) 68%);
+          animation: acu-glow-pulse 2.2s ease-in-out infinite, acu-fade 0.5s ease-out; }
+        @keyframes acu-glow-pulse { 0%,100% { opacity: 0.85; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.08); } }
+        .acu-ring { position: absolute; top: 42%; left: 50%; width: 130px; height: 130px; border-radius: 50%; border: 3px solid rgba(255,240,200,0.85); transform: translate(-50%,-50%) scale(0.3); pointer-events: none; animation: acu-shock 1s cubic-bezier(.2,.7,.3,1) forwards; }
+        .acu-ring.d2 { border-color: rgba(255,180,90,0.6); animation-delay: 0.22s; }
+        @keyframes acu-shock { 0% { transform: translate(-50%,-50%) scale(0.3); opacity: 0.9; } 100% { transform: translate(-50%,-50%) scale(6.5); opacity: 0; } }
+        .acu-stage { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: clamp(14px,3vw,22px); animation: acu-bg-in 0.3s ease-out; }
+        .acu-medal-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+        .acu-medal { position: relative; width: clamp(112px,26vw,152px); height: clamp(112px,26vw,152px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(54px,13vw,74px); overflow: hidden;
+          background: radial-gradient(circle at 38% 30%, #FFF0BE 0%, #FFD35A 42%, #F5A623 72%, #E4870C 100%);
+          box-shadow: 0 0 70px 12px rgba(255,201,77,0.55), 0 22px 54px -12px rgba(0,0,0,0.55), inset 0 -9px 18px rgba(140,70,0,0.28), inset 0 7px 14px rgba(255,255,255,0.6);
+          animation: acu-medal-pop 0.7s cubic-bezier(.28,1.5,.4,1) both, acu-float 2.6s ease-in-out 0.7s infinite; }
+        @keyframes acu-medal-pop { 0% { transform: scale(0) rotate(-40deg); } 55% { transform: scale(1.18) rotate(10deg); } 75% { transform: scale(0.94) rotate(-3deg); } 100% { transform: scale(1) rotate(0); } }
+        @keyframes acu-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+        .acu-shine { position: absolute; top: 0; bottom: 0; left: -70%; width: 45%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.75), transparent); transform: skewX(-18deg); animation: acu-shine-sweep 1.1s ease 0.5s 2; }
+        @keyframes acu-shine-sweep { to { left: 130%; } }
+        .acu-spark { position: absolute; top: 50%; left: 50%; font-size: clamp(14px,2.6vw,20px); color: #FFE9A8; text-shadow: 0 0 8px rgba(255,201,77,0.9); pointer-events: none; transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) scale(0); opacity: 0; animation: acu-spark-burst 1s ease-out both; }
+        @keyframes acu-spark-burst { 0% { transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) scale(0); opacity: 0; } 35% { opacity: 1; } 100% { transform: translate(-50%,-50%) rotate(var(--a)) translateY(clamp(-130px,-24vw,-96px)) scale(1); opacity: 0; } }
+        .acu-txt { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
+        .acu-eyebrow { font-family: 'Manrope', sans-serif; font-weight: 900; font-size: clamp(12px,1.8vw,14px); letter-spacing: 0.2em; text-transform: uppercase; color: #FFD35A; text-shadow: 0 2px 12px rgba(0,0,0,0.5); animation: acu-rise 0.5s ease-out 0.35s both; }
+        .acu-name { font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: clamp(26px,5.5vw,42px); color: #fff; line-height: 1.1; text-shadow: 0 3px 22px rgba(0,0,0,0.55); animation: acu-rise 0.55s cubic-bezier(.3,1.2,.4,1) 0.45s both; }
+        .acu-desc { font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,2vw,16px); color: rgba(255,255,255,0.82); max-width: 30ch; line-height: 1.5; animation: acu-rise 0.5s ease-out 0.6s both; }
+        @keyframes acu-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .acu-tap { font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin-top: 4px; animation: acu-rise 0.5s ease-out 1.1s both, acu-blink 1.6s ease-in-out 1.6s infinite; }
+        @keyframes acu-blink { 0%,100% { opacity: 0.5; } 50% { opacity: 0.85; } }
+        @media (prefers-reduced-motion: reduce) { .acu-rays, .acu-medal, .acu-glow, .acu-tap { animation-iteration-count: 1 !important; } .acu-rays { animation: acu-fade 0.4s both !important; } }
+
+        /* === Konfetti (yakun bayrami) === */
+        .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 1200; overflow: hidden; }
+        .confetti-bit { position: absolute; top: -24px; opacity: 0; will-change: transform, opacity; animation-name: confetti-fall; animation-timing-function: cubic-bezier(.25,.6,.45,1); animation-iteration-count: 1; animation-fill-mode: forwards; box-shadow: 0 2px 6px -2px rgba(${T.shadowBase},0.3); }
+        @keyframes confetti-fall { 0% { transform: translateY(-24px) rotate(0deg); opacity: 0; } 8% { opacity: 1; } 55% { transform: translateY(48vh) translateX(22px) rotate(320deg); } 100% { transform: translateY(104vh) translateX(-12px) rotate(680deg); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
+
+        /* === 🏆 PODIUM / STATISTIKA SAHIFASI === */
+        .pod-stage { display: flex; align-items: flex-end; justify-content: center; gap: clamp(10px,2vw,20px); padding-top: 8px; }
+        .pod-col { display: flex; flex-direction: column; align-items: center; gap: 5px; width: clamp(88px,22vw,150px); }
+        .pod-medal { font-size: clamp(26px,4vw,38px); line-height: 1; }
+        .pod-name { font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.8vw,16px); color: ${T.ink}; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pod-score { font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink2}; }
+        .pod-bar { width: 100%; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, ${T.accent}, ${T.accent}BB); box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.35); }
+        .pod-1 .pod-bar { height: clamp(74px,11vw,120px); }
+        .pod-2 .pod-bar { height: clamp(52px,8vw,86px); background: linear-gradient(180deg, ${T.ink2}, ${T.ink3}); }
+        .pod-3 .pod-bar { height: clamp(38px,6vw,62px); background: linear-gradient(180deg, #C98A3D, #DDA55C); }
+        .pod-col.me .pod-name { color: ${T.success}; }
+        .pod-my { margin: 0; text-align: center; font-family: 'Manrope'; font-size: 14px; color: ${T.ink2}; }
+        .pod-my b { color: ${T.accent}; }
+        .pod-list { display: flex; flex-direction: column; gap: 4px; max-height: 300px; overflow: auto; }
+        .pod-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(${T.shadowBase},0.04); }
+        .pod-row.me { background: ${T.successSoft}; outline: 1.5px solid ${T.success}66; }
+        .pod-rank { min-width: 22px; font-size: 12px; font-weight: 700; color: ${T.ink3}; }
+        .pod-row-name { flex: 1; min-width: 0; font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pod-row-dots { display: flex; gap: 4px; }
+        .pod-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(${T.shadowBase},0.15); }
+        .pod-dot.ok { background: ${T.success}; }
+        .pod-dot.bad { background: ${T.accent}; }
+        .pod-row-score { min-width: 34px; text-align: right; font-size: 12.5px; font-weight: 700; color: ${T.ink}; }
+        .pod-row-time { min-width: 46px; text-align: right; font-size: 11.5px; color: ${T.ink3}; }
+
+        /* === ⚡ CODE STRIKE — CTA neon-kapsula (arena STRUKTURASI ⚡ Jonliniki) === */
+        .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-radius: 18px; }
+        .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
+        @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+        .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
+          border: 1.5px solid rgba(186,140,255,0.72);
+          box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);
+          animation: cs-ignite 1.5s ease-out both, cs-breathe 3.8s ease-in-out 1.5s infinite; }
+        @keyframes cs-ignite { 0% { opacity: .22; filter: saturate(.25) brightness(.55); box-shadow: none; } 32% { opacity: .3; filter: saturate(.3) brightness(.6); box-shadow: none; } 38% { opacity: 1; filter: none; } 44% { opacity: .38; filter: saturate(.4) brightness(.65); } 51% { opacity: 1; filter: none; } 57% { opacity: .55; filter: saturate(.5) brightness(.75); } 66%, 100% { opacity: 1; filter: none; } }
+        @keyframes cs-breathe { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(110,55,210,.6), 0 0 40px rgba(140,72,255,.75), 0 0 96px rgba(140,72,255,.42), inset 0 0 60px rgba(140,72,255,.44); } }
+        .cs-ring { position: absolute; inset: 0; border-radius: inherit; padding: 2.5px; pointer-events: none; z-index: 4;
+          background: conic-gradient(from var(--csa), transparent 0 80%, rgba(201,166,255,0) 80%, rgba(201,166,255,.9) 91%, #FFFFFF 96%, transparent 100%);
+          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+          animation: cs-current 3.4s linear infinite; }
+        @keyframes cs-current { to { --csa: 360deg; } }
+        .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
+        .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
+        @keyframes cs-float { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(16px,-14px) rotate(5deg); } }
+        .cs-dash { position: absolute; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(190,150,255,.55), transparent); animation: cs-dash-run 5.5s linear infinite; }
+        @keyframes cs-dash-run { 0% { transform: translateX(-46px); opacity: 0; } 14% { opacity: .85; } 86% { opacity: .85; } 100% { transform: translateX(76px); opacity: 0; } }
+        .cs-thunder { position: absolute; inset: 0; opacity: 0; background: radial-gradient(62% 95% at 50% 0%, rgba(222,192,255,.55), transparent 64%); animation: cs-thunder 6.4s linear infinite; }
+        @keyframes cs-thunder { 0%, 90.5%, 100% { opacity: 0; } 91.4% { opacity: .5; } 92.3% { opacity: .07; } 93.4% { opacity: .38; } 95% { opacity: 0; } }
+        .cs-row { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: clamp(14px,2.6vw,30px); }
+        .csn-boltwrap { position: relative; display: inline-flex; flex: none; }
+        .csn-bolt { width: clamp(30px,4.6vw,54px); height: auto; filter: drop-shadow(0 0 9px rgba(170,120,255,.75)); animation: cs-bolt-strike 2s linear infinite; }
+        .csn-boltwrap.flip .csn-bolt { animation-delay: 1s; }
+        @keyframes cs-bolt-strike { 0%, 100% { filter: drop-shadow(0 0 9px rgba(170,120,255,.75)) brightness(1); transform: translateY(0) scale(1); } 5% { filter: drop-shadow(0 0 26px rgba(230,205,255,1)) brightness(2.4); transform: translateY(2px) scale(1.14); } 9% { filter: drop-shadow(0 0 7px rgba(170,120,255,.55)) brightness(.9); transform: translateY(0) scale(.97); } 13% { filter: drop-shadow(0 0 20px rgba(215,185,255,.95)) brightness(1.8); transform: translateY(1px) scale(1.07); } 20% { filter: drop-shadow(0 0 9px rgba(170,120,255,.75)) brightness(1); transform: translateY(0) scale(1); } }
+        .cs-spark { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #E7D9FF; box-shadow: 0 0 9px rgba(190,150,255,.95); opacity: 0; pointer-events: none; }
+        .cs-spark.s1 { top: 6%; left: 72%; --sx: 15px; --sy: -16px; }
+        .cs-spark.s2 { top: 50%; left: -10%; --sx: -17px; --sy: -10px; animation-delay: .3s !important; }
+        .cs-spark.s3 { top: 80%; left: 74%; --sx: 13px; --sy: 12px; animation-delay: .55s !important; }
+        .cs-cap:hover .cs-spark { animation: cs-spark-fly .9s ease-out infinite; }
+        @keyframes cs-spark-fly { 0% { opacity: 0; transform: translate(0,0) scale(.4); } 22% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--sx,14px), var(--sy,-16px)) scale(1); } }
+        .cs-word { position: relative; z-index: 2; display: inline-block; font-family: 'Manrope','Manrope Fallback',sans-serif; font-weight: 900; font-style: italic; font-size: clamp(30px,6.2vw,72px); letter-spacing: .015em; line-height: 1.06; white-space: nowrap; padding-right: .06em; background: linear-gradient(180deg,#FFFFFF 10%,#E4D6FF 46%,#A97CFF 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: cs-wglow 2.8s ease-in-out infinite; }
+        .cs-word::before { content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; padding-right: inherit; pointer-events: none; background: linear-gradient(100deg, transparent 34%, rgba(255,255,255,.95) 48%, rgba(255,255,255,.4) 54%, transparent 66%); background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: cs-glint 3.4s cubic-bezier(.6,0,.4,1) infinite; }
+        @keyframes cs-wglow { 0%,100% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 14px rgba(150,90,255,.5)); } 50% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 27px rgba(172,112,255,.95)); } }
+        @keyframes cs-glint { 0% { background-position: 135% 0; } 60%,100% { background-position: -55% 0; } }
+        .cs-clickable:hover .cs-word { animation-duration: 1.4s; }
+        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+        .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
+        .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
+        .cs-hud-dot { color: rgba(190,150,255,.6); }
+        .cs-enter { position: relative; z-index: 2; font-family: 'Manrope'; font-weight: 900; font-size: clamp(13px,1.8vw,17px); color: #C9A6FF; letter-spacing: .01em; text-shadow: 0 0 12px rgba(150,90,255,.6); animation: cs-enter-pulse 1.3s ease-in-out infinite; }
+        .cs-enter.wait { color: #8C86A8; text-shadow: none; animation: none; }
+        @keyframes cs-enter-pulse { 0%,100% { opacity: .72; transform: translateY(0) scale(1); } 50% { opacity: 1; transform: translateY(2px) scale(1.03); } }
+        .cs-clickable { cursor: pointer; user-select: none; transition: transform .18s cubic-bezier(.2,1,.3,1); outline: none; }
+        .cs-clickable:hover { transform: scale(1.015); --spd: 2.2; }
+        .cs-clickable:active { transform: scale(.99); }
+        .cs-clickable:focus-visible { outline: 2px dashed rgba(186,140,255,.8); outline-offset: 6px; }
+        .cs-off { filter: saturate(.45) brightness(.74); animation: cs-ignite 1.5s ease-out both, cs-breathe 6.5s ease-in-out 1.5s infinite; }
+        .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
+        .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
+        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+        .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
+        @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+        .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
+        @keyframes cs-charge { to { transform: scale(1.05); filter: brightness(1.75) saturate(1.35); } }
+        .cs-portal { position: fixed; inset: 0; z-index: 10400; pointer-events: none; background: radial-gradient(52% 52% at 50% 55%, rgba(210,180,255,.95), rgba(124,58,237,.55) 42%, transparent 76%); animation: cs-portal-in .9s ease-in-out both; }
+        @keyframes cs-portal-in { 0% { opacity: 0; transform: scale(.55); } 48% { opacity: 1; transform: scale(1.35); } 100% { opacity: 0; transform: scale(1.7); } }
+        @media (prefers-reduced-motion: reduce) { .cs-cap, .cs-ring, .cs-tok, .cs-dash, .cs-thunder, .cs-word, .cs-word::before, .csn-bolt, .cs-spark, .cs-enter, .cs-livedot i, .cs-hud-i, .cs-portal { animation: none !important; } }
+        @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
+        /* ===== ⚡ JONLI QATLAM CSS (Kahoot-kutish · MentorTestStats · CodeStrike arena · qcode-chip) — L1 etalondan ===== */
+        /* --- Kahoot-kutish holatlari (jonli test) --- */
+        /* option-wait (jonli test kutish holati) */
+        .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: option-wait-breathe 1.8s ease-in-out infinite; }
+        /* ⏳ Kahoot-reveal kutish: tanlangan javob nafas oladi */
+        @keyframes option-wait-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 30px -6px rgba(1,154,203,0.55); } }
+        @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
+        /* frame-wait (feedback kutish) */
+        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        /* --- LiveBadge: sekundar UI — xira turadi, kerak bo'lganda ochiladi (11.15) --- */
+        .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(${T.shadowBase},0.32) !important; }
+        @media (hover: none) { .live-badge { opacity: 0.62; } }
+
+        /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
+        .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
+        .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+        .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
+        .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
+        .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
+        .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+        .mstats-prog-fill.full { background: ${T.success}; }
+        .mstats-big { display: flex; gap: 10px; flex-wrap: wrap; }
+        .mstats-chip { flex: 1; min-width: 96px; display: flex; flex-direction: column; align-items: center; gap: 2px; border-radius: 14px; padding: clamp(10px,1.6vw,14px) 8px; }
+        .mstats-chip-n { font-family: 'Manrope'; font-weight: 800; font-size: clamp(24px,3.4vw,34px); line-height: 1; }
+        .mstats-chip-t { font-family: 'Manrope'; font-weight: 600; font-size: 12px; }
+        .mstats-chip.okc  { background: ${T.successSoft}; } .mstats-chip.okc .mstats-chip-n, .mstats-chip.okc .mstats-chip-t { color: ${T.success}; }
+        .mstats-chip.badc { background: ${T.accentSoft}; } .mstats-chip.badc .mstats-chip-n, .mstats-chip.badc .mstats-chip-t { color: ${T.accent}; }
+        .mstats-chip.waitc { background: rgba(${T.shadowBase},0.06); } .mstats-chip.waitc .mstats-chip-n, .mstats-chip.waitc .mstats-chip-t { color: ${T.ink2}; }
+        .mstats-chip.ansc { background: rgba(1,154,203,0.10); } .mstats-chip.ansc .mstats-chip-n, .mstats-chip.ansc .mstats-chip-t { color: ${T.blue}; }
+        .mstats-hidden { margin: 0; font-family: 'Manrope'; font-size: 12.5px; font-style: italic; color: ${T.ink3}; }
+        .mstats-bars { display: flex; flex-direction: column; gap: 8px; }
+        .mstats-row { display: flex; align-items: center; gap: 10px; transition: opacity 0.4s; }
+        .mstats-row.dimmed { opacity: 0.4; }
+        .mstats-abc { width: 28px; height: 28px; border-radius: 9px; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 8px -3px rgba(${T.shadowBase},0.3); }
+        .mstats-track { flex: 1; height: 16px; background: rgba(${T.shadowBase},0.07); border-radius: 99px; overflow: hidden; }
+        .mstats-fill { display: block; height: 100%; border-radius: 99px; transition: width 0.6s cubic-bezier(.4,0,.2,1); opacity: 0.85; }
+        .mstats-count { min-width: 108px; text-align: right; font-size: 12px; font-weight: 600; color: ${T.ink2}; white-space: nowrap; }
+        .mstats-waitrow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
+        .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
+        .mstats-wait-chip.more { color: ${T.ink3}; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
+        @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
+        /* Verdikt + recap tugmalari */
+        .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
+        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
+        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
+        .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
+        .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
+        .rc-open.soft { background: ${T.paper}; color: ${T.accent}; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); }
+        .rc-open-mini { align-self: flex-start; margin-top: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 99px; padding: 8px 14px; cursor: pointer; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); transition: all 0.2s; }
+        .rc-open-mini:hover { transform: translateY(-1px); }
+
+        /* === 📖 QAYTA TUSHUNTIRISH (recap overlay) — proyektorga katta shrift === */
+        .rc-overlay { position: fixed; inset: 0; z-index: 10005; background: ${T.bg}; display: flex; flex-direction: column; align-items: center; padding: clamp(14px,3vw,32px); overflow-y: auto; animation: fade-step 0.3s ease-out; font-family: 'Manrope', sans-serif; }
+        .rc-head { width: 100%; max-width: 880px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .rc-tag { font-weight: 800; font-size: clamp(11px,1.4vw,13px); letter-spacing: 0.1em; text-transform: uppercase; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 6px 14px; white-space: nowrap; }
+        .rc-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.4vw,22px); color: ${T.ink}; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .rc-x { background: ${T.paper}; border: none; border-radius: 10px; width: 36px; height: 36px; font-size: 15px; color: ${T.ink2}; cursor: pointer; flex-shrink: 0; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .rc-x:hover { color: ${T.accent}; }
+        .rc-card { flex: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: clamp(10px,2.2vw,20px); padding: clamp(16px,3vw,28px) 0; animation: fade-step 0.35s ease-out; }
+        .rc-ic { font-size: clamp(44px,8vw,76px); line-height: 1; }
+        .rc-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(24px,4.6vw,44px); color: ${T.ink}; line-height: 1.12; max-width: 800px; margin: 0; }
+        .rc-body { font-size: clamp(15px,2.4vw,21px); line-height: 1.55; color: ${T.ink2}; max-width: 720px; margin: 0; }
+        .rc-body b { color: ${T.ink}; }
+        .rc-vis { margin-top: clamp(4px,1vw,10px); display: flex; justify-content: center; width: 100%; }
+        .rc-flow { display: flex; align-items: center; justify-content: center; gap: clamp(6px,1.4vw,12px); flex-wrap: wrap; }
+        .rc-chip { font-weight: 700; font-size: clamp(13px,2vw,18px); background: ${T.paper}; color: ${T.ink}; border-radius: 12px; padding: clamp(8px,1.4vw,13px) clamp(12px,2vw,18px); box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2); white-space: nowrap; }
+        .rc-arr { font-size: clamp(15px,2.2vw,22px); color: ${T.accent}; font-weight: 800; }
+        .rc-ask { font-weight: 600; font-size: clamp(13px,1.8vw,16px); color: ${T.accent}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 18px; max-width: 660px; }
+        .rc-nav { width: 100%; max-width: 880px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; padding-top: 8px; }
+        .rc-dots { flex: 1; display: flex; justify-content: center; gap: 8px; }
+        .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
+        .rc-dot.fill { background: ${T.ink3}; }
+        .rc-dot.cur { background: ${T.accent}; width: 26px; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
+        .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+        .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
+        .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }
+        .rc-btn.done { background: ${T.success}; color: #fff; }
+        .rc-btn.done:hover { background: #17603C; }
+        @media (max-width: 640px) {
+          .rc-nav { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+          .rc-dots { width: 100%; order: -1; }
+          .rc-btn { font-size: 13px; padding: 11px 16px; }
+        }
+
+        /* === ⚔️ CTA (yakun sahifasida) === */
+        .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-radius: 18px; }
+
+        /* ===== ⚡ ARENA — issiq CoddyCamp muhiti ===== */
+        .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
+        .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
+        .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
+        @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
+        .qz-x { position: fixed; top: 14px; right: 16px; z-index: 10600; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(186,140,255,0.34); background: rgba(255,255,255,0.06); color: #D9C9FF; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(124,58,237,0.22); backdrop-filter: blur(6px); transition: transform 0.25s, color 0.2s, background 0.2s; }
+        .qz-x:hover { color: #F2ECFF; background: rgba(255,255,255,0.12); transform: rotate(90deg); }
+        .qz-view { position: relative; z-index: 1; width: 100%; max-width: 820px; display: flex; flex-direction: column; align-items: center; gap: clamp(14px,2.4vw,22px); margin: auto; }
+        .qz-brand { display: flex; align-items: center; gap: 12px; }
+        .qz-brand.sm { gap: 9px; }
+        .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
+        .qz-wm-h { color: #FF6A3D; }
+        .qz-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(22px,4vw,36px); color: #F2ECFF; margin: 0; text-align: center; letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(150,95,255,0.35); }
+        .qz-sub { font-family: 'Manrope'; font-size: clamp(13px,1.9vw,16px); color: #B9A8E6; margin: 0; text-align: center; max-width: 540px; line-height: 1.55; font-weight: 500; }
+        .qz-sub b { color: #F2ECFF; }
+        .qz-dimtxt { color: #8C86A8; font-family: 'Manrope'; font-size: 14px; font-style: italic; }
+        .qz-lobby-players { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 640px; }
+        .qz-pchip { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(186,140,255,0.34); color: #F2ECFF; font-family: 'Manrope'; font-weight: 700; font-size: 14px; border-radius: 99px; padding: 7px 16px; box-shadow: 0 0 18px rgba(124,58,237,0.2); animation: qz-pop 0.4s cubic-bezier(.34,1.5,.4,1); }
+        .qz-pchip.me { background: linear-gradient(170deg,#FF8A3D,#FF4F28); color: #fff; border-color: transparent; box-shadow: 0 0 22px rgba(255,79,40,0.45); }
+        @keyframes qz-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .qz-btn { background: linear-gradient(170deg,#FF8A3D,#FF4F28); color: #fff; border: none; border-radius: 14px; padding: 13px 26px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 14px 26px -10px rgba(255,79,40,0.6), inset 0 2px 0 rgba(255,255,255,0.3); transition: transform 0.18s; }
+        .qz-btn:hover:not(:disabled) { transform: translateY(-2px); }
+        .qz-btn:disabled { opacity: 0.5; cursor: default; }
+        .qz-btn.big { font-size: clamp(16px,2.2vw,19px); padding: clamp(15px,2vw,18px) clamp(32px,4vw,46px); }
+        .qz-btn.ghost { background: linear-gradient(170deg,#7C3AED,#5B21B6); color: #F2ECFF; border: 1px solid rgba(186,140,255,0.5); box-shadow: 0 0 24px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.2); }
+        .qz-btn.ghost:hover:not(:disabled) { box-shadow: 0 0 34px rgba(140,72,255,0.6), inset 0 1px 0 rgba(255,255,255,0.2); }
+        .qz-waitmsg { margin: 0; font-family: 'Manrope'; font-weight: 700; font-size: 14.5px; color: #3CE88E; text-align: center; text-shadow: 0 0 14px rgba(60,232,142,0.4); }
+        .qz-qview { max-width: 880px; }
+        .qz-top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .qz-count { font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.8vw,16px); color: #B9A8E6; }
+        .qz-count b { color: #F2ECFF; font-size: 1.25em; }
+        .qz-ansn { font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.8vw,16px); color: #FF7A4D; min-width: 64px; text-align: right; text-shadow: 0 0 12px rgba(255,90,44,0.4); }
+        .qz-timer { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+        .qz-timer-n { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 20px; }
+        .qz-timer.urgent { animation: qz-shake 0.5s ease-in-out infinite; }
+        @keyframes qz-shake { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .qz-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(19px,3.2vw,28px); color: #F2ECFF; margin: 0; text-align: center; line-height: 1.35; background: rgba(255,255,255,0.05); border: 1px solid rgba(186,140,255,0.34); border-radius: 20px; padding: clamp(18px,2.8vw,28px) clamp(18px,3vw,30px); width: 100%; box-shadow: 0 0 34px rgba(124,58,237,0.28), inset 0 1px 0 rgba(255,255,255,0.06); backdrop-filter: blur(8px); text-wrap: balance; }
+        .qz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(11px,1.6vw,15px); width: 100%; }
+        @media (max-width: 560px) { .qz-grid { grid-template-columns: 1fr; } .qz-wm { font-size: clamp(24px,7vw,34px); } }
+        .qz-tile { --gl: 255,255,255; position: relative; display: flex; align-items: center; gap: 14px; border: none; border-radius: 18px; padding: clamp(15px,2.4vw,22px) clamp(14px,2.2vw,20px); cursor: pointer; text-align: left; min-height: 66px; color: #fff; overflow: hidden; box-shadow: 0 10px 26px -12px rgba(0,0,0,0.55), 0 0 26px -4px rgba(var(--gl),0.42), inset 0 2px 0 rgba(255,255,255,0.32), inset 0 -4px 0 rgba(0,0,0,0.22), inset 0 0 0 1.5px rgba(0,0,0,0.24); transition: transform 0.14s, opacity 0.3s, box-shadow 0.14s, filter 0.2s; }
+        .qz-grid .qz-tile:nth-child(1) { --gl: 255,90,44; }
+        .qz-grid .qz-tile:nth-child(2) { --gl: 15,166,214; }
+        .qz-grid .qz-tile:nth-child(3) { --gl: 245,166,35; }
+        .qz-grid .qz-tile:nth-child(4) { --gl: 34,160,92; }
+        .qz-tile:hover:not(:disabled):not(.rv) { transform: translateY(-3px); box-shadow: 0 18px 34px -12px rgba(0,0,0,0.6), 0 0 40px -2px rgba(var(--gl),0.6), inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -4px 0 rgba(0,0,0,0.24), inset 0 0 0 1.5px rgba(0,0,0,0.26); }
+        .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
+        .qz-tile:disabled { cursor: default; }
+        .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
+        .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
+        .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
+        .qz-tile.rv.win { outline: 4px solid #fff; box-shadow: 0 0 0 5px rgba(43,217,124,0.45), 0 0 60px rgba(43,217,124,0.7), 0 14px 30px -12px rgba(0,0,0,0.5); animation: qz-pop 0.4s; }
+        .qz-tile.rv.lose { filter: saturate(0.45); opacity: 0.4; }
+        .qz-cnt { font-family: 'Manrope'; font-weight: 800; font-size: clamp(15px,2.2vw,19px); color: #fff; background: rgba(0,0,0,0.22); border-radius: 99px; padding: 4px 13px; flex-shrink: 0; margin-left: auto; font-variant-numeric: tabular-nums; }
+        .qz-mrow { display: flex; align-items: center; gap: 14px; }
+        .qz-allin { font-family: 'Manrope'; font-weight: 700; font-size: 15px; color: #3CE88E; text-shadow: 0 0 14px rgba(60,232,142,0.4); animation: qz-pop 0.4s; }
+        .qz-res { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; justify-content: center; border-radius: 16px; padding: 14px 26px; animation: qz-pop 0.45s cubic-bezier(.34,1.5,.4,1); }
+        .qz-res.good { background: rgba(43,217,124,0.15); outline: 1.5px solid rgba(43,217,124,0.5); box-shadow: 0 0 30px rgba(43,217,124,0.28); }
+        .qz-res.bad { background: rgba(255,90,90,0.14); outline: 1.5px solid rgba(255,90,90,0.42); box-shadow: 0 0 30px rgba(255,90,90,0.22); }
+        .qz-res-pts { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,4.4vw,40px); color: #3CE88E; line-height: 1; text-shadow: 0 0 20px rgba(60,232,142,0.45); font-variant-numeric: tabular-nums; }
+        .qz-res-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,2vw,17px); color: #F2ECFF; }
+        .qz-res-rank { font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: #B9A8E6; width: 100%; text-align: center; }
+        .qz-board { width: 100%; max-width: 480px; background: rgba(255,255,255,0.05); border: 1px solid rgba(186,140,255,0.32); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 5px; box-shadow: 0 0 32px rgba(124,58,237,0.25); backdrop-filter: blur(8px); }
+        .qz-board.wide { max-width: 640px; max-height: 260px; overflow: auto; }
+        .qz-board-h { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.1em; color: #FF7A4D; margin-bottom: 3px; text-transform: uppercase; text-shadow: 0 0 12px rgba(255,90,44,0.4); }
+        .qz-brow { display: flex; align-items: center; gap: 10px; padding: 8px 11px; border-radius: 11px; background: rgba(255,255,255,0.05); }
+        .qz-brow.me { background: linear-gradient(90deg,rgba(43,217,124,0.26),rgba(43,217,124,0.06)); outline: 1.5px solid rgba(43,217,124,0.55); }
+        .qz-brank { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: #F2ECFF; background: rgba(255,255,255,0.18); border-radius: 8px; min-width: 23px; height: 23px; display: flex; align-items: center; justify-content: center; }
+        .qz-brow:first-of-type .qz-brank { background: #FFCE3D; color: #1B0F3F; box-shadow: 0 0 14px rgba(255,206,61,0.5); }
+        .qz-brow.me .qz-brank { background: #2BD97C; color: #0B2417; }
+        .qz-bname { flex: 1; min-width: 0; font-family: 'Manrope'; font-weight: 700; font-size: 14.5px; color: #F2ECFF; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .qz-bstreak { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: #FF9A5D; }
+        .qz-bok { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: #B9A8E6; }
+        .qz-bpts { font-family: 'Manrope'; font-weight: 800; font-size: 15px; color: #FF7A4D; min-width: 52px; text-align: right; font-variant-numeric: tabular-nums; text-shadow: 0 0 10px rgba(255,90,44,0.35); }
+        .qz-pod { display: flex; align-items: flex-end; justify-content: center; gap: clamp(10px,2.4vw,24px); padding-top: 18px; }
+        .qz-pod-col { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: clamp(92px,24vw,170px); }
+        .qz-crown { position: absolute; top: -30px; font-size: 28px; animation: qz-float-sm 2s ease-in-out infinite; }
+        @keyframes qz-float-sm { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
+        .qz-pod-medal { font-size: clamp(30px,5vw,46px); line-height: 1; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.4)); }
+        .qz-pod-name { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,2vw,18px); color: #F2ECFF; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .qz-pod-pts { font-family: 'Manrope'; font-weight: 600; font-size: clamp(11px,1.5vw,13px); color: #B9A8E6; font-variant-numeric: tabular-nums; }
+        .qz-pod-bar { width: 100%; border-radius: 14px 14px 0 0; box-shadow: inset 0 2px 0 rgba(255,255,255,0.45); animation: qz-rise 0.9s cubic-bezier(.3,1.2,.4,1); transform-origin: bottom; }
+        @keyframes qz-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .qz-pod-col.p1 .qz-pod-bar { height: clamp(96px,14vw,156px); background: linear-gradient(180deg, #FFDE6B, #F5A623); box-shadow: inset 0 2px 0 rgba(255,255,255,0.55), 0 0 54px rgba(245,166,35,0.55); }
+        .qz-pod-col.p2 .qz-pod-bar { height: clamp(66px,10vw,110px); background: linear-gradient(180deg, #E4E7EE, #A2A8B4); box-shadow: inset 0 2px 0 rgba(255,255,255,0.55), 0 0 30px rgba(214,217,224,0.35); }
+        .qz-pod-col.p3 .qz-pod-bar { height: clamp(48px,7vw,82px); background: linear-gradient(180deg, #F4C08F, #CB8149); box-shadow: inset 0 2px 0 rgba(255,255,255,0.4), 0 0 30px rgba(237,177,131,0.35); }
+        .qz-pod-col.me .qz-pod-name { color: #3CE88E; text-shadow: 0 0 14px rgba(60,232,142,0.4); }
+        .qz-mypl { margin: 0; font-family: 'Manrope'; font-size: 15px; color: #B9A8E6; }
+        .qz-mypl b { color: #3CE88E; }
+        .qz-solo-res { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .qz-solo-pts { font-family: 'Manrope'; font-weight: 800; font-size: clamp(52px,9vw,84px); line-height: 1; color: #FF7A4D; text-shadow: 0 0 40px rgba(255,90,44,0.55); font-variant-numeric: tabular-nums; }
+        .qz-endnote { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 10600; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 94vw; background: rgba(27,15,63,0.86); border: 1px solid rgba(186,140,255,0.4); border-radius: 16px; padding: 10px 16px; color: #F2ECFF; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13.5px; box-shadow: 0 0 34px rgba(124,58,237,0.35); backdrop-filter: blur(10px); }
+
+        /* --- kod-atama chip (fmtCode) arena variantlari --- */
+        .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
+        .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
+        /* --- CodeStrike bolt FX qatlami --- */
+        .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
+`}</style>
+      <AchCtx.Provider value={earned}>
+      <AchMissCtx.Provider value={achMissVal}>
+      <LiveGateCtx.Provider value={{ locked, live }}>
+        <div className="lesson-root">
+          {live.mode === "choosing" ? <LiveGate live={live} title={{ uz: "Autentifikatsiya darsi", ru: "Урок аутентификации" }} /> : <>
+              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
+              <LiveBadge live={live} total={TOTAL_SCREENS} />
+              {live.mode !== "mentor" && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts((t) => t.filter((x) => x.k !== k))} />}
+            </>}
+        </div>
+      </LiveGateCtx.Provider>
+      </AchMissCtx.Provider>
+      </AchCtx.Provider>
+    </LangContext.Provider>;
+}
+export {
+  AuthEnvLesson as default
+};
