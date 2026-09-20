@@ -344,7 +344,7 @@
  {
   "file": "src/2-Modull/PmLesson6.jsx",
   "sid": "s2",
-  "note": "gapdan 3 kasbiy so'zni topish; xato = oddiy so'zni bosish",
+  "note": "D3 (19.09, foydalanuvchi): dars 2-ekrani — `jargon` BONUS (mavzu hali o'rgatilmagan); xato bosish sanalmaydi, shart-qatori yo'q",
   "wrong": [
    {
     "click": ".sv-w:has-text(\"Menyu\")",
@@ -362,7 +362,8 @@
     "click": ".sv-w:has-text(\"localStorage\")",
     "after": 900
    }
-  ]
+  ],
+  "bonus": true
  },
  {
   "file": "src/2-Modull/PmLesson6.jsx",
@@ -792,14 +793,22 @@
  {
   "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
   "sid": "s9",
-  "note": "guard yig'ish: 3 kerakli blok (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish yoki noto'g'ri qatorga sudrash; sirpanish = throw'siz npm test (dars ataylab ko'rsatadigan kashfiyot)",
+  "note": "guard yig'ish: 3 kerakli blok (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish yoki noto'g'ri qatorga sudrash; sirpanish = throw'siz npm test (dars ataylab ko'rsatadigan kashfiyot) · D1: uyum aralashtirildi",
   "wrong": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"if (typeof\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"console.log\")",
     "after": 600
    }
   ],
   "right": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"if (typeof\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"if (typeof\")"
    },
@@ -832,14 +841,22 @@
  {
   "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
   "sid": "s9",
-  "note": "sudrash yo'li: «throw» blokini «if» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar",
+  "note": "sudrash yo'li: «throw» blokini «if» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar · D1: uyum aralashtirildi",
   "wrong": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"if (typeof\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "eval": "(async () => {\n  const w = (ms) => new Promise(r => setTimeout(r, ms));\n  const chip = [...document.querySelectorAll('.dd-chip')].find(c => c.innerText.includes('throw new'));\n  const slot = document.querySelectorAll('.dd-slot')[0];\n  const a = chip.getBoundingClientRect(), b = slot.getBoundingClientRect();\n  const sx = a.left + a.width / 2, sy = a.top + a.height / 2, tx = b.left + b.width / 2, ty = b.top + b.height / 2;\n  chip.dispatchEvent(new PointerEvent('pointerdown', { clientX: sx, clientY: sy, button: 0, bubbles: true, pointerId: 1 }));\n  await w(30);\n  for (let k = 1; k <= 6; k++) { window.dispatchEvent(new PointerEvent('pointermove', { clientX: sx + (tx - sx) * k / 6, clientY: sy + (ty - sy) * k / 6, bubbles: true, pointerId: 1 })); await w(20); }\n  window.dispatchEvent(new PointerEvent('pointerup', { clientX: tx, clientY: ty, bubbles: true, pointerId: 1 }));\n})()",
     "after": 700
    }
   ],
   "right": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"if (typeof\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"if (typeof\")"
    },
@@ -898,14 +915,22 @@
  {
   "file": "src/4b-Modull/JestUnitTestLesson.jsx",
   "sid": "s9",
-  "note": "varaqa yig'ish: describe · it · expect (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish; sirpanish = expect'siz npm test (dars ataylab ko'rsatadigan kashfiyot)",
+  "note": "varaqa yig'ish: describe · it · expect (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish; sirpanish = expect'siz npm test (dars ataylab ko'rsatadigan kashfiyot) · D1: uyum aralashtirildi",
   "wrong": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"describe('orderTotal'\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"console.log\")",
     "after": 600
    }
   ],
   "right": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"describe('orderTotal'\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
    },
@@ -938,14 +963,22 @@
  {
   "file": "src/4b-Modull/JestUnitTestLesson.jsx",
   "sid": "s9",
-  "note": "sudrash yo'li: «expect» blokini «describe» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar",
+  "note": "sudrash yo'li: «expect» blokini «describe» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar · D1: uyum aralashtirildi",
   "wrong": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"describe('orderTotal'\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "eval": "(async () => {\n  const w = (ms) => new Promise(r => setTimeout(r, ms));\n  const chip = [...document.querySelectorAll('.dd-chip')].find(c => c.innerText.includes('expect(orderTotal'));\n  const slot = document.querySelectorAll('.dd-slot')[0];\n  const a = chip.getBoundingClientRect(), b = slot.getBoundingClientRect();\n  const sx = a.left + a.width / 2, sy = a.top + a.height / 2, tx = b.left + b.width / 2, ty = b.top + b.height / 2;\n  chip.dispatchEvent(new PointerEvent('pointerdown', { clientX: sx, clientY: sy, button: 0, bubbles: true, pointerId: 1 }));\n  await w(30);\n  for (let k = 1; k <= 6; k++) { window.dispatchEvent(new PointerEvent('pointermove', { clientX: sx + (tx - sx) * k / 6, clientY: sy + (ty - sy) * k / 6, bubbles: true, pointerId: 1 })); await w(20); }\n  window.dispatchEvent(new PointerEvent('pointerup', { clientX: tx, clientY: ty, bubbles: true, pointerId: 1 }));\n})()",
     "after": 700
    }
   ],
   "right": [
+   {
+    "eval": "(() => { const t = (document.querySelector('.dd-chip') || {}).innerText || ''; if (t.includes(\"describe('orderTotal'\")) throw new Error('birinchi blok = javob, uyum aralashtirilmagan'); })()",
+    "after": 120
+   },
    {
     "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
    },

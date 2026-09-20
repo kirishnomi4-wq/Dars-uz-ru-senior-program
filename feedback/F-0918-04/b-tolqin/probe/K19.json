@@ -1,0 +1,235 @@
+[
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "sid": "s4",
+  "test": true,
+  "missed": false,
+  "note": "S1-A (19.09): packageMaster s3 → s4 (shakl testi, birinchi urinish); to'g'ri = «NoSQL — har hujjatda…»",
+  "right": [
+   {
+    "click": "button:has-text(\"NoSQL — har hujjatda\")",
+    "after": 1100
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button:has-text(\"Ikkalasi ham bir xil\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"NoSQL — har hujjatda\")",
+    "after": 1100
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s14",
+  "note": "F-0919-02 (T21+T24): maslahat va «Bu qatorda xato yo'q» faqat xatosiz qator bosilgandan keyin",
+  "wrong": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: kalit qiymati\"); if (on !== false) throw new Error(\"maslahat urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Bu qatorda xato yo'q\"); if (on !== false) throw new Error(\"fidbek urinishdan oldin\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: kalit qiymati\"); if (on !== true) throw new Error(\"xatodan keyin maslahat chiqmadi\"); })()",
+    "after": 150
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Bu qatorda xato yo'q\"); if (on !== true) throw new Error(\"xatodan keyin fidbek chiqmadi\"); })()",
+    "after": 150
+   }
+  ],
+  "right": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: kalit qiymati\"); if (on !== false) throw new Error(\"maslahat urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"process.env.JWT_SECRET\")",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"process.env.JWT_SECRET\")",
+    "after": 700
+   }
+  ],
+  "rightAfterF5": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: kalit qiymati\"); if (on !== false) throw new Error(\"maslahat urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"process.env.JWT_SECRET\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "sid": "s14",
+  "note": "F-0919-02 (T16+T22): ekran boshida maslahat yo'q; xatodan keyin frame-warn yo'l ko'rsatadi",
+  "wrong": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: \\\"zamonaviyroq\\\"\"); if (on !== false) throw new Error(\"boshida maslahat ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Bu fikr to'g'ri\"); if (on !== false) throw new Error(\"fidbek urinishdan oldin\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 600
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Bu fikr to'g'ri\"); if (on !== true) throw new Error(\"xatodan keyin fidbek chiqmadi\"); })()",
+    "after": 150
+   }
+  ],
+  "right": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: \\\"zamonaviyroq\\\"\"); if (on !== false) throw new Error(\"boshida maslahat ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"fikrga almashtirish\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"fikrga almashtirish\")",
+    "after": 800
+   }
+  ],
+  "rightAfterF5": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Maslahat: \\\"zamonaviyroq\\\"\"); if (on !== false) throw new Error(\"boshida maslahat ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"fikrga almashtirish\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "sid": "s13",
+  "note": "F-0919-02 (T17+T23): «Keyingi: …» faqat birinchi xatodan keyin",
+  "wrong": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== false) throw new Error(\"«Keyingi:» urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 600
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== true) throw new Error(\"xatodan keyin «Keyingi:» chiqmadi\"); })()",
+    "after": 150
+   }
+  ],
+  "right": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== false) throw new Error(\"«Keyingi:» urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": "button.chip:has-text(\"require('express')\")"
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== false) throw new Error(\"to'g'ri bosishda «Keyingi:» chiqdi\"); })()",
+    "after": 150
+   },
+   {
+    "click": "button.chip:has-text(\"const app = express()\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.get('/salom'\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.chip:has-text(\"require('express')\")"
+   },
+   {
+    "click": "button.chip:has-text(\"const app = express()\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.get('/salom'\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 800
+   }
+  ],
+  "rightAfterF5": [
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== false) throw new Error(\"«Keyingi:» urinishdan OLDIN ko'rindi\"); })()",
+    "after": 150
+   },
+   {
+    "click": "button.chip:has-text(\"require('express')\")"
+   },
+   {
+    "eval": "(() => { const on = document.body.innerText.includes(\"Keyingi: \"); if (on !== false) throw new Error(\"to'g'ri bosishda «Keyingi:» chiqdi\"); })()",
+    "after": 150
+   },
+   {
+    "click": "button.chip:has-text(\"const app = express()\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.get('/salom'\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 800
+   }
+  ]
+ }
+]

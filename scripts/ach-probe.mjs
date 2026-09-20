@@ -100,8 +100,10 @@ const results = [];
 for (const sp of specs) {
   const L = lessonInfo(sp.file); const idx = L.ids.indexOf(sp.sid); const ach = sp.ach || L.trig[sp.sid]; // `ach` — ACH_TRIGGERS dan tashqari nishon (ACH_EXTRA, to'g'ridan-to'g'ri earn)
   CUR_SEED = sp.seed || null;
-  const TEST = !!sp.test || sp.rule === false; // `rule: false` — qator kutilmaydi (tashqi nishon)
-  const NOMISS = sp.missed === false;          // `missed: false` — nishon missTry orqali emas (masalan birinchi tanlov muhri)
+  // `bonus: true` — 152-qonun bonusi: shart-qatori YO'Q, xato urinish sanalmaydi, nishon xatodan keyin ham beriladi
+  const BONUS = !!sp.bonus;
+  const TEST = !!sp.test || sp.rule === false || BONUS; // `rule: false` — qator kutilmaydi (tashqi nishon)
+  const NOMISS = sp.missed === false || BONUS; // `missed: false` — nishon missTry orqali emas (masalan birinchi tanlov muhri)
   const row = { file: sp.file, sid: sp.sid, ach, test: TEST, checks: {}, problems: [] };
   const fail = (k, msg) => { row.checks[k] = false; row.problems.push(`${k}: ${msg}`); };
   const pass = (k) => { if (row.checks[k] !== false) row.checks[k] = true; };
@@ -187,6 +189,11 @@ for (const sp of specs) {
       await run(pg, sp.rightAfterWrong || sp.right, 'rightAfterWrong'); p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S1a-xato-togri', 'xatodan keyin to\'g\'ri yo\'l ekranni yakunlamadi (javob yozilmadi)');
       if (sp.test && p.answers[idx].correct !== false) return fail('S1a-xato-togri', `XATODAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (BONUS) { // bonus: aksincha — xato bosilgan bo'lsa ham nishon beriladi va urinish sanalmaydi
+        if (ach && !(p.earned || []).includes(ach)) return fail('S1a-xato-togri', 'BONUS: xatodan keyin nishon berilmadi');
+        if ((p.missed || []).includes(sp.sid)) return fail('S1a-xato-togri', 'BONUS: xato urinish sanaldi (missed)');
+        return pass('S1a-xato-togri');
+      }
       if (ach && (p.earned || []).includes(ach)) return fail('S1a-xato-togri', 'XATODAN KEYIN NISHON BERILDI');
       if (await pg.$('.acu-overlay')) fail('S1a-xato-togri', 'bayram ko\'rindi');
       pass('S1a-xato-togri'); } });
@@ -199,6 +206,10 @@ for (const sp of specs) {
       await run(pg, sp.rightAfterF5 || sp.right, 'right(F5)'); p = await prog(pg); // `rightAfterF5` — F5 dan keyin ekran oraliq holatdan tiklansa
       if (!p?.answers?.[idx]) return fail('S1b-F5', 'F5 dan keyin to\'g\'ri yo\'l ekranni yakunlamadi');
       if (sp.test && p.answers[idx].correct !== false) return fail('S1b-F5', `F5 DAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (BONUS) { // bonus: F5 dan keyin ham nishon beriladi
+        if (ach && !(p.earned || []).includes(ach)) return fail('S1b-F5', 'BONUS: F5 dan keyin nishon berilmadi');
+        return pass('S1b-F5');
+      }
       if (ach && (p.earned || []).includes(ach)) return fail('S1b-F5', 'F5 DAN KEYIN NISHON BERILDI');
       pass('S1b-F5'); } });
     if (sp.slip) await scen('S3-sirpanish', { seed: [{}, 's3'], body: async ({ pg }) => {
