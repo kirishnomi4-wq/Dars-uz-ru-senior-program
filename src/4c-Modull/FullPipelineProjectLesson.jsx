@@ -1176,7 +1176,7 @@ const Screen9 = (props) => (
 // ===== SCREEN 10 — CASE: ESKI YUKNI QAYTARISH =====
 const VERSIONS = [
   { id: 'v1', ico: '✅', t: { uz: 'v1 — narxlash tuzatildi', ru: 'v1 — исправлено ценообразование' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
-  { id: 'v2', ico: '✅', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, tag: { uz: 'yashil, oxirgi ishlagan', ru: 'зелёная, последняя рабочая' }, ok: true },
+  { id: 'v2', ico: '✅', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
   { id: 'v3', ico: '🔴', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
 ];
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1197,8 +1197,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot · rollback', ru: 'Практика · rollback' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solved && !_resc} label={(solved || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'g'ri versiyani tanlang", ru: 'Выберите правильную версию' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>v3 productionda <span className="italic" style={{ color: T.accent }}>xato</span> chiqardi. Qaysi versiyaga qaytamiz?</>, ru: <>v3 выдала <span className="italic" style={{ color: T.accent }}>ошибку</span> в production. К какой версии откатываемся?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Testlar v3'ni tutmagan — xato faqat haqiqiy yo'lovchida chiqdi. Tezkor yechim: <b style={{ color: T.ink }}>eski yukni qaytarish</b>. Jurnaldan qaysi versiya oxirgi ishlagan versiya ekanini toping.</>, ru: <>Тесты не поймали v3 — ошибка вылезла только у настоящих пассажиров. Быстрое решение: <b style={{ color: T.ink }}>вернуть старый багаж</b>. Найдите в журнале последнюю рабочую версию.</> })}</Mentor>
-        {_tip && !solved && <p className="bhint fade-step">{tr({ uz: "💡 Har versiyaning yorlig'ini o'qing: qaysi biri «oxirgi ishlagan» deb belgilangan? Buzuq v3'dan OLDINGI yashil versiyani qidiring.", ru: '💡 Читайте ярлык каждой версии: какая помечена как «последняя рабочая»? Ищите зелёную версию ПЕРЕД сломанной v3.' })}</p>}
+        <Mentor>{tr({ uz: <>Testlar v3'ni tutmagan — xato faqat haqiqiy yo'lovchida chiqdi. Tezkor yechim: <b style={{ color: T.ink }}>ishlagan yukni qaytarish</b>. Jurnaldan qaysi versiya oxirgi ishlagan versiya ekanini toping.</>, ru: <>Тесты не поймали v3 — ошибка вылезла только у настоящих пассажиров. Быстрое решение: <b style={{ color: T.ink }}>вернуть рабочий багаж</b>. Найдите в журнале последнюю рабочую версию.</> })}</Mentor>
+        {_tip && !solved && <p className="bhint fade-step">{tr({ uz: "💡 Har versiyaning yorlig'ini o'qing. Buzuq v3'dan OLDINGI yashil versiyani qidiring.", ru: '💡 Читайте ярлык каждой версии. Ищите зелёную версию ПЕРЕД сломанной v3.' })}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 4 }}>

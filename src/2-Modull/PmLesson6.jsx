@@ -884,7 +884,9 @@ const SIEVE_TOTAL = SIEVE.filter(w => w.j).length;
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [found, setFound] = useState(() => new Set(storedAnswer ? SIEVE.map((w, i) => (w.j ? i : null)).filter(i => i !== null) : []));
   const [miss, setMiss] = useState(null);
-  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: kasbiy bo'lmagan so'z — nishon birinchi urinishga
+  // 🏅 D3 (19.09, foydalanuvchi): bu darsning 2-EKRANI — mavzu hali o'rgatilmagan, birinchi urinish shartini
+  // qo'yish omad o'yini bo'lardi. Shuning uchun `jargon` — BONUS (152-qonun 1-band: darsda yagona bonus):
+  // xato bosish nishonni olib qo'ymaydi, shart-qatori ham ko'rsatilmaydi.
   const done = found.size >= SIEVE_TOTAL;
   const doneRef = useRef(false);
   useEffect(() => {
@@ -893,7 +895,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (i) => {
     const w = SIEVE[i];
     if (w.j) { setMiss(null); setFound(p => { const n = new Set(p); n.add(i); return n; }); }
-    else { if (achMiss) achMiss.miss(screen); setMiss(i); }
+    else setMiss(i); // bonus: xato urinish sanalmaydi (D3)
   };
   const level = 20 + Math.round((found.size / SIEVE_TOTAL) * 72);
   return (
@@ -915,7 +917,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <Uline level={level} note={done ? { uz: 'endi tushunarli', ru: 'теперь понятно' } : { uz: 'hali tushunmayapti', ru: 'пока не понимает' }} />
         </div>
-        {!done && <AchRule screen={screen} />}
         {miss !== null && !found.has(miss) && <p className="sv-neutral fade-step">{tr({ uz: "Bu so'zni do'kon egasi biladi — uni almashtirish shart emas.", ru: 'Это слово хозяин знает — заменять не нужно.' })}</p>}
         {done && (
           <div className="frame-success fade-step">

@@ -1102,11 +1102,11 @@ const DD_SLOTS = [
   { i: 2, want: 'expect',   ph: { uz: "🎯 etalon kartochkasi — qanday chiqish kutiladi?", ru: '🎯 карточка-эталон — какой выход ожидается?' } }
 ];
 const DD_CHIPS = [
-  { id: 'describe', label: "describe('orderTotal', () => {", node: <><At>describe</At>{'('}<St>'orderTotal'</St>{', () => {'}</> },
-  { id: 'it',       label: "it('2 kitob narxini hisoblaydi', () => {", node: <><At>it</At>{'('}<St>'2 kitob narxini hisoblaydi'</St>{', () => {'}</> },
   { id: 'expect',   label: 'expect(orderTotal(10000, 2)).toBe(20000);', node: <><At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000);'}</> },
   { id: 'log',      label: "console.log('test ishladi');", why: { uz: "console.log faqat ekranga chiqaradi — Jestbotga hech qanday etalon bermaydi.", ru: 'console.log только выводит на экран — никакого эталона Джестботу не даёт.' } },
-  { id: 'if',       label: 'if (result === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — etalon kartochkasi expect(...).toBe(...) bilan beriladi.", ru: 'В Jest не пишут if вручную — карточка-эталон задаётся через expect(...).toBe(...).' } }
+  { id: 'describe', label: "describe('orderTotal', () => {", node: <><At>describe</At>{'('}<St>'orderTotal'</St>{', () => {'}</> },
+  { id: 'if',       label: 'if (result === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — etalon kartochkasi expect(...).toBe(...) bilan beriladi.", ru: 'В Jest не пишут if вручную — карточка-эталон задаётся через expect(...).toBe(...).' } },
+  { id: 'it',       label: "it('2 kitob narxini hisoblaydi', () => {", node: <><At>it</At>{'('}<St>'2 kitob narxini hisoblaydi'</St>{', () => {'}</> },
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const solvedInit = () => ({ describe: 0, it: 1, expect: 2 });

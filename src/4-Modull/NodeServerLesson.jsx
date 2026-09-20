@@ -1111,12 +1111,13 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const SHUFFLED = ['get', 'listen', 'req', 'app'];
   const [placed, setPlaced] = useState(storedAnswer ? ORDER.map(o => o.id) : []);
   const [shake, setShake] = useState(null);
+  const [missedOnce, setMissedOnce] = useState(false); // «Keyingi: …» yordami faqat birinchi xatodan keyin (F-0919-02)
   const done = placed.length === ORDER.length;
   const nextNeeded = ORDER[placed.length]?.id;
   const click = (id) => {
     if (placed.includes(id)) return;
     if (id === nextNeeded) setPlaced(p => [...p, id]);
-    else { if (achMiss) achMiss.miss(screen); setShake(id); setTimeout(() => setShake(null), 400); } // 🏅 151-qonun: navbatdan tashqari bo'lak — bitta xato urinish
+    else { if (achMiss) achMiss.miss(screen); setMissedOnce(true); setShake(id); setTimeout(() => setShake(null), 400); } // 🏅 151-qonun: navbatdan tashqari bo'lak — bitta xato urinish
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's13', text: `Server qismlarini to'g'ri tartibda yig'a olasizmi? Do'kon xuddi shunday quriladi: avval asbobni chaqir, keyin peshtaxtani yarat, so'ng eshik och, oxirida OCHIQ tabloni yoq. Pastdagi bo'laklarni to'g'ri ketma-ketlikda bosing — peshtaxta bosqichma-bosqich jonlanadi.`, trigger: 'on_mount', waits_for: null }]);
@@ -1124,7 +1125,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot · tartiblash', ru: 'Практика · порядок' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${placed.length}/4 ${tr({ uz: 'joylandi', ru: 'на месте' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Server qismlarini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'a olasizmi?</>, ru: <>Соберёте части сервера <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Server kodi aniq tartibda yoziladi: avval asbobni <b style={{ color: T.ink }}>chaqir</b>, keyin serverni <b style={{ color: T.ink }}>yarat</b>, so'ng <b style={{ color: T.ink }}>endpoint</b> och, oxirida serverni <b style={{ color: T.ink }}>yoq</b>. Pastdagi bo'laklarni to'g'ri ketma-ketlikda bosing.</>, ru: <>Код сервера пишется в чётком порядке: сначала <b style={{ color: T.ink }}>подключи</b> инструмент, потом <b style={{ color: T.ink }}>создай</b> сервер, затем открой <b style={{ color: T.ink }}>endpoint</b>, в конце <b style={{ color: T.ink }}>включи</b> сервер. Нажимайте блоки внизу в правильной последовательности.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Server kodi aniq tartibda yoziladi — har bo'lak o'zidan oldingisiga tayanadi. Pastdagi to'rt bo'lakni to'g'ri ketma-ketlikda bosing.</>, ru: <>Код сервера пишется в строгом порядке — каждый блок опирается на предыдущий. Нажмите четыре блока ниже в правильной последовательности.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1136,7 +1137,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 return <button key={id} className={`chip mono ${shake === id ? 'shake' : ''}`} disabled={used} style={used ? { opacity: 0.35 } : undefined} onClick={() => click(id)}>{o.label}</button>;
               })}
             </div>
-            {!done && nextNeeded && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Keyingi: ', ru: 'Следующий: ' })}{tr(ORDER[placed.length].hint)}</p>}
+            {!done && nextNeeded && missedOnce && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Keyingi: ', ru: 'Следующий: ' })}{tr(ORDER[placed.length].hint)}</p>}
             {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
@@ -1172,7 +1173,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = fixed;
   const OPTS = [
     { id: 'get', label: { uz: "app.get yo'q", ru: 'нет app.get' } },
-    { id: 'listen', label: { uz: "app.listen yo'q — server yoqilmagan", ru: 'нет app.listen — сервер не включён' } },
+    { id: 'listen', label: { uz: "app.listen yo'q", ru: 'нет app.listen' } },
     { id: 'send', label: { uz: "res.send yo'q", ru: 'нет res.send' } }
   ];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);

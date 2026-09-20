@@ -1313,7 +1313,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а <span className="italic" style={{ color: T.accent }}>проверяете</span> вы.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI menyuni bir zumda yozib berdi — lekin "Qo'shish"ni bosganda ilova <b style={{ color: T.ink }}>oqarib, qayta yuklanyapti</b>! Holat ham yo'qoladi. <b style={{ color: T.ink }}>Odamlar ham, AI ham</b> ba'zan adashadi. Endi siz Router qoidasini bilasiz — qaysi qator <span className="mono">{'<Link>'}</span> emas? Toping va bosing.</>, ru: <>AI мгновенно написал меню — но при нажатии «Добавить» приложение <b style={{ color: T.ink }}>белеет и перезагружается</b>! Состояние тоже теряется. <b style={{ color: T.ink }}>И люди, и AI</b> иногда ошибаются. Вы уже знаете правило Router — какая строка не <span className="mono">{'<Link>'}</span>? Найдите и нажмите.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI menyuni bir zumda yozib berdi — lekin menyudagi havolalardan birini bosganda ilova <b style={{ color: T.ink }}>oqarib, qayta yuklanyapti</b>! Holat ham yo'qoladi. <b style={{ color: T.ink }}>Odamlar ham, AI ham</b> ba'zan adashadi. Endi siz Router qoidasini bilasiz — qaysi qator bunga sabab? Toping va bosing.</>, ru: <>AI мгновенно написал меню — но при нажатии одной из ссылок меню приложение <b style={{ color: T.ink }}>белеет и перезагружается</b>! Состояние тоже теряется. <b style={{ color: T.ink }}>И люди, и AI</b> иногда ошибаются. Вы уже знаете правило Router — какая строка тому причиной? Найдите и нажмите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1329,7 +1329,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Ikkitasi <span className="mono">{'<Link>'}</span>, bittasi boshqacha. Qayta yuklash — <span className="mono" style={{ color: T.ink }}>{'<a href>'}</span> ning belgisi. Qaysi qator shunga zid?</>, ru: <>Две строки — <span className="mono">{'<Link>'}</span>, одна — другая. Перезагрузка — признак <span className="mono" style={{ color: T.ink }}>{'<a href>'}</span>. Какая строка нарушает правило?</> })}</p></div>
+              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Uchta havola — bittasi qolganlariga o'xshamaydi. Qaysi teg bosilganda brauzer butun sahifani qayta yuklaydi?", ru: 'Три ссылки — одна не похожа на остальные. При каком теге браузер перезагружает всю страницу?' })}</p></div>
               : (<>
                   <Win title="robo-games.uz"><div><NavMenu active="/add" /><div style={{ marginTop: 9 }}><UrlBar path="/add" /></div><div style={{ marginTop: 9 }}><AddView /></div></div></Win>
                 </>)}

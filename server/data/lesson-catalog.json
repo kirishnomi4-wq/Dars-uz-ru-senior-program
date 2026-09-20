@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T01:07:31.456Z",
+  "generated_at": "2026-09-20T06:01:14.087Z",
   "count": 110,
   "lessons": [
     {
@@ -705,8 +705,8 @@
         {
           "id": "packagemaster",
           "name": "Package Master",
-          "title_uz": "Kartalarni to'g'ri ustun va maydonlarga joyladingiz",
-          "title_ru": "Вы разложили карточки по нужным столбцам и полям"
+          "title_uz": "O'zgaruvchan ma'lumotga qulay turni topdingiz",
+          "title_ru": "Вы нашли тип, удобный для меняющихся данных"
         },
         {
           "id": "connector",

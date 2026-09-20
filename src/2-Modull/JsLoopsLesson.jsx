@@ -707,7 +707,7 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
           : boxes.map((b, k) => <span key={k} className="zv-box" style={{ animationDelay: `${Math.min(k * 0.025, 0.32)}s` }}>{load ? '🎁' : '📦'}<b>{String(b)}</b></span>)}
       </div>
       {overflow
-        ? <div className="zavod-alert">⚠️ {tr({ uz: "CHEKSIZ! — qadam shartga yaqinlashmayapti, mashina to'xtamayapti", ru: 'БЕСКОНЕЧНО! — шаг не приближает к условию, машина не останавливается' })}</div>
+        ? <div className="zavod-alert">⚠️ {tr({ uz: "CHEKSIZ! — mashina to'xtamayapti", ru: 'БЕСКОНЕЧНО! — машина не останавливается' })}</div>
         : done && <div className="zavod-ding">🔔 {tr({ uz: "Tayyor! — shart buzildi, sikl to'xtadi", ru: 'Готово! — условие нарушилось, цикл остановился' })}</div>}
     </div>
   );
@@ -1439,7 +1439,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Yakuniy sinov →', ru: 'Финальное испытание →' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu sikl <span className="italic" style={{ color: T.accent }}>to'xtamayapti</span> — nega?</>, ru: <>Этот цикл <span className="italic" style={{ color: T.accent }}>не останавливается</span> — почему?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI 1 dan 5 gacha sanaydigan sikl yozdi, lekin u <b style={{ color: T.ink }}>cheksiz</b> aylanyapti! Sir <b style={{ color: T.ink }}>qadam</b> qismida yashiringan. Diqqat bilan o'qing: i 5 ga <b style={{ color: T.ink }}>yaqinlashyaptimi</b>? Xato qismni toping va bosing.</>, ru: <>ИИ написал цикл, считающий от 1 до 5, но он крутится <b style={{ color: T.ink }}>бесконечно</b>! Секрет спрятан в части <b style={{ color: T.ink }}>шаг</b>. Читайте внимательно: i вообще <b style={{ color: T.ink }}>приближается</b> к 5? Найдите ошибочную часть и нажмите на неё.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI 1 dan 5 gacha sanaydigan sikl yozdi, lekin u <b style={{ color: T.ink }}>cheksiz</b> aylanyapti! Diqqat bilan o'qing: i 5 ga <b style={{ color: T.ink }}>yaqinlashyaptimi</b>? Xato qismni toping va bosing.</>, ru: <>ИИ написал цикл, считающий от 1 до 5, но он крутится <b style={{ color: T.ink }}>бесконечно</b>! Читайте внимательно: i вообще <b style={{ color: T.ink }}>приближается</b> к 5? Найдите ошибочную часть и нажмите на неё.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1463,7 +1463,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!fixed ? (
               <div className="term fade-up delay-2">
                 <div className="term-bar"><span className="term-dot" style={{ background: '#FF5F56' }} /><span className="term-dot" style={{ background: '#FFBD2E' }} /><span className="term-dot" style={{ background: '#27C93F' }} /><span className="term-title">console</span></div>
-                <div className="term-body" style={{ padding: '8px 14px', gap: 3 }}>{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div><p className="term-empty warn-pulse" style={{ color: T.accent }}>⚠️ {tr({ uz: 'i kamayyapti — 5 ga hech yetmaydi, cheksiz!', ru: 'i уменьшается — до 5 не дойдёт никогда, бесконечно!' })}</p></div>
+                <div className="term-body" style={{ padding: '8px 14px', gap: 3 }}>{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div><p className="term-empty warn-pulse" style={{ color: T.accent }}>⚠️ {tr({ uz: '5 ga hech yetmaydi — cheksiz!', ru: 'До 5 не дойдёт никогда — бесконечно!' })}</p></div>
               </div>
             ) : (
               <div className="term fade-step">
@@ -1475,8 +1475,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!found && (
               picked && picked !== 'step'
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qism to'g'ri. {picked === 'init' ? 'Boshlanish (i = 1) — joyida.' : 'Shart (i <= 5) — joyida.'} Xato esa <b>qadam</b> qismida — i qaysi tomonga o'zgaryapti?</>, ru: <>Эта часть верна. {picked === 'init' ? 'Старт (i = 1) — на месте.' : 'Условие (i <= 5) — на месте.'} А ошибка в части <b>шаг</b> — в какую сторону меняется i?</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: sikl to'xtashi uchun i <b style={{ color: T.ink }}>shartga yaqinlashishi</b> kerak. Bu yerda i 5 ga tomon ketyaptimi yoki undan <b style={{ color: T.ink }}>uzoqlashyaptimi?</b></>, ru: <>Помните: чтобы цикл остановился, i должен <b style={{ color: T.ink }}>приближаться к условию</b>. Здесь i идёт к 5 или <b style={{ color: T.ink }}>удаляется от неё?</b></> })}</p></div>)
+                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qism to'g'ri. {picked === 'init' ? 'Boshlanish (i = 1) — joyida.' : 'Shart (i <= 5) — joyida.'} Xato boshqa qismda — i qaysi tomonga o'zgaryapti?</>, ru: <>Эта часть верна. {picked === 'init' ? 'Старт (i = 1) — на месте.' : 'Условие (i <= 5) — на месте.'} Ошибка в другой части — в какую сторону меняется i?</> })}</p></div>)
+                /* F-0919-02: urinishdan OLDIN maslahat chiqmaydi (javobni aytardi) — xato bosilganda yuqoridagi
+                   frame-warn o'zi yo'l ko'rsatadi; bu quti faqat oraliq holatlarda qoladi */
+                : (picked === null ? null : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: sikl to'xtashi uchun i <b style={{ color: T.ink }}>shartga yaqinlashishi</b> kerak. Bu yerda i 5 ga tomon ketyaptimi yoki undan <b style={{ color: T.ink }}>uzoqlashyaptimi?</b></>, ru: <>Помните: чтобы цикл остановился, i должен <b style={{ color: T.ink }}>приближаться к условию</b>. Здесь i идёт к 5 или <b style={{ color: T.ink }}>удаляется от неё?</b></> })}</p></div>)
             )}
             {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">i--</span> i ni <b>kamaytiradi</b> (1, 0, -1, …) — 5 ga hech qachon yetmaydi. To'g'risi: <span className="mono">i++</span>. Chap tugmani bosing →</>, ru: <><span className="mono">i--</span> <b>уменьшает</b> i (1, 0, -1, …) — до 5 не дойдёт никогда. Правильно: <span className="mono">i++</span>. Нажмите кнопку слева →</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: 'Cheksiz sikl — qadam shartga yaqinlashmaganda yuz beradi', ru: 'Бесконечный цикл случается, когда шаг не приближает к условию' })}</p></div>)}

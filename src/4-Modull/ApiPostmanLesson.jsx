@@ -1329,8 +1329,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tekshiruv · 404', ru: 'Отладка · 404' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (fixed ? tr({ uz: 'Send bosing', ru: 'Нажмите Send' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>So'rov ishlamadi — <span className="italic" style={{ color: T.accent }}>404? Nega?</span></>, ru: <>Запрос не сработал — <span className="italic" style={{ color: T.accent }}>404? Почему?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI siz uchun GET so'rov yozdi, lekin server <b style={{ color: STAT[404][1] }}>404 Not Found</b> qaytardi — "bunday manzil yo'q". Status kodi sizga muammoni darrov aytadi. URL'ga diqqat bilan qarang: bir harf tushib qolgan. Topib, tuzating.</>, ru: <>AI написал для вас GET-запрос, но сервер вернул <b style={{ color: STAT[404][1] }}>404 Not Found</b> — «такого адреса нет». Код статуса сразу подсказывает, в чём проблема. Посмотрите на URL внимательно: потерялась одна буква. Найдите и исправьте.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Manzilda bitta harf yetishmaydi — xato qatorni bosing, tuzating va qayta Send.", ru: '💡 В адресе не хватает одной буквы — нажмите на строку с ошибкой, исправьте и снова Send.' })}</p>}
+        <Mentor>{tr({ uz: <>AI siz uchun GET so'rov yozdi, lekin server <b style={{ color: STAT[404][1] }}>404 Not Found</b> qaytardi — "bunday manzil yo'q". Status kodi sizga muammoni darrov aytadi. So'rovni qatorma-qator tekshiring: qaysi qatorda xato bor? Topib, tuzating.</>, ru: <>AI написал для вас GET-запрос, но сервер вернул <b style={{ color: STAT[404][1] }}>404 Not Found</b> — «такого адреса нет». Код статуса сразу подсказывает, в чём проблема. Проверьте запрос строка за строкой: в какой строке ошибка? Найдите и исправьте.</> })}</Mentor>
+        {_tip && miss && !done && <p className="bhint fade-step">{tr({ uz: "💡 Manzilda bitta harf yetishmaydi — xato qatorni bosing, tuzating va qayta Send.", ru: '💡 В адресе не хватает одной буквы — нажмите на строку с ошибкой, исправьте и снова Send.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
@@ -1343,7 +1343,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   ? <div className="ai-line ok" style={{ cursor: 'default' }}>/api/products</div>
                   : <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => setFound(true)}>/api/produts</div>}
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Manzilda xato bor — qatorni bosing.', ru: 'В адресе ошибка — нажмите на строку.' })}</p>}
+              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato bor? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
               {miss && !found && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p></div>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>🔧 produts → products</button>}
               {fixed && !sent && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: '▶ Qaytadan Send', ru: '▶ Send ещё раз' })}</button>}
@@ -1357,7 +1357,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               : !sent
                 ? <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 90 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tuzatildi — endi Send bosing', ru: 'Исправлено — теперь нажмите Send' })}</p></div>
                 : <><div className="pm-resp" style={{ marginTop: 0 }}><div className="pm-resp-h"><span className="pm-resp-lbl">Response</span><StatusBadge code={200} punch /></div><div className="pm-respbody fade-step"><JsonBox data={PRODUCTS} /></div></div>
-                  <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Topdingiz! Bitta harf (s) butun so'rovni ishlatdi. <b>Status kodi — sizning do'stingiz:</b> 404 = manzil noto'g'ri, 200 = hammasi joyida.</>, ru: <>Нашли! Одна буква (s) решила судьбу всего запроса. <b>Код статуса — ваш друг:</b> 404 = адрес неверный, 200 = всё в порядке.</> })}</p></div></>}
+                  <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Topdingiz! Bitta harf (c) butun so'rovni ishlatdi. <b>Status kodi — sizning do'stingiz:</b> 404 = manzil noto'g'ri, 200 = hammasi joyida.</>, ru: <>Нашли! Одна буква (c) решила судьбу всего запроса. <b>Код статуса — ваш друг:</b> 404 = адрес неверный, 200 = всё в порядке.</> })}</p></div></>}
           </Col>
         </div>
         </Zoomable>

@@ -1658,7 +1658,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: xato qator — nishon birinchi urinishga
   const LINES = [
     { text: tr({ uz: "<Navbar />        // yuqori menyu", ru: '<Navbar />        // верхнее меню' }) },
-    { text: tr({ uz: "<ButunSahifa />   // qolgan HAMMASI shu yerda", ru: '<ВсяСтраница />   // всё ОСТАЛЬНОЕ здесь' }), bug: true },
+    { text: tr({ uz: "<ButunSahifa />   // sahifa", ru: '<ВсяСтраница />   // страница' }), bug: true },
     { text: tr({ uz: "<Footer />        // pastki qism", ru: '<Footer />        // нижняя часть' }) },
   ];
   const solve = () => { if (done) return; setDone(true); onAnswer(screen, { correct: true, picked: true }); };
@@ -1682,7 +1682,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Komponent — <b style={{ color: T.ink }}>kichik va aniq</b> bo'lak. «Qolgan hammasi» degani esa bitta ulkan <b style={{ color: T.ink }}>monolit</b>. Qaysi qator shunday?</>, ru: <>Компонент — <b style={{ color: T.ink }}>маленькая и понятная</b> часть. А «всё остальное» — это один огромный <b style={{ color: T.ink }}>монолит</b>. Какая строка такая?</> })}</p></div>
+              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Komponent — <b style={{ color: T.ink }}>kichik va aniq</b> bo'lak: bitta blok, bitta vazifa. Qaysi qator bu qoidaga zid?</>, ru: <>Компонент — <b style={{ color: T.ink }}>маленькая и понятная</b> часть: один блок, одна задача. Какая строка нарушает это правило?</> })}</p></div>
               : (<>
                   <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tanish-a? Bu — Praktika darsidagi <b>dekompozitsiya</b>! React shu fikrlashni kodning o'ziga olib kiradi.</>, ru: <>Знакомо, правда? Это — <b>декомпозиция</b> с урока Практики! React переносит это мышление в сам код.</> })}</p></div>
                 </>)}

@@ -1330,7 +1330,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mif-buster', ru: 'Разрушитель мифов' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: "Endi to'g'irlang", ru: 'Теперь исправьте' }) : tr({ uz: "Noto'g'ri fikrni toping", ru: 'Найдите неверное утверждение' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'stingiz aytdi — bitta fikr <span className="italic" style={{ color: T.accent }}>noto'g'ri</span>. Toping.</>, ru: <>Друг сказал три вещи — одна <span className="italic" style={{ color: T.accent }}>неверна</span>. Найдите её.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ko'p odam adashadi: "NoSQL yangi, demak har doim yaxshiroq". Bu — <b style={{ color: T.ink }}>mif</b>! Tanlov modaga emas, <b style={{ color: T.ink }}>vazifaga</b> bog'liq. Pastdagi fikrlardan noto'g'risini bosing.</>, ru: <>Многие ошибаются: «NoSQL новее, значит всегда лучше». Это — <b style={{ color: T.ink }}>миф</b>! Выбор зависит не от моды, а от <b style={{ color: T.ink }}>задачи</b>. Нажмите на неверное утверждение ниже.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Baza tanlashda ko'p odam adashadi. Do'stingizning uch fikridan bittasi — <b style={{ color: T.ink }}>mif</b>. Qaysi biri? Bosing.</>, ru: <>При выборе базы многие ошибаются. Одно из трёх утверждений друга — <b style={{ color: T.ink }}>миф</b>. Какое? Нажмите.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
@@ -1351,7 +1351,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!found && ((picked && picked !== 'myth')
               ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu fikr to'g'ri. Yana qarang: qaysi fikr bazani <b>modaga qarab</b> ("zamonaviyroq") tanlamoqda?</>, ru: <>Это утверждение верно. Посмотрите ещё: какое выбирает базу <b>по моде</b> («современнее»)?</> })}</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Maslahat: "zamonaviyroq" — bu sabab emas. Do\'kon ma\'lumoti bog\'langan va ishonchli bo\'lishi kerak.', ru: 'Подсказка: «современнее» — это не причина. Данные магазина должны быть связанными и надёжными.' })}</p></div>)}
+              : null)}
+            {/* F-0919-02: ekran boshidagi «Maslahat: "zamonaviyroq" — bu sabab emas…» olib tashlandi — javobni urinishdan OLDIN aytardi.
+                Xatodan keyingi yuqoridagi frame-warn o'sha yo'l-yo'riqni allaqachon beradi — ikkinchi quti takror bo'lardi (109-qonun). */}
             {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Chapdagi tugma bilan to'g'irlang →</>, ru: <>«Современнее» — не аргумент. В магазине заказ, товар и оплата <b>связаны</b>, а <b>надёжность</b> обязательна — это работа <b>SQL</b> (PostgreSQL). Исправьте кнопкой слева →</> })}</p></div>}
             {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">{tr({ uz: 'Baza modaga emas, vazifaga qarab tanlanadi', ru: 'Базу выбирают не по моде, а по задаче' })}</p><p className="ta-sub">{tr({ uz: "Bog'langan va ishonchli → SQL · katta va oddiy → NoSQL", ru: 'Связанно и надёжно → SQL · большое и простое → NoSQL' })}</p></div>}
           </Col>
@@ -1657,13 +1659,13 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 BADGES (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  packageMaster: { icon: '📦', name: 'Package Master', desc: { uz: "Kartalarni to'g'ri ustun va maydonlarga joyladingiz", ru: 'Вы разложили карточки по нужным столбцам и полям' } },
+  packageMaster: { icon: '📦', name: 'Package Master', desc: { uz: "O'zgaruvchan ma'lumotga qulay turni topdingiz", ru: 'Вы нашли тип, удобный для меняющихся данных' } },
   connector:     { icon: '🔗', name: 'The Connector', desc: { uz: "Ikki jadvalni id orqali bog'lab JOIN qildingiz", ru: 'Вы связали две таблицы через id и сделали JOIN' } },
   mythBuster:    { icon: '💥', name: 'Myth Buster',   desc: { uz: "Noto'g'ri fikrni topib to'g'irladingiz", ru: 'Вы нашли и исправили ошибочное утверждение' } },
   compassReader: { icon: '🎯', name: 'Decision Maker', desc: { uz: "To'rt mezon bo'yicha to'g'ri bazani tanladingiz", ru: 'Вы выбрали верную базу по четырём критериям' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge/final)
-const ACH_TRIGGERS = { s3: 'packageMaster', s5: 'connector', s14: 'mythBuster', s15: 'compassReader' };
+const ACH_TRIGGERS = { s4: 'packageMaster', s5: 'connector', s14: 'mythBuster', s15: 'compassReader' }; // S1-A (19.09): packageMaster s3 (karta o'zi joyiga tushadi — tekin) → s4 (shakl testi, birinchi urinish); connector — bonus (152-qonun)
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
 // xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va

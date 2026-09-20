@@ -1067,7 +1067,7 @@ const Screen3b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Qoida ustaxonasi', ru: 'Мастерская правила' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "qoidani yig'ing", ru: 'Соберите правило' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>display: flex</span> qoidasini o'zingiz yig'ing</>, ru: <>Соберите правило <span className="italic" style={{ color: T.accent }}>display: flex</span> сами</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bo'laklarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> kataklarga sudrang: selektor → qavs → xususiyat → qiymat → nuqta-vergul → yopuvchi qavs. To'g'ri yig'ilsa, yonidagi menyu qatorga tiziladi.</>, ru: <>Перетащите блоки в ячейки <b style={{ color: T.ink }}>в правильном порядке</b>: селектор → скобка → свойство → значение → точка с запятой → закрывающая скобка. Соберёте верно — меню рядом выстроится в ряд.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bo'laklarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> kataklarga sudrang. To'g'ri yig'ilsa, yonidagi menyu qatorga tiziladi.</>, ru: <>Перетащите блоки в ячейки <b style={{ color: T.ink }}>в правильном порядке</b>. Соберёте верно — меню рядом выстроится в ряд.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
@@ -1192,7 +1192,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="justify-content" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Namunaga moslang', ru: 'Подгоните под образец' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Menyuni <span className="italic" style={{ color: T.accent }}>namunaga</span> moslang</>, ru: <>Подгоните меню <span className="italic" style={{ color: T.accent }}>под образец</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yuqorida <b style={{ color: T.ink }}>xira namuna</b> — logo bir chetda, Kirish ikkinchi chetda. <span className="mono">justify-content</span> ning to'g'ri qiymatini tanlab, pastdagi <b style={{ color: T.ink }}>jonli menyuni</b> namunaga moslang. To'g'ri topsangiz — 🎯 nishonga tegasiz.</>, ru: <>Сверху — <b style={{ color: T.ink }}>тусклый образец</b>: лого у одного края, «Войти» у другого. Выберите верное значение <span className="mono">justify-content</span> и подгоните <b style={{ color: T.ink }}>живое меню</b> внизу под образец. Угадаете — 🎯 попадёте в яблочко.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yuqorida <b style={{ color: T.ink }}>xira namuna</b> — logo bir chetda, Kirish ikkinchi chetda. <span className="mono">justify-content</span> ning to'g'ri qiymatini tanlab, pastdagi <b style={{ color: T.ink }}>jonli menyuni</b> namunaga moslang.</>, ru: <>Сверху — <b style={{ color: T.ink }}>тусклый образец</b>: лого у одного края, «Войти» у другого. Выберите верное значение <span className="mono">justify-content</span> и подгоните <b style={{ color: T.ink }}>живое меню</b> внизу под образец.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
@@ -1216,7 +1216,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </div>
-            <div className={matched ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{matched ? tr({ uz: <>🎯 Nishonga tegdi! <span className="mono">justify-content: space-between</span> menyuni chetdan chetga tarqatdi — aynan namunadek.</>, ru: <>🎯 В яблочко! <span className="mono">justify-content: space-between</span> развёл меню от края до края — точно как в образце.</> }) : tr({ uz: <>Menyu hali namunaga mos emas. <span className="mono">justify-content</span> qiymatini o'zgartiring — chetlarga tarqalsin.</>, ru: <>Меню пока не совпадает с образцом. Меняйте значение <span className="mono">justify-content</span> — пусть разойдётся к краям.</> })}</p></div>
+            <div className={matched ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{matched ? tr({ uz: <>🎯 Aynan namunadek! <span className="mono">justify-content: space-between</span> menyuni chetdan chetga tarqatdi.</>, ru: <>🎯 Точно как в образце! <span className="mono">justify-content: space-between</span> развёл меню от края до края.</> }) : tr({ uz: <>Menyu hali namunaga mos emas. <span className="mono">justify-content</span> qiymatini o'zgartiring — chetlarga tarqalsin.</>, ru: <>Меню пока не совпадает с образцом. Меняйте значение <span className="mono">justify-content</span> — пусть разойдётся к краям.</> })}</p></div>
           </div>
         </div>
         </Zoomable>
@@ -1413,7 +1413,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Debugging" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Menyu yonma-yon bo'lmadi — <span className="italic" style={{ color: T.accent }}>nega</span>?</>, ru: <>Меню не встало в ряд — <span className="italic" style={{ color: T.accent }}>почему</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI <span className="mono">justify-content: center</span> yozdi, lekin menyu <b style={{ color: T.ink }}>ustma-ust</b> qoldi. Sababi: <span className="mono">display: flex</span> emas, <b style={{ color: T.ink }}>block</b> yozilgan! Xato qatorni toping.</>, ru: <>ИИ написал <span className="mono">justify-content: center</span>, но меню осталось <b style={{ color: T.ink }}>в столбик</b>. Причина: вместо <span className="mono">display: flex</span> написан <b style={{ color: T.ink }}>block</b>! Найдите строку с ошибкой.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI <span className="mono">justify-content: center</span> yozdi, lekin menyu <b style={{ color: T.ink }}>ustma-ust</b> qoldi. Sababi — kodning bitta qatorida. Xato qatorni toping.</>, ru: <>ИИ написал <span className="mono">justify-content: center</span>, но меню осталось <b style={{ color: T.ink }}>в столбик</b>. Причина — в одной строке кода. Найдите строку с ошибкой.</> })}</Mentor>
         <div className="split">
           <div className="col">
             <div className="ai-card fade-up delay-2">

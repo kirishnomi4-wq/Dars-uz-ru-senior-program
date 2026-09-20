@@ -1424,9 +1424,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">bot.js</p>
             <pre className="code-box" style={{ lineHeight: 1.9 }}>
               <Cm>{tr({ uz: "// signal → amal — xuddi siz tungi smenada yig'gandek", ru: '// сигнал → действие — ровно как вы собрали в ночную смену' })}</Cm>{'\n'}
-              <Jx>bot</Jx>{'.'}<At>{filled.trig1 || '____'}</At>{'(('}<Jx>ctx</Jx>{') =&gt; '}{'\n'}
+              <Jx>bot</Jx>{'.'}<At>{filled.trig1 || '____'}</At>{'(('}<Jx>ctx</Jx>{') => '}{'\n'}
               {'  '}<Jx>ctx</Jx>{'.'}<At>{filled.method || '____'}</At>{'('}<St>{tr({ uz: "'Salom! 👋'", ru: "'Привет! 👋'" })}</St>{'))'}{'\n\n'}
-              <Jx>bot</Jx>{'.'}<At>{filled.trig2 || '____'}</At>{'('}<St>{tr({ uz: "'Menyu'", ru: "'Меню'" })}</St>{', ('}<Jx>ctx</Jx>{') =&gt; '}{'\n'}
+              <Jx>bot</Jx>{'.'}<At>{filled.trig2 || '____'}</At>{'('}<St>{tr({ uz: "'Menyu'", ru: "'Меню'" })}</St>{', ('}<Jx>ctx</Jx>{') => '}{'\n'}
               {'  '}<Jx>ctx</Jx>{'.'}<At>reply</At>{'('}<St>{tr({ uz: "'Bizning taomlar…'", ru: "'Наши блюда…'" })}</St>{'))'}
             </pre>
           </Col>

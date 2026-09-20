@@ -1283,7 +1283,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ margin: 0, color: T.ink }}>
                   {perfect
                     ? tr({ uz: "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li.", ru: '🎉 Без ошибок! Без токена → 401, логин → токен, с токеном → 201. Вот он — полный путь защиты сайта.' })
-                    : tr({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni qaytadan — xatosiz — o'tib ko'ring.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Попробуйте пройти шаги заново — без ошибок.` })}
+                    : tr({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni yana bir bor — endi xatosiz — mashq qiling.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Потренируйтесь пройти шаги ещё раз — теперь без ошибок.` })}
                 </p>
                 {!perfect && <button className="btn-soft" style={{ alignSelf: 'flex-start', marginTop: 10 }} onClick={restart}>{tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
               </div>
@@ -1325,6 +1325,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
+  const [wrong, setWrong] = useState(false); // xatosiz qator bosildi — fidbek va maslahat faqat shundan keyin (F-0919-02)
   const done = fixed;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (fixed ? 1 : 0));   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -1338,7 +1339,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI kod yozdi — lekin bitta qator <span className="italic" style={{ color: T.danger }}>xavfli</span></>, ru: <>ИИ написал код — но одна строка <span className="italic" style={{ color: T.danger }}>опасна</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>AI server kodini yozdi va GitHub'ga yuklamoqchi. Lekin bir qatorda <b style={{ color: T.danger }}>maxfiy kalit ochiq</b> turibdi — bu GitHub'da hammaga ko'rinadi! Xavfli qatorni toping va tuzating.</>, ru: <>ИИ написал код сервера и собирается загрузить его на GitHub. Но в одной строке <b style={{ color: T.danger }}>секретный ключ лежит открыто</b> — на GitHub его увидят все! Найдите опасную строку и исправьте.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Kalit qiymati ochiq yozilgan qatorni bosing, keyin «🔧» bilan tuzating.", ru: '💡 Нажмите строку, где значение ключа записано открыто, затем исправьте через «🔧».' })}</p>}
+        {_tip && wrong && !done && <p className="bhint fade-step">{tr({ uz: "💡 Kalit qiymati ochiq yozilgan qatorni bosing, keyin «🔧» bilan tuzating.", ru: '💡 Нажмите строку, где значение ключа записано открыто, затем исправьте через «🔧».' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
@@ -1348,17 +1349,17 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-code">
                 {LINES.map(l => {
                   if (l.bug && fixed) return <div key={l.id} className="ai-line ok" style={{ cursor: 'default' }}><Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></div>;
-                  return <div key={l.id} className={`ai-line ${found && l.bug ? 'bad' : ''}`} onClick={() => { if (found) return; if (!l.bug && achMiss) achMiss.miss(screen); setFound(l.bug); }}>{l.el}</div>;
+                  return <div key={l.id} className={`ai-line ${found && l.bug ? 'bad' : ''}`} onClick={() => { if (found) return; if (!l.bug) { setWrong(true); if (achMiss) achMiss.miss(screen); } setFound(l.bug); }}>{l.el}</div>;
                 })}
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator maxfiylikni buzadi? Bosing.', ru: 'Какая строка нарушает секретность? Нажмите.' })}</p>}
+              {!found && <p className="ai-prompt">{wrong ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qator maxfiylikni buzadi? Bosing.', ru: 'Какая строка нарушает секретность? Нажмите.' })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 process.env.JWT_SECRET'ga o'zgartirish", ru: '🔧 Заменить на process.env.JWT_SECRET' })}</button>}
             </div>
             {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             {!found
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: 'Подсказка: ищите строку, где значение ключа записано прямо в коде.' })}</p></div>
+              ? (wrong && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: 'Подсказка: ищите строку, где значение ключа записано прямо в коде.' })}</p></div>)
               : !fixed
                 ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</>, ru: <>Ключ открыт в коде — попадёт на GitHub, и увидят все. Перенесём его в .env и будем читать через <span className="mono">process.env</span>. Нажмите кнопку слева →</> })}</p></div>
                 : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">{tr({ uz: "Maxfiy kalit endi .env'da", ru: 'Секретный ключ теперь в .env' })}</p><p className="ta-sub">{tr({ uz: 'Kodda hech qachon maxfiy kalitni ochiq qoldirmang', ru: 'Никогда не оставляйте секретный ключ открытым в коде' })}</p></div>}

@@ -1060,11 +1060,11 @@ const DD_SLOTS = [
   { i: 2, want: 'return', ph: { uz: "✅ to'g'ri hisob — himoyalangan qaytish", ru: '✅ правильный расчёт — защищённый return' } }
 ];
 const DD_CHIPS = [
-  { id: 'if',     label: "if (typeof quantity !== 'number' || quantity <= 0)", node: <><Jx>if</Jx>{' ('}<Jx>typeof</Jx>{' quantity !== '}<St>'number'</St>{' || quantity <= 0)'}</> },
-  { id: 'throw',  label: "throw new Error('quantity musbat raqam bo'lsin');", node: <><Jx>throw new</Jx>{' Error('}<St>{"'quantity musbat raqam bo'lsin'"}</St>{');'}</> },
   { id: 'return', label: 'return price * quantity;', node: <><Jx>return</Jx>{' price * quantity;'}</> },
   { id: 'log',    label: "console.log('tekshirilmoqda...');", why: { uz: "console.log funksiyani to'xtatmaydi — bu himoya (guard) emas, faqat chiqaradi.", ru: 'console.log не останавливает функцию — это не защита (guard), он просто печатает.' } },
-  { id: 'zero',   label: 'return 0;', why: { uz: "Bu shartni tekshirmasdan har doim 0 qaytaradi — guard emas, yana bir xato manbai.", ru: 'Это всегда возвращает 0 без всякой проверки — не guard, а ещё один источник ошибок.' } }
+  { id: 'if',     label: "if (typeof quantity !== 'number' || quantity <= 0)", node: <><Jx>if</Jx>{' ('}<Jx>typeof</Jx>{' quantity !== '}<St>'number'</St>{' || quantity <= 0)'}</> },
+  { id: 'zero',   label: 'return 0;', why: { uz: "Bu shartni tekshirmasdan har doim 0 qaytaradi — guard emas, yana bir xato manbai.", ru: 'Это всегда возвращает 0 без всякой проверки — не guard, а ещё один источник ошибок.' } },
+  { id: 'throw',  label: "throw new Error('quantity musbat raqam bo'lsin');", node: <><Jx>throw new</Jx>{' Error('}<St>{"'quantity musbat raqam bo'lsin'"}</St>{');'}</> },
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const solvedInit = () => ({ if: 0, throw: 1, return: 2 });

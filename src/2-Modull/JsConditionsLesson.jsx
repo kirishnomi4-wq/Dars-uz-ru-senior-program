@@ -1268,7 +1268,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Debugging" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : (found ? { uz: 'Endi tuzating', ru: 'Теперь почините' } : { uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Noto'g'ri PIN-kod bilan ham telefon <span className="italic" style={{ color: T.accent }}>ochilyapti</span> — nega?</>, ru: <>Телефон <span className="italic" style={{ color: T.accent }}>открывается</span> даже с неверным PIN-кодом — почему?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozdi, lekin xato qilibdi: PIN-kod <b style={{ color: T.ink }}>1111</b> bo'lsa ham telefon ochilyapti! Shartda <b style={{ color: T.ink }}>bitta teng belgisi</b> turibdi — u qiymat soladi, <b style={{ color: T.ink }}>tekshirmaydi</b>. Xato qatorni toping.</>, ru: <>AI написал код, но ошибся: даже с PIN-кодом <b style={{ color: T.ink }}>1111</b> телефон открывается! В условии стоит <b style={{ color: T.ink }}>один знак равно</b> — он кладёт значение, а <b style={{ color: T.ink }}>не проверяет</b>. Найдите строку с ошибкой.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI kod yozdi, lekin xato qilibdi: PIN-kod <b style={{ color: T.ink }}>1111</b> bo'lsa ham telefon ochilyapti! Qaysi qatorda xato? Toping va bosing.</>, ru: <>AI написал код, но ошибся: даже с PIN-кодом <b style={{ color: T.ink }}>1111</b> телефон открывается! В какой строке ошибка? Найдите и нажмите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1276,7 +1276,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'PIN-kod tekshiruvi:', ru: 'Проверка PIN-кода:' })}</span></div>
               <div className="ai-code">
                 <div className={`ai-line ${flashLine === 0 ? 'bad' : ''}`} onClick={() => pickWrong(0)}><Kw>let</Kw> <Vr>pin</Vr> <Op>=</Op> <Nm>1111</Nm></div>
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIf}><Kw>if</Kw> (<Vr>pin</Vr> <Op>{fixed ? '==' : '='}</Op> <Nm>1234</Nm>) {'{'} <Cm>{tr({ uz: 'ochildi', ru: 'открыт' })}</Cm> {'}'} {!fixed && <Cm>// ?</Cm>}</div>
+                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIf}><Kw>if</Kw> (<Vr>pin</Vr> <Op>{fixed ? '==' : '='}</Op> <Nm>1234</Nm>) {'{'} <Cm>{tr({ uz: 'ochildi', ru: 'открыт' })}</Cm> {'}'}</div>
               </div>
               {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
               {!done && <AchRule screen={screen} />}

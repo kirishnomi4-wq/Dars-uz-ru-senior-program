@@ -1371,7 +1371,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const koprik = tries >= 2 && !done;
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yana ${RAUNDLAR.length - ri} haftani to'ldiring`, ru: `Заполните ещё ${RAUNDLAR.length - ri} недел${RAUNDLAR.length - ri === 1 ? 'ю' : 'и'}` });
   return (
-    <Stage eyebrow="Tekshiruv · darvoza" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tekshiruv · darvoza', ru: 'Проверка · ворота' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har haftaga sig'adigan bo'lakni <span className="italic" style={{ color: T.accent }}>tanlang</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Выберите</span> кусочек, который помещается в неделю.</> })}</h2></div>
         <Mentor>{tr({ uz: "Uch bo'lagingiz tayyor — endi sinfdoshning katta ishini o'ngdagi darvoza tekshiradi: haftaga sig'ishi va odam ishlata olishi. Uch nomzoddan bittasini darvozaga bosing.", ru: 'Ваши три кусочка готовы — теперь большую задачу одноклассника проверяют ворота справа: помещается ли в неделю и сможет ли человек этим пользоваться. Нажмите одного из трёх кандидатов в ворота.' })}</Mentor>
