@@ -53,6 +53,20 @@ var hwWrite = (o) => {
   } catch {
   }
 };
+var HW_SEAL_KEY = `ccHwSeal:${HW_ID}`;
+var hwSealRead = () => {
+  try {
+    return JSON.parse(localStorage.getItem(HW_SEAL_KEY) || "null");
+  } catch {
+    return null;
+  }
+};
+var hwSealWrite = (p) => {
+  try {
+    localStorage.setItem(HW_SEAL_KEY, JSON.stringify(p));
+  } catch {
+  }
+};
 var SABAB_MIN = 10;
 var QOIDA_MAYDON = [
   { id: "ochilish", ic: "🟢", nom: { uz: "Sayt ochiladimi", ru: "Открывается ли сайт" }, birlik: { uz: "daqiqa", ru: "минут" }, savol: { uz: "Necha daqiqa ochilmasa, xabar kelsin?", ru: "Сколько минут не открывается — и приходит сообщение?" } },
@@ -472,15 +486,26 @@ function PmLesson18Homework({ lang: langProp, onFinished }) {
     setFinished(true);
     const passed = doneCount >= HW_PASS_MIN;
     const ch = String(((data.rows || [])[1] || {}).chegara || "").trim();
-    if (typeof onFinished === "function") onFinished({
+    const payload = hwSealRead() || {
       lessonId: HW_ID,
       kind: "homework",
       done: passed,
       stages: `${doneCount}/${STAGES.length}`,
       place: ch ? `⏱ ${ch} s` : "",
       durationSec: Math.round((Date.now() - startRef.current) / 1e3)
-    });
+    };
+    hwSealWrite(payload);
+    if (typeof onFinished === "function") onFinished(payload);
   };
+  useEffect(() => {
+    if (!finished && doneCount >= HW_PASS_MIN) finish();
+  }, [doneCount, finished]);
+  useEffect(() => {
+    if (finished && typeof onFinished === "function") {
+      const sealed = hwSealRead();
+      if (sealed) onFinished(sealed);
+    }
+  }, []);
   const isResult = stage >= STAGES.length;
   const cur = STAGES[stage];
   return <div className="hw-root">

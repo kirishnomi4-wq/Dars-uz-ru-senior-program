@@ -1,6 +1,7 @@
 # CRM'ga yuklash — md5 ro'yxati (2026-09-21 yig'masi)
 
-Yig'ma: prod manzili (`dars-api.coddycamp.uz`) · 151–154-qonunlar, ball halolligi, solo tuzatishi va yuk-muhri bilan.
+Yig'ma: prod manzili (`dars-api.coddycamp.uz`) · 151–154-qonunlar, ball halolligi, solo tuzatishi,
+yuk-muhri va uyga-vazifa `onFinished` tuzatishi (F-0921-01) bilan.
 Tekshirish: `md5sum lms/<fayl>` — quyidagi qiymat bilan bir xil bo'lishi kerak.
 
 | lms fayl | lesson_id | md5 |
@@ -95,17 +96,19 @@ Tekshirish: `md5sum lms/<fayl>` — quyidagi qiymat bilan bir xil bo'lishi kerak
 | `PracticeLesson4.jsx` | practice-04-mvp-deploy-v18 | `40d4e829b065ab04940bc62b674c0dda` |
 | `VsCodeLesson.jsx` | vscode-start-01-v1 | `6fc95208bd38d5b429956864185cc4c0` |
 | `VsCodeLesson.shared.jsx` | vscode-start-01-v1 | `8368f634e7848adc119f5486ba1c3d1e` |
-| `4-M/PmUserStoryLesson.homework.shared.jsx` | pm-m3-02 | `3700a0501a0c991bf0468fd38a0c5ee8` |
-| `4-M/PmLesson8.homework.shared.jsx` | pm-m3-05 | `bc072970c2ccaa6ffe5116daf0aef8dc` |
-| `4-M/PmLesson9.homework.shared.jsx` | pm-m3-10 | `4ff200d8a78f2e255f4c9e868e84af57` |
-| `4-M/PmLesson10.homework.shared.jsx` | pm-m3-14 | `995d972d9ac3b80f96ace7154389c29a` |
-| `5-M/PmLesson11.homework.shared.jsx` | pm-m4-02 | `9de4469ca1eae08ad63c70ac8e212644` |
-| `5-M/PmLesson12.homework.shared.jsx` | pm-m4-07 | `819363a5b1dcf035374540d18d03fae9` |
-| `5-M/PmLesson13.homework.shared.jsx` | pm-m4-12 | `e12b3d43d9e55bf44d8c75493e610882` |
-| `5-M/PmLesson14.homework.shared.jsx` | pm-m4-15 | `508301c71ddffe8272da10a5c0c58b09` |
-| `6-M/PmLesson15.homework.shared.jsx` | pm-m4a-02 | `785fbca9bd5d4ec179640244b30d6a5f` |
-| `6-M/PmLesson16.homework.shared.jsx` | pm-m4b-02 | `813a0f5dcd00e40cd3f04ef18ecce1a2` |
-| `6-M/PmLesson17.homework.shared.jsx` | pm-m4c-02 | `d48866a5a4b7834dc224bf5249cf6d6d` |
-| `6-M/PmLesson18.homework.shared.jsx` | pm-m4c-06 | `ba0ed5192fecd12dafaef5a847ff42a5` |
+| `4-M/PmUserStoryLesson.homework.shared.jsx` | pm-m3-02 | `bc870953baf0f436e8df0abef6fe4e4a` |
+| `4-M/PmLesson8.homework.shared.jsx` | pm-m3-05 | `be007f7e67bace7bf1236e96833e1919` |
+| `4-M/PmLesson9.homework.shared.jsx` | pm-m3-10 | `5b34f434d0f7fa08d2ff6711c21e06a8` |
+| `4-M/PmLesson10.homework.shared.jsx` | pm-m3-14 | `4cf21b8c170ac27a63602bd6ce281672` |
+| `5-M/PmLesson11.homework.shared.jsx` | pm-m4-02 | `d9301783fea76ad56f786213395d6794` |
+| `5-M/PmLesson12.homework.shared.jsx` | pm-m4-07 | `98ad389b373b487978c2071122b33ccb` |
+| `5-M/PmLesson13.homework.shared.jsx` | pm-m4-12 | `6630699843107e7909ac7f0207fff063` |
+| `5-M/PmLesson14.homework.shared.jsx` | pm-m4-15 | `c02e3287710dbfd0ba321fea6bbe6b49` |
+| `6-M/PmLesson15.homework.shared.jsx` | pm-m4a-02 | `0631f4cd074314d752e91ad23672f590` |
+| `6-M/PmLesson16.homework.shared.jsx` | pm-m4b-02 | `c4315bebd96ae6649f244bc071bcb97a` |
+| `6-M/PmLesson17.homework.shared.jsx` | pm-m4c-02 | `0109d92d4a14020b23f98f9a6315238c` |
+| `6-M/PmLesson18.homework.shared.jsx` | pm-m4c-06 | `a4bc590f508c810cb3719d2e9ace9cdc` |
 
 Jami: **102 fayl**. Umumiy modul (`html-compiler.jsx`) o'zgarmagan — CRM'da qayta yuklash SHART EMAS.
+
+Eslatma: 21.09 dan boshlab yuklash uchun **`yuklash-2026-09-21/`** papkasi ishlatiladi (modul-modul, tartib raqami bilan).

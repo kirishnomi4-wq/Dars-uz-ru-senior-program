@@ -53,6 +53,20 @@ var hwWrite = (o) => {
   } catch {
   }
 };
+var HW_SEAL_KEY = `ccHwSeal:${HW_ID}`;
+var hwSealRead = () => {
+  try {
+    return JSON.parse(localStorage.getItem(HW_SEAL_KEY) || "null");
+  } catch {
+    return null;
+  }
+};
+var hwSealWrite = (p) => {
+  try {
+    localStorage.setItem(HW_SEAL_KEY, JSON.stringify(p));
+  } catch {
+  }
+};
 var GAP_MIN = 14;
 var TEXNIK_RE = {
   uz: /(fetch|json|\bapi\b|postgresql|\bsql\b|endpoint|jwt|token|react|props|\bkod\b|funksiya|massiv)/i,
@@ -466,15 +480,26 @@ function PmLesson14Homework({ lang: langProp, onFinished }) {
     setFinished(true);
     const passed = doneCount >= HW_PASS_MIN;
     const who = WHO[(data.talk || {}).who];
-    if (typeof onFinished === "function") onFinished({
+    const payload = hwSealRead() || {
       lessonId: HW_ID,
       kind: "homework",
       done: passed,
       stages: `${doneCount}/${STAGES.length}`,
       place: who ? tr(who.label) : "",
       durationSec: Math.round((Date.now() - startRef.current) / 1e3)
-    });
+    };
+    hwSealWrite(payload);
+    if (typeof onFinished === "function") onFinished(payload);
   };
+  useEffect(() => {
+    if (!finished && doneCount >= HW_PASS_MIN) finish();
+  }, [doneCount, finished]);
+  useEffect(() => {
+    if (finished && typeof onFinished === "function") {
+      const sealed = hwSealRead();
+      if (sealed) onFinished(sealed);
+    }
+  }, []);
   const isResult = stage >= STAGES.length;
   const cur = STAGES[stage];
   return <div className="hw-root">
