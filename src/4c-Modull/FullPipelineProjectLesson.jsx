@@ -1292,7 +1292,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const tn = trig.toLowerCase().replace(/\s+/g, '');
   const sn = secret.toLowerCase().replace(/\s+/g, '');
-  const okTrig = tn === 'push';
+  // F-0921-04: yaml odatiga ko'ra `push:` deb yozgan (yoki `on:push` ko'chirgan) o'quvchi ham qabul qilinadi —
+  // ilgari faqat aynan `push` o'tardi va rad etilganda hech qanday izoh chiqmasdi (👦 o'quvchi-o'qishi)
+  const okTrig = /^(on:)?push:?$/.test(tn);
   const okSecret = sn.includes('secrets.');
   const valid = okTrig && okSecret;
   const { tip: _tip, rescue: _resc } = useStuckValve(passed, trig.length + secret.length);   // 13-band klapan

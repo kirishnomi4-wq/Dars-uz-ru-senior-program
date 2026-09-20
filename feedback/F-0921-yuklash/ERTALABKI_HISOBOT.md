@@ -119,6 +119,23 @@ ReactApiGet s13 Mentor yig'ish tartibini oldindan sanaydi · ReactPropsReuse s5 
 FullstackConnect s1 «CORS» atamasi izohsiz (izoh faqat s10 da) · PmLesson12 s8 va PmLesson10 s8 da «Saqlash» jim
 o'chib qoladi (sabab aytilmaydi) · DataIntro s15b da `id` qatorini bosganda javob-izoh chiqmaydi.
 
+### 4a · 4b · 4c o'qishi (tunda) — qotirib qo'yadigan to'siq YO'Q
+
+Tekshirdim: 4a amaliyotidagi tashqi repo (`github.com/Azizbekcrypto/IntroNestArxitechture`) **tirik** (200) —
+bu to'siq emas. Tasodifga bog'langan darvoza yo'q, joylashtirishlar qaytariladi.
+
+**Tuzatildi:** FullPipeline s13 — tetik maydoni faqat aynan `push` ni qabul qilardi; yaml odatiga ko'ra `push:`
+yoki `on:push` yozgan o'quvchi jim rad etilardi (izoh ham chiqmasdi). Endi uchalasi ham qabul qilinadi.
+
+**Tasdiqingiz kerak:**
+
+| # | Dars · ekran | Muammo | Taklif |
+|---|---|---|---|
+| Q7 | **NestArchPractice · amaliyot** | «Agentga to'liq playbook yuboring» deyiladi, lekin **qaysi dasturga** ekani aytilmagan (faylda Gemini/Cursor umuman yo'q), «agent» va «playbook» ham izohsiz | Xotiradagi qoidangizga ko'ra `gemini.google.com` deb yozamiz va ikkala so'zga bir martalik izoh qo'shamiz |
+| Q8 | **FullPipeline s6** | Qulf yorlig'i «Avval 5 nuqtani tizing» deydi, aslida esa 4 ssenariy ko'rilishi kerak — yorliq boshqa qadamni aytadi | Yorliq matni haqiqiy shartga moslanadi |
+| Q9 | **GithubActions · amaliyot** | O'z repo va yashil ✓ talab qilinadi; platforma tekshirmaydi, «Bajardim» o'zi bosiladi — reposiz o'quvchi bajara olmaydi | Zaxira yo'l: repo yo'q bo'lsa nima qilish (mentor bilan birga yoki namunadagi repo) |
+| Q10 | **AiPipeline s15** | 5 bo'lakli tartibda vaqt-klapani yo'q — adashgan o'quvchiga yordam chiqmaydi | Boshqa darslardagi kabi «tiqilib qolganda» maslahati qo'shiladi |
+
 **Qayd (o'zgarish taklif qilmayman):** InternetLesson kirish ekranida qaysi variant bosilsa ham «To'g'ri yo'nalish!»
 chiqadi — bu ilgak-ekran, to'g'ri/xato yo'q; ball ham bermaydi.
 
