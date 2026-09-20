@@ -46,6 +46,10 @@ const HW_VER = 1;
 const HW_PASS_MIN = 4;
 const hwRead = () => { try { const s = JSON.parse(localStorage.getItem(HW_KEY) || 'null'); return (s && s.v === HW_VER) ? s : null; } catch { return null; } };
 const hwWrite = (o) => { try { localStorage.setItem(HW_KEY, JSON.stringify(o)); } catch {} };
+// F-0921-01: topshirilgan yuk muhri — takror yuborishda AYNAN o'sha mazmun (LMS idempotency_key)
+const HW_SEAL_KEY = `ccHwSeal:${HW_ID}`;
+const hwSealRead = () => { try { return JSON.parse(localStorage.getItem(HW_SEAL_KEY) || 'null'); } catch { return null; } };
+const hwSealWrite = (p) => { try { localStorage.setItem(HW_SEAL_KEY, JSON.stringify(p)); } catch { /* jim */ } };
 
 // ===== Darsdagi validatorlar (PmUserStoryLesson validateStory/canSave bilan AYNAN) =====
 const S_MIN = 2, DESC_MIN = 8;
@@ -548,13 +552,23 @@ export default function PmUserStoryHomework({ lang: langProp, onFinished }) {
     if (finished) return;
     setFinished(true);
     const passed = doneCount >= HW_PASS_MIN;
-    if (typeof onFinished === 'function') onFinished({
+    // F-0921-01: yuk muhrlanadi — takror yuborish (qayta ochilish, ikkinchi bosish) AYNAN o'sha mazmunni yuboradi
+    const payload = hwSealRead() || {
       lessonId: HW_ID, kind: 'homework', done: passed,
       stages: `${doneCount}/${STAGES.length}`,
       place: targetLabel(data.target || {}),
       durationSec: Math.round((Date.now() - startRef.current) / 1000),
-    });
+    };
+    hwSealWrite(payload);
+    if (typeof onFinished === 'function') onFinished(payload);
   };
+
+  // F-0921-01: hamma bosqich bajarilganda topshirish AVTOMAT ketadi — o'quvchi tugmani bosmasa ham LMS ptichkani
+  // oladi va keyingi darsga o'ta oladi (tugma qoladi: bosilgach «✓ Topshirildi» ko'rinadi).
+  useEffect(() => { if (!finished && doneCount >= HW_PASS_MIN) finish(); }, [doneCount, finished]); // eslint-disable-line
+  // Topshirilgandan keyin vazifa qayta ochilsa — muhrlangan yuk BIR MARTA qayta yuboriladi (LMS birinchisini
+  // olmagan bo'lsa ham ptichka yonadi; mazmun aynan o'sha — takror xavfsiz).
+  useEffect(() => { if (finished && typeof onFinished === 'function') { const sealed = hwSealRead(); if (sealed) onFinished(sealed); } }, []); // eslint-disable-line
 
   const isResult = stage >= STAGES.length;
   const cur = STAGES[stage];

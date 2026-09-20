@@ -49,6 +49,10 @@ const HW_VER = 2; // v2 — PmLesson1 shakli (eski v1 saqlov bekor)
 const HW_PASS_MIN = 4; // F-0828-01: TO'RTTALA bosqich tugagandagina «Bajarildi»
 const hwRead = () => { try { const s = JSON.parse(localStorage.getItem(HW_KEY) || 'null'); return (s && s.v === HW_VER) ? s : null; } catch { return null; } };
 const hwWrite = (o) => { try { localStorage.setItem(HW_KEY, JSON.stringify(o)); } catch {} };
+// F-0921-01: topshirilgan yuk muhri — takror yuborishda AYNAN o'sha mazmun (LMS idempotency_key)
+const HW_SEAL_KEY = `ccHwSeal:${HW_ID}`;
+const hwSealRead = () => { try { return JSON.parse(localStorage.getItem(HW_SEAL_KEY) || 'null'); } catch { return null; } };
+const hwSealWrite = (p) => { try { localStorage.setItem(HW_SEAL_KEY, JSON.stringify(p)); } catch { /* jim */ } };
 
 // ===== Darsdagi validator (PmLesson1 cardFull + wideKim) — vazifa darsdan qat'iyroq ham, yumshoqroq ham emas =====
 const KIM_MIN = 3, MUAMMO_MIN = 6, YECHIM_MIN = 6;
@@ -565,13 +569,23 @@ export default function PmLesson1Homework({ lang: langProp, onFinished }) {
     const sum = data.sum || {};
     const rew = sum.mode === 1 && rewriteOk(sum, data.card);
     const kim = (rew && kimOk(sum.newKim)) ? sum.newKim : ((data.card || {}).kim || '');
-    if (typeof onFinished === 'function') onFinished({
+    // F-0921-01: yuk muhrlanadi — takror yuborish (qayta ochilish, ikkinchi bosish) AYNAN o'sha mazmunni yuboradi
+    const payload = hwSealRead() || {
       lessonId: HW_ID, kind: 'homework', done: passed,
       stages: `${doneCount}/${STAGES.length}`,
       place: kim.trim(),
       durationSec: Math.round((Date.now() - startRef.current) / 1000),
-    });
+    };
+    hwSealWrite(payload);
+    if (typeof onFinished === 'function') onFinished(payload);
   };
+
+  // F-0921-01: hamma bosqich bajarilganda topshirish AVTOMAT ketadi — o'quvchi tugmani bosmasa ham LMS ptichkani
+  // oladi va keyingi darsga o'ta oladi (tugma qoladi: bosilgach «✓ Topshirildi» ko'rinadi).
+  useEffect(() => { if (!finished && doneCount >= HW_PASS_MIN) finish(); }, [doneCount, finished]); // eslint-disable-line
+  // Topshirilgandan keyin vazifa qayta ochilsa — muhrlangan yuk BIR MARTA qayta yuboriladi (LMS birinchisini
+  // olmagan bo'lsa ham ptichka yonadi; mazmun aynan o'sha — takror xavfsiz).
+  useEffect(() => { if (finished && typeof onFinished === 'function') { const sealed = hwSealRead(); if (sealed) onFinished(sealed); } }, []); // eslint-disable-line
 
   const isResult = stage >= STAGES.length;
   const cur = STAGES[stage];
