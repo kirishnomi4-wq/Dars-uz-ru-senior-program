@@ -59,9 +59,30 @@
   aralashtirilgan uyumlar ham) · solo **14/14** · seal uz+ru **40/40** · vite build ✓. Keyingi ikki tahrir (JsLoops,
   ReactIntro) alohida qayta sinaldi — **3/3** ✓.
 
+## 2c. 20.09 kechqurun — LMS sinovi va topilgan bug (F-0920-01)
+
+Siz staging'da 2848-joyda jonli va solo o'tdingiz. **Bizning zanjir ishladi:** jonli natija LMS'ga yetdi (**201**,
+3/4, nishonlar `top_1/graduate/arena_top_1`); solo urinish «tugallandi» (4 javob, 4 nishon) — u LMS'ga yuborilmadi,
+chunki shu o'quvchi shu darsdan natijani allaqachon olgan («bir o'quvchi — bir dars — bitta natija»).
+
+**Bug:** o'quvchi har yakunlashda «Natijani saqlab bo'lmadi» ko'rdi. HAR dalili: LMS `question_try` ga **bitta kalit**
+beradi va «bir kalit — bir mazmun» qoidasini qo'llaydi; biz esa har bosishda yukni qayta yig'ardik (`durationSec`
+o'sadi) → 409. Yangi kalit berilgan bitta yuborish esa 200 qaytardi.
+
+**Tuzatildi:** yakun-yuki endi brauzer saqlovida muhrlanadi va urinishga bog'lanadi — F5 yoki qayta kirishda aynan
+o'sha bayt ketadi, «Qaytadan boshlash» da esa yangi urinish → yangi muhr. Unit 13/13; 105 yig'ma qayta qurildi
+(smoke 70/70 + 34/34). Axadullaga xabar tayyor: `feedback/lms-sinov-2026-09-16/xabar-axadulla-2026-09-20-409.md`.
+
+**Ochiq taklif (qaror sizniki):** bitta «Yakunlash» dan keyin 4 soniyada ~15 ta bir xil so'rov ketgan. Bu LMS ning
+qayta urinishi bo'lishi mumkin; bizning tomondan ham himoya qo'yish mumkin — birinchi yuborishdan keyin tugmani
+qisqa vaqtga bloklash (97 darsga tegadigan kichik o'zgarish). Kerakmi?
+
 ## 3. S3 — staging'da haqiqiy solo sinovi (sizning qadamlaringiz, ~15 daqiqa)
 
-Men tomonim tayyor: yig'ma joriy kod bilan aynan bir xil (qayta yig'ib solishtirdim, md5 `93b22a274874c8ed36aa1fba633a0886`),
+**Yangilandi 20.09 19:20:** sinov-fayli bugungi tuzatish bilan qayta yig'ildi — md5 `108e2a3434c953fb2c3ff3c75c3c98fe`
+(eski `93b22a27…` o'rniga). Bu darsning yakuniy testi **tartiblash** turida, ya'ni solo teshigini ham tekshiradi.
+
+Men tomonim tayyor: yig'ma joriy kod bilan aynan bir xil (qayta yig'ib solishtirdim),
 staging serveri sog', Sherzod (31422) va Nigora (31352) da bu dars bo'yicha eski natija yo'q (bo'lsa, yangi natija
 LMS'ga ketmasdi — «bir o'quvchi — bir dars — bitta natija» qoidasi).
 
