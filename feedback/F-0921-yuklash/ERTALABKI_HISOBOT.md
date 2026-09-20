@@ -69,6 +69,28 @@ ruscha ham yo'q; u faqat solishtirish vositasida qoladi. Shuning uchun to'liq ro
    409 tuzatilgani va yakuniy test balini oxirigacha tasdiqlaydi.
 3. **Axadulla javobi** — kalit qoidasi va «natija saqlangan bo'lsa qizil xato ko'rsatmaslik».
 
+## 5b. 👦 O'quvchi-o'qishi — topilmalar (1- va 2-modul)
+
+**Tuzatildi (ziddiyat edi, tasdiq talab qilmaydi):**
+- **JsFunctions · yakuniy topshiriq — TO'SIQ edi.** Mentor «`kuch * 3` qaytaradigan funksiya yoz» deydi va tekshiruvchi
+  ham shuni kutadi, lekin yorliq/maslahat/natija namunasi eski `n * n` formulani ko'rsatardi. Maslahatga ergashgan
+  o'quvchi darsdan **o'ta olmasdi**. Eski formuladan qolgan izlar tozalandi (5 joy, uz+ru), ruscha izohdagi hisob
+  xatosi ham (`3 - 10 = -7` → `3 * 3 + 10 = 19`).
+- **HtmlTakrorlash** — ruscha matn o'zbekcha tugma nomini aytardi («кнопкой «Nusxalash»» → «Скопировать»).
+
+**Tasdiqingiz kerak (o'quvchi matni yoki ekran mantig'i o'zgaradi):**
+
+| # | Dars · ekran | Muammo | Taklif |
+|---|---|---|---|
+| Q1 | **VsCode · 1-qadam (o'rnatish)** | Hamma qadam faqat **Windows** uchun: «Download for Windows», `.exe`, «I accept → Next → Install». Mac yoki Linux'dagi o'quvchi birinchi qadamdayoq to'xtaydi | GitLesson'dagi kabi «🛟 Boshqa tizimda?» paneli qo'shamiz: macOS (`.dmg` sudrash) va Linux (`.deb`/Software Center) uchun 2–3 qator |
+| Q2 | **DeployLesson · AI qadami** | Butun qadam `gemini.google.com` javobiga bog'langan; AI ochilmasa zaxira yo'l yo'q (GitLesson'da «🛟 Ochilmadimi?» bor) | Shu ekranga ham zaxira panel: tayyor kod namunasi + «AI'siz davom etish» yo'li |
+| Q3 | **CssPractice · menyu ekrani** | Mentor javobni aytib qo'yadi: «`nav` ga `display: flex` berib…», keyin «qaysi qiymat bir qatorga tizadi?» deb so'raydi | Mentordan `display: flex` olib tashlanadi (savol o'z kuchida qoladi) |
+| Q4 | **CssLesson1 · yakuniy amaliy** | Mentor `h1 { color: red; }` ni to'liq beradi va input ko'rsatmasi ham aynan shu — o'quvchi ko'chiradi, eslamaydi (bu ball beradigan ekran) | Namuna ko'rsatmadan olinadi, Mentor qoidani aytadi (qaysi teg, qaysi xususiyat), aniq yozuvni o'quvchi o'zi yozadi |
+| Q5 | **Htmllesson1 · yopuvchi teg** | Bitta harf yozilishi bilan maslahat to'liq javobni chiqaradi: «Yopuvchi teg `/` belgisi bilan boshlanadi: `</h1>`» | Maslahat faqat birinchi xato urinishdan keyin chiqsin (biz bu naqshni 19.09 da qo'llagandik) |
+
+**Qayd (o'zgarish taklif qilmayman):** InternetLesson kirish ekranida qaysi variant bosilsa ham «To'g'ri yo'nalish!»
+chiqadi — bu ilgak-ekran, to'g'ri/xato yo'q; ball ham bermaydi.
+
 ## 6. Ochiq savol (kichik)
 
 Uyga vazifa endi bosqichlar tugashi bilan **o'zi topshiriladi** — o'quvchi «Vazifani topshirish» tugmasini bosishi
