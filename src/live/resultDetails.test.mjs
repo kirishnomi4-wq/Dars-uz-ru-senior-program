@@ -151,7 +151,7 @@ test('sealPayload: ikkinchi bosishda AYNAN birinchi yuk qaytadi (durationSec o\'
 });
 
 test('sealPayload: qabul qiluvchi obyektni o\'zgartirsa ham muhr buzilmaydi (har safar yangi nusxa)', () => {
-  unsealPayload('S1');
+  resetResultDetails('S1');
   const a = sealPayload('S1', mkPayload(10));
   a.durationSec = 999; a.answers.push({ hacked: true });
   const b = sealPayload('S1', mkPayload(20));
@@ -161,7 +161,7 @@ test('sealPayload: qabul qiluvchi obyektni o\'zgartirsa ham muhr buzilmaydi (har
 });
 
 test('sealPayload: boshqa sessiya (PIN yoki rejim) — yangi yuk muhrlanadi', () => {
-  unsealPayload('S1');
+  resetResultDetails('S1');
   sealPayload('S1', mkPayload(10, { livePin: '111111', liveMode: 'mentor' }));
   const b = sealPayload('S1', mkPayload(20, { livePin: '222222', liveMode: 'mentor' }));
   assert.equal(b.livePin, '222222'); assert.equal(b.durationSec, 20);
@@ -169,11 +169,13 @@ test('sealPayload: boshqa sessiya (PIN yoki rejim) — yangi yuk muhrlanadi', ()
   assert.equal(c.durationSec, 20);
 });
 
-test('sealPayload: unsealPayload (dars ochilishi) va resetResultDetails (yangi urinish) muhrni tozalaydi', () => {
-  unsealPayload('S1');
+// F-0920-01 dan keyin: `unsealPayload` faqat XOTIRANI bo'shatadi — o'sha urinish qayta yuklansa yuk o'zgarmaydi;
+// muhrni butunlay olib tashlaydigan yagona yo'l — `resetResultDetails` (yangi urinish / «Qaytadan boshlash»).
+test('sealPayload: unsealPayload yukni saqlaydi, resetResultDetails muhrni tozalaydi', () => {
+  resetResultDetails('S1');
   sealPayload('S1', mkPayload(10));
   unsealPayload('S1');
-  assert.equal(sealPayload('S1', mkPayload(20)).durationSec, 20);
+  assert.equal(sealPayload('S1', mkPayload(20)).durationSec, 10, 'F5 dan keyin yuk o\'zgardi — LMS 409 beradi');
   resetResultDetails('S1');
   assert.equal(sealPayload('S1', mkPayload(30)).durationSec, 30);
 });
@@ -205,3 +207,20 @@ test('maxsus test-ekran (variantsiz, picked 0/1) questions[] ga kirmaydi; MCQ ki
   }
 });
 
+
+// ── F-0920-01 (20.09 staging dalili): muhr F5 dan keyin ham saqlanadi; yangi urinishda esa yangilanadi ──────────────
+test('muhr saqlovda: F5 dan keyin AYNAN o\'sha yuk; urinish almashsa — yangi yuk', () => {
+  resetResultDetails('F5');
+  localStorage.setItem('liveSession:F5', JSON.stringify({ mode: 'solo', pin: '869331', attemptId: 'att-1' }));
+  const a = sealPayload('F5', { lessonId: 'F5', livePin: '869331', liveMode: 'solo', durationSec: 473 });
+  unsealPayload('F5');                                        // sahifa qayta yuklandi — xotira bo'sh
+  const b = sealPayload('F5', { lessonId: 'F5', livePin: '869331', liveMode: 'solo', durationSec: 654 }); // yangi vaqt bilan
+  assert.deepEqual(b, a, 'F5 dan keyin yuk o\'zgardi — LMS 409 beradi');
+  assert.equal(b.durationSec, 473);
+  localStorage.setItem('liveSession:F5', JSON.stringify({ mode: 'solo', pin: '112233', attemptId: 'att-2' })); // «Qaytadan boshlash»
+  const c = sealPayload('F5', { lessonId: 'F5', livePin: '112233', liveMode: 'solo', durationSec: 91 });
+  assert.equal(c.durationSec, 91, 'yangi urinishda eski yuk qaytdi');
+  resetResultDetails('F5');
+  const d = sealPayload('F5', { lessonId: 'F5', livePin: '112233', liveMode: 'solo', durationSec: 12 });
+  assert.equal(d.durationSec, 12, 'reset dan keyin muhr qolib ketdi');
+});

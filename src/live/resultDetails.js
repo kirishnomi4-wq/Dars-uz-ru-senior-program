@@ -119,6 +119,7 @@ export function resetResultDetails(lessonId) {
   attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId);
   sealedByLesson.delete(lessonId); // yangi urinish — yangi yuk (F-0918-07)
   try { store()?.removeItem(KEY(lessonId)); } catch { /* jim */ }
+  try { store()?.removeItem(SEAL_KEY(lessonId)); } catch { /* jim */ } // muhr-saqlovi ham (F-0920-01)
 }
 
 // ── onFinished yukini MUHRLASH (F-0918-07) ─────────────────────────────────────────────────────────────────
@@ -126,9 +127,16 @@ export function resetResultDetails(lessonId) {
 // 409 `submission_key_mismatch` qaytadi va o'quvchi «Natijani saqlab bo'lmadi» yozuvini ko'radi. Dars esa yukni har
 // «Darsni yakunlash» bosilganda qaytadan yig'ardi (`durationSec` o'sadi, detallardagi vaqtlar o'zgaradi).
 // Qoida: shu dars ochilishi ichida birinchi yuk muhrlanadi, keyingi bosishlar AYNAN o'sha mazmunni qaytaradi.
-// Muhr xotirada turadi (F5 dan keyin yo'q). Siyosat shu yerda — darslarda bitta qator: onFinished(sealPayload(id, payload)).
+// Muhr `localStorage` da ham turadi (F-0920-01): F5 yoki «Qaytadan boshlash» dan keyin ham AYNAN o'sha mazmun ketsin.
+// 20.09 dalili (HAR, staging): bitta kalit ostida 30 ta yuborish — har birida `durationSec` boshqa (473, 475, 476 …),
+// hammasi 409. LMS yangi kalit bergan bitta yuborish esa 200 qaytardi. Ya'ni qoida: KALIT BIR XIL BO'LSA — MAZMUN HAM.
+// Muhr urinishga bog'lanadi: `liveSession:<darsId>` dagi `attemptId`/`pin` o'zgarsa (yangi urinish) — yangi yuk.
 const sealedByLesson = new Map(); // dars-ID → { key, json }
-const sealKey = (p) => `${(p && p.livePin) ?? ''}|${(p && p.liveMode) ?? ''}`; // boshqa sessiya (PIN/rejim) — boshqa yuk
+const SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+const attemptMark = (lessonId) => {
+  try { const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || 'null'); return String((ls && (ls.attemptId || ls.pin)) || ''); } catch { return ''; }
+};
+const sealKey = (lessonId, p) => `${(p && p.livePin) ?? ''}|${(p && p.liveMode) ?? ''}|${attemptMark(lessonId)}`; // boshqa sessiya/urinish — boshqa yuk
 
 /**
  * Birinchi chaqiruvdagi yukni muhrlaydi; keyingi chaqiruvlarda o'sha mazmunning yangi nusxasini qaytaradi.
@@ -138,15 +146,20 @@ const sealKey = (p) => `${(p && p.livePin) ?? ''}|${(p && p.liveMode) ?? ''}`; /
 export function sealPayload(lessonId, payload) {
   if (!lessonId || !payload || typeof payload !== 'object') return payload;
   try {
-    const key = sealKey(payload);
-    const held = sealedByLesson.get(lessonId);
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) { // F5 dan keyin xotira bo'sh — saqlovdan tiklaymiz
+      try { held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || 'null'); } catch { held = null; }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held); else held = null;
+    }
     if (held && held.key === key) return JSON.parse(held.json);
-    const json = JSON.stringify(payload);
-    sealedByLesson.set(lessonId, { key, json });
-    return JSON.parse(json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try { store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec)); } catch { /* jim */ }
+    return JSON.parse(rec.json);
   } catch { return payload; }
 }
-/** Dars ochilganda (har mount) muhr tozalanadi — oldingi sessiya/o'quvchining yuki yangi urinishga o'tib ketmasin. */
+/** Dars ochilganda (har mount) XOTIRADAGI muhr tozalanadi; saqlov qoladi — o'sha urinish qayta yuklansa yuk o'zgarmaydi. */
 export function unsealPayload(lessonId) { sealedByLesson.delete(lessonId); }
 
 /** Test uchun: hozirgi holatni ko'rish. */
