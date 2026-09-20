@@ -1,5 +1,24 @@
 # ERTALABKI HISOBOT — 21.09 tun (1–4c modullar LMS'ga tayyorlandi)
 
+## ⚡ Eng qisqa xulosa
+
+**Yuklashga tayyor:** `yuklash-2026-09-21/` — 7 modul, 88 fayl (70 dars + 18 uyga-vazifa), har modulda ro'yxat
+(uz/ru nom, `lesson_id`, md5, ☐ belgilash ustuni).
+
+**Tunda topilgan va tuzatilgan 6 ta nuqson** — hammasi o'quvchini to'sib qo'yadigan yoki jim rad etadigan holatlar:
+
+| Dars | Nima bo'lardi |
+|---|---|
+| **Uyga-vazifa (18 paket)** | Topshirilganda LMS ptichkani **olmasdi** — `onFinished` faqat tugma bosilganda ketardi |
+| **JsFunctions** (2-modul) | Maslahat topshiriqqa **zid** edi — unga ergashgan o'quvchi darsdan o'ta olmasdi |
+| **DbSqlNosql** (4-modul) | «Davom etish» **umuman ochilmasdi** (sanoq bir raqamga yetmasdi) |
+| **PmLesson8** (3-modul) | Kartani qaytarib bo'lmasdi — noto'g'ri joylagan o'quvchi qotib qolardi |
+| **PostgresCrud · FullstackFeedback · FullPipeline** | To'g'ri javoblar **jim rad etilardi** («50 000», `confirm()`, `push:`) |
+| **HtmlTakrorlash** | Ruscha matn o'zbekcha tugma nomini aytardi |
+
+**Sizdan kutilayotgani:** 10 ta taklif (Q1–Q10) — ular matnga yoki ekran mantig'iga tegadi, shuning uchun
+tegmadim. Eng muhimi **Q6**: React API darslarida o'quvchidan mavjud bo'lmagan serverga so'rov yozish so'ralyapti.
+
 > Topshiriq (21.09 01:50): «bitta papka — hozirgi darslar, yangi avtomatlashtirishga to'liq mos; ertalab LMS'ga
 > yuklayman». Javoblar: 1-A (darslar + uyga-vazifa) · 2-A · 3-A (tartib raqamli nomlar) · 4-A (faqat o'zi-yetarli
 > fayllar) · 5-A (to'liq sifat-o'tishi). Qo'shimcha: **PM uyga-vazifasi topshirilganda `onFinished` avtomat ketsin.**
