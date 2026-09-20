@@ -17,6 +17,15 @@ import { join, basename, dirname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 
+// Katalog (server) — dars ICHIDAGI sarlavha: LMS materialiga aynan shu nom qo'yiladi
+const CAT = (() => {
+  try {
+    const c = JSON.parse(readFileSync('server/data/lesson-catalog.json', 'utf8'));
+    const list = Array.isArray(c) ? c : (c.lessons || []);
+    return new Map(list.map((l) => [l.lesson_id, l]));
+  } catch { return new Map(); }
+})();
+
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const OUT = opt('--out', `yuklash-${new Date().toISOString().slice(0, 10)}`);
@@ -68,20 +77,22 @@ for (const m of modules.filter((x) => MODS.includes(x.id))) {
   const dir = join(OUT, `${m.id}-Modul`);
   mkdirSync(dir, { recursive: true });
   const rows = [`# ${m.id}-Modul — ${m.title}`, '', `CRM'da: **${CRM[m.id] || '?'}** bo'limi · ${mine.length} dars`, '',
-    '| № | Tur | Dars | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|'];
+    '| № | Tur | Dars ichidagi nom (LMS materialiga shu nom) | Kursdagi nomi | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|---|'];
   for (const j of mine) {
     const b = built.get(basename(j.src));
     if (!b) { console.log(`✗ yig'ilmagan: ${j.src}`); continue; }
     const nn = String(j.n).padStart(2, '0');
     const out = join(dir, `${nn}-${basename(j.src)}`);
     copyFileSync(b, out); total++;
-    rows.push(`| ${nn} | ${j.type} | ${j.title} | \`${basename(out)}\` | \`${lessonId(out)}\` | \`${md5(out)}\` |`);
+    const lid = lessonId(out);
+    const nomi = (CAT.get(lid) || {}).title_uz || j.title;
+    rows.push(`| ${nn} | ${j.type} | **${nomi}** | ${j.title} | \`${basename(out)}\` | \`${lid}\` | \`${md5(out)}\` |`);
     if (j.hw) {
       const hb = built.get(basename(j.hw));
       if (hb) {
         const ho = join(dir, `${nn}-${basename(j.hw, '.jsx')}.jsx`.replace('.homework', '-uyga-vazifa'));
         copyFileSync(hb, ho); total++;
-        rows.push(`| ${nn}. | Uyga vazifa | ${j.title} — vazifa | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
+        rows.push(`| ${nn}. | Uyga vazifa | **${nomi} — uyga vazifa** | ${j.title} | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
       }
     }
   }
@@ -98,6 +109,7 @@ writeFileSync(join(OUT, 'README.md'), [
   '## Yuklash tartibi', '',
   '1. CRM → Media → material sifatida `.jsx` faylni yuklaysiz.',
   '2. Fayl nomidagi **NN** — kursdagi tartib raqami (dars ketma-ketligi shunga qarab qo\'yiladi).',
+  '   Material nomini `ROYXAT.md` dagi **«Dars ichidagi nom»** ustunidan oling — o\'quvchi darsda aynan shuni ko\'radi.',
   '3. `NN-…-uyga-vazifa.jsx` — o\'sha darsning uyga vazifasi (alohida material).',
   '4. Har modulning `ROYXAT.md` faylida sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.', '',
   '## Muhim', '',
