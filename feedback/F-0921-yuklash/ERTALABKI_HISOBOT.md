@@ -88,6 +88,37 @@ ruscha ham yo'q; u faqat solishtirish vositasida qoladi. Shuning uchun to'liq ro
 | Q4 | **CssLesson1 · yakuniy amaliy** | Mentor `h1 { color: red; }` ni to'liq beradi va input ko'rsatmasi ham aynan shu — o'quvchi ko'chiradi, eslamaydi (bu ball beradigan ekran) | Namuna ko'rsatmadan olinadi, Mentor qoidani aytadi (qaysi teg, qaysi xususiyat), aniq yozuvni o'quvchi o'zi yozadi |
 | Q5 | **Htmllesson1 · yopuvchi teg** | Bitta harf yozilishi bilan maslahat to'liq javobni chiqaradi: «Yopuvchi teg `/` belgisi bilan boshlanadi: `</h1>`» | Maslahat faqat birinchi xato urinishdan keyin chiqsin (biz bu naqshni 19.09 da qo'llagandik) |
 
+### 3- va 4-modul o'qishi (tunda)
+
+**Tuzatildi (mantiq, matn tegilmadi) — uchtasi o'quvchini qotirib qo'yardi:**
+- **DbSqlNosql s7** — «Davom etish» sanoq 1 240 505 ga yetganda ochilardi, animatsiya esa 1 240 504 da to'xtardi:
+  tugma **umuman ochilmasdi**. Endi oqim tugashiga bog'landi.
+- **PmLesson8 s8** — joylashgan kartani qaytarib bo'lmasdi; uchala ishni «🎯 Darrov»dan boshqa katakka qo'ygan
+  o'quvchi birinchi ishni tanlay olmay qotib qolardi. Endi kartani bosib qaytarib oladi.
+- **PostgresCrud s15** — narx «50 000» (probel bilan) jim rad etilardi · **FullstackFeedback s16** — `confirm()`
+  qabul qilinmasdi. Ikkalasi ham endi qabul qilinadi.
+
+**Q6 — QAROR KERAK: React API darslarida mavjud bo'lmagan server.**
+`ReactApiGet` va `ReactApiPost` darslarining «Amaliyot · VS Code» qadamlari o'quvchiga
+`fetch('https://robo-api.uz/games')` yozishni va «konsolda 200 OK, 3 kartochka» ko'rishni aytadi. Men tekshirdim:
+**bu domen javob bermaydi** (48 joyda ishlatilgan: 30 + 18). Lokal zaxira ham berilmagan. Ya'ni bu amaliy qadamni
+o'quvchi bajara olmaydi.
+
+| Variant | Nima bo'ladi | Baho |
+|---|---|---|
+| **A** | Darsdagi manzil o'rniga **bizning serverda** kichik namoyish-uchi: `GET/POST/DELETE /demo/games` | ✅ dars hikoyasi saqlanadi, POST/DELETE ham ishlaydi · server ishi + deploy kerak (~yarim kun) |
+| **B** | O'quvchi loyihasidagi **`games.json`** fayl: `fetch('/games.json')` | ✅ bugunoq ishlaydi, hech qanday server kerak emas · ❌ POST/DELETE darsiga yaramaydi |
+| **C** | Ochiq test-API (`jsonplaceholder`) | ✅ tez · ❌ «robo-games» hikoyasi buziladi, POST natijasi saqlanmaydi |
+| **D** | Hozircha tegmaymiz | ❌ o'quvchi qadamni bajara olmaydi, mentor og'zaki tushuntiradi |
+
+**Tavsiyam:** GET darsi uchun **B** (bugunoq ishlaydi), POST/DELETE darsi uchun **A** (keyingi navbatda).
+3-modul bugun boshlanmasa, shoshilinch emas.
+
+**Boshqa topilmalar (matnga tegadi — tasdiq kutadi):** ReactBuildSite s6 javobni yonidagi izohda aytib qo'yadi ·
+ReactApiGet s13 Mentor yig'ish tartibini oldindan sanaydi · ReactPropsReuse s5 «sudrang» deydi, amalda tugma bosiladi ·
+FullstackConnect s1 «CORS» atamasi izohsiz (izoh faqat s10 da) · PmLesson12 s8 va PmLesson10 s8 da «Saqlash» jim
+o'chib qoladi (sabab aytilmaydi) · DataIntro s15b da `id` qatorini bosganda javob-izoh chiqmaydi.
+
 **Qayd (o'zgarish taklif qilmayman):** InternetLesson kirish ekranida qaysi variant bosilsa ham «To'g'ri yo'nalish!»
 chiqadi — bu ilgak-ekran, to'g'ri/xato yo'q; ball ham bermaydi.
 
