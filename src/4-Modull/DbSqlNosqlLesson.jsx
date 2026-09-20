@@ -1031,7 +1031,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [count, setCount] = useState(storedAnswer ? 1240517 : 1240489);
   const [msgs, setMsgs] = useState(storedAnswer ? [{ uz: 'Salom!', ru: 'Привет!' }, { uz: 'Qanaqasan?', ru: 'Как ты?' }, { uz: "Zo'r 🔥", ru: 'Класс 🔥' }] : []);
   const timer = useRef(null);
-  const done = count >= 1240505 || !!storedAnswer;
+  // F-0921-04: ilgari shart `count >= 1240505` edi, animatsiya esa 1 240 504 gacha yetardi (6 qadam: +1+2+2+3+3+4)
+  // — bitta raqam yetmay «Davom etish» qulfda qolardi (👦 o'quvchi-o'qishi topdi). Endi shart oqim TUGAGANIGA bog'liq.
+  const [ran, setRan] = useState(!!storedAnswer);
+  const done = ran || !!storedAnswer;
   const POOL = [{ uz: 'Salom!', ru: 'Привет!' }, { uz: 'Qanaqasan?', ru: 'Как ты?' }, { uz: 'Bugun darsdamisan?', ru: 'Ты сегодня на уроке?' }, { uz: "Zo'r 🔥", ru: 'Класс 🔥' }, { uz: 'Ha, keldim', ru: 'Да, пришёл' }, '👍', { uz: 'Rahmat!', ru: 'Спасибо!' }, { uz: 'Kechqurun chiqamizmi?', ru: 'Выйдем вечером?' }];
   useEffect(() => () => clearInterval(timer.current), []);
   const run = () => {
@@ -1041,7 +1044,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       n++;
       setCount(c => c + 1 + Math.floor(n / 2));
       setMsgs(m => [...m.slice(-3), POOL[(n * 3) % POOL.length]]);
-      if (n >= 6) { clearInterval(timer.current); setRunning(false); }
+      if (n >= 6) { clearInterval(timer.current); setRunning(false); setRan(true); }
     }, 350);
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);

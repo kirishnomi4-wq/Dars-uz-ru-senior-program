@@ -1257,7 +1257,14 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     // birinchini belgilash). Aks holda bosish katakka o'tadi — bo'lmasa to'lgan katak
     // «o'lik zona» bo'lib qolardi va keyingi kartani u yerga qo'yib bo'lmasdi.
     cells[k].push(
-      <span key={it.id} className={`dchip in${birinchi === it.id ? ' first' : ''}`} onClick={(e) => { if (step1 && k === 'darrov') { e.stopPropagation(); setSt(p => ({ ...p, birinchi: it.id })); } }}>
+      <span key={it.id} className={`dchip in${birinchi === it.id ? ' first' : ''}`} onClick={(e) => {
+        if (step1 && k === 'darrov') { e.stopPropagation(); setSt(p => ({ ...p, birinchi: it.id })); return; }
+        // F-0921-04: joylashgan kartani BOSIB qaytarib olish mumkin. Ilgari imkon yo'q edi: uchala ishni
+        // «Darrov» dan boshqa katakka qo'ygan o'quvchi qotib qolardi (birinchi ishni tanlash shu katakdan
+        // olinadi) — faqat sahifani qayta yuklash qutqarardi. 👦 o'quvchi-o'qishi topdi.
+        e.stopPropagation();
+        setSt(p => { const np = { ...p.placed }; delete np[it.id]; return { ...p, placed: np, sel: null, birinchi: p.birinchi === it.id ? null : p.birinchi }; });
+      }}>
         <span className="dchip-ic">{birinchi === it.id ? '1️⃣' : it.ic}</span><span className="dchip-nom">{tr(it.nom)}</span>
       </span>
     );

@@ -1358,7 +1358,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, '').trim();
-  const valid = /^confirm$/i.test(norm);
+  const valid = /^confirm(\(\))?$/i.test(norm); // F-0921-04: `confirm()` deb yozgan o'quvchi ham qabul qilinadi
   useEffect(() => {
     if (valid && !passed) {
       setPassed(true);
