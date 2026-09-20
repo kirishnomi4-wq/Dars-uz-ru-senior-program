@@ -39,7 +39,8 @@ Ya'ni o'quvchi vazifani bajarsa ham ptichka yonmasligi mumkin edi.
 
 | Tekshiruv | Natija |
 |---|---|
-| Har fayl brauzerda ochiladi va xatosiz ishlaydi | 88 fayl — ⏳ (tunda tugaydi, natija pastda) |
+| Har fayl brauzerda ochiladi va xatosiz ishlaydi | **88/88** ✓ |
+| **Dars to'rt rejimda: self · mentor · jonli o'quvchi · uyda** | **70/70** ✓ (yangi sinov, F-0921-02) |
 | `lesson_id` bor va serverdagi katalogda mavjud | **88/88** ✓ |
 | Prod manzili to'g'ri, staging aralashmagan | **88/88** ✓ |
 | Nishon kalitlari katalog bilan mos, tavsiflar uz+ru to'liq | **70/70** ✓ |
@@ -47,6 +48,13 @@ Ya'ni o'quvchi vazifani bajarsa ham ptichka yonmasligi mumkin edi.
 | Yakun-ma'lumoti (LMS'ga ketadigan) — uz va ru | **70/70** ✓ (seal smoke) |
 | Nishon/ball qoidalari (151–154-qonun) brauzer-probda | **160/160** ✓ |
 | Darvozalar, `lint:jsx`, til/dark farqi | ✓ · farq 0 |
+
+### Yopilgan eski bo'shliq (F-0921-02)
+
+`mentor` va jonli `student` rejimlari shu paytgacha **faqat kod o'qish** bilan tekshirilgan edi. Endi yangi sinov
+(`scripts/smoke-rejim.mjs`) har darsni to'rt rejimda haqiqiy brauzerda ochadi: dars chiziladi, matn bo'sh emas,
+sahifa/konsol xatosi yo'q, mentor rejimida jonli panel ko'rinadi. **70/70 toza.** Bu — sinfda «oq ekran» xavfini
+ancha kamaytiradi.
 
 ## 4. Aniqlik — `PmLesson7` yuklanmaydi
 

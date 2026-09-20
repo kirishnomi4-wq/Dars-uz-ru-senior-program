@@ -77,7 +77,7 @@ for (const m of modules.filter((x) => MODS.includes(x.id))) {
   const dir = join(OUT, `${m.id}-Modul`);
   mkdirSync(dir, { recursive: true });
   const rows = [`# ${m.id}-Modul — ${m.title}`, '', `CRM'da: **${CRM[m.id] || '?'}** bo'limi · ${mine.length} dars`, '',
-    '| № | Tur | Dars ichidagi nom (LMS materialiga shu nom) | Kursdagi nomi | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|---|'];
+    '| ☐ | № | Tur | Nom — uz (LMS materiali) | Nom — ru | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|---|---|'];
   for (const j of mine) {
     const b = built.get(basename(j.src));
     if (!b) { console.log(`✗ yig'ilmagan: ${j.src}`); continue; }
@@ -86,13 +86,14 @@ for (const m of modules.filter((x) => MODS.includes(x.id))) {
     copyFileSync(b, out); total++;
     const lid = lessonId(out);
     const nomi = (CAT.get(lid) || {}).title_uz || j.title;
-    rows.push(`| ${nn} | ${j.type} | **${nomi}** | ${j.title} | \`${basename(out)}\` | \`${lid}\` | \`${md5(out)}\` |`);
+    const nomiRu = (CAT.get(lid) || {}).title_ru || '—';
+    rows.push(`| ☐ | ${nn} | ${j.type} | **${nomi}** | ${nomiRu} | \`${basename(out)}\` | \`${lid}\` | \`${md5(out)}\` |`);
     if (j.hw) {
       const hb = built.get(basename(j.hw));
       if (hb) {
         const ho = join(dir, `${nn}-${basename(j.hw, '.jsx')}.jsx`.replace('.homework', '-uyga-vazifa'));
         copyFileSync(hb, ho); total++;
-        rows.push(`| ${nn}. | Uyga vazifa | **${nomi} — uyga vazifa** | ${j.title} | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
+        rows.push(`| ☐ | ${nn}. | Uyga vazifa | **${nomi} — uyga vazifa** | ${nomiRu === '—' ? '—' : nomiRu + ' — домашнее задание'} | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
       }
     }
   }
@@ -111,7 +112,8 @@ writeFileSync(join(OUT, 'README.md'), [
   '2. Fayl nomidagi **NN** — kursdagi tartib raqami (dars ketma-ketligi shunga qarab qo\'yiladi).',
   '   Material nomini `ROYXAT.md` dagi **«Dars ichidagi nom»** ustunidan oling — o\'quvchi darsda aynan shuni ko\'radi.',
   '3. `NN-…-uyga-vazifa.jsx` — o\'sha darsning uyga vazifasi (alohida material).',
-  '4. Har modulning `ROYXAT.md` faylida sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.', '',
+  '4. Har modulning `ROYXAT.md` faylida uz/ru sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.',
+  '   Birinchi ustundagi ☐ — yuklaganingizni belgilab borish uchun.', '',
   '## Muhim', '',
   '- `lesson_id` serverdagi katalog bilan bir xil bo\'lishi shart — u fayl ichida, o\'zgartirilmaydi.',
   '- Dars tugaganda natija avtomat CRM\'ga ketadi; uyga vazifa topshirilganda ham (21.09 dan).',

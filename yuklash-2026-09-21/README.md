@@ -1,6 +1,6 @@
 # LMS'ga yuklash — yuklash-2026-09-21
 
-Yig'ilgan: 2026-09-20 21:12 UTC · jami **88 fayl**.
+Yig'ilgan: 2026-09-20 21:32 UTC · jami **88 fayl**.
 Har fayl o'zi-yetarli (`.jsx`): ichida dars, kompilyator va jonli-qatlam bor, qo'shimcha modul kerak emas.
 Server manzili: **prod** (`dars-api.coddycamp.uz`).
 
@@ -20,7 +20,8 @@ Server manzili: **prod** (`dars-api.coddycamp.uz`).
 2. Fayl nomidagi **NN** — kursdagi tartib raqami (dars ketma-ketligi shunga qarab qo'yiladi).
    Material nomini `ROYXAT.md` dagi **«Dars ichidagi nom»** ustunidan oling — o'quvchi darsda aynan shuni ko'radi.
 3. `NN-…-uyga-vazifa.jsx` — o'sha darsning uyga vazifasi (alohida material).
-4. Har modulning `ROYXAT.md` faylida sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.
+4. Har modulning `ROYXAT.md` faylida uz/ru sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.
+   Birinchi ustundagi ☐ — yuklaganingizni belgilab borish uchun.
 
 ## Muhim
 
