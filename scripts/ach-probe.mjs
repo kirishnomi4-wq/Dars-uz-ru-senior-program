@@ -198,7 +198,9 @@ for (const sp of specs) {
       if (await pg.$('.acu-overlay')) fail('S1a-xato-togri', 'bayram ko\'rindi');
       pass('S1a-xato-togri'); } });
     await scen('S1b-F5', { seed: [{}, 's1b'], body: async ({ pg }) => {
-      await run(pg, sp.wrong, 'wrong'); await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForSelector('.lesson-root', { timeout: 15000 }); await pg.waitForTimeout(900);
+      // 20.09: og'ir yurishda (160 holat) progress-yozuvi ulgurmay F5 bo'lib, «missed yo'qoldi» beqaror yiqilishi chiqdi —
+      // qayta yuklashdan oldin qo'shimcha kutish (alohida yurishda 3/3 o'tardi)
+      await run(pg, sp.wrong, 'wrong'); await pg.waitForTimeout(500); await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForSelector('.lesson-root', { timeout: 15000 }); await pg.waitForTimeout(900);
       let p = await prog(pg); const r = await rule(pg);
       if (p?.screen !== idx) return fail('S1b-F5', `F5 dan keyin boshqa ekran (${p?.screen})`);
       if (!NOMISS && !(p?.missed || []).includes(sp.sid)) return fail('S1b-F5', 'F5 dan keyin missed yo\'qoldi');

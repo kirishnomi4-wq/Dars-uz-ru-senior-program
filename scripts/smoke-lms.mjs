@@ -130,7 +130,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   const shot = join(TMP, basename(target) + '.png');
   try {
     await page.goto('file:///' + page404.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
-    await page.waitForSelector('.lesson-root', { timeout: 15000 });
+    await page.waitForSelector('.lesson-root, .hw-root', { timeout: 15000 }); // uyga-vazifa paketi `.hw-root`
     await page.waitForTimeout(700);
     if (TOKEN) {
       // «Darsga ulanmoqda…» kartasi ketguncha (server javobi) kutamiz; 15 s da ketmasa — shu ham topilma
@@ -146,8 +146,8 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
       }));
     }
     out = await page.evaluate(() => ({
-      root: !!document.querySelector('.lesson-root'),
-      text: (document.querySelector('.lesson-root')?.innerText || '').trim().length,
+      root: !!document.querySelector('.lesson-root, .hw-root'),
+      text: (document.querySelector('.lesson-root, .hw-root')?.innerText || '').trim().length,
     }));
     await page.screenshot({ path: shot });
     if (SHOT) await page.screenshot({ path: SHOT });

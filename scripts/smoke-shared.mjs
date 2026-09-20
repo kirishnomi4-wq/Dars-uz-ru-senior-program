@@ -198,20 +198,28 @@ const T = (name, cond, extra = '') => {
 // A: modul eksportlari + dars renderi
 const p1 = await ctx.newPage(); hook(p1, 'dars');
 await p1.goto(`${BASE}/lesson.html`, { waitUntil: 'domcontentloaded', timeout: 20000 });
-try { await p1.waitForSelector('.lesson-root', { timeout: 15000 }); } catch { /* pastda T() aytadi */ }
+const ROOT = '.lesson-root, .hw-root'; // uyga-vazifa paketi `.hw-root` chizadi
+try { await p1.waitForSelector(ROOT, { timeout: 15000 }); } catch { /* pastda T() aytadi */ }
 await p1.waitForTimeout(700);
 const sm = await p1.evaluate(() => window.__smoke || {});
 const lessonOk = await p1.evaluate(() => ({
-  root: !!document.querySelector('.lesson-root'),
-  text: (document.querySelector('.lesson-root')?.innerText || '').trim().length,
+  root: !!document.querySelector('.lesson-root, .hw-root'),
+  text: (document.querySelector('.lesson-root, .hw-root')?.innerText || '').trim().length,
 }));
 T('modul default — function', sm.defaultType === 'function', sm.defaultType);
 T('checks.has fabrikasi ishlaydi', sm.checksBor === true);
 T('HC_NASHR o\'qildi', !!sm.nashr, sm.nashr);
-T('dars ochildi (.lesson-root)', lessonOk.root && lessonOk.text > 20, `${lessonOk.text} belgi · React ${sm.reactVersiya}`);
+T('dars/vazifa ochildi (.lesson-root | .hw-root)', lessonOk.root && lessonOk.text > 20, `${lessonOk.text} belgi · React ${sm.reactVersiya}`);
 await p1.screenshot({ path: join(TMP, 'dars.png') });
 
 // B: kompilyator qatlami + hook-sinovi (BITTA React isboti)
+// F-0920-02: uyga-vazifa paketlari kompilyatorni umuman ishlatmaydi (tashqi modul faqat izoh-sarlavhada qoladi) —
+// ularda bu ikki band tekshiriladigan narsa emas, o'tkazib yuboriladi.
+const USES_COMPILER = new RegExp(`from\\s+["']${spec.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(lessonSrc)
+  || /HtmlCompiler|hc-root/.test(lessonSrc);
+if (!USES_COMPILER) {
+  console.log(`  ${DIM}– kompilyator qatlami: bu paket uni ishlatmaydi (uyga-vazifa) — o'tkazildi${R}`);
+} else {
 const p2 = await ctx.newPage(); hook(p2, 'kompilyator');
 let hcOpen = false, hcTyped = false;
 for (let k = 0; k < compilerPages.length && !hcOpen; k++) {
@@ -235,6 +243,7 @@ try {
 T('KOMPILYATOR qatlami ochildi (tashqi moduldan)', hcOpen);
 T('yozish ishladi — hook OK, React BITTA nusxada', hcTyped);
 await p2.screenshot({ path: join(TMP, 'kompilyator.png') });
+}
 
 T('konsol/sahifa xatosi yo\'q', errs.length === 0);
 if (errs.length) errs.forEach((e) => console.log(`     ${RED}${e}${R}`));
