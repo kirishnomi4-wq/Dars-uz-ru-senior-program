@@ -2368,10 +2368,10 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
   const hasInsert = /insert\s+into\s+products/i.test(v);
   const hasValues = /values\s*\(/i.test(v);
-  const m = v.match(/values\s*\(\s*'([^']+)'\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+  const m = v.match(/values\s*\(\s*'([^']+)'\s*,\s*(\d[\d\s]*)\s*,\s*(\d[\d\s]*)\s*\)/i);
   const hasThree = !!m;
   const valid = hasInsert && hasValues && hasThree;
-  const newRow = m ? { id: 4, nom: m[1], narx: +m[2], soni: +m[3] } : null;
+  const newRow = m ? { id: 4, nom: m[1], narx: +String(m[2]).replace(/\s/g, ""), soni: +String(m[3]).replace(/\s/g, "") } : null;
   const done = ran;
   useEffect4(() => {
     if (valid && !passed) {

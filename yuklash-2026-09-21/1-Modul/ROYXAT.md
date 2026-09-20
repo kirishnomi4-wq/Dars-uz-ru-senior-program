@@ -9,7 +9,7 @@ CRM'da: **M1 (ildiz)** bo'limi · 14 dars
 | ☐ | 02. | Uyga vazifa | **Kim mening foydalanuvchim? — uyga vazifa** | Кто мой пользователь? — домашнее задание | `02-PmLesson1-uyga-vazifa.jsx` | `pm-m1-02` | `f9fd01d2b2041fa307466490380b49af` |
 | ☐ | 03 | Kod | **HTML asoslari** | Основы HTML | `03-Htmllesson1.jsx` | `html-01-v17` | `2f9e275d6d7ae985c8d1f94081ab2521` |
 | ☐ | 04 | Kod | **HTML: rasm, struktura, forma, DevTools** | HTML: картинки, структура, формы, DevTools | `04-Htmllesson2.jsx` | `html-02-v16` | `7cfcbfad9a995cc5df20db3a146afd69` |
-| ☐ | 05 | Kod | **Takrorlash: HTML ustaxonasi** | Повторение: мастерская HTML | `05-HtmlTakrorlashLesson.jsx` | `html-takrorlash-01-05-v2` | `c0670bef4cb051e35b8dd2b5c223a456` |
+| ☐ | 05 | Kod | **Takrorlash: HTML ustaxonasi** | Повторение: мастерская HTML | `05-HtmlTakrorlashLesson.jsx` | `html-takrorlash-01-05-v2` | `12a1371f26d711f1f2c68e26d4dee917` |
 | ☐ | 06 | PM | **Struktura — foydalanuvchi uchun qilingan qulaylik** | Структура — удобство для пользователя | `06-PmLesson2.jsx` | `pm-m1d6-v1` | `530a033f1544013f15094ec060ad5e57` |
 | ☐ | 06. | Uyga vazifa | **Struktura — foydalanuvchi uchun qilingan qulaylik — uyga vazifa** | Структура — удобство для пользователя — домашнее задание | `06-PmLesson2-uyga-vazifa.jsx` | `pm-m1-06` | `475b0ce3d5db120029da671d14ad94d8` |
 | ☐ | 07 | Kod | **CSS asoslari: ranglar, shriftlar, bo'shliqlar** | CSS руками — часть 1 | `07-CssLesson1.jsx` | `css-01-v17` | `9bca803627060f75860214c91c426179` |

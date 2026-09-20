@@ -4003,7 +4003,7 @@ var RECAPS = {
       {
         ic: "🔢",
         h: { uz: "zarar(3) qanday hisoblanadi", ru: "Как считается zarar(3)" },
-        body: { uz: <>Kod return kuch * 3 edi. kuch o'rniga <b>3</b> qo'yiladi: 3 * 3. Natija <b>9</b> bo'ladi va funksiya aynan shu 9 ni qaytaradi.</>, ru: <>Код был return n * n. Вместо n подставляется <b>3</b>: 3 * 3. Получается <b>9</b> — именно эту девятку функция и возвращает.</> },
+        body: { uz: <>Kod return kuch * 3 edi. kuch o'rniga <b>3</b> qo'yiladi: 3 * 3. Natija <b>9</b> bo'ladi va funksiya aynan shu 9 ni qaytaradi.</>, ru: <>Код был return kuch * 3. Вместо kuch подставляется <b>3</b>: 3 * 3. Получается <b>9</b> — именно эту девятку функция и возвращает.</> },
         vis: <RcFlow items={["kuch = 3", "3 * 3", "9"]} />,
         ask: { uz: "Agar zarar(5) desak, mashina qanday sonni qaytaradi?", ru: "А если написать zarar(5) — какое число вернёт машина?" }
       },
@@ -4033,7 +4033,7 @@ var RECAPS = {
       {
         ic: "↔️",
         h: { uz: "Tartib muhim", ru: "Порядок важен" },
-        body: { uz: <>Birinchi son kuch ga, ikkinchisi bonus ga tushadi. Agar <b>o'rnini almashtirsangiz</b> — zarar(3, 10) — natija boshqacha (3 * 3 + 10 = 19) bo'ladi. Shuning uchun tartibga e'tibor bering.</>, ru: <>Первое число попадает в a, второе — в b. Если <b>поменять их местами</b> — zarar(3, 10) — результат будет другим (3 - 10 = -7). Так что следите за порядком.</> },
+        body: { uz: <>Birinchi son kuch ga, ikkinchisi bonus ga tushadi. Agar <b>o'rnini almashtirsangiz</b> — zarar(3, 10) — natija boshqacha (3 * 3 + 10 = 19) bo'ladi. Shuning uchun tartibga e'tibor bering.</>, ru: <>Первое число попадает в kuch, второе — в bonus. Если <b>поменять их местами</b> — zarar(3, 10) — результат будет другим (3 * 3 + 10 = 19). Так что следите за порядком.</> },
         ask: { uz: "zarar(3, 10) desak, natija qancha chiqadi va nega boshqacha?", ru: "А если zarar(3, 10) — что получится и почему иначе?" }
       }
     ]
@@ -4858,17 +4858,17 @@ var Screen5b = (props) => <QuestionScreen
   question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "Funksiyani o'qing", ru: "Прочитайте функцию" })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>zarar</FN>(kuch) {"{"} <KW>return</KW> kuch * <NUM>3</NUM> {"}"}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr3({ uz: <><span className="mono" style={{ color: T.accent }}>zarar(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>zarar(3)</span>?</> })}</h2></>}
   options={["6", "9", "3", "33"]}
   correctIdx={1}
-  explainCorrect={tr3({ uz: "To'g'ri! 3 qiymati `n` parametriga tushadi, funksiya `n * n` = 3 * 3 = 9 ni qaytaradi.", ru: "Верно! Значение 3 попадает в параметр `n`, функция возвращает `n * n` = 3 * 3 = 9." })}
+  explainCorrect={tr3({ uz: "To'g'ri! 3 qiymati `kuch` parametriga tushadi, funksiya `kuch * 3` = 3 * 3 = 9 ni qaytaradi.", ru: "Верно! Значение 3 попадает в параметр `kuch`, функция возвращает `kuch * 3` = 3 * 3 = 9." })}
   explainWrong={{
-    0: tr3({ uz: "Yo'q — 6 bu 3 + 3 bo'lardi. Bizda esa `n * n` (ko'paytirish): 3 * 3 = 9.", ru: "Нет — 6 было бы при 3 + 3. А у нас `n * n` (умножение): 3 * 3 = 9." }),
-    2: tr3({ uz: "Yo'q — 3 bu shunchaki `n` ning o'zi. Funksiya `n * n` qaytaradi: 9.", ru: "Нет — 3 это просто само `n`. Функция возвращает `n * n`: 9." }),
+    0: tr3({ uz: "Yo'q — 6 bu 3 + 3 bo'lardi. Bizda esa `kuch * 3` (ko'paytirish): 3 * 3 = 9.", ru: "Нет — 6 было бы при 3 + 3. А у нас `kuch * 3` (умножение): 3 * 3 = 9." }),
+    2: tr3({ uz: "Yo'q — 3 bu shunchaki `kuch` ning o'zi. Funksiya `kuch * 3` qaytaradi: 9.", ru: "Нет — 3 это просто само `kuch`. Функция возвращает `kuch * 3`: 9." }),
     3: tr3({ uz: "Yo'q — 33 bu matn ulanishi. Bizda son ko'paytiriladi: 3 * 3 = 9.", ru: "Нет — 33 это склейка текста. А у нас числа умножаются: 3 * 3 = 9." }),
-    default: "`n = 3` → `n * n` = 9."
+    default: "`kuch = 3` → `kuch * 3` = 9."
   }}
 />;
 var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [n, setN] = useState4(5);
-  const [natija, setNatija] = useState4(storedAnswer ? 25 : null);
+  const [natija, setNatija] = useState4(storedAnswer ? 15 : null);
   const [running, setRunning] = useState4(false);
   const [ran, setRan] = useState4(!!storedAnswer);
   const timer = useRef4(null);
@@ -4917,7 +4917,7 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="iwatch-eq">=</span>
               <span className="iwatch-num">{natija ?? "·"}</span>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ <span className="mono">return n * n</span> javob ({n} × {n} = {n * n}) ni qaytardi, u <span className="mono">natija</span> o'zgaruvchisiga saqlandi. Endi bu qiymatni xohlagancha ishlatishingiz mumkin!</>, ru: <>✓ <span className="mono">return n * n</span> вернул ответ ({n} × {n} = {n * n}), и он сохранился в переменную <span className="mono">natija</span>. Теперь это значение можно использовать сколько угодно!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ <span className="mono">return kuch * 3</span> javob ({n} × 3 = {n * 3}) ni qaytardi, u <span className="mono">natija</span> o'zgaruvchisiga saqlandi. Endi bu qiymatni xohlagancha ishlatishingiz mumkin!</>, ru: <>✓ <span className="mono">return kuch * 3</span> вернул ответ ({n} × 3 = {n * 3}), и он сохранился в переменную <span className="mono">natija</span>. Теперь это значение можно использовать сколько угодно!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -5378,15 +5378,15 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? "✓" : "2"} {tr3({ uz: "nom", ru: "имя" })}</span>
               <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? "✓" : "3"} (n)</span>
               <span className="tagpill" style={{ opacity: hasOpen ? 1 : 0.4 }}>{hasOpen ? "✓" : "4"} {"{"}</span>
-              <span className="tagpill" style={{ opacity: hasReturn && hasSquare ? 1 : 0.4 }}>{hasReturn && hasSquare ? "✓" : "5"} return n*n</span>
+              <span className="tagpill" style={{ opacity: hasReturn && hasSquare ? 1 : 0.4 }}>{hasReturn && hasSquare ? "✓" : "5"} return kuch * 3</span>
               <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? "✓" : "6"} {"}"}</span>
             </div>
-            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: "✓ Zo'r! Bu to'g'ri funksiya — parametr oladi, zararni hisoblaydi va return bilan qaytaradi!", ru: "✓ Отлично! Это верная функция — принимает параметр, считает урон и возвращает через return!" })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr3({ uz: <>6 ta belgi yashil yonishi kerak. <span className="mono">{"{ }"}</span> qavslarni oching va yoping, ichiga <span className="mono">return n * n</span> yozing.</>, ru: <>Должны загореться 6 зелёных меток. Откройте и закройте скобки <span className="mono">{"{ }"}</span>, внутрь напишите <span className="mono">return n * n</span>.</> })}</p>}
+            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: "✓ Zo'r! Bu to'g'ri funksiya — parametr oladi, zararni hisoblaydi va return bilan qaytaradi!", ru: "✓ Отлично! Это верная функция — принимает параметр, считает урон и возвращает через return!" })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr3({ uz: <>6 ta belgi yashil yonishi kerak. <span className="mono">{"{ }"}</span> qavslarni oching va yoping, ichiga <span className="mono">return kuch * 3</span> yozing.</>, ru: <>Должны загореться 6 зелёных меток. Откройте и закройте скобки <span className="mono">{"{ }"}</span>, внутрь напишите <span className="mono">return kuch * 3</span>.</> })}</p>}
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "natija", ru: "результат" })}</p>
             <div style={{ background: T.paper, borderRadius: 14, minHeight: 130, padding: "20px", boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-              {valid ? <div className="fade-step"><div style={{ fontSize: 36 }}>🛠️</div><p style={{ fontFamily: "'Source Serif 4',serif", color: T.success, fontWeight: 700, margin: "8px 0 4px", fontSize: "clamp(16px,2.4vw,20px)" }}>{tr3({ uz: "Funksiya tayyor!", ru: "Функция готова!" })}</p><p className="mono small" style={{ margin: 0, color: T.ink2 }}>zarar(4) → 16</p></div> : <p style={{ fontFamily: "'Source Serif 4',serif", color: T.ink3, fontStyle: "italic", margin: 0 }}>{tr3({ uz: "Funksiyangizni to'liq yozsangiz, natija shu yerda paydo bo'ladi.", ru: "Допишите функцию полностью — результат появится здесь." })}</p>}
+              {valid ? <div className="fade-step"><div style={{ fontSize: 36 }}>🛠️</div><p style={{ fontFamily: "'Source Serif 4',serif", color: T.success, fontWeight: 700, margin: "8px 0 4px", fontSize: "clamp(16px,2.4vw,20px)" }}>{tr3({ uz: "Funksiya tayyor!", ru: "Функция готова!" })}</p><p className="mono small" style={{ margin: 0, color: T.ink2 }}>zarar(4) → 12</p></div> : <p style={{ fontFamily: "'Source Serif 4',serif", color: T.ink3, fontStyle: "italic", margin: 0 }}>{tr3({ uz: "Funksiyangizni to'liq yozsangiz, natija shu yerda paydo bo'ladi.", ru: "Допишите функцию полностью — результат появится здесь." })}</p>}
             </div>
           </Col>
         </div>

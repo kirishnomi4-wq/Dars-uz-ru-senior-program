@@ -9,7 +9,7 @@ CRM'da: **4-M** bo'limi · 14 dars
 | ☐ | 02. | Uyga vazifa | **User Story: kim va nima uchun? — uyga vazifa** | User Story — домашнее задание | `02-PmUserStoryLesson-uyga-vazifa.jsx` | `pm-m3-02` | `656491d6c4211946458d71a6eb20a20d` |
 | ☐ | 03 | Kod | **Birinchi komponent: Vite, JSX, props** | Первый компонент: Vite, JSX, props | `03-ReactFirstComponentLesson.jsx` | `react-first-component-02-v18` | `14fb58d0ee3a8ad8c2079a13e52561ad` |
 | ☐ | 04 | Kod | **State va Effect: useState + useEffect** | State и Effect: useState + useEffect | `04-ReactStateEffectLesson.jsx` | `react-state-effect-03-v18` | `bb27095f324d63e0ffa724b17a2b4929` |
-| ☐ | 05 | PM | **Qaysi ishni birinchi qilasiz?** | Какую задачу сделаете первой? | `05-PmLesson8.jsx` | `pm-m3d5-v1` | `a9230a46a011776d92314c38569f2832` |
+| ☐ | 05 | PM | **Qaysi ishni birinchi qilasiz?** | Какую задачу сделаете первой? | `05-PmLesson8.jsx` | `pm-m3d5-v1` | `9f4d0d9d73f11a636c1f02f5a66d58b1` |
 | ☐ | 05. | Uyga vazifa | **Qaysi ishni birinchi qilasiz? — uyga vazifa** | Какую задачу сделаете первой? — домашнее задание | `05-PmLesson8-uyga-vazifa.jsx` | `pm-m3-05` | `0467c195fb4dbe39954260d5bd65643c` |
 | ☐ | 06 | Kod | **Props va qayta ishlatish** | Props и переиспользование | `06-ReactPropsReuseLesson.jsx` | `react-props-reuse-04-v18` | `e1faba01f8a8801a892f2b211439a004` |
 | ☐ | 07 | Proyekt | **Praktika: CRUD — to'liq boshqariladigan ilova** | Практика: CRUD — управляемое приложение | `07-ReactCrudPracticeLesson.jsx` | `react-crud-practice-p1-v18` | `80629fed4a3e862cc5d9f270c1314339` |

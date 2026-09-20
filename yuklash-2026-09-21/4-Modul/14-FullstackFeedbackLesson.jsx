@@ -2507,7 +2507,7 @@ var Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState3(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, "").trim();
-  const valid = /^confirm$/i.test(norm);
+  const valid = /^confirm(\(\))?$/i.test(norm);
   useEffect4(() => {
     if (valid && !passed) {
       setPassed(true);

@@ -2136,7 +2136,8 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [count, setCount] = useState3(storedAnswer ? 1240517 : 1240489);
   const [msgs, setMsgs] = useState3(storedAnswer ? [{ uz: "Salom!", ru: "Привет!" }, { uz: "Qanaqasan?", ru: "Как ты?" }, { uz: "Zo'r 🔥", ru: "Класс 🔥" }] : []);
   const timer = useRef3(null);
-  const done = count >= 1240505 || !!storedAnswer;
+  const [ran, setRan] = useState3(!!storedAnswer);
+  const done = ran || !!storedAnswer;
   const POOL = [{ uz: "Salom!", ru: "Привет!" }, { uz: "Qanaqasan?", ru: "Как ты?" }, { uz: "Bugun darsdamisan?", ru: "Ты сегодня на уроке?" }, { uz: "Zo'r 🔥", ru: "Класс 🔥" }, { uz: "Ha, keldim", ru: "Да, пришёл" }, "👍", { uz: "Rahmat!", ru: "Спасибо!" }, { uz: "Kechqurun chiqamizmi?", ru: "Выйдем вечером?" }];
   useEffect4(() => () => clearInterval(timer.current), []);
   const run = () => {
@@ -2150,6 +2151,7 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (n >= 6) {
         clearInterval(timer.current);
         setRunning(false);
+        setRan(true);
       }
     }, 350);
   };

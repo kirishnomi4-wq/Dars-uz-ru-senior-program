@@ -2316,7 +2316,14 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         if (step1 && k === "darrov") {
           e.stopPropagation();
           setSt((p) => ({ ...p, birinchi: it.id }));
+          return;
         }
+        e.stopPropagation();
+        setSt((p) => {
+          const np = { ...p.placed };
+          delete np[it.id];
+          return { ...p, placed: np, sel: null, birinchi: p.birinchi === it.id ? null : p.birinchi };
+        });
       }}>
         <span className="dchip-ic">{birinchi === it.id ? "1️⃣" : it.ic}</span><span className="dchip-nom">{tr2(it.nom)}</span>
       </span>
