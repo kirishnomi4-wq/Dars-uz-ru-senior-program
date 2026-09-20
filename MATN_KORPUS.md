@@ -3677,5 +3677,65 @@ bitta qisqa javob (mavjud savol-qatori o'rnida, mavjud xato-rangida) — TASDIQL
 ❌ «Noto'g'ri! Bu qator to'g'ri yozilgan.» — ikki marta «to'g'ri/noto'g'ri», chalkash va jazo ohangi.
 ❌ «Xato qatorni topa olmadingiz.» — o'quvchi hali izlayapti; hukm emas, yo'nalish kerak.
 📌 Shu ekranda Mentor/audio/maslahat xato qatorni urinishdan OLDIN aytsa — ekran baribir tomosha; bunday matnlar
-   `feedback/F-0918-04/b-tolqin/MATN_TAKLIFLAR.md` da taklif sifatida turibdi (tasdiq kutadi).
+   `feedback/F-0918-04/b-tolqin/MATN_TAKLIFLAR.md` da edi — 19.09 da tasdiqlanib kiritildi (§186).
+
+## 186. JAVOB URINISHDAN OLDIN AYTILMAYDI — Mentor, maslahat, kod-izohi, yorliq (F-0919-02, 151-qonun)
+
+Nishon va ball birinchi urinishga (151/153-qonun). Ekran javobni urinishdan OLDIN aytsa, «🏅 Birinchi urinishda…» sharti
+bilimni emas, o'qishni tekshiradi. Tushuntirish yo'qolmaydi — xatodan keyin (fidbek) va topilgandan keyin («✓ Topdingiz!»)
+chiqadi. **Qoida (QOIDA) qoladi, JAVOB (qator, qiymat, tartib) ketadi:** «justify-content faqat flex konteynerda
+ishlaydi» — qoladi; «display: block yozilgan» — ketadi.
+
+| Dars · ekran · joy | ❌ eski | ✅ yangi (19.09 tasdiqlangan) |
+|---|---|---|
+| CssLesson2 s14 · Mentor | «Sababi: display: flex emas, block yozilgan!» | «Sababi — kodning bitta qatorida.» |
+| Htmllesson2 s14 · ko'rsatma | «Rasm nega ko'rinmayapti? img qatorini bosing.» | «Rasm nega ko'rinmayapti? Xato qatorni bosing.» |
+| JsConditions s14 · Mentor | «Shartda bitta teng belgisi turibdi — u qiymat soladi, tekshirmaydi.» | «Qaysi qatorda xato? Toping va bosing.» |
+| JsLoops s14 · Mentor | «Sir qadam qismida yashiringan.» | (olib tashlandi — «i 5 ga yaqinlashyaptimi?» savoli qoldi) |
+| PracticeLesson3 s5 · Mentor | «avval mahsulotlar, keyin narx, so'ng chiroyli ko'rinish» | «MVP'da poydevor qaysi qadam?» |
+| ReactCrudPractice s13 · AI kod-izohi | `// o'sha ro'yxatning o'ziga qo'shdi` | `// yangi o'yinni qo'shdi` |
+| ReactRouterPractice s13 · maslahat | «Qayta yuklash — <a href> ning belgisi» | «Qaysi teg bosilganda brauzer butun sahifani qayta yuklaydi?» |
+| DbSqlNosql s14 · Mentor | mifni so'zma-so'z aytardi | «Do'stingizning uch fikridan bittasi — mif. Qaysi biri? Bosing.» |
+| NodeServer s13 · Mentor | tartibni to'liq sanardi | «…har bo'lak o'zidan oldingisiga tayanadi.» |
+| NodeServer s14 · variant | «app.listen yo'q — server yoqilmagan» (Mentor bilan so'zma-so'z) | «app.listen yo'q» |
+| FullPipelineProject s10 · yorliq | «yashil, oxirgi ishlagan» (savolning o'zi) | «yashil» |
+| BackendCrud s10 · kod-izohi | `// price?` | (olib tashlandi) |
+
+**Maslahat faqat birinchi xatodan keyin** (matn o'zgarmaydi, qachon chiqishi o'zgaradi): AuthEnv s14, NodeServer s13
+(«Keyingi: …»), **tiqilib qolganda chiqadigan 13-band maslahati** (25 s) — ApiPostman s14, AuthEnv s14. Xatodan keyingi
+fidbek o'zi yo'l ko'rsatsa, ekran boshidagi maslahat qutisi olib tashlanadi, takrorlanmaydi (DbSqlNosql s14 — 109-qonun).
+
+**Ikkinchi aylanish (19.09 kechqurun, 👦 o'quvchi-o'qish + metodist topgan — Mentorni tozalash YETMAYDI):**
+
+| Dars · ekran · joy | ❌ eski | ✅ yangi |
+|---|---|---|
+| JsLoops s14 · o'ng ustun va konsol | «CHEKSIZ! — **qadam shartga yaqinlashmayapti**…» · «**i kamayyapti** — 5 ga hech yetmaydi» | «CHEKSIZ! — mashina to'xtamayapti» · «5 ga hech yetmaydi — cheksiz!» (1, 0, -1, -2 raqamlari qoladi — dalil o'quvchida) |
+| ReactRouterPractice s13 · Mentor | «**"Qo'shish"ni** bosganda … qaysi qator **`<Link>` emas**?» | «menyudagi havolalardan birini bosganda … qaysi qator bunga sabab?» |
+| ReactCrudPractice s13 · Mentor va izoh | «State darsini eslang: **ro'yxatni to'g'ridan-to'g'ri o'zgartirsangiz, React ko'rmaydi**» · `// o'sha ro'yxat...` | «State darsini eslang. Qaysi qatorda xato?» · `// ro'yxatni yangiladi` |
+| ReactIntro s14 · AI kod-izohi | `<ButunSahifa />   // qolgan HAMMASI shu yerda` | `<ButunSahifa />` |
+| BackendCrud s10 · Mentor | «…baza **"price degan ustun yo'q"** deyapti. Sxemamizda ustun nomi **narx** edi.» (xato matnini Mentor o'qib beradi) | «…xato matni o'zi aytib beradi — uni diqqat bilan o'qing.» |
+| FullPipelineProject s10 · Mentor | «Tezkor yechim: **eski** yukni qaytarish» (yorliq olingach «eski» ↔ «oxirgi ishlagan» ziddiyati) | «Tezkor yechim: **ishlagan** yukni qaytarish» |
+| ApiPostman s14 · topilgandan keyingi izoh | «Bitta harf **(s)**…» — manzilda `/produts`, tushgan harf **c** (faktik xato) | «Bitta harf **(c)**…» (uz + ru) |
+
+**Javob yashirinadigan joylar — tekshiruv ro'yxati** (19.09 👦 o'quvchi-o'qishi ko'rsatdi: Mentor tozalangani yetmaydi):
+Mentor · ko'rsatma-qator · o'ng ustundagi maslahat · **AI kodidagi izoh** · variant/yorliq matni · **konsol/terminal
+xabari** · **boshqa Mentor gapi** (masalan ilgarigi jumla) · **tiqilib qolganda chiqadigan maslahat** (13-band, 25 s —
+birinchi urinishdan OLDIN ham chiqadi) · qo'shni to'g'ri variantning o'zi (javobga qarama-qarshi gap). Audio — hisobga
+olinmaydi (ovoz ishlatilmaydi, foydalanuvchi 19.09).
+
+## 187. TAVSIFNI «ROSTROQ» QILAMAN DEB TUSHUNARSIZ QILMA (F-0919-03, foydalanuvchi 19.09)
+
+19.09 da §133 bo'yicha 7 ta «rost emas» nishon-tavsifiga aniqroq variant taklif qilindi — foydalanuvchi **hammasini rad
+etdi**: «o'quvchiga tushunarsiz — hozirgisi qolsin».
+
+| Nishon | ✅ qoldi (hozirgi) | ❌ rad etilgan taklif |
+|---|---|---|
+| CiCdIntro `clearedForTakeoff` | «Barcha buyumlarni tuzatib, samolyotni ko'tardingiz» | «Chamadonni lentadan to'liq yashil o'tkazdingiz» |
+| BotAiAgent `cycleBuilder` | «Idrok → qaror → amal rejasini yig'dingiz» | «Maqsad, asbob va chegarani to'g'ri tanladingiz» |
+| JestUnitTest `fakeTestHunter` | «Yolg'on testni topdingiz — expectsiz» | «Haqiqiy testlarni yolg'onlardan ajratdingiz» |
+| CssLesson2 `markaz` · PmLesson9 `clearTerms` · BotFullProject `checkMaster` · PmLesson21 `twoInARow` | hozirgi | aniqlashtirilgan variantlar |
+
+Saboq: nishon tavsifi — o'quvchi bir qarashda tushunadigan, darsdagi obrazga tayangan oddiy gap. Mantiqan aniqroq, lekin
+yangi obraz («lenta», «chegara») yoki mavhum so'z qo'shadigan variant yaxshiroq emas. Tavsifni o'zgartirish taklifi
+avval 👦 o'quvchi-o'qishidan o'tadi, keyin foydalanuvchiga beriladi.
 

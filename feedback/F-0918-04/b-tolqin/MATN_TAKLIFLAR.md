@@ -1,4 +1,9 @@
-# MATN TAKLIFLARI — B to'lqin (18.09 tun) · TASDIQ KUTADI
+# MATN TAKLIFLARI — B to'lqin (18.09 tun) · ✅ 19.09 KECHQURUN HAL QILINDI (F-0919-02)
+
+> **Holat (19.09 ~21:00, foydalanuvchi):** javobni oldindan aytadiganlar — ✅ kiritildi · maslahat faqat birinchi xatodan
+> keyin — ✅ · **nishon-tavsiflari (§133 takliflari) — ❌ RAD, hozirgisi qoladi** («o'quvchiga tushunarsiz», KORPUS §187) ·
+> «nishon» ikki ma'nosi va ohang — ✅ · ko'rinish xatolari (`=&gt;`, PmLesson17 ru) — ✅ · audio-matnlar — tegilmadi
+> (ovoz ishlatilmaydi). Kiritilgan juftliklar: KORPUS §186. Keyingi yangi topilmalar: `SAVOLLAR_VA_HOLAT.md` N1–N9.
 
 > Tunda darsdagi matnga TEGILMADI (foydalanuvchi qarori 7-A) — istisno: Q6 dagi tasdiqlangan qator va 151-qonun qatori.
 > Bu fayl — oltita partiya agentining takliflari bitta joyda. Har qatorda: ❌ hozirgi (aynan iqtibos) → ✅ taklif + sabab.

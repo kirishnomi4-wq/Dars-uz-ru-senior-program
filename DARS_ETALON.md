@@ -2870,9 +2870,10 @@ berib turaylik». Halollik nishonning kamligida emas — nishon **nima uchun ber
 
 - **151-naqsh ulangan: 100 ekran** (66 dars; pilot 2 bilan) — ro'yxat: `feedback/F-0918-04/b-tolqin/holat-P1…P6.json`
   (`status: "✅"`), isbot: `probe/P1…P6.json` (`scripts/ach-probe.mjs`: S0 · S4 · S5 · S2 · S1a · S1b · S3).
-- **Bonus (1-band: darsda ko'pi bilan bitta — hammasida bajarilgan):** `BotIntroLesson` s6 `keyMaster` · `CiCdIntroLesson` s9 `clearedForTakeoff` · `ClaudeSkillsLesson` s7 `beforeAfter` (tashqi earn) · `CssLesson1` s5 `rang` · `DbSqlNosqlLesson` s5 `connector` · `HtmlTakrorlashLesson` s12b `built` · `Htmllesson2` s7 `forma` · `JsConditionsLesson` s13 `builder` · `PmLesson10` s4 `silentWatch` · `PmLesson11` s4 `memoryMaker` · `PmLesson12` s4 `eyesOpen` · `PmLesson14` s4 `threeFloors` · `PmLesson16` s4 `cheapFix` · `PmLesson17` s4 `paceSetter` · `PmLesson18` s4 `eagleEye` · `PmLesson19` s4 `innerCircle` · `PmLesson21` s4 `dayTwo` · `PmLesson22` s4 `rightQuestion` · `PmLesson23` s4 `mirrorCheck` · `PmLesson24` s4 `roadBuilder` · `PmLesson25` s4 `slideTalker` · `PmLesson4` s2 `pairFinder` · `PmLesson5` s2 `splitter` · `PmLesson9` s4 `bugHunter` · `ReactCrudPracticeLesson` s11 `builder` · `ReactIntroLesson` s13 `builder` · `ReactRouterPracticeLesson` s9 `builder` · `VsCodeLesson` s3 `pilot`.
+- **Bonus (1-band: darsda ko'pi bilan bitta — hammasida bajarilgan):** `BotIntroLesson` s6 `keyMaster` · `PmLesson6` s2 `jargon` (19.09 D3: dars 2-ekrani, mavzu hali o'rgatilmagan — birinchi urinish sharti omad o'yini bo'lardi) · `CiCdIntroLesson` s9 `clearedForTakeoff` · `ClaudeSkillsLesson` s7 `beforeAfter` (tashqi earn) · `CssLesson1` s5 `rang` · `DbSqlNosqlLesson` s5 `connector` · `HtmlTakrorlashLesson` s12b `built` · `Htmllesson2` s7 `forma` · `JsConditionsLesson` s13 `builder` · `PmLesson10` s4 `silentWatch` · `PmLesson11` s4 `memoryMaker` · `PmLesson12` s4 `eyesOpen` · `PmLesson14` s4 `threeFloors` · `PmLesson16` s4 `cheapFix` · `PmLesson17` s4 `paceSetter` · `PmLesson18` s4 `eagleEye` · `PmLesson19` s4 `innerCircle` · `PmLesson21` s4 `dayTwo` · `PmLesson22` s4 `rightQuestion` · `PmLesson23` s4 `mirrorCheck` · `PmLesson24` s4 `roadBuilder` · `PmLesson25` s4 `slideTalker` · `PmLesson4` s2 `pairFinder` · `PmLesson5` s2 `splitter` · `PmLesson9` s4 `bugHunter` · `ReactCrudPracticeLesson` s11 `builder` · `ReactIntroLesson` s13 `builder` · `ReactRouterPracticeLesson` s9 `builder` · `VsCodeLesson` s3 `pilot`.
 - **Mehnat nishoni (5-band + 7-band):** `BackendCrudPracticeLesson` spf · `FullstackConnectPracticeLesson` s16 · `GitLesson` s13, s3 · `JsFunctionsLesson` s13 · `PmJtbdLesson` practice, s10 · `PmLesson1` s6 · `PmLesson10` s10, s8 · `PmLesson11` s8, s10 · `PmLesson12` s8, s10 · `PmLesson13` s8, s10 · `PmLesson14` s8, s10 · `PmLesson15` s10, s8 · `PmLesson16` s10, s8 · `PmLesson17` s8, s10 · `PmLesson18` s8, s10 · `PmLesson19` s8, s10 · `PmLesson2` koding · `PmLesson20` s8, s10 · `PmLesson21` s8, s10 · `PmLesson22` s8, s10 · `PmLesson23` s8, s10 · `PmLesson24` s8, s10 · `PmLesson25` s8 · `PmLesson4` s8, s11 · `PmLesson5` s8, s9 · `PmLesson6` s9, s11 · `PmLesson8` s10, s8 · `PmLesson9` s10, s8 · `PmMetricsLesson` practice, s10 · `PmUserStoryLesson` practice, s10 · `ReactApiGetLesson` s15 · `VsCodeLesson` s2.
 - **⏸ qaror kutadi (ikkinchi tekin nishon yoki senariy):** CssLesson1 s13 `bezak` · DbSqlNosqlLesson s3 `packageMaster` · BotApiButtonsLesson s9 `buttonMaster` · BotApiButtonsLesson s11 `rightEnvelope` · BotApiButtonsLesson s12 `neverSilent` · PmLesson19 s9 `fullHouse` · PmLesson20 s4 `goodListener` · PmLesson20 s9 `sharpSifter`.
+  **✅ Hammasi hal qilindi (19.09):** `bezak` → s12 testi · `buttonMaster` → s10 testi · `rightEnvelope` → s14 testi («Command Spotter») · `neverSilent` — BotApiButtons bonusi · `fullHouse` — kam beradigan joy = xato urinish · `goodListener` — 151-naqsh · `sharpSifter` — senariy bo'yicha bonus · `packageMaster` → s4 testi (S1-A, kechqurun; tavsif «O'zgaruvchan ma'lumot uchun qulay turni topdingiz»).
 
 **Ulash qoidalari (tunda aniqlangan, hamma partiyada bir xil):**
 - Qator topshiriq OSTIDA; qayta urinishli ekranda **yakundan keyin yashiriladi** (`{!done && <AchRule …/>}`), aks holda
@@ -2925,3 +2926,21 @@ Foydalanuvchi qarorlari: 8-A (18.09), Q1-A, Q4-A (19.09).
 `--solo` — SOLO-togri / SOLO-xato (soxta server; server kabi kalit bo'yicha baholanadi); `smoke-onfinished-all --seal` (I1–I12).
 Holat (19.09): 26 tartiblash + 7 diskret + 2 debug testi birinchi urinishga o'tkazildi; solo 63/63 ekranda isbotlandi.
 
+
+## 12-Q. ⚖️ 154-QONUN: YIG'MA TOPSHIRIQDA UYUM ARALASHTIRILGAN BO'LADI (2026-09-19, D1)
+
+**Kelib chiqishi:** JestUnitTest s9 va EdgeCasesTest s9 — «bloklardan test yig'ish» ekranlari. Pastdagi uyumda to'g'ri
+uchta blok **birinchi va aynan kerakli tartibda** turardi: o'quvchi mavzuni bilmasdan, birinchi uchtasini ketma-ket
+bosib nishonni olardi (👦 o'quvchi-o'qishi: «o'ylash shart emas»). Foydalanuvchi qarori 19.09: aralashtiramiz.
+
+**Qoida:** bo'lak/blok/karta uyumi ko'rsatilganda **to'g'ri javob uyumning boshida yoki tartib bilan turmaydi**.
+Tartib **barqaror** (kodda yozilgan) bo'ladi — tasodifiy emas: shunda sinov va prob takrorlanadi, o'quvchi ham
+har kirganda boshqa ekran ko'rmaydi. Kataklarning o'z yozuvlari (masalan «📁 robot papkasi») yo'l ko'rsatishi mumkin —
+ular topshiriqning bir qismi.
+
+**Tekshiruv:** prob spetsifikatsiyasining birinchi qadami — `eval` bilan «birinchi blok = javob emas» tekshiruvi
+(`probe/P2.json`, EdgeCases s9 · JestUnitTest s9). Yozuvlarni ko'chirganda **vergul**ga e'tibor: eski oxirgi yozuvda
+vergul yo'q edi va o'rtaga tushganda sintaksis siniqdi (esbuild darvozasi tutdi).
+
+**Bog'liq:** 151-qonun (nishon birinchi urinishga — uyum aralashtirilmasa shart ma'nosiz) · KORPUS §186 (javob
+urinishdan oldin aytilmaydi) · §171 (distraktor yolg'on model ekmasin).
