@@ -71,6 +71,9 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 
 | ❌ Qiyin / rasmiy / noaniq | ✅ Sodda / tushunarli | Izoh |
 |---|---|---|
+| agent (izohsiz) | buyrug'ingiz bilan kod yozadigan AI yordamchi | 4a NestArchPractice amaliyoti: «Agentga playbook yuboring» — ikkala so'z ham izohsiz edi. Atama qoladi, bir martalik izoh qo'shiladi; **dastur nomi ham aytiladi** — sinfda `gemini.google.com` (F-0921-11, 2026-09-21) |
+| playbook (izohsiz) | to'liq yo'riqnoma (bitta xabarda) | «qaysi fayl, qanday tartibda, qayerga ulanadi». Yarim aytilgan buyruq — yarim natija (F-0921-11) |
+| AI yordamchisi (nomsiz) | `gemini.google.com` | «AI yordamchisi» yolg'iz o'zi o'quvchini qidirishga qo'yadi — sinfdagi dastur nomi aytiladi (foydalanuvchi qarori 2026-09-14) |
 | xatboshi | matn (paragraf) | "xatboshi" — bola bilmaydigan eski atama |
 | ma'lumot bazasi (kontekstsiz) | ma'lumotlar saqlanadigan joy | atamani izohlash |
 | sintaksis (izohsiz) | yozilish qoidasi / shakl | metafora bilan kiritiladi |

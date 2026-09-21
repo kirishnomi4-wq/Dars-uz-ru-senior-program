@@ -34,10 +34,11 @@ const idOf = (file) =>
 
 const argv = process.argv.slice(2);
 const optOf = (k) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : undefined; };
-const OPTS = new Set(['--token', '--expect', '--shot']);
+const OPTS = new Set(['--token', '--expect', '--shot', '--lang']);
 const TOKEN = optOf('--token') || process.env.LMS_TOKEN || null;   // LMS-ko'prik rejimi
 const EXPECT = optOf('--expect') || null;                           // sahifa matnida bo'lishi shart
 const SHOT = optOf('--shot') || null;                               // skrinshot nusxasi (dalil-papkaga)
+const LANG = optOf('--lang') === 'ru' ? 'ru' : 'uz';                // dars tili (sukut: uz)
 const args = argv.filter((a, i) => !OPTS.has(a) && !OPTS.has(argv[i - 1]));
 // html-compiler.jsx (tashqi modul) va *.shared.jsx (tashqi-modulli darslar) bu
 // smoke'ga mos emas — ular scripts/smoke-shared.mjs bilan tekshiriladi.
@@ -64,7 +65,7 @@ async function one(target, i) {
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Lesson from ${JSON.stringify(resolve(target).replace(/\\/g, '/'))};
-createRoot(document.getElementById('root')).render(React.createElement(Lesson, { lang: 'uz'${TOKEN ? `, liveToken: ${JSON.stringify(TOKEN)}` : ''} }));
+createRoot(document.getElementById('root')).render(React.createElement(Lesson, { lang: '${LANG}'${TOKEN ? `, liveToken: ${JSON.stringify(TOKEN)}` : ''} }));
 `,
       resolveDir: process.cwd(),
       sourcefile: 'smoke-entry.jsx',

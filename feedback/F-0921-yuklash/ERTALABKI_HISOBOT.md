@@ -19,6 +19,9 @@
 **Sizdan kutilayotgani:** 10 ta taklif (Q1–Q10) — ular matnga yoki ekran mantig'iga tegadi, shuning uchun
 tegmadim. Eng muhimi **Q6**: React API darslarida o'quvchidan mavjud bo'lmagan serverga so'rov yozish so'ralyapti.
 
+> ✅ **21.09 08:20 — Q1–Q10 YOPILDI.** Qarorlaringiz: Q6 → GET=B (`public/games.json`), POST=A (keyingi navbat);
+> qolgan to'qqiztasi → hammasi ha. Nima qilingani — quyida **7-bo'limda**.
+
 > Topshiriq (21.09 01:50): «bitta papka — hozirgi darslar, yangi avtomatlashtirishga to'liq mos; ertalab LMS'ga
 > yuklayman». Javoblar: 1-A (darslar + uyga-vazifa) · 2-A · 3-A (tartib raqamli nomlar) · 4-A (faqat o'zi-yetarli
 > fayllar) · 5-A (to'liq sifat-o'tishi). Qo'shimcha: **PM uyga-vazifasi topshirilganda `onFinished` avtomat ketsin.**
@@ -163,3 +166,36 @@ chiqadi — bu ilgak-ekran, to'g'ri/xato yo'q; ball ham bermaydi.
 Uyga vazifa endi bosqichlar tugashi bilan **o'zi topshiriladi** — o'quvchi «Vazifani topshirish» tugmasini bosishi
 shart emas. Agar «o'quvchi o'zi bosib topshirsin» degan qoida muhim bo'lsa, ayting — avtomat topshirishni faqat
 sahifadan chiqishda ishlaydigan qilib o'zgartiraman.
+
+
+---
+
+## 7. Q1–Q10 — YOPILDI (21.09 08:20)
+
+Foydalanuvchi qarori (~07:50): **Q6 → GET=B, POST=A** · qolgan to'qqizta → **hammasi ha**.
+
+| # | Dars | Nima o'zgardi |
+|---|---|---|
+| Q1 | `VsCodeLesson` s2 | «🛟 Boshqa tizimda? (Mac yoki Linux)» paneli — macOS `.dmg` va Linux `.deb`/`.rpm` yo'li; Mentor panelga yo'naltiradi |
+| Q2 | `DeployLesson` s5 | «🛟 Ochilmadimi?» — **nusxa tugmali tayyor `index.html` + `style.css`**, ikkinchi sahifa yo'riqnomasi; qadam maslahati panelga yo'naltiradi |
+| Q3 | `CssPractice` s7 | Mentordan `display: flex` olib tashlandi (ovoz-matnidan ham) — savol o'z kuchida |
+| Q4 | `CssLesson1` yakuniy (**ballli**) | Mentor faqat selektor va xususiyatni aytadi; maydon ipuchasi «Qoidani shu yerga yozing…» (KORPUS §32) |
+| Q5 | `Htmllesson1` s7 (**ballli**) | Maslahat zinapoyasi: ipucha → shakl-maslahati → to'liq javob faqat **tugallangan xato urinishdan** keyin |
+| Q6 | `ReactApiGetLesson` s15 | Amaliyot `fetch('/games.json')` ga o'tdi + JSON namunasi + «nega fayl» izohi. Dars ichidagi soxta-server sahnalari (30 joy) **tegilmadi** — ular hikoya, tarmoqqa chiqmaydi |
+| Q7 | `NestArchPracticeLesson` | `gemini.google.com` nomi aytildi + «agent» va «playbook» bir martalik izohi |
+| Q8 | `FullPipelineProjectLesson` s6 | Qulf-yorlig'i haqiqiy shartni aytadi: «Avval 4 ssenariyni ko'ring» → «5 nuqtani tizing» |
+| Q9 | `GithubActionsLesson` amaliyoti | «🛟 Repongiz yo'qmi?» — brauzerda repo yaratish + `package.json` namunasi (lenta yashil bo'lsin) + mentor bilan variant |
+| Q10 | `AiPipelineProjectLesson` s15 | Tiqilib qolganda ipucha. **Ball halolligi saqlandi:** bu kalitli ekran, shuning uchun `rescue` ULANMAGAN — «Davom etish» vaqt bilan ochilmaydi, ipucha tartibni aytmaydi |
+
+**Darvozalar:** 10 faylda esbuild · jsx · keys · prompt ✓. Q6–Q10 fayllarida til/dark ham **6/6 toza**;
+1-modul beshtasida til/dark bazaga nisbatan **farq 0** (eski qarz, bu ish kiritmagan).
+`npm run lint:jsx` — 156 fayl, 0 topilma · `npm run lint:prompt` — 0.
+
+**Sinov:** `smoke-rejim` — 10 dars × 4 rejim (self · mentor · jonli o'quvchi · uyda): **uz 10/10 ✓ · ru 10/10 ✓**.
+
+**Qonunga muhrlandi:** `DARS_ETALON.md` **155-qonun** (o'quvchi bajara olmaydigan qadam qolmaydi) ·
+`MATN_KORPUS.md` **§188** (zaxira-panel matni) + **§186 uchinchi aylanish** + **§10** (qulf-yorlig'i) ·
+`MATN_ETALONI.md` lug'at: agent · playbook · «AI yordamchisi (nomsiz)».
+
+**Ochiq qoldi:** `ReactApiPostLesson` (POST/DELETE) uchun **A varianti** — bizning serverda `/demo/games`
+namoyish-uchi. Bu server ishi + deploy talab qiladi, shuning uchun keyingi navbatga qoldi.

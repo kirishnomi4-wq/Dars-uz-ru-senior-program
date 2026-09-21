@@ -150,6 +150,10 @@
 ✅ «⭐ Har hikoyangizga yulduz qo'ying: bu hikoya siz uchun qanchalik muhim?» *(F-0727-04 —
    savol-gap o'zi o'lchovni aytadi, «1 yulduz — unchalik…» izohi ortiqcha yuk deb olib tashlandi)*
 ❌ «⭐ — muhimlik bahosi (1–5)» — shkala savol-gapsiz, quruq raqam.
+✅ Qulf-yorlig'i **ayni shu daqiqada kerak bo'lgan** ishni aytadi: quruvchi hali yopiq bo'lsa
+   «Avval 4 ssenariyni ko'ring», ochilgach «5 nuqtani tizing» *(FullPipelineProject s6, F-0921-12)*
+❌ «Avval 5 nuqtani tizing» — o'quvchi hali ssenariylarni ko'rmagan, quruvchi ham ochilmagan:
+   yorliq boshqa qadamni aytadi, o'quvchi yo'q tugmani qidiradi.
 ✅ «✅ Uchta hikoya tayyor — tahrirlash uchun qalamcha (✎) belgisidan foydalaning» *(F-0727-04)*
 ❌ «o'zgartirmoqchi bo'lsangiz, daftardagi hikoyaning "✎ Tahrirlash" tugmasini bosing» — uzun
    shart-gap; «qalamcha» so'zi ikonkani o'zi tasvirlaydi.
@@ -3717,6 +3721,17 @@ fidbek o'zi yo'l ko'rsatsa, ekran boshidagi maslahat qutisi olib tashlanadi, tak
 | FullPipelineProject s10 · Mentor | «Tezkor yechim: **eski** yukni qaytarish» (yorliq olingach «eski» ↔ «oxirgi ishlagan» ziddiyati) | «Tezkor yechim: **ishlagan** yukni qaytarish» |
 | ApiPostman s14 · topilgandan keyingi izoh | «Bitta harf **(s)**…» — manzilda `/produts`, tushgan harf **c** (faktik xato) | «Bitta harf **(c)**…» (uz + ru) |
 
+**Uchinchi aylanish (21.09, 👦 1-modul o'qishi — javob MENTOR va IPUCHA orqali ikki marta berilardi):**
+
+| Dars · ekran · joy | ❌ eski | ✅ yangi |
+|---|---|---|
+| CssPractice s7 · Mentor | «`nav` ga **`display: flex`** berib, `gap` bilan oraliq…» — pastdagi savol aynan shu qiymatni so'raydi | «`nav` ga oraliqni `gap`, markazni `justify-content: center` berdi. Eng muhimi qoldi: havolalarni bir qatorga qaysi qiymat tizadi?» |
+| CssLesson1 · yakuniy amaliy (BALLLI) · Mentor + maydon ipuchasi | Mentor: «To'liq qoidani o'zingiz yozing: **`h1 { color: red; }`**» · `placeholder="h1 { color: red; }"` — javob ikki joyda turardi | Mentor: «Selektor — `h1`, xususiyat — `color`. Qolganini o'zingiz birlashtiring» · ipucha: «Qoidani shu yerga yozing…» (§32) |
+| Htmllesson1 s7 · maslahat (BALLLI) | Bitta harf yozilishi bilan: «Yopuvchi teg / belgisi bilan boshlanadi: `</h1>`» | Zinapoya: bo'sh → «avval / yozing, keyin teg nomi va >» · yozila boshlagach → «/ dan keyin teg nomi, oxirida >» · **tugallangan xato urinishdan keyin** → to'liq javob |
+
+Uchinchi aylanishning sabog'i: **ball beradigan ekranda javob ikki kanaldan kelishi mumkin** — Mentor gapi va
+yozuv-maydoni ipuchasi. Ikkalasi ham tekshiriladi; ipucha §32 bo'yicha bo'sh va tinch qoladi.
+
 **Javob yashirinadigan joylar — tekshiruv ro'yxati** (19.09 👦 o'quvchi-o'qishi ko'rsatdi: Mentor tozalangani yetmaydi):
 Mentor · ko'rsatma-qator · o'ng ustundagi maslahat · **AI kodidagi izoh** · variant/yorliq matni · **konsol/terminal
 xabari** · **boshqa Mentor gapi** (masalan ilgarigi jumla) · **tiqilib qolganda chiqadigan maslahat** (13-band, 25 s —
@@ -3739,3 +3754,50 @@ Saboq: nishon tavsifi — o'quvchi bir qarashda tushunadigan, darsdagi obrazga t
 yangi obraz («lenta», «chegara») yoki mavhum so'z qo'shadigan variant yaxshiroq emas. Tavsifni o'zgartirish taklifi
 avval 👦 o'quvchi-o'qishidan o'tadi, keyin foydalanuvchiga beriladi.
 
+
+## 188. 🛟 ZAXIRA-YO'L PANELI — ayblamaydi, ishlaydigan yo'l beradi, oxirida ruxsat beradi (F-0921-05…13, 155-qonun)
+
+Panel o'quvchi **to'xtab qolgan** paytda ochiladi — o'sha daqiqada u o'zini aybdor his qiladi. Matn uch ishni
+ketma-ket qiladi: **aybni oladi** («sizning xatongiz emas») → **ishlaydigan yo'lni beradi** (raqamlangan, tayyor
+kod bilan) → **ruxsat beradi** («dars to'xtamaydi, davom eting»). Uchinchisi tushib qolsa, o'quvchi panelni o'qib
+ham qadamda o'tirib qoladi.
+
+| Bo'lak | ✅ namuna (21.09) |
+|---|---|
+| Sarlavha | «🛟 Boshqa tizimda? (Mac yoki Linux)» · «🛟 Ochilmadimi?» · «🛟 Repongiz yo'qmi?» — **savol**, buyruq emas |
+| Birinchi qator | «AI sayti ochilmasligi yoki Google hisobi ishlamasligi — **sizning xatongiz emas**.» |
+| Yo'l | «1 · index.html — nusxa oling va faylga qo'ying» + nusxa tugmali kod · «Tugma **Download for Mac** deb yozilgan bo'ladi» |
+| Oxirgi qator | «Uchala tizimda ham natija bir xil… Shundan keyin qadamlarni belgilab, davom eting.» |
+
+❌ «Keyinroq uyda qilasiz» (yo'l emas — kechiktirish) · ❌ «Mentordan so'rang» (yakka o'zi — o'quvchi baribir to'xtaydi) ·
+❌ panelni ochiq qoldirish (ishlagan o'quvchining ekranini to'ldiradi — yopiq `<details>` bo'ladi).
+
+**Atama panel ichida ham izohsiz qolmaydi** (F-0921-11): «Agentga to'liq playbook yuboring» → avval bir martalik izoh —
+«🤖 **Agent** — buyrug'ingiz bilan kod yozadigan AI yordamchi. Sinfda **gemini.google.com** dan foydalanamiz.» ·
+«📋 **Playbook** — agentga bitta xabarda beriladigan to'liq yo'riqnoma: qaysi fayl, qanday tartibda, qayerga ulanadi.»
+Dastur nomi **aytiladi** — «AI yordamchisi» yolg'iz o'zi o'quvchini qidirishga qo'yadi.
+
+## 189. BREND-IZOHI — nima qilishini aytadi, qiymatini emas (F-0921-21, 156-qonun)
+
+O'quvchi «Airbnb» yoki «Garvard» so'zidan hech narsa tushunmaydi. Izoh **nimaligini** aytadi —
+qisqa, bir qator, o'quvchining so'zi bilan. Kompaniya qancha turishi (**$80 mlrd**) — qiziq fakt,
+lekin **izoh emas**: u nima qilishini aytmaydi.
+
+| ❌ eski | ✅ yangi (21.09) |
+|---|---|
+| «Avval sayt faqat **Garvard universiteti** talabalari uchun ochiq edi» | «…faqat Garvard universiteti **(Amerikadagi mashhur universitet)** talabalari uchun ochiq edi» |
+| «Biznes olamidan mashhur voqea: **Airbnb**ning birinchi taqdimoti» (sarlavha) | sarlavha o'zgarmaydi, Mentorda: «**Airbnb — begonaning uyida ijaraga turish xizmati.** Slaydlarni birma-bir oching…» |
+| «2006-yilda **Tesla** uch bosqichli uzoq rejasini yozdi» | «**Tesla — elektr avtomobil ishlab chiqaradigan kompaniya.** 2006-yilda u uch bosqichli…» |
+| `name: 'Dropbox', sub: '$10 mlrd kompaniya'` | `sub: 'fayl saqlash xizmati · $10 mlrd'` |
+| «**Netflix** bosh sahifasi… Uni bir vaqtda ochgan ikki odam» | «**Netflix — kino va serial ko'radigan xizmat.** Uni bir vaqtda ochgan ikki odam…» |
+| «Stories'ni **Snapchat** o'ylab topdi» | «Stories'ni Snapchat **(yuborilgan surat ko'rilgach yo'qoladigan ilova)** o'ylab topdi» |
+
+**Izoh shakli:** tanadagi matnda — **qavs ichida** yoki gap boshida bir jumla · faqat sarlavhada uchrasa —
+**Mentor gapida** (sarlavha og'irlashmasin).
+
+**Izoh KERAK EMAS:** o'quvchi har kuni ko'radigan nom — Telegram · Instagram · YouTube · Facebook ·
+WhatsApp · Google · Apple · Uzum · Payme · Yandex. Shubha bo'lsa — qo'ying, bir qator hech narsani buzmaydi.
+
+**⚠️ Brend javob bo'lsa — izoh javobdan KEYIN** (§186): `PmLesson28` s0 da «Parij, taksi yo'q» ilgagining
+javobi Uber; variant yoniga izoh qo'yilsa javob bilinadi. Izoh «To'g'ri — **Uber — mashina chaqirish xizmati**»
+qatoriga tushdi.

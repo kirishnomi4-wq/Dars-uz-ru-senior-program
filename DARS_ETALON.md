@@ -2944,3 +2944,59 @@ vergul yo'q edi va o'rtaga tushganda sintaksis siniqdi (esbuild darvozasi tutdi)
 
 **Bog'liq:** 151-qonun (nishon birinchi urinishga — uyum aralashtirilmasa shart ma'nosiz) · KORPUS §186 (javob
 urinishdan oldin aytilmaydi) · §171 (distraktor yolg'on model ekmasin).
+
+## 12-R. 🛟 155-QONUN: O'QUVCHI BAJARA OLMAYDIGAN QADAM QOLMAYDI (2026-09-21, F-0921-05…13)
+
+**Kelib chiqishi:** 21.09 👦 o'qishi to'rtta ekranda bir xil sinfni topdi — topshiriq **tashqi shartga** bog'langan,
+shart bajarilmasa o'quvchi o'sha yerda qoladi va platforma buni ko'rmaydi (qadam o'z-o'zini belgilaydi):
+`ReactApiGet` s15 — `robo-api.uz` javob bermaydi (48 joyda ishlatilgan) · `VsCode` s2 — qadamlar faqat Windows uchun ·
+`Deploy` s5 — butun qadam AI javobiga bog'langan · `GithubActions` amaliyoti — o'z repo'si va yashil ✓ talab qilinadi.
+
+**Qoida — uch band:**
+1. **Tashqi manzil tirik bo'lsin.** Darsda o'quvchi ochadigan yoki so'rov yuboradigan har manzil (`http…`) dars
+   yozilganda ham, har muhr oldidan ham tekshiriladi. O'lik manzil — **dars xatosi**, mentor og'zaki tuzatadigan
+   narsa emas. Tirilmasa: manzil o'quvchining o'z loyihasidagi faylga (yoki bizning uchimizga) ko'chiriladi.
+2. **Zaxira yo'l ekranning O'ZIDA turadi** — `🛟` sarlavhali yopiq `<details>` panel, chap ustunda (o'ngdagi
+   qadamlar kartasi ostida ko'rinmay qoladi, F-0913-02). Yopiq: kerak bo'lgan o'quvchi ochadi, qolganiga xalaqit bermaydi.
+   Panel **ishlaydigan** yo'l beradi: tayyor kod (nusxa tugmasi bilan), boshqa tizim uchun qadamlar, yoki
+   «mentor bilan birga» varianti. «Keyinroq qilasiz» — zaxira yo'l EMAS.
+3. **Qadam bajarilmasa ham dars to'xtamaydi.** Zaxira yo'l ham yurmasa, o'quvchi qadamni belgilab keyingi ekranga
+   o'tadi — panelning oxirgi qatori shuni aniq aytadi. Ball beradigan ekranlarga bu band **tegmaydi** (153-qonun).
+
+**Tekshiruv (muhr oldidan):** `grep -rhoE "https?://[a-z0-9.-]+" src/<modul>/ | sort -u` → har manzilga bitta so'rov;
+2xx/3xx bermagani — ro'yxatga. Zaxira panel bor-yo'qligi: tashqi shartga bog'langan har amaliyot ekranida `dsx-fb`
+yoki shunga teng panel.
+
+**Bog'liq:** F-0801-12 (GitLesson birinchi 🛟 paneli — naqsh manbai) · 153-qonun (ball halolligi — zaxira yo'l ball
+bermaydi) · KORPUS §188 (panel matni qanday yoziladi).
+
+## 12-S. 🏷️ 156-QONUN: KEYSDAGI BREND BIRINCHI KO'RINISHDA IZOHLANADI (2026-09-21, F-0921-21/22)
+
+**Kelib chiqishi:** foydalanuvchi 21.09: «Facebook–Garvard mavzusida Garvard kelyapti, o'quvchi uni universitet
+ekanini tushunmaydi — mos rasm ko'rmaguncha». O'lchov: 35 PM darsida jami **35 ta `<img>` — hammasi mentor avatari**;
+biznes-keyslar faqat emoji va matn bilan berilgan. Tekshiruvda ikkinchi bo'shliq chiqdi: brendlarning ko'pi
+**izohlanmagan** ham edi (Airbnb, Tesla, Netflix, Dropbox, Notion, Snapchat, Uber, Spotify, Duolingo, Garvard).
+
+**Qoida — uch band:**
+1. **Izoh majburiy.** Dars matnida brend/kompaniya/joy nomi **birinchi marta** ko'ringanda yonida bir qatorli izoh
+   turadi: nima qiladigan narsa ekani, o'quvchining so'zi bilan. ✅ «Garvard universiteti *(Amerikadagi mashhur
+   universitet)*» · «Airbnb — begonaning uyida ijaraga turish xizmati» · «Tesla — elektr avtomobil ishlab
+   chiqaradigan kompaniya». ❌ «$80 mlrd kompaniya» — bu **qiymatni** aytadi, **nimaligini** emas.
+2. **Har darsda takrorlanadi.** Darslar alohida ochiladi (LMS'da bitta material) — o'quvchi 25-darsni 6-darsni
+   ko'rmay ham ochishi mumkin. Shuning uchun izoh har darsda qisqa holda qaytariladi (foydalanuvchi qarori 21.09).
+   Ikkinchi marta o'sha darsda takrorlanmaydi.
+3. **Izoh javobni aytib qo'ymasin** (KORPUS §186). Brend **javob** bo'lgan ekranda (variant, topishmoq) izoh
+   variantga EMAS, **javob ochilgandan keyingi** gapga qo'yiladi. Namuna: `PmLesson28` s0 — «Parij, taksi yo'q»
+   ilgagida Uber variantiga izoh qo'yilsa javob bilinib qoladi; izoh «To'g'ri — Uber — mashina chaqirish xizmati»
+   qatoriga tushadi.
+
+**Rasm (tavsiya, majburiy emas):** izoh **nomlaydi**, rasm **ko'rsatadi** — ikkisi juft ishlaydi. Tasavvur qilib
+bo'lmaydigan referent (eski kompyuter, chet el universiteti, notanish mahsulot ekrani) uchun rasm qo'yiladi:
+naqsh `Htmllesson2` dagi `PHOTO_SET` + `Photo` (URL + emoji + gradient; rasm yuklanmasa dars TO'XTAMAYDI, 155-qonun
+3-bandi bilan bir xil mantiq). Rasm faqat loyihaning media-kutubxonasidan; `alt` uz+ru.
+
+**Tekshiruv:** keys-ekrani bor darsda — har brend nomi uchun birinchi ko'rinish joyida izoh bormi.
+Ro'yxat va rasm-rejasi: `feedback/F-0921-rasm/RASMLAR.md`.
+
+**Bog'liq:** 95-qonun (o'smir misol-olami) · 155-qonun (bajarib bo'lmaydigan qadam) · KORPUS §186 (javob oldindan
+aytilmaydi) · §189 (izoh matni qanday yoziladi).
