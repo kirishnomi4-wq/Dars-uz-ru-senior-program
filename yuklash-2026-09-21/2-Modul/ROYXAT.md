@@ -18,5 +18,5 @@ CRM'da: **M2 (ildiz)** bo'limi · 13 dars
 | ☐ | 10 | Kod | **PERN Stack — 4 texnologiya, bitta jamoa** | PERN Stack — 4 технологии, одна команда | `10-PeanStackLesson.jsx` | `pean-stack-01-v18` | `5ac7c0a31d97607dc267419d4d7f5481` |
 | ☐ | 11 | Proyekt | **Praktika 3 — Dekompozitsiya (mini-do'kon)** | Практика 3 — Декомпозиция (мини-магазин) | `11-PracticeLesson3.jsx` | `practice-03-decompose-v18` | `15ff0ddbe1955b623595d1d9f7b900fd` |
 | ☐ | 12 | Proyekt | **Praktika 4 — MVP tayyor (deploy)** | Практика 4 — MVP готов (деплой) | `12-PracticeLesson4.jsx` | `practice-04-mvp-deploy-v18` | `40d4e829b065ab04940bc62b674c0dda` |
-| ☐ | 13 | PM | **Sistemani qanday pitch qilish** | Как рассказать о системе | `13-PmLesson6.jsx` | `pm-m2d13-v1` | `ae0536b104ae6afa2de21e1c1b57494a` |
+| ☐ | 13 | PM | **Sistemani qanday pitch qilish** | Как рассказать о системе | `13-PmLesson6.jsx` | `pm-m2d13-v1` | `4e0a26372466245f9d34c856af69fe8a` |
 | ☐ | 13. | Uyga vazifa | **Sistemani qanday pitch qilish — uyga vazifa** | Как рассказать о системе — домашнее задание | `13-PmLesson6-uyga-vazifa.jsx` | `pm-m2-13` | `067377c96c01b7842fee441b069ee130` |

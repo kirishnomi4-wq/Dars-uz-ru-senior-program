@@ -2137,6 +2137,7 @@ var Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shake, setShake] = useState3(null);
   const [why, setWhy] = useState3(null);
   const [over, setOver] = useState3(null);
+  const [sel, setSel] = useState3(null);
   const [sc, setSc] = useState3(0);
   const slotRefs = useRef3({});
   const has = (id) => placed[id] !== void 0;
@@ -2217,14 +2218,7 @@ var Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       const t = moved ? hit(e.clientX, e.clientY) : null;
       if (!moved) {
         clear();
-        const free = DD_SLOTS.find((s) => s.want === chip.id && placed[chip.id] === void 0);
-        if (free) drop(chip, free.i);
-        else {
-          if (achMiss) achMiss.miss(screen);
-          setShake(chip.id);
-          setWhy(chip.why || { uz: "Bu blok varaqaga tushmaydi.", ru: "Этот блок не ложится на лист." });
-          setTimeout(() => setShake((s) => s === chip.id ? null : s), 460);
-        }
+        setSel((v) => v === chip.id ? null : chip.id);
         return;
       }
       if (t === null || t === void 0) {
@@ -2261,7 +2255,17 @@ var Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="dd-tail mono" style={{ paddingLeft: 4, opacity: 0.9 }}><Jx>export function</Jx>{" orderTotal(price, quantity) {"}</div>
                 {DD_SLOTS.map((s) => {
     const chip = DD_CHIPS.find((c) => placed[c.id] === s.i);
-    return <div key={s.i} ref={(el) => slotRefs.current[s.i] = el} className={`dd-slot ${chip ? "filled" : ""} ${over === s.i ? "over" : ""}`} style={{ marginLeft: 14 + s.i * 8 }}>
+    return <div
+      key={s.i}
+      ref={(el) => slotRefs.current[s.i] = el}
+      className={`dd-slot ${chip ? "filled" : ""} ${over === s.i ? "over" : ""}`}
+      onClick={() => {
+        if (!sel || chip) return;
+        const c = DD_CHIPS.find((x) => x.id === sel);
+        if (c && drop(c, s.i)) setSel(null);
+      }}
+      style={{ marginLeft: 14 + s.i * 8, ...sel && !chip ? { cursor: "pointer", boxShadow: `inset 0 0 0 2px ${T.accent}` } : null }}
+    >
                       {chip ? <span className="dd-code settle">{chip.node}</span> : <span className="dd-ph">{tr2(s.ph)}</span>}
                     </div>;
   })}
@@ -2271,9 +2275,14 @@ var Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" style={{ alignSelf: "flex-start" }} disabled={!canRun} onClick={runTests}>▶ npm test</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr2({ uz: "bloklar — bosing", ru: "блоки — нажимайте" })}</p>
+            <p className="flow-label">{sel ? tr2({ uz: "endi blok qaysi qatorga tushishini bosing", ru: "теперь нажмите строку, куда встанет блок" }) : tr2({ uz: "blokni tanlang — keyin qatorini bosing", ru: "выберите блок — затем нажмите его строку" })}</p>
             <div className="dd-pool fade-up delay-1">
-              {pool.length ? pool.map((c) => <div key={c.id} className={`dd-chip ${shake === c.id ? "shake" : ""}`} onPointerDown={(e) => down(e, c)}>
+              {pool.length ? pool.map((c) => <div
+    key={c.id}
+    className={`dd-chip ${shake === c.id ? "shake" : ""}`}
+    onPointerDown={(e) => down(e, c)}
+    style={sel === c.id ? { boxShadow: `inset 0 0 0 2px ${T.accent}`, transform: "translateY(-1px)" } : void 0}
+  >
                   <span className="mono">{c.label}</span>
                 </div>) : <span className="small" style={{ color: T.success, fontWeight: 700 }}>{tr2({ uz: "✓ Kerakli bloklar joylandi", ru: "✓ Нужные блоки на местах" })}</span>}
             </div>

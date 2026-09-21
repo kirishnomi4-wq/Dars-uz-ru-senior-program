@@ -4751,7 +4751,7 @@ var Screen4 = (props) => <QuestionScreen
 var K_SLIDES = [
   { ic: "🏫", t: { uz: "2004-yil. Bir universitet talabasi oddiy sayt ochdi — u faqat o'z universiteti uchun edi.", ru: "2004 год. Студент одного университета открыл простой сайт — только для своего университета." } },
   { bet: true, ask: { uz: "Sizningcha, bu sayt boshida kimlar uchun ochilgan edi?", ru: "Как вы думаете, для кого этот сайт открыли вначале?" }, opts: [{ uz: "Bitta universitet talabalari uchun", ru: "Для студентов одного университета" }, { uz: "Amerikadagi barcha talabalar uchun", ru: "Для всех студентов Америки" }, { uz: "Butun dunyo uchun", ru: "Для всего мира" }], right: 0 },
-  { ic: "🎓", t: { uz: "Avval sayt faqat Garvard universiteti talabalari uchun ochiq edi. Boshqalar ro'yxatdan o'ta olmasdi.", ru: "Сначала сайт был открыт только для студентов Гарварда. Остальные не могли зарегистрироваться." } },
+  { ic: "🎓", t: { uz: "Avval sayt faqat Garvard universiteti (Amerikadagi mashhur universitet) talabalari uchun ochiq edi. Boshqalar ro'yxatdan o'ta olmasdi.", ru: "Сначала сайт был открыт только для студентов Гарварда (известный университет в Америке). Остальные не могли зарегистрироваться." } },
   { ic: "🔗", t: { uz: "Keyin boshqa universitetlar ham qo'shildi. Saytdan foydalanadiganlar ko'paydi.", ru: "Потом подключились другие университеты. Пользователей стало больше." } },
   { ic: "🌍", t: { uz: "Oradan ikki yil o'tib, sayt butun dunyoga ochildi. Bugun uni Facebook nomi bilan bilamiz.", ru: "Через два года сайт открылся всему миру. Сегодня мы знаем его под именем Facebook." } }
 ];

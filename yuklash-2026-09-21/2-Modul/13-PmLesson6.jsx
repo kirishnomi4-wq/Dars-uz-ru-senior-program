@@ -4692,6 +4692,14 @@ var Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>
     </Stage>;
 };
+var DeckMock = ({ ochiq = false }) => <div className="dk-wrap" role="img" aria-label={ochiq ? "Taqdimot: o'nta varaq, birinchisida odamlarning muammosi" : "Taqdimot: o'nta oddiy varaq, birinchisi ajratilgan"}>
+    <div className="dk-row">
+      {Array.from({ length: 10 }, (_, i) => <span key={i} className={`dk-slide ${i === 0 ? "first" : ""}`}>
+          {i === 0 && ochiq && <b className="dk-lbl">{tr3({ uz: "MUAMMO", ru: "ПРОБЛЕМА" })}</b>}
+        </span>)}
+    </div>
+    <span className="dk-note">{tr3({ uz: "o'nga yaqin oddiy varaq · kod yo'q", ru: "около десяти простых слайдов · без кода" })}</span>
+  </div>;
 var K_SLIDES = [
   { kind: "story", t: { uz: "Ikki yigit uy ijarasi haqidagi g'oyasini pul qo'yadigan odamlarga tushuntirishi kerak edi. Ular kod ko'rsatmadi — o'nga yaqin oddiy slayd tayyorlashdi.", ru: "Двое парней должны были объяснить идею аренды жилья тем, кто вкладывает деньги. Кода они не показали — сделали около десяти простых слайдов." } },
   { kind: "guess", q: { uz: "Birinchi slaydda nima turgan?", ru: "Что было на первом слайде?" }, opts: [
@@ -4716,10 +4724,10 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow={tr3({ uz: "Keys 📊", ru: "Кейс 📊" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!last} optionalLive label={last ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Avval slaydlarni oching", ru: "Сначала откройте слайды" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(12px,1.8vw,18px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Biznes olamidan mashhur voqea: <span className="italic" style={{ color: T.accent }}>Airbnb</span>ning birinchi taqdimoti.</>, ru: <>Известная история из мира бизнеса: первая презентация <span className="italic" style={{ color: T.accent }}>Airbnb</span>.</> })}</h2></div>
-        <Mentor>{tr3({ uz: "Slaydlarni birma-bir oching — bir joyda taxmin qilasiz, ball yo'q.", ru: "Открывайте слайды по одному — в одном месте угадаете, баллов нет." })}</Mentor>
+        <Mentor>{tr3({ uz: "Airbnb — begonaning uyida ijaraga turish xizmati. Slaydlarni birma-bir oching — bir joyda taxmin qilasiz, ball yo'q.", ru: "Airbnb — сервис аренды жилья у обычных людей. Открывайте слайды по одному — в одном месте угадаете, баллов нет." })}</Mentor>
         <div className="ks-dots fade-up">{K_SLIDES.map((_, i) => <span key={i} className={`ks-dot ${i < step ? "fill" : ""} ${i === step ? "cur" : ""}`} />)}</div>
         <div className="ks-card fade-step" key={step}>
-          {cur.kind === "story" ? <p className="ks-text">{tr3(cur.t)}</p> : <>
+          {cur.kind === "story" ? <><DeckMock ochiq={step > 1} /><p className="ks-text">{tr3(cur.t)}</p></> : <>
               <p className="ks-q">🎲 {tr3(cur.q)}</p>
               <div className="ks-opts">
                 {cur.opts.map((o, i) => {
@@ -6670,7 +6678,14 @@ function PmLesson6({ lang: langProp, onFinished, liveToken }) {
         .ks-dot { width: 26px; height: 5px; border-radius: 99px; background: rgba(156,151,180,0.3); transition: background 0.3s; }
         .ks-dot.fill { background: ${T.success}; } .ks-dot.cur { background: ${T.accent}; }
         .ks-card { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.6vw,24px); box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.16); display: flex; flex-direction: column; gap: 12px; animation: fade-step 0.34s; }
-        .ks-text { font-family: 'Source Serif 4', serif; font-size: clamp(15px,2vw,18px); line-height: 1.55; color: ${T.ink}; margin: 0; }
+        /* 🗂 Taqdimot maketi (F-0921-23) — foto emas, kod bilan chizilgan varaqlar qatori */
+  .dk-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; margin-bottom: 11px; }
+  .dk-row { display: flex; gap: 5px; align-items: flex-end; flex-wrap: wrap; justify-content: center; }
+  .dk-slide { width: 26px; height: 19px; border-radius: 3px; background: ${T.bg}; box-shadow: inset 0 0 0 1px ${T.line}; }
+  .dk-slide.first { width: 62px; height: 42px; background: ${T.paper}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.3), inset 0 0 0 1.5px ${T.accent}; display: flex; align-items: center; justify-content: center; }
+  .dk-lbl { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8.5px; letter-spacing: 0.08em; color: ${T.accent}; }
+  .dk-note { font-family: 'Manrope', sans-serif; font-size: clamp(10.5px,1.3vw,12px); color: ${T.ink3}; }
+  .ks-text { font-family: 'Source Serif 4', serif; font-size: clamp(15px,2vw,18px); line-height: 1.55; color: ${T.ink}; margin: 0; }
         .ks-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(15px,2vw,17px); color: ${T.ink}; margin: 0; }
         .ks-opts { display: flex; flex-direction: column; gap: 8px; }
         .ks-opt { background: ${T.bg}; border: none; border-radius: 11px; padding: 11px 14px; text-align: left; font-family: 'Manrope'; font-weight: 600; font-size: 14px; color: ${T.ink}; cursor: pointer; transition: all 0.18s; }

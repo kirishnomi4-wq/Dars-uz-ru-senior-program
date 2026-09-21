@@ -2424,7 +2424,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow={tr2({ uz: "Tekshiruv · 404", ru: "Отладка · 404" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={done || _resc ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : fixed ? tr2({ uz: "Send bosing", ru: "Нажмите Send" }) : tr2({ uz: "Xatoni toping", ru: "Найдите ошибку" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>So'rov ishlamadi — <span className="italic" style={{ color: T.accent }}>404? Nega?</span></>, ru: <>Запрос не сработал — <span className="italic" style={{ color: T.accent }}>404? Почему?</span></> })}</h2></div>
-        <Mentor>{tr2({ uz: <>AI siz uchun GET so'rov yozdi, lekin server <b style={{ color: STAT[404][1] }}>404 Not Found</b> qaytardi — "bunday manzil yo'q". Status kodi sizga muammoni darrov aytadi. So'rovni qatorma-qator tekshiring: qaysi qatorda xato bor? Topib, tuzating.</>, ru: <>AI написал для вас GET-запрос, но сервер вернул <b style={{ color: STAT[404][1] }}>404 Not Found</b> — «такого адреса нет». Код статуса сразу подсказывает, в чём проблема. Проверьте запрос строка за строкой: в какой строке ошибка? Найдите и исправьте.</> })}</Mentor>
+        <Mentor>{tr2({ uz: <>AI siz uchun GET so'rov yozdi, lekin server <b style={{ color: STAT[404][1] }}>404 Not Found</b> qaytardi — "bunday manzil yo'q". Status kodi sizga muammoni darrov aytadi. Pastki ikki qator — <b style={{ color: T.ink }}>sarlavhalar</b>: kimga yuborilyapti va javob qaysi ko'rinishda kutilyapti. So'rovni qatorma-qator tekshiring: qaysi qatorda xato bor? Topib, tuzating.</>, ru: <>AI написал для вас GET-запрос, но сервер вернул <b style={{ color: STAT[404][1] }}>404 Not Found</b> — «такого адреса нет». Код статуса сразу подсказывает, в чём проблема. Две нижние строки — <b style={{ color: T.ink }}>заголовки</b>: кому отправляется и в каком виде ожидается ответ. Проверьте запрос строка за строкой: в какой строке ошибка? Найдите и исправьте.</> })}</Mentor>
         {_tip && miss && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Manzilda bitta harf yetishmaydi — xato qatorni bosing, tuzating va qayta Send.", ru: "💡 В адресе не хватает одной буквы — нажмите на строку с ошибкой, исправьте и снова Send." })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
         <Zoomable>
@@ -2439,6 +2439,19 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (achMiss) achMiss.miss(screen);
   }}><MethodBadge method="GET" /></div>
                 {fixed ? <div className="ai-line ok" style={{ cursor: "default" }}>/api/products</div> : <div className={`ai-line ${found ? "bad" : ""}`} onClick={() => setFound(true)}>/api/produts</div>}
+                {
+    /* N10-A: yana ikki haqiqiy qator — tanlov 1/2 dan 1/4 ga tushdi, o'quvchi hammasini o'qishi kerak */
+  }
+                <div className="ai-line" style={found ? { cursor: "default" } : void 0} onClick={() => {
+    if (found) return;
+    setMiss(true);
+    if (achMiss) achMiss.miss(screen);
+  }}>Host: zakaz-shop.uz</div>
+                <div className="ai-line" style={found ? { cursor: "default" } : void 0} onClick={() => {
+    if (found) return;
+    setMiss(true);
+    if (achMiss) achMiss.miss(screen);
+  }}>Accept: application/json</div>
               </div>
               {!found && <p className="ai-prompt">{tr2({ uz: "Qaysi qatorda xato bor? Bosing.", ru: "В какой строке ошибка? Нажмите." })}</p>}
               {miss && !found && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: "В этой строке ошибки нет — посмотрите ещё раз." })}</p></div>}

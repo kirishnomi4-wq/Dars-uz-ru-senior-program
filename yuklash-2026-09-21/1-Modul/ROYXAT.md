@@ -5,7 +5,7 @@ CRM'da: **M1 (ildiz)** bo'limi · 14 dars
 | ☐ | № | Tur | Nom — uz (LMS materiali) | Nom — ru | Fayl | lesson_id | md5 |
 |---|---|---|---|---|---|---|---|
 | ☐ | 01 | Kod | **Internet qanday ishlaydi** | Как устроен интернет | `01-InternetLesson.jsx` | `internet-01-v18` | `2117fef33fd31994c213f18597928d76` |
-| ☐ | 02 | PM | **Kim mening foydalanuvchim?** | Кто мой пользователь? | `02-PmLesson1.jsx` | `pm-m1d2-v1` | `3a03e24e45e115d44d1dd82e152a6691` |
+| ☐ | 02 | PM | **Kim mening foydalanuvchim?** | Кто мой пользователь? | `02-PmLesson1.jsx` | `pm-m1d2-v1` | `a4eff60aff2d48352b8f3fb709b8370d` |
 | ☐ | 02. | Uyga vazifa | **Kim mening foydalanuvchim? — uyga vazifa** | Кто мой пользователь? — домашнее задание | `02-PmLesson1-uyga-vazifa.jsx` | `pm-m1-02` | `f9fd01d2b2041fa307466490380b49af` |
 | ☐ | 03 | Kod | **HTML asoslari** | Основы HTML | `03-Htmllesson1.jsx` | `html-01-v17` | `b7f7a95ef7ee962fff7e49bec8a846f8` |
 | ☐ | 04 | Kod | **HTML: rasm, struktura, forma, DevTools** | HTML: картинки, структура, формы, DevTools | `04-Htmllesson2.jsx` | `html-02-v16` | `7cfcbfad9a995cc5df20db3a146afd69` |

@@ -4056,7 +4056,7 @@ var RECAPS = {
   7: {
     title: { uz: "Avval e'lon, keyin kod", ru: "Сначала анонс, потом код" },
     cards: [
-      { ic: "📦", h: { uz: "Amazon nima qiladi", ru: "Что делает Amazon" }, body: { uz: <>Jamoa mahsulot allaqachon chiqqandek <b>e'lon yozadi</b>: u odamga nima beradi, nimasi yangi. Kod hali yo'q.</>, ru: <>Команда <b>пишет анонс</b> так, будто продукт уже вышел: что он даёт человеку, что в нём нового. Кода ещё нет.</> } },
+      { ic: "📦", h: { uz: "Amazon nima qiladi", ru: "Что делает Amazon" }, body: { uz: <>Amazon — dunyodagi eng katta internet-do'kon. Jamoa mahsulot allaqachon chiqqandek <b>e'lon yozadi</b>: u odamga nima beradi, nimasi yangi. Kod hali yo'q.</>, ru: <>Amazon — самый большой интернет-магазин в мире. Команда <b>пишет анонс</b> так, будто продукт уже вышел: что он даёт человеку, что в нём нового. Кода ещё нет.</> } },
       { ic: "🛑", h: { uz: "E'lon qiziqtirmasa", ru: "Если анонс не заинтересовал" }, body: { uz: <>Hech kim qiziqmasa, mahsulot <b>qurilmaydi</b> — bir qator ham kod yozilmaydi.</>, ru: <>Если никому не интересно, продукт <b>не строят</b> — не пишут ни строчки кода.</> } },
       { ic: "📚", h: { uz: "Kichikdan boshlangan", ru: "Начинали с малого" }, body: { uz: <>Amazon ham birdan hamma narsani sotmagan: 1995-yilda u <b>faqat kitob</b> sotardi.</>, ru: <>Amazon тоже не сразу продавал всё подряд: в 1995 году он продавал <b>только книги</b>.</> }, ask: { uz: "Amazon jamoasi kodni qachon yoza boshlaydi?", ru: "Когда команда Amazon начинает писать код?" } }
     ]

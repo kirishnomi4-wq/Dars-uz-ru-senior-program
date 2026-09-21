@@ -9,7 +9,7 @@ CRM'da: **4-M** bo'limi · 14 dars
 | ☐ | 02. | Uyga vazifa | **User Story: kim va nima uchun? — uyga vazifa** | User Story — домашнее задание | `02-PmUserStoryLesson-uyga-vazifa.jsx` | `pm-m3-02` | `656491d6c4211946458d71a6eb20a20d` |
 | ☐ | 03 | Kod | **Birinchi komponent: Vite, JSX, props** | Первый компонент: Vite, JSX, props | `03-ReactFirstComponentLesson.jsx` | `react-first-component-02-v18` | `14fb58d0ee3a8ad8c2079a13e52561ad` |
 | ☐ | 04 | Kod | **State va Effect: useState + useEffect** | State и Effect: useState + useEffect | `04-ReactStateEffectLesson.jsx` | `react-state-effect-03-v18` | `bb27095f324d63e0ffa724b17a2b4929` |
-| ☐ | 05 | PM | **Qaysi ishni birinchi qilasiz?** | Какую задачу сделаете первой? | `05-PmLesson8.jsx` | `pm-m3d5-v1` | `9f4d0d9d73f11a636c1f02f5a66d58b1` |
+| ☐ | 05 | PM | **Qaysi ishni birinchi qilasiz?** | Какую задачу сделаете первой? | `05-PmLesson8.jsx` | `pm-m3d5-v1` | `49f2365e981eea4dff4cf4ea539935db` |
 | ☐ | 05. | Uyga vazifa | **Qaysi ishni birinchi qilasiz? — uyga vazifa** | Какую задачу сделаете первой? — домашнее задание | `05-PmLesson8-uyga-vazifa.jsx` | `pm-m3-05` | `0467c195fb4dbe39954260d5bd65643c` |
 | ☐ | 06 | Kod | **Props va qayta ishlatish** | Props и переиспользование | `06-ReactPropsReuseLesson.jsx` | `react-props-reuse-04-v18` | `e1faba01f8a8801a892f2b211439a004` |
 | ☐ | 07 | Proyekt | **Praktika: CRUD — to'liq boshqariladigan ilova** | Практика: CRUD — управляемое приложение | `07-ReactCrudPracticeLesson.jsx` | `react-crud-practice-p1-v18` | `80629fed4a3e862cc5d9f270c1314339` |
@@ -20,5 +20,5 @@ CRM'da: **4-M** bo'limi · 14 dars
 | ☐ | 11 | Proyekt | **Praktika: React Router — ko'p sahifali ilova** | Практика: React Router — многостраничное приложение | `11-ReactRouterPracticeLesson.jsx` | `react-router-practice-p2-v18` | `c46100329686ef560be266e888e588ed` |
 | ☐ | 12 | Proyekt | **Praktika: Loyiha kuni — AvtoIjara** | Практика: Проектный день — AvtoIjara | `12-ReactProjectDayLesson.jsx` | `react-project-day-p3-v18` | `d99c32209d1d49a66914ed862adaee16` |
 | ☐ | 13 | Proyekt | **Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt** | Практика: Сборка любого сайта — декомпозиция + точный промпт | `13-ReactBuildSiteLesson.jsx` | `react-build-site-final-p4-v18` | `e64f084daec047cc5dba195b37230aaf` |
-| ☐ | 14 | PM | **Ishlayotgan saytingizni qanday ko'rsatasiz?** | Как показать свой работающий сайт? | `14-PmLesson10.jsx` | `pm-m3d14-v1` | `9216295d14c2297f4c0803f4404025c0` |
+| ☐ | 14 | PM | **Ishlayotgan saytingizni qanday ko'rsatasiz?** | Как показать свой работающий сайт? | `14-PmLesson10.jsx` | `pm-m3d14-v1` | `7492c38ab1b4a996b343674e579b0f08` |
 | ☐ | 14. | Uyga vazifa | **Ishlayotgan saytingizni qanday ko'rsatasiz? — uyga vazifa** | Как показать свой работающий сайт? — домашнее задание | `14-PmLesson10-uyga-vazifa.jsx` | `pm-m3-14` | `60cc454256fbb93f82455e22977fa5ee` |

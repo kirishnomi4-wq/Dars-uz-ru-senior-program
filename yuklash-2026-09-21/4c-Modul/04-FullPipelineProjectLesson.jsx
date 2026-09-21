@@ -2272,9 +2272,9 @@ var Screen9 = (props) => <QuestionScreen
   }}
 />;
 var VERSIONS = [
-  { id: "v1", ico: "✅", t: { uz: "v1 — narxlash tuzatildi", ru: "v1 — исправлено ценообразование" }, tag: { uz: "yashil", ru: "зелёная" }, ok: true },
-  { id: "v2", ico: "✅", t: { uz: "v2 — yangi filtr qo'shildi", ru: "v2 — добавлен новый фильтр" }, tag: { uz: "yashil", ru: "зелёная" }, ok: true },
-  { id: "v3", ico: "🔴", t: { uz: "v3 — xarita integratsiyasi (joriy)", ru: "v3 — интеграция карты (текущая)" }, tag: { uz: "productionda xato chiqardi", ru: "выдала ошибку в production" }, ok: false }
+  { id: "v1", ico: "✅", t: { uz: "v1 — narxlash tuzatildi", ru: "v1 — исправлено ценообразование" }, w: { uz: "5 kun oldin", ru: "5 дней назад" }, tag: { uz: "yashil", ru: "зелёная" }, ok: true },
+  { id: "v2", ico: "✅", t: { uz: "v2 — yangi filtr qo'shildi", ru: "v2 — добавлен новый фильтр" }, w: { uz: "kecha", ru: "вчера" }, tag: { uz: "yashil", ru: "зелёная" }, ok: true },
+  { id: "v3", ico: "🔴", t: { uz: "v3 — xarita integratsiyasi (joriy)", ru: "v3 — интеграция карты (текущая)" }, w: { uz: "bugun 14:20", ru: "сегодня 14:20" }, tag: { uz: "productionda xato chiqardi", ru: "выдала ошибку в production" }, ok: false }
 ];
 var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext2(AchMissCtx);
@@ -2295,7 +2295,7 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>v3 productionda <span className="italic" style={{ color: T.accent }}>xato</span> chiqardi. Qaysi versiyaga qaytamiz?</>, ru: <>v3 выдала <span className="italic" style={{ color: T.accent }}>ошибку</span> в production. К какой версии откатываемся?</> })}</h2></div>
         <Mentor>{tr2({ uz: <>Testlar v3'ni tutmagan — xato faqat haqiqiy yo'lovchida chiqdi. Tezkor yechim: <b style={{ color: T.ink }}>ishlagan yukni qaytarish</b>. Jurnaldan qaysi versiya oxirgi ishlagan versiya ekanini toping.</>, ru: <>Тесты не поймали v3 — ошибка вылезла только у настоящих пассажиров. Быстрое решение: <b style={{ color: T.ink }}>вернуть рабочий багаж</b>. Найдите в журнале последнюю рабочую версию.</> })}</Mentor>
-        {_tip && !solved && <p className="bhint fade-step">{tr2({ uz: "💡 Har versiyaning yorlig'ini o'qing. Buzuq v3'dan OLDINGI yashil versiyani qidiring.", ru: "💡 Читайте ярлык каждой версии. Ищите зелёную версию ПЕРЕД сломанной v3." })}</p>}
+        {_tip && !solved && <p className="bhint fade-step">{tr2({ uz: "💡 Har kartada yorliq ham, vaqt ham bor. Buzuq versiyadan oldingi eng oxirgi yashilni qidiring.", ru: "💡 На каждой карточке есть и ярлык, и время. Ищите самую последнюю зелёную перед сломанной." })}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
         <Zoomable>
         <div className="fade-up" style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", marginBottom: 4 }}>
@@ -2310,7 +2310,7 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       boxShadow: isCorrectPick ? `inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25)` : isPicked && !solved ? `inset 0 0 0 1.5px ${T.accent}` : void 0
     }}>
                 <span className="role-ico">{v.ico}</span>
-                <span className="vlbl">{tr2(v.t)}</span>
+                <span className="vlbl">{tr2(v.t)} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr2(v.w)}</span></span>
                 <span className="role-r mono">{tr2(v.tag)}</span>
               </button>;
   })}

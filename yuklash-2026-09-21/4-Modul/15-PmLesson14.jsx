@@ -1422,7 +1422,7 @@ var RECAPS = {
   7: {
     title: { uz: "Texnika o'z qadamini olmagan", ru: "Техника не получила своего шага" },
     cards: [
-      { ic: "🏠", h: { uz: "Besh qadamda nima yo'q", ru: "Чего нет в пяти шагах" }, body: { uz: <>Airbnb aytib bergan besh qadamda <b>«sayt qanday qurilgani»</b> qadami yo'q.</>, ru: <>В пяти шагах, которые рассказал Airbnb, нет шага <b>«как устроен сайт»</b>.</> } },
+      { ic: "🏠", h: { uz: "Besh qadamda nima yo'q", ru: "Чего нет в пяти шагах" }, body: { uz: <>Airbnb — begonaning uyida ijaraga turish xizmati. U aytib bergan besh qadamda <b>«sayt qanday qurilgani»</b> qadami yo'q.</>, ru: <>Airbnb — сервис аренды жилья у обычных людей. В пяти шагах, которые рассказал Airbnb, нет шага <b>«как устроен сайт»</b>.</> } },
       { ic: "📋", h: { uz: "Mahsulot qadamida nima bor", ru: "Что есть в шаге «продукт»" }, body: { uz: <>Mahsulot qadamida mahsulotning o'zi turgan: <b>sayt odamga nima qilib berishi</b>.</>, ru: <>В шаге «продукт» стоял сам продукт: <b>что сайт делает для человека</b>.</> } },
       { ic: "🙋", h: { uz: "Besh qadam kim haqida", ru: "О ком пять шагов" }, body: { uz: <>Besh qadamning hammasi <b>odam va mahsulot</b> ishi haqida bo'lgan.</>, ru: <>Все пять шагов были о деле <b>человека и продукта</b>.</> }, ask: { uz: "O'z saytingizni bir gapda aytsangiz, nimadan boshlaysiz?", ru: "Если рассказать о своём сайте одной фразой — с чего начнёте?" } }
     ]
