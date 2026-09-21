@@ -3,10 +3,10 @@
   "file": "src/1-Modull/CssLesson1.jsx",
   "sid": "s13",
   "ach": "bezak",
-  "status": "⏸",
+  "status": "✅",
   "tur": "TEKIN",
   "nima_qilindi": "kodga tegilmadi",
-  "qaror": "Istalgan 3 chip qabul qilinadi — xato yo'li yo'q. Darsda bonus allaqachon bor (s5 `rang`) → 152-qonun 1-band: ikkinchi bonus bo'lolmaydi. Ko'chirish (s15 yozma test yoki boshqa ekran) yangi `desc` talab qiladi — matn tasdig'isiz qilinmaydi",
+  "qaror": "✅ 19.09 (Q3-a): nishon s12 padding-testiga ko'chirilgan — tekin emas. 21.09 kodda tasdiqlandi.",
   "eslatma": "Taklif matn-P1.md da (bezak → s15 testga ko'chirish + yangi tavsif). Hozir darsda kafolatli: rang (bonus) + bezak (tekin) + graduate = 3"
  },
  {

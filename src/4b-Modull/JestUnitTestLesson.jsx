@@ -1116,6 +1116,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shake, setShake] = useState(null);
   const [why, setWhy] = useState(null);
   const [over, setOver] = useState(null);
+  const [sel, setSel] = useState(null);   // N11-A: bosib tanlangan blok (ikki bosish mexanikasi)
   const [sc, setSc] = useState(0);
   const slotRefs = useRef({});
   const has = (id) => placed[id] !== undefined;
@@ -1168,7 +1169,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
       setOver(null);
       const t = moved ? hit(e.clientX, e.clientY) : null;
-      if (!moved) { clear(); const free = DD_SLOTS.find(s => s.want === chip.id && placed[chip.id] === undefined); if (free) drop(chip, free.i); else { if (achMiss) achMiss.miss(screen); setShake(chip.id); setWhy(chip.why || { uz: "Bu blok varaqaga tushmaydi.", ru: 'Этот блок в бланк не ложится.' }); setTimeout(() => setShake(s => (s === chip.id ? null : s)), 460); } return; }
+      if (!moved) { clear(); setSel(v => (v === chip.id ? null : chip.id)); return; }
       if (t === null || t === undefined) { snapBack(300); return; }
       const okDrop = drop(chip, t);
       snapBack(okDrop ? 180 : 300);
@@ -1195,7 +1196,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {DD_SLOTS.map(s => {
                   const chip = DD_CHIPS.find(c => placed[c.id] === s.i);
                   return (
-                    <div key={s.i} ref={el => (slotRefs.current[s.i] = el)} className={`dd-slot ${chip ? 'filled' : ''} ${over === s.i ? 'over' : ''}`} style={{ marginLeft: s.i * 14 }}>
+                    <div key={s.i} ref={el => (slotRefs.current[s.i] = el)} className={`dd-slot ${chip ? 'filled' : ''} ${over === s.i ? 'over' : ''}`}
+                      onClick={() => { if (!sel || chip) return; const c = DD_CHIPS.find(x => x.id === sel); if (c && drop(c, s.i)) setSel(null); }}
+                      style={{ marginLeft: s.i * 14, ...(sel && !chip ? { cursor: 'pointer', boxShadow: `inset 0 0 0 2px ${T.accent}` } : null) }}>
                       {chip ? <span className="dd-code settle">{chip.node}</span> : <span className="dd-ph">{tr(s.ph)}</span>}
                     </div>
                   );
@@ -1206,10 +1209,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!canRun} onClick={runTests}>▶ npm test</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'bloklar — bosing', ru: 'блоки — нажимайте' })}</p>
+            <p className="flow-label">{sel ? tr({ uz: 'endi blok qaysi qatorga tushishini bosing', ru: 'теперь нажмите строку, куда встанет блок' }) : tr({ uz: 'blokni tanlang — keyin qatorini bosing', ru: 'выберите блок — затем нажмите его строку' })}</p>
             <div className="dd-pool fade-up delay-1">
               {pool.length ? pool.map(c => (
-                <div key={c.id} className={`dd-chip ${shake === c.id ? 'shake' : ''}`} onPointerDown={(e) => down(e, c)}>
+                <div key={c.id} className={`dd-chip ${shake === c.id ? 'shake' : ''}`} onPointerDown={(e) => down(e, c)}
+                  style={sel === c.id ? { boxShadow: `inset 0 0 0 2px ${T.accent}`, transform: 'translateY(-1px)' } : undefined}>
                   <span className="mono">{c.label}</span>
                 </div>
               )) : <span className="small" style={{ color: T.success, fontWeight: 700 }}>✓ {tr({ uz: 'Kerakli bloklar joylandi', ru: 'Нужные блоки на месте' })}</span>}

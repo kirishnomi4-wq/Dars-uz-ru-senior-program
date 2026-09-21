@@ -751,7 +751,7 @@ const DAFTAR_CARDS = [
 ];
 
 // 🧺 Ikki savatga saralash — pointer-drag (DragDropOrder motoridagi kabi), noto'g'ri savatga tashlansa qaytib chiqadi + tushuntirish
-function FeedbackSort({ items, onSolved }) {
+function FeedbackSort({ items, onSolved, onWrong }) {
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [state, setState] = useState(() => ({ pool: items.map(x => x.id), green: [], gray: [] }));
   const [wrongId, setWrongId] = useState(null);
@@ -766,7 +766,7 @@ function FeedbackSort({ items, onSolved }) {
     const item = byId[id];
     const okBasket = item.valuable ? 'green' : 'gray';
     if (basket !== okBasket) {
-      setWrongId(id); setWrongWhy(item.why);
+      setWrongId(id); setWrongWhy(item.why); if (onWrong) onWrong();   // 151-qonun: noto'g'ri savat — urinish
       setTimeout(() => setWrongId(x => (x === id ? null : x)), 550);
       return;
     }
@@ -1086,25 +1086,31 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [sc, setSc] = useState(0);
   const fired = useRef(!!storedAnswer);
   const flagsRef = useRef({ signalFinder: !!storedAnswer, funnelReader: !!storedAnswer, rightFixFirst: !!storedAnswer });
+  const achMiss = useContext(AchMissCtx);                       // 🏅 151-qonun
+  const wrongRef = useRef({ sort: false, funnel: false, fix: false });   // har bosqich alohida: bir xato boshqa bosqich nishonini o'chirmaydi
+  const sid7 = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const f5Missed = () => !!(achMiss && sid7 && achMiss.missed.has(sid7));  // F5 dan keyin ham eslab qoladi
+  const onSortWrong = () => { wrongRef.current.sort = true; if (achMiss) achMiss.miss(screen); };
   const done = stage === 'done';
   const bump = () => setSc(n => n + 1);
 
   const onSortSolved = () => {
-    if (!flagsRef.current.signalFinder) { flagsRef.current.signalFinder = true; onAnswer(screen, { stage: 'case', screenIdx: screen, signalFinder: true }); }
+    if (!flagsRef.current.signalFinder && !wrongRef.current.sort && !f5Missed()) { flagsRef.current.signalFinder = true; onAnswer(screen, { stage: 'case', screenIdx: screen, signalFinder: true }); }
     setStage('funnel'); bump();
   };
   const pickFunnel = (id) => {
     if (id === 'start-menu') {
-      if (!flagsRef.current.funnelReader) { flagsRef.current.funnelReader = true; onAnswer(screen, { stage: 'case', screenIdx: screen, funnelReader: true }); }
+      if (!flagsRef.current.funnelReader && !wrongRef.current.funnel && !f5Missed()) { flagsRef.current.funnelReader = true; onAnswer(screen, { stage: 'case', screenIdx: screen, funnelReader: true }); }
       setFunnelPick(id); setFunnelWrong(false); setStage('priority'); bump();
     } else {
+      wrongRef.current.funnel = true; if (achMiss) achMiss.miss(screen);
       setFunnelWrong(true); setTimeout(() => setFunnelWrong(false), 700);
     }
   };
   const pickFix = (id) => {
     setFixPick(id);
-    if (id !== 'menu') { setStage('consequence'); bump(); return; }
-    if (!flagsRef.current.rightFixFirst) flagsRef.current.rightFixFirst = true;
+    if (id !== 'menu') { wrongRef.current.fix = true; if (achMiss) achMiss.miss(screen); setStage('consequence'); bump(); return; }
+    if (!flagsRef.current.rightFixFirst && !wrongRef.current.fix && !f5Missed()) flagsRef.current.rightFixFirst = true;
     setStage('consequence'); bump();
   };
   const closeLoop = () => {
@@ -1132,7 +1138,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {stage === 'sort' && (
           <div className="fade-step">
             <p className="flow-label">{tr({ uz: '🟢 Qimmatli / ⚪ Foydasiz — har kartani savatga joylang', ru: '🟢 Ценный / ⚪ Бесполезный — разложите карточки по корзинам' })}</p>
-            <FeedbackSort items={DAFTAR_CARDS} onSolved={onSortSolved} />
+            <FeedbackSort items={DAFTAR_CARDS} onSolved={onSortSolved} onWrong={onSortWrong} />
           </div>
         )}
         {stage === 'funnel' && (
@@ -2422,6 +2428,9 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
+    // 🏅 s7 markaziy ekran — uch bosqich, uch nishon (F-0921-20). Bayroqni ekran o'zi qo'yadi:
+    // u faqat XATOSIZ bosqichda qo'yiladi (151-qonun), shuning uchun bu yerda qo'shimcha shart kerak emas.
+    if (data) { if (data.signalFinder) earn('signalFinder'); if (data.funnelReader) earn('funnelReader'); if (data.rightFixFirst) earn('rightFixFirst'); }
     // Yakuniy debug-gate (s15) — XATO javob ham serverga ketadi (aks holda xato qilgan o'quvchi podiumda umuman ko'rinmaydi).
     if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, data.elapsedMs || 0);
   };

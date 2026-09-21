@@ -35,6 +35,11 @@ bilan) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · unit 12/1
    haqiqiy E2E sinov yo'q. Tuzatish — 37+ darsda bitta qator. **A — dushanbagacha tuzatamiz (tavsiya) · B — kutamiz.**
 2. **Matnlar — `MATN_TAKLIFLAR.md` (49 taklif).** Eng muhimi: inventar bo'yicha 34 ekranda Mentor/audio/maslahat javobni urinishdan
    OLDIN aytadi — bunday ekranda «birinchi urinish» sharti bilimni emas, o'qishni tekshiradi (Q6 dagi 3 debug-ekran ham shunda).
+> **TUZATISH 21.09:** quyidagi «⏸ 8 ekran» ro'yxati eskirgan. Oltitasi 19.09 da hal qilingan
+> (nishon testga ko'chirilgan yoki 151-naqsh ulangan), ikkitasi — `BotApiButtons` s12 va `PmLesson20` s9 —
+> 152-qonunga mos **bonus** bo'lib qoldi (foydalanuvchi qarori 21.09). Kodda birma-bir tasdiqlandi;
+> holat `holat-P1/P4/P6.json` da ✅ ga o'tkazildi.
+
 3. **⏸ 8 ekran** (ikkinchi tekin nishon yoki senariy): CssLesson1 s13 `bezak` · DbSqlNosql s3 · BotApiButtons s9/s11/s12 ·
    PmLesson19 s9 · PmLesson20 s4/s9 — har birida variantlar `holat-P*.json` da.
 4. **Qolgan ball-testlar:** 7 ta diskret tanlov/ulash testi (8-A ga kirmagan; Routing s15 jonli darsda umuman yuborilmaydi) ·

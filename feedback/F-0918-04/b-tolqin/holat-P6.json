@@ -210,28 +210,31 @@
   "file": "src/5-Modull/BotApiButtonsLesson.jsx",
   "sid": "s9",
   "ach": "buttonMaster",
-  "status": "⏸",
+  "status": "✅",
   "tur": "TEKIN",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "xato yo'li yo'q: ulanmagan signalni bosish — Mentor chorlagan sinov. Darsda 4 nishondan 3 tasi tekin (s9, s11, s12), graduate yo'q; 152-qonun 1-band: ko'pi bilan 1 bonus. TAKLIF (inventar): s9 — darsning yagona BONUSI (tavsif «…ulab chiqdingiz» turi bo'lsa rost); s11 → s10 testga, s12 → s14 testga ko'chirish (yangi desc kerak — matn-P6.md). Qaror foydalanuvchida."
+  "eslatma": "xato yo'li yo'q: ulanmagan signalni bosish — Mentor chorlagan sinov. Darsda 4 nishondan 3 tasi tekin (s9, s11, s12), graduate yo'q; 152-qonun 1-band: ko'pi bilan 1 bonus. TAKLIF (inventar): s9 — darsning yagona BONUSI (tavsif «…ulab chiqdingiz» turi bo'lsa rost); s11 → s10 testga, s12 → s14 testga ko'chirish (yangi desc kerak — matn-P6.md). Qaror foydalanuvchida.",
+  "qaror": "✅ 19.09 (Q3-c): buttonMaster s10 testiga ko'chirilgan. 21.09 kodda tasdiqlandi."
  },
  {
   "file": "src/5-Modull/BotApiButtonsLesson.jsx",
   "sid": "s11",
   "ach": "rightEnvelope",
-  "status": "⏸",
+  "status": "✅",
   "tur": "TEKIN",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "uchta ketma-ket yagona tugma. Tavsif «xatosini TOPIB to'g'riladingiz» rost emas — xatoni ekran ko'rsatadi. Taklif: s10 testga ko'chirish + yangi desc (matn-P6.md)"
+  "eslatma": "uchta ketma-ket yagona tugma. Tavsif «xatosini TOPIB to'g'riladingiz» rost emas — xatoni ekran ko'rsatadi. Taklif: s10 testga ko'chirish + yangi desc (matn-P6.md)",
+  "qaror": "✅ 19.09 (Q3-c): rightEnvelope s14 testiga ko'chirilgan. 21.09 kodda tasdiqlandi."
  },
  {
   "file": "src/5-Modull/BotApiButtonsLesson.jsx",
   "sid": "s12",
   "ach": "neverSilent",
-  "status": "⏸",
+  "status": "✅",
   "tur": "TEKIN",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "yagona tugma. Taklif: s14 testga ko'chirish + yangi desc. Kalit neverSilent BotIntro da ham bor (boshqa tavsif bilan)"
+  "eslatma": "yagona tugma. Taklif: s14 testga ko'chirish + yangi desc. Kalit neverSilent BotIntro da ham bor (boshqa tavsif bilan)",
+  "qaror": "✅ 21.09 qaror: darsdagi YAGONA bonus bo'lib qoladi (152-qonun 1/3/4-band: AchRule yo'q, tavsif qilingan ishni aytadi)."
  },
  {
   "file": "src/5-Modull/BotApiButtonsLesson.jsx",
@@ -431,10 +434,11 @@
   "file": "src/5-Modull/PmLesson19.jsx",
   "sid": "s9",
   "ach": "fullHouse",
-  "status": "⏸",
+  "status": "✅",
   "tur": "TEKIN",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "to'rt joy yig'indisi 23 ≥ 20 — istalgan tartibda 20 chiqadi, xato yo'li yo'q. Darsda bonus allaqachon bor (s4 innerCircle, 152-reyestr) → ikkinchi tekin nishon 152-qonun 1-bandga zid. Variantlar: (a) kodda tayyor kamKordi sharti — kam beradigan joyni bosish = urinish (+ desc aniqlashtiriladi); (b) s11 testga ko'chirish. Qaror foydalanuvchida."
+  "eslatma": "to'rt joy yig'indisi 23 ≥ 20 — istalgan tartibda 20 chiqadi, xato yo'li yo'q. Darsda bonus allaqachon bor (s4 innerCircle, 152-reyestr) → ikkinchi tekin nishon 152-qonun 1-bandga zid. Variantlar: (a) kodda tayyor kamKordi sharti — kam beradigan joyni bosish = urinish (+ desc aniqlashtiriladi); (b) s11 testga ko'chirish. Qaror foydalanuvchida.",
+  "qaror": "✅ 19.09 (M3): kamKordi sharti ulangan — kam beradigan joyni bosish urinish sanaladi. 21.09 kodda tasdiqlandi."
  },
  {
   "file": "src/5-Modull/PmLesson19.jsx",
@@ -450,10 +454,11 @@
   "file": "src/5-Modull/PmLesson20.jsx",
   "sid": "s4",
   "ach": "goodListener",
-  "status": "⏸",
+  "status": "✅",
   "tur": "NOANIQ",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "PM tekin 4-ekran emas: yakunda uch variantli tanlov bor (xato → 🤔 izoh + to'g'ri qator ochiladi). PmLesson20 da ikkita kafolatli nishon (s4, s9). Inventar taklifi: s4 → 151-naqsh yoki bonus; s9 senariy §133 10-bo'limga bog'liq. Senariyga tegadi — qaror foydalanuvchida."
+  "eslatma": "PM tekin 4-ekran emas: yakunda uch variantli tanlov bor (xato → 🤔 izoh + to'g'ri qator ochiladi). PmLesson20 da ikkita kafolatli nishon (s4, s9). Inventar taklifi: s4 → 151-naqsh yoki bonus; s9 senariy §133 10-bo'limga bog'liq. Senariyga tegadi — qaror foydalanuvchida.",
+  "qaror": "✅ 19.09 (Q3-e): 151-naqsh ulangan (tanla → achMiss.miss). 21.09 kodda tasdiqlandi."
  },
  {
   "file": "src/5-Modull/PmLesson20.jsx",
@@ -468,10 +473,11 @@
   "file": "src/5-Modull/PmLesson20.jsx",
   "sid": "s9",
   "ach": "sharpSifter",
-  "status": "⏸",
+  "status": "✅",
   "tur": "NOANIQ",
   "nima_qilindi": "kodga tegilmadi",
-  "eslatma": "to'rt ketma-ket bir martalik tanlov; xato belgilanadi (setMissedOnce), lekin correct: true — kodda ataylab ishtirok nishoni («§133 … senariy 10-bo'lim»). 151-naqsh kiritilsa senariyga zid bo'lishi mumkin — pm-senariylar/ M5 ko'rib chiqilsin."
+  "eslatma": "to'rt ketma-ket bir martalik tanlov; xato belgilanadi (setMissedOnce), lekin correct: true — kodda ataylab ishtirok nishoni («§133 … senariy 10-bo'lim»). 151-naqsh kiritilsa senariyga zid bo'lishi mumkin — pm-senariylar/ M5 ko'rib chiqilsin.",
+  "qaror": "✅ 21.09 foydalanuvchi qarori: senariyga tegilmaydi, darsdagi yagona bonus bo'lib qoladi (tavsif rost, AchRule yo'q)."
  },
  {
   "file": "src/5-Modull/PmLesson20.jsx",

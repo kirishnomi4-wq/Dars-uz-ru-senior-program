@@ -7,7 +7,7 @@
   "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · CSS qoidasi",
   "right": [
    {
-    "fill": "input[placeholder=\"h1 { color: red; }\"]",
+    "fill": "input.css-rule-input",
     "value": "h1 { color: red; }",
     "nth": 0,
     "after": 500
@@ -15,7 +15,7 @@
   ],
   "wrong": [
    {
-    "fill": "input[placeholder=\"h1 { color: red; }\"]",
+    "fill": "input.css-rule-input",
     "value": "h1 { color: red; }",
     "nth": 0,
     "after": 500

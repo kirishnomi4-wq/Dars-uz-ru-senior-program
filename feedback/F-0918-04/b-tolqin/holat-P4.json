@@ -664,7 +664,7 @@
   "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
   "sid": "s3",
   "ach": "packageMaster",
-  "status": "⏸",
+  "status": "✅",
   "tur": "NOANIQ",
   "nima_qilindi": "Kodga tegilmadi.",
   "miss_joyi": "",
@@ -672,7 +672,7 @@
   "sirpanish": "",
   "prob": {},
   "gates": "",
-  "qaror": "",
+  "qaror": "✅ 19.09 (S1-A): nishon s4 shakl-testiga ko'chirilgan. 21.09 kodda tasdiqlandi.",
   "urinishlar_soni": 0,
   "eslatma": "Bosish kartani o'zi to'g'ri stansiyaga joylaydi (autoHome) — bosib o'tgan o'quvchi uchun nishon kafolatli; darsda `connector` s5 bonusi allaqachon bor (152-qonun 1-band — 2-kafolatli bo'lib qoladi). Tavsif «to'g'ri … joyladingiz» — bosishda joylashni ekran bajaradi. Variantlar: (1) bosish ham tekshirilsin (avto-joylash o'rniga tanlangan stansiya) — mexanika o'zgaradi; (2) nishon s3b/s15 testga ko'chsin (yangi desc — matn); (3) `connector` bonusi o'rniga shu bonus bo'lsin. Foydalanuvchi qarori kerak"
  }
