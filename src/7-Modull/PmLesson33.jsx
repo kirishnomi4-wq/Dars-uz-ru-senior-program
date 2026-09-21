@@ -434,7 +434,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>🏠 2009 · AIRBNB</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Airbnb o'lish arafasida edi — deyarli hech kim uy bron qilmasdi. Asoschilar sababini tushunmasdi. Ustozlari <b>Pol Grem</b> saytga qaradi va bitta narsani ko'rdi: <b>uy suratlari dahshatli</b> — qorong'i, xira telefon suratlari.</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Airbnb — begonaning uyida ijaraga turish xizmati — o'lish arafasida edi: deyarli hech kim uy bron qilmasdi. Asoschilar sababini tushunmasdi. Ustozlari <b>Pol Grem</b> saytga qaradi va bitta narsani ko'rdi: <b>uy suratlari dahshatli</b> — qorong'i, xira telefon suratlari.</p>
             </div>
           </Col>
           <Col>

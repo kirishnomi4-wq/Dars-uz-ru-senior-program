@@ -101,9 +101,9 @@ const savePortfolioSection = (section, data) => {
 // ===== KONSEPT LEKSIKONI =====
 // G'ijinish muzeyi (s2)
 const FRUSTS = [
-  { id: 'db', ic: '📦', name: 'Dropbox', sub: '$10 mlrd kompaniya', story: '2006-yil. Drew Houston 4 soatlik avtobus yo\'liga chiqdi — ishlamoqchi edi. Flashkasi… uyda qolgan. Butun yo\'l ishsiz, g\'ijinib ketdi: «Nega fayllarim o\'zi men bilan yurmaydi?!» Shu avtobusda Dropbox g\'oyasi tug\'ildi.' },
+  { id: 'db', ic: '📦', name: 'Dropbox', sub: 'fayl saqlash xizmati · $10 mlrd', story: '2006-yil. Drew Houston 4 soatlik avtobus yo\'liga chiqdi — ishlamoqchi edi. Flashkasi… uyda qolgan. Butun yo\'l ishsiz, g\'ijinib ketdi: «Nega fayllarim o\'zi men bilan yurmaydi?!» Shu avtobusda Dropbox g\'oyasi tug\'ildi.' },
   { id: 'ba', ic: '🩹', name: 'Band-Aid (plastir)', sub: '100 yillik mahsulot', story: '1920-yil. Earle Dickson\'ning rafiqasi oshxonada tez-tez qo\'lini kesib olardi. Mavjud bintni BIR QO\'L bilan bog\'lab bo\'lmasdi — har safar Earle kerak edi. U tayyor yopishqoq plastirni o\'ylab topdi. Yaqinining takror og\'rig\'i — mahsulotga aylandi.' },
-  { id: 'ab', ic: '🛏️', name: 'Airbnb', sub: '$80 mlrd kompaniya', story: '2007-yil, San-Fransisko. Brian va Joe ijara pulini to\'lay olmay qolishdi. Ayni paytda shahardagi konferensiya tufayli BARCHA mehmonxonalar to\'lgan edi. Ular zaldagi 3 ta havo matrasini ijaraga qo\'yishdi — va ikki muammo bir-birini yechdi.' }
+  { id: 'ab', ic: '🛏️', name: 'Airbnb', sub: 'uy ijarasi xizmati · $80 mlrd', story: '2007-yil, San-Fransisko. Brian va Joe ijara pulini to\'lay olmay qolishdi. Ayni paytda shahardagi konferensiya tufayli BARCHA mehmonxonalar to\'lgan edi. Ular zaldagi 3 ta havo matrasini ijaraga qo\'yishdi — va ikki muammo bir-birini yechdi.' }
 ];
 
 // Radar 4 signali (s3)
@@ -412,7 +412,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'To\'g\'ri — ' : 'Bu — '}<b>Uber</b>! Va bu yagona misol emas: deyarli har buyuk mahsulot kimningdir g'ijinishidan boshlangan. Farq bitta: oddiy odam g'ijinib O'TIB KETADI, founder esa <b>to'xtab, yozib oladi</b>. Bugun sizda ham shu radar paydo bo'ladi — va dars oxirida birinchi nishon: <b style={{ color: T.honey }}>🏹 Muammo Ovchisi</b>.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'To\'g\'ri — ' : 'Bu — '}<b>Uber</b> — mashina chaqirish xizmati. Va bu yagona misol emas: deyarli har buyuk mahsulot kimningdir g'ijinishidan boshlangan. Farq bitta: oddiy odam g'ijinib O'TIB KETADI, founder esa <b>to'xtab, yozib oladi</b>. Bugun sizda ham shu radar paydo bo'ladi — va dars oxirida birinchi nishon: <b style={{ color: T.honey }}>🏹 Muammo Ovchisi</b>.</p>}
           </Col>
         </Split></Zoomable>
       </div>

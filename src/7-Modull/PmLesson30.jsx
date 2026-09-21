@@ -381,7 +381,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>🛏️ 2009 · NYU-YORK</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Airbnb o'lim yoqasida edi — haftasiga atigi $200 daromad. Founderlar Brian va Joe har hafta Nyu-Yorkka uchib borib, foydalanuvchilarning UYIGA kirib, ular bilan soatlab gaplashishdi: nima qiyin, qayerda tiqilib qolasiz?</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Airbnb — begonaning uyida ijaraga turish xizmati. U o'lim yoqasida edi — haftasiga atigi $200 daromad. Founderlar Brian va Joe har hafta Nyu-Yorkka uchib borib, foydalanuvchilarning UYIGA kirib, ular bilan soatlab gaplashishdi: nima qiyin, qayerda tiqilib qolasiz?</p>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: '10px 0 0', lineHeight: 1.55 }}>Bu suhbatlardan chiqqan topilmalar (masalan: yomon fotosuratlar = bron yo'q) kompaniyani o'limdan qaytardi. Ularning maslahatchisi Pol Grem buni shunday atagan: <b>«Masshtablanmaydigan ishlarni qiling»</b>.</p>
             </div>
           </Col>

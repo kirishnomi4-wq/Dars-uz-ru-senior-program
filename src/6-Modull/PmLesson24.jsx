@@ -274,7 +274,7 @@ const RECAPS = {
   7: {
     title: "Uzoq reja bir varaqqa sig'adi",
     cards: [
-      { ic: '📜', h: 'Tesla misolida', body: <>2006-yilda Tesla uch bosqichli uzoq rejasini bir varaqqa yozdi va uni <b>hammaga ochiq</b> e'lon qildi.</> },
+      { ic: '📜', h: 'Tesla misolida', body: <>Tesla — elektr avtomobil ishlab chiqaradigan kompaniya. 2006-yilda u uch bosqichli uzoq rejasini bir varaqqa yozdi va uni <b>hammaga ochiq</b> e'lon qildi.</> },
       { ic: '🚗', h: 'Har bosqich oldingisini kutdi', body: <>Qimmat mashinadan tushgan pulga arzonrog'i, undan tushgan pulga eng arzoni qurildi. Reja <b>o'n yildan ortiq</b> bajarildi.</> },
       { ic: '📄', h: 'Reja yashirin qog\'oz emas', body: <>Uzoq reja hamma ko'radigan varaq bo'ladi: unda nima bugun boshlanishi va nima keyinroq boshlanishi yozilgan.</>, ask: "Rejangizni ochiq aytsangiz, kim yordam bera oladi?" }
     ]

@@ -273,7 +273,7 @@ const RECAPS = {
   7: {
     title: 'Javob odamning yonida topiladi',
     cards: [
-      { ic: '✈️', h: 'Nyu-Yorkka borishdi', body: <>O'sish to'xtaganda Airbnb asoschilari javobni izlab Nyu-Yorkka jo'nashdi va u yerda <b>uy-ma-uy</b> yurishdi.</> },
+      { ic: '✈️', h: 'Nyu-Yorkka borishdi', body: <>O'sish to'xtaganda Airbnb (begonaning uyida ijaraga turish xizmati) asoschilari javobni izlab Nyu-Yorkka jo'nashdi va u yerda <b>uy-ma-uy</b> yurishdi.</> },
       { ic: '📸', h: 'Nimani topishdi', body: <>Yomon surat qo'yilgan uyni <b>hech kim band qilmas ekan</b> — buni ular uy egalarining yonida turib bilishdi.</> },
       { ic: '🚶', h: 'Nega borishdi', body: <>Javob ularning stolida emas, <b>uy egalarining yonida</b> turgan edi.</>, ask: "Botingizni ishlatgan odam yoningizda o'tiribdimi?" }
     ]

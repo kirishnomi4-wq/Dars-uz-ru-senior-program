@@ -632,7 +632,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ); })}
             </div>
             <div className="frame fade-up delay-2" style={{ padding: '11px 14px' }}>
-              <p className="flow-label" style={{ marginBottom: 8 }}>Haqiqiy mahsulotlar yulduzi</p>
+              <p className="flow-label" style={{ marginBottom: 8 }}>Haqiqiy mahsulotlar yulduzi (Airbnb — uy ijarasi, Spotify — musiqa)</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{REAL.map((r, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ fontSize: 15 }}>{r.ic}</span><span className="small" style={{ fontWeight: 700, minWidth: 74 }}>{r.n}</span><span className="mono" style={{ fontSize: 11, color: T.ink2 }}>{r.m}</span></div>))}</div>
               <p className="small" style={{ margin: '9px 0 0', color: T.ink3, fontStyle: 'italic' }}>Diqqat: hech biri «yuklab olish» emas — hammasi QIYMAT lahzasini o'lchaydi.</p>
             </div>

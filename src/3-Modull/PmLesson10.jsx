@@ -285,7 +285,7 @@ const RECAPS = {
   7: {
     title: { uz: 'Tartib tasodifiy emas', ru: 'Порядок не случаен' },
     cards: [
-      { ic: '📑', h: { uz: 'Airbnb varaqlari', ru: 'Слайды Airbnb' }, body: { uz: <>Avval odamlarning qiyinchiligi, keyin uni yengadigan yechim, so'ng shu yechimni qancha odam kutayotgani va mahsulotning o'zi — <b>aniq tartib</b>.</>, ru: <>Сначала трудность людей, потом решение, которое её снимает, дальше — сколько людей этого ждут, и сам продукт — <b>точный порядок</b>.</> } },
+      { ic: '📑', h: { uz: 'Airbnb varaqlari', ru: 'Слайды Airbnb' }, body: { uz: <>Airbnb — begonaning uyida ijaraga turish xizmati. Avval odamlarning qiyinchiligi, keyin uni yengadigan yechim, so'ng shu yechimni qancha odam kutayotgani va mahsulotning o'zi — <b>aniq tartib</b>.</>, ru: <>Airbnb — сервис аренды жилья у обычных людей. Сначала трудность людей, потом решение, которое её снимает, дальше — сколько людей этого ждут, и сам продукт — <b>точный порядок</b>.</> } },
       { ic: '👥', h: { uz: 'Oxirgi varaq', ru: 'Последний слайд' }, body: { uz: <>Oxirida <b>jamoa</b> turgan: ishni kim qilayotgani. Shu taqdimotni bugun ham dunyo bo'ylab o'rganishadi.</>, ru: <>В конце — <b>команда</b>: кто это делает. Ту презентацию и сегодня разбирают по всему миру.</> } },
       { ic: '🎬', h: { uz: 'Sizda ham shunday', ru: 'У вас так же' }, body: { uz: <>Kadrlaringiz ham tartib bilan turadi: avval ilgari qanday og'ir bo'lgani, keyin bosib ko'rsatish, oxirida nima <b>oson bo'lgani</b>.</>, ru: <>Ваши кадры тоже стоят по порядку: сначала — как было тяжело раньше, потом — нажимаете и показываете, в конце — что стало <b>проще</b>.</> } , ask: { uz: "Sizning ko'rsatuvingiz nimadan boshlanadi?", ru: 'С чего начинается ваш показ?' } }
     ]

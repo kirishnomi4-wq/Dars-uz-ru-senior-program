@@ -278,7 +278,7 @@ const RECAPS = {
   7: {
     title: 'Raqam kunlarni sanaydi',
     cards: [
-      { ic: '🔥', h: "Duolingo'dagi 🔥 raqam", body: <>Bu raqam <b>ketma-ket dars qilingan kunlarni</b> sanaydi — darslarni ham, so'zlarni ham emas.</> },
+      { ic: '🔥', h: "Duolingo'dagi 🔥 raqam", body: <>Duolingo — chet tili o'rgatadigan ilova. Bu raqam <b>ketma-ket dars qilingan kunlarni</b> sanaydi — darslarni ham, so'zlarni ham emas.</> },
       { ic: '0️⃣', h: 'Bir kun tashlansa', body: <>Bir kun dars qilinmasa, raqam yana noldan boshlanadi; «muzlatish» esa bitta kunni yopib turadi.</> },
       { ic: '📅', h: 'Nega aynan kun', body: <>Bu raqam soat bilan ham, hafta bilan ham sanamaydi — u faqat kunlarni sanaydi.</>, ask: "Duolingo'dagi 🔥 raqam o'sishi uchun odam nima qilishi kerak?" }
     ]

@@ -244,7 +244,7 @@ const RECAPS = {
   6: {
     title: "Streak retention'ni oshiradi",
     cards: [
-      { ic: "🔥", h: "Streak odamni qaytaradi", body: <>Duolingo streak — ketma-ket dars qilingan kunlar soni. Hisobni yo'qotishdan qo'rquv odamni <b>qayta-qayta kirgizadi</b>. O'yinlardagi kunlik bonus ham shu usul.</> },
+      { ic: "🔥", h: "Streak odamni qaytaradi", body: <>Duolingo (chet tili o'rgatadigan ilova) streak — ketma-ket dars qilingan kunlar soni. Hisobni yo'qotishdan qo'rquv odamni <b>qayta-qayta kirgizadi</b>. O'yinlardagi kunlik bonus ham shu usul.</> },
       { ic: "↩️", h: "Retention nimani o'lchaydi", body: <>Retention — kirganlardan <b>necha kishi qayta kirgani</b> (yuzta odamdan nechtasi). Streak birinchi navbatda aynan shu raqamni oshiradi.</> },
       { ic: "🚫", h: "Yangi odam keltirmaydi", body: <>Streak <b>yangi odamlar kelishini</b> yoki ilovaning tezligini o'zgartirmaydi — u faqat allaqachon kelganlarni qaytaradi.</>, ask: "Streak qaysi metrikaga eng kuchli ta'sir qiladi?" },
     ]

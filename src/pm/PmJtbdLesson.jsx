@@ -1161,7 +1161,7 @@ const readFullJobs = () => savedJobs();
 const PEER_REASONS = ["vazifa — mahsulot nomi", "vazifa — harakat, natija emas", "tur mos emas"];
 const PEER_CARDS = [
   {
-    em: '📝', mahsulot: 'Notion', ish: "Notion'dan foydalanish", tur: 'funksional', bad: 0,
+    em: '📝', mahsulot: 'Notion (eslatma ilovasi)', ish: "Notion'dan foydalanish", tur: 'funksional', bad: 0,
     ok: "To'g'ri: «vazifa» o'rnida mahsulot nomining o'zi turibdi.",
     miss: "Bu kartada «vazifa» o'rnida mahsulot nomi takrorlangan — natija ko'rinmaydi.",
   },

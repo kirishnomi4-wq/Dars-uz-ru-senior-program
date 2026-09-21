@@ -1031,7 +1031,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Keys 📊', ru: 'Кейс 📊' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!last} optionalLive label={last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval slaydlarni oching', ru: 'Сначала откройте слайды' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Biznes olamidan mashhur voqea: <span className="italic" style={{ color: T.accent }}>Airbnb</span>ning birinchi taqdimoti.</>, ru: <>Известная история из мира бизнеса: первая презентация <span className="italic" style={{ color: T.accent }}>Airbnb</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Slaydlarni birma-bir oching — bir joyda taxmin qilasiz, ball yo\'q.', ru: 'Открывайте слайды по одному — в одном месте угадаете, баллов нет.' })}</Mentor>
+        <Mentor>{tr({ uz: 'Airbnb — begonaning uyida ijaraga turish xizmati. Slaydlarni birma-bir oching — bir joyda taxmin qilasiz, ball yo\'q.', ru: 'Airbnb — сервис аренды жилья у обычных людей. Открывайте слайды по одному — в одном месте угадаете, баллов нет.' })}</Mentor>
         <div className="ks-dots fade-up">{K_SLIDES.map((_, i) => <span key={i} className={`ks-dot ${i < step ? 'fill' : ''} ${i === step ? 'cur' : ''}`} />)}</div>
         <div className="ks-card fade-step" key={step}>
           {cur.kind === 'story' ? (
