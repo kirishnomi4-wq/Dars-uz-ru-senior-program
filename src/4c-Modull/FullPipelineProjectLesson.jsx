@@ -1025,7 +1025,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const curC = CONSEQ.find(c => c.id === activeC);
   const done = pushed;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, seenC.size + (built ? 1 : 0) + log.length + (pushed ? 1 : 0));   // 13-band klapan
-  const navLabel = (done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : running ? tr({ uz: 'Lenta aylanmoqda…', ru: 'Конвейер крутится…' }) : built ? tr({ uz: "Lentani yig'ib push qiling", ru: 'Соберите конвейер и сделайте push' }) : tr({ uz: 'Avval 5 nuqtani tizing', ru: 'Сначала выстройте 5 точек' });
+  const navLabel = (done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : running ? tr({ uz: 'Lenta aylanmoqda…', ru: 'Конвейер крутится…' }) : built ? tr({ uz: "Lentani yig'ib push qiling", ru: 'Соберите конвейер и сделайте push' }) : !seenAll ? tr({ uz: "Avval 4 ssenariyni ko'ring", ru: 'Сначала посмотрите 4 сценария' })
+    : tr({ uz: '5 nuqtani tizing', ru: 'Выстройте 5 точек' });
   return (
     <Stage eyebrow={tr({ uz: 'LENTA QURUVCHISI · markaziy', ru: 'КОНСТРУКТОР КОНВЕЙЕРА · центральный' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -1175,9 +1176,9 @@ const Screen9 = (props) => (
 
 // ===== SCREEN 10 — CASE: ESKI YUKNI QAYTARISH =====
 const VERSIONS = [
-  { id: 'v1', ico: '✅', t: { uz: 'v1 — narxlash tuzatildi', ru: 'v1 — исправлено ценообразование' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
-  { id: 'v2', ico: '✅', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
-  { id: 'v3', ico: '🔴', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
+  { id: 'v1', ico: '✅', t: { uz: 'v1 — narxlash tuzatildi', ru: 'v1 — исправлено ценообразование' }, w: { uz: '5 kun oldin', ru: '5 дней назад' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
+  { id: 'v2', ico: '✅', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, w: { uz: 'kecha', ru: 'вчера' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
+  { id: 'v3', ico: '🔴', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, w: { uz: 'bugun 14:20', ru: 'сегодня 14:20' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
 ];
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1198,7 +1199,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>v3 productionda <span className="italic" style={{ color: T.accent }}>xato</span> chiqardi. Qaysi versiyaga qaytamiz?</>, ru: <>v3 выдала <span className="italic" style={{ color: T.accent }}>ошибку</span> в production. К какой версии откатываемся?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Testlar v3'ni tutmagan — xato faqat haqiqiy yo'lovchida chiqdi. Tezkor yechim: <b style={{ color: T.ink }}>ishlagan yukni qaytarish</b>. Jurnaldan qaysi versiya oxirgi ishlagan versiya ekanini toping.</>, ru: <>Тесты не поймали v3 — ошибка вылезла только у настоящих пассажиров. Быстрое решение: <b style={{ color: T.ink }}>вернуть рабочий багаж</b>. Найдите в журнале последнюю рабочую версию.</> })}</Mentor>
-        {_tip && !solved && <p className="bhint fade-step">{tr({ uz: "💡 Har versiyaning yorlig'ini o'qing. Buzuq v3'dan OLDINGI yashil versiyani qidiring.", ru: '💡 Читайте ярлык каждой версии. Ищите зелёную версию ПЕРЕД сломанной v3.' })}</p>}
+        {_tip && !solved && <p className="bhint fade-step">{tr({ uz: "💡 Har kartada yorliq ham, vaqt ham bor. Buzuq versiyadan oldingi eng oxirgi yashilni qidiring.", ru: '💡 На каждой карточке есть и ярлык, и время. Ищите самую последнюю зелёную перед сломанной.' })}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 4 }}>
@@ -1214,7 +1215,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 boxShadow: isCorrectPick ? `inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25)` : (isPicked && !solved ? `inset 0 0 0 1.5px ${T.accent}` : undefined)
               }}>
                 <span className="role-ico">{v.ico}</span>
-                <span className="vlbl">{tr(v.t)}</span>
+                <span className="vlbl">{tr(v.t)} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(v.w)}</span></span>
                 <span className="role-r mono">{tr(v.tag)}</span>
               </button>
             );

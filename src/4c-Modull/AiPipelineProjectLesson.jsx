@@ -711,6 +711,8 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
 // 🔴 BALL-HALOLLIGI (§157 · 136-qonun): klapan faqat BALLSIZ ekranlarda — rescue bilan o'tilganda
 // onAnswer chaqirilmaydi (answers[idx] bo'sh qoladi), nishon ham berilmaydi (s9/s13 nishonlari faqat haqiqiy yakunda).
 // Kalitli ekranlar (s4·s8·s10·s14 MC, s15 final) klapansiz — 138-qo'shimcha: rescue-yorliq faqat ballsiz ekranda «Davom etish».
+// F-0921-14 (Q10): s15 da FAQAT `tip` ishlatiladi — rescue ulanmagan, ipucha javobni aytmaydi (savol beradi).
+// Ya'ni ball yo'li tegilmagan: o'tish sharti ham, birinchi-urinish hisobi ham o'zgarmaydi.
 const VALVE_TIP_SEC = 40, VALVE_TIP_IDLE = 25;
 const VALVE_RES_SEC = 110, VALVE_RES_IDLE = 60;
 function useStuckValve(done, progress = 0) {
@@ -1389,6 +1391,8 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
   const fired = useRef(!!storedAnswer);
   const [recapOpen, setRecapOpen] = useState(false);
+  const [moves, setMoves] = useState(0);
+  const { tip: _tip } = useStuckValve(done, moves);   // 13-band klapan — FAQAT ipucha (kalitli ekran, rescue yo'q)
   const onSolved = () => {
     if (fired.current) { setDone(true); return; }
     fired.current = true;
@@ -1398,6 +1402,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const onChange = (slots) => {
     if (fired.current) return;
+    setMoves(m => m + 1);
     const full = slots.every(s => s !== null);
     if (!full) { setConsequence(null); return; }
     const solved = slots.every((s, i) => s === USTA_ORDER[i]);
@@ -1418,6 +1423,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           doneText={{ uz: "To'g'ri: Jurnal → So'rov → Tekshirish → Tuzatish → Push.", ru: 'Верно: Журнал → Запрос → Проверка → Починка → Push.' }}
           onSolved={onSolved}
           onChange={onChange} />
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Tiqilib qoldingizmi? O'zingizdan so'rang: sabab qayerdan ma'lum bo'ladi — va Yordamchining taklifini nima bilan solishtirasiz?", ru: '💡 Застряли? Спросите себя: откуда становится известна причина — и с чем вы сверяете предложение Помощника?' })}</p>}
         {consequence === 'push-early' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>💥 {tr({ uz: 'Tekshirmasdan push qildingiz!', ru: 'Вы сделали push без проверки!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yordamchining noto'g'ri taklifi to'g'ridan-to'g'ri productionga chiqdi. Tartibni to'g'rilang.", ru: 'Неверное предложение Помощника уехало прямо в production. Исправьте порядок.' })}</p><PhoneMock state="broken" /></div>}
         {consequence === 'wrong' && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang.", ru: 'Порядок неверный — нажмите на блок, верните его и разложите заново.' })}</p></div>}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib tayyor: <b>Jurnal → So'rov → Tekshirish → Tuzatish → Push</b>. Yordamchi har doim tez yordam beradi — lekin tekshirish va yakuniy qaror doim sizniki.</>, ru: <>✓ Порядок готов: <b>Журнал → Запрос → Проверка → Починка → Push</b>. Помощник всегда помогает быстро — но проверка и финальное решение всегда ваши.</> })}</p><PhoneMock state="new" />

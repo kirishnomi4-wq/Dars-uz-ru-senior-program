@@ -800,7 +800,7 @@ function DoSteps({ screen, storedAnswer, onAnswer, steps, taskLabel, practice, o
 }
 
 // Bitta ekran — bitta ish (92-qonun): chapda kutilgan natija, o'ngda qadamlar.
-const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title, mentor, steps, taskLabel, practice, resultLabel }) => {
+const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title, mentor, steps, taskLabel, practice, resultLabel, fallback }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
   const [view, setView] = useState(0);
@@ -820,6 +820,8 @@ const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, tit
           <Col>
             <p className="flow-label">{resultLabel || tr({ uz: 'Ekraningizda shunday chiqadi', ru: 'На вашем экране будет так' })}</p>
             <div className="demo-swap" key={cur.id}>{cur.res()}</div>
+            {/* 🛟 zaxira-panel CHAP ustunda: o'ngdagi qadamlar kartasi ostida pastga tushib ko'rinmay qolardi (GitLesson naqshi, F-0913-02) */}
+            {fallback}
           </Col>
           <Col>
             <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={steps} taskLabel={taskLabel} practice={practice} onStep={setView} />
@@ -1250,6 +1252,78 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
+// 🛟 ZAXIRA-YO'L paneli (F-0921-06, Q2): AI ochilmasa ham amaliyot TO'XTAMAYDI — tayyor kod shu yerda.
+// Yopiq turadi: AI ishlagan o'quvchiga ekranni to'ldirmaydi.
+const FallbackPanel = ({ title, children }) => (
+  <details className="dsx-fb">
+    <summary>🛟 {tr(title)}</summary>
+    <div className="dsx-fb-body">{children}</div>
+  </details>
+);
+
+// Nusxa olinadigan kod bloki — Screen4 dagi topshiriq panelining o'sha uslubi.
+const CopyCode = ({ label, text }) => {
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text);
+      else {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }
+      setCopied(true); setTimeout(() => setCopied(false), 2200);
+    } catch {}
+  };
+  return (
+    <div className="pr-panel">
+      <div className="pr-head">
+        <span className="pr-lbl">{label}</span>
+        <button className={`pr-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? tr({ uz: '\u2713 Nusxalandi', ru: '\u2713 Скопировано' }) : tr({ uz: '📋 Nusxa olish', ru: '📋 Копировать' })}</button>
+      </div>
+      <pre className="pr-body" style={{ maxHeight: 'min(30vh, 220px)' }}>{text}</pre>
+    </div>
+  );
+};
+
+// AI'siz zaxira sayt — eng kichik ishlaydigan namuna (matn o'quvchiniki bilan almashtiriladi).
+// DIQQAT: bu oddiy JS satrlar, CSS shablon-satri EMAS — ichida backtik bo'lmasligi shart.
+const BACKUP_HTML = [
+  '<!DOCTYPE html>',
+  '<html lang="uz">',
+  '<head>',
+  '  <meta charset="UTF-8">',
+  '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+  '  <title>Mening saytim</title>',
+  '  <link rel="stylesheet" href="style.css">',
+  '</head>',
+  '<body>',
+  '  <header>',
+  '    <a href="index.html">Bosh sahifa</a>',
+  '    <a href="men.html">Men haqimda</a>',
+  '  </header>',
+  '  <main>',
+  '    <h1>Mening loyiham</h1>',
+  '    <p>Bu yerga muammoingizni va yechimingizni yozing.</p>',
+  '    <img src="https://picsum.photos/600/400" alt="Loyiha rasmi">',
+  '  </main>',
+  '  <footer>2026 &middot; Mening saytim</footer>',
+  '</body>',
+  '</html>',
+].join('\n');
+
+const BACKUP_CSS = [
+  '* { margin: 0; padding: 0; box-sizing: border-box; }',
+  'body { font-family: system-ui, sans-serif; color: #1B1B1F; background: #FAF8F3; line-height: 1.6; }',
+  'header { display: flex; gap: 18px; padding: 16px 24px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }',
+  'header a { color: #1B1B1F; text-decoration: none; font-weight: 700; transition: color 0.2s; }',
+  'header a:hover { color: #C8102E; }',
+  'main { max-width: 760px; margin: 0 auto; padding: 32px 24px; animation: kel 0.5s ease; }',
+  'h1 { font-size: 32px; margin-bottom: 12px; }',
+  'img { width: 100%; border-radius: 14px; margin-top: 18px; }',
+  'footer { text-align: center; padding: 24px; color: #6B6B73; }',
+  '@keyframes kel { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }',
+].join('\n');
+
 // ===== SCREEN 5 — AI'DAN KOD -> VS CODE (o'quvchi o'zi qiladi) =====
 const Screen5 = (props) => {
   const STEPS = [
@@ -1257,7 +1331,7 @@ const Screen5 = (props) => {
       t: { uz: "`gemini.google.com` saytini oching, nusxalagan topshiriqni qo'ying va yuboring", ru: 'Откройте сайт `gemini.google.com`, вставьте скопированное задание и отправьте' },
       // 👦 o'qish: «qaysi AI?» → foydalanuvchi qarori (2026-09-14): sinfda Gemini ishlatiladi
       d: { uz: "Google hisobingiz bilan kiring. Javobda har fayl alohida chiqadi: index.html, style.css va qolganlari.", ru: 'Войдите через свой аккаунт Google. В ответе каждый файл будет отдельно: index.html, style.css и остальные.' },
-      help: { uz: "Javob chala tugasa — «davom et» deb yozing, AI qolgan fayllarni beradi.", ru: 'Если ответ оборвался — напишите «продолжи», и AI выдаст остальные файлы.' },
+      help: { uz: "Javob chala tugasa — «davom et» deb yozing, AI qolgan fayllarni beradi. Sayt umuman ochilmasa — chapdagi «🛟 Ochilmadimi?» panelida tayyor kod bor.", ru: 'Если ответ оборвался — напишите «продолжи», и AI выдаст остальные файлы. Если сайт совсем не открывается — в панели «🛟 Не открылось?» слева есть готовый код.' },
       res: () => <Preview title="gemini.google.com" minH={150}><div style={{ ...winBox, minHeight: 112, alignItems: 'stretch' }}><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'siz:', ru: 'вы:' })}</span><span className="mono small" style={{ background: T.bg, borderRadius: 8, padding: '7px 10px' }}>{tr({ uz: 'Men veb-sayt qurmoqchiman…', ru: 'Я хочу сделать веб-сайт…' })}</span><span className="mono small" style={{ color: T.success, fontWeight: 700 }}>AI: index.html · style.css · …</span></div></Preview> },
     { id: 'folder', nav: { uz: 'papka', ru: 'папка' },
       t: { uz: "Ish stolida `mening-saytim` papkasini yarating va uni VS Code'da oching", ru: 'Создайте на рабочем столе папку `mening-saytim` и откройте её в VS Code' },
@@ -1276,6 +1350,17 @@ const Screen5 = (props) => {
       res: () => <Preview title="index.html" minH={150}><MiniSite name="Aziza" /></Preview> },
   ];
   return <DoScreen {...props} practice steps={STEPS}
+    fallback={
+      <FallbackPanel title={{ uz: 'Ochilmadimi?', ru: 'Не открылось?' }}>
+        <p className="dsx-fb-t">{tr({ uz: "AI sayti ochilmasligi yoki Google hisobi ishlamasligi — sizning xatongiz emas. Amaliyot to'xtamaydi: quyidagi kod bilan ham saytni internetga chiqarasiz.", ru: 'Сайт AI не открылся или аккаунт Google не работает — это не ваша ошибка. Практика не останавливается: с кодом ниже вы всё равно выложите сайт в интернет.' })}</p>
+        <p className="dsx-fb-h">{tr({ uz: '1 · index.html — nusxa oling va faylga qo\'ying', ru: '1 · index.html — скопируйте и вставьте в файл' })}</p>
+        <CopyCode label="index.html" text={BACKUP_HTML} />
+        <p className="dsx-fb-h">{tr({ uz: '2 · style.css — ikkinchi faylga', ru: '2 · style.css — во второй файл' })}</p>
+        <CopyCode label="style.css" text={BACKUP_CSS} />
+        <p className="dsx-fb-t">{tr({ uz: <>Ikkinchi sahifa uchun <b>index.html</b> dan nusxa oling, <b>main</b> ichidagi matnni o'zgartiring va faylni <b>men.html</b> nomi bilan saqlang — menyudagi havola ishlab ketadi.</>, ru: <>Для второй страницы скопируйте <b>index.html</b>, измените текст внутри <b>main</b> и сохраните файл под именем <b>men.html</b> — ссылка в меню заработает.</> })}</p>
+        <p className="dsx-fb-t" style={{ color: T.ink3 }}>{tr({ uz: "Sarlavha va matnlarni o'zingiznikiga almashtiring — sayt shundan keyin siznikiga aylanadi. AI'ni keyinroq uyda sinab ko'rasiz.", ru: 'Замените заголовок и тексты на свои — после этого сайт станет вашим. AI попробуете позже дома.' })}</p>
+      </FallbackPanel>
+    }
     eyebrow={tr({ uz: 'Amaliyot · kod', ru: 'Практика · код' })}
     taskLabel={tr({ uz: "Kodni VS Code'ga ko'chirish", ru: 'Перенос кода в VS Code' })}
     title={tr({ uz: <>Kodni oling va <span className="italic" style={{ color: T.accent }}>VS Code'ga</span> joylang</>, ru: <>Заберите код и положите его <span className="italic" style={{ color: T.accent }}>в VS Code</span></> })}
@@ -3317,6 +3402,15 @@ export default function DeployLesson({ lang: langProp, onFinished, liveToken }) 
         .menu-mock { display: flex; flex-wrap: wrap; gap: 8px; }
         .menu-tab { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; padding: 6px 12px; border-radius: 99px; background: ${T.bg}; color: ${T.ink2}; }
         .menu-tab.on { background: ${T.accent}; color: #fff; }
+
+        /* === 🛟 ZAXIRA-YO'L paneli (s5 — AI ochilmaganda) === */
+        .dsx-fb { margin-top: 10px; background: ${T.paper}; border-radius: 12px; padding: 11px 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .dsx-fb > summary { cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
+        .dsx-fb > summary::-webkit-details-marker { display: none; }
+        .dsx-fb[open] > summary { margin-bottom: 9px; }
+        .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
+        .dsx-fb-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
+        .dsx-fb-h { margin: 3px 0 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.45vw,13.5px); color: ${T.ink}; }
 
         /* === Tayyor topshiriq paneli === */
         .pr-panel { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }

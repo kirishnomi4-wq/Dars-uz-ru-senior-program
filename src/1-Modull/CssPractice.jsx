@@ -1056,13 +1056,13 @@ const Screen6 = (props) => (
 // ===== SCREEN 7 — BUILD: MENYU (display: flex + gap + justify-content) =====
 const Screen7 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pf = usePortfolio(answers);
-  const audio = useAudio([{ id: 's7', text: `Menyu havolalari hozir ustma-ust va tagi chizilgan. Ularni o'tgan darsda o'rgangan flexbox bilan bir qatorga tizamiz. Elementlarni qatorga tizadigan qoida — display flex. To'g'ri qiymatni tanlang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's7', text: `Menyu havolalari hozir ustma-ust va tagi chizilgan. Ularni o'tgan darsda o'rgangan flexbox bilan bir qatorga tizamiz. To'g'ri qiymatni tanlang.`, trigger: 'on_mount', waits_for: null }]);
   const { picked, solved, pick } = useStylePick('flex', storedAnswer, onAnswer, screen);
   return (
     <Stage eyebrow={tr({ uz: 'Bezak · Menyu', ru: 'Оформление · Меню' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "To'g'ri qiymatni tanlang", ru: 'Выберите верное значение' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Menyuni qanday <span className="italic" style={{ color: T.accent }}>bir qatorga</span> tizamiz?</>, ru: <>Как выстроить меню <span className="italic" style={{ color: T.accent }}>в один ряд</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'tgan darsdagi <b style={{ color: T.ink }}>flexbox</b> kerak bo'ladi! <span className="mono">nav</span> ga <span className="mono">display: flex</span> berib, <span className="mono">gap</span> bilan oraliq, <span className="mono">justify-content: center</span> bilan markazga qo'yamiz. Qator qiluvchi qiymat qaysi?</>, ru: <>Понадобится <b style={{ color: T.ink }}>flexbox</b> из прошлого урока! Дадим <span className="mono">nav</span> правило <span className="mono">display: flex</span>, промежуток — через <span className="mono">gap</span>, центр — через <span className="mono">justify-content: center</span>. Какое значение выстраивает в ряд?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsdagi <b style={{ color: T.ink }}>flexbox</b> kerak bo'ladi! <span className="mono">nav</span> ga oraliqni <span className="mono">gap</span>, markazni <span className="mono">justify-content: center</span> berdi. Eng muhimi qoldi: havolalarni bir qatorga qaysi qiymat tizadi?</>, ru: <>Понадобится <b style={{ color: T.ink }}>flexbox</b> из прошлого урока! Промежуток у <span className="mono">nav</span> уже задал <span className="mono">gap</span>, центр — <span className="mono">justify-content: center</span>. Осталось главное: какое значение выстраивает ссылки в один ряд?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">

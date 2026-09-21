@@ -15,7 +15,8 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        server/so'rov (Internet darsi L0).
 // MUHIM: kelgusi darslar ro'yxati o'quvchiga AYTILMAYDI — faqat yakunda teaser.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori.
-// Yakuniy ekran (s15): VS Code — useEffect ichida fetch('https://robo-api.uz/games') yozish.
+// Yakuniy ekran (s15): VS Code — useEffect ichida fetch('/games.json') yozish (F-0921-10: robo-api.uz
+// javob bermaydi, shuning uchun amaliyotda manzil o'quvchining o'z public/games.json fayli).
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -1488,7 +1489,7 @@ const MentorPracticeStats = ({ live, screen }) => {
     </div>
   );
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
+function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
@@ -1503,7 +1504,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. games ro'yxatini koddan olib tashlab, katalogni serverdan fetch bilan yuklaysiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. games ro'yxatini koddan olib tashlab, katalogni fetch so'rovi bilan yuklaysiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -1515,6 +1516,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
+            {extra}
             {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>}
@@ -1540,17 +1542,36 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     </Stage>
   );
 }
+const PRACTICE_JSON = [
+  'public/games.json',
+  '',
+  '[',
+  '  { "name": "Adopt Me!", "emoji": "\u{1F43E}", "likes": 92 },',
+  '  { "name": "Blox Fruits", "emoji": "\u{1F347}", "likes": 95 },',
+  '  { "name": "Brookhaven", "emoji": "\u{1F3E0}", "likes": 89 }',
+  ']',
+].join('\n');
+
 const ScreenApiPractice = (props) => (
   <ScreenLivePractice {...props}
-    title={{ uz: 'Katalogni serverdan yuklang', ru: 'Загрузите каталог с сервера' }}
-    task={{ uz: "robo-games loyihangizda games ro'yxatini koddan olib tashlang va katalogni SERVERdan fetch bilan yuklang — sahifa ochilganda so'rov ketsin, kartochkalar serverdan chiqsin.", ru: 'В своём проекте robo-games уберите список games из кода и загрузите каталог с СЕРВЕРА через fetch — при открытии страницы пусть уходит запрос, а карточки приходят с сервера.' }}
+    title={{ uz: "Katalogni so'rov bilan yuklang", ru: 'Загрузите каталог запросом' }}
+    task={{ uz: "robo-games loyihangizda games ro'yxatini koddan olib tashlang va katalogni fetch bilan yuklang — sahifa ochilganda so'rov ketsin, kartochkalar javobdan chiqsin.", ru: 'В своём проекте robo-games уберите список games из кода и загрузите каталог через fetch — при открытии страницы пусть уходит запрос, а карточки приходят из ответа.' }}
+    extra={
+      <div className="frame-soft fade-up delay-1">
+        <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bugun so'rov <b>o'z loyihangizdagi faylga</b> ketadi: haqiqiy server manzili hozircha javob bermayapti. Kod aynan bir xil qoladi — manzil almashsa, qolgan hamma narsa o'z o'rnida ishlaydi.</>, ru: <>Сегодня запрос уйдёт <b>к файлу в вашем же проекте</b>: настоящий адрес сервера пока не отвечает. Код остаётся точно таким же — поменяется адрес, всё остальное работает как есть.</> })}</p>
+        <pre className="code-box" style={{ padding: '10px 14px', marginTop: 8 }}>{PRACTICE_JSON}</pre>
+        <p className="small" style={{ margin: '6px 0 0', color: T.ink2 }}>{tr({ uz: "Kodingizdagi games massivini shu ko'rinishga o'tkazing: JSON'da har kalit qo'shtirnoq ichida turadi.", ru: 'Переведите массив games из вашего кода в такой вид: в JSON каждый ключ стоит в кавычках.' })}</p>
+      </div>
+    }
     checklist={[
+      { uz: "Loyihaning `public` papkasida `games.json` faylini yarating", ru: 'В папке `public` проекта создайте файл `games.json`' },
+      { uz: "Koddagi games massivini shu faylga ko'chiring — kalitlar qo'shtirnoq ichida", ru: 'Перенесите массив games из кода в этот файл — ключи в кавычках' },
       { uz: "App faylida `const [games, setGames] = useState([])` e'lon qiling", ru: 'В файле App объявите `const [games, setGames] = useState([])`' },
       { uz: "`useEffect(() => { … }, [])` ichiga so'rovni joylang — bir marta ishlasin", ru: 'Поместите запрос внутрь `useEffect(() => { … }, [])` — пусть сработает один раз' },
-      { uz: "`fetch('https://robo-api.uz/games')` — manzilga so'rov yuboring", ru: "`fetch('https://robo-api.uz/games')` — отправьте запрос по адресу" },
+      { uz: "`fetch('/games.json')` — manzilga so'rov yuboring", ru: "`fetch('/games.json')` — отправьте запрос по адресу" },
       { uz: "`.then(res => res.json())` — javobni massivga aylantiring", ru: '`.then(res => res.json())` — превратите ответ в массив' },
       { uz: "`.then(data => setGames(data))` — natijani state'ga yozing", ru: '`.then(data => setGames(data))` — запишите результат в state' },
-      { uz: "Brauzerda tekshiring: avval skeleton, keyin 3 kartochka; konsolda `200 OK`", ru: 'Проверьте в браузере: сначала скелетон, потом 3 карточки; в консоли `200 OK`' },
+      { uz: "Brauzerda tekshiring: avval skeleton, keyin kartochkalar; Network bo'limida `200 OK`", ru: 'Проверьте в браузере: сначала скелетон, потом карточки; во вкладке Network — `200 OK`' },
     ]} />
 );
 
