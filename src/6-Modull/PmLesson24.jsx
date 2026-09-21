@@ -954,8 +954,24 @@ const Screen5 = (props) => (
 // 🔴 ETALON 33 (kamida 2 bashorat): ikkovi IKKI O'LCHOVDA — (1) TARTIB (qaysi mashinadan
 // boshlangan), (2) MANBA (keyingisini nima bilan qurgan). Birinchisi ikkinchisini oshkor qilmaydi.
 // 🔴 Hisoblagich bosqich sanaydi, bashorat javobini ko'rsatmaydi (§123): bashorat-2 da 1/3 da turadi.
+// 📜 BIR VARAQLI REJA MAKETI (F-0921-23) — Tesla 2006-yilda uzoq rejani bitta betga yozgan edi.
+// Foto emas, kod bilan chizilgan varaq: o'quvchi «uzun reja» deganda qalin hujjatni tasavvur qiladi,
+// bu yerda esa uch qator — shuni ko'rish keysning ma'nosini ochadi.
+const REJA_QATOR = ['Qimmat mashina — oz sonda', "Arzonrog'i — ko'proq sonda", 'Eng arzoni — hamma uchun'];
+const RejaVaraq = ({ yopiq = false }) => (
+  <div className="rv-sheet" role="img" aria-label={yopiq ? "Bir varaqli reja: uchta qator, hozircha yopiq" : "Bir varaqli reja: qimmat mashina, arzonrog'i, eng arzoni"}>
+    <span className="rv-top">2006 · BIR VARAQ</span>
+    <ol className="rv-list">
+      {REJA_QATOR.map((t, i) => (
+        <li key={i}><span className="rv-n">{i + 1}</span>{yopiq ? <span className="rv-hid" /> : t}</li>
+      ))}
+    </ol>
+    <span className="rv-foot">{yopiq ? 'uch qator — bitta betda' : "hammaga ochiq e'lon qilindi"}</span>
+  </div>
+);
+
 const K_SLIDES = [
-  { ic: '📜', h: '2006-yil', bosqich: 0,
+  { ic: '📜', h: '2006-yil', bosqich: 0, vis: <RejaVaraq yopiq />,
     body: <>Tesla o'zining uzoq rejasini bir varaqqa yozdi va uni hammaga <b>ochiq</b> e'lon qildi. O'shanda kompaniyaning bironta mashinasi ko'chada yurmasdi.</> },
   { ic: '🔮', h: null, body: null, bosqich: 0,
     predict: { ask: 'Reja qaysi mashinadan boshlangan?', chips: [
@@ -977,7 +993,7 @@ const K_SLIDES = [
       miss: 'Adashdingiz — asl javob: birinchi mashinadan tushgan pul bilan' } },
   { ic: '🚙', h: 'Ikkinchi bosqich', bosqich: 2,
     body: <>Birinchi mashinadan tushgan pulga arzonroq mashina qurildi — endi uni ko'proq odam ola oldi.</> },
-  { ic: '🚗', h: 'Uchinchi bosqich', bosqich: 3, oxir: true,
+  { ic: '🚗', h: 'Uchinchi bosqich', vis: <RejaVaraq />, bosqich: 3, oxir: true,
     body: <>O'sha puldan hamma sotib oladigan arzon mashina qurildi. Bir varaqqa yozilgan reja <b>o'n yildan ortiq</b> bajarildi.</> },
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1042,6 +1058,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!c.predict && <span className="k-slide-eyebrow">🚗 Haqiqiy voqea · {i + 1} / {K_SLIDES.length}</span>}
             <div className="k-slide-ic">{c.ic}</div>
             <h3 className="k-slide-h">{c.h}</h3>
+            {c.vis}
             <p className="k-slide-body">{c.body}</p>
           </div>
         )}
@@ -3003,6 +3020,14 @@ const CSS_LESSON = `
   .k-slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}, ${T.blue}); }
   .k-slide-eyebrow { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(10px,1.3vw,12px); letter-spacing: 0.14em; text-transform: uppercase; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 14px; }
   .k-slide-ic { font-size: clamp(30px,4.8vw,46px); line-height: 1; }
+  /* 📜 Bir varaqli reja maketi (F-0921-23) — foto emas, kod bilan chizilgan varaq */
+  .rv-sheet { width: min(330px, 100%); background: #FFFDF7; border-radius: 6px; padding: 13px 16px 11px; display: flex; flex-direction: column; gap: 8px; text-align: left; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.3), inset 0 0 0 1px ${T.line}; }
+  .rv-top { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: ${T.ink3}; }
+  .rv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .rv-list li { display: flex; align-items: center; gap: 9px; font-family: 'Manrope', sans-serif; font-size: clamp(12.5px,1.6vw,14px); color: ${T.ink}; }
+  .rv-n { flex-shrink: 0; width: 19px; height: 19px; border-radius: 99px; background: ${T.accentSoft}; color: ${T.accent}; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .rv-hid { display: inline-block; width: 130px; height: 9px; border-radius: 99px; background: ${T.line}; }
+  .rv-foot { font-family: 'Manrope', sans-serif; font-size: 11px; color: ${T.ink3}; border-top: 1px dashed ${T.line}; padding-top: 7px; }
   .k-slide-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,3vw,28px); color: ${T.ink}; margin: 0; }
   .k-slide-body { font-size: clamp(14.5px,1.9vw,17px); color: ${T.ink2}; line-height: 1.55; max-width: 620px; margin: 0; }
   .k-slide-body b { color: ${T.ink}; }

@@ -12,7 +12,7 @@ import { writeFileSync, readFileSync, mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
 
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe'; // Kali: CHROME=/usr/bin/google-chrome (boshqa skriptlar bilan bir xil)
 const target = (process.argv[2] || '').replace(/\\/g, '/');
 const screen = Number(process.argv[3] ?? 0);
 if (!target) { console.log('fayl kerak'); process.exit(1); }
@@ -56,7 +56,7 @@ const errs = [];
 pg.on('pageerror', (e) => errs.push(String(e.message).slice(0, 110)));
 await pg.goto('file:///' + page.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
 await pg.waitForSelector('.lesson-root', { timeout: 15000 });
-await pg.waitForTimeout(900);
+await pg.waitForTimeout(Number(process.env.SHOT_WAIT || 900));   // kirish-animatsiyasi tugashi uchun; sekin ekranda SHOT_WAIT=2500
 const shot = join(TMP, `${basename(target, '.jsx')}-s${screen}.png`);
 await pg.screenshot({ path: shot });
 console.log('ekran:', screen, '/', total, '· xato:', errs.length ? errs.join(' | ') : "yo'q");

@@ -1,6 +1,6 @@
 # LMS'ga yuklash — yuklash-2026-09-21
 
-Yig'ilgan: 2026-09-20 22:52 UTC · jami **88 fayl**.
+Yig'ilgan: 2026-09-21 04:13 UTC · jami **88 fayl**.
 Har fayl o'zi-yetarli (`.jsx`): ichida dars, kompilyator va jonli-qatlam bor, qo'shimcha modul kerak emas.
 Server manzili: **prod** (`dars-api.coddycamp.uz`).
 

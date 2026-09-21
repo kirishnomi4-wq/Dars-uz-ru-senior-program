@@ -5061,6 +5061,10 @@ var ScreenGoal = ({ screen, onNext, onPrev }) => {
       </div>
     </Stage>;
 };
+var FallbackPanel = ({ title, children }) => <details className="dsx-fb">
+    <summary>🛟 {tr3(title)}</summary>
+    <div className="dsx-fb-body">{children}</div>
+  </details>;
 var ScreenInstall = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const _gate = useContext2(LiveGateCtx) || {};
   const _isMentorLive = !!(_gate.live && _gate.live.mode === "mentor");
@@ -5080,7 +5084,7 @@ var ScreenInstall = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow={tr3({ uz: "1-qadam · O'rnatish", ru: "1-й шаг · Установка" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={_isMentorLive ? false : !(storedAnswer && storedAnswer.correct)} label={_isMentorLive || storedAnswer && storedAnswer.correct ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Qadamlarni belgilang", ru: "Отметьте шаги" })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>VS Code'ni <span className="italic" style={{ color: T.accent }}>qayerdan</span> yuklaymiz?</>, ru: <>Откуда <span className="italic" style={{ color: T.accent }}>скачать</span> VS Code?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>VS Code — <b style={{ color: T.ink }}>bepul</b> dastur. Chapdagi 3 ko'rinishni birma-bir ko'rib chiqing, keyin har qadamni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> bajarib, «Bajardim»ni belgilang.</>, ru: <>VS Code — <b style={{ color: T.ink }}>бесплатная</b> программа. Просмотрите три вида слева по очереди, затем выполните каждый шаг <b style={{ color: T.ink }}>на своём компьютере</b> и отмечайте «Сделал(а)».</> })}</Mentor>
+        <Mentor>{tr3({ uz: <>VS Code — <b style={{ color: T.ink }}>bepul</b> dastur. Chapdagi 3 ko'rinishni birma-bir ko'rib chiqing, keyin har qadamni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> bajarib, «Bajardim»ni belgilang. Kompyuteringiz Mac yoki Linux bo'lsa — chapdagi «🛟 Boshqa tizimda?» panelini oching.</>, ru: <>VS Code — <b style={{ color: T.ink }}>бесплатная</b> программа. Просмотрите три вида слева по очереди, затем выполните каждый шаг <b style={{ color: T.ink }}>на своём компьютере</b> и отмечайте «Сделал(а)». Если у вас Mac или Linux — откройте слева панель «🛟 Другая система?».</> })}</Mentor>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -5115,6 +5119,14 @@ var ScreenInstall = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </div>
                 </div>}
             </div>
+            <FallbackPanel title={{ uz: "Boshqa tizimda? (Mac yoki Linux)", ru: "Другая система? (Mac или Linux)" }}>
+              <p className="dsx-fb-t">{tr3({ uz: "Yuqoridagi ko'rinishlar Windows uchun. Mac va Linux'da qadamlar bir xil — faqat tugma nomi va fayl turi boshqacha.", ru: "Виды выше — для Windows. На Mac и Linux шаги те же — отличаются только название кнопки и тип файла." })}</p>
+              <p className="dsx-fb-h">macOS</p>
+              <p className="dsx-fb-t">{tr3({ uz: <>Saytdagi tugma <b>Download for Mac</b> deb yozilgan bo'ladi. Yuklangan <b>.dmg</b> faylni oching va VS Code belgisini <b>Applications</b> papkasiga sudrang — o'rnatish shu.</>, ru: <>Кнопка на сайте будет называться <b>Download for Mac</b>. Откройте скачанный файл <b>.dmg</b> и перетащите значок VS Code в папку <b>Applications</b> — это и есть установка.</> })}</p>
+              <p className="dsx-fb-h">Linux</p>
+              <p className="dsx-fb-t">{tr3({ uz: <>Tugma <b>Download for Linux</b> — Ubuntu va Mint uchun <b>.deb</b>, Fedora uchun <b>.rpm</b> faylni tanlaysiz. Yuklangan faylni ikki marta bosing, o'rnatishni dasturlar do'koni (Software Center) o'zi bajaradi.</>, ru: <>Кнопка <b>Download for Linux</b> — для Ubuntu и Mint берите файл <b>.deb</b>, для Fedora — <b>.rpm</b>. Дважды нажмите на скачанный файл, установку сделает магазин программ (Software Center).</> })}</p>
+              <p className="dsx-fb-t" style={{ color: T.ink3 }}>{tr3({ uz: "Uchala tizimda ham natija bir xil: VS Code ochiladi va to'q rangli oyna chiqadi. Shundan keyin qadamlarni belgilab, davom eting.", ru: "Во всех трёх системах результат один: VS Code открывается и появляется тёмное окно. После этого отметьте шаги и продолжайте." })}</p>
+            </FallbackPanel>
           </Col>
           <Col>
             <StepChecklist screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={STEPS} taskLabel={tr3({ uz: "VS Code o'rnatish", ru: "Установка VS Code" })} />
@@ -8116,6 +8128,15 @@ function VsCodeLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .clk-btn.on { background: ${T.success}; color: #fff; box-shadow: 0 5px 12px -4px rgba(31,122,77,0.5); }
         .clk-btn:disabled { opacity: 0.55; cursor: default; }
         .clk-done { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.6vw,14px); color: ${T.success}; }
+
+        /* ===== 🛟 ZAXIRA-YO'L paneli (s2 — Mac/Linux yo'li) ===== */
+        .dsx-fb { margin-top: 10px; background: ${T.paper}; border-radius: 12px; padding: 11px 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .dsx-fb > summary { cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
+        .dsx-fb > summary::-webkit-details-marker { display: none; }
+        .dsx-fb[open] > summary { margin-bottom: 9px; }
+        .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
+        .dsx-fb-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
+        .dsx-fb-h { margin: 3px 0 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.45vw,13.5px); color: ${T.ink}; }
 
         /* ===== 📥 O'RNATISH MOCKUP'LARI (s2) ===== */
         .inst-site { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 18px 16px; text-align: center; }

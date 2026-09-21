@@ -13,7 +13,7 @@ CRM'da: **4-M** bo'limi · 14 dars
 | ☐ | 05. | Uyga vazifa | **Qaysi ishni birinchi qilasiz? — uyga vazifa** | Какую задачу сделаете первой? — домашнее задание | `05-PmLesson8-uyga-vazifa.jsx` | `pm-m3-05` | `0467c195fb4dbe39954260d5bd65643c` |
 | ☐ | 06 | Kod | **Props va qayta ishlatish** | Props и переиспользование | `06-ReactPropsReuseLesson.jsx` | `react-props-reuse-04-v18` | `e1faba01f8a8801a892f2b211439a004` |
 | ☐ | 07 | Proyekt | **Praktika: CRUD — to'liq boshqariladigan ilova** | Практика: CRUD — управляемое приложение | `07-ReactCrudPracticeLesson.jsx` | `react-crud-practice-p1-v18` | `80629fed4a3e862cc5d9f270c1314339` |
-| ☐ | 08 | Kod | **API bilan ishlash: GET — serverdan ma'lumot olish** | Работа с API — GET | `08-ReactApiGetLesson.jsx` | `react-api-get-05-v18` | `0fe2156ddf6aaa95dfc21eb8485e1d1d` |
+| ☐ | 08 | Kod | **API bilan ishlash: GET — serverdan ma'lumot olish** | Работа с API — GET | `08-ReactApiGetLesson.jsx` | `react-api-get-05-v18` | `324eaf5ab127725d62f91d963c55001e` |
 | ☐ | 09 | Kod | **API: POST/PUT/DELETE — serverga ma'lumot yuborish** | Работа с API — POST/PUT/DELETE | `09-ReactApiPostLesson.jsx` | `react-api-post-06-v18` | `a5ab0ef9e3a2a7b6625db53082197b44` |
 | ☐ | 10 | PM | **Qachon «tayyor» deb ayta olamiz?** | Когда можно сказать «готово»? | `10-PmLesson9.jsx` | `pm-m3d10-v1` | `8c12faffd06a19eaf07c254c037d23b0` |
 | ☐ | 10. | Uyga vazifa | **Qachon «tayyor» deb ayta olamiz? — uyga vazifa** | Когда можно сказать «готово»? — домашнее задание | `10-PmLesson9-uyga-vazifa.jsx` | `pm-m3-10` | `bb89b2cafcb7f960651e4cf3a4dd7171` |

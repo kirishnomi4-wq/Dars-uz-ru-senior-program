@@ -3015,7 +3015,7 @@ var StudentPracticePulse = ({ live, screen }) => {
       {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr2({ uz: "hali bajarmoqda", ru: "ещё выполняют" })}</span>}
     </div>;
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
+function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext2(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const [checked, setChecked] = useState3(() => /* @__PURE__ */ new Set());
@@ -3042,6 +3042,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
             </div>
+            {extra}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -3068,7 +3069,11 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 var ScreenKitobShopPractice = (props) => <ScreenLivePractice
   {...props}
   title={{ uz: "KitobShop'ni o'z kompyuteringizda oching", ru: "Откройте KitobShop на своём компьютере" }}
-  task={{ uz: "VS Code'da KitobShop backendini quring: Book bo'limi + yorliq bog'lanishi + eshik qo'riqchisi. So'ng Swagger'da mijoz bo'lib ham, admin bo'lib ham kirib ko'ring — ikkala eshik ham kutilganidek ishlayaptimi?", ru: "Постройте бэкенд KitobShop в VS Code: отдел Book + связь-ярлык + страж у двери. Затем зайдите в Swagger и как клиент, и как админ — обе двери работают как ожидалось?" }}
+  task={{ uz: "VS Code'da KitobShop backendini quring: Book bo'limi + yorliq bog'lanishi + eshik qo'riqchisi. Kodni AI yordamchisi yozadi, siz yo'naltirasiz. So'ng Swagger'da mijoz bo'lib ham, admin bo'lib ham kirib ko'ring — ikkala eshik ham kutilganidek ishlayaptimi?", ru: "Постройте бэкенд KitobShop в VS Code: отдел Book + связь-ярлык + страж у двери. Код пишет ИИ-помощник, вы направляете. Затем зайдите в Swagger и как клиент, и как админ — обе двери работают как ожидалось?" }}
+  extra={<div className="frame-soft fade-up delay-1">
+        <p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>🤖 <b>Agent</b> — buyrug'ingiz bilan kod yozadigan AI yordamchi. Sinfda <b>gemini.google.com</b> dan foydalanamiz.</>, ru: <>🤖 <b>Агент</b> — ИИ-помощник, который пишет код по вашей команде. В классе работаем в <b>gemini.google.com</b>.</> })}</p>
+        <p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{tr2({ uz: <>📋 <b>Playbook</b> — agentga bitta xabarda beriladigan to'liq yo'riqnoma: qaysi fayl, qanday tartibda, qayerga ulanadi. Yarim aytilgan buyruq — yarim natija.</>, ru: <>📋 <b>Плейбук</b> — полная инструкция агенту в одном сообщении: какой файл, в каком порядке, куда подключается. Сказали половину — получите половину.</> })}</p>
+      </div>}
   checklist={[
     { uz: "Agentga TO'LIQ playbook yuboring: `book.entity.ts` (title, author, price, is_featured) -> DTO -> `BaseService` dan service -> controller -> `book.module.ts` va AppModule'ga ulang (kirish taxtasi!)", ru: "Отправьте агенту ПОЛНЫЙ плейбук: `book.entity.ts` (title, author, price, is_featured) -> DTO -> service от `BaseService` -> controller -> `book.module.ts` и подключите к AppModule (входная вывеска!)" },
     { uz: "Yorliqni qo'ying: `book.entity.ts` ga `@ManyToOne(() => CategoryEntity) category` — so'ng serverni qayta ishga tushiring", ru: "Прикрепите ярлык: в `book.entity.ts` добавьте `@ManyToOne(() => CategoryEntity) category` — затем перезапустите сервер" },

@@ -972,9 +972,29 @@ const Screen5 = (props) => (
 // 🔴 Bosqich-hisoblagichi UZLUKSIZ: 1/7 … 7/7 — bashorat-bosqichi ham, ko'prik ham sanaladi.
 // 🔴 Ikki bashorat IKKI O'LCHOVDA: (1) tilning HOLATI, (2) sinov JOYI — biri ikkinchisini
 // oshkor qilmaydi. Bank raqamsiz: yagona sana — 1975.
+// 🖥 ALTAIR 8800 MOCKUPI (F-0921-23) — 1975-yilgi kompyuterning old paneli: lampochkalar qatori
+// va tumblerlar. O'quvchi "kompyuter" deganda ekran va klaviaturani tasavvur qiladi; bu mashinada
+// ikkalasi ham yo'q edi — shuni ko'rsatish keysning o'zagi (Geyts va Allen unga tegmasdan yozgan).
+const AltairMock = () => (
+  <div className="alt-box" role="img" aria-label="Altair 8800 — 1975-yilgi kompyuter: ekran ham, klaviatura ham yo'q; old panelida lampochkalar va kichik kalitlar">
+    <div className="alt-head">
+      <span className="alt-brand">ALTAIR 8800</span>
+      <span className="alt-year">1975</span>
+    </div>
+    <div className="alt-leds">
+      {[1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1].map((on, i) => <i key={i} className={`alt-led ${on ? 'on' : ''}`} />)}
+    </div>
+    <div className="alt-switches">
+      {[0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0].map((up, i) => <i key={i} className={`alt-sw ${up ? 'up' : ''}`} />)}
+    </div>
+    <p className="alt-note">ekran ham, klaviatura ham yo'q — faqat kichik kalitlar va lampochkalar</p>
+  </div>
+);
+
 const K_SLIDES = [
   { ic: '📰', h: '1975-yil',
-    body: <>Ikki yigit — Bill Geyts va Pol Allen — jurnalda yangi kompyuter haqida o'qib qoldi. Uning nomi Altair edi.</> },
+    body: <>Ikki yigit — Bill Geyts va Pol Allen — jurnalda yangi kompyuter haqida o'qib qoldi. Uning nomi Altair edi.</>,
+    vis: <AltairMock /> },
   { ic: '🔮', h: null, body: null,
     predict: { ask: 'Ular kompaniyaga qo\'ng\'iroq qilib «bizda shu kompyuter uchun til bor» dedi. Odam kompyuterga buyruqni shu til bilan yozadi. O\'sha paytda til qay holatda edi?', chips: [
       { ic: '📦', t: 'Tayyor turgan edi' },
@@ -1055,6 +1075,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!c.predict && <span className="k-slide-eyebrow">💾 Haqiqiy voqea · {i + 1} / {K_SLIDES.length}</span>}
             <div className="k-slide-ic">{c.ic}</div>
             <h3 className="k-slide-h">{c.h}</h3>
+            {c.vis}
             <p className="k-slide-body">{c.body}</p>
           </div>
         )}
@@ -2885,6 +2906,20 @@ const CSS_LESSON = `
   .k-slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}, ${T.blue}); }
   .k-slide-eyebrow { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(10px,1.3vw,12px); letter-spacing: 0.14em; text-transform: uppercase; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 14px; }
   .k-slide-ic { font-size: clamp(30px,4.8vw,46px); line-height: 1; }
+  /* 🖥 Altair 8800 old paneli (F-0921-23) — foto emas, kod bilan chizilgan maket */
+  .alt-box { width: min(420px, 100%); background: linear-gradient(170deg,#2E2A3B,#1A1726); border-radius: 12px; padding: 13px 16px 11px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.45), inset 0 0 0 1px rgba(255,255,255,0.07); }
+  .alt-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .alt-brand { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(11px,1.5vw,13px); letter-spacing: 0.16em; color: #C9C4E4; }
+  .alt-year { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7B7597; }
+  .alt-leds { display: flex; gap: 7px; justify-content: center; }
+  .alt-led { width: 9px; height: 9px; border-radius: 99px; background: #46405C; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5); }
+  .alt-led.on { background: #FF5A3D; box-shadow: 0 0 7px rgba(255,90,61,0.75); }
+  .alt-switches { display: flex; gap: 11px; justify-content: center; padding-top: 4px; }
+  .alt-sw { width: 11px; height: 26px; border-radius: 4px; background: #14121D; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09); position: relative; }
+  .alt-sw::after { content: ""; position: absolute; left: 2px; right: 2px; height: 11px; border-radius: 3px; background: linear-gradient(180deg,#EFEDF7,#A7A3BE); box-shadow: 0 1px 2px rgba(0,0,0,0.45); transition: top 0.2s; }
+  .alt-sw.up::after { top: 2px; }
+  .alt-sw:not(.up)::after { bottom: 2px; }
+  .alt-note { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-size: clamp(10.5px,1.3vw,12px); color: #9691B0; text-align: center; }
   .k-slide-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,3vw,28px); color: ${T.ink}; margin: 0; }
   .k-slide-body { font-size: clamp(14.5px,1.9vw,17px); color: ${T.ink2}; line-height: 1.55; max-width: 620px; margin: 0; }
   .k-slide-body b { color: ${T.ink}; }

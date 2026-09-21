@@ -3362,7 +3362,7 @@ var StudentPracticePulse = ({ live, screen }) => {
       {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr2({ uz: "hali bajarmoqda", ru: "ещё выполняют" })}</span>}
     </div>;
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
+function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext2(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const [checked, setChecked] = useState3(() => /* @__PURE__ */ new Set());
@@ -3389,6 +3389,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
             </div>
+            {extra}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -3412,8 +3413,25 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
       </div>
     </Stage>;
 }
+var GA_PKG = [
+  "package.json",
+  "",
+  "{",
+  '  "name": "ci-mashq",',
+  '  "version": "1.0.0",',
+  '  "scripts": { "test": "echo ok && exit 0" }',
+  "}"
+].join("\n");
 var ScreenGaPractice = (props) => <ScreenLivePractice
   {...props}
+  extra={<details className="frame-soft" style={{ marginTop: 10 }}>
+        <summary style={{ cursor: "pointer", listStyle: "none", fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(13px,1.5vw,14px)", color: T.accent }}>🛟 {tr2({ uz: "Repongiz yo'qmi?", ru: "Нет своего репозитория?" })}</summary>
+        <p className="body" style={{ margin: "9px 0 0", color: T.ink }}>{tr2({ uz: <>Hammasini brauzerda qilasiz — kompyuterga hech narsa o'rnatilmaydi. GitHub'da <b>New repository</b> → nom <b>ci-mashq</b> → <b>Add a README file</b> → <b>Create</b>.</>, ru: <>Всё делается в браузере — на компьютер ничего ставить не нужно. На GitHub: <b>New repository</b> → имя <b>ci-mashq</b> → <b>Add a README file</b> → <b>Create</b>.</> })}</p>
+        <p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{tr2({ uz: <>So'ng <b>Add file → Create new file</b> bilan ikkita fayl qo'shasiz. Birinchisi — <b>package.json</b> (lenta nimani sinashini bilsin):</>, ru: <>Затем через <b>Add file → Create new file</b> добавьте два файла. Первый — <b>package.json</b> (чтобы конвейеру было что проверять):</> })}</p>
+        <pre style={{ margin: "8px 0 0", padding: "10px 13px", borderRadius: 10, background: T.paper, fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, lineHeight: 1.5, color: T.ink, whiteSpace: "pre-wrap", overflowX: "auto" }}>{GA_PKG}</pre>
+        <p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{tr2({ uz: <>Ikkinchisi — fayl nomi maydoniga <b>.github/workflows/ci.yml</b> deb yozasiz (papkalar o'zi yaratiladi) va topshiriqdagi yo'l xaritasini shu yerga yozasiz.</>, ru: <>Второй — в поле имени напишите <b>.github/workflows/ci.yml</b> (папки создадутся сами) и впишите туда карту маршрута из задания.</> })}</p>
+        <p className="body" style={{ margin: "8px 0 0", color: T.ink3 }}>{tr2({ uz: "GitHub hisobi ochilmasa — mentor bilan birga bitta repoda bajaring: natija bir xil, Actions bo'limida yashil ✓ ni ko'rasiz.", ru: "Если аккаунт GitHub не открывается — сделайте вместе с ментором в одном репозитории: результат тот же, зелёную ✓ увидите во вкладке Actions." })}</p>
+      </details>}
   title={{ uz: "O'z repongizga yo'l xaritasini yozing", ru: "Напишите карту маршрута в своём репозитории" }}
   task={{ uz: "O'z GitHub repongizda .github/workflows/ci.yml faylini yarating: on: push, runs-on: ubuntu-latest va steps: checkout + npm install + npm test. Push qiling va Actions bo'limida yashil ✓ ni kuting.", ru: "В своём GitHub-репозитории создайте файл .github/workflows/ci.yml: on: push, runs-on: ubuntu-latest и steps: checkout + npm install + npm test. Запушьте и дождитесь зелёной ✓ во вкладке Actions." }}
   checklist={[

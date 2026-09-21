@@ -2506,6 +2506,8 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hadWrongRef = useRef3(storedAnswer ? storedAnswer.firstAttemptCorrect === false : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
   const fired = useRef3(!!storedAnswer);
   const [recapOpen, setRecapOpen] = useState3(false);
+  const [moves, setMoves] = useState3(0);
+  const { tip: _tip } = useStuckValve(done, moves);
   const onSolved = () => {
     if (fired.current) {
       setDone(true);
@@ -2518,6 +2520,7 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const onChange = (slots) => {
     if (fired.current) return;
+    setMoves((m) => m + 1);
     const full = slots.every((s) => s !== null);
     if (!full) {
       setConsequence(null);
@@ -2545,6 +2548,7 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     onSolved={onSolved}
     onChange={onChange}
   />
+        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Tiqilib qoldingizmi? O'zingizdan so'rang: sabab qayerdan ma'lum bo'ladi — va Yordamchining taklifini nima bilan solishtirasiz?", ru: "💡 Застряли? Спросите себя: откуда становится известна причина — и с чем вы сверяете предложение Помощника?" })}</p>}
         {consequence === "push-early" && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>💥 {tr2({ uz: "Tekshirmasdan push qildingiz!", ru: "Вы сделали push без проверки!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Yordamchining noto'g'ri taklifi to'g'ridan-to'g'ri productionga chiqdi. Tartibni to'g'rilang.", ru: "Неверное предложение Помощника уехало прямо в production. Исправьте порядок." })}</p><PhoneMock state="broken" /></div>}
         {consequence === "wrong" && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang.", ru: "Порядок неверный — нажмите на блок, верните его и разложите заново." })}</p></div>}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ Tartib tayyor: <b>Jurnal → So'rov → Tekshirish → Tuzatish → Push</b>. Yordamchi har doim tez yordam beradi — lekin tekshirish va yakuniy qaror doim sizniki.</>, ru: <>✓ Порядок готов: <b>Журнал → Запрос → Проверка → Починка → Push</b>. Помощник всегда помогает быстро — но проверка и финальное решение всегда ваши.</> })}</p><PhoneMock state="new" />

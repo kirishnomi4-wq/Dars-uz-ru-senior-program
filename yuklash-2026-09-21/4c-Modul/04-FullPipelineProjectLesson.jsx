@@ -2134,7 +2134,7 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const curC = CONSEQ.find((c) => c.id === activeC);
   const done = pushed;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, seenC.size + (built ? 1 : 0) + log.length + (pushed ? 1 : 0));
-  const navLabel = done || _resc ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : running ? tr2({ uz: "Lenta aylanmoqda…", ru: "Конвейер крутится…" }) : built ? tr2({ uz: "Lentani yig'ib push qiling", ru: "Соберите конвейер и сделайте push" }) : tr2({ uz: "Avval 5 nuqtani tizing", ru: "Сначала выстройте 5 точек" });
+  const navLabel = done || _resc ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : running ? tr2({ uz: "Lenta aylanmoqda…", ru: "Конвейер крутится…" }) : built ? tr2({ uz: "Lentani yig'ib push qiling", ru: "Соберите конвейер и сделайте push" }) : !seenAll ? tr2({ uz: "Avval 4 ssenariyni ko'ring", ru: "Сначала посмотрите 4 сценария" }) : tr2({ uz: "5 nuqtani tizing", ru: "Выстройте 5 точек" });
   return <Stage eyebrow={tr2({ uz: "LENTA QURUVCHISI · markaziy", ru: "КОНСТРУКТОР КОНВЕЙЕРА · центральный" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(12px,2vw,18px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Bo'sh yo'l xaritasidan <span className="italic" style={{ color: T.accent }}>siz</span> to'liq lenta quring.</>, ru: <>Постройте полный конвейер из пустой карты маршрута — <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
@@ -2384,7 +2384,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const tn = trig.toLowerCase().replace(/\s+/g, "");
   const sn = secret.toLowerCase().replace(/\s+/g, "");
-  const okTrig = tn === "push";
+  const okTrig = /^(on:)?push:?$/.test(tn);
   const okSecret = sn.includes("secrets.");
   const valid = okTrig && okSecret;
   const { tip: _tip, rescue: _resc } = useStuckValve(passed, trig.length + secret.length);

@@ -11,6 +11,17 @@
 > **Huquq:** rasmlar foydalanuvchining media-kutubxonasiga yuklanadi; tashqi saytga havola qo'yilmaydi.
 > Logotip o'rniga real joy/mahsulot fotosi afzal.
 
+## ✅ BAJARILDI (21.09) — maket bilan, foto kutmasdan
+
+| Dars | Nima qilindi |
+|---|---|
+| `PmLesson22` s6 | **Altair 8800 old paneli** — lampochkalar qatori va kichik kalitlar; ost-yozuv: «ekran ham, klaviatura ham yo'q» |
+| `PmLesson24` s6 | **Bir varaqli reja** — 1-slaydda qatorlar YOPIQ («uch qator — bitta betda»), to'liq varaq 3-bosqichda ochiladi (§186) |
+| `PmLesson6` s5 | **Taqdimot maketi** — o'nta varaq, birinchisi ajratilgan; nomi savol javobidan KEYIN chiqadi (§186) |
+
+**Qolgani:** `PmLesson28` Dropbox flashkasi — **maket qilinmadi**: flashka o'quvchiga tanish narsa,
+hikoya matni («flashkasi uyda qolgan») o'zi yetarli. Bezak uchun maket qo'shilmaydi.
+
 ## A · Eng kerakli (o'quvchi tasavvur qila olmaydi)
 
 | # | Dars · ekran | Qanday rasm | Nega shart |
