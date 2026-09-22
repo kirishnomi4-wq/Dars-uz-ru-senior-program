@@ -22,7 +22,9 @@
     "build:mentor": "vite build --config vite.mentor.config.js",
     "gate:esbuild": "node esbuild-gate.mjs",
     "gates": "node gates.mjs",
-    "lint:layout": "node layout-lint.mjs"
+    "lint:layout": "node layout-lint.mjs",
+    "gen:hwqa": "node scripts/gen-hw-qa.mjs",
+    "build:hwqa": "node scripts/gen-hw-qa.mjs && vite build --config vite.hwqa.config.js"
   },
   "dependencies": {
     "react": "^19.2.7",

@@ -6,7 +6,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PRAKTIKA 4-DARS — MVP TAYYOR (mini-do'kon, 2-qism) — PLATFORM STANDARD v16
 // Mavzu: o'zakka savat + jami narx qo'shish (to'liq MVP); AI bilan bug tuzatish;
-//        jilolash; deploy (dunyoga chiqarish); universal yo'l (reja->MVP->qur->tekshir->deploy).
+//        jilolash; deploy (internetga chiqarish); universal yo'l (reja->MVP->qur->tekshir->deploy).
 // Loyiha: mini-do'kon — to'liq, ishlaydigan, deploy qilingan MVP.
 // Asosiy xabar: "O'zakni to'liq do'konga aylantirib chiqaramiz — men istalgan narsani qura olaman."
 // Tool: Antigravity (haqiqiy uyga vazifa muhiti).
@@ -120,7 +120,7 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -334,7 +334,7 @@ const RECAPS = {
       {
         ic: "🚀",
         h: { uz: "Avval ishlatib chiqar, keyin sayqalla", ru: 'Сначала выпустите, потом шлифуйте' },
-        body: { uz: <>Ishlaydigan MVP'ni <b>dunyoga chiqarish</b> (deploy) — kutishdan yaxshi. Odamlar ishlatadi, fikr bildiradi, siz esa ustiga qo'shib <b>o'stirasiz</b>. Kichik ishlaydigan narsa — hech qachon chiqmagan «mukammal»dan afzal.</>, ru: <>Выпустить работающий MVP <b>в мир</b> (деплой) лучше, чем ждать. Люди пользуются, дают обратную связь, а Вы достраиваете и <b>растите</b> проект. Маленькое работающее лучше «идеального», которое так и не вышло.</> },
+        body: { uz: <>Ishlaydigan MVP'ni <b>internetga chiqarish</b> (deploy) — kutishdan yaxshi. Odamlar ishlatadi, fikr bildiradi, siz esa ustiga qo'shib <b>o'stirasiz</b>. Kichik ishlaydigan narsa — hech qachon chiqmagan «mukammal»dan afzal.</>, ru: <>Выпустить работающий MVP <b>в интернет</b> (деплой) лучше, чем ждать. Люди пользуются, дают обратную связь, а Вы достраиваете и <b>растите</b> проект. Маленькое работающее лучше «идеального», которое так и не вышло.</> },
       },
     ]
   },
@@ -452,7 +452,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением стоит коротко повторить.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -474,7 +474,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -788,7 +788,7 @@ const Zoomable = ({ children }) => {
 
 // ===== SCREEN 0 — HOOK (o'zak bor, lekin sotib bo'lmaydi) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: "Nazariyani amalga aylantiramiz! Bugun katalogni to'liq, ishlaydigan do'konga aylantirib, dunyoga chiqaramiz. Avval ayting: mahsulotni ko'rsatishning o'zi haqiqiy do'kon uchun yetarlimi?", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's0', text: "Nazariyani amalga aylantiramiz! Bugun katalogni to'liq, ishlaydigan do'konga aylantirib, internetga chiqaramiz. Avval ayting: mahsulotni ko'rsatishning o'zi haqiqiy do'kon uchun yetarlimi?", trigger: 'on_mount', waits_for: null }]);
   const [tries, setTries] = useState(0);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
@@ -824,7 +824,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                       <span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span>
                     </button>); })}
                 </div>
-                {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri! Mahsulotni ko'rsatish — bu boshlanish. Haqiqiy do'kon uchun <b>savat</b> va <b>jami narx</b> kerak. Bugun katalogni <b>to'liq, ishlaydigan MVP</b>ga aylantirib, dunyoga chiqaramiz!</>, ru: <>Верно! Показать товары — это только начало. Настоящему магазину нужны <b>корзина</b> и <b>итоговая цена</b>. Сегодня превратим каталог в <b>полный работающий MVP</b> и выпустим его в мир!</> })}</p>}
+                {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri! Mahsulotni ko'rsatish — bu boshlanish. Haqiqiy do'kon uchun <b>savat</b> va <b>jami narx</b> kerak. Bugun katalogni <b>to'liq, ishlaydigan MVP</b>ga aylantirib, internetga chiqaramiz!</>, ru: <>Верно! Показать товары — это только начало. Настоящему магазину нужны <b>корзина</b> и <b>итоговая цена</b>. Сегодня превратим каталог в <b>полный работающий MVP</b> и выпустим его в интернет!</> })}</p>}
               </div>
             )}
           </Col>
@@ -837,13 +837,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: "Reja bizda tayyor: katalogga savat va jami narxni qo'shamiz, xatolarni tuzatamiz, oxirgi pardozni beramiz va deploy qilamiz. Dars oxirida sizda haqiqiy, ulashiladigan do'kon bo'ladi. Mana yo'l — besh qadam.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: "Reja bizda tayyor: katalogga savat va jami narxni qo'shamiz, xatolarni tuzatamiz, oxirgi yaxshilanishni qo'shamiz va deploy qilamiz. Dars oxirida sizda haqiqiy, ulashiladigan do'kon bo'ladi. Mana yo'l — besh qadam.", trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
     { text: { uz: "Savatga qo'shish — sanagich ishlasin", ru: 'Добавление в корзину — счётчик работает' }, tag: { uz: 'savat', ru: 'корзина' } },
     { text: { uz: 'Jami narx — avtomatik hisob', ru: 'Итоговая цена — считается сама' }, tag: { uz: 'jami', ru: 'итог' } },
     { text: { uz: 'Xatoni tuzatish — AI bilan', ru: 'Чиним баг — вместе с ИИ' }, tag: { uz: 'bug', ru: 'баг' } },
-    { text: { uz: 'Oxirgi pardoz — qulayroq qilish', ru: 'Последний штрих — делаем удобнее' }, tag: '' },
-    { text: { uz: 'Deploy — dunyoga chiqarish', ru: 'Деплой — выпускаем в мир' }, tag: { uz: 'havola', ru: 'ссылка' } }
+    { text: { uz: 'Oxirgi yaxshilanish — qulayroq qilish', ru: 'Последний штрих — делаем удобнее' }, tag: '' },
+    { text: { uz: 'Deploy — internetga chiqarish', ru: 'Деплой — выпускаем в интернет' }, tag: { uz: 'havola', ru: 'ссылка' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -851,7 +851,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Col>
       <div className="fade-up frame" style={{ background: T.ink, color: '#fff', textAlign: 'center', padding: '20px 18px' }}>
         <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', margin: '0 0 8px' }}>{tr({ uz: "Oxirgi dars — cho'qqi", ru: 'Последний урок — вершина' })}</p>
-        <p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, fontSize: 'clamp(18px,3vw,24px)', lineHeight: 1.25, margin: 0 }}>{tr({ uz: <>Katalogni <span style={{ color: T.accent, fontStyle: 'italic' }}>to'liq MVP</span>ga aylantirib, <span style={{ color: T.accent, fontStyle: 'italic' }}>dunyoga</span> chiqaramiz.</>, ru: <>Превратим каталог в <span style={{ color: T.accent, fontStyle: 'italic' }}>полный MVP</span> и выпустим его <span style={{ color: T.accent, fontStyle: 'italic' }}>в мир</span>.</> })}</p>
+        <p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, fontSize: 'clamp(18px,3vw,24px)', lineHeight: 1.25, margin: 0 }}>{tr({ uz: <>Katalogni <span style={{ color: T.accent, fontStyle: 'italic' }}>to'liq MVP</span>ga aylantirib, <span style={{ color: T.accent, fontStyle: 'italic' }}>internetga</span> chiqaramiz.</>, ru: <>Превратим каталог в <span style={{ color: T.accent, fontStyle: 'italic' }}>полный MVP</span> и выпустим его <span style={{ color: T.accent, fontStyle: 'italic' }}>в интернет</span>.</> })}</p>
         <p className="body" style={{ color: 'rgba(255,255,255,0.85)', margin: '10px 0 0' }}>{tr({ uz: 'Yakunda: "Men istalgan narsani qura olaman."', ru: 'В финале: «Я могу построить что угодно».' })}</p>
       </div>
     </Col>
@@ -868,7 +868,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} optionalLive /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'konni <span className="italic" style={{ color: T.accent }}>oxiriga</span> yetkazamiz</>, ru: <>Доводим магазин <span className="italic" style={{ color: T.accent }}>до конца</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Reja bizda bor: katalogga savat va jami narxni qo'shamiz, xatolarni tuzatamiz, oxirgi pardozni beramiz va <b style={{ color: T.ink }}>deploy</b> qilamiz (internetga chiqaramiz). Dars oxirida sizda haqiqiy, ulashiladigan do'kon bo'ladi. Mana yo'l — 5 qadam.</>, ru: <>План у нас есть: добавим в каталог корзину и итоговую цену, починим баги, наведём последний штрих и сделаем <b style={{ color: T.ink }}>деплой</b> (выпустим в интернет). К концу урока у Вас будет настоящий магазин, которым можно делиться. Вот путь — 5 шагов.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Reja bizda bor: katalogga savat va jami narxni qo'shamiz, xatolarni tuzatamiz, oxirgi yaxshilanishni qo'shamiz va <b style={{ color: T.ink }}>deploy</b> qilamiz (internetga chiqaramiz). Dars oxirida sizda haqiqiy, ulashiladigan do'kon bo'ladi. Mana yo'l — 5 qadam.</>, ru: <>План у нас есть: добавим в каталог корзину и итоговую цену, починим баги, наведём последний штрих и сделаем <b style={{ color: T.ink }}>деплой</b> (выпустим в интернет). К концу урока у Вас будет настоящий магазин, которым можно делиться. Вот путь — 5 шагов.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1118,9 +1118,9 @@ const Screen8 = (props) => (
     }} />
 );
 
-// ===== SCREEN 9 — JILOLASH (oxirgi pardoz) =====
+// ===== SCREEN 9 — OXIRGI YAXSHILANISH =====
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's9', text: "MVP ishlayapti — endi oxirgi pardoz. Kichik yaxshilanish do'konni professional ko'rsatadi. Bitta mazmunli yaxshilanishni tanlang.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's9', text: "MVP ishlayapti — endi oxirgi yaxshilanish. Kichik yaxshilanish do'konni professional ko'rsatadi. Bitta mazmunli yaxshilanishni tanlang.", trigger: 'on_mount', waits_for: null }]);
   const POLISH = [
     { id: 'checkout', label: { uz: '"Buyurtma berish" tugmasi', ru: 'Кнопка «Оформить заказ»' } },
     { id: 'empty', label: { uz: "Bo'sh savat xabari", ru: 'Сообщение о пустой корзине' } },
@@ -1132,14 +1132,14 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const add = (i) => setCart(c => [...c, i]);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Oxirgi pardoz', ru: 'Последний штрих' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bitta yaxshilanish tanlang', ru: 'Выберите одно улучшение' })} onClick={onNext} optionalLive /></>}>
+    <Stage eyebrow={tr({ uz: 'Oxirgi yaxshilanish', ru: 'Последний штрих' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bitta yaxshilanish tanlang', ru: 'Выберите одно улучшение' })} onClick={onNext} optionalLive /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'konni qanday <span className="italic" style={{ color: T.accent }}>yanada qulay</span> qilamiz?</>, ru: <>Как сделать магазин <span className="italic" style={{ color: T.accent }}>ещё удобнее?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Asosiy ish tugadi. Endi do'konni <b style={{ color: T.ink }}>yanada qulay va chiroyli</b> qiladigan kichik yaxshilanishlar qo'shamiz — bu "oxirgi pardoz". Shart emas, lekin foydalanuvchiga yoqadi. Bittasini tanlang — natijada qanday ko'rinishini ko'ring.</>, ru: <>Основная работа сделана. Теперь добавим мелкие улучшения, которые делают магазин <b style={{ color: T.ink }}>удобнее и красивее</b>, — это «последний штрих». Не обязательно, но пользователям нравится. Выберите одно — и посмотрите результат.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Asosiy ish tugadi. Endi do'konni <b style={{ color: T.ink }}>yanada qulay va chiroyli</b> qiladigan kichik yaxshilanishlar qo'shamiz — bu "oxirgi yaxshilanish". Shart emas, lekin foydalanuvchiga yoqadi. Bittasini tanlang — natijada qanday ko'rinishini ko'ring.</>, ru: <>Основная работа сделана. Теперь добавим мелкие улучшения, которые делают магазин <b style={{ color: T.ink }}>удобнее и красивее</b>, — это «последний штрих». Не обязательно, но пользователям нравится. Выберите одно — и посмотрите результат.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Qaysi pardozni qo'shamiz?", ru: 'Какой штрих добавим?' })}</p>
+            <p className="flow-label">{tr({ uz: "Qaysi yaxshilanishni qo'shamiz?", ru: 'Какой штрих добавим?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {POLISH.map(p => <button key={p.id} className={`chip ${applied === p.id ? 'chip-on' : ''}`} onClick={() => setApplied(p.id)} style={{ justifyContent: 'flex-start' }}>{applied === p.id ? '✓ ' : '+ '}{tr(p.label)}</button>)}
             </div>
@@ -1154,7 +1154,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {applied === 'thanks' && <div className="fade-step" style={{ background: T.successSoft, color: T.success, borderRadius: 10, padding: '10px 12px', fontSize: 13, fontWeight: 700, textAlign: 'center' }}>{tr({ uz: 'Rahmat! Buyurtmangiz qabul qilindi.', ru: 'Спасибо! Ваш заказ принят.' })}</div>}
               </div>
             </Browser>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana shu kichik pardoz do'konni professional ko'rsatadi. Endi MVP to'liq jilolangan — chiqarishga tayyor!", ru: 'Такой маленький штрих делает магазин профессиональным. Теперь MVP отполирован — готов к выпуску!' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana shu kichik yaxshilanish do'konni professional ko'rsatadi. Endi MVP to'liq jilolangan — chiqarishga tayyor!", ru: 'Такой маленький штрих делает магазин профессиональным. Теперь MVP отполирован — готов к выпуску!' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1178,9 +1178,9 @@ const Screen10 = (props) => (
     }} />
 );
 
-// ===== SCREEN 11 — DEPLOY (dunyoga chiqarish) =====
+// ===== SCREEN 11 — DEPLOY (internetga chiqarish) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's11', text: "Do'kon kompyuteringizda ishlayapti. Endi uni dunyoga chiqaramiz — deploy qilamiz. Tugmani bosing va havolangizni oling — bu havolani hammaga ulashsangiz bo'ladi!", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's11', text: "Do'kon kompyuteringizda ishlayapti. Endi uni internetga chiqaramiz — deploy qilamiz. Tugmani bosing va havolangizni oling — bu havolani hammaga ulashsangiz bo'ladi!", trigger: 'on_mount', waits_for: null }]);
   const [phase, setPhase] = useState(storedAnswer ? 'live' : 'idle'); // idle | deploying | live
   const timer = useRef(null);
   const live = phase === 'live';
@@ -1192,7 +1192,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Deploy', ru: 'Деплой' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Saytni chiqaring', ru: 'Выпустите сайт' })} onClick={onNext} optionalLive /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>MVP tayyor — <span className="italic" style={{ color: T.accent }}>dunyoga</span> chiqaramiz!</>, ru: <>MVP готов — выпускаем <span className="italic" style={{ color: T.accent }}>в мир!</span></> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>MVP tayyor — <span className="italic" style={{ color: T.accent }}>internetga</span> chiqaramiz!</>, ru: <>MVP готов — выпускаем <span className="italic" style={{ color: T.accent }}>в интернет!</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Do'kon kompyuteringizda ishlayapti. Lekin haqiqiy loyiha — boshqalar ham ko'ra oladigan loyiha. <b style={{ color: T.ink }}>Deploy</b> — saytni internetga chiqarish (6-darsdagi Netlify esingizdami?). Tugmani bosing va havola oling.</>, ru: <>Магазин работает на Вашем компьютере. Но настоящий проект — тот, который видят другие. <b style={{ color: T.ink }}>Деплой</b> — выпуск сайта в интернет (помните Netlify из 6-го урока?). Нажмите кнопку и получите ссылку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
@@ -1333,7 +1333,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { t: { uz: 'Agent reja + quradi', ru: 'Агент планирует + строит' }, d: { uz: "Rejani ko'rsatadi — tasdiqlaysiz — quradi.", ru: 'Показывает план — Вы подтверждаете — он строит.' } },
     { t: { uz: 'Brauzerda tekshirasiz', ru: 'Проверяете в браузере' }, d: { uz: "Natijani sinab ko'rasiz: ishlayaptimi?", ru: 'Пробуете результат: работает ли?' } },
     { t: { uz: "Kerak bo'lsa qayta so'raysiz", ru: 'Если нужно — просите снова' }, d: { uz: "Bug yoki o'zgartirish — aniq aytib tuzattirasiz.", ru: 'Баг или изменение — точно объясняете и просите исправить.' } },
-    { t: { uz: 'Deploy qilasiz', ru: 'Делаете деплой' }, d: { uz: 'Havola olib, dunyoga chiqarasiz.', ru: 'Получаете ссылку и выпускаете в мир.' } }
+    { t: { uz: 'Deploy qilasiz', ru: 'Делаете деплой' }, d: { uz: 'Havola olib, internetga chiqarasiz.', ru: 'Получаете ссылку и выпускаете в интернет.' } }
   ];
   const [shown, setShown] = useState(storedAnswer ? STEPS14.length : 0);
   const done = shown >= STEPS14.length;
@@ -1446,7 +1446,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [{ uz: "Savat va jami narx — katalogni haqiqiy do'konga aylantiradi", ru: 'Корзина и итоговая цена превращают каталог в настоящий магазин' }, { uz: "AI ham adashadi — aniq tushuntirib, qayta so'rab tuzatamiz", ru: 'ИИ тоже ошибается — точно объясняем, просим снова и чиним' }, { uz: 'MVP tayyor = asosiy funksiyalar ishlaydi (keyin yaxshilanadi)', ru: 'MVP готов = основные функции работают (улучшим потом)' }, { uz: 'Deploy — loyihani dunyoga chiqarish', ru: 'Деплой — выпуск проекта в мир' }, { uz: "Universal yo'l: reja → MVP → qur → tekshir → deploy", ru: 'Универсальный путь: план → MVP → построй → проверь → деплой' }];
+  const RECAP = [{ uz: "Savat va jami narx — katalogni haqiqiy do'konga aylantiradi", ru: 'Корзина и итоговая цена превращают каталог в настоящий магазин' }, { uz: "AI ham adashadi — aniq tushuntirib, qayta so'rab tuzatamiz", ru: 'ИИ тоже ошибается — точно объясняем, просим снова и чиним' }, { uz: 'MVP tayyor = asosiy funksiyalar ishlaydi (keyin yaxshilanadi)', ru: 'MVP готов = основные функции работают (улучшим потом)' }, { uz: 'Deploy — loyihani internetga chiqarish', ru: 'Деплой — выпуск проекта в интернет' }, { uz: "Universal yo'l: reja → MVP → qur → tekshir → deploy", ru: 'Универсальный путь: план → MVP → построй → проверь → деплой' }];
   const HOMEWORK = [{ b: { uz: "O'z g'oyangiz", ru: 'Ваша идея' }, t: { uz: "— bitta loyihani tanlab, MVP'sini belgilang", ru: '— выберите один проект и определите его MVP' } }, { b: { uz: "Antigravity'da quring", ru: 'Постройте в Antigravity' }, t: { uz: "— reja, qur, tekshir, bug bo'lsa tuzating", ru: '— план, постройте, проверьте, а если баг — почините' } }, { b: { uz: 'Deploy qiling', ru: 'Сделайте деплой' }, t: { uz: '— havolani oling va kimgadir ulashing!', ru: '— получите ссылку и поделитесь с кем-нибудь!' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1615,7 +1615,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   );
                 })}
               </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы с ⚠️ — темы, где класс споткнулся. Рекомендуем объяснить ещё раз.' })}</p>}
+              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntiring.', ru: 'Вопросы с ⚠️ — темы, где класс споткнулся. Объясните ещё раз.' })}</p>}
             </div>
           </>
         )}
@@ -1967,7 +1967,7 @@ const QUIZ_BANK = [
   { q: { uz: "MVP 'tayyor' degani nima?", ru: 'Что значит «MVP готов»?' }, opts: [{ uz: 'Mutlaqo mukammal, kamchiliksiz', ru: 'Абсолютно идеален, без недостатков' }, { uz: 'Faqat dizayni chiroyli', ru: 'Только красивый дизайн' }, { uz: 'Asosiy funksiyalar ishlaydi', ru: 'Основные функции работают' }, { uz: "Juda ko'p funksiyasi bor", ru: 'Очень много функций' }], correct: 2 },
   { q: { uz: 'Deploy nima?', ru: 'Что такое деплой?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полное удаление кода' }, { uz: 'Ataylab bug qilish', ru: 'Баг нарочно' }, { uz: 'Fon rangini tanlash', ru: 'Выбор цвета фона' }, { uz: 'Saytni internetga chiqarish', ru: 'Выпуск сайта в интернет' }], correct: 3 },
   { q: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, opts: [{ uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, { uz: 'Butun kod faylini', ru: 'Весь файл с кодом' }, { uz: 'Butun kompyuteringizni', ru: 'Весь свой компьютер' }, { uz: 'Mahsulot rasmini', ru: 'Фото товара' }], correct: 0 },
-  { q: { uz: "'Oxirgi pardoz' (jilolash) misoli qaysi?", ru: 'Какой пример — «последний штрих» (полировка)?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полное удаление кода' }, { uz: 'Kompyuterni almashtirish', ru: 'Замена компьютера' }, { uz: "'Buyurtma berish' tugmasini qo'shish", ru: 'Добавить кнопку «Оформить заказ»' }, { uz: "Internetni o'chirib qo'yish", ru: 'Отключить интернет' }], correct: 2 },
+  { q: { uz: "'Oxirgi yaxshilanish' misoli qaysi?", ru: 'Какой пример — «последний штрих» (полировка)?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полное удаление кода' }, { uz: 'Kompyuterni almashtirish', ru: 'Замена компьютера' }, { uz: "'Buyurtma berish' tugmasini qo'shish", ru: 'Добавить кнопку «Оформить заказ»' }, { uz: "Internetni o'chirib qo'yish", ru: 'Отключить интернет' }], correct: 2 },
   { q: { uz: 'Har mahsulot ikki marta hisoblanib, jami ikki barobar chiqsa — bu...', ru: 'Каждый товар считается дважды и итог вдвое больше — это...' }, opts: [{ uz: "To'g'ri natija", ru: 'Правильный результат' }, { uz: 'Oddiy dizayn', ru: 'Обычный дизайн' }, { uz: 'Yangi funksiya', ru: 'Новая функция' }, { uz: 'Bug (xato)', ru: 'Баг (ошибка)' }], correct: 3 },
   { q: { uz: "Universal loyiha yo'li qaysi tartibda?", ru: 'В каком порядке идёт универсальный путь проекта?' }, opts: [{ uz: 'Deploy → qur → tekshir → reja → MVP', ru: 'Деплой → построй → проверь → план → MVP' }, { uz: 'Reja → MVP → qur → tekshir → deploy', ru: 'План → MVP → построй → проверь → деплой' }, { uz: 'Qur → reja → MVP → deploy → tekshir', ru: 'Построй → план → MVP → деплой → проверь' }, { uz: 'MVP → deploy → reja → qur → tekshir', ru: 'MVP → деплой → план → построй → проверь' }], correct: 1 },
   { q: { uz: "Savat sanagichi '+' bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «+» у счётчика корзины?' }, opts: [{ uz: 'Umuman hech narsa', ru: 'Вообще ничего' }, { uz: "Hodisa → reaksiya → o'zgarish", ru: 'Событие → реакция → изменение' }, { uz: "Butun sayt o'chadi", ru: 'Весь сайт выключается' }, { uz: "Fon rangi o'zgaradi", ru: 'Меняется цвет фона' }], correct: 1 },
@@ -2239,6 +2239,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
@@ -2358,7 +2366,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2555,7 +2564,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -2579,7 +2588,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .build-skel { display: flex; flex-direction: column; gap: 11px; padding: 10px 2px; }
         .build-skel .bs-bar { height: 13px; border-radius: 7px; background: linear-gradient(90deg, #ECEAE4 25%, #FAF8F3 50%, #ECEAE4 75%); background-size: 200% 100%; animation: bs-shimmer 1.15s ease-in-out infinite; }
         .build-skel .bs-lg { height: 34px; border-radius: 10px; }
-        .build-note { text-align: center; font-size: 11.5px; color: ${T.ink3}; margin: 6px 0 0; font-family: 'JetBrains Mono'; letter-spacing: 0.04em; }
+        .build-note { text-align: center; font-size: 11.5px; color: ${T.ink3}; margin: 6px 0 0; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; letter-spacing: 0.04em; }
 
         /* === BOSQICH TASMASI (milestone) — Screen13 === */
         .mstone { display: flex; align-items: center; gap: 12px; }
@@ -2590,7 +2599,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .mstone-track { position: relative; flex: 1; height: 28px; display: flex; align-items: center; justify-content: space-between; }
         .mstone-track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 4px; transform: translateY(-50%); background: rgba(167,166,162,0.3); border-radius: 99px; }
         .mstone-fill { position: absolute; left: 0; top: 50%; height: 4px; transform: translateY(-50%); background: ${T.accent}; border-radius: 99px; transition: width 0.5s cubic-bezier(.4,0,.2,1); box-shadow: 0 0 10px rgba(255,79,40,0.5); }
-        .mstone-node { position: relative; z-index: 1; width: 26px; height: 26px; border-radius: 50%; background: ${T.paper}; box-shadow: inset 0 0 0 2px rgba(167,166,162,0.45); color: ${T.ink3}; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+        .mstone-node { position: relative; z-index: 1; width: 26px; height: 26px; border-radius: 50%; background: ${T.paper}; box-shadow: inset 0 0 0 2px rgba(167,166,162,0.45); color: ${T.ink3}; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
         .mstone-node.on { background: ${T.accent}; color: #fff; box-shadow: 0 4px 12px -3px rgba(255,79,40,0.5); transform: scale(1.08); }
         @media (max-width: 560px) { .mstone-cap { display: none; } }
 
@@ -2687,15 +2696,15 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
-        .num-badge { width: 30px; height: 30px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .num-badge { width: 30px; height: 30px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 14px; flex-shrink: 0; }
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
         .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
-        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
-        .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
+        .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
         /* === SK-INFO === */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
@@ -2703,11 +2712,11 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
 
         /* === CODEBOX === */
-        .codebox { background: ${CODE.bg}; border-radius: 12px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12.5px,1.6vw,14.5px); color: ${CODE.text}; line-height: 1.75; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.18); overflow-x: hidden; }
+        .codebox { background: ${CODE.bg}; border-radius: 12px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12.5px,1.6vw,14.5px); color: ${CODE.text}; line-height: 1.75; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.18); overflow-x: hidden; }
         .codebox > div { white-space: pre-wrap; word-break: break-word; }
 
         /* === TAGPILL / AI CARD === */
-        .tagpill { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
+        .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; }
@@ -2716,7 +2725,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .browser { background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.22); border: 1px solid rgba(167,166,162,0.25); }
         .browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #ECEAE4; }
         .browser-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-        .browser-url { margin-left: 8px; flex: 1; font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; background: ${T.paper}; border-radius: 6px; padding: 4px 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .browser-url { margin-left: 8px; flex: 1; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink3}; background: ${T.paper}; border-radius: 6px; padding: 4px 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
         .browser-body { padding: clamp(15px,2.6vw,22px); min-height: 150px; background: ${T.paper}; color: ${T.ink}; transition: background .35s ease, color .35s ease; }
         .browser-dark .browser-bar { background: #11151C; }
         .browser-dark .browser-body { background: #161E2B; color: #E8E5DD; }
@@ -2738,7 +2747,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .flow { display: flex; align-items: center; justify-content: center; gap: 5px; flex-wrap: wrap; }
         .flow-node { display: flex; align-items: center; gap: 5px; background: ${T.paper}; border-radius: 9px; padding: 6px 9px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; color: ${T.ink2}; transition: all .25s; opacity: .45; white-space: nowrap; }
         .flow-node.on { opacity: 1; background: ${T.accent}; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 18px -6px rgba(255,79,40,0.4); }
-        .flow-node .flow-n { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: rgba(167,166,162,0.3); font-family: 'JetBrains Mono'; font-weight: 700; font-size: 9.5px; flex-shrink: 0; }
+        .flow-node .flow-n { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: rgba(167,166,162,0.3); font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 9.5px; flex-shrink: 0; }
         .flow-node.on .flow-n { background: rgba(255,255,255,0.3); }
         .flow-arrow { color: ${T.ink3}; font-size: 13px; }
 
@@ -2758,7 +2767,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         /* === IWATCH === */
         .iwatch { display: flex; align-items: baseline; gap: 9px; background: ${T.paper}; border-radius: 12px; padding: 12px 18px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .iwatch-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink3}; }
-        .iwatch-eq { font-family: 'JetBrains Mono'; font-size: 18px; color: ${T.ink2}; }
+        .iwatch-eq { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 18px; color: ${T.ink2}; }
         .iwatch-num { font-family: 'Fraunces', serif; font-size: clamp(34px,7vw,52px); color: ${T.accent}; line-height: 1; }
 
         /* === YAKUN === */
@@ -2779,7 +2788,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
         .hw-big:hover { transform: translateY(-3px) scale(1.02); }
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
         @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
@@ -2953,7 +2962,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
 
         /* Dars-DNK: suzuvchi tokenlar + tezlik-chiziqlar + yashin-flash */
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none;
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none;
           color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4);
           animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
@@ -3000,7 +3009,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
 
         /* HUD-chiziq: turnir-tablo uslubidagi neon-pilyulalar */
         .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3018,7 +3027,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
         .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3035,7 +3044,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
@@ -3083,7 +3092,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
@@ -3146,7 +3155,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
 
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
         /* === 🧲 DRAG&DROP (reusable) === */
@@ -3165,7 +3174,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -3177,7 +3186,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .dbg-box { display: flex; flex-direction: column; border-top: 1.5px dashed ${T.line}; padding-top: 12px; margin-top: 6px; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
         .dbg { display: flex; flex-direction: column; gap: 10px; }
         .dbg-code { background: ${CODE.bg}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 26px -14px rgba(${T.shadowBase},0.4); overflow-x: auto; }
-        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
+        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
@@ -3224,9 +3233,9 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
         .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
         .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
         .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
         .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }

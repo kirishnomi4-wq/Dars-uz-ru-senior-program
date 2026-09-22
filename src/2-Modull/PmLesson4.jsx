@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef, useCallback, useMemo, createContext
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
 // ============================================================
-// PM M2-D2 — MUAMMODAN YECHIMGA: har imkoniyat qaysi qiyinchilikni yo'qotadi?
-// 2-TUR (sof PM): o'quvchi O'Z artefaktini yozadi — 3 juftlik-karta (qiyinchilik ↔ imkoniyat).
+// PM M2-D2 — MUAMMODAN YECHIMGA: har yechim qaysi muammoni yo'qotadi?
+// 2-TUR (sof PM): o'quvchi O'Z artefaktini yozadi — 3 karta (muammo ↔ yechim).
 // Kirish-artefakt: pm-m1d2-cards (M1-D2 auditoriya-kartasi) · Chiqish: pm-m2d2-features.
 // Misol-ipi: savdo markazidagi kinoteatr sayti. Keys: Uzum (faqat keys-ekranida).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -17,8 +17,8 @@ const T = {
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
   success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
-  // 🟠 Amber — PM slot-semantikasi (P0 bilan bir xil qiymatlar). Bu darsda amber = QIYINCHILIK,
-  // yashil (success) = IMKONIYAT. Ikkovi s1·s2·s4·s8·s10·s11·yakunda AYNAN shu juftlikda qoladi.
+  // 🟠 Amber — PM slot-semantikasi (P0 bilan bir xil qiymatlar). Bu darsda amber = MUAMMO,
+  // yashil (success) = YECHIM. Ikkovi s1·s2·s4·s8·s10·s11·yakunda AYNAN shu juftlikda qoladi.
   amber: '#E8A13A', amberInk: '#B77A16', amberSoft: '#FBEED6',
   shadowBase: '40, 34, 82'
 };
@@ -29,7 +29,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -182,10 +182,10 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const AchCtx = createContext(null); // olingan nishonlar (Set) — Stage hisoblagichi uchun
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 const ACHIEVEMENTS = {
-  pairFinder: { icon: '🔎', name: 'Pair Finder!', desc: { uz: "Imkoniyat va qiyinchilik juftlarini ochdingiz", ru: "Вы открыли пары возможностей и трудностей" } },
-  matchMaster: { icon: '🧲', name: 'Match Master!', desc: { uz: "Uchala imkoniyatni o'z qiyinchiligiga qo'ydingiz", ru: 'Вы поставили все три возможности к своей трудности' } },
-  cardWriter: { icon: '📝', name: 'Card Writer!', desc: { uz: "Uchta juftlik-kartangizni yozib bo'ldingiz", ru: 'Вы дописали все три карточки-пары' } },
-  pageMaker: { icon: '🧱', name: 'Page Maker!', desc: { uz: "Juftliklarni ko'rsatadigan kodni yozdingiz", ru: "Вы написали код, который показывает пары" } },
+  pairFinder: { icon: '🔎', name: 'Pair Finder!', desc: { uz: "Har yechimga o'z muammosini topdingiz", ru: "Вы нашли каждому решению свою проблему" } },
+  matchMaster: { icon: '🧲', name: 'Match Master!', desc: { uz: "Uchala yechimni o'z muammosiga qo'ydingiz", ru: 'Вы поставили все три решения к своей проблеме' } },
+  cardWriter: { icon: '📝', name: 'Card Writer!', desc: { uz: "Uchta kartangizni yozib bo'ldingiz", ru: 'Вы дописали все три карточки' } },
+  pageMaker: { icon: '🧱', name: 'Page Maker!', desc: { uz: "Muammo va yechimlarni ko'rsatadigan kodni yozdingiz", ru: "Вы написали код, который показывает проблемы и решения" } },
 };
 // Ekran id → nishon (recordAnswer'da correct:true bo'lganda avtomatik beriladi).
 const ACH_TRIGGERS = { s2: 'pairFinder', s4: 'matchMaster', s8: 'cardWriter', s11: 'pageMaker' };
@@ -378,27 +378,27 @@ const RcFlow = ({ items, sep = '→' }) => (
 // RECAPS — 4 scored test (indeks 3, 5, 9, 12) uchun qayta-tushuntirish kartalari.
 const RECAPS = {
   3: {
-    title: { uz: 'Imkoniyat qayerdan boshlanadi', ru: 'С чего начинается возможность' },
+    title: { uz: 'Yechim qayerdan boshlanadi', ru: 'С чего начинается решение' },
     cards: [
-      { ic: '🎯', h: { uz: 'Avval savol, keyin ish', ru: 'Сначала вопрос, потом работа' }, body: { uz: 'Har imkoniyat bitta savoldan boshlanadi: bu kimning qaysi qiyinchiligini yo\'qotadi? Javob topilmasa, imkoniyat ro\'yxatga kirmaydi.', ru: 'Каждая возможность начинается с одного вопроса: чью и какую трудность она убирает? Если ответа нет — возможность в список не попадает.' }, vis: { uz: <RcFlow items={['Imkoniyat', 'qaysi qiyinchilik?', "ro'yxatga kiradi"]} />, ru: <RcFlow items={['Возможность', 'какая трудность?', 'попадает в список']} /> }, ask: { uz: 'Fon musiqasi kimning qaysi qiyinchiligini yo\'qotadi?', ru: 'Чью и какую трудность убирает фоновая музыка?' } },
+      { ic: '🎯', h: { uz: 'Avval savol, keyin ish', ru: 'Сначала вопрос, потом работа' }, body: { uz: 'Har yechim bitta savoldan boshlanadi: bu kimning qaysi muammosini yo\'qotadi? Javob topilmasa, yechim ro\'yxatga kirmaydi.', ru: 'Каждое решение начинается с одного вопроса: чью и какую проблему оно убирает? Если ответа нет — решение в список не попадает.' }, vis: { uz: <RcFlow items={['Yechim', 'qaysi muammo?', "ro'yxatga kiradi"]} />, ru: <RcFlow items={['Решение', 'какая проблема?', 'попадает в список']} /> }, ask: { uz: 'Fon musiqasi kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему убирает фоновая музыка?' } },
     ],
   },
   5: {
-    title: { uz: 'Egasiz imkoniyat', ru: 'Возможность без хозяина' },
+    title: { uz: 'Egasiz yechim', ru: 'Решение без хозяина' },
     cards: [
-      { ic: '❓', h: { uz: 'Nega bir kartaga joy topilmadi', ru: 'Почему одной карточке не нашлось места' }, body: { uz: 'Sudrash mashqida uch qiyinchilikka uch javob topildi. To\'rtinchi kartaga qiyinchilik topilmadi — shuning uchun u joysiz qoldi.', ru: 'В упражнении с перетаскиванием у трёх трудностей нашлись три ответа. Для четвёртой карточки трудности не нашлось — поэтому она осталась без места.' }, ask: { uz: 'To\'rtinchi kartani qanday o\'zgartirsak, unga ham qiyinchilik topiladi?', ru: 'Как изменить четвёртую карточку, чтобы и ей нашлась трудность?' } },
+      { ic: '❓', h: { uz: 'Nega bir kartaga joy topilmadi', ru: 'Почему одной карточке не нашлось места' }, body: { uz: 'Sudrash mashqida uch muammoga uch javob topildi. To\'rtinchi kartaga muammo topilmadi — shuning uchun u joysiz qoldi.', ru: 'В упражнении с перетаскиванием у трёх проблем нашлись три ответа. Для четвёртой карточки проблемы не нашлось — поэтому она осталась без места.' }, ask: { uz: 'To\'rtinchi kartani qanday o\'zgartirsak, unga ham muammo topiladi?', ru: 'Как изменить четвёртую карточку, чтобы и ей нашлась проблема?' } },
     ],
   },
   9: {
-    title: { uz: 'Juftlik qanday yoziladi', ru: 'Как пишется пара' },
+    title: { uz: 'Muammo va yechim qanday yoziladi', ru: 'Как пишется проблема и решение' },
     cards: [
-      { ic: '↔️', h: { uz: 'Chap tomon va o\'ng tomon', ru: 'Левая сторона и правая' }, body: { uz: 'Chapda — odamning qiyinchiligi, o\'ngda — sayt nima qilishi. O\'ng tomon harakat bilan yoziladi va chap tomonni to\'g\'ridan-to\'g\'ri yo\'qotadi.', ru: 'Слева — трудность человека, справа — что делает сайт. Правая сторона пишется действием и напрямую убирает левую.' }, vis: { uz: <RcFlow items={['Qiyinchilik', 'imkoniyat', 'harakat bilan']} />, ru: <RcFlow items={['Трудность', 'возможность', 'через действие']} /> } },
+      { ic: '↔️', h: { uz: 'Chap tomon va o\'ng tomon', ru: 'Левая сторона и правая' }, body: { uz: 'Chapda — odamning muammosi, o\'ngda — sayt nima qilishi. O\'ng tomon harakat bilan yoziladi va chap tomonni to\'g\'ridan-to\'g\'ri yo\'qotadi.', ru: 'Слева — проблема человека, справа — что делает сайт. Правая сторона пишется действием и напрямую убирает левую.' }, vis: { uz: <RcFlow items={['Muammo', 'yechim', 'harakat bilan']} />, ru: <RcFlow items={['Проблема', 'решение', 'через действие']} /> } },
     ],
   },
   12: {
     title: { uz: 'Yangi so\'rov kelganda', ru: 'Когда приходит новая просьба' },
     cards: [
-      { ic: '🙋', h: { uz: 'So\'rov hali imkoniyat emas', ru: 'Просьба — ещё не возможность' }, body: { uz: 'So\'rov hali imkoniyat emas. Avval u qaysi qiyinchilikka javob berishi so\'raladi, keyin ro\'yxatga kiritiladi.', ru: 'Просьба — ещё не возможность. Сначала спрашивают, на какую трудность она отвечает, и только потом вносят в список.' }, ask: { uz: 'Kinoteatr egasi yangi narsa so\'rasa, birinchi savolingiz qanday bo\'ladi?', ru: 'Если владелец кинотеатра просит что-то новое — каким будет ваш первый вопрос?' } },
+      { ic: '🙋', h: { uz: 'So\'rov hali yechim emas', ru: 'Просьба — ещё не решение' }, body: { uz: 'So\'rov hali yechim emas. Avval u qaysi muammoga javob berishi so\'raladi, keyin ro\'yxatga kiritiladi.', ru: 'Просьба — ещё не решение. Сначала спрашивают, на какую проблему оно отвечает, и только потом вносят в список.' }, ask: { uz: 'Kinoteatr egasi yangi narsa so\'rasa, birinchi savolingiz qanday bo\'ladi?', ru: 'Если владелец кинотеатра просит что-то новое — каким будет ваш первый вопрос?' } },
     ],
   },
 };
@@ -517,7 +517,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -539,7 +539,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните заново.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -792,15 +792,15 @@ const MentorNote = ({ children }) => {
 
 // ===== DARS-XOTIRASI (lesson-scoped kalitlar) =====
 const HOOK_KEY = 'pm-m2d2-hook-choice';       // s0 tanlovi — s6 keysida qaytariladi (33-qonun)
-const PICKED_KEY = 'pm-m2d2-picked';          // s7 da belgilangan 3 qiyinchilik
-const FEATURES_KEY = 'pm-m2d2-features';      // CHIQISH-ARTEFAKT: [{qiyinchilik, imkoniyat}]
+const PICKED_KEY = 'pm-m2d2-picked';          // s7 da belgilangan 3 muammo
+const FEATURES_KEY = 'pm-m2d2-features';      // CHIQISH-ARTEFAKT: [{muammo, yechim}]
 const REFLECT_KEY = 'pm-m2d2-reflection';     // s13 bir qatorlik yozuv
 const M1_CARDS_KEY = 'pm-m1d2-cards';         // KIRISH-ARTEFAKT: M1-D2 auditoriya-kartasi
 const lsRead = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch { return null; } };
 const lsWrite = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
-const readFeatures = () => { const a = lsRead(FEATURES_KEY); return Array.isArray(a) ? a.filter(c => c && c.qiyinchilik && c.imkoniyat) : []; };
+const readFeatures = () => { const a = lsRead(FEATURES_KEY); return Array.isArray(a) ? a.filter(c => c && c.muammo && c.yechim) : []; };
 
-// Zaxira qiyinchiliklar (kinoteatr sayti) — M1 kartasi bo'lmasa ham dars to'xtamaydi (40-qonun)
+// Zaxira muammolar (kinoteatr sayti) — M1 kartasi bo'lmasa ham dars to'xtamaydi (40-qonun)
 const FALLBACK_PAINS = [
   { uz: 'Do\'stlar qaysi film qachon boshlanishini bilmaydi', ru: 'Друзья не знают, когда начинается фильм' },
   { uz: 'Zalda bo\'sh joy bormi — bilmasdan boradi', ru: 'Идут, не зная, есть ли в зале свободные места' },
@@ -828,7 +828,7 @@ const HOOK_LISTS = [
     ]
   }
 ];
-// Payoff — «band → u javob beradigan savol». Atama («imkoniyat/feature») bu yerda
+// Payoff — «band → u javob beradigan savol». Atama («yechim/feature») bu yerda
 // ATAYLAB yo'q: u 1-ekranda beriladi (hodisa avval, atama keyin). F-0802-10.
 const HOOK_PAYOFF = [
   { feat: { uz: 'Seans jadvali', ru: 'Расписание сеансов' }, q: { uz: '«Film qachon boshlanadi?»', ru: '«Когда начинается фильм?»' } },
@@ -879,7 +879,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — MAQSAD: jonli natija-preview «juftlik-lenta» =====
+// ===== SCREEN 1 — MAQSAD: jonli natija-preview «karta-lenta» =====
 // WOW: dars natijasi o'quvchi ko'z oldida o'zi yozilib chiqadi (CSS-taymlayn; reduced-motion'da darhol).
 const DEMO_PAIRS = [
   { pain: { uz: 'Film qachon boshlanishini bilmaydi', ru: 'Не знает, когда начинается фильм' }, feat: { uz: 'Seans jadvali sahifaning tepasida turadi', ru: 'Расписание сеансов стоит наверху страницы' } },
@@ -890,7 +890,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dars oxirida saytning har bandi <span className="italic" style={{ color: T.accent }}>kimga kerakligini</span> yozib olasiz</>, ru: <>К концу урока вы запишете, <span className="italic" style={{ color: T.accent }}>кому нужен</span> каждый пункт сайта</> })}</h2></div>
-      <Mentor>{tr({ uz: <>Sayt beradigan har bir aniq foyda — <b style={{ color: T.ink }}>imkoniyat</b> (feature) deyiladi. Bugun har imkoniyatni o'z qiyinchiligiga qo'shib yozasiz — quyida namunasi o'z-o'zidan yozilib chiqadi.</>, ru: <>Каждая конкретная польза, которую даёт сайт, называется <b style={{ color: T.ink }}>возможность</b> (feature). Сегодня вы запишете каждую возможность вместе с её трудностью — образец ниже напишется сам.</> })}</Mentor>
+      <Mentor>{tr({ uz: <>Sayt beradigan har bir aniq foyda — <b style={{ color: T.ink }}>yechim</b> (feature) deyiladi. Bugun har yechimni o'z muammosiga qo'shib yozasiz — quyida namunasi o'z-o'zidan yozilib chiqadi.</>, ru: <>Каждая конкретная польза, которую даёт сайт, называется <b style={{ color: T.ink }}>решение</b> (feature). Сегодня вы запишете каждое решение вместе с его проблемой — образец ниже напишется сам.</> })}</Mentor>
       <div className="jl fade-up delay-1">
         {DEMO_PAIRS.map((p, i) => (
           <div key={i} className="jl-row" style={{ '--rd': `${0.25 + i * 0.55}s` }}>
@@ -901,17 +901,17 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
           </div>
         ))}
       </div>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">{tr({ uz: 'Dars oxirida sizning uch juftligingiz ham shunday yozilgan bo\'ladi.', ru: 'К концу урока ваши три пары будут записаны точно так же.' })}</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">{tr({ uz: 'Dars oxirida sizning uchta muammo va yechimingiz ham shunday yozilgan bo\'ladi.', ru: 'К концу урока ваши три карточки будут записаны точно так же.' })}</p></div>
     </div>
   </Stage>
 );
 
-// ===== SCREEN 2 — YADRO: 4 imkoniyat kartasi, bosilsa qaysi qiyinchilikni yo'qotishi ochiladi =====
+// ===== SCREEN 2 — YADRO: 4 yechim kartasi, bosilsa qaysi muammoni yo'qotishi ochiladi =====
 const OPEN_CARDS = [
   { id: 'jadval', ic: '🕒', t: { uz: 'Seans jadvali', ru: 'Расписание сеансов' }, pain: { uz: 'Do\'stlar qaysi film qachon boshlanishini bilmaydi', ru: 'Друзья не знают, когда начинается фильм' }, empty: false },
   { id: 'joylar', ic: '💺', t: { uz: 'Zal xaritasi', ru: 'Карта зала' }, pain: { uz: 'Zalda bo\'sh joy bormi — bilmasdan boradi', ru: 'Идут, не зная, есть ли в зале свободные места' }, empty: false },
   { id: 'chipta', ic: '🎟', t: { uz: 'Onlayn chipta', ru: 'Билет онлайн' }, pain: { uz: 'Chiptani qayerdan olishni bilmaydi', ru: 'Не знает, где взять билет' }, empty: false },
-  { id: 'musiqa', ic: '🎵', t: { uz: 'Fon musiqasi', ru: 'Фоновая музыка' }, pain: { uz: 'Hech kimning qiyinchiligini yo\'qotmaydi', ru: 'Не убирает ничью трудность' }, empty: true }
+  { id: 'musiqa', ic: '🎵', t: { uz: 'Fon musiqasi', ru: 'Фоновая музыка' }, pain: { uz: 'Hech kimning muammosini yo\'qotmaydi', ru: 'Не убирает ничью проблему' }, empty: true }
 ];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState({});   // hozir ochiq turgani (qayta bosilsa yopiladi)
@@ -927,10 +927,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pending = OPEN_CARDS.filter(c => !seen.includes(c.id)).map(c => c.id);
   const lit = useTurnWalk(pending, !allSeen);
   return (
-    <Stage eyebrow={tr({ uz: 'Qaysi qiyinchilikka', ru: 'К какой трудности' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!allSeen} label={allSeen ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Kartalarni oching (${seen.length}/4)`, ru: `Откройте карточки (${seen.length}/4)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qaysi muammoga', ru: 'К какой проблеме' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!allSeen} label={allSeen ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Kartalarni oching (${seen.length}/4)`, ru: `Откройте карточки (${seen.length}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu imkoniyat kimning <span className="italic" style={{ color: T.accent }}>qaysi qiyinchiligini</span> yo'qotadi?</>, ru: <>Чью и <span className="italic" style={{ color: T.accent }}>какую трудность</span> убирает эта возможность?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Kinoteatr saytiga to'rtta imkoniyat taklif qilindi. Har birini bosing — ostida u qaysi qiyinchilikni yo'qotishi ochiladi.</>, ru: <>Сайту кинотеатра предложили четыре возможности. Нажмите на каждую — под ней откроется, какую трудность она убирает.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu yechim kimning <span className="italic" style={{ color: T.accent }}>qaysi muammosini</span> yo'qotadi?</>, ru: <>Чью и <span className="italic" style={{ color: T.accent }}>какую проблему</span> убирает это решение?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Kinoteatr saytiga to'rtta yechim taklif qilindi. Har birini bosing — ostida u qaysi muammoni yo'qotishi ochiladi.</>, ru: <>Сайту кинотеатра предложили четыре решения. Нажмите на каждое — под ним откроется, какую проблему оно убирает.</> })}</Mentor>
         <div className="oc-grid fade-up delay-1">
           {OPEN_CARDS.map(c => (
             <div key={c.id} className={`oc ${open[c.id] ? 'on' : ''} ${seen.includes(c.id) ? 'seen' : ''}`}>
@@ -947,7 +947,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         {allSeen && (
           <div className="frame-success fade-step">
-            <p className="body" style={{ margin: 0 }}>{tr({ uz: <>Har imkoniyat bitta qiyinchilikning javobi bo'ladi. Javobi yo'q imkoniyat — ro'yxatdan chiqadi.</>, ru: <>Каждая возможность — это ответ на одну трудность. Возможность без ответа выпадает из списка.</> })}</p>
+            <p className="body" style={{ margin: 0 }}>{tr({ uz: <>Har yechim bitta muammoning javobi bo'ladi. Javobi yo'q yechim — ro'yxatdan chiqadi.</>, ru: <>Каждое решение — это ответ на одну проблему. Решение без ответа выпадает из списка.</> })}</p>
           </div>
         )}
       </div>
@@ -964,28 +964,28 @@ const Screen3 = (props) => (
     options={[
       { uz: 'Uni yasash necha kun oladi?', ru: 'Сколько дней займёт её сделать?' },
       { uz: 'Sahifaning qaysi joyida turadi?', ru: 'В каком месте страницы она будет стоять?' },
-      { uz: 'Bu kimning qaysi qiyinchiligini yo\'qotadi?', ru: 'Чью и какую трудность это убирает?' },
-      { uz: 'Boshqa saytlarda bunday imkoniyat bormi?', ru: 'Есть ли такая возможность на других сайтах?' }
+      { uz: 'Bu kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему это убирает?' },
+      { uz: 'Boshqa saytlarda bunday yechim bormi?', ru: 'Есть ли такое решение на других сайтах?' }
     ]}
     correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Har imkoniyat bitta qiyinchilikning javobi bo'ladi. Javobi topilmasa, imkoniyat ro'yxatdan chiqadi.", ru: 'Верно! Каждая возможность — ответ на одну трудность. Если ответа нет, возможность выпадает из списка.' }}
+    explainCorrect={{ uz: "To'g'ri! Har yechim bitta muammoning javobi bo'ladi. Javobi topilmasa, yechim ro'yxatdan chiqadi.", ru: 'Верно! Каждое решение — ответ на одну проблему. Если ответа нет, решение выпадает из списка.' }}
     explainWrong={{
-      0: { uz: 'Vaqtni hisoblash — kerakli ish, lekin u KEYIN keladi. Avval bu imkoniyat umuman kerakmi degan savolga javob topiladi.', ru: 'Считать сроки нужно, но это идёт ПОТОМ. Сначала находят ответ на вопрос, нужна ли эта возможность вообще.' },
+      0: { uz: 'Vaqtni hisoblash — kerakli ish, lekin u KEYIN keladi. Avval bu yechim umuman kerakmi degan savolga javob topiladi.', ru: 'Считать сроки нужно, но это идёт ПОТОМ. Сначала находят ответ на вопрос, нужно ли это решение вообще.' },
       1: { uz: 'Joylashuvni o\'ylash to\'g\'ri — lekin kerak bo\'lmagan narsaning joyi ham kerak bo\'lmaydi.', ru: 'Думать о расположении правильно — но у ненужной вещи и место окажется ненужным.' },
-      3: { uz: 'Boshqalarga qarash foydali — lekin ularning qiyinchiligi sizning mijozingiznikidan boshqa bo\'lishi mumkin.', ru: 'Смотреть на других полезно — но их трудности могут отличаться от трудностей вашего клиента.' },
-      default: { uz: 'Yana bir bor o\'ylab ko\'ring: imkoniyat qaysi savoldan boshlanadi?', ru: 'Подумайте ещё раз: с какого вопроса начинается возможность?' }
+      3: { uz: 'Boshqalarga qarash foydali — lekin ularning muammosi sizning mijozingiznikidan boshqa bo\'lishi mumkin.', ru: 'Смотреть на других полезно — но их проблемы могут отличаться от проблем вашего клиента.' },
+      default: { uz: 'Yana bir bor o\'ylab ko\'ring: yechim qaysi savoldan boshlanadi?', ru: 'Подумайте ещё раз: с какого вопроса начинается решение?' }
     }}
   />
 );
 
-// ===== SCREEN 4 — JUFTLASH: imkoniyat kartasini o'z qiyinchiligiga qo'yish =====
+// ===== SCREEN 4 — JUFTLASH: yechim kartasini o'z muammosiga qo'yish =====
 const MATCH_ROWS = [
   { id: 'r1', need: 'jadval', t: { uz: 'Film qachon boshlanishi bilinmaydi', ru: 'Не понять, когда начинается фильм' } },
   { id: 'r2', need: 'joylar', t: { uz: 'Zalda bo\'sh joy bormi — bilinmaydi', ru: 'Не понять, есть ли в зале свободные места' } },
   { id: 'r3', need: 'chipta', t: { uz: 'Chiptani qayerdan olish noma\'lum', ru: 'Неизвестно, где взять билет' } }
 ];
 // F-0802-13: karta = ikona + nom + BIR QATOR tavsif. Tavsif kartaning O'ZI nima ekanini
-// aytadi, qaysi qiyinchilikni yopishini AYTMAYDI — juftlash ishi o'quvchida qoladi.
+// aytadi, qaysi muammoni yopishini AYTMAYDI — juftlash ishi o'quvchida qoladi.
 const MATCH_CARDS = [
   { id: 'jadval', ic: '🕒', t: { uz: 'Seans jadvali', ru: 'Расписание сеансов' }, d: { uz: 'Qaysi film qaysi soatda', ru: 'Какой фильм в какое время' } },
   { id: 'joylar', ic: '💺', t: { uz: 'Zal xaritasi', ru: 'Карта зала' }, d: { uz: "Zal sxemasi: band va bo'sh o'rindiqlar", ru: 'Схема зала: занятые и свободные места' } },
@@ -1019,9 +1019,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const takeBack = (id) => { setPlace(p => { const n = { ...p }; Object.keys(n).forEach(k => { if (n[k] === id) delete n[k]; }); return n; }); setHeld(null); };
   const litCard = useTurnWalk(pool.map(c => c.id), !held && !doneAll && pool.length > 0);
   return (
-    <Stage eyebrow={tr({ uz: 'Juftlash', ru: 'Соединяем' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll} label={doneAll ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Kartalarni qo'ying (${Object.keys(place).length}/3)`, ru: `Расставьте карточки (${Object.keys(place).length}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Moslash', ru: 'Соединяем' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll} label={doneAll ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Kartalarni qo'ying (${Object.keys(place).length}/3)`, ru: `Расставьте карточки (${Object.keys(place).length}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har imkoniyatni <span className="italic" style={{ color: T.accent }}>o'z qiyinchiligiga</span> qo'ying.</>, ru: <>Поставьте каждую возможность <span className="italic" style={{ color: T.accent }}>к своей трудности</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har yechimni <span className="italic" style={{ color: T.accent }}>o'z muammosiga</span> qo'ying.</>, ru: <>Поставьте каждое решение <span className="italic" style={{ color: T.accent }}>к своей проблеме</span>.</> })}</h2></div>
         <div className={`mt-wrap fade-up delay-1${held ? ' holding' : ''}`}>
           <div className="mt-rows">
             {MATCH_ROWS.map(r => {
@@ -1039,7 +1039,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             })}
           </div>
           <div className="mt-pool">
-            <span className="mt-pool-lbl">{tr({ uz: 'Imkoniyat kartalari', ru: 'Карточки возможностей' })}</span>
+            <span className="mt-pool-lbl">{tr({ uz: 'Yechim kartalari', ru: 'Карточки решений' })}</span>
             {pool.map(c => (
               <button key={c.id} draggable onDragStart={() => setHeld(c.id)} className={`mt-card ${held === c.id ? 'held' : ''}${turnCls(litCard, c.id, pool.length > 1)}`} onClick={() => setHeld(held === c.id ? null : c.id)}>
                 <span className="mt-card-ic">{c.ic}</span>
@@ -1051,12 +1051,12 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {!doneAll && <AchRule screen={screen} />}
         {doneAll && (
           <div className="frame-success fade-step">
-            <p className="body" style={{ margin: 0 }}>{tr({ uz: <>«Aylanadigan logotip»ga joy topilmadi — u hech qanday qiyinchilikka javob bermaydi.</>, ru: <>Для «вращающегося логотипа» места не нашлось — он не отвечает ни на одну трудность.</> })}</p>
+            <p className="body" style={{ margin: 0 }}>{tr({ uz: <>«Aylanadigan logotip»ga joy topilmadi — u hech qanday muammoga javob bermaydi.</>, ru: <>Для «вращающегося логотипа» места не нашлось — он не отвечает ни на одну проблему.</> })}</p>
           </div>
         )}
-        {/* Juftlik-muhokamasi MENTOR eslatmasiga ko'chirildi (F-0802-13): o'quvchi ekranida
+        {/* Karta-muhokamasi MENTOR eslatmasiga ko'chirildi (F-0802-13): o'quvchi ekranida
             blok qo'shmaydi, jonli darsdagi og'zaki mashq esa saqlanadi. */}
-        <MentorNote>{tr({ uz: "Hammasi joylashgach so'rang: to'rtinchi kartani qanday o'zgartirsak, u ham biror qiyinchilikka javob bo'ladi? Juftlikda bir gapda aytishsin.", ru: 'Когда всё расставлено, спросите: как изменить четвёртую карточку, чтобы и она отвечала на трудность? Пусть скажут в парах одним предложением.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Hammasi joylashgach so'rang: to'rtinchi kartani qanday o'zgartirsak, u ham biror muammoga javob bo'ladi? Muammo va yechimni bir gapda aytishsin.", ru: 'Когда всё расставлено, спросите: как изменить четвёртую карточку, чтобы и она отвечала на проблему? Пусть скажут проблему и решение одним предложением.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1070,15 +1070,15 @@ const Screen5 = (props) => (
     questionText={{ uz: "«Aylanadigan logotip» kartasiga nima uchun joy topilmadi?", ru: 'Почему для карточки «вращающийся логотип» не нашлось места?' }}
     options={[
       { uz: 'Uni yasash qiyin', ru: 'Её сложно сделать' },
-      { uz: 'U hech qanday qiyinchilikni yo\'qotmaydi', ru: 'Она не убирает никакую трудность' },
+      { uz: 'U hech qanday muammoni yo\'qotmaydi', ru: 'Она не убирает никакую проблему' },
       { uz: 'Bunday logotip boshqa saytlarda ham bor', ru: 'Такой логотип есть и на других сайтах' },
       { uz: 'Uni telefonda ko\'rish noqulay', ru: 'Её неудобно смотреть на телефоне' }
     ]}
     correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Uch qiyinchilikning har biriga o'z javobi bor edi, bu kartaga esa qiyinchilik topilmadi.", ru: 'Верно! У каждой из трёх трудностей был свой ответ, а для этой карточки трудности не нашлось.' }}
+    explainCorrect={{ uz: "To'g'ri! Uch muammoning har biriga o'z javobi bor edi, bu kartaga esa muammo topilmadi.", ru: 'Верно! У каждой из трёх проблем был свой ответ, а для этой карточки проблемы не нашлось.' }}
     explainWrong={{
       0: { uz: 'Qiyinlik haqiqatan hisobga olinadi — lekin bu karta qiyinligi uchun emas, egasi topilmagani uchun qoldi.', ru: 'Сложность действительно учитывают — но эта карточка осталась не из-за сложности, а потому что не нашлось хозяина.' },
-      2: { uz: 'Takrorlanish o\'ziga qarab e\'tirozga sabab emas: takrorlangan imkoniyat ham qiyinchilikni yo\'qotsa, qoladi.', ru: 'Повторение само по себе не повод для возражения: повторяющаяся возможность остаётся, если убирает трудность.' },
+      2: { uz: 'Takrorlanish o\'ziga qarab e\'tirozga sabab emas: takrorlangan yechim ham muammoni yo\'qotsa, qoladi.', ru: 'Повторение само по себе не повод для возражения: повторяющееся решение остаётся, если убирает проблему.' },
       3: { uz: 'Telefonda qanday ko\'rinishi muhim savol — lekin karta telefon uchun emas, egasizligi uchun joysiz qoldi.', ru: 'Как это выглядит на телефоне — важный вопрос, но карточка осталась без места не из-за телефона, а из-за отсутствия хозяина.' },
       default: { uz: 'Eslang: karta nima uchun hech qaysi qatorga tushmadi?', ru: 'Вспомните: почему карточка не подошла ни к одной строке?' }
     }}
@@ -1093,7 +1093,7 @@ const K_SLIDES = [
   },
   {
     ic: '🏗', h: { uz: 'U birinchi navbatda nimani qurdi', ru: 'Что он построил в первую очередь' },
-    body: { uz: <>Uzum faqat sayt qurmadi. U <b>o'z mashinalarini, topshirish punktlarini va ertasi kuni yetkazib berish xizmatini</b> qurdi. Chunki odamlarning eng katta qiyinchiligi tanlash emas — olgan narsasi qo'liga qanday yetib kelishi edi.</>, ru: <>Uzum построил не только сайт. Он построил <b>свои машины, пункты выдачи и доставку на следующий день</b>. Потому что самой большой трудностью людей был не выбор, а то, как купленное доберётся до их рук.</> },
+    body: { uz: <>Uzum faqat sayt qurmadi. U <b>o'z mashinalarini, topshirish punktlarini va ertasi kuni yetkazib berish xizmatini</b> qurdi. Chunki odamlarning eng katta muammosi tanlash emas — olgan narsasi qo'liga qanday yetib kelishi edi.</>, ru: <>Uzum построил не только сайт. Он построил <b>свои машины, пункты выдачи и доставку на следующий день</b>. Потому что самой большой проблемой людей был не выбор, а то, как купленное доберётся до их рук.</> },
     predict: {
       ask: { uz: 'Uzum 2022-yil oktyabrda ochildi. Sizningcha, u birinchi navbatda nimani qurdi?', ru: 'Uzum открылся в октябре 2022 года. Как думаете, что он построил в первую очередь?' },
       chips: [
@@ -1165,7 +1165,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="k-dots">{K_SLIDES.map((_, k) => <button key={k} className={`k-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-bosqich`, ru: `Шаг ${k + 1}` })} />)}</div>
         {last && !betPending && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.accent, fontWeight: 600 }}>{tr({ uz: 'Uzum ham eng og\'ir qiyinchilikdan boshlagan. Sizning juftlik-kartangizdagi imkoniyat ham aynan bitta qiyinchilikka qarasin.', ru: 'Uzum тоже начал с самой тяжёлой трудности. Пусть и возможность в вашей карточке-паре смотрит ровно на одну трудность.' })}</p>
+            <p className="body" style={{ margin: 0, color: T.accent, fontWeight: 600 }}>{tr({ uz: 'Uzum ham eng og\'ir muammodan boshlagan. Sizning kartangizdagi yechim ham aynan bitta muammoga qarasin.', ru: 'Uzum тоже начал с самой тяжёлой проблемы. Пусть и решение в вашей карточке смотрит ровно на одну проблему.' })}</p>
           </div>
         )}
       </div>
@@ -1173,7 +1173,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — O'Z QIYINCHILIKLARINGIZ: uchtasini belgilash =====
+// ===== SCREEN 7 — O'Z MUAMMOLARINGIZ: uchtasini belgilash =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const own = useMemo(() => {
     const a = lsRead(M1_CARDS_KEY);
@@ -1191,16 +1191,16 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   }, [enough, sel]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Qiyinchiliklaringiz', ru: 'Ваши трудности' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!enough} label={enough ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uchtasini belgilang (${sel.length}/3)`, ru: `Отметьте три (${sel.length}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Muammolaringiz', ru: 'Ваши проблемы' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!enough} label={enough ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uchtasini belgilang (${sel.length}/3)`, ru: `Отметьте три (${sel.length}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ishga oladigan <span className="italic" style={{ color: T.accent }}>uch qiyinchilikni</span> belgilang.</>, ru: <>Отметьте <span className="italic" style={{ color: T.accent }}>три трудности</span>, с которыми будете работать.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Uch muammoni</span> tanlang.</>, ru: <>Выберите <span className="italic" style={{ color: T.accent }}>три проблемы</span>.</> })}</h2></div>
         {/* F-0802-17: Mentor ish-buyrug'ini TAKRORLAMAYDI (u sarlavhada) — u faqat ro'yxat
             QAYERDAN kelganini va keyin nima bo'lishini aytadi. Ilgari zaxira-tarmoq
             «Sizda saqlangan yozuv topilmadi» deb boshlanardi — o'quvchiga bu tizim-xatosidek
             eshitilardi (foydalanuvchi: «bu backend xatosiga o'xshaydi»). */}
         <Mentor>{own.length > 0
-          ? tr({ uz: <>Quyida — o'tgan darsda o'zingiz yozgan qiyinchiliklar. Keyingi ekranda ularga imkoniyat yozasiz.</>, ru: <>Ниже — трудности, которые вы записали на прошлом уроке. На следующем экране напишете к ним возможности.</> })
-          : tr({ uz: <>Boshlash uchun kinoteatr misolidan foydalanamiz — quyidagilar sizga tanish. Keyingi ekranda ularga imkoniyat yozasiz.</>, ru: <>Для начала возьмём пример с кинотеатром — эти трудности вам знакомы. На следующем экране напишете к ним возможности.</> })}</Mentor>
+          ? tr({ uz: <>Quyida — o'tgan darsda o'zingiz yozgan muammolar. Keyingi ekranda ularga yechim yozasiz.</>, ru: <>Ниже — проблемы, которые вы записали на прошлом уроке. На следующем экране напишете к ним решения.</> })
+          : tr({ uz: <>Boshlash uchun kinoteatr misolidan foydalanamiz — quyidagilar sizga tanish. Keyingi ekranda ularga yechim yozasiz.</>, ru: <>Для начала возьмём пример с кинотеатром — эти проблемы вам знакомы. На следующем экране напишете к ним решения.</> })}</Mentor>
         <div className="pk-list fade-up delay-1">
           {rows.map(r => (
             <button key={r.key} className={`pk-row ${sel.includes(r.key) ? 'on' : ''}`} onClick={() => toggle(r.key)}>
@@ -1221,14 +1221,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 8 — USTAXONA: 3 juftlik-karta bittalab yoziladi =====
-// (SAMPLES olib tashlandi — F-0803-01: namuna endi imkoniyat maydonining placeholder'ida)
+// ===== SCREEN 8 — USTAXONA: 3 karta bittalab yoziladi =====
+// (SAMPLES olib tashlandi — F-0803-01: namuna endi yechim maydonining placeholder'ida)
 // Harakatsiz sifat-tekshiruvi (ikki til alohida ramkada — aralash-yozuv bo'lmasin)
 const FLAT_UZ = /(chiroyli|go'zal|zamonaviy|qulay|yoqimli)/i;
 const FLAT_RU = /(красив|современ|удобн|приятн)/i;
 const isFlat = (t) => FLAT_UZ.test(t) || FLAT_RU.test(t);
 // Darsning O'ZI «foydasiz» deb ko'rsatgan bandlar (hook: fon musiqasi, logotip, animatsiya…) —
-// o'quvchi shulardan birini imkoniyat deb yozsa, savol qaytariladi (F-0803-01).
+// o'quvchi shulardan birini yechim deb yozsa, savol qaytariladi (F-0803-01).
 const DECOR_UZ = /(musiq|logotip|animatsi|rang|fon\b|bayram|effekt|chiroy|dizayn)/i;
 const DECOR_RU = /(музык|логотип|анимац|цвет|фон\b|праздни|эффект|красив|дизайн)/i;
 const isDecor = (t) => DECOR_UZ.test(t) || DECOR_RU.test(t);
@@ -1239,15 +1239,15 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const picked = useMemo(() => { const a = lsRead(PICKED_KEY); return Array.isArray(a) ? a : []; }, []);
   const [st, setSt] = useState(() => {
     const saved = readFeatures().slice(0, 3);
-    return { saved, draft: { qiyinchilik: '', imkoniyat: '' }, editIdx: -1, done: !!(storedAnswer && storedAnswer.solved) || saved.length >= 3 };
+    return { saved, draft: { muammo: '', yechim: '' }, editIdx: -1, done: !!(storedAnswer && storedAnswer.solved) || saved.length >= 3 };
   });
   const { saved, draft, editIdx, done } = st;
   const [focused, setFocused] = useState(false);
   const step = editIdx >= 0 ? editIdx : saved.length;
-  // Yangi karta ochilganda qiyinchilik maydoni s7 da belgilangan qator bilan tayyor turadi
+  // Yangi karta ochilganda muammo maydoni s7 da belgilangan qator bilan tayyor turadi
   useEffect(() => {
     if (editIdx >= 0) return;
-    if (draft.qiyinchilik === '' && picked[saved.length]) setSt(p => ({ ...p, draft: { ...p.draft, qiyinchilik: picked[saved.length] } }));
+    if (draft.muammo === '' && picked[saved.length]) setSt(p => ({ ...p, draft: { ...p.draft, muammo: picked[saved.length] } }));
   }, [saved.length, editIdx]); // eslint-disable-line
   useEffect(() => {
     if (done && storedAnswer === undefined && saved.length >= 3) {
@@ -1255,24 +1255,24 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
     }
   }, []); // eslint-disable-line
-  const q = (draft.qiyinchilik || '').trim(), f = (draft.imkoniyat || '').trim();
+  const q = (draft.muammo || '').trim(), f = (draft.yechim || '').trim();
   const canSave = q.length >= 3 && f.length >= 3;
   const others = saved.filter((_, i) => i !== editIdx);
   // F-0803-01 — YOZUVGA JAVOB. Ilgari faqat XATO holatlar aytilardi; to'g'ri yozgan o'quvchi
   // hech qanday javob olmasdi («feedback yo'q» hissi). Endi tekshiruv ikki tomonlama:
   // xato bo'lsa — nima noto'g'riligi; hammasi joyida bo'lsa — TASDIQ.
-  // ⚠️ Bu QOIDA-tekshiruvi, sun'iy intellekt emas: dars o'zi belgilagan «foydasiz imkoniyat»
+  // ⚠️ Bu QOIDA-tekshiruvi, sun'iy intellekt emas: dars o'zi belgilagan «foydasiz yechim»
   // so'zlari (musiqa, logotip, animatsiya…) va shakl-xatolari ovlanadi, ma'no emas.
   const fb = !canSave ? null
-    : f.toLowerCase() === q.toLowerCase() ? { bad: true, uz: 'Imkoniyat qiyinchilikni takrorlab qo\'ydi. Sayt NIMA QILISHINI yozing.', ru: 'Возможность повторила трудность. Напишите, ЧТО ДЕЛАЕТ сайт.' }
-      : isDecor(f) ? { bad: true, uz: 'Bu qaysi qiyinchilikni yo\'qotadi? Chapdagi qatorni o\'qing va shunga javob bo\'ladigan narsani yozing.', ru: 'Какую трудность это убирает? Прочитайте строку слева и напишите то, что на неё отвечает.' }
+    : f.toLowerCase() === q.toLowerCase() ? { bad: true, uz: 'Yechim muammoni takrorlab qo\'ydi. Sayt NIMA QILISHINI yozing.', ru: 'Решение повторила проблему. Напишите, ЧТО ДЕЛАЕТ сайт.' }
+      : isDecor(f) ? { bad: true, uz: 'Bu qaysi muammoni yo\'qotadi? Chapdagi qatorni o\'qing va shunga javob bo\'ladigan narsani yozing.', ru: 'Какую проблему это убирает? Прочитайте строку слева и напишите то, что на неё отвечает.' }
         : isFlat(f) && f.length < 45 ? { bad: true, uz: 'Bu sayt qanday ko\'rinishini aytadi. Sayt nima qilishini yozing — masalan: ko\'rsatadi, saqlaydi, yuboradi.', ru: 'Это говорит, как выглядит сайт. Напишите, что сайт делает — например: показывает, сохраняет, отправляет.' }
-          : others.some(c => (c.qiyinchilik || '').trim().toLowerCase() === q.toLowerCase()) ? { bad: true, uz: 'Bu qiyinchilik ro\'yxatda bor. Boshqasini oling — uch juftlik uch xil qiyinchilikka tegishli.', ru: 'Эта трудность уже в списке. Возьмите другую — три пары относятся к трём разным трудностям.' }
+          : others.some(c => (c.muammo || '').trim().toLowerCase() === q.toLowerCase()) ? { bad: true, uz: 'Bu muammo ro\'yxatda bor. Boshqasini oling — uchala karta uch xil muammoga tegishli.', ru: 'Эта проблема уже в списке. Возьмите другую — все три карточки относятся к трём разным проблемам.' }
             : f.length <= 10 ? { bad: true, uz: 'Juda qisqa — sayt nima qilishini bir gapda yozing.', ru: 'Слишком коротко — напишите одним предложением, что делает сайт.' }
-              : { bad: false, uz: 'Yaxshi — bu imkoniyat chapdagi qiyinchilikka javob beradi. Saqlang.', ru: 'Хорошо — эта возможность отвечает на трудность слева. Сохраняйте.' };
+              : { bad: false, uz: 'Yaxshi — bu yechim chapdagi muammoga javob beradi. Saqlang.', ru: 'Хорошо — это решение отвечает на проблему слева. Сохраняйте.' };
   const saveDraft = () => {
     if (!canSave) return;
-    const card = { qiyinchilik: q, imkoniyat: f };
+    const card = { muammo: q, yechim: f };
     const cards = editIdx >= 0 ? saved.map((c, i) => (i === editIdx ? card : c)) : [...saved, card];
     lsWrite(FEATURES_KEY, cards);
     const finished = cards.length >= 3;
@@ -1280,53 +1280,53 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: 'features', cards, solved: true, correct: true, picked: true });
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
     }
-    setSt({ saved: cards, draft: { qiyinchilik: '', imkoniyat: '' }, editIdx: -1, done: done || finished });
+    setSt({ saved: cards, draft: { muammo: '', yechim: '' }, editIdx: -1, done: done || finished });
   };
   const editCard = (i) => setSt(p => ({ ...p, draft: { ...p.saved[i] }, editIdx: i }));
   const setD = (patch) => setSt(p => ({ ...p, draft: { ...p.draft, ...patch } }));
   const allSaved = saved.length >= 3;
   const showEditor = !allSaved || editIdx >= 0;
-  const pend = ['qiyinchilik', 'imkoniyat'].filter(k => !(draft[k] || '').trim());
+  const pend = ['muammo', 'yechim'].filter(k => !(draft[k] || '').trim());
   const litField = useTurnWalk(pend, showEditor && !focused && !isMentor);
   const saveTurn = useTurnHint(showEditor && canSave && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Ustaxona ✍️', ru: 'Мастерская ✍️' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `✍️ ${saved.length}/3 — juftlikni yozib saqlang`, ru: `✍️ ${saved.length}/3 — запишите и сохраните пару` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Ustaxona ✍️', ru: 'Мастерская ✍️' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `✍️ ${saved.length}/3 — muammo va yechimni yozib saqlang`, ru: `✍️ ${saved.length}/3 — запишите и сохраните проблему и решение` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>{['Birinchi', 'Ikkinchi', 'Uchinchi'][Math.min(step, 2)]} <span className="italic" style={{ color: T.accent }}>juftlikni</span> yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>{['первую', 'вторую', 'третью'][Math.min(step, 2)]} пару</span>.</> })}</h2></div>
-        {/* F-0803-01: Mentor FAQAT birinchi juftlikda — u uch marta bir xil gapni aytardi
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>{['Birinchi', 'Ikkinchi', 'Uchinchi'][Math.min(step, 2)]} <span className="italic" style={{ color: T.accent }}>muammo va yechimni</span> yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>{['первую', 'вторую', 'третью'][Math.min(step, 2)]} проблему и решение</span>.</> })}</h2></div>
+        {/* F-0803-01: Mentor FAQAT birinchi kartada — u uch marta bir xil gapni aytardi
             va o'quvchi uni ikkinchi safar o'qimasdi (106c: takror ko'rsatma = shovqin). */}
-        {step === 0 && editIdx < 0 && <Mentor>{tr({ uz: <>Belgilagan qiyinchiligingiz chapda turibdi — uni yo'qotadigan imkoniyatni yozing.</>, ru: <>Отмеченная вами трудность стоит слева — напишите возможность, которая её убирает.</> })}</Mentor>}
+        {step === 0 && editIdx < 0 && <Mentor>{tr({ uz: <>Belgilagan muammongiz chapda turibdi — uni yo'qotadigan yechimni yozing.</>, ru: <>Отмеченная вами проблема стоит слева — напишите решение, которое её убирает.</> })}</Mentor>}
         {/* F-0803-01 — PROGRESS: «1—2—3» chizig'i barcha qadamni teng ko'rsatardi va o'quvchi
             qayerdaligi bilinmasdi. Endi uch holat uch xil: BAJARILGAN (yashil ✓) ·
             HOZIRGI (binafsha, to'ldirilgan) · KUTAYOTGAN (xira). Ulovchi chiziqlar
             olib tashlandi — holat-rangi ularsiz ham «yana bittasi qoldi» deb aytadi. */}
-        <div className="jw-steps fade-up" aria-label={tr({ uz: `${saved.length}/3 juftlik yozildi`, ru: `Записано пар: ${saved.length}/3` })}>
+        <div className="jw-steps fade-up" aria-label={tr({ uz: `${saved.length}/3 karta yozildi`, ru: `Записано карточек: ${saved.length}/3` })}>
           {[0, 1, 2].map(i => (
             <span key={i} className={`jws ${saved[i] ? 'on' : (i === step && showEditor) ? 'cur' : 'wait'}`}>
               <i className="jws-n">{saved[i] ? '✓' : i + 1}</i>
-              <em className="jws-t">{tr({ uz: `${i + 1}-juftlik`, ru: `Пара ${i + 1}` })}</em>
+              <em className="jws-t">{tr({ uz: `${i + 1}-karta`, ru: `Карточка ${i + 1}` })}</em>
             </span>
           ))}
         </div>
         {showEditor && (
           <div className="swed fade-up" key={editIdx >= 0 ? `e${editIdx}` : `n${saved.length}`}>
-            <span className="swed-tag">{editIdx >= 0 ? tr({ uz: `✎ ${editIdx + 1}-juftlikni tahrirlash`, ru: `✎ Правка пары ${editIdx + 1}` }) : tr({ uz: `✨ ${step + 1}-juftlik`, ru: `✨ Пара ${step + 1}` })}</span>
+            <span className="swed-tag">{editIdx >= 0 ? tr({ uz: `✎ ${editIdx + 1}-kartani tahrirlash`, ru: `✎ Правка карточки ${editIdx + 1}` }) : tr({ uz: `✨ ${step + 1}-karta`, ru: `✨ Карточка ${step + 1}` })}</span>
             <div className="pf-edit">
-              <label className={`smini-f pain ${q.length >= 3 ? 'on' : ''}${turnCls(litField, 'qiyinchilik', pend.length > 1)}`}>
-                <span>{tr({ uz: 'QIYINCHILIK', ru: 'ТРУДНОСТЬ' })}</span>
-                <input value={draft.qiyinchilik} onChange={e => setD({ qiyinchilik: e.target.value })} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} placeholder={tr({ uz: 'Odamga nimasi qiyin?', ru: 'Что человеку трудно?' })} />
+              <label className={`smini-f pain ${q.length >= 3 ? 'on' : ''}${turnCls(litField, 'muammo', pend.length > 1)}`}>
+                <span>{tr({ uz: 'MUAMMO', ru: 'ПРОБЛЕМА' })}</span>
+                <input value={draft.muammo} onChange={e => setD({ muammo: e.target.value })} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} placeholder={tr({ uz: 'Odamga nimasi qiyin?', ru: 'Что человеку трудно?' })} />
               </label>
               <span className={`pf-link ${canSave ? 'on' : ''}`} aria-hidden="true">↔</span>
-              <label className={`smini-f feat ${f.length >= 3 ? 'on' : ''}${turnCls(litField, 'imkoniyat', pend.length > 1)}`}>
-                <span>{tr({ uz: 'IMKONIYAT', ru: 'ВОЗМОЖНОСТЬ' })}</span>
+              <label className={`smini-f feat ${f.length >= 3 ? 'on' : ''}${turnCls(litField, 'yechim', pend.length > 1)}`}>
+                <span>{tr({ uz: 'YECHIM', ru: 'РЕШЕНИЕ' })}</span>
                 {/* Namuna-akkordeoni olib tashlandi (F-0803-01): misol aynan YOZILADIGAN
                     joyda, placeholder ichida turadi — alohida blok talab qilmaydi. */}
-                <input value={draft.imkoniyat} onChange={e => setD({ imkoniyat: e.target.value })} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} placeholder={tr({ uz: 'Masalan: film vaqtini ko\'rsatadi', ru: 'Например: показывает время фильма' })} />
+                <input value={draft.yechim} onChange={e => setD({ yechim: e.target.value })} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} placeholder={tr({ uz: 'Masalan: film vaqtini ko\'rsatadi', ru: 'Например: показывает время фильма' })} />
               </label>
             </div>
             {fb && <p className={`swed-fb ${fb.bad ? 'bad' : 'ok'}`}>{fb.bad ? '🤔' : '✅'} {tr(fb)}</p>}
             <div className="swed-btns">
-              {editIdx >= 0 && <button className="btn-ghost" onClick={() => setSt(p => ({ ...p, draft: { qiyinchilik: '', imkoniyat: '' }, editIdx: -1 }))}>{tr({ uz: 'Bekor qilish', ru: 'Отменить' })}</button>}
+              {editIdx >= 0 && <button className="btn-ghost" onClick={() => setSt(p => ({ ...p, draft: { muammo: '', yechim: '' }, editIdx: -1 }))}>{tr({ uz: 'Bekor qilish', ru: 'Отменить' })}</button>}
               {/* Saqlash tugmasi FAQAT ikkala maydon to'lganda chiqadi (F-0803-01): ilgari u
                   doim katta va o'chiq turib ko'zni tortardi, ish esa formada edi. */}
               {canSave && <button className={`swed-save${saveTurn ? ' turn-ring' : ''}`} onClick={saveDraft}>{tr({ uz: '✓ Saqlash', ru: '✓ Сохранить' })}</button>}
@@ -1339,20 +1339,20 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div key={i} className={`svd-card ${editIdx === i ? 'editing' : ''}`}>
                 <div className="svd-top">
                   <span className="svd-num">✓ {i + 1}</span>
-                  <button className="svd-edit" onClick={() => editCard(i)} aria-label={tr({ uz: `${i + 1}-juftlikni tahrirlash`, ru: `Править пару ${i + 1}` })}>{tr({ uz: '✎ Tahrirlash', ru: '✎ Править' })}</button>
+                  <button className="svd-edit" onClick={() => editCard(i)} aria-label={tr({ uz: `${i + 1}-kartani tahrirlash`, ru: `Править карточку ${i + 1}` })}>{tr({ uz: '✎ Tahrirlash', ru: '✎ Править' })}</button>
                 </div>
-                <p className="svd-sent"><b style={{ color: T.amberInk }}>{c.qiyinchilik}</b> ↔ <b style={{ color: T.success }}>{c.imkoniyat}</b></p>
+                <p className="svd-sent"><b style={{ color: T.amberInk }}>{c.muammo}</b> ↔ <b style={{ color: T.success }}>{c.yechim}</b></p>
               </div>
             ))}
           </div>
         )}
-        {allSaved && <div className="done-mini fade-step">{tr({ uz: '✅ Uch juftlik tayyor', ru: '✅ Три пары готовы' })} <span className="dm-sub">{tr({ uz: '— tahrirlash uchun ✎ belgisidan foydalaning', ru: '— для правки используйте значок ✎' })}</span></div>}
+        {allSaved && <div className="done-mini fade-step">{tr({ uz: '✅ Uchala karta tayyor', ru: '✅ Все три карточки готовы' })} <span className="dm-sub">{tr({ uz: '— tahrirlash uchun ✎ belgisidan foydalaning', ru: '— для правки используйте значок ✎' })}</span></div>}
         {/* F-0803-01 — OLIB TASHLANDI (106c): uchta qoida ro'yxati (.chk) va ostidagi
             «Bitta savolga javob bering…» ipuchasi. Ikkovi ham hujjat-uslubidagi ko'rsatma
             edi; endi o'sha bilim o'z vaqtida — yozayotganda, javob-qatorida beriladi. */}
         <StudentPracticePulse live={live} screen={screen} />
-        <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Uch juftlikni yozib bo\'lganlar', ru: '✍️ Кто записал три пары' }} />
-        <MentorNote>{tr({ uz: "Bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Baholash-mezoni: har kartada bitta qiyinchilik va bitta imkoniyat, imkoniyat harakat bilan yozilgan, uch karta uch xil qiyinchilikka tegishli.", ru: 'Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Критерий проверки: в каждой карточке одна трудность и одна возможность, возможность записана действием, три карточки — о трёх разных трудностях.' })}</MentorNote>
+        <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Uchala kartani yozib bo\'lganlar', ru: '✍️ Кто записал три карточки' }} />
+        <MentorNote>{tr({ uz: "Bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Baholash-mezoni: har kartada bitta muammo va bitta yechim, yechim harakat bilan yozilgan, uch karta uch xil muammoga tegishli.", ru: 'Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Критерий проверки: в каждой карточке одна проблема и одно решение, решение записано действием, три карточки — о трёх разных проблемах.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1362,8 +1362,8 @@ const ScreenWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen
     {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Задание · вопрос 3' })}
-    question={<Q>{tr({ uz: <>Qaysi juftlik <span className="italic" style={{ color: T.accent }}>to'g'ri</span> yozilgan?</>, ru: <>Какая пара записана <span className="italic" style={{ color: T.accent }}>верно</span>?</> })}</Q>}
-    questionText={{ uz: "Qaysi juftlik to'g'ri yozilgan?", ru: 'Какая пара записана верно?' }}
+    question={<Q>{tr({ uz: <>Qaysi muammoga yechim <span className="italic" style={{ color: T.accent }}>to'g'ri</span> yozilgan?</>, ru: <>Для какой проблемы решение записано <span className="italic" style={{ color: T.accent }}>верно</span>?</> })}</Q>}
+    questionText={{ uz: "Qaysi muammoga yechim to'g'ri yozilgan?", ru: 'Для какой проблемы решение записано верно?' }}
     options={[
       { uz: 'Zalda joy bormi bilinmaydi — sayt chiroyli bo\'lsin', ru: 'Непонятно, есть ли места в зале — пусть сайт будет красивым' },
       { uz: 'Film qachon boshlanishini bilmaydi — seans jadvali sahifaning tepasida turadi', ru: 'Не знает, когда начинается фильм — расписание сеансов стоит наверху страницы' },
@@ -1371,25 +1371,25 @@ const Screen9 = (props) => (
       { uz: 'Film qiziqmi bilmaydi — film haqida ko\'proq ma\'lumot beriladi', ru: 'Не знает, интересен ли фильм — даётся больше информации о фильме' }
     ]}
     correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! O'ng tomon sayt nima qilishini aytadi va chap tomondagi qiyinchilikni to'g'ridan-to'g'ri yo'qotadi.", ru: 'Верно! Правая сторона говорит, что делает сайт, и напрямую убирает трудность слева.' }}
+    explainCorrect={{ uz: "To'g'ri! O'ng tomon sayt nima qilishini aytadi va chap tomondagi muammoni to'g'ridan-to'g'ri yo'qotadi.", ru: 'Верно! Правая сторона говорит, что делает сайт, и напрямую убирает проблему слева.' }}
     explainWrong={{
-      0: { uz: 'Qiyinchilik aniq yozilgan, bu yaxshi. Lekin o\'ng tomon sayt nima QILISHINI aytmaydi: chiroylilik bo\'sh joylarni ko\'rsatmaydi.', ru: 'Трудность записана конкретно — это хорошо. Но правая сторона не говорит, что сайт ДЕЛАЕТ: красота не показывает свободные места.' },
-      2: { uz: 'Qiyinchilik hayotdan olingan, to\'g\'ri. Lekin saytning tez ochilishi chiptani qayerdan olishni aytmaydi — javob boshqa narsaga tegib ketgan.', ru: 'Трудность взята из жизни, верно. Но быстрая загрузка сайта не говорит, где взять билет — ответ попал не туда.' },
+      0: { uz: 'Muammo aniq yozilgan, bu yaxshi. Lekin o\'ng tomon sayt nima QILISHINI aytmaydi: chiroylilik bo\'sh joylarni ko\'rsatmaydi.', ru: 'Проблема записана конкретно — это хорошо. Но правая сторона не говорит, что сайт ДЕЛАЕТ: красота не показывает свободные места.' },
+      2: { uz: 'Muammo hayotdan olingan, to\'g\'ri. Lekin saytning tez ochilishi chiptani qayerdan olishni aytmaydi — javob boshqa narsaga tegib ketgan.', ru: 'Проблема взята из жизни, верно. Но быстрая загрузка сайта не говорит, где взять билет — ответ попал не туда.' },
       3: { uz: 'Yo\'nalish to\'g\'ri tanlangan. Lekin «ko\'proq ma\'lumot» aniq emas: odam saytga kirib nimani ko\'rishi yozilmagan.', ru: 'Направление выбрано верно. Но «больше информации» неконкретно: не написано, что человек увидит, зайдя на сайт.' },
       default: { uz: 'O\'ng tomonga qarang: u sayt nima qilishini harakat bilan aytyaptimi?', ru: 'Посмотрите на правую сторону: говорит ли она действием, что делает сайт?' }
     }}
   />
 );
 
-// ===== SCREEN 10 — ORTIQCHASINI TOPING: qiyinchiligi yo'q bandni javonga chiqarish =====
+// ===== SCREEN 10 — ORTIQCHASINI TOPING: muammosi yo'q bandni javonga chiqarish =====
 const CLEAN_ITEMS = [
   { id: 'jadval', ic: '🕒', t: { uz: 'Seans jadvali', ru: 'Расписание сеансов' }, pain: { uz: 'Film qachon boshlanishini bilmaydi', ru: 'Не знает, когда начинается фильм' }, extra: false },
   { id: 'chipta', ic: '🎟', t: { uz: 'Onlayn chipta', ru: 'Билет онлайн' }, pain: { uz: 'Chiptani qayerdan olishni bilmaydi', ru: 'Не знает, где взять билет' }, extra: false },
   // F-0803-02: ortiqcha bandning izohi BITTA qisqa hukm — uzun tushuntirish va muhokama-savoli
   // olib tashlandi (ular MentorNote'ga ko'chdi). O'quvchi bir qarashda javobni oladi.
-  { id: 'zamonaviy', ic: '⭐', t: { uz: 'Sayt zamonaviy ko\'rinsin', ru: 'Пусть сайт выглядит современно' }, pain: { uz: 'Qaysi qiyinchilikni yo\'qotishi yozilmagan', ru: 'Не написано, какую трудность это убирает' }, extra: true },
+  { id: 'zamonaviy', ic: '⭐', t: { uz: 'Sayt zamonaviy ko\'rinsin', ru: 'Пусть сайт выглядит современно' }, pain: { uz: 'Qaysi muammoni yo\'qotishi yozilmagan', ru: 'Не написано, какую проблему это убирает' }, extra: true },
   { id: 'joylar', ic: '💺', t: { uz: 'Zal xaritasi', ru: 'Карта зала' }, pain: { uz: 'Zalda bo\'sh joy bormi — bilinmaydi', ru: 'Непонятно, есть ли в зале свободные места' }, extra: false },
-  { id: 'bayram', ic: '🎉', t: { uz: 'Bosh sahifada bayram ta\'siri', ru: 'Праздничный эффект на главной' }, pain: { uz: 'Hech qanday qiyinchilikni yo\'qotmaydi', ru: 'Не убирает ни одной трудности' }, extra: true }
+  { id: 'bayram', ic: '🎉', t: { uz: 'Bosh sahifada bayram ta\'siri', ru: 'Праздничный эффект на главной' }, pain: { uz: 'Hech qanday muammoni yo\'qotmaydi', ru: 'Не убирает ни одной проблемы' }, extra: true }
 ];
 const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1416,7 +1416,7 @@ const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Ortiqchasini toping', ru: 'Найдите лишнее' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll && !isMentor} label={doneAll || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Keraksizini toping (${shelf.length}/2)`, ru: `Найдите ненужные (${shelf.length}/2)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qiyinchiligi <span className="italic" style={{ color: T.accent }}>yo'q bandni</span> toping.</>, ru: <>Найдите пункт <span className="italic" style={{ color: T.accent }}>без трудности</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Muammosi <span className="italic" style={{ color: T.accent }}>yo'q bandni</span> toping.</>, ru: <>Найдите пункт <span className="italic" style={{ color: T.accent }}>без проблемы</span>.</> })}</h2></div>
         {/* F-0802-17: bu ekranda Mentor umuman yo'q edi, o'rniga IKKITA ipucha turardi
             (biri sahna + «bosing», ikkinchisi usul). Bittaga birlashtirildi: sahna + USUL.
             «Har bandni bosing» olib tashlandi — bosish o'z affordansidan ko'rinadi. */}
@@ -1437,7 +1437,7 @@ const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="cl-body fade-step">
                   <p className={`cl-pain ${it.extra ? 'none' : ''}`}>{it.extra ? '❌ ' : '↳ '}{tr(it.pain)}</p>
                   <button className="cl-shelf-btn" onClick={() => toShelf(it)}>{tr({ uz: '🗑 Bu kerak emas', ru: '🗑 Это не нужно' })}</button>
-                  {warn === it.id && <p className="cl-warn">{tr({ uz: 'Bu bandning qiyinchiligi bor — u ro\'yxatda qoladi.', ru: 'У этого пункта есть трудность — он остаётся в списке.' })}</p>}
+                  {warn === it.id && <p className="cl-warn">{tr({ uz: 'Bu bandning muammosi bor — u ro\'yxatda qoladi.', ru: 'У этого пункта есть проблема — он остаётся в списке.' })}</p>}
                 </div>
               )}
             </div>
@@ -1453,7 +1453,7 @@ const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {doneAll && <div className="done-mini fade-step">{tr({ uz: '✅ 3 ta foydali band qoldi', ru: '✅ Осталось 3 полезных пункта' })}</div>}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label={{ uz: '🗑 Ro\'yxatni tozalaganlar', ru: '🗑 Кто очистил список' }} />
-        <MentorNote>{tr({ uz: "Bu mashqni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Tuzoqqa tushish xato emas — aynan shu lahza dars mavzusi, ovoz chiqarib muhokama qiling. «Zamonaviy ko'rinsin» chiqqanda so'rang: buni qanday qilib aniq bitta qiyinchilikka bog'lasa bo'ladi?", ru: 'Это упражнение выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Попасться в ловушку — не ошибка: именно этот момент и есть тема урока, обсудите вслух.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bu mashqni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq. Tuzoqqa tushish xato emas — aynan shu lahza dars mavzusi, ovoz chiqarib muhokama qiling. «Zamonaviy ko'rinsin» chiqqanda so'rang: buni qanday qilib aniq bitta muammoga bog'lasa bo'ladi?", ru: 'Это упражнение выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто. Попасться в ловушку — не ошибка: именно этот момент и есть тема урока, обсудите вслух.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1462,7 +1462,7 @@ const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const KOD_CONDS = [
   { id: 'c1', label: { uz: "Ro'yxatda 3 ta band", ru: 'В списке 3 пункта' } },
   { id: 'c2', label: { uz: 'Har bandda qalin nom', ru: 'В каждом пункте жирное имя' } },
-  { id: 'c3', label: { uz: 'Tiredan keyin qiyinchilik', ru: 'После тире — трудность' } },
+  { id: 'c3', label: { uz: 'Tiredan keyin muammo', ru: 'После тире — проблема' } },
 ];
 const DASH_RE = /[—–-]/;
 function checkList(html) {
@@ -1477,12 +1477,12 @@ function checkList(html) {
   // ② Har bandda bo'sh bo'lmagan <b>
   const noBold = items.filter(li => { const b = li.querySelector('b'); return !b || txt(b).length < 2; });
   if (items.length === 0) res.hints.c2 = tr({ uz: 'Avval bandlarni yozing, keyin ularning ichiga <b> qo\'shasiz.', ru: 'Сначала напишите пункты, потом добавите внутрь <b>.' });
-  else if (noBold.length > 0) res.hints.c2 = tr({ uz: 'Imkoniyat nomini <b> va </b> orasiga yozing — u sahifada qalin chiqadi.', ru: 'Название возможности напишите между <b> и </b> — на странице оно станет жирным.' });
+  else if (noBold.length > 0) res.hints.c2 = tr({ uz: 'Yechim nomini <b> va </b> orasiga yozing — u sahifada qalin chiqadi.', ru: 'Название решения напишите между <b> и </b> — на странице оно станет жирным.' });
   else res.c2 = true;
   // ③ Tiredan keyin kamida 8 belgilik matn
   const noTail = items.filter(li => { const t = txt(li); const m = t.split(DASH_RE); return m.length < 2 || m[m.length - 1].trim().length < 8; });
-  if (items.length === 0) res.hints.c3 = tr({ uz: 'Bandlar yozilgach, har birida tiredan keyin qiyinchilikni yozasiz.', ru: 'Когда пункты написаны, в каждом после тире напишете трудность.' });
-  else if (noTail.length > 0) res.hints.c3 = tr({ uz: 'Tiredan keyin bu imkoniyat qaysi qiyinchilikni yo\'qotishini yozing.', ru: 'После тире напишите, какую трудность убирает эта возможность.' });
+  if (items.length === 0) res.hints.c3 = tr({ uz: 'Bandlar yozilgach, har birida tiredan keyin muammoni yozasiz.', ru: 'Когда пункты написаны, в каждом после тире напишете проблему.' });
+  else if (noTail.length > 0) res.hints.c3 = tr({ uz: 'Tiredan keyin bu yechim qaysi muammoni yo\'qotishini yozing.', ru: 'После тире напишите, какую проблему убирает это решение.' });
   else res.c3 = true;
   return res;
 }
@@ -1496,12 +1496,12 @@ const KOD_PREVIEW_CSS = `
   li b{color:#1B1630}
   h2,li,p{overflow-wrap:anywhere;min-width:0}
 `;
-// Boshlang'ich kod: birinchi <li> o'quvchining O'Z 1-juftligidan (bo'lmasa — namuna-fallback, 40-qonun)
+// Boshlang'ich kod: birinchi <li> o'quvchining O'Z 1-kartasidan (bo'lmasa — namuna-fallback, 40-qonun)
 const kodStarter = () => {
   const f = readFeatures();
   const first = f[0];
-  const feat = first ? first.imkoniyat : tr({ uz: 'Seans jadvali', ru: 'Расписание сеансов' });
-  const pain = first ? first.qiyinchilik : tr({ uz: 'film qachon boshlanishini bilmaydi', ru: 'не знает, когда начинается фильм' });
+  const feat = first ? first.yechim : tr({ uz: 'Seans jadvali', ru: 'Расписание сеансов' });
+  const pain = first ? first.muammo : tr({ uz: 'film qachon boshlanishini bilmaydi', ru: 'не знает, когда начинается фильм' });
   return `${tr({ uz: '<h2>Kinoteatr sayti nima beradi</h2>', ru: '<h2>Что даёт сайт кинотеатра</h2>' })}
 
 <ul>
@@ -1526,9 +1526,9 @@ const listOf = (html) => {
   return _listRes;
 };
 const KOD_TASK = {
-  eyebrow: { uz: 'Koding · juftliklar ro\'yxati', ru: 'Кодинг · список пар' },
-  title: { uz: 'Juftliklaringizni sahifada ko\'rsating', ru: 'Покажите свои пары на странице' },
-  brief: { uz: <>Ro'yxatga yana <b>ikkita band</b> qo'shing. Har bandda imkoniyat nomi <span className="mono">&lt;b&gt;</span> va <span className="mono">&lt;/b&gt;</span> orasida turadi, tiredan keyin esa o'sha imkoniyat yo'qotadigan qiyinchilik yoziladi.</>, ru: <>Добавьте в список ещё <b>два пункта</b>. В каждом название возможности стоит между <span className="mono">&lt;b&gt;</span> и <span className="mono">&lt;/b&gt;</span>, а после тире пишется трудность, которую эта возможность убирает.</> },
+  eyebrow: { uz: 'Koding · muammo va yechimlar', ru: 'Кодинг · проблемы и решения' },
+  title: { uz: 'Kartalaringizni sahifada ko\'rsating', ru: 'Покажите свои карточки на странице' },
+  brief: { uz: <>Ro'yxatga yana <b>ikkita band</b> qo'shing. Har bandda yechim nomi <span className="mono">&lt;b&gt;</span> va <span className="mono">&lt;/b&gt;</span> orasida turadi, tiredan keyin esa o'sha yechim yo'qotadigan muammo yoziladi.</>, ru: <>Добавьте в список ещё <b>два пункта</b>. В каждом название решения стоит между <span className="mono">&lt;b&gt;</span> и <span className="mono">&lt;/b&gt;</span>, а после тире пишется проблема, которую это решение убирает.</> },
   previewUrl: 'kino.uz',
   previewCss: KOD_PREVIEW_CSS,
   requirements: KOD_CONDS.map((c) => ({
@@ -1577,7 +1577,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Koding · 🛠 kompilyator', ru: 'Кодинг · 🛠 компилятор' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval kompilyatorda yozing', ru: 'Сначала напишите в компиляторе' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi juftliklaringizni <span className="italic" style={{ color: T.accent }}>sahifada</span> ko'rsatamiz.</>, ru: <>Теперь покажем ваши пары <span className="italic" style={{ color: T.accent }}>на странице</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi kartalaringizni <span className="italic" style={{ color: T.accent }}>sahifada</span> ko'rsatamiz.</>, ru: <>Теперь покажем ваши карточки <span className="italic" style={{ color: T.accent }}>на странице</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Pastdagi <b style={{ color: T.ink }}>«🛠 Kompilyatorni ochish»</b> tugmasini bosing. Kodni yozadigan va natijani darhol ko'rsatadigan oyna ochiladi.</>, ru: <>Нажмите кнопку <b style={{ color: T.ink }}>«🛠 Открыть компилятор»</b> ниже. Откроется окно, где пишут код и сразу видят результат.</> })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <div className="stq fade-up delay-1" ref={workRef}>
@@ -1585,7 +1585,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className="stq-code-bar"><span className="bb-dots"><i /><i /><i /></span>index.html</span>
             <code className="stq-code-body">
               <span className="stq-l t">&lt;ul&gt;</span>
-              <span className="stq-l dim">   &lt;li&gt;&lt;b&gt;{tr({ uz: 'imkoniyat', ru: 'возможность' })}&lt;/b&gt; — {tr({ uz: 'qiyinchilik', ru: 'трудность' })}&lt;/li&gt;</span>
+              <span className="stq-l dim">   &lt;li&gt;&lt;b&gt;{tr({ uz: 'yechim', ru: 'решение' })}&lt;/b&gt; — {tr({ uz: 'muammo', ru: 'проблема' })}&lt;/li&gt;</span>
               <span className="stq-l t">&lt;/ul&gt;</span>
             </code>
           </div>
@@ -1593,9 +1593,9 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="stq-page">
             <div className="stq-pbar"><span className="bb-dots"><i /><i /><i /></span><span className="stq-purl"><span className="lock">●</span>kino.uz</span></div>
             <div className="stq-mine">
-              <span className="stq-mine-lbl">{tr({ uz: '📒 Bular — o\'z juftliklaringiz', ru: '📒 Это — ваши пары' })}</span>
-              {(mine.length > 0 ? mine : [{ qiyinchilik: tr({ uz: 'film qachon boshlanishini bilmaydi', ru: 'не знает, когда начинается фильм' }), imkoniyat: tr({ uz: 'Seans jadvali', ru: 'Расписание сеансов' }) }]).map((c, i) => (
-                <span key={i} className="stq-mine-row"><b>{c.imkoniyat}</b> — {c.qiyinchilik}</span>
+              <span className="stq-mine-lbl">{tr({ uz: '📒 Bular — o\'z kartalaringiz', ru: '📒 Это — ваши карточки' })}</span>
+              {(mine.length > 0 ? mine : [{ muammo: tr({ uz: 'film qachon boshlanishini bilmaydi', ru: 'не знает, когда начинается фильм' }), yechim: tr({ uz: 'Seans jadvali', ru: 'Расписание сеансов' }) }]).map((c, i) => (
+                <span key={i} className="stq-mine-row"><b>{c.yechim}</b> — {c.muammo}</span>
               ))}
             </div>
           </div>
@@ -1607,10 +1607,10 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="stq-skip" onClick={onNext}>{tr({ uz: '✓ Bu mashqni sinfda bajarganman — davom etish →', ru: '✓ Это задание я выполнил в классе — продолжить →' })}</button>
           )}
         </div>
-        {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>{tr({ uz: '✅ Ishladi!', ru: '✅ Получилось!' })} <span className="dm-sub">{tr({ uz: '— sahifadagi har bir band bitta qiyinchilikning javobi. Kod yozilishidan oldin ana shu juftlik yoziladi.', ru: '— каждый пункт страницы отвечает на одну трудность. Эта пара пишется раньше кода.' })}</span></div>}
+        {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>{tr({ uz: '✅ Ishladi!', ru: '✅ Получилось!' })} <span className="dm-sub">{tr({ uz: '— sahifadagi har bir band bitta muammoning javobi. Kod yozilishidan oldin ana shu muammo va yechim yoziladi.', ru: '— каждый пункт страницы отвечает на одну проблему. Проблема и решение пишутся раньше кода.' })}</span></div>}
         {/* Ixtiyoriy qo'shimcha topshiriq MENTOR eslatmasiga ko'chirildi (F-0802-17):
             u vazifani bajarish uchun zarur emas, o'quvchi ekranida esa blok egallardi. */}
-        <MentorNote>{tr({ uz: "Ulgurgan o'quvchilarga ayting: to'rtinchi bandni ham qo'shishsin — uyda yozadigan juftligi uchun.", ru: 'Тем, кто успел, скажите: пусть добавят и четвёртый пункт — для пары, которую напишут дома.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Ulgurgan o'quvchilarga ayting: to'rtinchi bandni ham qo'shishsin — uyda yozadigan kartasi uchun.", ru: 'Тем, кто успел, скажите: пусть добавят и четвёртый пункт — для карточки, которую напишут дома.' })}</MentorNote>
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label={{ uz: '🛠 Kodni yozib bo\'lganlar', ru: '🛠 Кто уже написал код' }} />
         <MentorNote>{tr({ uz: "Kodni VS Code'da emas, shu oynada yozadi — 10 daqiqa yetadi. Ulgurmagan o'quvchi uyga vazifada tugatadi, unga qisqa variant beriladi.", ru: 'Код пишут не в VS Code, а в этом окне — 10 минут достаточно. Кто не успел, дописывает в домашнем задании по короткому варианту.' })}</MentorNote>
@@ -1635,27 +1635,27 @@ const Screen12 = (props) => (
     question={<Q>{tr({ uz: <>Kinoteatr egasi: «Saytga o'yin qo'shaylik» dedi. <span className="italic" style={{ color: T.accent }}>Birinchi</span> nima qilasiz?</>, ru: <>Владелец кинотеатра сказал: «Давайте добавим на сайт игру». Что сделаете <span className="italic" style={{ color: T.accent }}>первым</span>?</> })}</Q>}
     questionText={{ uz: "Kinoteatr egasi o'yin qo'shishni so'radi. Birinchi nima qilasiz?", ru: 'Владелец кинотеатра попросил добавить игру. Что сделаете первым?' }}
     options={[
-      { uz: 'O\'yin kimning qaysi qiyinchiligini yo\'qotishini so\'rayman', ru: 'Спрошу, чью и какую трудность убирает эта игра' },
+      { uz: 'O\'yin kimning qaysi muammosini yo\'qotishini so\'rayman', ru: 'Спрошу, чью и какую проблему убирает эта игра' },
       { uz: 'Darhol qo\'shaman — egasi shunday xohladi', ru: 'Сразу добавлю — хозяин так захотел' },
       { uz: 'Keyinroq qilamiz deb aytaman', ru: 'Скажу, что сделаем позже' },
       { uz: 'Boshqa kinoteatr saytlarida o\'yin bor-yo\'qligini tekshiraman', ru: 'Проверю, есть ли игра на других сайтах кинотеатров' }
     ]}
     correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Har imkoniyat shu savoldan boshlanadi. Javob topilsa — o'yin ro'yxatga kiradi, topilmasa — keraksizlarga.", ru: 'Верно! Каждая возможность начинается с этого вопроса. Ответ найдётся — игра попадёт в список, нет — в ненужные.' }}
+    explainCorrect={{ uz: "To'g'ri! Har yechim shu savoldan boshlanadi. Javob topilsa — o'yin ro'yxatga kiradi, topilmasa — keraksizlarga.", ru: 'Верно! Каждое решение начинается с этого вопроса. Ответ найдётся — игра попадёт в список, нет — в ненужные.' }}
     explainWrong={{
-      1: { uz: 'Egasining so\'zini eshitish shart, bu to\'g\'ri. Lekin so\'rov hali imkoniyat emas: u qaysi qiyinchilikka javob berishi hali noma\'lum.', ru: 'Выслушать хозяина обязательно, это верно. Но просьба — ещё не возможность: пока неизвестно, на какую трудность она отвечает.' },
+      1: { uz: 'Egasining so\'zini eshitish shart, bu to\'g\'ri. Lekin so\'rov hali yechim emas: u qaysi muammoga javob berishi hali noma\'lum.', ru: 'Выслушать хозяина обязательно, это верно. Но просьба — ещё не решение: пока неизвестно, на какую проблему оно отвечает.' },
       2: { uz: 'Ishni tartibga solish kerak, bu rost. Lekin kechiktirish savolga javob bermaydi — o\'yin keyin ham egasiz qoladi.', ru: 'Наводить порядок в работе нужно, это правда. Но отсрочка не отвечает на вопрос — игра и потом останется без хозяина.' },
       3: { uz: 'Boshqalarni ko\'rish foydali odat. Lekin ularda borligi sizning mijozingizga kerakligini isbotlamaydi.', ru: 'Смотреть на других — полезная привычка. Но то, что игра есть у них, не доказывает, что она нужна вашему клиенту.' },
-      default: { uz: 'Har imkoniyat qaysi savoldan boshlanishini eslang.', ru: 'Вспомните, с какого вопроса начинается каждая возможность.' }
+      default: { uz: 'Har yechim qaysi savoldan boshlanishini eslang.', ru: 'Вспомните, с какого вопроса начинается каждое решение.' }
     }}
   />
 );
 
 // ===== SCREEN 13 — YAKUNIY SO'Z: sherikka aytish + bir qator yozuv =====
 const CLASS_ASKS = [
-  { uz: 'Kimning uch juftligi ham tayyor?', ru: 'У кого готовы все три пары?' },
+  { uz: 'Kimning uchala kartasi ham tayyor?', ru: 'У кого готовы все три карточки?' },
   { uz: 'Kimda keraksizlarga chiqqan band bor?', ru: 'У кого есть пункт, ушедший в ненужные?' },
-  { uz: 'Kim uyda yana bitta juftlik yozmoqchi?', ru: 'Кто дома напишет ещё одну пару?' }
+  { uz: 'Kim uyda yana bitta karta yozmoqchi?', ru: 'Кто дома напишет ещё одну карточку?' }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1670,25 +1670,25 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy so\'z', ru: 'Заключительное слово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ok && !isMentor} label={ok || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Bir qator yozing', ru: 'Напишите одну строку' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta juftligingizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать одну свою пару <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ekranga qaramasdan sherigingizga ayting: qanday qiyinchilik va uni qaysi imkoniyat yo'qotadi? So'ng shu gapni bir qatorga yozing.</>, ru: <>Не глядя на экран, скажите соседу: какая трудность и какая возможность её убирает? Потом запишите эту фразу одной строкой.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta muammo va yechimingizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать одну свою проблему и решение <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ekranga qaramasdan sherigingizga ayting: qanday muammo va uni qaysi yechim yo'qotadi? So'ng shu gapni bir qatorga yozing.</>, ru: <>Не глядя на экран, скажите соседу: какая проблема и какое решение её убирает? Потом запишите эту фразу одной строкой.</> })}</Mentor>
         {/* F-0803-03 — 106e (ko'rsatma → vazifa → javob): «① Sherigingizga ayting» kartasi
             olib tashlandi — Mentor buni allaqachon aytadi; «③ Sinf bilan: qo'l ko'taring»
             esa mentor ish-tartibi, o'quvchi ekranida joyi yo'q → MentorNote'ga. Qoladigan
             yagona VAZIFA — yozish maydoni. */}
         <div className="rf-write fade-up delay-1">
-          <textarea className="rf-area" value={txt} onChange={e => setTxt(e.target.value)} rows={3} placeholder={tr({ uz: 'Qiyinchilik ↔ uni yo\'qotadigan imkoniyat', ru: 'Трудность ↔ возможность, которая её убирает' })} />
+          <textarea className="rf-area" value={txt} onChange={e => setTxt(e.target.value)} rows={3} placeholder={tr({ uz: 'Muammo ↔ uni yo\'qotadigan yechim', ru: 'Проблема ↔ решение, которое её убирает' })} />
           <span className="rf-cnt">{ok ? tr({ uz: '✓ Yozildi', ru: '✓ Записано' }) : tr({ uz: 'kamida bir gap', ru: 'хотя бы одно предложение' })}</span>
         </div>
         {/* 🎯 «Aha» lahzasi — dars aynan shu gap bilan yopiladi. Faqat o'quvchi YOZGANDAN
             keyin chiqadi: bu mukofot, ko'rsatma emas (106e ning uchinchi zarbi). */}
         {ok && (
           <div className="rf-aha fade-step">
-            <p className="rf-aha-t">{tr({ uz: '🎉 Ajoyib! Endi siz imkoniyatni emas, qiyinchilikni o\'ylaydigan bo\'ldingiz.', ru: '🎉 Отлично! Теперь вы думаете не о возможности, а о трудности.' })}</p>
-            <p className="rf-aha-r">{tr({ uz: <><b>🎯 Bugungi qoida:</b> har bir imkoniyat bitta qiyinchilikni yo'qotishi kerak.</>, ru: <><b>🎯 Правило дня:</b> каждая возможность должна убирать одну трудность.</> })}</p>
+            <p className="rf-aha-t">{tr({ uz: '🎉 Ajoyib! Endi siz yechimni emas, muammoni o\'ylaydigan bo\'ldingiz.', ru: '🎉 Отлично! Теперь вы думаете не о решении, а о проблеме.' })}</p>
+            <p className="rf-aha-r">{tr({ uz: <><b>🎯 Bugungi qoida:</b> har bir yechim bitta muammoni yo'qotishi kerak.</>, ru: <><b>🎯 Правило дня:</b> каждое решение должно убирать одну проблему.</> })}</p>
           </div>
         )}
-        <MentorNote>{tr({ uz: "Sinfning uchdan biri «imkoniyat» o'rniga «sayt chiroyli bo'lsin» desa — kartalar ekranidagi fon musiqasini qayta ko'rsating, boshqa misolga o'tmang. Yakunda qo'l ko'tartiring: " + CLASS_ASKS.map(a => a.uz).join(' · '), ru: 'Если треть класса вместо возможности говорит «пусть сайт будет красивым» — снова покажите фоновую музыку с экрана карточек, на другой пример не переходите. В конце попросите поднять руку: ' + CLASS_ASKS.map(a => a.ru).join(' · ') })}</MentorNote>
+        <MentorNote>{tr({ uz: "Sinfning uchdan biri «yechim» o'rniga «sayt chiroyli bo'lsin» desa — kartalar ekranidagi fon musiqasini qayta ko'rsating, boshqa misolga o'tmang. Yakunda qo'l ko'tartiring: " + CLASS_ASKS.map(a => a.uz).join(' · '), ru: 'Если треть класса вместо решения говорит «пусть сайт будет красивым» — снова покажите фоновую музыку с экрана карточек, на другой пример не переходите. В конце попросите поднять руку: ' + CLASS_ASKS.map(a => a.ru).join(' · ') })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1697,28 +1697,28 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== UYGA VAZIFA MA'LUMOTLARI (F-0803-04: alohida ekran emas — YAKUN ichida) =====
 // F-0803-07: kapsula-tugma PmLesson2 etalonidan qaytarildi — suzuvchi dars-so'zlari bilan
 const HW_TOKENS = [
-  { t: { uz: 'juftlik', ru: 'пара' }, l: 8, tp: 22, s: 13, d: 6 },
-  { t: { uz: 'qiyinchilik', ru: 'трудность' }, l: 68, tp: 16, s: 12, d: 7.5 },
-  { t: { uz: 'imkoniyat', ru: 'возможность' }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'karta', ru: 'карточка' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'muammo', ru: 'проблема' }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'yechim', ru: 'решение' }, l: 24, tp: 70, s: 12, d: 8.5 },
   { t: { uz: 'keraksiz', ru: 'ненужное' }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const HW_ROWS = [
-  { b: { uz: 'Nechta', ru: 'Сколько' }, t: { uz: '2 ta yangi juftlik', ru: '2 новые пары' } },
+  { b: { uz: 'Nechta', ru: 'Сколько' }, t: { uz: '2 ta yangi karta', ru: '2 новые карточки' } },
   { b: { uz: 'Qayerdan', ru: 'Откуда' }, t: { uz: 'bugun keraksizlarga chiqqan bandlardan', ru: 'из пунктов, ушедших сегодня в ненужные' } },
   { b: { uz: 'Qayerga', ru: 'Куда' }, t: { uz: 'shu darsning ustaxona ekraniga', ru: 'на экран мастерской этого урока' } }
 ];
 const HW_STEPS = [
   { uz: 'Keraksizlarga chiqqan bandni oling va uni kim uchun kerakli qilishini o\'ylang.', ru: 'Возьмите пункт, ушедший в ненужные, и подумайте, кому его сделать нужным.' },
-  { uz: 'Shu odamning qiyinchiligini bir gapda yozing.', ru: 'Запишите трудность этого человека одним предложением.' },
-  { uz: 'Uni yo\'qotadigan imkoniyatni yozing va saqlang.', ru: 'Напишите возможность, которая её убирает, и сохраните.' }
+  { uz: 'Shu odamning muammosini bir gapda yozing.', ru: 'Запишите проблему этого человека одним предложением.' },
+  { uz: 'Uni yo\'qotadigan yechimni yozing va saqlang.', ru: 'Напишите решение, которое её убирает, и сохраните.' }
 ];
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
 const Q_LABELS = {
-  3: { uz: 'Imkoniyat qaysi savoldan boshlanadi', ru: 'С какого вопроса начинается возможность' },
-  5: { uz: 'Egasiz imkoniyat', ru: 'Возможность без хозяина' },
-  9: { uz: 'Juftlik qanday yoziladi', ru: 'Как пишется пара' },
+  3: { uz: 'Yechim qaysi savoldan boshlanadi', ru: 'С какого вопроса начинается решение' },
+  5: { uz: 'Egasiz yechim', ru: 'Решение без хозяина' },
+  9: { uz: 'Muammo va yechim qanday yoziladi', ru: 'Как пишется проблема и решение' },
   12: { uz: 'Yangi so\'rov kelganda (yakuniy)', ru: 'Когда приходит новая просьба (итог)' }
 };
 
@@ -1845,28 +1845,28 @@ const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 // Arena foni: suzuvchi dars tokenlari
 const QZ_BG_SHAPES = [
   { ch: '🎟', l: 6, t: 18, s: 40, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
-  { ch: { uz: 'juftlik', ru: 'пара' }, l: 84, t: 12, s: 30, c: 'rgba(203,173,255,0.13)', d: 23, dl: 1.5 },
+  { ch: { uz: 'karta', ru: 'карточка' }, l: 84, t: 12, s: 30, c: 'rgba(203,173,255,0.13)', d: 23, dl: 1.5 },
   { ch: '💺', l: 9, t: 74, s: 38, c: 'rgba(255,110,70,0.15)', d: 27, dl: 0.8 },
-  { ch: { uz: 'imkoniyat', ru: 'возможность' }, l: 74, t: 70, s: 24, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
+  { ch: { uz: 'yechim', ru: 'решение' }, l: 74, t: 70, s: 24, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
   { ch: '🗑', l: 46, t: 86, s: 28, c: 'rgba(203,173,255,0.14)', d: 25, dl: 1.1 },
   { ch: '🕒', l: 66, t: 24, s: 34, c: 'rgba(80,200,255,0.14)', d: 17, dl: 0.4 },
-  { ch: { uz: 'qiyinchilik', ru: 'трудность' }, l: 22, t: 36, s: 24, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
+  { ch: { uz: 'muammo', ru: 'проблема' }, l: 22, t: 36, s: 24, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
   { ch: { uz: 'sayt', ru: 'сайт' }, l: 92, t: 46, s: 24, c: 'rgba(120,235,175,0.13)', d: 24, dl: 1.3 },
   { ch: '↔', l: 2, t: 46, s: 22, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: 'Imkoniyat (feature) nima?', ru: 'Что такое возможность (feature)?' }, opts: [{ uz: 'Saytning rangi va shrifti', ru: 'Цвет и шрифт сайта' }, { uz: 'Sayt beradigan bitta aniq foyda-ish', ru: 'Одна конкретная польза, которую даёт сайт' }, { uz: 'Saytning internetdagi manzili', ru: 'Адрес сайта в интернете' }, { uz: 'Saytni ochadigan dastur', ru: 'Программа, которая открывает сайт' }], correct: 1 },
-  { q: { uz: 'Har imkoniyat qaysi savolga javob beradi?', ru: 'На какой вопрос отвечает каждая возможность?' }, opts: [{ uz: 'Uni necha kunda yasaymiz?', ru: 'За сколько дней мы её сделаем?' }, { uz: 'U sahifaning qaysi joyida turadi?', ru: 'В каком месте страницы она стоит?' }, { uz: 'U kimning qaysi qiyinchiligini yo\'qotadi?', ru: 'Чью и какую трудность она убирает?' }, { uz: 'U qancha turadi?', ru: 'Сколько она стоит?' }], correct: 2 },
-  { q: { uz: 'Hech qanday qiyinchilikka bog\'lanmagan imkoniyat nima bo\'ladi?', ru: 'Что происходит с возможностью, не связанной ни с одной трудностью?' }, opts: [{ uz: 'Ro\'yxatdan chiqariladi', ru: 'Её убирают из списка' }, { uz: 'Eng oxirida qilinadi', ru: 'Её делают в самом конце' }, { uz: 'Ikki marta tekshiriladi', ru: 'Её проверяют дважды' }, { uz: 'Boshqa saytga beriladi', ru: 'Её отдают другому сайту' }], correct: 0 },
-  { q: { uz: 'Juftlik-karta nechta bo\'lakdan iborat?', ru: 'Из скольких частей состоит карточка-пара?' }, opts: [{ uz: 'Bittadan', ru: 'Из одной' }, { uz: 'Uchtadan', ru: 'Из трёх' }, { uz: 'To\'rttadan', ru: 'Из четырёх' }, { uz: 'Ikkitadan', ru: 'Из двух' }], correct: 3 },
-  { q: { uz: '«Sayt chiroyli bo\'lsin» — bu nimaning javobi?', ru: '«Пусть сайт будет красивым» — ответ на что?' }, opts: [{ uz: 'Seans vaqti noma\'lumligining', ru: 'На неизвестность времени сеанса' }, { uz: 'Hech qanday qiyinchilikning javobi emas', ru: 'Это ответ ни на одну трудность' }, { uz: 'Chipta qayerdan olinishining', ru: 'На то, где взять билет' }, { uz: 'Zalda joy bor-yo\'qligining', ru: 'На то, есть ли места в зале' }], correct: 1 },
-  { q: { uz: 'Imkoniyat qanday yozilsa to\'g\'ri bo\'ladi?', ru: 'Как правильно записать возможность?' }, opts: [{ uz: 'Sayt nima qilishini aytadigan harakat bilan', ru: 'Действием, которое говорит, что делает сайт' }, { uz: 'Bitta sifat bilan', ru: 'Одним прилагательным' }, { uz: 'Kinoteatr nomi bilan', ru: 'Названием кинотеатра' }, { uz: 'Sana bilan', ru: 'Датой' }], correct: 0 },
+  { q: { uz: 'Yechim (feature) nima?', ru: 'Что такое решение (feature)?' }, opts: [{ uz: 'Saytning rangi va shrifti', ru: 'Цвет и шрифт сайта' }, { uz: 'Sayt beradigan bitta aniq foyda-ish', ru: 'Одна конкретная польза, которую даёт сайт' }, { uz: 'Saytning internetdagi manzili', ru: 'Адрес сайта в интернете' }, { uz: 'Saytni ochadigan dastur', ru: 'Программа, которая открывает сайт' }], correct: 1 },
+  { q: { uz: 'Har yechim qaysi savolga javob beradi?', ru: 'На какой вопрос отвечает каждое решение?' }, opts: [{ uz: 'Uni necha kunda yasaymiz?', ru: 'За сколько дней мы её сделаем?' }, { uz: 'U sahifaning qaysi joyida turadi?', ru: 'В каком месте страницы она стоит?' }, { uz: 'U kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему оно убирает?' }, { uz: 'U qancha turadi?', ru: 'Сколько она стоит?' }], correct: 2 },
+  { q: { uz: 'Hech qanday muammoga bog\'lanmagan yechim nima bo\'ladi?', ru: 'Что происходит с решением, не связанной ни с одной проблемой?' }, opts: [{ uz: 'Ro\'yxatdan chiqariladi', ru: 'Её убирают из списка' }, { uz: 'Eng oxirida qilinadi', ru: 'Её делают в самом конце' }, { uz: 'Ikki marta tekshiriladi', ru: 'Её проверяют дважды' }, { uz: 'Boshqa saytga beriladi', ru: 'Её отдают другому сайту' }], correct: 0 },
+  { q: { uz: 'Karta nechta bo\'lakdan iborat?', ru: 'Из скольких частей состоит карточка?' }, opts: [{ uz: 'Bittadan', ru: 'Из одной' }, { uz: 'Uchtadan', ru: 'Из трёх' }, { uz: 'To\'rttadan', ru: 'Из четырёх' }, { uz: 'Ikkitadan', ru: 'Из двух' }], correct: 3 },
+  { q: { uz: '«Sayt chiroyli bo\'lsin» — bu nimaning javobi?', ru: '«Пусть сайт будет красивым» — ответ на что?' }, opts: [{ uz: 'Seans vaqti noma\'lumligining', ru: 'На неизвестность времени сеанса' }, { uz: 'Hech qanday muammoning javobi emas', ru: 'Это ответ ни на одну проблему' }, { uz: 'Chipta qayerdan olinishining', ru: 'На то, где взять билет' }, { uz: 'Zalda joy bor-yo\'qligining', ru: 'На то, есть ли места в зале' }], correct: 1 },
+  { q: { uz: 'Yechim qanday yozilsa to\'g\'ri bo\'ladi?', ru: 'Как правильно записать решение?' }, opts: [{ uz: 'Sayt nima qilishini aytadigan harakat bilan', ru: 'Действием, которое говорит, что делает сайт' }, { uz: 'Bitta sifat bilan', ru: 'Одним прилагательным' }, { uz: 'Kinoteatr nomi bilan', ru: 'Названием кинотеатра' }, { uz: 'Sana bilan', ru: 'Датой' }], correct: 0 },
   { q: { uz: 'Uzum ishni nimadan boshlagan?', ru: 'С чего начал Uzum?' }, opts: [{ uz: 'Reklama roliklaridan', ru: 'С рекламных роликов' }, { uz: 'Chiroyli bosh sahifadan', ru: 'С красивой главной страницы' }, { uz: 'O\'z yetkazib berish xizmatidan', ru: 'Со своей службы доставки' }, { uz: 'Chegirmalardan', ru: 'Со скидок' }], correct: 2 },
   { q: { uz: 'Uzumgacha odamlar asosan qayerdan xarid qilardi?', ru: 'Где в основном покупали до Uzum?' }, opts: [{ uz: 'Telegram va Instagram guruhlaridan', ru: 'В группах Telegram и Instagram' }, { uz: 'Faqat bozordan', ru: 'Только на базаре' }, { uz: 'Chet el saytlaridan', ru: 'На зарубежных сайтах' }, { uz: 'Gazeta e\'lonlaridan', ru: 'По объявлениям в газете' }], correct: 0 },
   { q: { uz: 'Uzum qachon mamlakatning birinchi «unicorn»i bo\'ldi?', ru: 'Когда Uzum стал первым «единорогом» страны?' }, opts: [{ uz: '2022-yil oktyabrda', ru: 'В октябре 2022 года' }, { uz: '2023-yil yanvarda', ru: 'В январе 2023 года' }, { uz: '2025-yil dekabrda', ru: 'В декабре 2025 года' }, { uz: '2024-yil martda', ru: 'В марте 2024 года' }], correct: 3 },
   { q: { uz: '«Unicorn» degani nima?', ru: 'Что означает «единорог»?' }, opts: [{ uz: 'Eng ko\'p ishchisi bor kompaniya', ru: 'Компания с самым большим числом работников' }, { uz: '1 milliard dollardan yuqori baholangan kompaniya', ru: 'Компания, оценённая дороже 1 миллиарда долларов' }, { uz: 'Eng eski kompaniya', ru: 'Самая старая компания' }, { uz: 'Faqat internetda ishlaydigan kompaniya', ru: 'Компания, работающая только в интернете' }], correct: 1 },
-  { q: { uz: 'Kinoteatr egasi yangi imkoniyat so\'radi. Birinchi nima qilinadi?', ru: 'Владелец кинотеатра попросил новую возможность. Что делают первым?' }, opts: [{ uz: 'Darhol qo\'shiladi', ru: 'Сразу добавляют' }, { uz: 'Narxi hisoblanadi', ru: 'Считают стоимость' }, { uz: 'Qaysi qiyinchilikni yo\'qotishi so\'raladi', ru: 'Спрашивают, какую трудность она убирает' }, { uz: 'Boshqa saytlar ko\'riladi', ru: 'Смотрят другие сайты' }], correct: 2 },
-  { q: { uz: 'Juftlik HTML ro\'yxatida qanday yoziladi?', ru: 'Как пара записывается в HTML-списке?' }, opts: [{ uz: 'Sarlavha tegi ichida, bitta so\'z bilan', ru: 'Внутри тега заголовка, одним словом' }, { uz: 'Rasm tegi bilan', ru: 'Тегом картинки' }, { uz: 'Havola tegi ichida', ru: 'Внутри тега ссылки' }, { uz: 'Bir bandda: qalin imkoniyat nomi, tiredan keyin qiyinchilik', ru: 'В одном пункте: жирное название возможности, после тире — трудность' }], correct: 3 },
+  { q: { uz: 'Kinoteatr egasi yangi yechim so\'radi. Birinchi nima qilinadi?', ru: 'Владелец кинотеатра попросил новое решение. Что делают первым?' }, opts: [{ uz: 'Darhol qo\'shiladi', ru: 'Сразу добавляют' }, { uz: 'Narxi hisoblanadi', ru: 'Считают стоимость' }, { uz: 'Qaysi muammoni yo\'qotishi so\'raladi', ru: 'Спрашивают, какую проблему оно убирает' }, { uz: 'Boshqa saytlar ko\'riladi', ru: 'Смотрят другие сайты' }], correct: 2 },
+  { q: { uz: 'Muammo va yechim HTML ro\'yxatida qanday yoziladi?', ru: 'Как проблема и решение записываются в HTML-списке?' }, opts: [{ uz: 'Sarlavha tegi ichida, bitta so\'z bilan', ru: 'Внутри тега заголовка, одним словом' }, { uz: 'Rasm tegi bilan', ru: 'Тегом картинки' }, { uz: 'Havola tegi ichida', ru: 'Внутри тега ссылки' }, { uz: 'Bir bandda: qalin yechim nomi, tiredan keyin muammo', ru: 'В одном пункте: жирное название решения, после тире — проблема' }], correct: 3 },
 ];
 
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -1881,7 +1881,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = __lang === 'ru' ? ['пара', 'трудность', '🎟', '💺', '🕒', 'сайт'] : ['juftlik', 'qiyinchilik', '🎟', '💺', '🕒', 'sayt'];
+    const TOK = __lang === 'ru' ? ['карточка', 'проблема', '🎟', '💺', '🕒', 'сайт'] : ['karta', 'muammo', '🎟', '💺', '🕒', 'sayt'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 7; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2067,6 +2067,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
@@ -2186,7 +2194,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2318,17 +2327,17 @@ function Flashcards({ cards }) {
 
 // 🃏 FLASHCARDS — aktiv takrorlash (3D flip). Bugungi tushunchalar, 11 karta.
 const PM4_FLASHCARDS = [
-  { front: { uz: 'Imkoniyat (feature) nima?', ru: 'Что такое возможность (feature)?' }, back: { uz: 'Sayt beradigan bitta aniq foyda-ish', ru: 'Одна конкретная польза, которую даёт сайт' }, note: { uz: 'kinoteatr saytida — «Seans jadvali»', ru: 'на сайте кинотеатра — «Расписание сеансов»' } },
-  { front: { uz: 'Har imkoniyat qaysi savolga javob berishi kerak?', ru: 'На какой вопрос должна отвечать каждая возможность?' }, back: { uz: '«Bu kimning qaysi qiyinchiligini yo\'qotadi?»', ru: '«Чью и какую трудность это убирает?»' }, note: { uz: 'har juftlik shu savol bilan tekshiriladi', ru: 'каждая пара проверяется этим вопросом' } },
-  { front: { uz: 'Qiyinchiligi topilmagan imkoniyat nima bo\'ladi?', ru: 'Что происходит с возможностью без трудности?' }, back: { uz: 'Ro\'yxatdan chiqariladi', ru: 'Её убирают из списка' }, note: { uz: 'u hech kimga foyda bermaydi', ru: 'она никому не приносит пользы' } },
-  { front: { uz: 'Juftlik-karta nimalardan iborat?', ru: 'Из чего состоит карточка-пара?' }, back: { uz: 'Ikki bo\'lakdan: qiyinchilik va uni yo\'qotadigan imkoniyat', ru: 'Из двух частей: трудность и возможность, которая её убирает' }, note: { uz: '«film qachon boshlanishini bilmaydi» ↔ «Seans jadvali»', ru: '«не знает, когда начинается фильм» ↔ «Расписание сеансов»' } },
-  { front: { uz: 'Imkoniyat sifat bilan yozilsa nima bo\'ladi?', ru: 'Что будет, если записать возможность прилагательным?' }, back: { uz: 'Sayt nima qilishi noma\'lum qoladi', ru: 'Останется неизвестным, что делает сайт' }, note: { uz: 'shuning uchun harakat bilan yoziladi', ru: 'поэтому её пишут действием' } },
-  { front: { uz: 'Bitta qiyinchilikka nechta imkoniyatdan boshlanadi?', ru: 'Со скольких возможностей начинают одну трудность?' }, back: { uz: 'Bittadan', ru: 'С одной' }, note: { uz: 'har imkoniyat o\'z qiyinchiligiga qaraydi', ru: 'каждая возможность смотрит на свою трудность' } },
+  { front: { uz: 'Yechim (feature) nima?', ru: 'Что такое решение (feature)?' }, back: { uz: 'Sayt beradigan bitta aniq foyda-ish', ru: 'Одна конкретная польза, которую даёт сайт' }, note: { uz: 'kinoteatr saytida — «Seans jadvali»', ru: 'на сайте кинотеатра — «Расписание сеансов»' } },
+  { front: { uz: 'Har yechim qaysi savolga javob berishi kerak?', ru: 'На какой вопрос должна отвечать каждое решение?' }, back: { uz: '«Bu kimning qaysi muammosini yo\'qotadi?»', ru: '«Чью и какую проблему это убирает?»' }, note: { uz: 'har karta shu savol bilan tekshiriladi', ru: 'каждая карточка проверяется этим вопросом' } },
+  { front: { uz: 'Muammosi topilmagan yechim nima bo\'ladi?', ru: 'Что происходит с решением без проблемы?' }, back: { uz: 'Ro\'yxatdan chiqariladi', ru: 'Её убирают из списка' }, note: { uz: 'u hech kimga foyda bermaydi', ru: 'она никому не приносит пользы' } },
+  { front: { uz: 'Karta nimalardan iborat?', ru: 'Из чего состоит карточка?' }, back: { uz: 'Ikki bo\'lakdan: muammo va uni yo\'qotadigan yechim', ru: 'Из двух частей: проблема и решение, которое её убирает' }, note: { uz: '«film qachon boshlanishini bilmaydi» ↔ «Seans jadvali»', ru: '«не знает, когда начинается фильм» ↔ «Расписание сеансов»' } },
+  { front: { uz: 'Yechim sifat bilan yozilsa nima bo\'ladi?', ru: 'Что будет, если записать решение прилагательным?' }, back: { uz: 'Sayt nima qilishi noma\'lum qoladi', ru: 'Останется неизвестным, что делает сайт' }, note: { uz: 'shuning uchun harakat bilan yoziladi', ru: 'поэтому её пишут действием' } },
+  { front: { uz: 'Bitta muammoga nechta yechimdan boshlanadi?', ru: 'Со скольких решений начинают одну проблему?' }, back: { uz: 'Bittadan', ru: 'С одной' }, note: { uz: 'har yechim o\'z muammosiga qaraydi', ru: 'каждое решение смотрит на свою проблему' } },
   { front: { uz: 'Uzum ishni nimadan boshlagan?', ru: 'С чего начал Uzum?' }, back: { uz: 'O\'z yetkazib berish xizmatidan', ru: 'Со своей службы доставки' }, note: { uz: 'mashinalar va topshirish punktlari', ru: 'машины и пункты выдачи' } },
-  { front: { uz: 'Nima uchun Uzum yetkazib berishdan boshlagan?', ru: 'Почему Uzum начал с доставки?' }, back: { uz: 'Eng katta qiyinchilik shu edi', ru: 'Это была самая большая трудность' }, note: { uz: 'olgan narsasi qo\'liga qanday yetib kelishi', ru: 'как купленное доберётся до рук' } },
+  { front: { uz: 'Nima uchun Uzum yetkazib berishdan boshlagan?', ru: 'Почему Uzum начал с доставки?' }, back: { uz: 'Eng katta muammo shu edi', ru: 'Это была самая большая проблема' }, note: { uz: 'olgan narsasi qo\'liga qanday yetib kelishi', ru: 'как купленное доберётся до рук' } },
   { front: { uz: '«Unicorn» nima degani?', ru: 'Что означает «единорог»?' }, back: { uz: '1 milliard dollardan yuqori baholangan kompaniya', ru: 'Компания, оценённая дороже 1 миллиарда долларов' }, note: { uz: 'Uzum — mamlakatning birinchisi, 2024-yil mart', ru: 'Uzum — первый в стране, март 2024 года' } },
-  { front: { uz: 'Kinoteatr egasi yangi imkoniyat so\'rasa, birinchi nima qilinadi?', ru: 'Если владелец кинотеатра просит новую возможность — что первым?' }, back: { uz: 'Qaysi qiyinchilikni yo\'qotishi so\'raladi', ru: 'Спрашивают, какую трудность она убирает' }, note: { uz: 'javob topilmasa, imkoniyat kutib turadi', ru: 'нет ответа — возможность подождёт' } },
-  { front: { uz: 'Juftlik sahifada qanday ko\'rsatiladi?', ru: 'Как пара показывается на странице?' }, back: { uz: 'Ro\'yxat bandi bilan', ru: 'Пунктом списка' }, note: { uz: 'qalin imkoniyat nomi, tiredan keyin qiyinchilik', ru: 'жирное название возможности, после тире — трудность' } },
+  { front: { uz: 'Kinoteatr egasi yangi yechim so\'rasa, birinchi nima qilinadi?', ru: 'Если владелец кинотеатра просит новое решение — что первым?' }, back: { uz: 'Qaysi muammoni yo\'qotishi so\'raladi', ru: 'Спрашивают, какую проблему оно убирает' }, note: { uz: 'javob topilmasa, yechim kutib turadi', ru: 'нет ответа — решение подождёт' } },
+  { front: { uz: 'Muammo va yechim sahifada qanday ko\'rsatiladi?', ru: 'Как проблема и решение показываются на странице?' }, back: { uz: 'Ro\'yxat bandi bilan', ru: 'Пунктом списка' }, note: { uz: 'qalin yechim nomi, tiredan keyin muammo', ru: 'жирное название решения, после тире — проблема' } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -2345,10 +2354,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== SCREEN 18 — YAKUN =====
 const RECAP_LINES = [
-  { uz: 'Har bir imkoniyat bitta qiyinchilikning javobi bo\'ladi.', ru: 'Каждая возможность — это ответ на одну трудность.' },
-  { uz: 'Qiyinchiligi topilmagan imkoniyat ro\'yxatdan chiqariladi.', ru: 'Возможность, для которой не нашлось трудности, убирается из списка.' },
-  { uz: 'Imkoniyat sayt nima qilishini aytadigan harakat bilan yoziladi.', ru: 'Возможность пишется действием, которое говорит, что делает сайт.' },
-  { uz: 'Eng katta internet-magazinlar ham eng og\'ir qiyinchilikdan boshlagan.', ru: 'Даже самые большие интернет-магазины начинали с самой тяжёлой трудности.' }
+  { uz: 'Har bir yechim bitta muammoning javobi bo\'ladi.', ru: 'Каждое решение — это ответ на одну проблему.' },
+  { uz: 'Muammosi topilmagan yechim ro\'yxatdan chiqariladi.', ru: 'Решение, для которой не нашлось проблемы, убирается из списка.' },
+  { uz: 'Yechim sayt nima qilishini aytadigan harakat bilan yoziladi.', ru: 'Решение пишется действием, которое говорит, что делает сайт.' },
+  { uz: 'Eng katta internet-magazinlar ham eng og\'ir muammodan boshlagan.', ru: 'Даже самые большие интернет-магазины начинали с самой тяжёлой проблемы.' }
 ];
 const ScreenSummary = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2383,10 +2392,10 @@ const ScreenSummary = ({ screen, answers, onReset, onPrev, onFinish }) => {
       <div className="screen">
         <div className="hero">
           <div className="hero-l">
-            <span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Juftlik-kartalaringiz tayyor', ru: 'Ваши карточки-пары готовы' })}</span>
+            <span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Kartalaringiz tayyor', ru: 'Ваши карточки готовы' })}</span>
             <h2 className="title h-title fade-up d1">{isLiveLesson
-              ? tr({ uz: <>Bugun har imkoniyatni <span className="italic" style={{ color: T.accent }}>o'z qiyinchiligiga</span> qo'shishni o'rgandik.</>, ru: <>Сегодня мы научились ставить каждую возможность <span className="italic" style={{ color: T.accent }}>к своей трудности</span>.</> })
-              : tr({ uz: <>Endi siz har imkoniyatni <span className="italic" style={{ color: T.accent }}>o'z qiyinchiligiga</span> qo'sha olasiz.</>, ru: <>Теперь вы можете ставить каждую возможность <span className="italic" style={{ color: T.accent }}>к своей трудности</span>.</> })}</h2>
+              ? tr({ uz: <>Bugun har yechimni <span className="italic" style={{ color: T.accent }}>o'z muammosiga</span> qo'shishni o'rgandik.</>, ru: <>Сегодня мы научились ставить каждое решение <span className="italic" style={{ color: T.accent }}>к своей проблеме</span>.</> })
+              : tr({ uz: <>Endi siz har yechimni <span className="italic" style={{ color: T.accent }}>o'z muammosiga</span> qo'sha olasiz.</>, ru: <>Теперь вы можете ставить каждое решение <span className="italic" style={{ color: T.accent }}>к своей проблеме</span>.</> })}</h2>
             {/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}
           </div>
           {!isMentorL && <ScoreRing correct={correct} total={total} />}
@@ -2395,10 +2404,11 @@ const ScreenSummary = ({ screen, answers, onReset, onPrev, onFinish }) => {
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
+        {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {/* F-0803-07 — YAKUN TARTIBI PmLesson2 ETALONIGA TENGLASHTIRILDI:
             hero → CodeStrike → «Endi siz bilasiz» (to'liq enli) → «Uyga vazifa» kapsulasi.
-            «📒 Juftliklaringiz» kartasi OLIB TASHLANDI (foydalanuvchi qarori): o'quvchi o'z
-            juftliklarini ustaxona va sahifa-ekranlarida allaqachon ko'rgan — yakunda takror. */}
+            «📒 Kartalaringiz» kartasi OLIB TASHLANDI (foydalanuvchi qarori): o'quvchi o'z
+            kartalarini ustaxona va sahifa-ekranlarida allaqachon ko'rgan — yakunda takror. */}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP_LINES.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${charge ? 'charging' : ''}`} onClick={fire}>
@@ -2414,7 +2424,7 @@ const ScreenSummary = ({ screen, answers, onReset, onPrev, onFinish }) => {
           <div className="card hw fade-step">
             <ul>{HW_ROWS.map((r, i) => <li key={i}><b>{tr(r.b)}:</b> <span className="t">{tr(r.t)}</span></li>)}</ul>
             <ol className="hw-steps">{HW_STEPS.map((s, i) => <li key={i}><span className="hw-n">{i + 1}</span>{tr(s)}</li>)}</ol>
-            <p className="hw-note">{tr({ uz: 'Qisqa variant: kodingni tugating (uchala shart ✓) va ustaxonaga bitta yangi juftlik qo\'shing.', ru: 'Короткий вариант: допишите код (все три условия ✓) и добавьте в мастерскую одну новую пару.' })}</p>
+            <p className="hw-note">{tr({ uz: 'Qisqa variant: kodingni tugating (uchala shart ✓) va ustaxonaga bitta yangi karta qo\'shing.', ru: 'Короткий вариант: допишите код (все три условия ✓) и добавьте в мастерскую одну новую карточку.' })}</p>
           </div>
         )}
         {!isMentorL && <div className="card ach-coll fade-up d4">
@@ -2668,7 +2678,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.45s cubic-bezier(.2,.7,.2,1) forwards; opacity: 0; }
@@ -2690,7 +2700,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .hw-big:hover { transform: translateY(-3px) scale(1.02); }
         /* 2) Suzuvchi xira tokenlar — dars so'zlari kapsula osmonida */
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         /* 3) Zaryad-effekt — bosilganda kapsula yorishib "otiladi" */
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
@@ -2771,14 +2781,14 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .stq { display: flex; align-items: center; gap: clamp(10px,1.8vw,18px); }
         @media (max-width: 760px) { .stq { flex-direction: column; align-items: stretch; } .stq-arrow { transform: rotate(90deg); align-self: center; } }
         .stq-code { flex: 1; min-width: 0; border-radius: 14px; overflow: hidden; background: #10141F; box-shadow: 0 12px 28px -12px rgba(${T.shadowBase},0.4); }
-        .stq-code-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E92B4; }
-        .stq-code-body { display: flex; flex-direction: column; padding: clamp(12px,1.8vw,18px) clamp(14px,2vw,20px); font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.4vw,13.5px); line-height: 1.75; }
+        .stq-code-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: #7E92B4; }
+        .stq-code-body { display: flex; flex-direction: column; padding: clamp(12px,1.8vw,18px) clamp(14px,2vw,20px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13.5px); line-height: 1.75; }
         .stq-l { white-space: pre; }
         .stq-l.t { color: #FFD8A8; } .stq-l.m { color: #A9C7FF; } .stq-l.f { color: #B6F0C8; } .stq-l.dim { color: #6C7A94; }
         .stq-arrow { font-size: clamp(20px,2.8vw,28px); color: ${T.accent}; flex-shrink: 0; }
         .stq-page { flex: 1; min-width: 0; border-radius: 14px; overflow: hidden; background: ${T.paper}; box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.3), 0 0 0 1px ${T.line}; display: flex; flex-direction: column; }
         .stq-pbar { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: ${T.bg}; border-bottom: 1px solid ${T.line}; }
-        .stq-purl { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
+        .stq-purl { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 10.5px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
         .stq-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .stq-cta-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-align: center; }
         .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 15px 34px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.6); transition: transform 0.18s, box-shadow 0.18s; }
@@ -2953,7 +2963,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(91,61,230,0.14) 0%, rgba(91,61,230,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
@@ -3001,7 +3011,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
@@ -3080,7 +3090,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(14,134,196,0.22); }
 
         /* === .qcode kod-chip (backtick) — CHIP STILI → Dizayn === */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(${T.shadowBase},0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(${T.shadowBase},0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode, .qz-opt .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
 
@@ -3120,9 +3130,9 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
         .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
         .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
         .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
         .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
@@ -3242,7 +3252,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
 
         /* Dars-DNK: suzuvchi tokenlar + tezlik-chiziqlar + yashin-flash */
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none;
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none;
           color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4);
           animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
@@ -3289,7 +3299,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
 
         /* HUD-chiziq: turnir-tablo uslubidagi neon-pilyulalar */
         .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3307,7 +3317,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
         .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3360,7 +3370,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         /* JTBD-portlar (F-0727-58): havodagi 1-2-3 indikator + rangli inputlar */
         .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
         .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
-        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
         .jws.cur .jws-t { color: ${T.accent}; }
@@ -3390,7 +3400,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .svd-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; }
         @media (prefers-reduced-motion: reduce) { .svd-card { animation: none; } }
         .svd-top { display: flex; align-items: center; gap: 8px; }
-        .svd-num { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: ${T.success}; }
+        .svd-num { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; color: ${T.success}; }
         .svd-edit { margin-left: auto; background: ${T.paper}; border: none; border-radius: 8px; padding: 0 10px; height: 28px; font-family: 'Manrope'; font-weight: 700; font-size: 12px; white-space: nowrap; color: ${T.ink2}; cursor: pointer; box-shadow: 0 3px 8px -3px rgba(${T.shadowBase},0.3); transition: color 0.15s, transform 0.15s; }
         .svd-edit:hover { color: ${T.accent}; transform: scale(1.08); }
         .svd-sent { font-size: 13.5px; color: ${T.ink2}; line-height: 1.45; margin: 0; overflow-wrap: anywhere; }
@@ -3428,7 +3438,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .jl { display: flex; flex-direction: column; gap: 10px; }
         .jl-row { display: grid; grid-template-columns: auto minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 10px; background: ${T.paper}; border-radius: 14px; padding: 12px 15px; box-shadow: 0 8px 20px -10px rgba(${T.shadowBase},0.2); opacity: 0; animation: jl-in 0.45s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--rd, 0.2s); min-width: 0; }
         @keyframes jl-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-        .jl-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; }
+        .jl-n { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; }
         .jl-pain, .jl-feat { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.6vw,14.5px); border-radius: 10px; padding: 9px 12px; min-width: 0; overflow-wrap: anywhere; opacity: 0; animation: jl-fill 0.5s cubic-bezier(.3,1.4,.45,1) forwards; animation-delay: var(--fd, 0.5s); }
         .jl-pain { color: ${T.amberInk}; background: ${T.amberSoft}; }
         .jl-feat { color: ${T.success}; background: ${T.successSoft}; }
@@ -3449,7 +3459,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .oc.on .oc-arw { transform: rotate(0deg); }
         .oc-top:hover { background: ${T.accentSoft}55; }
         .oc-top:active { transform: scale(0.99); }
-        /* Ochilgan matn — QIYINCHILIK, shuning uchun amber (s1/s4/s8 bilan bir xil rang). */
+        /* Ochilgan matn — MUAMMO, shuning uchun amber (s1/s4/s8 bilan bir xil rang). */
         /* 🔴 F-0803-27 — KLASS IKKI MARTA YOZILGANI ATAYLAB (o'chirmang!): bu <p> elementi,
            yuqoridagi «.lesson-root p { margin:0; padding:0 }» reseti esa aniqligi bo'yicha
            (0,1,1) — bitta klassli qoidadan (0,1,0) KUCHLI. Ya'ni bir marta yozilsa, brauzer
@@ -3457,7 +3467,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
            uchun blok «yarim buzuq» ko'rinadi). «.oc-pain.oc-pain» — aniqlik (0,2,0), aynan
            o'sha elementlarni tanlaydi, lekin resetdan ustun turadi. */
         .oc-pain.oc-pain { margin: 0 15px 14px; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
-        /* Javobi yo'q imkoniyat: fon sahifa foni bilan bir xil bo'lsa, matn kartadan
+        /* Javobi yo'q yechim: fon sahifa foni bilan bir xil bo'lsa, matn kartadan
            tashqarida suzganday ko'rinardi (F-0803-27) — endi ingichka uzuq ramka bilan. */
         .oc-pain.empty { color: ${T.ink3}; background: transparent; border: 1.5px dashed ${T.ink3}66; font-style: italic; }
 
@@ -3489,7 +3499,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .mt-chip:hover { transform: translateY(-2px); }
         .mt-chip.held { background: ${T.accent}; color: #fff; box-shadow: 0 10px 22px -8px rgba(91,61,230,0.55); animation: mt-held 1.5s ease-in-out infinite; }
         @keyframes mt-held { 0%,100% { box-shadow: 0 10px 22px -8px rgba(91,61,230,0.55), 0 0 0 0 rgba(91,61,230,0.35); } 60% { box-shadow: 0 10px 22px -8px rgba(91,61,230,0.55), 0 0 0 8px rgba(91,61,230,0); } }
-        /* Qo'yilgan karta = IMKONIYAT (yashil) + snap-pop */
+        /* Qo'yilgan karta = YECHIM (yashil) + snap-pop */
         .mt-chip.in { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; animation: mt-snap 0.36s cubic-bezier(.34,1.5,.4,1); }
         @keyframes mt-snap { 0% { transform: scale(0.82); } 60% { transform: scale(1.06); } 100% { transform: none; } }
         /* Drop-zona affordance: karta qo'lda turganda faqat bo'sh zonalar yorishadi */
@@ -3500,8 +3510,8 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .pk-list { display: flex; flex-direction: column; gap: 8px; }
         /* F-0802-17 — TANLOV SEZILARLI BO'LSIN: butun qator bosiladi (u allaqachon <button>),
            tanlangach fon + halqa + ko'tarilish birga o'zgaradi va belgi «chiqib» keladi.
-           Rang ATAYLAB binafsha (accent) — yashil bu darsda IMKONIYAT ma'nosini bildiradi
-           (12-qatordagi amber/yashil semantikasi), qiyinchilikka yopishtirib bo'lmaydi. */
+           Rang ATAYLAB binafsha (accent) — yashil bu darsda YECHIM ma'nosini bildiradi
+           (12-qatordagi amber/yashil semantikasi), muammoga yopishtirib bo'lmaydi. */
         .pk-row { display: flex; align-items: center; gap: 11px; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 13px 15px; cursor: pointer; box-shadow: 0 6px 16px -9px rgba(${T.shadowBase},0.2); font-family: 'Manrope'; font-weight: 600; font-size: clamp(13.5px,1.7vw,15.5px); line-height: 1.4; color: ${T.ink}; min-width: 0; transition: background 0.2s, box-shadow 0.2s, transform 0.2s; }
         .pk-row:hover:not(.on) { background: #FBFAFE; transform: translateY(-1px); }
         .pk-row.on { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}, 0 12px 24px -12px rgba(91,61,230,0.45); transform: translateY(-1px); }
@@ -3516,7 +3526,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .pk-count.full { color: ${T.success}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .pk-count.full .pk-count-ic, .pk-count.full .pk-count-n { color: ${T.success}; }
 
-        /* === s8 USTAXONA: juftlik-muharrir === */
+        /* === s8 USTAXONA: karta-muharriri === */
         .pf-edit { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 10px; align-items: end; }
         @media (max-width: 620px) { .pf-edit { grid-template-columns: 1fr; } .pf-link { justify-self: center; } }
         .pf-link { font-size: 19px; color: ${T.ink3}; padding-bottom: 9px; transition: color 0.25s, transform 0.25s; }
@@ -3540,23 +3550,23 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .cl-top:active { transform: scale(0.99); }
         .cl-ok { animation: mt-snap 0.36s cubic-bezier(.34,1.5,.4,1); }
         .cl-body { display: flex; flex-direction: column; gap: 9px; padding: 0 15px 14px; }
-        /* Ochilgan matn — QIYINCHILIK (amber, s1/s4/s8 bilan bir xil). Qiyinchiligi yo'q band — xira-neytral. */
+        /* Ochilgan matn — MUAMMO (amber, s1/s4/s8 bilan bir xil). Muammosi yo'q band — xira-neytral. */
         /* klass ikki marta — F-0803-27, sabab «.oc-pain.oc-pain» izohida */
         .cl-pain.cl-pain { margin: 0; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
         .cl-pain.none { color: ${T.ink3}; background: transparent; border: 1.5px dashed ${T.ink3}66; font-style: italic; }
         .cl-shelf-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border: none; border-radius: 99px; padding: 7px 15px; cursor: pointer; transition: transform 0.16s, box-shadow 0.16s; }
         .cl-shelf-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -6px rgba(91,61,230,0.4); }
-        /* Maslahat/eslatma — indigo: amber bu darsda FAQAT qiyinchilik, qizil FAQAT haqiqiy xato. */
+        /* Maslahat/eslatma — indigo: amber bu darsda FAQAT muammo, qizil FAQAT haqiqiy xato. */
         .cl-warn.cl-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 8px 11px; animation: fade-step 0.28s ease-out; }
         .cl-shelf { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; border: 1.5px dashed ${T.ink3}66; border-radius: 14px; padding: 12px 14px; }
         .cl-shelf-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.ink3}; width: 100%; }
         .cl-shelf-empty { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         .cl-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border-radius: 99px; padding: 8px 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; min-width: 0; overflow-wrap: anywhere; }
 
-        /* === s11 KODING: o'z juftliklari preview === */
+        /* === s11 KODING: o'z kartalari preview === */
         .stq-mine { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; }
         .stq-mine-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.accent}; }
-        /* Juftlik-rangi s1/s4/s8/s10 bilan bir xil: imkoniyat = yashil, qiyinchilik = amber */
+        /* Karta-rangi s1/s4/s8/s10 bilan bir xil: yechim = yashil, muammo = amber */
         .stq-mine-row { font-family: 'Manrope'; font-weight: 500; font-size: 12.5px; line-height: 1.45; color: ${T.amberInk}; min-width: 0; overflow-wrap: anywhere; }
         .stq-mine-row b { color: ${T.success}; font-weight: 700; }
 
@@ -3564,7 +3574,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .rf-write { background: ${T.paper}; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 20px -10px rgba(${T.shadowBase},0.18); min-width: 0; }
         .rf-area { font-family: 'Manrope'; font-weight: 500; font-size: 14px; color: ${T.ink}; border: none; border-radius: 10px; padding: 11px 13px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; resize: vertical; width: 100%; min-width: 0; }
         .rf-area:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-        .rf-cnt { font-family: 'JetBrains Mono'; font-weight: 600; font-size: 11.5px; color: ${T.ink3}; }
+        .rf-cnt { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: 11.5px; color: ${T.ink3}; }
         /* F-0803-03 — «AHA» LAHZASI: dars yozgandan KEYIN bitta qoida bilan yopiladi.
            Bu yagona joyda ekran hissiyot beradi — shuning uchun u boshqa bloklardan
            kattaroq va iliqroq (aksent-gradient), lekin ATIGI ikki qator. */
@@ -3575,7 +3585,7 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         /* === s14 UYGA VAZIFA — qadamlar === */
         .hw-steps { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 12px 0 0; }
         .hw-steps li { display: flex; align-items: flex-start; gap: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; line-height: 1.45; min-width: 0; overflow-wrap: anywhere; }
-        .hw-n { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
+        .hw-n { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
 
         /* === HARAKATNI KAMAYTIRISH (prefers-reduced-motion) — bu darsning O'Z ekranlari: s2, s4, s8, s10, s11 ===
            Har og'ir harakat shu yerda o'chadi; ekran-kirish fade'lari ham tinchlanadi. */

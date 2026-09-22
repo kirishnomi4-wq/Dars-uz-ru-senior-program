@@ -2990,13 +2990,107 @@ biznes-keyslar faqat emoji va matn bilan berilgan. Tekshiruvda ikkinchi bo'shliq
    ilgagida Uber variantiga izoh qo'yilsa javob bilinib qoladi; izoh «To'g'ri — Uber — mashina chaqirish xizmati»
    qatoriga tushadi.
 
+4. **Maket fotoni kutmaydi** (2026-09-22, F-0922-01). Chizib bo'ladigan referent uchun **foto kutilmaydi** —
+   loyihaning o'z maket-an'anasi bilan (`BrowserWin`/`PhoneMock`/`AltairMock` kabi) chiziladi. Afzalligi:
+   mualliflik muammosi yo'q · tez ochiladi · qorong'i rejimda to'g'ri · LMS'ga qo'shimcha fayl kerak emas.
+   Foto faqat **chizib bo'lmaydigan** referentga qoladi: real joy (Garvard binosi), muhit (qahvaxona ichi),
+   haqiqiy kadr (o'yin nosozligi).
+
+**🔴 MAKET FILTRI — o'qitadimi yoki bezaydimi.** Maket faqat **tushunchani olib keladigan** joyga qo'yiladi.
+Mezon bitta savol: *maketni olib tashlasak, darsning gapi tushunarsiz qoladimi?*
+
+| Qo'yiladi (o'qitadi) | Qo'yilmaydi (bezak) |
+|---|---|
+| Referent o'quvchiga notanish (Altair 8800 — 1975-yilgi kompyuter) | Referent tanish (flashka · Stories lentasi · milkshake) |
+| Matn «ikki xil» deydi — maket ikkisini yonma-yon qo'yadi (`PmLesson11`) | Maket darsning gapini ko'rsatmaydi, faqat mahsulot ekrani (ilova skrinshoti) |
+| Mexanika ko'rinmaydi (streak nega nolga tushadi — `PmLesson21`) | Ekran bo'sh ko'rinadi deb qo'shiladigan rasm |
+| Qarama-qarshilik ko'rsatiladi (Burbn ro'yxati ↔ qolgan uchtasi — `PmLesson31`) | — |
+
+Sabab: 109-qonun (TMI) — ortiqcha element UI'ni to'ldirib tushunishga to'siq bo'ladi.
+
+**🔴 MAKET JOYI — §186 bilan juft.** Maket ham matn kabi javobni aytib qo'yadi, ba'zan **matndan tezroq**
+(ko'z o'qishdan oldin ko'radi). Shuning uchun:
+- bashorat/savol bo'lgan ekranda maket **javob ochilgandan keyin** chiqadi (`PmLesson31` s0: `picked !== null`
+  bloki ichida · `PmLesson11`/`PmLesson21`: bashoratdan keyingi kalit-slaydda);
+- maket qo'yilganda **keyingi ekran nima so'rashi** tekshiriladi (21.09 Tesla sabog'i).
+
+**Maket matni:** ikki tilli darsda `aria-label` ham **uz+ru** (`tr({uz,ru})`) — ekran-o'quvchisi ruscha rejimda
+o'zbekcha eshitmasin. Faqat o'zbekcha dars (`PmLesson19–25`, 7-Modul) — bir tilli qoladi.
+
 **Rasm (tavsiya, majburiy emas):** izoh **nomlaydi**, rasm **ko'rsatadi** — ikkisi juft ishlaydi. Tasavvur qilib
 bo'lmaydigan referent (eski kompyuter, chet el universiteti, notanish mahsulot ekrani) uchun rasm qo'yiladi:
 naqsh `Htmllesson2` dagi `PHOTO_SET` + `Photo` (URL + emoji + gradient; rasm yuklanmasa dars TO'XTAMAYDI, 155-qonun
 3-bandi bilan bir xil mantiq). Rasm faqat loyihaning media-kutubxonasidan; `alt` uz+ru.
 
 **Tekshiruv:** keys-ekrani bor darsda — har brend nomi uchun birinchi ko'rinish joyida izoh bormi.
+Maket qo'yilgan bo'lsa — `CLICK='<sel>' SHOT_LANG=ru node scripts/shot-screen.mjs <fayl> <ekran>` bilan
+**ko'z bilan** ko'riladi (emoji kontrasti va ustun tekisligi faqat skrinshotda ko'rinadi — F-0922-01).
 Ro'yxat va rasm-rejasi: `feedback/F-0921-rasm/RASMLAR.md`.
 
 **Bog'liq:** 95-qonun (o'smir misol-olami) · 155-qonun (bajarib bo'lmaydigan qadam) · KORPUS §186 (javob oldindan
 aytilmaydi) · §189 (izoh matni qanday yoziladi).
+
+## 12-T. ⏭️ 157-QONUN: ARENA JAVOB OCHILGACH O'ZI KEYINGI SAVOLGA O'TADI (2026-09-22, F-0922-03)
+
+**Kelib chiqishi:** foydalanuvchi 22.09: «CodeStrike da mentor rejimida keyingi savol bor —
+shuni avtomatlashtirish kerak». O'lchov: savol vaqti (`QUIZ_MS` 15 s) va vaqt tugaganda javobni
+ochish ALLAQACHON avto edi; qo'lda qolgan yagona o'tish — **javob ochildi → keyingi savol**.
+
+**Qoida — besh band:**
+1. **Avto o'tish 6 sekund** (`AUTO_NEXT_MS`, `src/live/useAutoNext.js`). 2 s YETMAYDI: o'quvchilar
+   serverni 1200 ms'da bir so'raydi va arena kodida ustiga 700 ms kechikish-kompensatsiyasi bor —
+   2 s bo'lsa ba'zi o'quvchi javob ekranini 1 s'dan kam ko'radi va nima xato qilganini bilmay qoladi.
+   Javob ekranida to'rt narsa o'qiladi: to'g'ri javob · o'zi topdimi · ball · TOP-5.
+2. **Soat faqat MENTOR brauzerida.** O'quvchilar server orqali ergashadi — bu mavjud naqsh
+   (vaqt tugaganda ham mentor `ctrl('r')` yuboradi). Har o'quvchi o'zi hisoblasa, sinf uzilib ketadi.
+3. **To'xtatish tugmasi YOPISHQOQ.** Javob ochilishi — **tushuntirish payti**; sof avto-o'tish
+   mentordan shu daqiqani tortib oladi. Tugma bir marta bosilsa, avto **arena oxirigacha** o'chadi
+   (3-savolni tushuntirgan mentor 4-savolni ham tushuntiradi — har safar kurashmasin). Qaytarish: «▶ Avto».
+4. **Oxirgi savolda avto YO'Q.** «🏁 G'oliblarni e'lon qilish» — mentorning daqiqasi; podiumga
+   avto kirib borish dramani buzadi. Solo (uyda) rejimda ham avto yo'q — u yolg'iz o'quvchini shoshiltiradi.
+5. **Ikki marta o'tishdan qulf.** Mentor tugmani taymer bilan bir vaqtda bossa, `ctrl('q', qi+1)`
+   ikki marta ketib **bitta savol tashlab ketilardi**. Qo'lda o'tish ham hookdan (`fireNow`) o'tadi.
+
+**Tugma yozuvida `⏸` BELGISI ISHLATILMAYDI** — u shriftda bo'lmasa quti («▮») bo'lib chiqadi
+(22.09 skrinshotida tutildi). Matn bilan: «To'xtatish · 5» / «▶ Avto» (`▶` loyihada 107 faylda sinalgan).
+
+**Mexanizm bitta joyda:** mantiq `src/live/useAutoNext.js` da, darslarga `scripts/codemod-auto-next.mjs`
+bilan tarqatiladi. Kutish vaqtini o'zgartirish — **bitta faylda**, 97 tasida emas. Yangi CSS kerak emas:
+`.qz-btn.ghost` 97/97 darsda allaqachon bor; sinov-selektori `qz-auto` (CSS'siz, barqaror).
+
+**Tekshiruv:** `CHROME=… node scripts/smoke-arena.mjs <fayl…>` — soxta server bilan haqiqiy brauzerda
+T1 (javob ochildi) · T2 (avto o'tish) · T3 (yopishqoq to'xtatish). Bu darvoza 22.09 da birinchi
+yurishidayoq **ikki eski nuqson** topdi: `PmLesson4` da arena umuman chizilmasdi va
+`BotAiProjectLesson` da javob ochilganda dars qulab tushardi (F-0922-06/07).
+
+**Bog'liq:** 152-qonun (nishon) · KORPUS §186 (javob oldindan aytilmaydi).
+
+
+## 12-U. 🔤 158-QONUN: KOD SHRIFTIDA LIGATURA O'CHIRILADI (2026-09-22, F-0922-19 · F-0808-02/F-0812-03 davomi)
+
+`JetBrains Mono` — **dasturchi shrifti**: `===` `!==` `==` `!=` `>=` `<=` `=>` `->` ni chiroyli
+ko'rinsin deb **bitta glifga** qo'shib chizadi. Kattalar uchun bu qulaylik; **13 yoshli o'quvchi uchun
+yolg'on**: darsda `===` yozilgan, ekranda esa uch chiziqli begona belgi turadi. Bola kodni ko'chira
+olmaydi, klaviaturadan qidiradi va topolmaydi.
+
+**Qonun:** `JetBrains Mono` yozilgan HAR joyda ligatura o'chiriladi.
+
+✅ `.mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }`
+✅ inline: `style={{ fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0' }}`
+❌ `.mono { font-family: 'JetBrains Mono', monospace; }` — yolg'iz qolgan e'lon
+
+**Uch qattiq shart (uchalasi ham qonga tegib topilgan):**
+1. **`font-variant-ligatures` ISHLATILMAYDI** — `font-feature-settings` bilan yonma-yon kelganda
+   Chrome butun qatorni tashlab ketadi (qoida umuman qo'llanmaydi).
+2. **Guruh-selektorga yozilmaydi** — «.a, .b, .c { … }» ro'yxati unutishga moyil: `JsConditions` da
+   dastlab 13 selektor sanalgan, arena elementlari (`.cs-tok`, `.cs-hud`, `.cs-livedot`) tushib qolgan edi.
+   Xossa **har e'lonning O'Z ichida** turadi.
+3. **Ildizdagi `font-feature-settings: "ss01","cv11"` YETMAYDI** — u meros bo'ladi, lekin ligaturani
+   o'chirmaydi. Ikkisi boshqa narsa.
+
+**Darvoza:** `node scripts/codemod-ligatura.mjs --check` — qoldiq 0 bo'lishi shart.
+Yangi dars qurilganda yoki mono-e'lon qo'shilganda shu buyruq yurgiziladi.
+
+**O'lchov (2026-09-22 supurish):** 115 fayl · 2402 CSS e'loni + 63 inline uslub yopildi;
+avvaldan yopiq edi — 106 (3 dars: `VsCodeLesson`, `JsConditionsLesson`, `JsVarsLesson`).
+7-Modul foydalanuvchi qarori bilan tegilmagan (12 fayl · 88 e'lon — `KATTA_TOZALASH.md`).

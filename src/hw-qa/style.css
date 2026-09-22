@@ -1,0 +1,464 @@
+/* ==========================================================================
+   UYGA VAZIFA — QA KO'RIK SAYTI
+   Ichki ish-vositasi: o'qish qulayligi birinchi o'rinda, bezak ikkinchi.
+   Brend urg'usi — CoddyCamp to'q sarig'i; qolgani neytral.
+   ========================================================================== */
+
+:root {
+  --fon: #F5F7FA;
+  --panel: #FFFFFF;
+  --chegara: #E2E7EF;
+  --chegara-quyuq: #CBD4E1;
+  --matn: #16202E;
+  --matn-past: #64748B;
+  --urgu: #FF6B2C;
+  --urgu-fon: #FFF3EC;
+  --soya: 0 1px 2px rgba(16, 32, 46, .06), 0 4px 14px rgba(16, 32, 46, .05);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fon);
+  color: var(--matn);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { height: 100%; }
+
+button { font: inherit; cursor: pointer; }
+
+.ilova { display: flex; flex-direction: column; height: 100vh; }
+
+/* ── yuqori panel ───────────────────────────────────────────────────────── */
+.bosh {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--chegara);
+  flex: 0 0 auto;
+  z-index: 20;
+}
+
+.menyu-tugma {
+  display: none;
+  border: 1px solid var(--chegara);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 6px 11px;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.bosh-nom { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.bosh-nom strong { font-size: 16px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bosh-tag { color: var(--matn-past); font-size: 12.5px; white-space: nowrap; }
+
+.tugma-qisqa { display: none; }
+
+.progress { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.progress-yol { width: 150px; height: 7px; border-radius: 99px; background: #E7ECF3; overflow: hidden; }
+.progress-toldi { height: 100%; background: linear-gradient(90deg, #FF8A3D, #FF6B2C); transition: width .25s ease; }
+.progress-matn { font-size: 13px; color: var(--matn-past); white-space: nowrap; }
+
+.asos-tugma {
+  border: 0;
+  background: var(--urgu);
+  color: #fff;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 9px;
+  white-space: nowrap;
+  transition: filter .15s ease;
+}
+.asos-tugma:hover { filter: brightness(1.06); }
+
+/* ── tana: yon ro'yxat + asosiy ─────────────────────────────────────────── */
+.tana { display: flex; flex: 1 1 auto; min-height: 0; }
+
+.yon {
+  width: 322px;
+  flex: 0 0 322px;
+  background: var(--panel);
+  border-right: 1px solid var(--chegara);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.yon-qidiruv { position: relative; padding: 12px 12px 8px; }
+
+.qidiruv {
+  width: 100%;
+  padding: 9px 30px 9px 12px;
+  border: 1px solid var(--chegara-quyuq);
+  border-radius: 9px;
+  font: inherit;
+  font-size: 13.5px;
+  background: #FBFCFE;
+  color: var(--matn);
+}
+.qidiruv:focus { outline: 2px solid var(--urgu); outline-offset: -1px; background: #fff; }
+
+.qidiruv-tozala {
+  position: absolute;
+  right: 20px; top: 50%;
+  transform: translateY(-30%);
+  border: 0; background: none;
+  font-size: 19px; line-height: 1;
+  color: var(--matn-past);
+  padding: 0 4px;
+}
+
+/* Beshala filtr bitta qatorga sig'ishi kerak — ikkinchi qatorga tushsa ro'yxat pastga suriladi */
+.filtrlar { display: flex; gap: 5px; padding: 0 12px 10px; }
+
+.filtr {
+  border: 1px solid var(--chegara);
+  background: var(--panel);
+  color: var(--matn-past);
+  border-radius: 99px;
+  padding: 4px 9px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.filtr-faol { background: var(--urgu-fon); border-color: var(--urgu); color: #C2410C; font-weight: 600; }
+
+.royxat { overflow-y: auto; flex: 1 1 auto; padding-bottom: 24px; }
+
+.bosh-royxat { color: var(--matn-past); padding: 16px; font-size: 13.5px; }
+
+.modul-blok { border-top: 1px solid var(--chegara); }
+
+.modul-bosh {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 14px 7px;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(var(--panel) 80%, rgba(255, 255, 255, 0));
+  z-index: 2;
+}
+.modul-kod { font-weight: 700; font-size: 12.5px; color: var(--urgu); }
+.modul-nom { font-size: 12.5px; color: var(--matn-past); flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modul-soni { font-size: 11.5px; color: var(--matn-past); background: #F1F4F8; border-radius: 99px; padding: 1px 7px; }
+
+.qator {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 7px 14px;
+  color: var(--matn);
+  border-left: 3px solid transparent;
+}
+.qator:hover { background: #F4F7FB; }
+.qator-faol { background: var(--urgu-fon); border-left-color: var(--urgu); }
+.qator-faol .qator-nom { font-weight: 600; }
+
+.qator-num {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 11.5px;
+  color: var(--matn-past);
+  background: #EEF2F7;
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+.qator-nom { flex: 1 1 auto; font-size: 13.5px; line-height: 1.35; }
+.qator-belgi { flex: 0 0 auto; display: flex; align-items: center; gap: 4px; font-size: 12px; }
+
+.izoh-nuqta { opacity: .75; }
+
+.yangi-nuqta {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #D3DBE5;
+  display: inline-block;
+}
+
+/* ── asosiy maydon ──────────────────────────────────────────────────────── */
+.asosiy { flex: 1 1 auto; overflow-y: auto; min-width: 0; }
+.ichki { max-width: 1180px; margin: 0 auto; padding: 24px 28px 64px; }
+
+.yol { font-size: 12.5px; color: var(--matn-past); margin-bottom: 8px; }
+.yol-crm { opacity: .75; }
+
+.dars-nom {
+  margin: 0;
+  font-size: 27px;
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.dars-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--urgu);
+  border-radius: 8px;
+  padding: 3px 9px;
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.dars-nom-ru { color: var(--matn-past); font-size: 16px; margin: 5px 0 0 54px; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 0; }
+
+.chip {
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 7px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+.ogoh {
+  margin-top: 14px;
+  background: #FEF8E7;
+  border: 1px solid #F3DFA8;
+  color: #7A5B12;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-size: 13px;
+}
+
+.bolim-sarlavha {
+  margin: 28px 0 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--matn-past);
+  font-weight: 700;
+}
+
+/* ── UZ | RU ustunlari ──────────────────────────────────────────────────── */
+.ustunlar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+
+.ustun {
+  background: var(--panel);
+  border: 1px solid var(--chegara);
+  border-radius: var(--radius);
+  box-shadow: var(--soya);
+  overflow: hidden;
+}
+
+.ustun-bosh {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--chegara);
+  background: #FCFDFE;
+}
+
+.til-chip { font-size: 11.5px; font-weight: 800; letter-spacing: .04em; border-radius: 6px; padding: 2px 7px; }
+.ustun-yorliq { font-size: 13px; color: var(--matn-past); flex: 1 1 auto; }
+
+.nusxa {
+  border: 1px solid var(--chegara-quyuq);
+  background: var(--panel);
+  color: var(--matn-past);
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.nusxa:hover { border-color: var(--urgu); color: var(--urgu); }
+
+.bolim { padding: 14px; }
+.bolim + .bolim { border-top: 1px dashed var(--chegara); }
+
+.bolim-yorliq {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--matn-past);
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.matn {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: 14.5px;
+  line-height: 1.66;
+}
+
+.rasm-blok { padding: 0 14px 14px; }
+.rasm { max-width: 100%; border: 1px solid var(--chegara); border-radius: 9px; display: block; }
+
+/* ── fidbek ─────────────────────────────────────────────────────────────── */
+.fidbek {
+  margin-top: 26px;
+  background: var(--panel);
+  border: 1px solid var(--chegara);
+  border-radius: var(--radius);
+  box-shadow: var(--soya);
+  padding: 16px 18px 18px;
+}
+
+.fidbek-bosh { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.fidbek-bosh h3 { margin: 0; font-size: 15px; }
+
+.saqlandi { font-size: 12.5px; color: #16A34A; opacity: 0; transition: opacity .2s ease; }
+.saqlandi-ko { opacity: 1; }
+
+.holat-tugmalar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+
+.holat {
+  border: 1px solid var(--chegara-quyuq);
+  background: var(--panel);
+  color: var(--matn-past);
+  border-radius: 9px;
+  padding: 7px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.holat:hover { border-color: var(--matn-past); }
+.holat-faol { box-shadow: inset 0 0 0 1px currentColor; }
+.holat-belgi { margin-right: 2px; }
+
+.izoh {
+  width: 100%;
+  border: 1px solid var(--chegara-quyuq);
+  border-radius: 9px;
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.55;
+  resize: vertical;
+  background: #FBFCFE;
+  color: var(--matn);
+}
+.izoh:focus { outline: 2px solid var(--urgu); outline-offset: -1px; background: #fff; }
+
+/* ── pastki navigatsiya ─────────────────────────────────────────────────── */
+.oyoq-nav { display: flex; gap: 10px; margin-top: 22px; align-items: center; }
+
+.nav-tugma {
+  border: 1px solid var(--chegara-quyuq);
+  background: var(--panel);
+  border-radius: 9px;
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--matn);
+}
+.nav-tugma:hover:not(:disabled) { border-color: var(--urgu); color: var(--urgu); }
+.nav-tugma:disabled { opacity: .4; cursor: default; }
+.nav-yangi { margin: 0 auto; background: #F4F7FB; }
+
+.manba { margin-top: 22px; font-size: 12px; color: var(--matn-past); }
+.manba code { background: #EEF2F7; border-radius: 5px; padding: 1px 5px; font-size: 11.5px; }
+
+/* ── eksport oynasi ─────────────────────────────────────────────────────── */
+.parda {
+  position: fixed; inset: 0;
+  background: rgba(16, 32, 46, .45);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  z-index: 60;
+}
+
+.oyna {
+  background: var(--panel);
+  border-radius: 14px;
+  width: min(820px, 100%);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(16, 32, 46, .3);
+}
+
+.oyna-bosh { display: flex; align-items: center; padding: 16px 20px 12px; border-bottom: 1px solid var(--chegara); }
+.oyna-bosh h2 { margin: 0; font-size: 17px; flex: 1 1 auto; }
+
+.oyna-yop { border: 0; background: none; font-size: 26px; line-height: 1; color: var(--matn-past); padding: 0 4px; }
+
+.oyna-izoh { margin: 14px 20px 0; font-size: 13.5px; color: var(--matn-past); }
+
+.hisobot {
+  margin: 12px 20px;
+  padding: 14px;
+  background: #F8FAFC;
+  border: 1px solid var(--chegara);
+  border-radius: 10px;
+  overflow: auto;
+  flex: 1 1 auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.oyna-oyoq { display: flex; gap: 9px; align-items: center; padding: 0 20px 18px; flex-wrap: wrap; }
+.oyna-ajratgich { flex: 1 1 auto; }
+
+.tasdiq-savol { font-size: 13px; color: #B91C1C; }
+
+.xavf-tugma {
+  border: 1px solid #DC2626;
+  background: #FDECEC;
+  color: #B91C1C;
+  border-radius: 7px;
+  padding: 4px 11px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.yon-parda { display: none; }
+
+/* ── tor ekran ──────────────────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .ustunlar { grid-template-columns: 1fr; }
+  .dars-nom-ru { margin-left: 0; }
+}
+
+@media (max-width: 820px) {
+  .menyu-tugma { display: block; flex: 0 0 auto; }
+  .progress { display: none; }
+  .bosh-tag { display: none; }
+  .bosh { gap: 10px; padding: 10px 12px; }
+  .bosh-nom { flex: 1 1 auto; }
+  .bosh-nom strong { font-size: 14.5px; }
+  .asos-tugma { flex: 0 0 auto; padding: 8px 13px; font-size: 13.5px; }
+  .tugma-uzun { display: none; }
+  .tugma-qisqa { display: inline; }
+  .ichki { padding: 18px 16px 56px; }
+  .dars-nom { font-size: 22px; }
+
+  .yon {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    z-index: 70;
+    transform: translateX(-100%);
+    transition: transform .22s ease;
+    box-shadow: 0 0 40px rgba(16, 32, 46, .25);
+  }
+  .yon-ochiq { transform: translateX(0); }
+  .yon-parda { display: block; position: fixed; inset: 0; background: rgba(16, 32, 46, .35); z-index: 65; }
+
+  .oyoq-nav { flex-wrap: wrap; }
+  .nav-yangi { order: 3; width: 100%; margin: 0; }
+}

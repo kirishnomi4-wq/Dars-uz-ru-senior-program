@@ -32,7 +32,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -309,11 +309,11 @@ const RECAPS = {
     cards: [
       { ic: "📦", h: { uz: "O'zgaruvchi — nomlangan quti", ru: 'Переменная — коробка с именем' },
         body: { uz: <>O'zgaruvchi — bu <b>qiymat saqlaydigan nomlangan «quti»</b>. Ichiga biror narsa solamiz, qutiga <b>nom</b> beramiz, keyin shu nom bilan chaqiramiz.</>, ru: <>Переменная — это <b>«коробка» с именем, в которой хранится значение</b>. Кладём внутрь что-нибудь, даём коробке <b>имя</b> — и потом зовём её по этому имени.</> },
-        vis: <RcFlow items={[{ uz: "📦 quti", ru: '📦 коробка' }, { uz: "🏷️ nom: yosh", ru: '🏷️ имя: yosh' }, { uz: "🔢 ichida: 14", ru: '🔢 внутри: 14' }]} />,
+        vis: <RcFlow items={[{ uz: "📦 quti", ru: '📦 коробка' }, { uz: "🏷️ nom: age", ru: '🏷️ имя: age' }, { uz: "🔢 ichida: 14", ru: '🔢 внутри: 14' }]} />,
         ask: { uz: "Uyda qanday «nomlangan qutilar» bor — masalan «tuz» yozilgan idish?", ru: 'Какие «коробки с именами» есть у вас дома — например, банка с надписью «соль»?' } },
       { ic: "🏷️", h: { uz: "Nom bo'lsa — topa olamiz", ru: 'Есть имя — легко найти' },
-        body: { uz: <>Qutiga <b>nom</b> berganimiz uchun keyin uni <b>oson topamiz</b>. «yosh» desak — ichidagi 14 chiqadi. Nomsiz quti — qidirib topib bo'lmaydi.</>, ru: <>Мы дали коробке <b>имя</b>, поэтому потом <b>легко её находим</b>. Скажем «yosh» — получим 14 изнутри. А коробку без имени не отыскать.</> },
-        vis: <RcFlow items={[{ uz: "🏷️ ism", ru: '🏷️ ism' }, { uz: "🏷️ yosh", ru: '🏷️ yosh' }, { uz: "🏷️ shahar", ru: '🏷️ shahar' }]} sep="·" /> },
+        body: { uz: <>Qutiga <b>nom</b> berganimiz uchun keyin uni <b>oson topamiz</b>. «age» desak — ichidagi 14 chiqadi. Nomsiz quti — qidirib topib bo'lmaydi.</>, ru: <>Мы дали коробке <b>имя</b>, поэтому потом <b>легко её находим</b>. Скажем «age» — получим 14 изнутри. А коробку без имени не отыскать.</> },
+        vis: <RcFlow items={[{ uz: "🏷️ name", ru: '🏷️ name' }, { uz: "🏷️ age", ru: '🏷️ age' }, { uz: "🏷️ city", ru: '🏷️ city' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "Amal ham, sahifa ham emas", ru: 'Не действие и не страница' },
         body: { uz: <>O'zgaruvchi — bu <b>hisob-kitob amali</b> yoki internet sahifasi emas. U shunchaki <b>ma'lumotni saqlab turadigan joy</b>.</>, ru: <>Переменная — это не <b>математическое действие</b> и не интернет-страница. Это просто <b>место, где хранятся данные</b>.</> } },
     ]
@@ -323,7 +323,7 @@ const RECAPS = {
     cards: [
       { ic: "🔄", h: { uz: "Qiymat o'zgarsa — let", ru: 'Значение меняется — let' },
         body: { uz: <>Qiymati <b>keyin o'zgaradigan</b> o'zgaruvchini <b>let</b> so'zi bilan ochamiz. «number» yoki «print» emas — aynan let.</>, ru: <>Переменную, значение которой <b>потом будет меняться</b>, создаём словом <b>let</b>. Не «number» и не «print» — именно let.</> },
-        vis: <RcFlow items={[{ uz: "let ball = 10", ru: 'let ball = 10' }, { uz: "ball = 25", ru: 'ball = 25' }, { uz: "📦 endi 25", ru: '📦 теперь 25' }]} />,
+        vis: <RcFlow items={[{ uz: "let score = 10", ru: 'let score = 10' }, { uz: "score = 25", ru: 'score = 25' }, { uz: "📦 endi 25", ru: '📦 теперь 25' }]} />,
         ask: { uz: "O'yin bali dars davomida o'zgaradimi? Unda let mi, boshqami?", ru: 'Счёт в игре меняется по ходу урока? Тогда let или что-то другое?' } },
       { ic: "🎮", h: { uz: "Misol: o'yin bali", ru: 'Пример: счёт в игре' },
         body: { uz: <>O'yinda <b>ball</b> ortib boradi — 10, keyin 25. Bunday <b>o'zgarib turadigan</b> narsa uchun <b>let</b> to'g'ri keladi.</>, ru: <>В игре <b>счёт</b> растёт — 10, потом 25. Для таких <b>меняющихся</b> вещей подходит <b>let</b>.</> },
@@ -347,17 +347,17 @@ const RECAPS = {
     ]
   },
   13: {
-    title: { uz: "Number (raqam) va string (matn)", ru: 'Number (число) и string (текст)' },
+    title: { uz: "Number (son) va string (matn)", ru: 'Number (число) и string (текст)' },
     cards: [
-      { ic: "🔢", h: { uz: "Tirnoqsiz — bu raqam", ru: 'Без кавычек — это число' },
-        body: { uz: <>25 — bu <b>number (raqam)</b>, chunki <b>qo'shtirnoqsiz</b> yozilgan. Number bilan <b>hisob-kitob</b> qilsa bo'ladi: qo'shish, ko'paytirish.</>, ru: <>25 — это <b>number (число)</b>, потому что записано <b>без кавычек</b>. С number можно <b>считать</b>: складывать, умножать.</> },
+      { ic: "🔢", h: { uz: "Tirnoqsiz — bu son", ru: 'Без кавычек — это число' },
+        body: { uz: <>25 — bu <b>number (son)</b>, chunki <b>qo'shtirnoqsiz</b> yozilgan. Number bilan <b>hisob-kitob</b> qilsa bo'ladi: qo'shish, ko'paytirish.</>, ru: <>25 — это <b>number (число)</b>, потому что записано <b>без кавычек</b>. С number можно <b>считать</b>: складывать, умножать.</> },
         vis: <RcFlow items={[{ uz: "25 → number", ru: '25 → number' }, { uz: "25 + 5 = 30", ru: '25 + 5 = 30' }, { uz: "✅ hisob bo'ladi", ru: '✅ можно считать' }]} />,
-        ask: { uz: "10 + 5 raqamlar bilan bo'ladi. Lekin «o'n» + «besh» bo'ladimi?", ru: '10 + 5 с числами работает. А «десять» + «пять» сработает?' } },
+        ask: { uz: "10 + 5 sonlar bilan bo'ladi. Lekin «o'n» + «besh» bo'ladimi?", ru: '10 + 5 с числами работает. А «десять» + «пять» сработает?' } },
       { ic: "✍️", h: { uz: "Qo'shtirnoqda — bu matn", ru: 'В кавычках — это текст' },
-        body: { uz: <>«25» qo'shtirnoqda bo'lsa — bu endi <b>string (matn)</b>, raqam emas. «yigirma» ham — <b>harflar</b> bo'lgani uchun string.</>, ru: <>Если «25» в кавычках — это уже <b>string (текст)</b>, а не число. «двадцать» тоже string — ведь это <b>буквы</b>.</> },
+        body: { uz: <>«25» qo'shtirnoqda bo'lsa — bu endi <b>string (matn)</b>, son emas. «yigirma» ham — <b>harflar</b> bo'lgani uchun string.</>, ru: <>Если «25» в кавычках — это уже <b>string (текст)</b>, а не число. «двадцать» тоже string — ведь это <b>буквы</b>.</> },
         vis: <RcFlow items={[{ uz: "\"25\" → matn", ru: '"25" → текст' }, { uz: "\"yigirma\" → matn", ru: '"yigirma" → текст' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "true — boshqa tur", ru: 'true — другой тип' },
-        body: { uz: <>true — bu <b>boolean</b> (ha/yo'q), raqam emas. Demak faqat <b>tirnoqsiz 25</b> — number bo'ladi.</>, ru: <>true — это <b>boolean</b> (да/нет), а не число. Значит, number здесь только <b>25 без кавычек</b>.</> } },
+        body: { uz: <>true — bu <b>boolean</b> (rost/yolg'on), son emas. Demak faqat <b>tirnoqsiz 25</b> — number bo'ladi.</>, ru: <>true — это <b>boolean</b> (истина/ложь), а не число. Значит, number здесь только <b>25 без кавычек</b>.</> } },
     ]
   },
 };
@@ -479,7 +479,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед продолжением советуем коротко повторить.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед продолжением советуем коротко повторить.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -501,7 +501,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Советуем объяснить её ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Советуем объяснить её ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -746,7 +746,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   <div style={{ textAlign: 'center', fontSize: 18 }}>❤️ ❤️ ❤️</div>
                 </div>
               ) : (
-                <pre className="code-box"><Kw>let</Kw> <Vr>ball</Vr> <Op>=</Op> <Nm>1250</Nm>{'\n'}<Kw>let</Kw> <Vr>jon</Vr> <Op>=</Op> <Nm>3</Nm>{'\n'}<Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
+                <pre className="code-box"><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>1250</Nm>{'\n'}<Kw>let</Kw> <Vr>lives</Vr> <Op>=</Op> <Nm>3</Nm>{'\n'}<Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
               )}
             </div>
             {view === 'code' && <p className="mono small" style={{ color: T.ink3, marginTop: 6, textAlign: 'center' }}>{tr({ uz: '↑ har bir qiymat — nomlangan "quti"da', ru: '↑ каждое значение — в «коробке» с именем' })}</p>}
@@ -780,7 +780,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: { uz: "O'zgaruvchi nima — nomlangan quti", ru: 'Что такое переменная — коробка с именем' }, tag: '' },
     { text: { uz: 'Qiymat berish', ru: 'Присваивание значения' }, tag: '=' },
     { text: { uz: "O'zgaradigan va o'zgarmas", ru: 'Меняющееся и неизменное' }, tag: 'let / const' },
-    { text: { uz: "Ma'lumot turlari", ru: 'Типы данных' }, tag: { uz: 'matn · raqam', ru: 'текст · число' } },
+    { text: { uz: "Ma'lumot turlari", ru: 'Типы данных' }, tag: { uz: 'matn · son', ru: 'текст · число' } },
     { text: { uz: "O'zgaruvchini o'zingiz yozasiz", ru: 'Сами напишете переменную' }, tag: '' }
   ];
   const isNarrow = useIsMobile(768);
@@ -788,7 +788,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugun shunday kod yozasiz', ru: 'Сегодня вы напишете такой код' })}</p>
-      <pre className="code-box" style={{ fontSize: 'clamp(13px,1.9vw,15px)' }}><span className="fade-up" style={{ display: 'block', animationDelay: '0.1s' }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.3s' }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.5s' }}><Kw>const</Kw> <Vr>shahar</Vr> <Op>=</Op> <St>"Toshkent"</St></span></pre>
+      <pre className="code-box" style={{ fontSize: 'clamp(13px,1.9vw,15px)' }}><span className="fade-up" style={{ display: 'block', animationDelay: '0.1s' }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.3s' }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.5s' }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></span></pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ uchta o\'zgaruvchi, uchta "quti"', ru: '→ три переменные, три «коробки»' })}</p>
     </Col>
   );
@@ -832,7 +832,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's2', text: `O'zgaruvchini shunday tasavvur qiling: ustiga nom yozilgan quti. Qutining nomi bor — masalan "ism", ichida esa qiymat turadi — masalan Aziza. Nom orqali qutini istalgan payt topib, ichidagini olasiz. Quti qismlarini bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
-    nom: { label: tr({ uz: 'Nom', ru: 'Имя' }), role: tr({ uz: "Qutining yorlig'i — uni shu nom orqali chaqirasiz. Masalan: ism, ball, yosh.", ru: 'Ярлык коробки — по этому имени вы её и зовёте. Например: ism, ball, yosh.' }) },
+    nom: { label: tr({ uz: 'Nom', ru: 'Имя' }), role: tr({ uz: "Qutining yorlig'i — uni shu nom orqali chaqirasiz. Masalan: name, score, age.", ru: 'Ярлык коробки — по этому имени вы её и зовёте. Например: name, score, age.' }) },
     qiymat: { label: tr({ uz: 'Qiymat', ru: 'Значение' }), role: tr({ uz: 'Quti ichida saqlanadigan narsa. Masalan: "Aziza", 1250, 14.', ru: 'То, что хранится внутри коробки. Например: "Aziza", 1250, 14.' }) }
   };
   const [active, setActive] = useState(null);
@@ -845,17 +845,17 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "O'zgaruvchi", ru: 'Переменная' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "qismni ko'ring", ru: 'части посмотрите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zgaruvchi aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>Что такое переменная <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">ism</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">ism</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">name</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">name</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
               <div style={{ background: T.paper, borderRadius: 16, boxShadow: `0 10px 26px -6px rgba(${T.shadowBase},0.16)`, overflow: 'hidden', minWidth: 210 }}>
-                <div onClick={() => tap('nom')} style={{ cursor: 'pointer', background: active === 'nom' ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'NOMI', ru: 'ИМЯ' })}</span>📦 ism {seen.has('nom') && <span style={{ marginLeft: 'auto' }}>✓</span>}</div>
-                <div onClick={() => tap('qiymat')} style={{ cursor: 'pointer', padding: '18px 16px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(20px,4vw,28px)', color: active === 'qiymat' ? T.accent : T.ink, background: active === 'qiymat' ? T.accentSoft : '#fff', transition: 'all 0.2s' }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: '0.12em', fontWeight: 600, marginBottom: 5 }}>{tr({ uz: 'QIYMATI · ICHIDAGI', ru: 'ЗНАЧЕНИЕ · ВНУТРИ' })}</div>"Aziza" {seen.has('qiymat') && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
+                <div onClick={() => tap('nom')} style={{ cursor: 'pointer', background: active === 'nom' ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'NOMI', ru: 'ИМЯ' })}</span>📦 name {seen.has('nom') && <span style={{ marginLeft: 'auto' }}>✓</span>}</div>
+                <div onClick={() => tap('qiymat')} style={{ cursor: 'pointer', padding: '18px 16px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 'clamp(20px,4vw,28px)', color: active === 'qiymat' ? T.accent : T.ink, background: active === 'qiymat' ? T.accentSoft : '#fff', transition: 'all 0.2s' }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: '0.12em', fontWeight: 600, marginBottom: 5 }}>{tr({ uz: 'QIYMATI · ICHIDAGI', ru: 'ЗНАЧЕНИЕ · ВНУТРИ' })}</div>"Aziza" {seen.has('qiymat') && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
               </div>
             </div>
-            <pre className="code-box fade-up delay-2" style={{ textAlign: 'center' }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
+            <pre className="code-box fade-up delay-2" style={{ textAlign: 'center' }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
           </Col>
           <Col>
             {active ? (
@@ -864,7 +864,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].role}</p>
               </div>
             ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Quti nomi yoki ichini bosing', ru: 'Нажмите на имя коробки или на её содержимое' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mana shu — <b>o'zgaruvchi</b>: nomi bor quti. <span className="mono">ism</span> deb chaqirsangiz, ichidagi <span className="mono">"Aziza"</span> ni olasiz.</>, ru: <>✓ Вот это и есть <b>переменная</b>: коробка с именем. Позовёте <span className="mono">ism</span> — получите <span className="mono">"Aziza"</span> изнутри.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mana shu — <b>o'zgaruvchi</b>: nomi bor quti. <span className="mono">name</span> deb chaqirsangiz, ichidagi <span className="mono">"Aziza"</span> ni olasiz.</>, ru: <>✓ Вот это и есть <b>переменная</b>: коробка с именем. Позовёте <span className="mono">name</span> — получите <span className="mono">"Aziza"</span> изнутри.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -894,23 +894,23 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {VALUES.map(v => (<button key={v} className={`chip ${val === v ? 'chip-on' : ''}`} onClick={() => setVal(v)}>"{v}"</button>))}
             </div>
-            <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(14px,2.4vw,18px)' }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <span className="pop-num" key={val} style={{ color: CODE.str }}>"{val || '...'}"</span></pre>
-            <div className="frame fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>O'qiymiz: «<span className="mono">"{val || '...'}"</span> ni <span className="mono">ism</span> qutisiga sol».</>, ru: <>Читаем: «положи <span className="mono">"{val || '...'}"</span> в коробку <span className="mono">ism</span>».</> })}</p></div>
+            <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(14px,2.4vw,18px)' }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <span className="pop-num" key={val} style={{ color: CODE.str }}>"{val || '...'}"</span></pre>
+            <div className="frame fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>O'qiymiz: «<span className="mono">"{val || '...'}"</span> ni <span className="mono">name</span> qutisiga sol».</>, ru: <>Читаем: «положи <span className="mono">"{val || '...'}"</span> в коробку <span className="mono">name</span>».</> })}</p></div>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija — quti', ru: 'Результат — коробка' })}</p>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
-              {val ? <VarBox name="ism" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qiymat tanlang — qutiga yoziladi', ru: 'Выберите значение — оно запишется в коробку' })}</p></div>}
+              {val ? <VarBox name="name" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qiymat tanlang — qutiga yoziladi', ru: 'Выберите значение — оно запишется в коробку' })}</p></div>}
             </div>
             {/* OMBORCHI O'QI: nom orqali chaqirib qiymatni chiqarish (robot-qo'l) */}
             {val && (
               <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
-                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>🤖 {tr({ uz: <><span className="mono">ism</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">ism</span> (позвать)</> })}</button>
+                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>🤖 {tr({ uz: <><span className="mono">name</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">name</span> (позвать)</> })}</button>
                 {/* F-0803-10: matn o'rniga NATIJANING O'ZI — quti nomi → ichidagi qiymat (rasm gapiradi) */}
                 {read && (
-                  <div className="pop-in" style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'JetBrains Mono', monospace", fontSize: 'clamp(15px,2.4vw,19px)', fontWeight: 700 }}>
+                  <div className="pop-in" style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 'clamp(15px,2.4vw,19px)', fontWeight: 700 }}>
                     <span className="wh-arm" style={{ display: 'inline-block' }}>🤖</span>
-                    <span style={{ color: T.ink2 }}>ism</span>
+                    <span style={{ color: T.ink2 }}>name</span>
                     <span style={{ color: T.ink3 }}>→</span>
                     <span className="pop-num" style={{ color: CODE.str, animationDelay: '.3s', animationFillMode: 'both' }}>"{val}"</span>
                   </div>
@@ -921,7 +921,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {sawNameless && <div className="frame-dash pop-in" style={{ width: '100%' }}><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <><span className="wh-grope" style={{ display: 'inline-block' }}>🤖</span> Nomsiz qutini robot-qo'l paypaslab topolmadi — <span className="wh-graygone" style={{ display: 'inline-block' }}>bo'sh qaytdi</span>. Shuning uchun har qutiga <b style={{ color: T.ink }}>nom (yorliq)</b> kerak!</>, ru: <><span className="wh-grope" style={{ display: 'inline-block' }}>🤖</span> Коробку без имени рука-робот так и не нащупала — <span className="wh-graygone" style={{ display: 'inline-block' }}>вернулась пустой</span>. Вот почему каждой коробке нужно <b style={{ color: T.ink }}>имя (ярлык)</b>!</> })}</p></div>}
               </div>
             )}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Endi <span className="mono">ism</span> ni chaqirsangiz <span className="mono">"{val}"</span> qaytadi.</>, ru: <>✓ Теперь, если позвать <span className="mono">ism</span>, вернётся <span className="mono">"{val}"</span>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Endi <span className="mono">name</span> ni chaqirsangiz <span className="mono">"{val}"</span> qaytadi.</>, ru: <>✓ Теперь, если позвать <span className="mono">name</span>, вернётся <span className="mono">"{val}"</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -934,10 +934,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="O'zgaruvchi nima? To'g'ri variantni tanlang."
-    questionText={{ uz: "O'zgaruvchi (peremennaya) nima?", ru: 'Что такое переменная?' }}
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "O'zgaruvchi nima?", ru: 'Что такое переменная?' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "O'zgaruvchi (peremennaya) nima?", ru: 'Что такое переменная?' })}</h2></>}
+    questionText={{ uz: "O'zgaruvchi (variable) nima?", ru: 'Что такое переменная?' }}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "O'zgaruvchi nima?", ru: 'Что такое переменная?' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "O'zgaruvchi (variable) nima?", ru: 'Что такое переменная?' })}</h2></>}
     options={[{ uz: "Qiymat saqlaydigan nomlangan \"quti\"", ru: '«Коробка» с именем, где хранится значение' }, { uz: 'Sonlar ustida hisob-kitob amali', ru: 'Математическое действие над числами' }, { uz: 'Brauzerda ochiladigan sahifa', ru: 'Страница, которая открывается в браузере' }, { uz: "Ekranda ko'rinadigan rang turi", ru: 'Вид цвета на экране' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! O'zgaruvchi — nomi bor quti: ichida qiymat (matn, raqam...) saqlanadi va siz uni nom orqali chaqirasiz.", ru: 'Верно! Переменная — коробка с именем: внутри хранится значение (текст, число…), и вы обращаетесь к ней по имени.' }}
+    explainCorrect={{ uz: "To'g'ri! O'zgaruvchi — nomi bor quti: ichida qiymat (matn, son...) saqlanadi va siz uni nom orqali chaqirasiz.", ru: 'Верно! Переменная — коробка с именем: внутри хранится значение (текст, число…), и вы обращаетесь к ней по имени.' }}
     explainWrong={{ 1: { uz: "Yo'q — bu hisoblash emas. O'zgaruvchi qiymat saqlaydigan nomlangan quti.", ru: 'Нет — это не вычисление. Переменная — коробка с именем, где хранится значение.' }, 2: { uz: "Yo'q — bu sahifa emas. O'zgaruvchi — kod ichidagi qiymat qutisi.", ru: 'Нет — это не страница. Переменная — коробка со значением внутри кода.' }, 3: { uz: "Yo'q — rang emas. O'zgaruvchi — qiymat saqlaydigan nomlangan quti.", ru: 'Нет — не цвет. Переменная — коробка с именем, где хранится значение.' }, default: { uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti.", ru: 'Переменная — коробка с именем, где хранится значение.' } }} />
 );
 
@@ -984,14 +984,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 onDrop={(e) => { e.preventDefault(); if (drag != null) place(drag); }}
                 className={jolt ? 'wh-jolt' : ''}
                 style={{ outline: over ? `2px dashed ${T.accent}` : 'none', outlineOffset: 4, borderRadius: 16, transition: 'outline 0.15s' }}>
-                <VarBox name="ball" value={ball} valColor={CODE.num} pulse />
+                <VarBox name="score" value={ball} valColor={CODE.num} pulse />
               </div>
               {falling != null && <span className="mono wh-fall" style={{ position: 'absolute', top: 8, left: '50%', color: CODE.num, fontWeight: 700, fontSize: 18, pointerEvents: 'none' }}>{falling} ↓</span>}
             </div>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</p>
-            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>let</Kw> <Vr>ball</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{"// boshlang'ich"}</span>{'\n'}{refills > 0 && <><Vr>ball</Vr> <Op>=</Op> <Nm>{ball}</Nm>  <span style={{ color: CODE.comment }}>{'// yangilandi'}</span></>}</pre>
+            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{"// boshlang'ich"}</span>{'\n'}{refills > 0 && <><Vr>score</Vr> <Op>=</Op> <Nm>{score}</Nm>  <span style={{ color: CODE.comment }}>{'// yangilandi'}</span></>}</pre>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>let</b> — bu o'zgaradigan quti. Eski qiymat tushdi, yangisi joylashdi. Xohlagancha yangilaysiz!</>, ru: <>✓ <b>let</b> — коробка, которую можно менять. Старое значение выпало, новое встало на место. Обновляйте сколько хотите!</> })}</p></div>
               : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: ikkinchi marta <span className="mono">let</span> yozilmaydi — quti bor, faqat ichini almashtiramiz.</>, ru: <>Внимание: второй раз <span className="mono">let</span> не пишут — коробка уже есть, мы лишь меняем содержимое.</> })}</p></div>}
@@ -1036,7 +1036,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: "Quti — o'zgarmas (const)", ru: 'Коробка — неизменная (const)' })}</p>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
               <div className={tried ? 'shake-x' : ''} style={{ position: 'relative' }}>
-                <VarBox name="tugilgan_yil" value={2012} valColor={CODE.num} />
+                <VarBox name="birth_year" value={2012} valColor={CODE.num} />
                 {tried && <span className="pop-num" style={{ position: 'absolute', top: -10, right: -10, fontSize: 22 }}>🔒</span>}
                 {tried && <span className="mono wh-reject" style={{ position: 'absolute', top: 6, left: '50%', color: CODE.num, fontWeight: 700, fontSize: 17, pointerEvents: 'none' }}>2015 ↩</span>}
               </div>
@@ -1045,7 +1045,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</p>
-            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>const</Kw> <Vr>tugilgan_yil</Vr> <Op>=</Op> <Nm>2012</Nm>{'\n'}{tried && <><Vr>tugilgan_yil</Vr> <Op>=</Op> <Nm>2015</Nm>{'\n'}<span className="el-in" style={{ color: T.accent, display: 'inline-block' }}>{"❌ Xato: const o'zgarmaydi!"}</span></>}</pre>
+            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>const</Kw> <Vr>birth_year</Vr> <Op>=</Op> <Nm>2012</Nm>{'\n'}{tried && <><Vr>birth_year</Vr> <Op>=</Op> <Nm>2015</Nm>{'\n'}<span className="el-in" style={{ color: T.accent, display: 'inline-block' }}>{"❌ Xato: const o'zgarmaydi!"}</span></>}</pre>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — <b>const</b> qutini "qulflaydi" 🔒. Qiymat bir marta solinadi va o'zgarmaydi.</>, ru: <>Видели? <b>const</b> «запирает» коробку 🔒. Значение кладётся один раз и больше не меняется.</> })}</p></div>
               : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>const = constant = o'zgarmas. Tug'ilgan yil, hafta kunlari soni (7), Pi soni — bularga const.</>, ru: <>const = constant = неизменный. Год рождения, число дней в неделе (7), число Пи — для них const.</> })}</p></div>}
@@ -1129,8 +1129,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <pre className="code-box demo-swap" key={`code-${era}`} style={{ fontSize: 'clamp(13px,2.1vw,16px)' }}>
               {era === 'old'
-                ? <><Kw>var</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>var</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></>
-                : <><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>const</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></>}
+                ? <><Kw>var</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>var</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></>
+                : <><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>const</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></>}
             </pre>
             <p className="el-in" key={`note-${era}`} style={{ margin: '8px 0 0', fontSize: 13, fontWeight: 600, color: era === 'old' ? T.accent : T.success }}>{era === 'old' ? tr({ uz: '⚠️ Eski usul — kamchiliklari bor edi', ru: '⚠️ Старый способ — у него были недостатки' }) : tr({ uz: '✨ Zamonaviy va ishonchli usul', ru: '✨ Современный и надёжный способ' })}</p>
           </Col>
@@ -1168,9 +1168,9 @@ const Screen9 = (props) => (
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's10', text: `Qutiga turli xil narsa solish mumkin. Matn — masalan ism, qo'shtirnoq ichida yoziladi. Raqam — masalan yosh, qo'shtirnoqsiz. Va ha-yo'q qiymati — true yoki false. Bularni ma'lumot turlari deyiladi. Har birini bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const TYPES = {
-    string: { name: { uz: 'Matn — string', ru: 'Текст — string' }, box: { n: 'ism', v: '"Aziza"' }, color: CODE.str, desc: { uz: 'Harflar, so\'zlar. Doim qo\'shtirnoq ichida: "..."', ru: 'Буквы, слова. Всегда в кавычках: "..."' } },
-    number: { name: { uz: 'Raqam — number', ru: 'Число — number' }, box: { n: 'yosh', v: '14' }, color: CODE.num, desc: { uz: "Sonlar, qo'shtirnoqsiz. Ular bilan hisob qilamiz.", ru: 'Числа, без кавычек. С ними можно считать.' } },
-    boolean: { name: { uz: "Ha/yo'q — boolean", ru: 'Да/нет — boolean' }, box: { n: 'maktabda', v: 'true' }, color: CODE.bool, desc: { uz: "Faqat ikki qiymat: true (ha) yoki false (yo'q).", ru: 'Только два значения: true (да) или false (нет).' } }
+    string: { name: { uz: 'Matn — string', ru: 'Текст — string' }, box: { n: 'name', v: '"Aziza"' }, color: CODE.str, desc: { uz: 'Harflar, so\'zlar. Doim qo\'shtirnoq ichida: "..."', ru: 'Буквы, слова. Всегда в кавычках: "..."' } },
+    number: { name: { uz: 'Son — number', ru: 'Число — number' }, box: { n: 'age', v: '14' }, color: CODE.num, desc: { uz: "Sonlar, qo'shtirnoqsiz. Ular bilan hisob qilamiz.", ru: 'Числа, без кавычек. С ними можно считать.' } },
+    boolean: { name: { uz: "Rost/yolg'on — boolean", ru: 'Истина/ложь — boolean' }, box: { n: 'maktabda', v: 'true' }, color: CODE.bool, desc: { uz: "Faqat ikki qiymat: true (rost) yoki false (yolg'on).", ru: 'Только два значения: true (истина) или false (ложь).' } }
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(new Set());
@@ -1182,7 +1182,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Ma'lumot turlari", ru: 'Типы данных' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "turni ko'ring", ru: 'типа — посмотрите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Quti ichida qanday <span className="italic" style={{ color: T.accent }}>qiymatlar</span> bo'ladi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>значения</span> бывают внутри коробки?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Qutiga turli xil narsa sig'adi: <b style={{ color: T.ink }}>matn</b> (qo'shtirnoq ichida), <b style={{ color: T.ink }}>raqam</b> (qo'shtirnoqsiz) va <b style={{ color: T.ink }}>ha/yo'q</b> (true yoki false). Bular — <b style={{ color: T.ink }}>ma'lumot turlari</b>. Har birini bosing.</>, ru: <>В коробку помещается разное: <b style={{ color: T.ink }}>текст</b> (в кавычках), <b style={{ color: T.ink }}>число</b> (без кавычек) и <b style={{ color: T.ink }}>да/нет</b> (true или false). Это — <b style={{ color: T.ink }}>типы данных</b>. Нажмите на каждый.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Qutiga turli xil narsa sig'adi: <b style={{ color: T.ink }}>matn</b> (qo'shtirnoq ichida), <b style={{ color: T.ink }}>son</b> (qo'shtirnoqsiz) va <b style={{ color: T.ink }}>rost/yolg'on</b> (true yoki false). Bular — <b style={{ color: T.ink }}>ma'lumot turlari</b>. Har birini bosing.</>, ru: <>В коробку помещается разное: <b style={{ color: T.ink }}>текст</b> (в кавычках), <b style={{ color: T.ink }}>число</b> (без кавычек) и <b style={{ color: T.ink }}>истина/ложь</b> (true или false). Это — <b style={{ color: T.ink }}>типы данных</b>. Нажмите на каждый.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1203,7 +1203,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="sk-info"><span className="sk-tagbig"><span className="sk-wordbadge">{tr(TYPES[active].name)}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr(TYPES[active].desc)}</p></div>
               </div>
             ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir turni bosing', ru: 'Нажмите на один из типов' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Uchta asosiy tur: <b>matn</b>, <b>raqam</b>, <b>boolean</b>. Eng muhim farq — qo'shtirnoq!</>, ru: <>✓ Три основных типа: <b>текст</b>, <b>число</b>, <b>boolean</b>. Главное отличие — кавычки!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Uchta asosiy tur: <b>matn</b>, <b>son</b>, <b>boolean</b>. Eng muhim farq — qo'shtirnoq!</>, ru: <>✓ Три основных типа: <b>текст</b>, <b>число</b>, <b>boolean</b>. Главное отличие — кавычки!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1222,20 +1222,20 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isNum = mode === 'num';
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Matn vs Raqam', ru: 'Текст vs Число' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Matn vs Son', ru: 'Текст vs Число' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Besh qo'shuv besh — <span className="italic" style={{ color: T.accent }}>qachon</span> o'n emas?</>, ru: <>Пять плюс пять — <span className="italic" style={{ color: T.accent }}>когда</span> это не десять?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bitta <b style={{ color: T.ink }}>qo'shtirnoq</b> hammasini o'zgartiradi! Raqamlar qo'shtirnoqsiz bo'lsa — <b style={{ color: T.ink }}>qo'shiladi</b> (5+5=10). Qo'shtirnoq ichida bo'lsa — ular matn, <b style={{ color: T.ink }}>yopishtiriladi</b> ("5"+"5"="55"). Solishtiring.</>, ru: <>Одни <b style={{ color: T.ink }}>кавычки</b> меняют всё! Числа без кавычек — <b style={{ color: T.ink }}>складываются</b> (5+5=10). А в кавычках это текст — он <b style={{ color: T.ink }}>склеивается</b> ("5"+"5"="55"). Сравните.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bitta <b style={{ color: T.ink }}>qo'shtirnoq</b> hammasini o'zgartiradi! Sonlar qo'shtirnoqsiz bo'lsa — <b style={{ color: T.ink }}>qo'shiladi</b> (5+5=10). Qo'shtirnoq ichida bo'lsa — ular matn, <b style={{ color: T.ink }}>yopishtiriladi</b> ("5"+"5"="55"). Solishtiring.</>, ru: <>Одни <b style={{ color: T.ink }}>кавычки</b> меняют всё! Числа без кавычек — <b style={{ color: T.ink }}>складываются</b> (5+5=10). А в кавычках это текст — он <b style={{ color: T.ink }}>склеивается</b> ("5"+"5"="55"). Сравните.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${isNum ? 'chip-on' : ''}`} onClick={() => set('num')}>{tr({ uz: '🔢 Raqam', ru: '🔢 Число' })}</button>
+              <button className={`chip ${isNum ? 'chip-on' : ''}`} onClick={() => set('num')}>{tr({ uz: '🔢 Son', ru: '🔢 Число' })}</button>
               <button className={`chip ${!isNum ? 'chip-on' : ''}`} onClick={() => set('str')}>{tr({ uz: '🔤 Matn', ru: '🔤 Текст' })}</button>
             </div>
             <pre className="code-box demo-swap" key={mode} style={{ fontSize: 'clamp(14px,2.4vw,18px)' }}>
               {isNum
-                ? <><Nm>5</Nm> <Op>+</Op> <Nm>5</Nm>  <span style={{ color: CODE.comment }}>{'// raqamlar'}</span></>
+                ? <><Nm>5</Nm> <Op>+</Op> <Nm>5</Nm>  <span style={{ color: CODE.comment }}>{'// sonlar'}</span></>
                 : <><St>"5"</St> <Op>+</Op> <St>"5"</St>  <span style={{ color: CODE.comment }}>{'// matn'}</span></>}
             </pre>
           </Col>
@@ -1243,9 +1243,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             <div className="demo-swap" key={mode + 'r'} style={{ background: T.paper, borderRadius: 14, padding: '22px', textAlign: 'center', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
               <div className="pop-num" key={mode} style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(36px,8vw,52px)', color: isNum ? CODE.num : T.accent }}>{isNum ? '10' : '"55"'}</div>
-              <p className="body" style={{ margin: '6px 0 0', color: T.ink2 }}>{isNum ? tr({ uz: "Qo'shildi — chunki raqam", ru: 'Сложилось — потому что числа' }) : tr({ uz: 'Yopishdi — chunki matn', ru: 'Склеилось — потому что текст' })}</p>
+              <p className="body" style={{ margin: '6px 0 0', color: T.ink2 }}>{isNum ? tr({ uz: "Qo'shildi — chunki son", ru: 'Сложилось — потому что числа' }) : tr({ uz: 'Yopishdi — chunki matn', ru: 'Склеилось — потому что текст' })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Esda saqlang: <b>qo'shtirnoq bor → matn</b>, <b>qo'shtirnoq yo'q → raqam</b>. Bu — eng ko'p chalkashtiradigan joy!</>, ru: <>✓ Запомните: <b>есть кавычки → текст</b>, <b>нет кавычек → число</b>. Тут путаются чаще всего!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Esda saqlang: <b>qo'shtirnoq bor → matn</b>, <b>qo'shtirnoq yo'q → son</b>. Bu — eng ko'p chalkashtiradigan joy!</>, ru: <>✓ Запомните: <b>есть кавычки → текст</b>, <b>нет кавычек → число</b>. Тут путаются чаще всего!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1258,15 +1258,15 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     audioText="Quyidagilardan qaysi biri RAQAM (number)?"
-    questionText={{ uz: 'Qaysi biri RAQAM (number)?', ru: 'Что из этого — ЧИСЛО (number)?' }}
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Qaysi biri <span className="italic" style={{ color: T.accent }}>RAQAM</span> (number)?</>, ru: <>Что из этого — <span className="italic" style={{ color: T.accent }}>ЧИСЛО</span> (number)?</> })}</h2></>}
+    questionText={{ uz: 'Qaysi biri SON (number)?', ru: 'Что из этого — ЧИСЛО (number)?' }}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Qaysi biri <span className="italic" style={{ color: T.accent }}>SON</span> (number)?</>, ru: <>Что из этого — <span className="italic" style={{ color: T.accent }}>ЧИСЛО</span> (number)?</> })}</h2></>}
     options={['"25"', '25', '"yigirma"', 'true']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! 25 — qo'shtirnoqsiz, demak raqam (number). U bilan hisob qilsa bo'ladi.", ru: 'Верно! 25 — без кавычек, значит число (number). С ним можно считать.' }}
+    explainCorrect={{ uz: "To'g'ri! 25 — qo'shtirnoqsiz, demak son (number). U bilan hisob qilsa bo'ladi.", ru: 'Верно! 25 — без кавычек, значит число (number). С ним можно считать.' }}
     explainWrong={{
-      0: { uz: '"25" — qo\'shtirnoqda, demak bu matn (string), raqam emas.', ru: '"25" — в кавычках, значит это текст (string), а не число.' },
+      0: { uz: '"25" — qo\'shtirnoqda, demak bu matn (string), son emas.', ru: '"25" — в кавычках, значит это текст (string), а не число.' },
       2: { uz: '"yigirma" — qo\'shtirnoqdagi so\'z, bu matn (string).', ru: '"yigirma" — слово в кавычках, это текст (string).' },
-      3: { uz: "true — bu boolean (ha/yo'q), raqam emas. Raqam — qo'shtirnoqsiz 25.", ru: 'true — это boolean (да/нет), не число. Число — 25 без кавычек.' },
-      default: { uz: "Qo'shtirnoqsiz son — raqam: 25.", ru: 'Число без кавычек — 25.' }
+      3: { uz: "true — bu boolean (rost/yolg'on), son emas. Son — qo'shtirnoqsiz 25.", ru: 'true — это boolean (истина/ложь), не число. Число — 25 без кавычек.' },
+      default: { uz: "Qo'shtirnoqsiz son: 25.", ru: 'Число без кавычек — 25.' }
     }} />
 );
 
@@ -1276,12 +1276,12 @@ const Screen12 = (props) => (
 // bitta blokni bosdingiz — kodda tayyor qator paydo bo'ladi. Ko'rinish hozirgicha.
 const S13_COLOR = (t) => (t === 'str' ? CODE.str : t === 'bool' ? CODE.bool : CODE.num);
 const S13_BLOCKS = [
-  { kw: 'let', name: 'ism', val: '"Aziza"', t: 'str' },
-  { kw: 'let', name: 'yosh', val: '14', t: 'num' },
-  { kw: 'const', name: 'shahar', val: '"Toshkent"', t: 'str' },
-  { kw: 'let', name: 'ball', val: '0', t: 'num' },
-  { kw: 'const', name: 'maktab', val: '"Coddycamp"', t: 'str' },
-  { kw: 'let', name: 'oqiyaptimi', val: 'true', t: 'bool' }
+  { kw: 'let', name: 'name', val: '"Aziza"', t: 'str' },
+  { kw: 'let', name: 'age', val: '14', t: 'num' },
+  { kw: 'const', name: 'city', val: '"Toshkent"', t: 'str' },
+  { kw: 'let', name: 'score', val: '0', t: 'num' },
+  { kw: 'const', name: 'school', val: '"Coddycamp"', t: 'str' },
+  { kw: 'let', name: 'is_studying', val: 'true', t: 'bool' }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: `Endi navbat sizga — o'zingiz haqingizda bir nechta o'zgaruvchi yarating. Pastdagi bloklarni bosib qo'shing: ism, yosh, shahar... Kamida 3 ta o'zgaruvchi yig'ing.`, trigger: 'on_mount', waits_for: null }]);
@@ -1295,7 +1295,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Amaliyot · o'zgaruvchilar", ru: 'Практика · переменные' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Kamida 3 ta', ru: 'Минимум 3' })} (${items.length}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z o'zgaruvchilaringizni <span className="italic" style={{ color: T.accent }}>yarating</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Создайте</span> свои переменные</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi navbat sizga — o'zingiz haqingizda o'zgaruvchilar yarating. Bloklarni bosib qo'shing: ism, yosh, shahar... Kamida <b style={{ color: T.ink }}>3 ta</b> o'zgaruvchi yig'ing.</>, ru: <>Теперь ваша очередь — создайте переменные о себе. Нажимайте блоки, чтобы добавить: ism, yosh, shahar... Соберите минимум <b style={{ color: T.ink }}>3</b> переменные.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi navbat sizga — o'zingiz haqingizda o'zgaruvchilar yarating. Bloklarni bosib qo'shing: name, age, city... Kamida <b style={{ color: T.ink }}>3 ta</b> o'zgaruvchi yig'ing.</>, ru: <>Теперь ваша очередь — создайте переменные о себе. Нажимайте блоки, чтобы добавить: name, age, city... Соберите минимум <b style={{ color: T.ink }}>3</b> переменные.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1329,11 +1329,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — DEBUGGING (qo'shtirnoq tushib qolgan) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's14', text: `AI sizga kod yozib berdi, lekin bittasida xato bor — dastur ishlamayapti. Yaxshilab qarang: bir o'zgaruvchining matn qiymati qo'shtirnoqsiz qolib ketibdi. Xato qatorni toping va bosing.`, trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
-  const [picked, setPicked] = useState(storedAnswer ? 'ism' : null);
+  const [picked, setPicked] = useState(storedAnswer ? 'name' : null);
   const [fixed, setFixed] = useState(!!storedAnswer);
-  const found = picked === 'ism';
+  const found = picked === 'name';
   const done = fixed;
-  const pickIsm = () => { if (found) return; setPicked('ism'); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! Aziza qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. Qo'shtirnoq qo'shamiz.`); }, 300); };
+  const pickIsm = () => { if (found) return; setPicked('name'); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! Aziza qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. Qo'shtirnoq qo'shamiz.`); }, 300); };
   const fix = () => { setFixed(true); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! Endi "Aziza" matn bo'ldi — kod ishlaydi.`); }, 300); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
@@ -1347,9 +1347,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana, o'zgaruvchilaringiz:", ru: 'Вот ваши переменные:' })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: 'default' }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></div>
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIsm}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>} {!fixed && <span style={{ color: CODE.comment }}>{'// ?'}</span>}</div>
-                <div className="ai-line" style={{ cursor: 'default' }}><Kw>const</Kw> <Vr>shahar</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
+                <div className="ai-line" style={{ cursor: 'default' }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></div>
+                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIsm}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>} {!fixed && <span style={{ color: CODE.comment }}>{'// ?'}</span>}</div>
+                <div className="ai-line" style={{ cursor: 'default' }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '🔧 "Aziza" ga qo\'shtirnoq qo\'shish', ru: '🔧 Добавить кавычки к "Aziza"' })}</button>)}
@@ -1358,14 +1358,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!found && (
-              picked && picked !== 'ism'
+              picked && picked !== 'name'
                 ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div>)
                 : (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: matn qiymati doim <b style={{ color: T.ink }}>qo'shtirnoq ichida</b> bo'lishi kerak. Qaysi qatorda yo'q?</>, ru: <>Вспомните: текстовое значение всегда должно быть <b style={{ color: T.ink }}>в кавычках</b>. В какой строке их нет?</> })}</p></div>)
             )}
             {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Chap tugmani bosing →</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку слева →</> })}</p></div>)}
             {fixed && (<>
               <p className="flow-label">{tr({ uz: 'Endi ishlaydi', ru: 'Теперь работает' })}</p>
-              <div style={{ display: 'flex', justifyContent: 'center' }}><VarBox name="ism" value={'"Aziza"'} valColor={CODE.str} small /></div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}><VarBox name="name" value={'"Aziza"'} valColor={CODE.str} small /></div>
               <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это и есть отладка!' })}</p><p className="ta-sub">{tr({ uz: 'Matn = qo\'shtirnoq ichida', ru: 'Текст = в кавычках' })}</p></div>
             </>)}
           </Col>
@@ -1406,11 +1406,11 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "O'zgaruvchini yozing", ru: 'Напишите переменную' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: o'zgaruvchini <span className="italic" style={{ color: T.accent }}>o'zingiz</span> yozing.</>, ru: <>Последний шаг: напишите переменную <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz.</b> Ismingizni saqlaydigan o'zgaruvchi yozing: <span className="mono">let</span>, keyin nom, <span className="mono">=</span> va qo'shtirnoqda ismingiz. Masalan: <span className="mono">let ism = "Aziza"</span>.</>, ru: <><b style={{ color: T.ink }}>До сих пор вы заполняли коробки руками — теперь создадите первую коробку словами.</b> Напишите переменную, которая хранит ваше имя: <span className="mono">let</span>, затем имя, <span className="mono">=</span> и ваше имя в кавычках. Например: <span className="mono">let ism = "Aziza"</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz.</b> Ismingizni saqlaydigan o'zgaruvchi yozing: <span className="mono">let</span>, keyin nom, <span className="mono">=</span> va qo'shtirnoqda ismingiz.</>, ru: <><b style={{ color: T.ink }}>До сих пор вы заполняли коробки руками — теперь создадите первую коробку словами.</b> Напишите переменную, которая хранит ваше имя: <span className="mono">let</span>, затем имя, <span className="mono">=</span> и ваше имя в кавычках.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'let ism = "Aziza"'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'let name = "Aziza"'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasKw ? 1 : 0.4 }}>{hasKw ? '✓' : '1'} let / const</span>
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} {tr({ uz: 'nom', ru: 'имя' })}</span>
@@ -1419,7 +1419,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {passed
               ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div>)
-              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Raqam uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>)}
+              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Son uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>)}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'natija — quti', ru: 'результат — коробка' })}</p>
@@ -1439,16 +1439,16 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== 🃏 FLASHCARDS (o'zgaruvchilar mavzusi — 3D flip takrorlash) =====
 const JS_FLASHCARDS = [
   { front: { uz: "Qiymatni saqlab turadigan nomlangan «quti» qanday ataladi?", ru: 'Как называется «коробка» с именем, которая хранит значение?' }, back: { uz: "o'zgaruvchi", ru: 'переменная' }, note: { uz: "quti + nom + ichidagi qiymat", ru: 'коробка + имя + значение внутри' } },
-  { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: 'Каким словом создаём коробку, значение которой потом меняется?' }, back: 'let', note: { uz: "let ball = 10, keyin ball = 25", ru: 'let ball = 10, потом ball = 25' } },
+  { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: 'Каким словом создаём коробку, значение которой потом меняется?' }, back: 'let', note: { uz: "let score = 10, keyin score = 25", ru: 'let score = 10, потом score = 25' } },
   { front: { uz: "Qiymati hech qachon o'zgarmaydigan qutini qaysi so'z ochadi?", ru: 'Какое слово создаёт коробку, значение которой никогда не меняется?' }, back: 'const', note: { uz: "const yil = 2011 — quti qulflangan", ru: 'const yil = 2011 — коробка заперта' } },
   { front: { uz: "Qutiga qiymat solish uchun qaysi belgi ishlatiladi?", ru: 'Каким знаком кладут значение в коробку?' }, back: '=', note: { uz: "u \"sol\" degani — \"teng\" degani emas", ru: 'он значит «положи», а не «равно»' } },
   { front: { uz: "Matn (so'z, gap) turi qanday ataladi?", ru: 'Как называется тип для текста (слов, фраз)?' }, back: 'string', note: { uz: 'qo\'shtirnoq ichida yoziladi: "Aziza"', ru: 'пишется в кавычках: "Aziza"' } },
-  { front: { uz: "Raqam turi qanday ataladi?", ru: 'Как называется тип для чисел?' }, back: 'number', note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: 'пишется без кавычек: 14, 3.14' } },
+  { front: { uz: "Son turi qanday ataladi?", ru: 'Как называется тип для чисел?' }, back: 'number', note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: 'пишется без кавычек: 14, 3.14' } },
   { front: { uz: "true va false qaysi turga kiradi?", ru: 'К какому типу относятся true и false?' }, back: 'boolean', note: { uz: "faqat ikki qiymat: rost yoki yolg'on", ru: 'всего два значения: истина или ложь' } },
-  { front: { uz: "«14» qo'shtirnoq ichida yozilsa, qaysi tur bo'ladi?", ru: 'Если «14» написано в кавычках, какой это тип?' }, back: 'string', note: { uz: "raqamga o'xshaydi, lekin bu matn", ru: 'похоже на число, но это текст' } },
+  { front: { uz: "«14» qo'shtirnoq ichida yozilsa, qaysi tur bo'ladi?", ru: 'Если «14» написано в кавычках, какой это тип?' }, back: 'string', note: { uz: "songa o'xshaydi, lekin bu matn", ru: 'похоже на число, но это текст' } },
   { front: { uz: "Bugun ishlatilmaydigan eski so'z qaysi?", ru: 'Какое старое слово сегодня уже не используют?' }, back: 'var', note: { uz: "o'rniga let yoki const yozing", ru: 'вместо него пишите let или const' } },
   { front: { uz: "let bilan const orasidagi asosiy farq nima?", ru: 'В чём главная разница между let и const?' }, back: { uz: "let o'zgaradi, const o'zgarmaydi", ru: 'let меняется, const — нет' }, note: { uz: "o'yin bali — let, tug'ilgan yil — const", ru: 'счёт в игре — let, год рождения — const' } },
-  { front: { uz: "O'zgaruvchi nomi raqam bilan boshlansa bo'ladimi?", ru: 'Может ли имя переменной начинаться с цифры?' }, back: { uz: "Yo'q, bo'lmaydi", ru: 'Нет, нельзя' }, note: { uz: "bo'sh joy ham bo'lmaydi: tugilgan_yil", ru: 'пробелов тоже нельзя: tugilgan_yil' } },
+  { front: { uz: "O'zgaruvchi nomi raqam bilan boshlansa bo'ladimi?", ru: 'Может ли имя переменной начинаться с цифры?' }, back: { uz: "Yo'q, bo'lmaydi", ru: 'Нет, нельзя' }, note: { uz: "bo'sh joy ham bo'lmaydi: birth_year", ru: 'пробелов тоже нельзя: birth_year' } },
   { front: { uz: "const PI = 3.14 dan keyin PI = 3 yozsangiz nima bo'ladi?", ru: 'Что будет, если после const PI = 3.14 написать PI = 3?' }, back: { uz: 'Xato beradi', ru: 'Будет ошибка' }, note: { uz: "const qutisi bir marta to'ldiriladi", ru: 'коробка const заполняется один раз' } },
 ];
 // F-0803-13: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
@@ -1560,8 +1560,8 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — bugun siz birinchi haqiqiy JavaScript kodingizni yozdingiz! Eslab qoling: o'zgaruvchi — nomlangan quti, let o'zgaradi, const o'zgarmaydi, qiymatlar esa matn, raqam yoki boolean bo'ladi. Keyingi darsda o'zgaruvchilarni ekranga chiqarib, ular bilan amallar bajaramiz.", trigger: 'on_mount', waits_for: null }]);
-  const RECAP = [{ uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti", ru: 'Переменная — коробка с именем, где хранится значение' }, { uz: "Qiymat berish: = (\"qutiga sol\")", ru: 'Присваивание: = («положи в коробку»)' }, { uz: "let — o'zgaradi, const — o'zgarmas", ru: 'let — меняется, const — неизменный' }, { uz: "var — eski usul, bugun let/const", ru: 'var — старый способ, сегодня let/const' }, { uz: "Turlar: matn (string), raqam (number), boolean", ru: 'Типы: текст (string), число (number), boolean' }];
-  const HOMEWORK = [{ b: 'ism', t: { uz: "— let bilan, qo'shtirnoqda", ru: '— через let, в кавычках' } }, { b: 'yosh', t: { uz: "— let bilan, qo'shtirnoqsiz raqam", ru: '— через let, число без кавычек' } }, { b: 'tugilgan_yil', t: { uz: '— const bilan', ru: '— через const' } }];
+  const RECAP = [{ uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti", ru: 'Переменная — коробка с именем, где хранится значение' }, { uz: "Qiymat berish: = (\"qutiga sol\")", ru: 'Присваивание: = («положи в коробку»)' }, { uz: "let — o'zgaradi, const — o'zgarmas", ru: 'let — меняется, const — неизменный' }, { uz: "var — eski usul, bugun let/const", ru: 'var — старый способ, сегодня let/const' }, { uz: "Turlar: matn (string), son (number), boolean", ru: 'Типы: текст (string), число (number), boolean' }];
+  const HOMEWORK = [{ b: 'name', t: { uz: "— let bilan, qo'shtirnoqda", ru: '— через let, в кавычках' } }, { b: 'age', t: { uz: "— let bilan, qo'shtirnoqsiz son", ru: '— через let, число без кавычек' } }, { b: 'birth_year', t: { uz: '— const bilan', ru: '— через const' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1610,7 +1610,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: { uz: "1 — O'zgaruvchi nima", ru: '1 — Что такое переменная' }, 6: { uz: "2 — let (o'zgaradigan)", ru: '2 — let (меняется)' }, 10: { uz: "3 — const (o'zgarmas)", ru: '3 — const (неизменный)' }, 13: { uz: '4 — Raqam (number)', ru: '4 — Число (number)' }, 16: { uz: "5 — O'zgaruvchi yoz", ru: '5 — Напиши переменную' } };
+const Q_LABELS = { 4: { uz: "1 — O'zgaruvchi nima", ru: '1 — Что такое переменная' }, 6: { uz: "2 — let (o'zgaradigan)", ru: '2 — let (меняется)' }, 10: { uz: "3 — const (o'zgarmas)", ru: '3 — const (неизменный)' }, 13: { uz: '4 — Son (number)', ru: '4 — Число (number)' }, 16: { uz: "5 — O'zgaruvchi yoz", ru: '5 — Напиши переменную' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1735,7 +1735,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   );
                 })}
               </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы с ⚠️ — темы, где класс споткнулся. Советуем объяснить их ещё раз.' })}</p>}
+              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntiring.', ru: 'Вопросы с ⚠️ — темы, где класс споткнулся. Советуем объяснить их ещё раз.' })}</p>}
             </div>
           </>
         )}
@@ -1762,18 +1762,18 @@ const QZ_BG_SHAPES = [
   { ch: '//',    l: 2,  t: 46, s: 28, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "let ism = \"Aziza\" — bu yerda «quti»ning nomi qaysi?", ru: 'let ism = "Aziza" — где здесь имя «коробки»?' }, opts: ["ism", "\"Aziza\"", "let", "="], correct: 0 },
-  { q: { uz: "let yosh = 14 — 14 qanday ma'lumot turi?", ru: 'let yosh = 14 — какой тип данных у 14?' }, opts: [{ uz: 'string (matn)', ru: 'string (текст)' }, { uz: 'number (raqam)', ru: 'number (число)' }, 'boolean', 'const'], correct: 1 },
+  { q: { uz: "let name = \"Aziza\" — bu yerda «quti»ning nomi qaysi?", ru: 'let name = "Aziza" — где здесь имя «коробки»?' }, opts: ["name", "\"Aziza\"", "let", "="], correct: 0 },
+  { q: { uz: "let age = 14 — 14 qanday ma'lumot turi?", ru: 'let age = 14 — какой тип данных у 14?' }, opts: [{ uz: 'string (matn)', ru: 'string (текст)' }, { uz: 'number (son)', ru: 'number (число)' }, 'boolean', 'const'], correct: 1 },
   { q: { uz: 'Qaysi qiymat string (matn) hisoblanadi?', ru: 'Какое значение считается string (текстом)?' }, opts: ["42", "true", "\"Toshkent\"", "3.14"], correct: 2 },
   { q: { uz: "const PI = 3.14 dan keyin PI = 3 desak nima bo'ladi?", ru: 'Что будет, если после const PI = 3.14 написать PI = 3?' }, opts: [{ uz: "Xato beradi — const o'zgarmaydi", ru: 'Будет ошибка — const не меняется' }, { uz: "PI qiymati 3 ga o'zgaradi", ru: 'Значение PI изменится на 3' }, { uz: 'Ikkala qiymat ham saqlanib qoladi', ru: 'Сохранятся оба значения' }, { uz: "PI o'chib ketadi", ru: 'PI удалится' }], correct: 0 },
   { q: { uz: 'Kodda = belgisi aslida nimani bildiradi?', ru: 'Что на самом деле означает знак = в коде?' }, opts: [{ uz: 'Ikki qiymat bir-biriga teng', ru: 'Два значения равны друг другу' }, { uz: "Qutiga qiymat sol (o'zlashtir)", ru: 'Положи значение в коробку (присвой)' }, { uz: "Ikki qiymatni o'zaro taqqosla", ru: 'Сравни два значения между собой' }, { uz: "Qutidagi qiymatni o'chir", ru: 'Удали значение из коробки' }], correct: 1 },
   { q: { uz: "true va false qaysi ma'lumot turiga tegishli?", ru: 'К какому типу данных относятся true и false?' }, opts: ["string", "number", "boolean", "const"], correct: 2 },
   { q: { uz: "Qaysi holatda const ishlatgan ma'qul?", ru: 'В каком случае лучше использовать const?' }, opts: [{ uz: 'Haftadagi kunlar soni (7)', ru: 'Число дней в неделе (7)' }, { uz: "O'yin bali (o'zgarib turadi)", ru: 'Счёт в игре (всё время меняется)' }, { uz: 'Foydalanuvchi kiritgan matn', ru: 'Текст, который ввёл пользователь' }, { uz: 'Jon soni jangda', ru: 'Число жизней в бою' }], correct: 0 },
-  { q: { uz: "let ball = 10 keyin ball = 25 yozildi. ball qutisida endi nima?", ru: 'Написали let ball = 10, потом ball = 25. Что теперь в коробке ball?' }, opts: ["10", "25", { uz: '10 va 25', ru: '10 и 25' }, { uz: 'Xato', ru: 'Ошибка' }], correct: 1 },
-  { q: { uz: "let va const o'rtasidagi asosiy farq nima?", ru: 'В чём главная разница между let и const?' }, opts: [{ uz: "let raqamga, const matnga mo'ljallangan", ru: 'let для чисел, const для текста' }, { uz: 'const koddan ancha tezroq ishlaydi', ru: 'const работает намного быстрее' }, { uz: "let keyin o'zgaradi, const o'zgarmaydi", ru: 'let потом меняется, const — нет' }, { uz: "Ikkalasi aynan bir xil, farqi yo'q", ru: 'Они совершенно одинаковые' }], correct: 2 },
+  { q: { uz: "let score = 10 keyin score = 25 yozildi. score qutisida endi nima?", ru: 'Написали let score = 10, потом score = 25. Что теперь в коробке score?' }, opts: ["10", "25", { uz: '10 va 25', ru: '10 и 25' }, { uz: 'Xato', ru: 'Ошибка' }], correct: 1 },
+  { q: { uz: "let va const o'rtasidagi asosiy farq nima?", ru: 'В чём главная разница между let и const?' }, opts: [{ uz: "let songa, const matnga mo'ljallangan", ru: 'let для чисел, const для текста' }, { uz: 'const koddan ancha tezroq ishlaydi', ru: 'const работает намного быстрее' }, { uz: "let keyin o'zgaradi, const o'zgarmaydi", ru: 'let потом меняется, const — нет' }, { uz: "Ikkalasi aynan bir xil, farqi yo'q", ru: 'Они совершенно одинаковые' }], correct: 2 },
   { q: { uz: "\"14\" (qo'shtirnoqda) qanday tur?", ru: '"14" (в кавычках) — какой это тип?' }, opts: [{ uz: 'number — u bilan hisob qilinadi', ru: 'number — с ним можно считать' }, 'const', 'boolean', { uz: 'string — bu matn', ru: 'string — это текст' }], correct: 3 },
-  { q: { uz: "var haqida to'g'ri gap qaysi?", ru: 'Какое утверждение о var верно?' }, opts: [{ uz: 'Zamonaviy standart, doim ishlating', ru: 'Современный стандарт, всегда используйте' }, { uz: 'const bilan bir xil narsa', ru: 'То же самое, что и const' }, { uz: 'Faqat raqamlar uchun', ru: 'Только для чисел' }, { uz: 'Eski usul — bugun let/const afzal', ru: 'Старый способ — сегодня лучше let/const' }], correct: 3 },
-  { q: { uz: "let shahar = \"Toshkent\" da qiymat qo'shtirnoqda. Nega?", ru: 'В let shahar = "Toshkent" значение в кавычках. Почему?' }, opts: [{ uz: 'Chunki u raqam', ru: 'Потому что это число' }, { uz: "Qo'shtirnoq shart emas edi", ru: 'Кавычки были не обязательны' }, { uz: 'Chunki u boolean', ru: 'Потому что это boolean' }, { uz: 'Chunki u matn (string)', ru: 'Потому что это текст (string)' }], correct: 3 },
+  { q: { uz: "var haqida to'g'ri gap qaysi?", ru: 'Какое утверждение о var верно?' }, opts: [{ uz: 'Zamonaviy standart, doim ishlating', ru: 'Современный стандарт, всегда используйте' }, { uz: 'const bilan bir xil narsa', ru: 'То же самое, что и const' }, { uz: 'Faqat sonlar uchun', ru: 'Только для чисел' }, { uz: 'Eski usul — bugun let/const afzal', ru: 'Старый способ — сегодня лучше let/const' }], correct: 3 },
+  { q: { uz: "let city = \"Toshkent\" da qiymat qo'shtirnoqda. Nega?", ru: 'В let city = "Toshkent" значение в кавычках. Почему?' }, opts: [{ uz: 'Chunki u son', ru: 'Потому что это число' }, { uz: "Qo'shtirnoq shart emas edi", ru: 'Кавычки были не обязательны' }, { uz: 'Chunki u boolean', ru: 'Потому что это boolean' }, { uz: 'Chunki u matn (string)', ru: 'Потому что это текст (string)' }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2041,6 +2041,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
@@ -2159,7 +2167,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2217,7 +2226,7 @@ function QuizArena({ live, onClose, startSolo }) {
 const ACHIEVEMENTS = {
   boxkeeper:     { icon: '📦', name: 'Box Keeper',     desc: { uz: "O'zgaruvchi — nomlangan quti ekanini bildingiz", ru: 'Вы узнали, что переменная — коробка с именем' } },
   lockmaster:    { icon: '🔒', name: 'Lock Master',    desc: { uz: "const bilan qutini qulflashni o'rgandingiz", ru: 'Вы научились запирать коробку через const' } },
-  typedetective: { icon: '🔍', name: 'Type Detective', desc: { uz: "Ma'lumot turini (matn / raqam) aniqladingiz", ru: 'Вы определили тип данных (текст / число)' } },
+  typedetective: { icon: '🔍', name: 'Type Detective', desc: { uz: "Ma'lumot turini (matn / son) aniqladingiz", ru: 'Вы определили тип данных (текст / число)' } },
   graduate:      { icon: '🏆', name: 'Level Up!',      desc: { uz: "Birinchi JavaScript darsini to'liq yakunladingiz", ru: 'Вы полностью прошли первый урок JavaScript' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat to'g'ri javobga avtomatik beriladi)
@@ -2338,13 +2347,13 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_BALL = {
   eyebrow: { uz: 'Praktika · let', ru: 'Практика · let' },
   title: { uz: "Birinchi qutingizni yozing", ru: 'Напишите свою первую коробку' },
-  brief: { uz: "`let` bilan `ball` nomli quti oching va ichiga `0` soling. Keyin ballni `25` ga o'zgartiring va `console.log(ball)` yozing — pastdagi konsolda `25` chiqadi.", ru: 'Создайте через `let` коробку с именем `ball` и положите в неё `0`. Затем измените ball на `25` и напишите `console.log(ball)` — в консоли внизу появится `25`.' },
+  brief: { uz: "`let` bilan `score` nomli quti oching va ichiga `0` soling. Keyin uni `25` ga o'zgartiring va `console.log(score)` yozing — pastdagi konsolda `25` chiqadi.", ru: 'Создайте через `let` коробку с именем `score` и положите в неё `0`. Затем измените score на `25` и напишите `console.log(score)` — в консоли внизу появится `25`.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'let', label: 'let ball = 0', check: C.js(/let\s+ball\s*=/, { uz: "`let ball = 0` deb yozing", ru: 'Напишите `let ball = 0`' }) },
-    { id: 'log', label: { uz: "konsolda 25 chiqdi", ru: 'в консоли появилось 25' }, check: C.logs('25', { uz: "Ballni o'zgartiring (`ball = 25`) va `console.log(ball)` yozing", ru: 'Измените ball (`ball = 25`) и напишите `console.log(ball)`' }) },
+    { id: 'let', label: 'let score = 0', check: C.js(/let\s+[sS][cC][oO][rR][eE]\s*=/, { uz: "`let score = 0` deb yozing", ru: 'Напишите `let score = 0`' }) },
+    { id: 'log', label: { uz: "konsolda 25 chiqdi", ru: 'в консоли появилось 25' }, check: C.logs('25', { uz: "Qiymatni o'zgartiring (`score = 25`) va `console.log(score)` yozing", ru: 'Измените score (`score = 25`) и напишите `console.log(score)`' }) },
   ],
 };
 
@@ -2357,7 +2366,7 @@ const TASK_QUOTES = {
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'num', label: { uz: "raqamlar qo'shildi → 10", ru: 'числа сложились → 10' }, check: C.logs('10', { uz: "Qo'shtirnoqsiz yozing: `console.log(5 + 5)`", ru: 'Напишите без кавычек: `console.log(5 + 5)`' }) },
+    { id: 'num', label: { uz: "sonlar qo'shildi → 10", ru: 'числа сложились → 10' }, check: C.logs('10', { uz: "Qo'shtirnoqsiz yozing: `console.log(5 + 5)`", ru: 'Напишите без кавычек: `console.log(5 + 5)`' }) },
     { id: 'str', label: { uz: "matnlar yopishdi → 55", ru: 'тексты склеились → 55' }, check: C.logs('55', { uz: "Qo'shtirnoq ichida yozing: `console.log(\"5\" + \"5\")`", ru: 'Напишите в кавычках: `console.log(\"5\" + \"5\")`' }) },
   ],
 };
@@ -2367,14 +2376,14 @@ const TASK_QUOTES = {
 const TASK_QUTILAR = {
   eyebrow: { uz: "Praktika · o'zgaruvchilar", ru: 'Практика · переменные' },
   title: { uz: "O'zingiz haqingizda 3 ta quti", ru: 'Три коробки о себе' },
-  brief: { uz: "Uch quti yozing: `ism` — `let` bilan, qo'shtirnoqda; `yosh` — `let` bilan, qo'shtirnoqsiz raqam; `tugilgan_yil` — `const` bilan (u hech qachon o'zgarmaydi).", ru: 'Напишите три коробки: `ism` — через `let`, в кавычках; `yosh` — через `let`, число без кавычек; `tugilgan_yil` — через `const` (он никогда не меняется).' },
+  brief: { uz: "Uch quti yozing: `name` — `let` bilan, qo'shtirnoqda; `age` — `let` bilan, qo'shtirnoqsiz son; `birth_year` — `const` bilan (u hech qachon o'zgarmaydi).", ru: 'Напишите три коробки: `name` — через `let`, в кавычках; `age` — через `let`, число без кавычек; `birth_year` — через `const` (он никогда не меняется).' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'ism', label: 'let ism = "..."', check: C.js(/let\s+ism\s*=\s*["'][^"']+["']/, { uz: "Ismni qo'shtirnoqqa oling: `let ism = \"Aziza\"`", ru: 'Возьмите имя в кавычки: `let ism = \"Aziza\"`' }) },
-    { id: 'yosh', label: 'let yosh = 14', check: C.js(/let\s+yosh\s*=\s*\d/, { uz: "Yoshni qo'shtirnoqsiz yozing: `let yosh = 14`", ru: 'Возраст пишите без кавычек: `let yosh = 14`' }) },
-    { id: 'yil', label: 'const tugilgan_yil = 2011', check: C.js(/const\s+tugilgan_yil\s*=\s*\d/, { uz: "O'zgarmas qiymat uchun `const tugilgan_yil = 2011`", ru: 'Для неизменного значения: `const tugilgan_yil = 2011`' }) },
+    { id: 'name', label: 'let name = "..."', check: C.js(/let\s+[nN][aA][mM][eE]\s*=\s*["'][^"']+["']/, { uz: "Ismni qo'shtirnoqqa oling: `let name = \"Aziza\"`", ru: 'Возьмите имя в кавычки: `let name = \"Aziza\"`' }) },
+    { id: 'age', label: 'let age = 14', check: C.js(/let\s+[aA][gG][eE]\s*=\s*\d/, { uz: "Yoshni qo'shtirnoqsiz yozing: `let age = 14`", ru: 'Возраст пишите без кавычек: `let age = 14`' }) },
+    { id: 'yil', label: 'const birth_year = 2011', check: C.js(/const\s+[bB][iI][rR][tT][hH]_[yY][eE][aA][rR]\s*=\s*\d/, { uz: "O'zgarmas qiymat uchun `const birth_year = 2011`", ru: 'Для неизменного значения: `const birth_year = 2011`' }) },
   ],
 };
 

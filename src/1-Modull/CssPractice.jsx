@@ -40,7 +40,7 @@ const tr = (node) => {
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -380,7 +380,7 @@ const RECAPS = {
         body: { uz: <><b className="mono">justify-content: center</b> — havolalarni qator <b>o'rtasiga</b> to'playdi. Markazlashgan menyu shunday yasaladi.</>, ru: <><b className="mono">justify-content: center</b> — собирает ссылки <b>в середине</b> ряда. Так делают центрированное меню.</> },
         vis: <RcFlow items={['justify-content: center', { uz: 'markazda havolalar', ru: 'ссылки по центру' }]} /> },
       { ic: '⬇️', h: { uz: "align-items — boshqa o'q", ru: 'align-items — другая ось' },
-        body: { uz: <><b className="mono">align-items</b> — <b>ko'ndalang</b> (vertikal) o'q uchun. Gorizontal markaz esa har doim <b className="mono">justify-content</b>.</>, ru: <><b className="mono">align-items</b> — для <b>поперечной</b> (вертикальной) оси. А горизонтальный центр — всегда <b className="mono">justify-content</b>.</> },
+        body: { uz: <><b className="mono">align-items</b> — <b>vertikal</b> yo'nalish uchun. Gorizontal markaz esa har doim <b className="mono">justify-content</b>.</>, ru: <><b className="mono">align-items</b> — для <b>поперечной</b> (вертикальной) оси. А горизонтальный центр — всегда <b className="mono">justify-content</b>.</> },
         vis: <RcFlow items={[{ uz: 'justify — gorizontal', ru: 'justify — горизонталь' }, { uz: 'align — vertikal', ru: 'align — вертикаль' }]} sep="·" />,
         ask: { uz: "Menyu havolalarini gorizontal markazga qaysi xususiyat qo'yadi?", ru: 'Какое свойство ставит ссылки меню в горизонтальный центр?' } },
     ]
@@ -497,7 +497,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась непонятой классом. Перед продолжением рекомендуем короткое повторение.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась непонятой классом. Перед продолжением коротко повторите.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -519,7 +519,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waitingPl.length > 8 && <span className="mstats-wait-chip more">+{waitingPl.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблись — похоже, тема осталась непонятой. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: '⚠️ Большинство ошиблись — похоже, тема осталась непонятой. Объясните ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -1246,7 +1246,7 @@ const Screen14 = (props) => (
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Menyudagi (flex) havolalarni qator bo'ylab <span className="italic" style={{ color: T.accent }}>gorizontal markazga</span> joylash uchun qaysi xususiyat?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое свойство ставит ссылки меню (flex) в <span className="italic" style={{ color: T.accent }}>горизонтальный центр</span> вдоль ряда?</h2></> })}
     options={['align-items: center', 'text-align: center', 'gap: 10px', 'justify-content: center']} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! `justify-content: center` — flex elementlarni asosiy o'q (gorizontal) bo'ylab markazga joylaydi.", ru: 'Верно! `justify-content: center` — располагает flex-элементы по центру главной (горизонтальной) оси.' }}
-    explainWrong={{ 0: { uz: "`align-items` — ko'ndalang o'q (vertikal) bo'ylab tekislaydi. Gorizontal markaz — `justify-content`.", ru: '`align-items` — выравнивает по поперечной (вертикальной) оси. Горизонтальный центр — `justify-content`.' }, 1: { uz: "`text-align` matn uchun. Flex elementlar uchun — `justify-content`.", ru: '`text-align` — для текста. Для flex-элементов — `justify-content`.' }, 2: { uz: "`gap` — faqat oraliq beradi, markazlamaydi. Markaz — `justify-content: center`.", ru: '`gap` — только даёт промежуток, не центрирует. Центр — `justify-content: center`.' }, default: { uz: "Flex gorizontal markaz — `justify-content: center`.", ru: 'Горизонтальный центр во flex — `justify-content: center`.' } }} />
+    explainWrong={{ 0: { uz: "`align-items` — vertikal tekislaydi. Gorizontal markaz — `justify-content`.", ru: '`align-items` — выравнивает по поперечной (вертикальной) оси. Горизонтальный центр — `justify-content`.' }, 1: { uz: "`text-align` matn uchun. Flex elementlar uchun — `justify-content`.", ru: '`text-align` — для текста. Для flex-элементов — `justify-content`.' }, 2: { uz: "`gap` — faqat oraliq beradi, markazlamaydi. Markaz — `justify-content: center`.", ru: '`gap` — только даёт промежуток, не центрирует. Центр — `justify-content: center`.' }, default: { uz: "Flex gorizontal markaz — `justify-content: center`.", ru: 'Горизонтальный центр во flex — `justify-content: center`.' } }} />
 );
 
 // ===== SCREEN 15 — YIG'ISH (to'liq portfolio) =====
@@ -1864,6 +1864,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
@@ -1982,7 +1990,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{tr(lastQ ? { uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' } : { uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{tr(lastQ ? { uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' } : { uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{tr(lastQ ? { uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' } : { uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2371,7 +2380,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
                   );
                 })}
               </div>
-              {isMentorL && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы со значком ⚠️ — темы, где класс споткнулся. Рекомендуем объяснить их ещё раз.' })}</p>}
+              {isMentorL && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntiring.', ru: 'Вопросы со значком ⚠️ — темы, где класс споткнулся. Объясните их ещё раз.' })}</p>}
             </div>
           </>
         )}
@@ -2565,7 +2574,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -2734,14 +2743,14 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .text-input { width: 100%; font-size: clamp(14px,1.8vw,16px); font-weight: 500; padding: 12px 14px; border: none; border-radius: 12px; background: ${T.paper}; color: ${T.ink}; outline: none; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); transition: box-shadow 0.2s; }
         .text-input:focus { box-shadow: 0 10px 22px -6px rgba(255,79,40,0.3), 0 0 0 1px rgba(255,79,40,0.2); }
 
-        .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(12.5px,1.6vw,14.5px); line-height: 1.6; padding: clamp(12px,2.2vw,18px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
+        .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12.5px,1.6vw,14.5px); line-height: 1.6; padding: clamp(12px,2.2vw,18px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
         .bp-bar { background: #f0eee8; padding: 8px 11px; display: flex; align-items: center; gap: 9px; }
         .bb-dots { display: flex; gap: 5px; }
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
-        .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
+        .bp-title { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
         .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
@@ -2780,10 +2789,10 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
         .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
-        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
-        .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
+        .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
@@ -2823,7 +2832,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .cpart:hover { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.25); }
         .cpart.on { box-shadow: inset 0 0 0 1.5px currentColor; background: rgba(255,255,255,0.06); }
         .clegend { display: flex; flex-wrap: wrap; gap: 8px; }
-        .ctab { font-family: 'JetBrains Mono'; font-size: 12px; font-weight: 600; color: ${T.ink2}; background: ${T.paper}; padding: 5px 11px; border-radius: 99px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); transition: all 0.2s; }
+        .ctab { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${T.ink2}; background: ${T.paper}; padding: 5px 11px; border-radius: 99px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); transition: all 0.2s; }
         .ctab.done { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
 
         /* Yakuniy tekshiruv pillalari */
@@ -2837,7 +2846,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .asm-list { display: flex; flex-direction: column; gap: 6px; }
         .asm-row { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 10px; padding: 9px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); opacity: 0.5; transition: all 0.35s; }
         .asm-row.on { opacity: 1; box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .asm-ic { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; box-shadow: inset 0 0 0 2px ${T.ink3}; color: ${T.ink2}; transition: all 0.35s; }
+        .asm-ic { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; box-shadow: inset 0 0 0 2px ${T.ink3}; color: ${T.ink2}; transition: all 0.35s; }
         .asm-row.on .asm-ic { background: ${T.success}; color: #fff; box-shadow: inset 0 0 0 2px ${T.success}; }
 
         /* ============ PORTFOLIO JONLI KO'RINISHI (.pf) ============ */
@@ -2905,7 +2914,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -2957,7 +2966,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         /* Dars-DNK: suzuvchi tokenlar + tezlik-chiziqlar + yashin-flash */
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none;
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none;
           color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4);
           animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
@@ -3004,7 +3013,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         /* HUD-chiziq: turnir-tablo uslubidagi neon-pilyulalar */
         .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3022,7 +3031,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
         .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3039,7 +3048,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
@@ -3087,7 +3096,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
@@ -3139,7 +3148,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         @media (hover: none) { .live-badge { opacity: 0.62; } }
         /* ===== 🏗️ QURUVCHI QATLAMI CSS (fmtCode chip, CodeStrike brand, praktika panel, flashcard, badges, celebrate, onboarding) ===== */
         /* fmtCode kod-chip */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
         /* Mentor praktika paneli */
@@ -3197,9 +3206,9 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
         .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
         .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
         .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
         .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }

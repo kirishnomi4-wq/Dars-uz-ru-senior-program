@@ -363,6 +363,26 @@ const ArcStrip = () => (
 );
 
 // ===== SCREEN 0 — HOOK: BURBN → INSTAGRAM =====
+// Maket: KESISH — Burbn ro'yxati va undan qolgan uchtasi (156-qonun · KORPUS §189).
+// 🔴 §186: bu maket FAQAT javob berilgandan keyin chiqadi (picked !== null bloki ichida).
+// Savol yonida tursa, «hammasini kesishdi» javobi oldindan ko'rinib qolardi.
+// Ro'yxatdagi so'zlar hikoya matnidan olingan — o'ylab topilgan son yoki ficha qo'shilmagan.
+const CutMock = () => (
+  <div className="cut-wrap" role="img" aria-label="Chapda Burbn ro'yxati: check-in, rejalar, do'stlar, ball, rasm — faqat rasm qoladi; o'ngda Instagram: rasm, filtr, like">
+    <div className="cut-col">
+      <span className="cut-cap">Burbn</span>
+      {['check-in', 'rejalar', "do'stlar", 'ball', 'rasm'].map((t, i) => (
+        <span key={t} className={`cut-item ${i === 4 ? 'keep' : 'gone'}`}>{t}</span>
+      ))}
+    </div>
+    <span className="cut-arrow">→</span>
+    <div className="cut-col">
+      <span className="cut-cap">Instagram</span>
+      {['rasm', 'filtr', 'like'].map(t => <span key={t} className="cut-item keep">{t}</span>)}
+    </div>
+  </div>
+);
+
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
@@ -389,6 +409,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
+            {picked !== null && <CutMock />}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : 'Ular '}<b>hamma narsani kesib tashlashdi</b> — faqat rasm, filtr va like qoldi. Yangi nom ham berishdi: <b>Instagram</b>. 2 yildan keyin $1 000 000 000 ga sotildi. Bugungi dars — shu san'at: <b>tahlil qilish va KESISH</b>. 5 varag'ingizdan bitta aniq MVP qarori chiqaramiz.</p>}
           </Col>
         </Split></Zoomable>
@@ -1156,6 +1177,15 @@ export default function PmLesson31({ lang: langProp, onFinished }) {
         .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
         .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
+        /* MAKET: kesish. Kesilgan band xira va ustiga chizilgan; qolgani to'q. */
+        .cut-wrap { display: flex; align-items: flex-start; justify-content: center; gap: clamp(8px,1.6vw,14px); margin: 4px 0 2px; animation: fade-step 0.4s ease both; }
+        .cut-col { display: flex; flex-direction: column; gap: 4px; min-width: 96px; }
+        .cut-cap { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(9.5px,1.1vw,11px); letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; margin-bottom: 2px; }
+        .cut-item { font-family: 'JetBrains Mono', monospace; font-size: clamp(10px,1.2vw,11.5px); padding: 4px 8px; border-radius: 6px; background: ${T.paper}; color: ${T.ink}; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.12); }
+        .cut-item.gone { color: ${T.ink3}; text-decoration: line-through; background: transparent; box-shadow: none; }
+        .cut-item.keep { color: ${T.success}; box-shadow: inset 0 0 0 1px ${T.success}; }
+        .cut-arrow { font-size: clamp(15px,2vw,19px); color: ${T.accent}; align-self: center; }
+        @media (prefers-reduced-motion: reduce) { .cut-wrap { animation: none; } }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
         .h-title { font-size: clamp(22px,4vw,38px); }

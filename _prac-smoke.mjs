@@ -57,7 +57,7 @@ if (reached) {
     await page.waitForTimeout(700);
     const ta = page.locator('.hc-root textarea').first();
     await ta.waitFor({ timeout: 5000 });
-    await ta.fill('let ism = "Aziza"\nlet yosh = 14\nconst tugilgan_yil = 2011\n');
+    await ta.fill('let name = "Aziza"\nlet age = 14\nconst birth_year = 2011\n');
     await page.waitForTimeout(1200);
     reqOk = await page.locator('.hc-root').innerText().then(t => t.split('\n').filter(l => /✓|✗/.test(l)).join(' | ')).catch(() => '');
     const nextBtn = page.locator('.hc-next');

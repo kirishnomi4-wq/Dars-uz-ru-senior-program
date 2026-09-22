@@ -12,5 +12,6 @@ export {
 } from './liveClient.js';
 export { useLiveSession, LiveGateCtx, useLiveLock } from './useLiveSession.js';
 export { useServerProgress } from './useServerProgress.js';
+export { useAutoNext, AUTO_NEXT_MS } from './useAutoNext.js'; // arena: javob ochilgach keyingi savolga avto o'tish (F-0922-03)
 export { LiveGate, LiveBadge, LiveBigCode, LT } from './LiveUI.jsx';
 export { buildResultDetails, sealPayload } from './resultDetails.js'; // onFinished detallari (TZ §4) — 2026-09-08 · yukni muhrlash (F-0918-07)

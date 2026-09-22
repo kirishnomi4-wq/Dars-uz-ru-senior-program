@@ -34,7 +34,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveRpc, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveRpc, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -427,7 +427,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, коротко повторите.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами.</> })}</p>}
@@ -442,7 +442,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните заново.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -653,7 +653,7 @@ function StoryBoard() {
 // ===== SCREEN 0 — HOOK: ikki mijoz so'rovi solishtiruvi + jonli ovoz-diagramma =====
 const HOOK_REQS = [
   { tag: { uz: '1-mijoz', ru: '1-й клиент' }, cls: 'a', text: { uz: "«Saytga video qo'shib qo'ying.»", ru: '«Добавьте на сайт видео.»' } },
-  { tag: { uz: '2-mijoz', ru: '2-й клиент' }, cls: 'b', text: { uz: "«Men imtihonga tayyorlanayotgan o'quvchi sifatida, darsni qayta ko'rishni xohlayman — mavzuni o'zim tushunib olishim uchun.»", ru: '«Я как ученик, который готовится к экзамену, хочу пересмотреть урок — чтобы разобраться в теме самому.»' } },
+  { tag: { uz: '2-mijoz', ru: '2-й клиент' }, cls: 'b', text: { uz: "«Men avtobusda maktabga boradigan o'quvchi sifatida, videoni yuklab olishni xohlayman — yo'lda internetsiz ham ko'ra olishim uchun.»", ru: '«Я как ученик, который едет в школу на автобусе, хочу скачать видео — чтобы смотреть в дороге без интернета.»' } },
 ];
 const HOOK_OPTS = [
   { uz: "Birinchisini — qisqa va lo'nda", ru: 'Первое — коротко и по делу' },
@@ -761,9 +761,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // Namuna-mahsulot = YouTube (2-ekrandagi YouTube misoli bilan bir ip). Uch xil odam — uch xil foyda.
 // QOIDA: har NATIJA aynan o'sha KIM'ning foydasi va harakatni takrorlamaydi (dars 6-ekranda shuni tekshiradi).
 const DEMO_STORIES = [
-  { kim: { uz: "imtihonga tayyorlanayotgan o'quvchi", ru: 'ученик, который готовится к экзамену' }, nima: { uz: "videoni 2 barobar tez ko'rish", ru: 'смотреть видео в 2 раза быстрее' }, natija: { uz: "bir kechada ko'proq mavzuga ulgurish", ru: 'успеть за вечер больше тем' } },
-  { kim: { uz: "yo'lda ketayotgan tomoshabin", ru: 'зритель, который едет в дороге' }, nima: { uz: "videoni oldindan yuklab qo'yish", ru: 'скачать видео заранее' }, natija: { uz: "internet yo'q joyda ham ko'ra olish", ru: 'смотреть и там, где нет интернета' } },
-  { kim: { uz: 'yangi kanal egasi', ru: 'владелец нового канала' }, nima: { uz: "videoni kim ko'rganini bilish", ru: 'знать, кто смотрел видео' }, natija: { uz: "kimga mos video yasashni tushunish", ru: 'понимать, для кого делать видео' } },
+  { kim: { uz: "uzun videoni ko'rayotgan tomoshabin", ru: 'зритель длинного видео' }, nima: { uz: "videoni 2 barobar tez ko'rish", ru: 'смотреть видео в 2 раза быстрее' }, natija: { uz: "vaqtni tejab, ko'proq video ko'rishim", ru: 'экономить время и смотреть больше' } },
+  { kim: { uz: "yoqqan videosini keyin yo'qotib qo'yadigan tomoshabin", ru: 'зритель, который теряет понравившееся видео' }, nima: { uz: "videoni «keyinroq» ro'yxatiga saqlash", ru: 'сохранить видео в «посмотреть позже»' }, natija: { uz: "uni qayta izlab yurmasligim", ru: 'не искать его заново' } },
+  { kim: { uz: 'birinchi videosini joylagan yangi blogger', ru: 'новый блогер с первым видео' }, nima: { uz: "videoni necha kishi ko'rganini bilish", ru: 'знать, сколько человек посмотрело' }, natija: { uz: "keyingi videoni nima haqida olishni tushunishim", ru: 'понять, о чём снимать дальше' } },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Maqsad', ru: 'Цель' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
@@ -818,9 +818,9 @@ const Zoomable = ({ children }) => {
 // Yengil tap-mashq (UNSCORED): bo'laklarni «harakat» yoki «sabab»ga ajratish; xato = yumshoq indigo hint (qizil EMAS).
 const S2_FRAGS = [
   { txt: { uz: "Videoni qayta ochdim", ru: 'Открыл видео заново' }, cat: 'harakat' },
-  { txt: { uz: "imtihonga tayyorlanish uchun", ru: 'чтобы подготовиться к экзамену' }, cat: 'sabab' },
+  { txt: { uz: "o'sha joydan o'tib olish uchun", ru: 'чтобы пройти это место' }, cat: 'sabab' },
   { txt: { uz: "YouTube'ni ochdim", ru: 'Открыл YouTube' }, cat: 'harakat' },
-  { txt: { uz: "matematikani tushunish uchun", ru: 'чтобы разобраться в математике' }, cat: 'sabab' },
+  { txt: { uz: "yangi harakatni o'rganish uchun", ru: 'чтобы выучить новый приём' }, cat: 'sabab' },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const [st, setSt] = useState({ picks: {}, hint: -1 });
@@ -882,17 +882,17 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
               <div className="grow-from">
                 <span className={`gf-chip harakat gf-l${gs >= 1 ? ' in' : ''}`}>🏃 «{tr({ uz: "YouTube'ni ochdim", ru: 'Открыл YouTube' })}»</span>
                 <span className={`gf-plus gf-f${gs >= 1 ? ' in' : ''}`}>+</span>
-                <span className={`gf-chip sabab gf-r${gs >= 1 ? ' in' : ''}`}>💡 «{tr({ uz: 'matematikani tushunish uchun', ru: 'чтобы разобраться в математике' })}»</span>
+                <span className={`gf-chip sabab gf-r${gs >= 1 ? ' in' : ''}`}>💡 «{tr({ uz: "yangi harakatni o'rganish uchun", ru: 'чтобы выучить новый приём' })}»</span>
               </div>
               {gs >= 2 && <span className="grow-arrow ga-pulse" aria-hidden="true">↓</span>}
               {gs >= 2 && (
                 <p className="ex-body">{tr({
                   uz: <>Men {gs >= 4
-                    ? <b className="gp kim lit drop" data-sub="🙋 kim">matematikadan qiynalayotgan o'quvchi</b>
-                    : <span className="gp-slot" aria-label="hali bo'sh joy" />} sifatida, <b className="gp nima lit" data-sub="🏃 harakat">darsni YouTube'da qayta ko'rish</b>ni xohlayman, <b className={`gp natija${gs >= 3 ? ' lit' : ''}`} data-sub="💡 sabab">masalani mustaqil yechishim</b> uchun.</>,
+                    ? <b className="gp kim lit drop" data-sub="🙋 kim">o'yinda bir joydan o'tolmayotgan o'yinchi</b>
+                    : <span className="gp-slot" aria-label="hali bo'sh joy" />} sifatida, <b className="gp nima lit" data-sub="🏃 harakat">videoni sekinlashtirib ko'rish</b>ni xohlayman, <b className={`gp natija${gs >= 3 ? ' lit' : ''}`} data-sub="💡 sabab">harakatni aynan takrorlashim</b> uchun.</>,
                   ru: <>Я как {gs >= 4
-                    ? <b className="gp kim lit drop" data-sub="🙋 кто">ученик, которому трудно даётся математика</b>
-                    : <span className="gp-slot" aria-label="пока пустое место" />}, хочу <b className="gp nima lit" data-sub="🏃 действие">пересмотреть урок на YouTube</b>, чтобы <b className={`gp natija${gs >= 3 ? ' lit' : ''}`} data-sub="💡 причина">решить задачу самостоятельно</b>.</>
+                    ? <b className="gp kim lit drop" data-sub="🙋 кто">игрок, застрявший на одном месте</b>
+                    : <span className="gp-slot" aria-label="пока пустое место" />}, хочу <b className="gp nima lit" data-sub="🏃 действие">смотреть видео медленнее</b>, чтобы <b className={`gp natija${gs >= 3 ? ' lit' : ''}`} data-sub="💡 причина">повторить приём в точности</b>.</>
                 })}</p>
               )}
             </div>
@@ -907,9 +907,9 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
 // Bo'laklar = oldingi ekranda o'stirilgan hikoya (F-0727-02) — o'quvchi tanish gapni endi
 // formula-nomlari (KIM/NIMA/NATIJA) bilan qayta yig'adi: bir dunyo, ikki qadam.
 const FRAG_POOL = [
-  { txt: { uz: "matematikadan qiynalayotgan o'quvchi", ru: 'ученик, которому трудно даётся математика' }, slot: 0 },
-  { txt: { uz: "darsni YouTube'da qayta ko'rish", ru: 'пересмотреть урок на YouTube' }, slot: 1 },
-  { txt: { uz: "masalani mustaqil yechishim", ru: 'решить задачу самостоятельно' }, slot: 2 },
+  { txt: { uz: "o'yinda bir joydan o'tolmayotgan o'yinchi", ru: 'игрок, застрявший на одном месте' }, slot: 0 },
+  { txt: { uz: "videoni sekinlashtirib ko'rish", ru: 'смотреть видео медленнее' }, slot: 1 },
+  { txt: { uz: "harakatni aynan takrorlashim", ru: 'повторить приём в точности' }, slot: 2 },
 ];
 const SLOT_META = [
   { key: 'kim', label: { uz: 'KIM', ru: 'КТО' }, hint: { uz: 'foydalanuvchi turi', ru: 'тип пользователя' } },
@@ -984,7 +984,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
         {done && (
           <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <div className="done-mini">{tr({ uz: "✅ Hikoya to'liq!", ru: '✅ История собрана!' })} <span className="dm-sub">{tr({ uz: "E'tibor bering: video ko'rish — harakat, «masalani mustaqil yechish» — undan keladigan foyda. NATIJA doim foydani aytadi", ru: 'Обратите внимание: посмотреть видео — это действие, а «решить задачу самостоятельно» — польза от него. РЕЗУЛЬТАТ всегда называет пользу' })}</span></div>
+            <div className="done-mini">{tr({ uz: "✅ Hikoya to'liq!", ru: '✅ История собрана!' })} <span className="dm-sub">{tr({ uz: "E'tibor bering: video ko'rish — harakat, «harakatni aynan takrorlash» — undan keladigan foyda. NATIJA doim foydani aytadi", ru: 'Обратите внимание: посмотреть видео — это действие, а «повторить приём в точности» — польза от него. РЕЗУЛЬТАТ всегда называет пользу' })}</span></div>
             <button className="btn-soft" onClick={reset}>{tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>
           </div>
         )}
@@ -1301,9 +1301,9 @@ const PEER_REASONS = [
 const PEER_CARDS = [
   { kim: { uz: 'foydalanuvchi', ru: 'пользователь' }, nima: { uz: "qorong'i rejim", ru: 'тёмная тема' }, natija: { uz: "kechqurun ko'zim charchamasligi", ru: 'чтобы вечером глаза не уставали' },
     ok: false, flaw: 'kim', why: { uz: "KIM «foydalanuvchi» — qaysi odam ekani aytilmagan.", ru: 'КТО — «пользователь»: не сказано, что это за человек.' } },
-  { kim: { uz: 'birinchi marta kirgan mehmon', ru: 'гость, который зашёл впервые' }, nima: { uz: 'qidiruv qatori', ru: 'строка поиска' }, natija: { uz: 'kerakli darsni tez topishim', ru: 'чтобы быстро найти нужный урок' },
+  { kim: { uz: 'birinchi marta kirgan mehmon', ru: 'гость, который зашёл впервые' }, nima: { uz: 'qidiruv qatori', ru: 'строка поиска' }, natija: { uz: 'kerakli videoni tez topishim', ru: 'чтобы быстро найти нужное видео' },
     ok: true, flaw: null, why: { uz: 'KIM aniq, NATIJA esa yangi foyda beradi.', ru: 'КТО конкретен, а РЕЗУЛЬТАТ даёт новую пользу.' } },
-  { kim: { uz: "9-sinf o'quvchisi", ru: 'ученик 9 класса' }, nima: { uz: 'eslatma tugmasi', ru: 'кнопка напоминания' }, natija: { uz: "eslatma tugmasi bo'lishi", ru: 'чтобы была кнопка напоминания' },
+  { kim: { uz: "har kuni bitta kanalni kuzatadigan tomoshabin", ru: 'зритель, который следит за одним каналом' }, nima: { uz: 'obuna tugmasi', ru: 'кнопка подписки' }, natija: { uz: "obuna tugmasi bo'lishi", ru: 'чтобы была кнопка подписки' },
     ok: false, flaw: 'takror', why: { uz: "NATIJA NIMAni takrorlaydi — yangi foyda ko'rinmayapti.", ru: 'РЕЗУЛЬТАТ повторяет ЧТО — новой пользы не видно.' } }
 ];
 // Bitta qatorlik izoh: to'g'ri hukm — yashil tasdiq; boshqa holatda neytral (jazo emas, o'rgatish)
@@ -1423,15 +1423,15 @@ const BT_REQS = [
   { id: 'quruq', tag: { uz: "1-so'rov · quruq", ru: '1-я просьба · сухая' }, txt: { uz: "«Saytga video qo'shib qo'ying.»", ru: '«Добавьте на сайт видео.»' },
     kim: null, nima: { uz: "video (qanaqasi?)", ru: 'видео (какое?)' }, natija: null, fail: 0,
     guess: { uz: "Kim so'rayapti? Yozilmagan — taxmin qilaman…", ru: 'Кто просит? Не написано — буду гадать…' },
-    out: { uz: "Taxmin qilishga to'g'ri keldi: bosh sahifaga tasodifiy video tushdi. Mijoz esa darsni qayta ko'rishni kutgan edi — qilingan ish bekor ketdi.", ru: 'Пришлось гадать: на главную попало случайное видео. А клиент ждал возможности пересмотреть урок — работа ушла впустую.' }, ok: false },
-  { id: 'yarim', tag: { uz: "2-so'rov · yarim hikoya", ru: '2-я просьба · половина истории' }, txt: { uz: "«Men o'quvchi sifatida, darsni qayta ko'rishni xohlayman»", ru: '«Я как ученик, хочу пересмотреть урок»' },
-    kim: { uz: "o'quvchi", ru: 'ученик' }, nima: { uz: "darsni qayta ko'rish", ru: 'пересмотреть урок' }, natija: null, fail: 2,
+    out: { uz: "Taxmin qilishga to'g'ri keldi: bosh sahifaga tasodifiy video tushdi. Mijoz esa videoni yuklab olishni kutgan edi — qilingan ish bekor ketdi.", ru: 'Пришлось гадать: на главную попало случайное видео. А клиент ждал возможности скачать видео — работа ушла впустую.' }, ok: false },
+  { id: 'yarim', tag: { uz: "2-so'rov · yarim hikoya", ru: '2-я просьба · половина истории' }, txt: { uz: "«Men o'quvchi sifatida, videoni yuklab olishni xohlayman»", ru: '«Я как ученик, хочу скачать видео»' },
+    kim: { uz: "o'quvchi", ru: 'ученик' }, nima: { uz: "videoni yuklab olish", ru: 'скачать видео' }, natija: null, fail: 2,
     guess: { uz: "Nega kerakligi aytilmagan — shunchaki qo'shib qo'yaman…", ru: 'Зачем это нужно — не сказано, просто добавлю…' },
-    out: { uz: "«Darsni qayta ko'rish» tugmasi qo'shildi, lekin nega kerakligi noma'lum bo'lgani uchun sahifaning eng pastiga tushib qoldi — o'quvchi uni topolmadi.", ru: 'Кнопку «Пересмотреть урок» добавили, но, раз неизвестно зачем она нужна, её поставили в самый низ страницы — ученик её не нашёл.' }, ok: false },
-  { id: 'toliq', tag: { uz: "3-so'rov · to'liq hikoya", ru: '3-я просьба · полная история' }, txt: { uz: "«Men imtihonga tayyorlanayotgan o'quvchi sifatida, darsni qayta ko'rishni xohlayman — mavzuni o'zim tushunib olishim uchun»", ru: '«Я как ученик, который готовится к экзамену, хочу пересмотреть урок — чтобы разобраться в теме самому»' },
-    kim: { uz: "imtihonga tayyorlanayotgan o'quvchi", ru: 'ученик, который готовится к экзамену' }, nima: { uz: "darsni qayta ko'rish", ru: 'пересмотреть урок' }, natija: { uz: "mavzuni o'zim tushunib olishim", ru: 'разобраться в теме самому' }, fail: -1,
+    out: { uz: "«Yuklab olish» tugmasi qo'shildi, lekin nega kerakligi noma'lum bo'lgani uchun sozlamalar ichiga tushib qoldi — o'quvchi uni topolmadi.", ru: 'Кнопку «Скачать видео» добавили, но, раз неизвестно зачем она нужна, её спрятали в настройки — ученик её не нашёл.' }, ok: false },
+  { id: 'toliq', tag: { uz: "3-so'rov · to'liq hikoya", ru: '3-я просьба · полная история' }, txt: { uz: "«Men avtobusda maktabga boradigan o'quvchi sifatida, videoni yuklab olishni xohlayman — yo'lda internetsiz ham ko'ra olishim uchun»", ru: '«Я как ученик, который едет в школу на автобусе, хочу скачать видео — чтобы смотреть в дороге без интернета»' },
+    kim: { uz: "avtobusda maktabga boradigan o'quvchi", ru: 'ученик, который едет в школу на автобусе' }, nima: { uz: "videoni yuklab olish", ru: 'скачать видео' }, natija: { uz: "yo'lda internetsiz ham ko'ra olishim", ru: 'смотреть в дороге без интернета' }, fail: -1,
     guess: null,
-    out: { uz: "Uchala bo'lak aniq — «Darsni qayta ko'rish» tugmasi aynan video ostiga qo'yildi. Mijoz kutgani shu edi!", ru: 'Все три части ясны — кнопку «Пересмотреть урок» поставили прямо под видео. Клиент ждал именно этого!' }, ok: true },
+    out: { uz: "Uchala bo'lak aniq — «Yuklab olish» tugmasi aynan video ostiga qo'yildi. Mijoz kutgani shu edi!", ru: 'Все три части ясны — кнопку «Скачать видео» поставили прямо под видео. Клиент ждал именно этого!' }, ok: true },
 ];
 const BT_PARTS = [[{ uz: 'KIM', ru: 'КТО' }, 'kim'], [{ uz: 'NIMA', ru: 'ЧТО' }, 'nima'], [{ uz: 'NATIJA', ru: 'РЕЗУЛЬТАТ' }, 'natija']];
 const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -2359,6 +2359,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   const closeArena = () => {
@@ -2472,7 +2480,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2828,7 +2837,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -3019,7 +3028,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
         .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-18deg); animation: hw-shine 3.2s ease-in-out infinite; pointer-events: none; }
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
         @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.05); } 100% { filter: brightness(1); transform: scale(1); } }
@@ -3038,7 +3047,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .story-silo { position: relative; display: flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 4px 12px 12px 4px; padding: 13px 16px 13px 22px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.2); border-left: 4px solid ${T.accent}44; transition: transform 0.22s, box-shadow 0.22s; }
         .story-silo::before { content: ""; position: absolute; left: 11px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}33; box-shadow: 0 22px 0 ${T.accent}22; }
         .story-silo:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.26); }
-        .story-silo-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; }
+        .story-silo-n { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; }
         .story-silo-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
         .silo-slot { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; padding: 5px 11px; border-radius: 7px; border: 1.5px dashed ${T.ink3}; color: ${T.ink3}; }
         .silo-slot.kim { border-color: ${T.blue}66; color: ${T.blue}; } .silo-slot.nima { border-color: #E8A13A88; color: #B77A16; } .silo-slot.natija { border-color: ${T.success}66; color: ${T.success}; }
@@ -3203,7 +3212,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         /* JTBD-portlar (F-0727-58): havodagi 1-2-3 indikator + rangli inputlar */
         .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
         .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
-        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
         .jws.cur .jws-t { color: ${T.accent}; }
@@ -3236,18 +3245,18 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .ss-slot.natija.on { color: ${T.success}; border-bottom-color: ${T.success}55; }
         .swed-hint.swed-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .swed-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
-        .swed-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
+        .swed-cnt { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .swed-save { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 13px 26px; background: ${T.accent}; color: #fff; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.18s; }
         .swed-save:hover:not(:disabled) { background: ${T.accentVivid}; transform: translateY(-1px); }
         .swed-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
         .svd { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 16px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); }
-        .svd-n { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: ${T.ink3}; }
+        .svd-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 14px; color: ${T.ink3}; }
         .svd-n.ok { color: ${T.success}; }
         .svd-card { background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         .svd-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; }
         @media (prefers-reduced-motion: reduce) { .svd-card { animation: none; } }
         .svd-top { display: flex; align-items: center; gap: 8px; }
-        .svd-num { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: ${T.success}; }
+        .svd-num { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; color: ${T.success}; }
         .svd-stars { display: inline-flex; align-items: center; }
         .svd-stars .star { font-size: 15px; }
         .svd-edit { margin-left: auto; background: ${T.paper}; border: none; border-radius: 8px; padding: 0 10px; height: 28px; font-family: 'Manrope'; font-weight: 700; font-size: 12px; white-space: nowrap; color: ${T.ink2}; cursor: pointer; box-shadow: 0 3px 8px -3px rgba(${T.shadowBase},0.3); transition: color 0.15s, transform 0.15s; }
@@ -3338,7 +3347,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pd-card { display: inline-flex; align-items: center; gap: 8px; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 9px 13px; cursor: pointer; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.22); transition: transform 0.15s, box-shadow 0.15s; max-width: 100%; }
         .pd-card:hover { transform: translateY(-2px); }
         .pd-card.sel { box-shadow: 0 0 0 2.5px ${T.accent}, 0 10px 22px -7px rgba(91,61,230,0.4); transform: translateY(-2px); }
-        .pd-card-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; }
+        .pd-card-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; }
         .pd-card-txt { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; line-height: 1.35; overflow-wrap: anywhere; }
         /* Muhimlik darajalari: qatorlar tepadan pastga — yuqorisi katta-yorqin, pasti kichik-xira */
         .ms-list { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -3393,8 +3402,8 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .kdx { display: flex; align-items: center; gap: clamp(10px,1.8vw,18px); }
         @media (max-width: 760px) { .kdx { flex-direction: column; align-items: stretch; } .kdx-arrow { transform: rotate(90deg); align-self: center; } }
         .kdx-fn { flex-shrink: 0; border-radius: 14px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 12px 28px -10px rgba(${T.shadowBase},0.35); }
-        .kdx-fn-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E92B4; }
-        .kdx-fn-code { display: block; padding: clamp(18px,2.4vw,26px) clamp(18px,2.6vw,28px); font-family: 'JetBrains Mono', monospace; font-size: clamp(13px,1.7vw,16.5px); color: ${CODE.text}; white-space: nowrap; }
+        .kdx-fn-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: #7E92B4; }
+        .kdx-fn-code { display: block; padding: clamp(18px,2.4vw,26px) clamp(18px,2.6vw,28px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.7vw,16.5px); color: ${CODE.text}; white-space: nowrap; }
         .kx-kim { color: #7DB8E8; } .kx-nima { color: ${CODE.attr}; } .kx-natija { color: ${CODE.str}; }
         .kdx-arrow { font-size: clamp(22px,3vw,30px); color: ${T.accent}; flex-shrink: 0; animation: kdx-arrow-nudge 1.6s ease-in-out infinite; }
         @keyframes kdx-arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
@@ -3429,7 +3438,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
         .rcp-step.wide { grid-column: 1 / -1; }
         .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
-        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
         .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .rcp-s { display: block; font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink2}; margin-top: 2px; line-height: 1.4; }
         .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
@@ -3437,7 +3446,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pair-now { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; line-height: 1.45; }
         .pair-who { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 13px; vertical-align: middle; }
         .pair-who.b { background: ${T.success}; }
-        .pair-clock { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .pair-clock { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
         .pair-prog { position: relative; height: 8px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; }
         .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
         .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
@@ -3446,7 +3455,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pair-ring-mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
         .pair-ring-who { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 14px; }
         .pair-ring-who.b { background: ${T.success}; }
-        .pair-ring-sec { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
+        .pair-ring-sec { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
         .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
         .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
         .pair-timer-btns { display: flex; gap: 8px; }
@@ -3477,7 +3486,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pmtask { background: ${T.paper}; border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 12px 30px -12px rgba(91,61,230,0.28); border: 1.5px solid ${T.line}; border-left: 5px solid ${T.accent}; }
         .pmtask-head { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; background: ${T.accentSoft}; }
         .pmtask-tag { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.04em; color: ${T.accent}; }
-        .pmtask-id { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; color: ${T.accent}; background: ${T.paper}; border-radius: 99px; padding: 3px 10px; }
+        .pmtask-id { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11px; color: ${T.accent}; background: ${T.paper}; border-radius: 99px; padding: 3px 10px; }
         .pmtask-rows { display: flex; flex-direction: column; }
         .pmtask-row { display: flex; gap: 12px; padding: 11px 16px; align-items: baseline; }
         .pmtask-row + .pmtask-row { border-top: 1px solid ${T.line}; }
@@ -3491,15 +3500,15 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pmtask-steps { display: flex; flex-direction: column; gap: 9px; padding: 14px 16px 16px; background: ${T.bg}; }
         .pmtask-step { display: flex; align-items: center; gap: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,14.5px); line-height: 1.45; color: ${T.ink2}; }
         .pmtask-step b { color: ${T.accent}; margin-right: 4px; }
-        .pmtask-step i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11.5px; }
+        .pmtask-step i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11.5px; }
         .pmsteps { background: ${T.bg}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
         .pmsteps-ol { margin: 0; padding-left: 0; list-style: none; counter-reset: pms; display: flex; flex-direction: column; gap: 9px; }
         .pmsteps-ol li { counter-increment: pms; position: relative; padding-left: 38px; font-family: 'Source Serif 4', serif; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; line-height: 1.45; min-height: 26px; display: flex; align-items: center; }
         /* «3 qadam» raqam-doirachalari — to'la doira, indigo, oq halqa bilan */
-        .pmsteps-ol li::before { content: counter(pms); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .pmsteps-ol li::before { content: counter(pms); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🛠️ JONLI PRAKTIKA (self-report) === */
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
@@ -3624,10 +3633,10 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .sboard-ic { font-size: 17px; line-height: 1; }
         .sboard-lbl { font-weight: 800; font-size: 12px; color: ${T.ink2}; letter-spacing: 0.02em; }
         .sboard-slots { display: flex; gap: 5px; }
-        .sboard-slot { width: 20px; height: 20px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.25s; }
+        .sboard-slot { width: 20px; height: 20px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.25s; }
         .sboard-slot.ok { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         .sboard-slot.big { width: 30px; height: 30px; font-size: 14px; }
-        .sboard-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.accent}; font-weight: 700; }
+        .sboard-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.accent}; font-weight: 700; }
         .sboard.full .sboard-n { color: ${T.success}; }
         @media (max-width: 640px) { .sboard { right: 8px; bottom: 74px; height: 40px; } .sboard-lbl { display: none; } }
         @media (prefers-reduced-motion: reduce) { .sboard-slot.ok { animation: none; } }
@@ -3662,7 +3671,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
           animation: cs-current 3.4s linear infinite; }
         @keyframes cs-current { to { --csa: 360deg; } }
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
         @keyframes cs-float { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(16px,-14px) rotate(5deg); } }
         .cs-dash { position: absolute; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(190,150,255,.55), transparent); animation: cs-dash-run 5.5s linear infinite; }
@@ -3685,7 +3694,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         @keyframes cs-wglow { 0%,100% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 14px rgba(150,90,255,.5)); } 50% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 27px rgba(172,112,255,.95)); } }
         @keyframes cs-glint { 0% { background-position: 135% 0; } 60%,100% { background-position: -55% 0; } }
         .cs-clickable:hover .cs-word { animation-duration: 1.4s; }
-        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3699,7 +3708,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .cs-off { filter: saturate(.45) brightness(.74); animation: cs-ignite 1.5s ease-out both, cs-breathe 6.5s ease-in-out 1.5s infinite; }
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
-        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3791,7 +3800,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
         .qz-x { position: fixed; top: 14px; right: 16px; z-index: 10600; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(186,140,255,0.34); background: rgba(255,255,255,0.06); color: #D9C9FF; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(124,58,237,0.22); backdrop-filter: blur(6px); transition: transform 0.25s, color 0.2s, background 0.2s; }
@@ -3833,7 +3842,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }

@@ -35,7 +35,7 @@ const G = "'Source Serif 4', Georgia, serif"; // sayt-maketi sarlavhalari (PM-ST
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -303,7 +303,7 @@ const RECAPS = {
   4: {
     title: { uz: 'Sayt aniq odamlar uchun ochiladi', ru: 'Сайт делают для конкретных людей' }, cards: [
       { ic: '🎯', h: { uz: 'Har bir sayt aniq odamlar guruhi uchun ishlaydi', ru: 'Каждый сайт работает для конкретной группы людей' },
-        body: { uz: <>Video sayti — bo'sh vaqtida qiziqarli narsa izlaydiganlar uchun. Xabar ilovasi — uzoqdagi yaqinlari bilan gaplashadiganlar uchun. Bu guruh saytning <b>auditoriyasi</b> deyiladi.</>, ru: <>Видеосайт — для тех, кто ищет интересное в свободное время. Мессенджер — для тех, кто общается с далёкими близкими. Эта группа называется <b>аудиторией</b> сайта.</> },
+        body: { uz: <>YouTube — bo'sh vaqtida qiziqarli narsa izlaydiganlar uchun. Telegram — uzoqdagi yaqinlari bilan gaplashadiganlar uchun. Bu guruh saytning <b>auditoriyasi</b> deyiladi.</>, ru: <>YouTube — для тех, кто ищет интересное в свободное время. Telegram — для тех, кто общается с далёкими близкими. Эта группа называется <b>аудиторией</b> сайта.</> },
         vis: { uz: <RcFlow items={['👥 Aniq odamlar', '🌐 Sayt', '😊 Ular qaytib keladi']} />, ru: <RcFlow items={['👥 Конкретные люди', '🌐 Сайт', '😊 Они возвращаются']} /> },
         ask: { uz: "Sevimli saytingiz kimlar uchun qilingan deb o'ylaysiz?", ru: 'Как думаете, для кого сделан ваш любимый сайт?' } },
       { ic: '🌯', h: { uz: 'Lavash do\'koni kartasi ham shunday boshlanadi', ru: 'Карточка лавашной начинается так же' },
@@ -594,7 +594,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -616,7 +616,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните заново.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -945,9 +945,9 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 2 — HAR SAYT KIMGA ISHLAYDI (tap-reveal, 46-qonun: toggle) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const SITES = {
-    video: { ic: '🎬', name: { uz: 'Video sayti', ru: 'Видеосайт' }, url: 'video.uz', mock: { logo: 'V', color: '#E0559A', name: { uz: 'Video', ru: 'Видео' }, headline: { uz: "Bugun nima ko'ramiz?", ru: 'Что посмотрим сегодня?' }, rows: [{ uz: 'Dasturlash darsi · 12 daq', ru: 'Урок программирования · 12 мин' }, { uz: 'Sayohat lavhasi · 8 daq', ru: 'Ролик о путешествии · 8 мин' }], cta: { uz: "Ko'rish", ru: 'Смотреть' } }, kim: { uz: "Bo'sh vaqtida qiziqarli narsa izlaydigan odamlar", ru: 'Люди, которые ищут интересное в свободное время' }, nega: { uz: 'Shuning uchun bosh sahifada tavsiya qilingan videolar turadi.', ru: 'Поэтому на главной странице стоят рекомендованные видео.' } },
-    xabar: { ic: '💬', name: { uz: 'Xabar ilovasi', ru: 'Мессенджер' }, url: 'xabar.uz', mock: { logo: 'X', color: '#0E86C4', name: { uz: 'Xabar', ru: 'Сообщения' }, headline: { uz: 'Suhbatlar', ru: 'Чаты' }, rows: [{ uz: 'Ona — Salom, qalaysan?', ru: 'Мама — Привет, как дела?' }, { uz: 'Sinfdosh — Bugun chiqamizmi?', ru: 'Одноклассник — Сегодня выйдем?' }], cta: { uz: 'Yozish', ru: 'Написать' } }, kim: { uz: 'Uzoqdagi yaqinlari bilan gaplashadigan odamlar', ru: 'Люди, которые общаются с далёкими близкими' }, nega: { uz: "Shuning uchun birinchi ekranda suhbatlar ro'yxati turadi.", ru: 'Поэтому на первом экране стоит список чатов.' } },
-    taksi: { ic: '🚕', name: { uz: 'Taksi ilovasi', ru: 'Приложение такси' }, url: 'taksi.uz', mock: { logo: 'T', color: '#FFB300', name: { uz: 'Taksi', ru: 'Такси' }, headline: { uz: 'Mashina chaqiring', ru: 'Вызовите машину' }, sub: { uz: "Narx oldindan ma'lum: 18 000 so'm.", ru: 'Цена известна заранее: 18 000 сум.' }, cta: { uz: 'Chaqirish', ru: 'Вызвать' } }, kim: { uz: "Shahar ichida tez borishi kerak bo'lgan odamlar", ru: 'Люди, которым нужно быстро добраться по городу' }, nega: { uz: 'Shuning uchun eng katta tugma — «Chaqirish».', ru: 'Поэтому самая большая кнопка — «Вызвать».' } }
+    video: { ic: '🎬', name: { uz: 'YouTube', ru: 'YouTube' }, url: 'youtube.com', mock: { logo: 'Y', color: '#FF0000', name: { uz: 'YouTube', ru: 'YouTube' }, headline: { uz: "Bugun nima ko'ramiz?", ru: 'Что посмотрим сегодня?' }, rows: [{ uz: 'Dasturlash darsi · 12 daq', ru: 'Урок программирования · 12 мин' }, { uz: 'Sayohat lavhasi · 8 daq', ru: 'Ролик о путешествии · 8 мин' }], cta: { uz: "Ko'rish", ru: 'Смотреть' } }, kim: { uz: "Bo'sh vaqtida qiziqarli narsa izlaydigan odamlar", ru: 'Люди, которые ищут интересное в свободное время' }, nega: { uz: 'Shuning uchun bosh sahifada tavsiya qilingan videolar turadi.', ru: 'Поэтому на главной странице стоят рекомендованные видео.' } },
+    xabar: { ic: '💬', name: { uz: 'Telegram', ru: 'Telegram' }, url: 'telegram.org', mock: { logo: 'T', color: '#29A9EB', name: { uz: 'Telegram', ru: 'Telegram' }, headline: { uz: 'Suhbatlar', ru: 'Чаты' }, rows: [{ uz: 'Ona — Salom, qalaysan?', ru: 'Мама — Привет, как дела?' }, { uz: 'Sinfdosh — Bugun chiqamizmi?', ru: 'Одноклассник — Сегодня выйдем?' }], cta: { uz: 'Yozish', ru: 'Написать' } }, kim: { uz: 'Uzoqdagi yaqinlari bilan gaplashadigan odamlar', ru: 'Люди, которые общаются с далёкими близкими' }, nega: { uz: "Shuning uchun birinchi ekranda suhbatlar ro'yxati turadi.", ru: 'Поэтому на первом экране стоит список чатов.' } },
+    taksi: { ic: '🚕', name: { uz: 'Yandex Go', ru: 'Yandex Go' }, url: 'taxi.yandex.uz', mock: { logo: 'Y', color: '#FFB300', name: { uz: 'Yandex Go', ru: 'Yandex Go' }, headline: { uz: 'Mashina chaqiring', ru: 'Вызовите машину' }, sub: { uz: "Narx oldindan ma'lum: 18 000 so'm.", ru: 'Цена известна заранее: 18 000 сум.' }, cta: { uz: 'Chaqirish', ru: 'Вызвать' } }, kim: { uz: "Shahar ichida tez borishi kerak bo'lgan odamlar", ru: 'Люди, которым нужно быстро добраться по городу' }, nega: { uz: 'Shuning uchun eng katta tugma — «Chaqirish».', ru: 'Поэтому самая большая кнопка — «Вызвать».' } }
   };
   const KEYS = ['video', 'xabar', 'taksi'];
   const [active, setActive] = useState(null);
@@ -1072,10 +1072,35 @@ const Screen4 = (props) => (
 
 // ===== KEYS-SLAYD — «Facebook qanday boshlangan» (bosqichma-bosqich + bashorat, BALL YO'Q) =====
 // 33/56/79-qonunlar: kamida bitta mikro-bashorat, natija ASL javobni ochadi, «ball yo'q» ochiq aytiladi.
+// 156-qonun 4-band: izoh NOMLAYDI, rasm KO'RSATADI. Garvard — chizib bo'lmaydigan referent
+// (real joy), shuning uchun maket emas, FOTO. Rasm yuklanmasa emoji qoladi va dars TO'XTAMAYDI
+// (155-qonun 3-bandi bilan bir mantiq). Manba: foydalanuvchining o'z media-kutubxonasi.
+const PHOTO_SET = {
+  garvard: {
+    img: 'https://go.coddycamp.uz/uploads/media_library/801be58d0e9f80878c76c1265e1adcf2.jpg',
+    emoji: '🎓',
+    bg: 'linear-gradient(160deg,#f0e3d0,#fbf6ee)',
+    alt: { uz: 'Garvard universiteti binosi', ru: 'Здание Гарвардского университета' },
+  },
+};
+const Photo = ({ kind }) => {
+  const sc = PHOTO_SET[kind];
+  const [failed, setFailed] = useState(false);
+  if (!sc) return null;
+  if (sc.img && !failed) {
+    return (
+      <span className="k-photo" style={{ background: sc.bg }}>
+        <img src={sc.img} alt={tr(sc.alt)} onError={() => setFailed(true)} />
+      </span>
+    );
+  }
+  return <span className="k-ic">{sc.emoji}</span>;
+};
+
 const K_SLIDES = [
   { ic: '🏫', t: { uz: "2004-yil. Bir universitet talabasi oddiy sayt ochdi — u faqat o'z universiteti uchun edi.", ru: '2004 год. Студент одного университета открыл простой сайт — только для своего университета.' } },
   { bet: true, ask: { uz: 'Sizningcha, bu sayt boshida kimlar uchun ochilgan edi?', ru: 'Как вы думаете, для кого этот сайт открыли вначале?' }, opts: [{ uz: 'Bitta universitet talabalari uchun', ru: 'Для студентов одного университета' }, { uz: 'Amerikadagi barcha talabalar uchun', ru: 'Для всех студентов Америки' }, { uz: 'Butun dunyo uchun', ru: 'Для всего мира' }], right: 0 },
-  { ic: '🎓', t: { uz: "Avval sayt faqat Garvard universiteti (Amerikadagi mashhur universitet) talabalari uchun ochiq edi. Boshqalar ro'yxatdan o'ta olmasdi.", ru: 'Сначала сайт был открыт только для студентов Гарварда (известный университет в Америке). Остальные не могли зарегистрироваться.' } },
+  { ic: '🎓', photo: 'garvard', t: { uz: "Avval sayt faqat Garvard universiteti (Amerikadagi mashhur universitet) talabalari uchun ochiq edi. Boshqalar ro'yxatdan o'ta olmasdi.", ru: 'Сначала сайт был открыт только для студентов Гарварда (известный университет в Америке). Остальные не могли зарегистрироваться.' } },
   { ic: '🔗', t: { uz: "Keyin boshqa universitetlar ham qo'shildi. Saytdan foydalanadiganlar ko'paydi.", ru: 'Потом подключились другие университеты. Пользователей стало больше.' } },
   { ic: '🌍', t: { uz: "Oradan ikki yil o'tib, sayt butun dunyoga ochildi. Bugun uni Facebook nomi bilan bilamiz.", ru: 'Через два года сайт открылся всему миру. Сегодня мы знаем его под именем Facebook.' } }
 ];
@@ -1118,7 +1143,7 @@ const ScreenKeys = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           ) : (
             <div className="k-body">
-              <span className="k-ic">{cur.ic}</span>
+              {cur.photo ? <Photo kind={cur.photo} /> : <span className="k-ic">{cur.ic}</span>}
               <p className="k-t">{tr(cur.t)}</p>
             </div>
           )}
@@ -2268,6 +2293,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
@@ -2386,7 +2419,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2909,7 +2943,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.45s cubic-bezier(.2,.7,.2,1) forwards; opacity: 0; }
@@ -3125,7 +3159,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
 
         /* Dars-DNK: suzuvchi tokenlar + tezlik-chiziqlar + yashin-flash */
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none;
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none;
           color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4);
           animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
@@ -3172,7 +3206,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
 
         /* HUD-chiziq: turnir-tablo uslubidagi neon-pilyulalar */
         .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3190,7 +3224,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
         .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+          font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3207,7 +3241,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
@@ -3255,7 +3289,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
@@ -3362,7 +3396,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(14,134,196,0.3) !important; }
 
         /* kod atamalari — chip ko'rinishi (savol/variant/izohlarda) */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(40,34,82,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(40,34,82,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
 
@@ -3424,7 +3458,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .bb-dots { display: flex; gap: 5px; }
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
-        .bp-url { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; } .lock { color: ${T.success}; font-size: 8px; }
+        .bp-url { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; } .lock { color: ${T.success}; font-size: 8px; }
         .bp-body { padding: clamp(13px,2.2vw,18px); }
         .pg-in { animation: pg-in 0.38s cubic-bezier(.2,.7,.2,1); } @keyframes pg-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
@@ -3447,7 +3481,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         /* G'oya tug'iladi (Screen7) — mantiqiy zanjir bog'lovchisi */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
         .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
-        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
 
@@ -3457,7 +3491,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
 
         /* === CONN === */
         .conn-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; }
-        .conn-sub { font-family: 'JetBrains Mono'; font-size: 10px; color: ${T.ink3}; text-align: center; }
+        .conn-sub { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 10px; color: ${T.ink3}; text-align: center; }
         @keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
 
         /* === ALGO BUILD === */
@@ -3479,7 +3513,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .g11-slot.filled { background: ${T.paper}; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); }
         .g11-slabel { font-size: 10px; text-transform: uppercase; min-width: 52px; font-weight: 700; letter-spacing: 0.04em; transition: color 0.3s; }
         .g11-val { display: flex; align-items: center; gap: 8px; flex: 1; font-family: 'Manrope', sans-serif; font-size: 13.5px; color: ${T.ink}; font-weight: 500; }
-        .g11-empty { flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink3}; font-style: italic; }
+        .g11-empty { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink3}; font-style: italic; }
         /* F-0731-01: bosqichli ochilish — tasdiqlangan qator (yig'ilgan), qulflangan qator (keyingi qadam) */
         .g11-donerow { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 11px; background: ${T.paper}; border-left: 3px solid; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); }
         .g11-done-ic { width: 19px; height: 19px; border-radius: 50%; color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -3539,9 +3573,9 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
         .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
         .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
         .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
         .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
@@ -3667,14 +3701,14 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .stq { display: flex; align-items: center; gap: clamp(10px,1.8vw,18px); }
         @media (max-width: 760px) { .stq { flex-direction: column; align-items: stretch; } .stq-arrow { transform: rotate(90deg); align-self: center; } }
         .stq-code { flex: 1; min-width: 0; border-radius: 14px; overflow: hidden; background: #10141F; box-shadow: 0 12px 28px -12px rgba(${T.shadowBase},0.4); }
-        .stq-code-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E92B4; }
-        .stq-code-body { display: flex; flex-direction: column; padding: clamp(12px,1.8vw,18px) clamp(14px,2vw,20px); font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.4vw,13.5px); line-height: 1.75; }
+        .stq-code-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: #7E92B4; }
+        .stq-code-body { display: flex; flex-direction: column; padding: clamp(12px,1.8vw,18px) clamp(14px,2vw,20px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13.5px); line-height: 1.75; }
         .stq-l { white-space: pre; }
         .stq-l.t { color: #FFD8A8; } .stq-l.m { color: #A9C7FF; } .stq-l.f { color: #B6F0C8; } .stq-l.dim { color: #6C7A94; }
         .stq-arrow { font-size: clamp(20px,2.8vw,28px); color: ${T.accent}; flex-shrink: 0; }
         .stq-page { flex: 1; min-width: 0; border-radius: 14px; overflow: hidden; background: ${T.paper}; box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.3), 0 0 0 1px ${T.line}; display: flex; flex-direction: column; }
         .stq-pbar { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: ${T.bg}; border-bottom: 1px solid ${T.line}; }
-        .stq-purl { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
+        .stq-purl { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 10.5px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
         .stq-mid { position: relative; padding: 16px 14px 14px; display: flex; flex-direction: column; gap: 9px; background: #FBFAFE; }
         .stq-tag { position: absolute; top: 5px; right: 10px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.accent}; }
         .stq-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -3691,7 +3725,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .hw-big:hover { transform: translateY(-3px) scale(1.02); }
         /* 2) Suzuvchi xira tokenlar — dars so'zlari kapsula osmonida */
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         /* 3) Zaryad-effekt — bosilganda kapsula yorishib "otiladi" */
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
@@ -3717,7 +3751,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         /* JTBD-portlar (F-0727-58): havodagi 1-2-3 indikator + rangli inputlar */
         .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
         .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
-        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
         .jws.cur .jws-t { color: ${T.accent}; }
@@ -3750,18 +3784,18 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .ss-slot.yechim.on { color: ${SLOT.yechim}; border-bottom-color: ${SLOT.yechim}55; }
         .swed-hint.swed-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .swed-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
-        .swed-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
+        .swed-cnt { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .swed-save { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 13px 26px; background: ${T.accent}; color: #fff; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.18s; }
         .swed-save:hover:not(:disabled) { background: ${T.accentVivid}; transform: translateY(-1px); }
         .swed-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
         .svd { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 16px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); }
-        .svd-n { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: ${T.ink3}; }
+        .svd-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 14px; color: ${T.ink3}; }
         .svd-n.ok { color: ${T.success}; }
         .svd-card { background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         .svd-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; }
         @media (prefers-reduced-motion: reduce) { .svd-card { animation: none; } }
         .svd-top { display: flex; align-items: center; gap: 8px; }
-        .svd-num { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: ${T.success}; }
+        .svd-num { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; color: ${T.success}; }
         .svd-edit { margin-left: auto; background: ${T.paper}; border: none; border-radius: 8px; padding: 0 10px; height: 28px; font-family: 'Manrope'; font-weight: 700; font-size: 12px; white-space: nowrap; color: ${T.ink2}; cursor: pointer; box-shadow: 0 3px 8px -3px rgba(${T.shadowBase},0.3); transition: color 0.15s, transform 0.15s; }
         .svd-edit:hover { color: ${T.accent}; transform: scale(1.08); }
         .svd-sent { font-size: 13.5px; color: ${T.ink2}; line-height: 1.45; margin: 0; overflow-wrap: anywhere; }
@@ -3777,7 +3811,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
         .rcp-step.wide { grid-column: 1 / -1; }
         .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
-        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
         .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .rcp-s { display: block; font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink2}; margin-top: 2px; line-height: 1.4; }
         .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
@@ -3789,7 +3823,7 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .pair-ring-mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
         .pair-ring-who { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 14px; }
         .pair-ring-who.b { background: ${T.success}; }
-        .pair-ring-sec { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
+        .pair-ring-sec { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
         .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
         .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
         .pair-timer-btns { display: flex; gap: 8px; }
@@ -3851,9 +3885,12 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .k-slide { position: relative; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,3.4vw,32px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.24); overflow: hidden; min-width: 0; }
         /* Tepa-lenta bezak emas: darsning uch javobi tartibida — KIM (ko'k) → MUAMMO (amber) → YECHIM (yashil) */
         .k-slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, ${SLOT.kim} 0%, ${SLOT.kim} 30%, ${AMBER} 38%, ${AMBER} 62%, ${SLOT.yechim} 70%, ${SLOT.yechim} 100%); }
-        .k-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11.5px; color: ${T.ink3}; }
+        .k-count { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11.5px; color: ${T.ink3}; }
         .k-body { display: flex; flex-direction: column; align-items: center; gap: 12px; }
         .k-ic { font-size: clamp(38px,6vw,58px); line-height: 1; }
+        /* Foto — emoji o'rnida, o'sha ustunda. Balandligi matnni pastga surib yubormaydi. */
+        .k-photo { display: block; width: min(360px, 100%); height: clamp(120px,18vw,180px); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.4); }
+        .k-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .k-t { font-family: 'Source Serif 4', serif; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; line-height: 1.5; max-width: 620px; margin: 0; overflow-wrap: anywhere; }
         .k-bet { display: flex; flex-direction: column; align-items: center; gap: 11px; }
         .k-bet-lbl { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 0.08em; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 13px; }

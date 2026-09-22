@@ -2,18 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // ============================================================
 // PM M2-D2 — UYGA VAZIFA: «KERAKSIZ BANDGA EGASINI TOPING» (PmLesson4 davomi)
-// Darsning uy-vazifa kapsulasi: «2 ta yangi juftlik — bugun keraksizlarga chiqqan bandlardan:
-// bandni olib, kimga kerakli bo'lishini o'ylang → o'sha odam qiyinchiligini bir gapda yozing →
-// yo'qotadigan imkoniyatni yozib saqlang.» — vazifa AYNAN shu.
+// Darsning uy-vazifa kapsulasi: «2 ta yangi karta — bugun keraksizlarga chiqqan bandlardan:
+// bandni olib, kimga kerakli bo'lishini o'ylang → o'sha odam muammosini bir gapda yozing →
+// yo'qotadigan yechimni yozib saqlang.» — vazifa AYNAN shu.
 // 4 bosqich · mezon: TO'RTTALASI bajarilsa «Bajarildi» (HW_PASS_MIN = 4).
-//   1) Juftliklar — darsdagi 3 «qiyinchilik ↔ imkoniyat» (avto: `pm-m2d2-features`)
-//   2) 1-yangi juftlik — keraksiz band → KIM → qiyinchilik → imkoniyat
-//   3) 2-yangi juftlik — boshqa band bilan xuddi shu
+//   1) Kartalar — darsdagi 3 «muammo ↔ yechim» (avto: `pm-m2d2-features`)
+//   2) 1-yangi karta — keraksiz band → KIM → muammo → yechim
+//   3) 2-yangi karta — boshqa band bilan xuddi shu
 //   4) Xulosa — 3 savol birma-bir (Kahoot-uslubi)
 // Misol-olami darsniki: KINOTEATR SAYTI (bir dars — bitta misol-ip, 108/109-qonun).
 // Validatorlar darsniki bilan AYNAN (FLAT/DECOR — PmLesson4.jsx dan; vazifa darsdan
 // qat'iyroq ham, yumshoqroq ham emas). DECOR 2/3-bosqichda BLOK EMAS — band o'zi dekordan
-// olingan, uni ish-fe'lga aylantirish mashqning mag'zi (senariy: pm-senariylar/M2-D2-Imkoniyat-UY.md).
+// olingan, uni ish-fe'lga aylantirish mashqning mag'zi (senariy: pm-senariylar/M2-D2-Yechim-UY.md).
 // Naqsh: src/1-Modull/PmLesson2.homework.jsx (ETALON) · PmLesson1.homework.jsx relslari.
 // Relslar: alohida fayl (darsga TEGILMAYDI) · jonli-sessiya YO'Q · localStorage TTLsiz ·
 // UZ-RU to'liq · PM-STUDIA palitra · onFinished payload (faqat done:true).
@@ -59,26 +59,26 @@ const KIM_MAVHUM_WORDS = { uz: 'hamma|barcha|hammasi|hech kim', ru: 'все|вс
 const KIM_MAVHUM = new RegExp(`^(${KIM_MAVHUM_WORDS.uz}|${KIM_MAVHUM_WORDS.ru})`, 'i');
 const kimMavhum = (s) => KIM_MAVHUM.test((s || '').trim());
 const kimOk = (s) => { const t = (s || '').trim(); return t.length >= KIM_MIN && !kimMavhum(t); };
-// Harakatsiz sifat (darsdagi FLAT) — imkoniyat sifatida o'tmaydi
+// Harakatsiz sifat (darsdagi FLAT) — yechim sifatida o'tmaydi
 const FLAT_UZ = /(chiroyli|go'zal|zamonaviy|qulay|yoqimli)/i;
 const FLAT_RU = /(красив|современ|удобн|приятн)/i;
 const isFlat = (t) => FLAT_UZ.test(t || '') || FLAT_RU.test(t || '');
-// Dars «foydasiz» degan bandlar (darsdagi DECOR) — 1-bosqichda imkoniyat bo'lolmaydi
+// Dars «foydasiz» degan bandlar (darsdagi DECOR) — 1-bosqichda yechim bo'lolmaydi
 const DECOR_UZ = /(musiq|logotip|animatsi|rang|fon\b|bayram|effekt|chiroy|dizayn)/i;
 const DECOR_RU = /(музык|логотип|анимац|цвет|фон\b|праздни|эффект|красив|дизайн)/i;
 const isDecor = (t) => DECOR_UZ.test(t || '') || DECOR_RU.test(t || '');
 const qOk = (s) => (s || '').trim().length >= Q_MIN;
 const fOkLesson = (s) => { const t = (s || '').trim(); return t.length >= F_MIN && !isFlat(t) && !isDecor(t); };
 const fOkNew = (s) => { const t = (s || '').trim(); return t.length >= F_MIN && !isFlat(t); };
-const pairFull = (p) => !!p && qOk(p.qiyinchilik) && fOkLesson(p.imkoniyat);
+const pairFull = (p) => !!p && qOk(p.muammo) && fOkLesson(p.yechim);
 
-// Darsdagi juftliklar (PmLesson4 FEATURES_KEY) — shu brauzerda bo'lsa 1-bosqich avto-to'ladi.
+// Darsdagi kartalar (PmLesson4 FEATURES_KEY) — shu brauzerda bo'lsa 1-bosqich avto-to'ladi.
 const FEATURES_KEY = 'pm-m2d2-features';
 const lessonPairsRead = () => {
   try {
     const a = JSON.parse(localStorage.getItem(FEATURES_KEY) || 'null');
     if (!Array.isArray(a) || !a.length) return null;
-    return a.slice(0, 3).map(p => ({ qiyinchilik: (p && p.qiyinchilik) || '', imkoniyat: (p && p.imkoniyat) || '' }));
+    return a.slice(0, 3).map(p => ({ muammo: (p && p.muammo) || '', yechim: (p && p.yechim) || '' }));
   } catch { return null; }
 };
 
@@ -104,7 +104,7 @@ const BANDS = [
 const QUIZ = [
   {
     id: 'q1',
-    q: { uz: 'Ro\'yxatdagi band hech qanday qiyinchilikka javob bermasa, nima bo\'ladi?', ru: 'Если пункт списка не отвечает ни на одну трудность, что с ним происходит?' },
+    q: { uz: 'Ro\'yxatdagi band hech qanday muammoga javob bermasa, nima bo\'ladi?', ru: 'Если пункт списка не отвечает ни на одну проблему, что с ним происходит?' },
     opts: [
       { uz: "Ro'yxatdan chiqadi — keraksizlarga o'tadi", ru: 'Уходит из списка — в ненужные' },
       { uz: "Ro'yxat boshiga ko'chiriladi", ru: 'Переносится в начало списка' },
@@ -112,12 +112,12 @@ const QUIZ = [
       { uz: 'Kichikroq qilib qoldiriladi', ru: 'Остаётся в уменьшенном виде' },
     ],
     correct: 0,
-    okText: { uz: "To'g'ri! Darsdagi qoida: qiyinchiligi topilmagan imkoniyat ro'yxatdan chiqadi — nomi yoki o'lchami uni qutqarmaydi.", ru: 'Верно! Правило из урока: возможность без найденной трудности уходит из списка — название или размер её не спасают.' },
-    noText: { uz: "Adashdingiz — qiyinchiligi topilmagan band ro'yxatda qolmaydi: u keraksizlarga o'tadi.", ru: 'Неверно — пункт без найденной трудности в списке не остаётся: он уходит в ненужные.' },
+    okText: { uz: "To'g'ri! Darsdagi qoida: muammosi topilmagan yechim ro'yxatdan chiqadi — nomi yoki o'lchami uni qutqarmaydi.", ru: 'Верно! Правило из урока: решение без найденной проблемы уходит из списка — название или размер его не спасают.' },
+    noText: { uz: "Adashdingiz — muammosi topilmagan band ro'yxatda qolmaydi: u keraksizlarga o'tadi.", ru: 'Неверно — пункт без найденной проблемы в списке не остаётся: он уходит в ненужные.' },
   },
   {
     id: 'q2',
-    q: { uz: 'Imkoniyat qanday gap bilan yoziladi?', ru: 'Какой фразой записывается возможность?' },
+    q: { uz: 'Yechim qanday gap bilan yoziladi?', ru: 'Какой фразой записывается решение?' },
     opts: [
       { uz: "Sayt zamonaviy ko'rinadi", ru: 'Сайт выглядит современно' },
       { uz: "Sayt seans jadvalini ko'rsatadi", ru: 'Сайт показывает расписание сеансов' },
@@ -125,39 +125,39 @@ const QUIZ = [
       { uz: 'Sayt hammaga yoqadi', ru: 'Сайт нравится всем' },
     ],
     correct: 1,
-    okText: { uz: "To'g'ri! Imkoniyat harakat bilan yoziladi — ko'rsatadi, saqlaydi, yuboradi: odam oladigan aniq foyda.", ru: 'Верно! Возможность записывается действием — показывает, сохраняет, отправляет: конкретная польза для человека.' },
-    noText: { uz: "Adashdingiz — bu gapda odam oladigan ish yo'q: imkoniyat harakat fe'li bilan yoziladi.", ru: 'Неверно — в этой фразе нет дела для человека: возможность записывается глаголом действия.' },
+    okText: { uz: "To'g'ri! Yechim harakat bilan yoziladi — ko'rsatadi, saqlaydi, yuboradi: odam oladigan aniq foyda.", ru: 'Верно! Решение записывается действием — показывает, сохраняет, отправляет: конкретная польза для человека.' },
+    noText: { uz: "Adashdingiz — bu gapda odam oladigan ish yo'q: yechim harakat fe'li bilan yoziladi.", ru: 'Неверно — в этой фразе нет дела для человека: решение записывается глаголом действия.' },
   },
   {
     id: 'q3',
     q: { uz: 'Saytga yangi band qo\'shishdan oldin birinchi savol qaysi?', ru: 'Какой первый вопрос перед добавлением нового пункта на сайт?' },
     opts: [
-      { uz: 'Bu kimning qaysi qiyinchiligini yo\'qotadi?', ru: 'Чью и какую трудность это убирает?' },
+      { uz: 'Bu kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему это убирает?' },
       { uz: 'Boshqa saytlarda shunday band bormi?', ru: 'Есть ли такой пункт на других сайтах?' },
       { uz: 'Bu band chiroyli ko\'rinadimi?', ru: 'Красиво ли выглядит этот пункт?' },
       { uz: 'Do\'stlarim buni maqtaydimi?', ru: 'Похвалят ли это мои друзья?' },
     ],
     correct: 0,
-    okText: { uz: "To'g'ri! Har imkoniyat shu savoldan boshlanadi — javob topilmasa, band ro'yxatga kirmaydi.", ru: 'Верно! Каждая возможность начинается с этого вопроса — нет ответа, пункт в список не попадает.' },
-    noText: { uz: "Adashdingiz — birinchi savol odam va uning qiyinchiligi haqida: javob topilmasa, band ro'yxatga kirmaydi.", ru: 'Неверно — первый вопрос про человека и его трудность: нет ответа — пункт в список не попадает.' },
+    okText: { uz: "To'g'ri! Har yechim shu savoldan boshlanadi — javob topilmasa, band ro'yxatga kirmaydi.", ru: 'Верно! Каждое решение начинается с этого вопроса — нет ответа, пункт в список не попадает.' },
+    noText: { uz: "Adashdingiz — birinchi savol odam va uning muammosi haqida: javob topilmasa, band ro'yxatga kirmaydi.", ru: 'Неверно — первый вопрос про человека и его проблему: нет ответа — пункт в список не попадает.' },
   },
 ];
 
-// ===== Imkoniyat-ro'yxati ko'rinishi (yakun) — darsdagi 3 juftlik + 2 yangisi aksent bilan =====
+// ===== Yechim-ro'yxati ko'rinishi (yakun) — darsdagi 3 karta + 2 yangisi aksent bilan =====
 const PairsCard = ({ pairs, news }) => (
   <div className="ac">
-    <div className="ac-head"><span className="ac-tag">🗂 {tr({ uz: 'Imkoniyat-ro\'yxati', ru: 'Список возможностей' })}</span></div>
+    <div className="ac-head"><span className="ac-tag">🗂 {tr({ uz: 'Yechim-ro\'yxati', ru: 'Список решений' })}</span></div>
     {(pairs || []).map((p, i) => (
       <div key={`p${i}`} className="ac-row">
         <span className="ac-k">{Ico.solution(14)} {i + 1}</span>
-        <span className="ac-v"><b>{(p.imkoniyat || '').trim()}</b> — {(p.qiyinchilik || '').trim()}</span>
+        <span className="ac-v"><b>{(p.yechim || '').trim()}</b> — {(p.muammo || '').trim()}</span>
       </div>
     ))}
     {(news || []).map((d, i) => (
       <div key={`n${i}`} className="ac-row">
         <span className="ac-k">{Ico.star(14)} {(pairs || []).length + i + 1}</span>
         <span className="ac-v">
-          <b className="ac-new">{(d.imkoniyat || '').trim()}</b> — {(d.qiyinchilik || '').trim()}
+          <b className="ac-new">{(d.yechim || '').trim()}</b> — {(d.muammo || '').trim()}
           <span className="ac-src">{BANDS[d.band] ? BANDS[d.band].ic : ''} {BANDS[d.band] ? tr(BANDS[d.band].t) : ''} · {Ico.user(11)} {(d.kim || '').trim()}</span>
         </span>
       </div>
@@ -191,15 +191,15 @@ const Confetti = () => {
 // BOSQICH-EKRANLAR
 // ============================================================
 
-// — 1-BOSQICH: darsdagi juftliklar —
+// — 1-BOSQICH: darsdagi kartalar —
 const PAIR_FIELDS = [
-  { k: 'qiyinchilik', min: Q_MIN, max: 160, ic: Ico.problem(15), lbl: { uz: 'QIYINCHILIK', ru: 'ТРУДНОСТЬ' },
+  { k: 'muammo', min: Q_MIN, max: 160, ic: Ico.problem(15), lbl: { uz: 'MUAMMO', ru: 'ПРОБЛЕМА' },
     ph: { uz: 'Masalan: film qachon boshlanishini bilmaydi', ru: 'Например: не знает, когда начинается фильм' } },
-  { k: 'imkoniyat', min: F_MIN, max: 160, ic: Ico.solution(15), lbl: { uz: 'IMKONIYAT', ru: 'ВОЗМОЖНОСТЬ' },
+  { k: 'yechim', min: F_MIN, max: 160, ic: Ico.solution(15), lbl: { uz: 'YECHIM', ru: 'РЕШЕНИЕ' },
     ph: { uz: "Masalan: seans jadvalini ko'rsatadi", ru: 'Например: показывает расписание сеансов' } },
 ];
 const StagePairs = ({ pairs, setPairs }) => {
-  const list = [0, 1, 2].map(i => (pairs && pairs[i]) || { qiyinchilik: '', imkoniyat: '' });
+  const list = [0, 1, 2].map(i => (pairs && pairs[i]) || { muammo: '', yechim: '' });
   const firstBad = list.findIndex(p => !pairFull(p));
   const setField = (i, k, v) => {
     const next = list.map((p, j) => (j === i ? { ...p, [k]: v } : p));
@@ -207,17 +207,17 @@ const StagePairs = ({ pairs, setPairs }) => {
   };
   return (
     <div className="col">
-      <h2 className="title h-title h-center fade-up">{tr({ uz: <>Darsdagi <span className="italic" style={{ color: T.accent }}>juftliklaringizni</span> tekshiring</>, ru: <>Проверьте свои <span className="italic" style={{ color: T.accent }}>пары</span> с урока</> })}</h2>
-      <p className="h-sub fade-up">{tr({ uz: "Ustaxonada yozgan 3 juftligingiz shu yerda — har imkoniyat o'z qiyinchiligi bilan turibdi.", ru: 'Здесь стоят 3 пары, которые вы написали в мастерской, — каждая возможность со своей трудностью.' })}</p>
+      <h2 className="title h-title h-center fade-up">{tr({ uz: <>Darsdagi <span className="italic" style={{ color: T.accent }}>kartalaringizni</span> tekshiring</>, ru: <>Проверьте свои <span className="italic" style={{ color: T.accent }}>карточки</span> с урока</> })}</h2>
+      <p className="h-sub fade-up">{tr({ uz: "Ustaxonada yozgan 3 kartangiz shu yerda — har yechim o'z muammosi bilan turibdi.", ru: 'Здесь стоят 3 карточки, которые вы написали в мастерской, — каждое решение со своей проблемой.' })}</p>
       <div className="frame fade-up d1" style={{ padding: 'clamp(6px,1.2vw,10px) clamp(14px,2.2vw,20px)' }}>
         {list.map((p, i) => (
           <div key={i} className="wrow" style={{ borderBottom: i < 2 ? `1px solid ${T.line}` : 'none' }}>
-            <div className="wrow-l"><span className="wf-chip"><span className="wf-ic" aria-hidden="true">{Ico.star(14)}</span>{i + 1}-{tr({ uz: 'juftlik', ru: 'пара' })}</span></div>
+            <div className="wrow-l"><span className="wf-chip"><span className="wf-ic" aria-hidden="true">{Ico.star(14)}</span>{i + 1}-{tr({ uz: 'karta', ru: 'карточка' })}</span></div>
             {PAIR_FIELDS.map(f => {
               const v = p[f.k] || '';
               const len = v.trim().length;
-              const ok = f.k === 'qiyinchilik' ? qOk(v) : fOkLesson(v);
-              const pulse = firstBad === i && !ok && (f.k === 'qiyinchilik' ? true : qOk(p.qiyinchilik));
+              const ok = f.k === 'muammo' ? qOk(v) : fOkLesson(v);
+              const pulse = firstBad === i && !ok && (f.k === 'muammo' ? true : qOk(p.muammo));
               return (
                 <div key={f.k} style={{ marginBottom: 8 }}>
                   <div className="wrow-f">
@@ -225,8 +225,8 @@ const StagePairs = ({ pairs, setPairs }) => {
                     <input className={`inp ${pulse ? 'hint' : ''}`} value={v} maxLength={f.max} placeholder={tr(f.ph)} onChange={(e) => setField(i, f.k, e.target.value)} />
                     <span className={`wf-ck ${ok ? 'ok' : ''}`}>{ok ? Ico.check(14) : `${len}/${f.min}`}</span>
                   </div>
-                  {f.k === 'imkoniyat' && isFlat(v) && <div className="wrow-note">{tr({ uz: "Bu — ko'rinish so'zi. Imkoniyat odamga qiladigan ISHNI aytadi: ko'rsatadi, saqlaydi, yuboradi.", ru: 'Это слово про внешний вид. Возможность называет ДЕЛО для человека: показывает, сохраняет, отправляет.' })}</div>}
-                  {f.k === 'imkoniyat' && !isFlat(v) && isDecor(v) && <div className="wrow-note">{tr({ uz: 'Bu band darsda keraksizlarga chiqqan edi — u kimning qaysi qiyinchiligini yo\'qotadi? Ishini yozing.', ru: 'Этот пункт на уроке ушёл в ненужные — чью и какую трудность он убирает? Напишите его дело.' })}</div>}
+                  {f.k === 'yechim' && isFlat(v) && <div className="wrow-note">{tr({ uz: "Bu — ko'rinish so'zi. Yechim odamga qiladigan ISHNI aytadi: ko'rsatadi, saqlaydi, yuboradi.", ru: 'Это слово про внешний вид. Решение называет ДЕЛО для человека: показывает, сохраняет, отправляет.' })}</div>}
+                  {f.k === 'yechim' && !isFlat(v) && isDecor(v) && <div className="wrow-note">{tr({ uz: 'Bu band darsda keraksizlarga chiqqan edi — u kimning qaysi muammosini yo\'qotadi? Ishini yozing.', ru: 'Этот пункт на уроке ушёл в ненужные — чью и какую проблему он убирает? Напишите его дело.' })}</div>}
                 </div>
               );
             })}
@@ -238,21 +238,21 @@ const StagePairs = ({ pairs, setPairs }) => {
 };
 const pairsDone = (arr) => [0, 1, 2].every(i => pairFull((arr || [])[i]));
 
-// — 2/3-BOSQICH: yangi juftlik (band → KIM → qiyinchilik → imkoniyat) —
+// — 2/3-BOSQICH: yangi karta (band → KIM → muammo → yechim) —
 const NEW_FIELDS = [
   { k: 'kim', min: KIM_MIN, max: 120, ic: Ico.user(15), lbl: { uz: 'KIM', ru: 'КТО' },
     ask: { uz: 'Bu band chindan KIMGA kerak bo\'lardi?', ru: 'КОМУ этот пункт был бы нужен на самом деле?' },
     ph: { uz: 'Masalan: filmni hali tanlamagan tomoshabin', ru: 'Например: зритель, который ещё не выбрал фильм' } },
-  { k: 'qiyinchilik', min: Q_MIN, max: 160, ic: Ico.problem(15), lbl: { uz: 'QIYINCHILIK', ru: 'ТРУДНОСТЬ' },
+  { k: 'muammo', min: Q_MIN, max: 160, ic: Ico.problem(15), lbl: { uz: 'MUAMMO', ru: 'ПРОБЛЕМА' },
     ask: { uz: 'O\'sha odamga nimasi qiyin? Bir gap yozing.', ru: 'Что этому человеку трудно? Напишите одной фразой.' },
     ph: { uz: 'Masalan: qaysi film yoqishini bilmaydi', ru: 'Например: не знает, какой фильм понравится' } },
-  { k: 'imkoniyat', min: F_MIN, max: 160, ic: Ico.solution(15), lbl: { uz: 'IMKONIYAT', ru: 'ВОЗМОЖНОСТЬ' },
-    ask: { uz: 'Bu qiyinchilikni qaysi ish yo\'qotadi? Harakat bilan yozing.', ru: 'Какое дело убирает эту трудность? Запишите действием.' },
+  { k: 'yechim', min: F_MIN, max: 160, ic: Ico.solution(15), lbl: { uz: 'YECHIM', ru: 'РЕШЕНИЕ' },
+    ask: { uz: 'Bu muammoni qaysi ish yo\'qotadi? Harakat bilan yozing.', ru: 'Какое дело убирает эту проблему? Запишите действием.' },
     ph: { uz: "Masalan: film treylerini ko'rsatadi", ru: 'Например: показывает трейлер фильма' } },
 ];
 const StageNew = ({ data, setData, n, usedBand }) => {
   const band = typeof data.band === 'number' ? data.band : -1;
-  const fieldOk = (k, v) => (k === 'kim' ? kimOk(v) : k === 'qiyinchilik' ? qOk(v) : fOkNew(v));
+  const fieldOk = (k, v) => (k === 'kim' ? kimOk(v) : k === 'muammo' ? qOk(v) : fOkNew(v));
   const firstBad = NEW_FIELDS.findIndex(f => !fieldOk(f.k, data[f.k]));
   return (
     <div className="col">
@@ -264,7 +264,7 @@ const StageNew = ({ data, setData, n, usedBand }) => {
       <p className="h-sub fade-up">
         {n === 1
           ? tr({ uz: 'Darsda bu bandlarga joy topilmadi. Bittasini tanlang — kimgadir baribir kerak bo\'lishi mumkinmi?', ru: 'На уроке этим пунктам места не нашлось. Выберите один — вдруг он всё же кому-то нужен?' })
-          : tr({ uz: 'Boshqa bandni oling — boshqa odam, boshqa qiyinchilik.', ru: 'Возьмите другой пункт — другой человек, другая трудность.' })}
+          : tr({ uz: 'Boshqa bandni oling — boshqa odam, boshqa muammo.', ru: 'Возьмите другой пункт — другой человек, другая проблема.' })}
       </p>
       <div className="frame fade-up d1">
         <p className="qlbl">{tr({ uz: 'Qaysi bandni olasiz?', ru: 'Какой пункт возьмёте?' })}</p>
@@ -295,7 +295,7 @@ const StageNew = ({ data, setData, n, usedBand }) => {
                 <span className={`wf-ck ${ok ? 'ok' : ''}`}>{ok ? Ico.check(14) : `${len}/${f.min}`}</span>
               </div>
               {f.k === 'kim' && kimMavhum(v) && <div className="wrow-note">{tr({ uz: '«Hamma» — bu hali javob emas. Bu band aynan kimga kerakligini yozing: ular kimlar?', ru: '«Все» — это ещё не ответ. Напишите, кому именно нужен этот пункт: кто они?' })}</div>}
-              {f.k === 'imkoniyat' && isFlat(v) && <div className="wrow-note">{tr({ uz: "Bu — ko'rinish so'zi. Imkoniyat odamga qiladigan ISHNI aytadi: ko'rsatadi, saqlaydi, yuboradi.", ru: 'Это слово про внешний вид. Возможность называет ДЕЛО для человека: показывает, сохраняет, отправляет.' })}</div>}
+              {f.k === 'yechim' && isFlat(v) && <div className="wrow-note">{tr({ uz: "Bu — ko'rinish so'zi. Yechim odamga qiladigan ISHNI aytadi: ko'rsatadi, saqlaydi, yuboradi.", ru: 'Это слово про внешний вид. Решение называет ДЕЛО для человека: показывает, сохраняет, отправляет.' })}</div>}
             </div>
           );
         })}
@@ -303,7 +303,7 @@ const StageNew = ({ data, setData, n, usedBand }) => {
     </div>
   );
 };
-const newDone = (d) => typeof d.band === 'number' && d.band >= 0 && kimOk(d.kim) && qOk(d.qiyinchilik) && fOkNew(d.imkoniyat);
+const newDone = (d) => typeof d.band === 'number' && d.band >= 0 && kimOk(d.kim) && qOk(d.muammo) && fOkNew(d.yechim);
 
 // — 4-BOSQICH: savollar birma-bir (etalon onAnimationEnd naqshi) —
 const QZ_HOLD_MS = 1500, QZ_OUT_MS = 380;
@@ -386,7 +386,7 @@ const sumDone = (d) => QUIZ.every(q => (d.ans || {})[q.id] === q.correct);
 
 // ===== Bosqich-ro'yxati =====
 const STAGES = [
-  { key: 'pairs', n: 1, name: { uz: 'Juftliklar', ru: 'Пары' },        isDone: (d, all) => pairsDone((all || {}).pairs) },
+  { key: 'pairs', n: 1, name: { uz: 'Kartalar', ru: 'Карточки' },        isDone: (d, all) => pairsDone((all || {}).pairs) },
   { key: 'new1',  n: 2, name: { uz: '1-yangi band', ru: '1-й пункт' }, isDone: (d) => newDone(d) },
   { key: 'new2',  n: 3, name: { uz: '2-yangi band', ru: '2-й пункт' }, isDone: (d) => newDone(d) },
   { key: 'sum',   n: 4, name: { uz: 'Xulosa', ru: 'Итог' },            isDone: (d) => sumDone(d) },
@@ -450,7 +450,7 @@ const StageResult = ({ data, goStage, onFinishClick, finished, onCelebrated }) =
       <div className="fin-hero fade-up">
         <div className="fin-trophy" aria-hidden="true">🏆</div>
         <h2 className="title h-title" style={{ margin: '4px 0 2px' }}>
-          {tr({ uz: <>Imkoniyat-<span className="italic" style={{ color: T.accent }}>ro'yxatingiz</span> kengaydi!</>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>список возможностей</span> вырос!</> })}
+          {tr({ uz: <>Yechim-<span className="italic" style={{ color: T.accent }}>ro'yxatingiz</span> kengaydi!</>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>список решений</span> вырос!</> })}
         </h2>
         <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: `Uyga vazifa bajarildi — ${doneCount}/4`, ru: `Домашнее задание выполнено — ${doneCount}/4` })}</p>
         <div className="fin-chips">
@@ -506,7 +506,7 @@ export default function PmLesson4Homework({ lang: langProp, onFinished }) {
     const payload = hwSealRead() || {
       lessonId: HW_ID, kind: 'homework', done: passed,
       stages: `${doneCount}/${STAGES.length}`,
-      place: ((n1.imkoniyat || '')).trim(),
+      place: ((n1.yechim || '')).trim(),
       durationSec: Math.round((Date.now() - startRef.current) / 1000),
     };
     hwSealWrite(payload);
@@ -531,7 +531,7 @@ export default function PmLesson4Homework({ lang: langProp, onFinished }) {
         @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         .hw-root { font-family: 'Manrope', system-ui, sans-serif; color: ${T.ink}; background: ${T.bg}; height: 100dvh; overflow: hidden; -webkit-font-smoothing: antialiased; font-feature-settings: "ss01","cv11"; display: flex; flex-direction: column; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .h-title { font-size: clamp(20px,2.6vw,26px); }
         .h-title.h-center { text-align: center; font-size: clamp(24px,3.2vw,32px); margin: 8px auto 6px; text-wrap: balance; }
@@ -602,7 +602,7 @@ export default function PmLesson4Homework({ lang: langProp, onFinished }) {
         .wf-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 99px; padding: 4px 11px 4px 8px; flex-shrink: 0; }
         .wf-mini { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.ink2}; flex-shrink: 0; min-width: 106px; }
         .wf-ic { display: inline-flex; color: ${T.accent}; }
-        .wf-ck { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; display: inline-flex; align-items: center; min-width: 38px; justify-content: flex-end; flex-shrink: 0; }
+        .wf-ck { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: ${T.ink3}; display: inline-flex; align-items: center; min-width: 38px; justify-content: flex-end; flex-shrink: 0; }
         .wf-ck.ok { color: ${T.success}; }
         .wrow-note { margin-top: 7px; font-family: 'Manrope'; font-weight: 600; font-size: 12px; border-radius: 9px; padding: 7px 10px; background: ${T.errSoft}; color: ${T.err}; }
 
@@ -764,8 +764,8 @@ export const HOMEWORK = {
   type: 'pm',
   title: { uz: 'Keraksiz bandlarga egasini toping', ru: 'Найдите хозяина ненужным пунктам' },
   brief: {
-    uz: "Darsda 3 «qiyinchilik ↔ imkoniyat» juftligini yozdingiz — endi keraksizlarga chiqqan bandlardan 2 tasini olasiz: har biriga aniq odam topib, uning qiyinchiligini va buni yo'qotadigan imkoniyatni yozasiz. To'rttala bosqich tugasa — vazifa qabul qilinadi.",
-    ru: 'На уроке вы написали 3 пары «трудность ↔ возможность» — теперь возьмёте 2 пункта из ненужных: для каждого найдёте конкретного человека, его трудность и возможность, которая её убирает. Задание принимается, когда завершены все четыре этапа.',
+    uz: "Darsda 3 «muammo ↔ yechim» kartasini yozdingiz — endi keraksizlarga chiqqan bandlardan 2 tasini olasiz: har biriga aniq odam topib, uning muammosini va buni yo'qotadigan yechimni yozasiz. To'rttala bosqich tugasa — vazifa qabul qilinadi.",
+    ru: 'На уроке вы написали 3 карточки «проблема ↔ решение» — теперь возьмёте 2 пункта из ненужных: для каждого найдёте конкретного человека, его проблему и решение, которое её убирает. Задание принимается, когда завершены все четыре этапа.',
   },
   items: STAGES.map(s => ({ uz: `${s.n}-bosqich · ${s.name.uz}`, ru: `${s.n}-этап · ${s.name.ru}` })),
   passMin: HW_PASS_MIN,

@@ -626,10 +626,10 @@
   "sid": "s15",
   "test": true,
   "missed": false,
-  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · 4 ingredient (xato yo'li yo'q)",
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · 6 band (xato yo'li yo'q)",
   "right": [
    {
-    "click": "button.chip:has-text(\"Tadbir\")"
+    "click": "button.chip:has-text(\"Turnir\")"
    },
    {
     "click": "button.chip:has-text(\"Zamonaviy\")"
@@ -638,13 +638,19 @@
     "click": "button.chip:has-text(\"Ko'k\")"
    },
    {
-    "click": "button.chip:has-text(\"Tugma\")",
+    "click": "button.chip:has-text(\"Tugma\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Ota-onalar\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Batafsil\")",
     "after": 600
    }
   ],
   "wrong": [
    {
-    "click": "button.chip:has-text(\"Tadbir\")"
+    "click": "button.chip:has-text(\"Turnir\")"
    },
    {
     "click": "button.chip:has-text(\"Zamonaviy\")"
@@ -653,7 +659,13 @@
     "click": "button.chip:has-text(\"Ko'k\")"
    },
    {
-    "click": "button.chip:has-text(\"Tugma\")",
+    "click": "button.chip:has-text(\"Tugma\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Ota-onalar\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Batafsil\")",
     "after": 600
    }
   ],

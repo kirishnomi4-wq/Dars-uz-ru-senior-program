@@ -53,3 +53,6 @@ _layout-audit.json
 
 # 2026-09-16: staging manzili bilan yig'ilgan sinov-yig'malar (CRM test-guruh materiali) — repo'ga kirmaydi
 lms-staging
+
+# Uyga vazifa QA ko'rik-sayti build (2026-09-22)
+dist-hwqa

@@ -1575,3 +1575,121 @@ MATN_ETALONI bilan); (2) MATN_ETALONI LUG'AT + `til-lint-rules.json` qoidasi; (3
 (`uz:` qiymatlari, audio-matnlar), kod nomlari (`earn`, `ACH_*`) tegilmaydi; (4) KORPUS §63, §183, §184 matnlari;
 (5) `lint:til` + 👦 o'qish. ru: «значок» — alohida qaror.
 
+
+## 43 ⬜ SUDRASH-TARTIBLASH: BLOK O'Z KATAGIGA QAYTSA — TAKRORLANADI (39 dars, F-0922-54, 2026-09-22)
+
+**Nima:** `DragDropOrder` komponentining `place()` funksiyasida bitta shart to'liq emas:
+
+```js
+let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
+if (occ) np = [...np, occ];        // ← occ = KATAKDA turgan blok
+```
+
+Blok o'z katagidan olinib, **o'sha katakka** qayta tashlanganda (`from === slotIdx`) `occ` — o'sha blokning
+o'zi bo'ladi. Kod avval katakni bo'shatadi, blokni qaytadan qo'yadi, keyin `occ` ni «siqib chiqarilgan blok»
+deb pastdagi ro'yxatga qaytaradi → blok bir vaqtda **ham katakda, ham ro'yxatda** qoladi. Ro'yxatda takror
+`key` paydo bo'lgani uchun React ham noto'g'ri chizadi. Mentor topdi (ReactIntro, 17-ekran): shoshib
+sudraganda ikkita blok ko'payib ketgan.
+
+**Yechim (bitta shart):** `if (occ && occ !== id) np = [...np, occ];`
+Boshqa to'rt holat (bo'sh katakka · band katakka · katakdan katakka · to'la doskada) o'zgarishsiz —
+`place()` mantig'i koddan ko'chirib alohida sinaldi, 6/6 holat takrorsiz va yo'qotishsiz o'tdi.
+
+**O'lchov:** `grep -rl "if (occ) np = \[...np, occ\];" src/ --include="*.jsx"` → **40 fayl**.
+Ulardan `src/3-Modull/ReactIntroLesson.jsx` 2026-09-22 da tuzatildi (F-0922-54) — **qolgani 39 fayl**.
+`DragDropOrder` har darsga nusxalangan (umumiy modul emas), shuning uchun tuzatish ham nusxa-nusxa boradi.
+
+**Qanday:** codemod bilan bir yo'la (satr aynan bir xil), keyin har tegilgan faylga `npx esbuild` +
+`npm run lint:jsx`; namuna-darsda sudrab-qo'yib ko'z bilan tekshiruv. Sinf qonuni: takror `key` beradigan
+har qanday ro'yxat-holati — tekshiruvchi rol-fayliga ov-bandi bo'lib qo'shilsin.
+
+## 7-MODUL — LIGATURA QOLDIG'I (F-0922-19, 2026-09-22)
+
+2026-09-22 da butun loyihada `JetBrains Mono` ligaturasi o'chirildi (158-qonun): **115 fayl ·
+2402 CSS e'loni + 63 inline uslub**. **7-Modul foydalanuvchi qarori bilan chetda qoldirildi**
+(«hozir umuman o'ylama»).
+
+**Qoldiq: 12 fayl · 88 e'lon** — `MvpArchLesson` 7 · `MvpBuild1Lesson` 9 · `MvpBuild2Lesson` 8 ·
+`MvpIterateLesson` 8 · `PmLesson26` 10 · `PmLesson28` 6 · `PmLesson29` 5 · `PmLesson30` 5 ·
+`PmLesson31` 7 · `PmLesson32` 13 · `PmLesson33` 5 · `PmLesson34` 5.
+
+**Qanday:** bir buyruq — `node scripts/codemod-ligatura.mjs src/7-Modull/*.jsx`
+(skriptning o'zi 7-Modulni atayin chetlab o'tadi, shuning uchun fayllar OCHIQ beriladi).
+Keyin: `npm run gate:esbuild -- src/7-Modull/*.jsx` + `npm run lint:jsx` +
+`node scripts/codemod-ligatura.mjs --check` + bitta darsda kod-ekrani skrinshoti.
+
+**Qachon:** 7-Modul ustida ish boshlanganda, birinchi qadam sifatida.
+
+## 7-MODUL — «dunyoga chiqarish» qoldig'i (F-0922-21, 2026-09-22)
+
+`m2-12` da deploy izohi bittaga keltirildi: **«internetga chiqarish»** (KORPUS §196).
+7-Modul tegilmagani uchun bitta qoldiq bor:
+`src/7-Modull/MvpBuild2Lesson.jsx:792` — «Vercel mahsulotingizni **dunyoga chiqarmoqda**…»
+
+**Qanday:** 7-Modul ochilganda «dunyoga» → «internetga» (1 joy), keyin `npm run gates -- <fayl>`.
+
+## PM ZANJIRI — «imkoniyat/qiyinchilik» atamasi (F-0922-22, 2026-09-22)
+
+`m2-02` (`PmLesson4` + uy vazifasi) atamasi **«muammo → yechim»** ga o'tkazildi (KORPUS §198):
+449 almashtirish, ikki tilda. Sabab: dars nomi («Muammodan yechimga»), mexanika (`mt-pain` sinfi)
+va mentor topilmasi — uchalasi ham shu so'zni talab qilardi.
+
+**Qolgan 7 fayl · imkoniyat 74 · qiyinchilik 56:**
+
+| Fayl | imkoniyat | qiyinchilik |
+|---|---|---|
+| `2-Modull/PmLesson5.jsx` (m2-07) | 45 | 1 |
+| `2-Modull/PmLesson5.homework.jsx` | 15 | 0 |
+| `pm/PmUserStoryLesson.jsx` | 9 | 0 |
+| `6-Modull/PmLesson25.jsx` | 0 | 30 |
+| `1-Modull/PmLesson1.jsx` | 0 | 19 |
+| `1-Modull/PmLesson3.jsx` | 2 | 3 |
+| `hw-demo/main.jsx` | 3 | 3 |
+
+**🔴 AVVAL QAROR, KEYIN ISH — ko'r-ko'rona almashtirilmaydi.** `PmLesson5` (m2-07 «Dekompozitsiya»)
+da kontekst BOSHQA: «Har imkoniyatni **tarozidan** o'tkazing» — bu prioritetlash, u yerda
+«imkoniyat» (nima qurish **mumkinligi**) o'rinli bo'lishi mumkin. Har faylni alohida ko'rish kerak:
+atama «feature» ma'nosidami yoki «imkon» ma'nosidami.
+
+**Qanday (qaror bo'lgach):** `PmLesson4` da ishlatilgan **aynan-ibora jadvali**
+(`scratchpad/pm4-term.py` naqshi) qayta ishlatiladi; ruscha uchun **§199** majburiy —
+rod/kelishik/olmosh; oxirida matnni **o'qib chiqish** (22.09 da 5 xato faqat shunda topilgan).
+
+## LAYOUT TOSHISHI — umumiy komponentlar (F-0923-01, 2026-09-23)
+
+`layout-lint --lang ru` 12 darsda nuqson ko'rsatdi. **Element bo'yicha guruhlanganda
+ma'lum bo'ldi: bu 12 alohida xato emas, bir nechta UMUMIY KOMPONENT.**
+
+| Sinf | hodisa | toshish | nima |
+|---|---|---|---|
+| `div.card.ach-coll` | 42 | 205–313px | 🏅 nishon-kartasi (yakun ekrani) |
+| `div.frame-soft` | 18 | 5–22px | «Yana urinib ko'ring» — xato-javob izohi |
+| `div.gloss.fade-up` | 12 | **383–421px** | 💡 kalit so'zlar (glossary) |
+| `div.frame-success.fade-step` | 11 | 22–52px | yashil muvaffaqiyat qutisi |
+| `div.ms-row.p` | 7 | 112px | mentor-statistika qatori |
+| `button.btn.cc-run` | 6 | 22–169px | ▶ RUN tugmasi |
+| `div.card.fade-up` | 6 | 303px | umumiy karta |
+| `button.hw-big` | 12 | 134–155px | uy-vazifa tugmasi |
+| qolgani (frame · hint · term · cl-shelf · hk-card) | ~14 | 6–47px | chegarada |
+
+**🔴 BUGUNGI ISHDAN EMAS — isbotlangan.** Tegilmagan darslar ham o'lchandi
+(`m3-05`, `m4-02` — 22.09 da hech kim tegmagan): ular ham toshadi (`button.hw-big`, 12 hodisa).
+Ya'ni bu **loyiha bo'ylab eski qarz**: ruscha matn o'zbekchadan uzun, umumiy komponentlar
+esa qat'iy balandlikda.
+
+**Nega to'planib qolgan:** `layout-lint` `npm run gates` ichida EMAS — vite kerak va
+daqiqalar ketadi; asbobning o'z izohida «modul yakunida va relizdan oldin yuritiladi
+(MODUL_TUR bandi)» deb yozilgan.
+
+**Qanday tuzatiladi (ustuvorlik bilan):**
+1. `div.gloss.fade-up` — 383–421px, eng yomoni
+2. `div.card.ach-coll` — eng ko'p tarqalgani (42 hodisa)
+3. `div.card.fade-up` · `button.hw-big` — 134–303px
+4. Qolganlari 5–52px — ikkinchi navbat
+
+Har sinf uchun: qat'iy balandlik o'rniga `min-height` + `overflow` qoidasini ko'rib chiqish,
+yoki ruscha matn uchun `font-size`/`line-height` moslash. Tuzatilgach har dars uchun
+`layout-lint --keys <kalit> --lang ru` **0** bo'lishi shart + skrinshot.
+
+**Dalillar:** `feedback/F-0922-fidbek/tekshiruv/LAYOUT_TAHLIL.md` ·
+`layout-ru-2026-09-23.log` · `layout-baza-tegilmagan.log`

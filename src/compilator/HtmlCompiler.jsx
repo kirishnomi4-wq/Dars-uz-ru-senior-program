@@ -2344,7 +2344,7 @@ function StyleTag() {
       .hc-brief{margin:0;color:${HC_T.ink2};font-size:clamp(13px,1.5vw,15px);line-height:1.55;max-width:60ch}
 
       .hc-checklist{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
-      .hc-count{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
+      .hc-count{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
       .hc-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:${HC_T.ink2};background:${HC_T.paper};padding:6px 14px 6px 7px;border-radius:99px;border:1px solid ${HC_T.line};box-shadow:0 1px 2px rgba(${HC_T.shadowBase},.04);transition:all .22s ease;cursor:default}
       .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
       .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
@@ -2353,7 +2353,7 @@ function StyleTag() {
       .hc-msg{height:40px;width:100%;display:flex;align-items:center;justify-content:center;margin-top:3px;overflow:hidden}
       .hc-hint.hc-hint{margin:0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       /* K-M-02: tugma flex — matn (span) kesiladi, «+N» belgisi qisilmaydi va doim ko'rinadi */
-      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
       .hc-err-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
       .hc-err:hover{background:#FBDFDF;border-color:#EEB8B8}
       .hc-err-more{flex-shrink:0;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
@@ -2368,9 +2368,9 @@ function StyleTag() {
       .hc-dots{display:inline-flex;gap:6px;flex-shrink:0}
       .hc-dots i{width:11px;height:11px;border-radius:50%;background:#3A4760;display:block}
       .hc-dots i:nth-child(1){background:#ff5f56}.hc-dots i:nth-child(2){background:#ffbd2e}.hc-dots i:nth-child(3){background:#27c93f}
-      .hc-pane-name{font-family:'JetBrains Mono',monospace;font-weight:700}
+      .hc-pane-name{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700}
       /* Soxta brauzer manzil-qatori — task.previewUrl berilganda (F-0809-05) */
-      .hc-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:${HC_T.ink2};display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+      .hc-url{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;color:${HC_T.ink2};display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
       .hc-lock{color:${HC_T.success};font-size:8px;flex-shrink:0}
       .hc-live{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:${HC_T.success};background:${HC_T.successSoft};padding:4px 9px;border-radius:99px;font-weight:800;display:inline-flex;align-items:center;gap:6px}
       .hc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.success};animation:hc-pulse 1.8s infinite}
@@ -2384,7 +2384,7 @@ function StyleTag() {
       .hc-tabs{display:flex;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
       .hc-tabs::-webkit-scrollbar{display:none}
       .hc-tab{flex-shrink:0}
-      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
+      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
       .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
       .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
       .hc-mini{margin-left:auto;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:9px;padding:6px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .18s;flex-shrink:0;box-shadow:0 6px 14px -6px rgba(255,77,38,.6)}
@@ -2392,7 +2392,7 @@ function StyleTag() {
       .hc-mini:active{transform:translateY(0)}
 
       .hc-editor-wrap{flex:1;min-height:0;display:flex;background:${HC_CODE.bg};overflow:hidden}
-      .hc-gutter{flex:0 0 auto;padding:18px 10px 18px 16px;font-family:'JetBrains Mono',monospace;font-size:var(--hcfs,14px);line-height:1.7;color:#41527A;text-align:right;white-space:pre;user-select:none;overflow:hidden;pointer-events:none}
+      .hc-gutter{flex:0 0 auto;padding:18px 10px 18px 16px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;color:#41527A;text-align:right;white-space:pre;user-select:none;overflow:hidden;pointer-events:none}
       /* overflow:hidden — joriy-qator chizig'i surilganda quti tashqarisiga chiqmasin */
       .hc-code-box{position:relative;flex:1;min-width:0;min-height:0;overflow:hidden}
 
@@ -2400,7 +2400,7 @@ function StyleTag() {
          bo'lishi shart (shrift, o'lcham, qator balandligi, chekinish, white-space) —
          bitta piksel farq qilsa, harflar kursordan siljib ketadi. */
       .hc-hl,.hc-code{position:absolute;inset:0;margin:0;border:none;
-        font-family:'JetBrains Mono',monospace;font-size:var(--hcfs,14px);line-height:1.7;letter-spacing:0;
+        font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;letter-spacing:0;
         padding:18px 20px 18px 12px;tab-size:2;white-space:pre;overflow:auto}
       .hc-hl{color:${HC_CODE.text};background:${HC_CODE.bg};pointer-events:none;overflow:hidden;z-index:0}
       .hc-code{resize:none;outline:none;background:transparent;color:transparent;caret-color:${HC_T.accent2};z-index:1}
@@ -2448,10 +2448,10 @@ function StyleTag() {
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
-      .hc-console-title{font-family:'JetBrains Mono',monospace}
+      .hc-console-title{font-family:'JetBrains Mono',monospace;font-feature-settings:"liga" 0,"calt" 0}
       .hc-console-clear{margin-left:auto;background:rgba(255,255,255,.08);color:#cfe0ff;border:none;border-radius:7px;padding:4px 10px;font-size:10.5px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;transition:all .15s}
       .hc-console-clear:hover{background:${HC_T.accent};color:#fff}
-      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6}
+      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:13px;line-height:1.6}
       .hc-console-empty{color:#5B6B86;padding:4px 15px;font-style:italic}
       .hc-console-count{font-weight:600;color:#5B6B86;text-transform:none;letter-spacing:0}
       .hc-console-new{background:${HC_T.accent};color:#fff;border:none;border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:700;cursor:pointer;text-transform:none;letter-spacing:0}
@@ -2496,7 +2496,7 @@ function StyleTag() {
       .hc-sb-pos{margin-left:auto;white-space:nowrap}
       .hc-sb-font{display:flex;align-items:center;gap:3px}
       .hc-sb-fs{min-width:20px;text-align:center;color:#A7B6D6}
-      .hc-sb-btn{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;border-radius:6px;padding:2px 7px;transition:all .15s}
+      .hc-sb-btn{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;font-weight:700;cursor:pointer;border-radius:6px;padding:2px 7px;transition:all .15s}
       .hc-sb-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 
       .hc-divider{cursor:col-resize;display:flex;align-items:center;justify-content:center;touch-action:none;border-radius:8px;transition:background .15s}

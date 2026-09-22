@@ -591,7 +591,8 @@
       "pattern": "professional|профессиональн",
       "flags": "i",
       "suggest": "«professional» o'quvchiga hech narsa demaydi — «dasturchilar» yoki «haqiqiy»",
-      "law": "MATN_ETALONI 3-lugat · KORPUS 87 · F-0810-02"
+      "law": "MATN_ETALONI 3-lugat · KORPUS 87 · F-0810-02",
+      "except": "профессиональн[а-яё]*\\s+слов"
     },
     {
       "id": "vizitka-sozi",
@@ -723,6 +724,38 @@
       "flags": "i",
       "suggest": "o'quvchining daftariga ishora qilinmaydi (unda daftar bo'lmasligi mumkin) — «yozib qo'ying» yoki bajarilgan ishga ishora: «Siz 3 ta hikoya yozdingiz». «daftar» so'zining o'zi (metafora/vidjet nomi) mumkin",
       "law": "F-e'tiroz 2026-07-29 · F-0820-79"
+    },
+    {
+      "id": "majhul-savol",
+      "severity": "error",
+      "pattern": "bilan\\s+(yaratiladi|quriladi|yasaladi|hosil qilinadi)\\s*\\?",
+      "flags": "i",
+      "suggest": "savol majhul nisbatda so'ralmaydi — egasi ko'rinmaydi: «qaysi teg bilan yaratiladi?» → «qaysi teg yasaydi?» (KORPUS §194)",
+      "law": "F-0922-15 · mentor topilmasi 22.09"
+    },
+    {
+      "id": "majhul-savol-ru",
+      "severity": "error",
+      "pattern": "Как(им|ой)\\s+[а-яё]+\\s+созда[ёе]тся",
+      "flags": "i",
+      "suggest": "вопрос не строится в страдательном залоге: «Каким тегом создаётся…?» → «Какой тег делает…?» (KORPUS §194)",
+      "law": "F-0922-15 · mentor topilmasi 22.09"
+    },
+    {
+      "id": "pardoz-sozi",
+      "severity": "error",
+      "pattern": "\\bpardoz\\w*\\b",
+      "flags": "i",
+      "suggest": "«pardoz» — yuzga qo'yiladigan bo'yoq; 13 yoshli o'quvchi uni sayt bilan bog'lamaydi: «oxirgi yaxshilanish» / «kichik yaxshilanish» (KORPUS §197)",
+      "law": "F-0922-20 · mentor topilmasi 22.09"
+    },
+    {
+      "id": "kitobiy-vasvasa",
+      "severity": "error",
+      "pattern": "\\bvasvasa\\w*",
+      "flags": "i",
+      "suggest": "«vasvasa» — kitobiy-diniy registr, o'smir lug'atida yo'q va ma'nosi noaniq qoladi; niyatni TO'G'RIDAN-TO'G'RI ayting: «eng oson yo'lni tanlaymiz», «o'ylab o'tirmay», «shoshib»",
+      "law": "MATN_ETALONI LUG'AT · F-0922-64 (mentor topilmasi, PracticeLesson3 s-AI)"
     }
   ]
 }

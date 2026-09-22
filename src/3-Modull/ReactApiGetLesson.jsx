@@ -7,7 +7,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        fetch tuzilishi (GET so'rovi, URL, endpoint), JSON javob (.json()),
 //        loading holati (skeleton), useEffect + fetch + state — to'liq usul,
 //        endpointlar (/games /top /new), 404 xatosi.
-// Misol sayt: robo-games (davom) — katalog endi "serverdan" yuklanadi (robo-api.uz).
+// Misol sayt: robo-games (davom) — katalog endi "serverdan" yuklanadi (robo-api.example).
 // Animatsiyalar: 3 qurilma sinxron yangilanishi (server kuchi), so'rov-javob konsoli,
 //        skeleton shimmer (yuklanish), 4 qadamli useEffect+fetch+state oqimi,
 //        404 → fix → katalog stagger yuklanishi.
@@ -15,7 +15,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        server/so'rov (Internet darsi L0).
 // MUHIM: kelgusi darslar ro'yxati o'quvchiga AYTILMAYDI — faqat yakunda teaser.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori.
-// Yakuniy ekran (s15): VS Code — useEffect ichida fetch('/games.json') yozish (F-0921-10: robo-api.uz
+// Yakuniy ekran (s15): VS Code — useEffect ichida fetch('/games.json') yozish (F-0921-10: robo-api.example
 // javob bermaydi, shuning uchun amaliyotda manzil o'quvchining o'z public/games.json fayli).
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -30,7 +30,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -235,9 +235,9 @@ const RECAPS = {
   4: {
     title: { uz: "fetch — serverga boradigan ofitsiant", ru: 'fetch — официант, который ходит на сервер' },
     cards: [
-      { ic: "📡", h: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, body: { uz: <>Ma'lumot bitta joyda — <b>serverda</b> — turadi: <span className="mono">robo-api.uz</span>. Hamma qurilma o'sha markazdan so'rab oladi.</>, ru: <>Данные живут в одном месте — на <b>сервере</b>: <span className="mono">robo-api.uz</span>. Все устройства запрашивают их из этого центра.</> } },
+      { ic: "📡", h: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, body: { uz: <>Ma'lumot bitta joyda — <b>serverda</b> — turadi: <span className="mono">robo-api.example</span>. Hamma qurilma o'sha markazdan so'rab oladi.</>, ru: <>Данные живут в одном месте — на <b>сервере</b>: <span className="mono">robo-api.example</span>. Все устройства запрашивают их из этого центра.</> } },
       { ic: "🛎️", h: { uz: "fetch — «borib olib kel»", ru: 'fetch — «сходи и принеси»' }, body: { uz: <><span className="mono">fetch</span> — ofitsiant kabi GET so'rovi: manzilga boradi va javobni <b>olib keladi</b>. O'zi ekranga hech narsa <b>chizmaydi</b>.</>, ru: <><span className="mono">fetch</span> — GET-запрос, как официант: идёт по адресу и <b>приносит ответ</b>. Сам на экране ничего <b>не рисует</b>.</> } },
-      { ic: "🧾", h: { uz: "So'rovning 3 qismi", ru: 'Три части запроса' }, body: { uz: <>To'liq so'rov: <b>buyruq</b> (fetch) + <b>manzil</b> (https://robo-api.uz) + <b>bo'lim</b> (/games).</>, ru: <>Полный запрос: <b>команда</b> (fetch) + <b>адрес</b> (https://robo-api.uz) + <b>раздел</b> (/games).</> }, ask: { uz: "Serverdan kelgan ma'lumotni ekranga kim chizadi?", ru: 'Кто рисует на экране данные, пришедшие с сервера?' } },
+      { ic: "🧾", h: { uz: "So'rovning 3 qismi", ru: 'Три части запроса' }, body: { uz: <>To'liq so'rov: <b>buyruq</b> (fetch) + <b>manzil</b> (https://robo-api.example) + <b>bo'lim</b> (/games).</>, ru: <>Полный запрос: <b>команда</b> (fetch) + <b>адрес</b> (https://robo-api.example) + <b>раздел</b> (/games).</> }, ask: { uz: "Serverdan kelgan ma'lumotni ekranga kim chizadi?", ru: 'Кто рисует на экране данные, пришедшие с сервера?' } },
     ]
   },
   6: {
@@ -375,7 +375,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить трудно. Оцените сами.</> })}</p>}
@@ -389,7 +389,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz qolgan. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz qolgan. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -590,7 +590,7 @@ const SkelCard = () => (
 );
 // Terminal/konsol qatori
 const TLine = ({ cmd, out, dim }) => (
-  <div className="el-in" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(11.5px,1.4vw,13px)', lineHeight: 1.7, color: dim ? CODE.comment : CODE.text }}>
+  <div className="el-in" style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 'clamp(11.5px,1.4vw,13px)', lineHeight: 1.7, color: dim ? CODE.comment : CODE.text }}>
     {cmd ? <><span style={{ color: CODE.str }}>$</span> <span style={{ color: CODE.text }}>{cmd}</span></> : out}
   </div>
 );
@@ -616,7 +616,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Split>
           <Col>
             <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setPublished(true)} disabled={published}>{published ? tr({ uz: "✓ E'lon qilindi", ru: '✓ Опубликовано' }) : tr({ uz: "📡 Yangi o'yinni e'lon qilish", ru: '📡 Опубликовать новую игру' })}</button>
-            {published && <p className="broadcast-cue fade-step">{tr({ uz: <>📡 <b>robo-api.uz</b> serverdan 3 qurilmaga bir vaqtda yuborildi</>, ru: <>📡 С сервера <b>robo-api.uz</b> отправлено на 3 устройства одновременно</> })}</p>}
+            {published && <p className="broadcast-cue fade-step">{tr({ uz: <>📡 <b>robo-api.example</b> serverdan 3 qurilmaga bir vaqtda yuborildi</>, ru: <>📡 С сервера <b>robo-api.example</b> отправлено на 3 устройства одновременно</> })}</p>}
             <div className="fade-up delay-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 9 }}>
               {DEVICES.map((d, i) => (
                 <div key={i} style={{ minWidth: 0 }}>
@@ -657,7 +657,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (va'da + bugungi 5 qadam) =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, tag: 'robo-api.uz' },
+    { text: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, tag: 'robo-api.example' },
     { text: { uz: "fetch — so'rov yuborish", ru: 'fetch — отправить запрос' }, tag: "fetch('…/games')" },
     { text: { uz: 'JSON — server javobi', ru: 'JSON — ответ сервера' }, tag: 'res.json()' },
     { text: { uz: 'Yuklanish holati', ru: 'Состояние загрузки' }, tag: 'skeleton' },
@@ -677,7 +677,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
               {['Adopt Me!', 'Blox Fruits', 'Brookhaven'].map((n, i) => <div key={n} className="el-in" style={{ animationDelay: `${i * 0.13}s`, animationFillMode: 'backwards' }}><RoCard name={n} /></div>)}
             </div>}
       </Win>
-      <pre className="code-box" style={{ padding: '10px 14px' }}>{'fetch('}<St>'https://robo-api.uz/games'</St>{')'}</pre>
+      <pre className="code-box" style={{ padding: '10px 14px' }}>{'fetch('}<St>'https://robo-api.example/games'</St>{')'}</pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ kartochkalar endi serverdan yuklanadi', ru: '→ карточки теперь загружаются с сервера' })}</p>
     </Col>
   );
@@ -751,9 +751,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className="mig-cap" style={{ color: phase >= 2 ? T.success : T.ink3 }}>{phase === 0 ? tr({ uz: "ko'chirish", ru: 'перенос' }) : phase === 1 ? tr({ uz: "ko'chmoqda…", ru: 'переносится…' }) : tr({ uz: "✓ ko'chdi", ru: '✓ перенесён' })}</span>
           </div>
           <div className="mig-box">
-            <p className="flow-label">{tr({ uz: 'robo-api.uz — server', ru: 'robo-api.uz — сервер' })}</p>
+            <p className="flow-label">{tr({ uz: 'robo-api.example — server', ru: 'robo-api.example — сервер' })}</p>
             <div className="code-box" style={{ padding: '11px 14px', margin: 0, boxShadow: phase >= 2 ? `0 0 0 2px ${T.success}, 0 8px 22px -6px rgba(${T.shadowBase},0.2)` : undefined, transition: 'box-shadow 0.4s' }}>
-              <TLine out={<span style={{ color: CODE.attr, fontWeight: 700 }}>robo-api.uz</span>} />
+              <TLine out={<span style={{ color: CODE.attr, fontWeight: 700 }}>robo-api.example</span>} />
               {phase < 2
                 ? <TLine out={<span style={{ color: CODE.comment, fontStyle: 'italic' }}>{phase === 1 ? tr({ uz: "buyurtma yo'lda…", ru: 'заказ в пути…' }) : tr({ uz: "bo'sh — ma'lumot kutilmoqda…", ru: 'пусто — ждём данные…' })}</span>} />
                 : <>
@@ -765,7 +765,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vw,14px)', marginTop: 12 }}>
           <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={move} disabled={phase !== 0}>{phase === 0 ? tr({ uz: "📦 Serverga ko'chirish", ru: '📦 Перенести на сервер' }) : phase === 1  ? tr({ uz: "Ko'chmoqda…", ru: 'Переносится…' }) : tr({ uz: "✓ Ko'chirildi", ru: '✓ Перенесено' })}</button>
-          {done && <span className="tagpill fade-step" style={{ color: T.success, alignSelf: 'flex-start' }}>{tr({ uz: '✓ manzil tayyor: https://robo-api.uz/games', ru: '✓ адрес готов: https://robo-api.uz/games' })}</span>}
+          {done && <span className="tagpill fade-step" style={{ color: T.success, alignSelf: 'flex-start' }}>{tr({ uz: '✓ manzil tayyor: https://robo-api.example/games', ru: '✓ адрес готов: https://robo-api.example/games' })}</span>}
           {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi bu ro'yxatni telefon ham, noutbuk ham, boshqa sayt ham — <b>manzili orqali</b> oladi. Bitta markaz — hamma uchun. Savol qoldi: kod uni <b>qanday so'rab oladi</b>?</>, ru: <>Теперь этот список возьмёт и телефон, и ноутбук, и другой сайт — <b>по адресу</b>. Один центр — для всех. Остался вопрос: как код его <b>запросит</b>?</> })}</p></div>}
         </div>
         </Zoomable>
@@ -778,7 +778,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     fetch: { title: { uz: 'fetch — buyruq', ru: 'fetch — команда' }, desc: { uz: <>Ma'nosi: <b>"shu manzilga borib, ma'lumotni olib kel"</b>. Bu GET so'rovi — faqat olish, serverda hech narsani o'zgartirmaslik.</>, ru: <>Смысл: <b>«сходи по этому адресу и принеси данные»</b>. Это GET-запрос — только получить, ничего на сервере не менять.</> } },
-    url: { title: { uz: 'https://robo-api.uz — server manzili', ru: 'https://robo-api.uz — адрес сервера' }, desc: { uz: <>Qaysi serverga borish kerakligi. Xuddi do'kon manzili: avval <b>qayerga</b> borishni bilish kerak.</>, ru: <>На какой сервер идти. Как адрес магазина: сначала нужно знать, <b>куда</b> идти.</> } },
+    url: { title: { uz: 'https://robo-api.example — server manzili', ru: 'https://robo-api.example — адрес сервера' }, desc: { uz: <>Qaysi serverga borish kerakligi. Xuddi do'kon manzili: avval <b>qayerga</b> borishni bilish kerak.</>, ru: <>На какой сервер идти. Как адрес магазина: сначала нужно знать, <b>куда</b> идти.</> } },
     ep: { title: { uz: '/games — endpoint', ru: '/games — эндпоинт' }, desc: { uz: <>Serverning <b>qaysi bo'limi</b> kerakligi. Bitta serverda bir nechta "eshik" bo'ladi — bu haqda birozdan keyin.</>, ru: <>Какой <b>раздел</b> сервера нужен. У одного сервера бывает несколько «дверей» — об этом чуть позже.</> } }
   };
   const [active, setActive] = useState(null);
@@ -805,7 +805,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box fade-up delay-1" style={{ fontSize: 'clamp(13px,1.9vw,16px)', lineHeight: 2.1, padding: '16px 18px' }}>
               <span onClick={() => tap('fetch')} className={tokCls('fetch')}><Jx>fetch</Jx></span>
               {'('}
-              <span onClick={() => tap('url')} className={tokCls('url')}><St>'https://robo-api.uz</St></span>
+              <span onClick={() => tap('url')} className={tokCls('url')}><St>'https://robo-api.example</St></span>
               <span onClick={() => tap('ep')} className={tokCls('ep')}><St>/games'</St></span>
               {')'}
             </pre>
@@ -817,12 +817,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: "So'rov pasporti", ru: 'Паспорт запроса' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <Row k="fetch" lbl={tr({ uz: 'BUYRUQ', ru: 'КОМАНДА' })} val={tr({ uz: 'GET — borib olib kel', ru: 'GET — сходи и принеси' })} />
-              <Row k="url" lbl={tr({ uz: 'SERVER', ru: 'СЕРВЕР' })} val="https://robo-api.uz" />
+              <Row k="url" lbl={tr({ uz: 'SERVER', ru: 'СЕРВЕР' })} val="https://robo-api.example" />
               <Row k="ep" lbl={tr({ uz: "BO'LIM", ru: 'РАЗДЕЛ' })} val="/games" />
             </div>
             {done && (
               <div className="code-box fade-step" style={{ padding: '9px 13px' }}>
-                <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.uz/games</span>} />
+                <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.example/games</span>} />
                 <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: '✓ 200 OK — server javob berdi', ru: '✓ 200 OK — сервер ответил' })}</span>} />
               </div>
             )}
@@ -839,8 +839,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="fetch buyrug'i aslida nima qiladi? To'g'ri javobni tanlang."
-    questionText="fetch('https://robo-api.uz/games') nima qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.uz/games')</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.uz/games')</span>?</> })}</h2></>}
+    questionText="fetch('https://robo-api.example/games') nima qiladi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span>?</> })}</h2></>}
     options={[tr({ uz: "Saytni to'liq qaytadan yuklaydi", ru: 'Полностью перезагружает сайт' }), tr({ uz: "Manzilga borib ma'lumotni olib keladi", ru: 'Идёт по адресу и приносит данные' }), tr({ uz: "Faylni kompyuterga yuklab saqlaydi", ru: 'Скачивает и сохраняет файл на компьютер' }), tr({ uz: "Yangi bo'sh sahifa ochadi", ru: 'Открывает новую пустую страницу' })]} correctIdx={1}
     explainCorrect={tr({ uz: "To'g'ri! fetch — ofitsiant kabi: manzilga boradi, so'raydi, javobni olib keladi. Bu GET so'rovi — faqat olish.", ru: 'Верно! fetch — как официант: идёт по адресу, спрашивает и приносит ответ. Это GET-запрос — только получение.' })}
     explainWrong={{
@@ -1032,7 +1032,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95 }}>
               <span style={hl(1)}><Jx>{'const'}</Jx>{' [games, setGames] = useState([]);'}</span>{'\n\n'}
               <span style={hl(2)}>{'useEffect(() => {'}</span>{'\n'}
-              <span style={hl(2)}>{'  fetch('}<St>'https://robo-api.uz/games'</St>{')'}</span>{'\n'}
+              <span style={hl(2)}>{'  fetch('}<St>'https://robo-api.example/games'</St>{')'}</span>{'\n'}
               <span style={hl(3)}>{'    .then(res => res.json())'}</span>{'\n'}
               <span style={hl(4)}>{'    .then(data => setGames(data));'}</span>{'\n'}
               {'}, []);'}
@@ -1042,7 +1042,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {STEPS.map(s => (
                 <div key={s.z} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '8px 12px', borderRadius: 11, background: step >= s.z ? T.successSoft : T.paper, boxShadow: running && step === s.z ? `inset 0 0 0 1.5px ${T.accent}` : (step >= s.z ? `inset 0 0 0 1.5px ${T.success}` : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`), transition: 'all 0.35s' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 11.5, color: step >= s.z ? T.success : T.ink3 }}>{step >= s.z ? '✓' : s.z}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 11.5, color: step >= s.z ? T.success : T.ink3 }}>{step >= s.z ? '✓' : s.z}</span>
                   <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 12.5, color: step >= s.z ? T.ink : T.ink3, transition: 'color 0.35s' }}>{tr(s.t)}</span>
                 </div>
               ))}
@@ -1106,13 +1106,13 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ))}
             </div>
             <pre className="code-box fade-up delay-2" style={{ padding: '12px 14px' }}>
-              {'fetch('}<St>'https://robo-api.uz</St>{ep ? <St><b>{ep}</b></St> : <Cm>?</Cm>}<St>'</St>{')'}
+              {'fetch('}<St>'https://robo-api.example</St>{ep ? <St><b>{ep}</b></St> : <Cm>?</Cm>}<St>'</St>{')'}
             </pre>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta server — uchta eshik. Faqat <b>manzil oxiri</b> o'zgaradi, fetch o'sha bo'limni keltiradi. Roblox'dagi "Top", "Yangi" qatorlari ham shunday ishlaydi.</>, ru: <>Один сервер — три двери. Меняется только <b>конец адреса</b>, а fetch приносит нужный раздел. Ряды «Top» и «New» в Roblox работают так же.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">robo-api.uz{ep || ''}</p>
-            <Win title={`robo-api.uz${ep || ''}`} minH={110}>
+            <p className="flow-label">robo-api.example{ep || ''}</p>
+            <Win title={`robo-api.example${ep || ''}`} minH={110}>
               {!ep && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Eshik tanlanmagan…', ru: 'Дверь не выбрана…' })}</p>}
               {ep && loading && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
@@ -1179,13 +1179,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {!cur && <TLine out={<span style={{ color: CODE.comment, fontStyle: 'italic' }}>{tr({ uz: 'manzilni tanlang…', ru: 'выберите адрес…' })}</span>} />}
               {cur === 'bad' && (
                 <>
-                  <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.uz/gmaes</span>} />
+                  <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.example/gmaes</span>} />
                   <TLine out={<span className="el-in" style={{ display: 'inline-block', color: CODE.tag }}>{tr({ uz: "❌ 404 Not Found — bunday endpoint yo'q", ru: '❌ 404 Not Found — такого эндпоинта нет' })}</span>} />
                 </>
               )}
               {cur === 'good' && (
                 <>
-                  <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.uz/games</span>} />
+                  <TLine out={<span><span style={{ color: CODE.attr }}>GET</span> https://robo-api.example/games</span>} />
                   <TLine out={<span className="el-in" style={{ display: 'inline-block', color: CODE.str }}>{tr({ uz: "✓ 200 OK — 3 ta o'yin keldi", ru: '✓ 200 OK — пришло 3 игры' })}</span>} />
                 </>
               )}
@@ -1211,8 +1211,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — VIBECODING (AI bilan serverli boyitish) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 't1', label: tr({ uz: "Saytga TOP o'yinlar bo'limini qo'sh", ru: 'Добавь на сайт раздел ТОП-игр' }), plan: [tr({ uz: "fetch('https://robo-api.uz/top') so'rov yuboraman", ru: "Отправлю запрос fetch('https://robo-api.uz/top')" }), tr({ uz: "Kelgan ro'yxatni alohida TOP qatorida chizaman", ru: 'Нарисую пришедший список отдельным рядом TOP' })], code: <>{'fetch('}<St>'https://robo-api.uz/top'</St>{').then(r => r.json()).then(d => setTop(d))'}</> },
-    { id: 't2', label: tr({ uz: "Yangi o'yinlar bo'limini qo'sh", ru: 'Добавь раздел новых игр' }), plan: [tr({ uz: "fetch('https://robo-api.uz/new') so'rov yuboraman", ru: "Отправлю запрос fetch('https://robo-api.uz/new')" }), tr({ uz: "Javobni 'Yangi' sarlavhasi ostida chizaman", ru: 'Нарисую ответ под заголовком «Новые»' })], code: <>{'fetch('}<St>'https://robo-api.uz/new'</St>{').then(r => r.json()).then(d => setNew(d))'}</> },
+    { id: 't1', label: tr({ uz: "Saytga TOP o'yinlar bo'limini qo'sh", ru: 'Добавь на сайт раздел ТОП-игр' }), plan: [tr({ uz: "fetch('https://robo-api.example/top') so'rov yuboraman", ru: "Отправлю запрос fetch('https://robo-api.example/top')" }), tr({ uz: "Kelgan ro'yxatni alohida TOP qatorida chizaman", ru: 'Нарисую пришедший список отдельным рядом TOP' })], code: <>{'fetch('}<St>'https://robo-api.example/top'</St>{').then(r => r.json()).then(d => setTop(d))'}</> },
+    { id: 't2', label: tr({ uz: "Yangi o'yinlar bo'limini qo'sh", ru: 'Добавь раздел новых игр' }), plan: [tr({ uz: "fetch('https://robo-api.example/new') so'rov yuboraman", ru: "Отправлю запрос fetch('https://robo-api.example/new')" }), tr({ uz: "Javobni 'Yangi' sarlavhasi ostida chizaman", ru: 'Нарисую ответ под заголовком «Новые»' })], code: <>{'fetch('}<St>'https://robo-api.example/new'</St>{').then(r => r.json()).then(d => setNew(d))'}</> },
     { id: 't3', label: tr({ uz: "Yuklanayotganda skeleton ko'rsat", ru: 'Показывай скелетон во время загрузки' }), plan: [tr({ uz: "loading degan state qo'shaman — boshida true", ru: 'Добавлю state с именем loading — вначале true' }), tr({ uz: "Javob kelganda false qilib, skeleton o'rniga kartochkalarni chizaman", ru: 'Когда придёт ответ, поставлю false и вместо скелетона нарисую карточки' })], code: <>{'{loading ? '}<Jx>{'<Skeleton />'}</Jx>{' : games.map(…)}'}</> }
   ];
   const [task, setTask] = useState(null);
@@ -1301,7 +1301,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ORDER = ['effect', 'fetch', 'json', 'set'];
   const CHIPS = {
     effect: 'useEffect(() => {',
-    fetch: "fetch('https://robo-api.uz/games')",
+    fetch: "fetch('https://robo-api.example/games')",
     json: '.then(res => res.json())',
     set: '.then(data => setGames(data));'
   };
@@ -1343,7 +1343,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {POOL.map(id => {
                 const used = ORDER.indexOf(id) < placed;
                 return (
-                  <button key={id} className={`gchip ${shakeId === id ? 'shake' : ''}`} disabled={used} onClick={() => tap(id)} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, justifyContent: 'space-between', opacity: used ? 0.35 : 1, padding: '9px 13px' }}>
+                  <button key={id} className={`gchip ${shakeId === id ? 'shake' : ''}`} disabled={used} onClick={() => tap(id)} style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12, justifyContent: 'space-between', opacity: used ? 0.35 : 1, padding: '9px 13px' }}>
                     <span>{CHIPS[id]}</span>
                     <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 10.5, color: used ? T.success : T.ink3, fontStyle: 'italic' }}>{used ? '✓' : tr(HINTS[id])}</span>
                   </button>
@@ -1352,7 +1352,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95, minHeight: 110 }}>
               {placed === 0 && <Cm>{tr({ uz: "// bo'laklarni tartib bilan bosing…", ru: '// нажимайте блоки по порядку…' })}</Cm>}
-              {ORDER.slice(0, placed).map(id => <span key={id} className="el-in" style={{ display: 'inline-block' }}>{IND[id]}{id === 'fetch' ? <>{'fetch('}<St>'https://robo-api.uz/games'</St>{')'}</> : CHIPS[id]}{'\n'}</span>)}
+              {ORDER.slice(0, placed).map(id => <span key={id} className="el-in" style={{ display: 'inline-block' }}>{IND[id]}{id === 'fetch' ? <>{'fetch('}<St>'https://robo-api.example/games'</St>{')'}</> : CHIPS[id]}{'\n'}</span>)}
               {done && <span className="el-in" style={{ display: 'inline-block' }}><Cm>{'}, []);'}</Cm></span>}
             </pre>
           </Col>
@@ -1403,9 +1403,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-code">
                 <div className={`ai-line ${picked === 'effect' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('effect'); }}>{'useEffect(() => {'}</div>
                 {!fixed ? (
-                  <div className={`ai-line ${found ? 'bad' : ''}`} onClick={pickUrl}>{'  fetch('}<St>'https://robo-api.uz/gmaes'</St>{')'}</div>
+                  <div className={`ai-line ${found ? 'bad' : ''}`} onClick={pickUrl}>{'  fetch('}<St>'https://robo-api.example/gmaes'</St>{')'}</div>
                 ) : (
-                  <div className="ai-line ok el-in">{'  fetch('}<St>'https://robo-api.uz/games'</St>{')  '}<Cm>{tr({ uz: '// tuzatildi!', ru: '// исправлено!' })}</Cm></div>
+                  <div className="ai-line ok el-in">{'  fetch('}<St>'https://robo-api.example/games'</St>{')  '}<Cm>{tr({ uz: '// tuzatildi!', ru: '// исправлено!' })}</Cm></div>
                 )}
                 <div className={`ai-line ${picked === 'json' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('json'); }}>{'    .then(res => res.json())'}</div>
                 <div className={`ai-line ${picked === 'set' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('set'); }}>{'    .then(data => setGames(data));'}</div>
@@ -2014,6 +2014,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   const closeArena = () => {
@@ -2127,7 +2135,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2287,7 +2296,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    tr({ uz: "Ma'lumot serverda yashaydi — manzili bor: robo-api.uz/games", ru: 'Данные живут на сервере — у них есть адрес: robo-api.uz/games' }),
+    tr({ uz: "Ma'lumot serverda yashaydi — manzili bor: robo-api.example/games", ru: 'Данные живут на сервере — у них есть адрес: robo-api.example/games' }),
     tr({ uz: "fetch — so'rov: shu manzilga borib, olib kel (GET)", ru: 'fetch — запрос: сходи по адресу и принеси (GET)' }),
     tr({ uz: "Javob JSON matn — .json() uni massivga aylantiradi", ru: 'Ответ — JSON-текст, .json() превращает его в массив' }),
     tr({ uz: "Kutish payti — skeleton: \"ma'lumot yo'lda\" signali", ru: 'Во время ожидания — скелетон: сигнал «данные в пути»' }),
@@ -2477,7 +2486,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -2515,7 +2524,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .stepbtn:disabled:not(.is-done) { background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.line}; cursor: not-allowed; }
         .stepbtn-tick { font-weight: 900; opacity: 0; transition: opacity 0.2s; }
         .stepbtn.is-done .stepbtn-tick { opacity: 1; }
-        .stepbtn.mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); }
+        .stepbtn.mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); }
 
         /* === OPSIYALAR === */
         .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
@@ -2530,7 +2539,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 8px 13px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.2); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover:not(:disabled) { transform: translateY(-1px); } .gchip:disabled { opacity: 0.4; cursor: not-allowed; }
-        .tagpill { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
+        .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
@@ -2602,10 +2611,10 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
         .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
-        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
-        .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
+        .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
         /* === SK-INFO === */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
@@ -2617,7 +2626,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
         .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
-        .ai-line { font-family: 'JetBrains Mono'; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; } .ai-line:hover { background: rgba(255,255,255,0.06); }
+        .ai-line { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; } .ai-line:hover { background: rgba(255,255,255,0.06); }
         .ai-line.bad { background: rgba(255,79,40,0.16); box-shadow: inset 0 0 0 1px ${T.accent}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
@@ -2640,7 +2649,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
         .hw-big:hover { transform: translateY(-3px) scale(1.02); }
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
         @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
@@ -2660,9 +2669,9 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .bb-dots { display: flex; gap: 5px; }
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
-        .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
+        .bp-title { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
-        .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13.5px); line-height: 1.55; padding: clamp(12px,2.2vw,16px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
+        .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12px,1.5vw,13.5px); line-height: 1.55; padding: clamp(12px,2.2vw,16px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
         /* Roblox uslubidagi o'yin kartochkasi */
         .rocard { border-radius: 12px; background: #fff; box-shadow: 0 4px 14px -4px rgba(0,0,0,0.16); overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.15s, box-shadow 0.15s; }
         .rocard:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.22); }
@@ -2688,12 +2697,12 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         /* VS Code muhiti (yakuniy ekran) */
         .vsc { background: #1E1E1E; border-radius: 13px; overflow: hidden; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.3); }
         .vsc-bar { background: #252526; display: flex; align-items: flex-end; }
-        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; }
+        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; }
         .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
-        .vsc-body { padding: 12px 14px 14px 8px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13px); color: #D4D4D4; line-height: 2; }
+        .vsc-body { padding: 12px 14px 14px 8px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12px,1.5vw,13px); color: #D4D4D4; line-height: 2; }
         .vsc-line { display: flex; align-items: center; }
         .vsc-ln { color: #6E7681; min-width: 22px; text-align: right; margin-right: 14px; font-size: 11px; flex-shrink: 0; user-select: none; }
-        .vsc-input { background: rgba(0,122,204,0.08); border: 1px dashed #007ACC; border-radius: 6px; color: #E6EDF3; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13px); padding: 4px 9px; outline: none; flex: 1; min-width: 0; transition: border-color 0.2s, background 0.2s; }
+        .vsc-input { background: rgba(0,122,204,0.08); border: 1px dashed #007ACC; border-radius: 6px; color: #E6EDF3; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12px,1.5vw,13px); padding: 4px 9px; outline: none; flex: 1; min-width: 0; transition: border-color 0.2s, background 0.2s; }
         .vsc-input::placeholder { color: #5A6374; }
         .vsc-input.ok { border: 1.5px solid ${T.success}; background: rgba(31,122,77,0.14); }
 
@@ -2706,7 +2715,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .fly-in { transform: translateX(-50%); animation: fly-in 0.95s ease-in forwards; z-index: 3; }
 
         /* Matn ichidagi real kodcha */
-        .codechip { font-family: 'JetBrains Mono', monospace; font-size: 0.84em; font-weight: 600; background: ${CODE.bg}; color: ${CODE.str}; padding: 1.5px 6px; border-radius: 5px; white-space: nowrap; }
+        .codechip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 0.84em; font-weight: 600; background: ${CODE.bg}; color: ${CODE.str}; padding: 1.5px 6px; border-radius: 5px; white-space: nowrap; }
 
         /* Server'ga ko'chish (Screen2) */
         .migrate { display: flex; align-items: stretch; gap: 12px; flex-wrap: wrap; }
@@ -2717,7 +2726,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .mig-arrow { flex: 0 0 86px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; }
         .mig-line { width: 100%; height: 2px; background: repeating-linear-gradient(90deg, ${T.ink3} 0 5px, transparent 5px 10px); }
         .mig-cap { font-family: 'Manrope'; font-weight: 700; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; }
-        .mig-packet { position: absolute; top: -6px; left: 0; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 10px; color: #fff; background: ${T.accent}; padding: 4px 8px; border-radius: 99px; white-space: nowrap; box-shadow: 0 5px 12px -3px rgba(255,79,40,0.55); animation: mig-fly 1s ease-in-out forwards; z-index: 3; }
+        .mig-packet { position: absolute; top: -6px; left: 0; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10px; color: #fff; background: ${T.accent}; padding: 4px 8px; border-radius: 99px; white-space: nowrap; box-shadow: 0 5px 12px -3px rgba(255,79,40,0.55); animation: mig-fly 1s ease-in-out forwards; z-index: 3; }
         @keyframes mig-fly { 0% { left: -8%; opacity: 0; } 18% { opacity: 1; } 82% { opacity: 1; } 100% { left: 90%; opacity: 0; } }
         @keyframes mig-leave { 0% { opacity: 1; transform: none; } 100% { opacity: 0.35; transform: scale(0.92) translateX(10px); } }
         .mig-leaving { animation: mig-leave 1s ease-in forwards; }
@@ -2737,7 +2746,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .json-note { font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; }
         .json-note.bad { color: ${T.accent}; }
         .json-note.good { color: #8FE3B5; }
-        .json-body { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${CODE.text}; margin: 0; white-space: pre-wrap; word-break: break-word; line-height: 1.55; }
+        .json-body { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${CODE.text}; margin: 0; white-space: pre-wrap; word-break: break-word; line-height: 1.55; }
         .json-card.txt .json-body { color: #8A93A6; }
 
         /* fetch qismlari — bosishga chorlovchi (Screen3) */
@@ -2771,12 +2780,12 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
         .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
-        .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
+        .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
         .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
-        .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
+        .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
@@ -2790,7 +2799,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         /* === 🐞 DEBUG CHALLENGE (reusable) === */
         .dbg { display: flex; flex-direction: column; gap: 10px; }
         .dbg-code { background: ${CODE.bg}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 26px -14px rgba(${T.shadowBase},0.4); overflow-x: auto; }
-        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
+        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
@@ -2837,9 +2846,9 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
         .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
         .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
         .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
         .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
@@ -2860,7 +2869,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .fc-done-s { font-family: 'Manrope'; color: ${T.ink2}; margin: 0 0 8px; font-size: 14px; }
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }
@@ -2980,7 +2989,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
           animation: cs-current 3.4s linear infinite; }
         @keyframes cs-current { to { --csa: 360deg; } }
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
         @keyframes cs-float { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(16px,-14px) rotate(5deg); } }
         .cs-dash { position: absolute; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(190,150,255,.55), transparent); animation: cs-dash-run 5.5s linear infinite; }
@@ -3003,7 +3012,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         @keyframes cs-wglow { 0%,100% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 14px rgba(150,90,255,.5)); } 50% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 27px rgba(172,112,255,.95)); } }
         @keyframes cs-glint { 0% { background-position: 135% 0; } 60%,100% { background-position: -55% 0; } }
         .cs-clickable:hover .cs-word { animation-duration: 1.4s; }
-        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3017,7 +3026,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .cs-off { filter: saturate(.45) brightness(.74); animation: cs-ignite 1.5s ease-out both, cs-breathe 6.5s ease-in-out 1.5s infinite; }
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
-        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3032,24 +3041,24 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .lm-mem { width: 100%; max-width: 240px; border-radius: 12px; padding: 10px 14px; background: ${T.accentSoft}; display: flex; flex-direction: column; align-items: center; gap: 2px; }
         .lm-channel { position: relative; width: 10px; height: 44px; border-radius: 6px; background: repeating-linear-gradient(180deg, rgba(0,0,0,0.12) 0 5px, transparent 5px 10px), #d8d4cc; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; transition: box-shadow 0.3s, background 0.3s; }
         .lm-channel.lit { background: linear-gradient(180deg, ${T.success}, #35c07d); box-shadow: 0 0 14px 2px rgba(31,122,77,0.55); }
-        .lm-channel-lbl { position: absolute; left: 16px; bottom: 12px; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; color: ${T.ink3}; white-space: nowrap; }
+        .lm-channel-lbl { position: absolute; left: 16px; bottom: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 9px; font-weight: 700; color: ${T.ink3}; white-space: nowrap; }
         .lm-impulse { position: absolute; top: -20px; left: 0; right: 0; height: 20px; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9)); animation: lm-drop 0.6s cubic-bezier(.4,0,.3,1) both; }
         @keyframes lm-drop { 0% { transform: translateY(-4px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(64px); opacity: 0.2; } }
         .lm-screen.lm-frozen { animation: lm-shake 0.4s ease; }
         @keyframes lm-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-        .lm-gap { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: ${T.ink2}; }
+        .lm-gap { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; color: ${T.ink2}; }
         .lm-gap-i b { color: ${T.ink}; font-size: 15px; }
         .lm-gap-vs { font-family: 'Fraunces', serif; font-size: 18px; color: ${T.ink3}; font-weight: 700; }
         .lm-goal { position: relative; width: 100%; height: 26px; border-radius: 99px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.07); overflow: hidden; }
         .lm-goal-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, ${T.success}, #35c07d); border-radius: 99px; transition: width 0.5s cubic-bezier(.34,1.2,.5,1); }
-        .lm-goal-txt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12.5px; color: ${T.ink}; }
+        .lm-goal-txt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12.5px; color: ${T.ink}; }
         .lm-levers { display: flex; flex-direction: column; gap: 10px; }
         .lm-lever { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; border: none; border-radius: 12px; padding: 12px 16px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; }
         .lm-lever:disabled { opacity: 0.5; cursor: default; }
         .lm-lever:not(:disabled):hover { transform: translateY(-2px); }
         .lm-lever.dead { background: linear-gradient(135deg, ${T.bg}, ${T.accentSoft}); border: 1.5px dashed rgba(255,79,40,0.42); box-shadow: none; }
         .lm-lever.live { background: linear-gradient(135deg, ${T.success}, #35c07d); box-shadow: 0 8px 22px -6px rgba(31,122,77,0.5); }
-        .lm-lever-code { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(13px,1.7vw,15px); }
+        .lm-lever-code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(13px,1.7vw,15px); }
         .lm-lever.dead .lm-lever-code { color: ${T.ink2}; } .lm-lever.dead .lm-lever-sub { color: ${T.ink3}; }
         .lm-lever.live .lm-lever-code { color: #fff; } .lm-lever.live .lm-lever-sub { color: rgba(255,255,255,0.85); }
         .lm-lever-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 11px; }
@@ -3161,7 +3170,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
         .qz-x { position: fixed; top: 14px; right: 16px; z-index: 10600; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(186,140,255,0.34); background: rgba(255,255,255,0.06); color: #D9C9FF; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(124,58,237,0.22); backdrop-filter: blur(6px); transition: transform 0.25s, color 0.2s, background 0.2s; }
@@ -3207,7 +3216,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }

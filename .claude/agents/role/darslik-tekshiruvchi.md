@@ -254,3 +254,93 @@ regressiya-qorovuli.
 🔴 Eng xavfli joy — **dars o'z mavzusining finali**: o'sha yerda chalg'ituvchi
 darsning o'z ta'limotidan o'tib ketsa, dars **o'zini inkor qiladi**
 (manba: 4b-02 edge-case darsi finali, F-0820-300).
+
+## 🎯 OV-BANDI — IKKI FAZADAN BIRIDA `tr()` TUSHIB QOLADI (F-0922-07, 2026-09-22)
+
+Ikki tilli darsda bir xil ma'lumot **ikki joyda** chiziladi: savol fazasi va javob (reveal)
+fazasi. Biri `tr()` bilan, ikkinchisi **usiz** qolishi mumkin — va bu **jim o'tadi**:
+`esbuild` ham, `lint:jsx` ham, `lint:til` ham ko'rmaydi, chunki sintaksis va matn joyida.
+
+Natija — React `Objects are not valid as a React child (found: object with keys {uz, ru})`
+xatosi va **oq ekran**, lekin faqat o'sha fazaga yetganda (arena javobi ochilganda).
+
+**Qanday ovlanadi (grep):**
+```
+grep -n "fmtCode(Q\.q)\|fmtCode(o)\|>{Q\.q}\|>{o}<" <fayl>      # tr() siz
+grep -n "fmtCode(tr(Q\.q))\|fmtCode(tr(o))" <fayl>                # to'g'ri shakl
+```
+Ikkovining SONI teng bo'lishi kerak: savol fazasi nechta bo'lsa, reveal fazasi ham shuncha.
+
+**Umumiy qoida:** ikki tilli darsda `{uz, ru}` obyektini olgan HAR bir render nuqtasi
+`tr()` dan o'tadi — `aria-label`, `title`, `alt` ham (F-0922-01: `DeckMock` da `aria-label`
+qattiq o'zbekcha qolgan edi, ruscha rejimda ekran-o'quvchisi o'zbekcha eshitardi).
+
+**Manba:** `BotAiProjectLesson` — arena javobi ochilganda dars qulab tushardi; `smoke-arena.mjs`
+darvozasi birinchi yurishidayoq tutdi. Repo bo'ylab o'lchov: 97 arenadan 1 tasida.
+
+## 🎯 OV-BANDI — PRAKTIKA SHARTI TOPSHIRIQ MATNIDAN KAM (F-0922-11, 2026-09-22)
+
+Praktika ikki joydan iborat: **`brief`** (o'quvchi o'qiydigan topshiriq) va **`requirements`**
+(kompilyator tekshiradigan shartlar). Ular **ayrilib ketishi** mumkin — va bu jim o'tadi:
+esbuild ham, `lint:jsx` ham, `lint:til` ham ko'rmaydi, chunki ikkalasi ham to'g'ri yozilgan.
+
+Natija eng yomon turdagi nuqson: o'quvchi «✓ Barcha shartlar bajarildi» ko'radi, **natija esa ko'z
+oldida NOTO'G'RI turadi** (`CssLesson2` TASK_CENTER: `display: flex` topshiriqda bor, shartda yo'q —
+quti markazga tushmasa ham «Davom etish» ochilardi).
+
+**Qanday ovlanadi:**
+1. Har `TASK_*` uchun `brief` dagi HAR bir CSS xossasi/qiymati `requirements` da bormi — qatorma-qator.
+2. Bitta darsdagi praktikalarni O'ZARO solishtiring: uchtasida `display` sharti bor, bittasida yo'q
+   bo'lsa — o'sha bittasi nuqson (aynan shunday topilgan).
+3. Isbot dasturiy: `checks.cssValue(...)` ni o'quvchining «chala» kodiga qarshi yurgizing —
+   BLOKLASHI shart.
+
+
+## 🎯 OV-BANDI — FLASHKARTA JAVOBI ASOSIY OQIMDA O'RGATILMAGAN (F-0922-16, 2026-09-22 · KORPUS §191)
+
+Flashkarta (yoki RECAP) o'quvchidan atamani **so'raydi**; lekin dars uni hech qayerda **egalab**
+o'rgatmagan bo'lishi mumkin — va bu jim o'tadi: atama kodda ko'rinib turadi, grep topadi, darvozalar jim.
+`HtmlPractice` `<nav>`: s5 kod-oynasida `<nav>…</nav>` turardi, s6 xato-javob izohida va ixtiyoriy
+«📖 Qayta tushuntirish» panelida ta'rif bor edi — lekin **to'g'ri javob bergan o'quvchi** uchalasini ham
+ko'rmasdan flashkartaga yetardi. `<header>`/`<footer>` esa Mentor gapida nomi bilan aytilgan edi.
+
+**«O'rgatilgan» hisoblanadi** (biri yetadi, flashkarta ekranidan OLDIN):
+- Mentor gapi yoki sarlavha atamani **nomi bilan** aytadi (deduktiv), yoki
+- atama savol-ekranning **to'g'ri javobi** — o'quvchi o'zi topadi (induktiv; `src`/`alt` s7/s8 da shunday).
+
+**Hisoblanmaydi:** kod-oynasida «shunchaki turishi» · xato-variant izohi (faqat adashgan ko'radi) ·
+ixtiyoriy tugma ortidagi panel (§192) · flashkartadan KEYINGI yakuniy RECAP.
+
+**Qanday ovlanadi:**
+1. `FLASHCARDS` massividagi har `back` ni oling (RECAP bandlarini ham).
+2. Har biri uchun flashkarta ekranidan oldingi qismda ikki joyni tekshiring: `<Mentor>`/`h-title` matnida
+   nomi bormi · qaysidir savolning `correctIdx`/`CORRECT` qiymatimi.
+3. Ikkalasi ham yo'q — teshik. Yechim §191: atamani kodda ko'ringan joyning O'ZIDA bir gap bilan nomlang
+   (kartani o'chirish muammoni yashiradi — atama RECAP'da qolaveradi).
+4. Avto-grep faqat Mentor matniga qarasa **soxta teshik** beradi (induktiv ekranlar) — 2-banddagi ikkinchi
+   yo'lni tekshirmasdan «teshik» demang (22.09 da `src`/`alt` shunday adashtirdi).
+
+## 🎯 OV-BANDI — EKRAN QO'SHILSA, INDEKS BILAN KALITLANGAN TUZILMALAR SILJIYDI (F-0922-24, 2026-09-22)
+
+Darsga yangi ekran qo'shilsa (yoki o'chirilsa) `screens` va `SCREEN_META` uzayadi — va
+**raqamli indeks bilan kalitlangan har qanday tuzilma jimgina noto'g'ri ekranga tushadi**.
+Esbuild ham, `lint:jsx` ham, `lint:til` ham ko'rmaydi: kod sintaktik to'g'ri, faqat
+«Qayta tushuntirish» paneli boshqa ekranda ochiladi.
+
+**`CssLesson1` (22.09):** `RECAPS = { 5, 7, 11, 14 }` — to'rttala test ekranining INDEKSI.
+`s7b` qo'shilgach 11 va 14 bir pog'ona siljidi → `12` va `15` qilindi.
+Yonidagi `INLINE_KEYS = { s4: 3, s5b: 1, … }` esa **string-id** bilan — u xavfsiz.
+
+**Qanday ovlanadi (ekran qo'shilgan har darsda):**
+1. `grep -n "RECAPS\|SCREEN_INTENTS\|\[screen\]\|screenIdx\]" <fayl>` — raqamli kalitni qidiring.
+2. Har raqamli kalit uchun `screens` massividagi o'sha indeksni sanang: qo'shishdan OLDIN
+   va KEYIN qaysi komponentga tushadi? Test-ekrani bo'lsa — to'g'ri; boshqa bo'lsa — siljigan.
+3. `INLINE_KEYS`, prob-spetsifikatsiyalari (`ach-probe` `ids.indexOf(sid)`) va `ACH_TRIGGERS`
+   id bilan ishlaydi — ular xavfsiz, lekin **tekshirib** o'ting, faraz qilmang.
+4. `TOTAL_SCREENS` ga bog'langan shartlar (`screen === TOTAL_SCREENS - 1` — bitiruv nishoni)
+   avtomatik to'g'rilanadi, lekin qo'lda yozilgan raqam bo'lsa — tuzating.
+
+**Yon ta'sir (foydalanuvchiga AYTILADI):** `SCREEN_META` uzunligi o'zgarsa
+`useServerProgress` darsni yarmida qoldirgan o'quvchining javoblarini tozalaydi
+(`p.total !== total` → `answers = {}`). Ya'ni ekran qo'shish — **dars ishlatilmayotgan paytda**
+yuklanadigan o'zgarish.

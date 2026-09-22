@@ -34,7 +34,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveRpc, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveRpc, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -361,7 +361,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>}
+            {level === 'need' && <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>}
             {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
             {level === 'few' && <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</p>}
@@ -376,7 +376,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
+      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.</p>}
       {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
     </div>
   );
@@ -2282,6 +2282,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   const closeArena = () => {
@@ -2395,7 +2403,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title="Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)">{autoNext.auto ? `To'xtatish${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : '▶ Avto'}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
         </div>
       )}
@@ -2741,7 +2750,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
         .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -2809,7 +2818,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .hook-mc:hover:not(:disabled):not(.on) { transform: translateY(-3px); box-shadow: 0 14px 28px -10px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.accent}44; }
         .hook-mc.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 12px 26px -8px rgba(91,61,230,0.34), inset 0 0 0 2px ${T.accent}; }
         .hook-mc:disabled { cursor: default; }
-        .hook-mc-abc { flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: ${T.accent}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}33; transition: all 0.2s; }
+        .hook-mc-abc { flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 14px; color: ${T.accent}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}33; transition: all 0.2s; }
         .hook-mc.on .hook-mc-abc { background: ${T.accent}; color: #fff; box-shadow: none; }
         .hook-mc-txt { flex: 1; line-height: 1.3; }
         .hook-mc-cup { font-size: 22px; opacity: 0.5; flex-shrink: 0; transition: transform 0.25s, opacity 0.2s; }
@@ -2823,7 +2832,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .cofsh-row { display: flex; align-items: flex-end; justify-content: space-around; gap: clamp(6px,1.4vw,16px); position: relative; padding-bottom: 8px; border-bottom: 2px solid ${T.line}; }
         .cofsh { --sk0: #6F4E37; --sk1: #A9825E; --sk2: #C69C6D; --sk3: #8C6239; display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; min-width: 0; position: relative; }
         .cofsh-crown { position: absolute; top: -22px; font-size: clamp(15px,2.4vw,20px); animation: float-sm 2.4s ease-in-out infinite; }
-        .cofsh-pct { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(13px,1.9vw,17px); color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .cofsh-pct { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.9vw,17px); color: ${T.ink}; font-variant-numeric: tabular-nums; }
         .cofsh.mine .cofsh-pct { color: ${T.accent}; }
         .cofsh-vessel { position: relative; width: clamp(40px,8.4vw,64px); display: flex; justify-content: center; padding-top: 16px; }
         .cofsh-glass { position: relative; width: 100%; height: clamp(78px,15vw,118px); background: linear-gradient(90deg, rgba(255,255,255,0.55), rgba(230,226,244,0.4) 50%, rgba(255,255,255,0.55)); border: 2px solid ${T.line}; border-top: none; clip-path: polygon(7% 0, 93% 0, 83% 100%, 17% 100%); overflow: hidden; box-shadow: inset 0 -6px 14px rgba(${T.shadowBase},0.08); transition: box-shadow 0.25s; }
@@ -2839,7 +2848,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .cofsh-steam::after { left: 7px; height: 17px; animation: cofsh-wisp 2.6s ease-in-out 0.9s infinite; }
         @keyframes cofsh-steam-main { 0%,100% { transform: translateX(-50%) translateY(2px); opacity: 0.35; } 50% { transform: translateX(-50%) translateY(-5px); opacity: 0.8; } }
         @keyframes cofsh-wisp { 0%,100% { transform: translateY(2px); opacity: 0.2; } 50% { transform: translateY(-5px); opacity: 0.6; } }
-        .cofsh-abc { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: ${T.ink3}; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: ${T.bg}; }
+        .cofsh-abc { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; color: ${T.ink3}; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: ${T.bg}; }
         .cofsh.mine .cofsh-abc { color: #fff; background: ${T.accent}; }
         .cofsh-cap { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; text-align: center; }
         @media (prefers-reduced-motion: reduce) { .cofsh-fill { transition: none; } .cofsh-crown, .cofsh-steam, .cofsh-steam::before, .cofsh-steam::after { animation: none; } .cofsh-steam { opacity: 0.55; } .hook-mc.taphint { animation: none; } }
@@ -2903,7 +2912,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
         .hw-big:hover { transform: translateY(-3px) scale(1.02); }
         .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
         @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
         .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
         @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
@@ -2929,16 +2938,16 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jhire-top { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; border-bottom: 1.5px dashed ${T.line}; }
         .jhire-em { font-size: clamp(20px,2.6vw,26px); line-height: 1; }
         .jhire-nm { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .jhire-doc { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink3}; flex-shrink: 0; }
+        .jhire-doc { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink3}; flex-shrink: 0; }
         .jhire-rows { display: flex; flex-direction: column; gap: 7px; padding-top: 10px; }
         .jhire-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
         .jhire-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 9.5px; letter-spacing: 0.06em; width: 68px; flex-shrink: 0; color: ${T.ink3}; }
         .jhire-row.kim .jhire-lbl { color: ${T.blue}; } .jhire-row.nima .jhire-lbl { color: #B77A16; } .jhire-row.natija .jhire-lbl { color: ${T.success}; }
         /* qiymat «yozilib» to'ladi — steps() bilan mashinka-effekt */
-        .jhire-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink}; white-space: nowrap; overflow: hidden; max-width: 0; animation: jhire-type 0.5s steps(14, end) forwards; animation-delay: var(--fd, 1s); }
+        .jhire-val { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink}; white-space: nowrap; overflow: hidden; max-width: 0; animation: jhire-type 0.5s steps(14, end) forwards; animation-delay: var(--fd, 1s); }
         @keyframes jhire-type { from { max-width: 0; } to { max-width: 220px; } }
         /* «✓ YOLLANDI» shtampi — indigo doira-oval, katta→kichik bosilish + qisqa silkinish */
-        .jhire-stamp { position: absolute; right: 10px; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; letter-spacing: 0.1em; color: ${T.accent}; border: 3px solid ${T.accent}; border-radius: 999px; padding: 4px 12px; background: rgba(235,229,253,0.55); opacity: 0; transform: rotate(-8deg) scale(2.6); animation: jhire-stamp-in 0.55s cubic-bezier(.2,1.2,.3,1) forwards; animation-delay: var(--fd, 2s); pointer-events: none; }
+        .jhire-stamp { position: absolute; right: 10px; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; letter-spacing: 0.1em; color: ${T.accent}; border: 3px solid ${T.accent}; border-radius: 999px; padding: 4px 12px; background: rgba(235,229,253,0.55); opacity: 0; transform: rotate(-8deg) scale(2.6); animation: jhire-stamp-in 0.55s cubic-bezier(.2,1.2,.3,1) forwards; animation-delay: var(--fd, 2s); pointer-events: none; }
         @keyframes jhire-stamp-in { 0% { opacity: 0; transform: rotate(-8deg) scale(2.6); } 55% { opacity: 1; transform: rotate(-8deg) scale(0.94); } 70% { transform: rotate(-5.5deg) scale(1.06); } 84% { transform: rotate(-9deg) scale(0.99); } 100% { opacity: 1; transform: rotate(-8deg) scale(1); } }
         /* ustaxona mini-shtampi — s1 bilan bitta vizual til */
         .jhire-stamp.mini { position: static; margin-left: auto; flex-shrink: 0; font-size: 9.5px; padding: 2px 8px; border-width: 2px; transform: rotate(-6deg); opacity: 1; animation: jhire-stamp-in 0.45s cubic-bezier(.2,1.2,.3,1); }
@@ -3007,7 +3016,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .ksd-ic { font-size: clamp(23px,3.8vw,30px); line-height: 1; }
         .ksd-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); color: ${T.ink2}; }
         .ksd-node.mid .ksd-lbl { color: ${T.accent}; }
-        .ksd-arrow { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(15px,2.2vw,20px); color: ${T.ink3}; }
+        .ksd-arrow { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(15px,2.2vw,20px); color: ${T.ink3}; }
 
         /* === STORY MINI-EDITOR / USTAXONA === */
         .swcard-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -3056,7 +3065,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jw-ed { position: relative; background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 0 0 2px ${T.accent}33, 0 14px 32px -10px rgba(91,61,230,0.28); border-left: 5px solid ${T.accent}; min-width: 0; }
         .jw-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 99px; color: ${T.accent}; background: ${T.accentSoft}; }
         /* shtamp-o'rni: bo'sh kartada xira-punktir «kutmoqda», to'lganda accent'da yonadi (tap-hint: endi saqlasa bo'ladi) */
-        .jw-stampzone { position: absolute; right: clamp(12px,2vw,18px); top: clamp(12px,2vw,16px); font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 9.5px; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 999px; border: 2px dashed ${T.ink3}66; color: ${T.ink3}; background: transparent; opacity: 0.45; transform: rotate(-6deg); transition: all 0.3s cubic-bezier(.3,1.3,.5,1); pointer-events: none; }
+        .jw-stampzone { position: absolute; right: clamp(12px,2vw,18px); top: clamp(12px,2vw,16px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 9.5px; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 999px; border: 2px dashed ${T.ink3}66; color: ${T.ink3}; background: transparent; opacity: 0.45; transform: rotate(-6deg); transition: all 0.3s cubic-bezier(.3,1.3,.5,1); pointer-events: none; }
         .jw-stampzone.ready { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: rgba(235,229,253,0.6); opacity: 1; animation: jw-stamp-ready 1.6s ease-in-out infinite; }
         @keyframes jw-stamp-ready { 0%,100% { transform: rotate(-6deg) scale(1); box-shadow: 0 0 0 0 rgba(91,61,230,0.28); } 50% { transform: rotate(-6deg) scale(1.045); box-shadow: 0 0 0 7px rgba(91,61,230,0); } }
         @media (max-width: 520px) { .jw-stampzone { display: none; } }
@@ -3066,7 +3075,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jw-part.mahsulot.on { color: ${T.blue}; } .jw-part.ish.on { color: #B77A16; } .jw-part.tur.on { color: ${T.success}; }
         .jw-hint.jw-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; overflow-wrap: anywhere; min-width: 0; }
         .jw-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
-        .jw-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
+        .jw-cnt { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .jw-save { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 13px 26px; background: ${T.accent}; color: #fff; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.18s; }
         .jw-save:hover:not(:disabled) { background: ${T.accentVivid}; transform: translateY(-1px); }
         .jw-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
@@ -3075,7 +3084,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         /* YENGIL PROGRESS-INDIKATOR (F-0727-49): karta EMAS — fonsiz, havoda; muharrir yagona karta */
         .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
         .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
-        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
         .jws.cur .jws-t { color: ${T.accent}; }
@@ -3086,14 +3095,14 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jws-line.on { background: ${T.success}; }
         .jbook.full { width: 100%; }
         @media (prefers-reduced-motion: reduce) { .jws.cur .jws-n { animation: none; } }
-        .jbook-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 11px; transition: all 0.25s; }
+        .jbook-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 14px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 11px; transition: all 0.25s; }
         .jbook-n.ok { color: ${T.success}; background: ${T.successSoft}; }
         /* saqlangan karta CHAPDAN uchib keladi — «muharrirdan doskaga ko'chdi» hissi */
         .jbook-card { position: relative; background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: jbook-land 0.5s cubic-bezier(.22,1.15,.34,1) both; }
         @keyframes jbook-land { 0% { opacity: 0; transform: translateX(-26px) translateY(6px) scale(0.94); } 62% { opacity: 1; transform: translateX(2px) translateY(0) scale(1.015); } 100% { opacity: 1; transform: none; } }
         .jbook-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; animation: none; }
         .jbook-top { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
-        .jbook-num { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; color: #fff; background: ${T.success}; }
+        .jbook-num { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11px; color: #fff; background: ${T.success}; }
         /* ISH-TURI rangi — dars bo'ylab YAGONA semantika (tur-chip · mp-tur bilan bir xil) */
         .jbook-tur { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.05em; border-radius: 99px; padding: 3px 9px; background: ${T.bg}; color: ${T.ink2}; flex-shrink: 0; }
         .jbook-tur.funksional { background: ${T.blueSoft}; color: ${T.blue}; }
@@ -3219,7 +3228,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jpri-card:active { transform: translateY(0) scale(0.98); }
         .jpri-card.sel { box-shadow: 0 0 0 2.5px ${T.accent}, 0 10px 22px -7px rgba(91,61,230,0.4); transform: translateY(-2px); }
         .jpri-card.sel .jpri-card-n { background: ${T.accent}; color: #fff; }
-        .jpri-card-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; }
+        .jpri-card-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 12px; }
         .jpri-card-txt { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; line-height: 1.35; min-width: 0; overflow-wrap: anywhere; }
         .jpri-board { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; align-items: stretch; }
         @media (max-width: 760px) { .jpri-board { grid-template-columns: 1fr; } }
@@ -3254,7 +3263,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .pmtask-step:nth-child(2) { animation-delay: 0.1s; } .pmtask-step:nth-child(3) { animation-delay: 0.2s; }
         @keyframes pmtask-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
         .pmtask-step b { color: ${T.accent}; margin-right: 4px; }
-        .pmtask-step i { position: relative; z-index: 1; font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11.5px; box-shadow: 0 0 0 3px ${T.bg}; }
+        .pmtask-step i { position: relative; z-index: 1; font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11.5px; box-shadow: 0 0 0 3px ${T.bg}; }
         @media (prefers-reduced-motion: reduce) { .pmtask-step { animation: none; } }
 
         /* === ✅ MUVAFFAQIYAT-CHIP (done-mini) — to'liq-en ramka o'rniga bitta qator === */
@@ -3294,12 +3303,12 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .vsc::after { content: ''; position: absolute; left: 0; right: 9px; bottom: 0; height: 26px; pointer-events: none; background: linear-gradient(180deg, rgba(30,30,30,0) 0%, rgba(30,30,30,0.92) 100%); }
         @media (max-width: 620px) { .vsc::after { display: none; } }
         .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
-        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
+        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
         .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
         /* Kod-oynasi o'zi skroll bo'ladi — butun sahifa emas (desktopda ekran skrolsiz sig'sin) */
         .vsc-lock { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; color: #B9A8E6; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 5px 11px; }
         .vsc.no-copy .vsc-body { user-select: none; -webkit-user-select: none; }
-        .vsc-body { padding: 10px 14px 12px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.62; overflow: auto; max-height: clamp(170px, 27vh, 300px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
+        .vsc-body { padding: 10px 14px 12px 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.62; overflow: auto; max-height: clamp(170px, 27vh, 300px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
         .vsc-body::-webkit-scrollbar { width: 9px; height: 9px; }
         .vsc-body::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 99px; }
         .vsc-body::-webkit-scrollbar-track { background: #1E1E1E; }
@@ -3326,7 +3335,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
         .rcp-step.wide { grid-column: 1 / -1; }
         .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
-        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
         .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .rcp-s { display: block; font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink2}; margin-top: 2px; line-height: 1.4; }
         .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
@@ -3336,7 +3345,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .pair-who.b { background: ${T.success}; }
         .pair-mic { display: inline-block; animation: pair-mic-pulse 1.1s ease-in-out infinite; }
         @keyframes pair-mic-pulse { 0%,100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.25); opacity: 1; } }
-        .pair-clock { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .pair-clock { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
         .pair-prog { position: relative; height: 8px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; }
         .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
         .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
@@ -3368,7 +3377,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .hw-chip.add.on { background: ${T.accent}; color: #fff; box-shadow: 0 8px 18px -6px rgba(91,61,230,0.4), inset 0 0 0 2px ${T.accent}; }
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🛠️ JONLI PRAKTIKA (self-report) === */
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
@@ -3499,7 +3508,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
           animation: cs-current 3.4s linear infinite; }
         @keyframes cs-current { to { --csa: 360deg; } }
         .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
+        .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
         .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
         @keyframes cs-float { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(16px,-14px) rotate(5deg); } }
         .cs-dash { position: absolute; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(190,150,255,.55), transparent); animation: cs-dash-run 5.5s linear infinite; }
@@ -3522,7 +3531,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         @keyframes cs-wglow { 0%,100% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 14px rgba(150,90,255,.5)); } 50% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 27px rgba(172,112,255,.95)); } }
         @keyframes cs-glint { 0% { background-position: 135% 0; } 60%,100% { background-position: -55% 0; } }
         .cs-clickable:hover .cs-word { animation-duration: 1.4s; }
-        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+        .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
         .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
         .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
         .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3536,7 +3545,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .cs-off { filter: saturate(.45) brightness(.74); animation: cs-ignite 1.5s ease-out both, cs-breathe 6.5s ease-in-out 1.5s infinite; }
         .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
         .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
-        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+        .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
         .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
         @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
         .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3629,7 +3638,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
         .qz-arena::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(190,150,255,0.08) 1.1px, transparent 1.2px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); mask-image: radial-gradient(120% 90% at 50% 20%, #000 40%, transparent 82%); }
         .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
+        .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
         @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
         @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
         .qz-x { position: fixed; top: 14px; right: 16px; z-index: 10600; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(186,140,255,0.34); background: rgba(255,255,255,0.06); color: #D9C9FF; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(124,58,237,0.22); backdrop-filter: blur(6px); transition: transform 0.25s, color 0.2s, background 0.2s; }
@@ -3671,7 +3680,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .qz-tile:active:not(:disabled):not(.rv) { transform: translateY(2px) scale(0.985); }
         .qz-tile:disabled { cursor: default; }
         .qz-shape { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; font-size: clamp(16px,2.2vw,20px); color: #fff; flex-shrink: 0; }
-        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .qz-opt { flex: 1; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(14px,2vw,17px); color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
         .qz-tile.faded { filter: saturate(0.5); opacity: 0.4; }
         .qz-tile.picked { outline: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 14px 26px -12px rgba(0,0,0,0.4); animation: qz-pop 0.3s; }
         .qz-pbadge { position: absolute; top: -9px; right: -7px; width: 27px; height: 27px; border-radius: 50%; background: #fff; color: #12A968; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px rgba(0,0,0,0.28); }
@@ -3731,7 +3740,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .jdrill-cap { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink3}; }
         .jdrill-side.kerak .jdrill-cap { color: ${T.success}; }
         .jdrill-item { font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.7vw,15px); color: ${T.ink}; white-space: nowrap; }
-        .jdrill-arrow { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(15px,2vw,19px); color: ${T.ink3}; }
+        .jdrill-arrow { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(15px,2vw,19px); color: ${T.ink3}; }
         /* devorga RASM osiladi — drel faqat vosita, odamga natija kerak */
         .jdrill-tag { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.04em; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 12px; }
 
@@ -3790,7 +3799,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .mp-wrap { position: relative; display: flex; flex-direction: column; gap: clamp(14px,2.2vw,20px); }
         /* fon-dekor: dars atamalaridan xira tokenlar (dekor o'qitadi) */
         .mp-decor { position: absolute; inset: -10px; pointer-events: none; z-index: 0; overflow: hidden; }
-        .mp-decor-t { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: rgba(91,61,230,0.065); user-select: none; white-space: nowrap; }
+        .mp-decor-t { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; color: rgba(91,61,230,0.065); user-select: none; white-space: nowrap; }
         .mp-decor-t.md0 { left: 1%; top: 3%; font-size: 26px; transform: rotate(-9deg); }
         .mp-decor-t.md1 { right: 3%; top: 8%; font-size: 30px; transform: rotate(6deg); }
         .mp-decor-t.md2 { left: 38%; top: 46%; font-size: 22px; transform: rotate(-4deg); }
@@ -3832,7 +3841,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .mp-chip.placed.bad { color: ${T.err}; text-decoration: line-through; background: transparent; box-shadow: none; }
         .mp-mark { width: 20px; height: 20px; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
         /* ✓ — mini-shtamp uslubida (s1 YOLLANDI shtampi bilan bitta til) */
-        .mp-mark.ok { background: ${T.successSoft}; color: ${T.success}; border: 2px solid ${T.success}; box-sizing: border-box; transform: rotate(-8deg); font-family: 'JetBrains Mono', monospace; }
+        .mp-mark.ok { background: ${T.successSoft}; color: ${T.success}; border: 2px solid ${T.success}; box-sizing: border-box; transform: rotate(-8deg); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
         .mp-mark.bad { background: ${T.err}; }
         /* to'g'ri tushganda mini yulduzcha-burst */
         .mp-burst { position: absolute; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 5; }
@@ -3874,15 +3883,15 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
         .hboard-ic { font-size: 14px; }
         .hboard-lbl { letter-spacing: 0.03em; white-space: nowrap; }
         .hboard-slots { display: inline-flex; gap: 4px; }
-        .hboard-dot { width: 19px; height: 19px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-style: normal; font-weight: 800; font-size: 10.5px; color: ${T.ink3}; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.25s; }
+        .hboard-dot { width: 19px; height: 19px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-style: normal; font-weight: 800; font-size: 10.5px; color: ${T.ink3}; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.25s; }
         .hboard-dot.ok { color: #fff; background: ${T.success}; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         .hboard-car { font-size: 9px; color: ${T.ink3}; }
         .hboard-panel { width: 100%; background: ${T.paper}; border-radius: 14px; padding: 11px 13px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 16px 38px -14px rgba(${T.shadowBase},0.4), inset 0 0 0 1.5px ${T.line}; }
         .hboard-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
-        .hboard-n { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; color: ${T.accent}; width: 16px; flex-shrink: 0; }
+        .hboard-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11px; color: ${T.accent}; width: 16px; flex-shrink: 0; }
         .hboard-name { flex: 1; min-width: 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .hboard-row:not(.ok) .hboard-name { color: ${T.ink3}; font-weight: 600; font-style: italic; }
-        .hboard-dash { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; color: ${T.ink3}; }
+        .hboard-dash { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11px; color: ${T.ink3}; }
         .jhire-stamp.mini.hb { font-size: 8.5px; padding: 2px 7px; }
         .hboard-cap { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 11px; color: ${T.ink3}; }
         @media (prefers-reduced-motion: reduce) { .hboard-dot.ok { animation: none; } .hboard-pill:hover { transform: none; } }

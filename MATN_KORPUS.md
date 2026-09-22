@@ -1199,6 +1199,22 @@ Uning o'rnida DOIM aniq odam yoki aniq sifat turadi.
 ✅ «**Dasturchilar qoidasi**: har loyiha — alohida papka» · «Endi sizda **haqiqiy dasturchi quroli** bor»
 ❌ «**Professionallar** kodni qayerda yozadi?» · «**Professional** qoida» · «**professional** ustaxona»
 
+**🔴 CHEGARA (2026-09-22, F-0922-02 · foydalanuvchi qarori).** Taqiq **bo'sh maqtov sifatiga** tegishli.
+Ruscha **«профессиональн\* слов\*»** — bu boshqa ma'no: u «**kasbiy so'z**» atamasining tarjimasi
+(jargon ma'nosida) va darsning **o'zida izohlanadi**: «жаргон — профессиональное слово». Bu **RUXSAT**.
+
+✅ «Слово, которое знают только люди этой профессии, называется **жаргон — профессиональное слово**» *(PmLesson6)*
+❌ «Поэтому **профессиональные проекты** всегда строят по паттерну» · «VS Code — **professional** start»
+
+**Nega yozildi:** `professional-sozi` qoidasi ikkala ma'noni ajratmasdan `PmLesson6` da **21 soxta
+topilma** berardi — bitta faylda PM til-qarzining chorak qismi ko'rinib, haqiqiy topilmalarni ko'mib
+turardi. `til-lint-rules.json` ga istisno qo'shildi: `профессиональн[а-яё]*\s+слов`.
+**Diqqat:** istisno **butun qatorga** qo'llanadi (`exceptRe.test(s)`) — shuning uchun qo'shishdan oldin
+oldin/keyin hisobotlari solishtirildi: yo'qolgan 21, yangi paydo bo'lgan 0, boshqa fayl tegilmagan;
+o'sha 21 qatorda istisno ortida yashiringan qo'llanish 0; qolgan 14 faylda 31 hodisa hali ham tutiladi.
+**Sabog'i:** kirill matniga istisno yozganda `\w` ISHLAMAYDI (JS'da faqat lotin) — `[а-яё]` ishlatiladi;
+birinchi urinishda raqam umuman o'zgarmadi va shu bilan tutildi.
+
 ## 88. NARSA — KODDA YOZILADIGAN NOMI BILAN ATALADI (F-0810-02)
 
 O'quvchi kodda `<div class="card">` yozadi. Matnda uni «vizitka-card» desak — ikkita nom
@@ -3801,3 +3817,230 @@ WhatsApp · Google · Apple · Uzum · Payme · Yandex. Shubha bo'lsa — qo'yin
 **⚠️ Brend javob bo'lsa — izoh javobdan KEYIN** (§186): `PmLesson28` s0 da «Parij, taksi yo'q» ilgagining
 javobi Uber; variant yoniga izoh qo'yilsa javob bilinadi. Izoh «To'g'ri — **Uber — mashina chaqirish xizmati**»
 qatoriga tushdi.
+
+## 190. MENTOR PANELIDA IDORAVIY SHAKL — BUYRUQ BO'LADI (F-0922-04, foydalanuvchi qarori 22.09)
+
+Mentor statistikasi proyektorda turadi va mentor uni **ish ustida, bir ko'zda** o'qiydi.
+«…tavsiya etiladi» — idoraviy shakl: kim kimga aytayotgani yo'q, harakat ham aniq emas.
+Panel mentorga **nima qilishini** aytsin, siz-formada.
+
+✅ «Faqat 40% to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin **qisqa takrorlab oling**.»
+✅ «Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. **Qayta tushuntiring**.»
+❌ «…qisqa takrorlash **tavsiya etiladi**» · «**Qayta tushuntirish tavsiya etiladi**»
+
+**Ruschasi ham shunday.** 22.09 da o'lchanganda ruscha matn fayllar bo'ylab **20 xil shaklga**
+bo'linib ketgan edi — «Рекомендуем…», «Рекомендуется…», «Стоит…» — hammasi bilvosita.
+✅ «**Объясните ещё раз**» · «Перед продолжением **коротко повторите**»
+❌ «Рекомендуем объяснить ещё раз» · «Стоит объяснить заново» · «Перед продолжением рекомендуется короткое повторение»
+
+**Ko'lam (22.09):** 240 almashtirish — o'zbekcha 108 (2 shakl), ruscha 132 (20 shakl), 72 darsda.
+
+**🔴 SWEEP SABOG'I: regex emas, AYNAN-SATRLAR JADVALI.** «рекоменд» va «стоит» dars MAZMUNIDA
+ham uchraydi — «Netflix **рекомендует** похожие», «приходят из **рекомендаций**», «Стоит на
+месте клавиатуры», «со**стоит** SKILL». Regex bilan yurgan sweep ularni ham buzardi. Har satr
+qo'lda yoziladi, almashtirish soni o'lchanadi va qoldiq grep bilan tekshiriladi
+(`scripts/codemod-mentor-ohang.mjs` — jadval shu yerda).
+
+**Izohlar tegilmaydi:** `// shundan past — qayta tushuntirish TAVSIYA etiladi` kabi kod-izohlari
+o'quvchiga ko'rinmaydi va `til-lint` ularni sanamaydi — diff shovqinini oshirmaslik uchun qoldiriladi.
+
+## 191. ATAMA BOSHQA DARSDA SO'RALSA — ILDIZI O'SHA YERDA EKILADI (F-0922-13, mentor topilmasi 22.09)
+
+`CssLesson2` o'quvchidan **`.row`** ni tanlashni so'raydi va praktikada `.row` ga qoida yozdiradi.
+`CssLesson1` esa selektorni faqat **teg nomi** deb o'rgatadi: «`h1` — sahifadagi barcha h1 sarlavhalar».
+Nuqta bilan boshlanadigan selektor va uning HTML'dagi manbai (`class="row"`) **hech qayerda** aytilmagan.
+O'lchov: CSS-2 ning 3-ekranidan oldin `.row` **7 marta** chiqadi, izoh **0 marta**.
+
+✅ Selektor ta'rifiga bir gap: «Bitta bo'lakni ajratib bezamoqchi bo'lsangiz, HTML'da unga nom berasiz —
+`class="row"`, CSS'da esa o'sha nomni **nuqta bilan** yozasiz: `.row`»
+❌ Atamani birinchi ishlatilgan darsda «shunchaki ko'rsatib» o'tish
+
+**Qoida:** atama A darsda **so'ralsa**, uning ta'rifi A darsda yoki **undan oldingi** darsda bo'lishi shart.
+Tekshiruv-usuli: atamani grep bilan sanang — birinchi ishlatilishi izohdan OLDIN bo'lsa, bo'shliq bor.
+
+**Ikkinchi hodisa — bir kun ichida (F-0922-16, mentor topilmasi 22.09):** `HtmlPractice` flashkartasi
+`<nav>` ni so'raydi; dars `<header>` («Eng yuqoridagi blok — header») va `<footer>` («Eng pastki blok — …») ni
+nomi bilan o'rgatgan, `<nav>` esa s5 kod-oynasida **shunchaki turardi** — Mentor «menyu qo'shamiz» derdi, tegni
+aytmasdi. Ta'rif faqat xato-javob izohida va ixtiyoriy «Qayta tushuntirish» panelida (§192) — to'g'ri javob
+bergan o'quvchi ko'rmaydi. Yechim §191 retsepti: kodda ko'ringan joyning o'zida bir gap — «Menyu havolalari
+`<nav>` ichida turadi — bu menyu idishi».
+
+**Tekshiruv-usuliga aniqlik:** «ta'rif» ikki xil bo'ladi — Mentor/sarlavha nomlaydi (deduktiv) **yoki** atama
+savol-ekranning to'g'ri javobi bo'lib o'quvchi o'zi topadi (induktiv, `src`/`alt` kabi). Ikkinchisi ham
+o'rgatish; faqat Mentor matnini grep qilgan tekshiruv soxta teshik beradi. Ov-bandi: `darslik-tekshiruvchi`.
+
+## 192. IZOH IXTIYORIY BOSISH ORTIDA QOLMASIN (F-0922-12, mentor topilmasi 22.09)
+
+`CssLesson2` 3-ekranida «konteyner» ta'rifi diagrammani **bosganda** chiqadi, lekin ekrandan o'tish
+uchun faqat `flex` tugmasi yetardi. Natijada o'quvchi (va mentor) ta'rifni **umuman o'qimay** o'tib ketardi —
+mentor «container tushuntirish kerak» deb yozdi, holbuki ta'rif kodda bor edi.
+
+✅ Ta'rif ixtiyoriy bosish ortida bo'lsa — **o'sha bosish o'tish-sharti** qilinadi
+   (`done = flex && seen.size >= 2`; tugma yozuvi nima qilish kerakligini aytadi)
+❌ «Ipucha qo'ydim, xohlasa bosadi» — o'qilmagan ta'rif = yo'q ta'rif
+
+**Sinf:** bu 155-qonun oilasidan — o'quvchi bajara olmaydigan emas, **bajarmay o'tib ketadigan** qadam.
+
+## 193. YO'NALISH ATAMASI — «GORIZONTAL / VERTIKAL», «O'Q» EMAS (F-0922-13, foydalanuvchi qarori 22.09)
+
+Flexbox modelidagi «asosiy o'q / ko'ndalang o'q» — kattalar-kitobining atamasi. 13 yoshli o'quvchi
+«ko'ndalang» so'zini kundalik hayotda ishlatmaydi.
+
+✅ «Elementlarni **vertikal** tekislash» · «**gorizontal** (justify-content) · **vertikal** (align-items)»
+❌ «**Ko'ndalang o'q** bo'ylab tekislash» · «qatorga **ko'ndalang**»
+
+**Juftlikni buzmang:** «asosiy o'q» ni qoldirib faqat «ko'ndalang» ni almashtirsangiz, diagrammada
+«asosiy o'q ↔ vertikal» degan **bir-biriga mos kelmaydigan** juft paydo bo'ladi. Ikkalasi birga almashadi.
+
+**Chegara:** `flex-direction: column` da `align-items` aslida gorizontal ishlaydi. Shu darsda o'quvchi
+`align-items` ni faqat qator rejimida ishlatadi, shuning uchun «vertikal» to'g'ri; ustun bilan birga
+kelganda qayta aytiladi.
+
+
+## 194. SAVOL SO'RAYDI — HISOBOT BERMAYDI (F-0922-15, mentor topilmasi 22.09)
+
+Mentor aytdi: «bu yerda Tolstoyga dars bergan **rus tilini biladigan bolalarimam tushunmadi**».
+Sabab tilda emas — **gap qurilishida**. Bitta savolda uchta og'ir qurilma to'planib qolgan edi:
+
+| | Ruscha | O'zbekcha |
+|---|---|---|
+| 1 | majhul nisbat — `создаётся` | majhul — `yaratiladi` |
+| 2 | vosita kelishigi oldinda — `Каким тегом…` | ikki sifatdosh ketma-ket — `o'tkazadigan, bosiladigan` |
+| 3 | vergul ortidan sifatdosh oborot — `, ведущая…` | — |
+
+O'quvchi gapning **egasini oxirigacha topolmaydi**: kim yaratadi? nima haqida so'ralyapti?
+Bu til bilimi masalasi emas — **ish qog'ozi uslubi**, shuning uchun ona tilida ham tushunilmaydi.
+
+❌ «Boshqa bo'lim yoki saytga o'tkazadigan, bosiladigan havola qaysi teg bilan **yaratiladi**?»
+❌ «**Каким тегом создаётся** кликабельная ссылка, **ведущая** в другой раздел или на другой сайт?»
+
+✅ «Menyudagi yozuv bosilsa, boshqa bo'limga olib boradi. Bunday havolani qaysi teg **yasaydi**?»
+✅ «Надпись в меню при клике ведёт в другой раздел. Какой тег **делает** такую ссылку?»
+
+**Retsept — ikki harakat:**
+1. **Vaziyatni ayrim gapga chiqaring.** Sifatdosh oborot («…adigan», «…ведущая») savol ichida
+   qolsa — gapni ikkiga bo'ling: avval vaziyat (darak gap), keyin qisqa savol.
+2. **Majhulni aniqqa aylantiring.** `yaratiladi` → `yasaydi` · `создаётся` → `делает`.
+   Savolning egasi ko'rinib turadi: **teg** yasaydi.
+
+**Bir darsda bir ohang:** bitta ekranlar ketma-ketligida savollarning yarmi majhul, yarmi aniq
+bo'lib qolmasin. m1-08 da 2-savol tuzatilganda **4-savol ham** shu bilan birga tuzatilgan.
+
+**Darvoza:** `til-lint-rules.json` → `majhul-savol` · `majhul-savol-ru` (ikkalasi 🔴 error).
+
+## 195. HARAKAT FE'LI REAL HARAKATGA MOS BO'LSIN (F-0922-14, foydalanuvchi qarori 22.09)
+
+Sayt bo'limlari orasida **yurilmaydi** — o'tiladi. «Yurish» oyoq bilan bo'ladi; ekranda bosiladi.
+
+❌ «Bo'limlar orasida qanday **yuriladi**?»  (ruschasi esa to'g'ri: «Как **переходить**…»)
+✅ «Bo'limdan bo'limga qanday **o'tamiz**?» · «Как **перейдём** из раздела в раздел?»
+
+**Ikki sabab:**
+1. **Fe'l harakatga mos emas edi** — metafora tasodifan tanlangan.
+2. **Juftlik buzilgan edi:** ruschasi «o'tish», o'zbekchasi «yurish» derdi — bir ekranda ikki xil
+   harakat. Til juftini har doim birga tekshiring (§193 dagi «o'q» juftligi bilan bir sinf).
+
+**Nega «o'tamiz», «o'tadi» emas:** keyingi qatorda Mentor «Header ichiga menyu **qo'shamiz**»
+deydi. `-amiz` shu ovoz bilan bir qatorda turadi; egasiz «o'tadi» esa «kim o'tadi?» savolini
+qoldiradi. **Sarlavha fe'lining shaxsi Mentor gapining shaxsiga ergashadi.**
+
+## 196. ATAMA BIR DARSDA IKKI XIL IZOHLANMAYDI (F-0922-21, mentor topilmasi 22.09)
+
+`m2-12` da **deploy** bitta ekranda ikki xil izohlangan edi: Mentor «deploy qilamiz
+(**internetga** chiqaramiz)», yonidagi qadam-ro'yxatida esa «Deploy — **dunyoga** chiqarish».
+O'lchov: bir dars ichida UZ «internetga» 7 · «dunyoga» 10; RU «в интернет» 12 · «в мир» 8.
+O'quvchi ikkita boshqa narsa deb o'ylaydi yoki qaysi biri to'g'ri ekanini bilmaydi.
+
+✅ «Deploy — **internetga chiqarish**» · «Деплой — **выпускаем в интернет**»
+❌ «dunyoga chiqarish» / «выпуск в мир» — kattalarcha bo'rttirish, boshlovchi uchun mavhum
+
+**Qoida:** atamaning izohi darsda **bir marta** tanlanadi va oxirigacha o'zgarmaydi —
+sarlavhada, Mentor gapida, qadam-ro'yxatida, testda, RECAP'da bir xil so'z turadi.
+Qaysi biri qoladi: **aniq va rost** bo'lgani (sayt **internetga** chiqadi; «dunyo» — majoz).
+
+**Tekshiruv-usuli:** atamaning ikkala shaklini bitta faylda sanang
+(`grep -o "shakl-1\|shakl-2" <fayl> | sort | uniq -c`). Ikkalasi ham 0 dan katta bo'lsa — bo'shliq.
+Ikki tilni ALOHIDA sanang: 22.09 da bo'linish ikkala tilda ham bor edi.
+
+**Istisno:** nishon/bayram matni — u atama o'rgatmaydi, tabriklaydi
+(«Shipped It! — MVP'ni dunyoga chiqardingiz» qoldirildi, foydalanuvchi qarori kutiladi).
+
+## 197. «PARDOZ» — YUZGA QO'YILADI, SAYTGA EMAS (F-0922-20, mentor topilmasi 22.09)
+
+«Oxirgi **pardoz**» — kattalar kitobining iborasi. O'zbekchada «pardoz» birinchi navbatda
+**yuzga qo'yiladigan bo'yoq**; 13 yoshli o'quvchi uni sayt bilan bog'lamaydi.
+Ruschasi esa to'g'ri va oddiy edi («последний штрих») — ya'ni **juftlik teng emas**:
+rus o'quvchi «oxirgi chizgi» eshitadi, o'zbek «oxirgi bo'yanish».
+
+✅ «**Oxirgi yaxshilanish** — qulayroq qilish» · «Qaysi **yaxshilanishni** qo'shamiz?»
+❌ «Oxirgi **pardoz**» · «Qaysi **pardozni** qo'shamiz?»
+
+**Nega aynan «yaxshilanish»:** shu ekranning **Mentori o'zi** shunday deydi — «kichik
+**yaxshilanishlar** qo'shamiz». Ya'ni bir ekranda ikki xil so'z turgan edi; endi bittasi qoldi.
+«Jilo/jilolash» ham shu oilaning so'zi — adabiy, bolaga yot; yangi matnga olinmaydi.
+
+**Sinf:** **birinchi ma'nosi boshqa sohadan** bo'lgan so'z darsga kiritilmaydi. Tekshiruv —
+«bu so'zni 13 yoshli bola qayerda eshitgan?» Javob dars mavzusidan uzoq bo'lsa, so'z almashadi.
+
+## 198. ATAMA MEXANIKA BILAN BIR GAPIRSIN (F-0922-22, mentor topilmasi 22.09)
+
+`m2-02` mashqida chapda o'quvchining **muammolari**, o'ngda ularni yopadigan **kartalar** turadi
+(kodda sinf nomi ham aynan `mt-pain`). Sarlavha esa boshqa so'z bilan so'raydi:
+«Har **imkoniyatni** o'z **qiyinchiligiga** qo'ying». Mentor: «Har bir **yechimni muammoga**
+moslab qo'ying» — ya'ni jonli darsda bola nima qilayotganini matn tasdiqlamas edi.
+
+✅ «Har **yechimni** o'z **muammosiga** qo'ying» · «Поставьте каждое **решение** к своей **проблеме**»
+❌ «Har **imkoniyatni** o'z **qiyinchiligiga** qo'ying»
+
+**O'lchov bo'lmasa qaror ham bo'lmaydi:** bu bitta sarlavha emas edi — `imkoniyat` **210**,
+`qiyinchilik` **160** hodisa (9 fayl). Faqat sarlavhani almashtirish §196 ni buzardi
+(bir darsda ikki xil atama). Shuning uchun **butun dars + uy vazifasi** birga o'zgardi (449 joy).
+
+**Uchinchi dalil — dars o'z nomiga zid edi:** katalogda `m2-02` **«Muammodan yechimga»**,
+fayl izohida ham «MUAMMODAN YECHIMGA», matn ichida esa «qiyinchilik→imkoniyat».
+**Tekshiruv-usuli:** dars nomi · fayl-izohi · mexanika (CSS sinf nomlari) · matn — to'rttasi bir
+so'zni aytyaptimi? Biri chetda qolsa — atama almashgan.
+
+**Chegara (halol):** `imkoniyat` shu darsda **ta'riflangan atama** edi — «Sayt beradigan har bir
+aniq foyda — imkoniyat (feature) deyiladi». Endi u «yechim (feature)». Qolgan PM darslarida
+(`PmLesson5` 45 · `PmUserStoryLesson` 9 · b.) hali eski atama turibdi — `KATTA_TOZALASH.md`.
+
+## 199. RUS TILIDA ATAMA ALMASHSA — ROD VA KELISHIK BILAN ALMASHADI (F-0922-22, 22.09)
+
+`возможность` (ayol rodi) → `решение` (**o'rta rod**) almashtirilganda gapning boshqa joylari ham
+buziladi. Aynan-ibora jadvali bilan qo'yilgan 449 almashtirishdan keyin **13 ta xato qoldi**,
+ularning **5 tasi faqat matnni O'QIGANDA** ko'rindi — hech bir avtomatik qidiruv tutmadi:
+
+| Sinf | ❌ | ✅ |
+|---|---|---|
+| Kelishuvchi so'z | `каждая возможность` | `каждое решение` |
+| Sifatdosh oborot | `решение, котор**ая** её убирает` | `решение, котор**ое**` |
+| Modal | `каждое решение долж**на** убирать` | `долж**но**` |
+| **Uzoqdagi olmosh** | `решение… какую проблему **она** убирает` | `**оно** убирает` |
+| **Egalik olmoshi** | `решение вместе с **её** проблемой` | `с **его** проблемой` |
+| Kelishik (3-turlanish→1-turlanish) | `без найденной проблем**е**` | `без найденной проблем**ы**` |
+
+**Qoida:** ruscha atama almashtirilganda (1) rodi bir xilmi tekshiriladi; (2) rod o'zgarsa —
+kelishuvchi so'z, olmosh (`она/её/ней`), sifatdosh (`которая`) va modal (`должна`) birga o'zgaradi;
+(3) `трудность`↔`проблема` kabi **bir rodli** juftlikda ham turlanish boshqa: `трудность` (nom=acc)
+↔ `проблема`/`проблем**у**` — har hodisaning kelishigi kontekstdan aniqlanadi.
+**Oxirgi qadam har doim — matnni O'QIB CHIQISH.** Regex uzoqdagi olmoshni ko'rmaydi.
+
+## 200. QOLDIQ-TEKSHIRUV REGISTRGA BEFARQ BO'LSIN (F-0922-23, 22.09 — o'z xatomdan)
+
+Atama almashtirilgandan keyin «qoldiq 0» deb yozdim — **noto'g'ri edi**. Qidiruvim registrga
+sezgir edi (`grep "qiyinchili"`), ekrandagi yorliqlar esa **BOSH HARFLARDA** yozilgan:
+`lbl: { uz: 'QIYINCHILIK', ru: 'ТРУДНОСТЬ' }`. Natijada ustaxona ekranida eski atama
+**ikki tilda ham** qolib ketdi va faqat **skrinshotda** ko'rindi (mentor ham aynan shuni surat qilgan).
+
+**Qoida:** almashtirishdan keyingi qoldiq-tekshiruv **uch shaklni birdan** qamrasin:
+`kichik` · `Bosh` · `KATTA`. Amalda: `grep -ri` yoki regexda `re.IGNORECASE`.
+Bir tilni tekshirib ikkinchisini unutmang — ruscha yorliq ham `ВОЗМОЖНОСТЬ` bo'lib turgan edi.
+
+**Ikkinchi sabog'i:** so'z-o'zagi qidiruvi qo'shimchani ham qamrasin — `juftli` naqshi
+`juftlarini` ni **ko'rmagan** (o'zak `juft`, qo'shimcha `-lari-ni`). Qidiruv eng qisqa o'zakdan
+boshlanadi (`juft`, `qiyinchili`, `imkoniyat`), keyin toraytiriladi.
+
+**Yakuniy dalil skrinshot bo'ladi:** darvoza ham, grep ham «toza» dedi — nuqsonni faqat
+ekranga qarash ochdi.
+

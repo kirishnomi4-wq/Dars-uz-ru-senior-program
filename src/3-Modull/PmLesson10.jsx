@@ -31,7 +31,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 
 
@@ -2070,6 +2070,14 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  // Javob ochilgach keyingi savolga avto o'tish (F-0922-03). Soat faqat MENTOR
+  // brauzerida; o'quvchilar server orqali ergashadi. Oxirgi savolda avto YO'Q —
+  // «G'oliblarni e'lon qilish» mentorning daqiqasi.
+  const autoNext = useAutoNext({
+    on: phase === 'reveal' && isMentor && !solo && !lastQ,
+    onFire: () => ctrl('q', qi + 1),
+    qKey: qi,
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
 
   const closeArena = () => {
@@ -2183,7 +2191,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : autoNext.fireNow()}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: 'Остановить авто-переход — чтобы объяснить ответ (до конца арены)' })}>{autoNext.auto ? `${tr({ uz: "To'xtatish", ru: 'Пауза' })}${autoNext.sec ? ` · ${autoNext.sec}` : ''}` : tr({ uz: '▶ Avto', ru: '▶ Авто' })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
@@ -2438,7 +2447,7 @@ const CSS_BASE = `
 
   .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
   .italic { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 500; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
 
   @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
@@ -2575,7 +2584,7 @@ const CSS_BASE = `
   .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; }
   .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; min-width: 0; overflow-wrap: anywhere; }
   .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
-  .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+  .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 `;
 
 // Dars-vizuallari: gapsiz ko'rsatuv tasmasi (imzo-vizual), kadr-ustaxonasi, hotspot-sayti, VS Code.
@@ -2622,7 +2631,7 @@ const CSS_LESSON = `
   /* HOOK imzo-sahnasi: sayt ishlab turibdi, gap-qatori esa bo'sh (L3 — ekranning yagona sahnasi) */
   .h0site { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; max-width: 560px; align-self: center; width: 100%; }
   /* ISTISNO (F-0820-84): brauzer manzil-satri taqlidi — haqiqiy brauzerda ham kulrang */
-  .h0site-bar { display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3Deep}; background: ${T.bg}; padding: 7px 12px; }
+  .h0site-bar { display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: ${T.ink3Deep}; background: ${T.bg}; padding: 7px 12px; }
   .h0site-body { display: flex; flex-direction: column; gap: 7px; padding: 11px 13px 13px; }
   .h0row { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: ${T.bg}; border-radius: 10px; padding: 8px 12px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; animation: fade-in-up 0.34s ease-out both; }
   .h0row:nth-child(2) { animation-delay: 0.10s; }
@@ -2686,7 +2695,7 @@ const CSS_LESSON = `
   .kframe.open { box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 2px ${T.ink3}77; }
   /* 71-qonun: qo'shgan gap YASHIL, bo'sh gap XIRA KULRANG — qizil bu ekranda YO'Q */
   .kframe.open.add { box-shadow: 0 16px 34px -16px rgba(31,122,77,0.32), inset 0 0 0 2px ${T.success}; }
-  .kf-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 10.5px; color: ${T.ink3}; }
+  .kf-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10.5px; color: ${T.ink3}; }
   .kframe.open.add .kf-n { color: ${T.success}; }
   /* Kadr-lahzasi: maydoncha saytining kichraytirilgan, lekin haqiqiy ko'rinishi */
   .kf-shot { display: flex; flex-direction: column; gap: 5px; background: ${T.bg}; border-radius: 10px; padding: 7px 8px; min-height: clamp(84px,10vw,124px); box-shadow: inset 0 0 0 1.5px ${T.line}; overflow: hidden; }
@@ -2741,7 +2750,7 @@ const CSS_LESSON = `
   /* ISTISNO (F-0820-84): uch pog'onali ierarxiya (kutilmoqda < .on accent < .done yashil) */
   .stp { position: relative; display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink3Deep}; background: ${T.paper}; border-radius: 11px; padding: 14px 13px 7px 6px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .stp::before { content: ""; position: absolute; left: 7px; right: 7px; top: 5px; height: 5px; background: var(--perf-h); pointer-events: none; }
-  .stp i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; }
+  .stp i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11px; }
   .stp.on { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
   .stp.on i { background: ${T.accent}; color: #fff; }
   .stp.done { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
@@ -2768,7 +2777,7 @@ const CSS_LESSON = `
   .kdr-item:nth-child(3) { animation-delay: 0.09s; }
   .kdr-item:nth-child(4) { animation-delay: 0.18s; }
   @media (prefers-reduced-motion: reduce) { .kdr-item { animation: none; } }
-  .kdr-n { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.success}; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .kdr-n { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.success}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
   .kdr-col { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .kdr-gap { font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.4; overflow-wrap: anywhere; min-width: 0; }
   .kdr-act { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 3px 11px; overflow-wrap: anywhere; max-width: 100%; }
@@ -2798,7 +2807,7 @@ const CSS_LESSON = `
 
   /* TEKSHIRUV (s9): hotspot — soxta sayt ustidagi joylar */
   .hs { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; min-width: 0; }
-  .hs-bar { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.bg}; padding: 6px 12px; }
+  .hs-bar { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: ${T.ink3}; background: ${T.bg}; padding: 6px 12px; }
   .hs-body { display: flex; flex-direction: column; gap: 7px; padding: clamp(11px,1.8vw,15px); }
   .hs-z { display: flex; align-items: center; gap: 8px; text-align: left; background: ${T.bg}; border: none; border-radius: 11px; padding: 9px 12px; cursor: pointer; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.16s, background 0.2s, transform 0.12s; min-width: 0; overflow-wrap: anywhere; }
   .hs-z:hover:not(:disabled) { transform: translateY(-1px); box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
@@ -2812,7 +2821,7 @@ const CSS_LESSON = `
   .hs-z.miss { background: ${T.errSoft}; color: ${T.err}; box-shadow: inset 0 0 0 2px ${T.err}; animation: cmt-shake 0.4s ease; }
   @keyframes hs-land { 0% { transform: scale(0.97); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
   @media (prefers-reduced-motion: reduce) { .hs-z, .hs-z:hover:not(:disabled), .hs-z:active:not(:disabled), .hs-z.hit, .hs-z.miss { transition: none; transform: none; animation: none; } }
-  .hs-num { flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 10.5px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+  .hs-num { flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10.5px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .hs-z.btn .hs-num { background: rgba(255,255,255,0.22); color: #fff; box-shadow: none; }
   .hs-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: ${T.bg}; border-radius: 10px; padding: 8px 12px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; }
   .hs-row.dim b { color: ${T.ink3}; font-style: italic; font-weight: 600; }
@@ -2820,7 +2829,7 @@ const CSS_LESSON = `
   .hstep { display: flex; flex-direction: column; gap: 7px; background: ${T.paper}; border-radius: 14px; padding: 11px 14px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
   .hstep-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.accent}; }
   .hstep-row { display: flex; align-items: center; gap: 9px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink2}; background: ${T.bg}; border-radius: 11px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; }
-  .hstep-row i { font-style: normal; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+  .hstep-row i { font-style: normal; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .hstep-row.on { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
   .hstep-row.on i { background: ${T.accent}; color: #fff; box-shadow: none; }
   .hstep-row.ok { color: ${T.success}; background: ${T.successSoft}; }
@@ -2863,7 +2872,7 @@ const CSS_LESSON = `
   /* Kod-qatorlari VS Code muhitidan (qorong'i) — lekin halqasi PM-indigosi:
      bola bosadigan narsa shu dars palitrasida yonadi. */
   .cq { display: flex; flex-direction: column; gap: 7px; }
-  .cq-b { display: flex; align-items: center; gap: 10px; text-align: left; background: #1E1E1E; border: none; border-radius: 11px; padding: 10px 12px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.08), 0 10px 24px -12px rgba(${T.shadowBase},0.35); transition: box-shadow 0.16s, transform 0.12s; min-width: 0; }
+  .cq-b { display: flex; align-items: center; gap: 10px; text-align: left; background: #1E1E1E; border: none; border-radius: 11px; padding: 10px 12px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.08), 0 10px 24px -12px rgba(${T.shadowBase},0.35); transition: box-shadow 0.16s, transform 0.12s; min-width: 0; }
   .cq-b:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1.5px ${T.accentVivid}, 0 13px 26px -12px rgba(91,61,230,0.5); }
   .cq-b:active { transform: translateY(0) scale(0.99); }
   .cq-b.miss { box-shadow: inset 0 0 0 2px ${T.err}, 0 10px 24px -12px rgba(229,72,77,0.45); animation: cmt-shake 0.4s ease; }
@@ -2880,11 +2889,11 @@ const CSS_LESSON = `
   .kd-skip:hover { color: ${T.accent}; }
   .vsc { position: relative; background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
   .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
-  .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; border: none; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; cursor: default; }
+  .vsc-tab { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11.5px; color: #8B949E; background: #2D2D2D; border: none; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; cursor: default; }
   .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
   .vsc-lock { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; color: #B9A8E6; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 5px 11px; }
   .vsc.no-copy .vsc-body { user-select: none; -webkit-user-select: none; }
-  .vsc-body { padding: 10px 14px 12px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.58; overflow: auto; max-height: clamp(170px, 28vh, 320px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
+  .vsc-body { padding: 10px 14px 12px 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.58; overflow: auto; max-height: clamp(170px, 28vh, 320px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
   .vsc-body::-webkit-scrollbar { width: 9px; height: 9px; }
   .vsc-body::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 99px; }
   .vsc-body::-webkit-scrollbar-track { background: #1E1E1E; }
@@ -2901,7 +2910,7 @@ const CSS_LESSON = `
   @media (max-width: 760px) { .rcp-flow { grid-template-columns: 1fr; } }
   .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
   .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
-  .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+  .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
   .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
   .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
   .pair-now { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; line-height: 1.45; }
@@ -2912,7 +2921,7 @@ const CSS_LESSON = `
   .pair-ring-mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
   .pair-ring-who { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 14px; }
   .pair-ring-who.b { background: ${T.success}; }
-  .pair-ring-sec { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .pair-ring-sec { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
   .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
   .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
   .pair-timer-btns { display: flex; gap: 8px; }
@@ -3013,7 +3022,7 @@ const CSS_LESSON = `
   .pmtask { background: ${T.paper}; border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 12px 30px -12px rgba(91,61,230,0.28); border: 1.5px solid ${T.line}; border-left: 5px solid ${T.accent}; }
   .pmtask-head { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; background: ${T.accentSoft}; }
   .pmtask-tag { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.04em; color: ${T.accent}; }
-  .pmtask-id { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; color: ${T.accent}; background: ${T.paper}; border-radius: 99px; padding: 3px 10px; }
+  .pmtask-id { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11px; color: ${T.accent}; background: ${T.paper}; border-radius: 99px; padding: 3px 10px; }
   .pmtask-rows { display: flex; flex-direction: column; }
   .pmtask-row { display: flex; gap: 12px; padding: 10px 16px; align-items: baseline; }
   .pmtask-row + .pmtask-row { border-top: 1px solid ${T.line}; }
@@ -3021,7 +3030,7 @@ const CSS_LESSON = `
   .pmtask-v { font-family: 'Source Serif 4', serif; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; flex: 1; line-height: 1.4; }
   .pmtask-steps { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 16px; background: ${T.bg}; }
   .pmtask-step { position: relative; display: flex; align-items: center; gap: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,14.5px); line-height: 1.45; color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; }
-  .pmtask-step i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11.5px; }
+  .pmtask-step i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11.5px; }
   /* Uy-vazifa kapsulasi (P0 hw-big oilasi) — yakun sahifasining oxirgi harakati */
   .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
   .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
@@ -3032,7 +3041,7 @@ const CSS_LESSON = `
   .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
   .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-18deg); animation: hw-shine 3.2s ease-in-out infinite; pointer-events: none; }
   .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-  .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+  .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
   @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
   .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
   @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.05); } 100% { filter: brightness(1); transform: scale(1); } }
@@ -3233,7 +3242,7 @@ const CSS_ARENA = `
     animation: cs-current 3.4s linear infinite; }
   @keyframes cs-current { to { --csa: 360deg; } }
   .cs-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
+  .cs-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; line-height: 1; user-select: none; color: rgba(203,173,255,.32); text-shadow: 0 0 12px rgba(150,95,255,.4); animation: cs-float ease-in-out infinite; animation-duration: calc(var(--d,22s) / var(--spd,1)); will-change: transform; }
   .cs-tok.back { color: rgba(150,115,240,.16); filter: blur(.6px); }
   @keyframes cs-float { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(16px,-14px) rotate(5deg); } }
   .cs-dash { position: absolute; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, rgba(190,150,255,.55), transparent); animation: cs-dash-run 5.5s linear infinite; }
@@ -3256,7 +3265,7 @@ const CSS_ARENA = `
   @keyframes cs-wglow { 0%,100% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 14px rgba(150,90,255,.5)); } 50% { filter: drop-shadow(0 3px 0 rgba(38,10,88,.9)) drop-shadow(0 0 27px rgba(172,112,255,.95)); } }
   @keyframes cs-glint { 0% { background-position: 135% 0; } 60%,100% { background-position: -55% 0; } }
   .cs-clickable:hover .cs-word { animation-duration: 1.4s; }
-  .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
+  .cs-hud { position: relative; z-index: 2; display: flex; gap: clamp(7px,1.1vw,11px); align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.3vw,13px); letter-spacing: .14em; color: #D9C9FF; }
   .cs-hud-i { display: inline-flex; align-items: baseline; gap: 5px; background: rgba(255,255,255,.055); border: 1px solid rgba(190,150,255,.42); border-radius: 999px; padding: 6px 14px; text-shadow: 0 0 10px rgba(160,100,255,.55); }
   .cs-hud-i b { font-size: clamp(13px,1.7vw,17px); color: #fff; }
   .cs-hud-dot { color: rgba(190,150,255,.6); }
@@ -3268,7 +3277,7 @@ const CSS_ARENA = `
   .cs-off { filter: saturate(.45) brightness(.74); }
   .cs-off .cs-ring, .cs-off .cs-thunder { display: none; }
   .cs-live { animation: cs-ignite 1.2s ease-out both, cs-breathe 1.7s ease-in-out 1.2s infinite; }
-  .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
+  .cs-livedot { position: absolute; top: clamp(12px,1.8vw,20px); right: clamp(18px,3vw,30px); z-index: 4; display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; letter-spacing: .18em; color: #7CFFB1; text-shadow: 0 0 10px rgba(60,255,150,.7); }
   .cs-livedot i { width: 8px; height: 8px; border-radius: 50%; background: #3CFF8E; box-shadow: 0 0 10px #3CFF8E; animation: cs-liveblink 1.1s ease-in-out infinite; }
   @keyframes cs-liveblink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
   .cs-charging { animation: cs-charge .45s ease-in forwards !important; }
@@ -3280,7 +3289,7 @@ const CSS_ARENA = `
 
   .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
   .qz-bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-  .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
+  .qz-shp { position: absolute; line-height: 1; user-select: none; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-shadow: 0 0 16px rgba(150,95,255,0.35); animation: qz-drift ease-in-out infinite; will-change: transform; color: rgba(203,173,255,0.16); }
   @keyframes qz-drift { 0%,100% { transform: translate(0,0) rotate(-6deg) scale(1); } 50% { transform: translate(18px,-24px) rotate(6deg) scale(1.05); } }
   @media (prefers-reduced-motion: reduce) { .qz-shp { animation: none; } }
   .qz-x { position: fixed; top: 14px; right: 16px; z-index: 10600; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(186,140,255,0.34); background: rgba(255,255,255,0.06); color: #D9C9FF; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(124,58,237,0.22); transition: transform 0.25s, color 0.2s, background 0.2s; }
