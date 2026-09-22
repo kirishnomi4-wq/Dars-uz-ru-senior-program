@@ -267,16 +267,16 @@
   "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · o'zgaruvchi",
   "right": [
    {
-    "fill": "input[placeholder='let ism = \"Aziza\"']",
-    "value": "let ism = \"Aziza\"",
+    "fill": ".split input",
+    "value": "let name = \"Aziza\"",
     "nth": 0,
     "after": 500
    }
   ],
   "wrong": [
    {
-    "fill": "input[placeholder='let ism = \"Aziza\"']",
-    "value": "let ism = \"Aziza\"",
+    "fill": ".split input",
+    "value": "let name = \"Aziza\"",
     "nth": 0,
     "after": 500
    }
