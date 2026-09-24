@@ -1,3 +1,4 @@
+import { noteProgressCleared } from './resultDetails.js'; // F-0924-20 (resultDetails faqat i18n import qiladi — sikl yo'q)
 // Jonli-dars mijozi — toza fetch, kutubxonasiz. Server: dars-api (server/), Supabase o'rnini bosadi.
 // URL bundler'dan keladi (vite/esbuild `define` → __DARS_API_URL__); berilmasa PROD (LMS serveri, Kristina 2026-09-08).
 // Staging: DARS_API_URL=https://staging-dars-api.coddycamp.uz (build-lms / vite). Lokal: http://127.0.0.1:3001.
@@ -143,7 +144,10 @@ export const progWrite = (id, o) => {
   try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch { /* jim */ }
   try { if (_progWriteHook) _progWriteHook(id, o); } catch { /* sinxron xatosi darsni to'xtatmaydi */ }
 };
-export const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch { /* jim */ } };
+export const progClear = (id) => {
+  try { noteProgressCleared(id, JSON.parse(localStorage.getItem(_progKey(id)) || 'null')); } catch { /* jim */ } // F-0924-20: yakun-konteksti — tozalash OLDIDAN
+  try { localStorage.removeItem(_progKey(id)); } catch { /* jim */ }
+};
 
 // Nickname — qurilma bo'ylab BITTA (darsga bog'lanmagan kalit): 1-darsda yozadi, qolganlariga o'zi chiqadi
 const LIVE_NICK_KEY = 'liveNickname';

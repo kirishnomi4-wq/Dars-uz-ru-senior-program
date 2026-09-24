@@ -116,6 +116,7 @@ export function noteEarned(lessonId, ids) {
 
 /** Qaytadan boshlashda (restart) tarix tozalanadi — xotira ham, saqlov ham. */
 export function resetResultDetails(lessonId) {
+  clearedProgress.delete(lessonId); // F-0924-20
   attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId);
   sealedByLesson.delete(lessonId); // yangi urinish — yangi yuk (F-0918-07)
   try { store()?.removeItem(KEY(lessonId)); } catch { /* jim */ }
@@ -143,6 +144,29 @@ const sealKey = (lessonId, p) => `${(p && p.livePin) ?? ''}|${(p && p.liveMode) 
  * Nusxa — qabul qiluvchi (LMS) obyektni o'zgartirsa ham muhr buzilmasligi uchun. Yuk JSON bo'lib ketadi, shuning
  * uchun JSON-nusxa simdagi ko'rinishni o'zgartirmaydi. Nusxalab bo'lmasa (kutilmagan) — yuk o'zgarishsiz qaytadi.
  */
+// ── Hajm-shifti (F-0924-20) ────────────────────────────────────────────────────────────────────────────────────────
+// CRM `question_try.answer` ustunining chegarasi NOMA'LUM (Axadulladan so'ralgan, 24.09). Hozirgi real yuk ~6,5 KB (18.09).
+// Shift MySQL TEXT (64 KB) dan xavfsiz pastda. Oshsa, tartib bilan: `answers[]` (eski shakl, `questions[]` bilan takror) →
+// urinishlar 3 tagacha → matnlar 120 belgi → savollar oxiridan. Har qadam `truncated:true` + `truncatedFields` bilan
+// yoziladi — analitika nima qisqarganini biladi, o'quvchi esa hajm sabab qizil xato ko'rmaydi.
+export const CAP_BYTES = 48_000;
+const byteLen = (s) => { try { return new TextEncoder().encode(s).length; } catch { return s.length; } };
+export function capPayload(payload, cap = CAP_BYTES) {
+  if (!payload || typeof payload !== 'object') return payload;
+  if (byteLen(JSON.stringify(payload)) <= cap) return payload;
+  const p = JSON.parse(JSON.stringify(payload)); const dropped = [];
+  const step = (name, fn) => { if (byteLen(JSON.stringify(p)) <= cap) return; fn(); dropped.push(name); };
+  step('answers', () => { delete p.answers; });
+  step('attempts', () => { for (const q of p.questions || []) if (Array.isArray(q.attempts) && q.attempts.length > 3) q.attempts = q.attempts.slice(0, 3); });
+  step('text', () => {
+    const c = (s) => (typeof s === 'string' && s.length > 120 ? s.slice(0, 120) : s);
+    for (const q of p.questions || []) { q.question = c(q.question); if (q.options) q.options = q.options.map(c); q.correct_answer = c(q.correct_answer); for (const a of q.attempts || []) a.answer = c(a.answer); }
+  });
+  step('questions', () => { while ((p.questions || []).length > 1 && byteLen(JSON.stringify(p)) > cap) p.questions.pop(); });
+  p.truncated = true; p.truncatedFields = dropped;
+  return p;
+}
+
 export function sealPayload(lessonId, payload) {
   if (!lessonId || !payload || typeof payload !== 'object') return payload;
   try {
@@ -153,7 +177,7 @@ export function sealPayload(lessonId, payload) {
       if (held && held.key && held.json) sealedByLesson.set(lessonId, held); else held = null;
     }
     if (held && held.key === key) return JSON.parse(held.json);
-    const rec = { key, json: JSON.stringify(payload) };
+    const rec = { key, json: JSON.stringify(capPayload(payload)) }; // F-0924-20: hajm-shifti muhrdan OLDIN — muhr qisqartirilgan mazmunni oladi
     sealedByLesson.set(lessonId, rec);
     try { store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec)); } catch { /* jim */ }
     return JSON.parse(rec.json);
@@ -175,7 +199,7 @@ export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); 
  *   arenaBank — darsning QUIZ_BANK'i (matnlar uchun, ixtiyoriy); berilmasa arena savollari matnsiz (id + variant raqami) ketadi.
  * @returns {{ lang: 'uz'|'ru', questions: object[], achievements: object[] }}
  */
-export function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
+export function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank, firstPass, lastAnswers, startedAt: startedIn, totalScreens: totalIn } = {}) {
   const lang = langIn === 'ru' || langIn === 'uz' ? langIn : getLiveLang();
   const finish = now || Date.now();
   load(lessonId);
@@ -266,5 +290,41 @@ export function buildResultDetails({ lessonId, screenMeta, answers, earned, achi
     list.push({ id, name: String((def && def.name) || id).slice(0, LIM.name), title: String(title).slice(0, LIM.title), earned_at: iso(at.get(String(raw)) ?? at.get(id) ?? finish) });
   }
   list.sort((x, y) => (x.earned_at < y.earned_at ? -1 : x.earned_at > y.earned_at ? 1 : 0));
-  return { lang, questions, achievements: list.slice(0, LIM.achievements) };
+  // ── v2 maydonlar (F-0924-20): «Qaytadan», xato ro'yxati, ekranlar soni, vaqtlar ────────────────────────────────
+  // Manba: dars `finishLesson` boshida `progClear` chaqiradi — u tozalashdan OLDIN oxirgi ccProgress'ni shu modulga beradi
+  // (noteProgressCleared). Dars istasa `firstPass`/`lastAnswers`/`startedAt`/`totalScreens` ni o'zi ham uzatadi (ustun).
+  const prog = clearedProgress.get(lessonId) || null;
+  const fp = firstPass !== undefined ? firstPass : (prog ? (prog.firstPass ?? null) : undefined); // undefined = bilib bo'lmadi
+  const started = Number.isFinite(startedIn) ? startedIn : (prog && Number.isFinite(prog.startedAt) ? prog.startedAt : null);
+  const totalScreens = Number.isInteger(totalIn) ? totalIn : ((screenMeta || []).length || (prog && Number.isInteger(prog.total) ? prog.total : 0));
+  const missed = questions.filter((q) => q.kind === 'test' && q.correct !== true).map((q) => q.question_id); // birinchi urinishda xato
+  let retake = null; // null = saqlov yo'q, bilib bo'lmadi
+  if (fp !== undefined) {
+    if (fp && typeof fp === 'object') {
+      const la = lastAnswers || (prog && prog.answers) || null; // «Qaytadan»dan keyingi (oxirgi) o'tish — asosiy raqamlar BIRINCHI o'tishdan (151-qonun)
+      retake = { pressed: true, lastPass: passStats(screenMeta, la, started, finish) };
+    } else retake = { pressed: false };
+  }
+  const out = { detailsVersion: 2, lang, questions, achievements: list.slice(0, LIM.achievements), missed, totalScreens, finishedAt: iso(finish), truncated: false, retake };
+  if (started) out.startedAt = iso(started); // «Qaytadan» bo'lsa — oxirgi o'tish boshlanishi (birinchi o'tish boshi saqlanmaydi)
+  return out;
+}
+
+/** Bitta o'tish bo'yicha qisqa ball: scored ekranlar → to'g'ri (birinchi urinish) soni, foiz, davomiylik. */
+function passStats(screenMeta, answers, startedAt, finish) {
+  const scored = []; (screenMeta || []).forEach((m, i) => { if (m && m.scored) scored.push(i); });
+  const total = scored.length;
+  const correct = answers && typeof answers === 'object' ? scored.filter((i) => answers[i] && answers[i].correct === true).length : null;
+  const o = { totalQuestions: total, correctAnswers: correct, scorePercent: correct === null || !total ? null : Math.round((correct / total) * 100) };
+  if (Number.isFinite(startedAt)) o.durationSec = Math.max(0, Math.floor((finish - startedAt) / 1000));
+  return o;
+}
+
+// ── Yakun-konteksti (F-0924-20) ────────────────────────────────────────────────────────────────────────────────────
+// Dars `finishLesson` boshida `progClear` chaqiradi (saqlov tozalanadi), payload undan KEYIN yig'iladi. Shuning uchun
+// `progClear` (liveClient.js) tozalashdan oldin oxirgi holatni shu yerga beradi. 104 dars bir xil tartibda — darslarga tegilmaydi.
+const clearedProgress = new Map(); // dars-ID → oxirgi ccProgress obyekti
+export function noteProgressCleared(lessonId, prog) {
+  if (!lessonId) return;
+  if (prog && typeof prog === 'object') clearedProgress.set(lessonId, prog); // bo'sh saqlov (ikkinchi bosish) — oldingisi qoladi
 }

@@ -1,7 +1,8 @@
 // node --test src/live/resultDetails.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildResultDetails, logAttempt, logArena, noteEarned, resetResultDetails, _forgetMemory, sealPayload, unsealPayload } from './resultDetails.js';
+import { buildResultDetails, logAttempt, logArena, noteEarned, resetResultDetails, _forgetMemory, sealPayload, unsealPayload, noteProgressCleared, capPayload, CAP_BYTES } from './resultDetails.js';
+import { progWrite, progClear } from './liveClient.js';
 
 // Brauzer saqlovi o'rnida (F-0909-02): modul localStorage'ga faqat chaqiruv paytida murojaat qiladi
 const mem = new Map();
@@ -52,7 +53,7 @@ test('ru tili: ta\'rif ru, variantlar ru; earned_at noteEarned dan; takror/yaroq
   assert.equal(d2.questions[0].solved, true, 'keyingi urinishda to\'g\'ri topilgan');
   // bo'sh
   const e = buildResultDetails({ lessonId: 'L3', screenMeta: META, answers: {}, lang: 'uz' });
-  assert.deepEqual(e, { lang: 'uz', questions: [], achievements: [] });
+  assert.deepEqual([e.lang, e.questions, e.achievements, e.detailsVersion, e.retake], ['uz', [], [], 2, null]); // v2 (F-0924-20): boshqa maydonlar alohida testda
 });
 
 test('F-0909-03: jonli dars (bitta urinish) — xato javobda dars solved:true yozsa ham LMS uchun solved=false', () => {
@@ -223,4 +224,82 @@ test('muhr saqlovda: F5 dan keyin AYNAN o\'sha yuk; urinish almashsa — yangi y
   resetResultDetails('F5');
   const d = sealPayload('F5', { lessonId: 'F5', livePin: '112233', liveMode: 'solo', durationSec: 12 });
   assert.equal(d.durationSec, 12, 'reset dan keyin muhr qolib ketdi');
+});
+
+// ── v2 (F-0924-20): «Qaytadan», missed, ekranlar, vaqtlar, hajm-shifti ─────────────────────────────────────────────
+test('v2: detailsVersion=2, missed = birinchi urinishda xato test-savollar, totalScreens, finishedAt; saqlov yo\'q → retake=null', () => {
+  resetResultDetails('V1');
+  const answers = {
+    2: { question: 'Q1', options: ['A', 'B'], correctIndex: 1, correctAnswer: 'B', picked: 0, studentAnswer: 'A', correct: false, solved: true, lastPicked: 1 },
+    3: { question: 'Q2', options: ['A', 'B'], correctIndex: 0, correctAnswer: 'A', picked: 0, studentAnswer: 'A', correct: true, solved: true },
+    4: { question: 'Q3', options: ['A', 'B'], correctIndex: 0, correctAnswer: 'A', picked: 1, studentAnswer: 'B', correct: false, solved: false },
+  };
+  const d = buildResultDetails({ lessonId: 'V1', screenMeta: META, answers, earned: [], achievements: ACH, lang: 'uz', now: T0 });
+  assert.equal(d.detailsVersion, 2);
+  assert.deepEqual(d.missed, ['s4', 's9']);
+  assert.equal(d.totalScreens, 5);
+  assert.equal(d.finishedAt, '2026-09-08T10:00:00Z');
+  assert.equal(d.truncated, false);
+  assert.equal(d.retake, null);          // progClear chaqirilmagan — bilib bo'lmadi
+  assert.equal('startedAt' in d, false); // boshlanish vaqti noma'lum — maydon yo'q, soxta qiymat yo'q
+});
+
+test('v2: progClear tozalashdan OLDIN holatni beradi — «Qaytadan» bosilmagan → retake.pressed=false, startedAt saqlovdan', () => {
+  resetResultDetails('V2');
+  progWrite('V2', { screen: 4, answers: { 2: { picked: 1, correct: true } }, earned: [], missed: [], firstPass: null, startedAt: T0 - 90_000, total: 5, savedAt: T0 });
+  progClear('V2'); // finishLesson tartibi: progClear → payload
+  assert.equal(localStorage.getItem('ccProgress:V2'), null);
+  const d = buildResultDetails({ lessonId: 'V2', screenMeta: META, answers: { 2: { question: 'Q', options: ['A', 'B'], correctIndex: 1, correctAnswer: 'B', picked: 1, studentAnswer: 'B', correct: true, solved: true } }, earned: [], achievements: ACH, lang: 'uz', now: T0 });
+  assert.deepEqual(d.retake, { pressed: false });
+  assert.equal(d.startedAt, '2026-09-08T09:58:30Z');
+  // ikkinchi bosish: saqlov allaqachon bo'sh — progClear yana chaqirilsa ham oldingi holat QOLADI
+  progClear('V2');
+  const d2 = buildResultDetails({ lessonId: 'V2', screenMeta: META, answers: {}, earned: [], achievements: ACH, lang: 'uz', now: T0 });
+  assert.deepEqual(d2.retake, { pressed: false });
+});
+
+test('v2: «Qaytadan» bosilgan — retake.pressed=true, lastPass oxirgi o\'tish saqlovdagi javoblardan; asosiy questions[] birinchi o\'tishdan', () => {
+  resetResultDetails('V3');
+  const firstAns = { 2: { question: 'Q1', options: ['A', 'B'], correctIndex: 1, correctAnswer: 'B', picked: 0, studentAnswer: 'A', correct: false, solved: false }, 3: { question: 'Q2', options: ['A', 'B'], correctIndex: 0, correctAnswer: 'A', picked: 0, studentAnswer: 'A', correct: true, solved: true } };
+  const lastAns = { 2: { picked: 1, correct: true }, 3: { picked: 0, correct: true }, 4: { picked: 0, correct: true } };
+  progWrite('V3', { screen: 4, answers: lastAns, earned: [], missed: [], firstPass: { answers: firstAns, durationSec: 300 }, startedAt: T0 - 120_000, total: 5, savedAt: T0 });
+  progClear('V3');
+  const d = buildResultDetails({ lessonId: 'V3', screenMeta: META, answers: firstAns, earned: [], achievements: ACH, lang: 'uz', now: T0 });
+  assert.deepEqual(d.questions.map((q) => [q.question_id, q.correct]), [['s4', false], ['s5b', true]]); // birinchi o'tish (151-qonun)
+  assert.deepEqual(d.retake, { pressed: true, lastPass: { totalQuestions: 3, correctAnswers: 3, scorePercent: 100, durationSec: 120 } });
+  // dars o'zi uzatsa — ustun keladi
+  const e = buildResultDetails({ lessonId: 'V3', screenMeta: META, answers: firstAns, earned: [], achievements: ACH, lang: 'uz', now: T0, firstPass: null, startedAt: T0 - 5000, totalScreens: 9 });
+  assert.deepEqual([e.retake, e.startedAt, e.totalScreens], [{ pressed: false }, '2026-09-08T09:59:55Z', 9]);
+  resetResultDetails('V3'); // reset yakun-kontekstini ham tozalaydi
+  assert.equal(buildResultDetails({ lessonId: 'V3', screenMeta: META, answers: {}, earned: [], achievements: ACH, lang: 'uz', now: T0 }).retake, null);
+});
+
+test('v2 + muhr: yangi maydonlar (finishedAt, retake) muhr ICHIDA — ikkinchi bosishda AYNAN bir xil bayt (409 qaytmaydi)', () => {
+  resetResultDetails('V4');
+  const mk = (now) => ({ lessonId: 'V4', livePin: '111', liveMode: 'student', durationSec: Math.floor((now - T0) / 1000), ...buildResultDetails({ lessonId: 'V4', screenMeta: META, answers: {}, earned: [], achievements: ACH, lang: 'uz', now }) });
+  const a = JSON.stringify(sealPayload('V4', mk(T0)));
+  const b = JSON.stringify(sealPayload('V4', mk(T0 + 7000))); // 7 s keyin yana bosildi: finishedAt/durationSec boshqa bo'lardi
+  assert.equal(a, b);
+  assert.match(a, /"detailsVersion":2/); assert.match(a, /"finishedAt":"2026-09-08T10:00:00Z"/);
+});
+
+test('v2 hajm-shifti: kichik yuk o\'zgarmaydi; katta yuk — avval answers[] tushadi, truncated:true + truncatedFields, shift ostida; muhr qisqartirilganini oladi', () => {
+  resetResultDetails('V5');
+  const small = { lessonId: 'V5', answers: [{ a: 1 }], questions: [], truncated: false };
+  assert.strictEqual(capPayload(small), small);
+  const big = { lessonId: 'V5', livePin: '5', liveMode: 'self', truncated: false, answers: Array.from({ length: 900 }, (_, i) => ({ i, question: 'x'.repeat(60) })), questions: [{ question_id: 's1', attempts: [1, 2, 3, 4, 5].map((n) => ({ n, option: 0, answer: 'A' })), question: 'q'.repeat(200) }] };
+  assert.ok(Buffer.byteLength(JSON.stringify(big)) > CAP_BYTES);
+  const c = capPayload(big);
+  assert.equal('answers' in c, false); assert.equal(c.truncated, true); assert.deepEqual(c.truncatedFields, ['answers']);
+  assert.equal(c.questions[0].attempts.length, 5); // yetgani uchun keyingi qadamlar ishlamadi
+  assert.ok(Buffer.byteLength(JSON.stringify(c)) <= CAP_BYTES);
+  assert.equal(big.answers.length, 900); // asl obyekt o'zgarmagan
+  const sealed = sealPayload('V5', big);
+  assert.equal('answers' in sealed, false); assert.equal(sealed.truncated, true);
+  assert.equal(JSON.stringify(sealPayload('V5', big)), JSON.stringify(sealed)); // ikkinchi bosish — bir xil
+  // juda katta savol-ro'yxati: attempts → text → questions qadamlari ham shift ostiga tushiradi
+  const huge = { lessonId: 'V6', truncated: false, questions: Array.from({ length: 300 }, (_, i) => ({ question_id: 's' + i, question: 'q'.repeat(300), options: ['o'.repeat(300), 'p'.repeat(300)], attempts: Array.from({ length: 10 }, (_, n) => ({ n: n + 1, option: 0, answer: 'a'.repeat(300) })) })) };
+  const h = capPayload(huge, 20_000);
+  assert.deepEqual(h.truncatedFields, ['answers', 'attempts', 'text', 'questions']);
+  assert.ok(Buffer.byteLength(JSON.stringify(h)) <= 20_000); assert.ok(h.questions.length >= 1);
 });
