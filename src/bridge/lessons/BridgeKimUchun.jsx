@@ -186,7 +186,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
           <div className="chrome">
-            <div className="chrome-left eyebrow"><span className="dot" /><span>{eyebrow}</span></div>
+            <div className="chrome-left eyebrow">{eyebrow && <><span className="dot" /><span>{eyebrow}</span></>}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
               <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
@@ -1708,14 +1708,14 @@ const ScreenPage = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Yangi saytga kirgan odam avval «bu nima va kim uchun?» savoliga javob izlaydi — uni <b style={{ color: T.ink }}>«Birinchi blok»</b>ga yozing.</>, ru: <>Зашедший на новый сайт сначала ищет ответ на вопрос «что это и для кого?» — впишите его в <b style={{ color: T.ink }}>«Первый блок»</b>.</> })}</Mentor>
         <div className="split">
           <Col>
+            {/* F-0925-QA22: «Birinchi blok» / «Tugma» yorliqlari maydon ichiga (placeholder + aria-label) — o'ngdagi sahifada
+                shu bo'lim yorlig'i va tugmaning o'zi ko'rinib turadi, maydon to'lgach ham qaysi joy ekani bilinadi */}
             <label className={`bfield ${ok.blokGap ? 'on' : ''}${turnCls(litF, 'blokGap', pend.length > 1)}`}>
-              <span className="bfield-lbl" style={{ color: T.blue }}>{ok.blokGap ? '✓ ' : ''}{secLbl('blok')}</span>
-              <input value={st.blokGap} onChange={e => set({ blokGap: e.target.value })} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} placeholder={tr({ uz: 'Bu nima va kim uchun?', ru: 'Что это и для кого?' })} maxLength={90} />
+              <input value={st.blokGap} onChange={e => set({ blokGap: e.target.value })} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} placeholder={tr({ uz: 'Birinchi blok: bu nima va kim uchun?', ru: 'Первый блок: что это и для кого?' })} aria-label={secLbl('blok')} maxLength={90} />
             </label>
             {showT && (
               <label className={`bfield ${ok.tugma ? 'on' : ''}${turnCls(litF, 'tugma', pend.length > 1)}`}>
-                <span className="bfield-lbl" style={{ color: T.accent }}>{ok.tugma ? '✓ ' : ''}{secLbl('tugma')}</span>
-                <input value={st.tugma} onChange={e => set({ tugma: e.target.value })} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} placeholder={tr({ uz: "Masalan: E'lon berish", ru: 'Например: Подать объявление' })} maxLength={30} />
+                <input value={st.tugma} onChange={e => set({ tugma: e.target.value })} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} placeholder={tr({ uz: "Tugma (masalan: E'lon berish)", ru: 'Кнопка (например: Подать объявление)' })} aria-label={secLbl('tugma')} maxLength={30} />
               </label>
             )}
             <div className="swed-btns">
@@ -1747,47 +1747,30 @@ const copyText = async (txt) => {
   try { if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(txt); return true; } } catch { /* pastdagi yo'l */ }
   try { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok; } catch { return false; }
 };
-// ===== AI QADAMI (F-0924-01/02) — so'rov DOIM ochiq · ① nusxalash → ② Gemini → ③ javobni yozish. Umumiy naqsh (7 bridge darsi).
-// Manba: DeployLesson Screen4 (.pr-panel/.pr-copy) + DoSteps (.dsx raqamlari) + FallbackPanel (.dsx-fb, 155-qonun 2-band).
-// «✓ Nusxalandi» QAYTIB O'CHMAYDI — o'quvchi ① bajarilganini doim ko'radi. Navbat-pulsi ① → ② ketma-ket (88-qonun);
-// ③ ning pulsi — ekrandagi maydonning o'zida (onReady ① va ② bajarilganini xabar qiladi). Ekran so'rov-qutisi 400 belgi
-// hisobiga kirmaydi (F-0924-01: foydalanuvchi yig'mani bekor qildi).
-const AiRow = ({ n, done, children }) => (
-  <li className={`ais-row${done ? ' on' : ''}`}>
-    <span className="ais-num" aria-hidden="true">{done ? '✓' : n}</span>
-    <div className="ais-body">{children}</div>
-  </li>
-);
+// ===== AI QADAMI (F-0924-01/02 · F-0925-QA35) — so'rov DOIM ochiq; nusxalash — so'rov qutisi burchagidagi 📋 belgisi,
+// «Gemini'ni ochish» bosilganda so'rov o'zi nusxalanadi (bitta harakat). Qadam raqamlari va «qo'ying» yozuvi yo'q — yo'riq mentor-gapda.
+// Umumiy naqsh (7 bridge darsi). Manba: DeployLesson Screen4 (.pr-panel) + FallbackPanel (.dsx-fb, 155-qonun 2-band).
+// onReady — Gemini ochilganini xabar qiladi (keyingi puls ekrandagi maydonda).
 const AiStep = ({ prompt, answerLabel, answered, fallbackTitle, fallback, onReady, pulse = true }) => {
   const [copied, setCopied] = useState(false);
   const [opened, setOpened] = useState(false);
-  // Zanjir KETMA-KET (① → ②), teng elementlar emas: yurish emas, birinchi bajarilmagan halqa tinch yonadi —
-  // mentor-gap «avval «📋 So'rovni nusxalash»» deydi, puls ham faqat o'sha tugmada (3-D.2).
-  const pend = !copied ? ['copy'] : !opened ? ['open'] : [];
-  const lit = useTurnWalk(pend, pulse && !answered);
-  const ready = copied && opened;
-  useEffect(() => { if (onReady) onReady(ready); }, [ready]); // eslint-disable-line
+  const lit = useTurnWalk(opened ? [] : ['open'], pulse && !answered);
+  useEffect(() => { if (onReady) onReady(opened); }, [opened]); // eslint-disable-line
   const doCopy = async () => { const ok = await copyText(prompt); if (ok) setCopied(true); };
+  const cpLbl = tr(copied ? { uz: 'Nusxalandi', ru: 'Скопировано' } : { uz: "So'rovni nusxalash", ru: 'Скопировать запрос' });
   return (
     <div className="ais fade-up delay-1">
       <div className="pr-panel">
-        <div className="pr-head"><span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span></div>
+        <div className="pr-head">
+          <span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span>
+          <button type="button" className={`pr-ic${copied ? ' ok' : ''}`} onClick={doCopy} aria-label={cpLbl} title={cpLbl}>{copied ? '✓' : '📋'}</button>
+        </div>
         <pre className="pr-body">{prompt}</pre>
       </div>
-      <ol className="ais-steps">
-        <AiRow n={1} done={copied}>
-          <button type="button" className={`pr-copy${copied ? ' ok' : ''}${turnCls(lit, 'copy', pend.length > 1)}`} onClick={doCopy}>
-            {copied ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: "📋 So'rovni nusxalash", ru: '📋 Скопировать запрос' })}
-          </button>
-        </AiRow>
-        <AiRow n={2} done={opened}>
-          <a className={`ais-link${turnCls(lit, 'open', pend.length > 1)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpened(true)}>
-            {tr({ uz: 'gemini.google.com ni ochish ↗', ru: 'Открыть gemini.google.com ↗' })}
-          </a>
-          <span className="ais-d">{tr({ uz: "So'rovni qo'ying va yuboring", ru: 'Вставьте запрос и отправьте' })}</span>
-        </AiRow>
-        <AiRow n={3} done={answered}><span className="ais-t">{answerLabel}</span></AiRow>
-      </ol>
+      <a className={`ais-link ais-go${opened ? ' on' : ''}${turnCls(lit, 'open', false)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => { doCopy(); setOpened(true); }}>
+        {opened ? '✓ ' : ''}{tr({ uz: "Gemini'ni ochish ↗", ru: 'Открыть Gemini ↗' })}
+      </a>
+      <p className="ais-t">{answerLabel}</p>
       <details className="dsx-fb">
         <summary>🛟 {fallbackTitle || tr({ uz: 'Gemini ochilmadimi?', ru: 'Gemini не открылся?' })}</summary>
         <div className="dsx-fb-body">{fallback}</div>
@@ -1852,10 +1835,10 @@ const ScreenAi = ({ screen, onNext, onPrev }) => {
   const isMentor = useIsMentor();
   const [line, setLine] = useState(card.blokGap || '');
   const [put, setPut] = useState(false);
-  const [ready, setReady] = useState(false); // ① va ② bajarildi → navbat ③ maydonga o'tadi
+  const [ready, setReady] = useState(false); // Gemini ochildi → navbat maydonga o'tadi (F-0925-QA35)
   const [focus, setFocus] = useState(false);
   const place = () => { if (!filled(line)) return; cardWrite({ blokGap: line.trim() }); setPut(true); };
-  // Bir lahzada bitta puls: ①/② (AiStep ichida) → maydon → «Sahifaga qo'yish» → NavNext.
+  // Bir lahzada bitta puls: Gemini tugmasi (AiStep ichida) → maydon → «Sahifaga qo'yish» → NavNext.
   const fieldTurn = useTurnHint(ready && !filled(line) && !focus && !isMentor);
   const placeTurn = useTurnHint(filled(line) && !put && !focus && !isMentor);
   return (
@@ -1865,7 +1848,7 @@ const ScreenAi = ({ screen, onNext, onPrev }) => {
           <h2 className="title h-title fade-up">{tr({ uz: <>AI birinchi blokingizga qanday <span className="italic" style={{ color: T.accent }}>gaplar</span> taklif qiladi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>фразы</span> AI предложит для вашего первого блока?</> })}</h2>
         </div>
         {/* Senariy 17: ekran boshidagi ikki gap bitta gapga qo'shildi (mazmuni so'zma-so'z) + chorlov — interaktiv ekranda 1 gap. */}
-        <Mentor>{tr({ uz: <>AI sizga sarlavha variantlarini taklif qiladi, qaysi biri qolishini esa o'zingiz tanlaysiz — avval <b style={{ color: T.ink }}>«📋 So'rovni nusxalash»</b>ni bosing.</>, ru: <>AI предложит вам варианты заголовка, а какой из них оставить, выберете вы сами, — сначала нажмите <b style={{ color: T.ink }}>«📋 Скопировать запрос»</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI sizga sarlavha variantlarini taklif qiladi, qaysi biri qolishini esa o'zingiz tanlaysiz — <b style={{ color: T.ink }}>«Gemini'ni ochish»</b>ni bosing: so'rov o'zi nusxalanadi, chatga joylab yuboring.</>, ru: <>AI предложит вам варианты заголовка, а какой из них оставить, выберете вы сами, — нажмите <b style={{ color: T.ink }}>«Открыть Gemini»</b>: запрос скопируется сам, вставьте его в чат и отправьте.</> })}</Mentor>
         <div className="split">
           <Col>
             <FlowLabel>{tr({ uz: "AI — sarlavha taklif qiladi", ru: 'AI — предлагает заголовок' })}</FlowLabel>
@@ -1879,9 +1862,9 @@ const ScreenAi = ({ screen, onNext, onPrev }) => {
               </div>} />
           </Col>
           <Col>
+            {/* F-0925-QA22: «Birinchi blok» yorlig'i maydon ichiga — chapdagi izohda «Birinchi blok» nomi turibdi (QA35: ③ qadam-raqami olindi) */}
             <label className={`bfield ${filled(line) ? 'on' : ''}${fieldTurn ? ' turn-ring' : ''}`}>
-              <span className="bfield-lbl" style={{ color: T.blue }}>③ {secLbl('blok')}</span>
-              <input placeholder={tr(WRITE_PH)} value={line} onChange={e => { setLine(e.target.value); setPut(false); }} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} maxLength={90} />
+              <input placeholder={tr({ uz: 'Birinchi blok — shu yerga yozing…', ru: 'Первый блок — напишите здесь…' })} aria-label={secLbl('blok')} value={line} onChange={e => { setLine(e.target.value); setPut(false); }} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} maxLength={90} />
             </label>
             <div className="swed-btns"><button type="button" className={`swed-save${placeTurn ? ' turn-ring' : ''}`} disabled={!filled(line) || put} onClick={place}>✓ {tr({ uz: 'Sahifaga qo\'yish', ru: 'Поставить на страницу' })}</button></div>
             {put && <div className="done-mini fade-step">✓ {tr({ uz: 'Sahifaga qo\'yildi', ru: 'Поставлено на страницу' })}</div>}
@@ -2782,14 +2765,14 @@ const ScreenEnd = ({ screen, onReset, onPrev, onFinish }) => {
     setArenaSolo(studentSolo); setArena(true);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '↻ Darsni boshidan', ru: '↻ Урок сначала' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Darsni yakunlash ✓', ru: 'Завершить урок ✓' })}</button></>}>
+    <Stage eyebrow={null} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '↻ Darsni boshidan', ru: '↻ Урок сначала' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Darsni yakunlash ✓', ru: 'Завершить урок ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz qo'shilayotgan AI Startup kursida har bir loyiha shu savoldan boshlanadi: <span className="italic" style={{ color: T.accent }}>kim uchun?</span></>, ru: <>На курсе AI Startup, к которому вы присоединяетесь, каждый проект начинается с этого вопроса: <span className="italic" style={{ color: T.accent }}>для кого?</span></> })}</h2></div></div>
+        <div className="hero"><div className="hero-l"><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz qo'shilayotgan AI Startup kursida har bir loyiha shu savoldan boshlanadi: <span className="italic" style={{ color: T.accent }}>kim uchun?</span></>, ru: <>На курсе AI Startup, к которому вы присоединяетесь, каждый проект начинается с этого вопроса: <span className="italic" style={{ color: T.accent }}>для кого?</span></> })}</h2></div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : tr({ uz: "12 savolli tezkor o'yin — bugungi dars bo'yicha", ru: 'Быстрая игра из 12 вопросов — по сегодняшнему уроку' })} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}>{tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span>{tr(r)}</span></li>))}</ul></div>
       </div>
     </Stage>
   );
@@ -3848,26 +3831,24 @@ export default function BridgeKimUchun({ lang: langProp, onFinished, liveToken }
         /* === AI QADAMI (17) — AiStep. Manba DeployLesson 3314-3340, 3416-3431; aksent bridge binafshasi === */
         .ais { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
         .pr-panel { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
-        .pr-head { display: flex; align-items: center; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+        .pr-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+        .pr-ic { flex-shrink: 0; width: 30px; height: 30px; border: none; border-radius: 8px; cursor: pointer; background: ${T.bg}; color: ${T.ink2}; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s, box-shadow 0.15s; }
+        .pr-ic:hover { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+        .pr-ic.ok { background: ${T.successSoft}; color: ${T.success}; font-weight: 800; }
+        .ais-go { align-self: flex-start; }
+        .ais-go.on { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .ais > .ais-t { margin: 0; padding: 0 2px; }
         .pr-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; }
         .pr-body { margin: 0; padding: 10px 13px; max-height: min(24vh, 170px); overflow-y: auto; white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; line-height: 1.55; color: ${T.ink}; }
-        .pr-copy { border: none; border-radius: 10px; padding: 9px 16px; background: ${T.accent}; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; cursor: pointer; transition: background 0.18s; }
-        .pr-copy.ok { background: ${T.success}; }
-        .ais-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-        .ais-row { display: flex; align-items: center; gap: 11px; border-radius: 12px; padding: 7px 11px; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
-        .ais-row.on { background: ${T.successSoft}; box-shadow: none; }
-        .ais-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.accent}; color: #fff; }
-        .ais-row.on .ais-num { background: ${T.success}; }
-        .ais-body { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 5px 10px; align-items: center; }
         .ais-link { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.accent}; text-decoration: none; border-radius: 10px; padding: 8px 14px; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-        .ais-d, .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
+        .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
         .ais-t b { color: ${T.ink}; }
         .dsx-fb { background: ${T.paper}; border-radius: 12px; padding: 9px 13px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
         .dsx-fb > summary { cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
         .dsx-fb > summary::-webkit-details-marker { display: none; }
         .dsx-fb[open] > summary { margin-bottom: 9px; }
         .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
-        @media (prefers-reduced-motion: reduce) { .pr-copy { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { .pr-ic { transition: none; } }
 
         /* === 🏅 AchRule (151-qonun) === */
         .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }

@@ -175,7 +175,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
           <div className="chrome">
-            <div className="chrome-left eyebrow"><span className="dot" /><span>{eyebrow}</span></div>
+            <div className="chrome-left eyebrow">{eyebrow && <><span className="dot" /><span>{eyebrow}</span></>}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
               <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
@@ -1675,45 +1675,32 @@ const copyText = async (txt) => {
   try { if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(txt); return true; } } catch { /* pastdagi yo'l */ }
   try { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok; } catch { return false; }
 };
-// ===== AI QADAMI (F-0924-01/02) — B3 dan AYNAN (pilot B1 naqshi): so'rov DOIM ochiq · ① nusxalash → ② Gemini → ③ javobni yozish.
-// Manba: DeployLesson Screen4 (.pr-panel/.pr-copy) + DoSteps (.dsx raqamlari) + FallbackPanel (.dsx-fb, 155-qonun 2-band).
+// ===== AI QADAMI (F-0924-01/02, F-0925-QA35): so'rov DOIM ochiq · 📋 belgisi · «Gemini'ni ochish» (o'zi nusxalaydi) → javobni yozish.
+// Manba: DeployLesson Screen4 (.pr-panel) + FallbackPanel (.dsx-fb, 155-qonun 2-band).
 // «✓ Nusxalandi» QAYTIB O'CHMAYDI. Navbat-pulsi ① → ② bo'ylab yuradi (88-qonun); ③ ning pulsi — o'ngdagi maydonlarning
 // o'zida (onReady ① va ② bajarilganini xabar qiladi). So'rov-qutisi 400 belgi hisobiga kirmaydi (F-0924-01).
-const AiRow = ({ n, done, children }) => (
-  <li className={`ais-row${done ? ' on' : ''}`}>
-    <span className="ais-num" aria-hidden="true">{done ? '✓' : n}</span>
-    <div className="ais-body">{children}</div>
-  </li>
-);
+// F-0925-QA35 (pilot 3-o'tish 3-darsidan): ① «Nusxalash» qadami → so'rov qutisi burchagidagi 📋 belgisi;
+// «Gemini'ni ochish» bosilganda so'rov o'zi nusxalanadi (bitta harakat) — tayyor holat = ochildi; qadam raqamlari yo'q.
 const AiStep = ({ prompt, answerLabel, answered, fallbackTitle, fallback, onReady, pulse = true }) => {
   const [copied, setCopied] = useState(false);
   const [opened, setOpened] = useState(false);
-  // Zanjir KETMA-KET (① → ②): yurish emas, birinchi bajarilmagan halqa tinch yonadi (pilot B1 naqshi, 88-qonun).
-  const pend = !copied ? ['copy'] : !opened ? ['open'] : [];
-  const lit = useTurnWalk(pend, pulse && !answered);
-  const ready = copied && opened;
-  useEffect(() => { if (onReady) onReady(ready); }, [ready]); // eslint-disable-line
+  const lit = useTurnWalk(opened ? [] : ['open'], pulse && !answered);
+  useEffect(() => { if (onReady) onReady(opened); }, [opened]); // eslint-disable-line
   const doCopy = async () => { const ok = await copyText(prompt); if (ok) setCopied(true); };
+  const cpLbl = tr(copied ? { uz: 'Nusxalandi', ru: 'Скопировано' } : { uz: "So'rovni nusxalash", ru: 'Скопировать запрос' });
   return (
     <div className="ais fade-up delay-1">
       <div className="pr-panel">
-        <div className="pr-head"><span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span></div>
+        <div className="pr-head">
+          <span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span>
+          <button type="button" className={`pr-ic${copied ? ' ok' : ''}`} onClick={doCopy} aria-label={cpLbl} title={cpLbl}>{copied ? '✓' : '📋'}</button>
+        </div>
         <pre className="pr-body">{prompt}</pre>
       </div>
-      <ol className="ais-steps">
-        <AiRow n={1} done={copied}>
-          <button type="button" className={`pr-copy${copied ? ' ok' : ''}${turnCls(lit, 'copy', pend.length > 1)}`} onClick={doCopy}>
-            {copied ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: "📋 So'rovni nusxalash", ru: '📋 Скопировать запрос' })}
-          </button>
-        </AiRow>
-        <AiRow n={2} done={opened}>
-          <a className={`ais-link${turnCls(lit, 'open', pend.length > 1)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpened(true)}>
-            {tr({ uz: 'gemini.google.com ni ochish ↗', ru: 'Открыть gemini.google.com ↗' })}
-          </a>
-          <span className="ais-d">{tr({ uz: "So'rovni qo'ying va yuboring", ru: 'Вставьте запрос и отправьте' })}</span>
-        </AiRow>
-        <AiRow n={3} done={answered}><span className="ais-t">{answerLabel}</span></AiRow>
-      </ol>
+      <a className={`ais-link ais-go${opened ? ' on' : ''}${turnCls(lit, 'open', false)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => { doCopy(); setOpened(true); }}>
+        {opened ? '✓ ' : ''}{tr({ uz: "Gemini'ni ochish ↗", ru: 'Открыть Gemini ↗' })}
+      </a>
+      <p className="ais-t">{answerLabel}</p>
       <details className="dsx-fb">
         <summary>🛟 {fallbackTitle || tr({ uz: 'Gemini ochilmadimi?', ru: 'Gemini не открылся?' })}</summary>
         <div className="dsx-fb-body">{fallback}</div>
@@ -1769,7 +1756,7 @@ const ScreenAI = ({ screen, onNext, onPrev }) => {
           <p className="lead-note fade-up delay-1">{tr({ uz: "AI kartangizdagi odam o'rnida javob beradi.", ru: 'AI ответит вместо человека из вашей карточки.' })}</p>
         </div>
         {/* MG (F-0924-03): NEGA + bitta chorlov; puls ham ① dan boshlanadi. Yakuniy matn — metodist 24.09. */}
-        <Mentor>{tr({ uz: <>Uning javobi kartangizni tekshirishga yordam beradi — avval <b style={{ color: T.ink }}>«📋 So'rovni nusxalash»</b>ni bosing.</>, ru: <>Его ответ поможет проверить вашу карточку, — сначала нажмите <b style={{ color: T.ink }}>«📋 Скопировать запрос»</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Uning javobi kartangizni tekshirishga yordam beradi — <b style={{ color: T.ink }}>«Gemini'ni ochish»</b>ni bosing: so'rov o'zi nusxalanadi, chatga joylab yuboring.</>, ru: <>Его ответ поможет проверить вашу карточку, — нажмите <b style={{ color: T.ink }}>«Открыть Gemini»</b>: запрос скопируется сам, вставьте его в чат и отправьте.</> })}</Mentor>
         <div className="split">
           <Col>
             <AiStep prompt={prompt} answered={put} onReady={setReady} pulse={!isMentor}
@@ -2620,15 +2607,15 @@ const ScreenSummary = ({ screen, achievements, onReset, onPrev, onFinish }) => {
     setArenaSolo(studentSolo); setArena(true);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '↻ Darsni boshidan', ru: '↻ Урок сначала' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Darsni yakunlash ✓', ru: 'Завершить урок ✓' })}</button></>}>
+    <Stage eyebrow={null} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '↻ Darsni boshidan', ru: '↻ Урок сначала' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Darsni yakunlash ✓', ru: 'Завершить урок ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick" aria-hidden="true" />{tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr(LESSON_META.lessonTitle)}</h2></div></div>
+        <div className="hero"><div className="hero-l"><h2 className="title h-title fade-up d1">{tr(LESSON_META.lessonTitle)}</h2></div></div>
         <div className={`qz-cta cs-cta fade-up d1 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : tr({ uz: "12 savolli tezkor o'yin — bugungi dars bo'yicha", ru: 'Быстрая игра из 12 вопросов — по сегодняшнему уроку' })} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className={`sum-row${isMentor ? ' solo' : ''}`}>
-          <div className="card fade-up d2"><div className="card-lbl" style={{ color: T.success }}><i className="lbl-ck" aria-hidden="true" />{tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{SUMMARY_LINES.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" aria-hidden="true" /><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card fade-up d2"><div className="card-lbl" style={{ color: T.success }}>{tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{SUMMARY_LINES.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span>{tr(r)}</span></li>))}</ul></div>
           {!isMentor && <div className="card ach-coll fade-up d3">
             <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz —', ru: 'Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
             <div className="ach-grid">
@@ -3499,26 +3486,24 @@ export default function BridgeKimUchunMuammo({ lang: langProp, onFinished, liveT
   /* AI QADAMI (F-0924-01/02) — B3 dan AYNAN; manba DeployLesson 3314-3340, 3416-3431 */
   .ais { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .pr-panel { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
-  .pr-head { display: flex; align-items: center; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+  .pr-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+  .pr-ic { flex-shrink: 0; width: 30px; height: 30px; border: none; border-radius: 8px; cursor: pointer; background: ${T.bg}; color: ${T.ink2}; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s, box-shadow 0.15s; }
+  .pr-ic:hover { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+  .pr-ic.ok { background: ${T.successSoft}; color: ${T.success}; font-weight: 800; }
+  .ais-go { align-self: flex-start; }
+  .ais-go.on { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+  .ais > .ais-t { margin: 0; padding: 0 2px; }
   .pr-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; }
   .pr-body { margin: 0; padding: 10px 13px; max-height: min(24vh, 170px); overflow-y: auto; white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; line-height: 1.55; color: ${T.ink}; }
-  .pr-copy { border: none; border-radius: 10px; padding: 9px 16px; background: ${T.accent}; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; cursor: pointer; transition: background 0.18s; }
-  .pr-copy.ok { background: ${T.success}; }
-  .ais-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-  .ais-row { display: flex; align-items: center; gap: 11px; border-radius: 12px; padding: 7px 11px; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
-  .ais-row.on { background: ${T.successSoft}; box-shadow: none; }
-  .ais-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.accent}; color: #fff; }
-  .ais-row.on .ais-num { background: ${T.success}; }
-  .ais-body { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 5px 10px; align-items: center; }
   .ais-link { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.accent}; text-decoration: none; border-radius: 10px; padding: 8px 14px; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-  .ais-d, .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
+  .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
   .ais-t b { color: ${T.ink}; }
   .dsx-fb { background: ${T.paper}; border-radius: 12px; padding: 9px 13px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .dsx-fb > summary { cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
   .dsx-fb > summary::-webkit-details-marker { display: none; }
   .dsx-fb[open] > summary { margin-bottom: 9px; }
   .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
-  @media (prefers-reduced-motion: reduce) { .pr-copy { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .pr-ic { transition: none; } }
   .pod-me { display: flex; flex-direction: column; align-items: center; gap: 6px; align-self: center; background: ${T.paper}; border-radius: 20px; padding: 22px 38px; box-shadow: 0 16px 36px -18px rgba(${T.shadowBase},0.4); }
   .pod-me-medal { font-size: 46px; line-height: 1; }
   .pod-me-place { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(24px,4vw,32px); color: ${T.accent}; }
@@ -3786,13 +3771,10 @@ export default function BridgeKimUchunMuammo({ lang: langProp, onFinished, liveT
     .gb-screen .gb-rows { gap: 7px; }
     .gb-screen .gb-row { padding-top: 7px; padding-bottom: 7px; }
     /* 16-ekran: so'rov qutisi ichida aylanadi (F-0924-01), 🛟 ochilsa ixcham oynaga yig'iladi (B5 naqshi, 58-qonun) */
-    .ai-screen .pr-body { max-height: min(15vh, 104px); }
+    .ai-screen .pr-body { max-height: min(21vh, 160px); } /* F-0925-QA35: ①/② qadam qatorlari olingan joy hisobiga — so'rov to'liq ko'rinadi */
     .ai-screen .ais:has(.dsx-fb[open]) .pr-body { max-height: 40px; padding-top: 6px; padding-bottom: 6px; }
     .ai-screen .ais:has(.dsx-fb[open]) .ais-link { padding: 5px 12px; }
-    .ai-screen .ais:has(.dsx-fb[open]) .pr-copy { padding: 6px 14px; }
     .ai-screen .dsx-fb[open] > summary { margin-bottom: 6px; }
-    .ai-screen .ais:has(.dsx-fb[open]) .ais-steps { gap: 4px; }
-    .ai-screen .ais:has(.dsx-fb[open]) .ais-row { padding-top: 4px; padding-bottom: 4px; }
     .ai-screen .ai-fb { gap: 6px; }
     .ai-screen .ai-fb-q.ai-fb-q { font-size: clamp(15px,1.4vw,16px); padding: 6px 12px; }
     .ai-screen .cq-card { gap: 6px; padding: 12px 15px; }

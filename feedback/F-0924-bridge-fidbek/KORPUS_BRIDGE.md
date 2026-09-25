@@ -222,3 +222,28 @@
 ## B-44 · Maydon savoli xira yozuvda: «№ Savol? (masalan: qisqa namuna)» (3-o'tish 2-darsi 14-ekran · F-0925-QA18)
 - ❌ maydon ustida «① Sayt kim uchun?» yorlig'i + ichida namuna → ✅ ichida «① Sayt kim uchun? (masalan: futbol o'ynaydigan o'smirlar)»; tor maydonda faqat savol («② Qachon?»).
 - Sabab: yorliq + namuna ikki qator egallardi. Namuna navbat-halqasi holatida o'lchanadi (halqa chap chetga kursor qo'shadi) — shu holatda sig'magan namuna qisqartiriladi.
+
+## B-45 · Sarlavha bir qatorga sig'adi: iqtibos qisqaradi, ma'no qoladi (3/4-o'tish 2-darsi 10-ekran · F-0925-QA24 · QA: «sarlavha 2 qator bo'lib dizaynni buzgan»)
+- ❌ «Dasturchi «Chaqirish tugmasi ishlaydi» dedi. Bu loyiha «tayyor» deganimi?» → ✅ «Dasturchi: «Tugma ishlaydi». Loyiha «tayyor» deganimi?» (RU: «Разработчик: «Кнопка работает». Проект «готов»?»).
+- Sabab: `text-wrap: balance` sal uzun sarlavhani ikki teng qisqa qatorga bo'ladi — o'ng yarmi bo'sh qoladi. Qaysi tugma ekanini tagsarlavha («"Mashina chaqirish" bo'lagi») va telefon aytadi. O'lchov: 1280/1440 da 1 qator (34px).
+
+## B-46 · «Sonlar — mashq uchun taxmin» izohi yo'q (3/4-o'tish 2-darsi 8-ekran · F-0925-QA23 · foydalanuvchi: «ahamiyatsiz, joy egallayapti»)
+- ❌ bo'laklar ostida «Sonlar — mashq uchun taxmin, Yandex Go ma'lumoti emas.» → ✅ olindi. QA20 (2-o'tish 3-darsi «Bu ro'yxat mashq uchun tuzildi…») bilan bir sinf: o'quvchiga amal bermaydigan halollik-izohi ekranga yozilmaydi.
+
+## B-47 · Maqsad-ekrani: mentor natijani aytadi, sahna qismlari nomlanadi (3-o'tish 3-darsi 2-ekran · F-0925-QA29 · QA: «maqsadini tushunarliroq qilish kerak»)
+- ❌ «Tanlagan g'oyangizni kod bilmaydigan odamga besh gapda ayta olasiz. Keyin oldingi darsdagi birinchi bo'lagingizni uch kadrda ko'rsatasiz: har kadrda bitta gap, o'rta kadrda bitta bosish.» → ✅ «Dars oxirida g'oyangizni kod bilmaydigan odamga tushuntira olasiz — besh gap aytasiz va birinchi bo'lagingizni uch kadrda ko'rsatasiz.»
+- Sahna: nomsiz «ro'yxat → lenta → 🙂🪑» o'rniga «① Besh gapda aytasiz → ② Uch kadrda ko'rsatasiz → ③ Tinglovchi tushunadi»; «… hozirgacha …» qolipi ostida «Bo'sh joylarni keyin o'zingiz to'ldirasiz».
+- Sabab: natija (odam tushunadi) aytilmagan edi; qolip-qatorlar izohsiz sirli ko'rinardi; mayda texnik tafsil («o'rta kadrda bitta bosish») maqsad-ekraniga emas, 13-ekranga tegishli.
+
+## B-48 · AI-ekran chorlovi — bitta tugma (7 dars · F-0925-QA35)
+- ❌ «…— avval «📋 So'rovni nusxalash»ni bosing.» (+ ② qadamda «So'rovni chatga qo'ying va yuboring») → ✅ «…— «Gemini'ni ochish»ni bosing: so'rov o'zi nusxalanadi, chatga joylab yuboring.» (RU: «…— нажмите «Открыть Gemini»: запрос скопируется сам, вставьте его в чат и отправьте.»)
+- Sabab: yo'riq ikki joyda (mentor + qadam yozuvi) va ikki harakatga bo'lingan edi; endi harakat bitta, yo'riq faqat mentorda. NEGA-qismi o'zgarmaydi.
+
+## B-49 · Sarlavha bir qator, xulosa — qoida + ikki misol (4-o'tish 3-darsi 6-ekran · F-0925-QA38 · foydalanuvchi: «textni sal kamaytiramiz»)
+- Sarlavha: ❌ «Bizning ilovamizdagi sahifangizni begona odam ochsa, qaysi maydonlarni ko'rishi mumkin?» → ✅ «Begona odam sahifangizda qaysi maydonlarni ko'radi?»
+- Xulosa (4 gap → 3 qisqa): ❌ «Kanal nomi ham, parol ham — oddiy yozuv. … Demak, yozuvning turiga emas, begona ko'rsa nima bo'lishiga qaraymiz… — ochiq qolish ham qaror.» → ✅ «Kanal nomi ochiq — odamlar sizni shu bilan topadi. Parol yopiq — begona bilsa, sahifangizga zarar yetadi. Qoida: egasiga zarar yetkazadigan maydon yopiladi.»
+- Sabab: «bizning ilovamizdagi» / «ko'rishi mumkin» — ma'no qo'shmaydigan to'ldiruvchilar; xulosada qoidadan oldingi mulohaza zanjiri va «ochiq qolish ham qaror» (layk kartasining o'z izohida bor) takror edi.
+
+## B-50 · Mentor yoki yo'riq-qator — bittasi (4-o'tish 3-darsi 8-ekran · F-0925-QA40 · foydalanuvchi: «yo mentorning gapini kamaytiramiz yo tepadagi instructionni»)
+- ❌ Mentor: «Ilovamizning e'loni odamga nima ko'rinishini besh gapda aytadi — qolgan gaplarni ham maydon bilan bog'lang.» + yo'riq-qator «📣 Avval gapni tanlang, so'ng maydonni bosing.» → ✅ faqat mentor: «Ilova faqat yozib qo'ygan narsasini ko'rsatadi — gapni tanlang, so'ng uning maydonini bosing.» (keyingi holatlarda «…— qolgan gaplarni ham maydon bilan bog'lang», «…— sana uchun «＋ Maydon qo'shish»ni bosing»).
+- Sabab: NEGA-qismi sarlavhani qaytarardi va uzun edi; harakat ikki joyda aytilardi. Qisqa NEGA (ekranning o'z g'oyasi) + harakat bitta joyda.

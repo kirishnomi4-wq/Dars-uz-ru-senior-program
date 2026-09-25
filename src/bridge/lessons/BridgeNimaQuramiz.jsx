@@ -207,7 +207,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
           <div className="chrome">
-            <div className="chrome-left eyebrow"><span className="dot" /><span>{eyebrow}</span></div>
+            <div className="chrome-left eyebrow">{eyebrow && <><span className="dot" /><span>{eyebrow}</span></>}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
               <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
@@ -1237,7 +1237,7 @@ const ScreenTest2 = (props) => (
 );
 
 // ===== 8-EKRAN — IKKI SAVOL, TO'RT KATAK: olti bo'lakni joylashtirish =====
-// Sonlar senariydan (mashq uchun taxmin, Yandex Go ma'lumoti emas — ekranda ochiq yoziladi). ⏳ katagi bo'sh qoladi (qaror 3.2).
+// Sonlar senariydan (mashq uchun taxmin, Yandex Go ma'lumoti emas; ekrandagi izoh F-0925-QA23 da olindi). ⏳ katagi bo'sh qoladi (qaror 3.2).
 const CELLS = [
   { k: 'avval', ic: '🎯', t: { uz: 'Avval qilinadi', ru: 'Делаем первым' }, sub: { uz: "ko'p · tez", ru: 'много · быстро' } },
   { k: 'reja', ic: '🏔', t: { uz: 'Rejaga tushadi', ru: 'Идёт в план' }, sub: { uz: "ko'p · uzoq", ru: 'много · долго' } },
@@ -1310,7 +1310,6 @@ const ScreenGrid = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   );
                 })}
               </div>}
-              {!done && <p className="small" style={{ margin: 0, color: T.ink3 }}>{tr({ uz: "Sonlar — mashq uchun taxmin, Yandex Go ma'lumoti emas.", ru: 'Числа — прикидка для упражнения, а не данные Yandex Go.' })}</p>}
               {done && <span className="done-mini fade-step">{tr({ uz: '✅ Hammasi joylandi', ru: '✅ Всё разложено' })}</span>}
               {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: <>Birinchi bo'lak — 🎯 Avval qilinadi katagidan. U yerda ikki bo'lak bor, ikkalasi ham ikki kunlik. Vaqt teng bo'lsa, bu mashqda ko'proq odamga kerak bo'lganini oldin tanlaymiz: «Mashina chaqirish». Qaysi ishni avval, qaysini keyin qilishni shunday tanlash <b>prioritet belgilash</b> deyiladi.</>, ru: <>Первая часть — из клетки 🎯 «Делаем первым». Там две части, обе на два дня. Если время одинаковое, в этом упражнении сначала берём ту, что нужна большему числу людей: «Вызов машины». Такой выбор — что делать сначала, а что потом, — называется <b>расстановкой приоритетов</b>.</> })}</p></div>}
             </div>
@@ -1420,7 +1419,7 @@ const ScreenOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: '4-qism · Qachon tayyor', ru: 'Часть 4 · Когда готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} turnBusy={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Har shartni tekshiring (yana ${left} ta)`, ru: `Проверьте каждое условие (осталось ${left})` })} onClick={onNext} /></>}>
       <div className="screen dense" style={{ gap: 'clamp(12px,2vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dasturchi «Chaqirish tugmasi ishlaydi» dedi. Bu loyiha <span className="italic" style={{ color: T.accent }}>«tayyor»</span> deganimi?</>, ru: <>Разработчик сказал: «Кнопка вызова работает». Значит ли это, что проект <span className="italic" style={{ color: T.accent }}>«готов»</span>?</> })}</h2>
+        <div className="head"><h2 className="title h-title fade-up">{/* F-0925-QA24: sarlavha bir qatorga qisqardi (ikki qatorga bo'linib, dizaynni buzardi) */}{tr({ uz: <>Dasturchi: «Tugma ishlaydi». Loyiha <span className="italic" style={{ color: T.accent }}>«tayyor»</span> deganimi?</>, ru: <>Разработчик: «Кнопка работает». Проект <span className="italic" style={{ color: T.accent }}>«готов»</span>?</> })}</h2>
           {!done && <p className="small fade-up delay-1" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Bu — bizning ilovamizning "Mashina chaqirish" bo\'lagi, Yandex Go emas.', ru: 'Это часть «Вызов машины» нашего приложения, а не Yandex Go.' })}</p>}</div>
         {/* Mentor-gap (F-0924-03, §210 qolipi): NEGA + bitta chorlov, element o'z yorlig'i bilan; puls bilan bir halqa */}
         {/* Korpus B-18: to'rttasi tekshirilgach «▶ Tekshirish» tugmalari yo'q — chorlov olinadi, NEGA qoladi */}
@@ -1610,12 +1609,13 @@ const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } ca
 
 // ===== 13-EKRAN — HIKOYANGIZ: ustaxona (kartangiz yonda namuna bo'lib turadi, maydonga o'zi tushmaydi) =====
 const STORY_KEY = 'bridge-b5-hikoya';
+// phIn — maydon ichidagi qisqa namuna (F-0925-QA25: 1280px da savol bilan sig'adi); ph — to'liq namuna (hikoya-qolipi uchun).
 const STORY_FIELDS = [
-  { k: 'kim', lbl: { uz: 'Kim?', ru: 'Кто?' }, ph: { uz: "hovlida futbol o'ynaydigan o'smir", ru: 'подросток, который играет в футбол во дворе' }, ph0: { uz: 'bitta odam — u kim?', ru: 'один человек — кто он?' } },
-  { k: 'nima', lbl: { uz: 'Nimani xohlaydi?', ru: 'Чего хочет?' }, ph: { uz: "maydonning bo'sh vaqtini oldindan band qilish", ru: 'заранее бронировать свободное время на поле' }, ph0: { uz: 'u saytda nima qilmoqchi?', ru: 'что он хочет сделать на сайте?' } },
-  { k: 'why', lbl: { uz: 'Nima uchun?', ru: 'Зачем?' }, ph: { uz: "maydon bo'shashini kutmasdan do'stlarim bilan o'ynash", ru: 'играть с друзьями, не дожидаясь, пока поле освободится' }, ph0: { uz: 'shundan keyin nimaga erishadi?', ru: 'чего он этим добьётся?' } },
+  { k: 'kim', lbl: { uz: 'Kim?', ru: 'Кто?' }, ph: { uz: "hovlida futbol o'ynaydigan o'smir", ru: 'подросток, который играет в футбол во дворе' }, phIn: { uz: "futbol o'ynaydigan o'smir", ru: 'подросток-футболист' } },
+  { k: 'nima', lbl: { uz: 'Nimani xohlaydi?', ru: 'Чего хочет?' }, ph: { uz: "maydonning bo'sh vaqtini oldindan band qilish", ru: 'заранее бронировать свободное время на поле' }, phIn: { uz: 'maydonni band qilish', ru: 'заранее занять поле' } },
+  { k: 'why', lbl: { uz: 'Nima uchun?', ru: 'Зачем?' }, ph: { uz: "maydon bo'shashini kutmasdan do'stlarim bilan o'ynash", ru: 'играть с друзьями, не дожидаясь, пока поле освободится' }, phIn: { uz: "kutmasdan do'stlar bilan o'ynash", ru: 'играть с друзьями без ожидания' } },
 ];
-// Namuna faqat o'z g'oyasiga mos bo'lganda (futbol) — boshqa g'oyada futbol gapi chiqmaydi, o'rnida neytral savol (QA 2026-09-24, B2/B3 naqshi).
+// Namuna faqat o'z g'oyasiga mos bo'lganda (futbol) — boshqa g'oyada futbol gapi chiqmaydi, o'rnida faqat qisqa savol (QA 2026-09-24, B2/B3 naqshi; F-0925-QA25).
 // Qolipga qo'yishdan oldin takror so'zlar olinadi: «Men …», «… sifatida», «…ni» (D-4), «… uchun» (RU juftlari ru: maydonida).
 const TRIM_RU = { ru: { kim: /^я,?\s+как\s+/i, nima: /^хочу\s+/i, why: /^чтобы\s+/i } };
 const trimKim = (s) => clean(s).replace(/^men\s+/i, '').replace(/\s+sifatida[.,]?$/i, '').replace(TRIM_RU.ru.kim, '').replace(/,$/, '');
@@ -1700,8 +1700,9 @@ const ScreenStory = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {STORY_FIELDS.map((p, i) => (
                 <React.Fragment key={p.k}>
                   <label className={`pw-f slot-${p.k} ${ok[p.k] ? 'on' : ''}${turnCls(lit, p.k, pend.length > 1)}`}>
-                    <span style={{ color: ok[p.k] ? T.success : T.ink }}>{ok[p.k] ? '✓' : ['①', '②', '③'][i]} {tr(p.lbl)}</span>
-                    <input value={f[p.k]} disabled={needIdea && !isMentor} onChange={e => setF(prev => ({ ...prev, [p.k]: e.target.value }))} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} placeholder={tr(futbolSample ? p.ph : p.ph0)} />
+                    {/* F-0925-QA25: maydon to'liq kenglikda, qisqa savol ichida (placeholder); futbol g'oyasida namuna qavsda */}
+                    <input value={f[p.k]} disabled={needIdea && !isMentor} onChange={e => setF(prev => ({ ...prev, [p.k]: e.target.value }))} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
+                      placeholder={`${['①', '②', '③'][i]} ${tr(p.lbl)}${futbolSample ? ` (${tr({ uz: 'masalan', ru: 'например' })}: ${tr(p.phIn)})` : ''}`} aria-label={tr(p.lbl)} />
                   </label>
                   {hints[p.k] && <p className="sl-hint fade-step">💡 {hints[p.k]}</p>}
                 </React.Fragment>
@@ -1851,8 +1852,8 @@ const ScreenParts2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="bp-end">
         {s2 && firstOk && (
           <label className={`pw-f bp-sabab fade-step ${sababOk ? 'on' : ''}${turnCls(lit, 'sab', walking)}`}>
-            <span style={{ color: sababOk ? T.success : T.ink }}>{sababOk ? '✓' : '③'} {tr({ uz: "Nima uchun shu bo'lak birinchi?", ru: 'Почему эта часть первая?' })}</span>
-            <input value={sabab} onChange={e => setSabab(e.target.value)} placeholder={tr(WRITE_PH)} />
+            {/* F-0925-QA26: qisqa savol maydon ichida (54-band); namuna yo'q edi — faqat savol */}
+            <input value={sabab} onChange={e => setSabab(e.target.value)} placeholder={tr({ uz: "③ Nima uchun shu bo'lak birinchi?", ru: '③ Почему эта часть первая?' })} aria-label={tr({ uz: "Nima uchun shu bo'lak birinchi?", ru: 'Почему эта часть первая?' })} />
           </label>
         )}
         <div className="bp-save">
@@ -2003,7 +2004,7 @@ const ScreenConds = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="cd-list fade-up delay-1">
           {list.map((c, i) => visible[i] && (
             <div key={i} className={`cd-card fade-step ${oks[i] ? 'ok' : ''}`}>
-              <span className="sl-n" style={{ color: oks[i] ? T.success : T.accent }}><i className="sl-n-dot" aria-hidden="true" />{tr({ uz: `${i + 1}-shart`, ru: `Условие ${i + 1}` })}</span>
+              {/* F-0925-QA26: chapdagi «● N-shart» belgisi olindi — to'g'ri holatni o'ngdagi «Qabul shartlari» ✓ ro'yxati va kartaning yashil ramkasi ko'rsatadi */}
               <div className="cd-pair">
                 <label className={`pw-f ${filled(c.qiladi) && !hints[i] ? 'on' : ''}${turnCls(lit, `q${i}`, walking)}`}><span>{tr({ uz: 'Foydalanuvchi nima qiladi?', ru: 'Что делает пользователь?' })}</span><input value={c.qiladi} onChange={e => setC(i, { qiladi: e.target.value })} placeholder={i === 0 ? phQ : tr(WRITE_PH)} /></label>
                 <label className={`pw-f ${filled(c.boladi) && !hints[i] ? 'on' : ''}${turnCls(lit, `b${i}`, walking)}`}><span>{tr({ uz: "Shundan keyin nima bo'ladi?", ru: 'Что происходит после этого?' })}</span><input value={c.boladi} onChange={e => setC(i, { boladi: e.target.value })} placeholder={i === 0 ? phB : tr(WRITE_PH)} /></label>
@@ -2037,45 +2038,33 @@ const ScreenConds = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== AI QADAMI (F-0924-01/02) — B3 / pilot B1 dan AYNAN: so'rov DOIM ochiq · ① nusxalash → ② Gemini → ③ javobni yozish.
-// Manba: DeployLesson Screen4 (.pr-panel/.pr-copy) + DoSteps (.dsx raqamlari) + FallbackPanel (.dsx-fb, 155-qonun 2-band).
+// ===== AI QADAMI (F-0924-01/02; F-0925-QA35) — so'rov DOIM ochiq · 📋 belgisi · «Gemini'ni ochish» (o'zi nusxalaydi) → javobni yozish.
+// Manba: DeployLesson Screen4 (.pr-panel) + FallbackPanel (.dsx-fb, 155-qonun 2-band); F-0925-QA35 dan qadam-raqamlari yo'q.
 // «✓ Nusxalandi» QAYTIB O'CHMAYDI. Navbat-pulsi ① → ② bo'ylab yuradi (88-qonun); ③ ning pulsi — 4-shart maydonlarining
 // o'zida (onReady ① va ② bajarilganini xabar qiladi). So'rov-qutisi 400 belgi hisobiga kirmaydi (F-0924-01).
-const AiRow = ({ n, done, children }) => (
-  <li className={`ais-row${done ? ' on' : ''}`}>
-    <span className="ais-num" aria-hidden="true">{done ? '✓' : n}</span>
-    <div className="ais-body">{children}</div>
-  </li>
-);
+// F-0925-QA35 (pilot 3-o'tish 3-darsidan): ① «Nusxalash» qadami → so'rov qutisi burchagidagi 📋 belgisi;
+// «Gemini'ni ochish» bosilganda so'rov o'zi nusxalanadi (bitta harakat), qadam raqamlari va «qo'ying» yozuvi yo'q.
+// Yo'riq mentor-gapda. So'rov qutisi balandroq (bo'shagan joy hisobiga).
 const AiStep = ({ prompt, answerLabel, answered, fallbackTitle, fallback, onReady, pulse = true }) => {
   const [copied, setCopied] = useState(false);
   const [opened, setOpened] = useState(false);
-  // QA (88-qonun a, B2 naqshi): ① → ② ketma-ket — navbat FAQAT birinchi bajarilmagan halqada (ilgari ② ham ① bilan navbat almashardi).
-  const pend = [!copied && 'copy', !opened && 'open'].filter(Boolean).slice(0, 1);
-  const lit = useTurnWalk(pend, pulse && !answered);
-  const ready = copied && opened;
-  useEffect(() => { if (onReady) onReady(ready); }, [ready]); // eslint-disable-line
+  const lit = useTurnWalk(opened ? [] : ['open'], pulse && !answered);
+  useEffect(() => { if (onReady) onReady(opened); }, [opened]); // eslint-disable-line
   const doCopy = async () => { const ok = await copyText(prompt); if (ok) setCopied(true); };
+  const cpLbl = tr(copied ? { uz: 'Nusxalandi', ru: 'Скопировано' } : { uz: "So'rovni nusxalash", ru: 'Скопировать запрос' });
   return (
     <div className="ais fade-up delay-1">
       <div className="pr-panel">
-        <div className="pr-head"><span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span></div>
+        <div className="pr-head">
+          <span className="pr-lbl">📝 {tr({ uz: "AI uchun so'rov", ru: 'Запрос для AI' })}</span>
+          <button type="button" className={`pr-ic${copied ? ' ok' : ''}`} onClick={doCopy} aria-label={cpLbl} title={cpLbl}>{copied ? '✓' : '📋'}</button>
+        </div>
         <pre className="pr-body">{prompt}</pre>
       </div>
-      <ol className="ais-steps">
-        <AiRow n={1} done={copied}>
-          <button type="button" className={`pr-copy${copied ? ' ok' : ''}${turnCls(lit, 'copy', pend.length > 1)}`} onClick={doCopy}>
-            {copied ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: "📋 So'rovni nusxalash", ru: '📋 Скопировать запрос' })}
-          </button>
-        </AiRow>
-        <AiRow n={2} done={opened}>
-          <a className={`ais-link${turnCls(lit, 'open', pend.length > 1)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpened(true)}>
-            {tr({ uz: 'gemini.google.com ni ochish ↗', ru: 'Открыть gemini.google.com ↗' })}
-          </a>
-          <span className="ais-d">{tr({ uz: "So'rovni qo'ying va yuboring", ru: 'Вставьте запрос и отправьте' })}</span>
-        </AiRow>
-        <AiRow n={3} done={answered}><span className="ais-t">{answerLabel}</span></AiRow>
-      </ol>
+      <a className={`ais-link ais-go${opened ? ' on' : ''}${turnCls(lit, 'open', false)}`} href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" onClick={() => { doCopy(); setOpened(true); }}>
+        {opened ? '✓ ' : ''}{tr({ uz: "Gemini'ni ochish ↗", ru: 'Открыть Gemini ↗' })}
+      </a>
+      <p className="ais-t">{answerLabel}</p>
       <details className="dsx-fb">
         <summary>🛟 {fallbackTitle || tr({ uz: 'Gemini ochilmadimi?', ru: 'Gemini не открылся?' })}</summary>
         <div className="dsx-fb-body">{fallback}</div>
@@ -2083,7 +2072,7 @@ const AiStep = ({ prompt, answerLabel, answered, fallbackTitle, fallback, onRead
     </div>
   );
 };
-// ===== 16-EKRAN — AI SINOVCHI ROLIDA (maqsad-gap · so'rov DOIM ochiq, AiStep ①②③ · 🛟 zaxira ichida 3 sinov-savoli) =====
+// ===== 16-EKRAN — AI SINOVCHI ROLIDA (maqsad-gap · so'rov DOIM ochiq, AiStep · 🛟 zaxira ichida 3 sinov-savoli) =====
 const AI4_KEY = 'bridge-b5-shart4';
 const READY_TESTS = [
   { uz: "Maydon bo'sh qoldirilsa-chi?", ru: 'А если оставить поле пустым?' },
@@ -2134,12 +2123,12 @@ const ScreenAI = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {/* Korpus B-11: senariy gapi bo'linadi — 1-jumla shu yerda, «siz hal qilasiz» faqat qoida-qatorida (ikki marta o'qilmaydi) */}
           <p className="body fade-up delay-1" style={{ color: T.ink2 }}>{tr({ uz: "AI shartlaringizda yetishmagan holatni topishga yordam beradi.", ru: 'AI поможет найти случай, которого не хватает в ваших условиях.' })}</p></div>
         {/* Mentor-gap (F-0924-03, §210 qolipi): NEGA + bitta chorlov; puls ① dan boshlanadi */}
-        {/* Korpus B-18/B-16: chorlov navbatdagi halqaga ergashadi — ① nusxalash → ③ «4-shart» (①② bajarilgach, 🛟 savol tanlangach yoki yozish boshlangach); yozilgach faqat NEGA */}
+        {/* Korpus B-18/B-16: chorlov navbatdagi halqaga ergashadi — «Gemini'ni ochish» → «4-shart» (Gemini ochilgach, 🛟 savol tanlangach yoki yozish boshlangach); yozilgach faqat NEGA */}
         <Mentor>{done && !isMentor
           ? tr({ uz: "Sinovchi odam adashishi mumkin bo'lgan holatlarni ataylab sinaydi.", ru: 'Тестировщик нарочно проверяет случаи, где человек может ошибиться.' })
           : onStep3 && !isMentor
             ? tr({ uz: <>Sinovchi odam adashishi mumkin bo'lgan holatlarni ataylab sinaydi — topilgan holat uchun <b style={{ color: T.ink }}>«4-shart»</b>ni yozing.</>, ru: <>Тестировщик нарочно проверяет случаи, где человек может ошибиться, — напишите <b style={{ color: T.ink }}>«Условие 4»</b> для найденного случая.</> })
-            : tr({ uz: <>Sinovchi odam adashishi mumkin bo'lgan holatlarni ataylab sinaydi — avval <b style={{ color: T.ink }}>«📋 So'rovni nusxalash»</b>ni bosing.</>, ru: <>Тестировщик нарочно проверяет случаи, где человек может ошибиться, — сначала нажмите <b style={{ color: T.ink }}>«📋 Скопировать запрос»</b>.</> })}</Mentor>
+            : tr({ uz: <>Sinovchi odam adashishi mumkin bo'lgan holatlarni ataylab sinaydi — <b style={{ color: T.ink }}>«Gemini'ni ochish»</b>ni bosing: so'rov o'zi nusxalanadi, chatga joylab yuboring.</>, ru: <>Тестировщик нарочно проверяет случаи, где человек может ошибиться, — нажмите <b style={{ color: T.ink }}>«Открыть Gemini»</b>: запрос скопируется сам, вставьте его в чат и отправьте.</> })}</Mentor>
         <div className="split">
           <Col>
             <FlowLabel>🤖 {tr({ uz: 'AI — sinovchi rolida', ru: 'AI — в роли тестировщика' })}</FlowLabel>
@@ -2197,8 +2186,8 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : tr({ uz: <>Sherigingiz tekshira olsa, shart aniq yozilgan — uning javobini <b style={{ color: T.ink }}>«Sherigingiz nima dedi?»</b>ga yozing.</>, ru: <>Если напарник сможет проверить, условие записано точно, — впишите его ответ в строку <b style={{ color: T.ink }}>«Что сказал напарник?»</b>.</> })}</Mentor>
         <div className="pa-script fade-up delay-1"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sherigingizga 30 soniyada ayting: <b>«Birinchi bo'lagim — …, chunki … . U tayyor ekanini shundan bilaman: …»</b>. Sherigingiz shartni qanday tekshirishini aytadi: nima qiladi va qanday natija kutadi.</>, ru: <>Скажите напарнику за 30 секунд: <b>«Моя первая часть — …, потому что … . Что она готова, я узнаю так: …»</b>. Напарник говорит, как проверит условие: что сделает и какой результат ждёт.</> })}</p></div>
         <label className={`pw-f fade-up delay-2 ${done ? 'on' : ''}${turnCls(lit, 't', false)}`} onFocus={onFocusIn} onBlur={onFocusOut}>
-          <span style={{ color: done ? T.success : T.ink }}>{done ? '✓' : '✏️'} {tr({ uz: 'Sherigingiz nima dedi? Bir qatorda yozing.', ru: 'Что сказал напарник? Напишите одной строкой.' })}</span>
-          <input value={txt} onChange={e => setTxt(e.target.value)} placeholder={tr({ uz: 'Sherigingiz aytgan gapni shu yerga yozing…', ru: 'Напишите здесь, что сказал напарник…' })} />
+          {/* F-0925-QA22: «Sherigingiz nima dedi?» yorlig'i maydon ichiga (placeholder) o'tdi — ma'nosi yuqoridagi yo'riqda ham bor; holat «✓ Yozildi» belgisida */}
+          <input value={txt} onChange={e => setTxt(e.target.value)} placeholder={tr({ uz: 'Sherigingiz nima dedi? Bir qatorda yozing.', ru: 'Что сказал напарник? Напишите одной строкой.' })} aria-label={tr({ uz: 'Sherigingiz nima dedi?', ru: 'Что сказал напарник?' })} />
         </label>
         {done && <span className="done-mini fade-step" style={{ alignSelf: 'flex-start' }}>{tr({ uz: '✓ Yozildi', ru: '✓ Записано' })}</span>}
       </div>
@@ -2931,7 +2920,6 @@ const SUMMARY_LINES = [
   { uz: "Birinchi bo'lakka tekshiriladigan shartlar yozdingiz — ular bajarilib, muhim holatlar tekshirilsa, ish tayyor.", ru: 'Вы написали для первой части проверяемые условия — когда они выполнены и важные случаи проверены, работа готова.' },
 ];
 // Yakun-qadamlari darsning 4 bo'limi rangida: hikoya (indigo) · bo'laklar (ko'k) · birinchisi (amber) · shartlar (yashil).
-const RECAP_IC = ['📝', '🧩', '🎯', '✅'];
 const ScreenSummary = ({ screen, achievements, onReset, onPrev, onFinish }) => {
   const { isMentor } = useIsMentor();
   const _gate = useContext(LiveGateCtx) || {};
@@ -2950,15 +2938,15 @@ const ScreenSummary = ({ screen, achievements, onReset, onPrev, onFinish }) => {
     setArenaSolo(studentSolo); setArena(true);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><div className="nav-mdock"><MentorNote>{tr({ uz: "Og'zaki ayting: «Backend modulida shu hikoya va bo'laklardan kelib chiqib, qanday ma'lumot kerakligini va uni qayerda saqlashni o'rganasiz.»", ru: 'Скажите устно: «В модуле Backend вы, исходя из этой истории и частей, узнаете, какие данные нужны и где их хранить».' })}</MentorNote></div><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={null} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><div className="nav-mdock"><MentorNote>{tr({ uz: "Og'zaki ayting: «Backend modulida shu hikoya va bo'laklardan kelib chiqib, qanday ma'lumot kerakligini va uni qayerda saqlashni o'rganasiz.»", ru: 'Скажите устно: «В модуле Backend вы, исходя из этой истории и частей, узнаете, какие данные нужны и где их хранить».' })}</MentorNote></div><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick" aria-hidden="true" />{tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: "Endi sizda shunchaki g'oya emas, uni qurishni boshlash uchun aniq reja bor.", ru: 'Теперь у вас не просто идея, а чёткий план, с которого можно начать её строить.' })}</h2></div></div>
+        <div className="hero"><div className="hero-l"><h2 className="title h-title fade-up d1">{tr({ uz: "Endi sizda shunchaki g'oya emas, uni qurishni boshlash uchun aniq reja bor.", ru: 'Теперь у вас не просто идея, а чёткий план, с которого можно начать её строить.' })}</h2></div></div>
         <div className={`qz-cta cs-cta fade-up d1 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : studentLive ? tr({ uz: "▶ Qo'shilish uchun bosing — 12 savol, har biriga 15 soniya", ru: '▶ Нажмите, чтобы присоединиться — 12 вопросов, по 15 секунд' }) : tr({ uz: '▶ Boshlash uchun bosing — 12 savol, har biriga 15 soniya', ru: '▶ Нажмите, чтобы начать — 12 вопросов, по 15 секунд' })} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className={`sum-row${isMentor ? ' solo' : ''}`}>
-          <div className="card fade-up d2"><ul className="recap">{SUMMARY_LINES.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.12}s` }}><span className={`rc-step s${i + 1}`} aria-hidden="true">{RECAP_IC[i]}</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card fade-up d2"><ul className="recap">{SUMMARY_LINES.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.12}s` }}><span>{tr(r)}</span></li>))}</ul></div>
           {!isMentor && <div className="card ach-coll fade-up d3">
             <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz —', ru: 'Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
             <div className="ach-grid">
@@ -3312,8 +3300,6 @@ export default function BridgeNimaQuramiz({ lang: langProp, onFinished, liveToke
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
         .recap li { align-items: center; }
-        .rc-step { flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 15px; background: ${T.accentSoft}; }
-        .rc-step.s2 { background: ${T.blueSoft}; } .rc-step.s3 { background: ${AMBER_SOFT}; } .rc-step.s4 { background: ${T.successSoft}; }
         /* === K11 SLAYD (s4) === */
         .k-slide { position: relative; background: ${T.paper}; border-radius: 18px; padding: clamp(24px,4vw,38px) clamp(20px,3.5vw,34px) clamp(20px,3.5vw,34px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.24); overflow: hidden; }
         /* F-0925-QA09: keys slaydi tepasidagi gradient chiziq olindi (foydalanuvchi tanlovi 1; Netflix slaydidagi qizil brend-chizig'i qoladi) */
@@ -3856,32 +3842,30 @@ export default function BridgeNimaQuramiz({ lang: langProp, onFinished, liveToke
 
   .sl-hint.sl-hint { margin: -4px 0 0; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 7px 10px; }
 
-  /* AiStep (F-0924-01/02) — B3 / pilot B1 bloki AYNAN: manba DeployLesson .pr-panel/.pr-copy + DoSteps + FallbackPanel */
+  /* AiStep (F-0924-01/02; F-0925-QA35) — manba DeployLesson .pr-panel + FallbackPanel; qadam-raqamlari yo'q */
   .ais { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .pr-panel { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
-  .pr-head { display: flex; align-items: center; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+  .pr-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 13px; border-bottom: 1px solid ${T.line}; }
+  .pr-ic { flex-shrink: 0; width: 30px; height: 30px; border: none; border-radius: 8px; cursor: pointer; background: ${T.bg}; color: ${T.ink2}; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s, box-shadow 0.15s; }
+  .pr-ic:hover { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+  .pr-ic.ok { background: ${T.successSoft}; color: ${T.success}; font-weight: 800; }
+  .ais-go { align-self: flex-start; }
+  .ais-go.on { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+  .ais > .ais-t { margin: 0; padding: 0 2px; }
   .pr-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; }
   .pr-body { margin: 0; padding: 10px 13px; max-height: min(24vh, 170px); overflow-y: auto; white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; min-width: 0; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; line-height: 1.55; color: ${T.ink}; }
-  .pr-copy { border: none; border-radius: 10px; padding: 9px 16px; background: ${T.accent}; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; cursor: pointer; transition: background 0.18s; }
-  .pr-copy.ok { background: ${T.success}; }
-  .ais-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-  .ais-row { display: flex; align-items: center; gap: 11px; border-radius: 12px; padding: 7px 11px; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
-  .ais-row.on { background: ${T.successSoft}; box-shadow: none; }
-  .ais-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.accent}; color: #fff; }
-  .ais-row.on .ais-num { background: ${T.success}; }
-  .ais-body { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 5px 10px; align-items: center; }
   .ais-link { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.accent}; text-decoration: none; border-radius: 10px; padding: 8px 14px; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-  .ais-d, .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
+  .ais-t { font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink2}; line-height: 1.45; overflow-wrap: anywhere; }
   .ais-t b { color: ${T.ink}; }
   .dsx-fb { background: ${T.paper}; border-radius: 12px; padding: 9px 13px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .dsx-fb > summary { cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
   .dsx-fb > summary::-webkit-details-marker { display: none; }
   .dsx-fb[open] > summary { margin-bottom: 9px; }
   .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
-  @media (prefers-reduced-motion: reduce) { .pr-copy { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .pr-ic { transition: none; } }
   /* 16-ekran (58-qonun): 🛟 zaxira ochilsa u AI qadamlari o'rnini egallaydi (Gemini ochilmagan — so'rov va ①② hozir kerak emas);
      zaxirani yopsangiz so'rov va qadamlar qaytadi. Ekran pastga cho'zilmaydi. */
-  @media (min-width: 761px) { .ais:has(> .dsx-fb[open]) > .pr-panel, .ais:has(> .dsx-fb[open]) > .ais-steps { display: none; } }
+  @media (min-width: 761px) { .ais:has(> .dsx-fb[open]) > .pr-panel, .ais:has(> .dsx-fb[open]) > .ais-go, .ais:has(> .dsx-fb[open]) > .ais-t { display: none; } }
   .ai-ready { display: flex; flex-direction: column; gap: 6px; }
   .ai-rq { text-align: left; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; cursor: pointer; border: none; border-radius: 10px; padding: 8px 12px; background: ${T.bg}; color: ${T.ink}; }
   .ai-rq.on { background: ${T.successSoft}; color: ${T.success}; font-weight: 800; }
@@ -4212,6 +4196,8 @@ export default function BridgeNimaQuramiz({ lang: langProp, onFinished, liveToke
   .ow-app b { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; color: ${T.ink}; white-space: nowrap; }
   .ow-app i { font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: ${T.ink3}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .zoomable.zphone:not(.zoom-on) { align-self: center; width: min(320px, 100%); }
+  /* F-0925-QA24: yorliq telefon kengligida va u bilan bir chetdan boshlanadi (qoida 49) */
+  .col:has(> .zoomable.zphone) > .flow-label { align-self: center; width: min(320px, 100%); }
   .zoomable.zphone:not(.zoom-on) > .zoom-btn { top: 0; right: -40px; }
   @media (max-width: 760px) { .zoomable.zphone:not(.zoom-on) > .zoom-btn { right: 6px; top: 26px; } }
   @media (min-width: 761px) {
@@ -4228,27 +4214,16 @@ export default function BridgeNimaQuramiz({ lang: langProp, onFinished, liveToke
   /* USTAXONALAR (13/15/16): ixcham qatorlar */
   @media (min-width: 761px) {
     .lesson-root .screen.dense .pw-form { gap: 8px; }
-    /* 13-ekran (58-qonun, QA 2026-09-24): savol-yorliq maydon yonida — ikki maslahat chiqqanda ham aylantirish yo'q */
-    .lesson-root .screen.dense .pw-form > .pw-f { display: grid; grid-template-columns: 150px minmax(0,1fr); align-items: center; gap: 10px; }
     .lesson-root .screen.dense .pw-form ~ .gb-sent { padding: 10px 14px; }
     .lesson-root .screen.dense .pw-form ~ .gb-sent .gb-sent-t { font-size: 17px; line-height: 1.45; }
     .lesson-root .screen.dense .pw-f input { padding-top: 9px; padding-bottom: 9px; }
     .lesson-root .screen.dense .cd-list { gap: 8px; }
     .lesson-root .screen.dense .cd-card { padding: 10px 14px; gap: 7px; }
-    /* 15-ekran (58-qonun, tekshiruvchi 25.09 D1): «N-shart» yorlig'i maydonlar yonida (13-ekrandagi yorliq-yonida naqshi) —
-       har kartadan bitta qator tejaladi. Mentor proyektorida uchala karta ochiq va ikkita 💡 maslahat chiqqanda ilgari
-       26–44px aylantirish bor edi, endi 0. Raqamlar teng kenglikda — uch kartadagi maydonlar bir chiziqda turadi. */
-    .lesson-root .screen.dense .cd-list .cd-card { display: grid; grid-template-columns: max-content minmax(0,1fr); column-gap: 12px; row-gap: 7px; align-items: end; }
-    .lesson-root .screen.dense .cd-list .cd-card > .sl-n { grid-column: 1; grid-row: 1; height: 39px; font-variant-numeric: tabular-nums; }
-    .lesson-root .screen.dense .cd-list .cd-card > .cd-pair { grid-column: 2; grid-row: 1; }
-    .lesson-root .screen.dense .cd-list .cd-card > .sl-hint { grid-column: 1 / -1; }
     /* 16-ekran (58-qonun, D1): o'ng ustun (shartlar · 4-shart · qoida-qatori) kengroq — RU'da 💡 maslahat ikki qatorga
        tushadi va qoida-qatori pastki chiziq ostida qolmaydi (ilgari 14px). Chapdagi AI qadamlari torroq ustunda ham to'liq. */
     .lesson-root .ai-screen > .split { grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); }
-    .lesson-root .screen.dense .pr-body { max-height: 92px; }
-    .lesson-root .screen.dense .ais-steps { gap: 5px; }
-    .lesson-root .screen.dense .ais-row { padding-top: 4px; padding-bottom: 4px; }
-    .lesson-root .screen.dense .ais-link, .lesson-root .screen.dense .pr-copy { padding-top: 7px; padding-bottom: 7px; }
+    .lesson-root .screen.dense .pr-body { max-height: 128px; } /* F-0925-QA35: ①/② qadam qatorlari olingan joy hisobiga */
+    .lesson-root .screen.dense .ais-link { padding-top: 7px; padding-bottom: 7px; }
     .lesson-root .ai-screen .cd-mine { gap: 5px; }
     .lesson-root .ai-screen .pa-q { padding: 5px 11px; align-items: center; }
     .lesson-root .ai-screen .pa-q-t { font-size: 14px; line-height: 1.35; }
