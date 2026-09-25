@@ -4044,3 +4044,211 @@ boshlanadi (`juft`, `qiyinchili`, `imkoniyat`), keyin toraytiriladi.
 **Yakuniy dalil skrinshot bo'ladi:** darvoza ham, grep ham «toza» dedi — nuqsonni faqat
 ekranga qarash ochdi.
 
+
+## 201. YIG'ILADIGAN GAPDA OLMOSH EGANING SONIGA BOG'LANMAYDI (F-0924-B1-01, 👦 1-o'qish 24.09)
+
+Qolipga istalgan KIM tushadi: ko'plik ham («o'smirlar»), birlik ham («sinf sardori»).
+Qolipdagi «Ular …» yoki «Saytim ularga …» birlik KIM bilan sinadi. §37 dagi qolip
+(KIM — gapning o'zi egasi) ikkala holatda ham tugal chiqadi.
+
+✅ Qolip: «{KIM} {MUAMMO}. Mening saytim {YECHIM}.»
+   → «Sinf sardori kim pul bergani, kim bermaganini adashtirib yuboradi. Mening saytim kim
+      pul berganini belgilab boradi.» *(Bridge 1-o'tish 1-darsi · 9-ekran)*
+❌ «Saytimga sinf sardori kiradi. Ular kim bergani, kim bermaganini adashtirib yuboradi.
+   Saytim ularga kim pul berganini belgilab boradi.» — birlik ega + «Ular»; MUAMMO'da nima
+   berilgani yo'q (o'quvchi ikki marta o'qidi).
+
+✅ AI-zaxira sarlavhasi: «Bu sayt {YECHIM} — {KIM} uchun» · «{KIM}, bu sayt sizga {YECHIM}»
+❌ «{KIM}, endi {YECHIM}» → «Onlayn o'yin o'ynaydigan o'quvchilar, endi darajasi mos jamoadosh
+   topib beradi» — kim topib beradi? YECHIM kesimi saytniki, ega esa gapda yo'q.
+
+🔧 Tekshiruv: har tayyor g'oya va namuna-ipuchani qolipga qo'yib ovoz chiqarib o'qing (§37);
+   umumiy faylni (`bridgeCard.js`) o'zgartirib bo'lmasa — dars ichida aniqlashtirilgan matn
+   beriladi, umumiy fayl egasiga taklif yoziladi.
+
+
+## 202. SO'Z DARS OLAMIDA BAND BO'LSA — IKKINCHI MA'NOGA ISHLATILMAYDI (F-0924-B2-01, 👦 1-o'qish 24.09)
+
+Dars olamidagi narsaning nomi bo'lib qolgan so'z yo'riq yoki izohda boshqa ma'noda kelsa, o'quvchi
+ikkalasini bir narsa deb o'qiydi. Taksi darsida **«baho»** — safardan keyingi yulduzcha (10-ekran).
+Keyin «chiroyli, qulay» so'zlari ham «baho» deyildi — o'quvchi yulduzchani esladi. Futbol g'oyasida
+**«maydon»** — futbol maydoni, yo'riq esa «Kim? maydonini yozing» dedi.
+
+| ❌ | ✅ |
+|---|---|
+| «Bu gapda ilova aynan nima qilishi aytilmagan — faqat **baho** bor.» | «…— faqat **maqtov so'zlari** bor.» |
+| «Bu — **baho**. Sayt aynan nima qiladi?» (yechim-maslahati) | «Bu — **maqtov so'zi**. Yechimingiz aynan nima qiladi?» |
+| «① «Kim?» **maydonini** yozing» (tugma) | «① «Kim?» **savoliga javob** yozing» |
+| «Unga qarshi **sayt** nima qiladi?» (g'oya sayt ham, ilova ham bo'lishi mumkin) | «**Yechimingiz** unga qarshi nima qiladi?» |
+
+*(Bridge 2-o'tish 2-darsi «Muammoni topamiz» · 9/13/14-ekran · RECAPS)*
+
+🔧 Tekshiruv: dars olamidagi har narsa-nomini (ilova qismlari, tayyor g'oyalar olami: futbol, o'yin,
+   sinf, kiyim) ro'yxatlab, UI-yorliq va izohlarda shu so'zlarni `grep -i` bilan qidiring. Topilsa —
+   mexanikani aytadigan so'z tanlang («savolga javob», «maqtov so'zi»), olam so'zini emas.
+
+
+## 203. O'QUVCHI BIR O'QISHDA TUSHUNMAGAN BESH GAP-SHAKLI (F-0924-bridge-10…14, 👦 1-o'qish 24.09)
+
+*(Bridge 2-o'tish 3-darsi «Birinchi versiya» · 1/7/9/10/15/17-ekran)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 10 | «**Qaysi birini tanlamang**, sayt birinchi kuniyoq kimgadir foyda beradi.» | «To'rtta javobning hammasi to'g'ri. Birinchi kuni bitta bo'lak ishlasa ham, sayt kimgadir foyda beradi.» | «-mang» shaklidagi to'siqsiz gap o'smirga **taqiq** bo'lib o'qiladi («tanlamang!»). To'siqsiz ma'no kerak bo'lsa — «-sangiz ham» |
+| 11 | «Endi **shu qoidani** o'z g'oyangizga qo'llang.» | «Endi o'z g'oyangiz bo'laklarini ham **shu tarozidan** o'tkazing.» | «shu qoida» — ekranda qoida yo'q, u ikki ekran oldin edi. Ko'rsatish olmoshi **ekranda ko'rinib turgan** narsaga ishora qiladi |
+| 12 | placeholder «avtobus qayerdaligini xaritada ko'rsatish» (har qanday g'oyada) | «Sayt nima qiladi? Masalan: ro'yxatni ko'rsatadi» | (a) boshqa olam g'oyasi tanlangan bolani chalg'itadi; (b) bo'lak keyin «Birinchi versiyada sayt {bo'laklar}.» qolipiga tushadi — masdar («ko'rsatish») gapni **fe'lsiz** qoldiradi. Namuna qolip kutgan **shaklda** («-adi») yoziladi |
+| 13 | tugma «② 🔥 da 3 ta bo'lak qoldiring (hozir 2)» | «② 🔥 ga yana 1 ta bo'lak o'tkazing» · «② 🔥 dan 1 ta bo'lakni boshqa joyga o'tkazing» | «qoldiring» qo'shish yoki olishni aytmaydi. Holat-tugmasi **yo'nalish fe'li + qolgan son** bilan yoziladi |
+| 14 | «Sherigingiz tushunmagan so'zni **va** uning o'rniga nima deyishingizni bir qatorga yozing.» | «Tushunarsiz so'z bo'ldimi? Shu so'zni va uning o'rniga aytadigan so'zingizni yozing.» + ipucha «Masalan: baza — maktab jurnali» | Hammasi tushunilgan holat uchun yo'l yo'q edi. Savol shart bilan ochiladi — javob «yo'q» bo'lsa, yoziladigan narsa yo'qligi o'zi ko'rinadi |
+
+**Ichki so'z ham shu sinfda:** eyebrow «Keys · Instagram» → «Haqiqiy voqea · Instagram» — «keys» jamoa so'zi, o'quvchi uni o'qimaydi.
+
+## 204. TEST SHAKLDAN TOPILMASIN — OLAM SO'ZI VA BOG'LOVCHI HAMMA VARIANTDA (F-0924-bridge-15, 👦 1-o'qish 24.09)
+
+Lead'dagi olam so'zi («nabira», «baho», «futbol») faqat to'g'ri variantda takrorlansa — bola o'qimay topadi
+(kalit-aks-sadosi, §147 oilasi). Bog'lovchi ham tell bo'ladi: ikki xato variantda «**lekin**», to'g'risida «**va**».
+
+| Test | ❌ | ✅ |
+|---|---|---|
+| T3 (buvi → nabirasining bahosi) | ✓ «Endi nabirangizning bahosini telefoningizda ko'rasiz» · ✗ «Sayt uchta bo'lakdan qurildi…» | ✗ «Sayt **nabirangizning baholari** uchun uchta bo'lakdan qurildi» — olam so'zi to'rttala variantda |
+| T4 (futbol to'garagidagi do'st) | ✗ «Serverning xotirasi kabi — ma'lumot shu yerda saqlanib turadi» | ✗ «Serverning xotirasi kabi — jamoaning barcha **gollari** shu yerda saqlanadi» |
+| T2 (tarozi) | ✗ «Tez tayyor bo'ladigan, **lekin** … kerak bo'lmagan bo'laklar» | ✗ «… kerak bo'lmagan **va** tez tayyor bo'ladigan bo'laklar» — to'rttasi «X va Y bo'laklar» |
+| T1 (tugatsa bo'ladimi) | ✓ yagona aniq ish, qolgani umumiy («Saytning butun ishini qurish») | ✗ ham aniq, lekin boshqa bo'lakka bog'liq: «Baho qo'yilsa, ota-onaga xabar berish» |
+
+🔧 Tekshiruv: lead'ning har ot-so'zini variantlarda sanang — faqat ✓ da bo'lsa, distraktorga ham qo'shing.
+   Variantlar bir bog'lovchi va bir qolipda. To'g'ri javob MATNI (foydalanuvchi ko'rgan) o'zgarmaydi — faqat distraktorlar.
+
+
+## 205. KITOBIY SO'Z, UZILGAN OLMOSH, SAVOL-AKS-SADOSI (F-0924-bridge-30…32, 👦 1-o'qish 24.09)
+
+*(Bridge 3/4-o'tish 1-darsi «Kim uchun va qanday muammo?» · 3/5/8/11-ekran · TEST-1 · arena)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 30 | «"Xarid qilish qiyin" esa **nolish**» · belgi «Odam o'zicha **chora** izlaydi» | «…esa shunchaki **shikoyat**» · «Odam **muammoni o'zicha hal qilishga urinadi**» | Kattalar kitobining so'zi — 13 yoshli bola ikkalasini ham glossiz tushunmadi. Xulosa-gap allaqachon «muammoni o'zicha hal qilishga urinayotgan bo'lsa» der edi — belgi nomi shu gapning o'z so'zi bilan yozildi, flashcard va arena ham shunga o'tdi |
+| 31 | «…odamlar guruhi **auditoriya** deyiladi. **Ular** kirganda birinchi qiladigan ish ko'zga tashlanib tursin: Uzumda xaridor…» | «…**auditoriya** deyiladi. **Ikkala o'quvchi ham** avval kerakli narsani qidiradi. Shu birinchi ish sahifada ko'zga tashlanib tursin — Uzumda qidiruv qatori eng tepada.» | Ta'rif-gapdan keyingi «Ular» ekrandagi ikki odamdan uzilib qoldi, keyin gap to'satdan «xaridor»ga o'tdi. Olmosh o'rniga ekranda ko'rinib turgan odamlar nomi, tartib: fakt → qoida → misol |
+| 32 | arena: «Ilova kitob **qachon kelishini** ko'rsatadi. Bu qaysi muammoga javob?» · ✓ «Odam kitob **qachon kelishini** bilmasligiga» · ✗ «Kitob muqovasi chiroyli emasligiga» | ✗ «**Odam** kitobning narxini bilmasligiga» · ✗ «**Odam** kitob muqovasini yoqtirmasligiga» · ✗ «**Odam** do'kon nomini eslay olmasligiga» | To'g'ri javob savol so'zini takrorlagan va yagona «odam haqida» variant edi (1.82× uzun ham). Aks-sadoni olib bo'lmasa — to'rttala variant bir qolipga («Odam … -ligiga») tushadi |
+
+**Mavzu-telli (TEST-1 ham shu sinfda):** to'g'ri javob yagona «Uni o'qigan **odam**…» varianti edi, qolganlari sahifa
+haqida. To'g'ri javob matni o'zgarmadi (foydalanuvchi ko'rgan) — distraktor «Uni o'qigan odam bu yerda narxlar qimmat
+deb o'ylab qoladi» qo'shildi, uzunliklar 58/56/56/54.
+
+🔧 Tekshiruv: har scored-savolda to'g'ri javobning **egasi** (odam / sahifa / sayt) va **savoldan olingan so'zi**
+   distraktorlarda ham bormi? Yo'q bo'lsa — kamida bitta distraktor shu ega va shu qolipda yoziladi.
+
+
+## 206. YO'RIQ-GAP: BITTA KESIM, KO'RINIB TURGAN NARSA, ANIQ SON (F-0924-bridge-50…54, 👦 1-o'qish 24.09)
+
+*(Bridge 3/4-o'tish 2-darsi «Nima quramiz» · 2/5/8/12/14/16/17-ekran · arena)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 50 | «Oxirida tanlagan bo'lagingiz tayyor bo'lganini **qanday tekshirishni** uchta shart bilan **yozasiz**.» | «Oxirida uchta shart yozasiz — ular bilan tanlagan bo'lagingiz tayyor bo'lganini tekshirasiz.» | Bir kesimga uch fe'l osilgan (tayyor bo'lgan → tekshirish → yozasiz) — bola ikki marta o'qidi. Avval nima qilinadi (yozasiz), keyin nimaga kerak (tekshirasiz) — ikki qisqa bo'lak |
+| 51 | «Birinchi bo'lak — 🎯 Avval qilinadi katagidan.» | «Birinchi bo'lakni 🎯 «Avval qilinadi» katagidan olamiz.» | Kesimsiz gap + qo'shtirnoqsiz katak nomi o'rtada «ot + ot» bo'lib qoldi. Katak nomi — tirnoqda, gap — fe'l bilan tugaydi |
+| 52 | «…bo'laklarga bo'ldik — **ro'yxatni** biz o'zimiz tuzdik.» (ro'yxat hali bosilmagan kartaning ichida) | «…bo'laklarga bo'lamiz — bo'laklarni biz o'zimiz tanladik.» | Ekranda hali yo'q narsaga «ro'yxat» deb ishora qilindi (§203-11 oilasi). Hali ochilmagan narsani o'z nomi bilan ayting |
+| 53 | tugma «**3-qadamni** bosing» · tugmalar yonida faqat 👥 / ⏱ belgisi · «Sherigingiz **shartni** tekshiradi» (o'quvchida 3 shart bor) | «Qaysi qadam 3-o'rinda? Uni bosing» · qator ustida «👥 Nechta odamga kerak? · ⏱ Qancha vaqt oladi?» · «Sherigingiz **bitta shartingizni tanlab**, uni qanday tekshirishini aytadi» | «3-qadam» ekranda raqamsiz chiplar orasida qayerdaligi aytilmagan; belgi-savol faqat `aria-label`da edi (ko'zga ko'rinmaydi); birlik-son qaysi biri ekanini aytmadi. Yo'riq ko'rinib turgan element va aniq son bilan |
+| 54 | «Gemini ochilmasa» → 3 savol chiqadi, keyin nima qilish aytilmagan · kirish-gap va pastki qoida bir xil «o'zingiz hal qilasiz» | savollar ostida «Shartlaringizga mos savolni tanlang. Shu holatda nima bo'lishi kerakligini 4-shart qilib yozing.» · kirish-gap qadamlarni aytadi: «So'rovni nusxalab Gemini'ga qo'ying, javobini o'qing va 4-shartni o'zingiz yozing.» | Zaxira yo'l (§188) tugmasi ochgan narsadan keyingi qadamni ham aytadi. Bir ekranda ikki gap bir fikrni takrorlasa — biri qadamga aylanadi |
+
+⚠️ **50–52-qator holati (24.09 21:20 tekshirildi):** kod `BridgeNimaQuramiz.jsx`da hozir ❌ ustundagi asl matn turibdi — 06:25 da bu 3 gap foydalanuvchining GATE-S tasdiqlagan senariysi («Qabul qilindi» ro'yxati) ekani aniqlanib, so'zma-so'z tiklangan (metodist o'zgartirgan edi, bosh-agent qaytargan). **Qoidaning o'zi to'g'ri, lekin bu ANIQ uchta misolga endi qo'llanmaydi** — protected senariy matni, qayta tuzatilmasin. 53–54-qator kodda ✅ holatda qoladi (bular quruvchi/dizayner yozgan yordamchi matn edi, senariy emas).
+
+**Ko'p ma'noli so'z (arena):** «kitob **bandligi**» → «kitob **band yoki bo'sh ekani**» — «bandlik» o'smir uchun «ish bilan bandlik» ma'nosida ham o'qiladi.
+
+🔧 Tekshiruv: har yo'riq-gapda (a) bitta kesim bormi, (b) ishora qilingan narsa **shu lahzada** ekranda ko'rinadimi,
+   (c) «shart / qadam / bo'lak» birlikda kelsa — qaysi biri ekani aytilganmi, (d) belgi (👥 ⏱ 🎯) yonida uning so'zi ko'rinadimi.
+
+
+## 207. «-GA QARAMAY» — TO'SIQSIZ MA'NO · IKKI SON ORASIDA KO'PRIK · TINGLOVCHI NOMI EKRANGA MOS (F-0924-bridge-70…74, 👦 1-o'qish 24.09)
+
+*(Bridge 3-o'tish 3-darsi «Qanday ko'rsatamiz?» · 12/13/14/15/16-ekran · arena)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 70 | «**Yozganingizga qaramay**, besh gapingizni ayting.» | «Besh gapingizni **yoddan** ayting.» | «X-ga qaramay / qaramasdan» o'zbekchada «X bo'lishiga qaramasdan» (to'siqsiz) deb o'qiladi — «yomg'irga qaramay». Bola «yozgan bo'lsangiz ham, ayting» deb tushundi. «Ko'z tashlamasdan» ma'nosi kerak bo'lsa — «yoddan», «ko'z tashlamay» (§203-10 oilasi) |
+| 71 | sarlavha «…**besh gapda** ayta olasizmi?» · chip «**Oltita javob**» | chip «**6 savolga javob**» + yo'riq «Olti savolga javob yozing. Birinchi ikki javob bitta gapga qo'shiladi — shunda besh gap chiqadi.» | Bir ekranda ikki son (6 va 5) turdi, ular orasidagi ko'prik aytilmadi — bola «nega 6?» deb qoldi. Ikki son ko'rinsa, biri ikkinchisiga qanday aylanishi bitta gapda aytiladi (sanoq-mosligi) |
+| 72 | kiyim sayti ko'rsatuvida xato-izoh «…**ota-ona** qaysi so'zda to'xtab qoladi…» | «…**tinglovchi** qaysi so'zda to'xtab qoladi…» + yo'riq «Uch sinfdoshingiz bitta saytni ko'rsatdi: u internetdan kiyim olganda o'lchamni topib beradi.» | Dars-ipining tinglovchisi (ota-ona) boshqa olamdagi ekranga ko'chib o'tdi; qaysi sayt ekani ham aytilmagan edi. Olam almashgan ekranda tinglovchi va sayt birinchi gapda nomlanadi |
+| 73 | kirish-gap «AI … aytadi. Nimani almashtirishni **o'zingiz hal qilasiz**.» + qoida-ramka «AI … qayta yozmaydi. Nimani almashtirishni **siz hal qilasiz**.» | kirish-gap «So'rovni nusxalab Gemini'ga qo'ying — AI ota-ona o'rnida tinglaydi. Javobini o'qing va gaplaringizni shu yerda tuzating.» · ramka qoidani saqlaydi | Ikki blok bir gapni takrorladi, «Gemini'ga qo'ying» qadami esa hech qayerda yo'q edi (§206-54). Kirish-gap — qadam, ramka — qoida |
+| 74 | arena: savol «…**kutubxonachiga** nimaga o'xshatasiz?» · ✓ «**Kutubxonachi** kabi — javondan kitob topib beradi» | savol «…kod bilmaydigan do'stingizga…» · distraktorlar ham «**kitob**» so'zi bilan («Server kabi — kitob so'rovini olib…») | Savoldagi so'z faqat ✓ da takrorlandi, olam so'zi («kitob») ham faqat ✓ da — bola o'qimay topardi (§204) |
+
+🔧 Tekshiruv: `grep -n "ga qaramay\|ga qaramasdan"` — har topilmada «despite» ma'nosi kerakmi, yoki «ko'z tashlamay»mi?
+   Ekranda ikki xil son bo'lsa (maydon · gap · kadr) — ular orasidagi o'tish gapda aytilganmi?
+
+
+## 208. OLDINGI DARS SO'ZI O'Z VAZIFASI BILAN KELADI · MANTIQ-XATO DISTRAKTORDA EMAS, TO'G'RISIDA · NAMUNA «MASALAN:» BILAN (F-0924-bridge-90…94, 👦 1-o'qish 24.09)
+
+*(Bridge 4-o'tish 3-darsi «Ma'lumot, ishonch va "Qanday ishlaydi?"» · 13/15/16/17-ekran · arena)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 90 | yorliq «**Birinchi bo'lak**» · «**Birinchi shartingiz**» (oldingi darsda o'rgatilgan) | «**Birinchi quriladigan bo'lak**» · «**Bo'lak tayyorligini tekshiradigan 1-shart**» | Oldingi darsning atamasi bu darsda yalang'och keldi — bola «qaysi bo'lak? qanaqa shart?» deb to'xtadi. Alohida izoh-gap shart emas: yorliqning o'zi atamaning vazifasini aytadi (§191 oilasi) |
+| 91 | «**Kartangiz** bu kompyuterda topilmadi.» | «**Oldingi darslardagi g'oyangiz** bu kompyuterda yo'q. Tayyor g'oyalardan birini tanlang.» | «Karta» — jamoa ichidagi saqlov nomi; bola qaysi kartani qidirishini bilmadi. Referent qayerdan kelganini aytadi |
+| 92 | placeholder futbol namunasi har qanday g'oyada («Qaysi kun va soat band qilindi») | «**Masalan:** Qaysi kun va soat band qilindi» | Boshqa g'oya tanlagan bola kulrang matnni topshiriq deb o'qidi. Namuna matni (senariyniki) o'zgarmaydi — oldiga «Masalan:» qo'yiladi (§203-12) |
+| 93 | yozish-joyi placeholder'siz · yo'riq «…qaysi gapni topolmadi va nimani o'zgartirdingiz — yozing» | placeholder «Hammasini topgan bo'lsa, shunday yozing: «Sherigim hammasini topdi»» | Yo'riq faqat «topolmadi» holatini aytdi — hammasi topilganda bola nima yozishini bilmadi (§203-14). Senariy gapiga tegilmasa, bo'sh holat placeholder'da yopiladi |
+| 94 | arena: «Sxemada «Muqova rangi» maydoni **bor** … Nima qilamiz?» · ✓ «Uni sxemaga **kiritmaymiz**» · ✓ «**Ilova** buyurtmani eslab qoladi» (qolgan uchtasi «Buyurtma …» bilan) | ✓ «Uni sxemadan **olib tashlaymiz**» · ✓ «**Buyurtmani** ilova eslab qoladi» | (a) Savolda maydon allaqachon sxemada — «kiritmaymiz» vaziyatga zid, bola to'g'ri javobga ishonmay qoldi. (b) Yagona boshqacha boshlangan variant — shakl-telli (§204) |
+
+**Distraktor-shakl (arena, §204 davomi):** «Nega ochiq?» savolida ✓ «Undan hech kimga **zarar** yetmaydi» yagona «Undan hech kimga …» qolipida edi — distraktor «Undan hech kimga **foyda** yetmaydi» qo'shildi: endi bitta so'zni o'qish shart.
+
+🔧 Tekshiruv: oldingi darsdan kelgan har atama-yorliqni (bo'lak · shart · karta · g'oya) o'qing — yorliq o'zi vazifani aytadimi?
+   Har arena savolida vaziyat fe'li (bor / yo'q / qo'shildi) bilan ✓ fe'li (kiritamiz / olib tashlaymiz) bir-biriga mosmi?
+
+
+## 209. IKKI HOLATLI TUGMA NOMSIZ BO'LMAYDI — «TEPANI ALMASHTIRISH» EMAS, NOMLI IKKI CHIP (F-0924-09, foydalanuvchi fidbegi 24.09)
+
+*(Bridge 1-o'tish 1-darsi «Kim uchun qilyapmiz?» · 4/12-ekran · img29)*
+
+| ❌ | ✅ | Sabab |
+|---|---|---|
+| tugma «⇄ **Tepani** almashtirish» · NavNext «Tepani almashtirib ko'ring» | ikki chip «**1 · Faqat qidiruv**» / «**2 · Bu nima va kim uchun**» · NavNext «Ikkala variantni ko'ring» | «Tepa» — sahifaning qaysi qismi ekani bola uchun aniq emas; bitta «almashtirish» tugmasi hozir **qaysi** holat ochiq ekanini va nima bilan solishtirilayotganini aytmaydi. Chip holatning o'zini nomlaydi |
+| tugma «⇄ Sarlavhani almashtirish» | «**1 · Hamma uchun**» / «**2 · Sotuvchi uchun**» · NavNext «Ikkala sarlavhani ko'ring» | Xuddi shu sinf: nom — harakat emas, holat |
+| mentor «…**1** va **2** ni bosib, u qachon qolishini ko'ring» (1-holat sukutda ochiq) | «…**«2 · Bu nima va kim uchun»**ni **ham** bosing» | Sukutda ochiq chipni bosishga chaqirish — bo'sh harakat; puls ko'rilmagan chipda turadi, gap ham o'shani aytadi |
+| hukm «Sotuvchi o'zini tanimadi» + sabab «Gapda sotuvchi ham… tilga olinmagan» + izoh «…bu gap sotuvchi haqida emas. Hammaga yozilgan gapda…» | yorliq «Sotuvchi o'zini tanimadi» · sabab «So'zlari tushunarli, lekin gap sotuvchi haqida emas.» · izoh (senariy) «Hammaga yozilgan gapda hech kim o'zini tanimaydi.» | Bir kartada bitta fikr uch marta aytilgan edi. Hukm-karta = yorliq + **bitta** sabab + (bo'lsa) senariy xulosasi |
+
+Joy so'zi o'rniga PmLesson2 so'zi: mentor-gapda «sahifaning **yuqori qismi**». Senariy matnidagi «tepasida» (test lead, xulosa,
+flashcard, arena, nishon) — foydalanuvchi qaroriga, o'zicha almashtirilmaydi (bir tushuncha — bir so'z: yarim almashtirish ikki atama qiladi).
+
+🔧 Tekshiruv: `grep -n "Tepani\|almashtirish" <fayl>` — ikki holatli ekranda tugma yorlig'i holatni nomlaydimi?
+   Sukutda ochiq holat bo'lsa, mentor-gap faqat **ko'rilmagan** chipni aytadimi?
+
+
+## 210. MENTOR-GAP QOLIPI — NEGA + BITTA CHORLOV, ELEMENT O'Z NOMI BILAN (F-0924-03, foydalanuvchi: «mentor gapi faqat 2 sahifada, o'quvchi nima qilishni bilmaydi»)
+
+*(Bridge 1-o'tish 1-darsi · 14 ta mentor-gap — qolgan 6 bridge darsiga namuna)* §22 ning amaliy davomi.
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 1 | «OLX'ga **har kuni minglab** odam kiradi — … **pastdagi** javoblardan birini belgilang.» | «Ko'pchilik OLX'ga hech bo'lmasa bir marta kirgan — o'z tajribangizni eslab, **o'ngdagi javoblardan** birini belgilang. Javobni birozdan keyin birga bilib olamiz.» | Manbasiz raqam (OLX halolligi); joy so'zi ekranga zid (variantlar o'ngda). Senariy gapi oxirida saqlanadi |
+| 2 | «OLX'ga kirgan har bir odam saytda **o'z ishini qiladi** — ikkala odamni bosib…» | «Sayt kim uchun ekanini odamning birinchi harakati ko'rsatadi — chapdagi **ikki o'quvchini** birma-bir bosing.» | Eski NEGA sarlavha-savolining («maqsadi bir xilmi?») javobini oldindan aytardi. NEGA — nega shu harakat kerak, javob emas |
+| 3 | «…uchta aniq javob bo'lsa… — **avval KIM, keyin MUAMMO va YECHIM** uchun mos variantni tanlang.» | «…uch savolga aniq javob bo'lsa, uning sahifasiga nima yozishni bilasiz — **«1 · KIM»**dan boshlab har savolga bitta javob tanlang.» | Qadam-takror (qadamlar UI'da ko'rinib turibdi, ETALON 32); element ekrandagi yorlig'i bilan |
+| 4 | «Aniq odam uchun yozilgan g'oya bilan **keyingi darslarda ham ishlaysiz** — «KIM» **maydonidan** boshlab uchala qatorni to'ldiring va «✓ Saqlash»ni bosing.» | «Aniq odam topilsa, uning muammosi ham ko'rinadi — **«KIM»** savoliga javob yozing yoki **«Tayyor g'oyadan tanlash»**ni bosing.» | Kelajak-va'da ekranda (§17); «maydon» futbol g'oyasida band (§202); uch qadam bir gapda. G'oyasi yo'q bola uchun yo'l ham shu gapda |
+| 5 | «Saytga birinchi marta kirgan odam **bir necha soniyada** qolish-qolmasligini hal qiladi…» | «Saytga birinchi kirgan odam sahifaning **yuqori qismiga** qarab qoladi yoki chiqib ketadi — …ni ham bosing.» | «Bir necha soniya» — taqiq-lug'atdagi manbasiz raqam (PmLesson2 4-bo'lim) |
+| 6 | «AI sizga … taklif qiladi. Qaysi biri qolishini o'zingiz tanlaysiz. Avval «📋 So'rovni nusxalash»ni bosing.» (3 gap) | «AI sizga sarlavha variantlarini taklif qiladi, qaysi biri qolishini esa o'zingiz tanlaysiz — avval **«📋 So'rovni nusxalash»**ni bosing.» | Senariy gapi saqlanadi, lekin interaktiv ekranda 1 gap: ikki senariy jumlasi «esa» bilan bog'lanib, chorlov tire orqali qo'shildi |
+| 7 | «…«▶ 1 daqiqani boshlash»ni bosib sherigingizga ayting, **so'ng eng muhim fikrni pastga yozing**.» | «Fikrni ovoz chiqarib aytgan odam uni yaxshiroq eslab qoladi — **«▶ 1 daqiqani boshlash»**ni bosib, sherigingizga ayting.» | Ikkinchi qadam ekranda «2 · ✍️ … yozing» bo'lib turibdi — gap faqat birinchi halqani aytadi |
+
+**Qolip (7 bridge darsiga):** `[NEGA — predmet nomi bilan boshlanadi, javobni aytmaydi] — [bitta chorlov: <b>«yorliq»</b> + fe'l]`.
+Interaktiv ekranda 1 gap, oddiy ekranda ≤2. «Bu…», «Hammasi…» bilan boshlanmaydi. Joy so'zi (chapdagi · o'ngdagi · pastdagi) ekrandagi
+haqiqiy joylashuvga mos. Ekran 400 belgiga yaqin bo'lsa — birinchi qisqaradigan narsa chorlovning ikkinchi yarmi (ekran o'zi ko'rsatadi).
+
+**Test-izoh (explainWrong) — shu darsdan namuna:** ❌ `null` (hamma xato variantga bitta umumiy gap) →
+✅ «Reklama odamlarni sahifaga olib keladi — bu to'g'ri. Lekin kelgan odam «Bizda hamma narsa bor!»ni o'qib, o'zini taniydimi?» —
+avval variantning rost tomoni, keyin yo'naltiruvchi savol; javob aytilmaydi, ayblanmaydi (2-B oxiri).
+
+🔧 Tekshiruv (3-D.7): har interaktiv ekranda (a) gap va puls bir elementdami, (b) NEGA bormi va u javobni aytmaydimi,
+   (c) element qo'shtirnoqli o'z yorlig'i bilanmi, (d) 1 gapmi, (e) joy so'zi ekranga mosmi.
+
+
+## 211. MENTOR-GAP DARS ICHIDAGI BOSHQA SO'Z BILAN TO'QNASHMASIN · JOY SO'ZI UMUMAN YO'Q (F-0924-03 davomi, B2 metodist 24.09)
+
+*(Bridge 2-o'tish 2-darsi «Muammoni topamiz» · 1/2/7/9/14-ekran — §210 qolipining ikkinchi darsdagi tatbiqi)*
+
+| # | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| 1 | hook eyebrow «**Fikringizni** belgilang» (pilotdan ko'chgan) | «Siz nima qilardingiz?» | Savol harakat haqida («qanday yetasiz?»), fikr haqida emas. Ustiga-ustak 5-ekranda «Shunchaki **fikr**» qutisi «muammo emas» degan ma'noda keladi — bir darsda bitta so'z ikki ma'noda yurmaydi |
+| 2 | maqsad-karta «taksini **telefondan** chaqiradi» | «taksini bir bosishda chaqiradi» | Hook'dagi «Tanish haydovchiga **qo'ng'iroq** qilaman» ham telefondan — o'sha payoff uni «birovni bezovta qiladi» deb baholagan edi. Yechim-karta o'zicha chora bilan bir xil o'qilmasin |
+| 3 | «…mos bo'lakni tanlang va **pastdagi** «Gap» **to'lib borishini kuzating**» · «avval **o'ngdagi** tayyor g'oyalardan…» | «**«Kim?»** qatoridan boshlab, har qatorda voqeaga mos bo'lakni tanlang» · «avval **tayyor g'oyalardan** birini tanlang» | Telefonda ikki ustun ustma-ust tushadi — «o'ngdagi / pastdagi» yolg'on bo'lib qoladi; element faqat **o'z yorlig'i** bilan ataladi. Ikkinchi chorlov (kuzating) va «to'ladi» fe'li (ETALON 42) ham ketdi |
+| 4 | 14-ekran: kichik yozuv (senariy) «Yechim shu muammoga javob berishi kerak» + mentor «Muammoga javob bermaydigan yechimni hech kim ishlatmaydi…» | mentor «Yechim nima qilishi aniq yozilsa, u muammoni yo'qotadimi-yo'qmi bir qarashda ko'rinadi — …» | Mentor-gap sarlavha ostidagi yozuvning fikrini qayta aytdi. NEGA boshqa narsani ochadi: nega «Nima qiladi?» qatoridan boshlash kerak |
+| 5 | 9-ekran mentor «Muammo aniq yozilsa, unga **yechim** topish osonlashadi» | «Muammo aniq yozilsa, uni o'qigan har kim nimani tuzatish kerakligini tushunadi» | «Yechim» atamasi 10-ekranda kiritiladi — 9-ekranda u hali o'rgatilmagan (§168). NEGA 7-ekran xulosasining o'z so'zi bilan yozildi — ip uzilmaydi |
+
+**Test-izoh (explainWrong) — distraktor lead'dagi dalil bilan qaytariladi:** «Unga har kuni borish unchalik shart emas» →
+«Balki shundaydir. Lekin borish shart bo'lmasa, u har kuni «kim ketyapti?» deb yozib o'tirarmidi?» — rost tomoni tan olinadi,
+keyin lead'dagi aniq fakt (har kuni, bitta savol) savol shaklida qaytadi; to'g'ri javob so'zma-so'z aytilmaydi.
+
+🔧 Tekshiruv: `grep -n "chapdagi\|o'ngdagi\|pastdagi\|tepadagi" <fayl>` — o'quvchi matnida 0 bo'lsin (izohda mumkin).
+   Eyebrow / tugma so'zini dars bo'ylab `grep -i` qiling — boshqa ekranda boshqa ma'noda kelsa, almashtiring.

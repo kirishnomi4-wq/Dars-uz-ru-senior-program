@@ -20,6 +20,8 @@
     "pack:lms": "node scripts/pack-lms.mjs",
     "gen:mentor": "node scripts/gen-mentor.mjs",
     "build:mentor": "vite build --config vite.mentor.config.js",
+    "build:bridge": "vite build --config vite.bridge.config.js",
+    "dev:bridge": "vite --config vite.bridge.config.js",
     "gate:esbuild": "node esbuild-gate.mjs",
     "gates": "node gates.mjs",
     "lint:layout": "node layout-lint.mjs",

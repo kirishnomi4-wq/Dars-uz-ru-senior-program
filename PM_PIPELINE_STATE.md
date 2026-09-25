@@ -3600,3 +3600,22 @@ qayta so'rashdi, F-0828-09) → tuzatish (halol-qulf, faqat qayta so'ralgan gap 
 **Darvozalar:** to'rttalasi 5/5 (topilmalar: apostrof ×1, «sehr» taqiqi ×1 → «o'zicha bilmaydi») · shared
 694/712/719/709 q · smoke PASS. **Sinov (Playwright):** l-02 17/17 · l-07 19/19 · l-12 19/19 · l-15 17/17 —
 avto-to'lish, dars-validatorlari, halol-qulflar, payload 4/4, reload, RU; brauzer-xato nol. Commit YO'Q.
+**2026-09-23 (bridge, 20:35–21:20) — o'tish darslari senariylari:** foydalanuvchi «hammasiga tavsiyang bo'yicha» → SAVOLLAR 1.1–3.4
+qarorlari `BRIDGE-B3/B4/B5` senariylarining 6-bo'limiga kiritildi (B4 3-ekran tayanch-gap ≈396 · B5 8-ekran «navbat belgilash
+(prioritet)» + flashcard 6 · B5 13-ekran kartasiz o'quvchiga 4 g'oya) — uchalasi GATE S. **3-o'tish 3-dars «Qanday ko'rsatamiz?»**
+(`pm-senariylar/BRIDGE-B6-QandayKorsatamiz.md`, 19 ekran, K12 Airbnb) va **4-o'tish 3-dars «Ma'lumot, ishonch»**
+(`BRIDGE-B7-MalumotIshonch.md`, 20 ekran, K6 Netflix) yozildi → pm-metodist 29 / 35 tuzatish, D 12 / 12 e'tiroz (foydalanuvchi ko'rigi
+kutiladi). Yetti bridge darsining hammasi yozilgan. lint:til 7 fayl 0 error · kirill/apostrof 0. Jurnal va tartib:
+`feedback/F-0923-bridge/DAVOM_2026-09-23.md` (PAUZA 3). Commit YO'Q.
+**2026-09-23 (bridge, 21:30) — GATE S yopildi:** foydalanuvchi «hammasiga tavsiyang bo'yicha, GATE S dan o'tkaz» → 3-o'tish 3-dars
+(`BRIDGE-B6`) va 4-o'tish 3-dars (`BRIDGE-B7`) D-bandlariga qarorlar kiritildi; kartasiz o'quvchi uchun `BRIDGE-B4` 14-ekran ostiga
+«birinchi bo'lak · 1 shart» qo'shimcha jadvali (ekranda ko'rinmaydi, 3-darslar ishlatadi). 7 senariydan 6 tasi GATE S, 2-o'tish 2-dars
+«qurilgach ko'raman». lint:til 3 fayl 0 error. Keyingi: infra + 1-dars pilot — foydalanuvchi buyrug'i bilan. Commit YO'Q.
+**2026-09-24 (bridge, 00:00–08:00) — RAZRABOTKA, tungi avtopilot · UNCOMMITTED:** foydalanuvchi buyrug'i (23:50) bilan 7 bridge dars
+qurildi (`src/bridge/lessons/`, sayt `vite.bridge.config.js` → `dist-bridge/`, jonli ball eski Supabase — `src/bridge/liveClientSupabase.js`
++ resolveId-plugin, `src/live/` tegilmagan). Har dars A-retsept zanjiri: quruvchi → dizayn → jonli → 👦1 → metodist → 👦2 → tekshiruvchi
+(4 dars QAYTARISH → rollarda tuzatildi) → darslik-verifikator — **7/7 IMZO**. Jonli qayta sinov tungi tahrirlardan keyin 7/7 (har PIN 14 javob,
+7 to'g'ri, ended — bazadan). Metodistlar 3 darsda foydalanuvchi matni/qarorini o'zgartirgan edi — bosh-agent senariy bilan diff qilib
+qaytardi, variantlar taklif sifatida hisobotda. Takror bug: navbat-puls `k === 0` noto'g'ri variantga (2 dars) · kartada string emas →
+oq ekran (F-0915-02 oilasi, 3 dars) — tuzatildi. Korpus §201–§208. Hisobot: `feedback/F-0923-bridge/ERTALAB_HISOBOT_2026-09-24.md`.
+Qoldi: GATE 2/3 foydalanuvchi ko'rigi · pm-qabulchi yuritilmadi · commit/Vercel — buyruq bilan.
