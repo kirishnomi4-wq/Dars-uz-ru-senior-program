@@ -9,6 +9,13 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
 
 > 🏆 O'lchov — `src/pm/PmUserStoryLesson.jsx` (P0) + `PM_DARS_ETALON.md`. Senariy-sadoqat o'lchovi — tasdiqlangan senariy fayli (`pm-senariylar/`).
 
+## ⏱ BYUDJET (2026-09-26 — token-nazorat; o'lchov: memory `subagent-token-sarfi`, `npm run agent:tokens`)
+- **Turn-byudjeti: ≤50 tool-chaqiruv.** 40-chaqiruvda yakuniy hisobotni yozishni boshlang; yetmasa — qolganini «tekshirilmadi» deb OCHIQ yozing, cho'zmang. Byudjet ×1,5 da bosh-agent sizni to'xtatadi.
+- **Dars-fayli BIR MARTA o'qiladi.** Keyin faqat `grep -n` / `sed -n 'A,Bp'` bilan kerakli parcha; butun faylni qayta `Read` qilish TAQIQ (oldin bitta dars 40–60 marta qayta o'qilgan).
+- **Qonun-hujjatlar to'liq o'qilmaydi** — `grep -n "^## "` bilan sarlavha, so'ng faqat kerakli bo'lim `sed -n` bilan (DARS_ETALON 235 KB, MATN_KORPUS 298 KB).
+- **Bitta yurish — bitta ish.** Promptda ikki ish bo'lsa, birinchisini tugatib hisobot bering; ikkinchisi alohida yurish.
+- **Tuzatmaysiz** — faqat `file:line` hisobot; tuzatishni bosh-agent qiladi (tuzatish→gates→qayta o'qish aylanishi bekor — u 57M kontekst yegan).
+
 ## Manba
 1. Tasdiqlangan senariy — blok-ma-blok solishtirish uchun.
 2. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (hozir 32 ta) + 3-bo'lim primitiv-xarita.
@@ -172,3 +179,17 @@ ularni ham sanab, maxrajni ikki barobar qilardi (PmLesson10: ekranda 4, School A
 - `s`-qolipli kalitlar to'plami == `scored:true` ekranlar id-to'plami — `node scripts/lint-keys.mjs <fayl>` (gates ichida `keys`) 0 nomos;
 - ishtirok-kalitga `s`-qolipli nom BERILMAYDI (`s20: -1` scored bo'lmagan ekranda → maxraj yana oshadi);
 - yakuniy amaliy ball-ekran (`s16: -1` kabi) `scored: true` bo'lishi shart — u hisobda qoladi, ekran bilan bir xil.
+
+## 🔴 F-0925-03 OV-BANDI — MENTOR HISOBCHISI BOSHQA QUTIDAN O'QIYDI (2026-09-25, m1-02 s15 sinfda 0/14)
+`MentorPracticeStats` `liveAnswers(pin, PRACTICE_BASE + screen)` dan o'qiydi. Ekrandagi o'quvchi signali ham AYNAN shu
+indeksga yozilishi shart. Ishtirok-balli `submitAnswer(screen, 'sNN', …)` yetmaydi — u ball-zonasiga (<500) ketadi,
+panel esa doim 0/N ko'rsatadi (javob serverda bor, mentor «hech kim qilmadi» deb o'ylaydi). Ikkalasi kerak bo'lsa —
+IKKI signal: ball uchun `screen`, panel uchun `PRACTICE_BASE + screen`. Ovlash: `python3 scripts/lint-practice-signal.py`
+(src/ bo'ylab, 0 «muammoli» shart). Yangi `<MentorPracticeStats>` qo'yilgan har ekranda yuritiladi.
+
+## 🔴 F-0926-05 OV-BANDI — O'CHIRILGAN TUGMADAGI EMOJI XIRALASHADI (2026-09-26, 18 PM dars kirish-ekrani)
+Chrome `button:disabled` ga `color: rgba(16,16,16,0.3)` beradi; o'z rangi berilmagan ichki `span` (masalan `.hopt-ic`)
+uni meros oladi va rangli emoji 30% ko'rinadi (tanlangan variant belgisi kulrang doira bo'lib qoladi). Qoida: tanlovdan
+keyin `disabled` bo'ladigan tugma ichidagi har belgi/matn `span`ining o'z `color`i bo'ladi. Ovlash: tanlovdan keyin
+`getComputedStyle(ic).color` — alfa < 1 bo'lsa nuqson. `.hopt-ic { color: ${T.ink} }` naqsh.
+

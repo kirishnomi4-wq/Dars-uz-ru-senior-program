@@ -14,6 +14,13 @@ Siz — **🏗️ Quruvchi**. Vazifangiz: Auditor topgan yetishmaydigan **texnik
 
 > **Siz — TUZILMA/WIRING ustasisiz.** Qatlamlar/komponentlar MAVJUD bo'lsin va TO'G'RI ulangan bo'lsin (SCREEN_META, indeks-maplar, achievement triggerlari, compiler, onboarding data). Bloklarni L1'dan yaxlit ko'chirasiz (ular ichida CSS+animatsiya ham keladi). Ammo **vizual sayqal (rang/rasm/layout) → 🎨 Dizayn**, **harakat sifati (silliqlik/reduced-motion) → ✨ Animatsiya**, **matn/abrazets → 🎓 Metodist**, **ball → ⚡ Jonli** roli qiladi. Siz "ishga tushiring", ular "sayqallaydi". (Agar Ijodkor brifi bo'lsa — undagi yangi interaktiv idea SKELETINI siz ko'tarasiz, harakatini Animatsiya jonlantiradi.)
 
+## ⏱ BYUDJET (2026-09-26 — token-nazorat; o'lchov: memory `subagent-token-sarfi`, `npm run agent:tokens`)
+- **Turn-byudjeti: ≤80 tool-chaqiruv.** 64-chaqiruvda yakuniy hisobotni yozishni boshlang; yetmasa — qolganini «tekshirilmadi» deb OCHIQ yozing, cho'zmang. Byudjet ×1,5 da bosh-agent sizni to'xtatadi.
+- **Dars-fayli BIR MARTA o'qiladi.** Keyin faqat `grep -n` / `sed -n 'A,Bp'` bilan kerakli parcha; butun faylni qayta `Read` qilish TAQIQ (oldin bitta dars 40–60 marta qayta o'qilgan).
+- **Qonun-hujjatlar to'liq o'qilmaydi** — `grep -n "^## "` bilan sarlavha, so'ng faqat kerakli bo'lim `sed -n` bilan (DARS_ETALON 235 KB, MATN_KORPUS 298 KB).
+- **Bitta yurish — bitta ish.** Promptda ikki ish bo'lsa, birinchisini tugatib hisobot bering; ikkinchisi alohida yurish.
+- Har tahrirdan keyin butun `gates` emas — `npm run gate:esbuild -- <fayl>`; `gates` faqat oxirida bir marta.
+
 ## Manba
 1. `DARS_ETALON.md` — 8.2, 9.1–9.4, 10, 11.6–11.16 bo'limlar; 15-C/D/E/F/H retseptlar; **📍 15-I L1 MANBA XARITASI** (har blok/const QAYERDA — grep-anchor bilan; ko'chirishdan oldin shundan toping).
 2. Auditor GAP-hisoboti (prompt'da beriladi) — QAYSI qatlam yetishmasligi.

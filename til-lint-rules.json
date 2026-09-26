@@ -227,7 +227,7 @@
       "pattern": "\\bvague\\b",
       "flags": "i",
       "severity": "error",
-      "suggest": "«loyqa»",
+      "suggest": "«noaniq» («loyqa» taqiq — KORPUS §212)",
       "law": "lug'at vague-qatori",
       "except": "useState|===|\\bmode\\b|\\?\\s*'|setMode|Mode\\("
     },
@@ -740,6 +740,14 @@
       "flags": "i",
       "suggest": "вопрос не строится в страдательном залоге: «Каким тегом создаётся…?» → «Какой тег делает…?» (KORPUS §194)",
       "law": "F-0922-15 · mentor topilmasi 22.09"
+    },
+    {
+      "id": "loyqa-sozi",
+      "severity": "error",
+      "pattern": "\\bloyqa\\w*",
+      "flags": "i",
+      "suggest": "«loyqa» — birinchi ma'nosi «loyqa suv»; darsda QAT'IY taqiq: «noaniq prompt» / «noaniq buyruq» (ru: «неточный») (KORPUS §212)",
+      "law": "F-0925-02 · foydalanuvchi 25.09: «bunday so'zlar umuman bo'lmasligi kerak»"
     },
     {
       "id": "pardoz-sozi",

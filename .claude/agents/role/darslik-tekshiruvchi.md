@@ -9,6 +9,13 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
 
 > 🏆 **NAMUNAVIY DARS — `src/1-Modull/Htmllesson1.jsx`.** "To'g'ri"ning o'lchovi — Htmllesson1. Darsni namuna bilan yonma-yon solishtir: namunada bor-u bu darsda yo'q/boshqacha/sifatsiz bo'lsa — nuqson deb qaytar.
 
+## ⏱ BYUDJET (2026-09-26 — token-nazorat; o'lchov: memory `subagent-token-sarfi`, `npm run agent:tokens`)
+- **Turn-byudjeti: ≤50 tool-chaqiruv.** 40-chaqiruvda yakuniy hisobotni yozishni boshlang; yetmasa — qolganini «tekshirilmadi» deb OCHIQ yozing, cho'zmang. Byudjet ×1,5 da bosh-agent sizni to'xtatadi.
+- **Dars-fayli BIR MARTA o'qiladi.** Keyin faqat `grep -n` / `sed -n 'A,Bp'` bilan kerakli parcha; butun faylni qayta `Read` qilish TAQIQ (oldin bitta dars 40–60 marta qayta o'qilgan).
+- **Qonun-hujjatlar to'liq o'qilmaydi** — `grep -n "^## "` bilan sarlavha, so'ng faqat kerakli bo'lim `sed -n` bilan (DARS_ETALON 235 KB, MATN_KORPUS 298 KB).
+- **Bitta yurish — bitta ish.** Promptda ikki ish bo'lsa, birinchisini tugatib hisobot bering; ikkinchisi alohida yurish.
+- **Tuzatmaysiz** — faqat `file:line` hisobot; tuzatishni bosh-agent qiladi (tuzatish→gates→qayta o'qish aylanishi bekor — u 57M kontekst yegan).
+
 ## Muhim istisno
 - ⚠️ **ONBOARDING (TourGuide/.tg-/data-tour) YANGI DARSDA GAP EMAS (2026-07-10 foydalanuvchi qarori):** bu qatlam faqat mavjud eski darslarda qoladi — yangi ko'chirilgan darsda yo'qligi NUQSON HISOBLANMAYDI, FAIL bermang. Yetim `data-tour` atributi topilsa — mayda tozalash sifatida o'zingiz o'chirishingiz mumkin.
 
@@ -344,3 +351,14 @@ Yonidagi `INLINE_KEYS = { s4: 3, s5b: 1, … }` esa **string-id** bilan — u xa
 `useServerProgress` darsni yarmida qoldirgan o'quvchining javoblarini tozalaydi
 (`p.total !== total` → `answers = {}`). Ya'ni ekran qo'shish — **dars ishlatilmayotgan paytda**
 yuklanadigan o'zgarish.
+
+## 🔴 F-0925-03 OV-BANDI — MENTOR HISOBCHISI BOSHQA QUTIDAN O'QIYDI (2026-09-25)
+`<MentorPracticeStats>` turgan har ekranda o'quvchi signali panel o'qiydigan indeksga (`PRACTICE_BASE + screen`) yozilishi
+shart; faqat ball-signali (`submitAnswer(screen, …)`) bo'lsa panel doim 0/N. Ovlash: `python3 scripts/lint-practice-signal.py` — 0 «muammoli».
+
+## 🔴 F-0926-05 OV-BANDI — O'CHIRILGAN TUGMADAGI EMOJI XIRALASHADI (2026-09-26, 18 PM dars kirish-ekrani)
+Chrome `button:disabled` ga `color: rgba(16,16,16,0.3)` beradi; o'z rangi berilmagan ichki `span` (masalan `.hopt-ic`)
+uni meros oladi va rangli emoji 30% ko'rinadi (tanlangan variant belgisi kulrang doira bo'lib qoladi). Qoida: tanlovdan
+keyin `disabled` bo'ladigan tugma ichidagi har belgi/matn `span`ining o'z `color`i bo'ladi. Ovlash: tanlovdan keyin
+`getComputedStyle(ic).color` — alfa < 1 bo'lsa nuqson. `.hopt-ic { color: ${T.ink} }` naqsh.
+

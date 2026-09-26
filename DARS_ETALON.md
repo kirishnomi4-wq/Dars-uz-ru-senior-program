@@ -3094,3 +3094,92 @@ Yangi dars qurilganda yoki mono-e'lon qo'shilganda shu buyruq yurgiziladi.
 **O'lchov (2026-09-22 supurish):** 115 fayl · 2402 CSS e'loni + 63 inline uslub yopildi;
 avvaldan yopiq edi — 106 (3 dars: `VsCodeLesson`, `JsConditionsLesson`, `JsVarsLesson`).
 7-Modul foydalanuvchi qarori bilan tegilmagan (12 fayl · 88 e'lon — `KATTA_TOZALASH.md`).
+
+---
+
+## 12-V. 🧹 159-QONUN: BEZAK-QATLAM VA TAKROR MA'NO YO'Q — stripe · kesik chiziq · bo'sh-holat ramkasi · ico-emoji · qora tugma · takror blok · maydon ustidagi yorliq (2026-09-26, F-0926-01 · F-0926-04)
+
+> Raqam: 26.09 da dastlab «156» deb yozilgan edi — u raqam 21.09 dan brend-izoh qonuniniki (12-S). Eski raqam o'zgarmaydi, bu qonun 159 bo'ldi.
+
+Manba — bridge PILOT_DIZAYN_NAQSH 38–57-bandlar, foydalanuvchi qarorlari 26.09.
+
+Bridge (1–4-o'tish, 7 dars) ko'rigida foydalanuvchi to'rt bezak-sinfini «global — boshqa chiqmasin» deb rad
+etdi; 26.09 da xuddi shu qoidalar 5–6-Modulga tatbiq qilindi («PM bridge'da qilganimizdek», «ha albatta
+emojini kamaytiramiz»). O'lchov: etalonlarda (BridgeKimUchun · PmLesson2 · Htmllesson1 · CiCdIntro) `ico:` = 0,
+emoji ≈170–220; 5–6-Modul texnik darslarida `ico:` qatlami ustiga qo'shilib emoji 300–570, stripe 9–18/fayl.
+
+**Qonun (har dars, texnik va PM):**
+1. **Chap rang-chiziq yo'q** — `border-left: 3–6px solid`, `border-left-color`, `box-shadow: inset 2–6px 0 0`.
+   Holat (tanlangan/bajarilgan/daraja) — fon (`…Soft`) yoki to'liq halqa `box-shadow: 0 0 0 2px rang`
+   (soya bo'lsa vergul bilan qo'shiladi, yo'qolmaydi).
+2. **Kesik bezak-chiziq yo'q** — karta/slayd tepasidagi `repeating-linear-gradient` (`.kp-bet::before`).
+   Chiziq ma'no tashisa (daftar qatorlari, elak to'ri) — o'sha satrda `/* kesik-ok: sabab */` izohi shart.
+3. **Bo'sh-holat ramkasi yo'q** — «… bosing ←» yozuvli `frame-dash`. Chorlov mentor-gapda («Har kartani
+   bosing», «Tugmani bosib …») va tugmada; birinchi bosishgacha ustun bo'sh turadi. Ramka ichida HARAKAT
+   bo'lsa (tugma: «Daftar biriktirish») — u holat-karta, qoladi. Istisno (F-0926-05 #20, foydalanuvchi): ramkada
+   FAQAT bitta boshlash-tugmasi qolsa (yakka rejim taymeri «▶ 30 soniyani boshlash») — ramka olinadi (`.pair-timer.bare`),
+   tugma qadam sarlavhasi ostida turadi; taymer ishlaganda/tugaganda ramka qaytadi.
+   🔴 Ramka olingach **⛶ bo'sh ustun ustida yolg'iz qolmasin** (F-0926-04: 5–6-Modulda 77 ekran, PM'da 3 ekran) —
+   Zoomable o'zini o'lchaydi (`scripts/codemod-zbtn-float.py` → `.z-float`) yoki `<Zoomable off={!active}>`.
+   Darvoza: `tools/page-audit.mjs` **ZBTN=0**.
+4. **ico-emoji qatlami yo'q** — chip/karta/oqim/jihoz yorliqlari oldidagi `ico:`/`sIco`/`tIco` belgilar,
+   `<span className="…-ico">`, `sw-node` diagramma belgilari, `note-h` prefiksi. QOLADI: `ic:` RECAPS
+   (etalonlarda bor), olam-matni (Telegram xabari 🍕 🤖 👋 — bot shunday gapiradi), tizim-UI (🏅 151-qonun,
+   🏆/🥇 podium, 🔥 streak, ⚡ jonli, 📊 mentor-panel, 📖/🗣️ recap, 📝 uy vazifasi, ✓ ✗ → ←).
+5. **Qora tugma yo'q** (F-0819-56 ning davomi) — `.btn/.rc-btn/.lp-done-btn` `background: ${T.accent}; color: #fff`;
+   `.mstats-reveal` — `paper/accent/1px accent`, `:hover`/`.ready` da `color: #fff` majburiy (accent ustida
+   accent yozuv ko'rinmaydi — BotIntro 26.09 da tutildi).
+6. **Takror yo'riq yo'q** (bridge 44/50-band) — mentor aytgan gapni variant ostidagi kursiv qator qaytarmaydi.
+   Fleshkarta «bosing» yo'rig'i (`.fc-cue`, `.fc-hint` matni) — **faqat `InternetLesson` ning 1–3-kartasida**
+   (`swapRef.current < 3`); boshqa hamma darsda 1-kartada ham YO'Q (foydalanuvchi 26.09: «UI'ni buzadi»).
+   Codemod: `scripts/codemod-fc-hint.py`.
+
+**PM global tozalash (F-0926-04, 25 PM dars; foydalanuvchi 26.09 so'zma-so'z ma'nosi):**
+7. **Bir sahifada bir ma'no bir marta.** Mentor gapi bilan blok bir xil gapirsa — MENTOR QOLADI, blok ketadi.
+   Sarlavha bilan ustun-yorlig'i, qadam-chipi bilan karta sarlavhasi («1-qaror» · «1-qaror»), sarlavha bilan
+   🎯 takeaway («Dars oxirida siz …») — bittasi qoladi. Maqsad-ekrani sarlavhasi aniq «Bugun … » gap bo'ladi.
+   TaskSpec sarlavhasidagi «3 tadan N tasi yozildi» sanog'i olinadi — holatni qadam-chiplari ko'rsatadi.
+8. **Maydonning tepasida HAM ichida HAM yozuv yo'q.** Yorliq qisqa savol bo'lib placeholder ichiga kiradi,
+   `aria-label` = to'liq savol. Istisno: oldindan to'lib keladigan maydon — karta boshida bitta qator
+   «belgi · Nom · taymer», maydon ichida faqat «masalan: …» (PmLesson3 s13).
+9. **Bloklar tepasi bir chiziqda.** Ikki ustunda asosiy qutilar farqi ≤ 2px; ustunni pastga itaradigan
+   `justify-content: center` / `margin-top: auto` → `flex-start`. Qarshi ustunda ortiqcha qator bo'lsa —
+   `.cc-ghost` (ko'rinmas nusxa) yoki yorliq o'z qutisi ustiga.
+   🔴 F-0926-05 (foydalanuvchi: «bloklarni boshlanish balandligi bir xil bo'lishi kerak»): 3–4 ustunli qator ham
+   shu qoida; «kod → natija» sxemasi (`.stq`, `.kdx`) — `align-items: flex-start`, strelka `align-self: center`;
+   har xil uzunlikdagi kartalar hovuzi (`.mt-pool`) — `align-items: stretch` (tepa ham, balandlik ham bir xil).
+   Istisno: bosqich-yorlig'i («1 KIMNI TANLANG») + variantlar yonida karta — yorliq tepasi karta tepasi bilan
+   bir chiziqda bo'lsa QOLADI (foydalanuvchi 26.09).
+10. **Baland rang yo'q.** Katta to'yingan fon (tanlangan variant to'liq to'ldirilgan) → `…Soft` fon yoki
+   `box-shadow: 0 0 0 2px rang` halqa. Accent tugma va kod-oyna tegilmaydi.
+11. **Test izohi — qisqa.** Natija yorlig'i («To'g'ri» / «Qaytadan urinib ko'ring») tepada; izoh «To'g'ri — »
+   bilan boshlanmaydi va variant matnini qaytarmaydi — faqat nega. «💡 Yordam / ⭐ Qo'shimcha» — uzuq chiziqli
+   quti emas, matn-havola (16-qonun). Joy so'zlari («pastda», «chapda») mentor gapida ishlatilmaydi —
+   telefonda joylashuv o'zgaradi.
+12. **Hech narsa tugmalar qatori orqasida qolmaydi — javobdan KEYINGI holatda ham** (F-0926-05). 1280×800 da
+   izoh/namuna ochilgach ham kontent navigatsiya chizig'idan yuqorida tugaydi. Yechim tartibi: (a) ustma-ust
+   emas, yonma-yon (rasm + izoh, PmLesson12 s0 `.hopen`); (b) ixchamlash — juftlar 2×2, oraliq kichrayadi
+   (PmLesson4 s0 `.hk-pay`, PmLesson2 `PagePreview tight`); (c) matn qisqartirish — oxirgi chora.
+   Oldingi foydalanuvchi qarori bilan joylashgan blok (PmLesson4 s0: izoh kartalar USTIDA, F-0916-01 Q12)
+   o'rnidan ko'chirilmaydi. RU matn uzunroq — o'lchov ikkala tilda (`--lang=ru`).
+13. **Cho'zilgan bo'sh quti yo'q** (F-0926-05 #17/#20, foydalanuvchi: «bitta katta karta bom-bo'shday tuyulmasin»).
+   Karta balandligi ichidagiga mos: `flex-grow: 1` / `max-height` bilan ekranni to'ldirish (`.wsp-ed`, `.rcp-flow`) yo'q;
+   ko'p bosqichli karta har bosqich bilan o'sadi. Blok qolgan joyning o'rtasiga tushirilmaydi (`margin-top: auto`) —
+   mentor gapining shundoq ostida turadi. Yordam/Qo'shimcha havolasi o'z paneli ostida, ustun oyog'ida osilmaydi.
+14. **Holat bir marta aytiladi** (F-0926-05 #16). Tugma «✓ Bajarildi» ga aylansa — ostidagi takror yashil yozuv
+   (`done-mini`) va panelning yashil ramkasi (`.kdpanel.is-done`) yo'q. Tugma yo'q joyda (kompilyator o'zi tasdiqlaydi)
+   `done-mini` — yagona natija xabari, QOLADI.
+15. **Yumshoq, lekin bosiladigan** (F-0926-05 #5/#8, foydalanuvchi: «biroz, juda yumshoq bo'lmasin»). Sudraladigan chip —
+   oq fon + `border: 2px solid accent` + accent matn + «⠿» ushlagich (halqa `box-shadow` bilan EMAS — `tap-hint`
+   animatsiyasi `box-shadow`ni almashtirib halqani o'chiradi). Qadam-raqami doirasi (`.rcp-n`) — `accentSoft` fon +
+   accent raqam + 1.5px halqa. Rangli belgilar qatori (5 bo'lim) — `saturate(0.55)`, ranglar farqi qoladi.
+
+**Darvoza:** `npm run lint:dizayn -- <fayl>` (D1 stripe · D2 kesik 🔴, D3–D6 🟡, emoji ⚪ o'lchov) + `lint:dark` 0.
+**Codemodlar** (quruq yurish → `--write`): `scripts/codemod-stripe.mjs` · `codemod-dark-btn.mjs` ·
+`codemod-frame-dash.mjs` (hisobotda eng yaqin mentor-gapni ko'rsatadi — chorlov borligi KO'Z bilan tekshiriladi) ·
+`codemod-ico.mjs` · `codemod-ui-clean.py` (yo'riq/tugma/sarlavha/savol-emoji, tepa-bar, bo'sh Zoomable) ·
+`codemod-fc-hint.py` · `codemod-taskspec.py` (sanoq · Yordam-quti · «To'g'ri —») · `codemod-zbtn-float.py` (⛶). O'lchov: `tools/page-audit.mjs <fayl> --clicks=4 --shots`
+(DUP · ALIGN · INP · LOUD · ZBTN · SCROLL — DUP nomzod, har biri KO'Z bilan tasdiqlanadi; SCROLL 26.09 dan asosiy dars-qutisini o'lchaydi — avval hujjatni o'lchab doim 0 berardi; ALIGN 2–4 ustun, >6px). Bo'shab qolgan holat-qoida (`.x.done { }`) codemoddan keyin QO'LDA halqa/fon oladi.
+**O'lchov (26.09, 5-Modul 11 dars):** stripe 139 · qora tugma 60 · frame-dash 41 · ico 278 o'zgarish;
+emoji BotIntro 375→280; gates 6/6 · jsx TOZA · dizayn 0 (kesik-ok 3).
+**Bog'liq:** 111-qonun (7-soniya/olib-tashlash testi) · F-0819-56 (dark-lint) · bridge PILOT_DIZAYN_NAQSH 8-bo'lim.

@@ -104,6 +104,43 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi —
+  // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
+  const [zFloat, setZFloat] = useState(false);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
+    const ink = (n) => {
+      if (!el.contains(n) || n === el || n.classList?.contains('zoom-btn') || n.closest?.('.zoom-btn')) return false;
+      if (/^(IMG|svg|CANVAS|INPUT|TEXTAREA|BUTTON|VIDEO|SELECT|path|rect|circle|line|polygon)$/.test(n.tagName)) return true;
+      if ([...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true;
+      const cs = getComputedStyle(n); const bg = cs.backgroundColor.match(/[\d.]+/g);
+      return (bg && (bg.length < 4 || Number(bg[3]) > 0.05)) || parseFloat(cs.borderTopWidth) > 0 || cs.boxShadow !== 'none';
+    };
+    const run = () => {
+      const zb = el.querySelector(':scope > .zoom-btn');
+      if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
+      let hit = false;
+      for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
+        if (x < zr.left) continue; if (document.elementsFromPoint(x, y).some(ink)) { hit = true; break; }
+      }
+      setZFloat(!hit);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
+    sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
+  useLayoutEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -114,8 +151,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -258,7 +295,7 @@ const RECAPS = {
     cards: [
       { ic: "1️⃣", h: { uz: "Bir qadamli ish", ru: 'Задача в один шаг' }, body: { uz: <>Aniq, bir martalik vazifa (tarjima, manzil) — <b>byuro</b> yetadi.</>, ru: <>Чёткая разовая задача (перевод, адрес) — хватит <b>бюро</b>.</> } },
       { ic: "🔁", h: { uz: "Ko'p qadamli maqsad", ru: 'Многошаговая цель' }, body: { uz: <>Ko'p qadamli, tizim bilan ishlaydigan maqsad — <b>detektiv</b> kerak.</>, ru: <>Многошаговая цель, где нужно работать с системой — нужен <b>детектив</b>.</> } },
-      { ic: "⚖️", h: { uz: "To'g'ri vosita", ru: 'Правильный инструмент' }, body: { uz: <>Oddiy ishga detektiv chaqirish — <b>ortiqcha murakkablik</b> (over-engineering).</>, ru: <>Звать детектива на простое дело — <b>лишняя сложность</b> (over-engineering).</> }, ask: { uz: "Nega har ishga agent kerak emas?", ru: 'Почему агент нужен не в каждой задаче?' } },
+      { ic: "⚖️", h: { uz: "To'g'ri vosita", ru: 'Правильный инструмент' }, body: { uz: <>Oddiy ishga detektiv chaqirish — <b>ortiqcha murakkablik</b>.</>, ru: <>Звать детектива на простое дело — <b>лишняя сложность</b>.</> }, ask: { uz: "Nega har ishga agent kerak emas?", ru: 'Почему агент нужен не в каждой задаче?' } },
     ]
   },
   14: {
@@ -274,7 +311,7 @@ const RECAPS = {
     cards: [
       { ic: "🎯", h: { uz: "Avval — vazifa", ru: 'Сначала — задача' }, body: { uz: <>Hammasi <b>vazifadan</b> boshlanadi: agentga maqsad beriladi.</>, ru: <>Всё начинается с <b>задачи</b>: агенту дают цель.</> } },
       { ic: "👁️", h: { uz: "Kuzat → xulosa → harakat", ru: 'Наблюдай → вывод → действие' }, body: { uz: <>Agent kuzatadi, xulosa qiladi (qaysi ruxsatnoma?), so'ng <b>harakat</b> qiladi.</>, ru: <>Агент наблюдает, делает вывод (какой пропуск?), затем <b>действует</b>.</> } },
-      { ic: "🔁", h: { uz: "Natijani ko'r → qayta", ru: 'Смотри результат → снова' }, body: { uz: <>Amaldan keyin natijani ko'radi — maqsad tugamasa qayta kuzatadi.</>, ru: <>После действия смотрит результат — если цель не достигнута, наблюдает снова.</> }, vis: <RcFlow items={[{ uz: '🎯 Vazifa', ru: '🎯 Задача' }, { uz: '👁️ Kuzat', ru: '👁️ Наблюдай' }, { uz: '🧠 Xulosa', ru: '🧠 Вывод' }, { uz: '🚶 Harakat', ru: '🚶 Действие' }, { uz: '🔁 Natija', ru: '🔁 Результат' }]} />, ask: { uz: "Nega agent aylanada ishlaydi?", ru: 'Почему агент работает по кругу?' } },
+      { ic: "🔁", h: { uz: "Natijani ko'r → qayta", ru: 'Смотри результат → снова' }, body: { uz: <>Amaldan keyin natijani ko'radi — maqsad tugamasa qayta kuzatadi.</>, ru: <>После действия смотрит результат — если цель не достигнута, наблюдает снова.</> }, vis: <RcFlow items={[{ uz: 'Vazifa', ru: 'Задача' }, { uz: 'Kuzat', ru: 'Наблюдай' }, { uz: 'Xulosa', ru: 'Вывод' }, { uz: 'Harakat', ru: 'Действие' }, { uz: 'Natija', ru: 'Результат' }]} />, ask: { uz: "Nega agent aylanada ishlaydi?", ru: 'Почему агент работает по кругу?' } },
     ]
   }
 };
@@ -348,7 +385,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : tr({ uz: <>Javob berdi: <b>{answered}</b> / {total}</>, ru: <>Ответили: <b>{answered}</b> / {total}</> })}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -388,11 +425,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась непонятной для класса. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish —', ru: '📖 Разбираем заново —' })} {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish —', ru: 'Разбираем заново —' })} {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. При желании коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс усвоил тему. Спокойно продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.`, ru: `Ответивших мало (${answered}) — по проценту вывод сделать трудно. Оцените сами.` })}</p>}
@@ -629,16 +666,16 @@ const VS_ROWS = [
 
 // ===== RUXSATNOMALAR (s7) — detektiv tizimga ulanadi =====
 const TOOLS = [
-  { id: 'arxiv', ico: '📁', label: { uz: 'Arxiv', ru: 'Архив' }, desc: { uz: "Detektiv arxivga kirib eski yozuvlarni o'qiydi — bu sizning ma'lumot bazasi (DB) so'rovingiz (tool).", ru: 'Детектив заходит в архив и читает старые записи — это ваш запрос к базе данных (DB) (tool).' } },
-  { id: 'ekspert', ico: '🔬', label: { uz: 'Ekspert', ru: 'Эксперт' }, desc: { uz: "Detektiv laboratoriyaga dalilni topshirib tahlil so'raydi — bu tashqi xizmat/API chaqiruvi (tool).", ru: 'Детектив сдаёт улику в лабораторию и просит анализ — это вызов внешнего сервиса/API (tool).' } },
-  { id: 'aloqa', ico: '📡', label: { uz: 'Aloqa', ru: 'Связь' }, desc: { uz: "Detektiv shtabga xabar yuboradi — bu xabar yuborish funksiyasi (tool).", ru: 'Детектив отправляет сообщение в штаб — это функция отправки сообщения (tool).' } }
+  { id: 'arxiv', label: { uz: 'Arxiv', ru: 'Архив' }, desc: { uz: "Detektiv arxivga kirib eski yozuvlarni o'qiydi — bu sizning ma'lumot bazasi (DB) so'rovingiz (tool).", ru: 'Детектив заходит в архив и читает старые записи — это ваш запрос к базе данных (DB) (tool).' } },
+  { id: 'ekspert', label: { uz: 'Ekspert', ru: 'Эксперт' }, desc: { uz: "Detektiv laboratoriyaga dalilni topshirib tahlil so'raydi — bu tashqi xizmat/API chaqiruvi (tool).", ru: 'Детектив сдаёт улику в лабораторию и просит анализ — это вызов внешнего сервиса/API (tool).' } },
+  { id: 'aloqa', label: { uz: 'Aloqa', ru: 'Связь' }, desc: { uz: "Detektiv shtabga xabar yuboradi — bu xabar yuborish funksiyasi (tool).", ru: 'Детектив отправляет сообщение в штаб — это функция отправки сообщения (tool).' } }
 ];
 
 // ===== DETEKTIV DVIGATELI (s5) =====
 const ENGINE = [
-  { id: 'perceive', ico: '👁️', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
-  { id: 'decide', ico: '🧠', label: { uz: 'Xulosa', ru: 'Вывод' } },
-  { id: 'act', ico: '🚶', label: { uz: 'Harakat', ru: 'Действие' } }
+  { id: 'perceive', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
+  { id: 'decide', label: { uz: 'Xulosa', ru: 'Вывод' } },
+  { id: 'act', label: { uz: 'Harakat', ru: 'Действие' } }
 ];
 
 // ===== TASK DECIDER (s10) =====
@@ -652,25 +689,25 @@ const TASKS = [
 // ===== CASE (s12) — shahar detektiv sikli =====
 // ⚠️ `ico` — til-mustaqil kalit: quyida faza-yorlig'i va «ruxsatnoma soni» AYNAN shu emoji bo'yicha hisoblanadi.
 const CASE_STEPS = [
-  { ico: '🎯', txt: { uz: "Vazifa: «Yo'qolgan yukni top va egasiga qaytar.»", ru: 'Задача: «Найди пропавший груз и верни владельцу.»' } },
-  { ico: '👁️', txt: { uz: "Kuzat: detektiv arxivga kirib so'nggi yozuvlarni o'qidi (ruxsatnoma: arxiv).", ru: 'Наблюдение: детектив зашёл в архив и прочитал последние записи (пропуск: архив).' } },
-  { ico: '🧠', txt: { uz: "Xulosa: yuk B-manzilda — o'sha yerni tekshirish kerak.", ru: 'Вывод: груз по адресу B — надо проверить это место.' } },
-  { ico: '🚶', txt: { uz: "Harakat: B-manzilga bordi, yukni topdi ✅ (ruxsatnoma orqali amal).", ru: 'Действие: доехал до адреса B, нашёл груз ✅ (действие по пропуску).' } },
-  { ico: '🧠', txt: { uz: "Xulosa: endi egasiga xabar berish kerak.", ru: 'Вывод: теперь надо сообщить владельцу.' } },
-  { ico: '🚶', txt: { uz: "Harakat: aloqa idorasidan egasiga xabar yubordi 📨✅.", ru: 'Действие: через ведомство связи отправил владельцу сообщение 📨✅.' } },
-  { ico: '✅', txt: { uz: "Vazifa bajarildi. Detektiv 2 ta ruxsatnomani ishlatib, ishni o'zi hal qildi.", ru: 'Задача выполнена. Детектив использовал 2 пропуска и решил дело сам.' } }
+  { txt: { uz: "Vazifa: «Yo'qolgan yukni top va egasiga qaytar.»", ru: 'Задача: «Найди пропавший груз и верни владельцу.»' } },
+  { txt: { uz: "Kuzat: detektiv arxivga kirib so'nggi yozuvlarni o'qidi (ruxsatnoma: arxiv).", ru: 'Наблюдение: детектив зашёл в архив и прочитал последние записи (пропуск: архив).' } },
+  { txt: { uz: "Xulosa: yuk B-manzilda — o'sha yerni tekshirish kerak.", ru: 'Вывод: груз по адресу B — надо проверить это место.' } },
+  { txt: { uz: "Harakat: B-manzilga bordi, yukni topdi ✅ (ruxsatnoma orqali amal).", ru: 'Действие: доехал до адреса B, нашёл груз ✅ (действие по пропуску).' } },
+  { txt: { uz: "Xulosa: endi egasiga xabar berish kerak.", ru: 'Вывод: теперь надо сообщить владельцу.' } },
+  { txt: { uz: "Harakat: aloqa idorasidan egasiga xabar yubordi 📨✅.", ru: 'Действие: через ведомство связи отправил владельцу сообщение 📨✅.' } },
+  { txt: { uz: "Vazifa bajarildi. Detektiv 2 ta ruxsatnomani ishlatib, ishni o'zi hal qildi.", ru: 'Задача выполнена. Детектив использовал 2 пропуска и решил дело сам.' } }
 ];
 
 // ===== DETEKTIV OQIMI (final s15) =====
 const FLOW = [
-  { id: 'goal', ico: '🎯', label: { uz: 'Vazifa', ru: 'Задача' } },
-  { id: 'perceive', ico: '👁️', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
-  { id: 'decide', ico: '🧠', label: { uz: 'Xulosa', ru: 'Вывод' } },
-  { id: 'act', ico: '🚶', label: { uz: 'Harakat', ru: 'Действие' } },
-  { id: 'loop', ico: '🔁', label: { uz: "Natijani ko'r", ru: 'Смотри результат' } }
+  { id: 'goal', label: { uz: 'Vazifa', ru: 'Задача' } },
+  { id: 'perceive', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
+  { id: 'decide', label: { uz: 'Xulosa', ru: 'Вывод' } },
+  { id: 'act', label: { uz: 'Harakat', ru: 'Действие' } },
+  { id: 'loop', label: { uz: "Natijani ko'r", ru: 'Смотри результат' } }
 ];
 // ⚠️ label — {uz,ru} obyekt: shablon-stringlar HAR TIL uchun alohida yig'iladi (modul-darajada tr() TAQIQ).
-const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.ico} ${f.label.uz}`, ru: `${f.ico} ${f.label.ru}` } }));
+const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
 const FLOW_ORDER = FLOW.map(f => f.id);
 const FLOW_HINTS = FLOW.map(f => ({ uz: `${f.label.uz} bosqichi`, ru: `Этап «${f.label.ru}»` }));
 
@@ -690,10 +727,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Shaharga kirdingiz. Bitta iltimos: «do'stimga sovg'a top, 200 minggacha, tez yetkazilsin». Ikki xil <span className="italic" style={{ color: T.accent }}>xizmat</span>.</>, ru: <>Вы приехали в город. Одна просьба: «найди подарок другу, до 200 тысяч, доставить быстро». Две разные <span className="italic" style={{ color: T.accent }}>службы</span>.</> })}</h1>
-        <Mentor>{tr({ uz: "O'tgan darslarda AI «miya»sini ko'rdik. Endi savol: AI tizimda qanday turlarda bo'ladi? Tugmani bosing — bir iltimosga ma'lumot byurosi va detektiv qanday javob berishini solishtiring.", ru: 'На прошлых уроках мы посмотрели «мозг» ИИ. Теперь вопрос: в каком виде ИИ живёт в системе? Нажмите кнопку — сравните, как на одну просьбу отвечают справочное бюро и детектив.' })}</Mentor>
+        <Mentor>{tr({ uz: "O'tgan darslarda AI maslahatchisini ko'rdik. Endi savol: AI tizimda qanday turlarda bo'ladi? Tugmani bosing — bir iltimosga ma'lumot byurosi va detektiv qanday javob berishini solishtiring.", ru: 'На прошлых уроках мы посмотрели ИИ-советчика. Теперь вопрос: в каком виде ИИ живёт в системе? Нажмите кнопку — сравните, как на одну просьбу отвечают справочное бюро и детектив.' })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <div className="sk-info" style={{ borderLeft: `4px solid ${T.ink3}` }}>
+            <div className="sk-info" style={{ }}>
               <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: "💬 Ma'lumot byurosi (faqat javob)", ru: '💬 Справочное бюро (только ответ)' })}</p>
               {tried ? <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Mana mos variantlar: quloqchin (180k), powerbank (150k). O'zingiz tanlab buyurtma bering.»", ru: '«Вот подходящие варианты: наушники (180 тыс.), повербанк (150 тыс.). Выберите и закажите сами.»' })}</p>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>…</p>}
@@ -713,7 +750,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval tugmani bosing ←', ru: 'Сначала нажмите кнопку ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Ma'lumot byurosi — <b>maslahatchi</b> (faqat javob). <b>Detektiv-agent</b> — tizimning aqlli <b>komponenti</b>: o'zi qadamlar qo'yib, ruxsatnomalar (arxiv, aloqa) orqali ishni bajaradi. Bugun agentning arxitekturadagi o'rnini ko'ramiz.</>, ru: <>Именно! Справочное бюро — <b>советчик</b> (только ответ). <b>Детектив-агент</b> — умный <b>компонент</b> системы: сам делает шаги и по пропускам (архив, связь) доводит дело до конца. Сегодня разберём место агента в архитектуре.</> })}</p>}
           </Col>
         </Split></Zoomable>
@@ -787,10 +823,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="fade-step" key={active} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <p className="flow-label">{tr(cur.k)}</p>
-                  <div className="frame" style={{ borderLeft: `4px solid ${T.ink3}` }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: "💬 Ma'lumot byurosi", ru: '💬 Справочное бюро' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.ai)}</p></div>
+                  <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: "💬 Ma'lumot byurosi", ru: '💬 Справочное бюро' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.ai)}</p></div>
                   <div className="agent-card"><span className="agent-lbl">{tr({ uz: '🕵️ Detektiv', ru: '🕵️ Детектив' })}</span><p className="agent-msg">{tr(cur.agent)}</p></div>
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Jihatni bosing ←', ru: 'Нажмите на пункт ←' })}</p></div>}
+              : null}
           </Col>
         </div></Zoomable>
       </div>
@@ -805,10 +841,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = run;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const AG = [
-    { ico: '👁️', txt: { uz: "Arxivni tekshirdi — mos yozuv bormi?", ru: 'Проверил архив — есть ли подходящая запись?' } },
-    { ico: '🚶', txt: { uz: "Kerakli idoraga bordi va band qildi", ru: 'Дошёл до нужного ведомства и забронировал' } },
-    { ico: '🚶', txt: { uz: "Aloqa idorasidan tez yetkazishni rasmiylashtirdi", ru: 'Через ведомство связи оформил быструю доставку' } },
-    { ico: '✅', txt: { uz: "Maqsad bajarildi", ru: 'Цель достигнута' } }
+    { txt: { uz: "Arxivni tekshirdi — mos yozuv bormi?", ru: 'Проверил архив — есть ли подходящая запись?' } },
+    { txt: { uz: "Kerakli idoraga bordi va band qildi", ru: 'Дошёл до нужного ведомства и забронировал' } },
+    { txt: { uz: "Aloqa idorasidan tez yetkazishni rasmiylashtirdi", ru: 'Через ведомство связи оформил быструю доставку' } },
+    { txt: { uz: "Maqsad bajarildi", ru: 'Цель достигнута' } }
   ];
   return (
     <Stage eyebrow={{ uz: "Animatsiya · bir vazifa, ikki yo'l", ru: 'Анимация · одна задача, два пути' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
@@ -818,7 +854,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={run} onClick={() => { setRun(true); setSc(n => n + 1); }}>{run ? tr({ uz: "✓ Ko'rsatildi", ru: '✓ Показано' }) : tr({ uz: "▶ Ikki yondashuvni ishga tushir", ru: '▶ Запустить оба подхода' })}</button>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info" style={{ borderLeft: `4px solid ${T.ink3}` }}>
+            <div className="sk-info" style={{ }}>
               <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Byuro — bir qadam', ru: '💬 Бюро — один шаг' })}</p>
               {run ? <div className="fade-step"><p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{tr({ uz: '«Mana variantlar: …» → tugadi.', ru: '«Вот варианты: …» → всё.' })}</p><span className="loop-badge" style={{ background: T.bg, color: T.ink2 }}>{tr({ uz: '1 qadam · faqat matn', ru: '1 шаг · только текст' })}</span></div>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: 'Tugmani bosing →', ru: 'Нажмите кнопку →' })}</p>}
@@ -829,11 +865,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {run && AG.map((s, i) => (
                 <div key={i} className={`agent-step fade-step ${s.ico === '✅' ? 'done' : ''}`} style={{ animationDelay: `${i * 0.45}s` }}>
-                  <span className="as-phase">{s.ico} {i < AG.length - 1 ? tr({ uz: `amal ${i + 1}`, ru: `действие ${i + 1}` }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
+                  <span className="as-phase">{i < AG.length - 1 ? tr({ uz: `amal ${i + 1}`, ru: `действие ${i + 1}` }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
                   <span className="as-txt">{tr(s.txt)}</span>
                 </div>
               ))}
-              {!run && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing — detektiv ishga tushadi', ru: 'Нажмите кнопку — детектив возьмётся за дело' })}</p></div>}
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv 3 ta amal qildi va tizimga ta'sir o'tkazdi. Byuro esa faqat gapirdi. Mana arxitektura farqi.", ru: 'Детектив сделал 3 действия и повлиял на систему. А бюро только поговорило. Вот она, архитектурная разница.' })}</p></div>}
           </Col>
@@ -887,7 +922,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {ENGINE.map((p, i) => (
             <React.Fragment key={p.id}>
               {i > 0 && <span className="fl-track" />}
-              <div className={`fl-node ${step > i ? 'done' : ''}`}><span className="fl-node-ico">{p.ico}</span><span className="fl-node-lbl">{tr(p.label)}</span></div>
+              <div className={`fl-node ${step > i ? 'done' : ''}`}><span className="fl-node-lbl">{tr(p.label)}</span></div>
             </React.Fragment>
           ))}
           <span className="archloop" style={{ marginLeft: 6 }}>{tr({ uz: '↺ qayta', ru: '↺ заново' })}</span>
@@ -920,15 +955,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Detektivning «qo'llari» — bu ruxsatnomalar (toollar). Va eng muhimi: <b style={{ color: T.ink }}>ruxsatnomalar — bu sizning tizimingizning qismlari</b>: arxiv so'rovi (DB), ekspert chaqiruvi (API), aloqa xabari (bot). Tugmani bosing.</>, ru: <>«Руки» детектива — это пропуска (tools). И самое главное: <b style={{ color: T.ink }}>пропуска — это части вашей системы</b>: запрос к архиву (DB), вызов эксперта (API), сообщение через связь (бот). Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.accent}` }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🗝️ Ruxsatnoma nima?', ru: '🗝️ Что такое пропуск?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ruxsatnoma (tool) — detektiv chaqira oladigan funksiya. U orqali agent tizimning boshqa komponentlariga (idoralarga) ta'sir qiladi.", ru: 'Пропуск (tool) — функция, которую детектив может вызвать. Через него агент влияет на другие компоненты системы (ведомства).' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🗝️ Ruxsatnoma nima?', ru: '🗝️ Что такое пропуск?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ruxsatnoma (tool) — detektiv chaqira oladigan funksiya. U orqali agent tizimning boshqa komponentlariga (idoralarga) ta'sir qiladi.", ru: 'Пропуск (tool) — функция, которую детектив может вызвать. Через него агент влияет на другие компоненты системы (ведомства).' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "Ruxsatnomalar tizimga qanday ulanadi?", ru: 'Как пропуска подключаются к системе?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {TOOLS.map(t => <div key={t.id} className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{t.ico} <b>{tr({ uz: <>{tr(t.label)} ruxsatnomasi:</>, ru: <>Пропуск «{tr(t.label)}»:</> })}</b> {tr(t.desc)}</p></div>)}
+                  {TOOLS.map(t => <div key={t.id} className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}><b>{tr({ uz: <>{tr(t.label)} ruxsatnomasi:</>, ru: <>Пропуск «{tr(t.label)}»:</> })}</b> {tr(t.desc)}</p></div>)}
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Demak detektiv yangi tizim emas — u mavjud idoralaringizni (arxiv/ekspert/aloqa) ruxsatnoma orqali ishlatadi. U — aqlli muvofiqlashtiruvchi.", ru: 'Значит детектив — не новая система: он через пропуска пользуется вашими уже существующими ведомствами (архив/эксперт/связь). Он — умный координатор.' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -955,19 +990,19 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="cm-core"><div className="cm-core-node" style={{ background: T.accent }}>🕵️<span>{tr({ uz: 'Detektiv', ru: 'Детектив' })}</span></div></div>
           <span className="cm-arrow">→</span>
           <div className="cm-clients">
-            {TOOLS.map(t => <div key={t.id} className={`cm-client ${seen.has(t.id) ? 'on' : ''} ${active === t.id ? 'sel' : ''}`}><span>{t.ico}</span><span className="cm-lbl">{tr(t.label)}</span></div>)}
+            {TOOLS.map(t => <div key={t.id} className={`cm-client ${seen.has(t.id) ? 'on' : ''} ${active === t.id ? 'sel' : ''}`}><span></span><span className="cm-lbl">{tr(t.label)}</span></div>)}
           </div>
         </div></div>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {TOOLS.map(t => <button key={t.id} className="gchip" onClick={() => tap(t.id)} style={seen.has(t.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(t.id) ? '✓ ' : ''}{t.ico} {tr(t.label)}</button>)}
+              {TOOLS.map(t => <button key={t.id} className="gchip" onClick={() => tap(t.id)} style={seen.has(t.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(t.id) ? '✓ ' : ''}{tr(t.label)}</button>)}
             </div>
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h">{cur.ico} {tr({ uz: <>{tr(cur.label)} ruxsatnomasi</>, ru: <>Пропуск «{tr(cur.label)}»</> })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Ruxsatnomani bosing ←', ru: 'Нажмите на пропуск ←' })}</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr({ uz: <>{tr(cur.label)} ruxsatnomasi</>, ru: <>Пропуск «{tr(cur.label)}»</> })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv — bitta komponent, lekin uchta ruxsatnoma orqali butun tizim bilan ishlaydi. Qancha ruxsatnoma bersangiz — shuncha ish qila oladi (ehtiyot bo'lib).", ru: 'Детектив — один компонент, но через три пропуска работает со всей системой. Сколько пропусков дадите — столько он и сможет сделать (будьте осторожны).' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -985,14 +1020,14 @@ const Screen8 = (props) => (
       ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как детектив-агент <span className="italic" style={{ color: T.accent }}>влияет</span> на город?</h2></>
     }}
     options={[
-      { uz: "Sehr bilan, hech qanday ruxsatnomasiz", ru: 'Волшебством, вообще без пропусков' },
+      { uz: "O'z-o'zidan, hech qanday ruxsatnomasiz", ru: 'Сам собой, вообще без пропусков' },
       { uz: "Faqat gapirib — boshqa hech narsa qilmasdan", ru: 'Только разговором — больше ничего не делая' },
       { uz: "Ruxsatnomalar orqali — arxiv, ekspert va aloqaga", ru: 'Через пропуска — к архиву, эксперту и связи' },
       { uz: "To'g'ridan-to'g'ri fuqaroning uyiga kirib olib", ru: 'Напрямую заходя в дом горожанина' }
     ]} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Detektivning amallari — ruxsatnomalar orqali. Ruxsatnomalar esa sizning tizimingizning qismlari: arxiv so'rovi (DB), ekspert chaqiruvi (API), aloqa xabari (bot). Agent ularni qaysi tartibda ishlatishni o'zi tanlaydi.", ru: 'Верно! Действия детектива идут через пропуска. А пропуска — это части вашей системы: запрос к архиву (DB), вызов эксперта (API), сообщение через связь (бот). В каком порядке их применять, агент выбирает сам.' }}
     explainWrong={{
-      0: { uz: "Sehr emas — ruxsatnomalar siz yozgan oddiy funksiyalar. Agent faqat qaysi birini ishlatishni tanlaydi.", ru: 'Никакого волшебства — пропуска это обычные функции, которые написали вы. Агент лишь выбирает, какую применить.' },
+      0: { uz: "Ruxsatnomalar — siz yozgan oddiy funksiyalar. Agent faqat qaysi birini ishlatishni tanlaydi.", ru: 'Пропуска — это обычные функции, которые написали вы. Агент лишь выбирает, какую применить.' },
       1: { uz: "Faqat gapirish — bu ma'lumot byurosi. Detektiv ruxsatnomalar orqali real amal qiladi.", ru: 'Только говорить — это справочное бюро. Детектив через пропуска совершает реальные действия.' },
       3: { uz: "Detektiv ekranni yoki uyni o'zi o'zgartirmaydi — u ruxsatnomalar (arxiv/ekspert/aloqa) orqali tizimga ta'sir qiladi.", ru: 'Детектив сам не меняет ни экран, ни дом — он влияет на систему через пропуска (архив/эксперт/связь).' },
       default: { uz: "Detektiv ruxsatnomalar orqali (arxiv/ekspert/aloqa) amal qiladi.", ru: 'Детектив действует через пропуска (архив/эксперт/связь).' }
@@ -1012,14 +1047,14 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Detektiv kuchli, lekin har joyga kerak emas. Oddiy ish uchun ma'lumot byurosi yetadi — detektiv ortiqcha murakkablik. Tugmani bosib, qoidani ko'ring.", ru: 'Детектив силён, но нужен не везде. Для простого дела хватит справочного бюро — детектив тут лишняя сложность. Нажмите кнопку и посмотрите правило.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info" style={{ borderLeft: `4px solid ${T.ink3}` }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Byuro yetadi — qachon?', ru: '💬 Когда хватит бюро?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bir martalik, aniq ish: tarjima, matn yozish, manzil, savolga javob. Tizim bilan ko'p qadamli ishlash shart emas.", ru: 'Разовое, чёткое дело: перевод, написать текст, адрес, ответ на вопрос. Многошаговая работа с системой не нужна.' })}</p></div>
+            <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Byuro yetadi — qachon?', ru: '💬 Когда хватит бюро?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bir martalik, aniq ish: tarjima, matn yozish, manzil, savolga javob. Tizim bilan ko'p qadamli ishlash shart emas.", ru: 'Разовое, чёткое дело: перевод, написать текст, адрес, ответ на вопрос. Многошаговая работа с системой не нужна.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "Detektiv qachon kerak?", ru: 'Когда нужен детектив?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '🕵️ DETEKTIV — QACHON', ru: '🕵️ ДЕТЕКТИВ — КОГДА' })}</span><p className="agent-msg">{tr({ uz: "Ko'p qadamli, maqsadga yo'naltirilgan, tizim bilan ishlaydigan vazifa: shikoyatni to'liq hal qil, ma'lumot yig'ib qaror qil, o'zi bir necha amal bajar.", ru: 'Многошаговая задача с целью и работой по системе: полностью решить жалобу, собрать данные и принять решение, самому выполнить несколько действий.' })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: <b>bir qadam → byuro; ko'p qadamli maqsad → detektiv.</b> Keraksiz joyda detektiv chaqirish — over-engineering.</>, ru: <>Правило: <b>один шаг → бюро; многошаговая цель → детектив.</b> Звать детектива без нужды — over-engineering.</> })}</p></div>}
+              : null}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: <b>bir qadam → byuro; ko'p qadamli maqsad → detektiv.</b> Keraksiz joyda detektiv chaqirish — ortiqcha murakkablashtirish.</>, ru: <>Правило: <b>один шаг → бюро; многошаговая цель → детектив.</b> Звать детектива без нужды — переусложнение.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1048,7 +1083,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             {cur
-              ? <div className="frame" key={cur.id} style={{ borderLeft: `4px solid ${T.accent}` }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Vazifa', ru: '🧩 Задача' })} {idx + 1}/{TASKS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.task)}</p></div>
+              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Vazifa', ru: '🧩 Задача' })} {idx + 1}/{TASKS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.task)}</p></div>
               : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hammasi to'g'ri! Endi vazifaga qarab to'g'ri vositani tanlay olasiz — bu arxitektorning muhim qarori.", ru: 'Всё верно! Теперь вы умеете подбирать инструмент под задачу — это важное решение архитектора.' })}</p></div>}
           </Col>
           <Col>
@@ -1079,7 +1114,7 @@ const Screen11 = (props) => (
       { uz: "Ikkalasini birga chaqirib, javobni solishtirish", ru: 'Позвать обоих сразу и сравнить ответы' },
       { uz: "Hech qaysi — bu ular bajaradigan ish emas", ru: 'Никто — это не их задача' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Manzil ko'rsatish — bitta qadamli, aniq vazifa. Ma'lumot byurosi yetarli. Bunga detektiv chaqirish — keraksiz murakkablik (over-engineering). To'g'ri vositani tanlash muhim.", ru: 'Верно! Показать адрес — задача в один шаг и чёткая. Справочного бюро достаточно. Звать сюда детектива — лишняя сложность (over-engineering). Важно выбрать правильный инструмент.' }}
+    explainCorrect={{ uz: "To'g'ri! Manzil ko'rsatish — bitta qadamli, aniq vazifa. Ma'lumot byurosi yetarli. Bunga detektiv chaqirish — keraksiz murakkablik. To'g'ri vositani tanlash muhim.", ru: 'Верно! Показать адрес — задача в один шаг и чёткая. Справочного бюро достаточно. Звать сюда детектива — лишняя сложность. Важно выбрать правильный инструмент.' }}
     explainWrong={{
       1: { uz: "Detektiv har doim yaxshi emas — bir qadamli ish uchun u ortiqcha. Manzilga byuro yetadi.", ru: 'Детектив не всегда лучше — для дела в один шаг он избыточен. Для адреса хватит бюро.' },
       2: { uz: "Ikkalasini birga — keraksiz. Sodda ishni sodda vosita bilan qiling.", ru: 'Обоих сразу — незачем. Простое дело делайте простым инструментом.' },
@@ -1106,11 +1141,10 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {CASE_STEPS.slice(0, shown).map((s, i) => (
                 <div key={i} className={`agent-step fade-step ${s.ico === '✅' ? 'done' : ''}`}>
-                  <span className="as-phase">{s.ico} {s.ico === '🎯' ? tr({ uz: 'vazifa', ru: 'задача' }) : s.ico === '👁️' ? tr({ uz: 'kuzat', ru: 'наблюдай' }) : s.ico === '🧠' ? tr({ uz: 'xulosa', ru: 'вывод' }) : s.ico === '🚶' ? tr({ uz: 'harakat (ruxsatnoma)', ru: 'действие (пропуск)' }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
+                  <span className="as-phase">{s.ico === '🎯' ? tr({ uz: 'vazifa', ru: 'задача' }) : s.ico === '👁️' ? tr({ uz: 'kuzat', ru: 'наблюдай' }) : s.ico === '🧠' ? tr({ uz: 'xulosa', ru: 'вывод' }) : s.ico === '🚶' ? tr({ uz: 'harakat (ruxsatnoma)', ru: 'действие (пропуск)' }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
                   <span className="as-txt">{tr(s.txt)}</span>
                 </div>
               ))}
-              {shown === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing — detektiv ishga tushadi.', ru: 'Нажмите кнопку — детектив возьмётся за дело.' })}</p></div>}
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Vazifaga yetildi', ru: '✓ Цель достигнута' }) : shown === 0 ? tr({ uz: '▶ Detektivga vazifa berish', ru: '▶ Дать детективу задачу' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
@@ -1137,7 +1171,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Byuro faqat gapirgani uchun xavfsiz. Detektiv esa real amal qiladi (arxivga yozadi, pul, xabar) — shuning uchun unga vakolat chegarasi (order) beriladi. Tugmani bosing.", ru: 'Бюро безопасно, потому что только говорит. А детектив совершает реальные действия (пишет в архив, деньги, сообщения) — поэтому ему выдают рамки полномочий (ордер). Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.accent}` }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🕵️ Detektiv backend ichida', ru: '🕵️ Детектив внутри бэкенда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Arxitekturada detektiv — backend komponenti. U faqat siz bergan ruxsatnomalarga ega; bermagan ishingizni qila olmaydi.", ru: 'В архитектуре детектив — компонент бэкенда. У него есть только выданные вами пропуска; то, чего вы не дали, он сделать не может.' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🕵️ Detektiv backend ichida', ru: '🕵️ Детектив внутри бэкенда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Arxitekturada detektiv — backend komponenti. U faqat siz bergan ruxsatnomalarga ega; bermagan ishingizni qila olmaydi.", ru: 'В архитектуре детектив — компонент бэкенда. У него есть только выданные вами пропуска; то, чего вы не дали, он сделать не может.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: "Qanday chegara?", ru: 'Какие рамки?' })}</button>
           </Col>
           <Col>
@@ -1146,7 +1180,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🧾 <b>Cheklangan ruxsatnomalar:</b> faqat kerakli ruxsatnomalarni bering (o'chirish/to'lovni — yo'q).</>, ru: <>🧾 <b>Ограниченные пропуска:</b> выдавайте только нужные пропуска (удаление/оплату — нет).</> })}</p></div>
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✋ <b>Tasdiq:</b> xavfli amaldan oldin odam tasdig'ini so'rasin (order kerak).</>, ru: <>✋ <b>Подтверждение:</b> перед опасным действием пусть спросит разрешение человека (нужен ордер).</> })}</p></div>
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              : null}
             {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 KEYINGI DARS', ru: '📍 СЛЕДУЮЩИЙ УРОК' })}</span><p className="agent-msg">{tr({ uz: <>Agent va AI xulqini qanday <b>aniq shakllantirish</b> mumkin? Buni <b>Claude Skills</b> bilan qilamiz — keyingi darsda.</>, ru: <>Как <b>чётко задать</b> поведение агента и ИИ? Сделаем это через <b>Claude Skills</b> — на следующем уроке.</> })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -1311,10 +1345,10 @@ const QUIZ_BANK = [
   { q: { uz: "Bir martalik, aniq ish (masalan tarjima) uchun nima yetadi?", ru: 'Что достаточно для разового чёткого дела (например, перевода)?' }, opts: [{ uz: "Bunga ham albatta agent kerak", ru: 'Сюда тоже обязательно нужен агент' }, { uz: "Hech qaysi biri to'g'ri emas", ru: 'Ни один вариант не подходит' }, { uz: "Ikkalasini birga chaqirish", ru: 'Позвать обоих сразу' }, { uz: "Ma'lumot byurosi (oddiy AI) yetadi", ru: 'Хватит справочного бюро (обычного ИИ)' }], correct: 3 },
   { q: { uz: "Ko'p qadamli, tizim bilan ishlaydigan maqsad uchun nima kerak?", ru: 'Что нужно для многошаговой цели с работой по системе?' }, opts: [{ uz: "Bir javoblik ma'lumot byurosi", ru: 'Справочное бюро с одним ответом' }, { uz: "Oddiy chiziqli skript", ru: 'Обычный линейный скрипт' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд-часть' }, { uz: "Detektiv-agent (avtonom)", ru: 'Детектив-агент (самостоятельный)' }], correct: 3 },
   { q: { uz: "Detektiv-agent arxitekturada qayerda turadi?", ru: 'Где детектив-агент стоит в архитектуре?' }, opts: [{ uz: "Frontendda, fuqaro ko'radigan joyda", ru: 'На фронтенде, там где его видит горожанин' }, { uz: "Backend ichidagi komponent", ru: 'Компонент внутри бэкенда' }, { uz: "Baza (arxiv) ichida", ru: 'Внутри базы (архива)' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
-  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "Sehr yordamida, hech qanday kodsiz", ru: 'Волшебством, вообще без кода' }, { uz: "Ruxsatnomalar (tool) orqali: DB/API", ru: 'Через пропуска (tool): DB/API' }, { uz: "Faqat gapirib, amalsiz holda", ru: 'Только разговором, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
+  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kodsiz", ru: 'Сам собой, вообще без кода' }, { uz: "Ruxsatnomalar (tool) orqali: DB/API", ru: 'Через пропуска (tool): DB/API' }, { uz: "Faqat gapirib, amalsiz holda", ru: 'Только разговором, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
   { q: { uz: "Nega agentga vakolat chegarasi (guardrail) kerak?", ru: 'Зачем агенту рамки полномочий (guardrail)?' }, opts: [{ uz: "U real amal qiladi — xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "Chunki u juda sekin ishlaydi va kuttiradi", ru: 'Потому что он работает очень медленно и заставляет ждать' }, { uz: "Chunki u juda ko'p xotira egallaydi", ru: 'Потому что он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такие рамки не нужны' }], correct: 0 },
   { q: { uz: "Agentni «avtonom» qiladigan narsa nima?", ru: 'Что делает агента «самостоятельным»?' }, opts: [{ uz: "Juda katta xotira hajmi", ru: 'Очень большой объём памяти' }, { uz: "Chiroyli va zamonaviy interfeys", ru: 'Красивый и современный интерфейс' }, { uz: "Maqsadga yetguncha aylanadigan sikl", ru: 'Цикл, который крутится до достижения цели' }, { uz: "Juda tez internet aloqasi", ru: 'Очень быстрый интернет' }], correct: 2 },
-  { q: { uz: "Har vazifaga agent chaqirish nima deb ataladi?", ru: 'Как называется вызов агента под каждую задачу?' }, opts: [{ uz: "Bu eng to'g'ri yechim hisoblanadi", ru: 'Это считается самым правильным решением' }, { uz: "Resurslarni to'g'ri tejash usuli", ru: 'Способ грамотно экономить ресурсы' }, { uz: "Tizimni optimallashtirish usuli", ru: 'Способ оптимизировать систему' }, { uz: "Over-engineering (keraksiz murakkablik)", ru: 'Over-engineering (лишняя сложность)' }], correct: 3 },
+  { q: { uz: "Har vazifaga agent chaqirish nima deb ataladi?", ru: 'Как называется вызов агента под каждую задачу?' }, opts: [{ uz: "Bu eng to'g'ri yechim hisoblanadi", ru: 'Это считается самым правильным решением' }, { uz: "Resurslarni to'g'ri tejash usuli", ru: 'Способ грамотно экономить ресурсы' }, { uz: "Tizimni optimallashtirish usuli", ru: 'Способ оптимизировать систему' }, { uz: "Ortiqcha murakkablashtirish (keraksiz murakkablik)", ru: 'Переусложнение (лишняя сложность)' }], correct: 3 },
   { q: { uz: "Detektiv ish oqimining to'g'ri tartibi qanday?", ru: 'Каков правильный порядок рабочего потока детектива?' }, opts: [{ uz: "Harakat → kuzat → xulosa → vazifa → natija", ru: 'Действие → наблюдай → вывод → задача → результат' }, { uz: "Xulosa → harakat → natija → kuzat → vazifa", ru: 'Вывод → действие → результат → наблюдай → задача' }, { uz: "Vazifa → kuzat → xulosa → harakat → natija", ru: 'Задача → наблюдай → вывод → действие → результат' }, { uz: "Natija → vazifa → harakat → xulosa → kuzat", ru: 'Результат → задача → действие → вывод → наблюдай' }], correct: 2 },
 ];
 
@@ -1584,7 +1618,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -1964,21 +1998,21 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
           <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
         ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
-        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
+        : (<p className="fc-hint" />)}
     </div>
   );
 }
 
 // 🛠️ PRAKTIKA — o'quvchi daftarda detektiv-agentni loyihalaydi (kod kiritilmaydi, mentor-gate)
 const ScreenAgentPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · dizayn', ru: 'Практика · проектирование' }} place={{ uz: 'daftaringizda', ru: 'у себя в тетради' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · dizayn', ru: 'Практика · проектирование' }} place={{ uz: 'loyihangizda', ru: 'в своём проекте' }}
     title={{ uz: "Loyihangizga detektiv-agent loyihalang", ru: 'Спроектируйте детектива-агента для своего проекта' }}
     task={{ uz: "Kelajakdagi loyihangizni o'ylang. Unda qaysi vazifa ko'p qadamli — biror maqsadni o'zi boshdan-oxir hal qilishi kerak? O'sha — detektiv-agentga nomzod. Uni tanlab, qaysi ruxsatnomalar (idoralar) kerakligini va vakolat chegarasini yozing.", ru: 'Подумайте о своём будущем проекте. Какая задача в нём многошаговая — где цель надо довести от начала до конца? Вот она и есть кандидат на детектива-агента. Выберите её и запишите, какие пропуска (ведомства) нужны и каковы рамки полномочий.' }}
     checklist={[
@@ -2222,7 +2256,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2248,6 +2282,8 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2290,11 +2326,10 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2350,13 +2385,13 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* === AGENT / BYURO KARTA === */
-        .agent-card { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 13px 16px; }
+        .agent-card { background: ${T.blueSoft}; border-radius: 10px; padding: 13px 16px; }
         .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 5px; letter-spacing: 0.04em; }
         .agent-msg { font-family: 'Manrope'; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; margin: 0; line-height: 1.55; }
         .agent-msg b { color: ${T.ink}; }
         /* === AGENT STEP === */
-        .agent-step { display: flex; flex-direction: column; gap: 4px; background: ${T.paper}; border-radius: 10px; padding: 10px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); border-left: 3px solid ${T.blue}; }
-        .agent-step.done { border-left-color: ${T.success}; background: ${T.successSoft}; }
+        .agent-step { display: flex; flex-direction: column; gap: 4px; background: ${T.paper}; border-radius: 10px; padding: 10px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); }
+        .agent-step.done { background: ${T.successSoft}; }
         .as-phase { font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; color: ${T.blue}; letter-spacing: 0.04em; }
         .agent-step.done .as-phase { color: ${T.success}; }
         .as-txt { font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; }
@@ -2365,7 +2400,6 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .flow-row { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; justify-content: center; padding: 8px 0; }
         .fl-node { display: flex; flex-direction: column; align-items: center; gap: 3px; background: ${T.paper}; border-radius: 12px; padding: 10px 14px; min-width: 80px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); transition: all 0.3s; opacity: 0.5; }
         .fl-node.done { opacity: 1; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-        .fl-node-ico { font-size: 20px; line-height: 1; }
         .fl-node-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.ink}; text-align: center; }
         .fl-track { width: 22px; height: 3px; background: rgba(167,166,162,0.4); border-radius: 2px; }
         .archloop { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; color: ${T.accent}; }
@@ -2399,7 +2433,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
 
         /* === 🛠️ JONLI PRAKTIKA === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2410,7 +2444,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
@@ -2651,9 +2685,9 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2682,10 +2716,10 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2715,7 +2749,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }

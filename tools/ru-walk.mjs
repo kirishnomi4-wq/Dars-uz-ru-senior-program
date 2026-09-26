@@ -136,7 +136,7 @@ async function main() {
       const url = pathToFileURL(html).href + `?lang=${lang}&s=${s}&id=${encodeURIComponent(meta.lessonId)}&total=${meta.total}`;
       const r = { ok: false, errs: [], chars: 0, uzRes: [], ruRes: [], progressScreen: null, cyr: 0 };
       try {
-        await page.goto(url, { waitUntil: 'load', timeout: 20000 });
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 }); // 26.09: 'load' tashqi rasmni (go.coddycamp.uz, 20s+ osilib qoladi) kutardi — yolg'on XATO; .lesson-root pastda alohida kutiladi
         await page.waitForSelector('.lesson-root', { timeout: 15000 });
         await page.waitForTimeout(waitMs);
         const info = await page.evaluate((id) => {

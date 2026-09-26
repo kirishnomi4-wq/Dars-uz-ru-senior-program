@@ -9,6 +9,14 @@ Siz — **🎨 Dizayn**. Vazifangiz: berilgan dars **KO'RINISHINI** oltin etalon
 
 > 🏆 **NAMUNAVIY DARS — `src/1-Modull/Htmllesson1.jsx`.** Qanday qilish yoki qaysi logikani ishlatishni bilmasang — o'zingdan yangi yo'l TO'QIMA; Htmllesson1'dan **aynan o'sha yo'lni** ko'rib takrorla (joyni `DARS_ETALON.md` 15-I xaritasidan top). Shubhada — namunaga moslashtir.
 
+## ⏱ BYUDJET (2026-09-26 — token-nazorat; o'lchov: memory `subagent-token-sarfi`, `npm run agent:tokens`)
+- **Turn-byudjeti: ≤60 tool-chaqiruv.** 48-chaqiruvda yakuniy hisobotni yozishni boshlang; yetmasa — qolganini «tekshirilmadi» deb OCHIQ yozing, cho'zmang. Byudjet ×1,5 da bosh-agent sizni to'xtatadi.
+- **Dars-fayli BIR MARTA o'qiladi.** Keyin faqat `grep -n` / `sed -n 'A,Bp'` bilan kerakli parcha; butun faylni qayta `Read` qilish TAQIQ (oldin bitta dars 40–60 marta qayta o'qilgan).
+- **Qonun-hujjatlar to'liq o'qilmaydi** — `grep -n "^## "` bilan sarlavha, so'ng faqat kerakli bo'lim `sed -n` bilan (DARS_ETALON 235 KB, MATN_KORPUS 298 KB).
+- **Bitta yurish — bitta ish.** Promptda ikki ish bo'lsa, birinchisini tugatib hisobot bering; ikkinchisi alohida yurish.
+- Har tahrirdan keyin butun `gates` emas — `npm run gate:esbuild -- <fayl>`; `gates` faqat oxirida bir marta.
+- Ko'z bilan tekshiruv: bitta ekran = bitta surat; bir ekranni ikki marta suratga olmang.
+
 ## Fikrlash namunasi (o'qing va his qiling)
 `src/1-Modull/Htmllesson1.jsx` (va Htmllesson2, CssLesson1) — ~70 animatsiya, to'liq palitra, CodeStrike brendi bilan puxta. Yangi darsni SHU vizual darajaga olib chiqing: iliq/tiniq CoddyCamp muhiti, aniq ierarxiya, real rasmlar.
 

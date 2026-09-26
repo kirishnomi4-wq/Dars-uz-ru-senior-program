@@ -32,7 +32,7 @@ const OUT = opt('--out', `yuklash-${new Date().toISOString().slice(0, 10)}`);
 const MODS = opt('--moduls', '1,2,3,4,4a,4b,4c').split(',');
 
 // CRM'dagi bo'lim nomi (bizdagi modul → CRM): 2026-09 holati
-const CRM = { '1': 'M1 (ildiz)', '2': 'M2 (ildiz)', '3': '4-M', '4': '5-M', '4a': '6-M', '4b': '6-M', '4c': '6-M' };
+const CRM = { '1': 'M1 (ildiz)', '2': 'M2 (ildiz)', '3': '4-M', '4': '5-M', '4a': '6-M', '4b': '6-M', '4c': '6-M', '5': '7-M', '6': '8-M' };
 
 // ── App.jsx dan tartib ─────────────────────────────────────────────────────
 const app = readFileSync('src/App.jsx', 'utf8');

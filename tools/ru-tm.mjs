@@ -6,14 +6,15 @@
 //   node ru-tm.mjs <target.jsx> <out.jsx> <base1> <tr1> [<base2> <tr2> ...]
 import { readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { normalize } from 'file:///C:/Users/ADMIN/internetLesson/tools/ru-gate.mjs';
+import { normalize } from './ru-gate.mjs'; // nisbiy yo'l — Windows/Kali ikkalasida ishlaydi (26.09)
 
 const [target, out, ...pairs] = process.argv.slice(2);
 const rd = (p) => readFileSync(p, 'utf8').split(/\r?\n/);
 const NL = String.fromCharCode(10);
 const flat = (s) => s.replace(/<\/?>/g, '').replace(/[{}'"`]/g, '').replace(/\s+/g, ' ').trim();
 const uzSafe = (old, neu) => {
-  try { return flat(normalize(neu.join(NL)).src) === flat(old.join(NL)); } catch { return false; }
+  // bo'sh/izoh-faqat UZ bloki qabul qilinmaydi — aks holda har bo'sh qator donor izohiga aylanadi (26.09 Kali'da tutildi)
+  try { const o = flat(old.join(NL)); return o !== '' && flat(normalize(neu.join(NL)).src) === o; } catch { return false; }
 };
 
 const memory = new Map();
@@ -71,5 +72,5 @@ for (let i = 0; i < src.length;) {
   }
   if (!done) { res.push(src[i]); i++; }
 }
-writeFileSync(out, res.join('\r\n'));
+writeFileSync(out, res.join(NL)); // LF — repo fayllari LF (26.09)
 console.error(`TM: ${kept}/${seen} juftlik qabul · ${hits} moslik · ${hitLines}/${src.length} qator almashtirildi`);

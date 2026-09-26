@@ -112,6 +112,43 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi —
+  // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
+  const [zFloat, setZFloat] = useState(false);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
+    const ink = (n) => {
+      if (!el.contains(n) || n === el || n.classList?.contains('zoom-btn') || n.closest?.('.zoom-btn')) return false;
+      if (/^(IMG|svg|CANVAS|INPUT|TEXTAREA|BUTTON|VIDEO|SELECT|path|rect|circle|line|polygon)$/.test(n.tagName)) return true;
+      if ([...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true;
+      const cs = getComputedStyle(n); const bg = cs.backgroundColor.match(/[\d.]+/g);
+      return (bg && (bg.length < 4 || Number(bg[3]) > 0.05)) || parseFloat(cs.borderTopWidth) > 0 || cs.boxShadow !== 'none';
+    };
+    const run = () => {
+      const zb = el.querySelector(':scope > .zoom-btn');
+      if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
+      let hit = false;
+      for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
+        if (x < zr.left) continue; if (document.elementsFromPoint(x, y).some(ink)) { hit = true; break; }
+      }
+      setZFloat(!hit);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
+    sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
+  useLayoutEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -122,8 +159,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -360,7 +397,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Ответили все' }) : tr({ uz: <>Javob berdi: <b>{answered}</b> / {total}</>, ru: <>Ответили: <b>{answered}</b> / {total}</> })}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -400,11 +437,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась непонятной для класса. Перед продолжением советуем коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить заново' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить заново' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. При желании коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.`, ru: `Ответивших мало (${answered}) — по проценту трудно судить. Оцените сами.` })}</p>}
@@ -590,20 +627,20 @@ const PromptCard = ({ children, who = { uz: "📜 YO'RIQNOMA", ru: '📜 ИНС�
 // ===== 🎒 JIHOZLAR PANELI (butun 5-modulda qayta ishlatiladi) =====
 // 🎒 8 uyacha = 8 dars. Har dars o'z buyumini yoqadi; bu dars (7-slot) — 🏠 DOIMIY JOY.
 const GEAR_SLOTS = [
-  { id: 'key',   ico: '🔑', label: { uz: 'Javob bera oladi', ru: 'Умеет отвечать' } },        // 1 · BotIntro
-  { id: 'btn',   ico: '🔘', label: { uz: 'Muloqot qiladi', ru: 'Общается' } },                // 2 · ApiButtons
-  { id: 'note',  ico: '📓', label: { uz: 'Eslab qoladi', ru: 'Запоминает' } },                // 3 · StatefulMemory
-  { id: 'menu',  ico: '🧭', label: { uz: "O'ylay boshlaydi", ru: 'Начинает думать' } },       // 4 · AiBrain
-  { id: 'tools', ico: '🧰', label: { uz: 'Ish bajaradi', ru: 'Выполняет работу' } },          // 5 · AiAgent
-  { id: 'wish',  ico: '📔', label: { uz: 'Yaxshilanadi', ru: 'Становится лучше' } },          // 6 · Feedback
-  { id: 'home',  ico: '🏠', label: { uz: 'Doim yashaydi', ru: 'Живёт всегда' } },             // 7 · FullProject (BU DARS)
-  { id: 'star',  ico: '⭐', label: { uz: 'To\'liq jihozlangan', ru: 'Полностью снаряжён' } }  // 8 · AiProject
+  { id: 'key', label: { uz: 'Javob bera oladi', ru: 'Умеет отвечать' } },        // 1 · BotIntro
+  { id: 'btn', label: { uz: 'Muloqot qiladi', ru: 'Общается' } },                // 2 · ApiButtons
+  { id: 'note', label: { uz: 'Eslab qoladi', ru: 'Запоминает' } },                // 3 · StatefulMemory
+  { id: 'menu', label: { uz: "O'ylay boshlaydi", ru: 'Начинает думать' } },       // 4 · AiBrain
+  { id: 'tools', label: { uz: 'Ish bajaradi', ru: 'Выполняет работу' } },          // 5 · AiAgent
+  { id: 'wish', label: { uz: 'Yaxshilanadi', ru: 'Становится лучше' } },          // 6 · Feedback
+  { id: 'home', label: { uz: 'Doim yashaydi', ru: 'Живёт всегда' } },             // 7 · FullProject (BU DARS)
+  { id: 'star', label: { uz: 'To\'liq jihozlangan', ru: 'Полностью снаряжён' } }  // 8 · AiProject
 ];
 const GearPanel = ({ active = [] }) => (
   <div className="gear-panel">
     {GEAR_SLOTS.map(g => (
       <div key={g.id} className={`gear-slot ${active.includes(g.id) ? 'on' : ''}`}>
-        <span className="gear-ico">{g.ico}</span>
+        
         <span className="gear-lbl">{tr(g.label)}</span>
       </div>
     ))}
@@ -689,10 +726,10 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
 
 // ===== 🧩 TO'LIQ BOTJONNING 4 BUYUMI =====
 const BOTJON_PARTS = [
-  { id: 'key',   ico: '🔑', label: { uz: 'Kalit', ru: 'Ключ' },                        desc: { uz: <>Botjonning kim ekanini isbotlaydigan maxfiy 🔑 kalit. Usiz Botjon Telegram bilan gaplasha olmaydi. Doimiy joyga ko'chirganda kalit <b>qulfli tortmaga</b> (.env) qo'yiladi.</>, ru: <>Секретный 🔑 ключ, который подтверждает, кто такой Ботжон. Без него он не сможет говорить с Telegram. При переносе на постоянное место ключ кладут в <b>запертый ящик</b> (.env).</> } },
-  { id: 'sheet', ico: '📋', label: { uz: "Qoidalar varag'i", ru: 'Лист правил' },      desc: { uz: <>Tez va aniq buyruqlar shu yerda: <b>signal keladi → shu amalni qil</b>. /start, menyu, tugmalar — hammasi 📋 varaqda.</>, ru: <>Быстрые и точные команды тут: <b>пришёл сигнал → сделай это действие</b>. /start, меню, кнопки — всё на 📋 листе.</> } },
-  { id: 'note',  ico: '📓', label: { uz: 'Daftar (DB)', ru: 'Тетрадь (БД)' },          desc: { uz: <>Botjonning doimiy 📓 daftari — buyurtma, mijoz ismi, holat shu yerda saqlanadi va Botjon o'chib-yonsa ham <b>yo'qolmaydi</b>.</>, ru: <>Постоянная 📓 тетрадь Ботжона — заказ, имя клиента, состояние хранятся здесь и <b>не пропадают</b>, даже если Ботжона выключить и включить.</> } },
-  { id: 'brain', ico: '🧭', label: { uz: 'Maslahatchi', ru: 'Советчик' },              desc: { uz: <>Erkin, kutilmagan savolga 🧭 maslahatchi (AI) o'ylab tabiiy javob yozadi — varaqda tayyor qator bo'lmagan holatlar uchun.</>, ru: <>На свободный, неожиданный вопрос 🧭 советчик (ИИ) обдумает и напишет живой ответ — для случаев, которых нет на листе.</> } }
+  { id: 'key', label: { uz: 'Kalit', ru: 'Ключ' },                        desc: { uz: <>Botjonning kim ekanini isbotlaydigan maxfiy 🔑 kalit. Usiz Botjon Telegram bilan gaplasha olmaydi. Doimiy joyga ko'chirganda kalit <b>qulfli tortmaga</b> (.env) qo'yiladi.</>, ru: <>Секретный 🔑 ключ, который подтверждает, кто такой Ботжон. Без него он не сможет говорить с Telegram. При переносе на постоянное место ключ кладут в <b>запертый ящик</b> (.env).</> } },
+  { id: 'sheet', label: { uz: "Qoidalar varag'i", ru: 'Лист правил' },      desc: { uz: <>Tez va aniq buyruqlar shu yerda: <b>signal keladi → shu amalni qil</b>. /start, menyu, tugmalar — hammasi 📋 varaqda.</>, ru: <>Быстрые и точные команды тут: <b>пришёл сигнал → сделай это действие</b>. /start, меню, кнопки — всё на 📋 листе.</> } },
+  { id: 'note', label: { uz: 'Daftar (DB)', ru: 'Тетрадь (БД)' },          desc: { uz: <>Botjonning doimiy 📓 daftari — buyurtma, mijoz ismi, holat shu yerda saqlanadi va Botjon o'chib-yonsa ham <b>yo'qolmaydi</b>.</>, ru: <>Постоянная 📓 тетрадь Ботжона — заказ, имя клиента, состояние хранятся здесь и <b>не пропадают</b>, даже если Ботжона выключить и включить.</> } },
+  { id: 'brain', label: { uz: 'Maslahatchi', ru: 'Советчик' },              desc: { uz: <>Erkin, kutilmagan savolga 🧭 maslahatchi (AI) o'ylab tabiiy javob yozadi — varaqda tayyor qator bo'lmagan holatlar uchun.</>, ru: <>На свободный, неожиданный вопрос 🧭 советчик (ИИ) обдумает и напишет живой ответ — для случаев, которых нет на листе.</> } }
 ];
 
 // ===== SCREEN 0 — HOOK: laptop yopildi, Botjon jim qoldi =====
@@ -729,7 +766,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval tugmani bosing ←', ru: 'Сначала нажмите кнопку ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Botjon laptopda yashasa — siz uxlasangiz, u ham «uxlaydi». Bugun Botjonga <b>doimiy joy</b> beramiz: uni doim yoqilgan kompyuterga (serverga) ko'chiramiz — u 24/7 uxlamasin.</>, ru: <>Именно! Если Ботжон живёт на ноутбуке — вы заснули, и он «спит». Сегодня дадим Ботжону <b>постоянное место</b>: перенесём его на всегда включённый компьютер (сервер) — чтобы он не спал 24/7.</> })}</p>}
           </Col>
         </Split></Zoomable>
@@ -796,13 +832,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {BOTJON_PARTS.map(a => <button key={a.id} className="gchip" onClick={() => tap(a.id)} style={seen.has(a.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(a.id) ? '✓ ' : ''}{a.ico} {tr(a.label)}</button>)}
+              {BOTJON_PARTS.map(a => <button key={a.id} className="gchip" onClick={() => tap(a.id)} style={seen.has(a.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(a.id) ? '✓ ' : ''}{tr(a.label)}</button>)}
             </div>
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.ico}</span>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Buyumni bosing ←', ru: 'Нажмите на предмет ←' })}</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq Botjon tayyor: oddiy buyruqqa 📋 varaq, erkin savolga 🧭 maslahatchi, eslab qolishga 📓 daftar, kirishga 🔑 kalit. Endi unga doimiy joy topamiz.", ru: 'Полный Ботжон готов: на простую команду — 📋 лист, на свободный вопрос — 🧭 советчик, на запоминание — 📓 тетрадь, на вход — 🔑 ключ. Теперь найдём ему постоянное место.' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -892,7 +928,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #1', ru: 'Главное · #1' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Botjonni yig'ing", ru: 'Соберите Ботжона' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>🧩 <span className="italic" style={{ color: T.accent }}>To'liq Botjonni</span> o'zingiz yig'ing.</>, ru: <>🧩 Соберите <span className="italic" style={{ color: T.accent }}>полного Ботжона</span> сами.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>To'liq Botjonni</span> o'zingiz yig'ing.</>, ru: <>Соберите <span className="italic" style={{ color: T.accent }}>полного Ботжона</span> сами.</> })}</h2></div>
         <Mentor>{tr({ uz: "Har vazifaga to'g'ri buyumni ulang — birga qo'shilib, to'liq ishlaydigan Botjon bo'ladi. Noto'g'ri buyum ham tanlanishi mumkin — ehtiyot bo'ling.", ru: 'К каждой задаче подключите правильный предмет — вместе получится полностью рабочий Ботжон. Неправильный предмет тоже можно выбрать — будьте внимательны.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -949,7 +985,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {off
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Laptop o'chdi — undagi Botjon jim. Lekin <b>doimiy joydagi Botjon ishlayveradi</b>. Shuning uchun jiddiy Botjonni doimo doimiy joyga qo'yamiz.</>, ru: <>Ноутбук выключился — Ботжон на нём молчит. Но <b>Ботжон на постоянном месте продолжает работать</b>. Поэтому серьёзного Ботжона всегда селим на постоянное место.</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              : null}
             {done && <div className="sk-info fade-step"><p className="note-h">{tr({ uz: '🏠 Doimiy joy', ru: '🏠 Постоянное место' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Doimiy joy — doim yoqilgan kompyuter. Uni ijaraga olasiz; qaysi xizmatni tanlashni AI'dan so'rashingiz mumkin. Siz uchun muhimi — <b>Botjon doim jonli</b> turishi.</>, ru: <>Постоянное место — всегда включённый компьютер. Его арендуют; какую именно услугу выбрать, можно спросить у ИИ. Для вас важно одно — чтобы <b>Ботжон всегда был живым</b>.</> })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -976,7 +1012,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #2', ru: 'Главное · #2' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Kalitni to'g'ri joylang", ru: 'Положите ключ правильно' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>🔑 <span className="italic" style={{ color: T.accent }}>Kalit sinovi</span> — doimiy joyga xavfsiz ko'chiring.</>, ru: <>🔑 <span className="italic" style={{ color: T.accent }}>Испытание ключом</span> — перенесите на постоянное место безопасно.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Kalit sinovi</span> — doimiy joyga xavfsiz ko'chiring.</>, ru: <><span className="italic" style={{ color: T.accent }}>Испытание ключом</span> — перенесите на постоянное место безопасно.</> })}</h2></div>
         <Mentor>{tr({ uz: "Botjonni doimiy joyga ko'chirayapmiz. Avval tugmani bosib, 🔑 kalitni kod ichida ochiq qoldirsak nima bo'lishini ko'ring — keyin uni qayerda saqlashni tanlang.", ru: 'Переносим Ботжона на постоянное место. Сначала нажмите кнопку и посмотрите, что будет, если оставить 🔑 ключ открытым в коде, — потом выберите, где его хранить.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -989,7 +1025,6 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Doimiy joyda 🔑 kalitni qayerda saqlaymiz?', ru: 'Где на постоянном месте хранить 🔑 ключ?' })}</p>
-            {!demoed && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval chapdagi tugmani bosing ←', ru: 'Сначала нажмите кнопку слева ←' })}</p></div>}
             {demoed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 {KEY_SPOTS.map(s => {
@@ -1054,15 +1089,15 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="dial-row">
-              <button className={`dial-btn ${seenPoll ? 'on' : ''}`} onClick={seeP}>{tr({ uz: "🔁 O'zi-so'rab-turish", ru: '🔁 Сам спрашивает' })}</button>
-              <button className={`dial-btn ${seenHook ? 'on' : ''}`} onClick={seeH}>{tr({ uz: "🔔 Qo'ng'iroq", ru: '🔔 Звонок' })}</button>
+              <button className={`dial-btn ${seenPoll ? 'on' : ''}`} onClick={seeP}>{tr({ uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' })}</button>
+              <button className={`dial-btn ${seenHook ? 'on' : ''}`} onClick={seeH}>{tr({ uz: "Qo'ng'iroq", ru: 'Звонок' })}</button>
             </div>
             {seenPoll && <TgChat title={{ uz: "🔁 o'zi-so'rab-turish", ru: '🔁 сам спрашивает' }} ava="🔁" status="polling" input={false} minH={0}>{RECEIVE_DEMO.poll.map((r, i) => <Bubble from={i % 2 ? 'bot' : 'user'} key={`p${i}`}>{tr(r)}</Bubble>)}</TgChat>}
             {seenHook && <TgChat title={{ uz: "🔔 qo'ng'iroq", ru: '🔔 звонок' }} ava="🔔" status="webhook" input={false} minH={0}>{RECEIVE_DEMO.hook.map((r, i) => <Bubble from={i % 2 ? 'bot' : 'user'} key={`h${i}`}>{tr(r)}</Bubble>)}</TgChat>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "kichik do'kon boti — qaysi usul soddaroq va yetarli?", ru: 'бот маленького магазина — какой способ проще и достаточен?' })}</p>
-            {!bothSeen ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval ikkalasini sinab ko\'ring ←', ru: 'Сначала попробуйте оба ←' })}</p></div> : (
+            <p className="flow-label">{tr({ uz: 'Tanlov', ru: 'Выбор' })}</p>
+            {!bothSeen ? null : (
               <div className="dial-row">
                 <button className={`dial-btn ${choice === 'poll' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('poll')}>{tr({ uz: "🔁 O'zi-so'rab-turish", ru: '🔁 Сам спрашивает' })}</button>
                 <button className={`dial-btn ${choice === 'hook' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('hook')}>{tr({ uz: "🔔 Qo'ng'iroq", ru: '🔔 Звонок' })}</button>
@@ -1116,7 +1151,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #4', ru: 'Главное · #4' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Har bandni tekshiring (${Object.keys(answers).length}/3)`, ru: `Проверьте каждый пункт (${Object.keys(answers).length}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>✅ <span className="italic" style={{ color: T.accent }}>Ko'chirishdan oldin</span> — tekshiruv.</>, ru: <>✅ <span className="italic" style={{ color: T.accent }}>Перед переносом</span> — проверка.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Ko'chirishdan oldin</span> — tekshiruv.</>, ru: <><span className="italic" style={{ color: T.accent }}>Перед переносом</span> — проверка.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Botjonni doimiy joyga ko'chirishdan oldin 3 ta band bor. Har birini o'qib, u <b>to'g'ri qoidami</b> yoki <b>xato</b> ekanini belgilang.</>, ru: <>Перед переносом Ботжона на постоянное место есть 3 пункта. Прочитайте каждый и отметьте, <b>верное это правило</b> или <b>ошибка</b>.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1138,7 +1173,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <AchRule screen={screen} once />
           </Col>
           <Col>
-            {!done ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Har bandni «To'g'ri» yoki «Xato» deb belgilang ←", ru: 'Отметьте каждый пункт как «Верно» или «Ошибка» ←' })}</p></div>
+            {!done ? null
               : allCorrect ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ajoyib! Kodni ko'chirishdan oldin <b>albatta laptopda sinash</b> kerak — bu «to'g'ridan-to'g'ri ko'chiraveramiz» bandi xato edi. Qolgan ikkitasi to'g'ri qoida.</>, ru: <>✓ Отлично! Перед переносом код <b>обязательно проверяют на ноутбуке</b> — пункт «переносим сразу» был ошибкой. Остальные два — верные правила.</> })}</p></div>
               : <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: kodni <b>sinamasdan</b> ko'chirish xato — avval laptopda test qilinadi. Kalit .env'da bo'lishi va doimiy joy yoqilgan turishi esa to'g'ri qoidalar.</>, ru: <>Внимание: переносить код <b>без проверки</b> — ошибка, сначала тест на ноутбуке. А то, что ключ лежит в .env и постоянное место включено, — верные правила.</> })}</p></div>}
           </Col>
@@ -1152,7 +1187,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
     { u: { uz: '03:00 — glutensiz pizza bormi? 🌙', ru: '03:00 — есть пицца без глютена? 🌙' }, b: { uz: "Salom! 🟢 Men 24/7 shu yerdaman. Afsus, glutensiz hozircha yo'q — lekin yupqa Margarita yengil bo'ladi 🌿", ru: 'Здравствуйте! 🟢 Я здесь 24/7. Увы, без глютена пока нет — но тонкая «Маргарита» получится лёгкой 🌿' } },
-    { u: { uz: "Bo'pti, Margarita olaman", ru: 'Хорошо, возьму «Маргариту»' }, b: { uz: "Zo'r tanlov! 🎉 Margarita — 35 000 so'm. Buyurtmangizni 📓 daftarga yozib qo'ydim, ertaga ham eslayman 📝", ru: 'Отличный выбор! 🎉 «Маргарита» — 35 000 сум. Ваш заказ я записал в 📓 тетрадь, вспомню и завтра 📝' } },
+    { u: { uz: "Bo'ldi, Margarita olaman", ru: 'Хорошо, возьму «Маргариту»' }, b: { uz: "Zo'r tanlov! 🎉 Margarita — 35 000 so'm. Buyurtmangizni 📓 daftarga yozib qo'ydim, ertaga ham eslayman 📝", ru: 'Отличный выбор! 🎉 «Маргарита» — 35 000 сум. Ваш заказ я записал в 📓 тетрадь, вспомню и завтра 📝' } },
     { u: { uz: 'Rahmat! Manzil: Chilonzor', ru: 'Спасибо! Адрес: Чиланзар' }, b: { uz: "Qabul qilindi 📍 Chilonzor — daftarga qo'shdim. Buyurtmangiz yo'lga chiqadi ✅", ru: 'Принято 📍 Чиланзар — добавил в тетрадь. Ваш заказ отправляется ✅' } }
   ];
   const [shown, setShown] = useState(storedAnswer ? STEPS.length : 0);
@@ -1180,7 +1215,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ))}
               {phase === 'think' && <Bubble from="bot" thinking />}
-              {shown === 0 && phase !== 'think' && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: '6px 2px' }}>{tr({ uz: 'Tugmani bosing — mijoz tunda yozadi.', ru: 'Нажмите кнопку — клиент напишет ночью.' })}</p>}
             </TgChat>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done || phase === 'think'} onClick={advance}>{done ? tr({ uz: '✓ Botjon 24/7 ishlayapti', ru: '✓ Ботжон работает 24/7' }) : shown === 0 ? tr({ uz: '▶ Tungi suhbatni boshlash', ru: '▶ Начать ночной разговор' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
           </Col>
@@ -1242,13 +1276,13 @@ const Screen14 = (props) => (
 
 // ===== SCREEN 15 — YAKUNIY: KO'CHIRISH TARTIBI =====
 const DEPLOY_FLOW = [
-  { id: 'build', ico: '🔧', label: { uz: "4 buyumni bitta Botjonga yig'", ru: 'Собери 4 предмета в одного Ботжона' } },
-  { id: 'test',  ico: '🧪', label: { uz: 'Laptopda sinab ko\'r', ru: 'Проверь на ноутбуке' } },
-  { id: 'env',   ico: '🔑', label: { uz: 'Kalitni .env\'ga sozla', ru: 'Настрой ключ в .env' } },
-  { id: 'move',  ico: '🚚', label: { uz: 'Doimiy joyga ko\'chir', ru: 'Перенеси на постоянное место' } },
-  { id: 'live',  ico: '🌐', label: { uz: '24/7 jonli — tayyor', ru: 'Живой 24/7 — готово' } }
+  { id: 'build', label: { uz: "4 buyumni bitta Botjonga yig'", ru: 'Собери 4 предмета в одного Ботжона' } },
+  { id: 'test', label: { uz: 'Laptopda sinab ko\'r', ru: 'Проверь на ноутбуке' } },
+  { id: 'env', label: { uz: 'Kalitni .env\'ga sozla', ru: 'Настрой ключ в .env' } },
+  { id: 'move', label: { uz: 'Doimiy joyga ko\'chir', ru: 'Перенеси на постоянное место' } },
+  { id: 'live', label: { uz: '24/7 jonli — tayyor', ru: 'Живой 24/7 — готово' } }
 ];
-const DEPLOY_ITEMS = DEPLOY_FLOW.map(c => ({ id: c.id, label: { uz: `${c.ico} ${c.label.uz}`, ru: `${c.ico} ${c.label.ru}` } }));
+const DEPLOY_ITEMS = DEPLOY_FLOW.map(c => ({ id: c.id, label: { uz: `${c.label.uz}`, ru: `${c.label.ru}` } }));
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const fired = useRef(!!storedAnswer);
@@ -1677,7 +1711,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2062,14 +2096,14 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
           <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
         ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
-        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
+        : (<p className="fc-hint" />)}
     </div>
   );
 }
@@ -2325,7 +2359,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2351,6 +2385,8 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2394,11 +2430,10 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         /* frame-warn — FAQAT haqiqiy xato/yiqilish (401/400/500, noto'g'ri tanlov): dangerSoft, yo'lakdagi rz-crash bilan bir tilda */
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2522,7 +2557,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2533,7 +2568,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
@@ -2770,16 +2805,16 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2809,10 +2844,10 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2842,7 +2877,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -2996,7 +3031,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
         .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
         .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
-        .gear-ico { font-size: 20px; } .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
+        .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
 
         /* ===== 🔑 XIZMAT OYNASI (s5) ===== */
         .sw-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -3061,8 +3096,6 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .vcard:hover:not(:disabled) { transform: translateY(-1px); }
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
         .vseen { margin-left: auto; font-weight: 700; }
-        .role-ico { font-size: 20px; flex-shrink: 0; }
-
         /* ===== PICK ROWS (sxema ulash) ===== */
         .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 11px 13px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; }
         .pick-row:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.22); }
@@ -3073,7 +3106,6 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         /* ===== WIRE (sxema natijasi) ===== */
         .wire { background: ${T.paper}; border-radius: 14px; padding: 13px 15px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 7px; }
         .wire-row { display: flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink}; }
-        .wire-ico { font-size: 15px; flex-shrink: 0; }
         .wire-t { color: ${T.ink}; }
         .wire-arrow { color: ${T.accent}; font-weight: 800; }
         @keyframes rz-shake { 0%,100% { transform: none; } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-3px); } }
@@ -3084,7 +3116,6 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .itm-card:hover:not(:disabled) { transform: translateY(-2px); }
         .itm-card.on { box-shadow: inset 0 0 0 2px ${T.accent}, 0 8px 18px -8px rgba(255,79,40,0.3); }
         .itm-card:disabled { cursor: not-allowed; opacity: 0.75; }
-        .itm-ico { font-size: 20px; }
         .itm-nm { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10.5px; color: ${T.ink}; text-align: center; }
         .itm-check { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; background: ${T.accent}; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 8px -2px rgba(255,79,40,0.5); }
         .itm-fix { margin-top: 4px; font-family: 'Manrope'; font-weight: 700; font-size: 10px; background: ${T.successSoft}; color: ${T.success}; border: none; border-radius: 8px; padding: 3px 7px; cursor: pointer; }
@@ -3120,7 +3151,8 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .dd-slot .dd-chip { min-width: 168px; text-align: left; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-05 #5: yumshatildi — oq fon + 2px accent chegara (border: tap-hint animatsiyasi box-shadow'ni o'zgartiradi, halqa yo'qolmasin), ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

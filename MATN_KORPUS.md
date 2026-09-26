@@ -4252,3 +4252,21 @@ keyin lead'dagi aniq fakt (har kuni, bitta savol) savol shaklida qaytadi; to'g'r
 
 🔧 Tekshiruv: `grep -n "chapdagi\|o'ngdagi\|pastdagi\|tepadagi" <fayl>` — o'quvchi matnida 0 bo'lsin (izohda mumkin).
    Eyebrow / tugma so'zini dars bo'ylab `grep -i` qiling — boshqa ekranda boshqa ma'noda kelsa, almashtiring.
+
+## 212. «LOYQA» — SUVGA AYTILADI, PROMPTGA EMAS · QAT'IY TAQIQ (F-0925-02, foydalanuvchi 25.09)
+
+m2-09 «Praktika 2 — AI bilan tez sayt» kartochkasi va robot pufakchasida «**Loyqa** prompt»,
+«**Loyqa** buyruq» turardi. O'zbekchada «loyqa» birinchi navbatda **balchiqli, tiniq bo'lmagan
+suv**; 13 yoshli o'quvchi uni «aniq emas» deb o'qimaydi. Ruschasi ham («размытый») o'zbekchasiga
+teng emas edi. So'z 22.09 da manbadan olib tashlangan, lekin LMS'da eski nusxa qolgan va
+lug'at (MATN_ETALONI) hali ham «loyqa» ni **tavsiya** qilardi — ya'ni qaytib kirish yo'li ochiq edi.
+
+✅ «**Noaniq** prompt — aniq emas, natija ham tasodifiy» · «**Noaniq** buyruq — bo'shliqlarni o'zim to'ldirdim!» · ru: «**Неточный** промпт»
+❌ «**Loyqa** prompt» · «**Loyqa** buyruq» · «Buyruq (**loyqa**)»
+
+**Qat'iylik:** foydalanuvchi — «bunday so'zlar **umuman** bo'lmasligi kerak». Istisno yo'q:
+test variantida, flashkartada, audio-matnda ham. Lint `loyqa-sozi` 🔴 error.
+
+**Sinf (§197 bilan bir oila):** birinchi ma'nosi boshqa sohadan (suv, yuz-bo'yoq, ob-havo) bo'lgan
+obrazli sifat aniqlik/sifat tushunchasini nomlamaydi. Aniqlik juftligi doim to'g'ridan-to'g'ri:
+**aniq ↔ noaniq**.

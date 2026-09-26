@@ -107,6 +107,43 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi —
+  // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
+  const [zFloat, setZFloat] = useState(false);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
+    const ink = (n) => {
+      if (!el.contains(n) || n === el || n.classList?.contains('zoom-btn') || n.closest?.('.zoom-btn')) return false;
+      if (/^(IMG|svg|CANVAS|INPUT|TEXTAREA|BUTTON|VIDEO|SELECT|path|rect|circle|line|polygon)$/.test(n.tagName)) return true;
+      if ([...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true;
+      const cs = getComputedStyle(n); const bg = cs.backgroundColor.match(/[\d.]+/g);
+      return (bg && (bg.length < 4 || Number(bg[3]) > 0.05)) || parseFloat(cs.borderTopWidth) > 0 || cs.boxShadow !== 'none';
+    };
+    const run = () => {
+      const zb = el.querySelector(':scope > .zoom-btn');
+      if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
+      let hit = false;
+      for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
+        if (x < zr.left) continue; if (document.elementsFromPoint(x, y).some(ink)) { hit = true; break; }
+      }
+      setZFloat(!hit);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
+    sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -117,8 +154,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -238,7 +275,7 @@ const INLINE_KEYS = { s4: 1, s8: 3, s10: 0, s14: 2, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI).
 const RECAPS = {
   4: {
-    title: { uz: '🔑 Kalit — .env ichida', ru: '🔑 Ключ — внутри .env' },
+    title: { uz: 'Kalit — .env ichida', ru: 'Ключ — внутри .env' },
     cards: [
       { ic: '🔑', h: { uz: 'Token — Botjonning kaliti', ru: 'Токен — ключ Ботика' }, body: { uz: <>Token — Botjon uchun <b>kalit</b>. U kimda bo'lsa, bot o'sha kishiniki.</>, ru: <>Токен — это <b>ключ</b> от Ботика. У кого ключ, того и бот.</> } },
       { ic: '🗄️', h: { uz: 'Qulfli tortma — .env', ru: 'Запертый ящик — .env' }, body: { uz: <>Kalit <b>.env</b> — qulfli tortmada saqlanadi, u git'ga tushmaydi.</>, ru: <>Ключ хранится в <b>.env</b> — запертом ящике, он не попадает в git.</> } },
@@ -246,7 +283,7 @@ const RECAPS = {
     ]
   },
   8: {
-    title: { uz: '🔘✉️ Ikki xil tugma', ru: '🔘✉️ Два вида кнопок' },
+    title: { uz: 'Ikki xil tugma', ru: 'Два вида кнопок' },
     cards: [
       { ic: '🔘', h: { uz: 'Xabar ustidagi tugma (inline)', ru: 'Кнопка под сообщением (inline)' }, body: { uz: <>Xabarga yopishadi. Bosilsa hech narsa yozilmaydi — yashirin <b>signal</b> ketadi.</>, ru: <>Прилипает к сообщению. При нажатии ничего не пишется — уходит скрытый <b>сигнал</b>.</> } },
       { ic: '⌨️', h: { uz: 'Pastdagi tugmalar taxtasi (reply)', ru: 'Нижняя панель кнопок (reply)' }, body: { uz: <>Klaviatura o'rnida turadi. Bosilsa — <b>matn</b> xuddi o'zi yozgandek yuboriladi.</>, ru: <>Стоит на месте клавиатуры. При нажатии отправляется <b>текст</b> — будто вы сами его написали.</> } },
@@ -254,7 +291,7 @@ const RECAPS = {
     ]
   },
   10: {
-    title: { uz: '📋 Qator — signalni ushlaydi', ru: '📋 Строка — ловит сигнал' },
+    title: { uz: 'Qator — signalni ushlaydi', ru: 'Строка — ловит сигнал' },
     cards: [
       { ic: '🔘', h: { uz: 'Tugma signali → shu qator', ru: 'Сигнал кнопки → эта строка' }, body: { uz: <>Xabar ustidagi tugma signalini <b>bot.action(...)</b> qatori ushlaydi.</>, ru: <>Сигнал кнопки под сообщением ловит строка <b>bot.action(...)</b>.</> } },
       { ic: '⌨️', h: { uz: 'Matn signali → boshqa qator', ru: 'Текстовый сигнал → другая строка' }, body: { uz: <><b>bot.hears(...)</b> — reply tugma yoki oddiy matnni ushlaydi.</>, ru: <><b>bot.hears(...)</b> ловит reply-кнопку или обычный текст.</> } },
@@ -270,7 +307,7 @@ const RECAPS = {
     ]
   },
   15: {
-    title: { uz: '📋 bot.ts tartibi', ru: '📋 Порядок в bot.ts' },
+    title: { uz: 'bot.ts tartibi', ru: 'Порядок в bot.ts' },
     cards: [
       { ic: '🔑', h: { uz: "Avval — kalit o'qiladi", ru: 'Сначала — читается ключ' }, body: { uz: <>Birinchi qator — token <span className="mono">.env</span>'dan o'qiladi.</>, ru: <>Первая строка — токен читается из <span className="mono">.env</span>.</> } },
       { ic: '🤖', h: { uz: 'Keyin — Botjon yaratiladi', ru: 'Потом — создаётся Ботик' }, body: { uz: <>Token bilan Botjon (Telegraf obyekti) yaratiladi.</>, ru: <>С токеном создаётся Ботик (объект Telegraf).</> } },
@@ -347,7 +384,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Ответили все' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -387,11 +424,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась непонятной классу. Перед продолжением советуем коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish —', ru: '📖 Объяснить заново —' })} {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish —', ru: 'Объяснить заново —' })} {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. При желании коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.`, ru: `Ответивших мало (${answered}) — сложно судить по проценту. Оцените сами.` })}</p>}
@@ -578,10 +615,10 @@ const BF_STEPS = [
 ];
 
 const STACK = [
-  { id: 'tg', ico: '✈️', label: { uz: 'Telegram', ru: 'Telegram' }, desc: { uz: 'Mijozning xabarlari shu yerda. Tashqi dunyoga xizmat oynasi (Bot API) orqali ulanadi.', ru: 'Здесь сообщения клиента. С внешним миром связывается через служебное окно (Bot API).' } },
-  { id: 'telegraf', ico: '📦', label: { uz: 'Telegraf', ru: 'Telegraf' }, desc: { uz: "Node.js kutubxonasi — xizmat oynasi bilan gaplashishni o'zi bajaradi. Siz kalitni berasiz, u ulanadi.", ru: 'Библиотека Node.js — сама общается со служебным окном. Вы даёте ключ, она подключается.' } },
-  { id: 'service', ico: '🤖', label: { uz: 'Bot Service', ru: 'Bot Service' }, desc: { uz: "Botjonning o'zi — sizning qoidalar varag'ingiz: bot.start, bot.hears, bot.action. signal → amal shu yerda yoziladi.", ru: 'Сам Ботик — ваш лист правил: bot.start, bot.hears, bot.action. Сигнал → действие пишется здесь.' } },
-  { id: 'module', ico: '🧩', label: { uz: 'Nest Module', ru: 'Nest Module' }, desc: { uz: "Servisni Nest ilovasiga ulaydi — xuddi 4-modulda Car / Book resurslari kabi. Tanish, to'g'rimi?", ru: 'Подключает сервис к Nest-приложению — точно как ресурсы Car / Book в 4-м модуле. Знакомо, правда?' } }
+  { id: 'tg', label: { uz: 'Telegram', ru: 'Telegram' }, desc: { uz: 'Mijozning xabarlari shu yerda. Tashqi dunyoga xizmat oynasi (Bot API) orqali ulanadi.', ru: 'Здесь сообщения клиента. С внешним миром связывается через служебное окно (Bot API).' } },
+  { id: 'telegraf', label: { uz: 'Telegraf', ru: 'Telegraf' }, desc: { uz: "Node.js kutubxonasi — xizmat oynasi bilan gaplashishni o'zi bajaradi. Siz kalitni berasiz, u ulanadi.", ru: 'Библиотека Node.js — сама общается со служебным окном. Вы даёте ключ, она подключается.' } },
+  { id: 'service', label: { uz: 'Bot Service', ru: 'Bot Service' }, desc: { uz: "Botjonning o'zi — sizning qoidalar varag'ingiz: bot.start, bot.hears, bot.action. signal → amal shu yerda yoziladi.", ru: 'Сам Ботик — ваш лист правил: bot.start, bot.hears, bot.action. Сигнал → действие пишется здесь.' } },
+  { id: 'module', label: { uz: 'Nest Module', ru: 'Nest Module' }, desc: { uz: "Servisni Nest ilovasiga ulaydi — xuddi 4-modulda Car / Book resurslari kabi. Tanish, to'g'rimi?", ru: 'Подключает сервис к Nest-приложению — точно как ресурсы Car / Book в 4-м модуле. Знакомо, правда?' } }
 ];
 
 const HANDLER_PARTS = [
@@ -693,7 +730,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 </React.Fragment>
               ))}
               {revealed && <div className="token-bubble el-in"><span className="token-key">🔑</span><span className="token-val mono">{FAKE_TOKEN}</span></div>}
-              {step === 0 && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: '6px 2px' }}>{tr({ uz: 'Suhbat hali boshlanmagan — tugmani bosing.', ru: 'Разговор ещё не начат — нажмите кнопку.' })}</p>}
             </TgChat>
             <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={advance} disabled={revealed}>{revealed ? tr({ uz: '✓ Botjon yaratildi — kalit olindi', ru: '✓ Ботик создан — ключ получен' }) : step === 0 ? tr({ uz: '▶ BotFather bilan suhbat', ru: '▶ Разговор с BotFather' }) : tr({ uz: `Keyingi qadam (${step}/3)`, ru: `Следующий шаг (${step}/3)` })}</button>
             {revealed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>3 ta xabar bilan Botjon tug'ildi — va sizga <b>🔑 kalit</b> berildi. Bu kalit — kalit kimda bo'lsa, Botjon o'shaniki.</>, ru: <>Три сообщения — и Ботик родился, а вам выдали <b>🔑 ключ</b>. У кого ключ, того и Ботик.</> })}</p></div>}
@@ -706,7 +742,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !revealed} style={{ opacity: !revealed ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!revealed && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval BotFather suhbatini oching ←', ru: 'Сначала откройте разговор с BotFather ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! <b>🔑 Kalit</b> — eng muhim narsa. Bugun: Botjonga <b>muloqot</b> qo'shamiz — chaqiruv so'zlari, ✉️ konvert va tugmalar.</>, ru: <>Именно! <b>🔑 Ключ</b> — самое главное. Сегодня добавим Ботику <b>общение</b>: слова-вызовы, ✉️ конверт и кнопки.</> })}</p>}
           </Col>
         </Split></Zoomable>
@@ -763,8 +798,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kalit · .env', ru: 'Ключ · .env' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Xavfsiz usulni ko'ring", ru: 'Посмотрите безопасный способ' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>🔑 Kalit — Botjonning eng qadrli buyumi. Uni <span className="italic" style={{ color: T.accent }}>qayerda saqlash</span> kerak?</>, ru: <>🔑 Ключ — самая ценная вещь Ботика. А <span className="italic" style={{ color: T.accent }}>где его хранить</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Kalit maxfiy. Agar uni to'g'ridan-to'g'ri kodga yozsangiz va git'ga yuborsangiz — <b style={{ color: T.danger }}>hamma ko'radi</b> va Botjoningizni o'g'irlaydi. To'g'ri usulni ko'ring.</>, ru: <>Ключ секретный. Если написать его прямо в коде и отправить в git — <b style={{ color: T.danger }}>его увидят все</b> и уведут вашего Ботика. Посмотрите, как правильно.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kalit — Botjonning eng qadrli buyumi. Uni <span className="italic" style={{ color: T.accent }}>qayerda saqlash</span> kerak?</>, ru: <>Ключ — самая ценная вещь Ботика. А <span className="italic" style={{ color: T.accent }}>где его хранить</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Kalit maxfiy. Agar uni to'g'ridan-to'g'ri kodga yozsangiz va git'ga yuborsangiz — <b style={{ color: T.danger }}>hamma ko'radi</b> va Botjoningizni o'g'irlaydi. Tugmani bosib, to'g'ri usulni ko'ring.</>, ru: <>Ключ секретный. Если написать его прямо в коде и отправить в git — <b style={{ color: T.danger }}>его увидят все</b> и уведут вашего Ботика. Нажмите кнопку и посмотрите, как правильно.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -786,7 +821,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Kw>const</Kw>{' bot = '}<Kw>new</Kw>{' '}<At>Telegraf</At>{'(process.env.'}<At>BOT_TOKEN</At>{')'}{'\n'}
                 <Cm>{tr({ uz: '// ✅ kod toza, kalit maxfiy', ru: '// ✅ код чистый, ключ секретный' })}</Cm>
               </CodeFile>
-            </> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+            </> : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kalit <span className="mono">.env</span> — qulfli tortmada yashaydi (4-modulda auth'da ko'rgansiz). Kod undan <span className="mono">process.env.BOT_TOKEN</span> orqali o'qiydi. Kalit hech qachon git'ga tushmaydi.</>, ru: <>Ключ живёт в <span className="mono">.env</span> — запертом ящике (вы видели это в 4-м модуле, в auth). Код читает его через <span className="mono">process.env.BOT_TOKEN</span>. В git ключ не попадает никогда.</> })}</p></div>}
           </Col>
         </div>
@@ -814,7 +849,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {STACK.map((s, i) => (
             <React.Fragment key={s.id}>
               {i > 0 && <span className="archflow-arrow">→</span>}
-              <div className={`archnode ${seen.has(s.id) ? 'on' : ''}`}><span className="archnode-ico">{s.ico}</span><span className="archnode-lbl">{tr(s.label)}</span></div>
+              <div className={`archnode ${seen.has(s.id) ? 'on' : ''}`}><span className="archnode-lbl">{tr(s.label)}</span></div>
             </React.Fragment>
           ))}
         </div></div>
@@ -822,13 +857,13 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {STACK.map(s => <button key={s.id} className="gchip" onClick={() => tap(s.id)} style={seen.has(s.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(s.id) ? '✓ ' : ''}{s.ico} {tr(s.label)}</button>)}
+              {STACK.map(s => <button key={s.id} className="gchip" onClick={() => tap(s.id)} style={seen.has(s.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(s.id) ? '✓ ' : ''}{tr(s.label)}</button>)}
             </div>
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.ico}</span>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qatlamni bosing ←', ru: 'Нажмите на слой ←' })}</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz faqat <b>Bot Service</b>ga 📋 qatorlar yozasiz (signal → amal). Telegraf va xizmat oynasi aloqasini o'zi hal qiladi. Nest bilimingiz to'g'ridan-to'g'ri ishlaydi.</>, ru: <>Вы пишете 📋 строки только в <b>Bot Service</b> (сигнал → действие). Связь между Telegraf и служебным окном решается сама. Ваши знания Nest работают напрямую.</> })}</p></div>}
           </Col>
         </div>
@@ -887,7 +922,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{cur.tok}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Kod qismini bosing ←', ru: 'Нажмите на часть кода ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">bot.start</span> = signal, <span className="mono">ctx.reply</span> = amal. Aynan 1-darsdagi mantiq — faqat endi Telegraf yozilish qoidasida.</>, ru: <><span className="mono">bot.start</span> = сигнал, <span className="mono">ctx.reply</span> = действие. Та же логика, что в 1-м уроке — только теперь записана по правилам Telegraf.</> })}</p></div>}
           </Col>
         </div>
@@ -929,7 +964,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{cur.tok}</span></p><p className="mono small" style={{ color: T.success, margin: '0 0 6px' }}>{tr(cur.val)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Konvert ichini bosing ←', ru: 'Нажмите внутри конверта ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Demak <span className="mono">ctx</span> orqali Botjoningiz kim bilan, nima haqida gaplashayotganini biladi va to'g'ri manzilga javob bera oladi. Keyinroq bu manzil xato bo'lsa nima bo'lishini ko'ramiz.</>, ru: <>Значит, через <span className="mono">ctx</span> ваш Ботик знает, с кем и о чём говорит, и может ответить по верному адресу. Дальше посмотрим, что будет, если адрес окажется неверным.</> })}</p></div>}
           </Col>
         </div>
@@ -977,11 +1012,11 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {mode === 'inline' ? <>
               <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🔘 Xabar ustidagi tugma', ru: '🔘 Кнопка под сообщением' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Xabarning tagiga yopishadi. Bosilganda matn YUBORMAYDI — yashirin <b>signal</b> jo'natadi. Botjon uni <span className="mono">bot.action(...)</span> bilan ushlaydi.</>, ru: <>Прилипает под сообщением. При нажатии текст НЕ отправляет — шлёт скрытый <b>сигнал</b>. Ботик ловит его через <span className="mono">bot.action(...)</span>.</> })}</p></div>
               {!done && (cb ? <div className="frame-success fade-step" key={cb.data}><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 13 }}>{tr({ uz: '⚡ signal keldi →', ru: '⚡ пришёл сигнал →' })} <b style={{ color: T.success }}>action: '{cb.data}'</b><br />{tr({ uz: "(chat tarixiga yangi xabar qo'shilmadi)", ru: '(в историю чата новое сообщение не добавилось)' })}</p></div>
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdagi tugmani bosing ←', ru: 'Нажмите кнопку слева ←' })}</p></div>)}
+                : null)}
             </> : <>
               <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '⌨️ Pastdagi tugmalar taxtasi', ru: '⌨️ Нижняя панель кнопок' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Klaviatura o'rnida turadi. Bosilganda u oddiy <b>matn xabar</b> sifatida yuboriladi. Botjon uni <span className="mono">bot.hears(...)</span> bilan ushlaydi.</>, ru: <>Стоит на месте клавиатуры. При нажатии отправляется как обычное <b>текстовое сообщение</b>. Ботик ловит его через <span className="mono">bot.hears(...)</span>.</> })}</p></div>
               {!done && (sent.length > 0 ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — bosilgan tugma <b>mijozning xabari</b> bo'lib chatga qo'shildi. Xabar ustidagi tugmada bunday bo'lmagandi.</>, ru: <>Видите — нажатая кнопка добавилась в чат как <b>сообщение клиента</b>. С кнопкой под сообщением такого не было.</> })}</p></div>
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Pastdagi tugmani bosing ←', ru: 'Нажмите кнопку внизу ←' })}</p></div>)}
+                : null)}
             </>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: tez tanlov/menyu uchun <b>xabar ustidagi tugma</b>, doimiy klaviatura (asosiy buyruqlar) uchun <b>pastdagi taxta</b> ishlatiladi.</>, ru: <>Правило: для быстрого выбора и меню берут <b>кнопку под сообщением</b>, а для постоянной клавиатуры (основные команды) — <b>нижнюю панель</b>.</> })}</p></div>}
           </Col>
@@ -1064,7 +1099,6 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {SIGNALS.map(s => <button key={s.id} className="gchip" onClick={() => trySignal(s)}>{s.kind === 'inline' ? '🔘' : s.kind === 'reply' ? '⌨️' : '📜'} {tr(s.chip)} {tested.has(s.id) ? '✓' : ''}</button>)}
             </div>
-            <p className="small" style={{ color: T.ink3, margin: 0 }}>{tr({ uz: '👆 Yuqoridagi chiplar — mijoz signalni yuborishini taqlid qiladi.', ru: '👆 Фишки выше изображают, как клиент отправляет сигнал.' })}</p>
           </Col>
           <Col>
             <div className="env-card">
@@ -1153,10 +1187,10 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <TgChat title={{ uz: 'Vali', ru: 'Вали' }} ava="🧑" input={false} minH={90}>
               {!fixed && tested && <Bubble from="bot">{tr({ uz: "30 000 so'm, yetkazib berish bilan!", ru: '30 000 сумов, вместе с доставкой!' })}</Bubble>}
               {!fixed && tested && <p className="small" style={{ color: T.danger, fontStyle: 'italic', margin: '6px 2px' }}>{tr({ uz: '😳 Vali: "Men bunday savol bermagandim!"', ru: '😳 Вали: «Я такого не спрашивал!»' })}</p>}
-              {(fixed || !tested) && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: '6px 2px' }}>{fixed ? tr({ uz: 'Endi bu chatga hech narsa kelmaydi ✓', ru: 'Теперь в этот чат ничего не приходит ✓' }) : tr({ uz: 'Hali sinalmagan — «Signalni sinash» tugmasini bosing ←', ru: 'Ещё не проверено — нажмите «Проверить сигнал» ←' })}</p>}
+              {fixed && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: '6px 2px' }}>{tr({ uz: 'Endi bu chatga hech narsa kelmaydi ✓', ru: 'Теперь в этот чат ничего не приходит ✓' })}</p>}
             </TgChat>
             {!tested && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: '▶ Signalni sinash', ru: '▶ Проверить сигнал' })}</button>}
-            {tested && !fixed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Javob <b>Valiga</b> ketdi — Aziza hech narsa olmadi! Kod konvertdagi <span className="mono">ctx</span>'ni emas, boshqa mijozning manzilini ishlatgan.</>, ru: <>Ответ ушёл <b>Вали</b> — а Азиза не получила ничего! Код взял не <span className="mono">ctx</span> из конверта, а адрес другого клиента.</> })}</p><button className="btn-soft" style={{ marginTop: 8 }} onClick={fix}>{tr({ uz: '🔧 Konvert manzilini tuzatish', ru: '🔧 Исправить адрес в конверте' })}</button></div>}
+            {tested && !fixed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Javob <b>Valiga</b> ketdi — Aziza hech narsa olmadi! Kod konvertdagi <span className="mono">ctx</span>'ni emas, boshqa mijozning manzilini ishlatgan.</>, ru: <>Ответ ушёл <b>Вали</b> — а Азиза не получила ничего! Код взял не <span className="mono">ctx</span> из конверта, а адрес другого клиента.</> })}</p><button className="btn-soft" style={{ marginTop: 8 }} onClick={fix}>{tr({ uz: 'Konvert manzilini tuzatish', ru: 'Исправить адрес в конверте' })}</button></div>}
             {fixed && !tested && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: '▶ Qayta sinash', ru: '▶ Проверить снова' })}</button>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ Endi kod <span className="mono">ctx.reply(...)</span> ishlatadi — u har doim <b>signal yuborgan mijozga</b> javob beradi, boshqa hech kimga emas.</>, ru: <>✅ Теперь код использует <span className="mono">ctx.reply(...)</span> — он всегда отвечает <b>тому клиенту, который отправил сигнал</b>, и никому больше.</> })}</p></div>}
           </Col>
@@ -1200,7 +1234,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Oxirgi qator · fallback', ru: 'Последняя строка · fallback' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Fallback qo'shing va sinang", ru: 'Добавьте fallback и проверьте' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjon hech qachon <span className="italic" style={{ color: T.accent }}>jim qolmasin</span>.</>, ru: <>Пусть Ботик никогда не <span className="italic" style={{ color: T.accent }}>молчит</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mijoz varaqdagi hech bir qatorga mos kelmaydigan narsa yozsa nima bo'ladi? Avval sinab ko'ring, keyin <b style={{ color: T.ink }}>oxirgi qator</b> (fallback) qo'shib, Botjonni "jim qolmaslikka" o'rgating.</>, ru: <>Что будет, если клиент напишет то, под что нет ни одной строки на листе? Сначала попробуйте, потом добавьте <b style={{ color: T.ink }}>последнюю строку</b> (fallback) и научите Ботика «не молчать».</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mijoz varaqdagi hech bir qatorga mos kelmaydigan narsa yozsa nima bo'ladi? Avval sinab ko'ring, keyin <b style={{ color: T.ink }}>oxirgi qator</b> (fallback) qo'shib, Botjonni "jim qolmaslikka" o'rgating. Keyin «Pizza» tugmasini tez-tez bosib, xizmat oynasi qanday himoyalanishini kuzating.</>, ru: <>Что будет, если клиент напишет то, под что нет ни одной строки на листе? Сначала попробуйте, потом добавьте <b style={{ color: T.ink }}>последнюю строку</b> (fallback) и научите Ботика «не молчать». Потом понажимайте кнопку «Pizza» очень часто — посмотрите, как защищается служебное окно.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1211,15 +1245,14 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {chatLog.length > 0 && !fallbackOn && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: '6px 2px' }}>{tr({ uz: '🔇 Botjon jim qoldi…', ru: '🔇 Ботик промолчал…' })}</p>}
             </TgChat>
             <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUnknown}>{tr({ uz: "✉️ Noma'lum xabar yuborish", ru: '✉️ Отправить незнакомое сообщение' })}</button>
-            {!fallbackOn && chatLog.length > 0 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hech bir qatorga mos kelmadi — Botjon <b>jim</b> qoldi. Mijoz tashvishlanadi: "Ishlayaptimi bu?"</>, ru: <>Не подошло ни под одну строку — Ботик <b>промолчал</b>. Клиент начинает волноваться: «Он вообще работает?»</> })}</p><button className="btn" style={{ marginTop: 8 }} onClick={addFallback}>{tr({ uz: "📋 Oxirgi qatorni varaqqa qo'shish", ru: '📋 Добавить последнюю строку на лист' })}</button></div>}
+            {!fallbackOn && chatLog.length > 0 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hech bir qatorga mos kelmadi — Botjon <b>jim</b> qoldi. Mijoz tashvishlanadi: "Ishlayaptimi bu?"</>, ru: <>Не подошло ни под одну строку — Ботик <b>промолчал</b>. Клиент начинает волноваться: «Он вообще работает?»</> })}</p><button className="btn" style={{ marginTop: 8 }} onClick={addFallback}>{tr({ uz: "Oxirgi qatorni varaqqa qo'shish", ru: 'Добавить последнюю строку на лист' })}</button></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ Endi <span className="mono">bot.on('text', ...)</span> — oxirgi qator — hech qanday qatorga mos kelmagan xabarga ham javob beradi. Botjon endi hech qachon jim qolmaydi.</>, ru: <>✅ Теперь <span className="mono">bot.on('text', ...)</span> — последняя строка — отвечает даже на сообщение, под которое нет ни одной строки. Ботик больше никогда не молчит.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: '2) Tezlik cheklovi (rate limit)', ru: '2) Ограничение скорости (rate limit)' })}</p>
             <div className="sk-info">
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '🍕 tugmasini juda tez-tez bosib ko\'ring — xizmat oynasi qanday himoyalanishini kuzating.', ru: '🍕 Понажимайте кнопку очень часто — посмотрите, как защищается служебное окно.' })}</p>
             </div>
-            <button className={`gchip ${rateLimited ? '' : 'tap-hint'}`} disabled={rateLimited} onClick={rateClick} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '🍕 Pizza', ru: '🍕 Пицца' })} ({rateClicks}/{RATE_LIMIT_N})</button>
+            <button className={`gchip ${rateLimited ? '' : 'tap-hint'}`} disabled={rateLimited} onClick={rateClick} style={{ alignSelf: 'flex-start' }}>{tr({ uz: 'Pizza', ru: 'Пицца' })} ({rateClicks}/{RATE_LIMIT_N})</button>
             {rateLimited && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⏱ <b>429</b> — xizmat oynasi vaqtincha yopildi. Juda tez-tez signal yuborilsa, Telegram javob berishni to'xtatadi. Sekinroq yuboring.</>, ru: <>⏱ <b>429</b> — служебное окно временно закрылось. Если слать сигналы слишком часто, Telegram перестаёт отвечать. Отправляйте медленнее.</> })}</p><button className="btn-soft" style={{ marginTop: 8 }} onClick={rateReset}>{tr({ uz: '↻ Qayta urinish', ru: '↻ Попробовать снова' })}</button></div>}
           </Col>
         </div>
@@ -1328,12 +1361,12 @@ const Screen14 = (props) => (
 
 // ===== SCREEN 15 — FINAL: bot.ts'ni to'g'ri tartibda yig'ish (DragDropOrder) =====
 const BOT_LINES = [
-  { id: 'env', label: '🔑 const token = process.env.BOT_TOKEN', note: { uz: "kalit .env'dan o'qiladi", ru: 'ключ читается из .env' } },
-  { id: 'create', label: '🤖 const bot = new Telegraf(token)', note: { uz: 'Botjon yaratiladi (kalit bilan)', ru: 'создаётся Ботик (с ключом)' } },
-  { id: 'start', label: "📋 bot.start((ctx) => ctx.reply('Salom!', menu))", note: { uz: '/start signal → menyu (amal)', ru: 'сигнал /start → меню (действие)' } },
-  { id: 'action', label: "🔘 bot.action('pizza', (ctx) => ctx.reply('🍕'))", note: { uz: 'tugma signali → amal', ru: 'сигнал кнопки → действие' } },
-  { id: 'fallback', label: "🔕 bot.on('text', (ctx) => ctx.reply('Tushunmadim'))", note: { uz: 'oxirgi qator — jim qolmaslik', ru: 'последняя строка — чтобы не молчать' } },
-  { id: 'launch', label: '🚀 bot.launch()', note: { uz: 'Botjonni ishga tushiradi (kutadi)', ru: 'запускает Ботика (и ждёт)' } }
+  { id: 'env', label: 'const token = process.env.BOT_TOKEN', note: { uz: "kalit .env'dan o'qiladi", ru: 'ключ читается из .env' } },
+  { id: 'create', label: 'const bot = new Telegraf(token)', note: { uz: 'Botjon yaratiladi (kalit bilan)', ru: 'создаётся Ботик (с ключом)' } },
+  { id: 'start', label: "bot.start((ctx) => ctx.reply('Salom!', menu))", note: { uz: '/start signal → menyu (amal)', ru: 'сигнал /start → меню (действие)' } },
+  { id: 'action', label: "bot.action('pizza', (ctx) => ctx.reply('🍕'))", note: { uz: 'tugma signali → amal', ru: 'сигнал кнопки → действие' } },
+  { id: 'fallback', label: "bot.on('text', (ctx) => ctx.reply('Tushunmadim'))", note: { uz: 'oxirgi qator — jim qolmaslik', ru: 'последняя строка — чтобы не молчать' } },
+  { id: 'launch', label: 'bot.launch()', note: { uz: 'Botjonni ishga tushiradi (kutadi)', ru: 'запускает Ботика (и ждёт)' } }
 ];
 const BOT_ORDER = BOT_LINES.map(l => l.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1837,7 +1870,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2229,14 +2262,14 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
           <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
         ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
-        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
+        : (<p className="fc-hint" />)}
     </div>
   );
 }
@@ -2490,7 +2523,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2514,6 +2547,8 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2553,10 +2588,9 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
         /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
@@ -2620,7 +2654,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2631,7 +2665,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
@@ -2868,15 +2902,15 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: opt-wait-breathe 2s ease-in-out infinite; }
         @keyframes opt-wait-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2905,10 +2939,10 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2937,7 +2971,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -3095,7 +3129,6 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .archflow { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; padding: 4px 0; }
         .archnode { display: flex; flex-direction: column; align-items: center; gap: 3px; background: ${T.paper}; border-radius: 11px; padding: 10px 10px; min-width: 78px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); transition: all 0.25s; }
         .archnode.on { box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
-        .archnode-ico { font-size: 19px; line-height: 1; }
         .archnode-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
         .archflow-arrow { color: ${T.ink3}; font-weight: 700; font-size: 15px; }
 
@@ -3145,7 +3178,8 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .dd-slot .dd-chip { min-width: 168px; text-align: left; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-05 #5: yumshatildi — oq fon + 2px accent chegara (border: tap-hint animatsiyasi box-shadow'ni o'zgartiradi, halqa yo'qolmasin), ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

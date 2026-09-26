@@ -40,6 +40,9 @@ const ALLOW = [
   // Detektorning CTRL_SEL naqshidagi «chip» uni tugma deb o'ylaydi. Uslubi .code-box
   // bilan bir xil (CODE.bg) va u allaqachon istisnoda — juftini ham qo'shamiz (F-0820-63).
   /^\.codechip/,
+  // .codepill — ko'p qatorli kod-parcha bloki (m6-08 PipelineProject · m6-11 MobileAppPractice), fon CODE.bg,
+  // BOSILMAYDI — .codechip/.code-box bilan bir oila (F-0926-01, 6-Modul v2-tayyorlash).
+  /^\.codepill/,
   // .cq-b — muharrir-qatori: VS Code fonidagi (#1E1E1E) bosiladigan kod satri.
   // m3-08 `.dbg-line` oilasi (u ham `dbg-code` orqali istisnoda). Quyuq fon bu yerda
   // TAQLID: o'quvchi kodni muharrirdagidek ko'rishi kerak (F-0820-86).
