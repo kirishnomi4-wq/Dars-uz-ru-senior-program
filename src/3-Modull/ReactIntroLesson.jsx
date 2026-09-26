@@ -321,7 +321,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -361,16 +361,16 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась для класса непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту сложно делать вывод. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -633,6 +633,15 @@ const LikeDemo = ({ mode, title, onLiked, badge }) => {
 
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -643,8 +652,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1661,7 +1670,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="mono" style={{ fontSize: 12.5, color: CODE.comment }}>{'<App>'}</div>
               {items.length === 0
                 ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12, paddingLeft: 14 }}>{tr({ uz: "// blok qo'shing…", ru: '// добавьте блок…' })}</p>
-                : items.map((k, i) => <div key={i} className="algo-line el-in" style={{ borderLeft: `3px solid ${T.accent}` }}><span className="mono" style={{ fontSize: 12.5, color: '#C8501F' }}>{COMP[k].l}</span></div>)}
+                : items.map((k, i) => <div key={i} className="algo-line el-in" style={{ }}><span className="mono" style={{ fontSize: 12.5, color: '#C8501F' }}>{COMP[k].l}</span></div>)}
               <div className="mono" style={{ fontSize: 12.5, color: CODE.comment }}>{'</App>'}</div>
             </div>
             {reused && <span className="tagpill fade-step" style={{ color: T.success }}>✓ {COMP[reused].l} — {counts[reused]} {tr({ uz: 'marta. Bitta kod!', ru: 'раза. Один код!' })}</span>}
@@ -2379,7 +2388,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершился — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2656,6 +2665,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .fade-step { animation: fade-step 0.3s ease-out; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         /* Zoomable tugmasi (⛶) o'ng yuqori burchakdagi hisoblagich bilan to'qnashmasin (F-0819-35). */
         .zoomable .split > .col:last-child > div:first-child,
         .zoomable .split-4555 > .col:last-child > div:first-child { padding-right: 38px; }
@@ -2749,9 +2759,9 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         /* markaziy solishtiruv: ekranning asosiy zarbasi (F-0819-16) */
         .vs-box { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(6px,1.6vw,14px); background: #fff; border-radius: 14px; padding: clamp(12px,2vw,17px) clamp(8px,1.8vw,14px); box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.20); border: 1px solid rgba(0,0,0,0.04); }
         .vs-side { text-align: center; min-width: 0; }
@@ -3038,7 +3048,6 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .mc-ground::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 11px; background: #5fa544; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12); }
         .mc-castle { position: absolute; bottom: 27px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; }
         .mc-tower { width: 21px; height: 48px; background: #9ba1a7; position: relative; box-shadow: inset -4px 0 0 rgba(0,0,0,0.14), inset 5px 0 0 rgba(255,255,255,0.16); }
-        .mc-tower::before { content: ''; position: absolute; top: -6px; left: -1px; right: -1px; height: 6px; background: repeating-linear-gradient(90deg, #9ba1a7 0 6px, transparent 6px 12px); }
         .mc-keep { width: 40px; height: 64px; background: #aeb4ba; position: relative; margin: 0 -3px; z-index: 1; box-shadow: inset -5px 0 0 rgba(0,0,0,0.12), inset 5px 0 0 rgba(255,255,255,0.18); }
         .mc-keep::before { content: ''; position: absolute; top: -7px; left: -1px; right: -1px; height: 7px; background: repeating-linear-gradient(90deg, #aeb4ba 0 7px, transparent 7px 14px); }
         .mc-keep::after { content: ''; position: absolute; top: 13px; left: 50%; transform: translateX(-50%); width: 7px; height: 9px; background: #3a4a63; border-radius: 2px; box-shadow: -12px 0 0 #3a4a63, 12px 0 0 #3a4a63; }
@@ -3334,10 +3343,10 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -3525,7 +3534,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === 🔴 JONLI EFIR (LiveFrame / hearts / countdown) — puls·uchish·zarb ✨ Animatsiyaga, rang 🎨 Dizaynga === */
         .lb-frame { border-radius: 15px; overflow: hidden; box-shadow: 0 12px 30px -12px rgba(${T.shadowBase},0.28); transition: box-shadow 0.3s, transform 0.3s; }

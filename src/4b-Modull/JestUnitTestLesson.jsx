@@ -516,6 +516,15 @@ function ScoreRing({ correct, total }) {
 
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -526,8 +535,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -742,7 +751,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval funksiyani hisoblang ←', ru: 'Сначала вычислите функцию ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
               ? tr({ uz: <>Aynan! Oldingi modullarda <b>o'zingiz</b> tekshirgansiz. Endi <b>test</b> yozasiz — kompyuter kodni <b>har o'zgarishda avtomatik</b> tekshiradi. Bugun shuni o'rganamiz: Jest.</>, ru: <>Именно! В предыдущих модулях вы проверяли <b>сами</b>. Теперь вы напишете <b>тест</b> — компьютер будет проверять код <b>автоматически при каждом изменении</b>. Этим сегодня и займёмся: Jest.</> })
               : tr({ uz: <>Qo'lda tekshirish 5 ta hisobda ham charchatadi, tekshirmaslik esa xatoni mijozgacha olib boradi. Uchinchi yo'l bor — <b>test</b>: kompyuter kodni <b>har o'zgarishda avtomatik</b> tekshiradi. Bugun shuni o'rganamiz: Jest.</>, ru: <>Проверять вручную утомительно уже на 5 расчётах, а не проверять — значит довезти ошибку до клиента. Есть третий путь — <b>тест</b>: компьютер проверяет код <b>автоматически при каждом изменении</b>. Этим сегодня и займёмся: Jest.</> })}</p>}
@@ -1034,7 +1042,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{cur.t}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qismni bosing ←', ru: 'Нажмите на часть ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>4 qism: import → describe → it → expect. Eng muhimi — <b>expect</b>. Uni chuqurroq ko'ramiz.</>, ru: <>4 части: import → describe → it → expect. Самая важная — <b>expect</b>. Разберём её глубже.</> })}</p></div>}
           </Col>
         </div>
@@ -1264,7 +1272,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
             {ran
               ? <JestRun status="pass" />
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'npm test ni bosing ←', ru: 'Нажмите npm test ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 <b style={{ color: T.success }}>1 passed</b>! Kodingiz to'g'ri ishlayapti — va buni kompyuter tasdiqladi. Lekin test qachon <b>qizil</b> bo'ladi?</>, ru: <>🎉 <b style={{ color: T.success }}>1 passed</b>! Ваш код работает верно — и это подтвердил компьютер. Но когда тест становится <b>красным</b>?</> })}</p></div>}
           </Col>
         </div>
@@ -1329,7 +1337,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span>{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>({cur.en})</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qadamni bosing ←', ru: 'Нажмите на шаг ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tayyorla → Chaqir → Tekshir. Har testni shu tartibda yozsangiz — toza va tushunarli bo'ladi.", ru: 'Подготовь → Вызови → Проверь. Пишите каждый тест в этом порядке — получится чисто и понятно.' })}</p></div>}
           </Col>
         </div>
@@ -2623,6 +2631,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2666,8 +2675,8 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
         /* 🔓 klapan ipuchasi (m4-08 bilan bir xil): .bhint — ipucha, .bhint.calm — «Davom etish» ochildi */
         .bhint.bhint { margin: 0; align-self: flex-start; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 14px; box-shadow: inset 0 0 0 1.5px ${T.accent}33; }
@@ -2732,7 +2741,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2985,7 +2994,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
@@ -3024,10 +3033,10 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open-mini { align-self: flex-start; margin-top: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 99px; padding: 8px 14px; cursor: pointer; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); transition: all 0.2s; }
         .rc-open-mini:hover { transform: translateY(-1px); }
@@ -3193,7 +3202,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .pick-plus { margin-left: auto; font-weight: 700; color: ${T.ink3}; } .pick-row.picked .pick-plus { color: ${T.success}; }
 
         /* AGENT CARD */
-        .agent-card { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 11px 14px; }
+        .agent-card { background: ${T.blueSoft}; border-radius: 10px; padding: 11px 14px; }
         .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 4px; }
         .agent-msg { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink}; margin: 0; line-height: 1.55; }
 
@@ -3206,9 +3215,9 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .tline { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.8; color: ${CODE.text}; word-break: break-word; }
 
         /* JESTBOT HAKAMI — terminal oynasi (chrome + hukm chirog'i + PASS/FAIL + Expected/Received dalili) */
-        .jestrun { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.3); border-left: 3px solid transparent; }
-        .jestrun.ok { border-left-color: ${CODE.ok}; }
-        .jestrun.bad { border-left-color: ${CODE.err}; }
+        .jestrun { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.3); }
+        .jestrun.ok { }
+        .jestrun.bad { }
         .jestrun .term-bar { background: #22304A; }
         .jr-brand { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; color: #fff; background: ${T.jest}; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; }
         .jr-lamp { margin-left: auto; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -3240,7 +3249,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
         .vseen { margin-left: auto; font-weight: 700; }
         .role-ico { font-size: 20px; flex-shrink: 0; } .role-r { font-size: 11.5px; color: ${T.ink2}; font-weight: 600; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .note-h { font-weight: 700; font-size: 13.5px; margin: 0 0 5px; display: flex; align-items: center; }
 
         @keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-3px); } }

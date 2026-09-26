@@ -571,11 +571,11 @@
     {
       "id": "anatomiya-metaforasi",
       "severity": "error",
-      "pattern": "suyag|\\bsuyak|\\bskelet|скелет|\\blibos\\b|\\byurak|\\byurag|\\bmiya|\\bqon\\b|\\bсердц|\\bмозг",
+      "pattern": "suyag|\\bsuyak|\\blibos\\b|\\byurak|\\byurag|\\bmiya|\\bqon\\b|\\bсердц|\\bмозг",
       "flags": "i",
-      "suggest": "inson anatomiyasi taqiq (4.1): HTML tuzilishi — «shablon»; bir tushuncha — bir nom",
+      "suggest": "inson anatomiyasi taqiq (4.1): HTML tuzilishi — «shablon»; «skelet» faqat «skelet (shablon)» shaklida ruxsat (F-0926-06 E4)",
       "law": "MATN_ETALONI 4.1 · KORPUS 85 · F-0810-02",
-      "except": "skeleton|скелетон|SkelCard|skel"
+      "except": "skeleton|скелетон|SkelCard|Skel[A-Z]"
     },
     {
       "id": "jon-kiritish",

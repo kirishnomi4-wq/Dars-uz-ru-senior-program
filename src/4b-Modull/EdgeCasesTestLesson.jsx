@@ -346,7 +346,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -522,6 +522,15 @@ function ScoreRing({ correct, total }) {
 
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -532,8 +541,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -766,7 +775,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval g'alati buyurtmani sinang ←", ru: 'Сначала попробуйте странный заказ ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
               ? tr({ uz: <>Aynan! Happy path (oddiy kirish) yetarli emas. Funksiya <b>noto'g'ri kirishni rad etishi</b> kerak — va biz buni ham <b>sinashimiz</b> kerak. Bugun: edge cases.</>, ru: <>Именно! Happy path (обычного ввода) недостаточно. Функция должна <b>отклонять неверный ввод</b> — и это тоже нужно <b>протестировать</b>. Сегодня: edge cases.</> })
               : tr({ uz: <>Hisoblab beraversa — do'kon bepul va manfiy buyurtmalarni qabul qiladi; «hech kim qilmaydi» desak — shumtaka mijoz doim topiladi. Funksiya <b>noto'g'ri kirishni rad etishi</b> kerak — va biz buni ham <b>sinashimiz</b> kerak. Bugun: edge cases.</>, ru: <>Если считать как есть — магазин примет бесплатные и отрицательные заказы; если «никто так не делает» — клиент-озорник всегда найдётся. Функция должна <b>отклонять неверный ввод</b> — и это тоже нужно <b>протестировать</b>. Сегодня: edge cases.</> })}</p>}
@@ -840,7 +848,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <JestRun status={show ? 'pass' : undefined} testName="2 kitob narxini hisoblaydi" />
-            {!show && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yashil! Lekin bu faqat <b>oddiy</b> kirish. Haqiqiy foydalanuvchilar har doim ham "happy" emas — keyingisi: g'alati kirishlar.</>, ru: <>Зелёный! Но это только <b>обычный</b> ввод. Настоящие пользователи не всегда «happy» — дальше: странный ввод.</> })}</p></div>}
           </Col>
         </div>
@@ -1286,7 +1293,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'API javobi', ru: 'ответ API' })}</p>
             {!show
               ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "So'rovni yuboring ←", ru: 'Отправьте запрос ←' })}</p></div>
-              : <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>✗ 400 — Bad Request</p><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 12 }}>"quantity must not be less than 1"</p></div>}
+              : <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>400 — Bad Request</p><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 12 }}>"quantity must not be less than 1"</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil mantiq, ikki qatlam: <b>funksiyada</b> throw (unit-test toThrow bilan tekshiradi), <b>API'da</b> DTO → 400. Ikkalasi ham "error path".</>, ru: <>Одна логика, два слоя: <b>в функции</b> — throw (юнит-тест ловит его через toThrow), <b>в API</b> — DTO → 400. И то, и другое — «error path».</> })}</p></div>}
           </Col>
         </div>
@@ -1323,7 +1330,6 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">npm test</p>
-            {step === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
             {step === 1 && <JestRun status="pass" testName="2 kitob narxini hisoblaydi" />}
             {step >= 2 && <JestRun status="fail" testName="manfiy sonda xato beradi" expected="funksiya xato tashlashi kerak edi" received="-50000 qaytardi — xato yo'q" />}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qizil FAIL — bu yaxshi xabar! Test xatoni <b>siz</b> ko'rar oldidan tutdi. Mana edge case'ning kuchi.</>, ru: <>Красный FAIL — это хорошая новость! Тест поймал ошибку раньше, чем её увидели <b>вы</b>. Вот она, сила edge case.</> })}</p></div>}
@@ -1929,7 +1935,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2632,6 +2638,7 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2674,8 +2681,8 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
         /* === FRAME === */
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
         /* 🔓 klapan ipuchasi (m4-08 bilan bir xil): .bhint — ipucha, .bhint.calm — «Davom etish» ochildi */
         .bhint.bhint { margin: 0; align-self: flex-start; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 14px; box-shadow: inset 0 0 0 1.5px ${T.accent}33; }
@@ -2740,7 +2747,7 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -3000,7 +3007,7 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
@@ -3039,10 +3046,10 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open-mini { align-self: flex-start; margin-top: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 99px; padding: 8px 14px; cursor: pointer; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); transition: all 0.2s; }
         .rc-open-mini:hover { transform: translateY(-1px); }
@@ -3208,7 +3215,7 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         .pick-plus { margin-left: auto; font-weight: 700; color: ${T.ink3}; } .pick-row.picked .pick-plus { color: ${T.success}; }
 
         /* AGENT CARD */
-        .agent-card { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 11px 14px; }
+        .agent-card { background: ${T.blueSoft}; border-radius: 10px; padding: 11px 14px; }
         .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 4px; }
         .agent-msg { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink}; margin: 0; line-height: 1.55; }
 
@@ -3221,9 +3228,9 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         .tline { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.8; color: ${CODE.text}; word-break: break-word; }
 
         /* JESTBOT HAKAMI — terminal oynasi (chrome + hukm chirog'i + PASS/FAIL + Expected/Received dalili) */
-        .jestrun { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.3); border-left: 3px solid transparent; }
-        .jestrun.ok { border-left-color: ${CODE.ok}; }
-        .jestrun.bad { border-left-color: ${CODE.err}; }
+        .jestrun { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.3); }
+        .jestrun.ok { }
+        .jestrun.bad { }
         .jestrun .term-bar { background: #22304A; }
         .jr-brand { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; color: #fff; background: ${T.jest}; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; }
         .jr-lamp { margin-left: auto; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -3253,7 +3260,7 @@ export default function EdgeCasesTestLesson({ lang: langProp, onFinished, liveTo
         .vcard:hover:not(:disabled) { transform: translateY(-1px); }
         .vcard:disabled { cursor: default; }
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .note-h { font-weight: 700; font-size: 13.5px; margin: 0 0 5px; display: flex; align-items: center; }
 
         @keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-3px); } }

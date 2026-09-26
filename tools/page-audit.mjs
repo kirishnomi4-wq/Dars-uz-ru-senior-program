@@ -11,6 +11,7 @@
 //   INP2  — yorliq ham, placeholder ham bor va ma'nosi bir xil (ikki marta aytilgan)
 //   ALIGN — 2–4 ustunli qatorda ustunlarning birinchi qutisi (ustun karta bo'lsa — o'zi) har xil balandlikdan boshlanadi (bridge 38–40), farq > 6px
 //   SCROLL— hujjat YOKI ichki aylanuvchi quti 1280×800 ga sig'maydi (26.09: ichki quti ham o'lchanadi)
+//   EQH   — tepasi bir chiziqdagi o'xshash juft qutining pasti farq qiladi (nomzod, majburiy emas; 159/16)
 //   DUP   — bir sahifada bir ma'noni beruvchi ikki matn-blok (so'z-o'zak Jaccard ≥ 0.5 yoki biri ikkinchisini o'z ichiga oladi)
 // ============================================================================
 import { chromium } from 'playwright-core';
@@ -65,7 +66,7 @@ function measure() {
   const root = document.querySelector('.lesson-root') || document.body;
   const vis = (el) => { const r = el.getBoundingClientRect(); const cs = getComputedStyle(el); return r.width > 2 && r.height > 2 && cs.visibility !== 'hidden' && cs.display !== 'none' && Number(cs.opacity) > 0.05 && !el.closest('[aria-hidden="true"],.cc-ghost'); };
   const txt = (el) => (el.innerText || '').replace(/\s+/g, ' ').trim();
-  const out = { inp: [], align: [], dup: [], scroll: 0, loud: [] };
+  const out = { inp: [], align: [], dup: [], scroll: 0, loud: [], eqh: [] };
   const skip = (el) => el.closest('nav,.nav,.stage-nav,.topbar,.progress,.ach-counter,.mentor-stats,.mstats,.live-badge,.zoom-btn,.fc-bar,.qz-hud,.cs-hud,footer');
   // ---- INP
   for (const inp of root.querySelectorAll('input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]),textarea')) {
@@ -95,13 +96,13 @@ function measure() {
   const firstBox = (col) => {
     // Ustunning o'zi karta bo'lsa — kartaning tepasi solishtiriladi (26.09: ichki quti emas)
     const cr = col.getBoundingClientRect();
-    if (boxyEl(col) && cr.height >= 36) return { top: cr.top, el: (col.className || col.tagName).toString().slice(0, 40) };
+    if (boxyEl(col) && cr.height >= 36) return { top: cr.top, bottom: cr.bottom, el: (col.className || col.tagName).toString().slice(0, 40) };
     const walker = document.createTreeWalker(col, NodeFilter.SHOW_ELEMENT);
     let n = walker.currentNode;
     while (n) {
       if (n !== col && vis(n)) {
         const r = n.getBoundingClientRect();
-        if (boxyEl(n) && r.height >= 36 && r.width >= cr.width * 0.55) return { top: r.top, el: (n.className || n.tagName).toString().slice(0, 40) };
+        if (boxyEl(n) && r.height >= 36 && r.width >= cr.width * 0.55) return { top: r.top, bottom: r.bottom, el: (n.className || n.tagName).toString().slice(0, 40) };
       }
       n = walker.nextNode();
     }
@@ -122,6 +123,23 @@ function measure() {
     if (fs.some(f => !f)) continue;
     const tops = fs.map(f => f.top);
     const d = Math.round(Math.max(...tops) - Math.min(...tops));
+    // 26.09 (F-0926-06): ustunlarning BIRINCHI ko'rinadigan kontenti (yorliq-matn yoki quti) bir chiziqda bo'lsa — nuqson emas
+    // (foydalanuvchi qarori D: «yorliq tepasi qo'shni blok tepasi bilan bir chiziqda bo'lsa QOLADI»; CssLesson1: yorliq + rang-tugmalar ↔ NATIJA + oyna)
+    const inkTop = (col) => { let best = Infinity; for (const n of col.querySelectorAll('*')) { if (!vis(n)) continue; const r = n.getBoundingClientRect(); if (r.height < 8) continue;
+      const own = [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim()); if (own || boxyEl(n)) best = Math.min(best, r.top); } return best; };
+    const inks = kids.map(inkTop);
+    const dInk = Math.round(Math.max(...inks) - Math.min(...inks));
+    // EQH (F-0926-06, foydalanuvchi 27.09): tepasi bir chiziqda, o'xshash o'lchamli juft — pastki cheti ham bir chiziqda bo'lsin.
+    // Nomzod (majburiy emas): biri ikkinchisidan 2 barobar baland bo'lsa — istisno (cho'zish bo'sh quti yasaydi, 159/13).
+    if (d <= 6) {
+      const hs = fs.map(f => f.bottom - f.top), bs = fs.map(f => f.bottom);
+      const db = Math.round(Math.max(...bs) - Math.min(...bs));
+      if (Math.min(...hs) / Math.max(...hs) >= 0.5 && db > 6) {
+        const k2 = 'eqh:' + Math.round(rs[0].top) + ':' + Math.round(rs[1].left);
+        if (!seen.has(k2)) { seen.add(k2); out.eqh.push({ diff: db, left: fs[0].el, right: fs[fs.length - 1].el, hs: hs.map(Math.round) }); }
+      }
+    }
+    if (Number.isFinite(dInk) && dInk <= 6) continue;
     const key = Math.round(rs[0].top) + ':' + Math.round(rs[1].left);
     if (d > 6 && !seen.has(key)) { seen.add(key); out.align.push({ diff: d, cols: kids.length, left: fs[0].el, right: fs[fs.length - 1].el, y: Math.round(Math.min(...tops)), row: (el.className || el.tagName).toString().slice(0, 40), kids: kids.map(k => (k.className || k.tagName).toString().slice(0, 30) + '@' + Math.round(k.getBoundingClientRect().top)), tops: tops.map(Math.round) }); }
   }
@@ -179,7 +197,7 @@ function measure() {
   for (const el of document.querySelectorAll('body *')) {
     const cs = getComputedStyle(el);
     if (!/(auto|scroll)/.test(cs.overflowY) || el.clientHeight < 200) continue;
-    if (!el.querySelector('h1, .title')) continue; // faqat asosiy dars qutisi — kod/chat oynasining o'z aylanishi emas
+    if (!el.querySelector('.h-title')) continue; // faqat asosiy dars qutisi (dars sarlavhasi .h-title) — kod/chat/Preview oynasining o'z aylanishi emas (27.09: Preview ichidagi h1 yolg'on SCROLL berardi)
     out.scroll = Math.max(out.scroll, Math.round(el.scrollHeight - el.clientHeight));
   }
   return out;
@@ -208,7 +226,7 @@ async function main() {
     const m = metaRows[s] || {};
     if (SKIP_T.test(m.template || '') || SKIP_TY.test(m.type || '')) continue;
     const url = pathToFileURL(html).href + `?lang=${LANG}&s=${s}&id=${encodeURIComponent(lessonId)}&total=${total}`;
-    const agg = { s, id: m.id, type: m.type, inp: new Map(), align: new Map(), dup: new Map(), loud: new Map(), scroll: 0, zbtn0: 0, states: 0, err: null };
+    const agg = { s, id: m.id, type: m.type, inp: new Map(), align: new Map(), dup: new Map(), loud: new Map(), eqh: new Map(), scroll: 0, zbtn0: 0, states: 0, err: null };
     try {
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 }); // 26.09: 'load' tashqi rasmni kutardi (go.coddycamp.uz sekin) — .lesson-root pastda kutiladi
       await page.waitForSelector('.lesson-root', { timeout: 15000 });
@@ -219,6 +237,7 @@ async function main() {
         for (const x of o.align) agg.align.set(x.left + '|' + x.right + '|' + x.y, x);
         for (const x of o.dup) agg.dup.set(x.a + '|' + x.b, x);
         for (const x of o.loud) agg.loud.set(x.cls, x);
+        for (const x of (o.eqh || [])) agg.eqh.set(x.left + '|' + x.right, x);
         agg.scroll = Math.max(agg.scroll, o.scroll);
         if (agg.states === 1) agg.zbtn0 = o.zbtn || 0; // faqat boshlang'ich holat: bosishdan oldin
       };
@@ -233,13 +252,13 @@ async function main() {
       }
       if (opts.shots) await page.screenshot({ path: join(outDir, `s${String(s).padStart(2, '0')}-z.png`) });
     } catch (e) { agg.err = String(e.message).split('\n')[0].slice(0, 120); }
-    res.push({ ...agg, inp: [...agg.inp.values()], loud: [...agg.loud.values()], align: [...agg.align.values()], dup: [...agg.dup.values()].sort((a, b) => b.score - a.score) });
+    res.push({ ...agg, inp: [...agg.inp.values()], loud: [...agg.loud.values()], eqh: [...agg.eqh.values()], align: [...agg.align.values()], dup: [...agg.dup.values()].sort((a, b) => b.score - a.score) });
     process.stdout.write(`\r  s${s} ✓   `);
   }
   await browser.close();
   writeFileSync(join(outDir, 'audit.json'), JSON.stringify({ file, lessonId, lang: LANG, res }, null, 1));
-  const t = { inp: 0, align: 0, dup: 0, scroll: 0, loud: 0, zbtn: 0 };
-  for (const r of res) { t.inp += r.inp.length; t.align += r.align.length; t.dup += r.dup.length; t.loud += r.loud.length; if (r.scroll > 40) t.scroll++; if (r.zbtn0) t.zbtn++; }
-  console.log(`\n${basename(file)}  ekran=${res.length}  INP=${t.inp}  ALIGN=${t.align}  DUP=${t.dup}  LOUD=${t.loud}  SCROLL=${t.scroll}  ZBTN=${t.zbtn}  → ${join(outDir, 'audit.json')}`);
+  const t = { inp: 0, align: 0, dup: 0, scroll: 0, loud: 0, zbtn: 0, eqh: 0 };
+  for (const r of res) { t.inp += r.inp.length; t.align += r.align.length; t.dup += r.dup.length; t.loud += r.loud.length; t.eqh += (r.eqh || []).length; if (r.scroll > 40) t.scroll++; if (r.zbtn0) t.zbtn++; }
+  console.log(`\n${basename(file)}  ekran=${res.length}  INP=${t.inp}  ALIGN=${t.align}  DUP=${t.dup}  LOUD=${t.loud}  SCROLL=${t.scroll}  ZBTN=${t.zbtn}  EQH=${t.eqh}  → ${join(outDir, 'audit.json')}`);
 }
 main().catch(e => { console.error(e); process.exit(1); });

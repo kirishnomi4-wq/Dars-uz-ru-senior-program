@@ -296,11 +296,11 @@ const RECAPS = {
     cards: [
       { ic: "🧩", h: { uz: "Sistema — birga ishlovchi qismlar", ru: 'Система — части, работающие вместе' },
         body: { uz: <>Sistema — bu <b>birga ishlaydigan komponentlar</b> va ularning <b>bog'lanishlari</b>. Bitta yaxlit narsa emas, aksincha ko'p qismning jamoasi.</>, ru: <>Система — это <b>компоненты, работающие вместе</b>, и их <b>связи</b>. Это не один цельный предмет, а команда из многих частей.</> },
-        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: '🫀 сердце' }, { uz: "🫁 o'pka", ru: '🫁 лёгкие' }, { uz: "🩸 qon", ru: '🩸 кровь' }]} sep="+" />,
+        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: 'сердце' }, { uz: "🫁 o'pka", ru: 'лёгкие' }, { uz: "🩸 qon", ru: 'кровь' }]} sep="+" />,
         ask: { uz: "Sinfimiz sistema bo'la oladimi? Qaysi qismlardan iborat?", ru: 'Может ли наш класс быть системой? Из каких частей он состоит?' } },
       { ic: "🚗", h: { uz: "Bir qism yetmaydi", ru: 'Одной части мало' },
         body: { uz: <>Faqat <b>bitta g'ildirak</b> mashina emas. Mashina bo'lishi uchun dvigatel, g'ildirak, rul — hammasi <b>birga</b> ishlashi kerak.</>, ru: <>Одно <b>колесо</b> — это ещё не машина. Чтобы получилась машина, двигатель, колёса и руль должны работать <b>вместе</b>.</> },
-        vis: <RcFlow items={[{ uz: "😕 bitta g'ildirak", ru: '😕 одно колесо' }, { uz: "🔧 hamma qism birga", ru: '🔧 все части вместе' }, { uz: "🚗 mashina", ru: '🚗 машина' }]} /> },
+        vis: <RcFlow items={[{ uz: "😕 bitta g'ildirak", ru: 'одно колесо' }, { uz: "🔧 hamma qism birga", ru: 'все части вместе' }, { uz: "🚗 mashina", ru: 'машина' }]} /> },
       { ic: "🎯", h: { uz: "Umumiy maqsad uchun", ru: 'Ради общей цели' },
         body: { uz: <>Sistemaning qismlari <b>tasodifiy</b> emas — ular <b>bitta maqsad</b> uchun birlashgan. Inson tanasi yashash uchun, mashina yurish uchun.</>, ru: <>Части системы собраны <b>не случайно</b> — их объединяет <b>одна цель</b>. Тело человека — чтобы жить, машина — чтобы ехать.</> } },
     ]
@@ -310,11 +310,11 @@ const RECAPS = {
     cards: [
       { ic: "🔗", h: { uz: "Bog'lanish — qismlar orasidagi yo'l", ru: 'Связь — путь между частями' },
         body: { uz: <>Bog'lanish — bu qismlar <b>bir-biriga ta'sir o'tkazadigan yo'l</b>. U eng katta qism ham, sistemaning nomi ham emas.</>, ru: <>Связь — это <b>путь, по которому части влияют друг на друга</b>. Это не самая большая часть и не название системы.</> },
-        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: '🫀 сердце' }, { uz: "🩸 qon yuboradi", ru: '🩸 гонит кровь' }, { uz: "🫁 o'pka", ru: '🫁 лёгкие' }]} />,
+        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: 'сердце' }, { uz: "🩸 qon yuboradi", ru: 'гонит кровь' }, { uz: "🫁 o'pka", ru: 'лёгкие' }]} />,
         ask: { uz: "Uyda svet va vaklyuchatel orasida qanday bog'lanish bor?", ru: 'Какая связь дома между лампочкой и выключателем?' } },
       { ic: "🚦", h: { uz: "Ta'sir bir qismdan ikkinchisiga o'tadi", ru: 'Действие переходит от части к части' },
         body: { uz: <>Yurak <b>qon haydaydi</b>, qon o'pkaga <b>kislorod</b> uchun boradi. Bir qismning ishi ikkinchisiga <b>o'tib</b> ketadi — mana bu bog'lanish.</>, ru: <>Сердце <b>гонит кровь</b>, кровь идёт в лёгкие за <b>кислородом</b>. Работа одной части <b>передаётся</b> другой — вот это и есть связь.</> },
-        vis: <RcFlow items={[{ uz: "👆 bosdim", ru: '👆 нажал' }, { uz: "⚡ tok o'tdi", ru: '⚡ ток прошёл' }, { uz: "💡 chiroq yondi", ru: '💡 лампа загорелась' }]} /> },
+        vis: <RcFlow items={[{ uz: "👆 bosdim", ru: 'нажал' }, { uz: "⚡ tok o'tdi", ru: 'ток прошёл' }, { uz: "💡 chiroq yondi", ru: 'лампа загорелась' }]} /> },
       { ic: "🎯", h: { uz: "Bog'lanishsiz — sistema emas", ru: 'Без связей — не система' },
         body: { uz: <>Agar qismlar <b>bir-biriga ta'sir qilmasa</b>, ular shunchaki alohida narsalar. Aynan bog'lanishlar ularni <b>bitta sistema</b> qiladi.</>, ru: <>Если части <b>не влияют друг на друга</b>, это просто отдельные предметы. Именно связи делают их <b>одной системой</b>.</> } },
     ]
@@ -324,11 +324,11 @@ const RECAPS = {
     cards: [
       { ic: "🌦️", h: { uz: "Shart — tanlov qadami", ru: 'Условие — шаг выбора' },
         body: { uz: <>«AGAR yomg'ir bo'lsa, soyabon ol» — bu <b>shart</b>. Bir narsa <b>rost bo'lsa</b> — bir ish qilamiz, bo'lmasa — qilmaymiz.</>, ru: <>«ЕСЛИ идёт дождь — возьми зонт» — это <b>условие</b>. Если что-то <b>верно</b> — делаем одно, если нет — не делаем.</> },
-        vis: <RcFlow items={[{ uz: "🌧️ yomg'ir bormi?", ru: '🌧️ идёт дождь?' }, { uz: "☂️ ha → soyabon", ru: '☂️ да → зонт' }, { uz: "😎 yo'q → olmaymiz", ru: '😎 нет → не берём' }]} />,
+        vis: <RcFlow items={[{ uz: "🌧️ yomg'ir bormi?", ru: 'идёт дождь?' }, { uz: "☂️ ha → soyabon", ru: 'да → зонт' }, { uz: "😎 yo'q → olmaymiz", ru: 'нет → не берём' }]} />,
         ask: { uz: "Kunlik hayotdan yana bitta «agar...bo'lsa» misolini kim aytadi?", ru: 'Кто назовёт ещё один пример «если... то» из повседневной жизни?' } },
       { ic: "🚦", h: { uz: "Sikldan farqi", ru: 'Чем отличается от цикла' },
         body: { uz: <>Shart <b>bir marta</b> tekshiradi va yo'l tanlaydi. Sikl esa bir ishni <b>ko'p marta takrorlaydi</b> — bular boshqa-boshqa narsa.</>, ru: <>Условие проверяет <b>один раз</b> и выбирает путь. А цикл <b>повторяет действие много раз</b> — это разные вещи.</> },
-        vis: <RcFlow items={[{ uz: "🚦 yashil bo'lsa → yur", ru: '🚦 зелёный → иди' }, { uz: "🔴 qizil bo'lsa → to'xta", ru: '🔴 красный → стой' }]} sep="·" /> },
+        vis: <RcFlow items={[{ uz: "🚦 yashil bo'lsa → yur", ru: 'зелёный → иди' }, { uz: "🔴 qizil bo'lsa → to'xta", ru: 'красный → стой' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "«bo'lsa» so'ziga qara", ru: 'Ищите слово «если»' },
         body: { uz: <>Gapda <b>«agar... bo'lsa»</b> bo'lsa — bu deyarli har doim <b>shart</b>. U qadamni holatga qarab tanlaydi.</>, ru: <>Если во фразе есть <b>«если... то»</b> — это почти всегда <b>условие</b>. Оно выбирает шаг в зависимости от ситуации.</> } },
     ]
@@ -338,7 +338,7 @@ const RECAPS = {
     cards: [
       { ic: "🔁", h: { uz: "Sikl — takrorlash qadami", ru: 'Цикл — шаг повторения' },
         body: { uz: <>Bir xil amalni <b>ko'p marta</b> takrorlash uchun <b>sikl</b> ishlatamiz. Har safar qaytadan yozib o'tirmaymiz.</>, ru: <>Чтобы повторить одно действие <b>много раз</b>, используем <b>цикл</b>. Не пишем его заново каждый раз.</> },
-        vis: <RcFlow items={[{ uz: "🪜 zina 1", ru: '🪜 ступенька 1' }, { uz: "🪜 zina 2", ru: '🪜 ступенька 2' }, { uz: "🪜 zina 3", ru: '🪜 ступенька 3' }, { uz: "🔁 takror", ru: '🔁 повтор' }]} />,
+        vis: <RcFlow items={[{ uz: "🪜 zina 1", ru: 'ступенька 1' }, { uz: "🪜 zina 2", ru: 'ступенька 2' }, { uz: "🪜 zina 3", ru: 'ступенька 3' }, { uz: "🔁 takror", ru: 'повтор' }]} />,
         ask: { uz: "Tishni yuvishda cho'tkani necha marta yuqoriga-pastga yuritamiz — bu sikls mi?", ru: 'Сколько раз мы водим щёткой вверх-вниз, когда чистим зубы, — это цикл?' } },
       { ic: "🏃", h: { uz: "Misol: 10 marta o'tir-tur", ru: 'Пример: 10 приседаний' },
         body: { uz: <>«10 marta o'tir-tur qil» — bu <b>sikl</b>. Bitta harakat <b>10 marta qaytariladi</b>. Shartdan farqi: sikl takrorlaydi, shart tanlaydi.</>, ru: <>«Присядь 10 раз» — это <b>цикл</b>. Одно движение <b>повторяется 10 раз</b>. Отличие от условия: цикл повторяет, условие выбирает.</> },
@@ -430,7 +430,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -470,16 +470,16 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как идти дальше, лучше коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответов пока мало ({answered}) — по проценту трудно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -681,6 +681,15 @@ const Mentor = ({ children }) => {
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -691,8 +700,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1415,7 +1424,7 @@ function CommandConsole({ program, running, phase, onRun, onReset, canRun, title
         {program.length === 0
           ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 13 }}>{tr({ uz: "// bloklarni tartib bilan qo'shing…", ru: '// добавляйте блоки по порядку…' })}</p>
           : program.map((b, i) => (
-            <div key={i} className={`algo-line el-in ${phase === 'run' && i === running ? 'cc-active' : ''}`} style={{ borderLeft: `3px solid ${BLOK_TYPE_COLOR[b.type]}`, cursor: canEdit ? 'pointer' : 'default' }} onClick={canEdit ? () => onRemove(i) : undefined} title={canEdit ? tr({ uz: 'Olib tashlash', ru: 'Убрать' }) : undefined}>
+            <div key={i} className={`algo-line el-in ${phase === 'run' && i === running ? 'cc-active' : ''}`} style={{ cursor: canEdit ? 'pointer' : 'default' }} onClick={canEdit ? () => onRemove(i) : undefined} title={canEdit ? tr({ uz: 'Olib tashlash', ru: 'Убрать' }) : undefined}>
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', color: T.ink3, fontSize: 12, minWidth: 16 }}>{i + 1}</span>
               <span style={{ fontSize: 16 }}>{b.ic}</span>
               <span style={{ flex: 1, fontFamily: "'Manrope',sans-serif", fontSize: 14, color: T.ink }}>{b.t}</span>
@@ -1466,7 +1475,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ))}
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: "Qaysi qadam noto'g'ri joyda? Bosing.", ru: 'Какой шаг стоит не на своём месте? Нажмите.' })}</p>}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: "🔧 Tartibni to'g'rilash", ru: '🔧 Исправить порядок' })}</button>)}
+              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: "Tartibni to'g'rilash", ru: 'Исправить порядок' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ Tartib to'g'rilandi!", ru: '✓ Порядок исправлен!' })}</p>}
             </div>
           </Col>
@@ -2231,7 +2240,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2549,6 +2558,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2615,7 +2625,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2684,9 +2694,9 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
@@ -2832,9 +2842,9 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2864,10 +2874,10 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2897,7 +2907,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -3175,7 +3185,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
         .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }

@@ -340,7 +340,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -382,7 +382,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
           </div>
         );
       })()}
@@ -513,6 +513,15 @@ function ScoreRing({ correct, total }) {
 
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -523,8 +532,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -797,7 +806,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval POST /car ni bosib ko'ring ←", ru: 'Сначала нажмите POST /car ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr(ACK[picked])}</p>}
           </Col>
         </Split>
@@ -971,7 +979,6 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Nazoratchi javobi', ru: 'Ответ контролёра' })}</p>
             {res === 'ok' && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✓ 201 — qabul qilindi', ru: '✓ 201 — принято' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "brand to'ldirilgan, price raqam — anketa to'g'ri, ichkariga o'tdi.", ru: 'brand заполнен, price — число: анкета верная, запрос прошёл внутрь.' })}</p></div>}
             {res === 'bad' && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '✗ 400 — rad etildi', ru: '✗ 400 — отклонено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'brand bo\'sh, price esa raqam emas ("arzon") — qoidalar buzilgan. So\'rov service\'gacha ham bormadi.', ru: 'brand пустой, а price — не число ("arzon") — правила нарушены. Запрос даже не дошёл до service.' })}</p></div>}
-            {res === null && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "So'rov yuboring ←", ru: 'Отправьте запрос ←' })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "DTO + nazoratchi ilovani ifloslangan ma'lumotdan himoya qiladi. Yomon ma'lumot bazaga umuman yetib bormaydi.", ru: 'DTO + контролёр защищают приложение от грязных данных. Плохие данные до базы вообще не доходят.' })}</p></div>}
           </Col>
         </div>
@@ -1032,7 +1039,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {'  '}<Jx>extends</Jx>{' '}<At>PartialType</At>{'(CreateCarDto) {}'}
               </CodeFile>
             )}
-            {cur === null && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Variantni tanlang ↑', ru: 'Выберите вариант ↑' })}</p></div>}
             <AgentCard>{tr({ uz: "update-car.dto.ts yoz: PartialType(CreateCarDto) — barcha maydon ixtiyoriy bo'lsin.", ru: 'Напиши update-car.dto.ts: PartialType(CreateCarDto) — пусть все поля будут необязательными.' })}</AgentCard>
           </Col>
           <Col>
@@ -1131,7 +1137,6 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {'}'}
               </CodeFile>
             )}
-            {cur === null && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Variantni tanlang ↑', ru: 'Выберите вариант ↑' })}</p></div>}
             <AgentCard>{tr({ uz: "CarService yoz: BaseService'dan meros olsin (Create/Update DTO, CarEntity), CarEntity repozitoriysini inject qilib super(repo) chaqirsin.", ru: 'Напиши CarService: пусть наследуется от BaseService (Create/Update DTO, CarEntity), инжектирует репозиторий CarEntity и вызывает super(repo).' })}</AgentCard>
           </Col>
           <Col>
@@ -1536,7 +1541,7 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="ai-line" onClick={pickGood} title={tr({ uz: "to'g'ri qator", ru: 'правильная строка' })}><span style={{ color: CODE.attr }}>@Delete</span>{"(':id')  remove(...) { ... }"}</div>
                 <div className="ai-line" style={{ cursor: 'default', opacity: 0.85 }}>{'}'}</div>
               </div>
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '🔧 Begona @Column qatorini olib tashlash', ru: '🔧 Убрать чужую строку @Column' })}</button>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: 'Begona @Column qatorini olib tashlash', ru: 'Убрать чужую строку @Column' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — controller endi toza!', ru: '✓ Исправлено — controller теперь чистый!' })}</p>}
             </div>
           </Col>
@@ -1924,7 +1929,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2626,10 +2631,11 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .vcard:disabled { cursor: default; }
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
         .vseen { margin-left: auto; font-weight: 700; }
-        .role-ico { font-size: 20px; flex-shrink: 0; } .role-r { font-size: 11.5px; color: ${T.ink2}; font-weight: 600; }
+        .role-r { font-size: 11.5px; color: ${T.ink2}; font-weight: 600; }
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2669,9 +2675,9 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55); }
 
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(15px,2.5vw,22px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2721,9 +2727,9 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .oc-agent-btn:hover { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
         .oc-agent[open] { margin-top: 0; }
         @media (max-width: 760px) { .oc-agent-btn { position: static; display: inline-block; } .oc-agent { margin-top: 0; } .oc-agent[open] .oc-agent-msg { margin-top: 6px; } }
-        .oc-agent-msg.oc-agent-msg { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 8px 12px; }
+        .oc-agent-msg.oc-agent-msg { background: ${T.blueSoft}; border-radius: 10px; padding: 8px 12px; }
         .agent-msg { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink}; margin: 0; line-height: 1.55; }
-        .prompt-box { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 12px 15px; }
+        .prompt-box { background: ${T.blueSoft}; border-radius: 10px; padding: 12px 15px; }
 
         /* AGENT FILE GENERATION (s16) */
         .gen-file { display: flex; align-items: center; gap: 9px; background: ${T.paper}; border-radius: 9px; padding: 9px 12px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-size: 12px; transition: all 0.2s; }
@@ -2826,9 +2832,9 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .oc-strip { display: flex; align-items: stretch; gap: 7px; flex-wrap: wrap; }
         .oc-sep { display: flex; align-items: center; color: ${T.ink3}; font-weight: 700; }
         .oc-slot { flex: 1; min-width: 96px; display: flex; align-items: center; gap: 6px; border: 1.5px dashed ${T.ink3}; border-radius: 10px; padding: 5px 9px; background: ${T.bg}; transition: all 0.25s; }
-        .oc-slot.on { background: ${T.paper}; border: 1.5px solid transparent; border-left: 4px solid ${T.success}; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.2); }
+        .oc-slot.on { background: ${T.paper}; border: 1.5px solid transparent; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.2); }
         .oc-slot.plate { min-width: 118px; }
-        .oc-slot.plate.on { border-left-color: ${T.nest}; }
+        .oc-slot.plate.on { }
         .oc-ic { font-size: 15px; line-height: 1; }
         .oc-nm { flex: 1; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.ink2}; line-height: 1.25; }
         .oc-slot.on .oc-nm { color: ${T.ink}; }
@@ -2876,7 +2882,7 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         /* === Kahoot-kutish holatlari (jonli test) === */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: opt-wait-breathe 2s ease-in-out infinite; }
         @keyframes opt-wait-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
 
         /* === 📊 MENTOR STATISTIKASI === */
@@ -2915,10 +2921,10 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); }
@@ -3051,7 +3057,7 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .pod-row-time { min-width: 46px; text-align: right; font-size: 11.5px; color: ${T.ink3}; }
 
         /* === 🛠️ JONLI PRAKTIKA === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 6px; }

@@ -345,11 +345,11 @@ const RECAPS = {
         vis: <RcFlow items={['<img src="mushuk.jpg" alt="Mushukcha">']} /> },
       { ic: '📍', h: { uz: 'src — rasmning manzili', ru: 'src — адрес картинки' },
         body: { uz: <><b className="mono">src</b> (source = manba) brauzerga <b>qaysi rasmni</b> ko'rsatishni aytadi: fayl nomi yoki internet manzili. <b className="mono">src</b> bo'sh bo'lsa — rasm chiqmaydi!</>, ru: <><b className="mono">src</b> (source = источник) говорит браузеру, <b>какую картинку</b> показать: имя файла или интернет-адрес. Если <b className="mono">src</b> пустой — картинка не появится!</> },
-        vis: <RcFlow items={['src="mushuk.jpg"', { uz: '🐱 Rasm chiqadi', ru: '🐱 Картинка появляется' }]} />,
+        vis: <RcFlow items={['src="mushuk.jpg"', { uz: 'Rasm chiqadi', ru: 'Картинка появляется' }]} />,
         ask: { uz: "src ichiga nima yoziladi?", ru: 'Что пишется внутри src?' } },
       { ic: '💬', h: { uz: 'alt — zaxira matn', ru: 'alt — запасной текст' },
         body: { uz: <>Rasm yuklanmasa, o'rnida <b className="mono">alt</b> matni chiqadi. Uni ko'zi ojiz foydalanuvchilarning dasturi ham o'qib beradi, Google ham rasmni shu matn orqali topadi.</>, ru: <>Если картинка не загрузится, вместо неё появится текст из <b className="mono">alt</b>. Его же читает программа незрячих пользователей, и Google находит картинку именно по этому тексту.</> },
-        vis: <RcFlow items={[{ uz: '📵 Rasm yuklanmadi', ru: '📵 Картинка не загрузилась' }, { uz: '💬 alt matni chiqadi', ru: '💬 Появляется текст alt' }]} />,
+        vis: <RcFlow items={[{ uz: 'Rasm yuklanmadi', ru: 'Картинка не загрузилась' }, { uz: 'alt matni chiqadi', ru: 'Появляется текст alt' }]} />,
         ask: { uz: "Mushuk rasmi uchun qanday alt yozgan bo'lardingiz?", ru: 'Какой alt вы бы написали для фото кота?' } },
     ]
   },
@@ -361,7 +361,7 @@ const RECAPS = {
         vis: <RcFlow items={['🔝 header', '🏠 main', '🔻 footer']} /> },
       { ic: '🏷️', h: { uz: 'header — sahifaning tepasi', ru: 'header — верх страницы' },
         body: { uz: <><b className="mono">&lt;header&gt;</b> — shift kabi eng tepada: <b>logotip</b>, sayt nomi va <b>menyu</b> shu yerda turadi. Saytga kirganda birinchi ko'rinadigan qism.</>, ru: <><b className="mono">&lt;header&gt;</b> — на самом верху, как потолок: здесь <b>логотип</b>, название сайта и <b>меню</b>. Это первое, что видно при входе на сайт.</> },
-        vis: <RcFlow items={[{ uz: '🏷️ Logo', ru: '🏷️ Лого' }, { uz: '📋 Menyu', ru: '📋 Меню' }]} sep="·" />,
+        vis: <RcFlow items={[{ uz: 'Logo', ru: 'Лого' }, { uz: 'Menyu', ru: 'Меню' }]} sep="·" />,
         ask: { uz: "Sevimli saytingizning header'ida nimalar bor?", ru: 'Что есть в header вашего любимого сайта?' } },
       { ic: '📮', h: { uz: 'main — asosiy, footer — past', ru: 'main — основное, footer — низ' },
         body: { uz: <><b className="mono">&lt;main&gt;</b> — xonalar kabi o'rtada: matn, rasmlar, eng muhim narsalar. <b className="mono">&lt;footer&gt;</b> — pol kabi pastda: aloqa va © belgisi.</>, ru: <><b className="mono">&lt;main&gt;</b> — посередине, как комнаты: текст, картинки, самое важное. <b className="mono">&lt;footer&gt;</b> — внизу, как пол: контакты и знак ©.</> },
@@ -388,13 +388,13 @@ const RECAPS = {
     title: { uz: 'DevTools — vaqtincha tajriba', ru: 'DevTools — временный эксперимент' }, cards: [
       { ic: '🔍', h: { uz: 'F12 — saytning ichini ochadi', ru: 'F12 — открывает сайт изнутри' },
         body: { uz: <>Har qanday saytning HTML kodini ko'rish mumkin: <b>F12</b> bosing (yoki o'ng tugma → <b>Inspect</b>) — <b>DevTools</b> ochilib, sahifaning butun kodini ko'rsatadi.</>, ru: <>HTML-код любого сайта можно посмотреть: нажмите <b>F12</b> (или правая кнопка → <b>Inspect</b>) — откроется <b>DevTools</b> и покажет весь код страницы.</> },
-        vis: <RcFlow items={[{ uz: '🌐 Istalgan sayt', ru: '🌐 Любой сайт' }, '⌨️ F12', { uz: '📄 HTML kodi', ru: '📄 HTML-код' }]} /> },
+        vis: <RcFlow items={[{ uz: 'Istalgan sayt', ru: 'Любой сайт' }, '⌨️ F12', { uz: 'HTML kodi', ru: 'HTML-код' }]} /> },
       { ic: '✏️', h: { uz: "Kodni o'zgartirib ko'rish mumkin", ru: 'Код можно даже поменять' },
         body: { uz: <>DevTools'da matnni bosib <b>o'zgartirsangiz</b>, sahifa darhol yangilanadi. Bu — xatolarni topish va tajriba qilish uchun eng zo'r vosita.</>, ru: <>Если в DevTools кликнуть по тексту и <b>изменить его</b>, страница обновится мгновенно. Это лучший инструмент для поиска ошибок и экспериментов.</> },
         ask: { uz: "DevTools'da qaysi saytni ochib ko'rgan bo'lardingiz?", ru: 'Какой сайт вы бы открыли в DevTools?' } },
       { ic: '⏳', h: { uz: "Lekin o'zgarish — vaqtincha!", ru: 'Но изменение — временное!' },
         body: { uz: <>O'zgarish <b>faqat sizning ekraningizda</b> — boshqalar asl saytni ko'raveradi. Sahifani yangilasangiz, hammasi joyiga qaytadi. Shuning uchun <b>bemalol tajriba qiling</b> — sayt buzilmaydi!</>, ru: <>Изменение видно <b>только на вашем экране</b> — остальные видят настоящий сайт. Обновите страницу — и всё вернётся на место. Так что <b>смело экспериментируйте</b> — сайт не сломается!</> },
-        vis: <RcFlow items={[{ uz: "✏️ O'zgartirdingiz", ru: '✏️ Изменили' }, { uz: '🔄 Yangiladingiz', ru: '🔄 Обновили' }, { uz: '↩️ Asl holiga qaytdi', ru: '↩️ Вернулось как было' }]} /> },
+        vis: <RcFlow items={[{ uz: "✏️ O'zgartirdingiz", ru: 'Изменили' }, { uz: 'Yangiladingiz', ru: 'Обновили' }, { uz: '↩️ Asl holiga qaytdi', ru: '↩️ Вернулось как было' }]} /> },
     ]
   },
 };
@@ -858,7 +858,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               ) : (
                 <>
                   <CodeBox><Tg>{'<img '}</Tg><At>src</At>=<Sr>"aziza.jpg"</Sr><Tg>{'>'}</Tg>{'\n'}<Tg>{'<h1>'}</Tg>Aziza<Tg>{'</h1>'}</Tg>{'\n'}<Tg>{'<form>'}</Tg>{'\n  '}<Tg>{'<input>'}</Tg>{'\n  '}<Tg>{'<button>'}</Tg>{tr({ uz: 'Yuborish', ru: 'Отправить' })}<Tg>{'</button>'}</Tg>{'\n'}<Tg>{'</form>'}</Tg></CodeBox>
-                  <p className="mono small" style={{ color: T.ink3, marginTop: 6, textAlign: 'center' }}>↑ {tr({ uz: "rasm, forma, tugma — bugun shularni o'rganamiz!", ru: 'картинка, форма, кнопка — сегодня учим именно их!' })}</p>
+                  {/* F-0926-06: «↑ rasm, forma, tugma — bugun shularni o'rganamiz!» olindi — javobdan OLDIN to'g'ri variantni aytardi (159/17) */}
                 </>
               )}
             </div>
@@ -944,7 +944,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 2 — RASM (img) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's2', text: `Saytga rasm qo'yish — devorga surat ilganga o'xshaydi. img — bu ramka, src esa qaysi rasmni qo'yishni aytadi. Eng qizig'i: img yopuvchi tegsiz, o'zi yopiladi. Tugmalarni bosib, rasmni almashtiring.`, trigger: 'on_mount', waits_for: null }]);
-  const CHOICES = [{ key: 'tog', label: { uz: "🏔️ Tog'", ru: '🏔️ Гора' }, file: 'tog.jpg' }, { key: 'mushuk', label: { uz: '🐱 Mushuk', ru: '🐱 Кот' }, file: 'mushuk.jpg' }, { key: 'raketa', label: { uz: '🚀 Raketa', ru: '🚀 Ракета' }, file: 'raketa.jpg' }];
+  const CHOICES = [{ key: 'tog', label: { uz: "Tog'", ru: 'Гора' }, file: 'tog.jpg' }, { key: 'mushuk', label: { uz: 'Mushuk', ru: 'Кот' }, file: 'mushuk.jpg' }, { key: 'raketa', label: { uz: 'Raketa', ru: 'Ракета' }, file: 'raketa.jpg' }];
   const [kind, setKind] = useState('tog');
   const [touched, setTouched] = useState(!!storedAnswer);
   const done = touched;
@@ -990,7 +990,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <pre className="code-box fade-up delay-2"><Tg>{'<img '}</Tg><At>src</At>=<Sr>"mushuk.jpg"</Sr> <At>alt</At>=<Sr>"Mushukcha"</Sr><Tg>{'>'}</Tg></pre>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={toggle}>{broken ? tr({ uz: '🌐 Rasmni yoqish', ru: '🌐 Включить картинку' }) : tr({ uz: "📵 Rasmni o'chirish", ru: '📵 Выключить картинку' })}</button>
-            <div className={broken ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{broken ? tr({ uz: <>Rasm yo'q — lekin <b>alt</b> matni ("Mushukcha") ko'rinib turibdi. Foydalanuvchi baribir nima rasm ekanini biladi.</>, ru: <>Картинки нет — но текст <b>alt</b> («Mushukcha») виден. Пользователь всё равно знает, что там за картинка.</> }) : tr({ uz: <>Hozir rasm ko'rinyapti. <b style={{ color: T.ink }}>alt</b> esa yashirin turadi — u faqat rasm yo'qolganda yoki ekran o'qigichlar uchun chiqadi.</>, ru: <>Сейчас картинка видна. А <b style={{ color: T.ink }}>alt</b> прячется — он появляется, только когда картинка пропала, или для экранных читалок.</> })}</p></div>
+            <div className={broken ? 'frame-success fade-step' : 'frame-soft' /* F-0926-06: uzuq quti → yumshoq (CssLesson1 pilot #1 naqshi) */}><p className="body" style={{ margin: 0, color: T.ink }}>{broken ? tr({ uz: <>Rasm yo'q — lekin <b>alt</b> matni ("Mushukcha") ko'rinib turibdi. Foydalanuvchi baribir nima rasm ekanini biladi.</>, ru: <>Картинки нет — но текст <b>alt</b> («Mushukcha») виден. Пользователь всё равно знает, что там за картинка.</> }) : tr({ uz: <>Hozir rasm ko'rinyapti. <b style={{ color: T.ink }}>alt</b> esa yashirin turadi — u faqat rasm yo'qolganda yoki ekran o'qigichlar uchun chiqadi.</>, ru: <>Сейчас картинка видна. А <b style={{ color: T.ink }}>alt</b> прячется — он появляется, только когда картинка пропала, или для экранных читалок.</> })}</p></div>
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</div>
@@ -1034,7 +1034,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday: <b style={{ color: T.ink }}>header</b> — shift kabi tepada, <b style={{ color: T.ink }}>main</b> — xonalar kabi o'rtada, <b style={{ color: T.ink }}>footer</b> — pol kabi pastda. Har bir bo'limni bosing.</>, ru: <>Представьте дом: сверху потолок, посередине комнаты, внизу пол. Страница точно такая же: <b style={{ color: T.ink }}>header</b> — сверху, как потолок, <b style={{ color: T.ink }}>main</b> — посередине, как комнаты, <b style={{ color: T.ink }}>footer</b> — внизу, как пол. Нажмите на каждый раздел.</> })}</Mentor>
         <div className="split">
           <div className="col">
-            <p className="sk-tapguide fade-up delay-1">👆 {tr({ uz: <>Chizmadagi <b>3 ta bo'limni birma-bir bosing</b> — bosilmaganlari yonib turadi</>, ru: <>Нажмите <b>по очереди на 3 раздела</b> схемы — ненажатые подсвечиваются</> })} <span className="sk-tapcount">{clicked.size}/3</span></p>
+            {/* F-0926-06: «3 ta bo'limni birma-bir bosing 0/3» yo'rig'i olindi — mentor aynan shuni aytadi, sanoqni tugma ko'rsatadi (159/7) */}
             <div className="strukt fade-up delay-2">
               <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">🏷️ {tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
               <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">📄 {tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
@@ -1043,7 +1043,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <div className="col" style={{ gap: 8 }}>
             {!isNarrow && (<>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}><div className="flow-label">{tr({ uz: 'HTML kodi', ru: 'HTML-код' })}</div><span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{clicked.size} / 3</span></div>
+              {/* F-0926-06: «HTML kodi · 0 / 3» qatori olindi — takror sanoq (159/7) va ustun tepasi chizmadan pastga surilardi (159/9) */}
               <pre className="code-box fade-up delay-2">
                 <span className={`ck ${active === 'header' ? 'active' : ''}`} onClick={() => tap('header')}><span className="t-tag">&lt;header&gt;</span>...&lt;/header&gt;</span>{'\n'}
                 <span className={`ck ${active === 'main' ? 'active' : ''}`} onClick={() => tap('main')}><span className="t-tag">&lt;main&gt;</span>...&lt;/main&gt;</span>{'\n'}
@@ -1053,7 +1053,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {active ? (
               <div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-chip">{PARTS[active].tag}</span><span className="sk-wordbadge">{tr(PARTS[active].word)}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].role)}</p></div>
             ) : (
-              !done && !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Bo'limni yoki koddan birini bosing", ru: 'Нажмите на раздел или строку кода' })}</p></div> : null
+              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — chorlov mentor gapida: «Har bir bo'limni bosing» */
             )}
             {done && (
               <div className="frame-success fade-step" style={{ marginTop: active ? 'clamp(8px,1.2vw,12px)' : 0 }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: "Strukturani o'rgandingiz", ru: 'Вы изучили структуру' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa odatda shu tartibda: <b>header (tepa) → main (asosiy) → footer (past)</b>.</>, ru: <>Страница обычно в таком порядке: <b>header (верх) → main (основное) → footer (низ)</b>.</> })}</p></div>
@@ -1110,7 +1110,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </Preview></ZoomFrame>
-            <div className={boxed ? 'frame-ok fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{boxed ? tr({ uz: <>✓ Endi rasm, sarlavha va matn — bitta <b>quti</b> (div, class="card") ichida birga turadi.</>, ru: <>✓ Теперь картинка, заголовок и текст стоят вместе — в одной <b>коробке</b> (div, class="card").</> }) : tr({ uz: <>Hozir elementlar tarqoq. <span className="mono">div</span> ularni bitta guruhga jamlaydi.</>, ru: <>Сейчас элементы разбросаны. <span className="mono">div</span> соберёт их в одну группу.</> })}</p></div>
+            {boxed && <div className="frame-ok fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Endi rasm, sarlavha va matn — bitta <b>quti</b> (div, class="card") ichida birga turadi.</>, ru: <>✓ Теперь картинка, заголовок и текст стоят вместе — в одной <b>коробке</b> (div, class="card").</> })}</p></div>} {/* F-0926-06: boshlang'ich uzuq quti («Hozir elementlar tarqoq. div … jamlaydi») olindi — mentor aytadi (159/3, 159/7) */}
           </div>
         </div>
       </div>
@@ -1142,7 +1142,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Forma kodi', ru: 'Код формы' })}</div>
             <pre className="code-box fade-up delay-2"><Tg>{'<form>'}</Tg>{'\n  '}<Tg>{'<label>'}</Tg>{tr({ uz: 'Ismingiz', ru: 'Ваше имя' })}<Tg>{'</label>'}</Tg>{'\n  '}<Tg>{'<input>'}</Tg>{'\n  '}<Tg>{'<button>'}</Tg>{tr({ uz: 'Yuborish', ru: 'Отправить' })}<Tg>{'</button>'}</Tg>{'\n'}<Tg>{'</form>'}</Tg></pre>
-            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>label</b> — savol nomi · <b>input</b> — javob joyi · <b>button</b> — yuborish tugmasi.</>, ru: <><b>label</b> — название вопроса · <b>input</b> — место ответа · <b>button</b> — кнопка отправки.</> })}</p></div>
+            {/* F-0926-06: «label — savol nomi · input — … · button — …» qutisi olindi — mentor aynan shuni aytadi (159/7) */}
           </div>
         </div>
       </div>
@@ -1175,8 +1175,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{TYPES.map(t => (<button key={t.key} className={`chip ${type === t.key ? 'chip-on' : ''}`} onClick={() => pick(t.key)}>{tr(t.label)}</button>))}</div>
             <div className="miniform fade-up delay-2" key={type}>
-              <label className="mf-label">{tr(cur.label)}</label>
-              <input className="mf-input" type={type} value={val} onChange={e => setVal(e.target.value)} placeholder={tr(cur.ph)} />
+              {/* F-0926-06: maydon ustidagi yorliq olindi — tanlangan chip bilan bir so'z edi (159/7-8) */}
+              <input className="mf-input" type={type} value={val} onChange={e => setVal(e.target.value)} placeholder={tr(cur.ph)} aria-label={tr(cur.label)} />
             </div>
             <div className="when"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.note)}</p></div>
           </div>
@@ -1229,7 +1229,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             {opened ? (
               <div className="fade-step">
-                <div className="flow-label" style={{ marginBottom: 6 }}>DevTools — Elements</div>
+                {/* F-0926-06: «DevTools — Elements» yorlig'i olindi — oyna ichidagi «Elements» yorlig'ini takrorlardi (159/7), ustun tepasi sayt oynasi bilan bir chiziqqa tushdi (159/9) */}
                 <div className="devtools">
                   <div className="dt-bar"><span className="dt-tab">Elements</span><span>Console</span><span>Network</span></div>
                   <div className="dt-tree">
@@ -1241,7 +1241,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ) : (
-              <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Hozir faqat sayt ko'rinyapti. <b style={{ color: T.ink }}>Inspect</b> tugmasini bossangiz, ichidagi HTML kodi ochiladi.</>, ru: <>Сейчас виден только сайт. Нажмите кнопку <b style={{ color: T.ink }}>Inspect</b> — и откроется его HTML-код.</> })}</p></div>
+              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — chorlov mentor gapida: «Tugmani bosing» */
             )}
           </div>
         </div>
@@ -1272,13 +1272,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="dt-tree">
                 <div className="dt-node"><span className="tg">&lt;h1&gt;</span><input className="dt-edit" value={text} onChange={e => onChange(e.target.value)} spellCheck={false} /><span className="tg">&lt;/h1&gt;</span></div>
               </div>
-              <p className="dt-hint">↑ {tr({ uz: "Matnni o'zgartiring — o'ngdagi sahifa darhol yangilanadi.", ru: 'Измените текст — страница справа обновится мгновенно.' })}</p>
+              {/* F-0926-06: «↑ Matnni o'zgartiring — o'ngdagi sahifa …» olindi — mentor gapining takrori, joy so'zi (159/7, 159/11) */}
             </div>
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Sahifa', ru: 'Страница' })}</div>
             <ZoomFrame label={tr({ uz: 'Sahifa', ru: 'Страница' })}><Preview title="aziza.uz" minH={120}><div style={{ display: 'block' }}><h1 key={text} className="fade-step" style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px,3vw,28px)', color: T.ink, margin: '0 0 6px' }}>{text || '...'}</h1><p style={{ fontFamily: 'Georgia, serif', color: T.ink2, margin: 0, fontSize: 14 }}>{tr({ uz: 'Bu mening saytim.', ru: 'Это мой сайт.' })}</p></div></Preview></ZoomFrame>
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ Bu o'zgarish <b>vaqtincha</b> — faqat sizning ekraningizda. Sahifani yangilasangiz, asl matn (<b>{ORIG}</b>) qaytadi. Shuning uchun bemalol tajriba qiling!</>, ru: <>⚠️ Это изменение <b>временное</b> — только на вашем экране. Обновите страницу — вернётся исходный текст (<b>{ORIG}</b>). Так что смело экспериментируйте!</> })}</p></div>}
+            {/* F-0926-06: «⚠️ Bu o'zgarish vaqtincha …» qutisi olindi — mentor aytadi, «yangilasangiz qaytadi» quyidagi qutida bor (159/7) */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🌐 <b>Haqiqiy saytda sinab ko'ring:</b> istalgan saytni oching (masalan, kun.uz), <b>F12</b> bosing, Elements'da sarlavhani topib o'zgartiring. Sayt "buzilmaydi" — o'zgarish faqat sizda, yangilasangiz qaytadi!</>, ru: <>🌐 <b>Попробуйте на настоящем сайте:</b> откройте любой сайт (например, kun.uz), нажмите <b>F12</b>, найдите заголовок в Elements и измените его. Сайт «не сломается» — изменение только у вас, обновите — и всё вернётся!</> })}</p></div>}
           </div>
         </div>
@@ -1324,10 +1324,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Vaqti keldi — bugun o'rgangan teglardan o'z sahifangizni yig'asiz. Buyruq yozing yoki tayyor teglardan tanlang — kod o'zi paydo bo'ladi. Kamida 3 ta bo'lak qo'shing.</>, ru: <>Пришло время — соберёте свою страницу из тегов, выученных сегодня. Напишите команду или выберите готовый тег — код появится сам. Добавьте минимум 3 блока.</> })}</Mentor>
         <div className="split">
           <div className="col">
-            <div className="fade-up delay-2"><p className="flow-label" style={{ marginBottom: 7 }}>{tr({ uz: 'Buyruq yozing', ru: 'Напишите команду' })}</p><div className="prompt-row"><input className="prompt-input" value={text} placeholder={tr({ uz: "masalan: rasm qo'sh", ru: 'например: добавь картинку' })} onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit(); }} /><button className="prompt-btn" onClick={submit} disabled={!!pending || items.length >= MAX}>{tr({ uz: 'Yaratish', ru: 'Создать' })}</button></div></div>
+            <div className="fade-up delay-2">{/* F-0926-06: «Buyruq yozing» yorlig'i placeholder ichiga kirdi (159/8) */}<div className="prompt-row"><input className="prompt-input" value={text} aria-label={tr({ uz: 'Buyruq yozing', ru: 'Напишите команду' })} placeholder={tr({ uz: "Buyruq yozing, masalan: rasm qo'sh", ru: 'Напишите команду, например: добавь картинку' })} onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit(); }} /><button className="prompt-btn" onClick={submit} disabled={!!pending || items.length >= MAX}>{tr({ uz: 'Yaratish', ru: 'Создать' })}</button></div></div>
             <div className="fade-up delay-2"><p className="flow-label" style={{ margin: '2px 0 7px' }}>{tr({ uz: 'yoki tayyor buyruqlardan tanlang', ru: 'или выберите готовую команду' })}</p><div className="chips">{CHIPS.map(c => (<button key={c.key} className="gchip" disabled={items.length >= MAX} onClick={() => { setText(tr(c.label).toLowerCase() + tr({ uz: " qo'sh", ru: '' })); setHint(''); }}>{tr(c.label)} <span className="gt">&lt;{c.tag}&gt;</span></button>))}{items.length > 0 && <button className="gchip" onClick={reset}>↺ {tr({ uz: 'Tozalash', ru: 'Очистить' })}</button>}</div></div>
             {hint && <p className="hint fade-step">{hint}</p>}
-            {done && (<div style={{ background: T.successSoft, borderLeft: `4px solid ${T.success}`, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>buyruq berib</b> sahifa qurdingiz — rasm, bo'lim va forma bilan.</>, ru: <>Класс! Вы построили страницу, <b>отдавая команды</b> — с картинкой, разделом и формой.</> })}</p></div>)}
+            {done && (<div style={{ background: T.successSoft, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>buyruq berib</b> sahifa qurdingiz — rasm, bo'lim va forma bilan.</>, ru: <>Класс! Вы построили страницу, <b>отдавая команды</b> — с картинкой, разделом и формой.</> })}</p></div>)}
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</div>
@@ -1373,17 +1373,17 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickImg}><span className="tg">&lt;img </span><span className="at">src</span>=<span className="st">"{fixed ? 'mushuk.jpg' : ''}"</span><span className="at"> alt</span>=<span className="st">"Mushukcha"</span><span className="tg">&gt;</span></div>
                 <div className={`ai-line ${flashLine === 1 ? 'bad' : ''}`} onClick={() => pickWrong(1)}><span className="tg">&lt;h1&gt;</span>{tr({ uz: 'Mening mushugim', ru: 'Мой кот' })}<span className="tg">&lt;/h1&gt;</span></div>
               </div>
-              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: "Rasm nega ko'rinmayapti? Xato qatorni bosing.", ru: 'Почему картинка не видна? Нажмите на строку с ошибкой.' })}</p>}
+              {!found && wrongMsg && <p className="ai-prompt">{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p> /* F-0926-06: «Rasm nega ko'rinmayapti? Xato qatorni bosing.» mentor gapini takrorlardi (159/7) — faqat xato-javob izohi qoldi */}
               {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: "src ga fayl nomini qo'shib tuzatish", ru: 'Исправить: добавить имя файла в src' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi rasm bor!', ru: 'Исправлено — теперь картинка есть!' })}</p>}
+              {/* F-0926-06: «✓ Tuzatildi — endi rasm bor!» olindi — holatni yashil qator va yakun-kartasi aytadi (159/14) */}
             </div>
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Sahifa', ru: 'Страница' })}</div>
             <ZoomFrame label={tr({ uz: 'Sahifa', ru: 'Страница' })}><div className="bp-window fade-up delay-2"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">mushuk.html</span></div><div className="bp-body" style={{ display: 'block', textAlign: 'center' }}><span key={fixed ? 'f' : 'b'}><Photo kind="mushuk" w={160} h={104} broken={!fixed} alt="Mushukcha" /></span><h1 style={{ fontFamily: 'Georgia, serif', fontSize: 20, color: T.ink, margin: '8px 0 0' }}>{tr({ uz: 'Mening mushugim', ru: 'Мой кот' })}</h1></div></div></ZoomFrame>
-            {!found && (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Sahifada nima ko'rinmayapti? Shuni chiqaradigan qatorni kodda toping.", ru: 'Что не видно на странице? Найдите в коде строку, которая это выводит.' })}</p></div>)}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">src=""</span> bo'm-bo'sh — brauzer qaysi rasmni ko'rsatishni bilmaydi. Chap tomondagi tugma bilan tuzating →</>, ru: <><span className="mono">src=""</span> пустой — браузер не знает, какую картинку показывать. Исправьте кнопкой слева →</> })}</p></div>)}
+            {/* F-0926-06: uzuq «Sahifada nima ko'rinmayapti? … toping» qutisi olindi — mentor aytadi (159/3, 159/7) */}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">src=""</span> bo'm-bo'sh — brauzer qaysi rasmni ko'rsatishni bilmaydi.</>, ru: <><span className="mono">src=""</span> пустой — браузер не знает, какую картинку показывать.</> }) /* F-0926-06: «Chap tomondagi tugma bilan tuzating →» olindi — joy so'zi, tugma o'zi aytadi (159/11) */}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'DevTools bilan xatoni topdingiz!', ru: 'Вы нашли ошибку через DevTools!' })}</p><p className="ta-sub">{tr({ uz: "Kodni ko'rib, sababni topib, tuzatdingiz — bu debugging", ru: 'Посмотрели код, нашли причину, исправили — это дебаггинг' })}</p></div>)}
           </div>
         </div>
@@ -2583,7 +2583,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR v15 (soyalar) === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2604,7 +2604,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}, 0 6px 16px -8px rgba(255,79,40,0.3); } /* F-0926-06: baland rang yo'q (159/10) — Soft fon + accent halqa */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* === MENTOR === */
@@ -2666,11 +2666,11 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
 
         /* === FRAME v15 === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 12px 15px; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-ok { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
+        /* F-0926-06: .frame-dash qoidasi olindi — bo'sh-holat ramkasi endi yo'q (159/3) */
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2692,8 +2692,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .ps-q { background: ${T.accentSoft}; color: ${T.accent}; }
         .ps-a { background: ${T.successSoft}; color: ${T.success}; }
         .ps-text { font-size: clamp(14px,1.7vw,16px); line-height: 1.5; color: ${T.ink}; }
-        .solve-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); padding: 10px 18px; border-radius: 10px; border: none; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.3); }
-        .solve-btn:hover:not(:disabled) { background: ${T.accent}; }
         .ye-solved, .ye-stack { display: flex; flex-direction: column; gap: 12px; }
         .mu-mini { opacity: 0.7; }
         .idea { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 0; }
@@ -2710,7 +2708,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
+        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
 
         /* === RECIPE === */
@@ -2782,7 +2780,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .hl-row { display: flex; align-items: center; gap: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; transition: all 0.18s; background: ${T.paper}; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); }
         .hl-row:hover { box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2); }
         .hl-row.on { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); background: ${T.accentSoft}; }
-        .hl-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
         .hl-text { font-family: 'Georgia, serif'; font-weight: 700; color: ${T.ink}; line-height: 1; }
         .hl-tag { margin-left: auto; font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; background: ${T.accentSoft}; padding: 3px 9px; border-radius: 99px; }
         .hl-note { background: ${T.paper}; border-radius: 10px; padding: 12px 15px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); animation: fade-step 0.3s; }
@@ -2792,7 +2789,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* === MCARD (matn) === */
         .mcard { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .mc-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .mc-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 9px; border-radius: 5px; }
         .mc-label { font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .mc-demo { font-family: 'Georgia, serif'; font-size: clamp(18px,2.5vw,24px); color: ${T.ink}; padding: 8px 0; }
         .w-anim { display: inline-block; transition: all 0.3s; } .w-bold { font-weight: 800; } .w-ital { font-style: italic; }
@@ -2803,7 +2799,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mc-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink2}; background: ${T.bg}; padding: 8px 11px; border-radius: 8px; margin: 0; } .mc-code .tg { color: ${CODE.tag}; }
 
         /* === WHEN / LISTS === */
-        .when { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 10px; padding: 11px 15px; }
+        .when { background: ${T.accentSoft}; border-radius: 10px; padding: 11px 15px; }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
         .site-brand { display: inline-flex; align-items: center; gap: 8px; } .site-logo { width: 22px; height: 22px; border-radius: 6px; background: ${T.accent}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 13px; } .site-name { font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; font-size: 14px; }
         .site-nav { display: inline-flex; gap: 11px; font-family: 'Manrope'; font-size: 12px; color: ${T.ink2}; }
@@ -2929,7 +2925,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .tegbuild-wrap.on .tb-bracket { opacity: 1; }
         .tb-brace { width: 150px; max-width: 70%; height: 9px; border: 1.5px solid ${T.ink3}; border-top: none; border-radius: 0 0 9px 9px; }
         .tb-brace-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; }
-        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
         /* SCREEN 8 — Sarlavhalar (gazeta -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
@@ -2960,9 +2956,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .szone-h { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; margin: 0 0 3px; }
         .szone-d { font-size: 12px; color: ${T.ink2}; margin: 0; font-family: 'Manrope'; }
         .szone-tag { position: absolute; bottom: 6px; right: 10px; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 10px; color: ${T.ink3}; }
-        .sk-tapguide { margin: 0 0 8px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.7vw,14px); color: ${T.ink2}; }
-        .sk-tapguide b { color: ${T.ink}; }
-        .sk-tapcount { background: ${T.accent}; color: #fff; border-radius: 99px; padding: 2px 9px; font-weight: 800; margin-left: 6px; font-size: 12px; font-family: 'Manrope'; }
+        /* F-0926-06: .sk-tapguide va .sk-tapcount qoidalari olindi — yo'riq-qatori olingan (159/7) */
         @keyframes tap-hint { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(255,79,40,0); } 50% { box-shadow: inset 0 0 0 2px rgba(255,79,40,0.45); } }
         .szone:not(.seen) { animation: tap-hint 1.8s ease-in-out infinite; }
         .szone.seen .szone-tag::after { content: ' ✓'; color: ${T.success}; font-weight: 700; }
@@ -2988,8 +2982,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* === ZOOM FRAME (kattalashtirish / to'liq ekran) === */
         .zoomframe { position: relative; }
         .zoom-body { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); }
-        .zoom-btn { position: absolute; bottom: 9px; right: 9px; z-index: 3; width: 34px; height: 34px; border-radius: 9px; border: none; cursor: pointer; background: ${T.ink}; color: ${T.bg}; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.4); transition: all 0.2s; opacity: 0.82; }
-        .zoom-btn:hover { background: ${T.accent}; color: #fff; opacity: 1; transform: translateY(-1px); }
+        .zoom-btn { position: absolute; bottom: 9px; right: 9px; z-index: 3; width: 34px; height: 34px; border-radius: 9px; border: none; cursor: pointer; background: rgba(255,255,255,0.82); color: ${T.ink2}; /* F-0926-06: qora tugma → oq-shaffof (159/5, CssLesson1 naqshi) */ display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.4); transition: all 0.2s; opacity: 0.82; }
+        .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; opacity: 1; transform: translateY(-1px); }
         .zoom-backdrop { position: fixed; inset: 0; z-index: 1400; background: rgba(14,14,16,0.6); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); animation: fade-step 0.25s ease-out; }
         /* zoom holati: ekranning ~80% ini egallaydi (atrofida ~10% joy) */
         .zoomframe.is-zoomed { position: fixed; inset: max(20px,10vh) max(20px,10vw); z-index: 1401; background: ${T.paper}; border-radius: 18px; box-shadow: 0 30px 90px -20px rgba(0,0,0,0.55); padding: clamp(40px,5vw,56px) clamp(20px,4vw,48px) clamp(20px,4vw,48px); display: flex; flex-direction: column; animation: zoom-pop 0.32s cubic-bezier(.34,1.18,.4,1); }
@@ -3032,9 +3026,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3064,10 +3058,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -3097,7 +3091,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -3121,7 +3115,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
@@ -3531,7 +3525,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* kod atamasi chipi — savol/variant/izohlarda oddiy matndan ajralib turadi */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }

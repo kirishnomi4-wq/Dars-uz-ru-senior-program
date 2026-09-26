@@ -322,7 +322,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : tr({ uz: <>Javob berdi: <b>{answered}</b> / {total}</>, ru: <>Ответили: <b>{answered}</b> / {total}</> })}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -364,7 +364,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
           </div>
         );
       })()}
@@ -494,6 +494,15 @@ function ScoreRing({ correct, total }) {
 // ===== MENTOR =====
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -504,8 +513,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -584,10 +593,10 @@ const AvtoSite = ({ cars = [], state = 'data', newId, cols = 3 }) => (
       {state === 'loading'
         ? <div className="site-grid" style={{ gridTemplateColumns: `repeat(${cols},1fr)` }}>{[0, 1, 2].slice(0, cols).map(i => <div key={i} className="scard skel"><div className="scard-img skel-box" /><div className="scard-info"><div className="skel-line" /><div className="skel-line short" /><div className="skel-line" style={{ width: '50%' }} /></div></div>)}</div>
         : state === 'error'
-          ? <div className="site-msg err"><span className="site-msg-ico">⚠️</span>{tr({ uz: "Ma'lumotni yuklab bo'lmadi", ru: 'Не удалось загрузить данные' })}<small>{tr({ uz: "serverga ulanib bo'lmadi", ru: 'нет соединения с сервером' })}</small></div>
+          ? <div className="site-msg err">{tr({ uz: "Ma'lumotni yuklab bo'lmadi", ru: 'Не удалось загрузить данные' })}<small>{tr({ uz: "serverga ulanib bo'lmadi", ru: 'нет соединения с сервером' })}</small></div>
           : cars.length
             ? <div className="site-grid" style={{ gridTemplateColumns: `repeat(${cols},1fr)` }}>{cars.map(c => <SiteCard key={c.id} car={c} isNew={c.id === newId} />)}</div>
-            : <div className="site-msg"><span className="site-msg-ico">🚗</span>{tr({ uz: "Hozircha mashina yo'q", ru: 'Пока машин нет' })}</div>}
+            : <div className="site-msg">{tr({ uz: "Hozircha mashina yo'q", ru: 'Пока машин нет' })}</div>}
     </div>
   </div>
 );
@@ -677,7 +686,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <h1 className="title h-title fade-up">{tr({ uz: <>Bazaga mashina qo'shdik — lekin saytda <span className="italic" style={{ color: T.accent }}>ko'rinmayapti</span>. Nega?</>, ru: <>Добавили машину в базу — а на сайте её <span className="italic" style={{ color: T.accent }}>не видно</span>. Почему?</> })}</h1>
         <Mentor>{tr({ uz: <>Praktika 1'da Postman orqali bazaga <b style={{ color: T.ink }}>Chevrolet Spark</b>'ni qo'shgan edingiz — o'ngda, bazada u bor. Lekin chapdagi AvtoIjara saytida Spark <b style={{ color: T.ink }}>yo'q</b>! Saytni yangilab ko'ring (🔄) — paydo bo'ladimi?</>, ru: <>В Практике 1 вы через Postman добавили в базу <b style={{ color: T.ink }}>Chevrolet Spark</b> — справа, в базе, он есть. А на сайте AvtoIjara слева его <b style={{ color: T.ink }}>нет</b>! Попробуйте обновить сайт (🔄) — появится ли?</> })}</Mentor>
         <div className="wire cut fade-up delay-1">
-          <span className="wire-end"><span className="wire-ico">💻</span><span className="wire-t">{tr({ uz: 'Sayt — vitrina', ru: 'Сайт — витрина' })}<small>localhost:5173</small></span></span>
+          <span className="wire-end"><span className="wire-t">{tr({ uz: 'Sayt — vitrina', ru: 'Сайт — витрина' })}<small>localhost:5173</small></span></span>
           <span className="wire-mid">
             <span className="wire-track">
               <i className="wire-seg" /><span className="wire-cut-mark">✂</span><i className="wire-seg" />
@@ -686,14 +695,14 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </span>
             <span className="wire-lbl">{tr({ uz: "sim uzilgan — vitrina omborni ko'rmayapti", ru: 'провод оборван — витрина не видит склад' })}</span>
           </span>
-          <span className="wire-end"><span className="wire-ico">🗄️</span><span className="wire-t">{tr({ uz: 'Baza — ombor', ru: 'База — склад' })}<small>localhost:3000</small></span></span>
+          <span className="wire-end"><span className="wire-t">{tr({ uz: 'Baza — ombor', ru: 'База — склад' })}<small>localhost:3000</small></span></span>
         </div>
         <Zoomable>
         <Split three>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p>
-              <button className={`chip ${shaking ? 'shake' : ''} ${!tried ? 'tap-hint' : ''}`} onClick={refresh} style={{ padding: '5px 10px', fontSize: 12.5, flexShrink: 0, whiteSpace: 'nowrap' }}>{tr({ uz: '🔄 Yangilash', ru: '🔄 Обновить' })}</button>
+              <button className={`chip ${shaking ? 'shake' : ''} ${!tried ? 'tap-hint' : ''}`} onClick={refresh} style={{ padding: '5px 10px', fontSize: 12.5, flexShrink: 0, whiteSpace: 'nowrap' }}>{tr({ uz: 'Yangilash', ru: 'Обновить' })}</button>
             </div>
             <div className={`fade-up delay-1 ${shaking ? 'shake' : ''}`}><Win title="avtoijara.uz" minH={150} maxH={180}><AvtoSite cars={CARS} cols={1} /></Win></div>
             {tried && <p className="small fade-step" style={{ color: T.accent, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Yangiladingiz — lekin baribir 3 ta mashina. Spark yo'q!", ru: 'Обновили — а машин всё равно 3. Spark так и нет!' })}</p>}
@@ -715,7 +724,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval 🔄 Yangilash'ni bosing ←", ru: 'Сначала нажмите 🔄 Обновить ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
               ? tr({ uz: <>Aynan! Sayt mashinalarni hali ham kodga yozilgan eski ro'yxatdan oladi — <b>bazaga ulanmagan</b>. Bugun vitrina bilan ombor orasiga <b>ko'prik</b> quramiz: sayt ma'lumotni to'g'ridan-to'g'ri <b>serverdan</b> oladigan bo'ladi.</>, ru: <>Именно! Сайт всё ещё берёт машины из старого списка, зашитого в код, — он <b>не соединён с базой</b>. Сегодня построим <b>мост</b> между витриной и складом: сайт будет получать данные напрямую <b>с сервера</b>.</> })
               : tr({ uz: <>Aslida sayt <b>buzilmagan</b> va mashina <b>yomon emas</b>. Front va back — alohida tillarda emas, <b>bitta tizimda</b> gaplashadi; hozir ular orasidagi <b>ulanish</b> yo'q. Bugun o'sha ko'prikni <b>o'zingiz</b> qurasiz.</>, ru: <>На самом деле сайт <b>не сломан</b>, и машина <b>не плохая</b>. Front и back говорят не на разных языках, а <b>в одной системе</b>; сейчас между ними просто нет <b>связи</b>. Сегодня вы <b>сами</b> построите этот мост.</> })}</p>}
@@ -811,13 +819,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Ular qanday gaplashadi', ru: 'Как они общаются' })}</p>
             <div className="fade-up delay-2">
             <div className={`bridge ${done ? 'live' : ''}`}>
-              <div className="bridge-end" style={{ opacity: front ? 1 : 0.4 }}><span className="bridge-ico">💻</span><span>{tr({ uz: 'Front', ru: 'Фронт' })}<br /><small>:5173</small></span></div>
+              <div className="bridge-end" style={{ opacity: front ? 1 : 0.4 }}><span>{tr({ uz: 'Front', ru: 'Фронт' })}<br /><small>:5173</small></span></div>
               <div className="bridge-mid">
                 <span className="bridge-arr" style={{ color: done ? T.success : T.ink3 }}>fetch →</span>
                 <span className="bridge-line" style={{ background: done ? T.success : T.ink3 + '55' }} />
                 <span className="bridge-arr" style={{ color: done ? T.success : T.ink3 }}>← JSON</span>
               </div>
-              <div className="bridge-end" style={{ opacity: back ? 1 : 0.4 }}><span className="bridge-ico">🟢</span><span>{tr({ uz: 'Back', ru: 'Бэк' })}<br /><small>:3000</small></span></div>
+              <div className="bridge-end" style={{ opacity: back ? 1 : 0.4 }}><span>{tr({ uz: 'Back', ru: 'Бэк' })}<br /><small>:3000</small></span></div>
             </div>
             </div>
             {done
@@ -1005,8 +1013,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const STATES = [
     { k: 'loading', lbl: { uz: '⏳ Sekin internet', ru: '⏳ Медленный интернет' }, note: { uz: "Ma'lumot kelguncha — \"yuklanmoqda\" (skeleton). Foydalanuvchi bo'sh ekran ko'rmaydi.", ru: 'Пока данные не пришли — «загрузка» (skeleton). Пользователь не видит пустой экран.' } },
-    { k: 'error', lbl: { uz: "⚠️ Server o'chiq", ru: '⚠️ Сервер выключен' }, note: { uz: 'Server javob bermasa — xato xabari. Sayt qulab tushmaydi, sababni aytadi.', ru: 'Если сервер не отвечает — сообщение об ошибке. Сайт не падает, а называет причину.' } },
-    { k: 'data', lbl: { uz: '✅ Hammasi joyida', ru: '✅ Всё в порядке' }, note: { uz: 'Javob keldi — kartochkalar chiziladi. Asosiy holat.', ru: 'Ответ пришёл — рисуются карточки. Основное состояние.' } }
+    { k: 'error', lbl: { uz: "Server o'chiq", ru: 'Сервер выключен' }, note: { uz: 'Server javob bermasa — xato xabari. Sayt qulab tushmaydi, sababni aytadi.', ru: 'Если сервер не отвечает — сообщение об ошибке. Сайт не падает, а называет причину.' } },
+    { k: 'data', lbl: { uz: 'Hammasi joyida', ru: 'Всё в порядке' }, note: { uz: 'Javob keldi — kartochkalar chiziladi. Asosiy holat.', ru: 'Ответ пришёл — рисуются карточки. Основное состояние.' } }
   ];
   return (
     <Stage eyebrow={tr({ uz: 'Holatlar', ru: 'Состояния' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Uch holatni ko'ring", ru: 'Посмотрите три состояния' })} (${seen.size}/3)`} onClick={onNext} /></>}>
@@ -1080,7 +1088,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {boom && <Confetti />}
         <div className="fade-up delay-1">
         <div className={`gate ${phase === 1 ? 'sending' : ''} ${phase === 2 ? 'blocked' : ''} ${phase >= 3 ? 'open' : ''}`}>
-          <span className="gate-end"><span className="gate-ico">💻</span><span className="gate-t">{tr({ uz: 'Front — sayt', ru: 'Фронт — сайт' })}<small>localhost:5173</small></span></span>
+          <span className="gate-end"><span className="gate-t">{tr({ uz: 'Front — sayt', ru: 'Фронт — сайт' })}<small>localhost:5173</small></span></span>
           <span className="gate-mid">
             <span className="gate-road">
               <i className="gate-lane" />
@@ -1097,7 +1105,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {phase >= 3 ? tr({ uz: "✓ 200 OK — shlagbaum ochiq, ma'lumot o'tdi", ru: '✓ 200 OK — шлагбаум открыт, данные прошли' }) : phase === 2 ? tr({ uz: "⛔ CORS policy — brauzer so'rovni to'sdi", ru: '⛔ CORS policy — браузер заблокировал запрос' }) : phase === 1 ? tr({ uz: "so'rov yo'lda…", ru: 'запрос в пути…' }) : tr({ uz: "so'rov hali yuborilmagan", ru: 'запрос ещё не отправлен' })}
             </span>
           </span>
-          <span className="gate-end"><span className="gate-ico">🟢</span><span className="gate-t">{tr({ uz: 'Back — server', ru: 'Бэк — сервер' })}<small>localhost:3000</small></span></span>
+          <span className="gate-end"><span className="gate-t">{tr({ uz: 'Back — server', ru: 'Бэк — сервер' })}<small>localhost:3000</small></span></span>
         </div>
         </div>
         <Zoomable>
@@ -1117,7 +1125,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 : <><Jx>{'const'}</Jx>{' app = express();'}{'\n'}<span style={{ background: 'rgba(31,122,77,0.18)', borderRadius: 5, padding: '1px 5px' }}>{'app.use('}<At>cors()</At>{');'}</span>{'  '}<Cm>{tr({ uz: '// ✓ :5173 ga ruxsat', ru: '// ✓ доступ для :5173' })}</Cm></>}
             </pre>}
             {done && <div className="takeaway ok fade-step"><div className="ta-bulb">🎉</div><p className="ta-h">{tr({ uz: "Sayt endi serverdan o'qiyapti!", ru: 'Сайт теперь читает с сервера!' })}</p><p className="ta-sub">{tr({ uz: "Spark ham paydo bo'ldi — S0'dagi muammo hal bo'ldi.", ru: 'Spark появился — проблема с первого экрана решена.' })}</p></div>}
-            {phase === 2 && <button className="btn fade-step tap-hint" style={{ alignSelf: 'flex-start', background: T.success }} onClick={fix}>{tr({ uz: "🔧 app.use(cors()) qo'shish", ru: '🔧 Добавить app.use(cors())' })}</button>}
+            {phase === 2 && <button className="btn fade-step tap-hint" style={{ alignSelf: 'flex-start', background: T.success }} onClick={fix}>{tr({ uz: "app.use(cors()) qo'shish", ru: 'Добавить app.use(cors())' })}</button>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p>
@@ -1882,7 +1890,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
       {phase === 'lobby' && (
@@ -2351,6 +2359,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2401,9 +2410,9 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2507,8 +2516,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .scard-price { font-weight: 800; font-size: 11.5px; color: ${T.ink}; } .scard-price small { font-weight: 600; font-size: 8.5px; color: ${T.ink3}; }
         .scard-btn { font-size: 9.5px; font-weight: 700; color: #fff; background: ${T.accent}; padding: 4px 9px; border-radius: 7px; white-space: nowrap; flex-shrink: 0; }
         .site-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 28px 12px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; }
-        .site-msg.err { color: ${T.danger}; } .site-msg small { font-weight: 500; font-size: 11px; color: ${T.ink3}; } .site-msg-ico { font-size: 26px; }
-        .skel .skel-box, .skel .skel-line { background: linear-gradient(90deg,#ECE8E0 25%,#F6F3EE 50%,#ECE8E0 75%); background-size: 400px 100%; animation: skel-shimmer 1.2s infinite linear; }
+        .site-msg.err { color: ${T.danger}; } .site-msg small { font-weight: 500; font-size: 11px; color: ${T.ink3}; } .skel .skel-box, .skel .skel-line { background: linear-gradient(90deg,#ECE8E0 25%,#F6F3EE 50%,#ECE8E0 75%); background-size: 400px 100%; animation: skel-shimmer 1.2s infinite linear; }
         .skel .skel-line { height: 8px; border-radius: 5px; margin-top: 5px; } .skel .skel-line.short { width: 60%; }
 
         /* === DB JADVAL === */
@@ -2534,7 +2542,6 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         /* === 🔌 SIM (uzilgan ulanish — s0 hook) === */
         .wire { display: flex; align-items: center; gap: clamp(10px,2vw,18px); background: ${T.paper}; border-radius: 14px; padding: 8px clamp(13px,2vw,18px); box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); }
         .wire-end { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-        .wire-ico { font-size: 21px; }
         .wire-t { display: flex; flex-direction: column; line-height: 1.25; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink}; }
         .wire-t small { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 400; font-size: 9.5px; color: ${T.ink3}; }
         .wire-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -2548,7 +2555,6 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         /* === 🚧 CORS SHLAGBAUMI (s10) — yopiq=qizil · ochiq=yashil === */
         .gate { display: flex; align-items: center; gap: clamp(10px,2vw,18px); background: ${T.paper}; border-radius: 14px; padding: 12px clamp(13px,2vw,18px); box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); }
         .gate-end { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-        .gate-ico { font-size: 21px; }
         .gate-t { display: flex; flex-direction: column; line-height: 1.25; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink}; }
         .gate-t small { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 400; font-size: 9.5px; color: ${T.ink3}; }
         .gate-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
@@ -2622,8 +2628,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
           100% { transform: translate(-50%,-50%) rotate(var(--a)) translateY(-28px) scale(1); opacity: 0; } }
         .gate.open { animation: gate-live 1s ease-out; }
         @keyframes gate-live { 0% { box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); } 34% { box-shadow: 0 0 0 2px ${T.success}55, 0 10px 30px -8px rgba(31,122,77,0.45); } 100% { box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); } }
-        .gate.open .gate-ico { animation: node-lit 0.75s cubic-bezier(.3,1.5,.4,1) 0.28s both; }
-        @keyframes node-lit { 0% { transform: scale(1); } 42% { transform: scale(1.3); filter: drop-shadow(0 0 11px rgba(31,122,77,0.75)); } 100% { transform: scale(1); } }
+        .gate.open @keyframes node-lit { 0% { transform: scale(1); } 42% { transform: scale(1.3); filter: drop-shadow(0 0 11px rgba(31,122,77,0.75)); } 100% { transform: scale(1); } }
         .gate.open .gate-status { animation: gate-status-pop 0.5s cubic-bezier(.3,1.5,.4,1) 0.4s both; }
         @keyframes gate-status-pop { 0% { transform: scale(0.9); opacity: 0.25; } 55% { transform: scale(1.07); } 100% { transform: scale(1); opacity: 1; } }
 
@@ -2651,7 +2656,6 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .bridge { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: ${T.paper}; border-radius: 14px; padding: 16px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); transition: box-shadow 0.3s ease; }
         .bridge.live { box-shadow: 0 8px 22px -6px rgba(31,122,77,0.28), inset 0 0 0 1.5px ${T.success}44; }
         .bridge-end { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; color: ${T.ink}; transition: opacity 0.3s; } .bridge-end small { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 400; font-size: 9.5px; color: ${T.ink3}; }
-        .bridge-ico { font-size: 24px; }
         .bridge-mid { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .bridge-arr { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; font-weight: 700; transition: color 0.3s; }
         .bridge-line { height: 2px; width: 100%; border-radius: 99px; transition: background 0.3s; position: relative; }
@@ -2659,8 +2663,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .bridge.live { animation: gate-live 1s ease-out; }
         .bridge.live .bridge-line::after { content: ""; position: absolute; top: 50%; left: -28%; width: 28%; height: 3px; margin-top: -1.5px; border-radius: 99px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent); pointer-events: none; animation: br-flow 1.7s linear 0.25s infinite; }
         @keyframes br-flow { 0% { left: -28%; opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
-        .bridge.live .bridge-ico { animation: node-lit 0.75s cubic-bezier(.3,1.5,.4,1) 0.2s both; }
-        .bridge.live .bridge-arr { animation: br-arr-pulse 1.7s ease-in-out infinite; }
+        .bridge.live .bridge.live .bridge-arr { animation: br-arr-pulse 1.7s ease-in-out infinite; }
         @keyframes br-arr-pulse { 0%,100% { opacity: 0.72; } 50% { opacity: 1; } }
         @media (prefers-reduced-motion: reduce) { .bridge.live, .bridge.live .bridge-line::after, .bridge.live .bridge-ico, .bridge.live .bridge-arr { animation: none !important; } }
         .chain, .flow-strip { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -2732,7 +2735,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .dd-wrong .pechat-404 { animation: pechat-punch .42s cubic-bezier(.3,1.5,.5,1); }
         @keyframes pechat-punch { 0% { transform: rotate(-3.5deg) scale(2.4); opacity: 0; } 45% { transform: rotate(-3.5deg) scale(.86); opacity: 1; } 70% { transform: rotate(-3.5deg) scale(1.08); } 100% { transform: rotate(-3.5deg) scale(1); } }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -3010,7 +3013,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         @keyframes option-wait-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 30px -6px rgba(1,154,203,0.55); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
@@ -3049,10 +3052,10 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }

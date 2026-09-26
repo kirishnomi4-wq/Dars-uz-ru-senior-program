@@ -107,6 +107,15 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -117,8 +126,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -348,7 +357,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -388,16 +397,16 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не разобрался в теме. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту трудно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -670,7 +679,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval daftarni bosib ko'ring ←", ru: 'Сначала нажмите на тетрадь ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
               ? tr({ uz: <>Aynan! Bugun <b>qorovul uchun</b> stoyanka ilovasini quramiz: bo'sh/band joylar rangda ko'rinadi, mashina kirsa bir bosishda band bo'ladi, chiqsa to'lov yoziladi. To'liq fullstack — front, server va baza birga.</>, ru: <>Именно! Сегодня мы построим приложение стоянки <b>для охранника</b>: свободные/занятые места видны цветом, машина въехала — место занимается одним нажатием, выехала — записывается оплата. Полный fullstack — фронт, сервер и база вместе.</> })
               : tr({ uz: <>Ikkinchi daftar chalkashlikni ikki baravar qiladi; joylarni kamaytirish — yechim emas, daromad kamayadi. Qorovulga <b>bir qarashda ko'rinadigan</b> panel kerak: bo'sh/band joylar rangda, kirish-chiqish bir bosishda. Bugun shuni quramiz — front, server va baza birga.</>, ru: <>Вторая тетрадь удваивает путаницу; сократить места — не решение, упадёт выручка. Охраннику нужна панель, где всё <b>видно с одного взгляда</b>: свободные/занятые места цветом, въезд-выезд одним нажатием. Сегодня мы её построим — фронт, сервер и база вместе.</> })}</p>}
@@ -1120,18 +1128,17 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Amal paneli', ru: 'Панель действий' })}</p>
-            {!selSpot && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "O'ngdan joyni tanlang →", ru: 'Выберите место справа →' })}</p></div>}
             {selSpot && !selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 14 }}>
-                <p className="note-h" style={{ color: T.success }}>🟩 {selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
+                <p className="note-h" style={{ color: T.success }}>{selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
                 <p className="small" style={{ color: T.ink2, margin: '0 0 9px' }}>{tr({ uz: 'Mashina davlat raqamini yozing:', ru: 'Введите госномер машины:' })}</p>
                 <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder="01 A 123 BC" spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
-                <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 10 }}>{tr({ uz: '🚗 Kirgizish (POST)', ru: '🚗 Впустить (POST)' })}</button>
+                <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 10 }}>{tr({ uz: 'Kirgizish (POST)', ru: 'Впустить (POST)' })}</button>
               </div>
             )}
             {selSpot && selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 14, boxShadow: `inset 0 0 0 1.5px ${T.danger}55` }}>
-                <p className="note-h" style={{ color: T.danger }}>🟥 {selSpot.raqam} — {tr({ uz: 'band', ru: 'занято' })} ({selSpot.mashina})</p>
+                <p className="note-h" style={{ color: T.danger }}>{selSpot.raqam} — {tr({ uz: 'band', ru: 'занято' })} ({selSpot.mashina})</p>
                 <p className="small" style={{ color: T.ink2, margin: '0 0 9px' }}>{tr({ uz: "Mashina chiqyapti — to'lov olinadi:", ru: 'Машина выезжает — берём оплату:' })}</p>
                 <button className="btn" onClick={exit} style={{ background: T.success }}>{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })} (PUT)</button>
               </div>
@@ -1241,17 +1248,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Amal', ru: 'Действие' })}</p>
-            {!selSpot && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Joyni tanlang →', ru: 'Выберите место →' })}</p></div>}
             {selSpot && !selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 13 }}>
-                <p className="note-h" style={{ color: T.success }}>🟩 {selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
+                <p className="note-h" style={{ color: T.success }}>{selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
                 <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder="01 A 123 BC" spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
-                <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 9 }}>{tr({ uz: '🚗 Kirgizish (POST)', ru: '🚗 Впустить (POST)' })}</button>
+                <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 9 }}>{tr({ uz: 'Kirgizish (POST)', ru: 'Впустить (POST)' })}</button>
               </div>
             )}
             {selSpot && selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 13, boxShadow: `inset 0 0 0 1.5px ${T.danger}55` }}>
-                <p className="note-h" style={{ color: T.danger }}>🟥 {selSpot.raqam} — {selSpot.mashina}</p>
+                <p className="note-h" style={{ color: T.danger }}>{selSpot.raqam} — {selSpot.mashina}</p>
                 <button className="btn" onClick={exit} style={{ background: T.success }}>{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })}</button>
               </div>
             )}
@@ -1345,7 +1351,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'natija — tarix', ru: 'результат — история' })}</p>
             {valid
               ? <Table cap="sessiyalar JOIN joylar" cols={['raqam', 'mashina', 'tolov']} rows={[{ raqam: 'A2', mashina: '01A123BC', tolov: sp(FEE) }, { raqam: 'B1', mashina: '01B456DE', tolov: sp(FEE) }]} hiCol="raqam" />
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "ON sharti yozilmaguncha jadvallar bog'lanmaydi…", ru: 'Пока условие ON не написано, таблицы не связаны…' })}</p></div>}
+              : null}
           </Col>
         </div>
         </Zoomable>
@@ -2001,7 +2007,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2492,6 +2498,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2534,10 +2541,9 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2608,7 +2614,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
 
         .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12px,1.5vw,13.5px); line-height: 1.55; padding: clamp(12px,2.2vw,16px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
         /* AI'ga prompt — ma'lumot bloki (AI rangi = ${T.blue}). Qizil/accent fon FAQAT xato uchun (frame-soft). */
-        .prompt-box { background: ${T.paper}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: 13px 15px; margin: 0; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.7; color: ${T.ink}; white-space: pre-wrap; word-break: break-word; box-shadow: 0 6px 16px -8px rgba(1,154,203,0.2); }
+        .prompt-box { background: ${T.paper}; border-radius: 12px; padding: 13px 15px; margin: 0; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.7; color: ${T.ink}; white-space: pre-wrap; word-break: break-word; box-shadow: 0 6px 16px -8px rgba(1,154,203,0.2); }
         .plate-input { width: 100%; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; text-align: center; padding: 11px 12px; border-radius: 10px; border: 1.5px dashed ${T.ink3}; background: ${T.bg}; color: ${T.ink}; outline: none; transition: border-color 0.2s, background 0.2s; }
         .plate-input:focus { border-color: ${T.accent}; background: #fff; }
         .plate-input::placeholder { color: ${T.ink3}; font-weight: 500; letter-spacing: 0.02em; }
@@ -2789,10 +2795,10 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2965,7 +2971,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: opt-wait-breathe 1.9s ease-in-out infinite; }
         @keyframes opt-wait-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 10px 26px -6px rgba(1,154,203,0.5); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === 🃏 FLASHCARDS (3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
@@ -3189,7 +3195,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
 
         /* === 🛠️ JONLI PRAKTIKA === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }

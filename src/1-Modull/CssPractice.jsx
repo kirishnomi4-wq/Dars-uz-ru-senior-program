@@ -724,6 +724,15 @@ const Chips = ({ options, correct, picked, solved, pick }) => (
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -734,8 +743,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -744,7 +753,7 @@ const Zoomable = ({ children }) => {
 
 // ===== SCREEN 0 — HOOK =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `O'tgan darsda siz portfolio saytini HTML bilan qurdingiz — lekin u oddiy, bezaksiz edi. Bugun unga CSS bilan jon kiritamiz. Mana bir xil sayt, ikki xil ko'rinishda. Sizningcha, bu farqni nima qiladi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
+  const audio = useAudio([{ id: 's0', text: `O'tgan darsda siz portfolio saytini HTML bilan qurdingiz — lekin u oddiy, bezaksiz edi. Bugun uni CSS bilan bezaymiz. Mana bir xil sayt, ikki xil ko'rinishda. Sizningcha, bu farqni nima qiladi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
     { id: 'a', label: { uz: 'CSS — ranglar, shrift va joylashuv beradi', ru: 'CSS — даёт цвета, шрифт и расположение' } },
@@ -764,15 +773,15 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'CSS Praktika · kirish', ru: 'CSS практика · введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <h1 className="title h-title fade-up">{tr({ uz: <>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Один и тот же сайт — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
-        <Mentor>{tr({ uz: <>O'tgan darsda portfolioni HTML bilan qurdingiz — oddiy, bezaksiz. Bugun <b style={{ color: T.ink }}>CSS bilan jon kiritamiz!</b> Quyidagi ikkala saytning <b style={{ color: T.ink }}>HTML kodi bir xil</b> — lekin biri chiroyli. Buni nima qilyapti?</>, ru: <>В прошлом уроке вы построили портфолио на HTML — простое, без оформления. Сегодня <b style={{ color: T.ink }}>оживим его с помощью CSS!</b> У обоих сайтов ниже <b style={{ color: T.ink }}>одинаковый HTML-код</b> — но один красивый. Что это делает?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda portfolioni HTML bilan qurdingiz — oddiy, bezaksiz. Bugun <b style={{ color: T.ink }}>CSS bilan bezaymiz!</b> Ikkala saytning <b style={{ color: T.ink }}>HTML kodi bir xil</b> — lekin biri chiroyli. Buni nima qilyapti?</>, ru: <>В прошлом уроке вы построили портфолио на HTML — простое, без оформления. Сегодня <b style={{ color: T.ink }}>оформим его с помощью CSS!</b> У обоих сайтов <b style={{ color: T.ink }}>одинаковый HTML-код</b> — но один красивый. Что это делает?</> })}</Mentor>
         <Zoomable>
         <Split three>
           <Col>
-            <p className="flow-label">{tr({ uz: "Hozir — CSS'siz (bezaksiz)", ru: 'Сейчас — без CSS (без оформления)' })}</p>
+            <p className="flow-label">{tr(picked !== null ? { uz: "Hozir — CSS'siz (bezaksiz)", ru: 'Сейчас — без CSS (без оформления)' } : { uz: 'Hozir — bezaksiz', ru: 'Сейчас — без оформления' }) /* F-0926-06 (159/17): javobdan OLDIN yorliq «CSS» deb javobni aytmasin */}</p>
             <Preview title="portfolio.html" minH={150} maxH={200}><StyledSite parts={['header', 'about']} on={[]} /></Preview>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'CSS bilan — bezatilgan', ru: 'С CSS — оформленный' })}</p>
+            <p className="flow-label">{tr(picked !== null ? { uz: 'CSS bilan — bezatilgan', ru: 'С CSS — оформленный' } : { uz: 'Bezatilgan', ru: 'Оформленный' }) /* F-0926-06 (159/17) */}</p>
             <div ref={resultRef}><Preview title="portfolio.html" minH={150} maxH={200}>{picked !== null ? <div className="fade-step"><StyledSite parts={['header', 'about']} on={['page', 'head', 'nav', 'about']} /></div> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: 'Выберите ответ — появится оформленный вид' })}</p>}</Preview></div>
           </Col>
           <Col>
@@ -976,12 +985,12 @@ const Screen3 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Bezak · Fon va shrift', ru: 'Оформление · Фон и шрифт' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "To'g'ri xususiyatni tanlang", ru: 'Выберите верное свойство' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytimizga qanday <span className="italic" style={{ color: T.accent }}>fon</span> beramiz?</>, ru: <>Какой <span className="italic" style={{ color: T.accent }}>фон</span> дадим нашему сайту?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Butun sahifaga <span className="mono">body</span> orqali fon rangi va shrift beramiz. Fon rangini beradigan xususiyat qaysi? Tanlang — bo'sh joy <span className="slot">?</span> to'ladi.</>, ru: <>Всему сайту через <span className="mono">body</span> дадим цвет фона и шрифт. Какое свойство задаёт цвет фона? Выберите — пустое место <span className="slot">?</span> заполнится.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Butun sahifaga <span className="mono">body</span> orqali fon rangi va shrift beramiz. Fon rangini beradigan xususiyat qaysi? Tanlang — javob <span className="slot">?</span> o'rniga yoziladi.</>, ru: <>Всему сайту через <span className="mono">body</span> дадим цвет фона и шрифт. Какое свойство задаёт цвет фона? Выберите — ответ встанет на место <span className="slot">?</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>body</Se> <Pr>{'{'}</Pr>{'\n  '}<span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'background-color' : '?'}</span><Pr>:</Pr> <Vl>#F6F4EF</Vl><Pr>;</Pr>{'\n  '}<Pp>font-family</Pp><Pr>:</Pr> <Vl>Manrope, sans-serif</Vl><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: 'Fon rangini qaysi xususiyat beradi?', ru: 'Какое свойство задаёт цвет фона?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['color', 'background-color', 'font-size', 'padding']} correct="background-color" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1024,7 +1033,7 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>h1</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>color</Pp><Pr>:</Pr> <Vl>#FF4F28</Vl><Pr>;</Pr>{'\n  '}<Pp>text-align</Pp><Pr>:</Pr> <span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'center' : '?'}</span><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: "Sarlavhani markazga qaysi qiymat qo'yadi?", ru: 'Какое значение ставит заголовок по центру?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['left', 'center', 'right', 'middle']} correct="center" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1067,7 +1076,7 @@ const Screen7 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>nav</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>display</Pp><Pr>:</Pr> <span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'flex' : '?'}</span><Pr>;</Pr>{'\n  '}<Pp>gap</Pp><Pr>:</Pr> <Vl>14px</Vl><Pr>;</Pr>{'\n  '}<Pp>justify-content</Pp><Pr>:</Pr> <Vl>center</Vl><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: 'Elementlarni bir qatorga qaysi qiymat tizadi?', ru: 'Какое значение выстраивает элементы в один ряд?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['block', 'flex', 'none', 'inline']} correct="flex" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1110,7 +1119,7 @@ const Screen9 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>section</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>text-align</Pp><Pr>:</Pr> <Vl>center</Vl><Pr>;</Pr>{'\n  '}<span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'padding' : '?'}</span><Pr>:</Pr> <Vl>14px</Vl><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: "Bo'lim ichidagi bo'shliqni qaysi xususiyat beradi?", ru: 'Какое свойство даёт отступ внутри раздела?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['margin', 'padding', 'gap', 'color']} correct="padding" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1142,7 +1151,7 @@ const Screen10 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>li</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>background-color</Pp><Pr>:</Pr> <Vl>#fff</Vl><Pr>;</Pr>{'\n  '}<Pp>padding</Pp><Pr>:</Pr> <Vl>10px</Vl><Pr>;</Pr>{'\n  '}<span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'margin' : '?'}</span><Pr>:</Pr> <Vl>8px 0</Vl><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: "Kartalar orasidagi bo'shliqni qaysi xususiyat beradi?", ru: 'Какое свойство даёт отступ между карточками?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['padding', 'margin', 'gap', 'color']} correct="margin" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1185,7 +1194,7 @@ const Screen12 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>.pf-email</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>background-color</Pp><Pr>:</Pr> <Vl>#FF4F28</Vl><Pr>;</Pr>{'\n  '}<Pp>padding</Pp><Pr>:</Pr> <Vl>10px 20px</Vl><Pr>;</Pr>{'\n  '}<span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'color' : '?'}</span><Pr>:</Pr> <Vl>#fff</Vl><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: 'Tugma matnini oq qiladigan xususiyat?', ru: 'Какое свойство сделает текст кнопки белым?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['background-color', 'color', 'padding', 'gap']} correct="color" picked={picked} solved={solved} pick={pick} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1220,7 +1229,7 @@ const Screen13 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
         <div className="split">
           <div className="col">
             <pre className="code-box fade-up delay-2"><Se>.karta</Se> <Pr>{'{'}</Pr>{'\n  '}<Pp>max-width</Pp><Pr>:</Pr> <Vl>300px</Vl><Pr>;</Pr>{'\n  '}<Pp>margin</Pp><Pr>:</Pr> <Vl>0</Vl> <span className={`slot ${solved ? 'filled' : ''}`}>{solved ? 'auto' : '?'}</span><Pr>;</Pr>{'\n'}<Pr>{'}'}</Pr></pre>
-            <p className="fld-label">{tr({ uz: 'margin ning qaysi qiymati markazlaydi?', ru: 'Какое значение margin центрирует?' })}</p>
+            {/* F-0926-06 (159/7): savol-yorlig'i olindi — mentor aynan shu savolni beradi */}
             <Chips options={['center', 'auto', 'middle', 'left']} correct="auto" picked={picked} solved={solved} pick={pick2} />
             <FeedbackBlock show={picked !== null} isCorrect={solved}>
               <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr(solved ? { uz: "To'g'ri", ru: 'Верно' } : { uz: "Yana urinib ko'ring", ru: 'Попробуйте ещё раз' })}</p>
@@ -1252,7 +1261,7 @@ const Screen14 = (props) => (
 // ===== SCREEN 15 — YIG'ISH (to'liq portfolio) =====
 const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pf = usePortfolio(answers);
-  const audio = useAudio([{ id: 's15', text: `Mana eng zo'r qismi — barcha bezaklarni bitta saytga yig'amiz. Tugmani bosing va bezaksiz portfolioingiz birma-bir chiroyli, markazlashgan professional saytga aylanganini ko'ring!`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's15', text: `Mana eng qiziq qismi — barcha bezaklarni bitta saytga yig'amiz. Tugmani bosing va bezaksiz portfolioingiz birma-bir chiroyli, markazlashgan, tartibli saytga aylanganini ko'ring!`, trigger: 'on_mount', waits_for: null }]);
   const ALL = ['page', 'head', 'nav', 'about', 'list', 'btn', 'center'];
   const LABELS = [
     { k: 'page', l: { uz: 'Fon va shrift', ru: 'Фон и шрифт' } }, { k: 'head', l: { uz: 'Sarlavhalar', ru: 'Заголовки' } }, { k: 'nav', l: { uz: 'Menyu (flex)', ru: 'Меню (flex)' } },
@@ -1285,21 +1294,22 @@ const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
     <Stage eyebrow={tr({ uz: "Saytni yig'ish", ru: 'Сборка сайта' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Yakuniy mashq →', ru: 'Финальное задание →' } : tr({ uz: `O'zingiz bezang (${on.length}/${ALL.length})`, ru: `Оформите сами (${on.length}/${ALL.length})` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasini birlashtirib, <span className="italic" style={{ color: T.accent }}>saytga</span> yig'amizmi?</>, ru: <>Соберём всё вместе в <span className="italic" style={{ color: T.accent }}>сайт</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi <b style={{ color: T.ink }}>o'zingiz</b> bezang! Pastdagi bezaklarni birma-bir bosing — har bosishda o'sha qatlam saytga qo'shilib boradi. Hammasi qo'shilsa, portfolioingiz tayyor!</>, ru: <>Теперь оформляйте <b style={{ color: T.ink }}>сами</b>! Нажимайте на оформления ниже по одному — с каждым нажатием этот слой добавляется на сайт. Добавите все — портфолио готово!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi <b style={{ color: T.ink }}>o'zingiz</b> bezang! Bezaklarni birma-bir bosing — har bosishda o'sha qatlam saytga qo'shilib boradi. Hammasi qo'shilsa, portfolioingiz tayyor!</>, ru: <>Теперь оформляйте <b style={{ color: T.ink }}>сами</b>! Нажимайте на оформления по одному — с каждым нажатием этот слой добавляется на сайт. Добавите все — портфолио готово!</> })}</Mentor>
         <Zoomable>
         <div className="split" style={{ alignItems: 'stretch' }}>
           <div className="col">
-            {!done
-              ? <p className="small" style={{ margin: 0, color: T.ink2, fontStyle: 'italic' }}>👇 {tr({ uz: "Har bir bezakni bosing — o'ngdagi saytga qo'shiladi", ru: 'Нажимайте на каждое оформление — оно добавится на сайт справа' })}</p>
-              : <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={replay} disabled={running}>{tr(running ? { uz: 'Bezatilmoqda…', ru: 'Оформляем…' } : { uz: "↻ Yana jonli ko'rish", ru: '↻ Посмотреть вживую ещё раз' })}</button>}
+            {/* F-0926-06 (159/6-7): «👇 Har bir bezakni bosing» yo'rig'i olindi — mentor aynan shuni aytadi */}
+            <div className="flow-label">{tr({ uz: 'Bezaklar', ru: 'Оформления' }) /* F-0926-06 (159/9): ustun-yorlig'i — ro'yxat tepasi preview tepasi bilan bir chiziqda; qayta ko'rish tugmasi ro'yxat ostiga */}</div>
             <div className="asm-list fade-up delay-2">
               {LABELS.map((b, i) => { const applied = on.includes(b.k); return (<button key={b.k} type="button" className={`asm-row ${applied ? 'on' : ''}`} onClick={() => applyOne(b.k)} disabled={applied || running} style={{ border: 'none', cursor: applied ? 'default' : 'pointer', textAlign: 'left', width: '100%' }}><span className="asm-ic">{applied ? '✓' : (i + 1)}</span><span className="small" style={{ fontWeight: 600 }}>{tr(b.l)}</span></button>); })}
             </div>
-            {done && <div className="frame-success fade-step" style={{ marginTop: 'auto' }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Portfolio tayyor!', ru: 'Портфолио готово!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil HTML — endi <b>chiroyli, markazlashgan va professional</b>. Siz o'zingiz bezadingiz — mana CSS ning kuchi!</>, ru: <>Тот же HTML — теперь <b>красивый, центрированный и профессиональный</b>. Вы оформили его сами — вот сила CSS!</> })}</p></div>}
+            {done && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={replay} disabled={running}>{tr(running ? { uz: 'Bezatilmoqda…', ru: 'Оформляем…' } : { uz: "↻ Yana jonli ko'rish", ru: '↻ Посмотреть вживую ещё раз' })}</button>}
           </div>
           <div className="col">
             <div className="flow-label">{pf.name} — {tr({ uz: 'portfolio', ru: 'портфолио' })}</div>
             <Preview title="portfolio.html" minH={230} maxH={230}><StyledSite name={pf.name} role={pf.role} parts={['header', 'about', 'projects', 'contact', 'footer']} on={on} /></Preview>
+            {/* F-0926-06 (159/12-13): natija-xabari o'ng ustunga, preview ostiga — chapda 7 qator bilan tugmalar orqasiga tushardi; margin-top:auto olindi */}
+            {done && <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Portfolio tayyor!', ru: 'Портфолио готово!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil HTML — endi <b>chiroyli, markazlashgan va tartibli</b>. Siz o'zingiz bezadingiz — mana CSS ning kuchi!</>, ru: <>Тот же HTML — теперь <b>красивый, центрированный и аккуратный</b>. Вы оформили его сами — вот сила CSS!</> })}</p></div>}
             <div ref={endRef} aria-hidden="true" />
           </div>
         </div>
@@ -1483,7 +1493,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const audio = useAudio([{ id: 's17', text: "Tabriklayman! Siz dizayner bo'ldingiz. Bir xil HTML'dan, faqat CSS yordamida chiroyli, markazlashgan va professional portfolio yasadingiz: fon, ranglar, shriftlar, flex menyu, kartalar va tugma. Endi siz veb-sahifa yasashning ikkala kuchini ham bilasiz — HTML struktura beradi, CSS go'zallik. Zo'r ish!", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's17', text: "Tabriklayman! Siz dizayner bo'ldingiz. Bir xil HTML'dan, faqat CSS yordamida chiroyli va markazlashgan portfolio yasadingiz: fon, ranglar, shriftlar, flex menyu, kartalar va tugma. Endi siz veb-sahifa yasashning ikkala kuchini ham bilasiz — HTML struktura beradi, CSS go'zallik. Ajoyib ish!", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: 'background-color, color — fon va matn rangi', ru: 'background-color, color — цвет фона и текста' }, { uz: 'font-family — shrift', ru: 'font-family — шрифт' }, { uz: 'text-align: center — markazlash', ru: 'text-align: center — центрирование' }, { uz: 'display: flex + gap + justify-content — menyu', ru: 'display: flex + gap + justify-content — меню' }, { uz: "padding — ichki bo'shliq", ru: 'padding — внутренний отступ' }, { uz: "margin — tashqi bo'shliq", ru: 'margin — внешний отступ' }, { uz: 'margin: 0 auto — kartani markazga', ru: 'margin: 0 auto — карточка по центру' }];
   const HOMEWORK = [{ b: { uz: "O'zgartiring", ru: 'Измените' }, t: { uz: "— ranglarni o'zingizga yoqqaniga almashtiring", ru: '— поменяйте цвета на те, что нравятся вам' } }, { b: { uz: "Sinab ko'ring", ru: 'Попробуйте' }, t: { uz: '— keyingi darslarda: border-radius (dumaloq burchak), :hover (jonli tugma)', ru: '— в следующих уроках: border-radius (скруглённые углы), :hover (живая кнопка)' } }, { b: { uz: 'Maqtaning', ru: 'Похвастайтесь' }, t: { uz: "— tayyor portfolioni do'stlaringizga ko'rsating", ru: '— покажите готовое портфолио друзьям' } }];
   // Kalit so'zlar (GLOSSARY) olib tashlandi — takrorlash Flashcard sahifasida (4.2 etalon).
@@ -2581,6 +2591,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2592,7 +2603,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2610,15 +2621,15 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .option-picked-wrong { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.38) !important; }
         /* option-wait (jonli test Kahoot kutish holati) + frame-wait (feedback kutish) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* Mentor (proyektor) jonli test statistikasi + Kahoot reveal */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2669,7 +2680,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -2721,9 +2732,10 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}, 0 6px 16px -8px rgba(255,79,40,0.3); } /* F-0926-06: baland rang yo'q (159/10) — Soft fon + accent halqa */
         .chip-wrong { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .chip:disabled { opacity: 0.55; cursor: not-allowed; }
+        .chip.chip-on:disabled { opacity: 1; } /* F-0926-06 (159/10): tanlangan javob xiralashmasin */
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .mentor-ava { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: ${T.accentSoft}; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.28); display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1; }
@@ -2771,8 +2783,8 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .progress-track { height: 3px; background: rgba(167,166,162,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
         /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
@@ -2826,7 +2838,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         /* Kod ichidagi slot + chiplar + klikli qism (s2) */
         .slot { display: inline-block; min-width: 26px; padding: 0 7px; border-radius: 6px; background: rgba(255,79,40,0.20); box-shadow: inset 0 0 0 1.5px ${T.accent}; color: ${T.accent}; font-weight: 700; }
         .slot.filled { background: rgba(31,122,77,0.18); box-shadow: inset 0 0 0 1.5px ${T.success}; color: ${CODE.str}; }
-        .fld-label { font-family: 'Manrope'; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: ${T.ink2}; }
+        /* F-0926-06: savol-yorlig'i klassi olindi — 7 ekranda mentor savolini takrorlardi (159/7) */
         .tagpick { display: flex; flex-wrap: wrap; gap: 8px; }
         .cpart { cursor: pointer; padding: 2px 5px; border-radius: 6px; box-shadow: inset 0 0 0 1.5px transparent; transition: all 0.18s; }
         .cpart:hover { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.25); }
@@ -2845,6 +2857,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         /* Yig'ish ro'yxati */
         .asm-list { display: flex; flex-direction: column; gap: 6px; }
         .asm-row { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 10px; padding: 9px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); opacity: 0.5; transition: all 0.35s; }
+        .asm-row, .asm-row:disabled { color: ${T.ink}; } /* F-0926-06 (159/10): bajarilgan qator yozuvi tizim-kulrangiga tushmasin */
         .asm-row.on { opacity: 1; box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .asm-ic { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; box-shadow: inset 0 0 0 2px ${T.ink3}; color: ${T.ink2}; transition: all 0.35s; }
         .asm-row.on .asm-ic { background: ${T.success}; color: #fff; box-shadow: inset 0 0 0 2px ${T.success}; }
@@ -2914,7 +2927,8 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — CssLesson2/HtmlPractice/VsCode bilan bir xil */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -3163,7 +3177,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }

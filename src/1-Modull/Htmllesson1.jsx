@@ -317,14 +317,14 @@ const RECAPS = {
           uz: <>Har bir sayt aslida <b>HTML kodidan</b> iborat. Bu kod <b>teglar</b> bilan yoziladi: <b className="mono">&lt;h1&gt;</b> — sarlavha, <b className="mono">&lt;p&gt;</b> — matn. Brauzer shu teglarni o'qib, nimani qanday ko'rsatishni biladi.</>,
           ru: <>Каждый сайт на самом деле состоит из <b>HTML-кода</b>. Этот код пишется <b>тегами</b>: <b className="mono">&lt;h1&gt;</b> — заголовок, <b className="mono">&lt;p&gt;</b> — текст. Браузер читает эти теги и знает, что и как показать.</>,
         },
-        vis: <RcFlow items={[{ uz: '🏷️ Teglar', ru: '🏷️ Теги' }, { uz: '📄 HTML kod', ru: '📄 HTML-код' }, { uz: '🌐 Sahifa', ru: '🌐 Страница' }]} />,
+        vis: <RcFlow items={[{ uz: 'Teglar', ru: 'Теги' }, { uz: 'HTML kod', ru: 'HTML-код' }, { uz: 'Sahifa', ru: 'Страница' }]} />,
         ask: { uz: "Bugun qaysi teglarni o'rgandingiz?", ru: 'Какие теги вы сегодня выучили?' } },
       { ic: '🎨', h: { uz: "Brauzer — kodni o'qib, chizib beradi", ru: 'Браузер читает код и рисует страницу' },
         body: {
           uz: <>Chrome, Safari, Firefox — bular <b>brauzer</b>. Brauzer HTML kodini tepadan pastga o'qiydi va ekranga <b>chiroyli sahifa</b> qilib chizib beradi. Kod — retsept, brauzer — oshpaz!</>,
           ru: <>Chrome, Safari, Firefox — это <b>браузеры</b>. Браузер читает HTML-код сверху вниз и рисует на экране <b>красивую страницу</b>. Код — рецепт, браузер — повар!</>,
         },
-        vis: <RcFlow items={[{ uz: '📄 HTML kod', ru: '📄 HTML-код' }, { uz: "🌐 Brauzer o'qiydi", ru: '🌐 Браузер читает' }, { uz: '🖥️ Ekranda sahifa', ru: '🖥️ Страница на экране' }]} /> },
+        vis: <RcFlow items={[{ uz: 'HTML kod', ru: 'HTML-код' }, { uz: "🌐 Brauzer o'qiydi", ru: 'Браузер читает' }, { uz: 'Ekranda sahifa', ru: 'Страница на экране' }]} /> },
       { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не путайте!' },
         body: {
           uz: <>HTML — bu <b>til</b> (kod shu tilda yoziladi), brauzer — bu <b>dastur</b> (kodni o'qib ko'rsatadi). Word yoki Photoshop HTML kodini sahifaga aylantira olmaydi — bu faqat brauzerning ishi.</>,
@@ -334,13 +334,13 @@ const RECAPS = {
         ask: { uz: "O'zingiz qaysi brauzerni ishlatasiz?", ru: 'А каким браузером пользуетесь вы?' } },
     ]
   },
-  // idx 6 — s5b: «Ko'rinadigan matn qaysi qismga yoziladi?» (nazariya: skelet — head/body)
+  // idx 6 — s5b: «Ko'rinadigan matn qaysi qismga yoziladi?» (nazariya: skelet — head/body) · F-0926-06: ru «скелета» → «основы» (til-lint anatomiya, HtmlTakrorlash naqshi)
   6: {
-    title: { uz: 'Skelet: head va body', ru: 'Скелет: head и body' }, cards: [
+    title: { uz: 'Skelet (shablon): head va body', ru: 'Скелет (шаблон): head и body' }, cards: [
       { ic: '🦴', h: { uz: 'Har sahifaning skeleti bor', ru: 'У каждой страницы есть скелет' },
         body: {
           uz: <>Har qanday HTML sahifa bir xil skeletdan boshlanadi: <b className="mono">&lt;html&gt;</b> — butun sahifa qobig'i, uning ichida <b className="mono">&lt;head&gt;</b> va <b className="mono">&lt;body&gt;</b> turadi.</>,
-          ru: <>Любая HTML-страница начинается с одинакового скелета: <b className="mono">&lt;html&gt;</b> — оболочка всей страницы, а внутри неё живут <b className="mono">&lt;head&gt;</b> и <b className="mono">&lt;body&gt;</b>.</>,
+          ru: <>Любая HTML-страница начинается с одинаковой основы: <b className="mono">&lt;html&gt;</b> — оболочка всей страницы, а внутри неё живут <b className="mono">&lt;head&gt;</b> и <b className="mono">&lt;body&gt;</b>.</>,
         },
         vis: <RcFlow items={['<html>', '<head>', '<body>']} /> },
       { ic: '🙈', h: { uz: "head — ko'rinmas qism", ru: 'head — невидимая часть' },
@@ -348,7 +348,7 @@ const RECAPS = {
           uz: <><b className="mono">&lt;head&gt;</b> ichida sahifa <b>sozlamalari</b> turadi: sarlavha (brauzer tab'idagi yozuv), til, shriftlar. Foydalanuvchi bu qismni sahifada <b>ko'rmaydi</b>.</>,
           ru: <>Внутри <b className="mono">&lt;head&gt;</b> — <b>настройки</b> страницы: заголовок (надпись на вкладке браузера), язык, шрифты. Пользователь эту часть на странице <b>не видит</b>.</>,
         },
-        vis: <RcFlow items={[{ uz: '⚙️ Sozlamalar', ru: '⚙️ Настройки' }, { uz: '🏷️ Tab yozuvi', ru: '🏷️ Надпись вкладки' }]} sep="·" /> },
+        vis: <RcFlow items={[{ uz: 'Sozlamalar', ru: 'Настройки' }, { uz: 'Tab yozuvi', ru: 'Надпись вкладки' }]} sep="·" /> },
       { ic: '👁️', h: { uz: "body — ko'rinadigan qism", ru: 'body — видимая часть' },
         body: {
           uz: <>Ekranda ko'rinadigan <b>hamma narsa</b> — matn, sarlavha, rasm, tugma — <b className="mono">&lt;body&gt;</b> ichiga yoziladi. Sahifada nimadir ko'rinishi kerakmi? Demak, joyi — body!</>,
@@ -822,6 +822,15 @@ const Mentor = ({ children }) => {
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -832,8 +841,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -867,7 +876,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 <Preview minH={170} title="maktab.uz">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10, borderBottom: `1px solid ${T.ink3}40`, marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><span style={{ width: 22, height: 22, borderRadius: 6, background: T.accent, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Manrope', sans-serif", fontWeight: 800, fontSize: 13 }}>M</span><b style={{ fontFamily: "'Manrope', sans-serif", color: T.ink, fontSize: 15 }}>{tr({ uz: 'Maktab', ru: 'Школа' })}</b></span>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 11, fontFamily: "'Manrope', sans-serif", fontSize: 12, color: T.ink2 }}><span>{tr({ uz: 'Asosiy', ru: 'Главная' })}</span><span>{tr({ uz: 'Darslar', ru: 'Уроки' })}</span><span style={{ background: T.ink, color: T.bg, padding: '5px 11px', borderRadius: 6, fontWeight: 600 }}>{tr({ uz: 'Kirish', ru: 'Войти' })}</span></span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 11, fontFamily: "'Manrope', sans-serif", fontSize: 12, color: T.ink2 }}><span>{tr({ uz: 'Asosiy', ru: 'Главная' })}</span><span>{tr({ uz: 'Darslar', ru: 'Уроки' })}</span><span style={{ background: T.accent, color: '#fff', padding: '5px 11px', borderRadius: 6, fontWeight: 600 }}>{tr({ uz: 'Kirish', ru: 'Войти' })}{/* F-0926-06: maket-saytdagi qora «Kirish» tugmasi → accent (159/5, lint:dark) */}</span></span>
                   </div>
                   <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px,3.2vw,28px)', margin: '0 0 6px', color: T.ink }}>{tr({ uz: 'Xush kelibsiz!', ru: 'Добро пожаловать!' })} 👋</h1>
                   <p style={{ fontFamily: 'Georgia, serif', margin: '0 0 12px', color: T.ink2, fontSize: 'clamp(13px,1.8vw,15px)' }}>{tr({ uz: 'Bilim — bir bosishda.', ru: 'Знания — в один клик.' })}</p>
@@ -907,7 +916,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: { uz: 'Kod nima? — tushunamiz', ru: 'Что такое код? — разбираемся' },   tag: '' },
     { text: { uz: 'HTML bilan tanishamiz', ru: 'Знакомимся с HTML' },    tag: '' },
-    { text: { uz: 'Sahifa skeletini quramiz', ru: 'Строим скелет страницы' }, tag: '' },
+    { text: { uz: 'Sahifa skeletini (shablonini) quramiz', ru: 'Строим скелет (шаблон) страницы' }, tag: '' },
     { text: { uz: "Sarlavha qo'shamiz", ru: 'Добавляем заголовок' },       tag: 'h1–h6' },
     { text: { uz: 'Matn bezaymiz', ru: 'Оформляем текст' },            tag: 'p, strong, em' },
     { text: { uz: "Ro'yxat yasaymiz", ru: 'Делаем список' },         tag: 'ul, ol, li' },
@@ -1041,7 +1050,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     let cur = RG_START;
     let i = 0;
     const stepThrough = () => {
-      if (i >= program.length) {                 // buyruqlar tugadi
+      if (i >= program.length) { // buyruqlar tugadi
         setActive(-1);
         setPhase(cur >= RG_GOAL ? 'win' : 'fail-short');
         return;
@@ -1227,8 +1236,8 @@ const Screen3 = ({ screen, onNext, onPrev }) => {
         <div className="split">
           <div className="col" style={{ gap: 8 }}>
             <div className="fade-up delay-1">
-              <p className="eyebrow" style={{ color: T.ink2, margin: '0 0 8px' }}>{tr({ uz: 'Ismingizni yozing', ru: 'Напишите своё имя' })}</p>
-              <input className="text-input" value={name} onChange={e => setName(e.target.value)} maxLength={18} placeholder={tr({ uz: 'Ismingiz', ru: 'Ваше имя' })} disabled={running} />
+              {/* F-0926-06: «Ismingizni yozing» yorlig'i olindi — mentor gapini takrorlardi (159/7-8); savol placeholder va aria-label ichida */}
+              <input className="text-input" value={name} onChange={e => setName(e.target.value)} maxLength={18} placeholder={tr({ uz: 'Ismingiz', ru: 'Ваше имя' })} aria-label={tr({ uz: 'Ismingizni yozing', ru: 'Напишите своё имя' })} disabled={running} />
             </div>
             <p className="flow-label">{tr({ uz: 'HTML kod', ru: 'HTML-код' })} {isNarrow ? '↓' : '→'} {tr({ uz: "brauzer o'qiydi", ru: 'браузер читает' })}</p>
             <div className="code-box br-code">
@@ -1241,10 +1250,10 @@ const Screen3 = ({ screen, onNext, onPrev }) => {
             </div>
           </div>
           <div className="col" style={{ gap: 7 }}>
-            <p className="flow-label">{tr({ uz: 'Brauzer oynasi', ru: 'Окно браузера' })}</p>
+            {/* F-0926-06: «Brauzer oynasi» yorlig'i olindi — chap yorliq placeholderga o'tgach maydon va oyna tepasi bir chiziqda; oynaning o'z sarlavhasi bor (159/9, DeployLesson naqshi) */}
             <Preview title="profil.html" minH={isNarrow ? 124 : 150}>
               {step === 0 && !running
-                ? <div className="br-empty"><span style={{ fontSize: 24 }}>🌐</span><span>{tr({ uz: <>Brauzer hali kodni o'qimadi.<br />Pastdagi tugmani bosing.</>, ru: <>Браузер ещё не прочитал код.<br />Нажмите кнопку ниже.</> })}</span></div>
+                ? <div className="br-empty"><span style={{ fontSize: 24 }}>🌐</span><span>{tr({ uz: "Brauzer hali kodni o'qimadi.", ru: 'Браузер ещё не прочитал код.' })}</span>{/* F-0926-06: «Pastdagi tugmani bosing» olindi — chorlov mentor gapida, joy so'zi (159/3, 159/11) */}</div>
                 : (
                   <div className="profile-card">
                     {step >= 1 && (
@@ -1282,7 +1291,7 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Kim nima qiladi?', ru: 'Кто что делает?' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "HTML kodini o'qib, sahifani ekranda ko'rsatadigan dastur qaysi?", ru: 'Какая программа читает HTML-код и показывает страницу на экране?' })}</h2></>}
     options={[{ uz: 'Server', ru: 'Сервер' }, 'Photoshop', { uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Klaviatura', ru: 'Клавиатура' }]} correctIdx={2}
     explainCorrect={tr({ uz: "To'g'ri. Brauzer (Chrome, Safari, Firefox, Edge) HTML kodini o'qib, sahifa qilib ekraningizda ko'rsatadi.", ru: 'Верно. Браузер (Chrome, Safari, Firefox, Edge) читает HTML-код и показывает его на экране в виде страницы.' })}
-    explainWrong={{ 0: tr({ uz: 'Server faqat HTML faylni saqlaydi va jo\u2019natadi. Uni o\u2019qib sahifaga aylantirish — brauzerning ishi.', ru: 'Сервер лишь хранит и отправляет HTML-файл. Читать его и превращать в страницу — работа браузера.' }), 1: tr({ uz: 'Photoshop — bu rasm muharriri, HTML\u2019ga aloqasi yo\u2019q.', ru: 'Photoshop — это редактор изображений, к HTML он отношения не имеет.' }), 3: tr({ uz: 'Klaviatura — bu siz yozadigan qurilma. HTML\u2019ni o\u2019qib ko\u2019rsatadigan — brauzer.', ru: 'Клавиатура — устройство, на котором вы печатаете. А читает и показывает HTML — браузер.' }), default: tr({ uz: 'HTML kodini o\u2019qib, sahifa qilib ko\u2019rsatadigan — brauzer.', ru: 'HTML-код читает и показывает как страницу именно браузер.' }) }} />
+    explainWrong={{ 0: tr({ uz: 'Server faqat HTML faylni saqlaydi va jo\u2019natadi. Uni o\u2019qib sahifaga aylantirish — brauzerning ishi.', ru: 'Сервер лишь хранит и отправляет HTML-файл. Читать его и превращать в страницу — работа браузера.' }), 1: tr({ uz: 'Photoshop — bu rasm redaktori, HTML\u2019ga aloqasi yo\u2019q.' /* F-0926-06: muharrir → redaktor (til-lint, GitLesson naqshi) */, ru: 'Photoshop — это редактор изображений, к HTML он отношения не имеет.' }), 3: tr({ uz: 'Klaviatura — bu siz yozadigan qurilma. HTML\u2019ni o\u2019qib ko\u2019rsatadigan — brauzer.', ru: 'Клавиатура — устройство, на котором вы печатаете. А читает и показывает HTML — браузер.' }), default: tr({ uz: 'HTML kodini o\u2019qib, sahifa qilib ko\u2019rsatadigan — brauzer.', ru: 'HTML-код читает и показывает как страницу именно браузер.' }) }} />
 );
 
 // 🧲 Qayta ishlatiladigan DRAG&DROP — bo'laklarni to'g'ri TARTIBDA joylash (sudrab yoki bosib).
@@ -1531,7 +1540,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             ) : (
             <>
-            <p className="sk-tapguide fade-up delay-1">{tr({ uz: <>👆 Chizmadagi <b>4 ta qismni birma-bir bosing</b> — bosilmaganlari yonib turadi</>, ru: <>👆 <b>Нажмите по очереди на 4 части</b> схемы — ненажатые подсвечиваются</> })} <span className="sk-tapcount">{clicked.size}/4</span></p>
+            {/* F-0926-06: 4 qismli yo'riq-qatori va 0/4 sanog'i olindi — mentor aynan shuni aytadi, sanoq kerak emas: bosilmaganlari yonib turadi (159/7) */}
             <div className="bskel fade-up delay-2">
               <div className={fc('doctype', 'bskel-doctype')} onClick={() => tap('doctype')}>&lt;!DOCTYPE html&gt;</div>
               <div className={fc('html', 'bskel-html')} onClick={() => tap('html')}>
@@ -1567,7 +1576,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ) : active ? (
               <div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-chip">{PARTS[active].tag}</span><span className="sk-wordbadge">{PARTS[active].word}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].role}</p></div>
             ) : (
-              !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chizma yoki koddan bir qismni bosing', ru: 'Нажмите на часть схемы или кода' })}</p></div> : null
+              null /* F-0926-06: bo'sh-holat ramkasi (frame-dash «… bosing») olindi — chorlov mentor gapida va «4 ta qismni bosing» yo'rig'ida bor (159/3) */
             )}
           </div>
         </div>
@@ -1643,7 +1652,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ? (active
                   ? (<div className="role-line fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0 }}>{PARTS[active].role}</p></div>)
                   : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13, fontStyle: 'italic' }}>{tr({ uz: "Yuqoridagi uchta qismdan birini bosib, vazifasini ko'ring.", ru: 'Нажмите на одну из трёх частей выше и посмотрите её роль.' })}</p>))
-              : (<div className="hint"><p className="body" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Hozir "Salom!" — oddiy matn, brauzer u bilan nima qilishni bilmaydi. Tugmani bosing — teglar ikki tomondan kelib uni <b style={{ color: T.ink }}>qamrab oladi</b>.</>, ru: <>Сейчас "Привет!" — обычный текст, браузер не знает, что с ним делать. Нажмите кнопку — теги подойдут с двух сторон и <b style={{ color: T.ink }}>обнимут его</b>.</> })}</p></div>)}
+              : null /* F-0926-06: kesik «hint» qutisi olindi — mentor gapini («brauzer bilmaydi», «Tugmani bosib») takrorlardi, bo'sh-holat ramkasi (159/3, 159/7) */}
           </div>
 
           {(!isNarrow || wrapped) && (<div className="col fade-step">
@@ -1778,7 +1787,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             {!showAnswer ? (
               <>
-                <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, qaysi yozuv eng muhim?', ru: 'Как вы думаете, какая надпись самая важная?' })}</p>
+                {/* F-0926-06: «Sizningcha, qaysi yozuv eng muhim?» yorlig'i olindi — mentor savolini so'zma-so'z takrorlardi (159/7) */}
                 {[{ id: 'a', label: tr({ uz: 'Eng katta sarlavha (tepadagi)', ru: 'Самый большой заголовок (сверху)' }) }, { id: 'b', label: tr({ uz: '«Kim qatnashishi mumkin?»', ru: '«Кто может участвовать?»' }) }].map(o => (
                   <button key={o.id} className="hook-option fade-up delay-3" onClick={() => pick(o.id)}><span className="radio" /><span>{o.label}</span></button>
                 ))}
@@ -1861,7 +1870,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
           {/* VEB-SAYT muhiti */}
           <div className="cmp-side">
-            <div className="cmp-hd cmp-hd-html">🌐 {tr({ uz: 'Veb-saytda HTML buni teg bilan qiladi', ru: 'На сайте HTML делает это тегом' })}</div>
+            <div className="cmp-hd cmp-hd-html">🌐 {tr({ uz: 'Veb-sayt', ru: 'Веб-сайт' })}{/* F-0926-06: sarlavha mentor gapini qaytarardi — «💬 Telegram» juftiga moslandi (159/7) */}</div>
             <div className="bp-window">
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">mening-saytim.uz</span></div>
               <div className="cmp-siteview"><p>{tr({ uz: 'Ertaga', ru: 'Завтра' })} {renderWord('imtihon')}{tr({ uz: ' bor! ', ru: '! ' })}{renderWord('albatta')} {tr({ uz: 'keling.', ru: 'приходите.' })}</p></div>
@@ -1869,16 +1878,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="cmp-codeblock">
               <span className="cmp-codelbl">&lt;/&gt; {tr({ uz: 'HTML kod', ru: 'HTML-код' })}</span>
               <pre className="code-box cmp-code"><span className="tg">&lt;p&gt;</span>{tr({ uz: 'Ertaga', ru: 'Завтра' })} {codeWord('imtihon')}{tr({ uz: ' bor! ', ru: '! ' })}{codeWord('albatta')} {tr({ uz: 'keling.', ru: 'приходите.' })}<span className="tg">&lt;/p&gt;</span></pre>
-
-              <p className="cmp-leg"><span className="cmp-leg-tag">&lt;strong&gt;</span> — {tr({ uz: 'qalin qiladi', ru: 'делает жирным' })} · <span className="cmp-leg-tag">&lt;em&gt;</span> — {tr({ uz: 'yotiq-kursiv qiladi', ru: 'делает курсивом' })}
-              </p>
+              {/* F-0926-06: «strong — qalin · em — yotiq» izoh-qatori olindi — mentor gapida aynan shu bor (159/7) */}
             </div>
           </div>
         </div>
 
-        <div className={`cmp-merge fade-up delay-3 ${done ? 'done' : ''}`}>
-          {done ? '✓ ' : ''}{tr({ uz: <>Telegramda so'zni belgilab <b>tugma</b> bosasiz; veb-saytda esa o'sha so'z <b>teg</b> ichiga olinadi.</>, ru: <>В Telegram вы выделяете слово и жмёте <b>кнопку</b>; на сайте то же слово берётся в <b>тег</b>.</> })}
-        </div>
+        {/* F-0926-06: pastki «Telegramda … tugma; veb-saytda … teg» yashil qatori olindi — mentor gapini takrorlardi, holatni tugma aytadi (159/7, 159/14) */}
       </div>
     </Stage>
   );
@@ -1912,13 +1917,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Ro'yxatlar", ru: 'Списки' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: '✍️ Praktika →', ru: '✍️ Практика →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Xarid ro'yxati va retsept — <span className="italic" style={{ color: T.accent }}>farqi</span> nimada?</>, ru: <>Список покупок и рецепт — в чём <span className="italic" style={{ color: T.accent }}>разница</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Xarid ro'yxatida tartib <b style={{ color: T.ink }}>muhim emas</b> (non, sut — qaysi avval bo'lsa ham bari bir). Retseptda esa qadamlar <b style={{ color: T.ink }}>aniq tartibda</b>. Shuning uchun HTML'da <b style={{ color: T.ink }}>ikki xil</b> ro'yxat bor — pastdan farqini ko'ring.</>, ru: <>В списке покупок порядок <b style={{ color: T.ink }}>не важен</b> (хлеб, молоко — что первым, без разницы). А в рецепте шаги идут <b style={{ color: T.ink }}>в точном порядке</b>. Поэтому в HTML есть <b style={{ color: T.ink }}>два вида</b> списков — посмотрите разницу ниже.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Xarid ro'yxatida tartib <b style={{ color: T.ink }}>muhim emas</b> (non, sut — qaysi avval bo'lsa ham bari bir). Retseptda esa qadamlar <b style={{ color: T.ink }}>aniq tartibda</b>. Shuning uchun HTML'da <b style={{ color: T.ink }}>ikki xil</b> ro'yxat bor — farqini ko'ring.</>, ru: <>В списке покупок порядок <b style={{ color: T.ink }}>не важен</b> (хлеб, молоко — что первым, без разницы). А в рецепте шаги идут <b style={{ color: T.ink }}>в точном порядке</b>. Поэтому в HTML есть <b style={{ color: T.ink }}>два вида</b> списков — посмотрите разницу.</> })}</Mentor>{/* F-0926-06: joy so'zi «pastdan / ниже» olindi (159/11) */}
 
         <div className="cmp2-grid" ref={gridRef} style={{ scrollMarginTop: 12 }}>
           {/* XARID — ul */}
           <div className="cmp2-card fade-up delay-2">
             <div className="cmp2-hd">🛒 {tr({ uz: "Xarid ro'yxati", ru: 'Список покупок' })} <span className="cmp2-chip">&lt;ul&gt;</span></div>
-            <span className="cmp2-order no">{tr({ uz: 'tartib muhim EMAS', ru: 'порядок НЕ важен' })}</span>
+            {/* F-0926-06: «tartib muhim EMAS» chipi olindi — mentor gapi va xulosa qatori aytadi (159/7) */}
             <div className="cmp2-pair">
             <div className="cmp2-bp">
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">xaridlar.uz</span></div>
@@ -1940,7 +1945,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {/* RETSEPT — ol */}
           <div className="cmp2-card fade-up delay-3">
             <div className="cmp2-hd">🥤 {tr({ uz: 'Limonad retsepti', ru: 'Рецепт лимонада' })} <span className="cmp2-chip">&lt;ol&gt;</span></div>
-            <span className="cmp2-order yes">{tr({ uz: 'tartib MUHIM', ru: 'порядок ВАЖЕН' })}</span>
+            {/* F-0926-06: «tartib MUHIM» chipi olindi — juftiga mos (159/7) */}
             <div className="cmp2-pair">
             <div className="cmp2-bp">
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">limonad.uz</span></div>
@@ -2071,14 +2076,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Mana, vaqti keldi. Bugun o'rgangan teglaringizdan o'z sahifangizni yig'asiz. Buyruq yozing yoki tayyor teglardan tanlang — <b style={{ color: T.ink }}>"Yaratish"</b> tugmasini bosing, kod o'zi paydo bo'ladi. Kamida 3 ta bo'lak qo'shing.</>, ru: <>Вот и пришло время. Из выученных сегодня тегов вы соберёте свою страницу. Напишите команду или выберите из готовых тегов — нажмите <b style={{ color: T.ink }}>«Создать»</b>, и код появится сам. Добавьте минимум 3 блока.</> })}</Mentor>
         <div className="split">
           <div className="col">
-            <div className="fade-up delay-2"><p className="flow-label" style={{ marginBottom: 7 }}>{tr({ uz: 'Buyruq yozing', ru: 'Напишите команду' })}</p><div className="prompt-row"><input className="prompt-input" value={text} placeholder={tr({ uz: "masalan: rasm qo'sh", ru: 'например: добавь картинку' })} onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit(); }} /><button className="prompt-btn" onClick={submit} disabled={!!pending || items.length >= MAX}>{tr({ uz: 'Yaratish', ru: 'Создать' })}</button></div></div>
+            <div className="fade-up delay-2">{/* F-0926-06: «Buyruq yozing» yorlig'i placeholder ichiga ko'chdi (159/8); o'ng «Kod» yorlig'i ham olindi — ikki ustun tepasi bir chiziqda (159/9) */}<div className="prompt-row"><input className="prompt-input" value={text} placeholder={tr({ uz: "Buyruq yozing, masalan: rasm qo'sh", ru: 'Напишите команду, например: добавь картинку' })} aria-label={tr({ uz: 'Buyruq yozing', ru: 'Напишите команду' })} onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit(); }} /><button className="prompt-btn" onClick={submit} disabled={!!pending || items.length >= MAX}>{tr({ uz: 'Yaratish', ru: 'Создать' })}</button></div></div>
             <div className="fade-up delay-2"><p className="flow-label" style={{ margin: '2px 0 7px' }}>{tr({ uz: 'yoki tayyor buyruqlardan tanlang', ru: 'или выберите из готовых команд' })}</p><div className="chips">{CHIPS.map(c => (<button key={c.key} className="gchip" disabled={items.length >= MAX} onClick={() => { setText(tr({ uz: c.label.toLowerCase() + " qo'sh", ru: 'добавь ' + c.label.toLowerCase() })); setHint(''); }}>{c.label} <span className="gt">&lt;{c.tag}&gt;</span></button>))}{items.length > 0 && <button className="gchip" onClick={reset}>↺ {tr({ uz: 'Tozalash', ru: 'Очистить' })}</button>}</div></div>
             <p className="body fade-up delay-3" style={{ margin: '2px 0 0', color: T.ink3, fontSize: 13 }}>{tr({ uz: <><b style={{ color: T.ink2 }}>Tez tugatdingizmi?</b> 5 xil teg ishlating yoki yangi teg topib sinab ko'ring.</>, ru: <><b style={{ color: T.ink2 }}>Закончили быстро?</b> Используйте 5 разных тегов или найдите и попробуйте новый.</> })}</p>
             {hint && <p className="hint fade-step">{hint}</p>}
-            {done && (<div style={{ background: T.successSoft, borderLeft: `4px solid ${T.success}`, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>buyruq berib</b> sahifa qurdingiz — va kodni o'qib, nima yozilganini tushunasiz.</>, ru: <>Отлично! Вы построили страницу, <b>отдавая команды</b> — и, читая код, понимаете, что в нём написано.</> })}</p></div>)}
+            {done && (<div style={{ background: T.successSoft, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>buyruq berib</b> sahifa qurdingiz — va kodni o'qib, nima yozilganini tushunasiz.</>, ru: <>Отлично! Вы построили страницу, <b>отдавая команды</b> — и, читая код, понимаете, что в нём написано.</> })}</p></div>)}
           </div>
           <div className="col">
-            <div className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</div>
             <pre className="code-box"><Tg>{'<body>'}</Tg>{'\n'}{items.length === 0 && !pending && <><span className="cm">{tr({ uz: '  <!-- buyruq bering -->', ru: '  <!-- дайте команду -->' })}</span>{'\n'}</>}{items.map((it, i) => (<React.Fragment key={i}>{'  '}{elCode(it)}{'\n'}</React.Fragment>))}{pending && <><span className="gen-line">{tr({ uz: '  yaratilmoqda', ru: '  создаётся' })}</span>{'\n'}</>}<Tg>{'</body>'}</Tg></pre>
             <div className="flow-label">{tr({ uz: 'Sahifa', ru: 'Страница' })}</div>
             <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">mening-sahifam.html</span></div><div className="bp-body">{items.length === 0 && !pending ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif' }}>{tr({ uz: "Bo'sh sahifa — buyruq bering...", ru: 'Пустая страница — дайте команду...' })}</p> : items.map((it, i) => <span key={i} className="el-in" style={{ display: 'block' }}>{elView(it, i)}</span>)}</div></div>
@@ -2125,7 +2129,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's16', text: "Dars yakunlandi. Birinchi saytingizni yasadingiz! Asosiyni eslab qoling: HTML — veb-sahifalar tili, brauzer HTMLni o'qib sahifani ko'rsatadi, teg ochiladi va yopiladi.", trigger: 'on_mount', waits_for: null }]);
-  const RECAP = [tr({ uz: 'HTML bilan veb-sahifa yasash', ru: 'Делать веб-страницу на HTML' }), tr({ uz: 'Sahifa skeletini qurish (head, body)', ru: 'Строить скелет страницы (head, body)' }), tr({ uz: 'Teglarni ochish va yopish', ru: 'Открывать и закрывать теги' }), tr({ uz: 'Sarlavha (h1–h6) va matn (strong, em)', ru: 'Заголовки (h1–h6) и текст (strong, em)' }), tr({ uz: "Ro'yxat (ul/ol) va havola (a) qo'shish", ru: 'Добавлять списки (ul/ol) и ссылки (a)' })];
+  const RECAP = [tr({ uz: 'HTML bilan veb-sahifa yasash', ru: 'Делать веб-страницу на HTML' }), tr({ uz: 'Sahifa skeletini (shablonini) qurish: head, body', ru: 'Строить скелет (шаблон) страницы: head, body' }), tr({ uz: 'Teglarni ochish va yopish', ru: 'Открывать и закрывать теги' }), tr({ uz: 'Sarlavha (h1–h6) va matn (strong, em)', ru: 'Заголовки (h1–h6) и текст (strong, em)' }), tr({ uz: "Ro'yxat (ul/ol) va havola (a) qo'shish", ru: 'Добавлять списки (ul/ol) и ссылки (a)' })];
   const HOMEWORK = [{ b: tr({ uz: 'Sarlavha (h1)', ru: 'Заголовок (h1)' }), t: tr({ uz: '— ismingiz', ru: '— ваше имя' }) }, { b: tr({ uz: '2–3 paragraf', ru: '2–3 абзаца' }), t: tr({ uz: "— o'zingiz haqingizda", ru: '— о себе' }) }, { b: tr({ uz: "Ro'yxat", ru: 'Список' }), t: tr({ uz: "— sevimli mashg'ulotlaringiz", ru: '— ваши любимые занятия' }) }, { b: tr({ uz: 'Havola', ru: 'Ссылка' }), t: tr({ uz: '— sevimli saytingizga', ru: '— на любимый сайт' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2344,7 +2348,7 @@ const QUIZ_BANK = [
   { q: { uz: "Ko'rinmaydigan sozlamalar (`title`, `meta`) qaysi qismga yoziladi?", ru: 'В какую часть пишутся невидимые настройки (`title`, `meta`)?' }, opts: ["`body`", "`p`", "`head`", "`h1`"], correct: 2 },
   { q: { uz: "Matnni QALIN (bold) qilish uchun qaysi teg?", ru: 'Какой тег делает текст ЖИРНЫМ (bold)?' }, opts: ["`strong`", "`em`", "`p`", "`i`"], correct: 0 },
   { q: { uz: "`<!DOCTYPE html>` nimani bildiradi?", ru: 'Что означает `<!DOCTYPE html>`?' }, opts: [{ uz: 'Sahifaning fon rangini', ru: 'Цвет фона страницы' }, { uz: "Rasm qo'shilishini", ru: 'Добавление картинки' }, { uz: 'Sahifa tugaganini', ru: 'Конец страницы' }, { uz: 'HTML5 hujjat ekanini', ru: 'Что это документ HTML5' }], correct: 3 },
-  { q: { uz: "Sahifa skeletining to'g'ri tartibi qaysi?", ru: 'Какой порядок скелета страницы верный?' }, opts: [{ uz: "`head` ichida `html` va `body`", ru: '`html` и `body` внутри `head`' }, { uz: "`body` ichida `head` va `html`", ru: '`head` и `html` внутри `body`' }, { uz: "`title` ichida `head`", ru: '`head` внутри `title`' }, { uz: "`html` ichida `head` va `body`", ru: '`head` и `body` внутри `html`' }], correct: 3 },
+  { q: { uz: "Sahifa skeletining (shablonining) to'g'ri tartibi qaysi?", ru: 'Какой порядок скелета (шаблона) страницы верный?' }, opts: [{ uz: "`head` ichida `html` va `body`", ru: '`html` и `body` внутри `head`' }, { uz: "`body` ichida `head` va `html`", ru: '`head` и `html` внутри `body`' }, { uz: "`title` ichida `head`", ru: '`head` внутри `title`' }, { uz: "`html` ichida `head` va `body`", ru: '`head` и `body` внутри `html`' }], correct: 3 },
   { q: { uz: "HTML kodni o'qib, sahifaga aylantiradigan dastur qaysi?", ru: 'Какая программа читает HTML-код и превращает его в страницу?' }, opts: [{ uz: 'Server', ru: 'Сервер' }, { uz: 'Brauzer', ru: 'Браузер' }, 'Word', { uz: 'Fayl menejeri', ru: 'Файловый менеджер' }], correct: 1 },
   { q: { uz: "Matnni QIYA (kursiv) qilish uchun qaysi teg?", ru: 'Какой тег делает текст НАКЛОННЫМ (курсив)?' }, opts: ["`em`", "`ul`", "`a`", "`h1`"], correct: 0 },
 ];
@@ -2917,7 +2921,7 @@ const PRACTICE_AFTER = {
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
-  skelet:    { icon: '🧲', name: 'Built It!',   desc: { uz: "Sahifa skeletini o'zingiz yig'dingiz", ru: 'Вы сами собрали скелет страницы' } },
+  skelet:    { icon: '🧲', name: 'Built It!',   desc: { uz: "Sahifa skeletini (shablonini) o'zingiz yig'dingiz", ru: 'Вы сами собрали скелет (шаблон) страницы' } },
   firsttag:  { icon: '🏷️', name: 'Tag It!',     desc: { uz: 'Yopuvchi tegni yozdingiz', ru: 'Вы написали закрывающий тег' } },
   debugger:  { icon: '🐞', name: 'Nice Catch!', desc: { uz: 'Buzuq kodni topib tuzatdingiz', ru: 'Вы нашли и починили сломанный код' } },
   graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: "Birinchi HTML darsini to'liq yakunladingiz", ru: 'Вы полностью прошли первый урок HTML' } },
@@ -3276,6 +3280,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .fade-step { animation: fade-step 0.3s ease-out; }
         /* Kattalashtirish (zoom) — animatsiyani katta ekranda ko'rish */
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         /* F-0912-03 · 147-qonun: ⛶ tugmasi turgan burchakda JOY. Tugma o'ng yuqorida
            (6px chekinish + 30px) — shu burchakka tushadigan qator zb-gap oladi, aks holda
@@ -3293,7 +3298,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR v15 (soyalar) === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -3376,10 +3381,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
 
         /* === FRAME v15 === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 12px 15px; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-ok { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
@@ -3404,8 +3409,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .ps-q { background: ${T.accentSoft}; color: ${T.accent}; }
         .ps-a { background: ${T.successSoft}; color: ${T.success}; }
         .ps-text { font-size: clamp(14px,1.7vw,16px); line-height: 1.5; color: ${T.ink}; }
-        .solve-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); padding: 10px 18px; border-radius: 10px; border: none; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.3); }
-        .solve-btn:hover:not(:disabled) { background: ${T.accent}; }
         .ye-solved, .ye-stack { display: flex; flex-direction: column; gap: 12px; }
         .mu-mini { opacity: 0.7; }
         .idea { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 0; }
@@ -3422,7 +3425,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
+        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
 
         /* === RECIPE === */
@@ -3451,9 +3454,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .pf-btn { margin-top: 3px; background: ${T.accent}; color: #fff; border: none; border-radius: 8px; padding: 6px 14px; font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; cursor: default; }
         /* ===== BRAUZER MASHINASI (Screen3) ===== */
         .br-code { display: flex; flex-direction: column; gap: 3px; white-space: normal; }
-        .br-line { display: flex; align-items: center; gap: 6px; padding: 3px 7px; border-radius: 6px; border-left: 3px solid transparent; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+        .br-line { display: flex; align-items: center; gap: 6px; padding: 3px 7px; border-radius: 6px; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
         .br-line.read { opacity: 1; }
-        .br-line.now { opacity: 1; background: rgba(255,79,40,0.18); border-left-color: ${T.accent}; }
+        .br-line.now { opacity: 1; background: rgba(255,79,40,0.18); }
         .br-caret { width: 9px; flex-shrink: 0; color: ${T.accent}; font-weight: 700; }
         .br-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 90px; height: 100%; text-align: center; color: ${T.ink3}; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.6vw,13.5px); line-height: 1.4; }
         .br-el { animation: br-pop 0.42s cubic-bezier(.34,1.4,.5,1); }
@@ -3525,7 +3528,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -3783,7 +3787,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .cmp-code { margin: 0; font-size: clamp(12px,1.6vw,13.5px) !important; }
         .cmp-leg { margin: 0; font-family: 'Manrope'; font-weight: 500; font-size: clamp(11.5px,1.5vw,13px); color: ${T.ink2}; line-height: 1.5; }
         .cmp-leg-tag { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: ${CODE.tag}; }
-        .cmp-merge { text-align: center; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.8vw,15px); line-height: 1.5; color: ${T.ink}; background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 13px; padding: 13px 16px; transition: box-shadow 0.3s ease; }
+        .cmp-merge { text-align: center; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.8vw,15px); line-height: 1.5; color: ${T.ink}; background: ${T.successSoft}; border-radius: 13px; padding: 13px 16px; transition: box-shadow 0.3s ease; }
         .cmp-merge.done { box-shadow: inset 0 0 0 2px ${T.success}55; }
         @media (max-width: 760px) {
           .cmp-grid { grid-template-columns: 1fr; }
@@ -3791,7 +3795,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         }
 
         /* === WHEN / LISTS === */
-        .when { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 10px; padding: 11px 15px; }
+        .when { background: ${T.accentSoft}; border-radius: 10px; padding: 11px 15px; }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
         .site-brand { display: inline-flex; align-items: center; gap: 8px; } .site-logo { width: 22px; height: 22px; border-radius: 6px; background: ${T.accent}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 13px; } .site-name { font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; font-size: 14px; }
         .site-nav { display: inline-flex; gap: 11px; font-family: 'Manrope'; font-size: 12px; color: ${T.ink2}; }
@@ -3835,7 +3839,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .cmp2-pair { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 10px; align-items: start; } .cmp2-pair .cmp2-codewrap { margin-top: 0; padding-top: 0; border-top: none; } /* §34 s11 */
         @media (max-width: 900px) { .cmp2-pair { grid-template-columns: 1fr; } }
         .cmp2-code { margin: 0; font-size: clamp(11px,1.4vw,12.5px) !important; }
-        .cmp2-concl { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 8px 13px; }
+        .cmp2-concl { background: ${T.successSoft}; border-radius: 12px; padding: 8px 13px; }
         .cmp2-concl p { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.7vw,14px); line-height: 1.5; color: ${T.ink}; }
         @media (max-width: 620px) { .cmp2-grid { grid-template-columns: 1fr; } }
 
@@ -3971,8 +3975,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .rg-code-name { margin-left: 8px; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${CODE.comment}; }
         .rg-code-body { padding: 9px 10px; display: flex; flex-direction: column; gap: 2px; min-height: 92px; }
         .rg-code-empty { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; color: ${CODE.comment}; padding: 6px 8px; }
-        .rg-line { display: flex; align-items: center; gap: 10px; padding: 4px 8px; border-radius: 6px; border-left: 3px solid transparent; transition: background 0.25s ease, border-color 0.25s ease; }
-        .rg-line.now { background: rgba(255,79,40,0.18); border-left-color: ${T.accent}; }
+        .rg-line { display: flex; align-items: center; gap: 10px; padding: 4px 8px; border-radius: 6px; transition: background 0.25s ease, border-color 0.25s ease; }
+        .rg-line.now { background: rgba(255,79,40,0.18); }
         .rg-ln { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${CODE.comment}; width: 14px; text-align: right; flex-shrink: 0; }
         .rg-call { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 13.5px; }
         .rg-fn { color: ${CODE.tag}; font-weight: 600; }
@@ -4041,7 +4045,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .tegbuild-wrap.on .tb-brace { transform: scaleX(1); }
         .tb-brace-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; }
         @keyframes tb-pvpop { 0% { opacity: 0; transform: scale(0.6); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
-        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
         /* SCREEN 8 — Sarlavhalar (Telegram posti -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
@@ -4088,9 +4092,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -4129,17 +4133,17 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -4169,7 +4173,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -4450,7 +4454,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* kod atamasi chipi — savol/variant/izohlarda oddiy matndan ajralib turadi */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }

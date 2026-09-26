@@ -109,6 +109,15 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -119,8 +128,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -282,7 +291,7 @@ const RECAPS = {
     cards: [
       { ic: "📦", h: { uz: "Avval — nima kerakligini yig'ish", ru: 'Сначала — собрать нужное' }, body: { uz: <>Birinchi nuqta — <b>Yig'ish</b>: kerakli paketlar o'rnatiladi.</>, ru: <>Первая точка — <b>Сборка</b>: устанавливаются нужные пакеты.</> } },
       { ic: "🔍", h: { uz: "Keyin — tekshirish nuqtalari", ru: 'Затем — точки проверки' }, body: { uz: <>Skaner va o'lcham ramkasi — kod tekshiriladi, xato bo'lsa shu yerda to'xtaydi.</>, ru: <>Сканер и рамка — код проверяется; если есть ошибка, всё останавливается здесь.</> } },
-      { ic: "✈️", h: { uz: "Eng oxiri — o'rash va uchirish", ru: 'В самом конце — упаковка и взлёт' }, body: { uz: <>O'rash va Uchirish — faqat hammasi yashil bo'lgandan keyin.</>, ru: <>Упаковка и Взлёт — только после того, как всё зелёное.</> }, vis: <RcFlow items={[{ uz: "📦 Yig'ish", ru: '📦 Сборка' }, { uz: '🔍 Skaner', ru: '🔍 Сканер' }, { uz: "📐 Ramka", ru: '📐 Рамка' }, { uz: "🎁 O'rash", ru: '🎁 Упаковка' }, { uz: '✈️ Uchirish', ru: '✈️ Взлёт' }]} />, ask: { uz: "Nega Uchirish Skanerdan oldin bo'lmasligi kerak?", ru: 'Почему Взлёт не должен идти раньше Сканера?' } },
+      { ic: "✈️", h: { uz: "Eng oxiri — o'rash va uchirish", ru: 'В самом конце — упаковка и взлёт' }, body: { uz: <>O'rash va Uchirish — faqat hammasi yashil bo'lgandan keyin.</>, ru: <>Упаковка и Взлёт — только после того, как всё зелёное.</> }, vis: <RcFlow items={[{ uz: "📦 Yig'ish", ru: 'Сборка' }, { uz: 'Skaner', ru: 'Сканер' }, { uz: "📐 Ramka", ru: 'Рамка' }, { uz: "🎁 O'rash", ru: 'Упаковка' }, { uz: 'Uchirish', ru: 'Взлёт' }]} />, ask: { uz: "Nega Uchirish Skanerdan oldin bo'lmasligi kerak?", ru: 'Почему Взлёт не должен идти раньше Сканера?' } },
     ]
   }
 };
@@ -357,7 +366,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -397,11 +406,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
@@ -798,7 +807,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval qo'lda uchirishni bosing ←", ru: 'Сначала нажмите «Запуск вручную» ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr(ACK[picked])}</p>}
           </Col>
         </Split></Zoomable>
@@ -879,7 +887,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '⚠️ Skanerni tashlab ketdingiz', ru: '⚠️ Вы пропустили сканер' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tez bo'ldi — lekin endi kod tekshirilmagan holda uchib ketadi. Agar xato bo'lsa, foydalanuvchi buzuq saytni ko'radi.", ru: 'Быстро — но теперь код улетит непроверенным. Если там ошибка, пользователь увидит сломанный сайт.' })}</p><PhoneMock state="broken" /></div>
               : cur
                 ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ color: T.accent }}>{cur.icon} {tr(cur.label)}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Nuqtani bosing ←', ru: 'Нажмите на точку ←' })}</p></div>}
+                : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "5 nuqta — har push'da qo'lda takrorlanadi. Sekin, zerikarli, va bir kuni bittasini unutasiz. Buni avtomatlashtirsak-chi?", ru: '5 точек — и так вручную на каждый push. Медленно, скучно, и однажды вы одну из них забудете. А если это автоматизировать?' })}</p></div>}
           </Col>
         </div>
@@ -919,7 +927,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.danger}` }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "🐌 Qo'lda", ru: '🐌 Вручную' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har push'dan keyin 5 nuqtani o'zingiz bajarasiz. Sekin, xatoga moyil — va bir kuni <b>unutib qo'yasiz</b>.</>, ru: <>После каждого push вы сами выполняете 5 точек. Медленно, легко ошибиться — и однажды вы просто <b>забудете</b>.</> })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "🐌 Qo'lda", ru: '🐌 Вручную' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har push'dan keyin 5 nuqtani o'zingiz bajarasiz. Sekin, xatoga moyil — va bir kuni <b>unutib qo'yasiz</b>.</>, ru: <>После каждого push вы сами выполняете 5 точек. Медленно, легко ошибиться — и однажды вы просто <b>забудете</b>.</> })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={running || done} onClick={run}>{done ? tr({ uz: '✓ Lenta yoqildi', ru: '✓ Лента включена' }) : (running ? tr({ uz: '● Ishlayapti…', ru: '● Работает…' }) : tr({ uz: 'Lenta bilan-chi?', ru: 'А если с лентой?' }))}</button>
             <div className="timer-row">
               <div className="timer-chip danger"><span className="tc-lbl">{tr({ uz: "Qo'lda", ru: 'Вручную' })}</span><span className="tc-val">{tr({ uz: '20 daq', ru: '20 мин' })}</span></div>
@@ -929,8 +937,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <Belt statuses={ptStatus} />
             {done
-              ? <div className="frame fade-step" style={{ borderLeft: `4px solid ${T.success}` }}><p className="note-h" style={{ color: T.success }}>{tr({ uz: '⚙️ Lenta (CI/CD)', ru: '⚙️ Лента (CI/CD)' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir marta sozlaysiz. Endi <b>har push</b> avtomatik: skaner → ramka → o'rash → uchirish. Qo'l tegmaydi, hech narsa unutilmaydi.</>, ru: <>Настраиваете один раз. Теперь <b>каждый push</b> — автоматически: сканер → рамка → упаковка → взлёт. Руки не нужны, ничего не забывается.</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              ? <div className="frame fade-step" style={{ }}><p className="note-h" style={{ color: T.success }}>{tr({ uz: '⚙️ Lenta (CI/CD)', ru: '⚙️ Лента (CI/CD)' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir marta sozlaysiz. Endi <b>har push</b> avtomatik: skaner → ramka → o'rash → uchirish. Qo'l tegmaydi, hech narsa unutilmaydi.</>, ru: <>Настраиваете один раз. Теперь <b>каждый push</b> — автоматически: сканер → рамка → упаковка → взлёт. Руки не нужны, ничего не забывается.</> })}</p></div>
+              : null}
           </Col>
         </div>
         </Zoomable>
@@ -981,14 +989,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1 cj-items">
-              {SUITCASES.map(d => <button key={d.id} className={`itm-card ${seen.has(d.id) ? '' : 'tap-hint'}`} onClick={() => tap(d.id)} style={seen.has(d.id) ? { boxShadow: `inset 0 0 0 1.5px ${d.id === 'vali' ? T.danger : T.success}` } : undefined}><span className="itm-ico">🧳</span><span className="itm-nm">{seen.has(d.id) ? '✓ ' : ''}{d.name}</span></button>)}
+              {SUITCASES.map(d => <button key={d.id} className={`itm-card ${seen.has(d.id) ? '' : 'tap-hint'}`} onClick={() => tap(d.id)} style={seen.has(d.id) ? { boxShadow: `inset 0 0 0 1.5px ${d.id === 'vali' ? T.danger : T.success}` } : undefined}><span className="itm-nm">{seen.has(d.id) ? '✓ ' : ''}{d.name}</span></button>)}
             </div>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'lenta natijasi', ru: 'результат ленты' })}</p>
             {cur
               ? <div className={result === 'bad' ? 'frame-warn fade-step' : 'sk-info fade-step'} key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>{cur.name}ning chamadoni ({tr(cur.work)}) lentaga tushdi.</>, ru: <>Чемодан {cur.name} ({tr(cur.work)}) попал на ленту.</> })} {result === 'bad' ? tr({ uz: <>🔍 Skaner nuqtasida <b style={{ color: T.danger }}>qizil</b> berdi — testi yiqildi.</>, ru: <>🔍 На точке «Сканер» загорелся <b style={{ color: T.danger }}>красный</b> — тест упал.</> }) : tr({ uz: <><b style={{ color: T.success }}>✓ yashil</b>, hammasi joyida.</>, ru: <><b style={{ color: T.success }}>✓ зелёный</b>, всё в порядке.</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Dasturchini bosing ←', ru: 'Нажмите на разработчика ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Valiniki uyidagi kompyuterda ishlagan edi. Lenta esa hammani <b>bir xil sharoitda</b> sinaydi — shuning uchun aynan shu yerda xato topildi.</>, ru: <>У Вали код работал на домашнем компьютере. А лента проверяет всех <b>в одинаковых условиях</b> — поэтому ошибка нашлась именно здесь.</> })}</p></div>}
           </Col>
         </div>
@@ -1035,7 +1043,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Rejimni bosing ←', ru: 'Нажмите на режим ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham CD. Farqi — oxirgi qadamda: <b>tasdiq kerakmi</b> yoki <b>yo'qmi</b>.</>, ru: <>Оба варианта — CD. Разница в последнем шаге: <b>нужно подтверждение</b> или <b>нет</b>.</> })}</p></div>}
           </Col>
         </div>
@@ -1074,7 +1082,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.cmd}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Nuqtani bosing ←', ru: 'Нажмите на точку ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tartibi muhim: <b>Yig'ish → Skaner → Ramka → O'rash → Uchirish</b>. Avval tekshiramiz, keyin uchiramiz — hech qachon teskari emas.</>, ru: <>Порядок важен: <b>Сборка → Сканер → Рамка → Упаковка → Взлёт</b>. Сначала проверяем, потом отправляем — и никогда наоборот.</> })}</p></div>}
           </Col>
         </div>
@@ -1265,7 +1273,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span>{tr(cur.t)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Foydani bosing ←', ru: 'Нажмите на выгоду ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tezlik · Ishonch · Jamoa. Shuning uchun haqiqiy ish jamoalarining deyarli barchasi CI/CD ishlatadi.", ru: 'Скорость · Уверенность · Команда. Поэтому почти все рабочие команды используют CI/CD.' })}</p></div>}
           </Col>
         </div>
@@ -1292,7 +1300,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.danger}` }}>
+            <div className="frame" style={{ }}>
               <p className="note-h" style={{ color: T.danger }}>{tr({ uz: "❌ Lenta yo'q", ru: '❌ Ленты нет' })}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Dasturchi shoshib qo'lda uchirdi — <b>skanerni o'tkazib yubordi</b>. Savatcha funksiyasida xato bor edi. Sayt buzildi, lekin kech — hamma uyga ketgan. Mijozlar dam olish kuni xarid qila olmadi. Dushanba ertalab muammo aniqlandi.</>, ru: <>Разработчик второпях задеплоил вручную — <b>пропустил сканер</b>. В функции корзины была ошибка. Сайт сломался, но поздно — все ушли домой. Все выходные клиенты не могли ничего купить. Проблему нашли только в понедельник утром.</> })}</p>
             </div>
@@ -1300,11 +1308,11 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {show
-              ? <div className="frame fade-step" style={{ borderLeft: `4px solid ${T.success}` }}>
+              ? <div className="frame fade-step" style={{ }}>
                   <p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Lenta bor', ru: '✅ Лента есть' })}</p>
                   <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Push qilindi → lenta skanerni ishga tushirdi → <b style={{ color: T.danger }}>qizil</b> → uchirish <b>to'xtadi</b>. Dasturchiga darhol xabar keldi. U 5 daqiqada tuzatdi, qayta push qildi → yashil → samolyot avtomatik ko'tarildi. Mijoz buzuq saytni umuman ko'rmadi.</>, ru: <>Сделан push → лента запустила сканер → <b style={{ color: T.danger }}>красный</b> → взлёт <b>остановлен</b>. Разработчику сразу пришло уведомление. Он исправил за 5 минут, снова запушил → зелёный → самолёт взлетел автоматически. Клиент так и не увидел сломанный сайт.</> })}</p>
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil xato — butunlay boshqa yakun. Lenta xatoni <b>uchishdan oldin</b> tutadi. Mana shuning uchun kerak.</>, ru: <>Одна и та же ошибка — совершенно разный финал. Лента ловит ошибку <b>до взлёта</b>. Вот зачем она нужна.</> })}</p></div>}
           </Col>
         </div>
@@ -1848,7 +1856,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2548,6 +2556,7 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2591,11 +2600,10 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         /* frame-warn — FAQAT haqiqiy xato/yiqilish (401/400/500, noto'g'ri tanlov): dangerSoft, yo'lakdagi rz-crash bilan bir tilda */
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
 
         /* F-0824-10: bu blok tushib qolgan edi. JSX vcard / role-ico / vlbl / vseen
            sinflarini ishlatardi, e'loni esa faylda YO'Q edi — brauzer standart tugmani
@@ -2699,7 +2707,7 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2951,7 +2959,7 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
@@ -2990,10 +2998,10 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -3157,7 +3165,6 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         /* LENTA (pipeline) status-strip — s1/s3/s6/s7 preview */
         /* pipe-track — lenta ostidagi cheksiz aylanuvchi chiziqlar (doim sekin harakatlanadi, "lenta ishlayapti" hissi) */
         .pipe-track { position: relative; border-radius: 14px; overflow: visible; padding: 20px 2px 9px; }
-        .pipe-track::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 3px; border-radius: 99px; background-image: repeating-linear-gradient(90deg, ${T.ink3}70 0 9px, transparent 9px 19px); background-size: 38px 100%; animation: belt-scroll 1s linear infinite; opacity: 0.55; }
         @keyframes belt-scroll { to { background-position: -38px 0; } }
         /* 🧳 chamadon — hozirgi nuqtaga qarab lenta ustida siljiydi */
         .pipe-suitcase { position: absolute; top: 0; font-size: 16px; transform: translateX(-50%); transition: left 0.6s cubic-bezier(.4,0,.2,1); z-index: 2; filter: drop-shadow(0 3px 5px rgba(${T.shadowBase},0.35)); }

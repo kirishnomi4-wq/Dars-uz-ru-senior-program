@@ -309,11 +309,11 @@ const RECAPS = {
     cards: [
       { ic: "📦", h: { uz: "O'zgaruvchi — nomlangan quti", ru: 'Переменная — коробка с именем' },
         body: { uz: <>O'zgaruvchi — bu <b>qiymat saqlaydigan nomlangan «quti»</b>. Ichiga biror narsa solamiz, qutiga <b>nom</b> beramiz, keyin shu nom bilan chaqiramiz.</>, ru: <>Переменная — это <b>«коробка» с именем, в которой хранится значение</b>. Кладём внутрь что-нибудь, даём коробке <b>имя</b> — и потом зовём её по этому имени.</> },
-        vis: <RcFlow items={[{ uz: "📦 quti", ru: '📦 коробка' }, { uz: "🏷️ nom: age", ru: '🏷️ имя: age' }, { uz: "🔢 ichida: 14", ru: '🔢 внутри: 14' }]} />,
+        vis: <RcFlow items={[{ uz: "📦 quti", ru: 'коробка' }, { uz: "🏷️ nom: age", ru: 'имя: age' }, { uz: "🔢 ichida: 14", ru: 'внутри: 14' }]} />,
         ask: { uz: "Uyda qanday «nomlangan qutilar» bor — masalan «tuz» yozilgan idish?", ru: 'Какие «коробки с именами» есть у вас дома — например, банка с надписью «соль»?' } },
       { ic: "🏷️", h: { uz: "Nom bo'lsa — topa olamiz", ru: 'Есть имя — легко найти' },
         body: { uz: <>Qutiga <b>nom</b> berganimiz uchun keyin uni <b>oson topamiz</b>. «age» desak — ichidagi 14 chiqadi. Nomsiz quti — qidirib topib bo'lmaydi.</>, ru: <>Мы дали коробке <b>имя</b>, поэтому потом <b>легко её находим</b>. Скажем «age» — получим 14 изнутри. А коробку без имени не отыскать.</> },
-        vis: <RcFlow items={[{ uz: "🏷️ name", ru: '🏷️ name' }, { uz: "🏷️ age", ru: '🏷️ age' }, { uz: "🏷️ city", ru: '🏷️ city' }]} sep="·" /> },
+        vis: <RcFlow items={[{ uz: "🏷️ name", ru: 'name' }, { uz: "🏷️ age", ru: 'age' }, { uz: "🏷️ city", ru: 'city' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "Amal ham, sahifa ham emas", ru: 'Не действие и не страница' },
         body: { uz: <>O'zgaruvchi — bu <b>hisob-kitob amali</b> yoki internet sahifasi emas. U shunchaki <b>ma'lumotni saqlab turadigan joy</b>.</>, ru: <>Переменная — это не <b>математическое действие</b> и не интернет-страница. Это просто <b>место, где хранятся данные</b>.</> } },
     ]
@@ -323,11 +323,11 @@ const RECAPS = {
     cards: [
       { ic: "🔄", h: { uz: "Qiymat o'zgarsa — let", ru: 'Значение меняется — let' },
         body: { uz: <>Qiymati <b>keyin o'zgaradigan</b> o'zgaruvchini <b>let</b> so'zi bilan ochamiz. «number» yoki «print» emas — aynan let.</>, ru: <>Переменную, значение которой <b>потом будет меняться</b>, создаём словом <b>let</b>. Не «number» и не «print» — именно let.</> },
-        vis: <RcFlow items={[{ uz: "let score = 10", ru: 'let score = 10' }, { uz: "score = 25", ru: 'score = 25' }, { uz: "📦 endi 25", ru: '📦 теперь 25' }]} />,
+        vis: <RcFlow items={[{ uz: "let score = 10", ru: 'let score = 10' }, { uz: "score = 25", ru: 'score = 25' }, { uz: "📦 endi 25", ru: 'теперь 25' }]} />,
         ask: { uz: "O'yin bali dars davomida o'zgaradimi? Unda let mi, boshqami?", ru: 'Счёт в игре меняется по ходу урока? Тогда let или что-то другое?' } },
       { ic: "🎮", h: { uz: "Misol: o'yin bali", ru: 'Пример: счёт в игре' },
         body: { uz: <>O'yinda <b>ball</b> ortib boradi — 10, keyin 25. Bunday <b>o'zgarib turadigan</b> narsa uchun <b>let</b> to'g'ri keladi.</>, ru: <>В игре <b>счёт</b> растёт — 10, потом 25. Для таких <b>меняющихся</b> вещей подходит <b>let</b>.</> },
-        vis: <RcFlow items={[{ uz: "10", ru: '10' }, { uz: "20", ru: '20' }, { uz: "25", ru: '25' }, { uz: "🔼 o'zgaradi", ru: '🔼 меняется' }]} sep="·" /> },
+        vis: <RcFlow items={[{ uz: "10", ru: '10' }, { uz: "20", ru: '20' }, { uz: "25", ru: '25' }, { uz: "🔼 o'zgaradi", ru: 'меняется' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "let bilan constni adashtirmang", ru: 'Не путайте let и const' },
         body: { uz: <>Yodda tuting: <b>let</b> — keyin <b>o'zgartirsa bo'ladi</b>. const esa — <b>o'zgarmaydi</b>. Savolda «o'zgaradigan» so'zi bo'lsa — javob let.</>, ru: <>Запомните: <b>let</b> — потом <b>можно менять</b>. А const — <b>не меняется</b>. Если в вопросе есть слово «меняется» — ответ let.</> } },
     ]
@@ -337,11 +337,11 @@ const RECAPS = {
     cards: [
       { ic: "🔒", h: { uz: "O'zgarmasa — const", ru: 'Не меняется — const' },
         body: { uz: <>Tug'ilgan yilingiz kabi <b>o'zgarmas</b> qiymat uchun <b>const</b> ishlatamiz. const qutisini <b>qulflab</b> qo'yamiz — ichidagisi doim shu bo'lib qoladi.</>, ru: <>Для <b>неизменных</b> значений — как год вашего рождения — используем <b>const</b>. Коробку const мы <b>запираем на замок</b>: внутри навсегда остаётся то же самое.</> },
-        vis: <RcFlow items={[{ uz: "const yil = 2011", ru: 'const yil = 2011' }, { uz: "🔒 qulf", ru: '🔒 замок' }, { uz: "doim 2011", ru: 'всегда 2011' }]} />,
+        vis: <RcFlow items={[{ uz: "const yil = 2011", ru: 'const yil = 2011' }, { uz: "🔒 qulf", ru: 'замок' }, { uz: "doim 2011", ru: 'всегда 2011' }]} />,
         ask: { uz: "Bir haftada necha kun bor? Bu o'zgaradimi? Unda let mi, const mi?", ru: 'Сколько дней в неделе? Это меняется? Тогда let или const?' } },
       { ic: "🚫", h: { uz: "O'zgartirsangiz — xato", ru: 'Попробуете изменить — ошибка' },
         body: { uz: <>const PI = 3.14 dan keyin <b>PI = 3</b> desak — <b>xato</b> beradi. Chunki const bir marta to'ldiriladi va <b>o'zgarmaydi</b>.</>, ru: <>Если после const PI = 3.14 написать <b>PI = 3</b> — будет <b>ошибка</b>. Потому что const заполняется один раз и <b>не меняется</b>.</> },
-        vis: <RcFlow items={[{ uz: "const PI = 3.14", ru: 'const PI = 3.14' }, { uz: "PI = 3", ru: 'PI = 3' }, { uz: "❌ xato", ru: '❌ ошибка' }]} /> },
+        vis: <RcFlow items={[{ uz: "const PI = 3.14", ru: 'const PI = 3.14' }, { uz: "PI = 3", ru: 'PI = 3' }, { uz: "❌ xato", ru: 'ошибка' }]} /> },
       { ic: "🎯", h: { uz: "Qulf kerakmi? — const", ru: 'Нужен замок? — const' },
         body: { uz: <>Qoida: qiymat <b>hech qachon o'zgarmasa</b> — const. O'zgarib tursa — let. «o'zgarmas», «doim bir xil» so'zlari constdan darak beradi.</>, ru: <>Правило: значение <b>никогда не меняется</b> — const. Меняется — let. Слова «неизменный», «всегда одинаковый» подсказывают: это const.</> } },
     ]
@@ -351,7 +351,7 @@ const RECAPS = {
     cards: [
       { ic: "🔢", h: { uz: "Tirnoqsiz — bu son", ru: 'Без кавычек — это число' },
         body: { uz: <>25 — bu <b>number (son)</b>, chunki <b>qo'shtirnoqsiz</b> yozilgan. Number bilan <b>hisob-kitob</b> qilsa bo'ladi: qo'shish, ko'paytirish.</>, ru: <>25 — это <b>number (число)</b>, потому что записано <b>без кавычек</b>. С number можно <b>считать</b>: складывать, умножать.</> },
-        vis: <RcFlow items={[{ uz: "25 → number", ru: '25 → number' }, { uz: "25 + 5 = 30", ru: '25 + 5 = 30' }, { uz: "✅ hisob bo'ladi", ru: '✅ можно считать' }]} />,
+        vis: <RcFlow items={[{ uz: "25 → number", ru: '25 → number' }, { uz: "25 + 5 = 30", ru: '25 + 5 = 30' }, { uz: "✅ hisob bo'ladi", ru: 'можно считать' }]} />,
         ask: { uz: "10 + 5 sonlar bilan bo'ladi. Lekin «o'n» + «besh» bo'ladimi?", ru: '10 + 5 с числами работает. А «десять» + «пять» сработает?' } },
       { ic: "✍️", h: { uz: "Qo'shtirnoqda — bu matn", ru: 'В кавычках — это текст' },
         body: { uz: <>«25» qo'shtirnoqda bo'lsa — bu endi <b>string (matn)</b>, son emas. «yigirma» ham — <b>harflar</b> bo'lgani uchun string.</>, ru: <>Если «25» в кавычках — это уже <b>string (текст)</b>, а не число. «двадцать» тоже string — ведь это <b>буквы</b>.</> },
@@ -440,7 +440,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -484,7 +484,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Быстрое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Быстрое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
@@ -691,6 +691,15 @@ const Mentor = ({ children }) => {
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -701,8 +710,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -900,7 +909,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija — quti', ru: 'Результат — коробка' })}</p>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
-              {val ? <VarBox name="name" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qiymat tanlang — qutiga yoziladi', ru: 'Выберите значение — оно запишется в коробку' })}</p></div>}
+              {val ? <VarBox name="name" value={`"${val}"`} valColor={CODE.str} pulse /> : null}
             </div>
             {/* OMBORCHI O'QI: nom orqali chaqirib qiymatni chiqarish (robot-qo'l) */}
             {val && (
@@ -1352,7 +1361,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="ai-line" style={{ cursor: 'default' }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '🔧 "Aziza" ga qo\'shtirnoq qo\'shish', ru: '🔧 Добавить кавычки к "Aziza"' })}</button>)}
+              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '"Aziza" ga qo\'shtirnoq qo\'shish', ru: '🔧 Добавить кавычки к "Aziza"' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — endi kod ishlaydi!', ru: '✓ Исправлено — теперь код работает!' })}</p>}
             </div>
           </Col>
@@ -1426,7 +1435,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
               {valid
                 ? <VarBox name={nm} value={vv} valColor={valIsStr ? CODE.str : CODE.num} />
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "To'liq yozing — quti shu yerda paydo bo'ladi", ru: 'Допишите до конца — коробка появится здесь' })}</p></div>}
+                : null}
             </div>
           </Col>
         </div>
@@ -2073,7 +2082,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2576,6 +2585,7 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): ⛶ tugmasi burchagini matn
            AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
@@ -2634,7 +2644,7 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
@@ -2838,9 +2848,9 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2927,9 +2937,9 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2959,10 +2969,10 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2992,7 +3002,7 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -3284,18 +3294,16 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
-        .hw-run { margin-top: 12px; align-self: flex-start; padding: 12px 20px; border: none; border-radius: 13px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14px; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.42); transition: transform 0.15s, background 0.15s; }
-        .hw-run:hover { transform: translateY(-2px); background: ${T.accent}; }
 
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

@@ -104,6 +104,15 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -114,8 +123,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -330,7 +339,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -372,7 +381,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
           </div>
         );
       })()}
@@ -596,7 +605,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval kamida 2 ta so'rov yuboring ←", ru: 'Сначала отправьте минимум 2 запроса ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
               ? tr({ uz: <>Aynan! Server so'rovning <b>shtampi va manzili</b> — ya'ni <b>method va path</b> — bo'yicha mos kodni topadi. Bu jarayon <b>routing</b> deyiladi. Bugun uni Nest'da ochamiz.</>, ru: <>Именно! Сервер находит нужный код по <b>штампу и адресу</b> запроса — то есть по <b>method и path</b>. Этот процесс называется <b>роутинг</b>. Сегодня разберём его в Nest.</> })
               : tr({ uz: <>Aslida bu — <b>keng tarqalgan afsona</b>. Server na tasodifan tanlaydi, na doim birinchisini oladi: u so'rovning <b>shtampi va manzili</b> — ya'ni <b>method va path</b> — bo'yicha aynan mos kodni topadi. Bu jarayon <b>routing</b> deyiladi. Dars oxirida shu afsonani <b>birga buzamiz</b> — to'rt qoidada.</>, ru: <>На самом деле это — <b>распространённый миф</b>. Сервер не выбирает наугад и не берёт всегда первый: он находит точное совпадение по <b>штампу и адресу</b> запроса — то есть по <b>method и path</b>. Этот процесс называется <b>роутинг</b>. В конце урока мы <b>вместе разберём</b> этот миф — в четырёх правилах.</> })}</p>}
@@ -815,7 +823,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>Minecraft: <b>{cur.mc}</b></p>
               <p className="mono small" style={{ color: T.ink3, margin: '8px 0 0' }}>{cur.ex}</p>
             </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Method'ni bosing — nima qilishini ko'rasiz", ru: 'Нажмите на метод — увидите, что он делает' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'rt niyat — to'rt method. Bugun biz <b>POST</b> (yaratish) bilan ishlaymiz. Avval — bitta route ko'p qiymatga qanday xizmat qilishini ko'ramiz.</>, ru: <>Четыре намерения — четыре метода. Сегодня мы работаем с <b>POST</b> (создание). Но сначала — как один route обслуживает много значений.</> })}</p></div>}
           </Col>
         </div>
@@ -926,7 +934,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 5 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
             </div>
             {active ? <div className="sk-info" key={active}><span className="sk-tagbig"><span className="sk-wordbadge mono">{PARTS[active].word}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].info}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Koddan bir dekoratorni bosing', ru: 'Нажмите на один из декораторов в коде' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Dekorator + metod = route. Bitta controller — bitta mavzuning hamma eshiklari. Nega bu yondashuv shunchalik tartibli — keyingi ekranda.', ru: 'Декоратор + метод = route. Один контроллер — все двери одной темы. Почему этот подход такой аккуратный — на следующем экране.' })}</p></div>}
           </Col>
         </div>
@@ -970,7 +978,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur ? <div className="sk-info" key={cur.id}><span className="sk-tagbig"><span className="sk-wordbadge">{cur.t}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{cur.d}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Nest ustunligini bosing', ru: 'Нажмите на преимущество Nest' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tartib + dekoratorlar + sodda <span className="mono">return</span> = Nest. Keyingi modulda Nest arxitekturasini chuqur o'rganasiz. Endi — so'rov controllergacha qanday yetib boradi?</>, ru: <>Порядок + декораторы + простой <span className="mono">return</span> = Nest. В следующем модуле изучите архитектуру Nest глубже. А сейчас — как запрос добирается до контроллера?</> })}</p></div>}
           </Col>
         </div>
@@ -1187,7 +1195,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done
-              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>📭 <span className="pechat-404">{tr({ uz: '404 · Vozvrat', ru: '404 · Возврат' })}</span> {tr({ uz: 'pechati', ru: '— печать' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Path to'g'ri (<span className="mono">/games</span>), lekin xat shtampi (<span className="mono">POST</span>) tabelkaga mos kelmasa — server baribir <b style={{ color: T.accent }}>404</b> qaytaradi. Tabelkani xat shtampiga moslang.</>, ru: <>Path верный (<span className="mono">/games</span>), но если штамп письма (<span className="mono">POST</span>) не совпадает с табличкой — сервер всё равно вернёт <b style={{ color: T.accent }}>404</b>. Приведите табличку в соответствие со штампом.</> })}</p></div>
+              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}><span className="pechat-404">{tr({ uz: '404 · Vozvrat', ru: '404 · Возврат' })}</span> {tr({ uz: 'pechati', ru: '— печать' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Path to'g'ri (<span className="mono">/games</span>), lekin xat shtampi (<span className="mono">POST</span>) tabelkaga mos kelmasa — server baribir <b style={{ color: T.accent }}>404</b> qaytaradi. Tabelkani xat shtampiga moslang.</>, ru: <>Path верный (<span className="mono">/games</span>), но если штамп письма (<span className="mono">POST</span>) не совпадает с табличкой — сервер всё равно вернёт <b style={{ color: T.accent }}>404</b>. Приведите табличку в соответствие со штампом.</> })}</p></div>
               : <div className="takeaway fade-step"><div className="ta-bulb">🚪</div><p className="ta-h">{tr({ uz: 'Shtamp mos kelmasa — 404!', ru: 'Штамп не совпал — 404!' })}</p><p className="ta-sub">{tr({ uz: "Eshik tabelkasi (dekorator) xat shtampiga (method) to'g'ri kelishi shart", ru: 'Табличка двери (декоратор) должна совпадать со штампом письма (method)' })}</p></div>}
           </Col>
         </div>
@@ -1253,10 +1261,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — QOIDA =====
 const Screen14 = ({ screen, onNext, onPrev }) => {
   const RULES = [
-    { ico: '①', h: tr({ uz: "So'rov = method + path", ru: 'Запрос = method + path' }), d: tr({ uz: <>Har so'rov niyatni (<span className="mono">GET/POST</span>) va manzilni (<span className="mono">/games</span>) olib keladi.</>, ru: <>Каждый запрос несёт намерение (<span className="mono">GET/POST</span>) и адрес (<span className="mono">/games</span>).</> }) },
-    { ico: '②', h: tr({ uz: 'Routing — mosini topadi', ru: 'Роутинг находит совпадение' }), d: tr({ uz: <>Server route'lar ichidan aynan mos qatorni topib, o'sha kodni ishga tushiradi.</>, ru: <>Сервер находит среди route'ов точное совпадение и запускает тот код.</> }) },
-    { ico: '③', h: tr({ uz: 'Nest: dekorator + metod', ru: 'Nest: декоратор + метод' }), d: tr({ uz: <><span className="mono">@Get</span> / <span className="mono">@Post</span> metodni so'rovga bog'laydi — controller ichida, tartibli.</>, ru: <><span className="mono">@Get</span> / <span className="mono">@Post</span> привязывает метод к запросу — внутри контроллера, аккуратно.</> }) },
-    { ico: '④', h: tr({ uz: 'Mos kelmasa — 404', ru: 'Нет совпадения — 404' }), d: tr({ uz: <>Method yoki path mos kelmasa, server <b>404 Not Found</b> qaytaradi.</>, ru: <>Если method или path не совпали, сервер вернёт <b>404 Not Found</b>.</> }) }
+    { h: tr({ uz: "So'rov = method + path", ru: 'Запрос = method + path' }), d: tr({ uz: <>Har so'rov niyatni (<span className="mono">GET/POST</span>) va manzilni (<span className="mono">/games</span>) olib keladi.</>, ru: <>Каждый запрос несёт намерение (<span className="mono">GET/POST</span>) и адрес (<span className="mono">/games</span>).</> }) },
+    { h: tr({ uz: 'Routing — mosini topadi', ru: 'Роутинг находит совпадение' }), d: tr({ uz: <>Server route'lar ichidan aynan mos qatorni topib, o'sha kodni ishga tushiradi.</>, ru: <>Сервер находит среди route'ов точное совпадение и запускает тот код.</> }) },
+    { h: tr({ uz: 'Nest: dekorator + metod', ru: 'Nest: декоратор + метод' }), d: tr({ uz: <><span className="mono">@Get</span> / <span className="mono">@Post</span> metodni so'rovga bog'laydi — controller ichida, tartibli.</>, ru: <><span className="mono">@Get</span> / <span className="mono">@Post</span> привязывает метод к запросу — внутри контроллера, аккуратно.</> }) },
+    { h: tr({ uz: 'Mos kelmasa — 404', ru: 'Нет совпадения — 404' }), d: tr({ uz: <>Method yoki path mos kelmasa, server <b>404 Not Found</b> qaytaradi.</>, ru: <>Если method или path не совпали, сервер вернёт <b>404 Not Found</b>.</> }) }
   ];
   const audio = useAudio([{ id: 's14', text: `Mana butun darsning o'zagi — routingning to'rt qoidasi. Bir: so'rov method va path'dan iborat — shtamp va manzil. Ikki: routing shu ikkisiga mos eshikni topadi. Uch: Nest'da dekorator va metod birga eshikni yasaydi. To'rt: mos kelmasa, server 404 qaytaradi. Shu to'rttasini esda tutsangiz, istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
@@ -1268,7 +1276,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => {
         <div className="split">
           {RULES.map((r, i) => (
             <div key={i} className="rule-card fade-up" style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
-              <span className="rule-ico">{r.ico}</span>
+              
               <div><p className="body" style={{ margin: '0 0 3px', fontWeight: 700, color: T.ink }}>{r.h}</p><p className="small" style={{ margin: 0, color: T.ink2 }}>{r.d}</p></div>
             </div>
           ))}
@@ -1976,7 +1984,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
       {phase === 'lobby' && (
@@ -2440,6 +2448,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         /* F-0912-09 · 147-qonun: matn ⛶ tugmasi burchagini AYLANIB o'tadi — faqat
            tugma yonidagi qator qisqaradi. Tugma o'ngdan 6+30=36px egallaydi, 28px nafas.
@@ -2489,10 +2498,9 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2613,7 +2621,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .match-row.matched { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
         .match-row:disabled { cursor: default; }
         .rule-card { display: flex; align-items: flex-start; gap: 13px; background: ${T.paper}; border-radius: 14px; padding: 15px 18px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
-        .rule-ico { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 16px; color: ${T.accent}; background: ${T.accentSoft}; width: 32px; height: 32px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        ; background: ${T.accentSoft}; width: 32px; height: 32px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
         @keyframes shakex { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         .shake { animation: shakex 0.4s; box-shadow: inset 0 0 0 1.5px ${T.accent} !important; }
 
@@ -2659,7 +2667,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .dd-wrong .pechat-404 { animation: pechat-punch .42s cubic-bezier(.3,1.5,.5,1); }
         @keyframes pechat-punch { 0% { transform: rotate(-3.5deg) scale(2.4); opacity: 0; } 45% { transform: rotate(-3.5deg) scale(.86); opacity: 1; } 70% { transform: rotate(-3.5deg) scale(1.08); } 100% { transform: rotate(-3.5deg) scale(1); } }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2935,7 +2943,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         @keyframes option-wait-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 30px -6px rgba(1,154,203,0.55); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === MENTOR STATISTIKASI (jonli test + yozma ish panellari) === */
         .mstats { background: ${T.paper}; border: 1.5px solid rgba(${T.shadowBase},0.12); border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px -12px rgba(${T.shadowBase},0.18); }
@@ -2974,10 +2982,10 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }

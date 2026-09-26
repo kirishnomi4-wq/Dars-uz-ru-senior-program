@@ -109,6 +109,15 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -119,8 +128,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -254,7 +263,7 @@ const RECAPS = {
     cards: [
       { ic: '🗺️', h: { uz: "Eng katta — yo'l xaritasi", ru: 'Самое большое — карта маршрута' }, body: { uz: <><b style={{ color: T.ink }}>Workflow</b> — butun <span className="mono">ci.yml</span> fayli. Ichida bir yoki bir nechta nuqta (job) bo'ladi.</>, ru: <><b style={{ color: T.ink }}>Workflow</b> — весь файл <span className="mono">ci.yml</span>. Внутри него — одна или несколько точек (job).</> } },
       { ic: '🛑', h: { uz: "Nuqta — o'z mashinasida", ru: 'Точка — на своей машине' }, body: { uz: <><b style={{ color: T.ink }}>Job</b> (nuqta) o'z alohida lenta mashinasida ishlaydi. <span className="mono">runs-on</span> shu darajada yoziladi.</>, ru: <><b style={{ color: T.ink }}>Job</b> (точка) работает на своей отдельной машине ленты. <span className="mono">runs-on</span> пишется именно на этом уровне.</> } },
-      { ic: '🔧', h: { uz: 'Amal — eng kichik birlik', ru: 'Шаг — самая маленькая единица' }, body: { uz: <><b style={{ color: T.ink }}>Step</b> (amal) — bitta harakat. Nuqta ichida ketma-ket bir nechta amal bo'ladi.</>, ru: <><b style={{ color: T.ink }}>Step</b> (шаг) — одно действие. Внутри точки шаги идут друг за другом.</> }, vis: <RcFlow items={['🗺️ Workflow', { uz: '🛑 Nuqta (job)', ru: '🛑 Точка (job)' }, { uz: '🔧 Amal (step)', ru: '🔧 Шаг (step)' }]} />, ask: { uz: "Yo'l xaritasi ichida nima birinchi, nima oxirgi turadi?", ru: 'Что в карте маршрута самое внешнее, а что — самое маленькое?' } },
+      { ic: '🔧', h: { uz: 'Amal — eng kichik birlik', ru: 'Шаг — самая маленькая единица' }, body: { uz: <><b style={{ color: T.ink }}>Step</b> (amal) — bitta harakat. Nuqta ichida ketma-ket bir nechta amal bo'ladi.</>, ru: <><b style={{ color: T.ink }}>Step</b> (шаг) — одно действие. Внутри точки шаги идут друг за другом.</> }, vis: <RcFlow items={['🗺️ Workflow', { uz: 'Nuqta (job)', ru: 'Точка (job)' }, { uz: 'Amal (step)', ru: 'Шаг (step)' }]} />, ask: { uz: "Yo'l xaritasi ichida nima birinchi, nima oxirgi turadi?", ru: 'Что в карте маршрута самое внешнее, а что — самое маленькое?' } },
     ]
   },
   10: {
@@ -352,7 +361,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : tr({ uz: <>Javob berdi: <b>{answered}</b> / {total}</>, ru: <>Ответили: <b>{answered}</b> / {total}</> })}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -392,11 +401,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Прежде чем идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснение заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснение заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответов мало ({answered}) — делать выводы по процентам рано. Оцените сами.</> })}</p>}
@@ -603,8 +612,8 @@ const TLine = ({ cmd, out, col, delay }) => (
 );
 
 // ===== LENTA NATIJASI (BeltRun — nuqta + amallar ro'yxati, yashil/qizil chiroq) =====
-const BELT_STEPS_PASS = [{ label: { uz: "📦 YIG'ISH", ru: '📦 СБОРКА' }, ok: true }, { label: { uz: '🔍 SKANER', ru: '🔍 СКАНЕР' }, ok: true }, { label: { uz: "🎁 O'RASH", ru: '🎁 УПАКОВКА' }, ok: true }, { label: { uz: '✈️ UCHIRISH', ru: '✈️ ВЗЛЁТ' }, ok: true }];
-const BELT_STEPS_FAIL = [{ label: { uz: "📦 YIG'ISH", ru: '📦 СБОРКА' }, ok: true }, { label: { uz: '🔍 SKANER', ru: '🔍 СКАНЕР' }, ok: false }, { label: { uz: "🎁 O'RASH", ru: '🎁 УПАКОВКА' }, ok: null }, { label: { uz: '✈️ UCHIRISH', ru: '✈️ ВЗЛЁТ' }, ok: null }];
+const BELT_STEPS_PASS = [{ label: { uz: "YIG'ISH", ru: 'СБОРКА' }, ok: true }, { label: { uz: 'SKANER', ru: 'СКАНЕР' }, ok: true }, { label: { uz: "O'RASH", ru: 'УПАКОВКА' }, ok: true }, { label: { uz: '✈️ UCHIRISH', ru: '✈️ ВЗЛЁТ' }, ok: true }];
+const BELT_STEPS_FAIL = [{ label: { uz: "YIG'ISH", ru: 'СБОРКА' }, ok: true }, { label: { uz: 'SKANER', ru: 'СКАНЕР' }, ok: false }, { label: { uz: "O'RASH", ru: 'УПАКОВКА' }, ok: null }, { label: { uz: '✈️ UCHIRISH', ru: '✈️ ВЗЛЁТ' }, ok: null }];
 const BeltRun = ({ status = 'pass', steps }) => {
   const list = steps || (status === 'pass' ? BELT_STEPS_PASS : BELT_STEPS_FAIL);
   return (
@@ -768,7 +777,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval push'ni bosing ←", ru: 'Сначала нажмите push ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr(ACK[picked])}</p>}
           </Col>
         </Split></Zoomable>
@@ -828,13 +836,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.danger}` }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🐌 Lentasiz', ru: '🐌 Без ленты' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Lentaga qo'yasiz — keyin o'zingiz eslab, qo'lda <span className="mono">npm test</span> yozasiz. Eslamasangiz — tekshiruv yo'q.</>, ru: <>Пушите — а потом сами вспоминаете и вручную набираете <span className="mono">npm test</span>. Забыли — проверки нет.</> })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🐌 Lentasiz', ru: '🐌 Без ленты' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Lentaga qo'yasiz — keyin o'zingiz eslab, qo'lda <span className="mono">npm test</span> yozasiz. Eslamasangiz — tekshiruv yo'q.</>, ru: <>Пушите — а потом сами вспоминаете и вручную набираете <span className="mono">npm test</span>. Забыли — проверки нет.</> })}</p></div>
             <button className={`btn ${show ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Lenta bilan-chi?', ru: 'А с лентой?' })}</button>
           </Col>
           <Col>
             {show
-              ? <><div className="frame fade-step" style={{ borderLeft: `4px solid ${T.success}` }}><p className="note-h" style={{ color: T.success }}>🛫 GitHub Actions</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Push'ni <b>sezadi</b> va yo'l xaritasi bo'yicha lentani o'zi aylantiradi. Bepul, GitHub ichida, har safar. Natija — Actions bo'limida.</>, ru: <><b>Замечает</b> пуш и сам крутит ленту по карте маршрута. Бесплатно, внутри GitHub, каждый раз. Результат — во вкладке Actions.</> })}</p></div><div className="fade-step"><BeltRun status="pass" /></div></>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              ? <><div className="frame fade-step" style={{ }}><p className="note-h" style={{ color: T.success }}>GitHub Actions</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Push'ni <b>sezadi</b> va yo'l xaritasi bo'yicha lentani o'zi aylantiradi. Bepul, GitHub ichida, har safar. Natija — Actions bo'limida.</>, ru: <><b>Замечает</b> пуш и сам крутит ленту по карте маршрута. Бесплатно, внутри GitHub, каждый раз. Результат — во вкладке Actions.</> })}</p></div><div className="fade-step"><BeltRun status="pass" /></div></>
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Lenta tayyor turibdi — faqat unga yo'l xaritasi berishimiz kerak. Bu xarita qayerda saqlanadi?", ru: 'Лента наготове — осталось дать ей карту маршрута. А где эта карта хранится?' })}</p></div>}
           </Col>
         </div>
@@ -942,7 +950,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{tr(cur.t)}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qoidani bosing ←', ru: 'Нажмите на правило ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bo'sh joy noto'g'ri bo'lsa — yo'l xaritasi ishlamaydi. Endi ierarxiyaning 3 darajasini ko'ramiz.", ru: 'Если отступ неправильный — карта маршрута не сработает. Теперь посмотрим 3 уровня иерархии.' })}</p></div>}
           </Col>
         </div>
@@ -991,7 +999,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span>{cur.t} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>({tr(cur.en)})</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Darajani bosing ←', ru: 'Нажмите на уровень ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Workflow ⊃ Job ⊃ Step. ci.yml'da bu bo'sh joy orqali ko'rinadi: steps nuqta ichida, nuqta esa yo'l xaritasi ichida.", ru: 'Workflow ⊃ Job ⊃ Step. В ci.yml это видно по отступам: steps внутри точки, а точка — внутри карты маршрута.' })}</p></div>}
           </Col>
         </div>
@@ -1053,7 +1061,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>on: {cur.t}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p><p className="small mono" style={{ margin: '8px 0 0', color: T.success, fontWeight: 700 }}>{tr({ uz: '🔄 Lenta aylanadi:', ru: '🔄 Лента крутится:' })} {tr(cur.spin)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Signalni bosing ←', ru: 'Нажмите на сигнал ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Biz <span className="mono">on: push</span> ishlatamiz — har push'da tekshiruv boshlansin. <b>on: bo'sh qolsa — lenta umuman aylanmaydi.</b> Endi nuqta qaysi mashinada ishlashini ko'ramiz.</>, ru: <>Мы используем <span className="mono">on: push</span> — пусть проверка стартует при каждом пуше. <b>Если on: пустой — лента вообще не закрутится.</b> Теперь посмотрим, на какой машине работает точка.</> })}</p></div>}
           </Col>
         </div>
@@ -1091,7 +1099,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {show
               ? <Term title={tr({ uz: 'GitHub — lenta mashinasi', ru: 'GitHub — машина ленты' })} minH={90}><TLine out={tr({ uz: '🖥  ubuntu-latest ishga tushdi', ru: '🖥  ubuntu-latest запущен' })} col={CODE.str} /><TLine out={tr({ uz: 'toza muhit · Node, npm tayyor', ru: 'чистая среда · Node и npm готовы' })} /><TLine out={tr({ uz: 'nuqta shu mashinada bajariladi', ru: 'точка выполняется на этой машине' })} /></Term>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              : null}
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>💡 Linux (ubuntu) eng tez va arzon. Kerak bo'lsa <span className="mono">windows-latest</span> yoki <span className="mono">macos-latest</span> ham bor.</>, ru: <>💡 Linux (ubuntu) — самый быстрый и дешёвый. Если нужно, есть и <span className="mono">windows-latest</span>, и <span className="mono">macos-latest</span>.</> })}</p></div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mashina tayyor. <b>runs-on: bo'sh qolsa — lenta mashinasi tayinlanmaydi</b>, nuqta hech narsa bajara olmaydi. Endi mashinada nima bajarilishini (amallarni) yozamiz.</>, ru: <>Машина готова. <b>Если runs-on: пустой — машина ленты не назначится</b>, и точка ничего не выполнит. Теперь напишем, что делать на машине — шаги.</> })}</p></div>}
           </Col>
@@ -1154,7 +1162,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span><span className="mono" style={{ color: T.accent }}>{cur.t}:</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Turini bosing ←', ru: 'Нажмите на вид ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>uses</b> — tayyor detal, <b>run</b> — buyruq. Endi standart amallarning to'g'ri tartibini yig'amiz.</>, ru: <><b>uses</b> — готовая деталь, <b>run</b> — команда. Теперь соберём стандартные шаги в правильном порядке.</> })}</p></div>}
           </Col>
         </div>
@@ -1651,8 +1659,8 @@ const QUIZ_BANK = [
   { q: { uz: "`.github/workflows/ci.yml` — bu fayl nima?", ru: '`.github/workflows/ci.yml` — что это за файл?' }, opts: [{ uz: "Loyihaning butun manba kodi shu yerda saqlanadi, boshqa hech narsa yo'q", ru: 'Здесь хранится весь исходный код проекта, и больше ничего' }, { uz: "Yo'l xaritasi — lentaning ishini belgilaydi", ru: 'Карта маршрута — она определяет работу ленты' }, { uz: "Foydalanuvchi ko'radigan saytning zaxira nusxasi", ru: 'Резервная копия сайта, который видит пользователь' }, { uz: "GitHub'ning o'zi uchun yashirin ichki sozlamalar", ru: 'Скрытые внутренние настройки самого GitHub' }], correct: 1 },
   { q: { uz: "`on: push` nima uchun kerak?", ru: 'Зачем нужен `on: push`?' }, opts: [{ uz: "Lentani har push'da avtomatik ishga tushiradi", ru: 'Автоматически запускает ленту при каждом пуше' }, { uz: "Repozitoriyni butunlay o'chirib tashlash buyrug'i", ru: 'Команда полностью удалить репозиторий' }, { uz: 'Faqat loyiha hujjatlarini yangilab turish uchun', ru: 'Только чтобы обновлять документацию проекта' }, { uz: "Har push'dan keyin kodni qo'lda serverga joylash kerak bo'ladi", ru: 'После каждого пуша придётся вручную выкладывать код на сервер' }], correct: 0 },
   { q: { uz: "`runs-on: ubuntu-latest` nimani bildiradi?", ru: 'Что означает `runs-on: ubuntu-latest`?' }, opts: [{ uz: "Faqat Ubuntu tizimida yozish mumkin degan ma'no", ru: 'Что писать код можно только в системе Ubuntu' }, { uz: "Loyihaning nomi aynan shunday bo'lishi shart, boshqacha bo'lmaydi", ru: 'Что проект обязан называться именно так и никак иначе' }, { uz: 'Lentani aylantiradigan mashina — GitHub bepul beradi', ru: 'Машина, которая крутит ленту — GitHub даёт её бесплатно' }, { uz: 'Testlar hech qachon ishga tushmaydi degan belgi', ru: 'Знак, что тесты никогда не запустятся' }], correct: 2 },
-  { q: { uz: "📦 YIG'ISH nuqtasida nima bajariladi?", ru: 'Что происходит в точке 📦 СБОРКА?' }, opts: [{ uz: "Loyiha kerak qiladigan kutubxonalar o'rnatiladi", ru: 'Устанавливаются библиотеки, которые нужны проекту' }, { uz: "Yozilgan kod o'lcham ramkasi bo'yicha tekshiriladi", ru: 'Код проверяется по рамке-измерителю' }, { uz: "Tayyor sayt foydalanuvchiga to'g'ridan-to'g'ri yuboriladi, hech narsa tekshirilmaydi", ru: 'Готовый сайт сразу отправляется пользователю безо всякой проверки' }, { uz: 'Avvalgi eski yuk qaytadan tiklab olinadi', ru: 'Восстанавливается прошлый старый груз' }], correct: 0 },
-  { q: { uz: "🔍 SKANER nuqtasi tushirib qoldirilsa nima bo'ladi?", ru: 'Что будет, если пропустить точку 🔍 СКАНЕР?' }, opts: [{ uz: 'Lenta odatdagidan biroz sekinroq aylanib qoladi, xolos', ru: 'Лента просто будет крутиться чуть медленнее, и всё' }, { uz: "GitHub bu bosqichni avtomatik o'zi qo'shib qo'yadi, siz hech narsa qilmaysiz", ru: 'GitHub сам автоматически добавит этот шаг, вам ничего делать не надо' }, { uz: "Buzuq yuk to'g'ridan-to'g'ri foydalanuvchiga uchib ketadi", ru: 'Сломанный груз улетит прямо к пользователю' }, { uz: 'Faqat ogohlantirish chiqadi, yuk baribir tekshiriladi', ru: 'Выйдет только предупреждение, груз всё равно проверят' }], correct: 2 },
+  { q: { uz: "YIG'ISH nuqtasida nima bajariladi?", ru: 'Что происходит в точке 📦 СБОРКА?' }, opts: [{ uz: "Loyiha kerak qiladigan kutubxonalar o'rnatiladi", ru: 'Устанавливаются библиотеки, которые нужны проекту' }, { uz: "Yozilgan kod o'lcham ramkasi bo'yicha tekshiriladi", ru: 'Код проверяется по рамке-измерителю' }, { uz: "Tayyor sayt foydalanuvchiga to'g'ridan-to'g'ri yuboriladi, hech narsa tekshirilmaydi", ru: 'Готовый сайт сразу отправляется пользователю безо всякой проверки' }, { uz: 'Avvalgi eski yuk qaytadan tiklab olinadi', ru: 'Восстанавливается прошлый старый груз' }], correct: 0 },
+  { q: { uz: "SKANER nuqtasi tushirib qoldirilsa nima bo'ladi?", ru: 'Что будет, если пропустить точку 🔍 СКАНЕР?' }, opts: [{ uz: 'Lenta odatdagidan biroz sekinroq aylanib qoladi, xolos', ru: 'Лента просто будет крутиться чуть медленнее, и всё' }, { uz: "GitHub bu bosqichni avtomatik o'zi qo'shib qo'yadi, siz hech narsa qilmaysiz", ru: 'GitHub сам автоматически добавит этот шаг, вам ничего делать не надо' }, { uz: "Buzuq yuk to'g'ridan-to'g'ri foydalanuvchiga uchib ketadi", ru: 'Сломанный груз улетит прямо к пользователю' }, { uz: 'Faqat ogohlantirish chiqadi, yuk baribir tekshiriladi', ru: 'Выйдет только предупреждение, груз всё равно проверят' }], correct: 2 },
   { q: { uz: 'Amallar (steps) qanday tartibda bajariladi?', ru: 'В каком порядке выполняются шаги (steps)?' }, opts: [{ uz: "Har safar tasodifiy, boshqa-boshqa tartibda ishlaydi, hech qanday qoida yo'q", ru: 'Каждый раз в случайном, разном порядке — никаких правил нет' }, { uz: 'Yozilgan tartibda, yuqoridan pastga ketma-ket bajariladi', ru: 'В написанном порядке, сверху вниз, друг за другом' }, { uz: 'Eng oxirgi yozilgan amal birinchi bajariladi', ru: 'Последний написанный шаг выполняется первым' }, { uz: "Barcha amallar bir vaqtning o'zida, tartibsiz", ru: 'Все шаги одновременно, без всякого порядка' }], correct: 1 },
   { q: { uz: "`uses: actions/checkout@v4` amali nima qiladi?", ru: 'Что делает шаг `uses: actions/checkout@v4`?' }, opts: [{ uz: "Loyihadagi butun kodni izsiz o'chirib tashlaydi", ru: 'Бесследно удаляет весь код проекта' }, { uz: 'Yangi bir lenta mashinasini alohida sotib oladi', ru: 'Отдельно покупает новую машину ленты' }, { uz: "Testlarni siz o'rniga avtomatik yozib beradi, o'zi tekshirib chiqadi", ru: 'Автоматически пишет тесты за вас и сам всё проверяет' }, { uz: 'Repodagi kodni lenta mashinasiga olib keladi', ru: 'Приносит код из репозитория на машину ленты' }], correct: 3 },
   { q: { uz: 'PARALLEL LENTALAR (matrix) nima uchun ishlatiladi?', ru: 'Для чего используются ПАРАЛЛЕЛЬНЫЕ ЛЕНТЫ (matrix)?' }, opts: [{ uz: "Bitta yukni ikki qismga bo'lib yuborish uchun", ru: 'Чтобы разделить один груз на две части и отправить' }, { uz: "Lenta mashinasini butunlay to'xtatib, o'chirish uchun", ru: 'Чтобы полностью остановить и выключить машину ленты' }, { uz: 'Bitta yukni bir nechta sharoitda birdan sinash uchun', ru: 'Чтобы проверить один груз сразу в нескольких условиях' }, { uz: "Faqat rasm fayllarini siqib kichraytirish uchun, boshqa vazifasi yo'q", ru: 'Только чтобы сжимать картинки, других задач нет' }], correct: 2 },
@@ -1929,7 +1937,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2630,7 +2638,7 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
         .option-picked-wrong { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.38) !important; }
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: opt-wait-breathe 2s ease-in-out infinite; }
         @keyframes opt-wait-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         .vcard { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .vcard:hover:not(:disabled) { transform: translateY(-1px); }
@@ -2641,6 +2649,7 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2679,9 +2688,9 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55); }
 
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(15px,2.5vw,22px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2729,7 +2738,6 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
 
         /* LENTA NATIJASI (BeltRun) — pastida cheksiz aylanuvchi lenta chizig'i (1-dars pipe-track naqshi) */
         .ghrun { position: relative; background: ${T.paper}; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
-        .ghrun::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 99px; background-image: repeating-linear-gradient(90deg, ${T.ink3}70 0 9px, transparent 9px 19px); background-size: 38px 100%; animation: belt-scroll 1s linear infinite; opacity: 0.45; }
         .ghrun-head { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid rgba(167,166,162,0.22); }
         .ghrun-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; padding: 3px 10px; border-radius: 99px; }
         .ghrun-badge.pass { background: ${T.successSoft}; color: ${T.success}; }
@@ -2752,7 +2760,6 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
 
         /* 🛫 BELT RUN (markaziy builder natijasi) — pastida cheksiz aylanuvchi lenta chizig'i */
         .belt-run { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; background: ${T.paper}; border-radius: 14px; padding: 14px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
-        .belt-run::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 99px; background-image: repeating-linear-gradient(90deg, ${T.ink3}70 0 9px, transparent 9px 19px); background-size: 38px 100%; animation: belt-scroll 1s linear infinite; opacity: 0.45; }
         .belt-light { position: relative; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px rgba(0,0,0,0.08); }
         .belt-light.green { background: ${T.success}; box-shadow: 0 0 0 4px ${T.successSoft}; }
         .belt-light.red { background: ${T.danger}; box-shadow: 0 0 0 4px ${T.dangerSoft}; }
@@ -3079,10 +3086,10 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -3217,7 +3224,7 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
         /* === 🛠️ JONLI PRAKTIKA === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }

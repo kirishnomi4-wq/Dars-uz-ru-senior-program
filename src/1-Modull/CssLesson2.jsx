@@ -323,7 +323,7 @@ const RECAPS = {
           uz: <>Konteynerga <b className="mono">display: flex</b> bersangiz, ichidagi elementlar o'zi <b>yonma-yon qatorga</b> tiziladi. Xuddi <b>tokchaga kitob terish</b> kabi — tokchani belgilaysiz, kitoblar tizilib ketadi.</>,
           ru: <>Задайте контейнеру <b className="mono">display: flex</b> — и элементы внутри сами выстроятся <b>в один ряд</b>. Как <b>расставить книги на полке</b>: вы указываете полку, а книги выстраиваются сами.</>,
         },
-        vis: <RcFlow items={[{ uz: '📦 Konteyner', ru: '📦 Контейнер' }, 'display: flex', { uz: '📚 yonma-yon qator', ru: '📚 в один ряд' }]} /> },
+        vis: <RcFlow items={[{ uz: 'Konteyner', ru: 'Контейнер' }, 'display: flex', { uz: 'yonma-yon qator', ru: 'в один ряд' }]} /> },
       { ic: '☝️', h: { uz: 'display: flex qayerga yoziladi?', ru: 'Куда пишется display: flex?' },
         body: {
           uz: <>Ichidagi elementga emas — <b>o'rab turgan konteynerga</b>. Bolalarni qatorga tizadigan buyruq har doim ularni <b>o'rab turgan</b> qutiga beriladi.</>,
@@ -377,7 +377,7 @@ const RECAPS = {
           uz: <>Elementni <b>tom o'rtaga</b> qo'yish uchun ikkalasi kerak: <b className="mono">justify-content: center</b> (qator bo'ylab) va <b className="mono">align-items: center</b> (vertikal).</>,
           ru: <>Чтобы поставить элемент <b>ровно в центр</b>, нужны оба: <b className="mono">justify-content: center</b> (вдоль ряда) и <b className="mono">align-items: center</b> (поперёк).</>,
         },
-        vis: <RcFlow items={['justify: center', 'align: center', { uz: '🎯 markaz', ru: '🎯 центр' }]} />,
+        vis: <RcFlow items={['justify: center', 'align: center', { uz: 'markaz', ru: 'центр' }]} />,
         ask: { uz: "Elementlarni gorizontal markazga qaysi xususiyat joylashtiradi?", ru: 'Какое свойство ставит элементы по центру по горизонтали?' } },
     ]
   },
@@ -733,8 +733,17 @@ const Mentor = ({ children }) => {
 };
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — zoom-tugma bo'sh ustun ustida yolg'iz qolmasin (159/3) */
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -745,8 +754,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -758,7 +767,7 @@ const FBOX = ({ flex = true, dir = 'row', justify = 'flex-start', align = 'stret
   const its = varied ? [{ l: 'A', h: 44 }, { l: 'B', h: 78 }, { l: 'C', h: 60 }] : [{ l: 'A' }, { l: 'B' }, { l: 'C' }];
   return (
     <div style={{ display: flex ? 'flex' : 'block', flexDirection: dir, justifyContent: justify, alignItems: align, gap, background: T.bg, borderRadius: 12, padding: 10, minHeight: 104, transition: 'all 0.35s cubic-bezier(.34,1.1,.4,1)' }}>
-      {its.map((it, i) => (<div key={i} className={snap && flex ? 'fbx snap' : 'fbx'} style={{ background: T.accent, color: '#fff', borderRadius: 8, minHeight: it.h || 38, padding: '0 14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 14, marginBottom: flex ? 0 : 6, animationDelay: `${i * 0.09}s` }}>{(labels && labels[i]) || it.l}</div>))}
+      {its.map((it, i) => (<div key={i} className={snap && flex ? 'fbx snap' : 'fbx'} style={{ background: T.accentSoft, color: T.accent, boxShadow: `inset 0 0 0 2px ${T.accent}` /* F-0926-06: baland rang yo'q (159/10) — Soft fon + halqa */, borderRadius: 8, minHeight: it.h || 38, padding: '0 14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 14, marginBottom: flex ? 0 : 6, animationDelay: `${i * 0.09}s` }}>{(labels && labels[i]) || it.l}</div>))}
     </div>
   );
 };
@@ -820,14 +829,14 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <button className={`chip ${row ? 'chip-on' : ''}`} onClick={() => setRow(true)}>✨ {tr({ uz: 'Yonma-yon', ru: 'В ряд' })}</button>
             </div>
             <Preview title="coddy.uz" minH={150}><div style={{ display: 'flex', alignItems: 'center', minHeight: 110 }}><div style={{ width: '100%' }}><Navbar flex={row} snap /></div></div></Preview>
-            <p className="mono small" style={{ color: T.ink3, margin: 0, textAlign: 'center' }}>{row ? tr({ uz: '✨ display: flex — menyu bir qatorda', ru: '✨ display: flex — меню в одну строку' }) : tr({ uz: "Sukut bo'yicha — ustma-ust (block)", ru: 'По умолчанию — друг под другом (block)' })}</p>
+            <p className="mono small" style={{ color: T.ink3, margin: 0, textAlign: 'center' }}>{row ? (picked === null ? tr({ uz: '✨ Menyu bir qatorda', ru: '✨ Меню в одну строку' }) : tr({ uz: '✨ display: flex — menyu bir qatorda', ru: '✨ display: flex — меню в одну строку' })) /* F-0926-06 (159/17): javobdan OLDIN «display: flex» javobni aytib qo'yardi */ : tr({ uz: "Sukut bo'yicha — ustma-ust (block)", ru: 'По умолчанию — друг под другом (block)' })}</p>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Elementlarni qatorga nima tizadi?', ru: 'Что выстраивает элементы в ряд?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, display: 'flex', alignItems: 'flex-end', minHeight: 40 /* F-0926-06 (159/9): yorliq chap tugmalar qatori balandligida — preview va variantlar tepasi bir chiziqda */ }}>{tr({ uz: 'Elementlarni qatorga nima tizadi?', ru: 'Что выстраивает элементы в ряд?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const sel = picked === o.id; return (<button key={o.id} className={`hook-option ${sel ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{sel && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: "Aynan! CSS Flexbox elementlarni qatorga tizadi va joylashtiradi. Bugun shuni o'rganamiz.", ru: 'Именно! CSS Flexbox выстраивает элементы в ряд и расставляет их. Сегодня этим и займёмся.' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: "CSS Flexbox elementlarni qatorga tizadi va joylashtiradi. Bugun shuni o'rganamiz.", ru: 'CSS Flexbox выстраивает элементы в ряд и расставляет их. Сегодня этим и займёмся.' })}</p> /* F-0926-06 (159/11): «Aynan!» olindi — har qanday variantda chiqardi, noto'g'ri tanlovda ham */}
           </Col>
         </Split>
         </Zoomable>
@@ -850,7 +859,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'Manzil — dars oxirida shu menyuni yasaysiz', ru: 'Цель — в конце урока вы соберёте это меню' })}</p>
+      <p className="flow-label">{tr({ uz: 'Manzil', ru: 'Цель' }) /* F-0926-06 (159/7): «dars oxirida shu menyuni yasaysiz» mentor gapini takrorlardi */}</p>
       <Zoomable>
       <Preview title="coddy.uz" minH={200}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -861,7 +870,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
             <div className="fade-up delay-3" style={{ height: 7, width: '66%', background: '#efece6', borderRadius: 4 }} />
             <div className="fade-up delay-4" style={{ height: 7, width: '40%', background: '#efece6', borderRadius: 4 }} />
           </div>
-          <span style={{ alignSelf: 'center', fontFamily: "'Manrope', sans-serif", fontWeight: 600, fontSize: 11.5, color: T.accent, background: T.accentSoft, padding: '3px 12px', borderRadius: 99 }}>{tr({ uz: '↑ Logo · havolalar · Kirish — yonma-yon menyu', ru: '↑ Лого · ссылки · Войти — меню в один ряд' })}</span>
+          {/* F-0926-06 (159/7): «↑ Logo · havolalar · Kirish — yonma-yon menyu» yorlig'i olindi — mentor aynan shuni aytadi */}
         </div>
       </Preview>
       </Zoomable>
@@ -904,8 +913,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8 }}><button className={`chip ${mode === 'block' ? 'chip-on' : ''}`} onClick={() => set('block')}>📋 block (div)</button><button className={`chip ${mode === 'inline' ? 'chip-on' : ''}`} onClick={() => set('inline')}>📝 inline (span)</button></div>
             <Preview title="element.html" minH={150}>
               {mode === 'block'
-                ? (<div key="b" className="demo-swap"><p className="bi-cap">{tr({ uz: <>Har biri <b>butun qatorni</b> egallaydi — shuning uchun ustma-ust ↓</>, ru: <>Каждый занимает <b>всю строку</b> — поэтому друг под другом ↓</> })}</p>{['A', 'B', 'C'].map((t, i) => (<div key={i} className="bi-block" style={{ animationDelay: `${i * 0.08}s` }}><span><span className="bi-tag">&lt;div&gt;</span> {tr({ uz: 'Blok', ru: 'Блок' })} {t}</span><span className="bi-full">↔ 100%</span></div>))}</div>)
-                : (<div key="i" className="demo-swap"><p className="bi-cap">{tr({ uz: <>Faqat <b>o'z kengligini</b> egallaydi — matn ichida yonma-yon ↓</>, ru: <>Занимает только <b>свою ширину</b> — стоит в строке текста ↓</> })}</p><div style={{ lineHeight: 2.6, fontFamily: "'Georgia, serif'", fontSize: 15, color: T.ink }}>{tr({ uz: 'Bu matn ichida', ru: 'В этом тексте' })} {['span A', 'span B', 'span C'].map((t, i) => (<span key={i} className="bi-inline" style={{ animationDelay: `${i * 0.08}s` }}>{t}</span>))} {tr({ uz: 'yonma-yon turibdi.', ru: 'стоят рядом.' })}</div></div>)}
+                ? (<div key="b" className="demo-swap">{/* F-0926-06 (159/7): preview ichidagi izoh olindi — yonidagi karta aynan shuni aytadi */}{['A', 'B', 'C'].map((t, i) => (<div key={i} className="bi-block" style={{ animationDelay: `${i * 0.08}s` }}><span><span className="bi-tag">&lt;div&gt;</span> {tr({ uz: 'Blok', ru: 'Блок' })} {t}</span><span className="bi-full">↔ 100%</span></div>))}</div>)
+                : (<div key="i" className="demo-swap"><div style={{ lineHeight: 2.6, fontFamily: "'Georgia, serif'", fontSize: 15, color: T.ink }}>{tr({ uz: 'Bu matn ichida', ru: 'В этом тексте' })} {['span A', 'span B', 'span C'].map((t, i) => (<span key={i} className="bi-inline" style={{ animationDelay: `${i * 0.08}s` }}>{t}</span>))} {tr({ uz: 'yonma-yon turibdi.', ru: 'стоят рядом.' })}</div></div>)}
             </Preview>
           </div>
           <div className="col">
@@ -963,7 +972,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             </Preview>
-            <div className={flex ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{flex ? <>✓ <span className="mono">display: flex</span> — {tr({ uz: 'uchala element bir qatorga tizildi!', ru: 'все три элемента встали в один ряд!' })} {seen.size < 2 && tr({ uz: "Endi konteyner va ichki elementni bosib, farqini ko'ring.", ru: 'Теперь нажмите на контейнер и внутренний элемент — увидите разницу.' })}</> : tr({ uz: <>Hozir elementlar ustma-ust (block). <span className="mono">display: flex</span> ularni qatorga tizadi.</>, ru: <>Сейчас элементы друг под другом (block). <span className="mono">display: flex</span> выстроит их в ряд.</> })}</p></div>
+            {flex && <div className="frame-success fade-step" /* F-0926-06 (159/7,9): flex yoqilguncha uzuq quti mentor gapini takrorlardi — olindi */><p className="body" style={{ margin: 0, color: T.ink }}><>✓ <span className="mono">display: flex</span> — {tr({ uz: 'uchala element bir qatorga tizildi!', ru: 'все три элемента встали в один ряд!' })} {seen.size < 2 && tr({ uz: "Endi konteyner va ichki elementni bosib, farqini ko'ring.", ru: 'Теперь нажмите на контейнер и внутренний элемент — увидите разницу.' })}</></p></div>}
           </div>
         </div>
         </Zoomable>
@@ -1037,13 +1046,13 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{byId[sid].label}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
+            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}><span className="dd-grip" aria-hidden="true">⠿</span>{byId[sid].label}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
           </div>
         ))}
       </div>
       <div className="dd-pool">
         {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, верните его и расставьте заново' })}</span>}
-        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{byId[id].label}</button>)}
+        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}><span className="dd-grip" aria-hidden="true">⠿</span>{byId[id].label}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr({ uz: "To'g'ri! CSS qoidasi aynan shu tartibda yoziladi.", ru: 'Верно! Правило CSS пишется именно в таком порядке.' })}</div>}
       {wrong && !solved && <div className="dd-wrong">⚠️ {tr({ uz: 'Tartib xato — qayta joylang.', ru: 'Порядок неверный — расставьте заново.' })}</div>}
@@ -1081,7 +1090,7 @@ const Screen3b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Natija — menyu preview', ru: 'Результат — превью меню' })}</div>
             <Preview title="menyu.html" minH={120}><Navbar flex={flex} snap /></Preview>
-            <div className={flex ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{flex ? tr({ uz: <>✓ Qoida to'g'ri! <span className="mono">display: flex</span> menyuni bir qatorga tizdi.</>, ru: <>✓ Правило верное! <span className="mono">display: flex</span> выстроил меню в один ряд.</> }) : tr({ uz: <>Hozir menyu bo'laklari ustma-ust (block). Qoidani to'g'ri yig'ing — qatorga tiziladi.</>, ru: <>Сейчас пункты меню друг под другом (block). Соберите правило верно — они встанут в ряд.</> })}</p></div>
+            {flex && <div className="frame-success fade-step" /* F-0926-06 (159/7,9): yig'ilguncha uzuq quti mentor gapini takrorlardi — olindi */><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Qoida to'g'ri! <span className="mono">display: flex</span> menyuni bir qatorga tizdi.</>, ru: <>✓ Правило верное! <span className="mono">display: flex</span> выстроил меню в один ряд.</> })}</p></div>}
           </div>
         </div>
         </Zoomable>
@@ -1195,7 +1204,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="justify-content" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Namunaga moslang', ru: 'Подгоните под образец' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Menyuni <span className="italic" style={{ color: T.accent }}>namunaga</span> moslang</>, ru: <>Подгоните меню <span className="italic" style={{ color: T.accent }}>под образец</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yuqorida <b style={{ color: T.ink }}>xira namuna</b> — logo bir chetda, Kirish ikkinchi chetda. <span className="mono">justify-content</span> ning to'g'ri qiymatini tanlab, pastdagi <b style={{ color: T.ink }}>jonli menyuni</b> namunaga moslang.</>, ru: <>Сверху — <b style={{ color: T.ink }}>тусклый образец</b>: лого у одного края, «Войти» у другого. Выберите верное значение <span className="mono">justify-content</span> и подгоните <b style={{ color: T.ink }}>живое меню</b> внизу под образец.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Xira namuna</b>: logo bir chetda, Kirish ikkinchi chetda. <span className="mono">justify-content</span> ning to'g'ri qiymatini tanlang.</>, ru: <><b style={{ color: T.ink }}>Тусклый образец</b>: лого у одного края, «Войти» у другого. Выберите верное значение <span className="mono">justify-content</span>.</> })}{/* F-0926-06 (159/7,11): joy so'zlari («Yuqorida», «pastdagi») va sarlavhani takrorlagan «namunaga moslang» olindi */}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
@@ -1205,7 +1214,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!isNarrow && <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(12px,1.7vw,14px)' }}><span style={{ color: CODE.tag }}>.menyu</span> {'{'}{'\n  '}<span style={{ color: CODE.attr }}>display</span>: <span style={{ color: CODE.str }}>flex</span>;{'\n  '}<span style={{ color: CODE.attr }}>justify-content</span>: <span style={{ color: CODE.str }}>{jc}</span>;{'\n'}{'}'}</pre>}
           </div>
           <div className="col">
-            <div className="flow-label">🎯 {tr({ uz: 'Namuna (shunga moslang)', ru: 'Образец (подгоните под него)' })}</div>
+            <div className="flow-label">{/* F-0926-06: ico-belgi olindi (159/4) */}{tr({ uz: 'Namuna', ru: 'Образец' }) /* F-0926-06 (159/7): «(shunga moslang)» sarlavhani takrorlardi */}</div>
             <div style={{ opacity: 0.5, filter: 'grayscale(1)', border: '1.5px dashed ' + T.ink3, borderRadius: 12, padding: 4 }}><Navbar justify={TARGET} /></div>
             <div className="flow-label" style={{ marginTop: 8 }}>{tr({ uz: 'Sizning menyungiz', ru: 'Ваше меню' })}</div>
             <div className="bull-wrap">
@@ -1219,7 +1228,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </div>
-            <div className={matched ? 'frame-success fade-step' : 'hint'}><p className="body" style={{ margin: 0, color: T.ink }}>{matched ? tr({ uz: <>🎯 Aynan namunadek! <span className="mono">justify-content: space-between</span> menyuni chetdan chetga tarqatdi.</>, ru: <>🎯 Точно как в образце! <span className="mono">justify-content: space-between</span> развёл меню от края до края.</> }) : tr({ uz: <>Menyu hali namunaga mos emas. <span className="mono">justify-content</span> qiymatini o'zgartiring — chetlarga tarqalsin.</>, ru: <>Меню пока не совпадает с образцом. Меняйте значение <span className="mono">justify-content</span> — пусть разойдётся к краям.</> })}</p></div>
+            {matched && <div className="frame-success fade-step" /* F-0926-06 (159/7,9): mos kelguncha uzuq quti mentor gapini takrorlardi — olindi */><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎯 Aynan namunadek! <span className="mono">justify-content: space-between</span> menyuni chetdan chetga tarqatdi.</>, ru: <>🎯 Точно как в образце! <span className="mono">justify-content: space-between</span> развёл меню от края до края.</> })}</p></div>}
           </div>
         </div>
         </Zoomable>
@@ -1280,7 +1289,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Element CSS'ini qayerda <span className="italic" style={{ color: T.accent }}>ko'ramiz</span>?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>увидеть</span> CSS элемента?</> })}</h2></div>
         <Mentor>{tr({ uz: <>DevTools'da elementni <b style={{ color: T.ink }}>Inspect</b> qilsangiz, o'ngdagi <b style={{ color: T.ink }}>Styles</b> panelida uning barcha CSS qoidalari chiqadi. Tugmani bosing.</>, ru: <>Сделайте в DevTools <b style={{ color: T.ink }}>Inspect</b> элемента — справа в панели <b style={{ color: T.ink }}>Styles</b> появятся все его CSS-правила. Нажмите кнопку.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!opened /* F-0926-06: Inspect bosilguncha o'ng ustun bo'sh — zoom-tugma ham yo'q */}>
         <div className="split">
           <div className="col">
             <div className="bp-window fade-up delay-2"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">coddy.uz</span></div><div className="bp-body"><div className={opened ? 'inspect-hl' : ''}><Navbar flex justify="space-between" /></div></div></div>
@@ -1297,7 +1306,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana menyuning butun CSS'i! Styles paneli har bir elementning qoidalarini ko'rsatadi — saytlar qanday yasalganini shu yerdan o'rganasiz.", ru: 'Вот весь CSS меню! Панель Styles показывает правила каждого элемента — здесь вы изучаете, как устроены сайты.' })}</p></div>
               </div>
-            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Hozir faqat menyu ko'rinyapti. <b style={{ color: T.ink }}>Inspect</b> bossangiz, uning CSS qoidalari ochiladi.</>, ru: <>Сейчас видно только меню. Нажмите <b style={{ color: T.ink }}>Inspect</b> — откроются его CSS-правила.</> })}</p></div>)}
+            ) : null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3,9) — chorlov mentor gapida: «Tugmani bosing» */}
           </div>
         </div>
         </Zoomable>
@@ -1308,7 +1317,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — DEVTOOLS (jonli tahrir) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's11', text: `Eng zo'r tomoni — Styles panelida qiymatni o'zgartirsangiz, sahifa darhol yangilanadi. justify-content qiymatini almashtirib, menyu qanday siljishini ko'ring. Esda tuting: bu o'zgarish vaqtincha, faqat sizning ekraningizda.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's11', text: `Eng yaxshi tomoni — Styles panelida qiymatni o'zgartirsangiz, sahifa darhol yangilanadi. justify-content qiymatini almashtirib, menyu qanday siljishini ko'ring. Esda tuting: bu o'zgarish vaqtincha, faqat sizning ekraningizda.`, trigger: 'on_mount', waits_for: null }]);
   const VALS = ['flex-start', 'center', 'space-between'];
   const [jc, setJc] = useState(storedAnswer?.jc || 'flex-start');
   const [touched, setTouched] = useState(!!storedAnswer);
@@ -1320,7 +1329,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>CSS'ni DevTools'da <span className="italic" style={{ color: T.accent }}>jonli</span> o'zgartiring</>, ru: <>Меняйте CSS в DevTools <span className="italic" style={{ color: T.accent }}>вживую</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Styles panelida qiymatni o'zgartirsangiz, sahifa <b style={{ color: T.ink }}>darhol</b> yangilanadi. <span className="mono">justify-content</span> ni almashtiring. Esda tuting: bu <b style={{ color: T.ink }}>vaqtincha</b>, faqat sizning ekraningizda.</>, ru: <>Измените значение в панели Styles — страница обновится <b style={{ color: T.ink }}>мгновенно</b>. Переключите <span className="mono">justify-content</span>. Помните: это <b style={{ color: T.ink }}>временно</b>, только на вашем экране.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className={`split${!done ? ' eqh' : ''}`} /* F-0926-06 (159/16): Styles oynasi va sahifa bir balandlikda — faqat boshlang'ich holatda */>
           <div className="col">
             <div className="flow-label">{tr({ uz: "DevTools — Styles (bosib o'zgartiring)", ru: 'DevTools — Styles (нажмите и меняйте)' })}</div>
             <div className="cssdev fade-up delay-2">
@@ -1353,13 +1362,13 @@ const Screen12 = (props) => (
 
 // ===== SCREEN 13 — BUILDER (flex layout) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: `Vaqti keldi — o'zingiz layout yig'asiz. Quyidagi xususiyatlarni yoqib, quti'larni xohlagancha joylashtiring. Kamida 3 ta xususiyat qo'shing — CSS kodi o'zi yoziladi. display flex'siz boshqalari ishlamasligiga e'tibor bering!`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's13', text: `Vaqti keldi — o'zingiz layout yig'asiz. Xususiyatlarni yoqib, quti'larni xohlagancha joylashtiring. Kamida 3 ta xususiyat qo'shing — CSS kodi o'zi yoziladi. display flex'siz boshqalari ishlamasligiga e'tibor bering!`, trigger: 'on_mount', waits_for: null }]);
   const PROPS = [
-    { k: 'flex', label: '🎯 display: flex' },
-    { k: 'center', label: '⊞ justify: center' },
-    { k: 'gap', label: '↔ gap: 16px' },
-    { k: 'column', label: '↓ direction: column' },
-    { k: 'align', label: '⊡ align: center' }
+    { k: 'flex', label: 'display: flex' } /* F-0926-06: ico-belgilar olindi (159/4) */,
+    { k: 'center', label: 'justify: center' },
+    { k: 'gap', label: 'gap: 16px' },
+    { k: 'column', label: 'direction: column' },
+    { k: 'align', label: 'align: center' }
   ];
   const [ap, setAp] = useState(storedAnswer?.ap || {});
   const count = Object.values(ap).filter(Boolean).length;
@@ -1376,7 +1385,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <div className="col">
-            <p className="flow-label">{tr({ uz: 'Xususiyatlarni yoqing', ru: 'Включите свойства' })}</p>
+            {/* F-0926-06: «Xususiyatlarni yoqing» yorlig'i olindi — mentor aynan shuni aytadi (159/7) */}
             <div className="chips fade-up delay-2">{PROPS.map(pr => (<button key={pr.k} className={`gchip ${P(pr.k) ? 'gchip-on' : ''} ${count === 0 ? 'btn-pulse' : ''}`} onClick={() => toggle(pr.k)}>{P(pr.k) ? '✓ ' : ''}{pr.label}</button>))}</div>
             {!isNarrow && <><div className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'CSS kodi', ru: 'CSS-код' })}</div>
             <pre className="code-box" style={{ fontSize: 'clamp(11.5px,1.6vw,13px)' }}><span style={{ color: CODE.tag }}>.row</span> {'{'}{'\n  '}<span style={{ color: CODE.attr }}>display</span>: <span style={{ color: P('flex') ? CODE.str : CODE.comment }}>{P('flex') ? 'flex' : 'block'}</span>;{'\n'}{P('column') && <>{'  '}<span style={{ color: CODE.attr }}>flex-direction</span>: <span style={{ color: CODE.str }}>column</span>;{'\n'}</>}{P('center') && <>{'  '}<span style={{ color: CODE.attr }}>justify-content</span>: <span style={{ color: CODE.str }}>center</span>;{'\n'}</>}{P('align') && <>{'  '}<span style={{ color: CODE.attr }}>align-items</span>: <span style={{ color: CODE.str }}>center</span>;{'\n'}</>}{P('gap') && <>{'  '}<span style={{ color: CODE.attr }}>gap</span>: <span style={{ color: CODE.str }}>16px</span>;{'\n'}</>}{'}'}</pre></>}
@@ -1384,7 +1393,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</div>
             <Preview title="layout.html" minH={150}><FBOX flex={P('flex')} dir={P('column') ? 'column' : 'row'} justify={P('center') ? 'center' : 'flex-start'} align={P('align') ? 'center' : 'stretch'} gap={P('gap') ? 16 : 6} varied /></Preview>
-            {done && <div style={{ background: T.successSoft, borderLeft: `4px solid ${T.success}`, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Flexbox bilan qutilarni xohlagancha joylashtirdingiz — bu zamonaviy layoutning asosi!", ru: 'Отлично! Вы расставили блоки Flexbox-ом как захотели — это основа современных макетов!' })}</p></div>}
+            {done && <div style={{ background: T.successSoft, borderRadius: 12, padding: '12px 15px' }} className="fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Flexbox bilan qutilarni xohlagancha joylashtirdingiz — bu zamonaviy layoutning asosi!", ru: 'Отлично! Вы расставили блоки Flexbox-ом как захотели — это основа современных макетов!' })}</p></div>}
           </div>
         </div>
         </Zoomable>
@@ -1398,7 +1407,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's14', text: `AI menyuni yonma-yon qilmoqchi bo'ldi: justify-content center yozdi, lekin menyu hali ham ustma-ust. Nega? Chunki display flex yo'q — display block yozilgan. justify-content faqat flex konteynerda ishlaydi. Xato qatorni topib bosing.`, trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
-  const isNarrow = useIsMobile(768);
+  /* F-0926-06: isNarrow olindi — faqat olingan hint-quti uchun edi */
   const done = fixed;
   const achMiss = useContext(AchMissCtx);
   // 🏅 Q6 (18.09): hamma qator bosiladi — xatosiz qator bosilsa qisqa javob + xato urinish (151-qonun)
@@ -1427,7 +1436,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`ai-line ${flashLine === 2 ? 'bad' : ''}`} onClick={() => pickWrong(2)}>{'  '}<span className="at">justify-content</span>: <span className="st">center</span>;</div>
                 <div className={`ai-line ${flashLine === 3 ? 'bad' : ''}`} onClick={() => pickWrong(3)}>{'}'}</div>
               </div>
-              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qator xato? Bosing.', ru: 'Какая строка с ошибкой? Нажмите.' })}</p>}
+              {!found && wrongMsg && <p className="ai-prompt">{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p> /* F-0926-06: «Qaysi qator xato? Bosing.» mentor gapini takrorlardi (159/6-7) — faqat xato-javob izohi qoldi */}
               {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step btn-pulse" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: 'display: flex ga tuzatish', ru: 'Исправить на display: flex' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi flex ishlaydi!', ru: 'Исправлено — теперь flex работает!' })}</p>}
@@ -1436,8 +1445,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</div>
             <Preview title="menyu.html" minH={120}><Navbar flex={fixed} justify="center" /></Preview>
-            {!found && !isNarrow && (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Menyu ustma-ust — flex ishlamayapti. <span className="mono">justify-content</span> faqat <span className="mono">display: flex</span> bo'lganda ishlaydi. Qaysi qatorda muammo?</>, ru: <>Меню в столбик — flex не работает. <span className="mono">justify-content</span> работает только при <span className="mono">display: flex</span>. В какой строке проблема?</> })}</p></div>)}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">display: block</span> — flex emas! Shuning uchun justify-content e'tiborsiz qoldi. <span className="mono">flex</span> ga tuzating →</>, ru: <><span className="mono">display: block</span> — это не flex! Поэтому justify-content был проигнорирован. Исправьте на <span className="mono">flex</span> →</> })}</p></div>)}
+            {/* F-0926-06 (159/7,17): «Menyu ustma-ust … display: flex bo'lganda ishlaydi» hint-qutisi olindi — mentorni takrorlardi va javobni oldindan aytardi */}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">display: block</span> — flex emas! Shuning uchun justify-content e'tiborsiz qoldi. <span className="mono">flex</span> ga tuzating →</>, ru: <><span className="mono">display: block</span> — это не flex! Поэтому justify-content был проигнорирован. Исправьте на <span className="mono">flex</span> →</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'display: flex — hammasining kaliti!', ru: 'display: flex — ключ ко всему!' })}</p><p className="ta-sub">{tr({ uz: 'justify/align/gap faqat flex konteynerda ishlaydi', ru: 'justify/align/gap работают только во flex-контейнере' })}</p></div>)}
           </div>
         </div>
@@ -2383,8 +2392,8 @@ const TASK_FLEX = {
   eyebrow: { uz: 'Praktika · flex', ru: 'Практика · flex' },
   title: { uz: "Elementlarni qatorga tizing", ru: 'Выстройте элементы в ряд' },
   brief: {
-    uz: "style.css faylida .row ga display: flex bering va gap bilan orasini oching. To'g'ri bo'lsa o'ngda natija ko'rinadi.",
-    ru: 'В файле style.css задайте .row display: flex и раздвиньте элементы с помощью gap. Если всё верно — результат появится справа.',
+    uz: "style.css faylida .row ga display: flex bering va gap bilan orasini oching. To'g'ri bo'lsa natija ko'rinadi.", /* F-0926-06 (159/11): joy so'zi olindi */
+    ru: 'В файле style.css задайте .row display: flex и раздвиньте элементы с помощью gap. Если всё верно — появится результат.',
   },
   files: [
     { name: 'index.html', lang: 'html', starter: '<div class="row">\n  <span>A</span>\n  <span>B</span>\n  <span>C</span>\n</div>' },
@@ -2669,7 +2678,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR v15 (soyalar) === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2690,7 +2699,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}, 0 6px 16px -8px rgba(255,79,40,0.3); } /* F-0926-06: baland rang yo'q (159/10) — Soft fon + accent halqa */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* === MENTOR === */
@@ -2730,7 +2739,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(255,79,40,.35); transition: transform .12s; user-select: none; } /* F-0926-06 (159/15): sudraladigan chip — oq fon + accent chegara + ushlagich (halqa box-shadow bilan EMAS) */
+        .dd-grip { opacity: .55; margin-right: 6px; font-weight: 400; }
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -2773,11 +2783,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
 
         /* === FRAME v15 === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 12px 15px; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-ok { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2787,6 +2796,11 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
+        /* F-0926-06 (159/16): yonma-yon ikki ustunning qutilari bir balandlikda — subgrid bilan (CssLesson1 naqshi). Faqat keng ekranda. */
+        @media (min-width: 761px) {
+          .split.eqh { grid-template-rows: auto 1fr; row-gap: clamp(12px,2vw,16px); }
+          .split.eqh > .col { display: grid; grid-row: span 2; grid-template-rows: subgrid; gap: inherit; align-content: start; }
+        }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
 
@@ -2799,8 +2813,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .ps-q { background: ${T.accentSoft}; color: ${T.accent}; }
         .ps-a { background: ${T.successSoft}; color: ${T.success}; }
         .ps-text { font-size: clamp(14px,1.7vw,16px); line-height: 1.5; color: ${T.ink}; }
-        .solve-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); padding: 10px 18px; border-radius: 10px; border: none; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.3); }
-        .solve-btn:hover:not(:disabled) { background: ${T.accent}; }
         .ye-solved, .ye-stack { display: flex; flex-direction: column; gap: 12px; }
         .mu-mini { opacity: 0.7; }
         .idea { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 0; }
@@ -2809,6 +2821,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .pr-answer { animation: fade-step 0.4s ease-out; }
 
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2823,7 +2836,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
+        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
 
         /* === RECIPE === */
@@ -2872,7 +2885,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .ck.active { background: ${T.accent}; }
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .sk-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 4px 9px; border-radius: 6px; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
 
         /* === HUG (teg o'raydi) === */
@@ -2895,7 +2907,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .hl-row { display: flex; align-items: center; gap: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; transition: all 0.18s; background: ${T.paper}; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); }
         .hl-row:hover { box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2); }
         .hl-row.on { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); background: ${T.accentSoft}; }
-        .hl-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
         .hl-text { font-family: 'Georgia, serif'; font-weight: 700; color: ${T.ink}; line-height: 1; }
         .hl-tag { margin-left: auto; font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; background: ${T.accentSoft}; padding: 3px 9px; border-radius: 99px; }
         .hl-note { background: ${T.paper}; border-radius: 10px; padding: 12px 15px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); animation: fade-step 0.3s; }
@@ -2905,7 +2916,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* === MCARD (matn) === */
         .mcard { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .mc-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .mc-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 9px; border-radius: 5px; }
         .mc-label { font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .mc-demo { font-family: 'Georgia, serif'; font-size: clamp(18px,2.5vw,24px); color: ${T.ink}; padding: 8px 0; }
         .w-anim { display: inline-block; transition: all 0.3s; } .w-bold { font-weight: 800; } .w-ital { font-style: italic; }
@@ -2916,7 +2926,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mc-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink2}; background: ${T.bg}; padding: 8px 11px; border-radius: 8px; margin: 0; } .mc-code .tg { color: ${CODE.tag}; }
 
         /* === WHEN / LISTS === */
-        .when { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 10px; padding: 11px 15px; }
+        .when { background: ${T.accentSoft}; border-radius: 10px; padding: 11px 15px; }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
         .site-brand { display: inline-flex; align-items: center; gap: 8px; } .site-logo { width: 22px; height: 22px; border-radius: 6px; background: ${T.accent}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 13px; } .site-name { font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; font-size: 14px; }
         .site-nav { display: inline-flex; gap: 11px; font-family: 'Manrope'; font-size: 12px; color: ${T.ink2}; }
@@ -3042,7 +3052,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .tegbuild-wrap.on .tb-bracket { opacity: 1; }
         .tb-brace { width: 150px; max-width: 70%; height: 9px; border: 1.5px solid ${T.ink3}; border-top: none; border-radius: 0 0 9px 9px; }
         .tb-brace-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; }
-        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
         /* SCREEN 8 — Sarlavhalar (gazeta -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
@@ -3065,7 +3075,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
 
         /* ============ CSS-2 DARS CSS ============ */
-        .gchip-on { background: ${T.accent} !important; color: #fff !important; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.45) !important; }
+        .gchip-on { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 0 0 2px ${T.accent}, 0 6px 16px -8px rgba(255,79,40,0.3) !important; } /* F-0926-06: baland rang yo'q (159/10) */
         .cssdev { background: ${CODE.bg}; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.22); }
         .cssdev-bar { background: #232f45; color: ${CODE.punct}; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; padding: 8px 12px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #2e3a52; }
         .cssdev-tab { color: ${CODE.text}; border-bottom: 2px solid ${T.accent}; padding-bottom: 4px; }
@@ -3075,8 +3085,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .cssdev-val { color: ${CODE.str}; }
         .cssdev-edit { color: ${CODE.str}; background: rgba(255,79,40,0.18); box-shadow: inset 0 0 0 1px ${T.accent}; border-radius: 4px; padding: 1px 6px; }
         .cssdev-opts { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 14px 12px; }
-        .cssdev-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; padding: 5px 10px; border-radius: 7px; border: none; background: #2e3a52; color: ${CODE.text}; cursor: pointer; transition: all 0.15s; }
-        .cssdev-chip:hover { background: #3a4866; }
+        .cssdev-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; padding: 5px 10px; border-radius: 7px; border: none; background: rgba(255,79,40,0.16); color: #fff; box-shadow: inset 0 0 0 1px ${T.accent}; cursor: pointer; transition: all 0.15s; } /* F-0926-06 (159/5): bosiladigan qora chip → accent-ohang (DevTools oynasi ichida) */
+        .cssdev-chip:hover { background: rgba(255,79,40,0.3); }
         .cssdev-chip.on { background: ${T.accent}; color: #fff; }
 
         /* ============ CSS-2 v17 — boyitilgan vizuallar ============ */
@@ -3099,7 +3109,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         @media (prefers-reduced-motion: reduce) { .bull-fx { display: none; } }
 
         /* flex qutilar (raqamli) */
-        .fx-box { background: ${T.accent}; color: #fff; border-radius: 8px; min-height: 40px; padding: 0 16px; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; box-shadow: 0 6px 14px -6px rgba(255,79,40,0.5); }
+        .fx-box { background: ${T.accentSoft}; color: ${T.accent}; border-radius: 8px; min-height: 40px; padding: 0 16px; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; box-shadow: inset 0 0 0 2px ${T.accent}; } /* F-0926-06: baland rang yo'q (159/10) — Soft fon + halqa */
         .fx-box.kid { cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; }
         .fx-box.kid:hover { transform: translateY(-2px); }
         .fx-box.kid.lit { box-shadow: 0 0 0 3px #fff, 0 0 0 5px ${T.accent}; }
@@ -3182,9 +3192,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3214,10 +3224,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -3247,7 +3257,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -3527,7 +3537,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* xira LiveBadge — asosiy holatda so'niq, hover/fokusda to'liq ko'rinadi */
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
@@ -3549,7 +3559,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }

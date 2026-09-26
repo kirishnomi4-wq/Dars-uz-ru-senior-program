@@ -4270,3 +4270,19 @@ test variantida, flashkartada, audio-matnda ham. Lint `loyqa-sozi` 🔴 error.
 **Sinf (§197 bilan bir oila):** birinchi ma'nosi boshqa sohadan (suv, yuz-bo'yoq, ob-havo) bo'lgan
 obrazli sifat aniqlik/sifat tushunchasini nomlamaydi. Aniqlik juftligi doim to'g'ridan-to'g'ri:
 **aniq ↔ noaniq**.
+
+## 213. «SKELET» — TAQIQ EMAS, IZOH BILAN: «SKELET (SHABLON)» (F-0926-06 E4, foydalanuvchi 27.09)
+
+4.1 anatomiya-taqig'i «skelet»ni ham «shablon»ga almashtirishni talab qilardi, lekin lint istisnosi (`skel`) uni hech qachon
+ushlamagan — 1-Modulda 88 ta «skelet» qolgan edi. Foydalanuvchi qarori: to'g'ridan-to'g'ri «shablon» emas — «Skelet (shablon)».
+
+- ❌ «Aynan! HTML — shablon, CSS esa uni bezaydi.» (o'quvchi «skelet» so'zini boshqa darslarda eshitgan — yangi so'z chalg'itadi)
+- ❌ har jumlada «skelet (shablon)» (matn og'irlashadi)
+- ✅ Birinchi tanishtirish: «Aynan! HTML — skelet (shablon), CSS esa uni bezaydi.» · keyin dars ichida: «Skeletni yig'ing».
+- ✅ Alohida o'qiladigan karta (recap, nishon, arena savoli): «Sahifa skeletini (shablonini) o'zingiz yig'dingiz».
+- ru: «скелет (шаблон)», keyin «скелет».
+
+**Sabab:** atama tanish qoladi, qavs ma'nosini ochadi; qo'shimcha qavs ichida takrorlanadi — grammatika buzilmaydi.
+Qo'llangan: CssLesson1 · HtmlPractice · Htmllesson1 · PmLesson3 (17 joy, uz+ru). Lint: `anatomiya-metaforasi` dan «skelet» chiqdi,
+istisno `skel` → `Skel[A-Z]` ga toraydi (suyak/yurak/miya endi haqiqatan ushlanadi).
+

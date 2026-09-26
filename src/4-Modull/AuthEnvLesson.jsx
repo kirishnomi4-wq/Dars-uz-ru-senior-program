@@ -310,7 +310,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -352,7 +352,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — судить по процентам сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить заново' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить заново' })}</button>}
           </div>
         );
       })()}
@@ -481,6 +481,15 @@ function ScoreRing({ correct, total }) {
 
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -491,8 +500,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -649,7 +658,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   : [tr({ uz: 'Klaviatura', ru: 'Клавиатура' }), tr({ uz: 'Sichqoncha', ru: 'Мышка' }), tr({ uz: 'Quloqchin', ru: 'Наушники' })].map(n => <div key={n} className={`shop-card ${phase === 'attack' ? 'shaking' : ''}`}><div className="shop-name">{n}</div></div>)}
               </div>
             </Win>
-            {phase === 'idle' && <button className="btn danger" style={{ alignSelf: 'flex-start' }} onClick={attack}>{tr({ uz: '😈 Begona: DELETE /api/products', ru: '😈 Чужак: DELETE /api/products' })}</button>}
+            {phase === 'idle' && <button className="btn danger" style={{ alignSelf: 'flex-start' }} onClick={attack}>{tr({ uz: 'Begona: DELETE /api/products', ru: 'Чужак: DELETE /api/products' })}</button>}
             {phase === 'attack' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr({ uz: "Begona o'chiryapti…", ru: 'Чужак удаляет…' })}</p>}
             {phase === 'done' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr({ uz: "✕ Hamma narsa o'chdi — chunki hech qanday himoya yo'q edi!", ru: '✕ Всё стёрто — ведь никакой защиты не было!' })}</p>}
           </Col>
@@ -666,7 +675,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval hujumni ko'ring ←", ru: 'Сначала посмотрите атаку ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! <b>Autentifikatsiya</b> qo'shamiz: faqat login qilgan odam o'zgartira oladi. Login qilganga sayt maxsus bilaguzuk beradi — bugun shuni yasaymiz.</>, ru: <>Верно! Добавим <b>аутентификацию</b>: изменять сможет только тот, кто вошёл. Вошедшему сайт выдаёт особый браслет — сегодня мы его и сделаем.</> }) : tr({ uz: <>To'g'ri yo'l — <b>login (autentifikatsiya)</b> qo'shish: faqat login qilgan odam o'zgartira oladi. Bugun shuni o'rganamiz.</>, ru: <>Правильный путь — добавить <b>логин (аутентификацию)</b>: изменять сможет только вошедший. Этому сегодня и научимся.</> })}</p>}
           </Col>
         </Split>
@@ -2011,7 +2019,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
       {phase === 'lobby' && (
@@ -2468,6 +2476,7 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2515,9 +2524,9 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         .progress-track { height: 3px; background: rgba(167,166,162,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2715,9 +2724,9 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         .gq-dot.cur { background: ${T.accent}; color: #fff; box-shadow: none; }
         .gq-dot.done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
         .gq-score { margin-left: auto; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
-        .gq-card { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); border-left: 4px solid ${T.ink3}; transition: border-color .2s; }
-        .gq-card.gq-ok { border-left-color: ${T.success}; }
-        .gq-card.gq-bad { border-left-color: ${T.danger}; }
+        .gq-card { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); transition: border-color .2s; }
+        .gq-card.gq-ok { }
+        .gq-card.gq-bad { }
         .gq-who { display: flex; align-items: center; gap: 11px; }
         .gq-ic { font-size: 30px; }
         .gq-who-t { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,19px); color: ${T.ink}; margin: 0; }
@@ -2737,8 +2746,8 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         .gq-btn.rad { background: ${T.paper}; color: ${T.danger}; box-shadow: inset 0 0 0 2px ${T.danger}66; }
         .gq-btn.rad:hover { background: ${T.dangerSoft}; }
         .gq-verdict { display: flex; flex-direction: column; border-radius: 12px; padding: 12px 14px; }
-        .gq-verdict.ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .gq-verdict.bad { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; }
+        .gq-verdict.ok { background: ${T.successSoft}; }
+        .gq-verdict.bad { background: ${T.dangerSoft}; }
         .gq-final { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; background: ${T.bg}; border-radius: 16px; padding: 24px; box-shadow: inset 0 0 0 1.5px ${T.ink3}44; }
         .gq-final.perfect { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
         .gq-final-ic { font-size: 40px; }
@@ -2770,7 +2779,6 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
 
         /* 🚧 TO'SIQ (shlagbaum): pastda = tekshiruv · ko'tarilgan = o'tkazildi */
         .gq-gate { position: relative; display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 11px; background: ${T.bg}; overflow: hidden; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.08); transition: background 0.3s; }
-        .gq-gate::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: repeating-linear-gradient(-45deg, ${T.ink3} 0 6px, transparent 6px 12px); opacity: 0.35; }
         .gq-post { position: absolute; left: 13px; top: 9px; bottom: 9px; width: 6px; border-radius: 3px; background: ${T.ink3}; opacity: 0.65; }
         .gq-bar { position: absolute; left: 16px; top: 50%; z-index: 1; width: calc(100% - 30px); height: 8px; border-radius: 4px; transform-origin: left center; transform: translateY(-50%) rotate(0deg); background: repeating-linear-gradient(-45deg, ${T.danger} 0 9px, ${T.paper} 9px 18px); box-shadow: 0 4px 10px -4px rgba(${T.shadowBase},0.35); }
         .gq-gate.lift { background: ${T.successSoft}; }
@@ -2882,7 +2890,7 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         @keyframes tap-hint { 0%,100% { box-shadow: 0 0 0 0 ${T.accent}00; } 50% { box-shadow: 0 0 0 3px ${T.accent}30; } }
         @media (prefers-reduced-motion: reduce) { .tap-hint { animation: none !important; } }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -3155,7 +3163,7 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         @keyframes option-wait-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 30px -6px rgba(1,154,203,0.55); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* --- LiveBadge: sekundar UI — xira turadi, kerak bo'lganda ochiladi (11.15) --- */
         .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(${T.shadowBase},0.32) !important; }
@@ -3198,10 +3206,10 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }

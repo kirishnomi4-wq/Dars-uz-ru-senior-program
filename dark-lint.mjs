@@ -43,6 +43,11 @@ const ALLOW = [
   // .codepill — ko'p qatorli kod-parcha bloki (m6-08 PipelineProject · m6-11 MobileAppPractice), fon CODE.bg,
   // BOSILMAYDI — .codechip/.code-box bilan bir oila (F-0926-01, 6-Modul v2-tayyorlash).
   /^\.codepill/,
+  // .sk-chip — «tushuntirish kartasi» ichidagi teg-nomi (`<h1>`, `color`), <span>, BOSILMAYDI, fon CODE.bg —
+  // .codechip oilasi (F-0926-06: Htmllesson2 s5 — bosh-agent onClick yo'qligini tekshirdi).
+  /^\.sk-chip/,
+  // .hl-chip (sarlavha-narvoni `<h1>…<h6>`) · .cmp2-chip (karta boshidagi `<ul>`/`<ol>`) — <span>, BOSILMAYDI, CODE.bg (F-0926-06: Htmllesson1, bosh-agent tekshirdi)
+  /^\.(hl-chip|cmp2-chip)/,
   // .cq-b — muharrir-qatori: VS Code fonidagi (#1E1E1E) bosiladigan kod satri.
   // m3-08 `.dbg-line` oilasi (u ham `dbg-code` orqali istisnoda). Quyuq fon bu yerda
   // TAQLID: o'quvchi kodni muharrirdagidek ko'rishi kerak (F-0820-86).
@@ -270,6 +275,8 @@ function scan(file) {
       // BREND-rangi inline: belgi-konteksti atrofdagi className dan o'qiladi.
       if (BRAND.has(hex.toUpperCase())) {
         if (BRAND_CTX.test(before.slice(-120))) continue;
+        // F-0926-06: e'lon qilingan istisno brend-rangiga ham tegishli (sayt-maketidagi YouTube/Chrome belgisi — tugma emas)
+        if (/data-dark-ok/.test(before) || /data-dark-ok/.test(jsxAll.slice(m.index, m.index + 200))) continue;
         const _ln = jsxAll.slice(0, m.index).split(String.fromCharCode(10)).length;
         out.push({ kind: 'brend', sel: `inline :${_ln}`, hex, L: L.toFixed(3), why: BRAND.get(hex.toUpperCase()) });
         continue;

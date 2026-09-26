@@ -481,7 +481,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
 
@@ -530,16 +530,16 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась классу непонятной. Перед продолжением стоит кратко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании кратко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Краткое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Краткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Спокойно продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту сложно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -596,8 +596,17 @@ const Mentor = ({ children }) => {
 };
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — ⛶ tugmasi chiqmaydi (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -608,8 +617,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -654,23 +663,23 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>youtube.com yozib Enter bossangiz, sayt sizga <span className="italic" style={{ color: T.accent }}>qayerdan</span> yetib keladi?</>, ru: <>Вводите youtube.com и жмёте Enter — <span className="italic" style={{ color: T.accent }}>откуда</span> сайт добирается до вас?</> })}</h1>
-        <Mentor>{tr({ uz: <>Telefon yoki kompyuterda <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bossangiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida so'rovingiz xonangizdan chiqib ketadi, <b style={{ color: T.ink }}>chet elgacha</b> yo'l bosadi va javob bilan qaytib keladi. Avval tugmani bosing, keyin o'zingiz o'ylab ko'ring: sayt sizga qayerdan yetib keladi?</>, ru: <>Когда на телефоне или компьютере вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — сайт появляется за секунду. Но за эту секунду ваш запрос выходит из вашей комнаты, добирается <b style={{ color: T.ink }}>до другой страны</b> и возвращается с ответом. Сначала нажмите кнопку, потом подумайте сами: откуда сайт добирается до вас?</> })}</Mentor>
+        <Mentor>{/* F-0926-06: sarlavha savolini takrorlagan bosh va yakuniy gap olindi (159/7) */}{tr({ uz: <>Sayt bir soniyada chiqadi. Lekin shu bir soniya ichida so'rovingiz xonangizdan chiqib ketadi, <b style={{ color: T.ink }}>chet elgacha</b> yo'l bosadi va javob bilan qaytib keladi. Avval Enter tugmasini bosing, keyin javobni tanlang.</>, ru: <>Сайт появляется за секунду. Но за эту секунду ваш запрос выходит из вашей комнаты, добирается <b style={{ color: T.ink }}>до другой страны</b> и возвращается с ответом. Сначала нажмите кнопку Enter, потом выберите ответ.</> })}</Mentor>
         <Split>
           <Col>
             <div className="urlbar fade-up delay-1"><span className="urlbar-lock">🔒</span><span className="urlbar-text">youtube.com</span><button className="urlbar-go" onClick={go} disabled={phase !== 'idle'}>Enter ↵</button></div>
             <Preview minH={150} title="youtube.com">
-              {phase === 'idle' && <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: '↑ Manzilni yozib Enter bosing…', ru: '↑ Введите адрес и нажмите Enter…' })}</p>}
+              {/* F-0926-06: bo'sh oynadagi «↑ … Enter bosing» yo'rig'i olindi — chorlov mentor gapida (159/3, 159/6) */}
               {phase === 'loading' && <p className="mono" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}><span className="gen-line">{tr({ uz: 'Sayt yuklanmoqda', ru: 'Сайт загружается' })}</span></p>}
               {phase === 'site' && (
                 <div className="fade-step">
-                  <div style={{ height: 9, width: '42%', background: '#FF0000', borderRadius: 4, marginBottom: 10 }} />
+                  <div data-dark-ok="brend: YouTube maketi (tugma emas)" style={{ height: 9, width: '42%', background: '#FF0000', borderRadius: 4, marginBottom: 10 }} />
                   <div style={{ display: 'flex', gap: 8 }}>{[0, 1].map(i => (<div key={i} style={{ flex: 1 }}><div style={{ height: 44, background: '#dcd9d2', borderRadius: 7, marginBottom: 5 }} /><div style={{ height: 6, background: '#cbc8c1', borderRadius: 3, width: '85%', marginBottom: 3 }} /><div style={{ height: 6, background: '#dcd9d2', borderRadius: 3, width: '55%' }} /></div>))}</div>
                 </div>
               )}
             </Preview>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, sayt sizga qayerdan yetib keladi?', ru: 'Как думаете, откуда сайт добирается до вас?' })}</p>
+            {/* F-0926-06: sarlavha savolini takrorlagan eyebrow olindi (159/7) */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
@@ -776,8 +785,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         </div>
       </div>
       <div className={`jr-cap ${jstep >= DONE ? 'done' : ''}`} key={jstep}>{tr(caption)}</div>
+      {/* F-0926-06: nuqtalar va tugma bir qatorda — tugma navigatsiya orqasida qolmasin (159/12) */}
+      <div className="jr-foot">
       <div className="jr-dots">{JR_STEPS.map((_, i) => <span key={i} className={`jr-dot ${(jstep > i || jstep >= DONE) ? 'fill' : ''} ${jstep === i ? 'cur' : ''}`} />)}</div>
-      <button className="btn" style={{ alignSelf: 'center' }} onClick={play} disabled={playing}>{playing ? tr({ uz: "So'rov yo'lda…", ru: 'Запрос в пути…' }) : (jstep >= DONE ? tr({ uz: "↻ Yana ko'rish", ru: '↻ Ещё раз' }) : tr({ uz: "▶ Yo'lni boshlash", ru: '▶ Начать путь' }))}</button>
+      <button className="btn" onClick={play} disabled={playing}>{playing ? tr({ uz: "So'rov yo'lda…", ru: 'Запрос в пути…' }) : (jstep >= DONE ? tr({ uz: "↻ Yana ko'rish", ru: '↻ Ещё раз' }) : tr({ uz: "▶ Yo'lni boshlash", ru: '▶ Начать путь' }))}</button>
+      </div>
     </div>
     </Zoomable>
   );
@@ -792,7 +804,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начнём →' }} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Sayt sizgacha qanday yetib keladi?', ru: 'Как сайт доходит до вас?' })}</span></h2></div>
-        <Mentor>{tr({ uz: <>Bugun bitta savolga to'liq javob topamiz: <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bosganingizda, sayt ekraningizga qanday yetib keladi? Quyidagi <b style={{ color: T.ink }}>aylanma yo'lni</b> kuzating — dars oxirida hammasini o'zingiz tushuntirib bera olasiz.</>, ru: <>Сегодня мы полностью ответим на один вопрос: когда вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter, как сайт доходит до вашего экрана? Проследите за <b style={{ color: T.ink }}>круговым путём</b> ниже — к концу урока вы сами сможете всё объяснить.</> })}</Mentor>
+        <Mentor>{/* F-0926-06: sarlavha savoli takrori va joy so'zi «Quyidagi» olindi (159/5, 159/7) */}{tr({ uz: <>Bugun shu savolga to'liq javob topamiz. <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bosganingizda so'rov qanday <b style={{ color: T.ink }}>aylanma yo'l</b> bosishini kuzating — dars oxirida hammasini o'zingiz tushuntirib bera olasiz.</>, ru: <>Сегодня мы полностью ответим на этот вопрос. Проследите, какой <b style={{ color: T.ink }}>круговой путь</b> проходит запрос, когда вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — к концу урока вы сами сможете всё объяснить.</> })}</Mentor>
         {!isNarrow ? (
           <Split>{AnimBlock}{StepsBlock}</Split>
         ) : !showSteps ? (
@@ -842,9 +854,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <div className="col">            {connected ? (
               <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '✓ Mana tarmoq', ru: '✓ Вот сеть' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har bir qurilma boshqasiga <b>"yo'l"</b> bilan bog'langan. Ma'lumot shu yo'llar orqali yuradi. <b>Inter-net</b> = "tarmoqlararo" degani.</>, ru: <>Каждое устройство связано с другим <b>«дорогой»</b>. Данные идут по этим дорогам. <b>Inter-net</b> = «между сетями».</> })}</p></div>
-            ) : (
-              <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Telefon, noutbuk, TV, server… hammasi ulangan. Ulanishlarni ko\'rish uchun tugmani bosing.', ru: 'Телефон, ноутбук, ТВ, сервер… всё соединено. Нажмите кнопку, чтобы увидеть связи.' })}</p></div>
-            )}
+            ) : null /* F-0926-06: bo'sh-holat .hint ramkasi olindi — chorlov mentor gapida (159/3) */}
             <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Asosiy:</b> internet — qurilmalarni bog'lovchi tarmoq. Saytlar shu tarmoq orqali sizgacha keladi.</>, ru: <><b>Главное:</b> интернет — сеть, соединяющая устройства. Сайты доходят до вас через эту сеть.</> })}</p></div>
           </div>
         </div>
@@ -859,7 +869,7 @@ const BrowserLogo = ({ k, size = 30 }) => {
   if (k === 'chrome') return (
     <span style={{ ...ring, background: 'conic-gradient(from -90deg, #EA4335 0 120deg, #34A853 120deg 240deg, #FBBC05 240deg 360deg)' }}>
       <span style={{ position: 'absolute', inset: '26%', borderRadius: '50%', background: '#fff' }} />
-      <span style={{ position: 'absolute', inset: '33%', borderRadius: '50%', background: '#1A73E8' }} />
+      <span data-dark-ok="brend: Chrome belgisi" style={{ position: 'absolute', inset: '33%', borderRadius: '50%', background: '#1A73E8' }} />
     </span>
   );
   if (k === 'firefox') return (
@@ -915,7 +925,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Preview title={done ? `${cur.l} — youtube.com` : 'brauzer'} minH={150}>
               {done ? (
                 <SiteMock site={{ mock: 'youtube', ic: '▶️', name: 'YouTube', bar: '#FF0000' }} />
-              ) : (<p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: 'Brauzer tanlang — sayt shu yerda ochiladi', ru: 'Выберите браузер — сайт откроется здесь' })}</p>)}
+              ) : null /* F-0926-06: bo'sh oynadagi yo'riq olindi — chorlov mentor gapida (159/3, 159/6) */}
             </Preview>
           </div>
         </div>
@@ -952,22 +962,23 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytning <span className="italic" style={{ color: T.accent }}>manzili</span> qanday bo'ladi?</>, ru: <>Каким бывает <span className="italic" style={{ color: T.accent }}>адрес</span> сайта?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Saytga borish uchun uning <b style={{ color: T.ink }}>manzilini</b> bilishingiz kerak — bu <b style={{ color: T.ink }}>domen</b>: youtube.com, coddycamp.uz. Xuddi do'stingiznikiga borish uchun uy manzilini bilganingizdek — manzilni yozsangiz, aynan o'sha saytga borasiz. Domenni tanlang.</>, ru: <>Чтобы попасть на сайт, нужно знать его <b style={{ color: T.ink }}>адрес</b> — это <b style={{ color: T.ink }}>домен</b>: youtube.com, coddycamp.uz. Как и с адресом дома друга — вводите адрес и попадаете именно на этот сайт. Выберите домен.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!done /* F-0926-06: domen tanlanguncha o'ng ustun bo'sh — zoom-tugma ham yo'q */}>
         <div className="split">
           <div className="col">
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Domenni tanlang', ru: 'Выберите домен' })}</p>
+            {/* F-0926-06: «Domenni tanlang» eyebrow olindi — mentor chorlovini takrorlardi (159/7) */}
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{DOMAINS.map(d => (<button key={d.full} className={`chip ${sel === d.full ? 'chip-on' : ''}`} onClick={() => pick(d.full)}>{d.full}</button>))}</div>
             <div className="frame-soft fade-up delay-3"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Asosiy:</b> domen — odam eslab qoladigan sayt manzili. Bitta sayt = bitta domen.</>, ru: <><b>Главное:</b> домен — запоминаемый человеком адрес сайта. Один сайт = один домен.</> })}</p></div>
           </div>
           <div className="col">
-            <div className="flow-label">{tr({ uz: 'Domen qismlari', ru: 'Части домена' })}</div>
             {done ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {/* F-0926-06: yorliq faqat natija bilan — birinchi tanlovgacha ustun bo'sh (159/3) */}
+                <div className="flow-label">{tr({ uz: 'Domen qismlari', ru: 'Части домена' })}</div>
                 <div className="domsplit" key={cur.full}><span className="dpart dpart-name dsp-l">{cur.name}</span><span className="dpart dpart-tld dsp-r">{cur.tld}</span></div>
                 <div className="dlabels"><span><b style={{ color: T.accent }}>{tr({ uz: 'nom', ru: 'имя' })}</b> {tr({ uz: '— sayt nomi', ru: '— имя сайта' })}</span><span><b style={{ color: T.blue }}>{tr({ uz: 'zona', ru: 'зона' })}</b> {tr({ uz: '— turi', ru: '— тип' })}</span></div>
                 <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.note)}</p></div>
               </div>
-            ) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Domenni tanlang — qismlarga ajraladi', ru: 'Выберите домен — он разложится на части' })}</p></div>)}
+            ) : null /* F-0926-06: frame-dash olindi — chorlov mentor gapida va tugmada (159/3) */}
           </div>
         </div>
         </Zoomable>
@@ -1018,7 +1029,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="dompill"><span className="dpart dpart-name">youtube.com</span></span>
               <p className={`mono small ip-conv ${phase !== 'idle' ? 'go' : ''}`} style={{ margin: 0, textAlign: 'center' }}>{tr({ uz: '↓ raqamga aylantiriladi', ru: '↓ превращается в номер' })}</p>
               {phase === 'idle'
-                ? <button className="btn" onClick={reveal}>{tr({ uz: '🔢 IP manzilni ko\'rsatish', ru: '🔢 Показать IP-адрес' })}</button>
+                ? <button className="btn" onClick={reveal}>{tr({ uz: 'IP manzilni ko\'rsatish', ru: '🔢 Показать IP-адрес' })}</button>
                 : <span className="ipbox" style={{ opacity: phase === 'run' ? 0.72 : 1 }}><span className="ip-type" key={phase === 'done' ? 'd' : 'r'}>{phase === 'done' ? '142.250.190.78' : scram}</span></span>}
               {phase === 'run' && <p className="mono small" style={{ margin: 0, color: T.blue }}>{tr({ uz: 'aylantirilmoqda…', ru: 'превращается…' })}</p>}
               {phase === 'done' && <p className="mono small fade-step" style={{ margin: 0, color: T.success, fontWeight: 600 }}>✓ youtube.com = 142.250.190.78</p>}
@@ -1068,7 +1079,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Qaysi saytni qidiramiz?', ru: 'Какой сайт ищем?' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{Object.keys(MAP).map(d => (<button key={d} className={`chip ${q === d ? 'chip-on' : ''}`} disabled={phase === 'looking'} onClick={() => lookup(d)}>{d}</button>))}</div>
             <div className="dns-card fade-up delay-3">
-              <div className="dns-head">{tr({ uz: '📖 DNS — Internet telefon kitobi', ru: '📖 DNS — телефонная книга интернета' })} {phase === 'looking' && <span className="dns-status">{tr({ uz: '🔎 qidirilmoqda…', ru: '🔎 ищем…' })}</span>}{phase === 'found' && <span className="dns-status ok">{tr({ uz: 'topildi ✓', ru: 'найдено ✓' })}</span>}</div>
+              <div className="dns-head">{/* F-0926-06: «telefon kitobi» mentor gapida — sarlavhada faqat nom (159/7) */}{tr({ uz: '📖 DNS', ru: '📖 DNS' })} {phase === 'looking' && <span className="dns-status">{tr({ uz: '🔎 qidirilmoqda…', ru: '🔎 ищем…' })}</span>}{phase === 'found' && <span className="dns-status ok">{tr({ uz: 'topildi ✓', ru: 'найдено ✓' })}</span>}</div>
               <div className="dns-book">
                 {Object.entries(MAP).map(([dom, ip]) => {
                   const isMatch = q === dom;
@@ -1082,7 +1093,6 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   );
                 })}
               </div>
-              {!q && <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: 'Yuqoridan domen tanlang — DNS uni kitobdan topadi', ru: 'Выберите домен сверху — DNS найдёт его в книге' })}</p>}
             </div>
           </div>
           <div className="col">            <div className="flow-label">{tr({ uz: 'DNS qanday aylantiradi', ru: 'Как DNS превращает' })}</div>
@@ -1095,7 +1105,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
               <div className={`dc-node dc-ip ${phase === 'found' ? 'hit' : ''}`}><span className="dc-ic">🔢</span><span className="dc-k">{tr({ uz: 'IP manzil', ru: 'IP-адрес' })}</span><span className="dc-v" key={phase === 'found' ? 'f' : 'x'}>{rightIP}</span></div>
             </div>
-            <p className="small" style={{ margin: '4px 2px 0', color: T.ink2 }}>{tr({ uz: <>Siz <b style={{ color: T.ink }}>nom</b> berasiz — DNS <b style={{ color: T.ink }}>raqam</b> qaytaradi. Brauzer keyin shu IP'ga boradi.</>, ru: <>Вы даёте <b style={{ color: T.ink }}>имя</b> — DNS возвращает <b style={{ color: T.ink }}>номер</b>. Затем браузер идёт на этот IP.</> })}</p>
+            <p className="small" style={{ margin: '4px 2px 0', color: T.ink2 }}>{/* F-0926-06: «nom berasiz — raqam qaytaradi» mentor gapida — faqat yangi qadam qoldi (159/7) */}{tr({ uz: <>Brauzer keyin shu <b style={{ color: T.ink }}>IP</b>'ga boradi.</>, ru: <>Затем браузер идёт на этот <b style={{ color: T.ink }}>IP</b>.</> })}</p>
           </div>
         </div>
         </Zoomable>
@@ -1144,7 +1154,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Preview title="google.com" minH={130}><SiteMock site={siteInfo('google.com')} /></Preview>
                 <div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '✓ Server javob berdi', ru: '✓ Сервер ответил' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Server <b>google.com</b> sahifasini qaytardi. U <b>doim yoniq</b> — sayt istalgan vaqtda ochiladi.</>, ru: <>Сервер вернул страницу <b>google.com</b>. Он <b>всегда включён</b> — сайт открывается в любое время.</> })}</p></div>
               </div>
-            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Siz (brauzer) chap tomonda, server o'ngda. So'rov yuborib, javobni kuzating.", ru: 'Вы (браузер) слева, сервер справа. Отправьте запрос и проследите за ответом.' })}</p></div>)}
+            ) : null /* F-0926-06: joy so'zli bo'sh-holat .hint ramkasi olindi — chorlov mentor gapida (159/3, 159/5) */}
             <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Server</b> — saytlarni saqlovchi va so'rovga javob beruvchi kuchli kompyuter.</>, ru: <><b>Сервер</b> — мощный компьютер, который хранит сайты и отвечает на запросы.</> })}</p></div>
           </div>
         </div>
@@ -1223,7 +1233,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "So'rov yo'li", ru: 'Путь запроса' })} screen={screen} audioState={audio} mentorCollapse navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Yo'lni ishga tushiring", ru: 'Запустите путь' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.7vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Enter'dan saytgacha — <span className="italic" style={{ color: T.accent }}>butun yo'l</span></>, ru: <>От Enter до сайта — <span className="italic" style={{ color: T.accent }}>весь путь</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>youtube.com</b> yozsangiz nima bo'ladi? ▶ tugmasini bosing — ma'lumot <b style={{ color: T.ink }}>chapdan o'ngga</b> oqib, sayt ochiladi. Har qadamni Mentor tushuntirib boradi.</>, ru: <>Что происходит, когда вы вводите <b style={{ color: T.ink }}>youtube.com</b>? Нажмите ▶ — данные текут <b style={{ color: T.ink }}>слева направо</b>, и сайт открывается. Каждый шаг Ментор поясняет.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>youtube.com</b> yozsangiz nima bo'ladi? ▶ tugmasini bosing — ma'lumot <b style={{ color: T.ink }}>bosqichma-bosqich</b> oqib, sayt ochiladi. Har qadamni Mentor tushuntirib boradi.</>, ru: <>Что происходит, когда вы вводите <b style={{ color: T.ink }}>youtube.com</b>? Нажмите ▶ — данные текут <b style={{ color: T.ink }}>шаг за шагом</b>, и сайт открывается. Каждый шаг Ментор поясняет.</> })}</Mentor>
         <Zoomable>
         <div className="frame frame-col fade-up delay-2" style={{ gap: 'clamp(10px,1.6vw,14px)' }}>
           {/* Konveyer — oldinga oqadigan ma'lumot */}
@@ -1238,11 +1248,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
           <div className="pl-dots">{PIPE.map((_, i) => <span key={i} className={`pl-dot ${step >= i ? 'fill' : ''} ${step === i ? 'cur' : ''}`} />)}</div>
-          {step < 0 && <div className="pl-cap">{tr(cap)}</div>}
+          {/* F-0926-06: idle-izoh mentor chorlovini takrorlardi (joy so'zi bilan) — olindi (159/5, 159/6) */}
 
           {/* Detal-karta — joriy bosqich jonli ko'rsatiladi */}
-          <div className="pl-detail">
-            {step < 0 && <p className="pl-idle">{tr({ uz: 'Har bosqich shu yerda jonli ochiladi 👇', ru: 'Каждый шаг вживую откроется здесь 👇' })}</p>}
+          {/* F-0926-06: boshlanishgacha bo'sh detal-quti ko'rsatilmaydi (159/9, 159/13) */}
+          {step >= 0 && <div className="pl-detail">
             {step === 0 && (<div className="pl-url fade-step"><span className="pl-lock">🔒</span><span className="mono" style={{ flex: 1, color: T.ink }}>youtube.com</span><span className="pl-enter">Enter ↵</span></div>)}
             {step === 1 && (<div className="pl-conv fade-step"><span className="pl-pill name">youtube.com</span><span className="pl-conv-arr">→</span><span className="pl-pill ip">142.250.190.78</span></div>)}
             {(step === 2 || step === 3) && (
@@ -1262,8 +1272,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </Preview>
               </div>
             )}
-          </div>
+          </div>}
 
+          {/* F-0926-06: Mentor izohi va boshqaruv tugmasi yonma-yon — tugma navigatsiya orqasida qolmasin (159/12) */}
+          <div className="pl-foot">
           {/* Har bosqichda Mentor o'sha qadamni tushuntiradi (pauzada — to'liq o'qishga to'xtaydi) */}
           {playing && cur && (
             <div className={`mentor pl-pausebubble fade-step ${paused ? 'is-paused' : ''}`} key={step}>
@@ -1279,6 +1291,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {playing
               ? <button className="btn" onClick={togglePause} style={{ alignSelf: 'center' }}>{paused ? tr({ uz: '▶ Davom etish', ru: '▶ Продолжить' }) : tr({ uz: '⏸ Pauza', ru: '⏸ Пауза' })}</button>
               : <button className="btn" onClick={start} style={{ alignSelf: 'center' }}>{finished ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: "▶ Yo'lni boshlash", ru: '▶ Начать путь' })}</button>}
+          </div>
           </div>
         </div>
         </Zoomable>
@@ -1307,7 +1320,7 @@ const YT_VIDEO = (title, views, dur) => (
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's11', text: `Hozirgina server brauzerga HTML kod qaytarganini ko'rdik. Endi aynan shu qadamning ichiga kiramiz: brauzer o'sha kodni satrma-satr o'qib, YouTube sahifasini chizadi. Tugmani bosing.`, trigger: 'on_mount', waits_for: null }]);
   const HTML = [
-    { code: <><Tg>{'<h1>'}</Tg>▶️ YouTube<Tg>{'</h1>'}</Tg></>, el: <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, fontSize: 'clamp(18px,2.6vw,22px)', letterSpacing: '-0.6px', color: '#0f0f0f', margin: '0 0 13px', paddingBottom: 11, borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#FF0000', color: '#fff', borderRadius: 6, width: 30, height: 21, fontSize: 12, paddingLeft: 1, lineHeight: 1 }}>▶</span>YouTube</h1>, tag: 'sarlavha' },
+    { code: <><Tg>{'<h1>'}</Tg>▶️ YouTube<Tg>{'</h1>'}</Tg></>, el: <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, fontSize: 'clamp(18px,2.6vw,22px)', letterSpacing: '-0.6px', color: '#0f0f0f', margin: '0 0 13px', paddingBottom: 11, borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', gap: 8 }}><span data-dark-ok="brend: YouTube logotipi (maket)" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#FF0000', color: '#fff', borderRadius: 6, width: 30, height: 21, fontSize: 12, paddingLeft: 1, lineHeight: 1 }}>▶</span>YouTube</h1>, tag: 'sarlavha' },
     { code: { uz: <><Tg>{'<video>'}</Tg>Mushuklar 🐱<Tg>{'</video>'}</Tg></>, ru: <><Tg>{'<video>'}</Tg>Котики 🐱<Tg>{'</video>'}</Tg></> }, el: { uz: YT_VIDEO('Mushuklar 🐱', '1.2M', '10:24'), ru: YT_VIDEO('Котики 🐱', '1.2M', '10:24') }, tag: 'video' },
     { code: { uz: <><Tg>{'<video>'}</Tg>Futbol ⚽<Tg>{'</video>'}</Tg></>, ru: <><Tg>{'<video>'}</Tg>Футбол ⚽<Tg>{'</video>'}</Tg></> }, el: { uz: YT_VIDEO('Futbol ⚽', '890K', '4:07'), ru: YT_VIDEO('Футбол ⚽', '890K', '4:07') }, tag: 'video' }
   ];
@@ -1360,7 +1373,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="zi-wire" />
             <div className="zi-node"><span className="zi-node-ic">🖼️</span><span className="zi-node-l">{tr({ uz: 'Ekran', ru: 'Экран' })}</span></div>
           </div>
-          <p className="zi-label">{tr({ uz: <>🔍 Hozirgina ko'rgan <b>«brauzer o'qiydi»</b> qadamning <b>ichiga</b> kiramiz ↓</>, ru: <>🔍 Заглянем <b>внутрь</b> только что увиденного шага <b>«браузер читает»</b> ↓</> })}</p>
+          {/* F-0926-06: «qadamning ichiga kiramiz ↓» yozuvi mentor gapini takrorlardi — olindi (159/7) */}
         </div>
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1447,7 +1460,7 @@ const SiteMock = ({ site }) => {
     return (
       <div className="fade-step">
         <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 12, borderBottom: '1px solid #eee', paddingBottom: 9 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#FF0000', color: '#fff', borderRadius: 5, width: 23, height: 16, fontSize: 9, paddingLeft: 1, lineHeight: 1 }}>▶</span>
+          <span data-dark-ok="brend: YouTube logotipi (maket)" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#FF0000', color: '#fff', borderRadius: 5, width: 23, height: 16, fontSize: 9, paddingLeft: 1, lineHeight: 1 }}>▶</span>
           <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, fontSize: 14, letterSpacing: '-0.6px', color: '#0f0f0f' }}>YouTube</span>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6, flex: '0 1 130px', maxWidth: 140, border: '1px solid #e3e3e3', borderRadius: 99, padding: '4px 10px', background: '#fff' }}>
             <div style={{ flex: 1, height: 5, background: '#ececec', borderRadius: 3 }} />
@@ -1547,7 +1560,7 @@ const RECAPS = {
         body: { uz: <>Biz saytni <b>nomi</b> bilan eslaymiz, kompyuter esa <b>raqami</b> bilan topadi. Internetdagi har bir kompyuterning o'z raqamli manzili bor — bu <b>IP manzil</b>.</>, ru: <>Мы запоминаем сайт по <b>имени</b>, а компьютер находит его по <b>числу</b>. У каждого компьютера в интернете есть свой числовой адрес — это <b>IP-адрес</b>.</> },
         vis: <RcFlow items={['🌐 youtube.com', '🔢 142.250.190.78']} /> },
       { ic: '📖', h: { uz: 'DNS — internetning telefon kitobi', ru: 'DNS — телефонная книга интернета' },
-        body: { uz: <>Telefonda «Aziza» deb qidirasiz — raqamini telefon o'zi topadi-ku? Internetda ham xuddi shunday: siz <b>domen</b> yozasiz, <b>DNS</b> uning <b>IP raqamini</b> bir zumda topib beradi.</>, ru: <>В телефоне вы ищете «Азиза» — номер телефон находит сам, верно? В интернете так же: вы вводите <b>домен</b>, а <b>DNS</b> мгновенно находит его <b>IP-номер</b>.</> },
+        body: { uz: <>Telefonda «Aziza» deb qidirasiz — raqamini telefon o'zi topadi, to'g'rimi? Internetda ham xuddi shunday: siz <b>domen</b> yozasiz, <b>DNS</b> uning <b>IP raqamini</b> bir zumda topib beradi.</>, ru: <>В телефоне вы ищете «Азиза» — номер телефон находит сам, верно? В интернете так же: вы вводите <b>домен</b>, а <b>DNS</b> мгновенно находит его <b>IP-номер</b>.</> },
         vis: <RcFlow items={['📇 «Aziza»', '📞 +998 90 123-45-67']} />,
         ask: { uz: "youtube.com yozsak, DNS bizga aniq nima qaytaradi?", ru: 'Если набрать youtube.com, что именно вернёт нам DNS?' } },
       { ic: '⚡', h: { uz: 'Uchalasini eslab qoling', ru: 'Запомните все три' },
@@ -1675,7 +1688,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const activeKey = jstep >= 0 && jstep < DONE ? steps[jstep]?.active : (jstep >= DONE ? 'you' : null);
   const cur = jstep >= 0 && jstep < DONE ? steps[jstep] : null;
   const caption = jstep < 0
-    ? { uz: "Manzil yuboring — so'rov bosib o'tadigan butun aylanma yo'lni ko'rasiz.", ru: 'Отправьте адрес — увидите весь круговой путь, который проходит запрос.' }
+    ? { uz: '', ru: '' } /* F-0926-06: idle-izoh mentor chorlovini takrorlardi (159/6) */
     : jstep >= DONE
       ? { uz: `✓ Tayyor! ${site?.name || 'Sayt'} ekraningizda ochildi — aynan shu yo'l bilan, 1 soniyada.`, ru: `✓ Готово! ${site?.name || 'Сайт'} открылся на вашем экране — этим же путём, за 1 секунду.` }
       : (steps[jstep]?.cap || '');
@@ -1718,7 +1731,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Preview title={loaded || tr({ uz: 'sayt', ru: 'сайт' })} minH={150}>
               {running ? (<p className="mono" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}><span className="gen-line">{tr({ uz: 'Yuklanmoqda', ru: 'Загрузка' })}</span></p>)
                 : loaded ? (<div className="fade-step"><SiteMock site={site} /><p className="mono small" style={{ color: T.success, margin: '10px 0 0', textAlign: 'center' }}>✓ {site?.name || loaded} {tr({ uz: 'ochildi', ru: 'открылся' })}</p></div>)
-                  : (<p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: 'Manzil yuboring — sayt shu yerda ochiladi', ru: 'Отправьте адрес — сайт откроется здесь' })}</p>)}
+                  : null /* F-0926-06: bo'sh oynadagi yo'riq olindi — chorlov mentor gapida (159/3, 159/6) */}
             </Preview>
           </div>
         </div>
@@ -1855,9 +1868,11 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="net-hud zb-gap">
             <span className={`net-slot ${hasIP ? 'on' : ''}`}><span className="net-slot-ic">📇</span>{hasIP ? <span className="net-hud-ip">{target.ip}</span> : tr({ uz: "IP-manzil yo'q", ru: 'Нет IP-адреса' })}</span>
             <span className={`net-slot ${hasPage ? 'on' : ''}`}><span className="net-slot-ic">📄</span>{hasPage ? tr({ uz: 'Sahifa ✓', ru: 'Страница ✓' }) : tr({ uz: "Sahifa yo'q", ru: 'Нет страницы' })}</span>
+            {/* F-0926-06: nishon qoidasi va «Boshidan» HUD qatorida — alohida qatorlar navigatsiya orqasiga itarardi (159/12) */}
+            {phase !== 'win' && <AchRule screen={screen} />}
             <span className="net-moves">{tr({ uz: 'Qadam:', ru: 'Шагов:' })} {moves}</span>
+            {phase !== 'win' && <button className="dlv-mini" onClick={restart} disabled={moving || (cur === 'you' && !hasIP && !hasPage)}>{tr({ uz: '↺ Boshidan', ru: '↺ Сначала' })}</button>}
           </div>
-          {phase !== 'win' && <AchRule screen={screen} />}
 
           {/* Tarmoq xaritasi */}
           <div className="net-map">
@@ -1889,10 +1904,10 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {/* Xabar / maslahat + boshqaruv */}
           {msg ? <p className={`net-msg ${msg.type}`} key={msg.t}>{msg.t}</p>
             : phase === 'play' && <p className="net-hint">{hasIP ? tr({ uz: "📇 Kartangizdagi IP'ga MOS serverni tanlang — raqamlarni oxirigacha solishtiring!", ru: '📇 Выберите сервер, СОВПАДАЮЩИЙ с IP на вашей карточке — сравните номера до конца!' }) : tr({ uz: '🟢 yonayotgan DNS tugunini bosing', ru: '🟢 нажмите на подсвеченный узел DNS' })}</p>}
-          <div className="dlv-run-row">
+          {phase === 'win' && <div className="dlv-run-row">
             <button className="dlv-mini" onClick={restart} disabled={moving || (cur === 'you' && !hasIP && !hasPage)}>{tr({ uz: '↺ Boshidan', ru: '↺ Сначала' })}</button>
-            {phase === 'win' && <button className="btn" onClick={replay} style={{ marginLeft: 'auto' }}>{tr({ uz: '↻ Boshqa sayt bilan yana', ru: '↻ Ещё раз с другим сайтом' })}</button>}
-          </div>
+            <button className="btn" onClick={replay} style={{ marginLeft: 'auto' }}>{tr({ uz: '↻ Boshqa sayt bilan yana', ru: '↻ Ещё раз с другим сайтом' })}</button>
+          </div>}
         </div>
         </Zoomable>
 
@@ -1933,11 +1948,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="urlbar-text mono" style={{ color: stage === 'fixed' ? T.success : (stage === 'failed' ? T.accent : T.ink2) }}>youtub{stage === 'fixed' ? <span className="miss-fill">e</span> : (stage === 'failed' ? <span className="miss-slot">?</span> : '')}.com</span>
             </div>
             {stage === 'idle' && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fail}>{tr({ uz: '↵ Saytni ochish', ru: '↵ Открыть сайт' })}</button>}
-            {stage === 'failed' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '🔧 Yetishmagan "e" harfini qo\'shish', ru: '🔧 Добавить недостающую букву «e»' })}</button>}
+            {stage === 'failed' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: 'Yetishmagan "e" harfini qo\'shish', ru: 'Добавить недостающую букву «e»' /* F-0926-06: uz bilan juft — ico olindi */ })}</button>}
             {stage === 'fixed' && <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>{tr({ uz: '✓ youtube.com — endi to\'g\'ri!', ru: '✓ youtube.com — теперь верно!' })}</p>}
           </div>
           <div className="col">
-            {stage === 'idle' && (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Manzilga diqqat bilan qarang. "Saytni ochish"ni bosib, nima bo\'lishini ko\'ring.', ru: 'Внимательно посмотрите на адрес. Нажмите «Открыть сайт» и посмотрите, что будет.' })}</p></div>)}
+            {/* F-0926-06: bo'sh-holat .hint ramkasi olindi — chorlov mentor gapida (159/3) */}
             {stage === 'failed' && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '❌ DNS: domen topilmadi', ru: '❌ DNS: домен не найден' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>DNS <span className="mono">youtub.com</span> ni topolmadi — bunday domen yo'q. Oxirida <b>"e"</b> harfi yetishmayapti (qizil katak ⌶). Chap tugma bilan qo'shing →</>, ru: <>DNS не нашёл <span className="mono">youtub.com</span> — такого домена нет. В конце не хватает буквы <b>«e»</b> (красная клетка ⌶). Добавьте её кнопкой слева →</> })}</p></div>)}
             {stage === 'fixed' && (<><Preview title="youtube.com" minH={130}><SiteMock site={siteInfo('youtube.com')} /></Preview><div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Xatoni topdingiz va tuzatdingiz!', ru: 'Вы нашли и исправили ошибку!' })}</p><p className="ta-sub">{tr({ uz: 'Domen to\'g\'ri bo\'lsa — DNS topadi, sayt ochiladi', ru: 'Если домен верный — DNS находит, сайт открывается' })}</p></div></>)}
           </div>
@@ -2414,7 +2429,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: '⚠️ Jonli dars yakunlandi — testni o\'zingiz davom ettiring:', ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2743,10 +2758,10 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
 
 // So'rov bosqichlari — Screen13b paket-o'yini atamalari bilan IZCHIL (Siz/Brauzer → DNS → Server → Ekran)
 const REQ_ORDER_PIECES = [
-  { id: 'browser', label: { uz: '🧑 Brauzer', ru: '🧑 Браузер' } },
-  { id: 'dns',     label: { uz: '🗂️ DNS', ru: '🗂️ DNS' } },
-  { id: 'server',  label: { uz: '🖥️ Server', ru: '🖥️ Сервер' } },
-  { id: 'screen',  label: { uz: '🖼️ Ekran', ru: '🖼️ Экран' } },
+  { id: 'browser', label: { uz: 'Brauzer', ru: 'Браузер' } },
+  { id: 'dns',     label: { uz: 'DNS', ru: 'DNS' } },
+  { id: 'server',  label: { uz: 'Server', ru: 'Сервер' } },
+  { id: 'screen',  label: { uz: 'Ekran', ru: 'Экран' } },
 ];
 
 // ===== SCREEN 13c — SO'ROV TARTIBI (mustahkamlash-gate, o'yindan keyin) =====
@@ -3139,6 +3154,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .fade-step { animation: fade-step 0.3s ease-out; }
         /* Kattalashtirish (zoom) — animatsiyani katta ekranda ko'rish */
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         /* F-0912-03 · 147-qonun: ⛶ tugmasi turgan burchakda JOY. Ilgari bu faqat
            max-width:560px ichida edi — mobilda tuzatilgan, ish stolida qolib ketgan:
@@ -3154,7 +3170,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR v15 (soyalar) === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -3177,7 +3193,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: to'liq accent fon o'rniga Soft fon + halqa (159/10) */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* === MENTOR === */
@@ -3207,7 +3223,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .htl-line { display: flex; align-items: flex-start; gap: 8px; padding: 3px 8px; margin: 0 -4px; border-radius: 6px; transition: background 0.3s ease, opacity 0.3s ease; }
         .htl-code { flex: 1; min-width: 0; white-space: pre-wrap; word-break: break-word; }
         .htl-line.dim { opacity: 0.35; }
-        .htl-line.reading { background: rgba(255,79,40,0.20); box-shadow: inset 3px 0 0 ${CODE.tag}; animation: htl-blink 0.6s ease-in-out infinite; }
+        .htl-line.reading { background: rgba(255,79,40,0.20); animation: htl-blink 0.6s ease-in-out infinite; }
         .htl-line.read { background: rgba(125,209,129,0.12); }
         .htl-tick { flex-shrink: 0; white-space: nowrap; color: ${CODE.str}; font-size: 0.82em; opacity: 0.85; }
         @keyframes htl-blink { 0%,100% { background: rgba(255,79,40,0.12); } 50% { background: rgba(255,79,40,0.26); } }
@@ -3252,11 +3268,11 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* === FRAME v15 === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 12px 15px; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-ok { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
@@ -3279,8 +3295,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .ps-q { background: ${T.accentSoft}; color: ${T.accent}; }
         .ps-a { background: ${T.successSoft}; color: ${T.success}; }
         .ps-text { font-size: clamp(14px,1.7vw,16px); line-height: 1.5; color: ${T.ink}; }
-        .solve-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); padding: 10px 18px; border-radius: 10px; border: none; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.3); }
-        .solve-btn:hover:not(:disabled) { background: ${T.accent}; }
         .ye-solved, .ye-stack { display: flex; flex-direction: column; gap: 12px; }
         .mu-mini { opacity: 0.7; }
         .idea { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 0; }
@@ -3297,7 +3311,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
+        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
 
         /* === RECIPE === */
@@ -3346,7 +3360,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .ck.active { background: ${T.accent}; }
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .sk-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 4px 9px; border-radius: 6px; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
 
         /* === HUG (teg o'raydi) === */
@@ -3369,7 +3382,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .hl-row { display: flex; align-items: center; gap: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; transition: all 0.18s; background: ${T.paper}; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); }
         .hl-row:hover { box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2); }
         .hl-row.on { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); background: ${T.accentSoft}; }
-        .hl-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
         .hl-text { font-family: 'Georgia, serif'; font-weight: 700; color: ${T.ink}; line-height: 1; }
         .hl-tag { margin-left: auto; font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; background: ${T.accentSoft}; padding: 3px 9px; border-radius: 99px; }
         .hl-note { background: ${T.paper}; border-radius: 10px; padding: 12px 15px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); animation: fade-step 0.3s; }
@@ -3379,7 +3391,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         /* === MCARD (matn) === */
         .mcard { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .mc-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .mc-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 9px; border-radius: 5px; }
         .mc-label { font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .mc-demo { font-family: 'Georgia, serif'; font-size: clamp(18px,2.5vw,24px); color: ${T.ink}; padding: 8px 0; }
         .w-anim { display: inline-block; transition: all 0.3s; } .w-bold { font-weight: 800; } .w-ital { font-style: italic; }
@@ -3390,7 +3401,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .mc-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink2}; background: ${T.bg}; padding: 8px 11px; border-radius: 8px; margin: 0; } .mc-code .tg { color: ${CODE.tag}; }
 
         /* === WHEN / LISTS === */
-        .when { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 10px; padding: 11px 15px; }
+        .when { background: ${T.accentSoft}; border-radius: 10px; padding: 11px 15px; }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
         .site-brand { display: inline-flex; align-items: center; gap: 8px; } .site-logo { width: 22px; height: 22px; border-radius: 6px; background: ${T.accent}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 13px; } .site-name { font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; font-size: 14px; }
         .site-nav { display: inline-flex; gap: 11px; font-family: 'Manrope'; font-size: 12px; color: ${T.ink2}; }
@@ -3544,7 +3555,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .tegbuild-wrap.on .tb-bracket { opacity: 1; }
         .tb-brace { width: 150px; max-width: 70%; height: 9px; border: 1.5px solid ${T.ink3}; border-top: none; border-radius: 0 0 9px 9px; }
         .tb-brace-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; }
-        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
         /* SCREEN 8 — Sarlavhalar (gazeta -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
@@ -3638,7 +3649,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .cs-l { font-family: 'Manrope'; font-size: 11px; font-weight: 600; color: ${T.ink2}; text-align: center; line-height: 1.2; }
         .cs-wire { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 96px; justify-content: center; }
         .cs-track { position: relative; height: 36px; }
-        .cs-track::before { content: ''; position: absolute; left: 2px; right: 2px; top: 50%; height: 2px; transform: translateY(-50%); background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.22) 0 6px, transparent 6px 12px); border-radius: 2px; }
+        .cs-track::before { content: ''; position: absolute; left: 2px; right: 2px; top: 50%; height: 2px; transform: translateY(-50%); background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.22) 0 6px, transparent 6px 12px); border-radius: 2px; } /* kesik-ok: so'rov yuradigan sim — mexanika, bezak emas */
         .cs-chip { position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 3px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 9.5px; padding: 3px 7px; border-radius: 99px; white-space: nowrap; box-shadow: 0 4px 11px -4px rgba(${T.shadowBase},0.3); transition: left 1.05s cubic-bezier(.5,0,.3,1), opacity 0.3s ease; }
         .cs-chip-req { left: 0; background: ${T.accentSoft}; color: ${T.accent}; }
         .cs-chip-req.sent { left: calc(100% - 56px); }
@@ -3657,7 +3668,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* === REJA — AYLANA JONLI SAYOHAT (Screen1) === */
         .jr { display: flex; flex-direction: column; align-items: center; gap: clamp(12px,2vw,16px); background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,28px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .jr-ring { position: relative; width: min(300px, 100%); aspect-ratio: 1 / 1; margin: 2px auto; }
+        .jr-ring { position: relative; width: min(236px, 100%); /* F-0926-06: 300 dan ixchamroq — tugma navigatsiya orqasida qolardi (159/12) */ aspect-ratio: 1 / 1; margin: 2px auto; }
         /* Sim (15-page): desktopda skrol bo'lmasligi uchun animatsiya ~10% kichikroq */
         .jr-sim { gap: clamp(8px,1.6vw,12px); padding: clamp(12px,2.4vw,20px); }
         .jr-sim .jr-ring { width: min(186px, 100%); }
@@ -3685,6 +3696,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .jr-cap { font-family: 'Manrope'; font-weight: 600; font-size: clamp(14px,1.9vw,16.5px); color: ${T.ink}; text-align: center; min-height: 44px; display: flex; align-items: center; justify-content: center; padding: 0 6px; animation: fade-step 0.4s ease-out; }
         .jr-cap.done { color: ${T.success}; }
         .jr-dots { display: flex; justify-content: center; gap: 7px; }
+        .jr-foot { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; } /* F-0926-06: nuqtalar + tugma bir qatorda */
         .jr-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(${T.shadowBase},0.18); transition: all 0.3s; }
         .jr-dot.fill { background: ${T.success}; }
         .jr-dot.cur { background: ${T.accent}; transform: scale(1.4); }
@@ -3746,7 +3758,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dlv-node.on .dlv-node-l, .dlv-node.reached .dlv-node-l { color: ${T.ink}; }
         .dlv-node-note { font-family: 'Manrope'; font-size: 9.5px; color: ${T.ink3}; text-align: center; line-height: 1.2; min-height: 22px; }
         .dlv-node.reached .dlv-node-note { color: ${T.success}; font-weight: 600; }
-        .dlv-link { flex: 1 1 8px; max-width: 40px; height: 2px; margin-top: 28px; border-radius: 2px; background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.25) 0 5px, transparent 5px 10px); }
+        .dlv-link { flex: 1 1 8px; max-width: 40px; height: 2px; margin-top: 28px; border-radius: 2px; background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.25) 0 5px, transparent 5px 10px); } /* kesik-ok: bosqichlar orasidagi yo'l — mexanika, bezak emas */
         .dlv-packet { position: absolute; top: -8px; transform: translateX(-50%); white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(10px,1.4vw,12.5px); padding: 5px 10px; border-radius: 99px; color: #fff; box-shadow: 0 7px 18px -4px rgba(${T.shadowBase},0.4); transition: left 0.6s cubic-bezier(.45,0,.3,1), background 0.3s ease; z-index: 5; }
         .dlv-packet.req { background: ${T.accent}; }
         .dlv-packet.ip { background: ${T.blue}; }
@@ -3790,7 +3802,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dlv-open-lbl b { color: ${T.ink}; }
         .dlv-browser { width: 100%; max-width: 470px; animation: dlv-open 0.55s cubic-bezier(.34,1.3,.4,1); }
         @keyframes dlv-open { 0% { opacity: 0; transform: translateY(16px) scale(0.93); } 100% { opacity: 1; transform: none; } }
-        .dlv-win { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 600px; background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 13px 16px; }
+        .dlv-win { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 600px; background: ${T.successSoft}; border-radius: 12px; padding: 13px 16px; }
         .dlv-win-ic { font-size: 24px; line-height: 1; flex-shrink: 0; }
         .dlv-win-h { color: ${T.success}; }
         .dlv-win-b { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; line-height: 1.5; margin: 0; }
@@ -3802,12 +3814,14 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* === O'YIN: TARMOQ XARITASI (Screen13b) === */
         .net-hud { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .net-hud .ach-rule { flex: 1 1 220px; margin: 0; text-align: center; } /* F-0926-06: nishon qoidasi HUD qatorida */
+        .net-hud .ach-rule + .net-moves { margin-left: 0; }
         .net-slot { display: inline-flex; align-items: center; gap: 6px; font-family: 'Manrope'; font-weight: 700; font-size: 11px; padding: 5px 11px; border-radius: 99px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.12); transition: all 0.3s; }
         .net-slot.on { color: ${T.success}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px rgba(31,122,77,0.5); }
         .net-slot.bad { color: ${T.accent}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.5); }
         .net-slot-ic { font-size: 14px; }
         .net-moves { margin-left: auto; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink3}; }
-        .net-map { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 330px; background: radial-gradient(circle at 50% 45%, #FFFDF9, ${T.paper}); border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.06); overflow: hidden; }
+        .net-map { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 300px; /* F-0926-06: 330 dan — pastki qator navigatsiya orqasida qolardi (159/12) */ background: radial-gradient(circle at 50% 45%, #FFFDF9, ${T.paper}); border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.06); overflow: hidden; }
         .net-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
         .net-edge { stroke: rgba(${T.shadowBase},0.18); stroke-width: 2.5; fill: none; transition: stroke 0.3s; }
         .net-edge.live { stroke: ${T.accent}; stroke-width: 3; stroke-dasharray: 6 5; animation: net-dash 0.7s linear infinite; }
@@ -3905,6 +3919,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .pl-page { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.2); }
         .pl-pop { animation: htl-pop 0.5s cubic-bezier(.34,1.4,.4,1) both; }
         .pl-controls { display: flex; justify-content: center; margin-top: 2px; }
+        .pl-foot { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; } /* F-0926-06: izoh + tugma yonma-yon (159/12) */
+        .pl-foot > .pl-pausebubble { flex: 1 1 360px; margin: 0; }
+        .pl-foot > .pl-controls { margin-top: 0; }
         .pl-pausebubble { align-items: flex-start; }
         .pl-pausebubble .mentor-name { color: ${T.accent}; }
         .pl-pausebubble .mentor-msg { background: ${T.accentSoft}; box-shadow: 0 6px 16px -6px rgba(255,79,40,0.28); }
@@ -3921,7 +3938,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .zi-node.focus .zi-node-l { color: ${T.accent}; }
         .zi-lens { position: absolute; top: -7px; right: -9px; font-size: 15px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2)); animation: zi-lens 1.6s ease-in-out infinite; }
         @keyframes zi-lens { 0%,100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.25) rotate(-8deg); } }
-        .zi-wire { position: relative; width: clamp(26px,8vw,58px); height: 2px; background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.28) 0 5px, transparent 5px 10px); }
+        .zi-wire { position: relative; width: clamp(26px,8vw,58px); height: 2px; background: repeating-linear-gradient(90deg, rgba(${T.shadowBase},0.28) 0 5px, transparent 5px 10px); } /* kesik-ok: server → brauzer → ekran simi — mexanika, bezak emas */
         .zi-pkt { position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 13px; animation: zi-travel 2.4s ease-in-out infinite; }
         @keyframes zi-travel { 0% { left: -4px; opacity: 0; } 15% { opacity: 1; } 62% { left: calc(100% - 6px); opacity: 1; } 80%,100% { left: calc(100% - 6px); opacity: 0; } }
         .zi-label { font-family: 'Manrope'; font-weight: 600; font-size: clamp(11.5px,1.6vw,13px); color: ${T.ink2}; text-align: center; margin: 0; }
@@ -3933,9 +3950,9 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -4239,7 +4256,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -4249,10 +4266,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* Mentor statistikasidagi verdikt (natija ochilgach) */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -4291,7 +4308,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

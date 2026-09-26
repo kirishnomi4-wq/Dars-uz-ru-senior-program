@@ -3173,6 +3173,14 @@ emoji ≈170–220; 5–6-Modul texnik darslarida `ico:` qatlami ustiga qo'shili
    oq fon + `border: 2px solid accent` + accent matn + «⠿» ushlagich (halqa `box-shadow` bilan EMAS — `tap-hint`
    animatsiyasi `box-shadow`ni almashtirib halqani o'chiradi). Qadam-raqami doirasi (`.rcp-n`) — `accentSoft` fon +
    accent raqam + 1.5px halqa. Rangli belgilar qatori (5 bo'lim) — `saturate(0.55)`, ranglar farqi qoladi.
+16. **Yonma-yon qutilar bir balandlikda — imkon bo'lsa** (F-0926-06, foydalanuvchi 27.09: «boshlanishini bir xil balandlik
+   qilaylik … istisno variantlar ham bo'lishi mumkin, majburiy emas, vaziyatdan kelib chiqib»). Tepasi bir chiziqdagi
+   o'xshash juft (kod-qutisi ↔ Eslatma) — pastki cheti ham bir chiziqda: ustunlar alohida bo'lsa subgrid
+   (`.split.eqh > .col { grid-template-rows: subgrid }`, faqat keng ekranda), holat o'zgarib qutilardan biri baland
+   bo'lsa modifikator olinadi (CssLesson1 s3: faqat boshlang'ich holatda). Istisno: biri ikkinchisidan 2× baland —
+   cho'zish bo'sh quti yasaydi (13-band). O'lchov: page-audit **EQH** (nomzod).
+17. **Javobni oldindan aytadigan yozuv yo'q** (F-0926-06 pilot). Savol ekranida javob tanlashdan OLDIN ko'rinadigan
+   izoh/yozuv to'g'ri javobni aytmaydi (CssLesson1 s0: «✨ CSS qo'shilgan…» — olindi).
 
 **Darvoza:** `npm run lint:dizayn -- <fayl>` (D1 stripe · D2 kesik 🔴, D3–D6 🟡, emoji ⚪ o'lchov) + `lint:dark` 0.
 **Codemodlar** (quruq yurish → `--write`): `scripts/codemod-stripe.mjs` · `codemod-dark-btn.mjs` ·

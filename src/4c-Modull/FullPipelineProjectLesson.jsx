@@ -104,6 +104,15 @@ const Split = ({ children }) => <div className="split">{children}</div>;
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
+  // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
+  const zref = useRef(null);
+  const [hasContent, setHasContent] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el) return;
+    const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
+    const c = kids.some(n => (n.textContent || '').trim().length > 0 || (n.nodeType === 1 && n.querySelector('img,svg,canvas,input,textarea,video,iframe,button')));
+    if (c !== hasContent) setHasContent(c);
+  });
   useEffect(() => {
     if (!big) return;
     const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
@@ -114,8 +123,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -349,7 +358,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
         <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
@@ -389,11 +398,11 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс явно не понял эту тему. Перед тем как идти дальше, стоит коротко её повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Разбор ещё раз — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Разбор ещё раз — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите тему, прежде чем идти дальше.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Быстрое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Быстрое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
           </div>
@@ -813,7 +822,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval qo'lda tekshirishni bosing ←", ru: 'Сначала нажмите проверку вручную ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
               ? tr({ uz: <>Aynan! Bugun 5 nuqtani <b>bitta LENTA</b>ga birlashtiramiz, jurnal o'qishni va eski yukni qaytarishni o'rganamiz — va TABLONI o'z repongizga qo'yasiz.</>, ru: <>Именно! Сегодня соединим 5 точек в <b>один КОНВЕЙЕР</b>, научимся читать журнал и возвращать старый багаж — а ТАБЛО вы повесите в свой репозиторий.</> })
               : tr({ uz: <>Qo'lda 5 buyruq — bittasini unutsangiz, yuk tekshirilmay uchadi; faqat Uchirishni tekshirsangiz — avvalgi 4 nuqta ko'r qoladi. Shuning uchun bugun 5 nuqtani <b>bitta LENTA</b>ga birlashtiramiz — push qilsangiz, qolgani o'zi ishlaydi.</>, ru: <>Пять команд вручную — забудете одну, и багаж улетит непроверенным; проверять только Взлёт — значит оставить 4 точки слепыми. Поэтому сегодня соединим 5 точек в <b>один КОНВЕЙЕР</b> — сделали push, а дальше всё работает само.</> })}</p>}
@@ -954,7 +962,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.cmd}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Nuqtani bosing ←', ru: 'Нажмите на точку ←' })}</p></div>}
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "on: push (START SIGNALI) → 5 nuqta ketma-ket. Endi shuni o'zingiz yig'asiz.", ru: 'on: push (СТАРТ-СИГНАЛ) → 5 точек по очереди. Теперь вы соберёте это сами.' })}</p></div>}
           </Col>
         </div>
@@ -981,10 +989,10 @@ const Screen5 = (props) => (
 
 // ===== SCREEN 6 — CASE: MARKAZIY — LENTA QURUVCHISI =====
 const CONSEQ = [
-  { id: 'skip', ico: '🕳️', t: { uz: "Nuqta tushib qolsa", ru: 'Если точка выпала' }, d: { uz: "Masalan O'lcham ramkasi umuman yozilmasa — qoidaga zid kod hech kim tomonidan tutilmay to'g'ridan-to'g'ri o'tib ketadi.", ru: 'Например, Габарит-рамка вообще не записана — код, нарушающий правила, никто не поймает, он проскочит напрямую.' } },
-  { id: 'order', ico: '🔀', t: { uz: 'Tartib teskari bo\'lsa', ru: 'Если порядок перепутан' }, d: { uz: "Uchirish Skanerdan OLDIN tursa — tekshirilmagan buzuq yuk yo'lovchiga chiqib ketishi mumkin.", ru: 'Если Взлёт стоит ДО Сканера — непроверенный сломанный багаж может улететь прямо к пассажиру.' } },
-  { id: 'trigger', ico: '🚦', t: { uz: "on: yozilmasa", ru: 'Если on: не записан' }, d: { uz: "START SIGNALI bo'lmasa, lenta push qilinganda ham umuman aylanmaydi — hech narsa ishga tushmaydi.", ru: 'Без СТАРТ-СИГНАЛА конвейер не тронется даже после push — вообще ничего не запустится.' } },
-  { id: 'secret', ico: '🔐', t: { uz: 'Seyf ulanmasa', ru: 'Если СЕЙФ не подключён' }, d: { uz: "Uchirish nuqtasiga maxfiy kalit ulanmasa, deploy 401 xatosi bilan yiqiladi — token yo'q.", ru: 'Если к точке Взлёт не подключён секретный ключ, deploy падает с ошибкой 401 — токена нет.' } }
+  { id: 'skip', t: { uz: "Nuqta tushib qolsa", ru: 'Если точка выпала' }, d: { uz: "Masalan O'lcham ramkasi umuman yozilmasa — qoidaga zid kod hech kim tomonidan tutilmay to'g'ridan-to'g'ri o'tib ketadi.", ru: 'Например, Габарит-рамка вообще не записана — код, нарушающий правила, никто не поймает, он проскочит напрямую.' } },
+  { id: 'order', t: { uz: 'Tartib teskari bo\'lsa', ru: 'Если порядок перепутан' }, d: { uz: "Uchirish Skanerdan OLDIN tursa — tekshirilmagan buzuq yuk yo'lovchiga chiqib ketishi mumkin.", ru: 'Если Взлёт стоит ДО Сканера — непроверенный сломанный багаж может улететь прямо к пассажиру.' } },
+  { id: 'trigger', t: { uz: "on: yozilmasa", ru: 'Если on: не записан' }, d: { uz: "START SIGNALI bo'lmasa, lenta push qilinganda ham umuman aylanmaydi — hech narsa ishga tushmaydi.", ru: 'Без СТАРТ-СИГНАЛА конвейер не тронется даже после push — вообще ничего не запустится.' } },
+  { id: 'secret', t: { uz: 'Seyf ulanmasa', ru: 'Если СЕЙФ не подключён' }, d: { uz: "Uchirish nuqtasiga maxfiy kalit ulanmasa, deploy 401 xatosi bilan yiqiladi — token yo'q.", ru: 'Если к точке Взлёт не подключён секретный ключ, deploy падает с ошибкой 401 — токена нет.' } }
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1041,7 +1049,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {CONSEQ.map(c => (
                 <button key={c.id} className={`vcard ${c.id === firstUnseenC ? 'tap-hint' : ''}`} onClick={() => tapC(c.id)} style={{ boxShadow: activeC === c.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
-                  <span className="role-ico">{c.ico}</span>
+                  
                   <span className="vlbl">{tr(c.t)}</span>
                   <span className={`vseen ${seenC.has(c.id) ? 'tick' : ''}`} style={{ color: seenC.has(c.id) ? T.success : T.ink3 }}>{seenC.has(c.id) ? '✓' : ''}</span>
                 </button>
@@ -1049,7 +1057,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {curC
               ? <div className="sk-info fade-step" key={activeC}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(curC.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Ssenariyni bosing ←', ru: 'Нажмите на сценарий ←' })}</p></div>}
+              : null}
           </Col>
           <Col>
             {!seenAll
@@ -1112,8 +1120,8 @@ const Screen7 = (props) => (
 
 // ===== SCREEN 8 — sinov reysi vs haqiqiy reys =====
 const FLIGHTS = [
-  { id: 'staging', ico: '🛫', t: { uz: 'Sinov reysi', ru: 'Пробный рейс' }, tag: 'staging', d: { uz: "Yangi versiya avval shu yerda tekshiriladi. Haqiqiy yo'lovchi yo'q — xato chiqsa hech kimga zarar yetmaydi.", ru: 'Новая версия сначала проверяется здесь. Настоящих пассажиров нет — если вылезет ошибка, никто не пострадает.' } },
-  { id: 'prod', ico: '🌍', t: { uz: 'Haqiqiy reys', ru: 'Настоящий рейс' }, tag: 'production', d: { uz: "Sinov reysi yashil bo'lgach, xuddi shu yuk shu yerga chiqadi. Endi uni chinakam foydalanuvchi — yo'lovchi — ko'radi.", ru: 'Как только пробный рейс стал зелёным, тот же багаж выходит сюда. Теперь его видит реальный пользователь — пассажир.' } }
+  { id: 'staging', t: { uz: 'Sinov reysi', ru: 'Пробный рейс' }, tag: 'staging', d: { uz: "Yangi versiya avval shu yerda tekshiriladi. Haqiqiy yo'lovchi yo'q — xato chiqsa hech kimga zarar yetmaydi.", ru: 'Новая версия сначала проверяется здесь. Настоящих пассажиров нет — если вылезет ошибка, никто не пострадает.' } },
+  { id: 'prod', t: { uz: 'Haqiqiy reys', ru: 'Настоящий рейс' }, tag: 'production', d: { uz: "Sinov reysi yashil bo'lgach, xuddi shu yuk shu yerga chiqadi. Endi uni chinakam foydalanuvchi — yo'lovchi — ko'radi.", ru: 'Как только пробный рейс стал зелёным, тот же багаж выходит сюда. Теперь его видит реальный пользователь — пассажир.' } }
 ];
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(FLIGHTS.map(f => f.id)) : new Set());
@@ -1138,7 +1146,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {FLIGHTS.map(f => (
                 <button key={f.id} className={`vcard ${f.id === firstUnseen ? 'tap-hint' : ''}`} onClick={() => tap(f.id)} style={{ boxShadow: active === f.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
-                  <span className="role-ico">{f.ico}</span>
+                  
                   <span className="vlbl">{tr(f.t)}</span>
                   <span className="role-r mono">{f.tag}</span>
                   <span className={`vseen ${seen.has(f.id) ? 'tick' : ''}`} style={{ color: seen.has(f.id) ? T.success : T.ink3 }}>{seen.has(f.id) ? '✓' : ''}</span>
@@ -1148,8 +1156,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.ico}</span>{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.tag}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Reysni bosing ←', ru: 'Нажмите на рейс ←' })}</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.tag}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
+              : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Sinov reysi → xavfsiz tekshiruv. Haqiqiy reys → yo'lovchi qo'lida. Ikkalasi ham lenta orqali avtomatik ishlaydi.", ru: 'Пробный рейс → безопасная проверка. Настоящий рейс → у пассажира. Оба работают автоматически, через конвейер.' })}</p></div>}
           </Col>
         </div>
@@ -1176,9 +1184,9 @@ const Screen9 = (props) => (
 
 // ===== SCREEN 10 — CASE: ESKI YUKNI QAYTARISH =====
 const VERSIONS = [
-  { id: 'v1', ico: '✅', t: { uz: 'v1 — narxlash tuzatildi', ru: 'v1 — исправлено ценообразование' }, w: { uz: '5 kun oldin', ru: '5 дней назад' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
-  { id: 'v2', ico: '✅', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, w: { uz: 'kecha', ru: 'вчера' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
-  { id: 'v3', ico: '🔴', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, w: { uz: 'bugun 14:20', ru: 'сегодня 14:20' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
+  { id: 'v1', t: { uz: 'v1 — narxlash tuzatildi', ru: 'v1 — исправлено ценообразование' }, w: { uz: '5 kun oldin', ru: '5 дней назад' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
+  { id: 'v2', t: { uz: "v2 — yangi filtr qo'shildi", ru: 'v2 — добавлен новый фильтр' }, w: { uz: 'kecha', ru: 'вчера' }, tag: { uz: 'yashil', ru: 'зелёная' }, ok: true },
+  { id: 'v3', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, w: { uz: 'bugun 14:20', ru: 'сегодня 14:20' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
 ];
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1214,7 +1222,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button key={v.id} className="vcard" disabled={solved} onClick={() => pick(v.id)} style={{
                 boxShadow: isCorrectPick ? `inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25)` : (isPicked && !solved ? `inset 0 0 0 1.5px ${T.accent}` : undefined)
               }}>
-                <span className="role-ico">{v.ico}</span>
+                
                 <span className="vlbl">{tr(v.t)} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(v.w)}</span></span>
                 <span className="role-r mono">{tr(v.tag)}</span>
               </button>
@@ -1333,7 +1341,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
             {passed
               ? <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}><Belt statuses={ALL_PASS} /><Tablo ok /></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "1-joy: lentani ishga tushiradigan hodisa nomi. 2-joy: SEYFdan o'qish yozuvi.", ru: '1-й пропуск: имя события, запускающего конвейер. 2-й: запись чтения из СЕЙФА.' })}</p></div>}
+              : null}
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Tabriklaymiz! To'liq lenta tayyor: 5 nuqta, START SIGNALI va SEYFdagi maxfiy kalit bilan. Har push'da o'zi ishlaydi.", ru: '✓ Поздравляем! Полный конвейер готов: 5 точек, СТАРТ-СИГНАЛ и секретный ключ из СЕЙФА. Теперь он работает сам при каждом push.' })}</p></div>}
           </Col>
         </div>
@@ -1680,7 +1688,7 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "To'liq lentada 5 nuqta qaysi tartibda ishlaydi?", ru: 'В каком порядке работают 5 точек полного конвейера?' }, opts: [{ uz: "Uchirish, so'ng Yig'ish, Skaner, O'rash, O'lcham ramkasi", ru: 'Взлёт, затем Сборка, Сканер, Упаковка, Габарит-рамка' }, { uz: "Skaner, Yig'ish, O'rash, O'lcham ramkasi, Uchirish", ru: 'Сканер, Сборка, Упаковка, Габарит-рамка, Взлёт' }, { uz: "O'rash, Skaner, Yig'ish, Uchirish, O'lcham ramkasi", ru: 'Упаковка, Сканер, Сборка, Взлёт, Габарит-рамка' }, { uz: "Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish", ru: 'Сборка, Сканер, Габарит-рамка, Упаковка, Взлёт' }], correct: 3 },
   { q: { uz: "`on: push` yozuvi lentada nima vazifani bajaradi?", ru: 'Что делает запись `on: push` в конвейере?' }, opts: [{ uz: "Push bo'lganda lentani avtomatik ishga tushiradi", ru: 'Автоматически запускает конвейер при push' }, { uz: "Testlarni doimiy ravishda butunlay o'chirib qo'yadi", ru: 'Навсегда полностью отключает тесты' }, { uz: 'Maxfiy kalitni doimiy saqlab turadi', ru: 'Постоянно хранит секретный ключ' }, { uz: "Faylni to'g'ridan-to'g'ri serverga nusxalaydi", ru: 'Копирует файл напрямую на сервер' }], correct: 0 },
-  { q: { uz: "📐 O'lcham ramkasi nuqtasi lentadan olib tashlansa nima bo'ladi?", ru: 'Что будет, если убрать с конвейера точку 📐 Габарит-рамка?' }, opts: [{ uz: 'Lenta hech qanday ogohlantirishsiz ishga tushmay qoladi', ru: 'Конвейер перестанет запускаться без всякого предупреждения' }, { uz: 'Testlar ikki marta ketma-ket ishga tushib ketadi', ru: 'Тесты начнут запускаться дважды подряд' }, { uz: 'Kod qoidaga zid yozilsa ham hech kim tutmaydi', ru: 'Даже если код нарушает правила, его никто не поймает' }, { uz: "Yuk hech qachon avtomatik ravishda o'ralmay qoladi", ru: 'Багаж больше никогда не будет упаковываться автоматически' }], correct: 2 },
+  { q: { uz: "O'lcham ramkasi nuqtasi lentadan olib tashlansa nima bo'ladi?", ru: 'Что будет, если убрать с конвейера точку 📐 Габарит-рамка?' }, opts: [{ uz: 'Lenta hech qanday ogohlantirishsiz ishga tushmay qoladi', ru: 'Конвейер перестанет запускаться без всякого предупреждения' }, { uz: 'Testlar ikki marta ketma-ket ishga tushib ketadi', ru: 'Тесты начнут запускаться дважды подряд' }, { uz: 'Kod qoidaga zid yozilsa ham hech kim tutmaydi', ru: 'Даже если код нарушает правила, его никто не поймает' }, { uz: "Yuk hech qachon avtomatik ravishda o'ralmay qoladi", ru: 'Багаж больше никогда не будет упаковываться автоматически' }], correct: 2 },
   { q: { uz: "Tartib teskari bo'lib, ✈️ Uchirish 🔍 Skanerdan OLDIN tursa nima bo'ladi?", ru: 'Что будет, если порядок перепутан и ✈️ Взлёт стоит ДО 🔍 Сканера?' }, opts: [{ uz: "Hech narsa o'zgarmaydi, natija bir xil", ru: 'Ничего не изменится, результат тот же' }, { uz: "Tekshirilmagan buzuq yuk yo'lovchiga chiqib ketadi", ru: 'Непроверенный сломанный багаж улетит к пассажиру' }, { uz: "Lenta buyruqni o'zi to'g'irlab qo'yadi", ru: 'Конвейер сам исправит команду' }, { uz: 'Faqat jurnalga ogohlantirish yoziladi, lekin deploy baribir bo\'lmaydi', ru: 'В журнал запишется предупреждение, но deploy всё равно не случится' }], correct: 1 },
   { q: { uz: 'Maxfiy kalitni ci.yml faylida qanday ishlatamiz?', ru: 'Как мы используем секретный ключ в файле ci.yml?' }, opts: [{ uz: '`${{ secrets.NOM }}` orqali SEYFdan xavfsiz olamiz', ru: 'Безопасно берём из СЕЙФА через `${{ secrets.NOM }}`' }, { uz: "Kodning o'zi ichiga doimiy o'zgaruvchi sifatida qo'shib qo'yamiz", ru: 'Вписываем прямо в код как постоянную переменную' }, { uz: "Har safar qo'lda terib, push oldidan yuboramiz", ru: 'Каждый раз набираем вручную и отправляем перед push' }, { uz: "To'g'ridan-to'g'ri ochiq matn sifatida yozamiz", ru: 'Пишем открытым текстом напрямую' }], correct: 0 },
   { q: { uz: 'Sinov reysi (staging) nima uchun kerak?', ru: 'Зачем нужен пробный рейс (staging)?' }, opts: [{ uz: "Yo'lovchilar sonini hisoblash uchun", ru: 'Чтобы считать количество пассажиров' }, { uz: "Lentani butunlay to'xtatish uchun", ru: 'Чтобы полностью остановить конвейер' }, { uz: "Maxfiy kalitlarni doimiy ravishda ochiq ko'rsatish uchun", ru: 'Чтобы постоянно показывать секретные ключи открыто' }, { uz: "Haqiqiy yo'lovchisiz, xatolarni oldindan sinash uchun", ru: 'Чтобы заранее проверять ошибки без настоящих пассажиров' }], correct: 3 },
@@ -1957,7 +1965,7 @@ function QuizArena({ live, onClose, startSolo }) {
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
           <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2408,17 +2416,18 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; animation: ow-breathe 1.9s ease-in-out infinite; }
         @keyframes ow-breathe { 0%,100% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3); } 50% { box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 30px -6px rgba(1,154,203,0.5); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         .vcard { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .vcard:hover:not(:disabled) { transform: translateY(-1px); }
         .vcard:disabled { cursor: default; }
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
         .vseen { margin-left: auto; font-weight: 700; }
-        .role-ico { font-size: 20px; flex-shrink: 0; } .role-r { font-size: 11.5px; color: ${T.ink2}; font-weight: 600; }
+        .role-r { font-size: 11.5px; color: ${T.ink2}; font-weight: 600; }
 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2456,9 +2465,9 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .dot { width: 7px; height: 7px; border-radius: 50%; background: ${T.accent}; box-shadow: 0 0 8px rgba(255,79,40,0.55); }
         .progress-track { height: 3px; background: rgba(167,166,162,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.24); }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.dangerSoft}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.24); }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
         /* 🔓 klapan ipuchasi (m4-08 bilan bir xil): .bhint — ipucha, .bhint.calm — «Davom etish» ochildi */
         .bhint.bhint { margin: 0; align-self: flex-start; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 14px; box-shadow: inset 0 0 0 1.5px ${T.accent}33; }
@@ -2507,7 +2516,6 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
 
         /* LENTA (Belt) */
         .pipe-track { position: relative; padding-top: 20px; }
-        .pipe-track::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 3px; border-radius: 99px; background-image: repeating-linear-gradient(90deg, ${T.ink3}70 0 9px, transparent 9px 19px); background-size: 38px 100%; animation: belt-scroll 1s linear infinite; opacity: 0.55; }
         @keyframes belt-scroll { to { background-position: -38px 0; } }
         .pipe-track:has(.pipe-step.fail)::after { animation-play-state: paused; opacity: 0.25; }
         .pipe-suitcase { position: absolute; top: 0; font-size: 16px; transform: translateX(-50%); transition: left 0.6s cubic-bezier(.4,0,.2,1); z-index: 2; filter: drop-shadow(0 3px 5px rgba(${T.shadowBase},0.35)); }
@@ -2651,7 +2659,7 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
@@ -2935,9 +2943,9 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
 
         /* ===== 📖 QAYTA TUSHUNTIRISH (recap) ===== */

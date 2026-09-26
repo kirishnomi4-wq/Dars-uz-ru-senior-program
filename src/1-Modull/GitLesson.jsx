@@ -728,7 +728,7 @@ function DoSteps({ screen, storedAnswer, onAnswer, steps, taskLabel, practice, o
     <div className="dsx fade-up delay-1">
       <div className="dsx-head">
         <span className="dsx-lbl">✅ {tr({ uz: 'Kompyuteringizda bajaring', ru: 'Выполните на своём компьютере' })}</span>
-        <span className={`dsx-count ${allDone ? 'ok' : ''}`}>{done.size}/{steps.length}</span>
+        {/* F-0926-06: «N/4» sanog'i olindi — holatni qadam-belgilari ko'rsatadi (159/7) */}
       </div>
       {steps.map((s, i) => {
         const on = done.has(s.id);
@@ -817,14 +817,14 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Kompyuteringiz buzilsa, yozgan kodingiz <span className="italic" style={{ color: T.accent }}>qayerda</span> qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Где</span> останется написанный вами код, если компьютер сломается?</> })}</h1>
-        <Mentor>{tr({ uz: <>Pastdagi uch javobdan bittasini tanlang.</>, ru: <>Выберите один из трёх ответов ниже.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Uch javobdan bittasini tanlang.</>, ru: <>Выберите один из трёх ответов.</> })}</Mentor>{/* F-0926-06: joy so'zi «Pastdagi» olindi (159/11) */}
         <Split>
           <Col>
             <p className="eyebrow fade-up delay-1" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha qaysi biri?', ru: 'Как думаете, какой?' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Kodning internetdagi nusxasi bo'lsa, uni istalgan kompyuterga qaytarib olish mumkin. Nusxa saqlanadigan joy — <b>GitHub</b>.</>, ru: <>Ответ — второй. Если у кода есть копия в интернете, её можно вернуть на любой компьютер. Место, где хранится копия, — <b>GitHub</b>.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Nusxa saqlanadigan joy — <b>GitHub</b>.</>, ru: <>Ответ — второй. Место, где хранится копия, — <b>GitHub</b>.</> })}</p> /* F-0926-06: izoh variant matnini qaytarmaydi (159/11) */}
           </Col>
           <Col>
             <p className="flow-label fade-up delay-1">{tr({ uz: 'Bitta joydagi fayllar', ru: 'Файлы в одном месте' })}</p>
@@ -993,7 +993,7 @@ const GH_STEPS = [
   { id: 'site', nav: { uz: 'github.com ni oching', ru: 'откройте github.com' },
     t: { uz: 'Brauzerda `github.com` saytini oching', ru: 'Откройте в браузере сайт `github.com`' },
     d: { uz: "Bu — kod saqlanadigan sayt, ro'yxatdan o'tish bepul.", ru: 'Это сайт, где хранится код, регистрация бесплатная.' },
-    res: () => <Preview title="github.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ fontSize: 26 }}>🐙</span><span style={{ fontFamily: 'Georgia, serif', fontSize: 20 }}>GitHub</span><span style={{ background: T.ink, color: '#fff', borderRadius: 8, padding: '7px 14px', fontWeight: 700, fontSize: 13 }}>Sign up</span></div></Preview> },
+    res: () => <Preview title="github.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ fontSize: 26 }}>🐙</span><span style={{ fontFamily: 'Georgia, serif', fontSize: 20 }}>GitHub</span><span style={{ background: '#fff', color: T.ink, boxShadow: `inset 0 0 0 1.5px ${T.line}`, borderRadius: 8, padding: '7px 14px', fontWeight: 700, fontSize: 13 }}>Sign up</span>{/* F-0926-06: mockup-dagi qora tugma → oq, halqali (159/5) */}</div></Preview> },
   { id: 'signup', nav: { uz: 'Sign up ni bosing', ru: 'нажмите Sign up' },
     t: { uz: "O'ng yuqoridagi «Sign up» tugmasini bosing", ru: 'Нажмите кнопку «Sign up» справа вверху' },
     d: { uz: "Sign up — ro'yxatdan o'tish degani.", ru: 'Sign up означает «зарегистрироваться».' },
@@ -1027,13 +1027,13 @@ const ScreenTest2 = (props) => (
       { uz: 'Git — kompyuterdagi dastur, GitHub — kod turadigan sayt', ru: 'Git — программа на компьютере, GitHub — сайт, где лежит код' },
       { uz: 'Git — sayt, GitHub — kompyuterdagi dastur', ru: 'Git — сайт, GitHub — программа на компьютере' },
       { uz: "Ikkalasi bir narsaning ikki nomi", ru: 'Это два названия одного и того же' },
-      { uz: 'Git — brauzer, GitHub — kod muharriri', ru: 'Git — браузер, GitHub — редактор кода' },
+      { uz: 'Git — brauzer, GitHub — kod redaktori' /* F-0926-06: muharrir → redaktor (KORPUS) */, ru: 'Git — браузер, GitHub — редактор кода' },
     ]} correctIdx={0}
     explainCorrect={tr({ uz: "To'g'ri. Git kompyuterda o'rnatiladi va versiyalarni saqlaydi, GitHub esa brauzerda ochiladigan sayt — kod nusxasi o'sha yerda turadi.", ru: 'Верно. Git ставится на компьютер и хранит версии, а GitHub — сайт в браузере, где лежит копия кода.' })}
     explainWrong={{
       1: tr({ uz: "Teskarisi: Git — kompyuterga o'rnatgan dasturingiz, GitHub — brauzerda ochgan saytingiz.", ru: 'Наоборот: Git — программа, которую вы поставили на компьютер, GitHub — сайт, который открыли в браузере.' }),
       2: tr({ uz: "Ular boshqa-boshqa: Git kompyuterda ishlaydi, GitHub internetda turadi.", ru: 'Они разные: Git работает на компьютере, GitHub находится в интернете.' }),
-      3: tr({ uz: "Brauzer — Chrome, kod muharriri — VS Code. Git kompyuterdagi dastur, GitHub — sayt.", ru: 'Браузер — Chrome, редактор кода — VS Code. Git — программа на компьютере, GitHub — сайт.' }),
+      3: tr({ uz: "Brauzer — Chrome, kod redaktori — VS Code. Git kompyuterdagi dastur, GitHub — sayt.", ru: 'Браузер — Chrome, редактор кода — VS Code. Git — программа на компьютере, GitHub — сайт.' }),
       default: tr({ uz: 'Git — kompyuterdagi dastur, GitHub — kod turadigan sayt.', ru: 'Git — программа на компьютере, GitHub — сайт, где лежит код.' }),
     }} />
 );
@@ -1144,7 +1144,7 @@ const ScreenCommit = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="gcommit"><span className="gcommit-dot">📸</span><span className="gcommit-body"><span className="gcommit-msg">{tr({ uz: 'birinchi sahifa', ru: 'первая страница' })}</span><span className="gcommit-meta">commit a1b2c3d · {tr({ uz: 'hozir', ru: 'сейчас' })}</span></span></div>
                 <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Nuqta belgilandi. Izoh — <b>nima o'zgargani</b>: keyin ro'yxatdan o'qib, kerakli nuqtani topasiz.</>, ru: <>Точка отмечена. Комментарий — это <b>что изменилось</b>: потом по списку найдёте нужную точку.</> })}</p></div>
               </>
-            ) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Hali nuqta yo'q", ru: 'Пока нет ни одной точки' })}</p></div>)}
+            ) : null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — chorlov mentor gapida: «tugmani bosing» */}
             <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har commit — kodning o'sha paytdagi holati. Kerak bo'lsa, o'sha holatga qaytiladi.</>, ru: <>Каждый commit — состояние кода на тот момент. Если нужно, к нему возвращаются.</> })}</p></div>
           </Col>
         </Split>
@@ -1739,7 +1739,7 @@ const QUIZ_BANK = [
   { q: { uz: "Saqlangan nuqta qanday ataladi?", ru: 'Как называется сохранённая точка?' }, opts: ["commit", { uz: "Domen", ru: 'Домен' }, { uz: "Parol", ru: 'Пароль' }, { uz: "Papka", ru: 'Папка' }], correct: 0 },
   { q: { uz: "Qadamlar qaysi tartibda bajariladi?", ru: 'В каком порядке идут шаги?' }, opts: [{ uz: "commit → add → push", ru: 'commit → add → push' }, { uz: "push → commit → add", ru: 'push → commit → add' }, { uz: "add → push → commit", ru: 'add → push → commit' }, { uz: "add → commit → push", ru: 'add → commit → push' }], correct: 3 },
   { q: { uz: "commit buyrug'idagi -m nima uchun kerak?", ru: 'Зачем в команде commit нужен -m?' }, opts: [{ uz: "Faylni o'chirish uchun", ru: 'Чтобы удалить файл' }, { uz: "Rang berish uchun", ru: 'Чтобы задать цвет' }, { uz: "Izoh yozish uchun", ru: 'Чтобы написать комментарий' }, { uz: "Internetga ulanish uchun", ru: 'Чтобы подключиться к интернету' }], correct: 2 },
-  { q: { uz: "Git bilan GitHub orasidagi farq nimada?", ru: 'В чём разница между Git и GitHub?' }, opts: [{ uz: "Git — dastur, GitHub — sayt", ru: 'Git — программа, GitHub — сайт' }, { uz: "Git — sayt, GitHub — dastur", ru: 'Git — сайт, GitHub — программа' }, { uz: "Ikkalasi bir xil", ru: 'Это одно и то же' }, { uz: "Git — brauzer, GitHub — muharrir", ru: 'Git — браузер, GitHub — редактор' }], correct: 0 },
+  { q: { uz: "Git bilan GitHub orasidagi farq nimada?", ru: 'В чём разница между Git и GitHub?' }, opts: [{ uz: "Git — dastur, GitHub — sayt", ru: 'Git — программа, GitHub — сайт' }, { uz: "Git — sayt, GitHub — dastur", ru: 'Git — сайт, GitHub — программа' }, { uz: "Ikkalasi bir xil", ru: 'Это одно и то же' }, { uz: "Git — brauzer, GitHub — redaktor", ru: 'Git — браузер, GitHub — редактор' }], correct: 0 },
   { q: { uz: "Kompyuter buzildi. Kod qayerdan qaytadi?", ru: 'Компьютер сломался. Откуда вернётся код?' }, opts: [{ uz: "Brauzer tarixidan", ru: 'Из истории браузера' }, { uz: "Hech qayerdan", ru: 'Ниоткуда' }, { uz: "GitHub'dagi repodan", ru: 'Из репо на GitHub' }, { uz: "VS Code sozlamalaridan", ru: 'Из настроек VS Code' }], correct: 2 },
   { q: { uz: "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?", ru: 'Какая команда забирает новые точки из репо на компьютер?' }, opts: [{ uz: "git push", ru: 'git push' }, "git pull", { uz: "git add", ru: 'git add' }, { uz: "git commit", ru: 'git commit' }], correct: 1 },
   { q: { uz: "Repo ichidagi README fayli nima uchun?", ru: 'Для чего в репо файл README?' }, opts: [{ uz: "Parolni saqlash uchun", ru: 'Чтобы хранить пароль' }, { uz: "Saytni tezlashtirish uchun", ru: 'Чтобы ускорить сайт' }, { uz: "Rasmlarni saqlash uchun", ru: 'Чтобы хранить картинки' }, { uz: "Loyiha haqida qisqa yozuv", ru: 'Короткая запись о проекте' }], correct: 3 },
@@ -2283,7 +2283,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR v15 (soyalar) === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
@@ -2366,10 +2366,10 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* === FRAME v15 === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-ok { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: 12px 15px; }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-ok { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
@@ -2392,8 +2392,6 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .ps-q { background: ${T.accentSoft}; color: ${T.accent}; }
         .ps-a { background: ${T.successSoft}; color: ${T.success}; }
         .ps-text { font-size: clamp(14px,1.7vw,16px); line-height: 1.5; color: ${T.ink}; }
-        .solve-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,15px); padding: 10px 18px; border-radius: 10px; border: none; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.3); }
-        .solve-btn:hover:not(:disabled) { background: ${T.accent}; }
         .ye-solved, .ye-stack { display: flex; flex-direction: column; gap: 12px; }
         .mu-mini { opacity: 0.7; }
         .idea { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 0; }
@@ -2412,7 +2410,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-sub { font-size: clamp(12px,1.4vw,13px); color: ${T.ink3}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
+        .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
 
         /* === RECIPE === */
@@ -2461,7 +2459,6 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .ck.active { background: ${T.accent}; }
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .sk-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 4px 9px; border-radius: 6px; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
 
         /* === HUG (teg o'raydi) === */
@@ -2484,7 +2481,6 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .hl-row { display: flex; align-items: center; gap: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; transition: all 0.18s; background: ${T.paper}; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); }
         .hl-row:hover { box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2); }
         .hl-row.on { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); background: ${T.accentSoft}; }
-        .hl-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
         .hl-text { font-family: 'Georgia, serif'; font-weight: 700; color: ${T.ink}; line-height: 1; }
         .hl-tag { margin-left: auto; font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; background: ${T.accentSoft}; padding: 3px 9px; border-radius: 99px; }
         .hl-note { background: ${T.paper}; border-radius: 10px; padding: 12px 15px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); animation: fade-step 0.3s; }
@@ -2494,7 +2490,6 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         /* === MCARD (matn) === */
         .mcard { background: ${T.paper}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .mc-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .mc-chip { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 600; color: ${CODE.tag}; background: ${CODE.bg}; padding: 3px 9px; border-radius: 5px; }
         .mc-label { font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .mc-demo { font-family: 'Georgia, serif'; font-size: clamp(18px,2.5vw,24px); color: ${T.ink}; padding: 8px 0; }
         .w-anim { display: inline-block; transition: all 0.3s; } .w-bold { font-weight: 800; } .w-ital { font-style: italic; }
@@ -2505,7 +2500,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .mc-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink2}; background: ${T.bg}; padding: 8px 11px; border-radius: 8px; margin: 0; } .mc-code .tg { color: ${CODE.tag}; }
 
         /* === WHEN / LISTS === */
-        .when { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 10px; padding: 11px 15px; }
+        .when { background: ${T.accentSoft}; border-radius: 10px; padding: 11px 15px; }
         .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid ${T.ink3}40; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
         .site-brand { display: inline-flex; align-items: center; gap: 8px; } .site-logo { width: 22px; height: 22px; border-radius: 6px; background: ${T.accent}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 13px; } .site-name { font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; font-size: 14px; }
         .site-nav { display: inline-flex; gap: 11px; font-family: 'Manrope'; font-size: 12px; color: ${T.ink2}; }
@@ -2634,7 +2629,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .tegbuild-wrap.on .tb-bracket { opacity: 1; }
         .tb-brace { width: 150px; max-width: 70%; height: 9px; border: 1.5px solid ${T.ink3}; border-top: none; border-radius: 0 0 9px 9px; }
         .tb-brace-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; }
-        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
         /* SCREEN 8 — Sarlavhalar (gazeta -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
@@ -2688,7 +2683,6 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .cs-l { font-family: 'Manrope'; font-size: 11px; font-weight: 600; color: ${T.ink2}; text-align: center; line-height: 1.2; }
         @keyframes csPop { 0% { transform: scale(1); } 45% { transform: scale(1.28); } 100% { transform: scale(1); } }
         .cs-wire { position: relative; flex: 1; align-self: stretch; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-height: 70px; }
-        .cs-wire::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; transform: translateY(-50%); border-radius: 2px; background: repeating-linear-gradient(90deg, rgba(167,166,162,0.55) 0 7px, transparent 7px 14px); }
         .cs-msg { position: relative; z-index: 2; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; padding: 5px 9px; border-radius: 7px; text-align: center; opacity: 0; transform: translateY(5px); transition: all 0.3s; box-shadow: 0 3px 9px -4px rgba(${T.shadowBase},0.3); }
         .cs-req { background: ${T.accentSoft}; color: ${T.accent}; }
         .cs-res { background: ${T.successSoft}; color: ${T.success}; }
@@ -2732,9 +2726,9 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -2764,10 +2758,10 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -2797,7 +2791,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -2961,7 +2955,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
@@ -3252,8 +3246,8 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .dsx-help summary::-webkit-details-marker { display: none; }
         .dsx-help summary::before { content: '? '; font-weight: 800; }
         .dsx-help span { display: block; margin-top: 5px; line-height: 1.45; }
-        .dsx-btn { align-self: flex-start; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; border: none; border-radius: 10px; padding: 8px 15px; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -5px rgba(${T.shadowBase},0.3); }
-        .dsx-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .dsx-btn { align-self: flex-start; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; border: none; border-radius: 10px; padding: 8px 15px; background: ${T.accent}; color: #fff; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -5px rgba(${T.shadowBase},0.3); }
+        .dsx-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); } /* F-0926-06: qora tugma → accent (159/5) */
         .dsx-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .dsx-undo { flex-shrink: 0; align-self: center; border: none; background: transparent; color: ${T.ink3}; font-size: 14px; cursor: pointer; padding: 2px 4px; border-radius: 8px; }
         .dsx-undo:hover { color: ${T.accent}; background: ${T.paper}; }
