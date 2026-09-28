@@ -13,7 +13,6 @@ const BotFullProjectLesson = lazy(() => import('../5-Modull/BotFullProjectLesson
 const PmLesson20 = lazy(() => import('../5-Modull/PmLesson20.jsx'))
 const BotFeedbackIterationLesson = lazy(() => import('../5-Modull/BotFeedbackIterationLesson.jsx'))
 const BotAiAgentLesson = lazy(() => import('../5-Modull/BotAiAgentLesson.jsx'))
-const PmMetricsLesson = lazy(() => import('../pm/PmMetricsLesson.jsx')) // F-0928-06: v9 7-Modul #11
 const PmLesson21 = lazy(() => import('../5-Modull/PmLesson21.jsx'))
 
 // Katalog matnlari: har maydon {uz, ru}. Sarlavhalar App.jsx (UZ) bilan bir xil.
@@ -34,10 +33,9 @@ const MODULES = [
       { key: 'm5-08', n: 8, type: 'PM', emoji: '🎙️', title: { uz: "Botingizni ishlatgan odamdan nimani so'raysiz?", ru: "Что спросить у того, кто пользовался ботом?" }, sub: { uz: "bo'lib o'tgan ishini so'rash va eshitganini yozib olish", ru: "спросить о том, что было, и записать услышанное" }, comp: PmLesson20 },
       { key: 'm5-09', n: 9, type: 'Proyekt', emoji: '🔁', title: { uz: "Fikr va iteratsiya", ru: "Отзывы и итерация" }, sub: { uz: "foydalanuvchi nima dedi va nimani tuzatamiz", ru: "что сказал пользователь и что исправим" }, comp: BotFeedbackIterationLesson },
       { key: 'm5-10', n: 10, type: 'Proyekt', emoji: '🦾', title: { uz: "AI-agent yaratish", ru: "Создание ИИ-агента" }, sub: { uz: "idrok, qaror va amal aylanmasi", ru: "цикл: восприятие, решение, действие" }, comp: BotAiAgentLesson },
-      { key: 'm5-14', n: 11, type: 'PM', emoji: '⭐', title: { uz: "Botingiz yaxshi ishlayotganini qaysi raqam aytadi?", ru: "Какое число скажет, что ваш бот работает хорошо?" }, sub: { uz: "bitta bosh raqam va unga yordam beradigan uch raqam", ru: "одно главное число и три помогающих ему" }, comp: PmMetricsLesson },
-      { key: 'm5-11', n: 12, type: 'PM', emoji: '📈', title: { uz: "Kecha kelgan odam bugun ham keldimi?", ru: "Пришёл ли вчерашний гость сегодня?" }, sub: { uz: "kelganlar va qaytganlar — ikki xil son", ru: "пришедшие и вернувшиеся — два разных числа" }, comp: PmLesson21 },
-      { key: 'm5-12', n: 13, type: 'Rezerv', emoji: '📅', title: { uz: "Zaxira dars", ru: "Резервный урок" }, sub: { uz: "yetib olish / sayqallash", ru: "догнать / отшлифовать" } },
-      { key: 'm5-13', n: 14, type: 'Demo', emoji: '🎤', title: { uz: "Demo Day", ru: "Demo Day" }, sub: { uz: "jonli bot + 20 foydalanuvchi + metrika", ru: "живой бот + 20 пользователей + метрика" } },
+      { key: 'm5-11', n: 11, type: 'PM', emoji: '📈', title: { uz: "Kecha kelgan odam bugun ham keldimi?", ru: "Пришёл ли вчерашний гость сегодня?" }, sub: { uz: "kelganlar va qaytganlar — ikki xil son", ru: "пришедшие и вернувшиеся — два разных числа" }, comp: PmLesson21 },
+      { key: 'm5-12', n: 12, type: 'Rezerv', emoji: '📅', title: { uz: "Zaxira dars", ru: "Резервный урок" }, sub: { uz: "yetib olish / sayqallash", ru: "догнать / отшлифовать" } },
+      { key: 'm5-13', n: 13, type: 'Demo', emoji: '🎤', title: { uz: "Demo Day", ru: "Demo Day" }, sub: { uz: "jonli bot + 20 foydalanuvchi + metrika", ru: "живой бот + 20 пользователей + метрика" } },
     ],
   },
 ]

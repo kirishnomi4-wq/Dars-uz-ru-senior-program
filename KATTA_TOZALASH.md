@@ -1720,3 +1720,6 @@ Qaror U1-A: bosilgandan keyingi «✓ Ko'rdingiz»-tipidagi tugma **xira accent 
 (`.btn.is-done`, namuna: `src/4a-Modull/NestArchAliveLesson.jsx`). Sabab: V1 «yashil — faqat bajarilgan holat»; xira tugma «ishlamayapti» deb o'qiladi.
 Doira: 1–3-Modul + GithubActions va boshqa texnik darslar (8+ fayl) — bir yo'la codemod bilan. Holat: NAVBATDA, qilinmagan.
 
+
+## F-0928-07 · 6-Modul PM darslarida setLiveLang yo'q (2026-09-28)
+`src/6-Modull/PmLesson22–25.jsx` — ruscha rejimda payload `lang:'uz'`. Tuzatish: import + `setLiveLang(lang)` (PmLesson21 naqshi), keyin `smoke-onfinished-all --lang both`. 6-Modul QA/LMS'ga chiqishdan oldin shart.

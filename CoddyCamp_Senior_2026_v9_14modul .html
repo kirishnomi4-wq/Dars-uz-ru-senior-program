@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoddyCamp · Senior 2026 · v9.0 — 14-modul tuzilma</title>
+<style>
+  :root{
+    --ink:#14213d; --muted:#5a6478; --line:#d9dee8; --bg:#fbfbfd;
+    --ans-bg:#e6f6ec; --ans-line:#1f7a44; --ans-ink:#0e5530;   /* JAVOB rangi — yashil */
+    --new-bg:#fff3c4;                                          /* o'zgargan/yangi — sariq */
+    --demo-bg:#e8edfb; --demo-ink:#27418f;                     /* Demo Day — ko'k */
+    --rez-bg:#f3f4f7;
+    --pm:#8a4baf; --kod:#0e5530; --ai:#b3541e; --pmp:#1f5f8b; --diz:#a3236b;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.5;font-size:15px}
+  .wrap{max-width:1060px;margin:0 auto;padding:32px 20px 80px}
+  header.hero{border-bottom:4px solid var(--ink);padding-bottom:22px;margin-bottom:28px}
+  .brand{letter-spacing:.45em;font-weight:800;font-size:14px;color:var(--muted)}
+  h1{font-size:34px;margin:8px 0 4px;line-height:1.15}
+  .sub{color:var(--muted);font-size:15px}
+  .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:600;font-size:13px;background:#fff}
+  .chip.ans{background:var(--ans-bg);border-color:var(--ans-line);color:var(--ans-ink)}
+  h2{font-size:22px;margin:44px 0 10px;border-left:6px solid var(--ink);padding-left:12px}
+  h3{font-size:17px;margin:22px 0 6px}
+  p{margin:6px 0}
+  table{width:100%;border-collapse:collapse;background:#fff;margin:10px 0 4px;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em}
+  tr:nth-child(even) td{background:#f7f8fb}
+  tr.demo td{background:var(--demo-bg)!important;color:var(--demo-ink);font-weight:600}
+  tr.new td{background:var(--new-bg)!important}
+  tr.rez td{background:var(--rez-bg)!important;color:var(--muted)}
+  .t{font-weight:700;font-size:11.5px;white-space:nowrap}
+  .t.kod{color:var(--kod)} .t.ai{color:var(--ai)} .t.pm{color:var(--pm)} .t.pmp{color:var(--pmp)} .t.diz{color:var(--diz)} .t.demo{color:var(--demo-ink)} .t.rez{color:var(--muted)}
+  /* JAVOB paneli — barcha aniq javoblar shu yashil blokda */
+  .answer{background:var(--ans-bg);border:2px solid var(--ans-line);border-radius:10px;padding:12px 16px;margin:12px 0 16px}
+  .answer .cap{font-weight:800;color:var(--ans-ink);letter-spacing:.08em;font-size:12px;margin-bottom:6px}
+  .answer .grid{display:flex;flex-wrap:wrap;gap:6px 22px}
+  .answer .item{font-size:14px;color:var(--ans-ink)}
+  .answer .item b{font-size:16px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0;font-size:13px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:16px;height:16px;border-radius:4px;border:1px solid #0003;display:inline-block}
+  .goal{color:var(--muted);font-style:italic;margin:2px 0 8px}
+  .note{background:#fff;border:1.5px dashed var(--muted);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:13.5px}
+  .modhead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+  .stage{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+  td.small{font-size:12.5px;color:var(--muted)}
+  .sumtab td b{font-size:14px}
+  .demoTag{display:inline-block;background:var(--demo-ink);color:#fff;border-radius:6px;padding:1px 8px;font-size:11.5px;font-weight:700;margin-left:6px;vertical-align:middle}
+  @media print{ body{background:#fff} .wrap{max-width:100%} h2{page-break-after:avoid} table{page-break-inside:auto} tr{page-break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="brand">C O D D Y C A M P</div>
+  <h1>Senior dasturi 2026 · v9.0 — 14-modul tuzilma</h1>
+  <div class="sub">Senior guruh · 13–17 yosh · Parallel trek: Dasturlash + Product Management · «Agent quradi — o‘quvchi boshqaradi»<br>
+  v8.1 asosida qayta tuzilgan: Foundation moduli qo‘shildi, modullar texnik nomlandi, Demo Day tizimi 8 taga keltirildi. <b>Dars mavzulari va ketma-ketligi 100% saqlangan.</b></div>
+  <div class="chips">
+    <span class="chip ans">JAMI: 214 dars</span>
+    <span class="chip ans">14 modul</span>
+    <span class="chip ans">8 Demo Day</span>
+    <span class="chip ans">Haftasiga 3 dars</span>
+    <span class="chip ans">Aktiv o‘qish ≈ 16.5 oy</span>
+    <span class="chip ans">+1 oy rezerv bilan ≈ 17.5 oy</span>
+  </div>
+</header>
+
+<div class="legend">
+  <span><span class="sw" style="background:var(--ans-bg);border-color:var(--ans-line)"></span> <b>YASHIL — savollaringizga aniq javoblar</b> (nechta dars, necha oy, nechanchi oyga to‘g‘ri keladi)</span>
+  <span><span class="sw" style="background:var(--new-bg)"></span> Sariq — v8.1/v9 da o‘zgargan yoki yangi dars</span>
+  <span><span class="sw" style="background:var(--demo-bg)"></span> Ko‘k — Demo Day</span>
+  <span><span class="sw" style="background:var(--rez-bg)"></span> Kulrang — rezerv dars</span>
+</div>
+
+<!-- ============ UMUMIY KARTA ============ -->
+<h2>Umumiy karta — 14 modul (barcha javoblar bir jadvalda)</h2>
+<div class="answer">
+  <div class="cap">ASOSIY JAVOB · UMUMIY</div>
+  <div class="grid">
+    <div class="item">Jami darslar: <b>214</b></div>
+    <div class="item">TEX (KOD): <b>72</b></div>
+    <div class="item">AI-PRAKTIKA: <b>43</b></div>
+    <div class="item">DIZAYN (Figma/Canva): <b>5</b></div>
+    <div class="item">PM+PRAKT (gibrid): <b>11</b></div>
+    <div class="item">PM: <b>62</b></div>
+    <div class="item">Demo Day: <b>8</b></div>
+    <div class="item">Rezerv: <b>12</b></div>
+    <div class="item">Bitiruv marosimi: <b>1</b></div>
+    <div class="item">Aktiv o‘qish: <b>≈ 71 hafta ≈ 16.5 oy</b> (haftasiga 3 dars)</div>
+    <div class="item">+1 oy rezerv bilan jami: <b>≈ 17.5 oy</b></div>
+  </div>
+</div>
+
+<table class="sumtab">
+  <tr><th>#</th><th>Modul nomi</th><th>TEX</th><th>AI-PR</th><th>DIZ</th><th>PM+PR</th><th>PM</th><th>Demo</th><th>Rez</th><th>Jami</th><th>Davomiylik</th><th>O‘qishning nechanchi oyi</th></tr>
+  <tr><td><b>1</b></td><td><b>Foundation</b> (JS asoslari + Figma/Canva)</td><td>14</td><td>—</td><td>5</td><td>—</td><td>—</td><td>1 <span class="demoTag">DD-1</span></td><td>—</td><td><b>20</b></td><td><b>≈6.5 hafta (1.5 oy)</b></td><td><b>1 — 1.5-oy</b></td></tr>
+  <tr><td><b>2</b></td><td><b>HTML-CSS</b></td><td>9</td><td>2</td><td>—</td><td>—</td><td>2</td><td>1 <span class="demoTag">DD-2</span></td><td>—</td><td><b>14</b></td><td><b>≈5 hafta (1 oy)</b></td><td><b>1.5 — 2.5-oy</b></td></tr>
+  <tr><td><b>3</b></td><td><b>JavaScript</b></td><td>6</td><td>4</td><td>—</td><td>—</td><td>4</td><td>1 <span class="demoTag">DD-3</span></td><td>1</td><td><b>16</b></td><td><b>≈5.5 hafta (1.2 oy)</b></td><td><b>2.5 — 4-oy</b></td></tr>
+  <tr><td><b>4</b></td><td><b>Frontend: React</b></td><td>6</td><td>4</td><td>—</td><td>—</td><td>5</td><td>1 <span class="demoTag">DD-4</span></td><td>1</td><td><b>17</b></td><td><b>≈6 hafta (1.3 oy)</b></td><td><b>4 — 5-oy</b></td></tr>
+  <tr><td><b>5</b></td><td><b>Backend: Node-Express + PostgreSQL</b></td><td>7</td><td>4</td><td>—</td><td>—</td><td>4</td><td>—</td><td>1</td><td><b>16</b></td><td><b>≈5.5 hafta (1.2 oy)</b></td><td><b>5 — 6.5-oy</b></td></tr>
+  <tr><td><b>6</b></td><td><b>Backend: NestJS + Testirovanie + CI/CD Deploy</b></td><td>6</td><td>4</td><td>—</td><td>—</td><td>4</td><td>1 <span class="demoTag">DD-5</span></td><td>1</td><td><b>16</b></td><td><b>≈5.5 hafta (1.2 oy)</b></td><td><b>6.5 — 7.5-oy</b></td></tr>
+  <tr><td><b>7</b></td><td><b>Botlar va avtomatizatsiya</b></td><td>3</td><td>5</td><td>—</td><td>—</td><td>4</td><td>1 <span class="demoTag">DD-6</span></td><td>1</td><td><b>14</b></td><td><b>≈5 hafta (1 oy)</b></td><td><b>7.5 — 8.5-oy</b></td></tr>
+  <tr><td><b>8</b></td><td><b>Tizimni to‘liq yig‘aman</b> (Собираю систему целиком)</td><td>7</td><td>3</td><td>—</td><td>—</td><td>4</td><td>—</td><td>1</td><td><b>15</b></td><td><b>≈5 hafta (1.1 oy)</b></td><td><b>8.5 — 10-oy</b></td></tr>
+  <tr><td><b>9</b></td><td><b>Loyiham kim uchun va nima uchun + Animatsiya</b></td><td>2</td><td>3</td><td>—</td><td>2</td><td>5</td><td>—</td><td>1</td><td><b>13</b></td><td><b>≈4.5 hafta (1 oy)</b></td><td><b>10 — 11-oy</b></td></tr>
+  <tr><td><b>10</b></td><td><b>Gipotezani qanday tekshirish + texnik MVP praktikasi</b></td><td>3</td><td>3</td><td>—</td><td>2</td><td>3</td><td>—</td><td>2</td><td><b>13</b></td><td><b>≈4.5 hafta (1 oy)</b></td><td><b>11 — 12-oy</b></td></tr>
+  <tr><td><b>11</b></td><td><b>Final loyiha: g‘oya va rivojlantirish + React Native mobile app</b></td><td>3</td><td>4</td><td>—</td><td>1</td><td>8</td><td>1 <span class="demoTag">DD-7</span></td><td>—</td><td><b>17</b></td><td><b>≈6 hafta (1.3 oy)</b></td><td><b>12 — 13.5-oy</b></td></tr>
+  <tr><td><b>12</b></td><td><b>Real-time: WebSocket + Zapusk — FLAGMAN</b></td><td>2</td><td>2</td><td>—</td><td>3</td><td>5</td><td>—</td><td>1</td><td><b>13</b></td><td><b>≈4.5 hafta (1 oy)</b></td><td><b>13.5 — 14.5-oy</b></td></tr>
+  <tr><td><b>13</b></td><td><b>O‘sish va monetizatsiya</b> (Рост и монетизация)</td><td>1</td><td>4</td><td>—</td><td>2</td><td>5</td><td>—</td><td>1</td><td><b>13</b></td><td><b>≈4.5 hafta (1 oy)</b></td><td><b>14.5 — 15.5-oy</b></td></tr>
+  <tr><td><b>14</b></td><td><b>Bitiruvchi (Выпускник) + Performance</b></td><td>3</td><td>1</td><td>—</td><td>1</td><td>9</td><td>1 <span class="demoTag">DD-8</span> + marosim</td><td>1</td><td><b>17</b></td><td><b>≈6 hafta (1.3 oy)</b></td><td><b>15.5 — 16.5-oy</b></td></tr>
+  <tr><td colspan="2"><b>JAMI</b></td><td><b>72</b></td><td><b>43</b></td><td><b>5</b></td><td><b>11</b></td><td><b>62</b></td><td><b>8</b></td><td><b>12</b></td><td><b>214</b></td><td colspan="2"><b>≈ 71 hafta aktiv ≈ 16.5 oy (+ 1 oy rezerv = ≈ 17.5 oy)</b></td></tr>
+</table>
+<p class="sub">* Oylar — <b>aktiv o‘quv oylari</b> (haftasiga 3 dars, oyiga ≈13 dars hisobida). Qo‘shimcha ~1 oy rezerv filial kalendariga qarab taqsimlanadi, shunda kalendar bo‘yicha butun dastur ≈ 17.5 oyni tashkil qiladi. 14-modul jamisiga Bitiruv marosimi (1 dars) kiritilgan.</p>
+
+<!-- ============ DEMO DAY XARITASI ============ -->
+<h2>Demo Day xaritasi — jami 8 ta</h2>
+<table>
+  <tr><th>Demo Day</th><th>Qaysi modulda</th><th>Aktiv oy (taxm.)</th><th>Format / auditoriya</th></tr>
+  <tr class="demo"><td>Demo Day 1</td><td>1-modul · Foundation</td><td>1.5-oy</td><td>Ichki himoya: Foundation natijalari (JS mini-mashqlar + Figma/Canva taqdimot)</td></tr>
+  <tr class="demo"><td>Demo Day 2</td><td>2-modul · HTML-CSS</td><td>2.5-oy</td><td>3 daqiqalik pitch ota-onalar oldida + jonli portfolio-sayt (Storytelling ichida)</td></tr>
+  <tr class="demo"><td>Demo Day 3</td><td>3-modul · JavaScript</td><td>4-oy</td><td>Guruh ichida himoya: pitch + loyiha demosi</td></tr>
+  <tr class="demo"><td>Demo Day 4</td><td>4-modul · Frontend React</td><td>5-oy</td><td>Guruh + taklif etilganlar oldida: pitch + jonli demo</td></tr>
+  <tr class="demo"><td>Demo Day 5</td><td>6-modul · NestJS + Test + CI/CD</td><td>7.5-oy</td><td>Backend-arxitektura, testlar va avtomatik deploy jonli namoyishi</td></tr>
+  <tr class="demo"><td>Demo Day 6</td><td>7-modul · Botlar va avtomatizatsiya</td><td>8.5-oy</td><td>20+ real foydalanuvchili jonli bot + metrikalar</td></tr>
+  <tr class="demo"><td>Demo Day 7</td><td>11-modul · Final loyiha g‘oyasi + React Native</td><td>13.5-oy</td><td>Final mahsulot pitchi + jonli prototip (mobile-trekda — telefonda)</td></tr>
+  <tr class="demo"><td>Demo Day 8</td><td>14-modul · Bitiruvchi</td><td>16.5-oy</td><td>Bitiruv himoyasi: 5–7 investor/tadbirkor hakamlar · 5 daqiqa pitch + Q&amp;A · so‘ng Bitiruv marosimi</td></tr>
+</table>
+
+<div class="note"><b>Shaffoflik eslatmasi (muhim):</b> v8.1 hujjatida 11 ta demo-slot bor edi. Sizning 8 talik sxemangiz bo‘yicha demo-slotlar quyidagicha qayta joylashtirildi: eski М4 (Данные и связи), М6 (Собираю систему), М7 (Для кого и зачем), М8 (Годовая защита) va М10 (Флагман запуск) modullaridagi demo-slotlar olib tashlandi; buning o‘rniga 6-modul (NestJS+Test+CI/CD) va 11-modulga (Final g‘oya + React Native) demo qo‘shildi. <b>Oddiy darslar (TEX / AI-PRAKT / PM+PRAKT / PM / Rezerv) ga tegilmagan — bittasi ham tushib qolmagan, bittasi ham qo‘shilmagan, ketma-ketlik saqlangan.</b> 14-moduldagi «Выпускной» endi demo emas, <i>Bitiruv marosimi</i> sifatida saqlanadi (8 talik hisobga kirmaydi).</div>
+
+<!-- ============ MODUL 1 ============ -->
+<h2><span class="modhead">1-modul · FOUNDATION <span class="stage">POYDEVOR BOSQICHI</span></span></h2>
+<p class="goal">Maqsad: O‘quvchi dasturlash mantiqini (JS asoslari) qo‘lda mashq qiladi va dizayn instrumentlari (Figma, Canva) bilan ishlashni o‘rganadi. Keyingi barcha modullar shu poydevorga quriladi.</p>
+<div class="answer"><div class="cap">JAVOB · 1-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>14</b></div><div class="item">DIZAYN praktika: <b>5</b></div><div class="item">PM: <b>0</b></div><div class="item">Demo Day: <b>1</b></div>
+  <div class="item">Jami: <b>20 dars</b></div><div class="item">Davomiylik: <b>≈6.5 hafta ≈ 1.5 oy</b></div><div class="item">O‘qish jadvalida: <b>1 — 1.5-oy</b></div><div class="item">Tartib: <b>1-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Natija / artefakt</th></tr>
+  <tr class="new"><td>1</td><td class="t kod">TEX</td><td>Birinchi dars (kirish)</td><td>Muhit tayyor, birinchi qadamlar</td></tr>
+  <tr class="new"><td>2</td><td class="t kod">TEX</td><td>Ikkinchi dars</td><td>Asosiy tushunchalar mustahkamlanadi</td></tr>
+  <tr class="new"><td>3</td><td class="t kod">TEX</td><td>Uchinchi dars</td><td>Kirish blokini yakunlash</td></tr>
+  <tr class="new"><td>4</td><td class="t kod">TEX</td><td>String, Number, Var</td><td>Birinchi o‘zgaruvchilar qo‘lda</td></tr>
+  <tr class="new"><td>5</td><td class="t kod">TEX</td><td>Boolean, operatorlar</td><td>Taqqoslash mashqlari yechilgan</td></tr>
+  <tr class="new"><td>6</td><td class="t kod">TEX</td><td>If, Else, Else If</td><td>Shartli mini-dastur</td></tr>
+  <tr class="new"><td>7</td><td class="t kod">TEX</td><td>Mantiqiy operatorlar</td><td>&amp;&amp;, ||, ! bilan masalalar</td></tr>
+  <tr class="new"><td>8</td><td class="t kod">TEX</td><td>Var, Let, Const</td><td>Scope farqini tushuntirib beradi</td></tr>
+  <tr class="new"><td>9</td><td class="t kod">TEX</td><td>String metodlari</td><td>Matn ustida amaliy masalalar</td></tr>
+  <tr class="new"><td>10</td><td class="t kod">TEX</td><td>Function</td><td>O‘z funksiyalarini yozadi</td></tr>
+  <tr class="new"><td>11</td><td class="t kod">TEX</td><td>String + For Loop</td><td>Sikl bilan matn masalalari</td></tr>
+  <tr class="new"><td>12</td><td class="t kod">TEX</td><td>Data Types</td><td>Tiplar xaritasi + typeof mashqlari</td></tr>
+  <tr class="new"><td>13</td><td class="t kod">TEX</td><td>Object</td><td>Obyekt yaratadi va o‘zgartiradi</td></tr>
+  <tr class="new"><td>14</td><td class="t kod">TEX</td><td>Array</td><td>Massiv bilan amaliy masalalar</td></tr>
+  <tr class="new"><td>15</td><td class="t diz">DIZAYN</td><td>Figma Intro</td><td>Birinchi maket</td></tr>
+  <tr class="new"><td>16</td><td class="t diz">DIZAYN</td><td>Figma’dagi ilg‘or instrumentlar</td><td>Komponent va auto-layout bilan maket</td></tr>
+  <tr class="new"><td>17</td><td class="t diz">DIZAYN</td><td>Figma plaginlari</td><td>Plaginlar bilan tezlashtirilgan ish</td></tr>
+  <tr class="new"><td>18</td><td class="t diz">DIZAYN</td><td>Figma amaliyoti</td><td>To‘liq ekran dizayni tayyor</td></tr>
+  <tr class="new"><td>19</td><td class="t diz">DIZAYN</td><td>Canva Presentation</td><td>O‘z taqdimotini yig‘adi</td></tr>
+  <tr class="demo"><td>20</td><td class="t demo">DEMO</td><td>Demo Day 1</td><td>Foundation natijalari himoyasi: mini-dastur + Figma/Canva taqdimot</td></tr>
+</table>
+
+<!-- ============ MODUL 2 ============ -->
+<h2><span class="modhead">2-modul · HTML-CSS <span class="stage">1-BOSQICH · TIZIMLI DIZAYN</span></span></h2>
+<p class="goal">Maqsad: Internet qanday ishlashini tushunadi, HTML/CSS ni qo‘lda yozadi, professional muhitni (VS Code) o‘zlashtiradi va maktab subdomenida shaxsiy portfoliosiga ega bo‘ladi. G‘oya: Portfolio — birinchi mahsulot.</p>
+<div class="answer"><div class="cap">JAVOB · 2-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>9</b></div><div class="item">AI-PRAKTIKA: <b>2</b></div><div class="item">PM: <b>2</b></div><div class="item">Demo Day: <b>1</b></div>
+  <div class="item">Jami: <b>14 dars</b></div><div class="item">Davomiylik: <b>≈5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>1.5 — 2.5-oy</b></div><div class="item">Tartib: <b>2-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Как устроен интернет</td><td>Brauzer, server, domen, DNS — so‘rov yo‘li</td><td>So‘rov yo‘li sxemasi</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Кто мой пользователь?</td><td>Auditoriya va sayt maqsadi</td><td>Auditoriyaning 3 turi tavsifi</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>HTML руками — часть 1</td><td>Teglar, sarlavhalar, ro‘yxatlar, havolalar — AIsiz</td><td>Qo‘lda yozilgan HTML sahifa</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>HTML руками — часть 2</td><td>Rasmlar, formalar, sahifa strukturasi, DevTools</td><td>DevTools’da o‘z teglarini topadi</td></tr>
+  <tr class="new"><td>5</td><td class="t kod">TEX</td><td>Повторение: HTML-мастерская <i>(YANGI v8.1)</i></td><td>Birinchi «mijozlar»: 5 mini-buyurtma, debug, mini-imtihon</td><td>5 bajarilgan buyurtma + topilgan baglar</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Структура как продуктовое решение</td><td>Sayt strukturasi — UX qaror</td><td>Asoslangan sahifalar xaritasi</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>CSS руками — часть 1</td><td>Ranglar, shriftlar, otstuplar — AIsiz</td><td>Qo‘lda stilizatsiya</td></tr>
+  <tr><td>8</td><td class="t kod">TEX</td><td>CSS руками — часть 2</td><td>Layout, flexbox asoslari, DevTools</td><td>DevTools’da stillarni o‘zgartiradi</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Проект: структура портфолио</td><td>Portfolio-saytni dekompozitsiya qilish, HTML struktura</td><td>Tayyor HTML struktura</td></tr>
+  <tr class="new"><td>10</td><td class="t kod">TEX</td><td>VS Code — профессиональный старт <i>(YANGI v8.1)</i></td><td>O‘rnatish, Emmet, Live Server, kengaytmalar</td><td>Sozlangan muhit + Emmet orqali kartochka</td></tr>
+  <tr><td>11</td><td class="t ai">AI-PRAKT</td><td>Проект: стилизация и доводка</td><td>CSS orqali portfolio, kontent + interaktiv tugma AI bilan</td><td>Portfolioning final versiyasi</td></tr>
+  <tr><td>12</td><td class="t kod">TEX</td><td>Git и GitHub</td><td>Commit, push — kod uchun «vaqt mashinasi»</td><td>Birinchi commit</td></tr>
+  <tr><td>13</td><td class="t kod">TEX</td><td>Netlify и деплой</td><td>Hosting, maktab subdomeniga publikatsiya</td><td>Sayt jonli: ivanov.coddycamp.uz</td></tr>
+  <tr class="demo"><td>14</td><td class="t demo">DEMO</td><td>Demo Day 2 — питч 3 минуты <i>(Storytelling ichida, v8.1)</i></td><td>Ota-onalar oldida ochiq himoya: zацепка → muammo → jonli demo → keyingi qadam</td><td>3 daqiqa pitch + jonli sayt</td></tr>
+</table>
+
+<!-- ============ MODUL 3 ============ -->
+<h2><span class="modhead">3-modul · JAVASCRIPT <span class="stage">1-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: Masalani dekompozitsiya qilish, atrofdagi muammolarni topish, JS bazaviy konsepsiyalari va birinchi mini-ilova. G‘oya: koddagi dekompozitsiya = PM’dagi muammo dekompozitsiyasi.</p>
+<div class="answer"><div class="cap">JAVOB · 3-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>6</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM: <b>4</b></div><div class="item">Demo Day: <b>1</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>16 dars</b></div><div class="item">Davomiylik: <b>≈5.5 hafta ≈ 1.2 oy</b></div><div class="item">O‘qish jadvalida: <b>2.5 — 4-oy</b></div><div class="item">Tartib: <b>3-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Система + Алгоритм</td><td>Komponentlar va bog‘lanishlar; algoritm — retsept</td><td>Tizim sxemasi + so‘z bilan algoritm</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Проблема → Решение</td><td>Problem→Solution freymvorki</td><td>3 muammo + yechimlar</td></tr>
+  <tr><td>3</td><td class="t pm">PM</td><td>Как искать проблему <i>(М7 dan ko‘chirilgan)</i></td><td>Kuzatuv, og‘riq, frustratsiya; otzivlar, forumlar</td><td>Atrofdan 10 muammo + baho</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>JS — Переменные</td><td>let/const/var, ma’lumot tiplari</td><td>Birinchi o‘zgaruvchilar</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>JS — if/else</td><td>Shartlar, taqqoslash, ichma-ich shartlar</td><td>Shartli kalkulyator</td></tr>
+  <tr><td>6</td><td class="t kod">TEX</td><td>JS — loop</td><td>for, while, massiv perebor</td><td>Ochko sanaydigan sikl</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>JS — functions / Array + Object</td><td>Funksiyalar, return; Array methods, Object + Memory intro</td><td>Loyihasi uchun 3 funksiya</td></tr>
+  <tr><td>8</td><td class="t pm">PM</td><td>Декомпозиция как PM-инструмент</td><td>Feature list → MVP → backlog</td><td>Hozir vs keyin fichalar</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Проектный день + AI Method</td><td>HTML/CSS saytga interaktivlik</td><td>Interaktiv sayt</td></tr>
+  <tr><td>10</td><td class="t ai">AI-PRAKT</td><td>Проектный день + AI Method</td><td>Interaktivlik + AI orqali sifatli loyiha</td><td>AI orqali loyiha</td></tr>
+  <tr><td>11</td><td class="t kod">TEX</td><td>PERN Stack — обзор</td><td>PostgreSQL + Express + React + Node.js</td><td>Stek sxemasi</td></tr>
+  <tr><td>12</td><td class="t ai">AI-PRAKT</td><td>Декомпозиция и разработка — ч.1</td><td>Masalani qadamlarga bo‘lish, asosiy qism AI bilan</td><td>Birinchi ishlaydigan ekran</td></tr>
+  <tr><td>13</td><td class="t ai">AI-PRAKT</td><td>Разработка — ч.2</td><td>Fichalarni yakunlash</td><td>MVP tayyor</td></tr>
+  <tr><td>14</td><td class="t pm">PM</td><td>Как питчить системное решение</td><td>Arxitekturani no-texnik odamga 2 daqiqada tushuntirish</td><td>Guruh oldida pitch</td></tr>
+  <tr class="rez"><td>15</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+  <tr class="demo"><td>16</td><td class="t demo">DEMO</td><td>Demo Day 3</td><td>Guruh ichida himoya</td><td>Pitch + loyiha demosi</td></tr>
+</table>
+
+<!-- ============ MODUL 4 ============ -->
+<h2><span class="modhead">4-modul · FRONTEND: REACT <span class="stage">1-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: Komponentli yondashuv, JTBD-tafakkur, CRUD va API bilan React orqali ishlash. G‘oya: Komponent = ficha; User Story va JTBD kod yozishdan OLDIN yoziladi.</p>
+<div class="answer"><div class="cap">JAVOB · 4-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>6</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM: <b>5</b></div><div class="item">Demo Day: <b>1</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>17 dars</b></div><div class="item">Davomiylik: <b>≈6 hafta ≈ 1.3 oy</b></div><div class="item">O‘qish jadvalida: <b>4 — 5-oy</b></div><div class="item">Tartib: <b>4-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Что такое React и зачем</td><td>Komponentli yondashuv, Virtual DOM; React Native bilan tanishuv</td><td>Sayt vs React-ilova taqqoslash</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>User Story: кто и зачем?</td><td>«[Foydalanuvchi] sifatida … xohlayman …»</td><td>Loyihaga 5 user story</td></tr>
+  <tr><td>3</td><td class="t pm">PM</td><td>Jobs-to-be-Done — глубоко <i>(М7 dan ko‘chirilgan)</i></td><td>Funksional, ijtimoiy, emotsional Jobs</td><td>3 mahsulot + o‘z komponentlari uchun JTBD</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>Первый компонент</td><td>JSX, props, Vite setup</td><td>Qo‘lda birinchi komponent</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>State и Effect</td><td>useState + useEffect, Lifecycle intro</td><td>Taymerli hisoblagich</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Компонент = фича: приоритизация</td><td>Impact vs Effort matritsasi</td><td>Prioritet bo‘yicha komponentlar</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>Props и переиспользование</td><td>Komponentlar orasida ma’lumot uzatish</td><td>Props orqali kartochkalar</td></tr>
+  <tr><td>8</td><td class="t ai">AI-PRAKT</td><td>AI-проект: CRUD</td><td>Ma’lumot oqimi — qo‘lda, to‘liq CRUD — AI-promptlar bilan</td><td>Serversiz to‘liq CRUD</td></tr>
+  <tr><td>9</td><td class="t kod">TEX</td><td>Работа с API — GET</td><td>fetch/axios, serverdan ma’lumot</td><td>Ochiq API’dan ma’lumot</td></tr>
+  <tr><td>10</td><td class="t kod">TEX</td><td>Работа с API — POST/PUT/DELETE</td><td>Serverga ma’lumot yuborish</td><td>API orqali to‘liq CRUD</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Acceptance Criteria</td><td>Ishga tushishdan oldin qabul chek-listi</td><td>3 ficha uchun criteria</td></tr>
+  <tr><td>12</td><td class="t ai">AI-PRAKT</td><td>AI React Router</td><td>Routelar — qo‘lda, navigatsiya — AI bilan</td><td>Ko‘p sahifali ilova</td></tr>
+  <tr><td>13</td><td class="t ai">AI-PRAKT</td><td>Проектный день + AI Method</td><td>React + API + CRUD + routing</td><td>Mustaqil loyiha</td></tr>
+  <tr><td>14</td><td class="t ai">AI-PRAKT</td><td>Декомпозиция и разработка финального</td><td>Final loyihani komponent va sahifalarga bo‘lish</td><td>Komponentlar sxemasi + ishlaydigan loyiha</td></tr>
+  <tr><td>15</td><td class="t pm">PM</td><td>Storytelling: питч фронтенд-продукта</td><td>Stresssiz demo — struktura va repetitsiya</td><td>Demo bilan pitch repetitsiyasi</td></tr>
+  <tr class="rez"><td>16</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+  <tr class="demo"><td>17</td><td class="t demo">DEMO</td><td>Demo Day 4</td><td>Guruh + taklif etilganlar oldida himoya</td><td>Pitch + jonli demo</td></tr>
+</table>
+
+<!-- ============ MODUL 5 ============ -->
+<h2><span class="modhead">5-modul · BACKEND: NODE-EXPRESS + POSTGRESQL <span class="stage">1-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: Ma’lumotlar qanday saqlanadi va komponentlar orasida yuradi. Fullstack ilova: React + Node.js + PostgreSQL. G‘oya: ma’lumotlar sxemasi — mahsulot qarori.</p>
+<div class="answer"><div class="cap">JAVOB · 5-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>7</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM: <b>4</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>16 dars</b></div><div class="item">Davomiylik: <b>≈5.5 hafta ≈ 1.2 oy</b></div><div class="item">O‘qish jadvalida: <b>5 — 6.5-oy</b></div><div class="item">Tartib: <b>5-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Что такое данные</td><td>JSON, jadvallar, bog‘lanishlar</td><td>Istalgan ilova ma’lumotlari sxemasi</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Данные как продуктовое решение</td><td>Nimani va nega saqlaymiz; data model = product decision</td><td>Mahsuloti nimani saqlashi va sababi</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>SQL vs NoSQL / intro PostgreSQL</td><td>Qachon nima ishlatiladi; nega PostgreSQL</td><td>Loyiha ma’lumotlari strukturasi</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>Node.js — первый сервер</td><td>Server, npm, Express, Nest, birinchi endpoint</td><td>Lokalda ishga tushgan server</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>Роутинг и Express/Nest</td><td>So‘rovlar qanday qayta ishlanadi</td><td>Bir nechta routelar</td></tr>
+  <tr><td>6</td><td class="t kod">TEX</td><td>PostgreSQL запросы</td><td>DB, jadvallar, SQL-so‘rovlar, AI yordamida masalalar</td><td>Birinchi model</td></tr>
+  <tr><td>7</td><td class="t pm">PM</td><td>Безопасность = доверие</td><td>.env va ma’lumot himoyasi; GDPR sodda tilda</td><td>Loyihadagi xavfsizlik «teshiklari»</td></tr>
+  <tr><td>8</td><td class="t ai">AI-PRAKT</td><td>AI Backend-проект: CRUD на PostgreSQL</td><td>Sxema qo‘lda, CRUD — Express+PostgreSQL AI bilan</td><td>Backendda to‘liq CRUD</td></tr>
+  <tr><td>9</td><td class="t kod">TEX</td><td>Что такое API + Postman</td><td>GET/POST/PUT/DELETE — front bek bilan qanday gaplashadi</td><td>Postman orqali o‘z API’si</td></tr>
+  <tr><td>10</td><td class="t ai">AI-PRAKT</td><td>AI Fullstack-проект: связка</td><td>4-modul (React) frontini serverga ulash</td><td>Front bekdan ma’lumot oladi</td></tr>
+  <tr><td>11</td><td class="t kod">TEX</td><td>Аутентификация + .env</td><td>JWT, email orqali kirish, routelar himoyasi, secrets</td><td>Login + .env’da sirlar</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Схема данных как PRD-артефакт</td><td>DB sxemasi — mahsulot hujjatining qismi</td><td>Mahsulot izohli DB sxemasi</td></tr>
+  <tr><td>13</td><td class="t ai">AI-PRAKT</td><td>Fullstack проектный день</td><td>React + Node.js + PostgreSQL to‘liq stek</td><td>Ishlaydigan fullstack ilova</td></tr>
+  <tr><td>14</td><td class="t ai">AI-PRAKT</td><td>Доработка по фидбеку</td><td>Sinfdoshlarga ko‘rsatib, fidbek yig‘ish</td><td>3 muammo tuzatilgan</td></tr>
+  <tr><td>15</td><td class="t pm">PM</td><td>Питч fullstack-архитектуры</td><td>Stakeholder’lar uchun texnik qarorlar</td><td>Arxitektura sxemali pitch</td></tr>
+  <tr class="rez"><td>16</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+</table>
+<p class="sub">* 8 talik sxema bo‘yicha bu modulda Demo Day yo‘q — fullstack loyiha keyingi modul (Demo Day 5) da to‘liq arxitektura bilan himoya qilinadi.</p>
+
+<!-- ============ MODUL 6 ============ -->
+<h2><span class="modhead">6-modul · BACKEND: NESTJS + TESTIROVANIE + CI/CD DEPLOY <span class="stage">1-BOSQICH · (eski 4а + 4б + 4в birlashtirilgan)</span></span></h2>
+<p class="goal">Maqsad: Arxitektura patternlari va masshtablanadigan NestJS backend; unit-testlar va edge case’lar; avtomatik test va deploy (har push’da). G‘oya: to‘g‘ri arxitektura + sifat + delivery tezligi = mahsulot ustunligi.</p>
+<div class="answer"><div class="cap">JAVOB · 6-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>6</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM: <b>4</b></div><div class="item">Demo Day: <b>1</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>16 dars</b></div><div class="item">Davomiylik: <b>≈5.5 hafta ≈ 1.2 oy</b></div><div class="item">O‘qish jadvalida: <b>6.5 — 7.5-oy</b></div><div class="item">Tartib: <b>6-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td colspan="5" style="background:#eef1f7;font-weight:700">A qism · NestJS + Arxitektura (eski 4а)</td></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>NestJS и архитектура</td><td>MVC, modullar, kontrollerlar, servislar</td><td>Har qatlamni o‘z so‘zi bilan tushuntiradi</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Масштабируемость = продуктовое решение</td><td>Hozirgi arxitektura qarori = 6 oydan keyingi ficha tezligi</td><td>Osonlashadigan 3 ficha</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>Boilerplate NestJS + PostgreSQL</td><td>NestJS + PostgreSQL + JWT klonlash va tahlil</td><td>Lokal arxitektura + o‘z DB</td></tr>
+  <tr><td>4</td><td class="t ai">AI-PRAKT</td><td>Практика: новый модуль</td><td>Tayyor arxitekturaga yangi modul: kontroller + servis</td><td>Ishlaydigan endpoint</td></tr>
+  <tr><td colspan="5" style="background:#eef1f7;font-weight:700">B qism · Loyihani testlash (eski 4б)</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>Unit-тесты: Jest</td><td>Birinchi test, describe/it/expect</td><td>O‘z servisiga 3 unit-test</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Качество как продуктовая ценность</td><td>Baglar va retention; happy path vs edge cases</td><td>Asoslangan edge case ro‘yxati</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>Edge cases и error path</td><td>Chegaraviy shartlar, noto‘g‘ri ma’lumot testlari</td><td>Xato stsenariylariga testlar</td></tr>
+  <tr><td colspan="5" style="background:#eef1f7;font-weight:700">C qism · CI/CD + Deploy (eski 4в)</td></tr>
+  <tr><td>8</td><td class="t kod">TEX</td><td>Что такое CI/CD</td><td>Continuous Integration / Deployment</td><td>CI/CD pipeline sxemasi</td></tr>
+  <tr><td>9</td><td class="t pm">PM</td><td>Delivery speed = преимущество</td><td>Iteratsiya tezligi yutadi</td><td>CI/CD bilan/siz oyiga eksperimentlar hisobi</td></tr>
+  <tr><td>10</td><td class="t kod">TEX</td><td>GitHub Actions — основы</td><td>Workflow, job, step; har push’da testlar</td><td>Testlarning avtoishga tushishi</td></tr>
+  <tr><td>11</td><td class="t ai">AI-PRAKT</td><td>Проектный день: полный пайплайн</td><td>Backend + Frontend — real loyiha</td><td>Tayyor loyiha</td></tr>
+  <tr><td>12</td><td class="t ai">AI-PRAKT</td><td>Проектный день: полный пайплайн</td><td>Backend + Frontend promptlar orqali</td><td>Promptlar bilan yig‘ilgan sayt</td></tr>
+  <tr><td>13</td><td class="t pm">PM</td><td>Мониторинг как продуктовая метрика</td><td>Uptime, latency, error rate; SLA va ishonch</td><td>Mahsulot uchun maqbul uptime + sabab</td></tr>
+  <tr><td>14</td><td class="t ai">AI-PRAKT</td><td>Проектный день: пайплайн + мини-лендинг</td><td>Test, lint, deploy, monitoring + mini-lending sahifa</td><td>CI/CD end-to-end + loyiha o‘zini taqdim etadi</td></tr>
+  <tr class="rez"><td>15</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+  <tr class="demo"><td>16</td><td class="t demo">DEMO</td><td>Demo Day 5 <i>(8 talik sxema bo‘yicha yangi joy)</i></td><td>Backend-arxitektura, testlar, avtodeploy jonli namoyishi + fullstack loyiha himoyasi</td><td>Jonli pipeline demo</td></tr>
+</table>
+
+<!-- ============ MODUL 7 ============ -->
+<h2><span class="modhead">7-modul · BOTLAR VA AVTOMATIZATSIYA <span class="stage">1-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: DB va AI ichida bo‘lgan Telegram-bot; birinchi AI-agent; 20+ real foydalanuvchi va birinchi metrikalar. G‘oya: jonli mahsulotning birinchi tajribasi.</p>
+<div class="answer"><div class="cap">JAVOB · 7-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>3</b></div><div class="item">AI-PRAKTIKA: <b>5</b></div><div class="item">PM: <b>4</b></div><div class="item">Demo Day: <b>1</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>14 dars</b></div><div class="item">Davomiylik: <b>≈5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>7.5 — 8.5-oy</b></div><div class="item">Tartib: <b>7-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Что такое бот</td><td>Bot arxitekturasi, event-driven: trigger → harakat</td><td>Bot sxemasi</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Первые пользователи: стратегия</td><td>Pulsiz birinchi 20: shaxsiy kanallar, maktab chatlari</td><td>Birinchi 20 ni yig‘ish rejasi</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>Telegram Bot API + кнопки</td><td>BotFather, token, /start, inline/reply; NestJS + Telegraf</td><td>Menyu va komandali bot</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>Stateful логика + PostgreSQL</td><td>Bot holatni qanday eslaydi, user ma’lumotlarini saqlash</td><td>Ma’lumotni eslaydigan bot</td></tr>
+  <tr><td>5</td><td class="t ai">AI-PRAKT</td><td>Проектный день</td><td>AI-promptlar orqali istalgan turdagi Telegram-bot</td><td>Telegram-botlar oson</td></tr>
+  <tr><td>6</td><td class="t ai">AI-PRAKT</td><td>AI-бот: ИИ внутри бота</td><td>Botga AI API ulash, xulq sozlash</td><td>AI orqali javob beradigan bot</td></tr>
+  <tr><td>7</td><td class="t ai">AI-PRAKT</td><td>Проектный день</td><td>Mini-loyiha: bot + DB + AI + hosting</td><td>To‘laqonli ishlaydigan bot</td></tr>
+  <tr><td>8</td><td class="t pm">PM</td><td>Custdev с живыми пользователями <i>(kengaytirilgan)</i></td><td>Taqiqlangan savollar, 5 savol shabloni, mentor bilan rol o‘yini → 5 mini-intervyu</td><td>Texnika o‘zlashtirilgan + 5 intervyu</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Фидбек и итерации</td><td>Foydalanuvchilar nima deydi, nimani tuzatish</td><td>Fidbek bo‘yicha 3 muammo tuzatilgan</td></tr>
+  <tr><td>10</td><td class="t ai">AI-PRAKT</td><td>AI-агент: проект</td><td>Bot bazasida agent: qabul qilish → qaror → harakat</td><td>Bot ichida ishlaydigan agent</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Что такое метрика <i>(М8 dan ko‘chirilgan)</i></td><td>DAU, retention, North Star — o‘z jonli botida</td><td>North Star + botning 3 metrikasi</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Набери пользователей + метрики</td><td>Yig‘ish rejasini ishga tushirish; ma’lumotlarni o‘qish</td><td>20+ user + birinchi metrika hisoboti</td></tr>
+  <tr class="rez"><td>13</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+  <tr class="demo"><td>14</td><td class="t demo">DEMO</td><td>Demo Day 6</td><td>Guruh + taklif etilganlar oldida himoya</td><td>20+ userli jonli bot + metrikalar</td></tr>
+</table>
+
+<!-- ============ MODUL 8 ============ -->
+<h2><span class="modhead">8-modul · TIZIMNI TO‘LIQ YIG‘AMAN (Собираю систему целиком) <span class="stage">1-BOSQICH YAKUNI</span></span></h2>
+<p class="goal">Maqsad: Barcha komponentlarni bitta tizimga yig‘ish; Claude Skills va AI-agent; birinchi to‘laqonli PRD. React Native bilan birinchi tanishuv.</p>
+<div class="answer"><div class="cap">JAVOB · 8-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>7</b></div><div class="item">AI-PRAKTIKA: <b>3</b></div><div class="item">PM: <b>4</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>15 dars</b></div><div class="item">Davomiylik: <b>≈5 hafta ≈ 1.1 oy</b></div><div class="item">O‘qish jadvalida: <b>8.5 — 10-oy</b></div><div class="item">Tartib: <b>8-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t kod">TEX</td><td>Система из компонентов</td><td>Front + bek + DB + AI + bot — qanday bog‘langan</td><td>Real mahsulot arxitekturasi</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Что такое PRD</td><td>Struktura: muammo / auditoriya / yechim / metrikalar</td><td>Tizimining 1 sahifalik PRD’i</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>Паттерны архитектуры</td><td>MVC, mikroservislar — sodda tilda</td><td>Loyihasini pattern bilan tavsiflaydi</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>Что такое AI-агент</td><td>Agent vs oddiy AI: qabul qilish → qaror → harakat</td><td>Agent sxemasi</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>Claude Skills — что это</td><td>Skills AI xulqini qanday o‘zgartiradi</td><td>Tayyor Skill tahlili</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Этика и ответственность продукта</td><td>AI-mahsulotda nima noto‘g‘ri ketishi mumkin</td><td>Agent risklari + himoya choralari</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>Создаём свой Skill</td><td>Yozish, test, kontekst-injiniring bilan yaxshilash</td><td>O‘z vazifasiga Skill</td></tr>
+  <tr><td>8</td><td class="t ai">AI-PRAKT</td><td>AI-проект: полный pipeline</td><td>React + Node + PostgreSQL + Telegram + AI bitta pipeline’da</td><td>Barcha komponentli ishlaydigan pipeline</td></tr>
+  <tr><td>9</td><td class="t kod">TEX</td><td>React Native — основы</td><td>React’dan farqi, Expo setup</td><td>Telefonda birinchi ekran</td></tr>
+  <tr><td>10</td><td class="t kod">TEX</td><td>React Native — навигация, API</td><td>View, Text, Stack Navigator, AsyncStorage, Node.js bilan aloqa</td><td>Bekli ko‘p ekranli ilova</td></tr>
+  <tr><td>11</td><td class="t ai">AI-PRAKT</td><td>Практика: мобильное приложение</td><td>Loyihalardan birining mobil versiyasi; Expo Go deploy</td><td>Tayyor mobil ilova</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Roadmap + сколько стоит система</td><td>Gorizontlar, RICE + yunit-ekonomika mini</td><td>3 oylik roadmap + tizim smetasi</td></tr>
+  <tr><td>13</td><td class="t ai">AI-PRAKT</td><td>Проектный день: полная система</td><td>Test, baglarni tuzatish</td><td>Tizim end-to-end ishlaydi</td></tr>
+  <tr><td>14</td><td class="t pm">PM</td><td>Питч с метриками</td><td>IT-auditoriya uchun pitch; metrikalar — dalil</td><td>Metrikalar bilan 3 daqiqalik pitch</td></tr>
+  <tr class="rez"><td>15</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+</table>
+<p class="sub">* 8 talik sxema bo‘yicha bu modulda Demo Day yo‘q — 1-bosqich yakuni 7-moduldagi Demo Day 6 va 11-moduldagi Demo Day 7 orasida pitch darslari orqali mustahkamlanadi.</p>
+
+<!-- ============ MODUL 9 ============ -->
+<h2><span class="modhead">9-modul · LOYIHAM KIM UCHUN VA NIMA UCHUN + ANIMATSIYA <span class="stage">2-BOSQICH · PRODUCT MANAGEMENT</span></span></h2>
+<p class="goal">Maqsad: Birinchi marta o‘zi uchun emas — real odamning real muammosi bo‘yicha mini-MVP, birinchi kundan jonli va animatsiyalangan. TEXNIK CHO‘QQI: animatsiya va mikrovzaimodeystviyalar.</p>
+<div class="answer"><div class="cap">JAVOB · 9-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>2</b></div><div class="item">AI-PRAKTIKA: <b>3</b></div><div class="item">PM+PRAKT: <b>2</b></div><div class="item">PM: <b>5</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>13 dars</b></div><div class="item">Davomiylik: <b>≈4.5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>10 — 11-oy</b></div><div class="item">Tartib: <b>9-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>Продукт vs проект + скан проблем</td><td>Farqi nima; tez skan: atrofdan 10 muammo</td><td>3 ishlaydigan mahsulot + 10 yangi muammo</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Custdev: 5 реальных интервью</td><td>15 daq texnika takrori → 5 real intervyu</td><td>Shablon bo‘yicha 5 intervyu yozuvi</td></tr>
+  <tr><td>3</td><td class="t pm">PM</td><td>Анализ интервью + MVP</td><td>Patternlar, insaytlar; qilamiz/qilmaymiz/keyin</td><td>1 aniq muammo + MVP ficha ro‘yxati</td></tr>
+  <tr><td>4</td><td class="t kod">TEX</td><td>Архитектура mini-MVP</td><td>Komponentlar, ma’lumotlar, stek tanlovi; DB + auth + deploy</td><td>Sxema + loyiha skeleti</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>Анимация и микровзаимодействия <b>(CHO‘QQI)</b></td><td>Transition, transform, Framer Motion — qo‘lda</td><td>Interfeysning 3 elementini jonlantiradi</td></tr>
+  <tr><td>6</td><td class="t pmp">PM+PRAKT</td><td>Аналитика с первого дня</td><td>GIBRID: 20 daq — nimani o‘lchash; keyin analitika shu darsda ulanadi</td><td>Birinchi userdan oldin analitika ulangan</td></tr>
+  <tr><td>7</td><td class="t ai">AI-PRAKT</td><td>Разработка MVP — ч.1</td><td>O‘quvchi spec yozadi, agent birinchi ekranni quradi</td><td>MVP’ning birinchi ishlaydigan ekrani</td></tr>
+  <tr><td>8</td><td class="t pmp">PM+PRAKT</td><td>Дизайн + оживление MVP</td><td>GIBRID: Dribbble/Behance; 1 pattern + animatsiyalar agent orqali</td><td>MVP jonli ko‘rinadi va sezialdi</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Разработка MVP — ч.2</td><td>O‘quvchi spec’i bo‘yicha fichalar yakunlanadi</td><td>Ishlaydigan MVP</td></tr>
+  <tr><td>10</td><td class="t pm">PM</td><td>Тест с реальным человеком</td><td>Usability test: kuzatish, tushuntirmaslik</td><td>Test + kuzatuv yozuvlari</td></tr>
+  <tr><td>11</td><td class="t ai">AI-PRAKT</td><td>Итерация по фидбеку</td><td>O‘quvchi tuzatishni ifodalaydi, agent eng kritigini tuzatadi</td><td>MVP’ning yaxshilangan versiyasi</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Питч: проблема → решение → пользователь</td><td>Real foydalanuvchi tarixi pitchni ishonchli qiladi</td><td>Repetitsiya; foydalanuvchi ishtiroki</td></tr>
+  <tr class="rez"><td>13</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>Yetib olish / doработка</td><td>—</td></tr>
+</table>
+
+<!-- ============ MODUL 10 ============ -->
+<h2><span class="modhead">10-modul · GIPOTEZANI QANDAY TEKSHIRISH + TEXNIK MVP PRAKTIKASI <span class="stage">2-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: O‘z analitikasi, A/B testlar, kiberxavfsizlik, production-deploy. TEXNIK CHO‘QQI: o‘z event-tracking tizimi + jonli dashboard.</p>
+<div class="answer"><div class="cap">JAVOB · 10-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>3</b></div><div class="item">AI-PRAKTIKA: <b>3</b></div><div class="item">PM+PRAKT: <b>2</b></div><div class="item">PM: <b>3</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>2</b></div>
+  <div class="item">Jami: <b>13 dars</b></div><div class="item">Davomiylik: <b>≈4.5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>11 — 12-oy</b></div><div class="item">Tartib: <b>10-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>OKR: цель → метрика → эксперимент</td><td>North Star + OKR; o‘lchanadigan maqsadlar</td><td>Keyingi oyga OKR</td></tr>
+  <tr><td>2</td><td class="t kod">TEX</td><td>Своя система event-tracking <b>(CHO‘QQI)</b></td><td>Voqea nima, qanday ushlab saqlanadi; o‘z trekingimizni quramiz</td><td>Mahsulotning 3 voqeasi DB’ga yoziladi</td></tr>
+  <tr><td>3</td><td class="t ai">AI-PRAKT</td><td>Живой мини-дашборд</td><td>Spec — o‘quvchidan, agent deyarli real-time dashboard yig‘adi</td><td>Dashboard jonli userlarni ko‘rsatadi</td></tr>
+  <tr><td>4</td><td class="t pmp">PM+PRAKT</td><td>A/B тест: гипотеза + запуск</td><td>GIBRID: 20 daq — gipoteza; B varianti shu darsda userlarga ketadi</td><td>1 A/B test ishga tushirilgan</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>Кибербезопасность: основы</td><td>2FA, SQL injection, XSS, GDPR, secrets management</td><td>Zaifliklarni topadi va yopadi</td></tr>
+  <tr><td>6</td><td class="t pmp">PM+PRAKT</td><td>Безопасность как доверие + аудит</td><td>GIBRID: 20 daq — utechka; keyin audit + maxfiylik siyosati publikatsiyasi</td><td>Audit o‘tilgan, siyosat saytda</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>Production деплой</td><td>Domen, SSL, monitoring, alertlar</td><td>SSL + uptime-monitoring sozlangan</td></tr>
+  <tr><td>8</td><td class="t ai">AI-PRAKT</td><td>Апгрейд проекта до prod — ч.1</td><td>Eng yaxshi loyihani production darajasiga</td><td>Production darajadagi loyiha</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Апгрейд до prod — ч.2 + code review</td><td>Code review’da har qarorni tushuntiradi</td><td>Kod himoyaga tayyor</td></tr>
+  <tr><td>10</td><td class="t pm">PM</td><td>Годовая защита: путь за год</td><td>Bo‘ldi → bo‘ldi → keyin nima; barcha loyihalar portfolio sifatida</td><td>Yilning vizual taymlayni</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Репетиция питча</td><td>5 daqiqalik pitch to‘liq repetitsiyasi, qattiq fidbek</td><td>Pitch tuzatilgan</td></tr>
+  <tr class="rez"><td>12</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>—</td><td>—</td></tr>
+  <tr class="rez"><td>13</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>—</td><td>—</td></tr>
+</table>
+<p class="sub">* 8 talik sxema bo‘yicha alohida «yillik himoya» Demo Day’i yo‘q — yillik natijalar 10–11-darslarda pitch shaklida mustahkamlanadi, ommaviy himoya esa 11-modulda (Demo Day 7).</p>
+
+<!-- ============ MODUL 11 ============ -->
+<h2><span class="modhead">11-modul · FINAL LOYIHA: G‘OYA VA RIVOJLANTIRISH + REACT NATIVE MOBILE APP <span class="stage">2-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: Bitiruvgacha olib boriladigan final mahsulotni tanlash, validatsiya qilish va qurishni boshlash. Platforma tanlovi (web yoki mobile) — PM-qaror. TEXNIK CHO‘QQI: jonli prototip + mobil trek (React Native, v8.1).</p>
+<div class="answer"><div class="cap">JAVOB · 11-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>3</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM+PRAKT: <b>1</b></div><div class="item">PM: <b>8</b></div><div class="item">Demo Day: <b>1</b></div><div class="item">Rezerv: <b>0</b></div>
+  <div class="item">Jami: <b>17 dars</b></div><div class="item">Davomiylik: <b>≈6 hafta ≈ 1.3 oy</b></div><div class="item">O‘qish jadvalida: <b>12 — 13.5-oy</b></div><div class="item">Tartib: <b>11-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>Генерация идей</td><td>Bir darsda 10 g‘oya: muammo + auditoriya + yechim</td><td>Asoslangan 10 yozma g‘oya</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Отсев и выбор идеи</td><td>Bajariladigan / real auditoriya / qiziq; RICE</td><td>RICE baholi 3 g‘oya</td></tr>
+  <tr><td>3</td><td class="t pm">PM</td><td>Custdev: 10 интервью — ч.1</td><td>Eng yaxshi 2 g‘oya bo‘yicha intervyular</td><td>Birinchi 5 intervyu yozilgan</td></tr>
+  <tr><td>4</td><td class="t pm">PM</td><td>Custdev: 10 интервью — ч.2</td><td>Patternlar tahlili, final g‘oya tanlovi</td><td>10 intervyu + final g‘oya</td></tr>
+  <tr><td>5</td><td class="t pm">PM</td><td>Чекпоинт с ментором + PRD</td><td>Mentor g‘oyani tasdiqlaydi; to‘liq PRD</td><td>Tasdiqlangan g‘oya + PRD</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Roadmap финального продукта</td><td>RICE orqali bitiruvgacha roadmap</td><td>Roadmap fiksatsiya qilingan</td></tr>
+  <tr><td>7</td><td class="t kod">TEX</td><td>Живой прототип вместо Figma <b>(CHO‘QQI)</b></td><td>15 daq qog‘ozda wireframe → spec → kodlangan klikabelli prototip (animatsiyalar 9-moduldan)</td><td>Jonli prototip: bosiladi, reaksiya qiladi</td></tr>
+  <tr class="new"><td>8</td><td class="t kod">TEX</td><td>Архитектура + стек + выбор платформы <i>(v8.1 to‘ldirilgan)</i></td><td>Komponentlar, real-time nuqtalar + platforma PM-qaror sifatida: web yoki mobile (React Native + Expo)?</td><td>Arxitektura + stek + asoslangan platforma tanlovi</td></tr>
+  <tr class="new"><td>9</td><td class="t kod">TEX</td><td>React Native рефреш + Expo апгрейд <i>(YANGI v8.1)</i></td><td>Expo setup, navigatsiya, prototipni telefonga yig‘ish; web-trek uchun — adaptiv/PWA</td><td>Prototip o‘z telefonida ishga tushadi</td></tr>
+  <tr><td>10</td><td class="t ai">AI-PRAKT</td><td>Vibe-coding: фундамент</td><td>DB, autentifikatsiya, deploy — tanlangan stekda</td><td>Mahsulot skeleti ishlaydi</td></tr>
+  <tr><td>11</td><td class="t ai">AI-PRAKT</td><td>Vibe-coding: фича 1</td><td>Roadmap bo‘yicha birinchi asosiy ficha; spec — o‘quvchidan</td><td>Ficha 1 tayyor</td></tr>
+  <tr><td>12</td><td class="t ai">AI-PRAKT</td><td>Vibe-coding: фича 2</td><td>Ikkinchi asosiy ficha</td><td>Ficha 2 tayyor</td></tr>
+  <tr><td>13</td><td class="t pmp">PM+PRAKT</td><td>Тест с аудиторией + итерация</td><td>GIBRID: TA’dan 3 kishi bilan usability → eng kritigi shu darsda tuzatiladi</td><td>Fidbek bo‘yicha yaxshilangan versiya</td></tr>
+  <tr><td>14</td><td class="t ai">AI-PRAKT</td><td>Vibe-coding: фича 3</td><td>Uchinchi asosiy ficha</td><td>Ficha 3 tayyor</td></tr>
+  <tr><td>15</td><td class="t pm">PM</td><td>Менторская 1-на-1</td><td>Progress vs roadmap; risklar, korrektsiyalar</td><td>Korrektsiyalangan reja</td></tr>
+  <tr><td>16</td><td class="t pm">PM</td><td>Питч идеи и прототипа</td><td>Muammo → yechim → jonli prototip (mobile-trekda — telefonda)</td><td>Guruh oldida pitch</td></tr>
+  <tr class="demo"><td>17</td><td class="t demo">DEMO</td><td>Demo Day 7 <i>(8 talik sxema bo‘yicha yangi joy)</i></td><td>Final mahsulot g‘oyasi + jonli prototip ommaviy himoyasi</td><td>Prototip demosi (mobile — telefonda)</td></tr>
+</table>
+
+<!-- ============ MODUL 12 ============ -->
+<h2><span class="modhead">12-modul · REAL-TIME: WEBSOCKET + ZAPUSK — FLAGMAN <span class="stage">2-BOSQICH · FLAGMAN MODUL</span></span></h2>
+<p class="goal">Maqsad: 50+ real foydalanuvchili jonli mahsulot va real-time funksiyalar. G‘oya: «Userlaring ketyapti → ularni qaytaradigan jonli tizim qur». TEXNIK CHO‘QQI-FLAGMAN: WebSocket / real-time (+ telefonda push, v8.1).</p>
+<div class="answer"><div class="cap">JAVOB · 12-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>2</b></div><div class="item">AI-PRAKTIKA: <b>2</b></div><div class="item">PM+PRAKT: <b>3</b></div><div class="item">PM: <b>5</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>13 dars</b></div><div class="item">Davomiylik: <b>≈4.5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>13.5 — 14.5-oy</b></div><div class="item">Tartib: <b>12-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>Лендинг + копирайтинг</td><td>Mahsulotning bir sahifaligi, CTA</td><td>Lending publikatsiya qilingan</td></tr>
+  <tr><td>2</td><td class="t kod">TEX</td><td>WebSocket — основы real-time <b>(CHO‘QQI-FLAGMAN)</b></td><td>Doimiy ulanish vs HTTP; socket.io; mahsulotida real-time qayerda kerak</td><td>Mahsulotining real-time oqim sxemasi</td></tr>
+  <tr><td>3</td><td class="t pmp">PM+PRAKT</td><td>Спецификация real-time фичи</td><td>GIBRID: mini-PRD (voqealar, holatlar, edge case) → agent live-yangilanishlarni quradi</td><td>Live-yangilanishlar o‘z spec’i bo‘yicha ishlaydi</td></tr>
+  <tr class="new"><td>4</td><td class="t ai">AI-PRAKT</td><td>Живые уведомления + presence <i>(v8.1)</i></td><td>«Kim onlayn», voqea bo‘yicha xabar; mobile-trekda — telefonda push (Expo Notifications)</td><td>Presence + xabarnomalar mahsulotda</td></tr>
+  <tr><td>5</td><td class="t kod">TEX</td><td>«Сломай и почини»</td><td>Ulanish uzilishi, voqea dublikatlari, reconnect — o‘quvchi buzadi, agent tuzatadi</td><td>3 topilgan va tuzatilgan muammo</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Каналы привлечения</td><td>Instagram, Telegram, maktab chatlari; birinchi post</td><td>Birinchi post e’lon qilingan</td></tr>
+  <tr class="new"><td>7</td><td class="t pmp">PM+PRAKT</td><td>Стратегия 50 юзеров + запуск <i>(v8.1)</i></td><td>GIBRID: yig‘ish rejasi yoziladi VA ishga tushadi; mobile-trek storsiz — Expo Go / APK</td><td>20 user + 50 gacha reja harakatda</td></tr>
+  <tr><td>8</td><td class="t pmp">PM+PRAKT</td><td>Анализ поведения + итерация</td><td>GIBRID: voronka — qayerda ketishadi → gipoteza → shu darsda tuzatish</td><td>2 ketish nuqtasi topilgan, iteratsiya chiqarilgan</td></tr>
+  <tr><td>9</td><td class="t ai">AI-PRAKT</td><td>Real-time retention-механика</td><td>Userni qaytaradigan xabar (voqea → push), spec — o‘quvchidan</td><td>Jonli userlarda retention-mexanika</td></tr>
+  <tr><td>10</td><td class="t pm">PM</td><td>50 юзеров чекпоинт</td><td>Mentor metrikani tekshiradi; o‘sish bo‘lmasa antikrizis reja</td><td>Metrika hisoboti + reja</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Менторская 1-на-1</td><td>Progress + korrektsiyalar</td><td>Korrektsiyalangan pitch</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Питч с метриками</td><td>Metrikalar + o‘sish trayektoriyasi; grafiklar — dalil</td><td>Pitch repetitsiyasi</td></tr>
+  <tr class="rez"><td>13</td><td class="t rez">REZERV</td><td>Репетиция / резерв</td><td>Taymer bilan to‘liq prognon</td><td>—</td></tr>
+</table>
+<p class="sub">* 8 talik sxema bo‘yicha bu modulda alohida Demo Day yo‘q — 50+ user va real-time natijalar 14-moduldagi bitiruv himoyasining (Demo Day 8) asosiy dalili bo‘ladi.</p>
+
+<!-- ============ MODUL 13 ============ -->
+<h2><span class="modhead">13-modul · O‘SISH VA MONETIZATSIYA (Рост и монетизация) <span class="stage">2-BOSQICH</span></span></h2>
+<p class="goal">Maqsad: Yunit-ekonomika, to‘lov tizimi va growth-mexanikalar. To‘lashga tayyorlikning birinchi tasdig‘i. TEXNIK CHO‘QQI: webhook + referal dvijok.</p>
+<div class="answer"><div class="cap">JAVOB · 13-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>1</b></div><div class="item">AI-PRAKTIKA: <b>4</b></div><div class="item">PM+PRAKT: <b>2</b></div><div class="item">PM: <b>5</b></div><div class="item">Demo Day: <b>0</b></div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>13 dars</b></div><div class="item">Davomiylik: <b>≈4.5 hafta ≈ 1 oy</b></div><div class="item">O‘qish jadvalida: <b>14.5 — 15.5-oy</b></div><div class="item">Tartib: <b>13-modul</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>Юнит-экономика: CAC и LTV</td><td>Chuqur, real misollar bilan; o‘z mahsuloti uchun hisob</td><td>Mahsulotining CAC va LTV’si</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Модели монетизации</td><td>Freemium, obuna, reklama, B2B, tranzaksiyalar</td><td>Asoslangan model tanlovi</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>Webhook и внутренности оплаты <b>(CHO‘QQI)</b></td><td>To‘lov real qanday o‘tadi: webhook, idempotency, failed payment; sandbox</td><td>To‘lov oqimi sxemasi + webhook testi</td></tr>
+  <tr class="new"><td>4</td><td class="t pmp">PM+PRAKT</td><td>Ценообразование + paywall <i>(v8.1)</i></td><td>GIBRID: xarajat/raqobat/qiymat → narx shu darsda real paywall’ga; mobile-trekda paywall — web-sahifa orqali (Click/Payme), App Store/Play chetlab</td><td>Asoslangan narxli paywall ishlaydi</td></tr>
+  <tr><td>5</td><td class="t ai">AI-PRAKT</td><td>Платёжная интеграция + «сломай оплату»</td><td>Click / Payme / Stripe test mode to‘liq, spec — o‘quvchidan; sboylar tuzatiladi</td><td>To‘lov oqimi sboylarga chidaydi</td></tr>
+  <tr><td>6</td><td class="t pm">PM</td><td>Первый разговор о деньгах</td><td>To‘lashni qanday taklif qilish; skript, mentor bilan rol o‘yini</td><td>Narx bo‘yicha 3 real suhbat</td></tr>
+  <tr><td>7</td><td class="t pmp">PM+PRAKT</td><td>Юридический минимум + публикация</td><td>GIBRID: oferta, siyosat → hujjatlar saytda e’lon qilinadi</td><td>Oferta va siyosat saytda</td></tr>
+  <tr><td>8</td><td class="t ai">AI-PRAKT</td><td>Retention-механики</td><td>Email/push: nega ketishadi, qanday ushlab qolish</td><td>1 retention-mexanika qo‘shilgan</td></tr>
+  <tr><td>9</td><td class="t pm">PM</td><td>Чекпоинт монетизации</td><td>Kamida 3 kishi to‘lashga tayyorligini tasdiqlaydi</td><td>3 tasdiq + yozuvlar</td></tr>
+  <tr><td>10</td><td class="t ai">AI-PRAKT</td><td>Growth: реферальный движок <b>(CHO‘QQI davomi)</b></td><td>Unikal havolalar, taklif trekingi, mukofot — virallik kod sifatida</td><td>Referal mexanizm ishga tushgan + natija</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Рефлексия: где продукт сейчас</td><td>Mahsulot vs roadmap; shaxsiy PM-hisobot</td><td>Yozma refleksiya</td></tr>
+  <tr><td>12</td><td class="t ai">AI-PRAKT</td><td>Доработка и стабилизация</td><td>Mahsulot final stabilizatsiyasi</td><td>Mahsulot barqaror</td></tr>
+  <tr class="rez"><td>13</td><td class="t rez">REZERV</td><td>Резервный урок</td><td>—</td><td>—</td></tr>
+</table>
+
+<!-- ============ MODUL 14 ============ -->
+<h2><span class="modhead">14-modul · BITIRUVCHI (Выпускник) + PERFORMANCE <span class="stage">2-BOSQICH YAKUNI</span></span></h2>
+<p class="goal">Maqsad: Investorlar hakamlar hay’ati oldida final himoya. Mahsulot texnik jihatdan yarqiraydi. TEXNIK CHO‘QQI: performance + polish + agent bilan demo-test. Keyingi qadamga tayyorgarlik.</p>
+<div class="answer"><div class="cap">JAVOB · 14-MODUL</div><div class="grid">
+  <div class="item">TEX dars: <b>3</b></div><div class="item">AI-PRAKTIKA: <b>1</b></div><div class="item">PM+PRAKT: <b>1</b></div><div class="item">PM: <b>9</b></div><div class="item">Demo Day: <b>1</b> + marosim</div><div class="item">Rezerv: <b>1</b></div>
+  <div class="item">Jami: <b>17 dars</b></div><div class="item">Davomiylik: <b>≈6 hafta ≈ 1.3 oy</b></div><div class="item">O‘qish jadvalida: <b>15.5 — 16.5-oy</b></div><div class="item">Tartib: <b>14-modul (yakuniy)</b></div>
+</div></div>
+<table>
+  <tr><th>№</th><th>Tip</th><th>Mavzu</th><th>Mazmun</th><th>Natija</th></tr>
+  <tr><td>1</td><td class="t pm">PM</td><td>Структура питча инвестору</td><td>Muammo → Bozor → Yechim → Metrikalar → Jamoa → Keyin; YC Demo Day tahlili</td><td>Pitchning birinchi chernoviki</td></tr>
+  <tr><td>2</td><td class="t pm">PM</td><td>Storytelling: история продукта</td><td>5 daqiqa pitch — hikoya, ficha ro‘yxati emas</td><td>O‘zini videoga yozadi</td></tr>
+  <tr><td>3</td><td class="t kod">TEX</td><td>Performance: скорость продукта <b>(CHO‘QQI)</b></td><td>Lighthouse, lazy load, bundle hajmi</td><td>Mahsulot tezroq: oldin/keyin o‘lchov</td></tr>
+  <tr><td>4</td><td class="t ai">AI-PRAKT</td><td>Финальный polish: анимации демо</td><td>Demo uchun mikrovzaimodeystviyalar (9-modul mahorati maksimumda)</td><td>Mahsulot demoda «yarqiraydi»</td></tr>
+  <tr><td>5</td><td class="t pm">PM</td><td>Питч-тренинг 1</td><td>Guruh oldida pitch — qattiq fidbek</td><td>Tuzatishlar ro‘yxati</td></tr>
+  <tr><td>6</td><td class="t kod">TEX</td><td>Подготовка демо продукта</td><td>Stresssiz jonli ko‘rsatish; texnik risklar, B reja; feature freeze</td><td>Repetitsiya qilingan demo</td></tr>
+  <tr><td>7</td><td class="t pmp">PM+PRAKT</td><td>Демо-тест: продукт глазами инвестора</td><td>GIBRID: demo-risklar chek-listi → agent bilan prognon: o‘quvchi buzadi (tarmoq uzilishi, bo‘sh data, ikki klik), agent tuzatadi</td><td>Demo 3 prognonni xatosiz o‘taydi + B reja ishlaydi</td></tr>
+  <tr><td>8</td><td class="t pm">PM</td><td>Питч-тренинг 2 (финальный)</td><td>Tuzatishlar + taymer bilan final repetitsiya</td><td>Final pitch tayyor</td></tr>
+  <tr><td>9</td><td class="t kod">TEX</td><td>Видео-портфолио</td><td>O‘zi va mahsuloti haqida 3 daqiqalik video (frilans/stajirovka uchun)</td><td>Tayyor video-portfolio</td></tr>
+  <tr><td>10</td><td class="t pm">PM</td><td>Что дальше: фриланс и стажировка</td><td>Birinchi buyurtma (Upwork, lokal bozor) + kompaniyaga xat, suhbat</td><td>Birinchi buyurtma rejasi + 2 kompaniyaga xat</td></tr>
+  <tr><td>11</td><td class="t pm">PM</td><td>Международные программы</td><td>Y Combinator, Diamond Challenge, lokal grantlar</td><td>1 dastur + boshlangan ariza</td></tr>
+  <tr><td>12</td><td class="t pm">PM</td><td>Финальная 1-на-1 с ментором</td><td>Keyingi 6 oyga shaxsiy reja</td><td>Yozma reja</td></tr>
+  <tr><td>13</td><td class="t pm">PM</td><td>Генеральная репетиция</td><td>Real hakamlar oldidan to‘liq prognon</td><td>—</td></tr>
+  <tr class="rez"><td>14</td><td class="t rez">REZERV</td><td>Подготовка зала</td><td>Tashkiliy dars</td><td>—</td></tr>
+  <tr><td>15</td><td class="t pm">PM</td><td>Встреча выпускников</td><td>O‘tgan bitiruvchilar bilan networking</td><td>—</td></tr>
+  <tr class="demo"><td>16</td><td class="t demo">DEMO</td><td>Demo Day 8 — Bitiruv himoyasi</td><td>Hakamlar: 5–7 investor va tadbirkor</td><td>5 daqiqa pitch + Q&amp;A</td></tr>
+  <tr class="demo"><td>17</td><td class="t demo">MAROSIM</td><td>Выпускной — Bitiruv marosimi</td><td>Sertifikatlar, video-portfolio, g‘oliblar</td><td>—</td></tr>
+</table>
+
+<!-- ============ SIFAT FILTRI ============ -->
+<h2>Dars sifat filtri (v8.1 dan saqlangan)</h2>
+<p>Har bir dars kamida bitta punktdan o‘tadi — aks holda qayta ko‘riladi yoki birlashtiriladi:</p>
+<table>
+  <tr><th>#</th><th>Mezon</th></tr>
+  <tr><td>1</td><td>Dars oxirida ko‘rsatsa bo‘ladigan artefakt bor (ishlaydigan ficha, e’lon qilingan post, intervyu yozuvi).</td></tr>
+  <tr><td>2</td><td>Real element bor: jonli foydalanuvchi, jonli ma’lumot yoki jonli (sandbox) pul.</td></tr>
+  <tr><td>3</td><td>Texnik darsda «sindir va tuzat» momenti bor — o‘quvchi tizim chegaralarini his qiladi.</td></tr>
+  <tr><td>4</td><td>PM-qaror shu darsda amalga oshiriladi (gibrid) yoki jonli odam bilan o‘tadi (intervyu, pul suhbati, mentor).</td></tr>
+</table>
+
+<!-- ============ TASHKILIY CHEK-LIST ============ -->
+<h2>Tashkiliy chek-list (tegishli modullar boshlanishidan oldin)</h2>
+<table>
+  <tr><th>Masala</th><th>Muddat (yangi raqamlash bo‘yicha)</th></tr>
+  <tr><td>Merchant masalasi (maktab yurlitsosi / ota-ona modeli)</td><td>13-modulgacha hal qilinadi</td></tr>
+  <tr><td>O‘quvchilar uchun AI-agent akkauntlar: kim to‘laydi, limitlar, nazorat; oylik xarajat oldindan hisoblanadi</td><td>Doimiy, 3-moduldan</td></tr>
+  <tr><td>O‘qituvchilar «spetsifikatsiya → agent yig‘adi → sindir va tuzat» formatiga o‘rgatilgan</td><td>Startgacha</td></tr>
+  <tr><td>Click/Payme/Stripe sandbox-akkauntlar ochilgan</td><td>13-modulgacha</td></tr>
+  <tr class="new"><td>v8.1: Expo-akkauntlar va o‘quvchilar telefonlarida Expo Go; APK tarqatish testi</td><td>Expo — 11-modulgacha; APK — 12-modulgacha</td></tr>
+  <tr class="new"><td>v8.1: mobile-trek uchun paywall web-sahifa orqali (Click/Payme havola) — qaror kelishilgan</td><td>13-modulgacha</td></tr>
+  <tr><td>Yosh: dastur 13–17 yoshga mo‘ljallangan; 10–12 yosh uchun — alohida trek/temp</td><td>—</td></tr>
+  <tr><td>Qo‘shimcha rezerv (~1 oy) filial kalendariga qarab taqsimlanadi</td><td>—</td></tr>
+</table>
+
+<p class="sub" style="margin-top:30px;border-top:1px solid var(--line);padding-top:14px">CoddyCamp · Senior 2026 · v9.0 (14-modul tuzilma, v8.1 asosida) · Barcha dars mavzulari va ichki ketma-ketlik v8.1 hujjatidan o‘zgarishsiz ko‘chirilgan; faqat modul nomlari, raqamlash, Foundation moduli va 8 talik Demo Day sxemasi yangilandi.</p>
+
+</div>
+</body>
+</html>

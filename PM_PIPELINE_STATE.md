@@ -3619,3 +3619,22 @@ qurildi (`src/bridge/lessons/`, sayt `vite.bridge.config.js` → `dist-bridge/`,
 qaytardi, variantlar taklif sifatida hisobotda. Takror bug: navbat-puls `k === 0` noto'g'ri variantga (2 dars) · kartada string emas →
 oq ekran (F-0915-02 oilasi, 3 dars) — tuzatildi. Korpus §201–§208. Hisobot: `feedback/F-0923-bridge/ERTALAB_HISOBOT_2026-09-24.md`.
 Qoldi: GATE 2/3 foydalanuvchi ko'rigi · pm-qabulchi yuritilmadi · commit/Vercel — buyruq bilan.
+
+## F-0928-06 · v9 dasturi bo'yicha tushib qolgan 3 PM dars (2026-09-28, KRITIK)
+Topildi: `CoddyCamp_Senior_2026_v9_14modul .html` 3 darsni «M7/M8 dan ko'chirilgan» deydi, `App.jsx` eski tartibda —
+LMS'ga yuklangan modullarda bo'shliq. Raqam-xaritasi: bizning N = v9 (N+1), 4a/4b/4c = v9 6.
+| v9 o'rni | Dars | Manba fayl | Yo'l |
+|---|---|---|---|
+| 3-Modul (JS) #3 → bizning m2, PmLesson4 dan keyin | Muammoni qanday izlash | PmLesson28 (v16, eski) | A — yangi senariy `pm-senariylar/M2-D3-MuammoIzlash.md` → GATE S |
+| 4-Modul (React) #3 → bizning m3, UserStory dan keyin | JTBD — chuqur | PmJtbdLesson (etalon) | C — pm-auditor GAP → GATE 1 |
+| 7-Modul (Bot) #11 → bizning m5, PmLesson21 dan oldin | Metrika nima | PmMetricsLesson (etalon) | C — pm-auditor GAP → GATE 1 |
+Foydalanuvchi tartibi: avval 3–4 (bugun), keyin 7. Holat: audit + senariy boshlandi.
+**2026-09-28 10:33 · GATE S TASDIQLANDI (20/20 tavsiya):** M2-D3 — A1 kalit m2-16 n:3, fayl src/2-Modull/PmMuammoIzlash.jsx · A2 ikki o'lchov · A3 sinfda 10 bittalab · A4 «kuchi» · A5 faqat «sharh».
+M3-D3 JTBD — B1 Debug Challenge · B2 ingliz tili markazi · B3 aralash · B4 «Menga amalda nima beradi?» · B5 m3-17 + PmLesson8 gapi «User Story darsida yozgan…» · B6 uch savol uy-kartasiga.
+U1 m7-02/m7-03 App.jsx dan olinadi (fayllar arxivda) · U2 parallel. Metrika — C1 K9 Booking · C2 VS Code /stat · C3 inglizcha faqat s5+flashcard · C4 «metr» izoh-qatori · C5 qo'lda ro'yxat · C6 kalit m5-14 n:11, PmLesson21 → 12, m8-01 olinadi · C7 qurib tekshirilgach coddycamp-5modul qayta deploy.
+Zaxira: `arxiv/f0928-06-oldin/` (MD5.txt).
+**2026-09-28 · F-0928-07 (jonli-agent topdi, KRITIK-sinf):** `setLiveLang(lang)` chaqirilmagan PM darslari — ruscha rejimda payload `lang:'uz'` (smoke I6).
+Skan: 7 dars — 5-Modul PmLesson19/20/21 (TUZATILDI, smoke onFinished uz+ru 8/8 ✓ PmMetrics bilan) · 6-Modul PmLesson22–25 (tuzatilmagan, 6-Modul navbatida). 1–4-Modul (LMS) toza.
+**2026-09-28 · F-0928-06 zanjir holati → GATE 2:** uchala dars: Quruvchi ✓ · Jonli ✓ (Metrika: setLiveLang tuzatildi) · Dizayn ✓ · 👦1 ✓ · Metodist ✓ (Metrika 2 aylanish) · 👦2 5/5 PASS (Muammo 18/18, JTBD 17/17, Metrika 18/18).
+Yangi vosita `scripts/ekran-belgi.mjs` (EKRAN ≤400 o'lchovi; P0 kalibrovka: s1 492, s15 423 — preview/yakun ekranlari etalonda ham ortiq). App.jsx: m2-16 · m3-17 · m5-14 qo'shildi, m7-02/m7-03/m8-01 olindi. M5DemoApp: m5-14.
+GATE 2 sahifa: https://claude.ai/artifact/37jh2S7SprcbgXGKpikdvY. Keyin: Tekshiruvchi → RU → Verifikator → Qabulchi → GATE 3 → deploy/yuklash.

@@ -9,7 +9,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Senariy-manba: pm-senariylar/M5-D11-Qaytish.md ([GATE S] yopilgan, 2026-08-18).
 // Misol-ip: o'quvchining O'Z Telegram-boti — M5 bo'yi qurgan boti (91/95/96c/108-qonun).
 // Imzo-vizual: QAYTISH-KALENDARI — kunlar ustun, odamlar belgi; e'lon yuqori qatorni ko'taradi.
-// Bosh keys: K5 Duolingo — burchak «sanoq birligi» (M8-D1 ning «usul» burchagi takrorlanmaydi).
+// Bosh keys: K5 Duolingo — burchak «sanoq birligi»; K5 endi faqat shu darsda (oldingi Metrika darsidan chiqarilgan, F-0928-06).
 // Kirish-artefakt: pm-m5d8-javoblar (uch odamdan eshitilgan gaplar) — JIM zaxira (§69).
 // Chiqish-artefakt: pm-m5d11-metrika = { kunlar: [{kun, kelgan, qaytgan} x3], savedAt } — M5 ni yopadi.
 // INFRA MANBAI: src/4c-Modull/PmLesson17.jsx (M4c-D2) va src/4a-Modull/PmLesson15.jsx (M4a-D2) —
@@ -17,8 +17,9 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //   dan: jonli relslar, Stage, QuestionScreen, MentorTestStats, RecapOverlay, PairTimer,
 //   ScreenPodium, CodeStrike-arena, nishonlar, to'liq-ekran kompilyator qobig'i (zoom-bekori).
 // KODING: umumiy kompilyator (registr R1 navbati: m5-08 VS Code -> m5-11 kompilyator), sof JS.
-// ATAMA-INTIZOMI: bosh atama «qaytgan» faqat s2 da tug'iladi (s0/s1 da 0); foiz, «%» va
-//   inglizcha nomlar (M8-D1 atamalari) dars matnida 0; «kir-» o'zagi odam haqida ishlatilmaydi.
+// ATAMA-INTIZOMI: bosh atama «qaytgan» faqat s2 da tug'iladi (s0/s1 da 0); foiz va inglizcha nomlar
+//   bu darsda 0 — ular oldingi darsda (m5-14 Metrika) o'rgatilgan; yagona istisno — s2 dagi bitta
+//   ko'prik-gap (F-0928-06); «kir-» o'zagi odam haqida ishlatilmaydi.
 // BIR TILLI (UZ): tarjima-yordamchisi yo'q; RU alohida sweep'da qo'shiladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -33,7 +34,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
 
 // UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
 // barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
@@ -810,6 +811,8 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
           <div className="xul fade-step">
             <span className="xul-h">{tr({ uz: 'Kecha kelgan odam bugun ham kelsa — u bugun qaytgan hisoblanadi.', ru: 'Если человек, приходивший вчера, пришёл и сегодня — сегодня он считается вернувшимся.' })}</span>
             <p className="xul-b">{tr({ uz: "Demak har kunda ikki son bo'ladi: nechta odam keldi va ulardan nechtasi qaytdi.", ru: 'Значит, в каждом дне два числа: сколько человек пришло и сколько из них вернулось.' })}</p>
+            {/* F-0928-06: Metrika darsi (m5-14) endi shu darsdan OLDIN — foizga bitta ko'prik-gap (yagona istisno) */}
+            <p className="xul-b">{tr({ uz: "O'tgan darsda buni foizda hisoblagansiz — qaytganlar foizi. Bugun esa botingizning o'z kunlarida qaytganlarni bittalab sanaysiz.", ru: 'На прошлом уроке вы считали это в процентах — процент вернувшихся. Сегодня вы пересчитаете вернувшихся поимённо, по дням вашего бота.' })}</p>
           </div>
         )}
       </div>
@@ -3716,6 +3719,7 @@ const CSS_ARENA = `
 // ============================================================ LESSON ROOT
 export default function PmLesson21({ lang: langProp, onFinished, liveToken }) {
   const lang = langProp || 'uz';
+  setLiveLang(lang); // F-0928-07: jonli-modul tili + payload v2 lang (smoke I6)
   __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const savedRef = useRef(undefined);
   if (savedRef.current === undefined) {
