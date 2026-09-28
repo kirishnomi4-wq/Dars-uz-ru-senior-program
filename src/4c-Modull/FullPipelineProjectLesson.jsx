@@ -102,7 +102,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 
 const Split = ({ children }) => <div className="split">{children}</div>;
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — bo'sh holatda ⛶ chiqmaydi (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -124,7 +124,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -736,9 +736,8 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onProgress, onWrong }
           </div>
         ))}
       </div>
-      {!solved
-        ? <p className="dbg-hint">{tr({ uz: '👆 Qizil chiroq yongan qatorni toping va bosing', ru: '👆 Найдите строку с красным сигналом и нажмите на неё' })}</p>
-        : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
+      {/* F-0926-06 (159/6): kursiv yo'riq olindi — chorlov mentor gapida */}
+      {solved && <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
     </div>
   );
 }
@@ -812,7 +811,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               </>}
             </Term>
             <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Qo'lda tekshirildi", ru: '✓ Проверено вручную' }) : tr({ uz: "▶ 5 nuqtani qo'lda ishga tushirish", ru: '▶ Запустить 5 точек вручную' })}</button>
-            {tried && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "5 buyruq, har safar qo'lda — birontasini unutsangiz, xato tekshirilmagan yuk yo'lovchiga chiqib ketishi mumkin. Buni to'liq avtomatlashtirsak-chi?", ru: '5 команд, каждый раз вручную — забудете хоть одну, и непроверенный багаж с ошибкой может улететь к пассажиру. А если автоматизировать всё целиком?' })}</p></div>}
+            {tried && <div className="frame-warn fade-step">{/* F-0926-06 (159/1): «5 buyruq, qo'lda» terminal satrida bor — takror olindi */}<p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Birontasini unutsangiz, xato tekshirilmagan yuk yo'lovchiga chiqib ketishi mumkin. Buni to'liq avtomatlashtirsak-chi?", ru: 'Забудете хоть одну команду — и непроверенный багаж с ошибкой может улететь к пассажиру. А если автоматизировать всё целиком?' })}</p></div>}
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Bugun nima qilamiz?', ru: 'Что делаем сегодня?' })}</p>
@@ -845,9 +844,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
+      <div className="vis-card">{/* F-0926-06 (160): yorliq, lenta va izohi bitta kartada */}
       <p className="flow-label">{tr({ uz: 'Dars oxirida — sizning lentangiz shunday ishlaydi', ru: 'К концу урока ваш конвейер будет работать так' })}</p>
       <Belt statuses={ALL_PASS} />
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta push → 5 nuqta ketma-ket ishlaydi, hammasi <b style={{ color: T.success }}>yashil ✓</b>, TABLO yashil bo'ladi.</>, ru: <>Один push → 5 точек срабатывают по очереди, всё <b style={{ color: T.success }}>зелёное ✓</b>, ТАБЛО зелёное.</> })}</p></div>
+      <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta push → 5 nuqta ketma-ket ishlaydi, hammasi <b style={{ color: T.success }}>yashil ✓</b>, TABLO yashil bo'ladi.</>, ru: <>Один push → 5 точек срабатывают по очереди, всё <b style={{ color: T.success }}>зелёное ✓</b>, ТАБЛО зелёное.</> })}</p>
+      </div>
     </Col>
   );
   const StepsB = (
@@ -875,7 +876,7 @@ const Screen2 = (props) => (
     questionText="Nega ✈️ Uchirish nuqtasi lentaning oxirida turadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nega <span className="mono" style={{ color: T.accent }}>✈️ Uchirish</span> nuqtasi lentaning oxirida turadi?</>, ru: <>Почему точка <span className="mono" style={{ color: T.accent }}>✈️ Взлёт</span> стоит в конце конвейера?</> })}</h2></>}
     options={[{ uz: "Chunki u lentaning eng tez ishlaydigan qismi", ru: 'Потому что это самая быстрая часть конвейера' }, { uz: "Chunki avvalgi nuqtalar yukni tekshirib bo'lmasa, uchirish xavfli", ru: 'Потому что пока предыдущие точки не проверили багаж, взлетать опасно' }, { uz: "Chunki LENTA MASHINASI faqat eng oxirgi qatorni uchirish deb tushunadi", ru: 'Потому что МАШИНА КОНВЕЙЕРА считает взлётом только самую последнюю строку' }, { uz: "Chunki uni boshqa joyga qo'yish texnik jihatdan mumkin emas", ru: 'Потому что поставить её в другое место технически невозможно' }]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Skaner, O'lcham ramkasi va O'rash yukni tekshirib, tayyorlab bo'lgandan keyingina uchirish xavfsiz — shuning uchun Uchirish doim oxirida.", ru: 'Верно! Взлетать безопасно только после того, как Сканер, Габарит-рамка и Упаковка проверили и подготовили багаж — поэтому Взлёт всегда в конце.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi olindi — natija yorlig'i tepada */ explainCorrect={tr({ uz: "Skaner, O'lcham ramkasi va O'rash yukni tekshirib, tayyorlab bo'lgandan keyingina uchirish xavfsiz — shuning uchun Uchirish doim oxirida.", ru: 'Взлетать безопасно только после того, как Сканер, Габарит-рамка и Упаковка проверили и подготовили багаж — поэтому Взлёт всегда в конце.' })}
     explainWrong={{
       0: tr({ uz: "Tezlik sabab emas — tartib xavfsizlik uchun shunday.", ru: 'Дело не в скорости — такой порядок нужен ради безопасности.' }),
       2: tr({ uz: "LENTA MASHINASI faqat siz yozgan tartibda ishlaydi, o'zidan qaror qabul qilmaydi.", ru: 'МАШИНА КОНВЕЙЕРА работает строго в том порядке, что вы записали, — сама она решений не принимает.' }),
@@ -902,7 +903,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot · LENTA JURNALI', ru: 'Практика · ЖУРНАЛ КОНВЕЙЕРА' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Sababni jurnaldan toping', ru: 'Найдите причину в журнале' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>TABLO <span className="italic" style={{ color: T.accent }}>qizil</span>. Sababni jurnaldan toping.</>, ru: <>ТАБЛО <span className="italic" style={{ color: T.accent }}>красное</span>. Найдите причину в журнале.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Push qildingiz, lekin TABLO qizil chiqdi. Taxmin qilmang — <b style={{ color: T.ink }}>LENTA JURNALI</b>ni o'qing. Qaysi nuqtada ✗ turibdi?</>, ru: <>Вы сделали push, а ТАБЛО загорелось красным. Не гадайте — читайте <b style={{ color: T.ink }}>ЖУРНАЛ КОНВЕЙЕРА</b>. У какой точки стоит ✗?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Push qildingiz, lekin TABLO qizil chiqdi. Taxmin qilmang — <b style={{ color: T.ink }}>LENTA JURNALI</b>ni o'qing. Qaysi nuqtada ✗ turibdi? O'sha qatorni bosing.</>, ru: <>Вы сделали push, а ТАБЛО загорелось красным. Не гадайте — читайте <b style={{ color: T.ink }}>ЖУРНАЛ КОНВЕЙЕРА</b>. У какой точки стоит ✗? Нажмите на эту строку.</> })}</Mentor>{/* F-0926-06 (159/6): «bosing» chorlovi mentorga ko'chdi — kod ostidagi kursiv yo'riq olindi */}
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Jurnalni yuqoridan pastga o'qing: ✓ — nuqta o'tdi, — — o'tkazib yuborildi. O'tkazib yuborilganlar qaysi nuqtadan KEYIN boshlangan? O'sha qatorni bosing.", ru: '💡 Читайте журнал сверху вниз: ✓ — точка прошла, — — пропущена. После какой точки начались пропуски? Нажмите на ту строку.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <DebugChallenge
@@ -951,19 +952,19 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta faylda <span className="italic" style={{ color: T.accent }}>5 nuqta</span> — qanday joylashadi?</>, ru: <>Как в одном файле размещаются <span className="italic" style={{ color: T.accent }}>5 точек</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>YO'L XARITASI (<span className="mono">ci.yml</span>) bitta fayl — <span className="mono">steps:</span> ostiga 5 nuqta ketma-ket yoziladi. Boshida <span className="mono">on: push</span> — bu START SIGNALI. Har nuqtani bosib ko'ring.</>, ru: <>КАРТА МАРШРУТА (<span className="mono">ci.yml</span>) — один файл: под <span className="mono">steps:</span> 5 точек записываются по порядку. В начале <span className="mono">on: push</span> — это СТАРТ-СИГНАЛ. Нажмите на каждую точку.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan nuqtani bosing — chapdagi ci.yml'da uning qatori yorishadi.", ru: '💡 Нажмите оставшуюся точку — слева в ci.yml подсветится её строка.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan nuqtani bosing — ci.yml'da uning qatori yorishadi.", ru: '💡 Нажмите оставшуюся точку — в ci.yml подсветится её строка.' })}</p>/* F-0926-06 (159/5): joy so'zi olindi */}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
           <Col><FullYml hi={active} /></Col>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {POINTS.map(p => <button key={p.id} className={`gchip ${p.id === firstUnseen ? 'tap-hint' : ''}`} onClick={() => tap(p.id)} style={seen.has(p.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{p.icon} {tr(p.label)}</button>)}
+              {POINTS.map(p => <button key={p.id} className={`gchip ${p.id === firstUnseen ? 'tap-hint' : ''}`} onClick={() => tap(p.id)} style={seen.has(p.id) ? { background: T.successSoft, color: T.success } : undefined}>{p.icon} {tr(p.label)}</button>)}{/* F-0926-06 (G3/P2): ko'rilgan chip — yumshoq yashil fon, halqa olindi */}
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.cmd}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "on: push (START SIGNALI) → 5 nuqta ketma-ket. Endi shuni o'zingiz yig'asiz.", ru: 'on: push (СТАРТ-СИГНАЛ) → 5 точек по очереди. Теперь вы соберёте это сами.' })}</p></div>}
+            {/* F-0926-06 (159/1): «on: push → 5 nuqta ketma-ket» yakun-qutisi mentor gapini takrorlardi — olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -978,7 +979,7 @@ const Screen5 = (props) => (
     questionText="Bitta yo'l xaritasida barcha 5 nuqta qanday tashkil qilinadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bitta yo'l xaritasida 5 nuqta <span className="italic" style={{ color: T.accent }}>qanday</span> tashkil qilinadi?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>организуются</span> 5 точек в одной карте маршрута?</> })}</h2></>}
     options={[{ uz: "Har nuqta uchun alohida repozitoriy ochiladi", ru: 'Под каждую точку открывается отдельный репозиторий' }, { uz: "Nuqtalar tasodifiy tartibda, navbatsiz yoziladi", ru: 'Точки записываются в случайном порядке, без очереди' }, { uz: "Faqat bitta nuqta yoziladi, qolganlari har safar qo'lda bajariladi", ru: 'Записывается только одна точка, остальные каждый раз выполняются вручную' }, { uz: "Bitta faylda, steps: ostida to'g'ri tartibda ketma-ket yoziladi", ru: 'В одном файле, под steps:, в правильном порядке друг за другом' }]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Bitta ci.yml faylida, steps: ostida 5 nuqta ketma-ket yoziladi — LENTA MASHINASI shu tartibda ishlaydi.", ru: 'Верно! В одном файле ci.yml, под steps:, 5 точек записываются по порядку — МАШИНА КОНВЕЙЕРА работает именно в нём.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "LENTA MASHINASI ci.yml faylini yuqoridan pastga o'qiydi — nuqtalar aynan shu tartibda ishlaydi.", ru: 'МАШИНА КОНВЕЙЕРА читает ci.yml сверху вниз — точки срабатывают именно в этом порядке.' })}
     explainWrong={{
       0: tr({ uz: "Bir loyiha — bitta repo. Nuqtalar shu bitta faylda ketma-ket turadi.", ru: 'Один проект — один репозиторий. Точки живут друг за другом в одном файле.' }),
       1: tr({ uz: "Tartib tasodifiy bo'lsa, Uchirish Skanerdan oldin ham chiqib qolishi mumkin — xavfli.", ru: 'При случайном порядке Взлёт может оказаться раньше Сканера — это опасно.' }),
@@ -1040,12 +1041,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bo'sh yo'l xaritasidan <span className="italic" style={{ color: T.accent }}>siz</span> to'liq lenta quring.</>, ru: <>Постройте полный конвейер из пустой карты маршрута — <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Avval 4 ta xato ssenariysini ko'ring — nima buzilishi mumkinligini biling. Keyin 5 nuqtani <b style={{ color: T.ink }}>to'g'ri tartibda</b> tizib, push qiling.</>, ru: <>Сначала посмотрите 4 сценария ошибок — узнайте, что может сломаться. Потом выстройте 5 точек <b style={{ color: T.ink }}>в правильном порядке</b> и сделайте push.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Avval 4 ssenariyni bosib ko'ring — shundan keyin o'ngda quruvchi ochiladi. Bo'lakni bosing yoki sudrang: har slotdagi ipucha qaysi nuqta kerakligini aytadi. Tartib to'g'ri bo'lgach «▶ git push» chiqadi.", ru: '💡 Сначала нажмите 4 сценария — после этого справа откроется конструктор. Нажимайте или перетаскивайте блоки: подсказка в каждом слоте говорит, какая точка нужна. Когда порядок верный — появится «▶ git push».' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Avval 4 ssenariyni bosib ko'ring — shundan keyin quruvchi ochiladi. Bo'lakni bosing yoki sudrang: har slotdagi ipucha qaysi nuqta kerakligini aytadi. Tartib to'g'ri bo'lgach «▶ git push» chiqadi.", ru: '💡 Сначала нажмите 4 сценария — после этого откроется конструктор. Нажимайте или перетаскивайте блоки: подсказка в каждом слоте говорит, какая точка нужна. Когда порядок верный — появится «▶ git push».' })}</p>/* F-0926-06 (159/5): joy so'zi olindi */}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!seenAll}>{/* F-0926-06 (159/3): quruvchi ochilguncha ⛶ bo'sh ustun ustida turmaydi */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: '4 xato ssenariysi — har birini bosing', ru: '4 сценария ошибок — нажмите на каждый' })} ({seenC.size}/4)</p>
+            <p className="flow-label">{tr({ uz: 'Xato ssenariylari', ru: 'Сценарии ошибок' })}</p>{/* F-0926-06 (159/1 · H2): «har birini bosing» mentorda, sanoq ✓ belgilarida */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {CONSEQ.map(c => (
                 <button key={c.id} className={`vcard ${c.id === firstUnseenC ? 'tap-hint' : ''}`} onClick={() => tapC(c.id)} style={{ boxShadow: activeC === c.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
@@ -1060,11 +1061,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               : null}
           </Col>
           <Col>
+            {/* F-0926-06 (159/3): bo'sh-holat ramkasi olindi — chorlov mentor gapida («Avval 4 ta xato ssenariysini ko'ring») */}
             {!seenAll
-              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval 4 ssenariyni ko'ring — keyin lenta quruvchisi ochiladi", ru: 'Сначала посмотрите 4 сценария — потом откроется конструктор конвейера' })}</p></div>
+              ? null
               : (
                 <>
-                  <p className="flow-label">{tr({ uz: "5 nuqtani to'g'ri tartibda tizing", ru: 'Выстройте 5 точек в правильном порядке' })}</p>
+                  <p className="flow-label">{tr({ uz: 'Lenta tartibi', ru: 'Порядок конвейера' })}</p>{/* F-0926-06 (159/1): yo'riq mentor gapida — yorliq ot bo'ldi */}
                   <DragDropOrder
                     items={POINTS.map(p => ({ id: p.id, label: `${p.icon} ${tr(p.label)} — ${p.cmd}` }))}
                     hints={[{ uz: "avval nima yig'iladi", ru: 'сначала — что собирается' }, { uz: 'keyin nima skanerlanadi', ru: 'затем — что сканируется' }, { uz: "keyin o'lcham qanday tekshiriladi", ru: 'затем — как проверяется габарит' }, { uz: "keyin qanday o'raladi", ru: 'затем — как упаковывается' }, { uz: 'eng oxiri qanday uchadi', ru: 'в самом конце — что взлетает' }]}
@@ -1109,7 +1111,7 @@ const Screen7 = (props) => (
     questionText="O'lcham ramkasi nuqtasi lentadan olib tashlansa, real oqibati nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>O'lcham ramkasi</span> nuqtasi lentadan olib tashlansa, oqibati nima?</>, ru: <>Если точку <span className="mono" style={{ color: T.accent }}>Габарит-рамка</span> убрать с конвейера — каковы последствия?</> })}</h2></>}
     options={[{ uz: "Qoidaga zid yozilgan kod hech kim tomonidan tutilmay o'tib ketadi", ru: 'Код, нарушающий правила, никто не поймает — он проскочит насквозь' }, { uz: 'Lenta START SIGNALI kelmagani sababli butunlay ishga tushmay qoladi', ru: 'Конвейер вообще не запустится, потому что не придёт СТАРТ-СИГНАЛ' }, { uz: 'Testlar ikki barobar sekinroq ishlay boshlaydi', ru: 'Тесты начнут работать вдвое медленнее' }, { uz: "Yuk avtomatik ravishda kattaroq hajmda o'raladi", ru: 'Багаж автоматически будет упаковываться в больший размер' }]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! O'lcham ramkasi kod uslub qoidalarini tekshiradi. U bo'lmasa, qoidaga zid kod hech kim tomonidan tutilmay to'g'ridan-to'g'ri O'rash va Uchirish nuqtalariga o'tib ketadi.", ru: 'Верно! Габарит-рамка проверяет правила стиля кода. Без неё код, нарушающий правила, никто не поймает — он проскочит прямо к Упаковке и Взлёту.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "O'lcham ramkasi kod uslub qoidalarini tekshiradi. Usiz xato uslubdagi kod to'g'ri O'rash va Uchirishga yetib boradi.", ru: 'Габарит-рамка проверяет правила стиля кода. Без неё код с нарушениями доходит прямо до Упаковки и Взлёта.' })}
     explainWrong={{
       1: tr({ uz: "on: push bilan bog'liq emas — bu boshqa nuqta, START SIGNALI unga bog'liq emas.", ru: 'Это не связано с on: push — СТАРТ-СИГНАЛ от этой точки не зависит.' }),
       2: tr({ uz: "Tezlikka emas, sifat nazoratiga ta'sir qiladi.", ru: 'Это влияет не на скорость, а на контроль качества.' }),
@@ -1140,7 +1142,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Katta loyihalarda yuk avval <b style={{ color: T.ink }}>sinov reysida</b>, keyingina <b style={{ color: T.ink }}>haqiqiy reysda</b> uchadi. Ikkalasini bosib ko'ring.</>, ru: <>В больших проектах багаж сначала летит <b style={{ color: T.ink }}>пробным рейсом</b> и только потом <b style={{ color: T.ink }}>настоящим</b>. Нажмите на оба.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan reysni bosing — biri yo'lovchisiz sinov, ikkinchisi haqiqiy.", ru: '💡 Нажмите оставшийся рейс — один пробный без пассажиров, другой настоящий.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06 (159/3): reys bosilguncha ⛶ bo'sh ustun ustida turmaydi */}
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1156,7 +1158,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.tag}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
+              ? <div className="sk-info fade-step zpad" key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>/* F-0926-06 (159/1): karta sarlavhasi tanlangan qatorni takrorlardi — olindi; zpad — ⛶ matnni yopmasin */
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Sinov reysi → xavfsiz tekshiruv. Haqiqiy reys → yo'lovchi qo'lida. Ikkalasi ham lenta orqali avtomatik ishlaydi.", ru: 'Пробный рейс → безопасная проверка. Настоящий рейс → у пассажира. Оба работают автоматически, через конвейер.' })}</p></div>}
           </Col>
@@ -1173,7 +1175,7 @@ const Screen9 = (props) => (
     questionText="Sinov reysi (staging) va haqiqiy reys (production) orasidagi asosiy farq nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sinov reysi va haqiqiy reys orasidagi <span className="italic" style={{ color: T.accent }}>asosiy farq</span> nima?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>главная разница</span> между пробным и настоящим рейсом?</> })}</h2></>}
     options={[{ uz: 'Sinov reysida kod umuman ishlamaydi', ru: 'На пробном рейсе код вообще не работает' }, { uz: "Haqiqiy reysda esa testlar butunlay kerak bo'lmay qoladi", ru: 'На настоящем рейсе тесты совсем не нужны' }, { uz: "Sinov reysida haqiqiy yo'lovchi yo'q, xatolarni xavfsiz sinash mumkin", ru: 'На пробном рейсе нет настоящих пассажиров — ошибки можно проверять безопасно' }, { uz: 'Ular texnik jihatdan bir xil, faqat nomi boshqa', ru: 'Технически они одинаковы, отличается только название' }]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Sinov reysida haqiqiy foydalanuvchi (yo'lovchi) yo'q — shu yerda xato chiqsa hech kimga zarar yetmaydi. Faqat yashil bo'lgach haqiqiy reysga chiqadi.", ru: 'Верно! На пробном рейсе нет настоящего пользователя (пассажира) — ошибка там никому не навредит. Только когда всё зелёное, версия выходит на настоящий рейс.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Xato sinov reysida chiqsa, hech kimga zarar yetmaydi. Faqat yashil bo'lgach yuk haqiqiy reysga chiqadi.", ru: 'Если ошибка вылезет на пробном рейсе, никто не пострадает. Только когда всё зелёное, багаж выходит на настоящий рейс.' })}
     explainWrong={{
       0: tr({ uz: "Kod sinov reysida ham to'liq ishlaydi — bu haqiqiy tekshiruv muhiti.", ru: 'На пробном рейсе код работает полностью — это настоящая проверочная среда.' }),
       1: tr({ uz: "Testlar ikkala muhitda ham kerak — sinov reysi ularni ishlatishning aynan o'zidir.", ru: 'Тесты нужны в обеих средах — пробный рейс как раз и есть их применение.' }),
@@ -1210,20 +1212,25 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {_tip && !solved && <p className="bhint fade-step">{tr({ uz: "💡 Har kartada yorliq ham, vaqt ham bor. Buzuq versiyadan oldingi eng oxirgi yashilni qidiring.", ru: '💡 На каждой карточке есть и ярлык, и время. Ищите самую последнюю зелёную перед сломанной.' })}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
-        <div className="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 4 }}>
+        {/* F-0926-06 (160 · 159/12): telefon va izohi bitta kartada, versiyalar yonida — ru'da izoh pastki chiziqdan tushardi */}
+        <div className="split">
+        <Col>
+        <div className="vis-card fade-up" style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
           <PhoneMock state={solved ? 'old' : 'broken'} />
           <p className="small" style={{ margin: 0, color: T.ink2, maxWidth: 360 }}>{solved ? tr({ uz: "Eski yuk qaytdi — yo'lovchi yana ishlaydigan saytni ko'rmoqda.", ru: 'Старый багаж вернулся — пассажир снова видит рабочий сайт.' }) : tr({ uz: "Hozir yo'lovchi ekranida — v3 xatosi.", ru: 'Сейчас на экране пассажира — ошибка v3.' })}</p>
         </div>
+        </Col>
+        <Col>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {VERSIONS.map(v => {
             const isPicked = picked === v.id;
             const isCorrectPick = solved && v.id === 'v2';
             return (
               <button key={v.id} className="vcard" disabled={solved} onClick={() => pick(v.id)} style={{
-                boxShadow: isCorrectPick ? `inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25)` : (isPicked && !solved ? `inset 0 0 0 1.5px ${T.accent}` : undefined)
-              }}>
-                
-                <span className="vlbl">{tr(v.t)} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(v.w)}</span></span>
+                background: isCorrectPick ? T.successSoft : undefined,
+                boxShadow: isCorrectPick ? undefined : (isPicked && !solved ? `inset 0 0 0 1.5px ${T.accent}` : undefined)
+              }}>{/* F-0926-06 (G3): to'g'ri tanlov — ✓ + yumshoq yashil fon, yashil halqa olindi */}
+                <span className="vlbl">{isCorrectPick && <span style={{ color: T.success }}>✓ </span>}{tr(v.t)} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(v.w)}</span></span>
                 <span className="role-r mono">{tr(v.tag)}</span>
               </button>
             );
@@ -1235,7 +1242,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {picked === 'v3' ? tr({ uz: "v3 — bu aynan buzuq, joriy versiya. Unga qaytarib bo'lmaydi.", ru: 'v3 — это и есть сломанная, текущая версия. К ней откатиться нельзя.' }) : tr({ uz: 'v1 — ishlagan, lekin v2 undan keyin chiqqan va u ham yashil edi. Oxirgi yashil versiyani qidiring.', ru: 'v1 работала, но после неё вышла v2 — и она тоже была зелёной. Ищите последнюю зелёную версию.' })}
           </p></div>
         )}
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'g'ri! v2 — buzuq v3'dan oldingi <b>oxirgi yashil versiya</b>. Eski yukni qaytarish — yo'lovchi darhol ishlaydigan sayt oladi, sabab esa keyin xotirjam tekshiriladi.</>, ru: <>Верно! v2 — <b>последняя зелёная версия</b> перед сломанной v3. Возврат старого багажа: пассажир сразу получает рабочий сайт, а причину можно спокойно разобрать потом.</> })}</p></div>}
+        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>v2 — buzuq v3'dan oldingi <b>oxirgi yashil versiya</b>. Eski yukni qaytarish — yo'lovchi darhol ishlaydigan sayt oladi, sabab esa keyin xotirjam tekshiriladi.</>, ru: <>v2 — <b>последняя зелёная версия</b> перед сломанной v3. Возврат старого багажа: пассажир сразу получает рабочий сайт, а причину можно спокойно разобрать потом.</> })}</p></div>}{/* F-0926-06 (159/11 · I3): «To'g'ri!» olindi — to'g'rilikni yashil qator ko'rsatadi */}
+        </Col>
+        </div>
         </Zoomable>
       </div>
     </Stage>
@@ -1254,7 +1263,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Repo sahifasida <span className="italic" style={{ color: T.accent }}>TABLO</span> qanday ko'rinadi?</>, ru: <>Как выглядит <span className="italic" style={{ color: T.accent }}>ТАБЛО</span> на странице репозитория?</> })}</h2></div>
         <Mentor>{tr({ uz: <>GitHub repongizning <span className="mono">README.md</span> fayliga bitta rasm-havola qo'yasiz — u lenta holatini jonli ko'rsatadi. Yoqib ko'ring.</>, ru: <>В файл <span className="mono">README.md</span> вашего GitHub-репозитория добавляется одна картинка-ссылка — она показывает состояние конвейера вживую. Включите и посмотрите.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 «▶ TABLONI yoqish» tugmasini bosing — o'ngdagi repo sahifasida badge rangi o'zgaradi.", ru: '💡 Нажмите «▶ Включить ТАБЛО» — справа на странице репозитория изменится цвет бейджа.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 «▶ TABLONI yoqish» tugmasini bosing — repo sahifasida badge rangi o'zgaradi.", ru: '💡 Нажмите «▶ Включить ТАБЛО» — на странице репозитория изменится цвет бейджа.' })}</p>/* F-0926-06 (159/5): joy so'zi olindi */}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
@@ -1283,9 +1292,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy savol', ru: 'Финальный вопрос' })}
     questionText="Production'da yangi versiya muammo chiqarsa va TABLO qizil bo'lib qolsa, birinchi navbatda nima qilinadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Yakuniy savol', ru: 'Финальный вопрос' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>TABLO <span className="italic" style={{ color: T.accent }}>qizil</span> bo'lib qolsa, birinchi navbatda nima qilinadi?</>, ru: <>Если ТАБЛО стало <span className="italic" style={{ color: T.accent }}>красным</span>, что делают в первую очередь?</> })}</h2></>}
+    /* F-0926-06 (159/1): savol ustidagi «Yakuniy savol» yorlig'i tepa-bardagi bilan bir xil edi — olindi */ question={<><h2 className="title h-ask" style={{ marginTop: 0 }}>{tr({ uz: <>TABLO <span className="italic" style={{ color: T.accent }}>qizil</span> bo'lib qolsa, birinchi navbatda nima qilinadi?</>, ru: <>Если ТАБЛО стало <span className="italic" style={{ color: T.accent }}>красным</span>, что делают в первую очередь?</> })}</h2></>}
     options={[{ uz: "Repozitoriyning o'zi butunlay o'chirilib, yangidan boshlab loyiha qurilyapti", ru: 'Полностью удаляют репозиторий и строят проект заново' }, { uz: "Jurnal o'qilib sabab topiladi, kerak bo'lsa eski yukka qaytariladi", ru: 'Читают журнал, находят причину, при необходимости возвращают старый багаж' }, { uz: "Hech narsa qilinmaydi, o'z-o'zidan tuzalib ketadi", ru: 'Ничего не делают — само починится' }, { uz: "Faqat TABLO rangini qo'lda yashilga o'zgartiriladi", ru: 'Просто вручную перекрашивают ТАБЛО в зелёный' }]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Avval LENTA JURNALI o'qiladi — sabab topiladi. Tezkor yechim kerak bo'lsa, oxirgi yashil versiyaga (eski yukka) qaytariladi.", ru: 'Верно! Сначала читают ЖУРНАЛ КОНВЕЙЕРА — находят причину. Если нужно быстрое решение, откатываются к последней зелёной версии (старому багажу).' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Sababni bilmay turib tuzatib bo'lmaydi. Yo'lovchi kutib qolmasin desangiz, oxirgi yashil versiya (eski yuk) darhol qaytariladi.", ru: 'Не зная причины, ничего не исправить. А чтобы пассажир не ждал, сразу возвращают последнюю зелёную версию (старый багаж).' })}
     explainWrong={{
       0: tr({ uz: "Repozitoriyni o'chirish shart emas — sabab jurnaldan topiladi, kerak bo'lsa faqat qaytariladi.", ru: 'Удалять репозиторий не нужно — причина находится в журнале, при необходимости просто откатываются.' }),
       2: tr({ uz: "O'z-o'zidan tuzalmaydi — sabab topilib, tuzatish yoki qaytarish kerak.", ru: 'Само не починится — нужно найти причину и исправить или откатиться.' }),
@@ -1320,10 +1329,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Ikki bo'sh joy qoldi. 1-joy: lentani nima bosilganda ishga tushirishini yozing (darsning boshida o'rgangan START SIGNALI). 2-joy: tokenni to'g'ridan-to'g'ri emas, SEYFdan qanday o'qishni yozing.", ru: 'Осталось два пропуска. 1-й: напишите, по какому событию конвейер запускается (СТАРТ-СИГНАЛ из начала урока). 2-й: напишите, как читать токен не напрямую, а из СЕЙФА.' })}</Mentor>
         {_tip && !passed && <p className="bhint fade-step">{tr({ uz: "💡 1-joy: START SIGNALI — yo'l xaritasi ekranidagi ci.yml ning ikkinchi qatorini eslang (on: …). 2-joy: kalitning o'zini emas, SEYFdan o'qish yozuvini — 2-darsda ko'rgansiz.", ru: '💡 1-й пропуск: СТАРТ-СИГНАЛ — вспомните вторую строку ci.yml с экрана карты маршрута (on: …). 2-й: не сам ключ, а запись чтения из СЕЙФА — вы видели её в уроке 2.' })}</p>}
         {_resc && !passed && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!passed}>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: ".github/workflows/ci.yml — bo'sh joyni to'ldiring", ru: '.github/workflows/ci.yml — заполните пропуски' })}</p>
+            <p className="flow-label">.github/workflows/ci.yml</p>{/* F-0926-06 (159/1): «bo'sh joyni to'ldiring» mentor va sarlavhada bor — yorliqdan olindi */}
             <div className="editor">
               <div className="editor-bar"><span className="bb-dots"><i /><i /><i /></span><span className="editor-file">ci.yml</span></div>
               <div className="editor-body">
@@ -1338,7 +1347,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
+            {passed && <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>}{/* F-0926-06 (159/3): bo'sh ustunda yorliq va ⛶ yolg'iz osilmaydi */}
             {passed
               ? <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}><Belt statuses={ALL_PASS} /><Tablo ok /></div>
               : null}
@@ -2483,13 +2492,19 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
 
-        .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
-        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
+        .roadmap { display: flex; flex-direction: column; gap: 7px; list-style: none; }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160): vizual + yorlig'i + izohi bitta blok */
+        .vis-card .flow-label { margin: 0; }
+        .vis-card .pipe-track { width: fit-content; max-width: 100%; } /* F-0926-06 (160): kartada lenta bir qatorda, chamadon oxirgi nuqtadan uzoqlashmaydi */
+        .vis-card .pipe { gap: 3px; }
+        .vis-card .pipe-step { padding: 8px 8px; min-width: 60px; }
+        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 9px 15px; /* F-0926-06 (159/12): ru'da 5-qadam pastki chiziqdan tushardi — ixchamlandi */ box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
         .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; color: ${T.accent}; flex-shrink: 0; min-width: 38px; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 600; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
+        .sk-info.zpad { padding-right: 46px; } /* F-0926-06: ⛶ matn ustida turmasin */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .note-h { font-weight: 700; font-size: 13.5px; margin: 0 0 5px; display: flex; align-items: center; }
 
@@ -2531,7 +2546,7 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         @keyframes scan-sweep { 0% { top: -45%; } 100% { top: 115%; } }
         @keyframes pipe-run-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
         .pipe-step.run .pipe-badge { color: ${T.blue}; }
-        .pipe-step.pass { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .pipe-step.pass { background: ${T.successSoft}; box-shadow: 0 5px 14px -6px rgba(31,122,77,0.22); } /* F-0926-06 (AI4, G3): o'tdi — yumshoq yashil fon, halqasiz */
         .pipe-step.pass .pipe-badge { color: ${T.success}; }
         .pipe-step.fail { background: ${T.dangerSoft}; box-shadow: inset 0 0 0 1.5px ${T.danger}; animation: pipe-fail-pulse 0.5s ease-in-out 2, pipe-fail-shake 0.5s ease; }
         @keyframes pipe-fail-pulse { 0%,100% { box-shadow: inset 0 0 0 1.5px ${T.danger}, 0 0 0 0 rgba(194,54,43,0); } 50% { box-shadow: inset 0 0 0 1.5px ${T.danger}, 0 0 0 6px rgba(194,54,43,0.32); } }
@@ -2588,7 +2603,8 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(12px,1.6vw,14px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(12px,1.6vw,14px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(255,79,40,.35); transition: transform .12s; user-select: none; } /* F-0926-06 (159/4 · 159/15): to'yingan to'liq fon o'rniga oq fon + 2px accent chegara */
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): ushlagich */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
@@ -2604,7 +2620,6 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${CODE.ok}; background: rgba(125,209,129,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }
-        .dbg-hint { margin: 0; font-size: 13px; color: ${T.ink3}; font-style: italic; }
         .dbg-ok { font-weight: 700; color: ${T.success}; font-size: 14px; background: ${T.successSoft}; border-radius: 12px; padding: 10px 14px; }
 
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }

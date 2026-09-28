@@ -309,7 +309,7 @@ const RECAPS = {
       {
         ic: "😌",
         h: { uz: "Bug — falokat emas, oddiy hol", ru: 'Баг — не катастрофа, а обычное дело' },
-        body: { uz: <>Bug chiqishi <b>normal</b> — hatto eng zo'r dasturchilarda ham bo'ladi. Muhimi loyihani tashlab ketmaslik: <b>aniq tushuntirib, tinch tuzatasiz</b>. Har tuzatilgan bug — o'rganish.</>, ru: <>Баги — это <b>нормально</b>, они случаются даже у лучших программистов. Главное — не бросать проект: <b>спокойно и точно объясняете — и чините</b>. Каждый исправленный баг — это опыт.</> },
+        body: { uz: <>Bug chiqishi <b>normal</b> — hatto eng yaxshi dasturchilarda ham bo'ladi. Muhimi loyihani tashlab ketmaslik: <b>aniq tushuntirib, tinch tuzatasiz</b>. Har tuzatilgan bug — o'rganish.</>, ru: <>Баги — это <b>нормально</b>, они случаются даже у лучших программистов. Главное — не бросать проект: <b>спокойно и точно объясняете — и чините</b>. Каждый исправленный баг — это опыт.</> },
       },
     ]
   },
@@ -766,7 +766,7 @@ const BuildingPreview = () => (
 );
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06 (159/3 ZBTN): off — ⛶ bo'sh ustun ustida yolg'iz qolmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -788,7 +788,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -810,8 +810,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} optionalLive />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Do'kon ko'rinadi, lekin <span className="italic" style={{ color: T.accent }}>sotib olib</span> bo'lmaydi</>, ru: <>Магазин видно, но <span className="italic" style={{ color: T.accent }}>купить</span> нельзя</> })}</h1>
-        <Mentor>{tr({ uz: <>3-darsda do'konning <b style={{ color: T.ink }}>asosiy qismini</b> qurdik — mahsulotlar va narxlar bor. Lekin bu hali haqiqiy do'kon emas: <b style={{ color: T.ink }}>"Sotib olish"</b> tugmasini bosib ko'ring — biror narsa bo'ladimi?</>, ru: <>На 3-м уроке мы построили <b style={{ color: T.ink }}>основу магазина</b> — товары и цены на месте. Но это ещё не настоящий магазин: нажмите кнопку <b style={{ color: T.ink }}>«Купить»</b> — произойдёт ли что-нибудь?</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>3-darsda do'konning <b style={{ color: T.ink }}>asosiy qismini</b> qurdik — mahsulotlar va narxlar bor. Lekin bu hali haqiqiy do'kon emas: <b style={{ color: T.ink }}>"Sotib olish"</b> tugmasini bir-ikki marta bosib ko'ring — biror narsa bo'ladimi?</>, ru: <>На 3-м уроке мы построили <b style={{ color: T.ink }}>основу магазина</b> — товары и цены на месте. Но это ещё не настоящий магазин: нажмите кнопку <b style={{ color: T.ink }}>«Купить»</b> пару раз — произойдёт ли что-нибудь?</> })}</Mentor>
+        <Zoomable off={tries < 2}>
         <Split>
           <Col>
             <p className="flow-label">{tr({ uz: '3-darsdagi katalog (asosiy qism)', ru: 'Каталог из 3-го урока (основа)' })}</p>
@@ -821,9 +821,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </Col>
           <Col>
             {tries < 2 ? (
-              <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', minHeight: 120 }}>
-                <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>"Sotib olish"ni <b>kamida 2 marta</b> bosib ko'ring — do'konda nima yetishmayotganini his qiling.</>, ru: <>Нажмите «Купить» <b>минимум 2 раза</b> — почувствуйте, чего не хватает магазину.</> })}</p>
-              </div>
+              null /* F-0926-06 (159/3): «kamida 2 marta bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida */
             ) : (
               <div className="fade-step">
                 <p className="eyebrow" style={{ color: T.ink2, margin: '0 0 9px' }}>{tr({ uz: "Bu do'konda nima yetishmayapti?", ru: 'Чего не хватает этому магазину?' })}</p>
@@ -833,7 +831,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                       <span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span>
                     </button>); })}
                 </div>
-                {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri! Mahsulotni ko'rsatish — bu boshlanish. Haqiqiy do'kon uchun <b>savat</b> va <b>jami narx</b> kerak. Bugun katalogni <b>to'liq, ishlaydigan MVP</b>ga aylantirib, internetga chiqaramiz!</>, ru: <>Верно! Показать товары — это только начало. Настоящему магазину нужны <b>корзина</b> и <b>итоговая цена</b>. Сегодня превратим каталог в <b>полный работающий MVP</b> и выпустим его в интернет!</> })}</p>}
+                {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06 (I2, KORPUS 215): noto'g'ri variantga «To'g'ri» emas — «Aslida» */}{picked !== 'a' && tr({ uz: <>Aslida asosiysi — savat yo'q. </>, ru: <>На самом деле главное — нет корзины. </> })}{tr({ uz: <>{picked === 'a' ? "To'g'ri! " : ''}Mahsulotni ko'rsatish — bu boshlanish. Haqiqiy do'kon uchun <b>savat</b> va <b>jami narx</b> kerak. Bugun katalogni <b>to'liq, ishlaydigan MVP</b>ga aylantirib, internetga chiqaramiz!</>, ru: <>{picked === 'a' ? 'Верно! ' : ''}Показать товары — это только начало. Настоящему магазину нужны <b>корзина</b> и <b>итоговая цена</b>. Сегодня превратим каталог в <b>полный работающий MVP</b> и выпустим его в интернет!</> })}</p>}
               </div>
             )}
           </Col>
@@ -858,10 +856,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <div className="fade-up frame" style={{ background: T.ink, color: '#fff', textAlign: 'center', padding: '20px 18px' }}>
-        <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', margin: '0 0 8px' }}>{tr({ uz: "Oxirgi dars — cho'qqi", ru: 'Последний урок — вершина' })}</p>
+      {/* F-0926-06 (159/4 · dark-lint): qora to'liq fonli karta → yumshoq accent fon (PracticeLesson3 naqshi) */}
+      <div className="fade-up frame" style={{ background: T.accentSoft, color: T.ink, textAlign: 'center', padding: '20px 18px', boxShadow: 'none' }}>
+        <p className="eyebrow" style={{ color: T.ink2, margin: '0 0 8px' }}>{tr({ uz: "Oxirgi dars — cho'qqi", ru: 'Последний урок — вершина' })}</p>
         <p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, fontSize: 'clamp(18px,3vw,24px)', lineHeight: 1.25, margin: 0 }}>{tr({ uz: <>Katalogni <span style={{ color: T.accent, fontStyle: 'italic' }}>to'liq MVP</span>ga aylantirib, <span style={{ color: T.accent, fontStyle: 'italic' }}>internetga</span> chiqaramiz.</>, ru: <>Превратим каталог в <span style={{ color: T.accent, fontStyle: 'italic' }}>полный MVP</span> и выпустим его <span style={{ color: T.accent, fontStyle: 'italic' }}>в интернет</span>.</> })}</p>
-        <p className="body" style={{ color: 'rgba(255,255,255,0.85)', margin: '10px 0 0' }}>{tr({ uz: 'Yakunda: "Men istalgan narsani qura olaman."', ru: 'В финале: «Я могу построить что угодно».' })}</p>
+        <p className="body" style={{ color: T.ink2, margin: '10px 0 0' }}>{tr({ uz: 'Yakunda: "Men istalgan narsani qura olaman."', ru: 'В финале: «Я могу построить что угодно».' })}</p>
       </div>
     </Col>
   );
@@ -916,7 +915,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" onClick={send} disabled={phase !== 'idle' && phase !== 'ready'} style={{ alignSelf: 'flex-start' }}>{phase === 'idle' || phase === 'ready' ? tr({ uz: 'Agentga yuborish', ru: 'Отправить агенту' }) : (phase === 'building' ? tr({ uz: 'Quryapti…', ru: 'Строит…' }) : tr({ uz: 'Reja tayyor', ru: 'План готов' }))}</button>
             {(phase === 'planned' || phase === 'building' || ready) && (
               <div className="ai-card fade-step">
-                <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Rejam — tasdiqlaysizmi?', ru: 'Мой план — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Quryapman…', ru: 'Строю…' }) : tr({ uz: 'Bajardim', ru: 'Готово' }))}</span></div>
+                <div className="ai-row"><span className="ai-badge" style={{ background: T.accent }}>{/* F-0926-06 (159/5): qora belgi → accent */}{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Rejam — tasdiqlaysizmi?', ru: 'Мой план — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Quryapman…', ru: 'Строю…' }) : tr({ uz: 'Bajardim', ru: 'Готово' }))}</span></div>
                 {[{ uz: "Har kartaga + tugmasi qo'shaman", ru: 'Добавлю кнопку + на каждую карточку' }, { uz: 'Savat sanagichini ulayman', ru: 'Подключу счётчик корзины' }].map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span>{tr(p)}</span></div>)}
                 {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: 'Rejani tasdiqlash', ru: 'Подтвердить план' })}</button>}
                 {phase === 'building' && <p className="ai-prompt" style={{ color: T.accent }}>{tr({ uz: 'Kod yozilyapti…', ru: 'Пишется код…' })}</p>}
@@ -924,12 +923,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Do'kon", ru: 'Магазин' })}</p>
+            {/* F-0926-06 (159/7 · 159/3): «Do'kon» yorlig'i brauzer manzilini takrorlardi va chap ustundan 30px pastga tushirardi — olindi */}
             <div ref={shopRef}><Browser url="maktab-dokoni.uz">
               {!ready && <p className="small" style={{ margin: 0, opacity: 0.55, textAlign: 'center', padding: '24px 0' }}>{phase === 'idle' ? tr({ uz: "(savat hali yo'q)", ru: '(корзины пока нет)' }) : tr({ uz: 'Quryapti…', ru: 'Строит…' })}</p>}
               {ready && <InteractiveShop cart={cart} onAdd={add} showCart showTotal={false} />}
             </Browser></div>
-            {ready && cart.length === 0 && <p className="hook-ack" style={{ margin: 0 }}>{tr({ uz: '"+" tugmalarini bosib, savatni to\'ldiring.', ru: 'Нажимайте кнопки «+» и наполняйте корзину.' })}</p>}
+            {/* F-0926-06 (159/6): «"+" bosib to'ldiring» yo'rig'i mentor gapini takrorlardi — olindi */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Ishladi! Endi "+" bosilsa, savat sanagichi oshyapti. Bu — haqiqiy interaktivlik (1-darsdan eslang: hodisa → reaksiya → o\'zgarish).', ru: 'Работает! Теперь при нажатии «+» счётчик корзины растёт. Это настоящая интерактивность (вспомните 1-й урок: событие → реакция → изменение).' })}</p></div>}
           </Col>
         </div>
@@ -965,13 +964,13 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {ready && <div className="frame" style={{ padding: '11px 14px' }}><p className="small mono" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'jami', ru: 'итого' })} = {tr({ uz: 'narx', ru: 'цена' })}[0] + {tr({ uz: 'narx', ru: 'цена' })}[1] + …</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Do'kon", ru: 'Магазин' })}</p>
+            {/* F-0926-06 (159/7 · 159/3): «Do'kon» yorlig'i brauzer manzilini takrorlardi va chap ustundan 30px pastga tushirardi — olindi */}
             <div ref={shopRef}><Browser url="maktab-dokoni.uz">
               {!ready && <p className="small" style={{ margin: 0, opacity: 0.55, textAlign: 'center', padding: '24px 0' }}>{phase === 'idle' ? tr({ uz: "(jami narx hali yo'q)", ru: '(итоговой цены пока нет)' }) : tr({ uz: 'Quryapti…', ru: 'Строит…' })}</p>}
               {ready && <InteractiveShop cart={cart} onAdd={add} showCart showTotal />}
             </Browser></div>
-            {ready && cart.length === 0 && <p className="hook-ack" style={{ margin: 0 }}>{tr({ uz: '"+" bosing — jami narx o\'zgarishini kuzating.', ru: 'Нажимайте «+» — следите, как меняется итоговая цена.' })}</p>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Har qo'shilganda jami narx avtomatik yangilanyapti. Endi bu — haqiqiy, ishlaydigan do'kon. MVP deyarli tayyor!", ru: 'Отлично! При каждом добавлении итог обновляется сам. Теперь это настоящий работающий магазин. MVP почти готов!' })}</p></div>}
+            {/* F-0926-06 (159/6): «"+" bosing» yo'rig'i mentor gapini takrorlardi — olindi */}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{/* F-0926-06 (til-lint): «Zo'r!» → «Juda yaxshi!» */}{tr({ uz: "Juda yaxshi! Har qo'shilganda jami narx avtomatik yangilanyapti. Endi bu — haqiqiy, ishlaydigan do'kon. MVP deyarli tayyor!", ru: 'Отлично! При каждом добавлении итог обновляется сам. Теперь это настоящий работающий магазин. MVP почти готов!' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1007,7 +1006,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mana — sizning <span className="italic" style={{ color: T.accent }}>ishlaydigan</span> do'koningiz!</>, ru: <>Вот он — Ваш <span className="italic" style={{ color: T.accent }}>работающий</span> магазин!</> })}</h2></div>
         <Mentor>{tr({ uz: <>Hammasi birlashdi: katalog, savat va jami narx. Bu endi to'laqonli MVP. Bir necha mahsulot qo'shing — savat va jami narx birga o'zgarishini his qiling. Bu — siz qurgan haqiqiy do'kon!</>, ru: <>Всё соединилось: каталог, корзина и итоговая цена. Это уже полноценный MVP. Добавьте несколько товаров — почувствуйте, как корзина и итог меняются вместе. Это настоящий магазин, который построили Вы!</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={cart.length === 0}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "Do'kon — sinab ko'ring", ru: 'Магазин — попробуйте' })}</p>
@@ -1015,14 +1014,15 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cart.length > 0 && <button className="btn-soft" onClick={() => setCart([])} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '↺ Savatni tozalash', ru: '↺ Очистить корзину' })}</button>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Savatingiz', ru: 'Ваша корзина' })}</p>
-            <div className="frame" style={{ padding: '14px 16px', minHeight: 90 }}>
-              {cart.length === 0 ? <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Savat bo\'sh — "+" bosing…', ru: 'Корзина пуста — нажмите «+»…' })}</p> : <>
+            {/* F-0926-06 (159/9 · P1): bo'sh savat ramkasi va «"+" bosing» yo'rig'i olindi — savat birinchi qo'shishdan keyin chiqadi */}
+            {cart.length > 0 && <p className="flow-label">{tr({ uz: 'Savatingiz', ru: 'Ваша корзина' })}</p>}
+            {cart.length > 0 && <div className="frame" style={{ padding: '14px 16px' }}>
+              <>
                 {cart.map((idx, k) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}><span>{tr(PRODUCTS[idx].name)}</span><span className="mono" style={{ color: T.ink2 }}>{som(PRODUCTS[idx].price)}</span></div>)}
                 <div style={{ borderTop: `1px solid ${T.ink3}55`, marginTop: 6, paddingTop: 6, display: 'flex', justifyContent: 'space-between', fontWeight: 800 }}><span>{tr({ uz: 'Jami', ru: 'Итого' })}</span><span style={{ color: T.accent }}>{som(cart.reduce((s, i) => s + PRODUCTS[i].price, 0))} {tr({ uz: "so'm", ru: 'сум' })}</span></div>
-              </>}
-            </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Siz haqiqiy, ishlaydigan do\'kon qurdingiz! Boshidagi "sotib bo\'lmaydigan" katalogni eslang — qancha yo\'l bosib o\'tdingiz.', ru: 'Вы построили настоящий работающий магазин! Вспомните каталог из начала, где «нельзя купить», — какой путь Вы прошли.' })}</p></div>}
+              </>
+            </div>}
+            {/* F-0926-06 (159/1): yashil «Siz haqiqiy do'kon qurdingiz» qutisi mentor gapini takrorlardi — olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -1052,7 +1052,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: "Do'kon (mahsulot qo'shing)", ru: 'Магазин (добавьте товары)' })}</p>
             <Browser url="maktab-dokoni.uz"><InteractiveShop cart={cart} onAdd={add} showCart showTotal buggy /></Browser>
-            {cart.length > 0 && <p className="mono small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Haqiqiy yig'indi: {som(real)} so'm — lekin do'konda boshqa son ko'rinyapti…</>, ru: <>Настоящая сумма: {som(real)} сум — но магазин показывает другое число…</> })}</p>}
+            {/* F-0926-06 (159/17): «Haqiqiy yig'indi … boshqa son» qatori javobni (jami narx) oldindan aytardi — olindi; mentor QAYERGA qarashni aytadi */}
           </Col>
           <Col>
             {!isFound && <>
@@ -1092,7 +1092,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "AI'ga qanday aytamiz?", ru: 'Как скажем ИИ?' })}</p>
+            {/* F-0926-06 (G1): «AI'ga qanday aytamiz?» mentor savolini takrorlardi — ko'rinmas nusxa o'ng ustun yorlig'iga tekislaydi (HP1) */}
+            <p className="flow-label" aria-hidden="true" style={{ visibility: 'hidden' }}>{tr({ uz: "Do'kon (savatda 2 ta ruchka)", ru: 'Магазин (в корзине 2 ручки)' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {OPTS.map(o => <button key={o.id} className={`hook-option ${picked === o.id ? 'on' : ''}`} disabled={good} onClick={() => setPicked(o.id)}><span className="radio">{picked === o.id && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>)}
             </div>
@@ -1129,7 +1130,7 @@ const Screen8 = (props) => (
 
 // ===== SCREEN 9 — OXIRGI YAXSHILANISH =====
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's9', text: "MVP ishlayapti — endi oxirgi yaxshilanish. Kichik yaxshilanish do'konni professional ko'rsatadi. Bitta mazmunli yaxshilanishni tanlang.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's9', text: "MVP ishlayapti — endi oxirgi yaxshilanish. Kichik yaxshilanish do'konni haqiqiy do'kondek ko'rsatadi. Bitta mazmunli yaxshilanishni tanlang.", trigger: 'on_mount', waits_for: null }]);
   const POLISH = [
     { id: 'checkout', label: { uz: '"Buyurtma berish" tugmasi', ru: 'Кнопка «Оформить заказ»' } },
     { id: 'empty', label: { uz: "Bo'sh savat xabari", ru: 'Сообщение о пустой корзине' } },
@@ -1148,22 +1149,22 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Qaysi yaxshilanishni qo'shamiz?", ru: 'Какой штрих добавим?' })}</p>
+            {/* F-0926-06 (G1): «Qaysi yaxshilanishni qo'shamiz?» mentor «Bittasini tanlang» chorlovini takrorlardi — olindi */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {POLISH.map(p => <button key={p.id} className={`chip ${applied === p.id ? 'chip-on' : ''}`} onClick={() => setApplied(p.id)} style={{ justifyContent: 'flex-start' }}>{applied === p.id ? '✓ ' : '+ '}{tr(p.label)}</button>)}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Do'kon", ru: 'Магазин' })}</p>
+            {/* F-0926-06 (159/7 · 159/3): «Do'kon» yorlig'i brauzer manzilini takrorlardi va chap ustundan 30px pastga tushirardi — olindi */}
             <Browser url="maktab-dokoni.uz">
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <InteractiveShop cart={applied === 'empty' ? [] : cart} onAdd={add} showCart showTotal />
-                {applied === 'checkout' && <button className="fade-step" style={{ border: 'none', borderRadius: 10, padding: '10px', background: T.success, color: '#fff', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button>}
+                {applied === 'checkout' && <button className="fade-step" style={{ border: 'none', borderRadius: 10, padding: '10px', background: '#2563EB1f', color: '#2563EB', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>{/* F-0926-06 (V1 · 159/4): to'liq yashil tugma → do'kon ko'k rangida, yumshoq fon («Savat» belgisi kabi) */}{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button>}
                 {applied === 'empty' && <p className="fade-step small" style={{ margin: 0, textAlign: 'center', color: T.ink2, fontStyle: 'italic' }}>{tr({ uz: "Savatingiz bo'sh — mahsulot qo'shing.", ru: 'Ваша корзина пуста — добавьте товары.' })}</p>}
                 {applied === 'thanks' && <div className="fade-step" style={{ background: T.successSoft, color: T.success, borderRadius: 10, padding: '10px 12px', fontSize: 13, fontWeight: 700, textAlign: 'center' }}>{tr({ uz: 'Rahmat! Buyurtmangiz qabul qilindi.', ru: 'Спасибо! Ваш заказ принят.' })}</div>}
               </div>
             </Browser>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana shu kichik yaxshilanish do'konni professional ko'rsatadi. Endi MVP to'liq jilolangan — chiqarishga tayyor!", ru: 'Такой маленький штрих делает магазин профессиональным. Теперь MVP отполирован — готов к выпуску!' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{/* F-0926-06 (til-lint): «professional» → «haqiqiy» */}{tr({ uz: "Mana shu kichik yaxshilanish do'konni haqiqiy do'kondek ko'rsatadi. Endi MVP to'liq jilolangan — chiqarishga tayyor!", ru: 'Такой маленький штрих делает магазин похожим на настоящий. Теперь MVP отполирован — готов к выпуску!' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1203,7 +1204,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>MVP tayyor — <span className="italic" style={{ color: T.accent }}>internetga</span> chiqaramiz!</>, ru: <>MVP готов — выпускаем <span className="italic" style={{ color: T.accent }}>в интернет!</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Do'kon kompyuteringizda ishlayapti. Lekin haqiqiy loyiha — boshqalar ham ko'ra oladigan loyiha. <b style={{ color: T.ink }}>Deploy</b> — saytni internetga chiqarish (6-darsdagi Netlify esingizdami?). Tugmani bosing va havola oling.</>, ru: <>Магазин работает на Вашем компьютере. Но настоящий проект — тот, который видят другие. <b style={{ color: T.ink }}>Деплой</b> — выпуск сайта в интернет (помните Netlify из 6-го урока?). Нажмите кнопку и получите ссылку.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={phase === 'idle'}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Saytni internetga chiqarish', ru: 'Выпуск сайта в интернет' })}</p>
@@ -1259,7 +1260,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {ACH.map(a => {
                 const ok = got.has(a.id);
                 return (
-                  <button key={a.id} onClick={() => claim(a.id)} disabled={ok} style={{ textAlign: 'left', border: 'none', borderRadius: 11, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 10, background: T.paper, cursor: ok ? 'default' : 'pointer', boxShadow: ok ? `inset 0 0 0 2px ${T.success}` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>
+                  <button key={a.id} onClick={() => claim(a.id)} disabled={ok} style={{ textAlign: 'left', border: 'none', borderRadius: 11, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'Manrope'", background: ok ? T.successSoft : T.paper, cursor: ok ? 'default' : 'pointer', boxShadow: ok ? 'none' : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>{/* F-0926-06 (G3): belgilangan yutuq — ✓ + yumshoq yashil fon, qo'shimcha yashil ramka olindi */}
                     <span style={{ color: ok ? T.success : T.ink3, fontWeight: 700, fontSize: 16 }}>{ok ? '✓' : '○'}</span>
                     <span style={{ fontWeight: 600, fontSize: 14, color: T.ink }}>{tr(a.label)}</span>
                   </button>
@@ -1279,7 +1280,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: "Butun safarni eslaymiz: birinchi qatordan tortib to'liq loyihagacha. Har bir dars sizni shu nuqtaga olib keldi. Har bir bosqichni bosib, yo'lni ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const PRACTICES = [
-    { n: '1', name: { uz: 'Saytni jonlantirish', ru: 'Оживляем сайт' }, gain: { uz: "Interaktivlik: hodisa → reaksiya → o'zgarish", ru: 'Интерактивность: событие → реакция → изменение' } },
+    { n: '1', name: { uz: 'Saytni jonlantirish', ru: 'Оживляем сайт' } /* 27.09: Practice1 katalog nomi bilan bir xil — jon-kiritish qoidasi JS darslariga tegishli emas */, gain: { uz: "Interaktivlik: hodisa → reaksiya → o'zgarish", ru: 'Интерактивность: событие → реакция → изменение' } },
     { n: '2', name: { uz: 'AI bilan tez sayt', ru: 'Быстрый сайт с ИИ' }, gain: { uz: 'Yaxshi prompt, iteratsiya, tekshirish', ru: 'Хороший промпт, итерации, проверка' } },
     { n: '3', name: { uz: 'Dekompozitsiya', ru: 'Декомпозиция' }, gain: { uz: "Bo'laklash, MVP, rejalashtirish", ru: 'Разбиение на части, MVP, планирование' } },
     { n: '4', name: { uz: 'MVP tayyor', ru: 'MVP готов' }, gain: { uz: "To'liq loyiha qurish va deploy", ru: 'Полный проект и деплой' } }
@@ -1304,7 +1305,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <span className="mstone-cap mstone-end">{tr({ uz: <>Natija<br /><b>chiqarilgan ilova</b></>, ru: <>Результат<br /><b>выпущенное приложение</b></> })}</span>
         </div>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -1367,7 +1368,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!done && <button className="btn" onClick={next} style={{ alignSelf: 'flex-start' }}>{shown === 0 ? tr({ uz: 'Boshlash →', ru: 'Начать →' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Jonli natija — qadam sari', ru: 'Живой результат — шаг за шагом' })}</p>
+            {/* F-0926-06 (159/3): «Jonli natija» yorlig'i o'ng ustunni chap ustundan 30px pastga tushirardi — olindi (manzil qatori o'zi aytadi) */}
             <Browser url={shown >= 5 ? 'maktab-dokoni.netlify.app' : 'localhost:3000'}>
               {shown === 0 && <p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0, padding: '24px 0' }}>{tr({ uz: '(qadamlarni ochib boring)', ru: '(открывайте шаги)' })}</p>}
               {shown === 1 && (
@@ -2646,7 +2647,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06 (159/4): tanlangan chip to'liq to'yingan fon emas — yumshoq fon + halqa */
 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
@@ -3180,7 +3181,8 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — baland to'q-sariq gradient olindi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }

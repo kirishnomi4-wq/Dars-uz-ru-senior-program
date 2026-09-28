@@ -102,7 +102,7 @@ const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
 const Split = ({ children }) => <div className="split">{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — ustun bo'sh turganda ⛶ yolg'iz osilmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -124,7 +124,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -582,18 +582,18 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Zoomable>
         <Split>
           <Col>
-            <p className="flow-label">{tr({ uz: "So'rov yuboring — bosing", ru: 'Отправьте запрос — нажмите' })}</p>
+            <p className="flow-label">{tr({ uz: "So'rovlar", ru: 'Запросы' })}</p>{/* F-0926-06: chorlov mentor gapida — yorliq qisqardi */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {ROUTES.map((r, i) => <button key={i} className={`reqchip ${sent === i ? 'on' : ''}`} onClick={() => send(i)}><MethodBadge method={r.method} /><span className="mono" style={{ fontWeight: 700 }}>{r.path}</span></button>)}
             </div>
             <Win title={tr({ uz: 'server — qaysi eshik javob berdi?', ru: 'сервер — какая дверь ответила?' })} minH={96}>
               {sent === null
-                ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Yuqoridan so'rov yuboring…", ru: 'Отправьте запрос сверху…' })}</p>
+                ? null /* F-0926-06: bo'sh oynadagi «Yuqoridan so'rov yuboring» yo'rig'i olindi (P1, joy so'zi) */
                 : <div className="demo-swap"><p className="mono small" style={{ color: T.ink3, margin: '0 0 8px' }}>{ROUTES[sent].method} {ROUTES[sent].path}</p><div className="frame-success" style={{ padding: '9px 12px' }}><p className="body" style={{ margin: 0, color: T.ink }}>→ <b style={{ color: T.success }}>{tr(ROUTES[sent].label)}</b> {tr({ uz: 'kodi ishga tushdi', ru: '— код запустился' })}</p></div></div>}
             </Win>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, server qaysi kodni tanlashni qanday biladi?', ru: 'Как вы думаете, откуда сервер знает, какой код выбрать?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Server qanday tanlaydi?', ru: 'Как сервер выбирает?' })}</p>{/* F-0926-06: yorliq bir qatorga qisqardi — sarlavha savolni aytadi, ustunlar tepasi tekislandi (159/9) */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const sel = picked === o.id;
@@ -634,7 +634,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="fade-up delay-1" style={{ fontFamily: 'Georgia, serif', fontSize: 19, color: T.ink, padding: '6px 2px' }}>{tr({ uz: "Yangi o'yin qo'shildi!", ru: 'Новая игра добавлена!' })}</div>
         <p className="mono small" style={{ margin: '4px 0 0', color: T.success }}>{tr({ uz: '✓ create() metodi javob berdi', ru: '✓ ответил метод create()' })}</p>
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ shu POST eshigini dars oxirida o'zingiz ochasiz (@Post)", ru: '→ эту POST-дверь вы сами откроете в конце урока (@Post)' })}</p>
+      {/* F-0926-06: «→ shu POST eshigini dars oxirida o'zingiz ochasiz» olindi — mentor aytadi (HP3) */}
     </Col>
   );
   const StepsBlock = (
@@ -795,20 +795,19 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   ];
   const [seen, setSeen] = useState(() => new Set(storedAnswer ? M.map(m => m.id) : []));
   const [active, setActive] = useState(storedAnswer ? 'GET' : null);
-  const done = seen.size >= 3;
+  const done = seen.size >= 4;
   const tap = (id) => { setActive(id); setSeen(s => { const n = new Set(s); n.add(id); return n; }); };
   const cur = M.find(m => m.id === active);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's5', text: `Method — xatning shtampi, ya'ni niyati. To'rttasi asosiy: GET — menga ko'rsat, olish; POST — buni qo'sh, yaratish; PUT — buni yangila; DELETE — buni o'chir. Minecraft sandig'i bilan tasavvur qiling: ichiga qarash, yangi predmet qo'shish, almashtirish, tashlab yuborish. Har method'ni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: "HTTP method'lar", ru: 'HTTP-методы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/3 method ko'ring`, ru: `Посмотрите методы: ${seen.size}/3` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "HTTP method'lar", ru: 'HTTP-методы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/4 method ko'ring`, ru: `Посмотрите методы: ${seen.size}/4` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Method <span className="italic" style={{ color: T.accent }}>nimani</span> bildiradi?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>означает</span> method?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Method — so'rovning <b style={{ color: T.ink }}>maqsadi</b>. To'rttasi asosiy: <b style={{ color: T.ink }}>GET</b> olish, <b style={{ color: T.ink }}>POST</b> yaratish, <b style={{ color: T.ink }}>PUT</b> yangilash, <b style={{ color: T.ink }}>DELETE</b> o'chirish. Buni Minecraft sandig'i bilan tasavvur qiling. Har birini bosib ko'ring.</>, ru: <>Method — это <b style={{ color: T.ink }}>цель</b> запроса. Четыре основных: <b style={{ color: T.ink }}>GET</b> получить, <b style={{ color: T.ink }}>POST</b> создать, <b style={{ color: T.ink }}>PUT</b> обновить, <b style={{ color: T.ink }}>DELETE</b> удалить. Представьте это через сундук в Minecraft. Нажмите на каждый.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin; «Method'ni bosing» yorlig'i olindi — chorlov mentor gapida */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Method'ni bosing", ru: 'Нажмите на метод' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {M.map(m => <button key={m.id} className="mtile" onClick={() => tap(m.id)} style={{ color: METHODS[m.id], background: METHODS[m.id] + (active === m.id ? '26' : '14'), boxShadow: active === m.id ? `inset 0 0 0 1.5px ${METHODS[m.id]}` : 'none' }}>{m.id} {seen.has(m.id) ? '✓' : ''}</button>)}
             </div>
@@ -858,12 +857,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = seen.size >= 2;
   const tap = (id) => { setPicked(id); setSeen(s => { const n = new Set(s); n.add(id); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's6', text: `Har o'yin uchun alohida eshik yozish shart emas — bu juda ko'p bo'lardi. Buning o'rniga bitta eshik: slash games slash id. Bu yerdagi id — o'zgaruvchi manzil, istalgan xonadon eshigiday. Qaysi raqam kelsa, server o'shani ushlab, kerakli o'yinni qaytaradi. Pastdan id tanlab sinang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's6', text: `Har o'yin uchun alohida eshik yozish shart emas — bu juda ko'p bo'lardi. Buning o'rniga bitta eshik: slash games slash id. Bu yerdagi id — o'zgaruvchi manzil, istalgan xonadon eshigiday. Qaysi raqam kelsa, server o'shani ushlab, kerakli o'yinni qaytaradi. Id tanlab sinab ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Route param', ru: 'Route-параметр' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/2 id sinab ko'ring`, ru: `Попробуйте id: ${seen.size}/2` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har bir o'yin uchun <span className="italic" style={{ color: T.accent }}>alohida route</span> kerakmi?</>, ru: <>Нужен ли каждой игре <span className="italic" style={{ color: T.accent }}>отдельный route</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yo'q — bu juda ko'p bo'lardi! Buning o'rniga <b style={{ color: T.ink }}>bitta</b> route yoziladi: <span className="mono">/games/:id</span>. Bu yerdagi <span className="mono">:id</span> — <b style={{ color: T.ink }}>o'zgaruvchi</b>. Qaysi raqam kelsa, server uni ushlab oladi. Bitta route — minglab o'yinga xizmat qiladi. Pastdan id tanlab sinang.</>, ru: <>Нет — их было бы слишком много! Вместо этого пишется <b style={{ color: T.ink }}>один</b> route: <span className="mono">/games/:id</span>. Здесь <span className="mono">:id</span> — <b style={{ color: T.ink }}>переменная</b>. Какое число придёт, то сервер и поймает. Один route обслуживает тысячи игр. Выберите id внизу и попробуйте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yo'q — bu juda ko'p bo'lardi! Buning o'rniga <b style={{ color: T.ink }}>bitta</b> route yoziladi: <span className="mono">/games/:id</span>. Bu yerdagi <span className="mono">:id</span> — <b style={{ color: T.ink }}>o'zgaruvchi</b>. Qaysi raqam kelsa, server uni ushlab oladi. Bitta route — minglab o'yinga xizmat qiladi. id tanlab sinab ko'ring.</>, ru: <>Нет — их было бы слишком много! Вместо этого пишется <b style={{ color: T.ink }}>один</b> route: <span className="mono">/games/:id</span>. Здесь <span className="mono">:id</span> — <b style={{ color: T.ink }}>переменная</b>. Какое число придёт, то сервер и поймает. Один route обслуживает тысячи игр. Выберите id и попробуйте.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -913,7 +912,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nest routing'ni <span className="italic" style={{ color: T.accent }}>qanday yozadi</span>?</>, ru: <>Как Nest <span className="italic" style={{ color: T.accent }}>записывает</span> роутинг?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Nest'da har route — klass ichidagi <b style={{ color: T.ink }}>metod</b>. Metod ustidagi <b style={{ color: T.accent }}>dekorator</b> (<span className="mono">@Get</span>, <span className="mono">@Post</span>) qaysi so'rovga javob berishini aytadi. Hammasi bitta <b style={{ color: T.ink }}>GamesController</b> ichida — toza va tartibli. Rangli qismlarni bosib o'rganing.</>, ru: <>В Nest каждый route — это <b style={{ color: T.ink }}>метод</b> внутри класса. <b style={{ color: T.accent }}>Декоратор</b> над методом (<span className="mono">@Get</span>, <span className="mono">@Post</span>) говорит, на какой запрос тот отвечает. Всё в одном <b style={{ color: T.ink }}>GamesController</b> — чисто и аккуратно. Нажимайте на цветные части и изучайте.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.9 }}>
@@ -929,10 +928,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismni bosing', ru: 'Нажмите на часть' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 5 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
-            </div>
+            {/* F-0926-06: «Qismni bosing · N / 5 ko'rildi» qatori olindi — chorlov mentorda, sanoq tugmada (H2) */}
             {active ? <div className="sk-info" key={active}><span className="sk-tagbig"><span className="sk-wordbadge mono">{PARTS[active].word}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].info}</p></div>
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Dekorator + metod = route. Bitta controller — bitta mavzuning hamma eshiklari. Nega bu yondashuv shunchalik tartibli — keyingi ekranda.', ru: 'Декоратор + метод = route. Один контроллер — все двери одной темы. Почему этот подход такой аккуратный — на следующем экране.' })}</p></div>}
@@ -949,7 +945,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ADV = [
     { id: 'order', t: tr({ uz: 'Tartib', ru: 'Порядок' }), d: tr({ uz: "Har mavzu o'z controllerida: GamesController, UsersController. Katta loyihada ham adashmaysiz.", ru: 'Каждая тема в своём контроллере: GamesController, UsersController. Не запутаетесь даже в большом проекте.' }) },
     { id: 'deco', t: tr({ uz: 'Dekoratorlar', ru: 'Декораторы' }), d: tr({ uz: "@Get / @Post o'zi yo'naltiradi — qaysi metod qaysi so'rovga javob berishini qo'lda tekshirmaysiz.", ru: '@Get / @Post направляют сами — вручную проверять, какой метод на какой запрос отвечает, не нужно.' }) },
-    { id: 'return', t: tr({ uz: 'return yetarli', ru: 'Достаточно return' }), d: tr({ uz: "Metoddan shunchaki return qilasiz — Nest javobni mijozga o'zi yuboradi. Qo'shimcha qator shart emas.", ru: 'Просто делаете return из метода — Nest сам отправит ответ клиенту. Лишние строки не нужны.' }) },
+    { id: 'return', t: tr({ uz: 'return yetarli', ru: 'Достаточно return' }), d: tr({ uz: "Metoddan shunchaki return qilasiz — o'tgan darsdagi res.send(...) shart emas, Nest javobni mijozga o'zi yuboradi.", ru: 'Просто делаете return из метода — res.send(...) из прошлого урока не нужен, Nest сам отправит ответ клиенту.' }) },
     { id: 'scale', t: tr({ uz: 'Katta loyiha', ru: 'Большой проект' }), d: tr({ uz: "Yirik backendlar aynan shu tartibda quriladi — jamoa bo'lib ishlash oson.", ru: 'Крупные бэкенды строятся именно так — командой работать легко.' }) }
   ];
   const [seen, setSeen] = useState(() => new Set(storedAnswer ? ADV.map(a => a.id) : []));
@@ -964,16 +960,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega Nest bunchalik <span className="italic" style={{ color: T.accent }}>tartibli</span>?</>, ru: <>Почему Nest такой <span className="italic" style={{ color: T.accent }}>аккуратный</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Server kodi o'sib ketganda chalkashlik boshlanadi. Nest buni hal qiladi: kod <b style={{ color: T.ink }}>controller'larga</b> bo'linadi, dekoratorlar routingni <b style={{ color: T.ink }}>o'zi</b> qiladi. Shuning uchun jiddiy loyihalar Nest'da yoziladi. Sabablarini bosing.</>, ru: <>Когда код сервера разрастается, начинается путаница. Nest решает это: код делится на <b style={{ color: T.ink }}>контроллеры</b>, а роутинг декораторы делают <b style={{ color: T.ink }}>сами</b>. Поэтому серьёзные проекты пишут на Nest. Нажмите на причины.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Nest nega yaxshi — bosing', ru: 'Чем хорош Nest — нажмите' })}</p>
+            {/* F-0926-06: «Nest nega yaxshi — bosing» yorlig'i olindi — mentor «Sabablarini bosing» deydi */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {ADV.map(a => <button key={a.id} className={`chip ${active === a.id ? 'chip-on' : ''}`} onClick={() => tap(a)}>{a.t} {seen.has(a.id) ? '✓' : ''}</button>)}
-            </div>
-            <div className="cmp-card hot" style={{ marginTop: 4 }}>
-              <p className="cmp-h" style={{ color: T.accent }}>{tr({ uz: "Nest'da res.send yo'q!", ru: 'В Nest нет res.send!' })}</p>
-              <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>O'tgan darsda <span className="mono">res.send(...)</span> yozgandingiz. Nest'da shunchaki <span className="mono">return</span> qilasiz — qolganini Nest bajaradi.</>, ru: <>В прошлом уроке вы писали <span className="mono">res.send(...)</span>. В Nest достаточно <span className="mono">return</span> — остальное Nest сделает сам.</> })}</p>
             </div>
           </Col>
           <Col>
@@ -1042,7 +1034,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             <Win title={tr({ uz: 'brauzer — POST /games', ru: 'браузер — POST /games' })} minH={92} hotTitle={done}>
               {done ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 18, color: T.ink }}>{tr({ uz: "Yangi o'yin qo'shildi!", ru: 'Новая игра добавлена!' })}</div>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "So'rov hali yetib bormadi…", ru: 'Запрос ещё не дошёл…' })}</p>}
+                : null /* F-0926-06: bo'sh oyna yo'rig'i olindi (P1) */}
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana to'liq yo'l: so'rov → router → dekorator → metod → <span className="mono">return</span> → javob. Routingni endi to'liq tushunasiz!</>, ru: <>Вот полный путь: запрос → роутер → декоратор → метод → <span className="mono">return</span> → ответ. Теперь вы полностью понимаете роутинг!</> })}</p></div>}
           </Col>
@@ -1116,7 +1108,9 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{byId[sid].label}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'положите сюда' })}</span>}
+            {/* F-0926-06 R2: katak yozuvi chip tushgach ham ko'rinib turadi */}
+            {(hints || !sid) && <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'положите сюда' })}</span>}
+            {sid && <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{byId[sid].label}</button>}
           </div>
         ))}
       </div>
@@ -1154,7 +1148,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
         ))}
       </div>
       {!solved
-        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите на неё' })}</p>
+        ? null /* F-0926-06: «Xato bor qatorni toping va bosing» olindi — mentor aytadi */
         : <div className="dbg-ok">✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })} {tr(explain)}</div>}
     </div>
   );
@@ -1227,13 +1221,13 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const done = solved;
   const onSolved = () => { if (!solved) { setSolved(true); onAnswer(screen, { stage: 'exploration', screenIdx: screen, correct: true, solved: true, picked: true }); } };
-  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga — pochtachi bo'ling. Yuqoridagi har eshik bitta so'rovni kutmoqda: shtamp va manzil. Pastdagi controller metodi bo'laklarini to'g'ri eshikka sudrab tashlang. To'g'ri tushsa, eshik yashil yonadi va metod ishlaydi. Xato bo'lsa, 404 vozvrat pechati bosiladi va xat qaytadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga — pochtachi bo'ling. Har eshik bitta so'rovni kutmoqda: shtamp va manzil. Controller metodi bo'laklarini to'g'ri eshikka sudrab tashlang. To'g'ri tushsa, eshik yashil yonadi va metod ishlaydi. Xato bo'lsa, 404 vozvrat pechati bosiladi va xat qaytadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot · so'rov pochtasi", ru: 'Практика · почта запросов' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatlarni saralang', ru: 'Рассортируйте письма' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har xatni <span className="italic" style={{ color: T.accent }}>to'g'ri eshikka</span> yetkazing</>, ru: <>Доставьте каждое письмо <span className="italic" style={{ color: T.accent }}>в правильную дверь</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Pochtachi bo'ling. Yuqoridagi har eshik bir so'rovni (shtamp + manzil) kutmoqda. Pastdagi <b style={{ color: T.ink }}>controller metodi</b> bo'laklarini to'g'ri eshikka sudrab tashlang. To'g'ri tushsa — eshik yashil yonadi va metod ishlaydi. Xato bo'lsa — <b style={{ color: T.accent }}>404 · Vozvrat</b>.</>, ru: <>Побудьте почтальоном. Каждая дверь выше ждёт свой запрос (штамп + адрес). Перетащите блоки <b style={{ color: T.ink }}>методов контроллера</b> в правильные двери. Попали верно — дверь загорится зелёным и метод сработает. Ошиблись — <b style={{ color: T.accent }}>404 · Возврат</b>.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>Pochtachi bo'ling. Har eshik bir so'rovni (shtamp + manzil) kutmoqda. <b style={{ color: T.ink }}>Controller metodi</b> bo'laklarini to'g'ri eshikka sudrab tashlang. To'g'ri tushsa — eshik yashil yonadi va metod ishlaydi. Xato bo'lsa — <b style={{ color: T.accent }}>404 · Vozvrat</b>.</>, ru: <>Побудьте почтальоном. Каждая дверь ждёт свой запрос (штамп + адрес). Перетащите блоки <b style={{ color: T.ink }}>методов контроллера</b> в правильные двери. Попали верно — дверь загорится зелёным и метод сработает. Ошиблись — <b style={{ color: T.accent }}>404 · Возврат</b>.</> })}</Mentor>
+        <Zoomable off>{/* F-0926-06: tor markaziy blok ustida ⛶ yolg'iz osilardi (ZBTN) */}
         <div className="narrow-mid" style={{ maxWidth: 560, width: '100%', margin: '0 auto' }}>
           <DragDropOrder
             items={[
@@ -1241,10 +1235,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               { id: 'findOne', label: 'findOne()' },
               { id: 'create', label: 'create()' }
             ]}
-            hints={[
-              { uz: "📩 GET /games — ro'yxatni ol", ru: '📩 GET /games — получи список' },
-              { uz: "📩 GET /games/:id — bittasini ol", ru: '📩 GET /games/:id — получи одну' },
-              { uz: "📩 POST /games — yangi o'yin qo'sh", ru: '📩 POST /games — добавь новую игру' }
+            hints={[ /* F-0926-06: 📩 ico-emoji olindi (159/4) */
+              { uz: "GET /games — ro'yxatni ol", ru: 'GET /games — получи список' },
+              { uz: "GET /games/:id — bittasini ol", ru: 'GET /games/:id — получи одну' },
+              { uz: "POST /games — yangi o'yin qo'sh", ru: 'POST /games — добавь новую игру' }
             ]}
             onSolved={onSolved}
             onWrong={() => achMiss && achMiss.miss(screen)}
@@ -1273,7 +1267,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Routing — <span className="italic" style={{ color: T.accent }}>to'rt qoida</span></>, ru: <>Роутинг — <span className="italic" style={{ color: T.accent }}>четыре правила</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Mana butun darsning o'zagi. Bu to'rt qoidani esda tutsangiz — istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.</>, ru: <>Вот ядро всего урока. Запомните эти четыре правила — и поймёте роутинг любого бэкенда. На следующем экране вы сами откроете свою первую дверь.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className="split rules-eq">{/* F-0926-06: qoida-kartalari bir qatorda bir balandlikda (159/16) */}
           {RULES.map((r, i) => (
             <div key={i} className="rule-card fade-up" style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
               
@@ -1469,7 +1463,7 @@ const ScreenDoorMatch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "① So'rovlar — bittasini bosing", ru: '① Запросы — нажмите на один' })}</p>
+            <p className="flow-label">{tr({ uz: "① So'rovlar", ru: '① Запросы' }) /* F-0926-06: chorlov mentor va tugmada */}</p>
             <div className="rq-pool fade-up delay-1">
               {DM_REQS.map(r => placed[r.id] ? null : (
                 <button key={r.id} type="button" className={`rq-card${sel === r.id ? ' sel' : ''}`} onClick={() => tapReq(r.id)}>
@@ -1480,7 +1474,7 @@ const ScreenDoorMatch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: '② Controller — joyini bosing', ru: '② Контроллер — нажмите на место' })}</p>
+            <p className="flow-label">{tr({ uz: '② Controller', ru: '② Контроллер' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {DM_TARGETS.map(t => {
                 const inside = DM_REQS.filter(r => placed[r.id] === t.id);
@@ -2441,7 +2435,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: to'liq accent fon -> yumshoq fon + halqa (159/10) */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
 
@@ -2620,6 +2614,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .match-row.sel { box-shadow: 0 8px 18px -6px rgba(255,79,40,0.28), inset 0 0 0 1.5px ${T.accent}; }
         .match-row.matched { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
         .match-row:disabled { cursor: default; }
+        .split.rules-eq { align-items: stretch; }
         .rule-card { display: flex; align-items: flex-start; gap: 13px; background: ${T.paper}; border-radius: 14px; padding: 15px 18px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         ; background: ${T.accentSoft}; width: 32px; height: 32px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
         @keyframes shakex { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
@@ -2652,9 +2647,11 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 14px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(255,79,40,.35); transition: transform .12s; user-select: none; } /* F-0926-06: to'yingan gradient o'rniga oq fon + 2px accent + ⠿ (159/15) */
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .6; font-weight: 400; }
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
+        .dd-slot .dd-chip.in { margin-left: auto; } /* F-0926-06 R2: chip katak yozuvining o'ng tomonida */
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
         /* 👆 tap-hint — bosilmagan joy «meni bos» deb pulsatsiya qiladi (affordance) */
         .tap-hint { animation: tap-hint 1.9s ease-in-out infinite; }

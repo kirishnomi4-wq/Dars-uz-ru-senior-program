@@ -684,7 +684,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Bazaga mashina qo'shdik — lekin saytda <span className="italic" style={{ color: T.accent }}>ko'rinmayapti</span>. Nega?</>, ru: <>Добавили машину в базу — а на сайте её <span className="italic" style={{ color: T.accent }}>не видно</span>. Почему?</> })}</h1>
-        <Mentor>{tr({ uz: <>Praktika 1'da Postman orqali bazaga <b style={{ color: T.ink }}>Chevrolet Spark</b>'ni qo'shgan edingiz — o'ngda, bazada u bor. Lekin chapdagi AvtoIjara saytida Spark <b style={{ color: T.ink }}>yo'q</b>! Saytni yangilab ko'ring (🔄) — paydo bo'ladimi?</>, ru: <>В Практике 1 вы через Postman добавили в базу <b style={{ color: T.ink }}>Chevrolet Spark</b> — справа, в базе, он есть. А на сайте AvtoIjara слева его <b style={{ color: T.ink }}>нет</b>! Попробуйте обновить сайт (🔄) — появится ли?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Praktika 1'da Postman orqali bazaga <b style={{ color: T.ink }}>Chevrolet Spark</b>'ni qo'shgan edingiz — bazada u bor. Lekin AvtoIjara saytida Spark <b style={{ color: T.ink }}>yo'q</b>! Saytni yangilab ko'ring (🔄) — paydo bo'ladimi?</>, ru: <>В Практике 1 вы через Postman добавили в базу <b style={{ color: T.ink }}>Chevrolet Spark</b> — в базе он есть. А на сайте AvtoIjara его <b style={{ color: T.ink }}>нет</b>! Попробуйте обновить сайт (🔄) — появится ли?</> })}</Mentor>
         <div className="wire cut fade-up delay-1">
           <span className="wire-end"><span className="wire-t">{tr({ uz: 'Sayt — vitrina', ru: 'Сайт — витрина' })}<small>localhost:5173</small></span></span>
           <span className="wire-mid">
@@ -700,19 +700,22 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Zoomable>
         <Split three>
           <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 36 }}>{/* F-0926-06 (159/3): uch ustun yorlig'i bir balandlikda — bloklar tepasi bir chiziqda */}
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p>
               <button className={`chip ${shaking ? 'shake' : ''} ${!tried ? 'tap-hint' : ''}`} onClick={refresh} style={{ padding: '5px 10px', fontSize: 12.5, flexShrink: 0, whiteSpace: 'nowrap' }}>{tr({ uz: 'Yangilash', ru: 'Обновить' })}</button>
             </div>
-            <div className={`fade-up delay-1 ${shaking ? 'shake' : ''}`}><Win title="avtoijara.uz" minH={150} maxH={180}><AvtoSite cars={CARS} cols={1} /></Win></div>
+            {/* F-0926-06 (160-qonun): sayt oynasi va uning tagidagi izohi bitta kartada; Yangilash tugmasi kartadan tashqarida */}
+            <div className="vis-card fade-up delay-1">
+            <div className={shaking ? 'shake' : ''}><Win title="avtoijara.uz" minH={150} maxH={180}><AvtoSite cars={CARS} cols={1} /></Win></div>
             {tried && <p className="small fade-step" style={{ color: T.accent, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Yangiladingiz — lekin baribir 3 ta mashina. Spark yo'q!", ru: 'Обновили — а машин всё равно 3. Spark так и нет!' })}</p>}
+            </div>
           </Col>
           <Col>
-            <p className="flow-label fade-up delay-2" style={{ margin: 0 }}>{tr({ uz: 'Baza — back (localhost:3000)', ru: 'База — бэк (localhost:3000)' })}</p>
+            <p className="flow-label fade-up delay-2" style={{ margin: 0, minHeight: 36, display: 'flex', alignItems: 'center' }}>{tr({ uz: 'Baza — back (localhost:3000)', ru: 'База — бэк (localhost:3000)' })}</p>
             <div className="fade-up delay-2"><DbTable rows={CARS_DB} flashId={SPARK.id} /></div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-3" style={{ color: T.ink2, margin: '4px 0 0', paddingRight: 40 }}>{tr({ uz: 'Sayt 3 ta, baza 4 ta. Nega ular bir xil emas?', ru: 'На сайте 3, в базе 4. Почему не совпадают?' })}</p>
+            <p className="eyebrow fade-up delay-3" style={{ color: T.ink2, margin: 0, paddingRight: 40, minHeight: 36, display: 'flex', alignItems: 'center' }}>{tr({ uz: 'Sayt 3 ta, baza 4 ta. Nega ular bir xil emas?', ru: 'На сайте 3, в базе 4. Почему не совпадают?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.filter(o => picked === null || o.id === picked).map(o => {
                 const on = picked === o.id;
@@ -748,8 +751,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: "Dars oxirida — sayt serverdan o'qiydi", ru: 'К концу урока — сайт читает с сервера' })}</p>
-      <Win title="avtoijara.uz" minH={150} maxH={230}><AvtoSite cars={CARS_DB} newId={SPARK.id} cols={2} /></Win>
+      {/* F-0926-06 (160-qonun): oyna + tagidagi izoh bitta kartada */}
+      <div className="vis-card">
+      <Win title="avtoijara.uz" minH={150} maxH={230}><AvtoSite cars={[SPARK, ...CARS]} newId={SPARK.id} cols={2} /></Win>{/* F-0926-06 FC1: yangi Spark ro'yxat boshida — izoh bilan mos */}
       <p className="mono small" style={{ color: T.success, margin: 0 }}>{tr({ uz: "→ Spark paydo bo'ldi! Sayt endi bazadagi 4 mashinani ko'rsatadi", ru: '→ Spark появился! Сайт теперь показывает 4 машины из базы' })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
@@ -764,7 +770,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Frontni backendga <span className="italic" style={{ color: T.accent }}>qanday</span> ulaymiz?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>соединить</span> фронт с бэкендом?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Sizda ikki yarim bor: Modul 3'dagi <b style={{ color: T.ink }}>sayt</b> (front) va Praktika 1'dagi <b style={{ color: T.ink }}>server</b> (back). Bugun ularni gaplashtiramiz. Yana o'sha uch rol: <b style={{ color: T.ink }}>ME'MOR</b> (ma'lumot oqimini chizasiz) → <b style={{ color: T.ink }}>REJISSYOR</b> (AI'ga buyruq berasiz) → <b style={{ color: T.ink }}>NAZORATCHI</b> (brauzerda sinaysiz).</>, ru: <>У вас есть две половинки: <b style={{ color: T.ink }}>сайт</b> из Модуля 3 (фронт) и <b style={{ color: T.ink }}>сервер</b> из Практики 1 (бэк). Сегодня научим их общаться. Снова те же три роли: <b style={{ color: T.ink }}>АРХИТЕКТОР</b> (рисуете поток данных) → <b style={{ color: T.ink }}>РЕЖИССЁР</b> (даёте команду AI) → <b style={{ color: T.ink }}>КОНТРОЛЁР</b> (проверяете в браузере).</> })}</Mentor>
+        {/* F-0926-06 (H1): rollar ro'yxati qadam-kartalarida bor — mentor qisqardi */}
+        <Mentor>{tr({ uz: <>Sizda ikki yarim bor: Modul 3'dagi <b style={{ color: T.ink }}>sayt</b> (front) va Praktika 1'dagi <b style={{ color: T.ink }}>server</b> (back). Bugun ularni gaplashtiramiz — yana o'sha uch rolda.</>, ru: <>У вас есть две половинки: <b style={{ color: T.ink }}>сайт</b> из Модуля 3 (фронт) и <b style={{ color: T.ink }}>сервер</b> из Практики 1 (бэк). Сегодня научим их общаться — снова в тех же трёх ролях.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -799,7 +806,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="run-card fade-up delay-1">
-              <div className="run-top"><span className="run-name">{tr({ uz: '💻 Front — sayt', ru: '💻 Фронт — сайт' })}</span><span className="run-port">:5173</span></div>
+              <div className="run-top"><span className="run-name">{tr({ uz: 'Front — sayt', ru: 'Фронт — сайт' }) /* F-0926-06 (H3): sarlavha emojisi olindi */}</span><span className="run-port">:5173</span></div>
               <div className="code-box" style={{ padding: '9px 12px', minHeight: 40 }}>
                 <TLine cmd="npm run dev" />
                 {front && <TLine out={<span style={{ color: CODE.str }}>✓ Local: http://localhost:5173</span>} />}
@@ -807,7 +814,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`btn-soft ${front ? '' : 'tap-hint'}`} disabled={front} onClick={() => setFront(true)} style={{ alignSelf: 'flex-start' }}>{front ? tr({ uz: '✓ Ishlayapti', ru: '✓ Работает' }) : tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>
             </div>
             <div className="run-card fade-up delay-2">
-              <div className="run-top"><span className="run-name">{tr({ uz: '🟢 Back — server', ru: '🟢 Бэк — сервер' })}</span><span className="run-port">:3000</span></div>
+              <div className="run-top"><span className="run-name">{tr({ uz: 'Back — server', ru: 'Бэк — сервер' })}</span><span className="run-port">:3000</span></div>
               <div className="code-box" style={{ padding: '9px 12px', minHeight: 40 }}>
                 <TLine cmd="node server.js" />
                 {back && <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: '✓ Server :3000 da ishlayapti', ru: '✓ Сервер работает на :3000' })}</span>} />}
@@ -830,7 +837,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ishlayapti! Front <span className="mono">fetch</span> bilan so'raydi, back <span className="mono">JSON</span> bilan javob beradi. Biri o'chsa — gaplashuv uziladi.</>, ru: <>Обе работают! Фронт спрашивает через <span className="mono">fetch</span>, бэк отвечает <span className="mono">JSON</span>. Выключится одна — разговор оборвётся.</> })}</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Faqat bittasi ishlasa — ulanish bo'lmaydi. Ikkalasini ham yoqing.", ru: 'Если работает только одна — связи не будет. Включите обе.' })}</p></div>}
+              : null /* F-0926-06 (159/1, P1): «Ikkalasini ham yoqing» — mentor va tugma aytadi; «biri o'chsa uziladi» natija-izohida bor */}
           </Col>
         </div>
         </Zoomable>
@@ -862,8 +869,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="vlbl">{tr({ uz: "Kod ichiga yozilgan ro'yxat (eski usul)", ru: 'Список, зашитый в код (старый способ)' })}</span>
               <span className="mono small" style={{ color: T.ink3 }}>const cars = [ ... ]</span>
             </button>
-            <button className="vcard" onClick={() => choose('server')} style={{ boxShadow: pick === 'server' ? `inset 0 0 0 1.5px ${T.success}` : undefined, alignItems: 'flex-start', flexDirection: 'column', gap: 4 }}>
-              <span className="vlbl">{tr({ uz: 'Serverdan, bazadan olish (fetch)', ru: 'С сервера, из базы (fetch)' })}</span>
+            <button className="vcard" onClick={() => choose('server')} style={{ background: pick === 'server' ? T.successSoft : undefined, alignItems: 'flex-start', flexDirection: 'column', gap: 4 }}>{/* F-0926-06 (G3): tanlangan — ✅ + yumshoq yashil fon, ramkasiz */}
+              <span className="vlbl">{pick === 'server' && '✅ '}{tr({ uz: 'Serverdan, bazadan olish (fetch)', ru: 'С сервера, из базы (fetch)' })}</span>
               <span className="mono small" style={{ color: T.ink3 }}>fetch('/api/cars')</span>
             </button>
             {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu — eski usul: mashinalar to'g'ridan-to'g'ri kodga yozilgan. Bazaga Spark qo'shilsa ham, sayt buni ko'rmaydi — chunki u koddagi ro'yxatdan o'qiydi. Bazadagi <b>jonli</b> ma'lumot uchun — <span className="mono">fetch</span>.</>, ru: <>Это старый способ: машины записаны прямо в код. Даже если в базу добавят Spark, сайт этого не увидит — он читает список из кода. Для <b>живых</b> данных из базы — <span className="mono">fetch</span>.</> })}</p></div>}
@@ -873,9 +880,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="chain fade-up delay-1">
               <div className="chain-node" style={{ background: T.paper, color: T.ink }}>{tr({ uz: 'React katalog', ru: 'React-каталог' })}</div>
               <span className="chain-arr" style={{ color: done ? T.success : T.ink3 }}>fetch →</span>
-              <div className="chain-node" style={{ background: done ? T.success : T.paper, color: done ? '#fff' : T.ink3 }}>GET /api/cars</div>
+              <div className="chain-node" style={{ background: done ? T.successSoft : T.paper, color: done ? T.success : T.ink3 }}>GET /api/cars</div>{/* F-0926-06 (159/4): to'liq yashil fon → yumshoq */}
               <span className="chain-arr" style={{ color: done ? T.success : T.ink3 }}>→</span>
-              <div className="chain-node" style={{ background: done ? T.success : T.paper, color: done ? '#fff' : T.ink3 }}>PostgreSQL</div>
+              <div className="chain-node" style={{ background: done ? T.successSoft : T.paper, color: done ? T.success : T.ink3 }}>PostgreSQL</div>
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'g'ri! Sayt <span className="mono">fetch</span> bilan serverga boradi, server bazadan oladi. Endi baza yangilansa — sayt ham yangilanadi. Bu — <b>jonli</b> ulanish.</>, ru: <>Верно! Сайт идёт на сервер через <span className="mono">fetch</span>, сервер берёт из базы. Теперь обновится база — обновится и сайт. Это <b>живая</b> связь.</> })}</p></div>}
           </Col>
@@ -912,7 +919,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: '2-qadam · REJISSYOR', ru: 'Шаг 2 · РЕЖИССЁР' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "AI'ga buyruq bering", ru: 'Дайте команду AI' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashinalarni serverdan <span className="italic" style={{ color: T.accent }}>qanday yuklab</span> olamiz?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>загрузить</span> машины с сервера?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI'ga aniq buyruq beramiz: <i>"qattiq <span className="mono">const cars</span> o'rniga, sahifa ochilganda <span className="mono">GET /api/cars</span>'dan fetch qilib, <span className="mono">useState</span>'ga saqla"</i>. Bu — Modul 3'dagi "API GET" darsi: <span className="mono">useEffect</span> + <span className="mono">fetch</span> + <span className="mono">useState</span>.</>, ru: <>Даём AI чёткую команду: <i>«вместо жёсткого <span className="mono">const cars</span> при открытии страницы сделай fetch из <span className="mono">GET /api/cars</span> и сохрани в <span className="mono">useState</span>»</i>. Это урок «API GET» из Модуля 3: <span className="mono">useEffect</span> + <span className="mono">fetch</span> + <span className="mono">useState</span>.</> })}</Mentor>
+        {/* F-0926-06 (159/1): buyruq matni «Siz» xabarida bor — mentor uni qaytarmaydi */}
+        <Mentor>{tr({ uz: <>AI'ga aniq buyruq beramiz — u ulanish kodini yozadi. Bu — Modul 3'dagi "API GET" darsi: <span className="mono">useEffect</span> + <span className="mono">fetch</span> + <span className="mono">useState</span>.</>, ru: <>Даём AI чёткую команду — он напишет код подключения. Это урок «API GET» из Модуля 3: <span className="mono">useEffect</span> + <span className="mono">fetch</span> + <span className="mono">useState</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -970,7 +978,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               const lit = step >= i;
               return (
                 <React.Fragment key={i}>
-                  <div className="flow-node" style={{ background: lit ? T.accent : T.paper, color: lit ? '#fff' : T.ink3, boxShadow: lit ? `0 6px 16px -5px rgba(255,79,40,0.45)` : `0 4px 12px -6px rgba(${T.shadowBase},0.16)` }}>{tr(f)}</div>
+                  <div className="flow-node" style={{ background: lit ? T.accentSoft : T.paper, color: lit ? T.accent : T.ink3, boxShadow: lit ? `0 0 0 1.5px ${T.accent}` : `0 4px 12px -6px rgba(${T.shadowBase},0.16)` }}>{tr(f)}</div>{/* F-0926-06 (159/4): to'liq accent fon → yumshoq fon + halqa */}
                   {i < FLOW.length - 1 && <span className="flow-arr" style={{ color: step > i ? T.accent : T.ink3 }}>→</span>}
                 </React.Fragment>
               );
@@ -1012,7 +1020,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const show = (s) => { setSt(s); setSc(n => n + 1); setSeen(prev => { const n = new Set(prev); n.add(s); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const STATES = [
-    { k: 'loading', lbl: { uz: '⏳ Sekin internet', ru: '⏳ Медленный интернет' }, note: { uz: "Ma'lumot kelguncha — \"yuklanmoqda\" (skeleton). Foydalanuvchi bo'sh ekran ko'rmaydi.", ru: 'Пока данные не пришли — «загрузка» (skeleton). Пользователь не видит пустой экран.' } },
+    { k: 'loading', lbl: { uz: 'Sekin internet', ru: 'Медленный интернет' } /* F-0926-06 (159/4): ico-emoji olindi */, note: { uz: "Ma'lumot kelguncha — \"yuklanmoqda\" (skeleton). Foydalanuvchi bo'sh ekran ko'rmaydi.", ru: 'Пока данные не пришли — «загрузка» (skeleton). Пользователь не видит пустой экран.' } },
     { k: 'error', lbl: { uz: "Server o'chiq", ru: 'Сервер выключен' }, note: { uz: 'Server javob bermasa — xato xabari. Sayt qulab tushmaydi, sababni aytadi.', ru: 'Если сервер не отвечает — сообщение об ошибке. Сайт не падает, а называет причину.' } },
     { k: 'data', lbl: { uz: 'Hammasi joyida', ru: 'Всё в порядке' }, note: { uz: 'Javob keldi — kartochkalar chiziladi. Asosiy holat.', ru: 'Ответ пришёл — рисуются карточки. Основное состояние.' } }
   ];
@@ -1024,7 +1032,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Holatni sinab ko'ring", ru: 'Попробуйте состояние' })}</p>
+            {/* F-0926-06 (G1): «bosib ko'ring» mentor gapida — yorliq ko'rinmas nusxa, ustunlar tekis tursin (HP1) */}
+            <p className="flow-label" aria-hidden="true" style={{ visibility: 'hidden' }}>{tr({ uz: "Holatni sinab ko'ring", ru: 'Попробуйте состояние' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {STATES.map(s => (
                 <button key={s.k} className="vcard" onClick={() => show(s.k)} style={{ boxShadow: st === s.k ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
@@ -1119,18 +1128,18 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {phase === 3 && <span style={{ color: CODE.str }}>{tr({ uz: '✓ GET /api/cars → 200 OK (4 mashina yuklandi)', ru: '✓ GET /api/cars → 200 OK (загружено 4 машины)' })}</span>}
             </Konsol>
             <p className="flow-label" style={{ margin: '2px 0 0' }}>server.js</p>
-            {!done && <pre className="code-box" style={{ padding: '8px 13px', lineHeight: 1.6 }}>
+            {/* F-0926-06 (I3, 159/8): tuzatilgach server.js o'z joyida yangi qator bilan qoladi; takror «Sayt endi serverdan o'qiyapti» kartasi olindi (natija shlagbaum, konsol va saytda bor) */}
+            <pre className="code-box" style={{ padding: '8px 13px', lineHeight: 1.6 }}>
               {phase < 3
                 ? <><Cm>{tr({ uz: '// CORS hali ruxsat berilmagan', ru: '// CORS пока не разрешён' })}</Cm>{'\n'}<Jx>{'const'}</Jx>{' app = express();'}</>
                 : <><Jx>{'const'}</Jx>{' app = express();'}{'\n'}<span style={{ background: 'rgba(31,122,77,0.18)', borderRadius: 5, padding: '1px 5px' }}>{'app.use('}<At>cors()</At>{');'}</span>{'  '}<Cm>{tr({ uz: '// ✓ :5173 ga ruxsat', ru: '// ✓ доступ для :5173' })}</Cm></>}
-            </pre>}
-            {done && <div className="takeaway ok fade-step"><div className="ta-bulb">🎉</div><p className="ta-h">{tr({ uz: "Sayt endi serverdan o'qiyapti!", ru: 'Сайт теперь читает с сервера!' })}</p><p className="ta-sub">{tr({ uz: "Spark ham paydo bo'ldi — S0'dagi muammo hal bo'ldi.", ru: 'Spark появился — проблема с первого экрана решена.' })}</p></div>}
-            {phase === 2 && <button className="btn fade-step tap-hint" style={{ alignSelf: 'flex-start', background: T.success }} onClick={fix}>{tr({ uz: "app.use(cors()) qo'shish", ru: 'Добавить app.use(cors())' })}</button>}
+            </pre>
+            {phase === 2 && <button className="btn fade-step tap-hint" style={{ alignSelf: 'flex-start' }} onClick={fix}>{/* F-0926-06 (V1): asosiy tugma accent, to'liq yashil emas */}{tr({ uz: "app.use(cors()) qo'shish", ru: 'Добавить app.use(cors())' })}</button>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p>
             <Win title="avtoijara.uz" minH={160} maxH={190}><AvtoSite cars={siteCars} state={siteState} newId={SPARK.id} cols={2} /></Win>
-            {phase === 2 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Katalog bo'sh — lekin xato matni aniq aytyapti: <b>CORS policy</b> to'sib qo'ygan. Chap tomondagi tugma bilan tuzating →</>, ru: <>Каталог пуст — но текст ошибки говорит прямо: заблокировала <b>CORS policy</b>. Почините кнопкой слева →</> })}</p></div>}
+            {phase === 2 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Katalog bo'sh — lekin xato matni aniq aytyapti: <b>CORS policy</b> to'sib qo'ygan. <span className="mono">app.use(cors())</span> tugmasi bilan tuzating.</>, ru: <>Каталог пуст — но текст ошибки говорит прямо: заблокировала <b>CORS policy</b>. Почините кнопкой <span className="mono">app.use(cors())</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1160,12 +1169,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Yangi mashina formasi', ru: 'Форма новой машины' })}</p>
+            <p className="flow-label" style={{ margin: 0, minHeight: 38, display: 'flex', alignItems: 'center' }}>{tr({ uz: 'Yangi mashina formasi', ru: 'Форма новой машины' })}</p>{/* F-0926-06 (159/3): qo'shni ustun yorlig'i tugmali — tepalar bir chiziqda */}
             <div className="frame" style={{ padding: 14 }}>
               <div className="form-row"><span className="form-lbl">{tr({ uz: 'Nomi', ru: 'Название' })}</span><span className="form-val">Chevrolet Tracker</span></div>
               <div className="form-row"><span className="form-lbl">{tr({ uz: 'Narx', ru: 'Цена' })}</span><span className="form-val">{tr({ uz: "450 000 so'm/kun", ru: '450 000 сум/день' })}</span></div>
               <div className="form-row"><span className="form-lbl">{tr({ uz: 'Yil', ru: 'Год' })}</span><span className="form-val">2024</span></div>
-              <button className={`btn ${added ? '' : 'tap-hint'}`} disabled={added} onClick={post} style={{ marginTop: 10, width: '100%', background: added ? T.success : T.ink3 }}>{added ? tr({ uz: '✓ POST yuborildi (201)', ru: '✓ POST отправлен (201)' }) : tr({ uz: "Qo'shish — POST /api/cars", ru: 'Добавить — POST /api/cars' })}</button>
+              <button className={`btn ${added ? '' : 'tap-hint'}`} disabled={added} onClick={post} style={{ marginTop: 10, width: '100%' }}>{/* F-0926-06 (V1): asosiy tugma accent — kulrang/to'liq yashil emas */}{added ? tr({ uz: '✓ POST yuborildi (201)', ru: '✓ POST отправлен (201)' }) : tr({ uz: "Qo'shish — POST /api/cars", ru: 'Добавить — POST /api/cars' })}</button>
             </div>
             {!done && <pre className="code-box" style={{ padding: '8px 13px', lineHeight: 1.6 }}>
               {'fetch('}<St>'/api/cars'</St>{', {'}{'\n'}
@@ -1173,13 +1182,16 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  body: JSON.stringify(yangi)'}{'\n'}
               {'}).then(() => '}<At>yana_fetch()</At>{');'}
             </pre>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yangilandi — Tracker baribir joyida! Chunki u faqat ekranda emas, <b>bazada</b> saqlangan. Mana to'liq ulanish: forma → POST → baza → qayta GET → ekran.</>, ru: <>Обновили — а Tracker всё равно на месте! Потому что он сохранён не только на экране, а <b>в базе</b>. Вот полная связка: форма → POST → база → повторный GET → экран.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tracker faqat ekranda emas, <b>bazada</b> saqlangan.{/* F-0926-06 (I3): «Yangilandi — joyida» tugmada bor */} Mana to'liq ulanish: forma → POST → baza → qayta GET → ekran.</>, ru: <>Tracker сохранён не только на экране, а <b>в базе</b>. Вот полная связка: форма → POST → база → повторный GET → экран.</> })}</p></div>}
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}><p className="flow-label">{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p><button className={`btn-soft ${added && !refreshed ? 'tap-hint' : ''}`} disabled={!added || refreshed} onClick={refresh} style={{ flexShrink: 0 }}>{refreshed ? tr({ uz: '✓ Yangilandi — Tracker joyida', ru: '✓ Обновили — Tracker на месте' }) : tr({ uz: '🔄 Sahifani yangilash', ru: '🔄 Обновить страницу' })}</button>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', minHeight: 38, paddingRight: 40 }}>{/* F-0926-06: ⛶ tugma ustiga tushmasin */}<p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sayt — front (localhost:5173)', ru: 'Сайт — фронт (localhost:5173)' })}</p><button className={`btn-soft ${added && !refreshed ? 'tap-hint' : ''}`} disabled={!added || refreshed} onClick={refresh} style={{ flexShrink: 0 }}>{refreshed ? tr({ uz: '✓ Yangilandi — Tracker joyida', ru: '✓ Обновили — Tracker на месте' }) : tr({ uz: 'Sahifani yangilash', ru: 'Обновить страницу' }) /* F-0926-06 (C1): tugma emojisi olindi */}</button>
 </div>
+            {/* F-0926-06 (160-qonun): oyna + tagidagi izoh bitta kartada */}
+            <div className="vis-card">
             <Win title="avtoijara.uz" minH={160} maxH={220}><AvtoSite cars={cars} newId={added ? TRACKER.id : undefined} cols={2} /></Win>
-            {added && !refreshed && <p className="small fade-step" style={{ color: T.success, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tracker chiqdi! Endi 🔄 yangilang — saqlanib qoladimi?', ru: 'Tracker появился! Теперь обновите 🔄 — сохранится ли?' })}</p>}
+            {added && !refreshed && <p className="small fade-step" style={{ color: T.success, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tracker chiqdi! Endi sahifani yangilang — saqlanib qoladimi?', ru: 'Tracker появился! Теперь обновите страницу — сохранится ли?' })}</p>}
+            </div>
           </Col>
         </div>
         </Zoomable>
@@ -1201,7 +1213,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Ma'lumot yo'li", ru: 'Путь данных' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Yo'lni kuzating", ru: 'Проследите путь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashina qo'shilganda ma'lumot <span className="italic" style={{ color: T.accent }}>qaysi yo'lni</span> bosib o'tadi?</>, ru: <>Какой <span className="italic" style={{ color: T.accent }}>путь</span> проходят данные при добавлении машины?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bitta mashina qo'shilganda ma'lumot to'liq bir yo'lni bosib o'tadi: siz formaga yozasiz → front <b style={{ color: T.ink }}>POST</b> bilan serverga yuboradi → server bazaga yozadi → front <b style={{ color: T.ink }}>GET</b> bilan qayta so'raydi → ekran yangilanadi. Shu yo'lni qadam-qadam kuzating.</>, ru: <>Когда добавляется одна машина, данные проходят целый путь: вы пишете в форму → фронт отправляет на сервер через <b style={{ color: T.ink }}>POST</b> → сервер записывает в базу → фронт снова спрашивает через <b style={{ color: T.ink }}>GET</b> → экран обновляется. Проследите этот путь шаг за шагом.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yo'l shunday: siz formaga yozasiz → front <b style={{ color: T.ink }}>POST</b> bilan serverga yuboradi → server bazaga yozadi → front <b style={{ color: T.ink }}>GET</b> bilan qayta so'raydi → ekran yangilanadi. Shu yo'lni qadam-qadam kuzating.</>, ru: <>Путь такой: вы пишете в форму → фронт отправляет на сервер через <b style={{ color: T.ink }}>POST</b> → сервер записывает в базу → фронт снова спрашивает через <b style={{ color: T.ink }}>GET</b> → экран обновляется. Проследите этот путь шаг за шагом.</> })}</Mentor>
         <Col>
           <div className="flow-strip fade-up delay-1">
             {CIRCLE.map((c, i) => {
@@ -1209,7 +1221,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               const isArr = c.uz.includes('→');
               return isArr
                 ? <span key={i} className="flow-arr" style={{ color: step > i ? T.accent : T.ink3, fontWeight: 700 }}>{tr(c)}</span>
-                : <div key={i} className="flow-node" style={{ background: lit ? T.accent : T.paper, color: lit ? '#fff' : T.ink3 }}>{tr(c)}</div>;
+                : <div key={i} className="flow-node" style={{ background: lit ? T.accentSoft : T.paper, color: lit ? T.accent : T.ink3, boxShadow: lit ? `0 0 0 1.5px ${T.accent}` : undefined }}>{tr(c)}</div>; /* F-0926-06 (159/4): yumshoq fon + halqa */
             })}
           </div>
           <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={() => setStep(s => Math.min(s + 1, CIRCLE.length - 1))}>{step < 0 ? tr({ uz: '▶ Boshlash', ru: '▶ Начать' }) : (done ? tr({ uz: "✓ Yo'l tugadi", ru: '✓ Путь пройден' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' }))}</button>
@@ -1228,7 +1240,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 13 — AMALIYOT: TO'LIQ ULANGAN ILOVANI BOSHQARING =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [cars, setCars] = useState(storedAnswer ? [...CARS_DB, TRACKER] : CARS_DB);
-  const [didLoad] = useState(true);
   const [didAdd, setDidAdd] = useState(!!storedAnswer);
   const [didRefresh, setDidRefresh] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
@@ -1237,23 +1248,21 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const add = () => { if (didAdd) return; setCars(c => [...c, TRACKER]); setDidAdd(true); setSc(n => n + 1); };
   const refresh = () => { if (!didAdd) return; setDidRefresh(true); setSc(n => n + 1); };
-  const Tick = ({ ok, label }) => <span className={`tagpill ${ok ? 'tick-on' : ''}`} style={{ color: ok ? T.success : T.ink3 }}>{ok ? '✓' : '○'} {label}</span>;
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot · to'liq ilova", ru: 'Практика · полное приложение' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qo'shing va yangilang", ru: 'Добавьте и обновите' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi o'zingiz — <span className="italic" style={{ color: T.accent }}>to'liq ulangan</span> saytni boshqaring.</>, ru: <>Теперь сами — управляйте <span className="italic" style={{ color: T.accent }}>полностью подключённым</span> сайтом.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana sizning fullstack AvtoIjarangiz: mashinalar serverdan yuklangan. Bittasini <b style={{ color: T.ink }}>qo'shing</b> (POST), keyin <b style={{ color: T.ink }}>yangilang</b> — saqlanib qolishini ko'ring. Uchala belgi yashil bo'lsa — ilovangiz to'liq tayyor!</>, ru: <>Вот ваша fullstack AvtoIjara: машины загружены с сервера. <b style={{ color: T.ink }}>Добавьте</b> одну (POST), затем <b style={{ color: T.ink }}>обновите</b> — убедитесь, что она сохранилась. Все три отметки зелёные — приложение полностью готово!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana sizning fullstack AvtoIjarangiz: mashinalar serverdan yuklangan. Bittasini <b style={{ color: T.ink }}>qo'shing</b> (POST), keyin <b style={{ color: T.ink }}>yangilang</b> — saqlanib qolishini ko'ring. Uchala tugmada ✓ bo'lsa — ilovangiz to'liq tayyor!</>, ru: <>Вот ваша fullstack AvtoIjara: машины загружены с сервера. <b style={{ color: T.ink }}>Добавьте</b> одну (POST), затем <b style={{ color: T.ink }}>обновите</b> — убедитесь, что она сохранилась. На всех трёх кнопках ✓ — приложение полностью готово!</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Amallar', ru: 'Действия' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             <button className="btn-soft" disabled style={{ alignSelf: 'flex-start', opacity: 1 }}>{tr({ uz: '✓ Serverdan yuklandi (avtomatik)', ru: '✓ Загружено с сервера (автоматически)' })}</button>
-            <button className={`btn ${didAdd ? '' : 'tap-hint'}`} disabled={didAdd} onClick={add} style={{ alignSelf: 'flex-start', background: didAdd ? T.success : T.ink3 }}>{didAdd ? tr({ uz: "✓ Qo'shildi (POST)", ru: '✓ Добавлено (POST)' }) : tr({ uz: "Mashina qo'shish — POST", ru: 'Добавить машину — POST' })}</button>
-            <button className={`btn-soft ${didAdd && !didRefresh ? 'tap-hint' : ''}`} disabled={!didAdd || didRefresh} onClick={refresh} style={{ alignSelf: 'flex-start' }}>{didRefresh ? tr({ uz: '✓ Saqlanib qoldi', ru: '✓ Сохранилось' }) : tr({ uz: '🔄 Sahifani yangilash', ru: '🔄 Обновить страницу' })}</button>
+            <button className={`btn ${didAdd ? '' : 'tap-hint'}`} disabled={didAdd} onClick={add} style={{ alignSelf: 'flex-start' }}>{/* F-0926-06 (V1): asosiy tugma accent */}{didAdd ? tr({ uz: "✓ Qo'shildi (POST)", ru: '✓ Добавлено (POST)' }) : tr({ uz: "Mashina qo'shish — POST", ru: 'Добавить машину — POST' })}</button>
+            <button className={`btn-soft ${didAdd && !didRefresh ? 'tap-hint' : ''}`} disabled={!didAdd || didRefresh} onClick={refresh} style={{ alignSelf: 'flex-start' }}>{didRefresh ? tr({ uz: '✓ Saqlanib qoldi', ru: '✓ Сохранилось' }) : tr({ uz: 'Sahifani yangilash', ru: 'Обновить страницу' }) /* F-0926-06 (C1) */}</button>
             </div>
-            <p className="flow-label" style={{ margin: '4px 0 0' }}>{tr({ uz: 'Bajarildi', ru: 'Выполнено' })}</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}><Tick ok={didLoad} label={tr({ uz: 'Yuklandi', ru: 'Загрузилось' })} /><Tick ok={didAdd} label={tr({ uz: "Qo'shdim", ru: 'Добавили' })} /><Tick ok={didRefresh} label={tr({ uz: 'Saqlandi', ru: 'Сохранилось' })} /></div>
+            {/* F-0926-06 (159/8, H2): «Bajarildi» belgilar qatori olindi — holatni tugmalardagi ✓ aytadi */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🎉 Fullstack ilova tayyor! Sayt serverdan o'qiydi, formaga yozsangiz bazaga yoziladi, refresh'da yo'qolmaydi. Front + back + baza — bittasi bo'lib ishlaydi.", ru: '🎉 Fullstack-приложение готово! Сайт читает с сервера, запись из формы попадает в базу и не теряется при refresh. Фронт + бэк + база работают как одно целое.' })}</p></div>}
           </Col>
           <Col>
@@ -1393,7 +1402,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Vitrinani omborga o'zingiz ulaysiz!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Делайте шаг за шагом и отмечайте. Когда закончите, нажмите <b style={{ color: T.ink }}>«Готово»</b> — наставник наблюдает. Витрину к складу вы подключите сами!</> })}</Mentor>
+        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani panelda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно на панели; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Vitrinani omborga o'zingiz ulaysiz!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Делайте шаг за шагом и отмечайте. Когда закончите, нажмите <b style={{ color: T.ink }}>«Готово»</b> — наставник наблюдает. Витрину к складу вы подключите сами!</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -2388,6 +2397,8 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + yorlig'i + izohi bitta blok */
+        .vis-card .bp-window, .vis-card .flow-diag { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* F-0926-06: kartadagi vizual — ikkinchi soya yo'q */
 
         .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
@@ -2547,7 +2558,7 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .wire-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .wire-track { display: flex; align-items: center; gap: 7px; width: 100%; }
         .wire-seg { flex: 1; height: 3px; border-radius: 99px; background: ${T.ink3}55; }
-        .wire.cut .wire-seg { background: repeating-linear-gradient(90deg, ${T.danger}99 0 7px, transparent 7px 13px); }
+        .wire.cut .wire-seg { background: repeating-linear-gradient(90deg, ${T.danger}99 0 7px, transparent 7px 13px); } /* kesik-ok: uzilgan sim — aloqa yo'qligini ko'rsatadi (F-0926-06) */
         .wire-cut-mark { font-size: 14px; line-height: 1; filter: drop-shadow(0 1px 2px rgba(194,54,43,0.35)); }
         .wire-lbl { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: ${T.danger}; white-space: nowrap; }
         @media (max-width: 620px) { .wire-t { font-size: 11px; } .wire-t small { font-size: 8.5px; } .wire-lbl { font-size: 9px; } }
@@ -2559,15 +2570,15 @@ export default function FullstackConnectPracticeLesson({ lang: langProp, onFinis
         .gate-t small { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 400; font-size: 9.5px; color: ${T.ink3}; }
         .gate-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
         .gate-road { position: relative; width: 100%; height: 26px; display: flex; align-items: center; }
-        .gate-lane { position: absolute; left: 0; right: 0; top: 50%; height: 4px; margin-top: -2px; border-radius: 99px; background: repeating-linear-gradient(90deg, ${T.ink3}55 0 9px, transparent 9px 16px); transition: background 0.3s ease; }
-        .gate.blocked .gate-lane { background: repeating-linear-gradient(90deg, ${T.danger}66 0 9px, transparent 9px 16px); }
+        .gate-lane { position: absolute; left: 0; right: 0; top: 50%; height: 4px; margin-top: -2px; border-radius: 99px; background: repeating-linear-gradient(90deg, ${T.ink3}55 0 9px, transparent 9px 16px); transition: background 0.3s ease; } /* kesik-ok: yo'l chizig'i — so'rov yuradigan yo'l (F-0926-06) */
+        .gate.blocked .gate-lane { background: repeating-linear-gradient(90deg, ${T.danger}66 0 9px, transparent 9px 16px); } /* kesik-ok: yo'l chizig'i — to'silgan yo'l (F-0926-06) */
         .gate.open .gate-lane { background: ${T.success}; box-shadow: 0 0 12px -1px rgba(31,122,77,0.5); }
         .gate-post { position: absolute; left: 50%; bottom: 0; width: 7px; height: 22px; margin-left: -3.5px; border-radius: 2px; background: ${T.ink3}; transition: background 0.3s ease; }
         .gate.blocked .gate-post { background: ${T.danger}; }
         .gate.open .gate-post { background: ${T.success}; }
-        .gate-arm { position: absolute; left: 3px; top: 1px; width: clamp(52px,8vw,74px); height: 7px; border-radius: 3px; transform-origin: 3px 50%; background: repeating-linear-gradient(135deg, ${T.ink3} 0 8px, ${T.paper} 8px 16px); box-shadow: 0 2px 6px -2px rgba(${T.shadowBase},0.4); transform: rotate(0deg); transition: transform 0.45s cubic-bezier(.34,1.16,.5,1), background 0.3s ease; }
-        .gate.blocked .gate-arm { background: repeating-linear-gradient(135deg, ${T.danger} 0 8px, #FFF3F0 8px 16px); }
-        .gate.open .gate-arm { background: repeating-linear-gradient(135deg, ${T.success} 0 8px, #EAF6EF 8px 16px); transform: rotate(-74deg); }
+        .gate-arm { position: absolute; left: 3px; top: 1px; width: clamp(52px,8vw,74px); height: 7px; border-radius: 3px; transform-origin: 3px 50%; background: repeating-linear-gradient(135deg, ${T.ink3} 0 8px, ${T.paper} 8px 16px); box-shadow: 0 2px 6px -2px rgba(${T.shadowBase},0.4); transform: rotate(0deg); transition: transform 0.45s cubic-bezier(.34,1.16,.5,1), background 0.3s ease; } /* kesik-ok: shlagbaum tayog'i chiziqlari — real shlagbaum ko'rinishi (F-0926-06) */
+        .gate.blocked .gate-arm { background: repeating-linear-gradient(135deg, ${T.danger} 0 8px, #FFF3F0 8px 16px); } /* kesik-ok: shlagbaum tayog'i — yopiq (F-0926-06) */
+        .gate.open .gate-arm { background: repeating-linear-gradient(135deg, ${T.success} 0 8px, #EAF6EF 8px 16px); transform: rotate(-74deg); } /* kesik-ok: shlagbaum tayog'i — ochiq (F-0926-06) */
         .gate-pkt { position: absolute; top: 50%; font-size: 14px; line-height: 1; transform: translate(0,-50%); left: 4%; opacity: 0; transition: left 0.5s ease, opacity 0.3s ease; }
         .gate.blocked .gate-pkt { opacity: 1; left: 38%; filter: grayscale(0.4); }
         .gate.open .gate-pkt { opacity: 1; left: 86%; }

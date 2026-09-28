@@ -112,7 +112,7 @@ const MILESTONES = [
 const GRAVES = [
   { id: 'g1', name: 'TeleJadval 2.0', years: '3 oy yashadi', ic: '📅', reason: 'Muammo yo\'q edi. Hamma allaqachon o\'z jadvalini bilardi — hech kimning og\'rig\'ini hal qilmadi.', lesson: 'Mahsulot g\'oyadan emas — OG\'RIQdan boshlanadi.' },
   { id: 'g2', name: 'CoolChat', years: '6 oy yashadi', ic: '💬', reason: 'Muallif faqat o\'zi uchun qurdi — birorta bo\'lajak foydalanuvchidan so\'ramadi. Launch kuni: 0 ro\'yxatdan o\'tish.', lesson: 'O\'zingiz = 1 kishilik bozor. Boshqalardan SO\'RANG.' },
-  { id: 'g3', name: 'SuperApp', years: '1 yil yashadi', ic: '🦸', reason: '47 ta ficha, mukammal kod, 12 ekran. Lekin 1 yil yashirincha qurildi — hech kim bilmadi, hech kim kutmadi.', lesson: 'Ko\'p ficha ≠ mahsulot. Bitta hal qilingan muammo > 47 ficha.' }
+  { id: 'g3', name: 'SuperApp', years: '1 yil yashadi', ic: '🦸', reason: '47 ta ficha, mukammal kod, 12 ekran. Lekin 1 yil yashirincha qurildi — hech kim bilmadi, hech kim kutmadi.', lesson: 'Ko\'p ficha hali mahsulot emas. Bitta hal qilingan muammo 47 fichadan qimmatroq.' }
 ];
 
 // Sorter o'yini (s6) — SIGNATURE 1
@@ -149,7 +149,7 @@ const DRILL = [
 // Akselerator yo'l xaritasi (s1 mini + s10 to'liq)
 const STAGES = [
   { n: '01', t: 'Kashf qil', ic: '🔭', lessons: '93–95', d: 'Mahsulot tafakkuri → Jobs-to-be-Done → atrofingizdan 10 muammo topasiz.', badge: 'Muammo Ovchisi' },
-  { n: '02', t: 'Tekshir', ic: '🎙️', lessons: '96–98', d: 'Custdev savollar → 5 REAL intervyu → bitta aniq muammo + MVP chegarasi.', badge: 'Tadqiqotchi' },
+  { n: '02', t: 'Tekshir', ic: '🎙️', lessons: '96–98', d: 'Custdev (mijozni o\'rganish) savollari → 5 REAL intervyu → bitta aniq muammo + MVP chegarasi.', badge: 'Tadqiqotchi' },
   { n: '03', t: 'Qur', ic: '🔧', lessons: '99–104', d: 'Arxitektura → analitika → AI bilan MVP qurish → dizayn → real odam bilan test.', badge: 'Quruvchi · Sinovchi' },
   { n: '04', t: 'Isbot qil', ic: '🏆', lessons: '105–108', d: 'Fidbek iteratsiyasi → pitch → DEMO DAY: real foydalanuvchingiz sahnada siz bilan!', badge: 'Founder' }
 ];
@@ -406,7 +406,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: 'Loyiha va mahsulot — farqi nimada', tag: '' },
     { text: '$11 000 000 lik limonad hikoyasi', tag: 'timeline' },
     { text: 'Mahsulotmi yoki loyihami? — sorter', tag: 'o\'yin' },
-    { text: 'Mahsulot anatomiyasi: 3 linza', tag: '' },
+    { text: 'Mahsulotga qarash: 3 linza', tag: '' },
     { text: 'Founder Portfolio — 1-sahifa', tag: 'amaliyot' }
   ];
   const isNarrow = useIsMobile(768);
@@ -707,7 +707,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="3 linza" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `${seen.size}/${LENSES.length} linzani qo'llang`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Mahsulot anatomiyasi: <span className="italic" style={{ color: T.accent }}>3 linza</span></h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Mahsulotga qarash: <span className="italic" style={{ color: T.accent }}>3 linza</span></h2></div>
         <Mentor>Istalgan narsani shu 3 savoldan o'tkazsangiz — mahsulotmi-yo'qmi darrov bilinadi. Misol: Telegram. Har linzani bosing.</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -742,7 +742,7 @@ const Screen9 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mahsulotning <span className="italic" style={{ color: T.accent }}>3 linzasi</span> qaysi?</h2></>}
     options={['Qancha kod · qaysi til · nechta ficha', 'Kim ishlatadi · qaysi og\'riqni hal qiladi · nega qaytib keladi', 'Logo · nom · reklama byudjeti', 'Server · baza · deploy']} correctIdx={1}
     explainCorrect="To'g'ri! Kim? Qaysi og'riq? Nega qaytadi? — shu 3 savolga aniq javob bo'lsa, qo'lingizda mahsulot bor. Qolgan hammasi — vositalar."
-    explainWrong={{ 0: 'Bu loyihaning o\'lchovlari — mahsulotniki emas.', 2: 'Marketing muhim, lekin mahsulot mohiyatini aniqlamaydi.', 3: 'Bu texnik fundament — 3 linzaga javob bermaydi.', default: 'Kim · og\'riq · qaytish.' }} />
+    explainWrong={{ 0: 'Bu loyihaning o\'lchovlari — mahsulotniki emas.', 2: 'Marketing muhim, lekin mahsulot nima ekanini aniqlamaydi.', 3: 'Bu texnik fundament — 3 linzaga javob bermaydi.', default: 'Kim · og\'riq · qaytish.' }} />
 );
 
 // ===== SCREEN 10 — AKSELERATOR YO'L XARITASI =====
@@ -824,7 +824,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             );
           })}
-          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Linzalar qo'lingizda. Yakuniy ishda ularni <b>o'zingiz ishlatadigan mahsulotlarga</b> qo'llaysiz.</p></div>}
+          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Juda yaxshi! Linzalar qo'lingizda. Yakuniy ishda ularni <b>o'zingiz ishlatadigan mahsulotlarga</b> qo'llaysiz.</p></div>}
         </div>
       </div>
     </Stage>
@@ -837,7 +837,7 @@ const Screen12 = (props) => (
     questionText="Akseleratorda birinchi qadam nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mahsulot qurish qayerdan <span className="italic" style={{ color: T.accent }}>boshlanadi</span>?</h2></>}
     options={['Kod yozishdan — texnologiya hal qiladi', 'Odamni va uning og\'rig\'ini topishdan', 'Domen va logo tanlashdan', 'Investor qidirishdan']} correctIdx={1}
-    explainCorrect="To'g'ri! Avval odam va og'riq — keyin yechim, undan keyingina kod. Keyingi darslarda aynan shu izlanishni qilamiz: JTBD, muammo ovlash, custdev."
+    explainCorrect="To'g'ri! Avval odam va og'riq — keyin yechim, undan keyingina kod. Keyingi darslarda aynan shu izlanishni qilamiz: JTBD, muammo ovlash, custdev (mijozni o'rganish)."
     explainWrong={{ 0: 'Kod — kuchli vosita, lekin u 4-bosqichda. Avval kim uchunligini bilish kerak.', 2: 'Logo — bezak. O\'lik loyihalarning ham chiroyli logolari bor edi.', 3: 'Investor foydalanuvchisi bor mahsulotga keladi.', default: 'Avval odam, keyin kod.' }} />
 );
 
@@ -1187,7 +1187,7 @@ export default function PmLesson26({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

@@ -60,8 +60,9 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ### E — YANGI DARS OCHILDI (audit → tuzatish → muhrlash)
 1. **`AUDIT_PROMPT.md` ni o'qi va to'liq yurgiz.** Foydalanuvchi uni qayta yubormaydi;
    xabarida faqat **darsga xos qo'shimchalar** bo'ladi — ular promptning USTIGA qo'shiladi.
-2. Darvozalar: **`npm run gates -- <fayl>`** — beshalasi bitta buyruqda (esbuild → jsx → dark →
-   til → prompt), har biri raqami bilan hisobotda. Argument beshalasiga uzatiladi (F-0820-193).
+2. Darvozalar: **`npm run gates -- <fayl>`** — yettalasi bitta buyruqda (esbuild → undef → jsx → keys →
+   dark → til → prompt), har biri raqami bilan hisobotda. Argument hammasiga uzatiladi (F-0820-193).
+   `undef` (27.09, S4): e'lon qilinmagan o'zgaruvchi — bosilgandan keyin oq ekran (JsVars s5 prod bug'i).
 3. **Hisobot + [GATE] — tasdiqsiz hech narsa o'zgartirilmaydi.** Bahsli joylar alohida ro'yxat.
 4. Tasdiqdan keyin tuzatish → darvozalar qayta → topilma-sinfi qonunga muhrlanadi
    (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).

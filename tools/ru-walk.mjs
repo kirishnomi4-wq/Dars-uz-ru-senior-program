@@ -16,6 +16,7 @@
 //
 // Chiqish kodi: 0 = toza · 1 = xato (crash/bo'sh ekran/yuklanmadi) · 2 = faqat qoldiq · 3 = argument
 // ============================================================================
+import { tmpdir } from 'node:os';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { resolve, basename, join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -26,7 +27,8 @@ import { UZ_COMMON, UZ_APOS } from './ru-gate.mjs';
 const RED = '\x1b[31m', GRN = '\x1b[32m', YEL = '\x1b[33m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const CHROME = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const SCRATCH = process.env.CLAUDE_SCRATCHPAD || 'C:/Users/ADMIN/AppData/Local/Temp/claude/C--Users-ADMIN-internetLesson/f6d85fef-7d77-4277-bd6e-f299f2bb9664/scratchpad';
+// 27.09: Windows yo'li qotirilgan edi — Linux'da repo ichida «C:/Users/…» papkasini yaratardi. Endi tizim vaqtinchalik papkasi.
+const SCRATCH = process.env.CLAUDE_SCRATCHPAD || (process.platform === 'win32' ? 'C:/Users/ADMIN/AppData/Local/Temp/claude/C--Users-ADMIN-internetLesson/f6d85fef-7d77-4277-bd6e-f299f2bb9664/scratchpad' : join(tmpdir(), 'ru-walk-scratch'));
 
 // Lotin atamalar — RU rejimda ham lotincha qoladi, qoldiq emas
 const LATIN_TERMS = new Set(('product user story json express postgresql postgres react node nodejs html css js jsx vs code vscode git github vercel api url http https ' +

@@ -154,7 +154,7 @@ const PRIO_DRILL = [
     why: '1/5 — belgilab qo\'yiladi, lekin kritik emas. Avval ko\'p takrorlangani tuzatiladi. Prioritet — chastota.' },
   { id: 'd3', label: 'Test tugadi — endi nima?', emoji: '📋', color: T.grape,
     opts: ['Hammasini birdaniga tuzataman', 'Friction\'larni chastota bo\'yicha tartiblab, eng kritik 1-2 tasidan boshlayman (105-dars)', 'Hech narsa qilmayman'], correct: 1,
-    why: 'Test topilma beradi — tuzatishni emas. Chastota bo\'yicha prioritet qo\'ying; keyingi darsda iteratsiya qilamiz.' }
+    why: 'Test topilma beradi — tuzatishni emas. Chastota bo\'yicha prioritet qo\'ying, keyin iteratsiya bilan tuzating.' }
 ];
 
 const STAGES = [
@@ -387,7 +387,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>👵 BUVINGIZ ILOVANGIZNI SINAYAPTI</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Buvingizga telefonni berib, «avtobus vaqtini top» dedingiz. U ekranga qaraydi, qaraydi… «ravshan» deb o'ylagan tugmani <b>topolmaydi</b>, boshqa joyni bosaveradi. Sizning yuragingiz siqiladi: «axir shundoq turibdi-ku!»</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Buvingizga telefonni berib, «avtobus vaqtini top» dedingiz. U ekranga qaraydi, qaraydi… «ravshan» deb o'ylagan tugmani <b>topolmaydi</b>, boshqa joyni bosaveradi. Siz esa bezovta bo'lasiz: «axir shundoq turibdi-ku!»</p>
             </div>
           </Col>
           <Col>
@@ -406,7 +406,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS_R = [
-    { text: 'Test ≠ fikr so\'rash — kuzatish', tag: '' },
+    { text: 'Test — fikr so\'rash emas, kuzatish', tag: '' },
     { text: '«Yordam berma» qoidasi', tag: '' },
     { text: '«Gapirma — kuzat» simulyatori', tag: 'o\'yin' },
     { text: 'Test protokoli + 5-user friction taxtasi', tag: 'o\'yin' },
@@ -557,7 +557,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="help-btn" onClick={() => setHelped(true)}>🙋 Malikaga yordam ber</button>
             {helped
               ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✗ Aralashdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>Malika yo'lni topdi — lekin real hayotda siz yonida turmaysiz. Muammoni YO'QOTDINGIZ. Endi qayta: jim turing, faqat kuzating.</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Vasvasaga berilmang: «Yordam ber» tugmasi bosilsa, friction ko'rinmay qoladi. Faqat kuzating.</p></div>}
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Yordam berishga shoshilmang: «Yordam ber» tugmasi bosilsa, friction ko'rinmay qoladi. Faqat kuzating.</p></div>}
             {revealedAll && !frictionFound && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sessiya tugadi. Malika bir joyda aniq qoqildi — chapdan o'sha lahzani toping va «friction» deb belgilang.</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Topdingiz! Malika 3 qadamni ravon o'tdi, lekin <b>eslatma tugmasida qotib qoldi</b>. Siz gapirmadingiz — shuning uchun muammoni KO'RDINGIZ. Mana usability testning kuchi.</p></div>}
           </Col>
@@ -837,7 +837,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«5 do'stimga ko'rsatdim — hammaga yoqdi!»</span></h2></div>
-        <Mentor>Aziz MVP'ini sinadi (qoyil!). Lekin usulini ko'ring…</Mentor>
+        <Mentor>Aziz MVP'ini sinadi — bu yaxshi. Lekin usulini ko'ring…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
           <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 do'stimga ilovani ko'rsatib, "yoqdimi?" deb so'radim. Hammasi "ha, zo'r, chiroyli!" dedi. Demak mahsulotim tayyor — hech qanday muammo yo'q ekan!»</p>
@@ -1115,7 +1115,7 @@ export default function PmLesson34({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

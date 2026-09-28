@@ -752,7 +752,7 @@ function DoSteps({ screen, storedAnswer, onAnswer, steps, taskLabel, practice, o
           </div>
         );
       })}
-      {allDone && !isMentorLive && <p className="dsx-done fade-step">🎉 {tr({ uz: 'Hamma qadam bajarildi.', ru: 'Все шаги выполнены.' })}</p>}
+      {/* F-0926-06 (G2): «🎉 Hamma qadam bajarildi» olindi — qatorlarning o'zi yashil ✓ (159/14) */}
       {isMentorLive && <MentorWorkStats live={live} screenIdx={(practice ? PRACTICE_BASE : 0) + screen} taskLabel={taskLabel} />}
     </div>
   );
@@ -820,15 +820,17 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Mentor>{tr({ uz: <>Uch javobdan bittasini tanlang.</>, ru: <>Выберите один из трёх ответов.</> })}</Mentor>{/* F-0926-06: joy so'zi «Pastdagi» olindi (159/11) */}
         <Split>
           <Col>
-            <p className="eyebrow fade-up delay-1" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha qaysi biri?', ru: 'Как думаете, какой?' })}</p>
+            {/* F-0926-06 (G1): «Sizningcha qaysi biri?» olindi — chaqiriq mentor gapida; o'ng karta ham tepadan boshlanadi, ustunlar tekis */}
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Nusxa saqlanadigan joy — <b>GitHub</b>.</>, ru: <>Ответ — второй. Место, где хранится копия, — <b>GitHub</b>.</> })}</p> /* F-0926-06: izoh variant matnini qaytarmaydi (159/11) */}
           </Col>
           <Col>
-            <p className="flow-label fade-up delay-1">{tr({ uz: 'Bitta joydagi fayllar', ru: 'Файлы в одном месте' })}</p>
-            <div className={`gh-lap fade-up delay-2 ${picked !== null ? 'dead' : ''}`}>
+            {/* F-0927-01 (foydalanuvchi): yorliq, rasm va izoh bitta KARTA ichida — avval uchalasi sahifa fonida sochilib turardi */}
+            <div className="vis-card fade-up delay-1">
+            <p className="flow-label">{tr({ uz: 'Bitta joydagi fayllar', ru: 'Файлы в одном месте' })}</p>
+            <div className={`gh-lap ${picked !== null ? 'dead' : ''}`}>
               <div className="gh-lap-scr">
                 {['index.html', 'style.css', 'rasm.png'].map(f => <span key={f} className="gh-lap-f">📄 {f}</span>)}
                 {picked !== null && <span className="gh-lap-x">💥</span>}
@@ -838,6 +840,7 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <p className="body" style={{ margin: 0, color: T.ink2 }}>{picked === null
               ? tr({ uz: 'Fayllar faqat shu kompyuterda turibdi.', ru: 'Файлы лежат только на этом компьютере.' })
               : tr({ uz: "Bitta joyda turgan fayl — bitta xatoga bog'liq.", ru: 'Файл в одном месте зависит от одной поломки.' })}</p>
+            </div>
           </Col>
         </Split>
       </div>
@@ -847,7 +850,7 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — BUGUNGI NATIJA =====
 const ScreenGoal = ({ screen, onNext, onPrev }) => {
-  const nick = (nickRead() || '').trim().toLowerCase().replace(/[^a-z0-9-]/g, '') || 'ismingiz';
+  const nick = (nickRead() || '').trim().toLowerCase().replace(/[^a-z0-9-]/g, '') || tr({ uz: 'ismingiz', ru: 'vashe-imya' }); // F-0927: ru-rejimda o'zbekcha to'ldiruvchi qolmasin
   const STEPS = [
     { text: { uz: 'Google akkauntga kiramiz', ru: 'Заходим в аккаунт Google' }, tag: 'google.com' },
     { text: { uz: "Kompyuterimizga Git o'rnatamiz", ru: 'Ставим Git на свой компьютер' }, sub: { uz: "kodni GitHub'ga yuborish uchun", ru: 'чтобы отправлять код на GitHub' }, tag: 'git-scm.com' },
@@ -859,6 +862,8 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
+      {/* F-0927-01 (A): yorliq + oyna + izoh bitta kartada */}
+      <div className="vis-card">
       <p className="flow-label">{tr({ uz: 'Dars oxirida shu sahifa ochiladi', ru: 'В конце урока откроется эта страница' })}</p>
       <Preview title={`github.com/${nick}/mening-saytim`} minH={160}>
         <div className="repo" style={{ boxShadow: 'none' }}>
@@ -869,11 +874,12 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
         </div>
       </Preview>
       <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Shu manzilni <b style={{ color: T.ink }}>do'stingizga yuborasiz</b> — u brauzerda ochib, kodni ko'radi.</>, ru: <>Этот адрес вы <b style={{ color: T.ink }}>отправите другу</b> — он откроет его в браузере и увидит код.</> })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p>
+      {/* F-0926-06 (G4): «5 qadam» yorlig'i olindi — mentor gapida; chap karta ham ustun tepasidan boshlanadi (F-0927-01) */}
       <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-line"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span>{s.sub && <span className="step-sub">{tr(s.sub)}</span>}</span></li>))}</ol>
     </Col>
   );
@@ -1050,14 +1056,15 @@ const ScreenRepo = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>GitHub'da har loyiha uchun alohida joy ochiladi — shu joy <b style={{ color: T.ink }}>repository</b>, qisqacha <b style={{ color: T.ink }}>repo</b> deyiladi — tugmani bosib ko'ring.</>, ru: <>На GitHub для каждого проекта открывают отдельное место — оно называется <b style={{ color: T.ink }}>repository</b>, коротко <b style={{ color: T.ink }}>репо</b>, — нажмите кнопку.</> })}</Mentor>
         <Split>
           <Col>
-            <div className="cs fade-up delay-1">
+            <div className="vis-card fade-up delay-1">{/* F-0927-01 (A): sxema va uning natija-qatori bitta kartada */}
+            <div className="cs">
               <div className="cs-node cs-active"><span className="cs-ic">📁</span><span className="cs-l">{tr({ uz: <>Papka<br />(kompyuter)</>, ru: <>Папка<br />(компьютер)</> })}</span></div>
               <div className="cs-wire"><div className={`cs-msg cs-req ${opened ? 'on' : ''}`}>📦 repo</div>{opened && <span className="cs-fly cs-fly-r">📄</span>}</div>
               <div className={`cs-node ${opened ? 'cs-active' : ''}`}><span className="cs-ic">📦</span><span className="cs-l">{tr({ uz: <>Repo<br />(GitHub)</>, ru: <>Репо<br />(GitHub)</> })}</span></div>
             </div>
-            {!opened
-              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={open}>📦 {tr({ uz: 'Loyiha uchun joy ochish', ru: 'Открыть место для проекта' })}</button>
-              : <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>✓ github.com/ali-karimov/mening-saytim</p>}
+            {opened && <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>✓ github.com/ali-karimov/mening-saytim</p>}
+            </div>
+            {!opened && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={open}>📦 {tr({ uz: 'Loyiha uchun joy ochish', ru: 'Открыть место для проекта' })}</button>}
           </Col>
           <Col>
             {opened ? (
@@ -1099,10 +1106,10 @@ const ScreenAdd = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {FILES.map(f => {
               const on = sel.includes(f.n);
               return (
-                <div key={f.n} className="gfile" onClick={() => tap(f.n)} role="button" style={{ cursor: 'pointer', boxShadow: on ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.3)` : undefined }}>
+                <div key={f.n} className="gfile" onClick={() => tap(f.n)} role="button" style={{ cursor: 'pointer', background: on ? T.successSoft : undefined }}>{/* F-0926-06 (G3): holat bir marta — ✅ + yumshoq yashil fon; yashil ramka va «tanlandi» yorlig'i olindi */}
                   <span style={{ fontSize: 18 }}>{on ? '✅' : '📄'}</span>
                   <span className="gfile-name">{f.n}</span>
-                  <span className={`gfile-status ${on ? 'gst-staged' : f.ch ? 'gst-mod' : 'gst-done'}`}>{on ? tr({ uz: 'tanlandi', ru: 'выбран' }) : f.ch ? tr({ uz: "o'zgargan", ru: 'изменён' }) : tr({ uz: "o'zgarmagan", ru: 'без изменений' })}</span>
+                  {!on && <span className={`gfile-status ${f.ch ? 'gst-mod' : 'gst-done'}`}>{f.ch ? tr({ uz: "o'zgargan", ru: 'изменён' }) : tr({ uz: "o'zgarmagan", ru: 'без изменений' })}</span>}
                 </div>
               );
             })}
@@ -2564,6 +2571,9 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
+.vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0927-01: vizual + yorlig'i + izohi bitta blok */
+        .vis-card .bp-window { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* kartadagi oyna — ikkinchi soya yo'q */
+        .vis-card .cs { box-shadow: none; padding: 4px 0; }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida

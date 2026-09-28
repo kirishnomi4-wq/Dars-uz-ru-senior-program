@@ -105,7 +105,7 @@ const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
 const Split = ({ children }) => <div className="split">{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — zoom-tugma bo'sh ustun ustida yolg'iz qolmasin (159/3, CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -127,7 +127,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -703,8 +703,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Dars oxirida — sizning qorovul panelingiz', ru: 'В конце урока — Ваша панель охранника' })}</p>
-      <GuardPanel spots={mkSpots()} tushum={20000} />
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ bo'sh 🟩 / band 🟥 · bir bosishda kirish-chiqish · tushum hisoblanadi", ru: '→ свободно 🟩 / занято 🟥 · въезд-выезд в одно касание · выручка считается сама' })}</p>
+      {/* F-0926-06: izoh panel ichida (160-qonun) — «bo'sh/band», «tushum» panelning o'zida ko'rinadi (159/1), faqat yangi qismi qoldi */}
+      <GuardPanel spots={mkSpots()} tushum={20000}><span className="mono" style={{ color: T.accent, fontSize: 12 }}>{tr({ uz: 'bir bosishda kirish-chiqish', ru: 'въезд-выезд в одно касание' })}</span></GuardPanel>
     </Col>
   );
   const StepsBlock = (
@@ -756,7 +756,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'PM · foydalanuvchi', ru: 'PM · пользователь' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : `${tr({ uz: "Qoidalarni ko'ring", ru: 'Посмотрите правила' })} (${seen.size}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu ilovani <span className="italic" style={{ color: T.accent }}>kim</span> ishlatadi — unga qanday ko'rinish kerak?</>, ru: <><span className="italic" style={{ color: T.accent }}>Кто</span> будет пользоваться этим приложением — и какой интерфейс ему нужен?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>PM darslarini eslang: avval <b style={{ color: T.ink }}>foydalanuvchi</b>ni o'ylaymiz. Bu yerda u — <b style={{ color: T.ink }}>qorovul</b>: kompyuter bilimi kam, shoshib turadi. Demak ekran <b style={{ color: T.ink }}>oddiy va tushunarli</b> bo'lishi shart. Uchta qoidani bosib ko'ring — o'ngda ularning natijasi.</>, ru: <>Вспомните уроки PM: сначала думаем о <b style={{ color: T.ink }}>пользователе</b>. Здесь это — <b style={{ color: T.ink }}>охранник</b>: с компьютером знаком слабо, вечно спешит. Значит, экран обязан быть <b style={{ color: T.ink }}>простым и понятным</b>. Нажмите на три правила — справа их результат.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>PM darslarini eslang: avval <b style={{ color: T.ink }}>foydalanuvchi</b>ni o'ylaymiz. Bu yerda u — <b style={{ color: T.ink }}>qorovul</b>: kompyuter bilimi kam, shoshib turadi. Demak ekran <b style={{ color: T.ink }}>oddiy va tushunarli</b> bo'lishi shart. Uchta qoidani bosib ko'ring.{/* F-0926-06: joy so'zi olindi (159/5) */}</>, ru: <>Вспомните уроки PM: сначала думаем о <b style={{ color: T.ink }}>пользователе</b>. Здесь это — <b style={{ color: T.ink }}>охранник</b>: с компьютером знаком слабо, вечно спешит. Значит, экран обязан быть <b style={{ color: T.ink }}>простым и понятным</b>. Нажмите на три правила.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -769,7 +769,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
-            {cur && <div className="sk-info" key={active}><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr(cur.t)}</b> — {tr(cur.d)}</p></div>}
+            {cur && <div className="sk-info" key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>}{/* F-0926-06: tanlangan qoida nomi izohda takrorlanmaydi (159/1) */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Shu qoidalar bilan — qorovul paneli', ru: 'С этими правилами — панель охранника' })}</p>
@@ -796,7 +796,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "1-qadam · ME'MOR", ru: 'Шаг 1 · АРХИТЕКТОР' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : `${tr({ uz: "Ustunlarni ko'ring", ru: 'Посмотрите столбцы' })} (${seen.size}/${JOY_COLS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi jadval — <span className="italic" style={{ color: T.accent }}>joylar</span> haqida nimani saqlaymiz?</>, ru: <>Первая таблица — что мы храним о <span className="italic" style={{ color: T.accent }}>местах</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Panel ortida ma'lumot turishi kerak. Birinchi jadval — <span className="mono">joylar</span>: har bir parking joyi bitta qator. Ustunlarni bosib, nima saqlashini ko'ring — pastda <span className="mono">CREATE TABLE</span> yig'iladi.</>, ru: <>За панелью должны стоять данные. Первая таблица — <span className="mono">joylar</span>: каждое парковочное место — одна строка. Нажимайте на столбцы и смотрите, что они хранят — внизу собирается <span className="mono">CREATE TABLE</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Panel ortida ma'lumot turishi kerak. Birinchi jadval — <span className="mono">joylar</span>: har bir parking joyi bitta qator. Ustunlarni bosib, nima saqlashini ko'ring — shu bilan <span className="mono">CREATE TABLE</span> yig'iladi.{/* F-0926-06: joy so'zi olindi (159/5) */}</>, ru: <>За панелью должны стоять данные. Первая таблица — <span className="mono">joylar</span>: каждое парковочное место — одна строка. Нажимайте на столбцы и смотрите, что они хранят — так собирается <span className="mono">CREATE TABLE</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -911,7 +911,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Joyni tanlang', ru: 'Выберите место' })}</p>
+            {/* F-0926-06: «Joyni tanlang» yorlig'i mentor gapini takrorlardi (G1) — ko'rinmas nusxa ustunlar tekisligi uchun qoldi (HP1) */}
+            <p className="flow-label" aria-hidden="true" style={{ visibility: 'hidden' }}>{tr({ uz: 'Joyni tanlang', ru: 'Выберите место' })}</p>
             <div className="fade-up delay-1"><div className="pgrid" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>{SP.map(s => <Spot key={s.id} spot={s} onClick={() => pick(s)} selected={sel === s.id} hint={!done && !seen.has(s.id)} />)}</div></div>
             {selSpot && <div className="sk-info" key={sel}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b className="mono" style={{ color: T.accent }}>{selSpot.raqam}</b> (id={sel}) joyiga <b>{linked.length}</b> ta sessiya bog'langan.</>, ru: <>К месту <b className="mono" style={{ color: T.accent }}>{selSpot.raqam}</b> (id={sel}) привязано сеансов: <b>{linked.length}</b>.</> })}</p></div>}
           </Col>
@@ -973,17 +974,16 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "AI'ga prompt — backend", ru: 'Промпт ИИ — бэкенд' })}</p>
-            <pre className="prompt-box fade-up delay-1" style={phase >= 1 ? { maxHeight: 44, overflowY: 'auto' } : undefined}>{tr(BACK_PROMPT)}</pre>
+            <pre className="prompt-box fade-up delay-1" >{phase >= 1 ? tr(BACK_PROMPT).split('\n')[0] + ' …' : tr(BACK_PROMPT)}</pre>{/* F-0926-06: yuborilgan prompt yig'iladi — faqat 1-qatori + «…» (qator o'rtasida kesilmaydi) */}
             {phase === 0 && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase(1)}>{tr({ uz: "📤 Promptni AI'ga yuborish", ru: '📤 Отправить промпт ИИ' })}</button>}
             {phase === 1 && (<>
-              <div className="ai-card fade-step" style={{ maxHeight: phase >= 2 ? 60 : 96, overflowY: 'auto' }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Endpointlar yozildi:', ru: 'Endpoint-ы написаны:' })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V1}</div></div></div>
-              <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodni o'ngdagi «nima qilishi kerak» bilan solishtiring: <b>kirishda</b> ikkita amal bo'lishi kerak edi — sessiyaga yozish <b>va</b> joyni band qilish. Bittasi yetishmayapti.</>, ru: <>Сравните код с «что должен делать» справа: при <b>въезде</b> должно быть два действия — запись сеанса <b>и</b> занятие места. Одного не хватает.</> })}</p></div>
+              <div className="ai-card fade-step" style={{ maxHeight: 124, overflowY: 'auto' }}>{/* F-0926-06: ogohlantirish ko'chgach bo'shagan joy — kod ko'proq ko'rinadi */}<div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Endpointlar yozildi:', ru: 'Endpoint-ы написаны:' })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V1}</div></div></div>
               <p className="flow-label">{tr({ uz: 'Aniqlashtiruvchi prompt (follow-up)', ru: 'Уточняющий промпт (follow-up)' })}</p>
-              <pre className="prompt-box fade-step" style={{ maxHeight: phase >= 2 ? 44 : 72, overflowY: 'auto' }}>{tr(FOLLOWUP_PROMPT)}</pre>
+              <pre className="prompt-box fade-step" style={{ maxHeight: 'calc(3.4em + 26px)', overflowY: 'auto' }}>{tr(FOLLOWUP_PROMPT)}</pre>
               <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase(2)}>{tr({ uz: '🔁 Aniqlashtiruvchi promptni yuborish', ru: '🔁 Отправить уточняющий промпт' })}</button>
             </>)}
             {phase >= 2 && (
-              <div className="ai-card fade-step" style={{ maxHeight: 150, overflowY: 'auto' }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "To'g'riladim — kirishda joy ham band bo'ladi:", ru: 'Исправил — при въезде место тоже занимается:' })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_HEAD}</div><div className="ai-line ok" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_FIX}</div><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_TAIL}</div></div></div>
+              <div className="ai-card tight fade-step">{/* F-0926-06: tuzatilgan kod to'liq ko'rinadi (qator o'rtasida kesilmaydi), ixcham — nav-chiziq ortida qolmaydi */}<div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "To'g'riladim — kirishda joy ham band bo'ladi:", ru: 'Исправил — при въезде место тоже занимается:' })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_HEAD}</div><div className="ai-line ok" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_FIX}</div><div className="ai-line" style={{ whiteSpace: 'pre-wrap' }}>{AI_V2_TAIL}</div></div></div>
             )}
           </Col>
           <Col>
@@ -991,6 +991,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>Kirish (POST)</b> — sessiya yoziladi + joy band (🟥). <span className="mono">NOW()</span> vaqtni avtomatik qo'yadi.</>, ru: <><b style={{ color: T.accent }}>Въезд (POST)</b> — записывается сеанс + место занято (🟥). <span className="mono">NOW()</span> ставит время автоматически.</> })}</p></div>
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>Chiqish (PUT)</b> — chiqqan vaqt + 10 000 yoziladi, joy bo'sh (🟩).</>, ru: <><b style={{ color: T.accent }}>Выезд (PUT)</b> — записывается время выезда + 10 000, место свободно (🟩).</> })}</p></div>
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>GET</b> — joylar va tarix (JOIN bilan o'qiladi).</>, ru: <><b style={{ color: T.accent }}>GET</b> — места и история (читается через JOIN).</> })}</p></div>
+            {/* F-0926-06: ogohlantirish o'zi solishtiradigan ro'yxat ostiga ko'chdi — tugma nav-chiziq ortida qolmaydi (159/12), joy so'zi olindi (159/5) */}
+            {phase === 1 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodni shu ro'yxat bilan solishtiring: <b>kirishda</b> ikkita amal bo'lishi kerak edi — sessiyaga yozish <b>va</b> joyni band qilish. Bittasi yetishmayapti.</>, ru: <>Сравните код с этим списком: при <b>въезде</b> должно быть два действия — запись сеанса <b>и</b> занятие места. Одного не хватает.</> })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Birinchi kod chala edi — siz o'qib topdingiz va <b>aniqlashtiruvchi prompt</b> bilan to'g'riladingiz. Endi shu API'ni ishlatadigan <b>frontni</b> yozdiramiz.</>, ru: <>Первый код был неполным — Вы прочитали, заметили и исправили <b>уточняющим промптом</b>. Теперь поручим ИИ <b>фронт</b>, который использует этот API.</> })}</p></div>}
           </Col>
         </div>
@@ -1016,13 +1018,13 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="code-box fade-up delay-1" style={{ minHeight: 70 }}>
-              {step === 0 && <span style={{ color: CODE.comment }}>{tr({ uz: '— tugmani bosing —', ru: '— нажмите кнопку —' })}</span>}
+            {/* F-0926-06: bo'sh kod-oynadagi «— tugmani bosing —» yo'rig'i olindi (chorlov mentor gapida, P1/159-3) — oyna birinchi bosishdan keyin chiqadi, tugma tepada qoladi;
+                ✓ tugmadan keyingi yashil takror-xulosa olindi — natijani log va panel ko'rsatadi (159/14) */}
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={() => setStep(s => Math.min(s + 1, 2))}>{step === 0 ? tr({ uz: '▶ Mashina kirgizish (POST)', ru: '▶ Впустить машину (POST)' }) : (step === 1 ? tr({ uz: '▶ Mashina chiqarish (PUT)', ru: '▶ Выпустить машину (PUT)' }) : tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы посмотрели' }))}</button>
+            {step >= 1 && <div className="code-box fade-step">
               {step === 1 && <span style={{ color: CODE.str }}>{tr({ uz: 'POST /api/sessiyalar → A4 band 🟥 (30A555AA kirdi)', ru: 'POST /api/sessiyalar → A4 занято 🟥 (въехала 30A555AA)' })}</span>}
               {step >= 2 && <><div style={{ color: CODE.str }}>{tr({ uz: 'POST /api/sessiyalar → A4 band 🟥', ru: 'POST /api/sessiyalar → A4 занято 🟥' })}</div><div style={{ color: CODE.str }}>{tr({ uz: "PUT /api/sessiyalar/1 → A2 bo'sh 🟩 (tolov 10 000)", ru: 'PUT /api/sessiyalar/1 → A2 свободно 🟩 (оплата 10 000)' })}</div></>}
-            </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={() => setStep(s => Math.min(s + 1, 2))}>{step === 0 ? tr({ uz: '▶ Mashina kirgizish (POST)', ru: '▶ Впустить машину (POST)' }) : (step === 1 ? tr({ uz: '▶ Mashina chiqarish (PUT)', ru: '▶ Выпустить машину (PUT)' }) : tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы посмотрели' }))}</button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rdingiz: POST joyni band qildi, PUT bo'shatdi va to'lovni yozdi. Backend ishlayapti.", ru: 'Вы увидели: POST занял место, PUT освободил его и записал оплату. Бэкенд работает.' })}</p></div>}
+            </div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'joylar — panelda natija', ru: 'joylar — результат на панели' })}</p>
@@ -1057,10 +1059,10 @@ const Screen9b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "AI'ga prompt — frontend", ru: 'Промпт ИИ — фронтенд' })}</p>
-            <pre className="prompt-box fade-up delay-1" style={done ? { maxHeight: 90, overflowY: 'auto' } : undefined}>{tr(FRONT_PROMPT)}</pre>
+            <pre className="prompt-box fade-up delay-1">{done ? tr(FRONT_PROMPT).split('\n')[0] + ' …' : tr(FRONT_PROMPT)}</pre>{/* F-0926-06: yuborilgan prompt 1 qatorga yig'iladi, AI kodi to'liq ko'rinadi */}
             {!done
               ? <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setDone(true)}>{tr({ uz: "📤 Promptni AI'ga yuborish", ru: '📤 Отправить промпт ИИ' })}</button>
-              : <div className="ai-card fade-step" style={{ maxHeight: 150, overflowY: 'auto' }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Panel komponenti yozildi:', ru: 'Компонент панели написан:' })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{"function Panel(){\n  const [joylar,setJoylar]=useState([]);\n  const yukla=()=>fetch('/api/joylar')...;  // joylarni olish\n  useEffect(()=>{ yukla(); },[]);\n  const kirgiz=(joy_id,mashina)=>fetch(...);  // POST → yukla\n  const chiqar=(id,joy_id)=>fetch(...);  // PUT → yukla\n  return <Grid joylar={joylar} .../>;\n}"}</div></div></div>}
+              : <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Panel komponenti yozildi:', ru: 'Компонент панели написан:' })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{"function Panel(){\n  const [joylar,setJoylar]=useState([]);\n  const yukla=()=>fetch('/api/joylar')...;  // joylarni olish\n  useEffect(()=>{ yukla(); },[]);\n  const kirgiz=(joy_id,mashina)=>fetch(...);  // POST → yukla\n  const chiqar=(id,joy_id)=>fetch(...);  // PUT → yukla\n  return <Grid joylar={joylar} .../>;\n}"}</div></div></div>}
           </Col>
           <Col>
             <p className="flow-label">{done ? tr({ uz: 'Natija — qorovul paneli', ru: 'Результат — панель охранника' }) : tr({ uz: 'Front nimani quradi', ru: 'Что строит фронт' })}</p>
@@ -1131,8 +1133,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {selSpot && !selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 14 }}>
                 <p className="note-h" style={{ color: T.success }}>{selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
-                <p className="small" style={{ color: T.ink2, margin: '0 0 9px' }}>{tr({ uz: 'Mashina davlat raqamini yozing:', ru: 'Введите госномер машины:' })}</p>
-                <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder="01 A 123 BC" spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
+                {/* F-0926-06: maydon ustidagi yorliq placeholder ichiga kirdi (159/8) */}
+                <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder={tr({ uz: 'Davlat raqami: 01 A 123 BC', ru: 'Госномер: 01 A 123 BC' })} aria-label={tr({ uz: 'Mashina davlat raqamini yozing', ru: 'Введите госномер машины' })} spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
                 <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 10 }}>{tr({ uz: 'Kirgizish (POST)', ru: 'Впустить (POST)' })}</button>
               </div>
             )}
@@ -1140,7 +1142,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="frame fade-step" style={{ padding: 14, boxShadow: `inset 0 0 0 1.5px ${T.danger}55` }}>
                 <p className="note-h" style={{ color: T.danger }}>{selSpot.raqam} — {tr({ uz: 'band', ru: 'занято' })} ({selSpot.mashina})</p>
                 <p className="small" style={{ color: T.ink2, margin: '0 0 9px' }}>{tr({ uz: "Mashina chiqyapti — to'lov olinadi:", ru: 'Машина выезжает — берём оплату:' })}</p>
-                <button className="btn" onClick={exit} style={{ background: T.success }}>{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })} (PUT)</button>
+                <button className="btn" onClick={exit}>{/* F-0926-06: to'liq yashil tugma yo'q — asosiy harakat accent (V1) */}{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })} (PUT)</button>
               </div>
             )}
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
@@ -1183,7 +1185,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? <Table cap="sessiyalar" cols={['joy_id', 'mashina', 'tolov']} rows={SES_DATA.map(r => ({ joy_id: r.joy_id, mashina: r.mashina, tolov: sp(r.tolov) }))} hiCol="joy_id" />
                 : <Table cap="sessiyalar JOIN joylar" cols={['raqam', 'mashina', 'tolov']} rows={SES_DATA.map(r => ({ raqam: RAQAM[r.joy_id] || ('id' + r.joy_id), mashina: r.mashina, tolov: sp(r.tolov) }))} hiCol="raqam" />}
             </div>
-            {!joined && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: '"joy_id: 2" — qaysi joy? Qorovul tushunmaydi.', ru: '«joy_id: 2» — какое это место? Охранник не понимает.' })}</p>}
+            {/* F-0926-06: «joy_id: 2 — qaysi joy?» izohi sarlavha va mentor gapini takrorlardi (159/1) — olindi */}
           </Col>
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.85 }}>
@@ -1251,19 +1253,19 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {selSpot && !selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 13 }}>
                 <p className="note-h" style={{ color: T.success }}>{selSpot.raqam} — {tr({ uz: 'kiruvchi mashina', ru: 'въезжающая машина' })}</p>
-                <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder="01 A 123 BC" spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
+                <input className="plate-input" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} onKeyDown={e => { if (e.key === 'Enter') enter(); }} placeholder={tr({ uz: 'Davlat raqami: 01 A 123 BC', ru: 'Госномер: 01 A 123 BC' })} aria-label={tr({ uz: 'Mashina davlat raqamini yozing', ru: 'Введите госномер машины' })} spellCheck={false} autoCapitalize="characters" autoCorrect="off" />
                 <button className="btn" disabled={!plate.trim()} onClick={enter} style={{ marginTop: 9 }}>{tr({ uz: 'Kirgizish (POST)', ru: 'Впустить (POST)' })}</button>
               </div>
             )}
             {selSpot && selSpot.bandmi && (
               <div className="frame fade-step" style={{ padding: 13, boxShadow: `inset 0 0 0 1.5px ${T.danger}55` }}>
                 <p className="note-h" style={{ color: T.danger }}>{selSpot.raqam} — {selSpot.mashina}</p>
-                <button className="btn" onClick={exit} style={{ background: T.success }}>{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })}</button>
+                <button className="btn" onClick={exit}>{/* F-0926-06: to'liq yashil tugma yo'q — asosiy harakat accent (V1) */}{tr({ uz: 'Chiqarish', ru: 'Выпустить' })} · {sp(FEE)} {tr({ uz: "so'm", ru: 'сум' })}</button>
               </div>
             )}
             <p className="flow-label" style={{ margin: '4px 0 0' }}>{tr({ uz: 'Tarix (JOIN bilan)', ru: 'История (через JOIN)' })}</p>
             {tarix.length ? <div className="tarix">{tarix.map((t, i) => <div key={t.k ?? i} className="tarix-row el-in"><span className="mono" style={{ color: T.accent }}>{t.raqam}</span><span className="mono">{t.mashina}</span><span style={{ marginLeft: 'auto', fontWeight: 700 }}>{sp(t.tolov)}</span></div>)}</div>
-              : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chiqishlar shu yerda yoziladi…', ru: 'Выезды будут записываться здесь…' })}</p>}
+              : null /* F-0927 (P1): bo'sh tarix yo'rig'i olindi — birinchi chiqishgacha ro'yxat bo'sh */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Qorovul paneli', ru: 'Панель охранника' })}</p>
@@ -1324,8 +1326,8 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bog'lanish shartini yozing", ru: 'Напишите условие связи' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>bog'lanish</span> shartini o'zingiz yozing.</>, ru: <>Последний шаг: напишите условие <span className="italic" style={{ color: T.accent }}>связи</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Tarixni o'qiladigan qilish uchun JOIN kerak — ikki jadval <b style={{ color: T.ink }}>qaysi ustunlar bo'yicha</b> bog'lanadi? <span className="mono">ON</span> dan keyin yozing: <span className="mono">sessiyalar.joy_id = joylar.id</span>.</>, ru: <>Чтобы история читалась, нужен JOIN — <b style={{ color: T.ink }}>по каким столбцам</b> связываются две таблицы? Напишите после <span className="mono">ON</span>: <span className="mono">sessiyalar.joy_id = joylar.id</span>.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>Tarixni o'qiladigan qilish uchun JOIN kerak — ikki jadval <b style={{ color: T.ink }}>qaysi ustunlar bo'yicha</b> bog'lanadi? <span className="mono">ON</span> dan keyin shu ikki ustunni tenglang.{/* F-0926-06: baholanadigan testda javob-kod olindi (S6); ustunlar tavsifi holat-teglarida — mentor takrorlamaydi (H1) */}</>, ru: <>Чтобы история читалась, нужен JOIN — <b style={{ color: T.ink }}>по каким столбцам</b> связываются две таблицы? Приравняйте эти два столбца после <span className="mono">ON</span>.</> })}</Mentor>
+        <Zoomable off={!valid}>
         <div className="split">
           <Col>
             <div className="vsc fade-up delay-2">
@@ -1342,13 +1344,15 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasJoyId ? 1 : 0.4 }}>{hasJoyId ? '✓' : '1'} sessiyalar.joy_id</span>
-              <span className="tagpill" style={{ opacity: hasId ? 1 : 0.4 }}>{hasId ? '✓' : '2'} joylar.id</span>
+              {/* F-0926-06: holat-teglari javob-kodni aytmaydi — faqat tavsif (S6) */}
+              <span className="tagpill" style={{ opacity: hasJoyId ? 1 : 0.4 }}>{hasJoyId ? '✓' : '1'} {tr({ uz: "sessiyalar — bog'lovchi ustun", ru: 'sessiyalar — связующий столбец' })}</span>
+              <span className="tagpill" style={{ opacity: hasId ? 1 : 0.4 }}>{hasId ? '✓' : '2'} {tr({ uz: 'joylar — asosiy kalit', ru: 'joylar — первичный ключ' })}</span>
             </div>
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Ikki jadval bog'landi — tarix endi joy belgisi bilan o'qiladi. Loyihangiz to'liq tayyor!", ru: '✓ Отлично! Две таблицы связаны — история теперь читается с обозначением места. Ваш проект полностью готов!' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija — tarix', ru: 'результат — история' })}</p>
+            {/* F-0926-06: javobgacha bo'sh ustun ustida yolg'iz yorliq va ⛶ turmaydi (159/3) */}
+            {valid && <p className="flow-label">{tr({ uz: 'natija — tarix', ru: 'результат — история' })}</p>}
             {valid
               ? <Table cap="sessiyalar JOIN joylar" cols={['raqam', 'mashina', 'tolov']} rows={[{ raqam: 'A2', mashina: '01A123BC', tolov: sp(FEE) }, { raqam: 'B1', mashina: '01B456DE', tolov: sp(FEE) }]} hiCol="raqam" />
               : null}
@@ -2576,6 +2580,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
            7px chiqib ketardi (m4-13 s11, o'lchandi). Modifikator overflow-wrap: anywhere
            faqat sig'magan qatorni ko'chiradi, qolgan kod ko'rinishiga tegmaydi. */
         .ai-line.ok { background: rgba(31,122,77,0.16); }
+        .ai-card.tight { padding: 12px 15px; gap: 8px; } .ai-card.tight .ai-code { padding: 8px 10px; } .ai-card.tight .ai-line { padding: 3px 9px; line-height: 1.5; } /* F-0926-06: Modifikator tight — to'liq kod ixcham (s8) */
         .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
@@ -2617,7 +2622,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         .prompt-box { background: ${T.paper}; border-radius: 12px; padding: 13px 15px; margin: 0; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.7; color: ${T.ink}; white-space: pre-wrap; word-break: break-word; box-shadow: 0 6px 16px -8px rgba(1,154,203,0.2); }
         .plate-input { width: 100%; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; text-align: center; padding: 11px 12px; border-radius: 10px; border: 1.5px dashed ${T.ink3}; background: ${T.bg}; color: ${T.ink}; outline: none; transition: border-color 0.2s, background 0.2s; }
         .plate-input:focus { border-color: ${T.accent}; background: #fff; }
-        .plate-input::placeholder { color: ${T.ink3}; font-weight: 500; letter-spacing: 0.02em; }
+        .plate-input::placeholder { color: ${T.ink3}; font-weight: 500; letter-spacing: 0.02em; font-size: 14px; } /* F-0926-06: placeholder yorliq bilan uzunroq — kichikroq shrift */
 
         /* === QOROVUL PANELI === */
         .guard { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.2); }
@@ -2709,7 +2714,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
 
         /* === HOOK QOG'OZ === */
         /* Qorovul daftari — LMS yuklaydigan shriftlar bilan (Caveat yuklanmaydi → fallback chalkash bo'lardi) */
-        .paper { background: #FCFBF5; border-radius: 10px; padding: 14px 16px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2); cursor: pointer; background-image: repeating-linear-gradient(transparent, transparent 25px, ${T.line} 25px, ${T.line} 26px); }
+        .paper { background: #FCFBF5; border-radius: 10px; padding: 14px 16px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2); cursor: pointer; background-image: repeating-linear-gradient(transparent, transparent 25px, ${T.line} 25px, ${T.line} 26px); } /* kesik-ok: daftar qatorlari — qog'oz ma'nosi */
         .paper-line { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 14.5px; color: ${T.ink2}; line-height: 26px; margin: 0; }
         .paper-scribble { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-size: 15.5px; color: ${T.danger}; line-height: 26px; margin: 4px 0 0; transform: rotate(-2deg); font-weight: 600; }
 
@@ -3220,7 +3225,7 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         .oact { position: relative; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: ${T.paper}; border: 1px solid #12A96866; border-radius: 14px; padding: 12px 14px; box-shadow: 0 6px 18px -8px rgba(18,169,104,0.4); overflow: visible; }
         .oact-gate { position: relative; width: 26px; height: 14px; flex-shrink: 0; display: inline-flex; align-items: center; }
         .oact-gate::before { content: ""; position: absolute; left: 0; bottom: 1px; width: 4px; height: 12px; border-radius: 2px; background: ${T.ink3}; }
-        .oact-arm { position: absolute; left: 2px; top: 5px; width: 24px; height: 4px; border-radius: 2px; transform-origin: left center; background: repeating-linear-gradient(90deg, ${T.danger} 0 6px, #fff 6px 12px); box-shadow: 0 1px 3px rgba(${T.shadowBase},0.3); animation: oact-gate-lift 1s cubic-bezier(.3,1.35,.45,1) 0.35s both; }
+        .oact-arm { position: absolute; left: 2px; top: 5px; width: 24px; height: 4px; border-radius: 2px; transform-origin: left center; background: repeating-linear-gradient(90deg, ${T.danger} 0 6px, #fff 6px 12px); box-shadow: 0 1px 3px rgba(${T.shadowBase},0.3); animation: oact-gate-lift 1s cubic-bezier(.3,1.35,.45,1) 0.35s both; }  /* kesik-ok: shlagbaum chizig'i — qizil-oq to'siq ma'nosi */
         @keyframes oact-gate-lift { 0% { transform: rotate(0deg); } 30% { transform: rotate(6deg); } 100% { transform: rotate(-72deg); } }
         .oact-ship { font-weight: 800; font-size: 12.5px; color: #fff; background: #12A968; border-radius: 99px; padding: 4px 11px; white-space: nowrap; box-shadow: 0 4px 14px -4px rgba(18,169,104,0.55); animation: oact-ship-pop 0.6s cubic-bezier(.25,1.5,.45,1) 0.9s both; }
         @keyframes oact-ship-pop { 0% { opacity: 0; transform: translateX(-8px) scale(0.5); } 55% { opacity: 1; transform: translateX(0) scale(1.16); } 100% { transform: translateX(0) scale(1); } }

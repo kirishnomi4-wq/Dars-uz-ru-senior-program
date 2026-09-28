@@ -624,8 +624,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Zoomable>
         <Split>
           <Col>
-            <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setPublished(true)} disabled={published}>{published ? tr({ uz: "✓ E'lon qilindi", ru: '✓ Опубликовано' }) : tr({ uz: "📡 Yangi o'yinni e'lon qilish", ru: '📡 Опубликовать новую игру' })}</button>
-            {published && <p className="broadcast-cue fade-step">{tr({ uz: <>📡 <b>robo-api.example</b> serverdan 3 qurilmaga bir vaqtda yuborildi</>, ru: <>📡 С сервера <b>robo-api.example</b> отправлено на 3 устройства одновременно</> })}</p>}
+            <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setPublished(true)} disabled={published}>{published ? tr({ uz: "✓ E'lon qilindi", ru: '✓ Опубликовано' }) : tr({ uz: "Yangi o'yinni e'lon qilish", ru: 'Опубликовать новую игру' }) /* F-0926-06: tugma oldidagi emoji olindi (H3) */}</button>
+            {/* F-0926-06: «serverdan 3 qurilmaga yuborildi» yozuvi olindi — javob tanlashdan OLDIN javobni (server) aytardi (159/17) va ekran 16–21px pastki chiziqdan tushardi (159/12) */}
             <div className="fade-up delay-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 9 }}>
               {DEVICES.map((d, i) => (
                 <div key={i} style={{ minWidth: 0 }}>
@@ -686,7 +686,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
             </div>}
       </Win>
       <pre className="code-box" style={{ padding: '10px 14px' }}>{'fetch('}<St>'https://robo-api.example/games'</St>{')'}</pre>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ kartochkalar endi serverdan yuklanadi', ru: '→ карточки теперь загружаются с сервера' })}</p>
+      {/* F-0926-06: «→ kartochkalar endi serverdan yuklanadi» olindi — mentor gapini takrorlardi (159/1) */}
     </Col>
   );
   const StepsBlock = (
@@ -772,8 +772,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vw,14px)', marginTop: 12 }}>
-          <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={move} disabled={phase !== 0}>{phase === 0 ? tr({ uz: "📦 Serverga ko'chirish", ru: '📦 Перенести на сервер' }) : phase === 1  ? tr({ uz: "Ko'chmoqda…", ru: 'Переносится…' }) : tr({ uz: "✓ Ko'chirildi", ru: '✓ Перенесено' })}</button>
-          {done && <span className="tagpill fade-step" style={{ color: T.success, alignSelf: 'flex-start' }}>{tr({ uz: '✓ manzil tayyor: https://robo-api.example/games', ru: '✓ адрес готов: https://robo-api.example/games' })}</span>}
+          <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={move} disabled={phase !== 0}>{phase === 0 ? tr({ uz: "Serverga ko'chirish", ru: 'Перенести на сервер' }) /* F-0926-06: emoji olindi (H3) */ : phase === 1  ? tr({ uz: "Ko'chmoqda…", ru: 'Переносится…' }) : tr({ uz: "✓ Ko'chirildi", ru: '✓ Перенесено' })}</button>
+          {done && <span className="tagpill fade-step" style={{ color: T.ink2, alignSelf: 'flex-start' }}>{/* F-0926-06: holat bir marta — tugma «✓ Ko'chirildi» deydi, yashil ✓ takrori olindi (159/8) */}{tr({ uz: 'manzil: https://robo-api.example/games', ru: 'адрес: https://robo-api.example/games' })}</span>}
           {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi bu ro'yxatni telefon ham, noutbuk ham, boshqa sayt ham — <b>manzili orqali</b> oladi. Bitta markaz — hamma uchun. Savol qoldi: kod uni <b>qanday so'rab oladi</b>?</>, ru: <>Теперь этот список возьмёт и телефон, и ноутбук, и другой сайт — <b>по адресу</b>. Один центр — для всех. Остался вопрос: как код его <b>запросит</b>?</> })}</p></div>}
         </div>
         </Zoomable>
@@ -797,7 +797,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tokCls = (k) => `fa-tok ${active === k ? 'on' : ''} ${seen.has(k) ? 'seen' : ''}`;
   const audio = useAudio([{ id: 's3', text: `Serverdan ma'lumotni qaysi buyruq olib keladi? Tanishing: fetch. Internet darsidagi ofitsiantni eslaysizmi — fetch ham shunday: manzilni berasiz, u serverga boradi va javobni olib keladi. Buyruqning uch qismini birma-bir bosing: fetch — buyruqning o'zi, manzil — qaysi server, va bo'lim — serverning qaysi eshigi.`, trigger: 'on_mount', waits_for: null }]);
   const Row = ({ k, lbl, val }) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 12, background: seen.has(k) ? T.successSoft : T.paper, boxShadow: seen.has(k) ? `inset 0 0 0 1.5px ${T.success}` : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.3s' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 12, background: seen.has(k) ? T.successSoft : T.paper, boxShadow: seen.has(k) ? 'none' /* F-0926-06: bajarilgan qator — faqat yumshoq yashil fon, ramka olindi (G3) */ : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.3s' }}>
       <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.08em', color: seen.has(k) ? T.success : T.ink3, minWidth: 64 }}>{lbl}</span>
       <span key={seen.has(k) ? 'v' : 'q'} className={`mono ${seen.has(k) ? 'el-in' : ''}`} style={{ fontSize: 12.5, color: seen.has(k) ? T.ink : T.ink3 }}>{seen.has(k) ? val : '?'}</span>
     </div>
@@ -850,7 +850,7 @@ const Screen4 = (props) => (
     questionText="fetch('https://robo-api.example/games') nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span>?</> })}</h2></>}
     options={[tr({ uz: "Saytni to'liq qaytadan yuklaydi", ru: 'Полностью перезагружает сайт' }), tr({ uz: "Manzilga borib ma'lumotni olib keladi", ru: 'Идёт по адресу и приносит данные' }), tr({ uz: "Faylni kompyuterga yuklab saqlaydi", ru: 'Скачивает и сохраняет файл на компьютер' }), tr({ uz: "Yangi bo'sh sahifa ochadi", ru: 'Открывает новую пустую страницу' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! fetch — ofitsiant kabi: manzilga boradi, so'raydi, javobni olib keladi. Bu GET so'rovi — faqat olish.", ru: 'Верно! fetch — как официант: идёт по адресу, спрашивает и приносит ответ. Это GET-запрос — только получение.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi — natija yorlig'i aytadi (159/5) */ tr({ uz: "fetch — ofitsiant kabi ishlaydi. Bu GET so'rovi: faqat oladi, serverda hech narsani o'zgartirmaydi.", ru: 'fetch работает как официант. Это GET-запрос: только получает, ничего на сервере не меняет.' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — sahifa joyida qoladi. fetch indamasdan, orqa fonda serverga borib keladi.", ru: 'Нет — страница остаётся на месте. fetch тихо, в фоне сходит на сервер и вернётся.' }),
       2: tr({ uz: "Yo'q — hech narsa saqlanmaydi. fetch ma'lumotni kodga olib keladi, xolos.", ru: 'Нет — ничего не сохраняется. fetch просто приносит данные в код.' }),
@@ -883,16 +883,16 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              <button className={`stepbtn${got ? ' is-done' : ''}`} onClick={send} disabled={loading || got}>{tr({ uz: "1 · 📨 So'rov yuborish", ru: '1 · 📨 Отправить запрос' })}<span className="stepbtn-tick">✓</span></button>
-              <button className={`stepbtn${parsed ? ' is-done' : ''}`} onClick={() => { if (got) setParsed(true); }} disabled={!got || parsed}>{tr({ uz: '2 · 🔄 .json() — tarjima qilish', ru: '2 · 🔄 .json() — перевести' })} {parsed ? '✓' : ''}</button>
+              <button className={`stepbtn${got ? ' is-done' : ''}`} onClick={send} disabled={loading || got}>{tr({ uz: "1 · So'rov yuborish", ru: '1 · Отправить запрос' }) /* F-0926-06: tugma emojisi olindi (H3) */}<span className="stepbtn-tick">✓</span></button>
+              <button className={`stepbtn${parsed ? ' is-done' : ''}`} onClick={() => { if (got) setParsed(true); }} disabled={!got || parsed}>{tr({ uz: '2 · .json() — tarjima qilish', ru: '2 · .json() — перевести' })}<span className="stepbtn-tick">✓</span>{/* F-0926-06: emoji olindi (H3); ✓ boshqa tugmadagidek o'ngda */}</button>
             </div>
-            <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Server javobi', ru: 'Ответ сервера' })}</p>
+            {/* F-0926-06: bo'sh-holat ramkasi («hali so'rov yuborilmagan») olindi — chorlov mentor gapida (159/9); yorliq javob kelganda chiqadi */}
+            {(got || loading) && <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Server javobi', ru: 'Ответ сервера' })}</p>}
             <div className="json-stage">
-              {!got && !loading && <div className="json-empty">{tr({ uz: "📭 hali so'rov yuborilmagan…", ru: '📭 запрос ещё не отправлен…' })}</div>}
               {loading && <div className="json-empty">{tr({ uz: '⏳ GET /games — javob kutilmoqda…', ru: '⏳ GET /games — ждём ответ…' })}</div>}
               {got && !parsed && (
                 <div className="json-card txt" key="txt">
-                  <div className="json-head"><span className="json-tag bad">{tr({ uz: '🔒 MATN (string)', ru: '🔒 ТЕКСТ (string)' })}</span><span className="json-note bad">{tr({ uz: '❌ map() hali ishlamaydi', ru: '❌ map() пока не работает' })}</span></div>
+                  <div className="json-head"><span className="json-tag bad">{tr({ uz: '🔒 MATN (string)', ru: '🔒 ТЕКСТ (string)' })}</span>{/* F-0926-06: «❌ map() hali ishlamaydi» olindi — o'ngdagi oyna va mentor aytadi (159/1) */}</div>
                   <pre className="json-body">{'\'[ {"name":"Adopt Me!"}, {"name":"Doors"} ]\''}</pre>
                 </div>
               )}
@@ -903,7 +903,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </div>
-            {got && !parsed && <p className="small fade-step" style={{ margin: 0, color: T.accent, fontStyle: 'italic' }}>{tr({ uz: '↑ Bu hali matn. 2-tugmani bosing — massivga aylansin.', ru: '↑ Это пока текст. Нажмите кнопку 2 — пусть станет массивом.' })}</p>}
+            {/* F-0926-06: «↑ Bu hali matn. 2-tugmani bosing» olindi — mentor gapini takrorlardi (159/1) */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Ekranda — map() natijasi', ru: 'На экране — результат map()' })}</p>
@@ -914,8 +914,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <RoCard name="Doors" />
                   </div>
                 : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 96 }}>
-                    <span style={{ fontSize: 26, opacity: got ? 1 : 0.4 }}>{got ? '🔒' : '📭'}</span>
-                    <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13, textAlign: 'center' }}>{got ? tr({ uz: "Javob hali MATN — map() ishlamaydi. Avval .json() qiling.", ru: 'Ответ пока ТЕКСТ — map() не работает. Сначала примените .json().' }) : tr({ uz: "So'rov yuboring…", ru: 'Отправьте запрос…' })}</p>
+                    {got && <span style={{ fontSize: 26 }}>🔒</span>}
+                    {got && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13, textAlign: 'center' }}>{tr({ uz: "Javob hali matn — map() ishlamaydi.", ru: 'Ответ пока текст — map() не работает.' })}</p>}
+                    {/* F-0926-06: bo'sh oynadagi «So'rov yuboring…» yo'rig'i olindi (P1); qulf yozuvi qisqardi — «Avval .json()» mentor aytadi (159/1) */}
                   </div>}
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l aniq: <b>matn → .json() → massiv → map → kartochkalar</b>. Tarjimasiz massiv yo'q, massivsiz map yo'q!</>, ru: <>Путь ясен: <b>текст → .json() → массив → map → карточки</b>. Без перевода нет массива, без массива нет map!</> })}</p></div>}
@@ -934,7 +935,7 @@ const Screen5b = (props) => (
     questionText="Server javobini kodda ishlatishdan oldin nima qilamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Server javobini kodda ishlatishdan oldin <span className="italic" style={{ color: T.accent }}>nima qilamiz</span>?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что мы делаем</span> с ответом сервера перед использованием в коде?</> })}</h2></>}
     options={[tr({ uz: "Hech narsa — javob darrov tayyor bo'ladi", ru: 'Ничего — ответ сразу готов' }), tr({ uz: "Javobni qaytadan serverga yuboramiz", ru: 'Отправляем ответ обратно на сервер' }), tr({ uz: ".json() bilan massivga aylantiramiz", ru: 'Превращаем в массив с помощью .json()' }), tr({ uz: "Ma'lumotni qo'lda ko'chirib yozamiz", ru: 'Переписываем данные вручную' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Javob JSON matn bo'lib keladi — .json() uni haqiqiy massivga aylantiradi. Shundan keyingina map ishlaydi.", ru: 'Верно! Ответ приходит JSON-текстом — .json() превращает его в настоящий массив. Только после этого работает map.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "Javob JSON matn bo'lib keladi — matnga map qilib bo'lmaydi. Massiv bo'lgachgina map ishlaydi.", ru: 'Ответ приходит JSON-текстом — к тексту map не применить. Только массив даёт работать map.' })}
     explainWrong={{
       0: tr({ uz: "Konsolni eslang: javob matn edi — qo'shtirnoq ichida. Matnga map qilolmaysiz, avval .json().", ru: 'Вспомните консоль: ответ был текстом — в кавычках. К тексту map не применить, сначала .json().' }),
       1: tr({ uz: "Yo'q — javob bizga keldi, uni qaytarish shart emas. Faqat tarjima kerak: .json().", ru: 'Нет — ответ уже у нас, возвращать его не нужно. Нужен только перевод: .json().' }),
@@ -979,9 +980,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && !loading && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Skeleton</b> — yuklanayotgan kartochkaning kulrang sharpasi. Roblox, YouTube, Instagram — hammasi shuni ishlatadi: foydalanuvchi xotirjam kutadi.</>, ru: <><b>Скелетон</b> — серый призрак загружающейся карточки. Roblox, YouTube, Instagram — все его используют: пользователь ждёт спокойно.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">robo-games {loading ? tr({ uz: '— yuklanmoqda…', ru: '— загружается…' }) : ''}</p>
+            {/* F-0926-06: «robo-games — yuklanmoqda…» yorlig'i olindi — oyna sarlavhasi va kutish holati o'zi ko'rsatadi (159/1); oyna tugmalar bilan bir chiziqda (159/3) */}
             <Win title="robo-games — localhost:5173" minH={120}>
-              {!mode && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Chapdagi tugmalardan birini bosing…', ru: 'Нажмите одну из кнопок слева…' })}</p>}
+              {/* F-0926-06: bo'sh oynadagi «Chapdagi tugmalardan birini bosing…» olindi — joy so'zi + chorlov mentor gapida (P1, 159/5) */}
               {mode && loading && mode === 'plain' && <div style={{ height: 96 }} />}
               {mode && loading && mode === 'skel' && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
@@ -1049,14 +1050,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {STEPS.map(s => (
-                <div key={s.z} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '8px 12px', borderRadius: 11, background: step >= s.z ? T.successSoft : T.paper, boxShadow: running && step === s.z ? `inset 0 0 0 1.5px ${T.accent}` : (step >= s.z ? `inset 0 0 0 1.5px ${T.success}` : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`), transition: 'all 0.35s' }}>
+                <div key={s.z} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '8px 12px', borderRadius: 11, background: step >= s.z ? T.successSoft : T.paper, boxShadow: running && step === s.z ? `inset 0 0 0 1.5px ${T.accent}` : (step >= s.z ? 'none' /* F-0926-06: bajarilgan qadam — faqat yumshoq yashil fon (G3) */ : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`), transition: 'all 0.35s' }}>
                   <span style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 11.5, color: step >= s.z ? T.success : T.ink3 }}>{step >= s.z ? '✓' : s.z}</span>
                   <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 12.5, color: step >= s.z ? T.ink : T.ink3, transition: 'color 0.35s' }}>{tr(s.t)}</span>
                 </div>
               ))}
             </div>
             <Win title="robo-games — localhost:5173" minH={96}>
-              {step < 2 && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{running ? tr({ uz: 'sahifa ochildi…', ru: 'страница открылась…' }) : tr({ uz: '▶ tugmasini bosing', ru: 'нажмите кнопку ▶' })}</p>}
+              {step < 2 && running && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'sahifa ochildi…', ru: 'страница открылась…' })}</p>}{/* F-0926-06: bo'sh oynadagi «▶ tugmasini bosing» yo'rig'i olindi — mentor aytadi (P1) */}
               {(step === 2 || step === 3) && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
                   <SkelCard /><SkelCard /><SkelCard />
@@ -1103,7 +1104,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Eshikni tanlang', ru: 'Выберите дверь' })}</p>
+            {/* F-0926-06: «Eshikni tanlang» yorlig'i olindi — mentor aytadi (G1) */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {EPS.map(e => (
                 <button key={e} className={`chip ${ep === e ? 'chip-on' : ''}`} onClick={() => choose(e)}>
@@ -1119,9 +1120,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta server — uchta eshik. Faqat <b>manzil oxiri</b> o'zgaradi, fetch o'sha bo'limni keltiradi. Roblox'dagi "Top", "Yangi" qatorlari ham shunday ishlaydi.</>, ru: <>Один сервер — три двери. Меняется только <b>конец адреса</b>, а fetch приносит нужный раздел. Ряды «Top» и «New» в Roblox работают так же.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">robo-api.example{ep || ''}</p>
+            {/* F-0926-06: oyna ustidagi manzil-yorlig'i olindi — oyna sarlavhasi aynan shuni aytadi (159/1); bo'sh oynadagi «Eshik tanlanmagan…» olindi (P1) */}
             <Win title={`robo-api.example${ep || ''}`} minH={110}>
-              {!ep && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Eshik tanlanmagan…', ru: 'Дверь не выбрана…' })}</p>}
               {ep && loading && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
                   {SERVER[ep].map((_, i) => <SkelCard key={i} />)}
@@ -1148,7 +1148,7 @@ const Screen9 = (props) => (
     questionText="Serverdan kelgan o'yinlar qanday qilib ekranga chiqadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Serverdan kelgan o'yinlar <span className="italic" style={{ color: T.accent }}>qanday qilib</span> ekranga chiqadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> игры с сервера попадают на экран?</> })}</h2></>}
     options={[tr({ uz: "Sahifani qo'lda yangilab turish kerak", ru: 'Нужно вручную обновлять страницу' }), tr({ uz: "fetch o'zi ekranga chizib qo'yadi", ru: 'fetch сам рисует их на экране' }), tr({ uz: "useEffect o'zi chizib beradi", ru: 'useEffect сам их рисует' }), tr({ uz: "setGames state'ga yozadi — React qayta chizadi", ru: 'setGames пишет в state — React перерисовывает' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! fetch faqat olib keladi, chizish — state'ning ishi: setGames(data) → state yangilandi → React kartochkalarni chizdi. O'tgan darsdagi qoida shu yerda ham ishlayapti!", ru: 'Верно! fetch только приносит, а рисование — дело state: setGames(data) → state обновился → React нарисовал карточки. Правило из прошлого урока работает и здесь!' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "fetch faqat olib keladi, chizish — state'ning ishi. O'tgan darsdagi qoida shu yerda ham ishlayapti!", ru: 'fetch только приносит, а рисование — дело state. Правило из прошлого урока работает и здесь!' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — qo'lda yangilash kerak emas. setGames state'ni o'zgartirgan zahoti React o'zi qayta chizadi.", ru: 'Нет — вручную обновлять не нужно. Как только setGames изменит state, React сам всё перерисует.' }),
       1: tr({ uz: "fetch — ofitsiant: olib keladi, lekin chizmaydi. Chizish uchun ma'lumot state'ga tushishi kerak.", ru: 'fetch — официант: приносит, но не рисует. Чтобы нарисовалось, данные должны попасть в state.' }),
@@ -1200,7 +1200,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">robo-games</p>
+            {/* F-0926-06: «robo-games» yorlig'i olindi — oyna sarlavhasi aytadi (159/1) */}
             <Win title="robo-games — localhost:5173" minH={104}>
               {cur === 'good'
                 ? <div className="fade-step" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>{LIST.map(g => <RoCard key={g.name} name={g.name} />)}</div>
@@ -1258,7 +1258,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: '2. Natija — localhost:5173', ru: '2. Результат — localhost:5173' })}</p>
+            <p className="flow-label">{tr({ uz: '2. Natija', ru: '2. Результат' })}{/* F-0926-06: «localhost:5173» oyna sarlavhasida bor (159/1) */}</p>
             <Win title="robo-games — localhost:5173" minH={130}>
               {done && cur ? (
                 <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1271,13 +1271,11 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     {cur.id === 't3' && <><SkelCard /><RoCard name="Adopt Me!" /><RoCard name="Doors" /></>}
                   </div>
                 </div>
-              ) : (
-                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Buyruq bering va rejani tasdiqlang…', ru: 'Дайте команду и подтвердите план…' })}</p>
-              )}
+              ) : null /* F-0926-06: bo'sh oynadagi «Buyruq bering…» yo'rig'i olindi — mentor aytadi (P1) */}
             </Win>
             {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodni o'qing: manzil <b>to'g'ri eshikka</b> boryapti, javob <b>.json()dan o'tib</b> state'ga tushyapti. Agent ishini <b>isbot bilan</b> qabul qildingiz.</>, ru: <>Прочитайте код: адрес идёт <b>в верную дверь</b>, ответ <b>проходит через .json()</b> и попадает в state. Вы приняли работу агента <b>с доказательством</b>.</> })}</p></div>
-              : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.", ru: 'Результат появится здесь — потом вы сами его проверите.' })}</p>}
+              && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodni o'qing: manzil <b>to'g'ri eshikka</b> boryapti, javob <b>.json()dan o'tib</b> state'ga tushyapti. Agent ishini <b>isbot bilan</b> qabul qildingiz.</>, ru: <>Прочитайте код: адрес идёт <b>в верную дверь</b>, ответ <b>проходит через .json()</b> и попадает в state. Вы приняли работу агента <b>с доказательством</b>.</> })}</p></div>
+            }{/* F-0926-06: «Natija shu yerda paydo bo'ladi» olindi — mentor «natijani sinang» deydi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1293,7 +1291,7 @@ const Screen12 = (props) => (
     questionText="Konsolda 404 xatosini ko'rsangiz, birinchi nimani tekshirasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Konsolda <span className="mono" style={{ color: T.accent }}>404</span> ko'rsangiz, birinchi <span className="italic" style={{ color: T.accent }}>nimani tekshirasiz</span>?</>, ru: <>Увидели в консоли <span className="mono" style={{ color: T.accent }}>404</span> — <span className="italic" style={{ color: T.accent }}>что проверите</span> первым делом?</> })}</h2></>}
     options={[tr({ uz: "Manzilni — endpoint to'g'ri yozilganmi", ru: 'Адрес — верно ли написан эндпоинт' }), tr({ uz: "Kompyuterni o'chirib yoqaman", ru: 'Перезагружу компьютер' }), tr({ uz: "React'ni qaytadan o'rnataman", ru: 'Переустановлю React' }), tr({ uz: "Hech narsani — o'zi tuzalib ketadi", ru: 'Ничего — само починится' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! 404 = server 'bunday eshik menda yo'q' deyapti. Demak manzilda xato bor — harflarni tekshirasiz: /gmaes emas, /games.", ru: 'Верно! 404 = сервер говорит «такой двери у меня нет». Значит, в адресе ошибка — проверяете буквы: не /gmaes, а /games.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "404 = server 'bunday eshik menda yo'q' deyapti. Bitta harf yetarli: /gmaes emas, /games.", ru: '404 = сервер говорит «такой двери у меня нет». Хватает одной буквы: не /gmaes, а /games.' })}
     explainWrong={{
       1: tr({ uz: "Yo'q — kompyuterda ayb yo'q. 404 server javobi: so'ralgan manzil topilmadi.", ru: 'Нет — компьютер не виноват. 404 — ответ сервера: запрошенный адрес не найден.' }),
       2: tr({ uz: "Yo'q — React joyida. 404 faqat manzil haqida gapiryapti.", ru: 'Нет — React в порядке. 404 говорит только об адресе.' }),
@@ -1313,7 +1311,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     set: '.then(data => setGames(data));'
   };
   const POOL = ['set', 'fetch', 'effect', 'json']; // ataylab aralashtirilgan
-  const HINTS = { effect: { uz: 'qachon? — sahifa ochilganda', ru: 'когда? — при открытии страницы' }, fetch: { uz: "qayerga? — manzilga so'rov", ru: 'куда? — запрос по адресу' }, json: { uz: 'tarjima — matn → massiv', ru: 'перевод — текст → массив' }, set: { uz: 'ekranga — state yangilanadi', ru: 'на экран — state обновляется' } };
+  // F-0926-06: bo'lak yonidagi «qachon? / qayerga? / tarjima / ekranga» izohlari olindi — mentor aynan shu tartibni aytadi (159/1)
   const [placed, setPlaced] = useState(storedAnswer ? 4 : 0);
   const [shakeId, setShakeId] = useState(null);
   const [loaded, setLoaded] = useState(!!storedAnswer);
@@ -1345,28 +1343,27 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Bo'laklar", ru: 'Блоки' })}</p>
+            {/* F-0926-06: «Bo'laklar» yorlig'i olindi — mentor «4 bo'lak» deydi; o'ng ustun yorlig'i ham olingani uchun tepalar bir chiziqda (159/1, 159/3) */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {POOL.map(id => {
                 const used = ORDER.indexOf(id) < placed;
                 return (
                   <button key={id} className={`gchip ${shakeId === id ? 'shake' : ''}`} disabled={used} onClick={() => tap(id)} style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12, justifyContent: 'space-between', opacity: used ? 0.35 : 1, padding: '9px 13px' }}>
                     <span>{CHIPS[id]}</span>
-                    <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 10.5, color: used ? T.success : T.ink3, fontStyle: 'italic' }}>{used ? '✓' : tr(HINTS[id])}</span>
+                    {used && <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 10.5, color: T.success }}>✓</span>}
                   </button>
                 );
               })}
             </div>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95, minHeight: 110 }}>
-              {placed === 0 && <Cm>{tr({ uz: "// bo'laklarni tartib bilan bosing…", ru: '// нажимайте блоки по порядку…' })}</Cm>}
+              {/* F-0926-06: bo'sh kod-oynadagi «// bo'laklarni tartib bilan bosing…» yo'rig'i olindi — mentor aytadi (P1) */}
               {ORDER.slice(0, placed).map(id => <span key={id} className="el-in" style={{ display: 'inline-block' }}>{IND[id]}{id === 'fetch' ? <>{'fetch('}<St>'https://robo-api.example/games'</St>{')'}</> : CHIPS[id]}{'\n'}</span>)}
               {done && <span className="el-in" style={{ display: 'inline-block' }}><Cm>{'}, []);'}</Cm></span>}
             </pre>
           </Col>
           <Col>
-            <p className="flow-label">robo-games</p>
+            {/* F-0926-06: «robo-games» yorlig'i (oyna sarlavhasi takrori) va bo'sh oynadagi yo'riq olindi (159/1, P1) */}
             <Win title="robo-games — localhost:5173" minH={110}>
-              {!done && <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Kod tayyor bo'lganda katalog yuklanadi…", ru: 'Когда код будет готов, каталог загрузится…' })}</p>}
               {done && !loaded && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
                   <SkelCard /><SkelCard /><SkelCard />
@@ -1418,9 +1415,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`ai-line ${picked === 'set' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('set'); }}>{'    .then(data => setGames(data));'}</div>
                 <div className={`ai-line ${picked === 'end' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('end'); }}>{'}, []);'}</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Konsoldagi 404 qaysi qator haqida gapiryapti? Bosing.', ru: 'О какой строке говорит 404 в консоли? Нажмите на неё.' })}</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '🔧 /games deb tuzatish', ru: '🔧 Исправить на /games' })}</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ Tuzatildi — so'rov to'g'ri eshikka ketyapti!", ru: '✓ Исправлено — запрос идёт в верную дверь!' })}</p>}
+              {/* F-0926-06: «Konsoldagi 404 qaysi qator…? Bosing.» olindi — mentor «Xato qaysi qatorda?» deydi (159/1) */}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '/games deb tuzatish', ru: 'Исправить на /games' }) /* F-0926-06: emoji olindi (H3) */}</button>}
+              {/* F-0926-06: «✓ Tuzatildi» yashil yozuvi olindi — koddagi «// tuzatildi!», konsol «200 OK» va yakun kartasi aytadi (159/8) */}
             </div>
           </Col>
           <Col>
@@ -1440,7 +1437,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri{picked === 'json' ? ' — tarjima joyida' : picked === 'set' ? " — state'ga yozish joyida" : ''}. Konsol nima dedi? <span className="mono">404 — /gmaes</span>. Manzilni <b>harfma-harf</b> o'qing.</>, ru: <>Эта строка верная{picked === 'json' ? ' — перевод на месте' : picked === 'set' ? ' — запись в state на месте' : ''}. Что сказала консоль? <span className="mono">404 — /gmaes</span>. Прочитайте адрес <b>по буквам</b>.</> })}</p></div>
                 : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Skeleton tugamayapti — demak javob <b style={{ color: T.ink }}>hech qachon kelmagan</b>. Konsoldagi 404 sizga aniq manzilni aytib turibdi.</>, ru: <>Скелетон не исчезает — значит, ответ <b style={{ color: T.ink }}>так и не пришёл</b>. 404 в консоли прямо называет вам адрес.</> })}</p></div>
             )}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">/gmaes</span> — harflar almashib ketgan! Server bunday eshikni tanimaydi, shuning uchun 404. Chapdagi tugma bilan tuzating →</>, ru: <><span className="mono">/gmaes</span> — буквы перепутались! Сервер такой двери не знает, поэтому 404. Исправьте кнопкой слева →</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">/gmaes</span> — harflar almashib ketgan! Server bunday eshikni tanimaydi, shuning uchun 404. Tugma bilan tuzating.</>, ru: <><span className="mono">/gmaes</span> — буквы перепутались! Сервер такой двери не знает, поэтому 404. Исправьте кнопкой.</> /* F-0926-06: joy so'zi («chapdagi») olindi — telefonda tugma tepada (159/5) */ })}</p></div>}
             {fixed && (
               <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: "404 ni o'qidingiz, manzilni tuzatdingiz!", ru: 'Вы прочитали 404 и исправили адрес!' })}</p><p className="ta-sub">{tr({ uz: 'AI tez yozadi, siz tekshirib tuzatasiz — zo\'r jamoa', ru: 'AI быстро пишет, вы проверяете и чините — отличная команда' })}</p></div>
             )}
@@ -1527,11 +1524,11 @@ function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswe
             {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас к следующему шагу.' })}</p></div>}
+            {/* F-0926-06: «Juda yaxshi! Vazifani bajardingiz…» olindi — tugma «✓ Bajarildi — ustozni kuting» deydi (159/8); ekran 200–330px pastki chiziqdan tushardi (159/12) */}
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
+            {/* F-0926-06: «Bosqichlar — belgilab boring» yorlig'i olindi — mentor aynan shuni aytadi (159/1); ikki ustun tepasi bir chiziqda (159/3) */}
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
@@ -1550,8 +1547,7 @@ function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswe
   );
 }
 const PRACTICE_JSON = [
-  'public/games.json',
-  '',
+  'public/games.json',   // F-0926-06: bo'sh qator olindi — ixchamlash (159/12)
   '[',
   '  { "name": "Adopt Me!", "emoji": "\u{1F43E}", "likes": 92 },',
   '  { "name": "Blox Fruits", "emoji": "\u{1F347}", "likes": 95 },',
@@ -1564,10 +1560,9 @@ const ScreenApiPractice = (props) => (
     title={{ uz: "Katalogni so'rov bilan yuklang", ru: 'Загрузите каталог запросом' }}
     task={{ uz: "robo-games loyihangizda games ro'yxatini koddan olib tashlang va katalogni fetch bilan yuklang — sahifa ochilganda so'rov ketsin, kartochkalar javobdan chiqsin.", ru: 'В своём проекте robo-games уберите список games из кода и загрузите каталог через fetch — при открытии страницы пусть уходит запрос, а карточки приходят из ответа.' }}
     extra={
-      <div className="frame-soft fade-up delay-1">
-        <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bugun so'rov <b>o'z loyihangizdagi faylga</b> ketadi: haqiqiy server manzili hozircha javob bermayapti. Kod aynan bir xil qoladi — manzil almashsa, qolgan hamma narsa o'z o'rnida ishlaydi.</>, ru: <>Сегодня запрос уйдёт <b>к файлу в вашем же проекте</b>: настоящий адрес сервера пока не отвечает. Код остаётся точно таким же — поменяется адрес, всё остальное работает как есть.</> })}</p>
-        <pre className="code-box" style={{ padding: '10px 14px', marginTop: 8 }}>{PRACTICE_JSON}</pre>
-        <p className="small" style={{ margin: '6px 0 0', color: T.ink2 }}>{tr({ uz: "Kodingizdagi games massivini shu ko'rinishga o'tkazing: JSON'da har kalit qo'shtirnoq ichida turadi.", ru: 'Переведите массив games из вашего кода в такой вид: в JSON каждый ключ стоит в кавычках.' })}</p>
+      <div className="frame-soft fade-up delay-1" style={{ padding: '12px 14px' /* F-0926-06: ixchamlash (159/12) */ }}>
+        <p className="small" style={{ margin: 0, color: T.ink, lineHeight: 1.45 }}>{tr({ uz: <>Bugun so'rov <b>o'z loyihangizdagi faylga</b> ketadi — haqiqiy server hozircha javob bermayapti. Kod bir xil, faqat manzil boshqa.</>, ru: <>Сегодня запрос уйдёт <b>к файлу в вашем же проекте</b> — настоящий сервер пока не отвечает. Код тот же, другой только адрес.</> })}</p>
+        <pre className="code-box" style={{ padding: '8px 12px', marginTop: 8, fontSize: 11.5, lineHeight: 1.36, whiteSpace: 'pre', overflowX: 'auto' }}>{PRACTICE_JSON}</pre>{/* F-0926-06: ixchamlash — JSON qatorlari bo'linmaydi (159/12); «kalit qo'shtirnoq ichida» izohi olindi — 2-bosqich aynan shuni aytadi (159/1) */}
       </div>
     }
     checklist={[
@@ -2525,9 +2520,9 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
            6/20 da 1-qadamda, 8/20 da 2-qadamda turardi — teskari. Endi ikkalasi bir xil
            o'lchov va vazn; FARQNI faqat HOLAT bildiradi (F-0820-64):
              bosilmagan = accent · bajarilgan = yashil + ichkaridagi ✓ · navbatsiz = soft+disabled */
-        .stepbtn { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; width: 100%; max-width: 320px; justify-content: space-between; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); cursor: pointer; border: none; border-radius: 12px; padding: clamp(11px,1.6vw,13px) clamp(16px,2.2vw,20px); background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.18s; text-align: left; }
-        .stepbtn:hover:not(:disabled):not(.is-done) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
-        .stepbtn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
+        .stepbtn { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; width: 100%; max-width: 320px; justify-content: space-between; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); cursor: pointer; border: none; border-radius: 12px; padding: clamp(11px,1.6vw,13px) clamp(16px,2.2vw,20px); background: ${T.paper}; color: ${T.accent}; box-shadow: inset 0 0 0 2px ${T.accent}, 0 6px 16px -6px rgba(${T.shadowBase},0.18); transition: all 0.18s; text-align: left; } /* F-0926-06: LOUD — to'liq accent fon -> oq fon + accent halqa + accent matn (159/4, 159/10) */
+        .stepbtn:hover:not(:disabled):not(.is-done) { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.3); } /* F-0926-06: LOUD — to'liq accent fon -> oq fon + accent halqa (159/10) */
+        .stepbtn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: none; } /* F-0926-06: bajarilgan — faqat yumshoq yashil fon, ramka olindi (G3) */
         .stepbtn:disabled:not(.is-done) { background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.line}; cursor: not-allowed; }
         .stepbtn-tick { font-weight: 900; opacity: 0; transition: opacity 0.2s; }
         .stepbtn.is-done .stepbtn-tick { opacity: 1; }
@@ -2543,7 +2538,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: LOUD — to'liq accent fon -> Soft + halqa (159/10) */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 8px 13px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.2); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover:not(:disabled) { transform: translateY(-1px); } .gchip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
@@ -2731,7 +2726,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
            o'ng ustunda katta bo'shliq qolardi. Endi «ikki joy, bir xil vazn». */
         .mig-box > .code-box { flex: 1; }
         .mig-arrow { flex: 0 0 86px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-        .mig-line { width: 100%; height: 2px; background: repeating-linear-gradient(90deg, ${T.ink3} 0 5px, transparent 5px 10px); }
+        .mig-line { width: 100%; height: 2px; background: repeating-linear-gradient(90deg, ${T.ink3} 0 5px, transparent 5px 10px); } /* kesik-ok: ko'chish yo'li — paket shu chiziq bo'ylab uchadi (F-0926-06) */
         .mig-cap { font-family: 'Manrope'; font-weight: 700; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; }
         .mig-packet { position: absolute; top: -6px; left: 0; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 10px; color: #fff; background: ${T.accent}; padding: 4px 8px; border-radius: 99px; white-space: nowrap; box-shadow: 0 5px 12px -3px rgba(255,79,40,0.55); animation: mig-fly 1s ease-in-out forwards; z-index: 3; }
         @keyframes mig-fly { 0% { left: -8%; opacity: 0; } 18% { opacity: 1; } 82% { opacity: 1; } 100% { left: 90%; opacity: 0; } }
@@ -2740,8 +2735,8 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         @media (max-width: 620px) { .mig-arrow { flex-basis: 100%; flex-direction: row; height: 36px; justify-content: center; } .mig-arrow .mig-line { width: 55%; } .mig-packet { top: 50%; transform: translateY(-50%); } }
 
         /* JSON tarjima quvuri (Screen5) */
-        .json-stage { min-height: 118px; }
-        .json-empty { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 26px 14px; text-align: center; font-family: 'Georgia', serif; font-style: italic; color: ${T.ink3}; font-size: 13px; }
+        .json-stage { min-height: 0; } /* F-0926-06: bo'sh-holat ramkasi olingach bo'sh joy ushlab turilmaydi (159/13) */
+        .json-empty { padding: 4px 0; /* F-0926-06: kesik bo'sh-holat ramkasi olindi — faqat kutish holati yozuvi (159/3) */ font-family: 'Georgia', serif; font-style: italic; color: ${T.ink3}; font-size: 13px; }
         .json-card { border-radius: 12px; padding: 12px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.18); }
         .json-card.txt { background: #20283A; animation: fade-step 0.35s ease-out; }
         .json-card.arr { background: ${CODE.bg}; box-shadow: 0 0 0 2px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.3); animation: json-flip 0.55s cubic-bezier(.34,1.3,.5,1); transform-origin: top center; }
@@ -2785,20 +2780,20 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
+        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 11px 15px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 6px; } /* F-0926-06: ixchamlash (159/12) */
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-steps { display: flex; flex-direction: column; gap: 5px; } /* F-0926-06: ixchamlash — 8 bosqich pastki chiziqdan ~100px tushardi (159/12) */
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 5px 12px; line-height: 1.38; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
-        .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: none; } /* F-0926-06: bajarilgan qator — faqat yumshoq fon (G3) */
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 11px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 0; align-self: flex-start; } /* F-0926-06: ixchamlash (159/12) */
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
-        .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: none; /* F-0926-06: ramka olindi (G3) */ cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -3043,39 +3038,7 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         @media (prefers-reduced-motion: reduce) { .cs-cap, .cs-ring, .cs-tok, .cs-dash, .cs-thunder, .cs-word, .cs-word::before, .csn-bolt, .cs-spark, .cs-enter, .cs-livedot i, .cs-hud-i, .cs-portal { animation: none !important; } }
         @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
 
-        /* === 🎮 LIKE MASHINASI (S5 maqsad-o'yin) — HARAKAT sifati ✨ Animatsiya roli === */
-        .lm-flow { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .lm-mem { width: 100%; max-width: 240px; border-radius: 12px; padding: 10px 14px; background: ${T.accentSoft}; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-        .lm-channel { position: relative; width: 10px; height: 44px; border-radius: 6px; background: repeating-linear-gradient(180deg, rgba(0,0,0,0.12) 0 5px, transparent 5px 10px), #d8d4cc; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; transition: box-shadow 0.3s, background 0.3s; }
-        .lm-channel.lit { background: linear-gradient(180deg, ${T.success}, #35c07d); box-shadow: 0 0 14px 2px rgba(31,122,77,0.55); }
-        .lm-channel-lbl { position: absolute; left: 16px; bottom: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 9px; font-weight: 700; color: ${T.ink3}; white-space: nowrap; }
-        .lm-impulse { position: absolute; top: -20px; left: 0; right: 0; height: 20px; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9)); animation: lm-drop 0.6s cubic-bezier(.4,0,.3,1) both; }
-        @keyframes lm-drop { 0% { transform: translateY(-4px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(64px); opacity: 0.2; } }
-        .lm-screen.lm-frozen { animation: lm-shake 0.4s ease; }
-        @keyframes lm-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-        .lm-gap { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; color: ${T.ink2}; }
-        .lm-gap-i b { color: ${T.ink}; font-size: 15px; }
-        .lm-gap-vs { font-family: 'Fraunces', serif; font-size: 18px; color: ${T.ink3}; font-weight: 700; }
-        .lm-goal { position: relative; width: 100%; height: 26px; border-radius: 99px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.07); overflow: hidden; }
-        .lm-goal-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, ${T.success}, #35c07d); border-radius: 99px; transition: width 0.5s cubic-bezier(.34,1.2,.5,1); }
-        .lm-goal-txt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12.5px; color: ${T.ink}; }
-        .lm-levers { display: flex; flex-direction: column; gap: 10px; }
-        .lm-lever { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; border: none; border-radius: 12px; padding: 12px 16px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; }
-        .lm-lever:disabled { opacity: 0.5; cursor: default; }
-        .lm-lever:not(:disabled):hover { transform: translateY(-2px); }
-        .lm-lever.dead { background: linear-gradient(135deg, ${T.bg}, ${T.accentSoft}); border: 1.5px dashed rgba(255,79,40,0.42); box-shadow: none; }
-        .lm-lever.live { background: linear-gradient(135deg, ${T.success}, #35c07d); box-shadow: 0 8px 22px -6px rgba(31,122,77,0.5); }
-        .lm-lever-code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(13px,1.7vw,15px); }
-        .lm-lever.dead .lm-lever-code { color: ${T.ink2}; } .lm-lever.dead .lm-lever-sub { color: ${T.ink3}; }
-        .lm-lever.live .lm-lever-code { color: #fff; } .lm-lever.live .lm-lever-sub { color: rgba(255,255,255,0.85); }
-        .lm-lever-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 11px; }
-        .lm-toast { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 10px 13px; }
-        /* behuda-sanagich — har soxta-bosishda qizil pulsatsiya (key strategiya retrigger) */
-        .lm-wasted { animation: lm-wasted-pulse 0.46s cubic-bezier(.34,1.4,.5,1); }
-        .lm-wasted b { display: inline-block; animation: lm-wasted-glow 0.46s ease; }
-        @keyframes lm-wasted-pulse { 0%,100% { transform: scale(1); } 26% { transform: scale(1.07); } }
-        @keyframes lm-wasted-glow { 0% { transform: scale(1); text-shadow: 0 0 0 rgba(255,79,40,0); } 32% { transform: scale(1.3); text-shadow: 0 0 12px rgba(255,79,40,0.65); } 100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,79,40,0); } }
-        @media (prefers-reduced-motion: reduce) { .lm-impulse, .lm-screen.lm-frozen, .lm-wasted, .lm-wasted b, .lm-goal-fill { animation: none !important; transition: none !important; } .lm-impulse { display: none; } }
+        /* F-0926-06: ishlatilmagan .lm-* bloki (Like mashinasi, boshqa darsdan qolgan) olindi — JSX da hech qayerda yo'q edi */
 
         /* ===== ⚡ JONLI QATLAM CSS (Kahoot-kutish · MentorTestStats · CodeStrike arena · qcode-chip) — L1 etalondan ===== */
         /* --- Kahoot-kutish holatlari (jonli test) --- */

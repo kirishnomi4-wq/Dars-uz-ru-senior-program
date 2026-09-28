@@ -136,7 +136,7 @@ const SORT_METRICS = [
   { id: 'g2', t: 'Ertasi kuni qaytganlar ulushi (retention)', ans: 'action', why: '«Mahsulot yashaydimi?» savolining javobi. Eng harakatli raqamlardan biri.' },
   { id: 'g3', t: 'Instagramdagi obunachilar soni', ans: 'vanity', why: 'Mahsulotni ISHLATISHNI o\'lchamaydi. Chiroyli, lekin qarorsiz.' },
   { id: 'g4', t: 'Avtobusni haftada 3+ marta tekshirganlar', ans: 'action', why: 'Odat + core qiymat. To\'g\'ridan-to\'g\'ri Shimoliy yulduzga bog\'liq.' },
-  { id: 'g5', t: 'Sahifa ko\'rishlar soni (page views)', ans: 'vanity', why: 'Ko\'p ko\'rish ≠ qiymat. Odam adashib aylanayotgan ham bo\'lishi mumkin.' },
+  { id: 'g5', t: 'Sahifa ko\'rishlar soni (page views)', ans: 'vanity', why: 'Ko\'p ko\'rish hali qiymat degani emas. Odam adashib aylanayotgan ham bo\'lishi mumkin.' },
   { id: 'g6', t: 'Eslatmani yoqqanlar ulushi', ans: 'action', why: 'Aktivatsiya signali: eslatma yoqqan odam ~5× ko\'proq qaytadi.' },
   { id: 'g7', t: 'App Store o\'rtacha yulduzi', ans: 'vanity', why: 'Kam sonli baho, ko\'pi tanishlar. Qaror uchun zaif signal.' },
   { id: 'g8', t: 'Ochgandan so\'ng avtobusni tekshirganlar % (konversiya)', ans: 'action', why: 'Voronka konversiyasi: kelgan odam qiymat oldimi? Nisbat — solishtiriladi.' }
@@ -146,7 +146,7 @@ const SMAP = { vanity: { emoji: '🎈', label: 'MAQTANCHOQ', color: T.honey }, a
 // s5 — Shimoliy yulduz nomzodlari
 const NORTHSTAR = [
   { id: 'n1', ic: '📥', label: 'Umumiy ro\'yxatdan o\'tganlar', verdict: 'no', d: 'Bir marta o\'sadi va to\'xtaydi. Odam mahsulotni tashlab ketsa ham bu raqam kamaymaydi — ya\'ni mahsulot o\'lsa ham «yashil» ko\'rinadi. Bu yulduz emas, maqtanchoq raqam.' },
-  { id: 'n2', ic: '👀', label: 'Sahifa ko\'rishlar soni', verdict: 'no', d: 'Qiymatga bog\'liq emas: odam adashib ko\'p sahifa ochishi mumkin. Ko\'rish ≠ foyda. Bu ham yulduzligiga da\'vogar emas.' },
+  { id: 'n2', ic: '👀', label: 'Sahifa ko\'rishlar soni', verdict: 'no', d: 'Qiymatga bog\'liq emas: odam adashib ko\'p sahifa ochishi mumkin. Ko\'rish hali foyda degani emas. Bu ham yulduzligiga da\'vogar emas.' },
   { id: 'n3', ic: '⭐', label: 'Haftada 3+ marta avtobus tekshirgan foydalanuvchilar', verdict: 'yes', d: 'MANA U! Bitta raqamda hammasi jam: odam BOR (foydalanuvchi), qiymat OLDI (tekshirdi), ODAT bo\'ldi (3+ marta). O\'ssa — biznes sog\'lom; tushsa — muammo bor. Butun jamoa aynan shuni o\'stiradi.' }
 ];
 
@@ -155,7 +155,7 @@ const EVENTS = [
   { id: 'e1', t: 'sahifa_ochildi — kimdir MVP\'ni ochdi', ans: 'do', why: 'Voronkaning tepasi. Nechtadan boshlanadi — bilishimiz shart, aks holda konversiyani hisoblab bo\'lmaydi.' },
   { id: 'e2', t: 'avtobus_tekshirildi — CORE JOB bajarildi', ans: 'do', why: 'Bu — qiymat lahzasi. Eng muhim hodisa: mahsulot haqiqatan ish berdimi?' },
   { id: 'e3', t: 'eslatma_yoqildi — aktivatsiya nomzodi', ans: 'do', why: 'Yoqqanlar ko\'proq qaytadi. Aktivatsiyani topish uchun kuzatilishi shart.' },
-  { id: 'e4', t: 'ertasi_qaytdi — retention', ans: 'do', why: '«Mahsulot yashaydimi?» — Shimoliy yulduzning yuragi. Albatta yozamiz.' },
+  { id: 'e4', t: 'ertasi_qaytdi — retention', ans: 'do', why: '«Mahsulot yashaydimi?» — Shimoliy yulduzning asosi. Albatta yozamiz.' },
   { id: 'e5', t: 'dark_mode_yoqildi', ans: 'later', why: 'Qiziq bo\'lishi mumkin, lekin core jobga aloqasi yo\'q. Keyin — kerak bo\'lsa.' },
   { id: 'e6', t: 'har_scroll_pikseli yozib boriladi', ans: 'no', why: 'Shovqin: ma\'lumot ummoni, insayt nol. Tahlilni ko\'mib tashlaydi.' },
   { id: 'e7', t: 'sichqoncha_koordinatalari (har harakat)', ans: 'no', why: 'Maxfiylik xavfi + shovqin. Odamlarga hurmat: faqat kerakli hodisa.' },
@@ -188,9 +188,9 @@ const READ_DRILL = [
     correct: 1, why: 'Teshik chelakka ko\'proq suv quyish — behuda. Avval teshikni yoping: nega qaytmayapti? Retention tuzalmasa, reklama pulni yoqadi.' },
   { id: 'd2', label: 'Eslatma yoqqanlar 5× ko\'proq qaytadi', emoji: '🔔', color: T.honey,
     opts: ['Hammani majburan obuna qilish', 'Eslatma yoqishni birinchi ochishda OSON va tabiiy qilish — aktivatsiyani kuchaytir', 'Eslatmani umuman olib tashlash'],
-    correct: 1, why: 'Bu — sehrli raqam: aktivatsiya lahzasi topildi. Majburlash emas — yoqishni oson va foydali qilib, ko\'proq odamni «aha» lahzasiga olib boring.' },
+    correct: 1, why: 'Bu — kalit raqam: aktivatsiya lahzasi topildi. Majburlash emas — yoqishni oson va foydali qilib, ko\'proq odamni «aha» lahzasiga olib boring.' },
   { id: 'd3', label: '620 tekshirdi, lekin faqat 210 eslatma yoqdi', emoji: '📉', color: T.grape,
-    opts: ['Muammo yo\'q, 620 zo\'r-ku', 'Voronkaning shu bosqichida katta tushish bor — nega yarmisi eslatma yoqmaydi? Shu qadamni sodda qil', 'Eslatma tugmasini kattaroq qizil qilish (taxminan)'],
+    opts: ['Muammo yo\'q, 620 — yaxshi natija', 'Voronkaning shu bosqichida katta tushish bor — nega yarmisi eslatma yoqmaydi? Shu qadamni sodda qil', 'Eslatma tugmasini kattaroq qizil qilish (taxminan)'],
     correct: 1, why: 'Eng katta tushish — eng katta imkoniyat. «Nega tushyapti?» degan savolni bering (kuzating/so\'rang), taxminga emas — dalilga qarab tuzating.' }
 ];
 
@@ -760,7 +760,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 8 — AKTIVATSIYA + SEHRLI RAQAM =====
+// ===== SCREEN 8 — AKTIVATSIYA + KALIT RAQAM =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [v, setV] = useState('fb');
   const [seen, setSeen] = useState(storedAnswer ? new Set(['fb', 'bus']) : new Set(['fb']));
@@ -769,10 +769,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const isFb = v === 'fb';
   return (
-    <Stage eyebrow="Aktivatsiya · sehrli raqam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkala misolni ko\'ring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Aktivatsiya · kalit raqam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkala misolni ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">«Aha!» lahzasi va <span className="italic" style={{ color: T.honey }}>sehrli raqam</span></h2></div>
-        <Mentor>Aktivatsiya = foydalanuvchi birinchi marta QIYMATNI his qilgan lahza. Ba'zan uni aniq bir <b style={{ color: T.ink }}>«sehrli raqam»</b> bashorat qiladi. Ikki misolni ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">«Aha!» lahzasi va <span className="italic" style={{ color: T.honey }}>kalit raqam</span></h2></div>
+        <Mentor>Aktivatsiya = foydalanuvchi birinchi marta QIYMATNI his qilgan lahza. Ba'zan uni aniq bir <b style={{ color: T.ink }}>«kalit raqam»</b> (magic number) bashorat qiladi. Ikki misolni ko'ring.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -781,14 +781,14 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isFb ? T.blue : T.honey}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isFb
-                ? 'Facebook o\'sish jamoasi ma\'lumotni titkiladi va bitta naqsh topdi: «birinchi 10 kunda 7 ta do\'st qo\'shgan» foydalanuvchi deyarli hech qachon ketmaydi. Mana — sehrli raqam. Shundan keyin butun mahsulot bitta maqsadga qaratildi: yangi odamni tezroq 7 do\'stga yetkazish.'
+                ? 'Facebook o\'sish jamoasi ma\'lumotni titkiladi va bitta naqsh topdi: «birinchi 10 kunda 7 ta do\'st qo\'shgan» foydalanuvchi deyarli hech qachon ketmaydi. Mana — kalit raqam. Shundan keyin butun mahsulot bitta maqsadga qaratildi: yangi odamni tezroq 7 do\'stga yetkazish.'
                 : 'Sizning dashboardingiz ham naqsh ko\'rsatdi: «eslatmani yoqqan» foydalanuvchi eslatma yoqmaganidan ~5 barobar ko\'proq qaytadi. Demak aktivatsiya lahzangiz = eslatmani yoqish. Vazifa: birinchi ochishda eslatma yoqishni oson va tabiiy qilish.'}</p>
             </div>
           </Col>
           <Col>
             {isFb
-              ? <div className="frame-success fade-step" key="fb"><p className="body" style={{ margin: 0, color: T.ink }}>Saboq: sehrli raqam «ko'proq yaxshi» degan noaniqlikni <b>aniq maqsadga</b> aylantiradi. «Odamlar ko'proq qolsin» emas — «7 do'st, 10 kun».</p></div>
-              : <div className="frame-success fade-step" key="bus"><p className="body" style={{ margin: 0, color: T.ink }}>Saboq: aktivatsiyani majburlab emas, <b>osonlashtirib</b> oshiring. Sehrli raqam — sizga qaysi tugmani mukammal qilish kerakligini aytadi.</p></div>}
+              ? <div className="frame-success fade-step" key="fb"><p className="body" style={{ margin: 0, color: T.ink }}>Saboq: kalit raqam «ko'proq yaxshi» degan noaniqlikni <b>aniq maqsadga</b> aylantiradi. «Odamlar ko'proq qolsin» emas — «7 do'st, 10 kun».</p></div>
+              : <div className="frame-success fade-step" key="bus"><p className="body" style={{ margin: 0, color: T.ink }}>Saboq: aktivatsiyani majburlab emas, <b>osonlashtirib</b> oshiring. Kalit raqam — sizga qaysi tugmani mukammal qilish kerakligini aytadi.</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Aktivatsiya — voronkaning eng qimmatli qadami: bu yerda odam «foydalanuvchi»ga aylanadi. Uni topsangiz — nimani yaxshilashni aniq bilasiz.</p></div>}
           </Col>
         </div></Zoomable>
@@ -955,7 +955,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«300 yuklab olish! Top yangi ilova!»</span></h2></div>
-        <Mentor>Aziz MVP'ini chiqardi (qoyil!) va hayajon bilan yozdi. Xabarini o'qing…</Mentor>
+        <Mentor>Aziz MVP'ini chiqardi (ajoyib!) va hayajon bilan yozdi. Xabarini o'qing…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
           <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Chiqardim! Birinchi haftada 300 yuklab olish, App Store'da 4.7 yulduz, Telegramda 500 like! Zo'r ketyapti-a? Endi reklamaga pul tikib, ming odamga yetkazaman!»</p>
@@ -996,7 +996,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
         <Col>
           <p className="flow-label">4 narsani unutmang</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.eye(18), c: T.honey, t: 'MAQTANCHOQ ≠ HARAKATLI — «qaror o\'zgaradimi?» so\'rang' }, { ic: Ico.star(18), c: T.honey, t: 'SHIMOLIY YULDUZ — core qiymatni o\'lchaydigan bitta raqam' }, { ic: Ico.chart(18), c: T.grape, t: 'HODISA — birinchi kundan yoz; o\'tmish qaytmaydi' }, { ic: Ico.gauge(18), c: T.blue, t: 'TESHIK CHELAK — voronkani o\'qi, eng katta tushishni tuzat' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.eye(18), c: T.honey, t: 'MAQTANCHOQ RAQAM HARAKATLI EMAS — «qaror o\'zgaradimi?» so\'rang' }, { ic: Ico.star(18), c: T.honey, t: 'SHIMOLIY YULDUZ — core qiymatni o\'lchaydigan bitta raqam' }, { ic: Ico.chart(18), c: T.grape, t: 'HODISA — birinchi kundan yoz; o\'tmish qaytmaydi' }, { ic: Ico.gauge(18), c: T.blue, t: 'TESHIK CHELAK — voronkani o\'qi, eng katta tushishni tuzat' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
@@ -1045,7 +1045,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {docRows.length === 0
               ? <div className="spec-card" style={{ minHeight: 150, justifyContent: 'center' }}><p className="spec-text" style={{ color: '#6B7585', fontStyle: 'italic', textAlign: 'center' }}>To'ldiring — reja shu yerda yig'iladi…</p></div>
               : <div style={{ position: 'relative' }}><PlanDoc rows={docRows} />{passed && <span className="seal">KO'ZOYNAK TAYYOR ✓</span>}</div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>MVP'ingiz endi ko'r emas! Shimoliy yulduz, 3 hodisa va aktivatsiya lahzasi belgilandi. Keyingi darsda AI bilan birinchi ekranni quramiz — va bu hodisalarni birinchi kunidan yozib boramiz. 🔧</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>MVP'ingiz endi ko'r emas! Shimoliy yulduz, 3 hodisa va aktivatsiya lahzasi belgilandi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1062,8 +1062,8 @@ const BADGES = [
   { t: 'Founder', l: 'Demo Day' }
 ];
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
-  const RECAP = ['Maqtanchoq raqam ≠ harakatli raqam: «qaror o\'zgaradimi?» so\'rang', 'Shimoliy yulduz: core qiymatni o\'lchaydigan bitta raqam', 'Hodisalarni birinchi kundan yozing — o\'tmish qaytmaydi', 'Teshik chelak: voronkani o\'qing, eng katta tushishni tuzating'];
-  const GLOSSARY = [{ b: 'Maqtanchoq raqam', t: '— katta ko\'rinadi, lekin qaror o\'zgartirmaydi (yuklab olish, like)' }, { b: 'Harakatli raqam', t: '— harakatga undaydi (retention, konversiya)' }, { b: 'Shimoliy yulduz', t: '— core qiymatni o\'lchaydigan bosh metrika' }, { b: 'Hodisa (event)', t: '— foydalanuvchi harakati yozuvi' }, { b: 'Aktivatsiya', t: '— birinchi qiymat («aha!») lahzasi' }, { b: 'Teshik chelak', t: '— voronkadagi tushish; retention muammosi' }, { b: 'Sehrli raqam', t: '— retention\'ni bashorat qiluvchi aniq son' }];
+  const RECAP = ['Maqtanchoq raqam harakatli raqam emas: «qaror o\'zgaradimi?» so\'rang', 'Shimoliy yulduz: core qiymatni o\'lchaydigan bitta raqam', 'Hodisalarni birinchi kundan yozing — o\'tmish qaytmaydi', 'Teshik chelak: voronkani o\'qing, eng katta tushishni tuzating'];
+  const GLOSSARY = [{ b: 'Maqtanchoq raqam', t: '— katta ko\'rinadi, lekin qaror o\'zgartirmaydi (yuklab olish, like)' }, { b: 'Harakatli raqam', t: '— harakatga undaydi (retention, konversiya)' }, { b: 'Shimoliy yulduz', t: '— core qiymatni o\'lchaydigan bosh metrika' }, { b: 'Hodisa (event)', t: '— foydalanuvchi harakati yozuvi' }, { b: 'Aktivatsiya', t: '— birinchi qiymat («aha!») lahzasi' }, { b: 'Teshik chelak', t: '— voronkadagi tushish; retention muammosi' }, { b: 'Kalit raqam (magic number)', t: '— retention\'ni bashorat qiluvchi aniq son' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1258,7 +1258,7 @@ export default function PmLesson32({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

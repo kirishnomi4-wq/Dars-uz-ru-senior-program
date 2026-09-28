@@ -711,7 +711,7 @@ const BoolPill = ({ value, pulse }) => (
 );
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { // F-0926-06: off — birinchi bosishgacha ⛶ bo'sh ustun ustida yolg'iz turmasin (CssLesson1 naqshi)
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -733,7 +733,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -810,7 +810,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugun shunday kod yozasiz', ru: 'Сегодня вы напишете такой код' })}</p>
       <pre className="code-box fade-up" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}><Kw>if</Kw> (<Vr>age</Vr> <Op>{'>='}</Op> <Nm>16</Nm>) {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>){'\n'}{'}'} <Kw>else</Kw> {'{'}{'\n'}{'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</St>){'\n'}{'}'}</pre>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ {tr({ uz: 'dastur qaror qabul qiladi', ru: 'программа принимает решение' })}</p>
+      {/* F-0926-06: «→ dastur qaror qabul qiladi» olindi — sarlavha «Kod endi o'zi tanlaydi» shuni aytadi (159/1) */}
     </Col>
   );
   const StepsBlock = (
@@ -879,7 +879,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <BoolPill value={cond} />
               <p className="body" style={{ margin: '12px 0 0', color: T.ink }}>{cond ? tr({ uz: '✅ Shart rost → kod ishladi: «Quvvatlagichga ulang»', ru: '✅ Условие истинно → код сработал: «Подключите зарядку»' }) : tr({ uz: "⛔ Shart yolg'on → kod o'tkazib yuborildi", ru: '⛔ Условие ложно → код пропущен' })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>if</b> — shart <b>true</b> bo'lsagina ichidagi kod ishlaydi.</>, ru: <>✓ <b>if</b> — код внутри работает, только если условие <b>true</b>.</> })}</p></div>}
+            {/* F-0926-06: «✓ if — shart true bo'lsagina…» qutisi olindi — mentor gapini takrorlardi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -902,7 +902,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   ];
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(new Set());
-  const isNarrow = useIsMobile(768);
+  // F-0926-06: isNarrow olindi — faqat bo'sh-holat ramkasi uchun edi
   const done = seen.size >= 3;
   const tap = (op) => { setActive(op); setSeen(prev => { const n = new Set(prev); n.add(op); return n; }); };
   const cur = OPS.find(o => o.op === active);
@@ -912,7 +912,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Shartni <span className="italic" style={{ color: T.accent }}>qanday</span> yozamiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> записать условие?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Shart — <b style={{ color: T.ink }}>taqqoslash operatorlari</b> bilan yoziladi. Har biri ikki qiymatni solishtirib, <b style={{ color: T.ink }}>true</b> yoki <b style={{ color: T.ink }}>false</b> qaytaradi. Operatorlarni bosib, natijani ko'ring.</>, ru: <>Условие записывается <b style={{ color: T.ink }}>операторами сравнения</b>. Каждый сравнивает два значения и возвращает <b style={{ color: T.ink }}>true</b> или <b style={{ color: T.ink }}>false</b>. Нажимайте на операторы и смотрите результат.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!cur}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Operatorni tanlang', ru: 'Выберите оператор' })}</p>
@@ -930,8 +930,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 <div className="sk-info"><span className="sk-tagbig"><span className="sk-wordbadge mono">{cur.op}</span><span style={{ fontWeight: 600, color: T.ink }}>{tr(cur.name)}</span></span><p className="body" style={{ color: T.ink, margin: '9px 0 0' }}>{tr({ uz: `14 ${tr(cur.name)} 12? Javob: ${cur.res ? 'ha (true)' : "yo'q (false)"}.`, ru: `14 ${tr(cur.name)} 12? Ответ: ${cur.res ? 'да (true)' : 'нет (false)'}.` })}</p></div>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Operatorni bosing', ru: 'Нажмите на оператор' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Esda saqlang: <span className="mono">==</span> teng, <span className="mono">!=</span> teng emas, <span className="mono">{'>='}</span> katta yoki teng. Hammasi true/false beradi.</>, ru: <>✓ Запомните: <span className="mono">==</span> равно, <span className="mono">!=</span> не равно, <span className="mono">{'>='}</span> больше или равно. Все дают true/false.</> })}</p></div>}
+            ) : null /* F-0926-06: «Operatorni bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Esda saqlang: <span className="mono">==</span> teng, <span className="mono">!=</span> teng emas, <span className="mono">{'>='}</span> katta yoki teng.</>, ru: <>✓ Запомните: <span className="mono">==</span> равно, <span className="mono">!=</span> не равно, <span className="mono">{'>='}</span> больше или равно.</> })}</p></div> /* F-0926-06: «Hammasi true/false beradi» olindi — mentor aytgan (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -941,13 +941,14 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 4 — TEST 1 =====
+// F-0926-06: test izohlaridan «To'g'ri!» / «Верно!» prefiksi olindi — natija yorlig'i tepada aytadi (159/5)
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="if blokining ichidagi kod qachon ishlaydi?"
     questionText="if blokining ichidagi kod qachon ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>if blokining ichidagi kod <span className="italic" style={{ color: T.accent }}>qachon</span> ishlaydi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Когда</span> работает код внутри блока if?</> })}</h2></>}
     options={[{ uz: 'Doim, har safar', ru: 'Всегда, каждый раз' }, { uz: 'Hech qachon', ru: 'Никогда' }, { uz: "Shart yolg'on (`false`) bo'lganda", ru: 'Когда условие ложно (`false`)' }, { uz: "Shart rost (`true`) bo'lganda", ru: 'Когда условие истинно (`true`)' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `if` ichidagi kod faqat shart `true` bo'lganda ishlaydi. `false` bo'lsa — o'tkazib yuboriladi.", ru: 'Верно! Код внутри `if` работает, только когда условие `true`. Если `false` — он пропускается.' }}
+    explainCorrect={{ uz: "`if` ichidagi kod faqat shart `true` bo'lganda ishlaydi. `false` bo'lsa — o'tkazib yuboriladi.", ru: 'Код внутри `if` работает, только когда условие `true`. Если `false` — он пропускается.' }}
     explainWrong={{ 0: { uz: "Yo'q — doim emas. Faqat shart `true` bo'lganda ishlaydi.", ru: 'Нет — не всегда. Только когда условие `true`.' }, 1: { uz: "Yo'q — shart `true` bo'lsa ishlaydi.", ru: 'Нет — он работает, когда условие `true`.' }, 2: { uz: "Aksincha — `false` bo'lsa o'tkazib yuboriladi. `true` bo'lsa ishlaydi.", ru: 'Наоборот — при `false` он пропускается. Работает при `true`.' }, default: { uz: "`if` ichidagi kod shart `true` bo'lganda ishlaydi.", ru: 'Код внутри `if` работает, когда условие `true`.' } }} />
 );
 
@@ -986,7 +987,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="mono" style={{ margin: '8px 0 0', fontWeight: 700, color: allowed ? T.success : T.accent }}>{allowed ? tr({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' }) : tr({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</p>
               <p className="small" style={{ margin: '6px 0 0', color: T.ink2 }}>{allowed ? tr({ uz: '↑ if bloki ishladi', ru: '↑ сработал блок if' }) : tr({ uz: '↓ else bloki ishladi', ru: '↓ сработал блок else' })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>if / else</b> — ikki yo'l: rost bo'lsa biri, yolg'on bo'lsa ikkinchisi. Hech qachon ikkalasi birga emas.</>, ru: <>✓ <b>if / else</b> — развилка на два пути: истина — один, ложь — другой. Никогда оба сразу.</> })}</p></div>}
+            {/* F-0926-06: «✓ if / else — ikki yo'l…» qutisi olindi — mentor «doim ikkitadan bittasi» deydi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1002,7 +1003,7 @@ const Screen5b = (props) => (
     questionText="Shart false (yolg'on) bo'lsa, qaysi blok ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shart <span className="italic" style={{ color: T.accent }}>false</span> bo'lsa, qaysi blok ishlaydi?</>, ru: <>Если условие <span className="italic" style={{ color: T.accent }}>false</span>, какой блок работает?</> })}</h2></>}
     options={[{ uz: '`if` bloki', ru: 'Блок `if`' }, { uz: '`else` bloki', ru: 'Блок `else`' }, { uz: 'Ikkalasi', ru: 'Оба' }, { uz: 'Hech biri', ru: 'Ни один' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Shart `false` bo'lsa, `if` bloki o'tkazib yuboriladi va `else` bloki ishlaydi.", ru: 'Верно! Если условие `false`, блок `if` пропускается и работает блок `else`.' }}
+    explainCorrect={{ uz: "Shart `false` bo'lsa, `if` bloki o'tkazib yuboriladi va `else` bloki ishlaydi.", ru: 'Если условие `false`, блок `if` пропускается и работает блок `else`.' }}
     explainWrong={{
       0: { uz: "Yo'q — `if` bloki shart `true` bo'lganda ishlaydi. `false` bo'lsa — `else`.", ru: 'Нет — блок `if` работает при условии `true`. Если `false` — `else`.' },
       2: { uz: "Yo'q — har doim faqat bittasi ishlaydi, ikkalasi emas.", ru: 'Нет — всегда работает только один, а не оба.' },
@@ -1016,7 +1017,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's6', text: `Bu yerda ko'pchilik adashadi. Bitta teng belgisi qiymatni qutiga soladi. Ikki teng belgisi esa so'raydi: bular tengmi? va true yoki false qaytaradi. Ikkala kartani bosib solishtiring.`, trigger: 'on_mount', waits_for: null }]);
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(new Set());
-  const isNarrow = useIsMobile(768);
+  // F-0926-06: isNarrow olindi — faqat bo'sh-holat ramkasi uchun edi
   const done = seen.size >= 2;
   const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -1025,7 +1026,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>=</span> va <span className="italic" style={{ color: T.accent }}>==</span> — farqi nimada?</>, ru: <><span className="italic" style={{ color: T.accent }}>=</span> и <span className="italic" style={{ color: T.accent }}>==</span> — в чём разница?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bu yerda ko'pchilik adashadi: <b style={{ color: T.ink }}>=</b> qiymatni qutiga <b style={{ color: T.ink }}>soladi</b>, <b style={{ color: T.ink }}>==</b> esa so'raydi — <b style={{ color: T.ink }}>tengmi?</b> Ikkala kartani bosing.</>, ru: <>Здесь многие путаются: <b style={{ color: T.ink }}>=</b> <b style={{ color: T.ink }}>кладёт</b> значение в коробку, а <b style={{ color: T.ink }}>==</b> спрашивает — <b style={{ color: T.ink }}>равно ли?</b> Нажмите обе карточки.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <button onClick={() => tap('assign')} className="fade-up delay-1" style={{ textAlign: 'left', cursor: 'pointer', border: 'none', width: '100%', borderRadius: 14, padding: '15px 17px', background: T.paper, boxShadow: active === 'assign' ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -6px rgba(255,79,40,0.22)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.18s', marginBottom: 10 }}>
@@ -1044,8 +1045,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   ? (<><span className="sk-tagbig"><span className="sk-wordbadge mono">=</span><span style={{ fontWeight: 600, color: T.ink }}>{tr({ uz: 'qiymat berish', ru: 'присваивание' })}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr({ uz: "Quti yaratganda ishlatamiz (o'zgaruvchilar darsidan). Hech narsa tekshirmaydi — shunchaki qiymat soladi.", ru: 'Используем при создании коробки (с урока о переменных). Ничего не проверяет — просто кладёт значение.' })}</p><div className="pop-in" style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}><span className="mono" style={{ fontWeight: 700, color: T.ink }}>10</span><span className="flow-x" style={{ color: T.accent, fontWeight: 700, fontSize: 18 }}>→</span><span className="var-box" style={{ minWidth: 92 }}><span className="var-name">score</span><span className="var-val" style={{ fontSize: 18, color: T.ink }}>10</span></span></div></>)
                   : (<><span className="sk-tagbig"><span className="sk-wordbadge mono">==</span><span style={{ fontWeight: 600, color: T.ink }}>{tr({ uz: 'tekshirish', ru: 'проверка' })}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 4px' }}>{tr({ uz: <>Ikki qiymatni solishtiradi va <b>true</b> yoki <b>false</b> qaytaradi.</>, ru: <>Сравнивает два значения и возвращает <b>true</b> или <b>false</b>.</> })}</p><div className="pop-in" style={{ margin: '10px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 11, flexWrap: 'wrap' }}><span className="mono" style={{ color: T.ink2 }}>10 == 10</span><span className="flow-x" style={{ color: T.ink3, fontSize: 18 }}>→</span><BoolPill value={true} pulse /></div><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr({ uz: 'Shartda (if) tekshirish — ==.', ru: 'В условии (if) проверка — ==.' })}</b></p></>)}
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir kartani bosing', ru: 'Нажмите на карточку' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Qoida:</b> qiymat berish — <span className="mono">=</span>, tekshirish — <span className="mono">==</span>. AI yozgan kodda <span className="mono">===</span> ni ham ko'rasiz — bu ham tekshirish belgisi.</>, ru: <><b>Правило:</b> дать значение — <span className="mono">=</span>, проверить — <span className="mono">==</span>. В коде от AI встретите и <span className="mono">===</span> — это тоже знак проверки.</> })}</p></div>}
+            ) : null /* F-0926-06: «Bir kartani bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI yozgan kodda <span className="mono">===</span> ni ham ko'rasiz — bu ham tekshirish belgisi.</>, ru: <>В коде от AI встретите и <span className="mono">===</span> — это тоже знак проверки.</> })}</p></div> /* F-0926-06: «Qoida: = … == …» qismi olindi — mentor aytgan; yangi qismi (===) qoldi (159/1, C3) */}
           </Col>
         </div>
         </Zoomable>
@@ -1131,7 +1132,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="flow-x" style={{ color: T.ink3, fontSize: 22 }}>↓</span>
               <div className={`var-box ${val ? 'ring-green' : 'ring-red'}`} style={{ minWidth: 150 }}><div className="var-name">{tr({ uz: "o'zgaruvchi: canGetId", ru: 'переменная: canGetId' })}</div><div className="var-val pop-num" style={{ color: val ? T.success : T.accent }}>{String(val)}</div></div>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ko'rdingizmi — <span className="mono">age {'>='} 16</span> shunchaki <b>true/false</b> beradi, uni o'zgaruvchida saqlash mumkin.</>, ru: <>✓ Видите — <span className="mono">age {'>='} 16</span> просто даёт <b>true/false</b>, и это можно сохранить в переменной.</> })}</p></div>}
+            {/* F-0926-06: «✓ Ko'rdingizmi — … saqlash mumkin» qutisi olindi — mentor gapini takrorlardi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1147,7 +1148,7 @@ const Screen9 = (props) => (
     questionText="Ikki qiymat tengligini tekshirish uchun shartda qaysi belgi ishlatiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Ikki qiymat <span className="italic" style={{ color: T.accent }}>tengligini</span> tekshirish uchun qaysi belgi?</>, ru: <>Какой знак проверяет <span className="italic" style={{ color: T.accent }}>равенство</span> двух значений?</> })}</h2></>}
     options={['`==`', '`=`', '`+`', '`<`']} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! `==` ikki qiymatni taqqoslab, `true` yoki `false` qaytaradi.", ru: 'Верно! `==` сравнивает два значения и возвращает `true` или `false`.' }}
+    explainCorrect={{ uz: "`==` ikki qiymatni taqqoslab, `true` yoki `false` qaytaradi.", ru: '`==` сравнивает два значения и возвращает `true` или `false`.' }}
     explainWrong={{
       1: { uz: "`=` qiymatni qutiga soladi, tekshirmaydi. Tenglikni `==` tekshiradi.", ru: '`=` кладёт значение в коробку, а не проверяет. Равенство проверяет `==`.' },
       2: { uz: "`+` qo'shish amali, taqqoslash emas. Tenglik — `==`.", ru: '`+` — сложение, а не сравнение. Равенство — `==`.' },
@@ -1194,7 +1195,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="pop-num" key={price} style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(28px,6vw,40px)', color: price === 0 ? T.success : T.accent }}>{price === 0 ? tr({ uz: 'TEKIN', ru: 'БЕСПЛАТНО' }) : price.toLocaleString('ru-RU') + tr({ uz: " so'm", ru: ' сум' })}</div>
               <p className="small" style={{ margin: '4px 0 0', color: T.ink2 }}>🎟️ {age < 7 ? tr({ uz: 'bola (7 gacha)', ru: 'ребёнок (до 7)' }) : age < 18 ? tr({ uz: "o'quvchi (18 gacha)", ru: 'школьник (до 18)' }) : tr({ uz: 'katta', ru: 'взрослый' })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '✓ Mana — haqiqiy dasturlardagi mantiq! if/else if bilan har qanday qoidani yozish mumkin.', ru: '✓ Вот она — логика настоящих программ! С if/else if можно записать любое правило.' })}</p></div>}
+            {/* F-0926-06: «✓ Mana — haqiqiy dasturlardagi mantiq!» qutisi olindi — mentor «if / else if shu qarorni o'zi chiqaradi» deydi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1220,7 +1221,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Zaryad shartini <span className="italic" style={{ color: T.accent }}>o'zingiz tuzing</span></>, ru: <>Соберите условие заряда <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Endi shartni o'zingiz tuzasiz: <b style={{ color: T.ink }}>operator</b> va <b style={{ color: T.ink }}>son</b>ni tanlang. Keyin zaryadni sinab ko'ring — telefon qachon ogohlantiradi?</>, ru: <>Теперь вы сами соберёте условие: выберите <b style={{ color: T.ink }}>оператор</b> и <b style={{ color: T.ink }}>число</b>. Потом проверьте заряд — когда телефон предупредит?</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!ready}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Operator', ru: 'Оператор' })}</p>
@@ -1230,9 +1231,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(12.5px,1.9vw,15px)' }}><Kw>if</Kw> (<Vr>battery</Vr> <span className="pop-num" key={op} style={{ color: op ? CODE.punct : CODE.comment, fontWeight: 700 }}>{op || '?'}</span> <span className="pop-num" key={num} style={{ color: num != null ? CODE.num : CODE.comment, fontWeight: 700 }}>{num ?? '?'}</span>) {'{'} <Cm>{tr({ uz: 'ogohlantirish', ru: 'предупредить' })}</Cm> {'}'}</pre>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Shartingizni sinab ko'ring", ru: 'Проверьте своё условие' })}</p>
+            {/* F-0926-06: ustun yorlig'i faqat shart tayyor bo'lganda — bo'sh ustun ustida yolg'iz osilmaydi (159/9) */}
             {ready ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Shartingizni sinab ko'ring", ru: 'Проверьте своё условие' })}</p>
                 <div style={{ display: 'flex', gap: 7 }}>{[15, 20, 80].map(t => (<button key={t} className={`chip ${test === t ? 'chip-on' : ''}`} onClick={() => setTest(t)}>🔋 {t}%</button>))}</div>
                 {test !== null && (
                   <div className={`demo-swap ${evalCond(test) ? 'ring-green' : 'ring-red'}`} key={test} style={{ background: evalCond(test) ? T.successSoft : T.accentSoft, borderRadius: 14, padding: '16px', textAlign: 'center', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
@@ -1240,11 +1242,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <p className="pop-num" style={{ fontWeight: 700, margin: 0, color: evalCond(test) ? T.success : T.accent }}>{evalCond(test) ? tr({ uz: '🔋 Ogohlantirish chiqdi', ru: '🔋 Появилось предупреждение' }) : tr({ uz: '— Telefon jim turadi', ru: '— Телефон молчит' })}</p>
                   </div>
                 )}
-                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Shartingiz tayyor! Har xil zaryadni sinab ko'ring.", ru: '✓ Ваше условие готово! Проверьте разный заряд.' })}</p></div>
+                {/* F-0926-06: «✓ Shartingiz tayyor! Har xil zaryadni sinab ko'ring» olindi — yorliq va mentor aytadi (159/1) */}
               </div>
-            ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Operator va sonni tanlang', ru: 'Выберите оператор и число' })}</p></div>
-            )}
+            ) : null /* F-0926-06: «Operator va sonni tanlang» bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
           </Col>
         </div>
         </Zoomable>
@@ -1287,15 +1287,15 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`ai-line ${flashLine === 0 ? 'bad' : ''}`} onClick={() => pickWrong(0)}><Kw>let</Kw> <Vr>pin</Vr> <Op>=</Op> <Nm>1111</Nm></div>
                 <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIf}><Kw>if</Kw> (<Vr>pin</Vr> <Op>{fixed ? '==' : '='}</Op> <Nm>1234</Nm>) {'{'} <Cm>{tr({ uz: 'ochildi', ru: 'открыт' })}</Cm> {'}'}</div>
               </div>
-              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
+              {!found && wrongMsg && <p className="ai-prompt">{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p> /* F-0926-06: «Qaysi qatorda xato? Bosing.» olindi — mentor gapi (159/1) */}
               {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: '= ni == ga almashtirish', ru: 'Заменить = на ==' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: "Tuzatildi — endi shart to'g'ri tekshiradi!", ru: 'Починено — теперь условие проверяет правильно!' })}</p>}
+              {/* F-0926-06: «✓ Tuzatildi…» qatori olindi — natija takeaway kartasida bir marta (159/8, I3) */}
             </div>
           </Col>
           <Col>
-            {!found && (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: shartda tenglik <b style={{ color: T.ink }}>==</b> bilan tekshiriladi. Qaysi qatorda <span className="mono">=</span> noto'g'ri ishlatilgan?</>, ru: <>Вспомните: в условии равенство проверяется через <b style={{ color: T.ink }}>==</b>. В какой строке <span className="mono">=</span> использован неверно?</> })}</p></div>)}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">==</span>. Chap tugmani bosing →</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">==</span>. Нажмите кнопку слева →</> })}</p></div>)}
+            {!found && (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Har qatordagi <span className="mono">=</span> belgisiga qarang: u qiymat beryaptimi yoki tekshiryaptimi?</>, ru: <>Посмотрите на знак <span className="mono">=</span> в каждой строке: он даёт значение или проверяет?</> })}</p></div>) /* F-0926-06: maslahat javobni (==) aytmaydi — qayerga qarashni aytadi (159/17, V2) */}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">==</span>. «= ni == ga almashtirish» tugmasini bosing.</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">==</span>. Нажмите кнопку «Заменить = на ==».</> })}</p></div>) /* F-0926-06: joy so'zi («chap») olindi — telefonda joylashuv o'zgaradi (159/5) */}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и починили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: 'Shartda doim == (tekshirish), = emas', ru: 'В условии всегда == (проверка), а не =' })}</p></div>)}
           </Col>
         </div>
@@ -1335,27 +1335,26 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>if</span> ni o'zingiz yozing.</>, ru: <>Последний шаг: напишите <span className="italic" style={{ color: T.accent }}>if</span> сами.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ball 90 dan katta ekanini tekshiradigan shart yozing: <span className="mono">if</span>, qavs ichida <span className="mono">score {'>'} 90</span>, va <span className="mono">{'{'}</span> oching. Masalan: <span className="mono">{'if (score > 90) {'}</span></>, ru: <>Напишите условие, которое проверяет, что балл больше 90: <span className="mono">if</span>, в скобках <span className="mono">score {'>'} 90</span>, и откройте <span className="mono">{'{'}</span>. Например: <span className="mono">{'if (score > 90) {'}</span></> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!valid}>
         <div className="split">
           <Col>
-            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'if (score > 90) {'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'if (…) {' /* F-0926-06 (159/17, V2): placeholder javobni to'liq ko'rsatardi */} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasIf ? 1 : 0.4 }}>{hasIf ? '✓' : '1'} if</span>
               <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? '✓' : '2'} {tr({ uz: '( shart )', ru: '( условие )' })}</span>
               <span className="tagpill" style={{ opacity: hasOp ? 1 : 0.4 }}>{hasOp ? '✓' : '3'} {tr({ uz: 'taqqoslash', ru: 'сравнение' })}</span>
               <span className="tagpill" style={{ opacity: hasBrace ? 1 : 0.4 }}>{hasBrace ? '✓' : '4'} {'{'}</span>
             </div>
-            {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Ajoyib! Bu to'g'ri shart — dasturingiz endi qaror qabul qila oladi!", ru: '✓ Отлично! Это верное условие — теперь ваша программа умеет принимать решения!' })}</p></div>)
-              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Taqqoslash operatori: {'>'}, {'<'}, {'>='} yoki ==. Oxirida {'{'} ochishni unutmang.</>, ru: <>Оператор сравнения: {'>'}, {'<'}, {'>='} или ==. Не забудьте открыть {'{'} в конце.</> })}</p>)}
+            {/* F-0926-06: «✓ Ajoyib! Bu to'g'ri shart…» (natija-karta bilan takror, I3) va «Taqqoslash operatori… unutmang» (mentor + teg-chiplar takrori, T1) olindi */}
           </Col>
           <Col>
+            {/* F-0926-06: natija ustuni faqat shart to'g'ri yozilganda — «To'liq yozing: if ( shart ) {» bo'sh-holat qutisi olindi (159/9) */}
+            {valid && (<>
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
-            <div style={{ background: T.paper, borderRadius: 14, minHeight: 120, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-              {valid
-                ? <div className="fade-step"><div style={{ fontSize: 34 }}>🚦</div><p style={{ fontFamily: 'Georgia, serif', color: T.success, fontWeight: 700, margin: '8px 0 0' }}>{tr({ uz: 'Shart tayyor!', ru: 'Условие готово!' })}</p><p className="small" style={{ margin: '4px 0 0', color: T.ink2 }}>{tr({ uz: 'dastur tekshira oladi', ru: 'программа умеет проверять' })}</p></div>
-                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "To'liq yozing:", ru: 'Напишите полностью:' })} <span className="mono" style={{ fontStyle: 'normal' }}>{'if ( shart ) {'}</span></p>}
+            <div style={{ background: T.paper, borderRadius: 14, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <div className="fade-step"><div style={{ fontSize: 34 }}>🚦</div><p style={{ fontFamily: 'Georgia, serif', color: T.success, fontWeight: 700, margin: '8px 0 0' }}>{tr({ uz: 'Shart tayyor!', ru: 'Условие готово!' })}</p><p className="small" style={{ margin: '4px 0 0', color: T.ink2 }}>{tr({ uz: 'dastur tekshira oladi', ru: 'программа умеет проверять' })}</p></div>
             </div>
+            </>)}
           </Col>
         </div>
         </Zoomable>
@@ -1388,15 +1387,15 @@ const ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>else</span> ni ham o'zingiz yozing.</>, ru: <>Теперь напишите и <span className="italic" style={{ color: T.accent }}>else</span> сами.</> })}</h2></div>
         <Mentor>{tr({ uz: <>if bloki tayyor. Endi <b style={{ color: T.ink }}>"aks holda" yo'lini</b> qo'shing: if blokini <span className="mono">{'}'}</span> bilan yoping, <span className="mono">else</span> yozing va yangi blok <span className="mono">{'{'}</span> oching. Ya'ni: <span className="mono">{'} else {'}</span></>, ru: <>Блок if готов. Теперь добавьте <b style={{ color: T.ink }}>путь «иначе»</b>: закройте блок if символом <span className="mono">{'}'}</span>, напишите <span className="mono">else</span> и откройте новый блок <span className="mono">{'{'}</span>. То есть: <span className="mono">{'} else {'}</span></> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!valid}>
         <div className="split">
           <Col>
             <pre className="code-box fade-up" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}>
               <Kw>if</Kw> (<Vr>score</Vr> <Op>{'>'}</Op> <Nm>90</Nm>) {'{'}{'\n'}
-              {'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Ajoyib!"', ru: '"Отлично!"' })}</St>){'\n'}
-              <span style={{ color: CODE.comment }}>{tr({ uz: '▼ shu qatorni siz yozasiz ▼', ru: '▼ эту строку пишете вы ▼' })}</span>
+              {'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Ajoyib!"', ru: '"Отлично!"' })}</St>)
+              {/* F-0926-06: «▼ shu qatorni siz yozasiz ▼» olindi — maydon ustida HAM ichida HAM yozuv bo'lmaydi (159/2) */}
             </pre>
-            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'} else {'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'} … {' /* F-0926-06 (159/17): javobning o'zi edi */} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <pre className="code-box fade-up delay-1" style={{ fontSize: 'clamp(12.5px,1.9vw,14.5px)' }}>
               {'  '}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr({ uz: '"Yana urinib ko\'ring"', ru: '"Попробуйте ещё раз"' })}</St>){'\n'}
               {'}'}
@@ -1406,17 +1405,16 @@ const ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
               <span className="tagpill" style={{ opacity: hasElse ? 1 : 0.4 }}>{hasElse ? '✓' : '2'} else</span>
               <span className="tagpill" style={{ opacity: hasOpen ? 1 : 0.4 }}>{hasOpen ? '✓' : '3'} {'{'} — {tr({ uz: 'yangi blok', ru: 'новый блок' })}</span>
             </div>
-            {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Ajoyib! Endi dasturingizda ikkala yo'l ham bor: rost bo'lsa — \"Ajoyib!\", yolg'on bo'lsa — \"Yana urinib ko'ring\".", ru: '✓ Отлично! Теперь в вашей программе есть оба пути: истина — «Отлично!», ложь — «Попробуйте ещё раз».' })}</p></div>)
-              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Uch qism: {'}'} keyin else keyin {'{'} — hammasi bitta qatorda.</>, ru: <>Три части: {'}'} потом else потом {'{'} — всё в одной строке.</> })}</p>)}
+            {/* F-0926-06: «✓ Ajoyib! Endi … ikkala yo'l ham bor» (natija-karta bilan takror, I3) va «Uch qism: …» (mentor + teg-chiplar takrori, T1) olindi */}
           </Col>
           <Col>
+            {/* F-0926-06: natija ustuni faqat to'g'ri yozilganda — «To'liq yozing: } else {» bo'sh-holat qutisi olindi (159/9) */}
+            {valid && (<>
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
-            <div style={{ background: T.paper, borderRadius: 14, minHeight: 120, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-              {valid
-                ? <div className="fade-step"><div style={{ fontSize: 34 }}>🔀</div><p style={{ fontFamily: 'Georgia, serif', color: T.success, fontWeight: 700, margin: '8px 0 0' }}>{tr({ uz: "Ikki yo'l tayyor!", ru: 'Оба пути готовы!' })}</p><p className="small" style={{ margin: '4px 0 0', color: T.ink2 }}>{tr({ uz: `rost → "Ajoyib!" · yolg'on → "Yana urinib ko'ring"`, ru: 'истина → «Отлично!» · ложь → «Попробуйте ещё раз»' })}</p></div>
-                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "To'liq yozing:", ru: 'Напишите полностью:' })} <span className="mono" style={{ fontStyle: 'normal' }}>{'} else {'}</span></p>}
+            <div style={{ background: T.paper, borderRadius: 14, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <div className="fade-step"><div style={{ fontSize: 34 }}>🔀</div><p style={{ fontFamily: 'Georgia, serif', color: T.success, fontWeight: 700, margin: '8px 0 0' }}>{tr({ uz: "Ikki yo'l tayyor!", ru: 'Оба пути готовы!' })}</p><p className="small" style={{ margin: '4px 0 0', color: T.ink2 }}>{tr({ uz: `rost → "Ajoyib!" · yolg'on → "Yana urinib ko'ring"`, ru: 'истина → «Отлично!» · ложь → «Попробуйте ещё раз»' })}</p></div>
             </div>
+            </>)}
           </Col>
         </div>
         </Zoomable>
@@ -2668,7 +2666,7 @@ export default function JsConditionsLesson({ lang: langProp, onFinished, onPract
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: 159/4 — tanlangan chip to'liq accent fon emas, yumshoq fon + halqa */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
 
@@ -2739,7 +2737,7 @@ export default function JsConditionsLesson({ lang: langProp, onFinished, onPract
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { padding: 4px 0; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; } /* F-0926-06: uzuq chiziqli quti olindi — maslahat oddiy matn (159/11) */
 
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }

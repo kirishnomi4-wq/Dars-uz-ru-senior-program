@@ -25,6 +25,7 @@
     "gate:esbuild": "node esbuild-gate.mjs",
     "gates": "node gates.mjs",
     "lint:layout": "node layout-lint.mjs",
+    "lint:undef": "oxlint -c oxlint-undef.json -A all -D no-undef src",
     "gen:hwqa": "node scripts/gen-hw-qa.mjs",
     "build:hwqa": "node scripts/gen-hw-qa.mjs && vite build --config vite.hwqa.config.js",
     "lint:dizayn": "node lint-dizayn.mjs",

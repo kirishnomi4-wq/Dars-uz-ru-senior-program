@@ -104,7 +104,7 @@ const savePortfolioSection = (section, data) => {
 const LIE_WHY = [
   { id: 'w1', label: 'Xushmuomalalik', emoji: '😊', color: T.accent, soft: T.accentSoft, d: 'Odamlar sizni XAFA QILGISI kelmaydi. G\'oyangizni aytsangiz — «zo\'r ekan!» deydi, chunki yuzingizga «bu hech kimga kerak emas» deyish noqulay. Yaqinlaringiz — ayniqsa: ular sizni sevadi.' },
   { id: 'w2', label: 'Kelajak optimizmi', emoji: '🔮', color: T.grape, soft: T.grapeSoft, d: 'Kelajak haqida hamma o\'zini qahramon deb tasavvur qiladi: «albatta sport qilaman», «albatta ishlataman». Bu yolg\'on emas — samimiy xato: odam KELAJAKDAGI idealini aytadi, real odatini emas.' },
-  { id: 'w3', label: '«Ha» — bepul', emoji: '🎁', color: T.blue, soft: T.blueSoft, d: '«Ishlatarmidingiz?» — «Ha» deyish hech narsa turmaydi. Va\'da tekin, harakat qimmat. Shu sababli va\'dalar emas — PUL yoki VAQT sarflangan o\'tmish faktlari hisoblanadi.' }
+  { id: 'w3', label: '«Ha» — bepul', emoji: '🎁', color: T.blue, soft: T.blueSoft, d: '«Ishlatarmidingiz?» — «Ha» deyish hech narsa turmaydi. Va\'da tekin, harakat qimmat. Shu sababli va\'dalar emas — PUL yoki VAQT sarflangan o\'tmish faktlari hisobga kiradi.' }
 ];
 
 // Taqiqlangan savollar filtri (s3) — SIGNATURE 2a
@@ -159,7 +159,7 @@ const SIM1 = {
     {
       resp: '«…har kuni shunaqa, ba\'zan ertalab bilaman»',
       opts: [
-        { t: '«Bitta joyda bo\'lsa zo\'r bo\'lardi-a?»', good: false, reply: '«Ha, zo\'r bo\'lardi!»', note: 'Yana yetaklovchi savol — «ha» oldingiz, lekin bu sizning gapingiz edi, uniki emas.' },
+        { t: '«Bitta joyda bo\'lsa zo\'r bo\'lardi, to\'g\'rimi?»', good: false, reply: '«Ha, zo\'r bo\'lardi!»', note: 'Yana yetaklovchi savol — «ha» oldingiz, lekin bu sizning gapingiz edi, uniki emas.' },
         { t: '«Bu muammoga o\'zingiz biror narsa qilib ko\'rganmisiz?»', good: true, reply: '«Ha! O\'zim jadval-fayl ochganman sinfga — lekin hech kim to\'ldirmaydi, 2 haftada tashlab qo\'ydik»', note: 'WORKAROUND topildi: o\'zi yechim yasagan (va u ishlamagan sababi ham ma\'lum). Oltin!' },
         { t: '«Xo\'p, rahmat, hammasi tushunarli»', good: false, reply: '«Arzimaydi!»', note: 'Juda erta tugatdingiz — eng qimmat savol (workaround) so\'ralmay qoldi.' }
       ]
@@ -185,7 +185,7 @@ const SIM2 = {
       resp: '«…qachon kelishi umuman noma\'lum»',
       opts: [
         { t: '«10 balldan nechchi bu muammo?»', good: false, reply: '«Bilmadim… 7 mi?»', note: 'Abstrakt baho — foydasiz raqam. Oqibatni so\'rang: nima YO\'QOTDI?' },
-        { t: '«Ilova bo\'lsa hammasi hal bo\'lardi-a?»', good: false, reply: '«Ha, hal bo\'lardi!»', note: 'Yana yetaklovchi + kelajak farazi. O\'tmishda qoling!' },
+        { t: '«Ilova bo\'lsa hammasi hal bo\'lardi, to\'g\'rimi?»', good: false, reply: '«Ha, hal bo\'lardi!»', note: 'Yana yetaklovchi + kelajak farazi. O\'tmishda qoling!' },
         { t: '«Kecha bu nima uchun ayniqsa yomon bo\'ldi?»', good: true, reply: '«Fizikadan nazoratga kech qoldim — o\'qituvchi kirgizmadi, «2» qo\'ydi. Onamga tushuntirish ham azob»', note: 'Og\'riqning OQIBATI chiqdi: baho + oiladagi noqulaylik. Bu real og\'riq.' }
       ]
     },
@@ -498,7 +498,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>Custdev</span>: savol berish san'ati</h2></div>
+        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>Custdev</span> (mijozni o'rganish): savol berish san'ati</h2></div>
         <Mentor>Ovlagan 10 muammongiz — hali faraz. Ularni faqat ODAMLAR tasdiqlaydi. Lekin noto'g'ri so'rasangiz, hamma «zo'r!» deydi va siz aldanasiz. Bugun — to'g'ri so'rash.</Mentor>
         {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>5 qadamni ko'rish</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Maqsadni ko'rish</button>{StepsBlock}</div>)}
       </div>
@@ -652,7 +652,7 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Qaysi javob — <span className="italic" style={{ color: T.accent }}>haqiqiy oltin</span>?</h2></>}
     options={['«Albatta sotib olaman, zo\'r g\'oya!»', '«O\'tgan oy shu muammo uchun repetitorga 200 ming to\'ladim»', '«Do\'stlarim ham albatta ishlatadi»', '«Omad tilayman, ajoyib boshlanish!»']} correctIdx={1}
     explainCorrect="To'g'ri! Sarflangan REAL pul — o'tmishdagi tekshirilgan fakt. Odam bu og'riqqa allaqachon to'layapti — demak yaxshiroq yechimga ham to'lashi mumkin."
-    explainWrong={{ 0: 'Va\'da — bepul. «Albatta» so\'zi custdev\'da ogohlantiruvchi belgi.', 2: 'Boshqalar nomidan berilgan va\'da — ikki karra bepul.', 3: 'Iliq so\'z, nol ma\'lumot.', default: 'Pul/vaqt sarflangan o\'tmish — eng kuchli signal.' }} />
+    explainWrong={{ 0: 'Va\'da — bepul. «Albatta» so\'zi custdev\'da (mijozni o\'rganishda) ogohlantiruvchi belgi.', 2: 'Boshqalar nomidan berilgan va\'da — ikki karra bepul.', 3: 'Iliq so\'z, nol ma\'lumot.', default: 'Pul/vaqt sarflangan o\'tmish — eng kuchli signal.' }} />
 );
 
 // ===== SCREEN 6 — 5-SAVOL SHABLONI =====
@@ -930,7 +930,7 @@ const Screen12 = (props) => (
     questionText="Respondent: «Juda zo'r g'oya ekan!» — nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Respondent: <span className="italic" style={{ color: T.accent }}>«Juda zo'r g'oya ekan!»</span> Nima qilasiz?</h2></>}
     options={['Xursand bo\'lib, ro\'yxatga «1 ta ijobiy javob» deb yozaman', 'Bu ma\'lumot emasligini bilib, faktga qaytaman: «Oxirgi marta bu muammo qachon bo\'lgandi?»', 'Darhol ilovani ko\'rsataman', 'Intervyuni muvaffaqiyatli deb yakunlayman']} correctIdx={1}
-    explainCorrect="To'g'ri! Kompliment — ma'lumot emas, xushmuomalalik. Uni chiroyli qabul qiling-da, darhol o'tmish faktiga buriling. Intervyu qiymati komplimentlarda emas — faktlarda."
+    explainCorrect="To'g'ri! Kompliment — ma'lumot emas, xushmuomalalik. Uni chiroyli qabul qiling va darhol o'tmish faktiga buriling. Intervyu qiymati komplimentlarda emas — faktlarda."
     explainWrong={{ 0: '«Ijobiy javob» statistikasi — o\'z-o\'zini aldash. 10 ta «zo\'r!» = 0 ta fakt.', 2: 'Pitch boshlandi — intervyu tugadi.', 3: 'Kompliment bilan yakunlangan intervyu — bo\'sh intervyu.', default: 'Komplimentni faktga aylantirib yuboring.' }} />
 );
 
@@ -955,7 +955,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>Aziz muammosini toraytirdi va odamlar bilan gaplashdi. Natijasini Mom Test bilan tekshiring.</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 ta sinfdoshdan so'radim: “Darsdan keyin mashq rejasini tuzib beradigan ilova bo'lsa, ishlatarmiding?” — BESHALASI HAM “HA, albatta!” dedi! Bozor bor! Endi qursam bo'ladi-a?»</p>
+          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 ta sinfdoshdan so'radim: “Darsdan keyin mashq rejasini tuzib beradigan ilova bo'lsa, ishlatarmiding?” — BESHALASI HAM “HA, albatta!” dedi! Bozor bor! Endi qursam bo'ladimi?»</p>
         </div>
         <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {OPTS.map(o => {
@@ -1210,7 +1210,7 @@ export default function PmLesson29({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

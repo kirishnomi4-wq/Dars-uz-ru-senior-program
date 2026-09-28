@@ -1693,3 +1693,30 @@ yoki ruscha matn uchun `font-size`/`line-height` moslash. Tuzatilgach har dars u
 
 **Dalillar:** `feedback/F-0922-fidbek/tekshiruv/LAYOUT_TAHLIL.md` ·
 `layout-ru-2026-09-23.log` · `layout-baza-tegilmagan.log`
+
+## 160-QONUN — VIZUAL + IZOH BITTA KARTADA, qolgan modullar (F-0927-01, 2026-09-27)
+
+Foydalanuvchi (GitLesson s0): «blokidan tashqarida chiqib ketibdi — GLOBAL tekshir». Qaror **A**: yorliq + vizual + izoh
+(yoki vizual + izoh) bitta `.vis-card`; izohsiz ustun-yorlig'i qoladi (DARS_ETALON 160, 1–6-bandlar).
+
+- ✅ **1-Modul** (27.09): 14 ekran, 5 dars — PIPELINE_STATE 27.09 yozuvi.
+- ⬜ **2-Modul · 3-Modul · 4-Modul · 4a/4b/4c** — har biri o'z F-0926-06 tozalash to'lqinida (agent yo'riqnomasiga band qo'shiladi).
+- ⬜ **PM darslar (25) · 5–6–7-Modul · bridge** — alohida qaror: ular 26.09 da boshqa to'lqinda tozalangan; qo'llash foydalanuvchi bilan kelishiladi.
+
+**Qanday topiladi:** `node tools/page-audit.mjs <dars> --clicks=2` → `LOOSE`. 1-Modulda 175 nomzoddan 14 ekran haqiqiy chiqdi —
+`tepada` yolg'iz yorliqlar (3-band) va `tagida` javob-izoh/nishon-sharti/tab-legendalar (6-band) — nomzod, KO'Z bilan ajratiladi.
+**Qanday tuzatiladi:** o'sha dars CSS'iga `.vis-card` (+ ichki vizual soyasiz `0 0 0 1px`), uchlik o'raladi, izoh `margin: 0`;
+qo'shni ustun tekisligi qayta o'lchanadi (ko'rinmas yorliq-nusxa keraksiz bo'lib qolishi mumkin).
+
+## F-0926-06 · PM 7–8-Modul tozalanmagan (2026-09-28 tun, o'lchov)
+10 fayl: `src/7-Modull/PmLesson26,28–34.jsx` · `src/pm/PmJtbdLesson.jsx` · `src/pm/PmMetricsLesson.jsx`.
+gates: dark 🔴 (10/10), til 🔴 (9/10; error 2–14), RU yo'q (tr 0–1). 26.09 PM tozalash (159-qonun) faqat 1–6-Modul edi.
+Holat (28.09 07:49 qaror PM1-A · PM-T3-A): **hozir o'tilmaydi — shu yerda turadi**. Tungi dark-btn + til 🔴→0 qoldi (PM78-A).
+Qolgan: RU to'lqini (10 dars) · «Aziz» qahramoni (12 fayl, PM-T3/T4) — PM1 bilan birga, modul navbatga kelganda.
+Didga oid dark (PmLesson26 `.grave`, PmLesson32 :871, PmMetrics `.match-slot-chip.bad`) — PM-DK-A: qoladi, lint:dark 🔴 shu sababli.
+
+## F-0928-01 · Bajarilgan tugma — yumshoq yashil (U1, 2026-09-28 qaror)
+Qaror U1-A: bosilgandan keyingi «✓ Ko'rdingiz»-tipidagi tugma **xira accent (`disabled`, opacity 0.4) emas**, yumshoq yashil
+(`.btn.is-done`, namuna: `src/4a-Modull/NestArchAliveLesson.jsx`). Sabab: V1 «yashil — faqat bajarilgan holat»; xira tugma «ishlamayapti» deb o'qiladi.
+Doira: 1–3-Modul + GithubActions va boshqa texnik darslar (8+ fayl) — bir yo'la codemod bilan. Holat: NAVBATDA, qilinmagan.
+

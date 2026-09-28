@@ -742,7 +742,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Zoomable>
         <Split>
           <Col>
-            <div className="fade-up delay-1">
+            {/* F-0926-06 (160-qonun): oyna + kod + tagidagi izoh bitta kartada */}
+            <div className="vis-card fade-up delay-1">
               <Win title="localhost:5173 — AvtoIjara">
                 <div className="app-hd">
                   <span className="app-brand"><span className="app-logo">🚗</span> AvtoIjara</span>
@@ -752,15 +753,15 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   {CARS.map(c => (<div key={c.id} className={shakeId === c.id ? 'shake' : ''}><CarCard car={c} onDelete={() => poke(c.id)} /></div>))}
                 </CardGrid>
               </Win>
-            </div>
-            <pre className="code-box fade-up delay-2" style={{ padding: '10px 14px', lineHeight: 1.85 }}>
+            <pre className="code-box" style={{ padding: '10px 14px', lineHeight: 1.85, margin: 0 }}>
               <Jx>{'const'}</Jx>{' cars = [ { nom: '}<St>"Cobalt"</St>{', ... }, ... ];'}{'\n'}
               <Cm>{tr({ uz: "// ↑ ro'yxat kod ichida — bazada saqlanmagan", ru: '// ↑ список внутри кода — в базе не хранится' })}</Cm>
             </pre>
             {tried && <p className="small fade-step" style={{ color: T.accent, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Tugma bor — lekin hech narsa o'zgarmadi. Ro'yxat kod ichida qotib qolgan, orqada server yo'q!", ru: 'Кнопка есть — но ничего не изменилось. Список застыл в коде, за ним нет сервера!' })}</p>}
+            </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Haqiqiy AvtoIjara ilovasiga faqat ko'rsatish yetarli emas. Yana nima kerak?", ru: 'Настоящему приложению AvtoIjara мало просто показывать. Что ещё нужно?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, paddingRight: 40 }}>{/* F-0926-06: ikki qatorli savol ⛶ tugmasi ostida qolmasin */}{tr({ uz: "Haqiqiy AvtoIjara ilovasiga faqat ko'rsatish yetarli emas. Yana nima kerak?", ru: 'Настоящему приложению AvtoIjara мало просто показывать. Что ещё нужно?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -795,12 +796,15 @@ const Screen1 = ({ screen, answers, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: "Dars oxirida — sizning backend'ingiz", ru: 'В конце урока — ваш backend' })}</p>
+      {/* F-0926-06 (160-qonun): yorliq + Postman oynasi + tagidagi izoh bitta kartada */}
+      <div className="vis-card">
+      <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Dars oxirida — sizning backend'ingiz", ru: 'В конце урока — ваш backend' })}</p>
       <div className="pm">
         <div className="pm-bar"><MBadge m="GET" /><span className="pm-url">localhost:3000/api/cars</span><span className="pm-send-static">Send</span></div>
         <div className="pm-body"><Resp status={200} text="OK" json={'[\n  { "id": 1, "nom": "Cobalt", "narx": 280000 },\n  { "id": 2, "nom": "Malibu", "narx": 520000 }\n]'} /></div>
       </div>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ mashinalar endi bazadan keladi — qo'shish · o'qish · o'zgartirish · o'chirish", ru: '→ машины теперь приходят из базы — добавить · прочитать · изменить · удалить' })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
@@ -851,7 +855,7 @@ const Screen2 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashinalar haqida bazada <span className="italic" style={{ color: T.accent }}>qaysi ma'lumotni</span> saqlaymiz?</>, ru: <>Какие данные о машинах <span className="italic" style={{ color: T.accent }}>будем хранить</span> в базе?</> })}</h2></div>
         <RolePassport answers={answers} active="memor" />
-        <Mentor>{tr({ uz: <>AI kod yozishidan oldin <b style={{ color: T.ink }}>siz</b> qaror qilasiz: <span className="mono">cars</span> jadvalida qaysi ustunlar bo'ladi? Har ustun bitta narsani saqlaydi. Ustunlarni bosib, nima saqlashini ko'ring — pastda <span className="mono">CREATE TABLE</span> yig'iladi.</>, ru: <>Прежде чем AI напишет код, <b style={{ color: T.ink }}>вы</b> решаете: какие столбцы будут в таблице <span className="mono">cars</span>? Каждый столбец хранит одну вещь. Нажимайте на столбцы и смотрите, что они хранят — внизу соберётся <span className="mono">CREATE TABLE</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI kod yozishidan oldin <b style={{ color: T.ink }}>siz</b> qaror qilasiz: <span className="mono">cars</span> jadvalida qaysi ustunlar bo'ladi? Har ustun bitta narsani saqlaydi. Ustunlarni bosib, nima saqlashini ko'ring — ulardan <span className="mono">CREATE TABLE</span> yig'iladi.{/* F-0926-06 (159/5): «pastda» joy so'zi olindi */}</>, ru: <>Прежде чем AI напишет код, <b style={{ color: T.ink }}>вы</b> решаете: какие столбцы будут в таблице <span className="mono">cars</span>? Каждый столбец хранит одну вещь. Нажимайте на столбцы и смотрите, что они хранят — из них соберётся <span className="mono">CREATE TABLE</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -909,6 +913,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
+            <p className="flow-label ghost" aria-hidden="true">{tr({ uz: "So'rovning yo'li", ru: 'Путь запроса' })}</p>{/* F-0926-06 (159/9): kod-qutisi tepasi qo'shni ustun bilan bir chiziqda */}
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.9 }}>
               <Jx>{'const'}</Jx>{' { Pool } = '}<At>require</At>{'('}<St>'pg'</St>{');'}{'\n'}
               <Jx>{'const'}</Jx>{' pool = '}<Jx>new</Jx>{' Pool({ database: '}<St>'avtoijara'</St>{' });'}{'\n\n'}
@@ -924,7 +929,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const lit = step >= i;
                 return (
                   <React.Fragment key={i}>
-                    <div className={`chain-node ${lit ? 'lit' : ''}`} style={{ background: lit ? T.accent : T.paper, color: lit ? '#fff' : T.ink3, boxShadow: lit ? `0 6px 16px -5px rgba(255,79,40,0.45)` : `0 4px 12px -6px rgba(${T.shadowBase},0.16)` }}>{tr(c)}</div>
+                    <div className={`chain-node ${lit ? 'lit' : ''}`} style={{ background: lit ? T.accentSoft : T.paper, color: lit ? T.accent : T.ink3, boxShadow: lit ? `0 0 0 1.5px ${T.accent}` : `0 4px 12px -6px rgba(${T.shadowBase},0.16)` }}>{/* F-0926-06 (159/10): to'liq accent fon → yumshoq fon + halqa */}{tr(c)}</div>
                     {i < CHAIN.length - 1 && <span className={`chain-arr ${step > i ? 'flow' : ''}`} style={{ color: step > i ? T.accent : T.ink3 }}>→</span>}
                   </React.Fragment>
                 );
@@ -976,14 +981,14 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
   };
   return (
     <Stage eyebrow={{ uz: '3-qadam · REJISSYOR', ru: 'Шаг 3 · РЕЖИССЁР' }} screen={screen} scrollSignal={picked != null} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Aniq promptni tanlang', ru: 'Выберите точный промпт' }} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+      <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>{/* F-0926-06 (159/12): ru 1366x768 da yashil natija 8px tugmalar ortida edi — oraliq s2/s11 dagidek */}
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI'ga qaysi buyruq <span className="italic" style={{ color: T.accent }}>to'g'ri kod</span> yozdiradi?</>, ru: <>Какая команда заставит AI написать <span className="italic" style={{ color: T.accent }}>правильный код</span>?</> })}</h2></div>
         <RolePassport answers={answers} active="rejissyor" />
-        <Mentor>{tr({ uz: <>Rejissyor aktyorga aniq ko'rsatma beradi: qayerda turishini, qaysi gapni aytishini. AI'ga ham xuddi shunday <b style={{ color: T.ink }}>aniq</b> buyring: qaysi <span className="mono">method</span>, qaysi manzil, qaysi SQL va qanday javob. Shunda AI to'g'ri <b style={{ color: T.ink }}>endpoint</b> yozadi — endpoint bu bitta manzilga javob beradigan kod bo'lagi. Pastdagi uch buyruqdan <b style={{ color: T.ink }}>eng aniq</b>ini tanlang: noaniq buyruq xato kodga olib boradi.</>, ru: <>Режиссёр даёт актёру точные указания: где стоять, какую реплику говорить. Командуйте AI так же <b style={{ color: T.ink }}>точно</b>: какой <span className="mono">method</span>, какой адрес, какой SQL и какой ответ. Тогда AI напишет правильный <b style={{ color: T.ink }}>endpoint</b> — endpoint — это кусок кода, отвечающий на один адрес. Выберите из трёх команд <b style={{ color: T.ink }}>самую точную</b>: расплывчатая команда ведёт к ошибочному коду.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Rejissyor aktyorga aniq ko'rsatma beradi: qayerda turishini, qaysi gapni aytishini. AI'ga ham xuddi shunday <b style={{ color: T.ink }}>aniq</b> buyring: qaysi <span className="mono">method</span>, qaysi manzil, qaysi SQL va qanday javob. Shunda AI to'g'ri <b style={{ color: T.ink }}>endpoint</b> yozadi — endpoint bu bitta manzilga javob beradigan kod bo'lagi. Uch buyruqdan <b style={{ color: T.ink }}>eng aniq</b>ini tanlang: noaniq buyruq xato kodga olib boradi.</>, ru: <>Режиссёр даёт актёру точные указания: где стоять, какую реплику говорить. Командуйте AI так же <b style={{ color: T.ink }}>точно</b>: какой <span className="mono">method</span>, какой адрес, какой SQL и какой ответ. Тогда AI напишет правильный <b style={{ color: T.ink }}>endpoint</b> — endpoint — это кусок кода, отвечающий на один адрес. Выберите из трёх команд <b style={{ color: T.ink }}>самую точную</b>: расплывчатая команда ведёт к ошибочному коду.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Uch prompt — birini tanlang', ru: 'Три промпта — выберите один' })}</p>
+            <p className="flow-label ghost" aria-hidden="true">{tr({ uz: 'Uch prompt — birini tanlang', ru: 'Три промпта — выберите один' })}</p>{/* F-0926-06 (G1): mentor «tanlang» deydi — yorliq ko'rinmaydi, ustun tepasi tekis qoladi */}
             <div className={`prompts fade-up delay-1 ${done ? 'is-done' : ''}`}>
               {PROMPTS.map(p => {
                 const on = picked === p.id;
@@ -1001,7 +1006,8 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
             </div>
             {!done && <AchRule screen={screen} />}
             {/* F-0916-01 Q4: ikki yashil izoh bitta qutida (147 (e) — takror izoh yo'q); natija-jumlasi o'ng ustundan shu yerga ko'chdi, matni o'zgarmagan */}
-            {cur && <div className={cur.precise ? 'frame-success fade-step note-s5' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)}</p>{done && <p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>Aniq buyruq — to'g'ri kod! <span className="mono">SELECT * FROM cars</span> barcha qatorni oldi, <span className="mono">res.json</span> uni frontga JSON qilib qaytardi.</>, ru: <>Точная команда — правильный код! <span className="mono">SELECT * FROM cars</span> взял все строки, <span className="mono">res.json</span> вернул их фронту в виде JSON.</> })}</p>}</div>}
+            {/* F-0926-06 (159/12a): noaniq prompt izohi (frame-warn) o'ng ustunga — Postman oynasi ichiga ko'chdi (ru'da 100px tugmalar ortida qolardi); yashil natija-qutisi F-0916-01 Q4 bo'yicha shu yerda qoladi */}
+            {cur && cur.precise && <div className="frame-success fade-step note-s5"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)}</p>{done && <p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>Aniq buyruq — to'g'ri kod! <span className="mono">SELECT * FROM cars</span> barcha qatorni oldi, <span className="mono">res.json</span> uni frontga JSON qilib qaytardi.</>, ru: <>Точная команда — правильный код! <span className="mono">SELECT * FROM cars</span> взял все строки, <span className="mono">res.json</span> вернул их фронту в виде JSON.</> })}</p>}</div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Natija — Postman bilan sinab ko'ring", ru: 'Результат — проверьте через Postman' })}</p>
@@ -1010,7 +1016,7 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
               <div className="pm-body">
                 {done
                   ? <><div className="ai-code fade-step" style={{ marginBottom: 8 }}><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{"app.get('/api/cars', async (req, res) => {\n  const result = await pool.query('SELECT * FROM cars');\n  res.json(result.rows);\n});"}</div></div><Resp status={200} text="OK" json={'[\n  { "id": 1, "nom": "Cobalt", "narx": 280000, "yil": 2022 },\n  { "id": 2, "nom": "Malibu", "narx": 520000, "yil": 2023 },\n  { "id": 3, "nom": "Kia K5", "narx": 610000, "yil": 2023 }\n]'} /></>
-                  : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Aniq promptni tanlang — AI to'g'ri endpoint yozadi, GET javobi shu yerda ko'rinadi…", ru: 'Выберите точный промпт — AI напишет правильный endpoint, ответ GET появится здесь…' })}</p>}
+                  : (cur ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)}</p></div> : null) /* F-0926-06 (P1): bo'sh oynadagi «Aniq promptni tanlang — …» yo'rig'i olindi */}
               </div>
             </div>
           </Col>
@@ -1062,7 +1068,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="pm-body">
                 <p className="flow-label" style={{ margin: '0 0 6px' }}>Body (JSON)</p>
                 <pre className="json">{newCar ? `{ "nom": "${newCar.nom}", "narx": ${newCar.narx}, "yil": ${newCar.yil} }` : '{ ... }'}</pre>
-                {last && <Resp status={201} text="Created" json={`{ "status": "qo'shildi", "id": ${last} }`} />}
+                {last && <Resp status={201} text="Created" json={`{ "status": "${tr({ uz: "qo'shildi", ru: 'добавлено' })}", "id": ${last} }`} />}{/* F-0926-06 (S7): holat-satri ruschada ham */}
               </div>
             </div>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.85, padding: '10px 14px' }}>
@@ -1101,10 +1107,11 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Update · Delete" screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : (didUpd ? { uz: "Endi bittasini o'chiring", ru: 'Теперь удалите одну' } : { uz: "Narxni o'zgartiring", ru: 'Измените цену' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta mashinani o'zgartirish — <span className="italic" style={{ color: T.accent }}>qaysi birini</span> server qayerdan biladi?</>, ru: <>Изменить одну машину — откуда сервер знает, <span className="italic" style={{ color: T.accent }}>какую именно</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Manzildagi <span className="mono">:id</span> — bu o'zgaruvchi (routing darsidan tanish). <span className="mono">PUT /api/cars/<b style={{ color: T.ink }}>2</b></span> — "2-raqamli mashinani o'zgartir" degani. SQL'da <span className="mono">WHERE id = $1</span> aynan o'shani topadi. Bitta mashina narxini tushiring, bittasini o'chiring.</>, ru: <><span className="mono">:id</span> в адресе — это переменная (знакома по уроку про роутинг). <span className="mono">PUT /api/cars/<b style={{ color: T.ink }}>2</b></span> значит «измени машину номер 2». В SQL её находит <span className="mono">WHERE id = $1</span>. Снизьте цену одной машины и удалите одну.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Manzildagi <span className="mono">:id</span> — bu o'zgaruvchi (routing darsidan tanish), server uni <span className="mono">req.params.id</span> dan oladi. <span className="mono">PUT /api/cars/<b style={{ color: T.ink }}>2</b></span> — "2-raqamli mashinani o'zgartir" degani. SQL'da <span className="mono">WHERE id = $1</span> aynan o'shani topadi. Bitta mashina narxini tushiring, bittasini o'chiring.</>, ru: <><span className="mono">:id</span> в адресе — это переменная (знакома по уроку про роутинг), сервер берёт её из <span className="mono">req.params.id</span>. <span className="mono">PUT /api/cars/<b style={{ color: T.ink }}>2</b></span> значит «измени машину номер 2». В SQL её находит <span className="mono">WHERE id = $1</span>. Снизьте цену одной машины и удалите одну.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
+            <p className="flow-label ghost" aria-hidden="true">{tr({ uz: 'PostgreSQL — cars jadvali', ru: 'PostgreSQL — таблица cars' })}</p>{/* F-0926-06 (159/9): ustunlar tepasi bir chiziqda */}
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.85, padding: '11px 14px' }}>
               <Cm>{tr({ uz: '// PUT — narxni yangilash', ru: '// PUT — обновить цену' })}</Cm>{'\n'}
               {'app.put('}<St>'/api/cars/:id'</St>{', ...);'}{'\n'}
@@ -1113,7 +1120,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'app.delete('}<St>'/api/cars/:id'</St>{', ...);'}{'\n'}
               {'  DELETE FROM cars '}<At>WHERE id=$1</At>
             </pre>
-            <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <><span className="mono" style={{ color: T.ink }}>:id</span> manzilda keladi (<span className="mono">req.params.id</span>), <span className="mono">WHERE id = $1</span> bazada aynan o'sha qatorni topadi.</>, ru: <><span className="mono" style={{ color: T.ink }}>:id</span> приходит в адресе (<span className="mono">req.params.id</span>), а <span className="mono">WHERE id = $1</span> находит в базе именно ту строку.</> })}</p></div>
+            {/* F-0926-06 (159/7): «:id manzilda keladi … WHERE id = $1 … topadi» qutisi mentor gapini takrorlardi — olindi, yangi qismi (req.params.id) mentorga */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'PostgreSQL — cars jadvali', ru: 'PostgreSQL — таблица cars' })}</p>
@@ -1214,18 +1221,19 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
+            <p className="flow-label ghost" aria-hidden="true">{tr({ uz: 'Server javobi', ru: 'Ответ сервера' })}</p>{/* F-0926-06 (159/9): ustunlar tepasi bir chiziqda */}
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Я написал код добавления:' })}</span></div>
               <div className="ai-code">
                 <div className={`ai-line ${picked === 'a' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('a'); }}><Jx>{'const'}</Jx>{' { nom, narx, yil } = req.body;'}</div>
                 {!fixed ? (
-                  <div className={`ai-line ${found ? 'bad' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0.5s' }} onClick={() => { if (!found) setPicked('bad'); }}>{"pool.query('INSERT INTO cars (nom, "}<At>price</At>{", yil)...');"}</div>
+                  <div className={`ai-line ${found ? 'bad' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0.5s' }} onClick={() => { if (!found) setPicked('bad'); }}>{"pool.query('INSERT INTO cars (nom, price, yil)...');"}{/* F-0926-06 B1: price ajratilmaydi — javobga ishora edi */}</div>
                 ) : (
                   <div className="ai-line ok fixed-line">{"pool.query('INSERT INTO cars (nom, "}<At>narx</At>{", yil)...');"}{'  '}<Cm>{'// ✓ narx'}</Cm></div>
                 )}
-                <div className={`ai-line ${picked === 'c' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '1s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('c'); }}>{"res.json({ status: \"qo'shildi\" });"}</div>
+                <div className={`ai-line ${picked === 'c' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '1s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('c'); }}>{`res.json({ status: "${tr({ uz: "qo'shildi", ru: 'добавлено' })}" });`}</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator bazadagi ustun nomiga mos emas? Bosing.', ru: 'Какая строка не совпадает с именем столбца в базе? Нажмите.' })}</p>}
+              {/* F-0926-06 (159/6): «Qaysi qator … mos emas? Bosing.» mentor savolini takrorlardi — olindi */}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '🔧 price → narx ga tuzatish', ru: '🔧 Исправить price → narx' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — ustun nomi sxemaga mos: narx', ru: '✓ Исправлено — имя столбца совпадает со схемой: narx' })}</p>}
             </div>
@@ -1237,14 +1245,14 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="pm-bar"><MBadge m="POST" /><span className="pm-url">localhost:3000/api/cars</span></div>
               <div className="pm-body">
                 {fixed
-                  ? <Resp status={201} text="Created" json={`{ "status": "qo'shildi" }`} />
+                  ? <Resp status={201} text="Created" json={`{ "status": "${tr({ uz: "qo'shildi", ru: 'добавлено' })}" }`} />
                   : <Resp status={500} text="Server Error" json={'{\n  "error": "column \\"price\\" does not exist"\n}'} />}
               </div>
             </div>
             {!found && (picked === 'a' || picked === 'c')
               ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: xato <i>"price" does not exist"</i> deyapti — kodda qayerda <span className="mono">price</span> yozilgan?</>, ru: <>Эта строка правильная. Посмотрите ещё раз: ошибка говорит <i>"price" does not exist</i> — где в коде написано <span className="mono">price</span>?</> })}</p></div>
               : null}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda ustun <span className="mono">price</span> deb yozilgan, biroq sxemada u <span className="mono">narx</span> — shuning uchun baza topa olmadi. Bitta so'zni to'g'rilaymiz. Chapdagi tugma bilan tuzating →</>, ru: <>В коде столбец записан как <span className="mono">price</span>, но в схеме он <span className="mono">narx</span> — поэтому база его не нашла. Исправим одно слово. Нажмите кнопку слева →</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda ustun <span className="mono">price</span> deb yozilgan, biroq sxemada u <span className="mono">narx</span> — shuning uchun baza topa olmadi. Bitta so'zni to'g'rilaymiz — tuzatish tugmasini bosing.{/* F-0926-06 (159/11): «chapdagi» joy so'zi olindi */}</>, ru: <>В коде столбец записан как <span className="mono">price</span>, но в схеме он <span className="mono">narx</span> — поэтому база его не нашла. Исправим одно слово — нажмите кнопку исправления.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1290,7 +1298,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const did = { C: didC, R: didR, U: didU, D: didD }[o.key];
                 return (
                   <button key={o.key} className={`vcard ${!did ? 'tap-hint' : ''}`} onClick={() => run(o.key)} style={{ boxShadow: active === o.key ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined, animationDelay: `${i * 0.16}s` }}>
-                    <span className="vbadge" style={{ background: o.color }}>{o.method}</span>
+                    <span className="vbadge" style={{ background: o.color, color: '#fff', boxShadow: 'none' }}>{o.method}</span>{/* F-0926-06 (159/10, 132-qonun): rangli fonda matn oq — bajarilgach xiralashmasin */}
                     <span className="vlbl">{tr(o.amal)}</span>
                     <span className={`vseen ${did ? 'tick' : ''}`} style={{ color: did ? T.success : T.ink3 }}>{did ? '✓' : ''}</span>
                   </button>
@@ -1305,13 +1313,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {CHAIN.map((c, i) => (
                 <React.Fragment key={i}>
                   {/* ✨ har so'rovda to'lqin zanjirdan o'tadi: key almashadi → animatsiya qayta o'ynaydi, kechikish bosqichma-bosqich */}
-                  <div key={`${active || 'off'}-${runs}`} className={`chain-node ${active ? 'lit wave' : ''}`} style={{ background: active ? T.accent : T.paper, color: active ? '#fff' : T.ink3, animationDelay: `${i * 0.09}s` }}>{tr(c)}</div>
+                  <div key={`${active || 'off'}-${runs}`} className={`chain-node ${active ? 'lit wave' : ''}`} style={{ background: active ? T.accentSoft : T.paper, color: active ? T.accent : T.ink3, boxShadow: active ? `0 0 0 1.5px ${T.accent}` : undefined, animationDelay: `${i * 0.09}s` }}>{/* F-0926-06 (159/10): yumshoq fon + halqa */}{tr(c)}</div>
                   {i < CHAIN.length - 1 && <span key={`a-${active || 'off'}-${runs}`} className={`chain-arr ${active ? 'flow' : ''}`} style={{ color: active ? T.accent : T.ink3, animationDelay: `${i * 0.09 + 0.05}s` }}>→</span>}
                 </React.Fragment>
               ))}
             </div>
             <DbTable rows={rows} flashId={flash} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🎉 To'liq CRUD backend tayyor! Har so'rov front'dan bazaga borib-keldi. Keyingi praktikada Modul 3'dagi React frontni aynan shu serverga ulaymiz.", ru: '🎉 Полный CRUD-backend готов! Каждый запрос сходил от фронта до базы и обратно. На следующей практике подключим React-фронт из Модуля 3 именно к этому серверу.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq CRUD backend tayyor! Har so'rov front'dan bazaga borib-keldi.", ru: 'Полный CRUD-backend готов! Каждый запрос сходил от фронта до базы и обратно.' }) /* F-0926-06 (HP3, H3): va'da faqat kirish/yakunda; emoji olindi */}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1344,7 +1352,7 @@ const Screen13 = ({ screen, answers, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashinalar endi <span className="italic" style={{ color: T.accent }}>qayerda yashaydi</span> — kodda yoki bazada?</>, ru: <>Где теперь <span className="italic" style={{ color: T.accent }}>живут машины</span> — в коде или в базе?</> })}</h2></div>
         <RolePassport answers={answers} />
-        <Mentor>{tr({ uz: <>Eng muhim o'zgarish shu: endi mashinalar <span className="mono">App.jsx</span>'da emas, <b style={{ color: T.ink }}>PostgreSQL</b>'da. Kod faqat so'rov yuboradi, ma'lumotni baza saqlaydi. Quyida butun ish bir qarashda.</>, ru: <>Самое важное изменение: теперь машины не в <span className="mono">App.jsx</span>, а в <b style={{ color: T.ink }}>PostgreSQL</b>. Код лишь отправляет запросы, данные хранит база. Ниже вся работа одним взглядом.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Eng muhim o'zgarish shu: endi mashinalar <span className="mono">App.jsx</span>'da emas, <b style={{ color: T.ink }}>PostgreSQL</b>'da. Kod faqat so'rov yuboradi, ma'lumotni baza saqlaydi.{/* F-0926-06 (159/5): «Quyida …» joy so'zi olindi */}</>, ru: <>Самое важное изменение: теперь машины не в <span className="mono">App.jsx</span>, а в <b style={{ color: T.ink }}>PostgreSQL</b>. Код лишь отправляет запросы, данные хранит база.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -1359,11 +1367,11 @@ const Screen13 = ({ screen, answers, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Uch rol — har safar shunday', ru: 'Три роли — так каждый раз' })}</p>
+            <p className="flow-label">{tr({ uz: 'Uch rol — har safar shunday', ru: 'Три роли — так каждый раз' })}</p>{/* F-0926-06 (H3): qadam raqami oldidagi emoji olindi */}
             <div className="roadmap">
-              <div className="step-card"><span className="step-num" style={{ color: T.blue }}>🏗️ 01</span><span className="step-body"><span className="step-text">{tr({ uz: "ME'MOR", ru: 'АРХИТЕКТОР' })}</span><span className="step-tag">{tr({ uz: 'sxemani siz loyihalaysiz', ru: 'схему проектируете вы' })}</span></span></div>
-              <div className="step-card"><span className="step-num" style={{ color: T.amber }}>🎬 02</span><span className="step-body"><span className="step-text">{tr({ uz: 'REJISSYOR', ru: 'РЕЖИССЁР' })}</span><span className="step-tag">{tr({ uz: "AI'ga aniq prompt", ru: 'точный промпт для AI' })}</span></span></div>
-              <div className="step-card"><span className="step-num" style={{ color: T.success }}>🔍 03</span><span className="step-body"><span className="step-text">{tr({ uz: 'NAZORATCHI', ru: 'КОНТРОЛЁР' })}</span><span className="step-tag">{tr({ uz: 'Postman bilan test', ru: 'проверка через Postman' })}</span></span></div>
+              <div className="step-card"><span className="step-num" style={{ color: T.blue }}>01</span><span className="step-body"><span className="step-text">{tr({ uz: "ME'MOR", ru: 'АРХИТЕКТОР' })}</span><span className="step-tag">{tr({ uz: 'sxemani siz loyihalaysiz', ru: 'схему проектируете вы' })}</span></span></div>
+              <div className="step-card"><span className="step-num" style={{ color: T.amber }}>02</span><span className="step-body"><span className="step-text">{tr({ uz: 'REJISSYOR', ru: 'РЕЖИССЁР' })}</span><span className="step-tag">{tr({ uz: "AI'ga aniq prompt", ru: 'точный промпт для AI' })}</span></span></div>
+              <div className="step-card"><span className="step-num" style={{ color: T.success }}>03</span><span className="step-body"><span className="step-text">{tr({ uz: 'NAZORATCHI', ru: 'КОНТРОЛЁР' })}</span><span className="step-tag">{tr({ uz: 'Postman bilan test', ru: 'проверка через Postman' })}</span></span></div>
             </div>
             <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'prik — <span className="mono">pool.query</span>. Aniq qator — <span className="mono">:id</span> + <span className="mono">WHERE id=$1</span>. Xavfsizlik — qiymatlar <span className="mono">$1, $2</span> o'rinlariga qo'yiladi.</>, ru: <>Мост — <span className="mono">pool.query</span>. Точная строка — <span className="mono">:id</span> + <span className="mono">WHERE id=$1</span>. Безопасность — значения подставляются в места <span className="mono">$1, $2</span>.</> })}</p></div>
           </Col>
@@ -1463,14 +1471,14 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил(а)' })}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: 'Bajardim', ru: 'Выполнил(а)' }) /* F-0926-06 (H3): tugma matni oldidagi emoji olindi */}
             </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
+            {/* F-0926-06 (159/14): «✓ Bajarildi — ustozni kuting» tugmasidan keyingi takror yashil «Juda yaxshi! …» qutisi olindi */}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по мере выполнения' })}</p>
+            {/* F-0926-06 (159/7, 159/12): «Bosqichlar — belgilab boring» yorlig'i mentor gapini takrorlardi va ro'yxatni tugmalar ortiga itarardi — olindi */}
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
@@ -2468,7 +2476,7 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
 
         /* === VCARD (amal tugmasi) === */
-        .vcard { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 12px 15px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
+        .vcard { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 10px 15px; /* F-0926-06 (159/12): 12 → 10px — izoh-karta tugmalar ustida */ cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .vcard:hover { transform: translateY(-1px); }
         .vbadge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11px; color: ${T.ink2}; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.ink3}; padding: 4px 9px; border-radius: 6px; letter-spacing: 0.02em; }
         .vbadge.pk { color: #fff; background: ${T.accent}; box-shadow: none; }   /* 132-qonun: fon almashsa matn rangi ham */
@@ -2498,7 +2506,8 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         /* F-0916-01 Q4 (s5): to'g'ri prompt tanlangach tanlanmagan promptlar ixcham, JSON javob ichki skroll — ikkala ustun chegaraga kiradi (matn o'zgarmagan) */
         .hook-option.is-dim { padding: 8px 14px; font-size: 13px; opacity: 0.72; }
         .hook-option.is-set { padding: 8px 14px; }
-        .prompts { display: flex; flex-direction: column; gap: 9px; }
+        .prompts { display: flex; flex-direction: column; gap: 8px; }
+        .prompts .hook-option { padding: 11px 15px; } /* F-0926-06 (159/12): javobdan keyingi izoh tugmalar ortida qolmasin — variantlar ixchamroq */
         .prompts.is-done { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 6px; }
         .prompts.is-done .hook-option.is-set { grid-column: 1 / -1; order: -1; }
         .prompts.is-done .hook-option.is-dim { padding: 5px 11px; font-size: 12px; line-height: 1.25; align-items: flex-start; }
@@ -2546,6 +2555,10 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + yorlig'i + izohi bitta blok */
+        .vis-card .bp-window, .vis-card .pm { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* F-0926-06: kartadagi oyna — ikkinchi soya yo'q */
+        .vis-card .code-box { box-shadow: none; } /* F-0926-06: karta ichida karta ko'rinmasin */
+        .flow-label.ghost { visibility: hidden; } /* F-0926-06 (159/9, HP1): qo'shni ustun bilan tepa bir chiziqda — ko'rinmas yorliq-nusxa */
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
@@ -2614,7 +2627,7 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         .app-logo { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 7px; background: ${T.accentSoft}; font-size: 13px; }
 
         /* === 🛂 ROL PASPORTI — uch muhr === */
-        .rp { display: flex; align-items: center; gap: clamp(10px,1.8vw,16px); background: ${T.paper}; border-radius: 13px; padding: 6px clamp(11px,1.8vw,15px); box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.16); border: 1px dashed ${T.line}; }
+        .rp { display: flex; align-items: center; gap: clamp(10px,1.8vw,16px); background: ${T.paper}; border-radius: 13px; padding: 6px clamp(11px,1.8vw,15px); box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.16); border: 1px solid ${T.line}; } /* F-0926-06 B2: kesik chiziq olindi */
         .rp-lbl { flex-shrink: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 9px; line-height: 1.25; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink3}; border-right: 1px solid ${T.line}; padding-right: clamp(10px,1.6vw,14px); }
         .rp-stamps { display: flex; align-items: center; gap: clamp(6px,1.2vw,10px); flex: 1; min-width: 0; flex-wrap: wrap; }
         .rp-sep { flex: none; width: 14px; height: 1px; background: ${T.line}; }
@@ -2764,7 +2777,7 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
+        .lp-steps { display: flex; flex-direction: column; gap: 6px; } /* F-0926-06 (159/12): 8 → 6px — 7 qadam tugmalar ustida tugasin */
         .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }

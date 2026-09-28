@@ -917,7 +917,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — KEYS K5: Duolingo streak mexanikasi bosqichma-bosqich (RAQAMSIZ) =====
 const K5_SLIDES = [
-  { ic: "🦉", h: "Duolingo — har kuni kirish", body: <>Duolingo'ning eng katta muammosi: odamlar ilovani yuklab oladi-yu, bir-ikki kundan keyin esidan chiqarib, <b>boshqa kirmaydi</b>. Til esa har kuni shug'ullansagina o'rganiladi.</> },
+  { ic: "🦉", h: "Duolingo — har kuni kirish", body: <>Duolingo'ning eng katta muammosi: odamlar ilovani yuklab oladi, lekin bir-ikki kundan keyin esidan chiqarib, <b>boshqa kirmaydi</b>. Til esa har kuni shug'ullansagina o'rganiladi.</> },
   { ic: "🔥", h: "Streak nima", body: <>Streak — <b>ketma-ket dars qilingan kunlar soni</b>: har kuni kirsangiz, son o'sib boradi. Bir kun o'tkazib yuborsangiz — hisob nolga tushadi.</> },
   { ic: "🧲", h: "Qo'rquv + odat", body: <>Shuncha kun yig'ilgan streak 🔥ni <b>yo'qotishdan qo'rquv</b> odamni vaqti yo'q kunda ham kirgizadi. Asta-sekin bu <b>odatga</b> aylanadi.</> },
   { ic: "🧊", h: "Muzlatish va eslatmalar", body: <>Yordamchi usullar ham bor: hisobni <b>«muzlatish»</b> (bir kun kirmasangiz ham son saqlanib qoladi) va kunlik <b>eslatmalar</b>.</> },
@@ -1901,7 +1901,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className="wsx-toggle" onClick={() => setHelpOpen(o => !o)}>💡 Yordam — bu so'zlar nima? {helpOpen ? '▾' : '▸'}</button>
               {helpOpen && <div className="wsx-body">
                 <p><b>React</b> — sahifani tayyor bo'laklardan yig'adigan vosita. <b>Komponent</b> — bir marta yoziladigan shunday bo'lak; har karta uchun qayta ishlatiladi.</p>
-                <p><code className="qcode">src</code> — loyihangizda kod fayllari turadigan papka; <code className="qcode">.jsx</code> esa React fayllarining kengaytmasi (rasm <code className="qcode">.png</code> bo'lgani kabi).</p>
+                <p><code className="qcode">src</code> — loyihangizda kod fayllari turadigan papka; <code className="qcode">.jsx</code> esa React fayllari nomining oxiri (rasm fayli <code className="qcode">.png</code> bilan tugagani kabi).</p>
                 <p><code className="qcode">map</code> — ro'yxatdagi har yozuv uchun bittadan qator chiqaradi. <code className="qcode">Math.round</code> — kasrni eng yaqin butun songa yaxlitlaydi: 24,7 dan 25 bo'ladi.</p>
                 <p><code className="qcode">localhost:5173</code> — loyihangiz brauzerda ochiladigan manzil (shu yozuvni brauzerga kiritasiz).</p>
                 <p>Loyihangiz hali yo'qmi? VS Code'da yangi papka oching — fayllarni shunga yozing.</p>
@@ -3594,7 +3594,7 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🛠️ JONLI PRAKTIKA (self-report) === */
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.5); }
         .lp-done-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
@@ -3774,9 +3774,9 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(91,61,230,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(91,61,230,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3835,7 +3835,7 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }

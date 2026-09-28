@@ -828,8 +828,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <button className={`chip ${!row ? 'chip-on' : ''}`} onClick={() => setRow(false)}>{tr({ uz: 'Ustma-ust', ru: 'Друг под другом' })}</button>
               <button className={`chip ${row ? 'chip-on' : ''}`} onClick={() => setRow(true)}>✨ {tr({ uz: 'Yonma-yon', ru: 'В ряд' })}</button>
             </div>
+            <div className="vis-card">{/* F-0927-01 (A): oyna va uning holat-izohi bitta kartada */}
             <Preview title="coddy.uz" minH={150}><div style={{ display: 'flex', alignItems: 'center', minHeight: 110 }}><div style={{ width: '100%' }}><Navbar flex={row} snap /></div></div></Preview>
             <p className="mono small" style={{ color: T.ink3, margin: 0, textAlign: 'center' }}>{row ? (picked === null ? tr({ uz: '✨ Menyu bir qatorda', ru: '✨ Меню в одну строку' }) : tr({ uz: '✨ display: flex — menyu bir qatorda', ru: '✨ display: flex — меню в одну строку' })) /* F-0926-06 (159/17): javobdan OLDIN «display: flex» javobni aytib qo'yardi */ : tr({ uz: "Sukut bo'yicha — ustma-ust (block)", ru: 'По умолчанию — друг под другом (block)' })}</p>
+            </div>
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, display: 'flex', alignItems: 'flex-end', minHeight: 40 /* F-0926-06 (159/9): yorliq chap tugmalar qatori balandligida — preview va variantlar tepasi bir chiziqda */ }}>{tr({ uz: 'Elementlarni qatorga nima tizadi?', ru: 'Что выстраивает элементы в ряд?' })}</p>
@@ -910,7 +912,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <div className="col">
-            <div className="fade-up delay-2" style={{ display: 'flex', gap: 8 }}><button className={`chip ${mode === 'block' ? 'chip-on' : ''}`} onClick={() => set('block')}>📋 block (div)</button><button className={`chip ${mode === 'inline' ? 'chip-on' : ''}`} onClick={() => set('inline')}>📝 inline (span)</button></div>
+            <div className="fade-up delay-2" style={{ display: 'flex', gap: 8 }}><button className={`chip ${mode === 'block' ? 'chip-on' : ''}`} onClick={() => set('block')}>block (div)</button><button className={`chip ${mode === 'inline' ? 'chip-on' : ''}`} onClick={() => set('inline')}>inline (span)</button></div>
             <Preview title="element.html" minH={150}>
               {mode === 'block'
                 ? (<div key="b" className="demo-swap">{/* F-0926-06 (159/7): preview ichidagi izoh olindi — yonidagi karta aynan shuni aytadi */}{['A', 'B', 'C'].map((t, i) => (<div key={i} className="bi-block" style={{ animationDelay: `${i * 0.08}s` }}><span><span className="bi-tag">&lt;div&gt;</span> {tr({ uz: 'Blok', ru: 'Блок' })} {t}</span><span className="bi-full">↔ 100%</span></div>))}</div>)
@@ -1171,9 +1173,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!isNarrow && <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(12px,1.7vw,14px)' }}><span style={{ color: CODE.tag }}>.row</span> {'{'}{'\n  '}<span style={{ color: CODE.attr }}>display</span>: <span style={{ color: CODE.str }}>flex</span>;{'\n  '}<span style={{ color: CODE.attr }}>gap</span>: <span style={{ color: CODE.str }}>{gap}px</span>;{'\n'}{'}'}</pre>}
           </div>
           <div className="col">
+            <div className="vis-card">{/* F-0927-01 (A): yorliq + oyna + izoh bitta kartada */}
             <div className="flow-label">{tr({ uz: "Natija (qizil — gap bo'shlig'i)", ru: 'Результат (красным — отступ gap)' })}</div>
             <Preview title="gap.html" minH={150}><div className="gapviz" style={{ ['--g']: `${gap}px` }}><FBOX flex gap={gap} /></div></Preview>
             <p className="mono small" style={{ color: T.ink3, margin: 0, textAlign: 'center' }}>gap: {gap}px — {gap === 0 ? tr({ uz: "har element orasida bo'shliq yo'q", ru: 'между элементами нет отступа' }) : tr({ uz: `har element orasida ${gap}px joy`, ru: `между элементами по ${gap}px` })}</p>
+            </div>
           </div>
         </div>
         </Zoomable>
@@ -1292,9 +1296,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable off={!opened /* F-0926-06: Inspect bosilguncha o'ng ustun bo'sh — zoom-tugma ham yo'q */}>
         <div className="split">
           <div className="col">
-            <div className="bp-window fade-up delay-2"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">coddy.uz</span></div><div className="bp-body"><div className={opened ? 'inspect-hl' : ''}><Navbar flex justify="space-between" /></div></div></div>
-            {!opened && <button className="btn btn-pulse" style={{ alignSelf: 'flex-start' }} onClick={() => setOpened(true)}>🔍 {tr({ uz: 'Menyuni Inspect qilish', ru: 'Inspect меню' })}</button>}
+            <div className="vis-card fade-up delay-2">{/* F-0927-01 (A): oyna va «tanlangan element» izohi bitta kartada */}
+            <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">coddy.uz</span></div><div className="bp-body"><div className={opened ? 'inspect-hl' : ''}><Navbar flex justify="space-between" /></div></div></div>
             {opened && <p className="mono small" style={{ color: T.accent, margin: 0 }}>↑ {tr({ uz: 'tanlangan element belgilandi', ru: 'выбранный элемент подсвечен' })}</p>}
+            </div>
+            {!opened && <button className="btn btn-pulse" style={{ alignSelf: 'flex-start' }} onClick={() => setOpened(true)}>🔍 {tr({ uz: 'Menyuni Inspect qilish', ru: 'Inspect меню' })}</button>}
           </div>
           <div className="col">
             {opened ? (
@@ -1327,7 +1333,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'DevTools · tahrir', ru: 'DevTools · правка' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qiymatni o'zgartiring", ru: 'Измените значение' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>CSS'ni DevTools'da <span className="italic" style={{ color: T.accent }}>jonli</span> o'zgartiring</>, ru: <>Меняйте CSS в DevTools <span className="italic" style={{ color: T.accent }}>вживую</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Styles panelida qiymatni o'zgartirsangiz, sahifa <b style={{ color: T.ink }}>darhol</b> yangilanadi. <span className="mono">justify-content</span> ni almashtiring. Esda tuting: bu <b style={{ color: T.ink }}>vaqtincha</b>, faqat sizning ekraningizda.</>, ru: <>Измените значение в панели Styles — страница обновится <b style={{ color: T.ink }}>мгновенно</b>. Переключите <span className="mono">justify-content</span>. Помните: это <b style={{ color: T.ink }}>временно</b>, только на вашем экране.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Styles panelida qiymatni o'zgartirsangiz, sahifa <b style={{ color: T.ink }}>darhol</b> yangilanadi. <span className="mono">justify-content</span> ni almashtiring. Esda tuting: bu <b style={{ color: T.ink }}>vaqtincha</b>, faqat sizning ekraningizda — sahifani yangilasangiz, asl holiga qaytadi.</>, ru: <>Измените значение в панели Styles — страница обновится <b style={{ color: T.ink }}>мгновенно</b>. Переключите <span className="mono">justify-content</span>. Помните: это <b style={{ color: T.ink }}>временно</b>, только на вашем экране — обновите страницу, и всё вернётся как было.</> })}</Mentor>
         <Zoomable>
         <div className={`split${!done ? ' eqh' : ''}`} /* F-0926-06 (159/16): Styles oynasi va sahifa bir balandlikda — faqat boshlang'ich holatda */>
           <div className="col">
@@ -1341,7 +1347,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Sahifa (jonli)', ru: 'Страница (вживую)' })}</div>
             <Preview title="coddy.uz" minH={120}><Navbar flex justify={jc} /></Preview>
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ Bu o'zgarish <b>vaqtincha</b> — faqat sizning ekraningizda. Sahifani yangilasangiz, asl holiga qaytadi. Shuning uchun bemalol tajriba qiling!</>, ru: <>⚠️ Это изменение <b>временное</b> — только на вашем экране. Обновите страницу — всё вернётся как было. Так что экспериментируйте смело!</> })}</p></div>}
+            {/* F-0926-06 (C3): ⚠️ «vaqtincha» qutisi olindi — gapi mentorga qo'shildi (Htmllesson2 bilan bir xil) */}
           </div>
         </div>
         </Zoomable>
@@ -2754,6 +2760,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .at { color: ${CODE.attr}; } .st { color: ${CODE.str}; } .tx { color: ${CODE.text}; }
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0927-01: vizual + yorlig'i + izohi bitta blok */
+        .vis-card .bp-window { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* kartadagi oyna — ikkinchi soya yo'q */
         .bp-bar { background: #f0eee8; padding: 8px 11px; display: flex; align-items: center; gap: 9px; }
         .bb-dots { display: flex; gap: 5px; }
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }

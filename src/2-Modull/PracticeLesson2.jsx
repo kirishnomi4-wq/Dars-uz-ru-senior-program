@@ -747,9 +747,9 @@ const PromptLine = ({ topic, style, color, sections, audience, cta, scroll }) =>
 // ============================================================
 const USTABOT_FACE = '🤖';
 const UstaBubble = ({ children, tone = 'note', small = false }) => (
-  <div className={`usta-bubble usta-${tone}${small ? ' usta-sm' : ''}`}>
-    <span className="usta-face" aria-hidden>{USTABOT_FACE}</span>
-    <span className="usta-say">{children}</span>
+  <div className={`abot-bubble abot-${tone}${small ? ' abot-sm' : ''}`}>
+    <span className="abot-face" aria-hidden>{USTABOT_FACE}</span>
+    <span className="abot-say">{children}</span>
   </div>
 );
 
@@ -761,7 +761,7 @@ const AcceptanceReport = ({ checks, onRedo, redoLabel, done }) => {
   return (
     <div className={`accept-akt${done && allOk ? ' akt-happy' : ''} fade-step`}>
       <div className="akt-head">
-        <span className="akt-title">📋 {tr({ uz: 'Qabul akti', ru: 'Акт приёмки' })}</span>
+        <span className="akt-title">{/* F-0926-06: sarlavha emojisi olindi (H3) */}{tr({ uz: 'Qabul akti', ru: 'Акт приёмки' })}</span>
         <span className="akt-client" title={tr({ uz: 'Mijoz kayfiyati', ru: 'Настроение клиента' })}>{face}</span>
       </div>
       <ul className="akt-list">
@@ -788,7 +788,7 @@ const LandingPreview = ({ topic, style: styleIn, color: colorIn, sections = {}, 
     const heroBg = hasColor ? (minimal ? '#FFFFFF' : (dph
         ? `linear-gradient(135deg, ${c}d9, ${c}73), url(${dph.img}) center 42%/cover, linear-gradient(135deg, ${c}, ${c}cc)`
         : `linear-gradient(135deg, ${c}, ${c}cc)`))
-      : 'repeating-linear-gradient(45deg, #ff1493 0 14px, #c6ff00 14px 28px)'; // rang yo'q → neon to'qnashuv
+      : 'repeating-linear-gradient(45deg, #ff1493 0 14px, #c6ff00 14px 28px)'; // kesik-ok: rang yo'q → neon to'qnashuv, «rang aytilmadi» signali (F-0926-06)
     const heroColor = hasColor ? (minimal ? T.ink : '#fff') : '#12121a';
     const heroBorder = hasStyle ? (minimal && hasColor ? `2px solid ${c}` : 'none') : '2.5px dashed #12121a';
     const heroTilt = hasStyle ? 'none' : 'rotate(-2.2deg)'; // uslub yo'q → qiyshiq/aralash
@@ -810,7 +810,7 @@ const LandingPreview = ({ topic, style: styleIn, color: colorIn, sections = {}, 
           <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.9 }}>{hasTopic ? tr(p.tag) : tr({ uz: 'Sayt', ru: 'Сайт' })}</span>
           <h3 style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 700, fontSize: 'clamp(20px,4vw,30px)', margin: '5px 0 6px', lineHeight: 1.08, transform: hasStyle ? 'none' : 'rotate(1.4deg)' }}>{hasTopic ? tr(p.title) : tr({ uz: 'SAYT', ru: 'САЙТ' })}</h3>
           <p style={{ fontSize: 13, margin: 0, opacity: 0.92, fontStyle: hasTopic ? 'normal' : 'italic' }}>{hasTopic ? tr(p.sub) + (audience ? ' — ' + tr(AUDIENCE_SUB[audience]) : '') : tr({ uz: "Bla-bla lorem — bu yerda matn bo'lishi kerak edi…", ru: 'Бла-бла лорем — тут должен был быть текст…' })}</p>
-          {sections.button && <button style={{ marginTop: 13, border: 'none', borderRadius: Math.max((hasStyle ? radius : 5) - 4, 6), padding: '9px 18px', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 13, cursor: 'pointer', background: hasColor ? '#fff' : '#12121a', color: hasColor ? c : '#c6ff00', transform: hasStyle ? 'none' : 'rotate(-1.6deg)' }}>{cta ? tr(CTA_LABEL[cta]) : (hasTopic ? tr(p.cta) : tr({ uz: 'Tugma', ru: 'Кнопка' }))}</button>}
+          {sections.button && <button data-dark-ok="qoralama-sayt maketi: rang aytilmagan tugma (F-0926-06)" style={{ marginTop: 13, border: 'none', borderRadius: Math.max((hasStyle ? radius : 5) - 4, 6), padding: '9px 18px', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 13, cursor: 'pointer', background: hasColor ? '#fff' : '#12121a', color: hasColor ? c : '#c6ff00', transform: hasStyle ? 'none' : 'rotate(-1.6deg)' }}>{cta ? tr(CTA_LABEL[cta]) : (hasTopic ? tr(p.cta) : tr({ uz: 'Tugma', ru: 'Кнопка' }))}</button>}
         </div>
         {sections.cards && p && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
@@ -976,7 +976,7 @@ const PromoBuilder = ({ topic, setTopic, style, setStyle, color, setColor, sec, 
 };
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { // F-0926-06: off — ⛶ bo'sh ustun ustida yolg'iz qolmasin (CssLesson1 naqshi)
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -998,7 +998,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Свернуть' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Свернуть' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Свернуть' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Свернуть' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1026,7 +1026,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         {/* maxWidth 820 → 1000: sarlavha ikki qatordan bittaga tushadi va quyidagi savol-variantlar
             ko'rish zonasiga sig'adi (F-0803-26) */}
         <h1 className="title h-title fade-up">{tr({ uz: <>AI'ga shunchaki <span className="italic" style={{ color: T.accent }}>«sayt yasab ber»</span> desangiz — nima chiqadi?</>, ru: <>Что получится, если сказать AI просто <span className="italic" style={{ color: T.accent }}>«сделай сайт»</span>?</> })}</h1>
-        <Mentor>{tr({ uz: "Quyidagi qisqa buyruqni agentga yuboring va natijaga qarang — kutganingizday chiqdimi?", ru: 'Отправьте агенту короткую команду ниже и посмотрите на результат — вышло, как вы ждали?' })}</Mentor>
+        <Mentor>{tr({ uz: "Shu qisqa buyruqni agentga yuboring va natijaga qarang — kutganingizday chiqdimi?", ru: 'Отправьте агенту эту короткую команду и посмотрите на результат — вышло, как вы ждали?' })}</Mentor>{/* F-0926-06: joy so'zi («quyidagi»/«ниже») olindi (159/11) */}
         <Zoomable>
         <Split>
           <Col>
@@ -1184,6 +1184,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
+            {/* F-0926-06: o'ng ustunda yorliq bor edi, chapda yo'q — bloklar tepasi 30px farq qilardi (159/9) */}
+            <p className="flow-label">{tr({ uz: 'Buyruq', ru: 'Команда' })}</p>
             <div className="codebox" style={{ background: T.paper, color: T.ink, fontFamily: "'Manrope'", fontSize: 'clamp(14px,1.9vw,16px)', lineHeight: 2.1, boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.16)` }}>
               {tr({ uz: <>Menga <Span k="mavzu" /> uchun promo sahifa yasab ber — <Span k="uslub" /> stilda, <Span k="rang" /> rangli, <Span k="qism" /> bilan.</>, ru: <>Сделай мне промо-страницу — тема: <Span k="mavzu" />, стиль: <Span k="uslub" />, цвет: <Span k="rang" />, части: <Span k="qism" />.</> })}
             </div>
@@ -1338,19 +1340,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: "Qo'shimcha buyruqlar", ru: 'Дополнительные команды' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {FOLLOWS.map(f => <button key={f.id} className={`chip ${usedIds.has(f.id) ? 'chip-on' : ''}`} disabled={usedIds.has(f.id)} onClick={() => apply(f)} style={{ justifyContent: 'flex-start', opacity: usedIds.has(f.id) ? 0.6 : 1 }}>{usedIds.has(f.id) ? '✓ ' : '+ '}{f.label}</button>)}
+              {/* F-0926-06: bajarilgan buyruq — to'liq accent fon + xiralik o'rniga ✓ + yumshoq yashil fon (159/10, P2) */}
+              {FOLLOWS.map(f => <button key={f.id} className={`chip ${usedIds.has(f.id) ? 'chip-used' : ''}`} disabled={usedIds.has(f.id)} onClick={() => apply(f)} style={{ justifyContent: 'flex-start' }}>{usedIds.has(f.id) ? '✓ ' : '+ '}{f.label}</button>)}
             </div>
-            {log.length > 0 && (
-              <div className="frame" style={{ padding: '12px 14px' }}>
-                <p className="flow-label" style={{ margin: '0 0 7px' }}>{tr({ uz: 'Sizning buyruqlaringiz', ru: 'Ваши команды' })}</p>
-                {log.map((l, i) => <div key={i} style={{ display: 'flex', gap: 7, fontSize: 13, marginBottom: 3 }}><span style={{ color: T.accent, fontWeight: 700 }}>{i + 1}.</span><span>{l}</span></div>)}
-              </div>
-            )}
+            {/* F-0926-06: «Sizning buyruqlaringiz» ro'yxati olindi — ✓ tugmalarning o'zi aytadi (159/7, G2); natija xabari bo'sh chap ustunga ko'chdi (159/12) */}
+            {done && <div ref={doneRef} className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Mana iteratsiya kuchi! Har bir kichik buyruq saytni yaxshilaydi.', ru: 'Вот сила итерации! Каждая маленькая команда улучшает сайт.' })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Sayt — qadam-baqadam yaxshilanadi', ru: 'Сайт — улучшается шаг за шагом' })}</p>
             <Browser url="pixel-quest.uz"><LandingPreview topic={st.topic} style={st.style} color={st.color} sections={st.sec} /></Browser>
-            {done && <div ref={doneRef} className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Mana iteratsiya kuchi! Har bir kichik buyruq saytni yaxshilaydi.', ru: 'Вот сила итерации! Каждая маленькая команда улучшает сайт.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1442,7 +1440,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useAudio([{ id: 's11', text: "AI nimada kuchli va siz nimani tekshirasiz? Ikkala kartani bosib ko'ring: AI tezlik beradi, siz sifatni ta'minlaysiz.", trigger: 'on_mount', waits_for: null }]);
   const CARDS = {
-    kuch: { name: tr({ uz: 'AI nimada KUCHLI', ru: 'В чём AI СИЛЁН' }), color: T.success, items: [tr({ uz: 'Tezlik — soniyalarda quradi', ru: 'Скорость — строит за секунды' }), tr({ uz: "Ko'p variant taklif qiladi", ru: 'Предлагает много вариантов' }), tr({ uz: 'Dizayn va bezakda usta', ru: 'Мастер дизайна и оформления' }), tr({ uz: 'Zerikarli ishlarni bajaradi', ru: 'Берёт на себя скучную работу' })] },
+    kuch: { name: tr({ uz: 'AI nimada KUCHLI', ru: 'В чём AI СИЛЁН' }), color: T.success, items: [tr({ uz: 'Tezlik — soniyalarda quradi', ru: 'Скорость — строит за секунды' }), tr({ uz: "Ko'p variant taklif qiladi", ru: 'Предлагает много вариантов' }), tr({ uz: 'Dizaynni chiroyli bezaydi', ru: 'Красиво оформляет дизайн' }) /* F-0926-06: «usta» obrazi olindi (til-lint usta-sandiqcha) */, tr({ uz: 'Zerikarli ishlarni bajaradi', ru: 'Берёт на себя скучную работу' })] },
     tekshir: { name: tr({ uz: 'Siz nimani tekshirasiz', ru: 'Что проверяете вы' }), color: T.blue, items: [tr({ uz: "So'raganim chiqdimi?", ru: 'Вышло то, что я просил?' }), tr({ uz: "Ortiqcha narsa yo'qmi?", ru: 'Нет ли лишнего?' }), tr({ uz: "Matn to'g'ri yozilganmi?", ru: 'Правильно ли написан текст?' }), tr({ uz: 'Hammasi ishlayaptimi?', ru: 'Всё ли работает?' })] }
   };
   const [active, setActive] = useState(null);
@@ -1454,9 +1452,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'AI bilan ishlash', ru: 'Работа с AI' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/2 ko'ring`, ru: `Посмотрите ${seen.size}/2` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI bilan eng <span className="italic" style={{ color: T.accent }}>zo'r natijani</span> qanday olamiz?</>, ru: <>Как получить с AI <span className="italic" style={{ color: T.accent }}>самый крутой результат</span>?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI bilan eng <span className="italic" style={{ color: T.accent }}>yaxshi natijani</span> qanday olamiz?</>, ru: <>Как получить с AI <span className="italic" style={{ color: T.accent }}>самый крутой результат</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Sirri oddiy: <b style={{ color: T.ink }}>birga ishlaysiz</b> — AI tez quradi, siz tekshirasiz. Ikkala kartani bosing.</>, ru: <>Секрет прост: <b style={{ color: T.ink }}>работаете вместе</b> — AI быстро строит, вы проверяете. Нажмите обе карточки.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -1472,12 +1470,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {active ? (
               <div className="sk-info fade-step" key={active}>
-                <span className="sk-tagbig"><span style={{ width: 14, height: 14, borderRadius: 4, background: CARDS[active].color }} /><span className="sk-wordbadge" style={{ color: CARDS[active].color, background: CARDS[active].color + '22' }}>{CARDS[active].name}</span></span>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 11 }}>
+                {/* F-0926-06: panel sarlavhasi tanlangan karta nomini takrorlardi — karta halqasi aytadi (159/7) */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {CARDS[active].items.map((e, i) => (<div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', background: T.bg, borderRadius: 8, padding: '8px 11px' }}><span style={{ color: CARDS[active].color }}>•</span><span className="body" style={{ margin: 0, color: T.ink2 }}>{e}</span></div>))}
                 </div>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir kartani bosing', ru: 'Нажмите на карточку' })}</p></div> : null)}
+            ) : null /* F-0926-06: «Bir kartani bosing» bo'sh-holat ramkasi olindi — chorlov mentorda (159/3) */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI'dan <b>tezlik</b> oling, natijani <b>o'zingiz tekshiring</b> — shunda natija doim zo'r.</>, ru: <>Берите у AI <b>скорость</b>, результат <b>проверяйте сами</b> — тогда он всегда отличный.</> })}</p></div>}
           </Col>
         </div>
@@ -1503,19 +1501,19 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onPracticeDone, onNext, onPr
   useEffect(() => { if (done && storedAnswer === undefined) { onAnswer(screen, { correct: true, picked: true }); if (onPracticeDone) onPracticeDone(screen); } }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={{ uz: "O'z loyihangiz", ru: 'Ваш проект' }} screen={screen} mentorCollapsible navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Sahifani nashr qiling', ru: 'Опубликуйте страницу' }} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+      <div className="screen pb-six" style={{ gap: 'clamp(10px,1.6vw,16px)' }}> {/* F-0926-06: ru 1366x768 da «Nashr qilish» 8px nav ostiga tushardi — 6 bandli ekran ixchamlashi shu yerga ham (159/12) */}
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>o'zingiz</span> qanday sayt yaratasiz?</>, ru: <>Какой сайт вы теперь создадите <span className="italic" style={{ color: T.accent }}>сами</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Endi erkinlik sizda: <b style={{ color: T.ink }}>o'z</b> promo sahifangizni quring va <b style={{ color: T.ink }}>nashr qiling</b> (deploy).</>, ru: <>Теперь свобода за вами: постройте <b style={{ color: T.ink }}>свою</b> промо-страницу и <b style={{ color: T.ink }}>опубликуйте</b> её (deploy).</> })}</Mentor>
         <PromoBuilder topic={topic} setTopic={setTopic} style={style} setStyle={setStyle} color={color} setColor={setColor} sec={sec} setSec={setSec}
           footer={
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
               <button className="btn" disabled={!all4 || published} onClick={() => setPublished(true)} style={{ opacity: all4 ? 1 : 0.5 }}>{published ? tr({ uz: '✓ Nashr qilindi', ru: '✓ Опубликовано' }) : tr({ uz: 'Nashr qilish (deploy)', ru: 'Опубликовать (deploy)' })}</button>
-              {published && <span className="mono small" style={{ color: T.success }}>https://mening-promo.netlify.app</span>}
+              {published && <span ref={pubRef} className="mono small" style={{ color: T.success }}>https://mening-promo.netlify.app</span>}
             </div>
           } />
         {/* F-0803-26: tugma yonida «avval 4 ingredientni tanlang» yozuvi ham turardi — tugmaning
             o'chiq holati va nav yorlig'i buni allaqachon aytadi (99-qonun). */}
-        {published && <div ref={pubRef} className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Tabriklaymiz! Sahifangiz nashr qilindi — havolani endi ulashsangiz bo\'ladi.', ru: 'Поздравляем! Ваша страница опубликована — теперь можно делиться ссылкой.' })}</p></div>}
+        {/* F-0926-06: «Tabriklaymiz! … nashr qilindi» yashil qutisi olindi — «✓ Nashr qilindi» tugmasi va havola aytadi (159/14) */}
       </div>
     </Stage>
   );
@@ -1552,7 +1550,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija — har mavzuga boshqa sayt', ru: 'Результат — на каждую тему свой сайт' })}</p>
             <Browser url={sent ? TOPIC_URL[sent] : 'promo.uz'} key={sent || 'none'}>
               {phase === 'building' && <BuildingPreview />}
-              {phase === 'idle' && sent === null && <p className="small" style={{ margin: 0, opacity: 0.5, textAlign: 'center', padding: '24px 0' }}>{tr({ uz: '(mavzu tanlab, yuboring)', ru: '(выберите тему и отправьте)' })}</p>}
+              {/* F-0926-06: bo'sh oynadagi «(mavzu tanlab, yuboring)» yo'rig'i olindi — chorlov mentorda (P1) */}
+              {phase === 'idle' && sent === null && <div aria-hidden style={{ minHeight: 96 }} />}
               {phase === 'idle' && sent && <div className="result-reveal"><LandingPreview topic={sent} style="oynoqi" color="siyohrang" sections={{ button: true, cards: true, banner: false }} /></div>}
             </Browser>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? O'yin, jamoa, turnir, blog — bitta usul bilan hammasi. Endi siz <b>istalgancha sayt</b> qura olasiz.</>, ru: <>Видели? Игра, команда, турнир, блог — всё одним способом. Теперь вы можете построить <b>сколько угодно сайтов</b>.</> })}</p></div>}
@@ -1588,7 +1587,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" onClick={run} disabled={phase === 'plan' || phase === 'building'} style={{ alignSelf: 'flex-start' }}>{phase === 'plan' ? tr({ uz: 'Reja tuzyapti…', ru: 'Составляет план…' }) : (phase === 'building' ? tr({ uz: 'Quryapti…', ru: 'Строит…' }) : (done ? tr({ uz: '↻ Yana', ru: '↻ Ещё раз' }) : tr({ uz: "Antigravity'ga yuborish", ru: 'Отправить в Antigravity' })))}</button>
             {(phase === 'plan' || phase === 'building' || done) && (
               <div className="ai-card fade-step">
-                <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>Agent</span><span className="ai-bubble">{tr({ uz: 'Rejam:', ru: 'Мой план:' })}</span></div>
+                <div className="ai-row"><span className="ai-badge">Agent</span>{/* F-0926-06: qora nishon → standart ai-badge */}<span className="ai-bubble">{tr({ uz: 'Rejam:', ru: 'Мой план:' })}</span></div>
                 {PLAN.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'plan' ? T.ink3 : T.success }}>{phase === 'plan' ? '○' : '✓'}</span><span>{p}</span></div>)}
               </div>
             )}
@@ -2707,7 +2706,9 @@ export default function PracticeLesson2({ lang: langProp, onFinished, liveToken 
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06 (159/10): tanlangan chip yumshoq fon + halqa — 2-Modulning boshqa darslari bilan bir xil */
+        /* F-0926-06: bajarilgan qo'shimcha buyruq (s8) — yumshoq yashil, belgi xiralashmaydi */
+        .chip.chip-used, .chip.chip-used:disabled { background: ${T.successSoft}; color: ${T.success}; opacity: 1; box-shadow: none; cursor: default; }
 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
@@ -2756,18 +2757,18 @@ export default function PracticeLesson2({ lang: langProp, onFinished, liveToken 
         .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
-        /* === USTABOT (robot-usta pufakchasi) === */
-        .usta-bubble { display: flex; align-items: flex-start; gap: 9px; margin-top: 9px; padding: 10px 13px 10px 11px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 4px 14px 14px 14px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.2); transform-origin: 14px top; animation: usta-in 0.36s cubic-bezier(.34,1.42,.5,1); }
+        /* === USTABOT (robot pufakchasi) — F-0926-06: klass nomi abot-* ga almashdi (til-lint) === */
+        .abot-bubble { display: flex; align-items: flex-start; gap: 9px; margin-top: 9px; padding: 10px 13px 10px 11px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 4px 14px 14px 14px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.2); transform-origin: 14px top; animation: abot-in 0.36s cubic-bezier(.34,1.42,.5,1); }
         /* Robot pufakcha — burchakdan (yuz tomonidan) yumshoq pop, engil overshoot; qo'pol emas */
-        @keyframes usta-in { 0% { opacity: 0; transform: translateY(7px) scale(0.9); } 62% { opacity: 1; transform: translateY(-1px) scale(1.015); } 100% { opacity: 1; transform: none; } }
-        .usta-bubble.usta-warn { background: ${T.accentSoft}; border-color: ${T.accent}; }
-        .usta-bubble.usta-sm { margin-top: 6px; padding: 7px 11px 7px 9px; }
-        .usta-face { font-size: 20px; line-height: 1.1; flex-shrink: 0; filter: drop-shadow(0 1px 2px rgba(${T.shadowBase},0.25)); animation: usta-face-pop 0.44s cubic-bezier(.34,1.6,.4,1) 0.04s both; }
+        @keyframes abot-in { 0% { opacity: 0; transform: translateY(7px) scale(0.9); } 62% { opacity: 1; transform: translateY(-1px) scale(1.015); } 100% { opacity: 1; transform: none; } }
+        .abot-bubble.abot-warn { background: ${T.accentSoft}; border-color: ${T.accent}; }
+        .abot-bubble.abot-sm { margin-top: 6px; padding: 7px 11px 7px 9px; }
+        .abot-face { font-size: 20px; line-height: 1.1; flex-shrink: 0; filter: drop-shadow(0 1px 2px rgba(${T.shadowBase},0.25)); animation: abot-face-pop 0.44s cubic-bezier(.34,1.6,.4,1) 0.04s both; }
         /* Robot yuzi bir zumda "gapiradi" — juda kichik pop */
-        @keyframes usta-face-pop { 0% { transform: scale(0.5) rotate(-14deg); } 60% { transform: scale(1.14) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
-        .usta-sm .usta-face { font-size: 16px; }
-        .usta-say { font-size: 13px; font-weight: 600; color: ${T.ink}; line-height: 1.35; }
-        .usta-sm .usta-say { font-size: 12px; font-weight: 500; color: ${T.ink2}; }
+        @keyframes abot-face-pop { 0% { transform: scale(0.5) rotate(-14deg); } 60% { transform: scale(1.14) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
+        .abot-sm .abot-face { font-size: 16px; }
+        .abot-say { font-size: 13px; font-weight: 600; color: ${T.ink}; line-height: 1.35; }
+        .abot-sm .abot-say { font-size: 12px; font-weight: 500; color: ${T.ink2}; }
 
         /* === LANDING DRAFT (so'zma-so'z literal render) === */
         /* Chip tanlanganda o'sha qism darhol emas — SILLIQ morflashadi: qiyshiqlik to'g'rilanadi,
@@ -2800,8 +2801,8 @@ export default function PracticeLesson2({ lang: langProp, onFinished, liveToken 
 
         /* Harakat kamaytirilsa — yangi USTABOT/draft animatsiyalari tinch (faqat oniy fade, morf/pop yo'q) */
         @media (prefers-reduced-motion: reduce) {
-          .usta-bubble { animation: acu-fade 0.25s ease both; transform: none; }
-          .usta-face { animation: none; }
+          .abot-bubble { animation: acu-fade 0.25s ease both; transform: none; }
+          .abot-face { animation: none; }
           .lp-live > div, .lp-live h3, .lp-live button, .lp-live span, .lp-live p { transition: none; }
           .akt-happy .akt-client { animation: none; transform: scale(1.15); }
         }

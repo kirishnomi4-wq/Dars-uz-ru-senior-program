@@ -240,3 +240,10 @@ aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>
 | `4b/PmLesson16.jsx` (M4b-D2) | ✅ | ✅ | 613 `ru:` (2026-08-22). **MAXSUS:** s8 `HARAKAT_RE`/`NATIJA_RE`/`BOSH_RE` ikki tilli (`anyRe`); VS Code kod-fayllari (`narx.spec.ts`, `narx.ts`) `{uz,ru}` — faqat IZOHLAR va `it()` nomi tarjima qilindi, identifikatorlar aslicha |
 | `4c/PmLesson17.jsx` (M4c-D2) | ✅ | ✅ | 618 `ru:` (2026-08-22). **MAXSUS:** s8 `KATTA_SOZ`/`HARAKAT`/`NATIJA`/`AKTIV` ikki tilli; `KOD_STARTER` `{uz,ru}` (kod-izohlari tarjima, `bolaklar`/`SIGIM` nomlari o'zgarmagan); `RAUNDLAR` nomzod-matnlari va `ok_txt` obyektga o'tdi |
 | `4c/PmLesson18.jsx` (M4c-D6) | ✅ | ✅ | 610 `ru:` (2026-08-22). **MAXSUS:** `HODISA`/`OLCHAGICH`/`CHEGARA` o'lchov-qiymatlari (`'0,4 s'`, `'100 dan 1 tasi xato'`) ham `{uz,ru}` — ular ekranda RAQAM bo'lib ko'rinadi, lekin ichida so'z bor; `gaugeHolat` ternar shakli saqlanib, `tr()` faqat qiymatga qo'yildi; `kodMatn(nom)` `tr({uz,ru})` qaytaradi |
+
+## 9. Kod oynalari ruscha rejimda (27.09, foydalanuvchi S7 — variant C)
+- Ko'rsatiladigan (o'quvchi yozmaydigan) kod oynasida: `//` izohlari va holat-satrlari → `tr({ uz, ru })`.
+- Koddagi xabar-satr sayt-maketida chiqadigan matn bilan **aynan bir xil** (ikkala tilda): `xato("Ism kiriting!")` ↔ sayt «Ism kiriting!»; ru — «Пожалуйста, введите имя.».
+- **O'zgarmaydi:** o'zgaruvchi/funksiya/komponent nomlari (`tugma`, `matn`, `xato()`, `<Tugma />`) — ru o'quvchi ham shu kodni yozadi;
+  mashq topshirig'i va `checks` qidiradigan so'zlar (tekshiruv buziladi).
+- Namuna: `src/2-Modull/PracticeLesson1.jsx` (12 joy). ru-walk qoldig'i shundan keyin faqat nomlar bo'lishi kerak.

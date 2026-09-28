@@ -120,7 +120,7 @@ const HUNTSPOTS = [
   { id: 'h2', ic: '🏠', name: 'Oila va tanishlar', d: 'Nonushtachiligi shikoyatlar — bepul tadqiqot: ota-onangiz nimadan noliydi? Buvingiz nimani «qiyin» deydi? Yaqinlar og\'rig\'ini siz hammadan yaxshi ko\'rasiz (Band-Aid shunday tug\'ilgan).' },
   { id: 'h3', ic: '⭐', name: 'Otzivlar (1-2 yulduz)', d: 'App Store, marketplace, Google Maps otzivlari. 5 yulduzlilar maqtaydi — foydasi kam. 1-2 yulduzli va ANIQ SABAB yozilganlari — oltin koni: «yaxshi-yu, lekin eksport qilib bo\'lmaydi».' },
   { id: 'h4', ic: '💬', name: 'Forum va guruhlar', d: 'Telegram guruhlar, forumlar: «qanday qilsa bo\'ladi?», «kim biladi?», «maslahat bering» savollari — ochiq e\'lon qilingan og\'riqlar. Birov so\'ragan bo\'lsa — yana o\'nlab odam jim qiynalgan.' },
-  { id: 'h5', ic: '🔧', name: 'Kasb egalari', d: 'Sotuvchi, sartarosh, nonvoy, usta — ish kunini so\'rang: qayerda qog\'oz-daftar? qayerda telefon qilib so\'raydi? Kichik biznes to\'la yechilmagan muammo — va ular to\'lashga tayyor.' }
+  { id: 'h5', ic: '🔧', name: 'Kasb egalari', d: 'Sotuvchi, sartarosh, nonvoy, santexnik — ish kunini so\'rang: qayerda qog\'oz-daftar? qayerda telefon qilib so\'raydi? Kichik biznes to\'la yechilmagan muammo — va ular to\'lashga tayyor.' }
 ];
 
 // "Malika kuni" radar o'yini (s6) — SIGNATURE 1
@@ -403,7 +403,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.blue}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.blue, fontWeight: 700 }}>❄️ 2008 · PARIJ</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>«Nega tugmani bossam — mashina kelmaydi?!» — deb g'ijindi Travis va Garrett. Ko'pchilik shu joyda noligan bo'lardi-yu, unutardi. Ular esa g'ijinishni <b>yozib olishdi</b> va savol berishdi: «Bu og'riq yana kimda bor?»</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>«Nega tugmani bossam — mashina kelmaydi?!» — deb g'ijindi Travis va Garrett. Ko'pchilik shu joyda bir nolib, keyin unutib yuborardi. Ular esa g'ijinishni <b>yozib olishdi</b> va savol berishdi: «Bu og'riq yana kimda bor?»</p>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: '10px 0 0', lineHeight: 1.55 }}>Bugun o'sha g'ijinishdan tug'ilgan kompaniya <b>$70 000 000 000</b> dan ortiq turadi.</p>
             </div>
           </Col>
@@ -777,7 +777,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   })}
                 </div>
                 {solved && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.success, fontWeight: 600 }}>✓ {d.why}</p>}
-                {!solved && p !== undefined && wrong[d.id] && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.accent, fontWeight: 600 }}>Uchala qism bormi: aniq KIM, aniq QACHON (vaziyat), o'lchanadigan OG'RIQ?</p>}
+                {!solved && p !== undefined && wrong[d.id] && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.accent, fontWeight: 600 }}>Uchala qism bormi: aniq KIM, aniq QACHON (vaziyat), sanaladigan OG'RIQ?</p>}
               </div>
             );
           })}
@@ -840,7 +840,7 @@ const Screen12 = (props) => (
     questionText="Yaxshi muammo ta'rifida nima bo'lishi shart?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yaxshi muammo <span className="italic" style={{ color: T.accent }}>ta'rifida</span> nima bo'ladi?</h2></>}
     options={['Chiroyli shior va katta so\'zlar', 'KIM (aniq odam) + QACHON (vaziyat) + OG\'RIQ (o\'lchanadigan)', 'Tayyor yechim va texnologiya nomi', '«Hamma», «doim», «hamma narsa» so\'zlari']} correctIdx={1}
-    explainCorrect="To'g'ri! Uch qism: aniq KIM, aniq VAZIYAT, o'lchanadigan OG'RIQ. «O'quvchilar har kuni ertalab avtobusni bilmay 20 daqiqa kutadi» — ideal ta'rif."
+    explainCorrect="To'g'ri! Uch qism: aniq KIM, aniq VAZIYAT, sanaladigan OG'RIQ. «O'quvchilar har kuni ertalab avtobusni bilmay 20 daqiqa kutadi» — ideal ta'rif."
     explainWrong={{ 0: 'Shior — marketing; ta\'rif — aniqlik.', 2: 'Yechim keyin! Avval og\'riq. Yechimdan boshlagan — SuperApp yo\'liga kiradi.', 3: '«Hamma/doim» — umumlashtirish belgisi, aniqlikning dushmani.', default: 'KIM + QACHON + OG\'RIQ.' }} />
 );
 
@@ -1005,7 +1005,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i === 0 ? 'badge-done' : ''} ${i === 1 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🔜' : '🔒')} {b.t}<span className="badge-when" style={i === 0 ? { color: 'rgba(255,255,255,0.8)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Keyingi nishon — <b style={{ color: T.honey }}>Tadqiqotchi</b>: 97-darsda 5 real intervyu o'tkazsangiz.</p></div>
         </div>
-        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🏹</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — ov davom etadi</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>Varag'ingizga yana 5 muammo qo'shing — eng zo'ri kutilmagan joydan chiqadi (oiladagi nonushta suhbatini eshiting!). Keyingi dars: bu muammolarni ODAMLAR bilan qanday tekshirish — custdev savollari.</p></div></div>
+        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🏹</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — ov davom etadi</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>Varag'ingizga yana 5 muammo qo'shing — eng zo'ri kutilmagan joydan chiqadi (oiladagi nonushta suhbatini eshiting!). Keyingi dars: bu muammolarni ODAMLAR bilan qanday tekshirish — custdev (mijozni o'rganish) savollari.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -1164,7 +1164,7 @@ export default function PmLesson28({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

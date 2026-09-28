@@ -24,6 +24,9 @@ const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\
 // keyin til, oxirida hujjat-gigiena. Sintaksis siniq bo'lsa qolganini ko'rish behuda.
 const TOOLS = [
   { id: 'esbuild', file: 'esbuild-gate.mjs' },
+  // F-0927 (foydalanuvchi S4): e'lon qilinmagan o'zgaruvchi = bosilgandan keyin OQ EKRAN (JsVars s5 prod bug'i) —
+  // esbuild ham, jsx ham buni ko'rmaydi. oxlint no-undef, konfig: oxlint-undef.json
+  { id: 'undef', bin: 'node_modules/.bin/oxlint', pre: ['-c', 'oxlint-undef.json', '-A', 'all', '-D', 'no-undef'], dflt: ['src'] },
   { id: 'jsx', file: 'jsx-lint.mjs' },
   { id: 'keys', file: 'scripts/lint-keys.mjs' }, // F-0916-03: INLINE_KEYS s-kalitlari == scored ekranlar (server total_questions shu kalitdan)
   { id: 'dark', file: 'dark-lint.mjs' },
@@ -38,7 +41,9 @@ const isJsxArg = (a) => a.endsWith('.jsx') || a.startsWith('src');
 const results = [];
 for (const t of TOOLS) {
   const pass = t.id === 'prompt' ? args.filter(a => !isJsxArg(a)) : args;
-  const r = spawnSync(process.execPath, [t.file, ...pass], { stdio: 'inherit' });
+  const r = t.bin
+    ? spawnSync(t.bin, [...t.pre, ...(pass.length ? pass : t.dflt)], { stdio: 'inherit' })
+    : spawnSync(process.execPath, [t.file, ...pass], { stdio: 'inherit' });
   results.push({ id: t.id, code: r.status ?? 1 });
 }
 

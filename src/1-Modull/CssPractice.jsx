@@ -782,7 +782,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr(picked !== null ? { uz: 'CSS bilan — bezatilgan', ru: 'С CSS — оформленный' } : { uz: 'Bezatilgan', ru: 'Оформленный' }) /* F-0926-06 (159/17) */}</p>
-            <div ref={resultRef}><Preview title="portfolio.html" minH={150} maxH={200}>{picked !== null ? <div className="fade-step"><StyledSite parts={['header', 'about']} on={['page', 'head', 'nav', 'about']} /></div> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: 'Выберите ответ — появится оформленный вид' })}</p>}</Preview></div>
+            <div ref={resultRef}><Preview title="portfolio.html" minH={150} maxH={200}>{picked !== null ? <div className="fade-step"><StyledSite parts={['header', 'about']} on={['page', 'head', 'nav', 'about']} /></div> : null /* F-0926-06 (P1): bo'sh-holat yo'rig'i olindi — chorlov mentor gapida (159/3) */}</Preview></div>
           </Col>
           <Col>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingTop: 34 }}>
@@ -2856,7 +2856,9 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
 
         /* Yig'ish ro'yxati */
         .asm-list { display: flex; flex-direction: column; gap: 6px; }
-        .asm-row { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 10px; padding: 9px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); opacity: 0.5; transition: all 0.35s; }
+        .asm-row { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 10px; padding: 9px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.12); transition: all 0.35s; } /* F-0926-06 (P2, foydalanuvchi A): xiralik olindi — bosiladigan qator o'chiqdek ko'rinardi (159/15); holatni faqat yashil ✓ + yumshoq fon aytadi */
+        .asm-row:not(.on):not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 8px 18px -8px rgba(${T.shadowBase},0.25); }
+        .asm-row.on { background: ${T.successSoft}; }
         .asm-row, .asm-row:disabled { color: ${T.ink}; } /* F-0926-06 (159/10): bajarilgan qator yozuvi tizim-kulrangiga tushmasin */
         .asm-row.on { opacity: 1; box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .asm-ic { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; box-shadow: inset 0 0 0 2px ${T.ink3}; color: ${T.ink2}; transition: all 0.35s; }

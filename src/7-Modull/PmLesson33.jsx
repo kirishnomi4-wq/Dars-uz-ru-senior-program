@@ -180,7 +180,7 @@ const PATTERNS = [
     d: 'Asosiy amal to\'q (to\'ldirilgan) tugma, ikkilamchisi och — ko\'z asosiyni darrov topadi.',
     use: '«Yangilash» — to\'q apelsin; «Sozlama» — och. Ikkitasi bir xil bo\'lsa, ko\'z chalkashadi.' },
   { id: 'skel', label: 'Skeleton yuklash', ic: '💀', color: T.honey,
-    d: 'Yuklanayotganda kulrang «suyak» chiziqlar — «Yuklanmoqda...» matnidan yaxshiroq, tezroq tuyuladi.',
+    d: 'Yuklanayotganda matn o\'rnida kulrang chiziqlar turadi — «Yuklanmoqda...» yozuvidan yaxshiroq, tezroq tuyuladi.',
     use: 'Avtobus vaqti kelguncha kulrang joy tebranadi. YouTube, Facebook — hammasi shuni ishlatadi.' }
 ];
 
@@ -195,7 +195,7 @@ const DRESS_STEPS = [
 const DESIGN_DRILL = [
   { id: 'x1', label: 'Ekranda 6 xil rang, 4 xil tugma shakli — ko\'z chalkashadi', emoji: '🌈', color: T.honey,
     opts: ['Kontrastni oshirish', 'Izchillik: bitta asosiy rang va bitta tugma uslubi', 'Ko\'proq rang qo\'shish'], correct: 1,
-    why: 'Kamalak — havaskorlik belgisi. Bitta asosiy rangga qaytaring, tugmalarni bir xil qiling — darrov professional ko\'rinadi.' },
+    why: 'Kamalak — havaskorlik belgisi. Bitta asosiy rangga qaytaring, tugmalarni bir xil qiling — ilova darrov ishonchli ko\'rinadi.' },
   { id: 'x2', label: 'Hamma matn bir xil o\'lchamda — nima muhimligi bilinmaydi', emoji: '📏', color: T.accent,
     opts: ['Iyerarxiya: muhim narsani kattalashtir, qolganini kichrayt', 'Rangni o\'zgartirish', 'Barchasini kichraytirish'], correct: 0,
     why: 'Ko\'z avval kattaga tushadi. «7 daqiqa»ni katta qiling, yorliqlarni kichik — muhimi darrov ko\'rinadi.' },
@@ -421,7 +421,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
     { id: 'a', label: 'Narxni tushiring — arzonroq qiling' },
-    { id: 'b', label: 'Uylarni professional kamerada suratga oling' },
+    { id: 'b', label: 'Uylarni sifatli kamerada chiroyli suratga oling' },
     { id: 'c', label: 'Yana ko\'proq ficha qo\'shing' }
   ];
   const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
@@ -442,7 +442,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}Uch asoschi Nyu-Yorkka uchib, uylarni <b>professional kamerada</b> suratga oldi. Bir hafta ichida daromad <b>ikki barobar</b> oshdi — bitta qatoram kod yozmasdan. Saboq: <b>dizayn — bezak emas, ISHONCH.</b> Yaxshi ko'ringan narsaga odam ishonadi va pul beradi. Bugun ko'zimizni mashq qilamiz.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}Uch asoschi Nyu-Yorkka uchib, uylarni <b>qimmat, sifatli kamerada</b> suratga oldi. Bir hafta ichida daromad <b>ikki barobar</b> oshdi — bitta qatoram kod yozmasdan. Saboq: <b>dizayn — bezak emas, ISHONCH.</b> Yaxshi ko'ringan narsaga odam ishonadi va pul beradi. Bugun ko'zimizni mashq qilamiz.</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -502,7 +502,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label" style={{ color: T.success }}>✨ Dizayn qilingan</p>
             <div style={{ background: '#F0EEE8', borderRadius: 14, padding: 18, display: 'flex', justifyContent: 'center' }}><MockBus big spaced contrast oneColor /></div>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>Bir xil ma'lumot, bir xil kod hajmi — lekin ishonchli, tinch, professional. Ko'z «ha» deydi.</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>Bir xil ma'lumot, bir xil kod hajmi — lekin ishonchli, tinch va tartibli. Ko'z «ha» deydi.</p>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Farqni ko'rdim</button>
           </Col>
         </div></Zoomable>
@@ -725,7 +725,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Bo'sh joy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Bo'sh joy — <span className="italic" style={{ color: T.accent }}>bepul, lekin qimmatbaho</span></h2></div>
-        <Mentor>Yangi boshlovchilar ekranni to'ldirishga harakat qiladi. Professionallar bo'sh joy qoldiradi. Nega? Toggle bilan his qiling.</Mentor>
+        <Mentor>Yangi boshlovchilar ekranni to'ldirishga harakat qiladi. Tajribali dizaynerlar bo'sh joy qoldiradi. Nega? Toggle bilan his qiling.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -742,7 +742,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? 'Tiqilinch: ko\'z qayerga qarashni bilmaydi, hammasi bir-biriga yopishgan. «Arzon», «shoshilinch» tuyuladi — garchi ma\'lumot bir xil bo\'lsa ham.'
                 : 'Nafas: har element o\'z joyiga ega. Ko\'z osongina harakatlanadi, muhimi ajralib turadi. «Qimmat», «ishonchli» tuyuladi. Apple shuning ustasi.'}</p>
             </div>
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Amaliy qoida: shubha bo'lsa — <b>bo'sh joy qo'shing, element emas</b>. Kamroq narsa + ko'proq joy = professional. Bo'shliqdan qo'rqmang.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Amaliy qoida: shubha bo'lsa — <b>bo'sh joy qo'shing, element emas</b>. Narsa kamroq, joy ko'proq bo'lsa, sahifa tinch va ishonchli ko'rinadi. Bo'shliqdan qo'rqmang.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -757,7 +757,7 @@ const Screen9 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yaxshi dizayn uchun <span className="italic" style={{ color: T.accent }}>eng tez yo'l</span>?</h2></>}
     options={['Bo\'sh ekranga qarab noldan o\'ylash', 'Mobbin/Dribbble\'da ishlaydigan patternlarni ko\'rib, o\'zingizga moslash', 'Iloji boricha ko\'proq rang va ficha qo\'shish', 'Boshqa ilovani aynan nusxa ko\'chirish']} correctIdx={1}
     explainCorrect="To'g'ri! «Rassomdek o'g'irlash»: yaxshi referenslarni ko'rib, tamoyillarini o'rganib, o'zingizga moslash. Bu tez va sifatli — foydalanuvchiga tanish, sizga oson."
-    explainWrong={{ 0: 'Noldan o\'ylash — sekin va xavfli; g\'alati natija.', 2: 'Ko\'proq ≠ yaxshiroq. Bo\'sh joy va izchillik muhim.', 3: 'Aynan nusxa — o\'g\'rilik; g\'oyani oling, moslang.', default: 'Referensdan o\'rganib, o\'zingizga moslang.' }} />
+    explainWrong={{ 0: 'Noldan o\'ylash — sekin va xavfli; g\'alati natija.', 2: 'Narsa ko\'proq bo\'lsa, yaxshiroq bo\'lmaydi. Bo\'sh joy va izchillik muhim.', 3: 'Aynan nusxa — o\'g\'rilik; g\'oyani oling, moslang.', default: 'Referensdan o\'rganib, o\'zingizga moslang.' }} />
 );
 
 // ===== SCREEN 10 — EKRANNI «KIYINTIRISH» (SIGNATURE 3) =====
@@ -797,7 +797,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ background: count === 0 ? T.bg : '#F0EEE8', borderRadius: 14, padding: props2.spaced ? 22 : 14, display: 'flex', justifyContent: 'center', transition: 'all 0.35s cubic-bezier(.3,.8,.3,1)', border: count === 0 ? `1.5px dashed ${T.ink3}` : 'none', minHeight: 150, alignItems: 'center' }}>
               <MockBus {...props2} />
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Xuddi shu ma'lumot — lekin endi <b>ishonchli va professional</b>. Katta o'zgarish 3 kichik qarordan: kattalashtir, joy qoldir, bitta rang. Dizayn — mo'jiza emas, INTIZOM.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Xuddi shu ma'lumot — lekin endi <b>ishonchli va tartibli</b>. Katta o'zgarish 3 kichik qarordan: kattalashtir, joy qoldir, bitta rang. Dizayn — mo'jiza emas, INTIZOM.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -844,7 +844,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             );
           })}
-          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi sizda tashxis ko'zi bor: chalkash → izchillik, muhimi yo'q → iyerarxiya, o'qib bo'lmaydi → kontrast. Muammoni nomlay olsangiz — yechimni ham bilasiz.</p></div>}
+          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi sizda muammoni topadigan ko'z bor: chalkash → izchillik, muhimi yo'q → iyerarxiya, o'qib bo'lmaydi → kontrast. Muammoni nomlay olsangiz — yechimni ham bilasiz.</p></div>}
         </div>
       </div>
     </Stage>
@@ -857,7 +857,7 @@ const Screen12 = (props) => (
     questionText="Ekran juda tiqilinch va arzon ko'rinsa — birinchi nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ekran <span className="italic" style={{ color: T.accent }}>tiqilinch va arzon</span> ko'rinsa?</h2></>}
     options={['Ko\'proq element va rang qo\'shaman', 'Bo\'sh joy qo\'shaman — element emas', 'Shriftni kichraytiraman', 'Yana ficha qo\'shaman']} correctIdx={1}
-    explainCorrect="To'g'ri! Tiqilinchning davosi — bo'sh joy, ko'proq narsa emas. Elementlar orasiga nafas qo'shing: darrov tinch, qimmat va professional ko'rinadi. Kamroq = ko'proq."
+    explainCorrect="To'g'ri! Tiqilinchning davosi — bo'sh joy, ko'proq narsa emas. Elementlar orasiga nafas qo'shing: darrov tinch, qimmat va ishonchli ko'rinadi. Kamroq = ko'proq."
     explainWrong={{ 0: 'Element qo\'shish — muammoni kuchaytiradi. Aksincha — joy qo\'shing.', 2: 'Shrift o\'lchami masala emas — masofa (bo\'sh joy) masala.', 3: 'Ficha qo\'shish yana tiqadi. Bo\'sh joy qo\'shing.', default: 'Tiqilinch davosi — bo\'sh joy.' }} />
 );
 
@@ -867,7 +867,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const OPTS = [
     { id: 0, t: '«Zo\'r! Rang-barang — jonli va yoshlarbop, shundoq qoldir»' },
-    { id: 1, t: '«Ko\'p rang ≠ dizayn. Bitta asosiy rang tanla, bir xil tugmalar, ko\'proq bo\'sh joy — izchillik professional qiladi»' },
+    { id: 1, t: '«Ko\'p rang — hali dizayn emas. Bitta asosiy rang tanla, bir xil tugmalar, ko\'proq bo\'sh joy — izchillik ilovani ishonchli qiladi»' },
     { id: 2, t: '«Yana ko\'proq rang va shrift qo\'sh — battar jonli bo\'ladi»' }
   ];
   const pick = (id) => {
@@ -898,7 +898,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'Aziz eng keng tarqalgan xatoni qildi: «chiroyli = ko\'p rang» deb o\'yladi. Aslida aksincha — professional dizayn VAZMIN: bitta asosiy rang, izchil tugmalar, ko\'p bo\'sh joy. Kamalak — havaskorlik belgisi. Cheklov — did belgisi.'
+            ? 'Aziz eng keng tarqalgan xatoni qildi: «chiroyli = ko\'p rang» deb o\'yladi. Aslida aksincha — yaxshi dizayn VAZMIN: bitta asosiy rang, izchil tugmalar, ko\'p bo\'sh joy. Kamalak — havaskorlik belgisi. Cheklov — did belgisi.'
             : (picked === 0 ? 'Kamalak jonli emas — chalkash. Ko\'z qayerga qarashni bilmaydi, ishonch yo\'qoladi. Izchillik kerak.' : 'Ko\'proq rang — battar chalkashlik. Aziznang muammosi ortiqcha rang; yechim — kamaytirish, izchillik.')}</p>
         </FeedbackBlock>
       </div>
@@ -1145,7 +1145,7 @@ export default function PmLesson33({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

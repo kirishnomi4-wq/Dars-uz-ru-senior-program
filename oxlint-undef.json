@@ -1,0 +1,6 @@
+{
+  "env": { "browser": true, "es2024": true, "node": false },
+  "rules": { "no-undef": "error" },
+  "globals": { "process": "readonly", "__lang": "writable", "__DARS_API_URL__": "readonly" },
+  "ignorePatterns": ["**/*.test.mjs", "src/eski/**", "src/2-moodull eski/**"]
+}

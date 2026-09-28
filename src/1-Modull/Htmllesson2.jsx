@@ -886,7 +886,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: `Bugun 1-darsdagi saytingizni kuchaytiramiz: rasm qo'shamiz, sahifani bo'limlarga ajratamiz, forma yasaymiz va DevTools bilan ichini ochib ko'ramiz. 4 qadam — mana natija.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: `Bugun 1-darsdagi saytingizni kuchaytiramiz.`, trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
     { text: { uz: "Rasm qo'shamiz", ru: 'Добавим картинку' }, tag: 'img' },
     { text: { uz: "Sahifani bo'limlarga ajratamiz", ru: 'Разделим страницу на разделы' }, tag: 'header, main, footer' },
@@ -922,7 +922,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Saytimizni kuchaytiramiz!', ru: 'Прокачаем наш сайт!' })}</span></h2></div>
-        <Mentor>{tr({ uz: <>Bugun 1-darsdagi saytingizni kuchaytiramiz: <b style={{ color: T.ink }}>rasm</b> qo'shamiz, sahifani <b style={{ color: T.ink }}>bo'limlarga</b> ajratamiz, <b style={{ color: T.ink }}>forma</b> yasaymiz va <b style={{ color: T.ink }}>DevTools</b> bilan ichini ochamiz. 4 qadam.</>, ru: <>Сегодня прокачаем ваш сайт из 1-го урока: добавим <b style={{ color: T.ink }}>картинку</b>, разделим страницу на <b style={{ color: T.ink }}>разделы</b>, сделаем <b style={{ color: T.ink }}>форму</b> и заглянем внутрь через <b style={{ color: T.ink }}>DevTools</b>. 4 шага.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bugun 1-darsdagi saytingizni kuchaytiramiz.</>, ru: <>Сегодня прокачаем ваш сайт из 1-го урока.</> })}</Mentor>{/* F-0926-06 (H1): 4 qadam ro'yxatda teglari bilan turibdi — mentor sanamaydi */}
         {!isNarrow ? (
           <Split>{PreviewBlock}{StepsBlock}</Split>
         ) : !showSteps ? (
@@ -1036,9 +1036,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             {/* F-0926-06: «3 ta bo'limni birma-bir bosing 0/3» yo'rig'i olindi — mentor aynan shuni aytadi, sanoqni tugma ko'rsatadi (159/7) */}
             <div className="strukt fade-up delay-2">
-              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">🏷️ {tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
-              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">📄 {tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
-              <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">📮 {tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">&lt;footer&gt;</span></div>
+              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">{tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
+              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">{tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
+              <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">{tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">&lt;footer&gt;</span></div>
             </div>
           </div>
           <div className="col" style={{ gap: 8 }}>

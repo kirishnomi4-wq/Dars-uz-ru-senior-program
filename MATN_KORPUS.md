@@ -4286,3 +4286,55 @@ ushlamagan — 1-Modulda 88 ta «skelet» qolgan edi. Foydalanuvchi qarori: to'g
 Qo'llangan: CssLesson1 · HtmlPractice · Htmllesson1 · PmLesson3 (17 joy, uz+ru). Lint: `anatomiya-metaforasi` dan «skelet» chiqdi,
 istisno `skel` → `Skel[A-Z]` ga toraydi (suyak/yurak/miya endi haqiqatan ushlanadi).
 
+
+## 214. O'SMIRNING «KASBI» YO'Q — «YO'NALISHINGIZ» (F-0926-06 HP2, foydalanuvchi 27.09)
+
+HtmlPractice'da portfolio sarlavhasi «ismingiz va **kasbingiz**» deb 19 joyda (mentor, test, flashkarta, recap) yozilgan edi.
+13 yoshli o'quvchi hali kasb egasi emas — «kasbingiz» unga begona savol. Maydon placeholder'i allaqachon
+«Yo'nalishingiz — masalan, Frontend dasturchi» edi, matn u bilan bir-biriga zid turardi.
+
+- ❌ «Ismingizni `<h1>`, **kasbingizni** `<p>` ichiga yozamiz.» · «**Kasbingiz** qaysi tegga yoziladi?» · ru: «**профессию** — в `<p>`»
+- ✅ «Ismingizni `<h1>`, **yo'nalishingizni** `<p>` ichiga yozamiz.» · «**Yo'nalishingiz** va tanishtiruv matni qaysi teg ichiga yoziladi?» · ru: «**направление** — в `<p>`»
+
+**Sinf:** o'quvchi haqida so'raladigan narsa uning HOZIRGI hayotidan bo'ladi (95-qonun, misol-olam testi): kasb, ish joyi,
+maosh — kattalar olami. Ruschada jins moslashuvi tekshiriladi: «ваше направление», «своё направление» (profession → ж.р. edi).
+**Tuzoq:** «yo'nalish»dagi apostrof bittalik qo'shtirnoqli satrni erta yopdi (5 joy) — `'...'` ichidagi so'z
+almashtirilganda satr qo'shtirnoqqa o'tkaziladi.
+
+## 215. NOTO'G'RI JAVOBGA «TO'G'RI» DEYILMAYDI — BAHOSIZ KIRISH-SAVOLIDA HAM (F-0926-06 I2, foydalanuvchi 27.09)
+
+InternetLesson 1-ekrani ball bermaydigan kirish-savol. Qaysi variant tanlansa ham bir xil javob chiqardi:
+«To'g'ri yo'nalish! Sayt boshqa kompyuterda…» — «Hech qayerdan, o'zi paydo bo'ladi» deganga ham.
+
+- ❌ har variantga: «**To'g'ri yo'nalish!** Sayt boshqa kompyuterda — serverda yashaydi.»
+- ✅ to'g'ri variantga: «To'g'ri yo'nalish! Sayt boshqa kompyuterda — serverda yashaydi. Buni internet yetkazib beradi.»
+- ✅ qolganlariga: «**Aslida** sayt boshqa kompyuterda — serverda yashaydi. Buni internet yetkazib beradi.» (baho yo'q, tanbeh yo'q)
+- ru: «Верное направление!» faqat to'g'risiga · qolganiga «На самом деле сайт живёт…»
+
+**Sabab:** o'quvchi «to'g'ri» so'zini haqiqat deb qabul qiladi — ballsiz joyda ham test halolligi saqlanadi.
+«Aslida…» — to'g'ri javobni aytadi, lekin xatoni ta'kidlamaydi (kirish-savolda qiziqish so'nmasin).
+
+## 216. BIR GAP — BIR JOYDA: MENTOR AYTGANINI QUTI, RO'YXAT YOKI VA'DA TAKRORLAMAYDI (F-0926-06 H1 · C3 · HP3 · T1 · T3 · D2, 27.09)
+
+1-Modul savollarida bitta sinf olti marta chiqdi — bir fikr ekranda ikki-uch joyda:
+
+- **H1** ❌ mentor: «rasm qo'shamiz, bo'limlarga ajratamiz, forma yasaymiz va DevTools… 4 qadam» + o'ngda «4 QADAM» ro'yxati
+  ✅ mentor: «Bugun 1-darsdagi saytingizni kuchaytiramiz.» — sanashni ro'yxat qiladi (u teglarni ham beradi)
+- **C3** ❌ mentor «bu vaqtincha» + ⚠️ quti «Bu o'zgarish vaqtincha… yangilasangiz, asl holiga qaytadi»
+  ✅ quti olindi, yangi qismi mentorga: «…vaqtincha, faqat sizning ekraningizda — sahifani yangilasangiz, asl holiga qaytadi.»
+- **HP3** ❌ «Keyingi darsda CSS bilan bezaymiz» — 7 joyda · ✅ faqat kirishda va yakunda
+- **T1** ❌ «&lt;h1&gt; — jamoa nomi, katta sarlavha» (VAZIFA kartasi va mentor ham aytgan) · ✅ faqat teg-chiplar
+- **T3** ❌ bayram oynasi + 🏆 + mentor «🧱 nishoni sizniki» · ✅ mentordan nishon eslatmasi olindi
+- **D2** ❌ mentor «platformaga yuborasiz», ro'yxat «mentorga va do'stlaringizga» · ✅ ikkalasi «platformaga»
+
+**Qoida:** yangi ma'lumot qaysi blokda bo'lsa, gap o'sha yerda qoladi; ikkinchi joydan faqat TAKROR qism olinadi.
+Ikki joy bir-biriga zid bo'lsa (D2) — manba (mentor/platforma qoidasi) to'g'ri deb olinadi. Bog'liq: 159/7, 159/14, §111.
+
+## 217. SAVOL OLDIDAN JAVOBGA ISHORA YO'Q — «BIRINCHI QATOR» HAM ISHORA (F-0926-06 E2 · V2, 27.09)
+
+- **E2** ❌ «Postni ochganingizda… avval **qalin, birinchi** qatorni ko'rasiz. Sizningcha, qaysi yozuv eng muhim?» (javob: «Eng katta sarlavha (tepadagi)»)
+  ✅ «Postni ochganingizda hamma matnni birdan o'qimaysiz — ko'z avval bitta joyga tushadi. Sizningcha, qaysi yozuv eng muhim?»
+- **V2** ❌ maslahat «birinchi so'zi — **Go**» (javob «Go Live») · ✅ «Status bar'ning o'ng burchagiga qarang.» — JOYNI aytadi, javobni emas.
+
+**Sinf (159/17 davomi):** javobning belgisi (joyi, shakli, qalinligi, birinchi harfi) ham javob. Maslahat qayerga
+QARASHNI aytadi, nima ekanini aytmaydi.

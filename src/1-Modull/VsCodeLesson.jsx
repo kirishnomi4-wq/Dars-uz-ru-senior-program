@@ -1247,7 +1247,8 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — <b>kod redaktori</b>. Uning nomi <b>VS Code</b>: har 4 dasturchidan 3 tasi aynan shunda yozadi. Bugun u sizning kompyuteringizga ham o'rnatiladi.</>, ru: <>Ответ — <b>редактор кода</b>. Его имя — <b>VS Code</b>: трое из четырёх разработчиков пишут именно в нём. Сегодня он появится и на вашем компьютере.</> })}</p>}
           </Col>
           <Col>
-            <p className="flow-label fade-up delay-1">{tr({ uz: picked !== null ? 'Mana u — VS Code' : 'Sirli qurol…', ru: picked !== null ? 'Вот он — VS Code' : 'Загадочный инструмент…' })}</p>
+            <div className="vis-card fade-up delay-1">{/* F-0927-01 (A): yorliq + oyna + izoh bitta kartada */}
+            <p className="flow-label">{tr({ uz: picked !== null ? 'Mana u — VS Code' : 'Sirli qurol…', ru: picked !== null ? 'Вот он — VS Code' : 'Загадочный инструмент…' })}</p>
             <div className={picked === null ? 'fade-up delay-2 vsc-teaser' : 'demo-swap'} key={picked === null ? 'blur' : 'open'}>
               <VscShell
                 side={<><div className="vsc-sidehead">{tr({ uz: 'MY-SITE', ru: 'MY-SITE' })}</div><VscFile name="index.html" on /><VscFile name="style.css" css /></>}
@@ -1262,7 +1263,8 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 statusRight={<>⚡ Go Live</>}
               />
             </div>
-            {picked === null && <p className="mono small fade-up delay-3" style={{ color: T.ink3, textAlign: 'center' }}>{tr({ uz: '↑ javob tanlasangiz — ochiladi', ru: '↑ выберите ответ — и он откроется' })}</p>}
+            {picked === null && <p className="mono small fade-up delay-3" style={{ color: T.ink3, textAlign: 'center', margin: 0 }}>{tr({ uz: '↑ javob tanlasangiz — ochiladi', ru: '↑ выберите ответ — и он откроется' })}</p>}
+            </div>
           </Col>
         </Split>
       </div>
@@ -1712,6 +1714,7 @@ const ScreenLive = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {VIEWS.map((v, i) => <button key={i} className={`chip ${view === i ? 'chip-on' : ''}`} onClick={() => go(i)}>{viewed.has(i) && i !== view ? '✓ ' : ''}{tr(v.chip)}</button>)}
             </div>
+            <div className="vis-card">{/* F-0927-01 (A): oyna va «mana shu tugma» izohi bitta kartada */}
             <div className="demo-swap" key={view}>
               {view === 0 && (
                 <VscShell act={3}
@@ -1750,7 +1753,8 @@ const ScreenLive = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </BrowserWin>
               )}
             </div>
-            {view === 1 && <p className="mono small fade-step" style={{ color: T.accent, fontWeight: 700, textAlign: 'right' }}>↑ {tr({ uz: "mana shu tugma — pastki ko'k chiziqda", ru: 'вот эта кнопка — на нижней синей полосе' })}</p>}
+            {view === 1 && <p className="mono small fade-step" style={{ color: T.accent, fontWeight: 700, textAlign: 'right', margin: 0 }}>↑ {tr({ uz: "mana shu tugma — pastki ko'k chiziqda", ru: 'вот эта кнопка — на нижней синей полосе' })}</p>}
+            </div>
             {view === 2 && (
               <div className="frame-soft fade-step">
                 <p className="body" style={{ margin: 0 }}>{fmtCode(tr({ uz: "🏠 `127.0.0.1` — «mening kompyuterim» degan manzil. Internet emas, o'zingizniki. `5500` — eshik raqami (port): sahifa aynan shu eshikdan chiqadi. Demak bu sahifani hozircha faqat SIZ ko'rasiz.", ru: '🏠 `127.0.0.1` — адрес «мой компьютер». Это не интернет, а ваш собственный компьютер. `5500` — номер двери (порт): страница выходит именно через неё. Значит, эту страницу пока видите только ВЫ.' }))}</p>
@@ -1892,7 +1896,7 @@ const ScreenCardCss = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button key={s.id} className={`chip ${on.has(s.id) ? 'chip-on' : ''}`} onClick={() => toggle(s.id)}>{on.has(s.id) ? '✓ ' : ''}{tr(s.chip)}</button>
               ))}
             </div>
-            <div className="code-box fade-up delay-1" style={{ fontSize: 'clamp(12.5px,1.6vw,14px)' }}>
+            <div className="code-box fade-up delay-1" style={{ fontSize: 'clamp(12.5px,1.6vw,14px)', lineHeight: 1.42 /* F-0927 (layout-lint E): 4 bezak yoqilgach kod + xulosa 1366×768 da 6px tushardi (159/6); o'ng ustunga ko'chirish 32px ga yomonlashtirdi — qaytarildi */ }}>
               <div><span style={{ color: '#D7BA7D' }}>.card</span> {'{'}</div>
               {STEPS.filter(s => on.has(s.id)).map(s => (
                 <div key={s.id} className="fade-step">{'  '}<span style={{ color: CODE.attr }}>{s.css.split(':')[0]}</span>:<span style={{ color: CODE.str }}>{s.css.split(':').slice(1).join(':').replace(';', '')};</span> <span className="cm">{'/* '}{tr(s.d)}{' */'}</span></div>
@@ -1900,7 +1904,7 @@ const ScreenCardCss = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {on.size === 0 && <div className="cm">{'  /* '}{tr({ uz: "bezaklarni tepadan yoqing…", ru: 'включайте оформления сверху…' })}{' */'}</div>}
               <div>{'}'}</div>
             </div>
-            {allOn && <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: <>Mana bu — <b>rasmdagi card</b>! Endi praktikada shu 4 qatorni o'zingiz yozasiz, keyin VS Code'dagi style.css'ga ham ko'chirasiz.</>, ru: <>Вот она — <b>карточка с образца</b>! Теперь в практике вы напишете эти 4 строки сами, а потом перенесёте их в свой style.css в VS Code.</> })}</p></div>}
+            {allOn && <div className="frame-success fade-step" style={{ padding: '10px 14px' /* F-0927 (layout-lint E): ru 1280×773 da 6px qolgan edi */ }}><p className="body" style={{ margin: 0 }}>{tr({ uz: <>Mana bu — <b>rasmdagi card</b>! Endi praktikada shu 4 qatorni o'zingiz yozasiz, keyin VS Code'dagi style.css'ga ham ko'chirasiz.</>, ru: <>Вот она — <b>карточка с образца</b>! Теперь в практике вы напишете эти 4 строки сами, а потом перенесёте их в свой style.css в VS Code.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label fade-up delay-2">{tr({ uz: 'Jonli natija', ru: 'Живой результат' })}</p>
@@ -2031,7 +2035,7 @@ const ScreenFinalTest = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
           {!correct ? (
             <div className="ft-inputrow">
               <input className="text-input" style={{ maxWidth: 260 }} value={val} onChange={e => setVal(e.target.value)} placeholder={tr({ uz: 'tugma nomi…', ru: 'имя кнопки…' })} spellCheck={false} disabled={isMentorLive} />
-              <p className="yz-hint">{touched ? tr({ uz: "Deyarli! Ikki inglizcha so'z: «jonli holatga o't» degan ma'noda.", ru: 'Почти! Два английских слова — в смысле «переходи в живой режим».' }) : null /* F-0926-06: «birinchi so'zi — Go» maslahati olindi — javobdan OLDIN javobning yarmini aytardi (159/17) */}</p>
+              <p className="yz-hint">{touched ? tr({ uz: "Deyarli! Ikki inglizcha so'z: «jonli holatga o't» degan ma'noda.", ru: 'Почти! Два английских слова — в смысле «переходи в живой режим».' }) : tr({ uz: "Status bar'ning o'ng burchagiga qarang.", ru: 'Посмотрите в правый угол строки состояния.' }) /* F-0926-06 (V2): «Go» maslahati o'rniga — qayerga qarashni aytadi, javobni emas (159/17) */}</p>
             </div>
           ) : (
             <div className="fade-step">
@@ -2271,7 +2275,7 @@ const ScreenDemoIdea = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>💡 <b>{cur ? cur.muammo : ''}</b> → {cur ? cur.yechim : ''}</p></div>
               {!confirmed && (
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  <button className="btn" style={{ background: T.success }} onClick={confirm}>{tr({ uz: '✓ Shu — mening loyiham', ru: '✓ Это мой проект' })}</button>
+                  <button className="btn" onClick={confirm}>{/* F-0926-06 (V1): asosiy tugma accent — yashil faqat bajarilgan holat */}{tr({ uz: '✓ Shu — mening loyiham', ru: '✓ Это мой проект' })}</button>
                   <button className="chip" onClick={() => { setPicking(true); setSel(null); }}>{tr({ uz: 'Boshqasini tanlayman', ru: 'Выберу другой' })}</button>
                 </div>
               )}
@@ -2302,7 +2306,7 @@ const ScreenDemoIdea = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <input className="text-input" value={ownY} onChange={e => setOwnY(e.target.value)} placeholder={tr({ uz: 'Sayt nima qiladi?', ru: 'Что сделает сайт?' })} />
                 </div>
               )}
-              {!confirmed && <button className="btn" disabled={!ready} style={{ background: ready ? T.success : undefined, alignSelf: 'flex-start', opacity: ready ? 1 : 0.5 }} onClick={confirm}>{tr({ uz: '✓ Tasdiqlash', ru: '✓ Подтвердить' })}</button>}
+              {!confirmed && <button className="btn" disabled={!ready} style={{ alignSelf: 'flex-start', opacity: ready ? 1 : 0.5 }} onClick={confirm}>{tr({ uz: '✓ Tasdiqlash', ru: '✓ Подтвердить' })}</button>}
             </>
           )}
           {confirmed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tasdiqlandi. Deploy darsida aynan shu loyihani internetga chiqarasiz.</>, ru: <>Подтверждено. На уроке деплоя вы выложите в интернет именно этот проект.</> })}</p></div>}
@@ -3396,6 +3400,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
         .pr-answer { animation: fade-step 0.4s ease-out; }
 
         .demo-swap { animation: fade-step 0.3s ease-out; }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0927-01: vizual + yorlig'i + izohi bitta blok */
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }

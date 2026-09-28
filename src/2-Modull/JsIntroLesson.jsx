@@ -5,7 +5,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // 07-DARS — JAVASCRIPT MODULIGA KIRISH: SISTEMA VA ALGORITM — PLATFORM STANDARD v16
-// Mavzu: Sistema (inson tanasi: komponentlar + bog'lanishlar),
+// Mavzu: Sistema (futbol jamoasi: komponentlar + bog'lanishlar; F-0926-06 M2-0),
 //        Algoritm = qadamlar tartibi (ertalabki tartib: ketma-ketlik, shart, sikl).
 // Sof tushuncha — JS kodisiz. Keyingi darsda haqiqiy JavaScript yoziladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -296,13 +296,13 @@ const RECAPS = {
     cards: [
       { ic: "🧩", h: { uz: "Sistema — birga ishlovchi qismlar", ru: 'Система — части, работающие вместе' },
         body: { uz: <>Sistema — bu <b>birga ishlaydigan komponentlar</b> va ularning <b>bog'lanishlari</b>. Bitta yaxlit narsa emas, aksincha ko'p qismning jamoasi.</>, ru: <>Система — это <b>компоненты, работающие вместе</b>, и их <b>связи</b>. Это не один цельный предмет, а команда из многих частей.</> },
-        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: 'сердце' }, { uz: "🫁 o'pka", ru: 'лёгкие' }, { uz: "🩸 qon", ru: 'кровь' }]} sep="+" />,
+        vis: <RcFlow items={[{ uz: "🧤 darvozabon", ru: 'вратарь' }, { uz: "🎯 yarim himoyachi", ru: 'полузащитник' }, { uz: "🥅 hujumchi", ru: 'нападающий' }]} sep="+" />,
         ask: { uz: "Sinfimiz sistema bo'la oladimi? Qaysi qismlardan iborat?", ru: 'Может ли наш класс быть системой? Из каких частей он состоит?' } },
       { ic: "🚗", h: { uz: "Bir qism yetmaydi", ru: 'Одной части мало' },
         body: { uz: <>Faqat <b>bitta g'ildirak</b> mashina emas. Mashina bo'lishi uchun dvigatel, g'ildirak, rul — hammasi <b>birga</b> ishlashi kerak.</>, ru: <>Одно <b>колесо</b> — это ещё не машина. Чтобы получилась машина, двигатель, колёса и руль должны работать <b>вместе</b>.</> },
         vis: <RcFlow items={[{ uz: "😕 bitta g'ildirak", ru: 'одно колесо' }, { uz: "🔧 hamma qism birga", ru: 'все части вместе' }, { uz: "🚗 mashina", ru: 'машина' }]} /> },
       { ic: "🎯", h: { uz: "Umumiy maqsad uchun", ru: 'Ради общей цели' },
-        body: { uz: <>Sistemaning qismlari <b>tasodifiy</b> emas — ular <b>bitta maqsad</b> uchun birlashgan. Inson tanasi yashash uchun, mashina yurish uchun.</>, ru: <>Части системы собраны <b>не случайно</b> — их объединяет <b>одна цель</b>. Тело человека — чтобы жить, машина — чтобы ехать.</> } },
+        body: { uz: <>Sistemaning qismlari <b>tasodifiy</b> emas — ular <b>bitta maqsad</b> uchun birlashgan. Futbol jamoasi gol urish uchun, mashina yurish uchun.</>, ru: <>Части системы собраны <b>не случайно</b> — их объединяет <b>одна цель</b>. Футбольная команда — чтобы забивать голы, машина — чтобы ехать.</> } },
     ]
   },
   6: {
@@ -310,10 +310,10 @@ const RECAPS = {
     cards: [
       { ic: "🔗", h: { uz: "Bog'lanish — qismlar orasidagi yo'l", ru: 'Связь — путь между частями' },
         body: { uz: <>Bog'lanish — bu qismlar <b>bir-biriga ta'sir o'tkazadigan yo'l</b>. U eng katta qism ham, sistemaning nomi ham emas.</>, ru: <>Связь — это <b>путь, по которому части влияют друг на друга</b>. Это не самая большая часть и не название системы.</> },
-        vis: <RcFlow items={[{ uz: "🫀 yurak", ru: 'сердце' }, { uz: "🩸 qon yuboradi", ru: 'гонит кровь' }, { uz: "🫁 o'pka", ru: 'лёгкие' }]} />,
+        vis: <RcFlow items={[{ uz: "🎯 yarim himoyachi", ru: 'полузащитник' }, { uz: "⚽ pas beradi", ru: 'даёт пас' }, { uz: "🥅 hujumchi", ru: 'нападающий' }]} />,
         ask: { uz: "Uyda svet va vaklyuchatel orasida qanday bog'lanish bor?", ru: 'Какая связь дома между лампочкой и выключателем?' } },
       { ic: "🚦", h: { uz: "Ta'sir bir qismdan ikkinchisiga o'tadi", ru: 'Действие переходит от части к части' },
-        body: { uz: <>Yurak <b>qon haydaydi</b>, qon o'pkaga <b>kislorod</b> uchun boradi. Bir qismning ishi ikkinchisiga <b>o'tib</b> ketadi — mana bu bog'lanish.</>, ru: <>Сердце <b>гонит кровь</b>, кровь идёт в лёгкие за <b>кислородом</b>. Работа одной части <b>передаётся</b> другой — вот это и есть связь.</> },
+        body: { uz: <>Yarim himoyachi <b>pas beradi</b>, to'p hujumchiga <b>gol</b> uchun boradi. Bir qismning ishi ikkinchisiga <b>o'tib</b> ketadi — mana bu bog'lanish.</>, ru: <>Полузащитник <b>даёт пас</b>, мяч идёт к нападающему, чтобы тот забил <b>гол</b>. Работа одной части <b>передаётся</b> другой — вот это и есть связь.</> },
         vis: <RcFlow items={[{ uz: "👆 bosdim", ru: 'нажал' }, { uz: "⚡ tok o'tdi", ru: 'ток прошёл' }, { uz: "💡 chiroq yondi", ru: 'лампа загорелась' }]} /> },
       { ic: "🎯", h: { uz: "Bog'lanishsiz — sistema emas", ru: 'Без связей — не система' },
         body: { uz: <>Agar qismlar <b>bir-biriga ta'sir qilmasa</b>, ular shunchaki alohida narsalar. Aynan bog'lanishlar ularni <b>bitta sistema</b> qiladi.</>, ru: <>Если части <b>не влияют друг на друга</b>, это просто отдельные предметы. Именно связи делают их <b>одной системой</b>.</> } },
@@ -679,7 +679,8 @@ const Mentor = ({ children }) => {
 };
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+// F-0926-06: off — ramka olingan ustunda birinchi bosishgacha ⛶ chiqmaydi (CssLesson1 naqshi)
+const Zoomable = ({ children, off = false }) => {
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -701,51 +702,51 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
   );
 };
 
-// ===== SCREEN 0 — HOOK (inson tanasi sistema) =====
+// ===== SCREEN 0 — HOOK (futbol jamoasi — sistema; F-0926-06 M2-0, MATN_ETALONI 4.1) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `Yugurib ketayotganingizni tasavvur qiling. Faqat oyoq ishlayaptimi? Yo'q — yurak tezroq uradi, nafas tezlashadi, miya har bir qadamni boshqaradi. Hammasi bir vaqtda, siz buyurmasdan ham. Bu qanday bo'ladi? "Yugur" tugmasini bosib ko'ring.`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
+  const audio = useAudio([{ id: 's0', text: `Jamoangiz hujumga o'tganini tasavvur qiling. Gol urilishi uchun kimlar ishlaydi? "Hujum" tugmasini bosib, o'zingiz ko'ring.`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [view, setView] = useState('rest');
-  const ORGANS = [{ ic: '🧠', n: tr({ uz: 'Miya', ru: 'Мозг' }) }, { ic: '🫁', n: tr({ uz: "O'pka", ru: 'Лёгкие' }) }, { ic: '🫀', n: tr({ uz: 'Yurak', ru: 'Сердце' }) }, { ic: '💪', n: tr({ uz: 'Mushaklar', ru: 'Мышцы' }) }];
+  const PLAYERS = [{ ic: '🧤', n: tr({ uz: 'Darvozabon', ru: 'Вратарь' }) }, { ic: '🛡️', n: tr({ uz: 'Himoyachi', ru: 'Защитник' }) }, { ic: '🎯', n: tr({ uz: 'Yarim himoyachi', ru: 'Полузащитник' }) }, { ic: '🥅', n: tr({ uz: 'Hujumchi', ru: 'Нападающий' }) }]; // F-0926-06 M2-0: MATN_ETALONI 4.1 — futbol jamoasi
   const OPTS = [
-    { id: 'a', label: tr({ uz: 'Faqat oyoq mushaklari ishlaydi', ru: 'Работают только мышцы ног' }) },
-    { id: 'b', label: tr({ uz: "Ko'p a'zo birgalikda ishlaydi", ru: 'Много органов работают вместе' }) },
-    { id: 'c', label: tr({ uz: "Hech qanday sa'y-harakatsiz", ru: 'Вообще без каких-либо усилий' }) }
+    { id: 'a', label: tr({ uz: "Faqat hujumchi yaxshi o'ynadi", ru: 'Хорошо сыграл только нападающий' }) },
+    { id: 'b', label: tr({ uz: "Ko'p o'yinchi birgalikda ishladi", ru: 'Много игроков сработали вместе' }) },
+    { id: 'c', label: tr({ uz: "To'p o'zi darvozaga kirib ketdi", ru: 'Мяч сам залетел в ворота' }) }
   ];
   const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); audio.triggerEvent('option_picked'); };
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Yugurganda tanangizda <span className="italic" style={{ color: T.accent }}>faqat oyoq</span> ishlaydimi?</>, ru: <>Когда вы бежите, в теле работают <span className="italic" style={{ color: T.accent }}>только ноги</span>?</> })}</h1>
-        <Mentor>{tr({ uz: <>Yugurib ketayotganingizni tasavvur qiling. Faqat oyoq ishlayaptimi? Yo'q — yurak tezroq uradi, nafas tezlashadi, miya har bir qadamni boshqaradi. Hammasi bir vaqtda, <b style={{ color: T.ink }}>siz buyurmasdan ham</b>. Bu qanday bo'ladi? <b style={{ color: T.ink }}>"Yugur"</b> tugmasini bosib ko'ring.</>, ru: <>Представьте, что вы бежите. Работают только ноги? Нет — сердце бьётся быстрее, дыхание ускоряется, мозг управляет каждым шагом. Всё одновременно, <b style={{ color: T.ink }}>даже без вашей команды</b>. Как так получается? Нажмите кнопку <b style={{ color: T.ink }}>«Беги»</b> и посмотрите.</> })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Gol urilganda <span className="italic" style={{ color: T.accent }}>faqat hujumchi</span> ishlaydimi?</>, ru: <>Когда забивают гол, работает <span className="italic" style={{ color: T.accent }}>только нападающий</span>?</> })}</h1>
+        <Mentor>{/* F-0926-06 (§217): mentor javobni («hammasi birga») savoldan OLDIN aytardi — endi faqat vaziyat va chorlov, javobni o'quvchi «Hujum»da o'zi ko'radi */}{tr({ uz: <>Jamoangiz hujumga o'tganini tasavvur qiling. Gol urilishi uchun kimlar ishlaydi? <b style={{ color: T.ink }}>"Hujum"</b> tugmasini bosib, o'zingiz ko'ring.</>, ru: <>Представьте, что ваша команда пошла в атаку. Кто работает, чтобы забить гол? Нажмите <b style={{ color: T.ink }}>«Атака»</b> и посмотрите сами.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${view === 'rest' ? 'chip-on' : ''}`} onClick={() => setView('rest')}>{tr({ uz: '🧍 Tinch', ru: '🧍 Покой' })}</button>
-              <button className={`chip ${view === 'run' ? 'chip-on' : ''}`} onClick={() => setView('run')}>{tr({ uz: '🏃 Yugur', ru: '🏃 Беги' })}</button>
+              <button className={`chip ${view === 'rest' ? 'chip-on' : ''}`} onClick={() => setView('rest')}>{tr({ uz: 'Tinch', ru: 'Пауза' })}</button>{/* F-0926-06: tugma-emoji olindi (H3) */}
+              <button className={`chip ${view === 'run' ? 'chip-on' : ''}`} onClick={() => setView('run')}>{tr({ uz: 'Hujum', ru: 'Атака' })}</button>
             </div>
             <div className="demo-swap" key={view} style={{ background: T.paper, borderRadius: 14, padding: '18px 16px', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
-              <p className="flow-label" style={{ marginBottom: 12 }}>{view === 'run' ? tr({ uz: "🏃 Yugurmoqda — a'zolar birga ishlayapti", ru: '🏃 Бежит — органы работают вместе' }) : tr({ uz: '🧍 Tinch holatda', ru: '🧍 В состоянии покоя' })}</p>
+              <p className="flow-label" style={{ marginBottom: 12 }}>{view === 'run' ? tr({ uz: "Hujum — o'yinchilar birga ishlayapti", ru: 'Атака — игроки работают вместе' }) : tr({ uz: "Tinch holatda — to'p to'xtab turibdi", ru: 'Пауза — мяч стоит на месте' })}{/* F-0926-06: karta sarlavhasi emojisi olindi (H3) */}</p>
               <div className="bpm-row">
-                <span className="bpm-heart" style={{ animationDuration: view === 'run' ? '0.42s' : '1s' }}>❤️</span>
+                <span className="pas-ball" style={{ animation: view === 'run' ? undefined : 'none' }}>⚽</span>
                 <div className="bpm-info">
-                  <span className="bpm-num" style={{ color: view === 'run' ? T.accent : T.ink2 }}>{view === 'run' ? '140' : '72'}</span>
-                  <span className="bpm-unit">{tr({ uz: 'zarba / daqiqa', ru: 'ударов / мин' })}</span>
+                  <span className="bpm-num" style={{ color: view === 'run' ? T.accent : T.ink2 }}>{view === 'run' ? '3' : '0'}</span>
+                  <span className="bpm-unit">{tr({ uz: 'pas soni', ru: 'число пасов' })}</span>
                 </div>
                 <div className="eq">
                   {[0, 1, 2, 3, 4].map(i => (<span key={i} className="eq-bar" style={{ animationDuration: view === 'run' ? '0.5s' : '1.4s', animationDelay: `${i * 0.08}s`, opacity: view === 'run' ? 1 : 0.45 }} />))}
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                {ORGANS.map((o, i) => (
+                {PLAYERS.map((o, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '10px 12px', borderRadius: 10, background: view === 'run' ? T.accentSoft : T.bg, boxShadow: view === 'run' ? '0 6px 16px -5px rgba(255,79,40,0.4)' : 'none', transition: 'all 0.3s' }}>
                     <span style={{ fontSize: 22, animation: view === 'run' ? `dl-pulse 0.7s ease-in-out infinite ${i * 0.12}s` : 'none', display: 'inline-block' }}>{o.ic}</span>
                     <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 13, color: view === 'run' ? T.accent : T.ink2 }}>{o.n}</span>
@@ -755,7 +756,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, nega yugura olasiz?', ru: 'Как думаете, почему вы можете бежать?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, gol nega urildi?', ru: 'Как думаете, почему получился гол?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -767,7 +768,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri! Tana — bu <b>sistema</b>: ko'p a'zo birga ishlaydi. Bugun shuni o'rganamiz.</>, ru: <>Верно! Тело — это <b>система</b>: много органов работают вместе. Сегодня мы это и изучим.</> })}</p>}
+            {/* F-0926-06 (I2, KORPUS §215): «To'g'ri!» faqat to'g'ri variantga, qolganiga «Aslida» */}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
+              ? tr({ uz: <>To'g'ri! Jamoa — bu <b>sistema</b>: ko'p o'yinchi birga ishlaydi. Bugun shuni o'rganamiz.</>, ru: <>Верно! Команда — это <b>система</b>: много игроков работают вместе. Сегодня мы это и изучим.</> })
+              : tr({ uz: <>Aslida jamoa — bu <b>sistema</b>: ko'p o'yinchi birga ishlaydi. Bugun shuni o'rganamiz.</>, ru: <>На самом деле команда — это <b>система</b>: много игроков работают вместе. Сегодня мы это и изучим.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -824,7 +828,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "📋 Bugungi 5 qadamni ko'rish", ru: '📋 Посмотреть 5 шагов на сегодня' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' }) /* F-0926-06: H3 */}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
@@ -839,12 +843,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 2 — SISTEMA = KOMPONENTLAR =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: `Tanangizni bir butun deb o'ylaysiz, to'g'rimi? Aslida u ko'plab qismdan — komponentdan iborat, va har biri o'z ishini bajaradi: miya boshqaradi, yurak qon haydaydi, o'pka kislorod oladi. Har bir a'zoni bosib, vazifasini bilib oling.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's2', text: `Futbol jamoasini bir butun deb o'ylaysiz, to'g'rimi? Aslida u ko'plab qismdan — komponentdan iborat, va har biri o'z ishini bajaradi. Har bir o'yinchini bosib, vazifasini bilib oling.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
-    miya: { ic: '🧠', name: tr({ uz: 'Miya', ru: 'Мозг' }), role: tr({ uz: "Boshqaruv markazi — barcha a'zolarga buyruq beradi.", ru: 'Центр управления — отдаёт команды всем органам.' }) },
-    yurak: { ic: '🫀', name: tr({ uz: 'Yurak', ru: 'Сердце' }), role: tr({ uz: 'Nasos — qonni butun tanaga haydaydi.', ru: 'Насос — гонит кровь по всему телу.' }) },
-    opka: { ic: '🫁', name: tr({ uz: "O'pka", ru: 'Лёгкие' }), role: tr({ uz: 'Havodan kislorod oladi va qonga beradi.', ru: 'Берут кислород из воздуха и отдают его крови.' }) },
-    mushak: { ic: '💪', name: tr({ uz: 'Mushaklar', ru: 'Мышцы' }), role: tr({ uz: "Harakatni bajaradi — yuradi, ko'taradi, yuguradi.", ru: 'Выполняют движение — ходят, поднимают, бегут.' }) }
+    darvozabon: { ic: '🧤', name: tr({ uz: 'Darvozabon', ru: 'Вратарь' }), role: tr({ uz: "Darvozani qo'riqlaydi — to'pni ushlab, jamoaga qaytaradi.", ru: 'Охраняет ворота — ловит мяч и возвращает его команде.' }) },
+    himoyachi: { ic: '🛡️', name: tr({ uz: 'Himoyachi', ru: 'Защитник' }), role: tr({ uz: "Raqib hujumini to'xtatadi — to'pni olib qo'yadi.", ru: 'Останавливает атаку соперника — отбирает мяч.' }) },
+    yarim: { ic: '🎯', name: tr({ uz: 'Yarim himoyachi', ru: 'Полузащитник' }), role: tr({ uz: "To'pni tarqatadi — himoyadan hujumga pas beradi.", ru: 'Раздаёт мяч — отдаёт пас из защиты в атаку.' }) },
+    hujumchi: { ic: '🥅', name: tr({ uz: 'Hujumchi', ru: 'Нападающий' }), role: tr({ uz: "Gol uradi — to'pni raqib darvozasiga kiritadi.", ru: 'Забивает голы — отправляет мяч в ворота соперника.' }) }
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(new Set());
@@ -853,14 +857,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Sistema', ru: 'Система' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/4 ${tr({ uz: "a'zo ko'rilgan", ru: 'органа изучено' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Sistema', ru: 'Система' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/4 ${tr({ uz: "o'yinchi ko'rilgan", ru: 'игрока изучено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tana <span className="italic" style={{ color: T.accent }}>nimalardan</span> tuzilgan?</>, ru: <>Из чего <span className="italic" style={{ color: T.accent }}>состоит</span> тело?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Tanangizni bir butun deb o'ylaysiz, to'g'rimi? Aslida u ko'plab <b style={{ color: T.ink }}>qismdan (komponentdan)</b> iborat, va har biri o'z ishini bajaradi: miya boshqaradi, yurak qon haydaydi, o'pka kislorod oladi. Har bir a'zoni bosib, vazifasini bilib oling.</>, ru: <>Вы думаете о теле как о едином целом, верно? На самом деле оно состоит из множества <b style={{ color: T.ink }}>частей (компонентов)</b>, и каждая делает свою работу: мозг управляет, сердце гонит кровь, лёгкие берут кислород. Нажмите на каждый орган и узнайте его задачу.</> })}</Mentor>
-        <Zoomable>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Jamoa <span className="italic" style={{ color: T.accent }}>nimalardan</span> tuzilgan?</>, ru: <>Из чего <span className="italic" style={{ color: T.accent }}>состоит</span> команда?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Futbol jamoasini bir butun deb o'ylaysiz, to'g'rimi? Aslida u ko'plab <b style={{ color: T.ink }}>qismdan (komponentdan)</b> iborat, va har biri o'z ishini bajaradi. Har bir o'yinchini bosib, vazifasini bilib oling.</>, ru: <>Вы думаете о футбольной команде как о едином целом, верно? На самом деле она состоит из множества <b style={{ color: T.ink }}>частей (компонентов)</b>, и каждая делает свою работу. Нажмите на каждого игрока и узнайте его задачу.</> })}{/* F-0926-06 M2-0 (KORPUS §216): vazifalar ro'yxati kartalarda — mentor takrorlamaydi */}</Mentor>
+        <Zoomable off={!active}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Komponentlar (a'zolar)", ru: 'Компоненты (органы)' })}</p>
+            <p className="flow-label">{tr({ uz: "Komponentlar (o'yinchilar)", ru: 'Компоненты (игроки)' })}</p>
             <div className="fade-up delay-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               {Object.keys(PARTS).map(k => (
                 <button key={k} onClick={() => tap(k)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, cursor: 'pointer', border: 'none', borderRadius: 14, padding: '16px 10px', background: T.paper, boxShadow: active === k ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -6px rgba(255,79,40,0.22)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.18s' }}>
@@ -877,7 +881,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="sk-tagbig"><span style={{ fontSize: 26 }}>{PARTS[active].ic}</span><span className="sk-wordbadge">{PARTS[active].name}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].role}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Bir a'zoni bosing", ru: 'Нажмите на любой орган' })}</p></div> : null)}
+            ) : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mana shu — <b>komponentlar</b>. Har biri alohida ishni bajaradi, lekin birga — bitta sistema. Endi ko'ramiz: ular qanday <b>bog'lanadi</b>?</>, ru: <>✓ Вот это — <b>компоненты</b>. Каждый делает свою работу, но вместе они — одна система. Теперь посмотрим: как они <b>связаны</b>?</> })}</p></div>}
           </Col>
         </div>
@@ -889,7 +893,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 3 — BOG'LANISHLAR =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's3', text: `Komponentlar yolg'iz hech nima qila olmaydi — ular bir-biriga bog'langan. Miya mushakka "qimirla" degan signalni nerv orqali jo'natadi. Lekin shu bog'lanish uzilib qolsa-chi? Tugmani bosib, o'z ko'zingiz bilan ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's3', text: `Komponentlar yolg'iz hech nima qila olmaydi — ular bir-biriga bog'langan. Yarim himoyachi to'pni hujumchiga pas orqali yetkazadi. Lekin pas uzilib qolsa-chi — raqib to'pni olib qo'ysa? Tugmani bosib, o'z ko'zingiz bilan ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const [broken, setBroken] = useState(false);
   const [touched, setTouched] = useState(false);
   const done = touched;
@@ -899,22 +903,22 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Bog'lanishlar", ru: 'Связи' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bog'lanishni sinab ko'ring", ru: 'Проверьте связь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qismlar bir-biriga <span className="italic" style={{ color: T.accent }}>qanday</span> ulanadi?</>, ru: <>Как части <span className="italic" style={{ color: T.accent }}>соединяются</span> друг с другом?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Komponentlar yolg'iz hech nima qila olmaydi — ular bir-biriga <b style={{ color: T.ink }}>bog'langan</b>. Miya mushakka "qimirla" signalini <b style={{ color: T.ink }}>nerv</b> orqali jo'natadi. Lekin shu bog'lanish uzilib qolsa-chi? Tugmani bosib, o'z ko'zingiz bilan ko'ring.</>, ru: <>Поодиночке компоненты ничего не могут — они <b style={{ color: T.ink }}>связаны</b> друг с другом. Мозг посылает мышце сигнал «двигайся» через <b style={{ color: T.ink }}>нерв</b>. А если эта связь оборвётся? Нажмите кнопку и посмотрите своими глазами.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Komponentlar yolg'iz hech nima qila olmaydi — ular bir-biriga <b style={{ color: T.ink }}>bog'langan</b>. Yarim himoyachi to'pni hujumchiga <b style={{ color: T.ink }}>pas</b> orqali yetkazadi. Lekin pas uzilib qolsa-chi — raqib to'pni olib qo'ysa? Tugmani bosib, o'z ko'zingiz bilan ko'ring.</>, ru: <>Поодиночке компоненты ничего не могут — они <b style={{ color: T.ink }}>связаны</b> друг с другом. Полузащитник доставляет мяч нападающему через <b style={{ color: T.ink }}>пас</b>. А если пас прервётся — соперник перехватит мяч? Нажмите кнопку и посмотрите своими глазами.</> })}</Mentor>
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div className="conn-flow fade-up delay-1">
-          <div className="conn-node"><span style={{ fontSize: 34 }}>🧠</span><span className="conn-lbl">{tr({ uz: 'Miya', ru: 'Мозг' })}</span><span className="conn-sub">{tr({ uz: 'buyruq beradi', ru: 'отдаёт команду' })}</span></div>
+          <div className="conn-node"><span style={{ fontSize: 34 }}>🎯</span><span className="conn-lbl">{tr({ uz: 'Yarim himoyachi', ru: 'Полузащитник' })}</span><span className="conn-sub">{tr({ uz: 'pas beradi', ru: 'даёт пас' })}</span></div>
           <div className={`conn-link ${broken ? 'cut' : ''}`}>
             <span className="conn-line" />
-            <span className="conn-sig">{broken ? '✂️' : '⚡'}</span>
+            <span className="conn-sig">{broken ? '✋' : '⚽'}</span>
             <span className="conn-line" />
           </div>
-          <div className="conn-node" style={{ opacity: broken ? 0.45 : 1 }}><span style={{ fontSize: 34 }}>{broken ? '😴' : '💪'}</span><span className="conn-lbl">{tr({ uz: 'Mushak', ru: 'Мышца' })}</span><span className="conn-sub">{broken ? tr({ uz: 'buyruq yetmadi', ru: 'команда не дошла' }) : tr({ uz: 'harakatlanadi', ru: 'двигается' })}</span></div>
+          <div className="conn-node" style={{ opacity: broken ? 0.45 : 1 }}><span style={{ fontSize: 34 }}>{broken ? '😞' : '🥅'}</span><span className="conn-lbl">{tr({ uz: 'Hujumchi', ru: 'Нападающий' })}</span><span className="conn-sub">{broken ? tr({ uz: "to'p yetmadi", ru: 'мяч не дошёл' }) : tr({ uz: 'gol uradi', ru: 'забивает гол' })}</span></div>
         </div>
-        <button className="btn" onClick={toggle} style={{ alignSelf: 'flex-start' }}>{broken ? tr({ uz: "🔗 Bog'lanishni ulash", ru: '🔗 Восстановить связь' }) : tr({ uz: "✂️ Bog'lanishni uzish", ru: '✂️ Разорвать связь' })}</button>
+        <button className="btn" onClick={toggle} style={{ alignSelf: 'flex-start' }}>{broken ? tr({ uz: "Bog'lanishni ulash", ru: 'Восстановить связь' }) : tr({ uz: "Bog'lanishni uzish", ru: 'Разорвать связь' })}{/* F-0926-06: tugma-emoji olindi (H3) */}</button>
         {done && (
           broken
-            ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bog'lanish uzildi — signal mushakka <b>yetib bormadi</b>, harakat yo'q. Demak sistemada bog'lanish ham komponent kabi muhim!</>, ru: <>Связь оборвалась — сигнал <b>не дошёл</b> до мышцы, движения нет. Значит, связь в системе так же важна, как и компонент!</> })}</p></div>
+            ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Pas uzildi — to'p hujumchiga <b>yetib bormadi</b>, gol yo'q. Demak sistemada bog'lanish ham komponent kabi muhim!</>, ru: <>Пас прервался — мяч <b>не дошёл</b> до нападающего, гола нет. Значит, связь в системе так же важна, как и компонент!</> })}</p></div>
             : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Bog'lanish</b> — qismlar bir-biriga ta'sir o'tkazadigan yo'l. U bo'lmasa, komponentlar yakka qoladi va sistema ishlamaydi.</>, ru: <>✓ <b>Связь</b> — путь, по которому части влияют друг на друга. Без неё компоненты остаются поодиночке, и система не работает.</> })}</p></div>
         )}
         </div>
@@ -929,18 +933,18 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     audioText="Sistema nima? To'g'ri variantni tanlang."
     questionText="Sistema nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Sistema nima?', ru: 'Что такое система?' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Sistema nima?', ru: 'Что такое система?' })}</h2></>}
+    question={<>{/* F-0926-06 (159/7): sarlavhani takrorlagan «Sistema nima?» yorlig'i olindi */}<h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Sistema nima?', ru: 'Что такое система?' })}</h2></>}
     options={[tr({ uz: "Bo'linmaydigan, ichki qismlari yo'q yaxlit bir narsa", ru: 'Неделимый цельный предмет без внутренних частей' }), tr({ uz: "Birga ishlaydigan komponentlar va ularning bog'lanishlari", ru: 'Компоненты, работающие вместе, и их связи' }), tr({ uz: "Bir-biriga hech qanday aloqasi yo'q tasodifiy narsalar", ru: 'Случайные предметы, никак не связанные между собой' }), tr({ uz: 'Faqat kompyuterga tegishli, boshqa hech narsa emas', ru: 'Что-то только про компьютеры и больше ни про что' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Sistema — birga ishlaydigan komponentlar (qismlar) va ular orasidagi bog'lanishlardir. Inson tanasi shunga misol.", ru: 'Верно! Система — это компоненты (части), работающие вместе, и связи между ними. Тело человека — отличный пример.' })}
-    explainWrong={{ 0: tr({ uz: "Yo'q — sistema aynan ko'p qismdan iborat, bitta bo'linmas narsa emas.", ru: 'Нет — система как раз состоит из многих частей, это не один неделимый предмет.' }), 2: tr({ uz: "Yo'q — sistemadagi qismlar tasodifiy emas, ular birga, maqsad bilan ishlaydi.", ru: 'Нет — части системы не случайны, они работают вместе, ради цели.' }), 3: tr({ uz: "Yo'q — kompyuter ham sistema, lekin sistema faqat kompyuter degani emas. Tana, jamoa ham sistema.", ru: 'Нет — компьютер тоже система, но система — это не только компьютер. Тело и команда — тоже системы.' }), default: tr({ uz: "Sistema — komponentlar va ularning bog'lanishlari.", ru: 'Система — это компоненты и их связи.' }) }} />
+    explainCorrect={tr({ uz: "Qismlarning o'zi yetmaydi — ular orasidagi bog'lanish ham sistemaga kiradi. Futbol jamoasi shunga misol.", ru: 'Одних частей мало — связи между ними тоже входят в систему. Футбольная команда — отличный пример.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
+    explainWrong={{ 0: tr({ uz: "Yo'q — sistema aynan ko'p qismdan iborat, bitta bo'linmas narsa emas.", ru: 'Нет — система как раз состоит из многих частей, это не один неделимый предмет.' }), 2: tr({ uz: "Yo'q — sistemadagi qismlar tasodifiy emas, ular birga, maqsad bilan ishlaydi.", ru: 'Нет — части системы не случайны, они работают вместе, ради цели.' }), 3: tr({ uz: "Yo'q — kompyuter ham sistema, lekin sistema faqat kompyuter degani emas. Jamoa, maktab ham sistema.", ru: 'Нет — компьютер тоже система, но система — это не только компьютер. Команда и школа — тоже системы.' }), default: tr({ uz: "Sistema — komponentlar va ularning bog'lanishlari.", ru: 'Система — это компоненты и их связи.' }) }} />
 );
 
 // ===== SCREEN 5 — ATROFDAGI SISTEMALAR =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's5', text: `Bir marta payqang — endi sistemani hamma joyda ko'ra boshlaysiz. Futbol jamoasi, tanangiz, hatto o'zingiz yasagan sayt ham — bari sistema. Har birini bosib, qismlari va bog'lanishini toping.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Bir marta payqang — endi sistemani hamma joyda ko'ra boshlaysiz. Futbol jamoasi, maktabingiz, hatto o'zingiz yasagan sayt ham — bari sistema. Har birini bosib, qismlari va bog'lanishini toping.`, trigger: 'on_mount', waits_for: null }]);
   const EX = {
-    tana: { ic: '🫀', title: tr({ uz: 'Inson tanasi', ru: 'Тело человека' }), parts: [tr({ uz: 'miya', ru: 'мозг' }), tr({ uz: 'yurak', ru: 'сердце' }), tr({ uz: "o'pka", ru: 'лёгкие' }), tr({ uz: 'mushaklar', ru: 'мышцы' })], conn: tr({ uz: 'qon tomir va nervlar', ru: 'сосуды и нервы' }), note: tr({ uz: "Bir a'zo to'xtasa, butun tana qiynaladi.", ru: 'Если один орган остановится, страдает всё тело.' }) },
     jamoa: { ic: '⚽', title: tr({ uz: 'Futbol jamoasi', ru: 'Футбольная команда' }), parts: [tr({ uz: "o'yinchilar", ru: 'игроки' }), tr({ uz: 'darvozabon', ru: 'вратарь' }), tr({ uz: 'murabbiy', ru: 'тренер' })], conn: tr({ uz: 'paslar va kelishuv', ru: 'пасы и взаимопонимание' }), note: tr({ uz: "Paslar yo'q bo'lsa, jamoa o'yin qura olmaydi.", ru: 'Без пасов команда не сможет построить игру.' }) },
+    maktab: { ic: '🏫', title: tr({ uz: 'Maktab', ru: 'Школа' }), parts: [tr({ uz: "o'qituvchi", ru: 'учитель' }), tr({ uz: 'sinf', ru: 'класс' }), tr({ uz: 'dars jadvali', ru: 'расписание уроков' })], conn: tr({ uz: "qo'ng'iroq va e'lonlar", ru: 'звонок и объявления' }), note: tr({ uz: "Qo'ng'iroq chalinmasa, darslar aralashib ketadi.", ru: 'Если звонок не прозвенит, уроки перепутаются.' }) }, // F-0926-06 M2-0: foydalanuvchi qarori — maktab misoli
     sayt: { ic: '🌐', title: tr({ uz: 'Veb-sayt', ru: 'Веб-сайт' }), parts: [tr({ uz: 'brauzer', ru: 'браузер' }), tr({ uz: 'server', ru: 'сервер' }), 'HTML', 'CSS'], conn: tr({ uz: "internet so'rovlari", ru: 'интернет-запросы' }), note: tr({ uz: "Internet darsida ko'rgan so'rov yo'li — ayni shu bog'lanish!", ru: 'Путь запроса из урока об интернете — это и есть та самая связь!' }) }
   };
   const [active, setActive] = useState(null);
@@ -953,8 +957,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Sistemalar atrofda', ru: 'Системы вокруг нас' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "ko'ring", ru: 'посмотрите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yana <span className="italic" style={{ color: T.accent }}>qayerda</span> sistema bor?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>ещё</span> есть системы?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bir marta payqang — endi sistemani <b style={{ color: T.ink }}>hamma joyda</b> ko'ra boshlaysiz. Futbol jamoasi, tanangiz, hatto o'zingiz yasagan <b style={{ color: T.ink }}>sayt</b> ham — bari sistema! Har birini bosib, qismlari va bog'lanishini ko'ring.</>, ru: <>Стоит один раз заметить — и вы начнёте видеть системы <b style={{ color: T.ink }}>повсюду</b>. Футбольная команда, ваше тело, даже <b style={{ color: T.ink }}>сайт</b>, который вы сами сделали, — всё это системы! Нажмите на каждую и посмотрите её части и связи.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>Bir marta payqang — endi sistemani <b style={{ color: T.ink }}>hamma joyda</b> ko'ra boshlaysiz. Futbol jamoasi, maktabingiz, hatto o'zingiz yasagan <b style={{ color: T.ink }}>sayt</b> ham — bari sistema! Har birini bosib, qismlari va bog'lanishini ko'ring.</>, ru: <>Стоит один раз заметить — и вы начнёте видеть системы <b style={{ color: T.ink }}>повсюду</b>. Футбольная команда, ваша школа, даже <b style={{ color: T.ink }}>сайт</b>, который вы сами сделали, — всё это системы! Нажмите на каждую и посмотрите её части и связи.</> })}</Mentor>
+        <Zoomable off={!active}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -981,7 +985,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 <p className="body" style={{ color: T.ink2, margin: '10px 0 0', fontStyle: 'italic' }}>{EX[active].note}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Bir misolni bosing — qismlari ko'rinadi", ru: 'Нажмите на пример — увидите его части' })}</p></div> : null)}
+            ) : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har xil narsa — lekin tuzilishi bir xil: <b>qismlar + bog'lanish</b>. Siz yasagan sayt ham aynan shunday sistema edi!</>, ru: <>Предметы разные — а устройство одно: <b>части + связи</b>. Сайт, который вы сделали, был точно такой же системой!</> })}</p></div>}
           </Col>
         </div>
@@ -998,7 +1002,7 @@ const Screen5b = (props) => (
     questionText="Sistemada 'bog'lanish' nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sistemada <span className="italic" style={{ color: T.accent }}>bog'lanish</span> nima?</>, ru: <>Что такое <span className="italic" style={{ color: T.accent }}>связь</span> в системе?</> })}</h2></>}
     options={[tr({ uz: "Qismlar bir-biriga ta'sir o'tkazadigan yo'l", ru: 'Путь, по которому части влияют друг на друга' }), tr({ uz: 'Sistemadagi eng katta va asosiy komponent', ru: 'Самый большой и главный компонент системы' }), tr({ uz: 'Butun sistemaga berilgan umumiy bitta nom', ru: 'Общее название всей системы целиком' }), tr({ uz: 'Rejasiz yuz beradigan tasodifiy hodisa', ru: 'Случайное событие, которое происходит без плана' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Bog'lanish — komponentlar bir-biriga ta'sir o'tkazadigan, signal yoki ma'lumot uzatadigan yo'l (masalan, nerv yoki internet so'rovi).", ru: 'Верно! Связь — это путь, по которому компоненты влияют друг на друга, передают сигнал или данные (например, нерв или интернет-запрос).' })}
+    explainCorrect={tr({ uz: "Bog'lanish orqali to'p, signal yoki ma'lumot o'tadi — masalan, pas yoki internet so'rovi.", ru: 'По связи проходит мяч, сигнал или данные — например, пас или интернет-запрос.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
       1: tr({ uz: "Yo'q — bu komponent emas. Bog'lanish — qismlarni ulaydigan yo'l.", ru: 'Нет — это не компонент. Связь — путь, соединяющий части.' }),
       2: tr({ uz: "Yo'q — bog'lanish nom emas, u qismlar orasidagi aloqa.", ru: 'Нет — связь не название, это соединение между частями.' }),
@@ -1033,7 +1037,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {!isNarrow ? (
-          <div className="pz-flow" style={{ justifyContent: 'center' }}>
+          <div className="pz-flow" style={{ justifyContent: 'flex-start' }}>{/* F-0926-06: oqim «▶ Boshlash» tugmasi bilan bir chiziqda — chapdan */}
             {STEPS.map((s, i) => (
               <React.Fragment key={i}>
                 <div className={`pz-step ${step > i ? 'on' : ''} ${running && step === i + 1 ? 'active' : ''}`} style={{ minWidth: 92 }}>
@@ -1101,8 +1105,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${order === 'correct' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('correct')}>{tr({ uz: "✅ To'g'ri tartib", ru: '✅ Правильный порядок' })}</button>
-              <button className={`chip ${order === 'mixed' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('mixed')}>{tr({ uz: '🔀 Chalkash', ru: '🔀 Перепутанный' })}</button>
+              <button className={`chip ${order === 'correct' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('correct')}>{tr({ uz: "To'g'ri tartib", ru: 'Правильный порядок' }) /* F-0926-06: H3 */}</button>
+              <button className={`chip ${order === 'mixed' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('mixed')}>{tr({ uz: 'Chalkash', ru: 'Перепутанный' })}</button>
             </div>
             <div className="demo-swap" key={order} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {list.map((s, i) => (
@@ -1121,8 +1125,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               idleCap={tr({ uz: 'ertalab, hali hech nima qilinmagan', ru: 'утро, ещё ничего не сделано' })}
               result={{ icon: '🎒🙂', cap: tr({ uz: 'Maktabga tayyor', ru: 'Готов к школе' }) }}
               failIcon="🙈👕" failText={tr({ uz: "Pijamada ko'chada qoldingiz!", ru: 'Вы остались на улице в пижаме!' })} />
-            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri tartib — avval kiyinasiz, keyin ko'chaga chiqasiz. To'g'ri natija!", ru: '✓ Правильный порядок — сначала одеваетесь, потом выходите на улицу. Верный результат!' })}</p></div>}
-            {phase === 'fail' && <div className="frame-warn fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '😄 Kulgili xato', ru: '😄 Смешная ошибка' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Avval ko'chaga chiqib, keyin kiyinish? Pijamada ko'chada qolasiz! <b>Tartib o'zgardi — natija buzildi.</b></>, ru: <>Сначала выйти на улицу, а потом одеться? Так вы и останетесь на улице в пижаме! <b>Порядок изменился — результат сломался.</b></> })}</p></div>}
+            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Avval kiyinasiz, keyin ko'chaga chiqasiz.", ru: '✓ Сначала одеваетесь, потом выходите на улицу.' }) /* F-0926-06 (I3): «To'g'ri tartib» (chip) va «To'g'ri natija» (sahna) takrori olindi */}</p></div>}
+            {phase === 'fail' && <div className="frame-warn fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '😄 Kulgili xato', ru: '😄 Смешная ошибка' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Avval ko'chaga chiqib, keyin kiyinish? <b>Tartib o'zgardi — natija buzildi.</b></>, ru: <>Сначала выйти на улицу, а потом одеться? <b>Порядок изменился — результат сломался.</b></> })}</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shuning uchun algoritmda <b>ketma-ketlik</b> — birinchi qoida. Kompyuter qadamlarni aynan yozgan tartibingizda bajaradi.</>, ru: <>Поэтому <b>последовательность</b> — первое правило алгоритма. Компьютер выполняет шаги ровно в том порядке, в каком вы их записали.</> })}</p></div>}
           </Col>
         </div>
@@ -1134,7 +1138,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — SHARTLAR =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's8', text: `Har doim bir xil ish qilmaysiz-ku: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham xuddi shunday o'ylaydi: agar bo'lsa, buni qil; aks holda, buni qil. Bunga shart deyiladi. Ob-havoni almashtirib, qarorni kuzating.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's8', text: `Har doim ham bir xil ish qilmaysiz: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham xuddi shunday o'ylaydi: agar bo'lsa, buni qil; aks holda, buni qil. Bunga shart deyiladi. Ob-havoni almashtirib, qarorni kuzating.`, trigger: 'on_mount', waits_for: null }]);
   const [weather, setWeather] = useState('sun');
   const [seen, setSeen] = useState(new Set(['sun']));
   const rain = weather === 'rain';
@@ -1145,7 +1149,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Shartlar', ru: 'Условия' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ob-havoni almashtiring', ru: 'Переключите погоду' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Algoritm <span className="italic" style={{ color: T.accent }}>qaror</span> qabul qila oladimi?</>, ru: <>Может ли алгоритм принимать <span className="italic" style={{ color: T.accent }}>решения</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har doim bir xil ish qilmaysiz-ku: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham shunday o'ylaydi: <b style={{ color: T.ink }}>AGAR</b> yomg'ir bo'lsa — soyabon ol, <b style={{ color: T.ink }}>AKS HOLDA</b> — soyabonsiz chiq. Bunga <b style={{ color: T.ink }}>shart</b> deyiladi. Ob-havoni almashtiring.</>, ru: <>Вы же не делаете всегда одно и то же: если на улице дождь — берёте зонт, если нет — не берёте. Алгоритм думает так же: <b style={{ color: T.ink }}>ЕСЛИ</b> идёт дождь — возьми зонт, <b style={{ color: T.ink }}>ИНАЧЕ</b> — выходи без зонта. Это называется <b style={{ color: T.ink }}>условие</b>. Переключите погоду.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har doim ham bir xil ish qilmaysiz: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham shunday o'ylaydi: <b style={{ color: T.ink }}>AGAR</b> yomg'ir bo'lsa — soyabon ol, <b style={{ color: T.ink }}>AKS HOLDA</b> — soyabonsiz chiq. Bunga <b style={{ color: T.ink }}>shart</b> deyiladi. Ob-havoni almashtiring.</>, ru: <>Вы же не делаете всегда одно и то же: если на улице дождь — берёте зонт, если нет — не берёте. Алгоритм думает так же: <b style={{ color: T.ink }}>ЕСЛИ</b> идёт дождь — возьми зонт, <b style={{ color: T.ink }}>ИНАЧЕ</b> — выходи без зонта. Это называется <b style={{ color: T.ink }}>условие</b>. Переключите погоду.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1164,9 +1168,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="cond-card fade-up delay-1">
               <div className={`cond-line ${rain ? 'on' : ''}`}>{tr({ uz: <><span className="cond-kw">AGAR</span> yomg'ir 🌧️ <span className="cond-kw">BO'LSA</span> → <b>soyabon ol ☂️</b></>, ru: <><span className="cond-kw">ЕСЛИ</span> дождь 🌧️ <span className="cond-kw">ИДЁТ</span> → <b>возьми зонт ☂️</b></> })}</div>
               <div className={`cond-line ${!rain ? 'on' : ''}`}>{tr({ uz: <><span className="cond-kw">AKS HOLDA</span> ☀️ → <b>soyabonsiz chiq</b></>, ru: <><span className="cond-kw">ИНАЧЕ</span> ☀️ → <b>выходи без зонта</b></> })}</div>
+              {/* F-0926-06 (160-qonun): natija qatori kod-kartasi ichida */}
+              <div className="cond-result" key={`r${weather}`} style={{ color: rain ? T.blue : T.accent }}><span style={{ fontSize: 20 }}>{rain ? '☂️' : '🚶'}</span>{rain ? tr({ uz: 'Soyabon olindi', ru: 'Зонт взят' }) : tr({ uz: 'Soyabonsiz chiqildi', ru: 'Вышли без зонта' })}</div>
             </div>
-            <div className="cond-result" key={`r${weather}`} style={{ color: rain ? T.blue : T.accent }}><span style={{ fontSize: 20 }}>{rain ? '☂️' : '🚶'}</span>{rain ? tr({ uz: 'Soyabon olindi', ru: 'Зонт взят' }) : tr({ uz: 'Soyabonsiz chiqildi', ru: 'Вышли без зонта' })}</div>
-            <div className="frame-success fade-step" key={weather}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hozir {rain ? "🌧️ yomg'irli" : '☀️ quyoshli'} — algoritm <b>{rain ? 'soyabon olishni' : 'soyabonsiz chiqishni'}</b> tanladi.</>, ru: <>Сейчас {rain ? '🌧️ дождливо' : '☀️ солнечно'} — алгоритм выбрал <b>{rain ? 'взять зонт' : 'выйти без зонта'}</b>.</> })}</p></div>
+            {/* F-0926-06 (I3, 159/14): «Hozir … tanladi» yashil qutisi olindi — natija kartadagi qatorda bir marta */}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta algoritm — vaziyatga qarab ikki xil ishladi. Mana <b>shart</b>ning kuchi!</>, ru: <>Один алгоритм — а сработал по-разному, в зависимости от ситуации. Вот она, сила <b>условия</b>!</> })}</p></div>}
           </Col>
         </div>
@@ -1183,7 +1188,7 @@ const Screen9 = (props) => (
     questionText="'AGAR yomg'ir bo'lsa, soyabon ol' — algoritmda bu qanday qism?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "«AGAR yomg'ir bo'lsa, soyabon ol» — bu qanday qism?", ru: '«ЕСЛИ идёт дождь — возьми зонт» — что это за часть?' })}</h2></>}
     options={[tr({ uz: 'Sikl (takrorlash)', ru: 'Цикл (повторение)' }), tr({ uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' }), tr({ uz: 'Komponent (qism)', ru: 'Компонент (часть)' }), tr({ uz: "Bog'lanish (aloqa)", ru: 'Связь (соединение)' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Bu — shart: algoritm vaziyatga qarab («agar...bo'lsa») qaror qabul qiladi.", ru: 'Верно! Это условие: алгоритм принимает решение в зависимости от ситуации («если... то»).' })}
+    explainCorrect={tr({ uz: "Algoritm vaziyatga qarab yo'l tanlaydi: yomg'ir bo'lsa — bir ish, bo'lmasa — boshqasi.", ru: 'Алгоритм выбирает путь по ситуации: идёт дождь — одно действие, нет — другое.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
       0: tr({ uz: "Yo'q — sikl bu amalni takrorlash. Bu yerda esa qaror qabul qilinyapti — bu shart.", ru: 'Нет — цикл повторяет действие. А здесь принимается решение — это условие.' }),
       2: tr({ uz: "Yo'q — komponent sistemaning qismi. Bu esa algoritmdagi qaror — shart.", ru: 'Нет — компонент это часть системы. А это решение в алгоритме — условие.' }),
@@ -1194,7 +1199,7 @@ const Screen9 = (props) => (
 
 // ===== SCREEN 10 — SIKLLAR =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's10', text: `Sport mashg'ulotini eslang: murabbiy "o'tirib-tur, o'n marta!" deydi. U buni o'n marta takrorlab aytmaydi-ku — bir marta aytadi, son bilan. Kodda ham aynan shunday: bir marta yozasiz, "o'n marta takrorla" deysiz. Bunga sikl deyiladi. Tugmani bosing.`, trigger: 'on_mount', waits_for: { type: 'loop_done' } }]);
+  const audio = useAudio([{ id: 's10', text: `Sport mashg'ulotini eslang: murabbiy "o'tirib-tur, o'n marta!" deydi. U buni o'n marta takrorlab aytmaydi — bir marta aytadi, son bilan. Kodda ham aynan shunday: bir marta yozasiz, "o'n marta takrorla" deysiz. Bunga sikl deyiladi. Tugmani bosing.`, trigger: 'on_mount', waits_for: { type: 'loop_done' } }]);
   const TOTAL = 10;
   const [count, setCount] = useState(storedAnswer ? TOTAL : 0);
   const [running, setRunning] = useState(false);
@@ -1211,7 +1216,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Sikllar', ru: 'Циклы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Siklni ishga tushiring', ru: 'Запустите цикл' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir ishni <span className="italic" style={{ color: T.accent }}>takror-takror</span> — qanday qilamiz?</>, ru: <>Как делать одно и то же <span className="italic" style={{ color: T.accent }}>снова и снова</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Sport mashg'ulotini eslang: murabbiy "o'tirib-tur, 10 marta!" deydi. U buni 10 marta takrorlab aytmaydi-ku — bir marta aytadi, son bilan. Kodda ham shunday: bir marta yozasiz, <b style={{ color: T.ink }}>"10 marta takrorla"</b> deysiz. Bunga <b style={{ color: T.ink }}>sikl</b> deyiladi.</>, ru: <>Вспомните тренировку: тренер говорит «присядь 10 раз!». Он же не повторяет это 10 раз — говорит один раз, числом. В коде так же: пишете один раз и говорите <b style={{ color: T.ink }}>«повтори 10 раз»</b>. Это называется <b style={{ color: T.ink }}>цикл</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Sport mashg'ulotini eslang: murabbiy "o'tirib-tur, 10 marta!" deydi. U buni 10 marta takrorlab aytmaydi — bir marta aytadi, son bilan. Kodda ham shunday: bir marta yozasiz, <b style={{ color: T.ink }}>"10 marta takrorla"</b> deysiz. Bunga <b style={{ color: T.ink }}>sikl</b> deyiladi.</>, ru: <>Вспомните тренировку: тренер говорит «присядь 10 раз!». Он же не повторяет это 10 раз — говорит один раз, числом. В коде так же: пишете один раз и говорите <b style={{ color: T.ink }}>«повтори 10 раз»</b>. Это называется <b style={{ color: T.ink }}>цикл</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1265,7 +1270,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Algoritm <span className="italic" style={{ color: T.accent }}>nimalardan</span> quriladi?</>, ru: <>Из чего <span className="italic" style={{ color: T.accent }}>строится</span> алгоритм?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Mana eng qiziq haqiqat — va u juda oddiy: butun dunyodagi <b style={{ color: T.ink }}>har bir dastur</b> — o'yinmi, ilovami — atigi uchta asosiy qismdan quriladi: <b style={{ color: T.ink }}>ketma-ketlik</b>, <b style={{ color: T.ink }}>shart</b> va <b style={{ color: T.ink }}>sikl</b>. Siz uchalasini ham ko'rib bo'ldingiz! Har birini bosing.</>, ru: <>Вот самый интересный факт — и он очень простой: <b style={{ color: T.ink }}>каждая программа</b> в мире — игра или приложение — строится всего из трёх основных частей: <b style={{ color: T.ink }}>последовательность</b>, <b style={{ color: T.ink }}>условие</b> и <b style={{ color: T.ink }}>цикл</b>. Вы уже видели все три! Нажмите на каждую.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -1284,7 +1289,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="sk-tagbig"><span style={{ fontSize: 26 }}>{BRICKS[active].ic}</span><span className="sk-wordbadge">{BRICKS[active].name}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{BRICKS[active].ex}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir qismni bosing', ru: 'Нажмите на любую часть' })}</p></div> : null)}
+            ) : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mana shu uchtasi — barcha dasturlarning poydevori. Hatto eng katta o'yinlar ham shulardan tuzilgan!", ru: '✓ Вот эти три — фундамент всех программ. Даже самые большие игры собраны из них!' })}</p></div>}
           </Col>
         </div>
@@ -1301,7 +1306,7 @@ const Screen12 = (props) => (
     questionText="Bir xil amalni ko'p marta takrorlash uchun algoritmda nima ishlatamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "Bir xil amalni ko'p marta takrorlash uchun nima ishlatamiz?", ru: 'Что мы используем, чтобы повторить одно действие много раз?' })}</h2></>}
     options={[tr({ uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' }), tr({ uz: 'Sikl (takrorlash)', ru: 'Цикл (повторение)' }), tr({ uz: 'Komponent (qism)', ru: 'Компонент (часть)' }), tr({ uz: "Bog'lanish (aloqa)", ru: 'Связь (соединение)' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Sikl bir amalni belgilangan marta takrorlaydi — uni qayta-qayta yozish shart emas.", ru: 'Верно! Цикл повторяет действие заданное число раз — не нужно писать его снова и снова.' })}
+    explainCorrect={tr({ uz: "Amal bir marta yoziladi, sikl uni kerakli marta takrorlaydi — qayta-qayta yozish shart emas.", ru: 'Действие пишется один раз, а цикл повторяет его нужное число раз — не нужно писать его снова и снова.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
       0: tr({ uz: "Yo'q — shart qaror qabul qiladi (agar...bo'lsa). Takrorlash uchun esa sikl kerak.", ru: 'Нет — условие принимает решение (если... то). А для повторения нужен цикл.' }),
       2: tr({ uz: "Yo'q — komponent sistemaning qismi. Takrorlash — sikl ishi.", ru: 'Нет — компонент это часть системы. Повторение — работа цикла.' }),
@@ -1312,7 +1317,8 @@ const Screen12 = (props) => (
 
 // ===== SCREEN 13 — AMALIYOT: ALGORITM YIG'ISH =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga. Quyidagi bloklardan o'z ertalabki algoritmingizni yig'ing — qadam, shart va siklni qo'shing. Keyin RUN bosib, qadamlar birma-bir bajarilganini ko'ring. Kamida 3 ta blok qo'shing.`, trigger: 'on_mount', waits_for: null }]);
+  // F-0926-06: «Quyidagi / ниже» joy so'zi olindi (159/5 — telefonda joylashuv o'zgaradi)
+  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga. Bloklardan o'z ertalabki algoritmingizni yig'ing — qadam, shart va siklni qo'shing. Keyin RUN bosib, qadamlar birma-bir bajarilganini ko'ring. Kamida 3 ta blok qo'shing.`, trigger: 'on_mount', waits_for: null }]);
   const BLOCKS = [
     { ic: '🛏️', label: tr({ uz: "Uyg'onish", ru: 'Проснуться' }), type: 'qadam' },
     { ic: '🚿', label: tr({ uz: 'Yuvinish', ru: 'Умыться' }), type: 'qadam' },
@@ -1347,11 +1353,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Amaliyot · algoritm yig'ish", ru: 'Практика · сборка алгоритма' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Kamida 3 blok', ru: 'Минимум 3 блока' })} (${items.length}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z algoritmingizni <span className="italic" style={{ color: T.accent }}>quring</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Соберите</span> свой алгоритм</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi navbat sizga. Quyidagi bloklardan o'z ertalabki algoritmingizni yig'ing — <b style={{ color: T.ink }}>qadam</b>, <b style={{ color: T.blue }}>shart</b> va <b style={{ color: T.accent }}>sikl</b>ni qo'shing. Haqiqiy dasturchi ham bo'laklardan yaxlit narsa quradi. Keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Kamida 3 ta blok qo'shing.</>, ru: <>Теперь ваша очередь. Соберите из блоков ниже свой утренний алгоритм — добавьте <b style={{ color: T.ink }}>шаг</b>, <b style={{ color: T.blue }}>условие</b> и <b style={{ color: T.accent }}>цикл</b>. Настоящий программист тоже собирает целое из кусочков. Потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Добавьте минимум 3 блока.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi navbat sizga. Bloklardan o'z ertalabki algoritmingizni yig'ing — <b style={{ color: T.ink }}>qadam</b>, <b style={{ color: T.blue }}>shart</b> va <b style={{ color: T.accent }}>sikl</b>ni qo'shing. Haqiqiy dasturchi ham bo'laklardan yaxlit narsa quradi. Keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Kamida 3 ta blok qo'shing.</>, ru: <>Теперь ваша очередь. Соберите из блоков свой утренний алгоритм — добавьте <b style={{ color: T.ink }}>шаг</b>, <b style={{ color: T.blue }}>условие</b> и <b style={{ color: T.accent }}>цикл</b>. Настоящий программист тоже собирает целое из кусочков. Потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Добавьте минимум 3 блока.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Bloklar — bosib qo'shing", ru: 'Блоки — нажмите, чтобы добавить' })}</p>
+            <p className="flow-label">{tr({ uz: 'Bloklar', ru: 'Блоки' })}</p>{/* F-0926-06: «bosib qo'shing» mentor gapida (159/7) */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {BLOCKS.map((b, i) => (
                 <button key={i} className="gchip" disabled={items.length >= MAX || phase === 'run'} onClick={() => add(b)}>
@@ -1359,16 +1365,17 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
-            <p className="body fade-up delay-2" style={{ margin: '2px 0 0', color: T.ink3, fontSize: 13 }}>{tr({ uz: <><b style={{ color: T.ink2 }}>Maslahat:</b> kuchli algoritm — qadam + shart + sikl birga.</>, ru: <><b style={{ color: T.ink2 }}>Совет:</b> сильный алгоритм — шаг + условие + цикл вместе.</> })}</p>
-            <CommandConsole program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} onRemove={removeAt} />
+            {/* F-0926-06 (159/7, 159/12): «Maslahat: qadam + shart + sikl» olindi — mentor aytgan; RUN tugmasi nav orqasidan chiqdi */}
+            <CommandConsole noControls program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} onRemove={removeAt} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Ertalabki sahna', ru: 'Утренняя сцена' })}</p>
             <SahnaStage phase={phase} current={running} steps={program.map(b => b.ic)} label={running >= 0 && program[running] ? `${program[running].ic} ${program[running].t}` : ''}
-              idleCap={tr({ uz: 'bloklarni qo\'shing va RUN bosing', ru: 'добавьте блоки и нажмите RUN' })}
               result={{ icon: '🎒🙂', cap: tr({ uz: 'Algoritmingiz bajarildi', ru: 'Ваш алгоритм выполнен' }) }} />
+            {/* F-0926-06 (159/12): RUN qatori sahna ostida — chap ustunda 5–6 blokda nav orqasida qolardi */}
+            <ConsoleControls program={program} phase={phase} onRun={run} onReset={reset} canRun={canRun} canEdit={phase !== 'run'} />
             {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Qadamlar <b>aynan siz yozgan tartibda</b> bajarildi — bu dastur!</>, ru: <>✓ Шаги выполнились <b>ровно в том порядке, как вы написали</b> — это и есть программа!</> })}</p></div>}
-            {done && phase !== 'done' && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>algoritm</b> tuzdingiz — aynan shunday fikrlash dasturchini dasturchi qiladi. Endi ▶ RUN bosing.</>, ru: <>Отлично! Вы составили <b>алгоритм</b> — именно такое мышление и делает программиста программистом. Теперь нажмите ▶ RUN.</> })}</p></div>}
+            {/* F-0926-06 (159/7): «Zo'r! … Endi ▶ RUN bosing» qutisi olindi — mentor gapini takrorlardi */}
           </Col>
         </div>
         </Zoomable>
@@ -1412,7 +1419,8 @@ function SahnaStage({ phase, current, label, result, failText, failIcon, steps, 
 }
 
 // CommandConsole — buyruq-bloklar stacki + ▶ RUN. program = [{ic,t,type}], onRun/onReset
-function CommandConsole({ program, running, phase, onRun, onReset, canRun, title, onRemove }) {
+// F-0926-06 (159/12): noControls — RUN qatori qo'shni ustunga (ConsoleControls) chiqadi; 5–6 blokda tugma nav orqasida qolardi
+function CommandConsole({ program, running, phase, onRun, onReset, canRun, title, onRemove, noControls = false }) {
   // F-0922-62 (mentor): xato qo'yilgan blok YAKKA olib tashlanadi — butun algoritmni
   // tozalash shart emas. Ehtiyot: RUN ketayotganda yopiq; javob qulflangan ekranda
   // ota-komponent onRemove ni umuman uzatmaydi (u yerda tugma chiqmaydi).
@@ -1420,7 +1428,7 @@ function CommandConsole({ program, running, phase, onRun, onReset, canRun, title
   return (
     <div className="cc-console">
       <p className="flow-label">{title || tr({ uz: 'Mening algoritmim', ru: 'Мой алгоритм' })}</p>
-      <div className="algo-build" style={{ minHeight: 120 }}>
+      <div className="algo-build" style={{ minHeight: 96 }}>
         {program.length === 0
           ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 13 }}>{tr({ uz: "// bloklarni tartib bilan qo'shing…", ru: '// добавляйте блоки по порядку…' })}</p>
           : program.map((b, i) => (
@@ -1433,12 +1441,19 @@ function CommandConsole({ program, running, phase, onRun, onReset, canRun, title
             </div>
           ))}
       </div>
-      <div style={{ display: 'flex', gap: 8 }}>
-        <button className="btn cc-run" disabled={!canRun || phase === 'run'} onClick={onRun} style={{ alignSelf: 'flex-start' }}>{phase === 'run' ? tr({ uz: 'BAJARILMOQDA…', ru: 'ВЫПОЛНЯЕТСЯ…' }) : '▶ RUN'}</button>
-        {/* F-0922-67: javob qulflangach (canEdit=false) «Tozalash» ham yashiriladi — aks holda
-            doska bo'shaydi, lekin bloklarni qayta qo'yib bo'lmaydi (tap `passed` bilan yopiq). */}
-        {program.length > 0 && canEdit && <button className="btn-soft" onClick={onReset}>{tr({ uz: '↺ Tozalash', ru: '↺ Очистить' })}</button>}
-      </div>
+      {!noControls && <ConsoleControls program={program} phase={phase} onRun={onRun} onReset={onReset} canRun={canRun} canEdit={canEdit} />}
+    </div>
+  );
+}
+
+// F-0926-06: RUN + Tozalash qatori — CommandConsole ichida yoki qo'shni ustunda
+function ConsoleControls({ program, phase, onRun, onReset, canRun, canEdit }) {
+  return (
+    <div style={{ display: 'flex', gap: 8 }}>
+      <button className="btn cc-run" disabled={!canRun || phase === 'run'} onClick={onRun} style={{ alignSelf: 'flex-start' }}>{phase === 'run' ? tr({ uz: 'BAJARILMOQDA…', ru: 'ВЫПОЛНЯЕТСЯ…' }) : '▶ RUN'}</button>
+      {/* F-0922-67: javob qulflangach (canEdit=false) «Tozalash» ham yashiriladi — aks holda
+          doska bo'shaydi, lekin bloklarni qayta qo'yib bo'lmaydi (tap `passed` bilan yopiq). */}
+      {program.length > 0 && canEdit && <button className="btn-soft" onClick={onReset}>{tr({ uz: '↺ Tozalash', ru: '↺ Очистить' })}</button>}
     </div>
   );
 }
@@ -1468,24 +1483,24 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-code">
                 {!fixed ? WRONG.map((s, i) => (
                   <div key={s.id} className={`ai-line ${found && s.id === 'go' ? 'bad' : (picked === s.id && !found ? 'ok' : '')}`} onClick={() => { if (found) return; if (s.id === 'go') pickGo(); else setPicked(s.id); }}>
-                    <span style={{ color: CODE.comment }}>{i + 1}.</span> {s.ic} {s.t} {s.id === 'go' && <span style={{ color: CODE.comment }}>{tr({ uz: '← birinchi?', ru: '← первым?' })}</span>}
+                    <span style={{ color: CODE.comment }}>{i + 1}.</span> {s.ic} {s.t}{/* F-0926-06 (159/17, §217): «← birinchi?» izohi olindi — javobni oldindan ko'rsatardi */}
                   </div>
                 )) : RIGHT.map((s, i) => (
                   <div key={i} className="ai-line ok"><span style={{ color: CODE.comment }}>{i + 1}.</span> {s.ic} {s.t}</div>
                 ))}
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: "Qaysi qadam noto'g'ri joyda? Bosing.", ru: 'Какой шаг стоит не на своём месте? Нажмите.' })}</p>}
+              {/* F-0926-06 (159/7): «Qaysi qadam noto'g'ri joyda? Bosing.» — mentor gapi, olindi */}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: "Tartibni to'g'rilash", ru: 'Исправить порядок' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ Tartib to'g'rilandi!", ru: '✓ Порядок исправлен!' })}</p>}
+              {/* F-0926-06 (159/14): «✓ Tartib to'g'rilandi!» olindi — qatorlar yashil + takeaway kartasi aytadi */}
             </div>
           </Col>
           <Col>
             {!found && (
               picked && picked !== 'go'
                 ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qadam o'rnida — yaxshi. Lekin yana qarang: qaysi ish boshqalardan <b>oldin</b> bo'lib qolgan, vaholanki u oxirida bo'lishi kerak?</>, ru: <>Этот шаг на своём месте — хорошо. Но посмотрите ещё раз: какое дело оказалось <b>раньше</b> остальных, хотя должно быть последним?</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Mantiqan o'ylang: maktabga chiqishdan <b>oldin</b> nima qilish kerak? Tartibni tekshiring.</>, ru: <>Подумайте логически: что нужно сделать <b>перед</b> выходом в школу? Проверьте порядок.</> })}</p></div>)
+                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Qatorlarni tepadan pastga o'qing: qaysi ish o'z vaqtidan <b>oldin</b> kelib qolgan?</>, ru: <>Прочитайте строки сверху вниз: какое действие стоит <b>раньше</b> своего времени?</> })}{/* F-0926-06 (V2, §217): maslahat javobni emas, qarash usulini aytadi */}</p></div>)
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>«Maktabga chiqish» birinchi bo'lib qolgan — kiyinish va nonushtadan oldin! Chap tugmani bosib to'g'rilang →</>, ru: <>«Выйти в школу» оказалось первым — раньше одевания и завтрака! Нажмите кнопку слева и исправьте →</> })}</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>«Maktabga chiqish» birinchi bo'lib qolgan — kiyinish va nonushtadan oldin! «Tartibni to'g'rilash» tugmasini bosing.</>, ru: <>«Выйти в школу» оказалось первым — раньше одевания и завтрака! Нажмите «Исправить порядок».</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это и есть debugging!' })}</p><p className="ta-sub">{tr({ uz: "Algoritmda tartib — eng ko'p xato chiqadigan joy", ru: 'Порядок в алгоритме — место, где чаще всего появляются ошибки' })}</p></div>)}
           </Col>
         </div>
@@ -1497,7 +1512,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 15 — YAKUNIY (ertalabki tartibni o'zi tuzadi; scored) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's15', text: `Mana, oxirgi sinov. Endi hammasini o'zingiz qiling: ertalabki tartibni to'g'ri ketma-ketlikda tuzing, keyin RUN bosing. Yaxshilab o'ylang — eng avval nimadan boshlanadi?`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
+  const audio = useAudio([{ id: 's15', text: `Endi hammasini o'zingiz qiling: ertalabki tartibni to'g'ri ketma-ketlikda tuzing, keyin RUN bosing. Yaxshilab o'ylang — eng avval nimadan boshlanadi?`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentorLive = !!(live && live.mode === 'mentor');
@@ -1537,7 +1552,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             // Jonli darsda o'quvchi RUN'ni to'g'ri bajarganini serverga yozamiz — mentor «kim tugatdi»ni ko'radi va podium hisoblaydi
             if (live && live.mode === 'student') live.submitAnswer(screen, 's15', first ? 0 : 1, first, 0);
             audio.triggerEvent('typed_ok');
-            if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Zo'r! Ketma-ketlik to'liq to'g'ri.`); }, 300);
+            if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Juda yaxshi! Ketma-ketlik to'liq to'g'ri.`); }, 300);
           } else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setPhase('fail'); setRunning(-1); }
         }, 520);
       }
@@ -1549,11 +1564,12 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (canRun ? tr({ uz: 'RUN bosing', ru: 'Нажмите RUN' }) : tr({ uz: 'Tartibni tuzing', ru: 'Составьте порядок' })))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>tartibni</span> o'zingiz tuzing.</>, ru: <>Последний шаг: составьте <span className="italic" style={{ color: T.accent }}>порядок</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana, oxirgi sinov. Endi hammasini o'zingiz qiling: ertalabki tartibni <b style={{ color: T.ink }}>to'g'ri ketma-ketlikda</b> tuzing, keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Yaxshilab o'ylang — eng avval nimadan boshlanadi?</>, ru: <>Вот и последнее испытание. Теперь всё сами: составьте утренний порядок <b style={{ color: T.ink }}>в правильной последовательности</b>, потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Подумайте как следует — с чего всё начинается?</> })}</Mentor>
+        {/* F-0926-06 (159/7): «Mana, oxirgi sinov» olindi — sarlavha «Oxirgi qadam» aytadi */}
+        <Mentor>{tr({ uz: <>Endi hammasini o'zingiz qiling: ertalabki tartibni <b style={{ color: T.ink }}>to'g'ri ketma-ketlikda</b> tuzing, keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Yaxshilab o'ylang — eng avval nimadan boshlanadi?</>, ru: <>Теперь всё сами: составьте утренний порядок <b style={{ color: T.ink }}>в правильной последовательности</b>, потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Подумайте как следует — с чего всё начинается?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Qadamlar — to'g'ri tartibda bosing", ru: 'Шаги — нажимайте в правильном порядке' })}</p>
+            <p className="flow-label">{tr({ uz: 'Qadamlar', ru: 'Шаги' })}</p>{/* F-0926-06: «to'g'ri tartibda bosing» mentor gapida (159/7) */}
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 9 }}>
               {SHUFFLED.map(id => {
                 const used = order.includes(id);
@@ -1564,14 +1580,15 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            <CommandConsole program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} onRemove={passed ? null : removeAt} />
+            <CommandConsole noControls program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} onRemove={passed ? null : removeAt} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Ertalabki sahna', ru: 'Утренняя сцена' })}</p>
             <SahnaStage phase={phase} current={running} steps={program.map(b => b.ic)} label={running >= 0 && program[running] ? `${program[running].ic} ${program[running].t}` : ''}
-              idleCap={tr({ uz: "qadamlarni tartibla va RUN bos", ru: 'расставьте шаги и нажмите RUN' })}
               result={{ icon: '🎒🙂', cap: tr({ uz: 'Ertalab mukammal o\'tdi', ru: 'Утро прошло идеально' }) }}
               failIcon="🙈" failText={tr({ uz: 'Tartib chalkash — natija buzildi!', ru: 'Порядок перепутан — результат сломался!' })} />
+            {/* F-0926-06 (159/12): RUN qatori sahna ostida — chap ustunda nav orqasida qolardi */}
+            <ConsoleControls program={program} phase={phase} onRun={run} onReset={reset} canRun={canRun} canEdit={!passed && phase !== 'run'} />
             {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! Uyg'on → yuvin → kiyin → nonushta. Mukammal ketma-ketlik!", ru: '✓ Верно! Проснуться → умыться → одеться → позавтракать. Идеальная последовательность!' })}</p></div>}
             {phase === 'fail' && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Tartib aralashdi', ru: 'Порядок перепутался' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{firstErr >= 0 ? tr({ uz: `${firstErr + 1}-qadam noto'g'ri joyda.`, ru: `Шаг №${firstErr + 1} не на своём месте.` }) : tr({ uz: 'Tartib chalkash.', ru: 'Порядок перепутан.' })} {tr({ uz: <>«↺ Tozalash» bosib qaytadan urinib ko'ring — avval nimadan boshlaysiz? Xatoni topib tuzatish — bu <b>debugging</b>!</>, ru: <>Нажмите «↺ Очистить» и попробуйте снова — с чего вы начинаете? Искать и чинить ошибки — это <b>debugging</b>!</> })}</p></div>}
           </Col>
@@ -1584,9 +1601,9 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🃏 FLASHCARDS — sistema/algoritm tushunchalari (karkas — matnni Metodist sayqallaydi) =====
 const JS_FLASHCARDS = [
-  { front: { uz: "Birga ishlab, bitta maqsadga xizmat qiladigan qismlar to'plami qanday ataladi?", ru: 'Как называется набор частей, которые работают вместе ради одной цели?' }, back: { uz: 'Sistema', ru: 'Система' }, note: { uz: 'tana · jamoa · sayt — hammasi sistema', ru: 'тело · команда · сайт — всё это системы' } },
-  { front: { uz: "Sistemaning bitta qismini nima deb ataymiz?", ru: 'Как мы называем одну часть системы?' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: { uz: "yurak — tananing komponenti", ru: 'сердце — компонент тела' } },
-  { front: { uz: "Qismlarni bir-biriga ulaydigan yo'l qanday ataladi?", ru: 'Как называется путь, соединяющий части между собой?' }, back: { uz: "Bog'lanish", ru: 'Связь' }, note: { uz: "yurak qon yuboradi — o'pkaga boradi", ru: 'сердце гонит кровь — она идёт в лёгкие' } },
+  { front: { uz: "Birga ishlab, bitta maqsadga xizmat qiladigan qismlar to'plami qanday ataladi?", ru: 'Как называется набор частей, которые работают вместе ради одной цели?' }, back: { uz: 'Sistema', ru: 'Система' }, note: { uz: 'jamoa · maktab · sayt — hammasi sistema', ru: 'команда · школа · сайт — всё это системы' } },
+  { front: { uz: "Sistemaning bitta qismini nima deb ataymiz?", ru: 'Как мы называем одну часть системы?' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: { uz: "darvozabon — jamoaning komponenti", ru: 'вратарь — компонент команды' } },
+  { front: { uz: "Qismlarni bir-biriga ulaydigan yo'l qanday ataladi?", ru: 'Как называется путь, соединяющий части между собой?' }, back: { uz: "Bog'lanish", ru: 'Связь' }, note: { uz: "yarim himoyachi pas beradi — to'p hujumchiga boradi", ru: 'полузащитник даёт пас — мяч идёт к нападающему' } },
   { front: { uz: "Aniq, ketma-ket qadamlardan tuzilgan reja qanday ataladi?", ru: 'Как называется план из точных, последовательных шагов?' }, back: { uz: 'Algoritm', ru: 'Алгоритм' }, note: { uz: "non oling · murabbo suring · yeng", ru: 'возьмите хлеб · намажьте варенье · ешьте' } },
   { front: { uz: "Algoritmda qadamlar tartibi muhimmi?", ru: 'Важен ли в алгоритме порядок шагов?' }, back: { uz: 'Ha, juda muhim', ru: 'Да, очень важен' }, note: { uz: "avval non, keyin murabbo — teskarisi ishlamaydi", ru: 'сначала хлеб, потом варенье — наоборот не выйдет' } },
   { front: { uz: "«Agar yomg'ir yog'sa — soyabon oling» — bu qanday qadam?", ru: '«Если идёт дождь — возьмите зонт» — что это за шаг?' }, back: { uz: 'Shart', ru: 'Условие' }, note: { uz: "agar... bo'lsa... — yo'l tanlaydi", ru: 'если... то... — выбирает путь' } },
@@ -1710,7 +1727,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     setArenaSolo(studentSolo);
     setArena(true);
   };
-  const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (tana, jamoa, sayt)', ru: 'Системы вокруг нас (тело, команда, сайт)' }), tr({ uz: 'Algoritm — aniq qadamlar tartibi', ru: 'Алгоритм — порядок точных шагов' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
+  const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (jamoa, maktab, sayt)', ru: 'Системы вокруг нас (команда, школа, сайт)' }), tr({ uz: 'Algoritm — aniq qadamlar tartibi', ru: 'Алгоритм — порядок точных шагов' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
   const HOMEWORK = [{ b: tr({ uz: 'Sistemani toping', ru: 'Найдите систему' }), t: tr({ uz: '— atrofingizdan 1 sistema toping, qismlarini yozing', ru: '— найдите вокруг себя 1 систему и запишите её части' }) }, { b: tr({ uz: 'Algoritm yozing', ru: 'Напишите алгоритм' }), t: tr({ uz: '— maktabga tayyorgarlikni qadam-baqadam yozing', ru: '— распишите сборы в школу шаг за шагом' }) }, { b: tr({ uz: "Shart qo'shing", ru: 'Добавьте условие' }), t: tr({ uz: '— "agar... bo\'lsa..." qadamini qo\'shing', ru: '— добавьте шаг «если... то...»' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1929,7 +1946,7 @@ const INLINE_KEYS = { s4: 1, s5b: 0, s9: 1, s12: 1, s15: 0 };
 // ⚔️ MUSTAHKAMLASH-JANG savollari (DRAFT — foydalanuvchi tasdiqlaydi). Sistema + Algoritm.
 const QUIZ_BANK = [
   { q: { uz: "Sistema — bu asli nima?", ru: 'Что такое система на самом деле?' }, opts: [{ uz: "Bir-biriga bog'lanmagan tasodifiy narsalar to'plami", ru: 'Набор случайных, не связанных между собой предметов' }, { uz: "Birga ishlab, umumiy maqsadga xizmat qiladigan qismlar", ru: 'Части, которые работают вместе ради общей цели' }, { uz: "Faqat kompyuterda ishlaydigan dastur", ru: 'Программа, которая работает только на компьютере' }, { uz: "Bo'linmaydigan bitta katta yaxlit qism", ru: 'Одна большая неделимая цельная часть' }], correct: 1 },
-  { q: { uz: "Quyidagilardan qaysi biri SISTEMA?", ru: 'Что из перечисленного — СИСТЕМА?' }, opts: [{ uz: "Yo'lda yotgan bitta oddiy kulrang tosh", ru: 'Один обычный серый камень на дороге' }, { uz: "Ichi bo'sh, yopiq turgan bitta quti", ru: 'Одна пустая закрытая коробка' }, { uz: "Inson tanasi — a'zolar birga ishlaydi", ru: 'Тело человека — органы работают вместе' }, { uz: "Daftar chetidagi alohida bitta harf", ru: 'Одна отдельная буква на краю тетради' }], correct: 2 },
+  { q: { uz: "Quyidagilardan qaysi biri SISTEMA?", ru: 'Что из перечисленного — СИСТЕМА?' }, opts: [{ uz: "Yo'lda yotgan bitta oddiy kulrang tosh", ru: 'Один обычный серый камень на дороге' }, { uz: "Ichi bo'sh, yopiq turgan bitta quti", ru: 'Одна пустая закрытая коробка' }, { uz: "Futbol jamoasi — o'yinchilar birga ishlaydi", ru: 'Футбольная команда — игроки работают вместе' }, { uz: "Daftar chetidagi alohida bitta harf", ru: 'Одна отдельная буква на краю тетради' }], correct: 2 },
   { q: { uz: "Sistemadagi «komponent» nima?", ru: 'Что такое «компонент» в системе?' }, opts: [{ uz: "Sistemani tashkil qiluvchi bir qism", ru: 'Одна из частей, из которых состоит система' }, { uz: "Butun sistemaga berilgan umumiy nom", ru: 'Общее название всей системы' }, { uz: "Sistemadan butunlay tashqaridagi narsa", ru: 'То, что находится совсем вне системы' }, { uz: "Sistemadagi juda kichik bir xatolik", ru: 'Очень маленькая ошибка в системе' }], correct: 0 },
   { q: { uz: "«Bog'lanish» sistemada nimani bildiradi?", ru: 'Что означает «связь» в системе?' }, opts: [{ uz: "Qismlarni bir-biriga ulaydigan aloqa", ru: 'Соединение, связывающее части друг с другом' }, { uz: "Sistemadagi eng katta va og'ir qism", ru: 'Самая большая и тяжёлая часть системы' }, { uz: "Butun sistemaga berilgan umumiy nom", ru: 'Общее название всей системы' }, { uz: "Keraksiz, ortiqcha bo'sh turgan qism", ru: 'Ненужная, лишняя простаивающая часть' }], correct: 0 },
   { q: { uz: "Algoritm — bu asli nima?", ru: 'Что такое алгоритм на самом деле?' }, opts: [{ uz: "Tartibsiz, chalkash fikrlar to'plami", ru: 'Беспорядочный набор запутанных мыслей' }, { uz: "Aniq, ketma-ket qadamlar tartibi", ru: 'Порядок точных, последовательных шагов' }, { uz: "Faqat juda murakkab matematik formula", ru: 'Только очень сложная математическая формула' }, { uz: "Kompyuter mashinasiga berilgan nom", ru: 'Название компьютерной машины' }], correct: 1 },
@@ -2571,10 +2588,10 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .el-in { animation: el-pop 0.3s ease-out; }
 
         /* === OPTIMALLASHTIRISH (2026) — yangi animatsiyalar === */
-        /* p1: yurak urishi / tezlik indikatori */
+        /* p1: pas soni indikatori (hujum holatida to'p sakraydi) */
         .bpm-row { display: flex; align-items: center; gap: 12px; background: ${T.bg}; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; }
-        .bpm-heart { font-size: 24px; display: inline-block; animation: heart-beat 1s ease-in-out infinite; }
-        @keyframes heart-beat { 0%,100% { transform: scale(1); } 14% { transform: scale(1.3); } 28% { transform: scale(1); } 42% { transform: scale(1.18); } 56% { transform: scale(1); } }
+        .pas-ball { font-size: 24px; display: inline-block; animation: pas-bounce 0.5s ease-in-out infinite; }
+        @keyframes pas-bounce { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(180deg); } }
         .bpm-info { display: flex; flex-direction: column; line-height: 1.05; }
         .bpm-num { font-family: 'Fraunces', serif; font-size: 26px; transition: color 0.3s; }
         .bpm-unit { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 9px; color: ${T.ink3}; text-transform: uppercase; letter-spacing: 0.07em; }
@@ -2744,7 +2761,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { padding: 2px 40px 0 0; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; } /* F-0926-06 (159/11): maslahat uzuq chiziqli quti emas, oddiy matn */
 
         /* === CONN (bog'lanish) === */
         .conn-flow { display: flex; align-items: center; justify-content: center; gap: 6px; background: ${T.paper}; border-radius: 16px; padding: 20px 14px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2775,8 +2792,8 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
         .loop-act { font-family: 'Manrope'; font-weight: 600; color: ${T.ink}; margin: 4px 0 0; padding-left: 14px; }
 
         /* === ALGO BUILD === */
-        .algo-build { background: ${T.paper}; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .algo-line { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; background: ${T.bg}; }
+        .algo-build { background: ${T.paper}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .algo-line { display: flex; align-items: center; gap: 10px; padding: 4px 12px; line-height: 1.42; border-radius: 8px; background: ${T.bg}; } /* F-0926-06 (159/12): ixchamlash — 5–6 blokda ro'yxat nav orqasiga tushardi */
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }

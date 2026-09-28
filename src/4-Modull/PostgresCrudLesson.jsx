@@ -494,7 +494,7 @@ function ScoreRing({ correct, total }) {
 }
 
 // ===== MENTOR =====
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — ⛶ bo'sh ustun yoki matn ustida chiqmasin (CssLesson1 naqshi, 159/3) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -516,7 +516,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -603,7 +603,7 @@ const SqlRunner = ({ query, ran, onRun, runLabel, disabled }) => (
   <div className="srunner">
     <SqlCode q={query} />
     {!ran && <button className="btn srun-btn" disabled={disabled} onClick={onRun}>{runLabel || tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>}
-    {ran && <div className="srun-done">{tr({ uz: '✓ Bajarildi', ru: '✓ Выполнено' })}</div>}
+    {null /* F-0926-06: «✓ Bajarildi» olindi — natija yonidagi SqlStatus'da bir marta aytiladi (159/14, I3) */}
   </div>
 );
 
@@ -640,13 +640,14 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Do'kondagi <span className="italic" style={{ color: T.accent }}>minglab mahsulot</span> aslida qayerda saqlanadi?</>, ru: <>Где на самом деле хранятся <span className="italic" style={{ color: T.accent }}>тысячи товаров</span> магазина?</> })}</h1>
         <Mentor>{tr({ uz: <>O'tgan darsda server qurdik — u so'rovga javob beradi. Lekin mahsulotlar, narxlar, buyurtmalar <b style={{ color: T.ink }}>qayerda saqlanadi</b>? Saytni ko'ring, keyin <b style={{ color: T.accent }}>ortidagi bazani</b> oching — bir xil ma'lumot, ikki tomondan.</>, ru: <>На прошлом уроке мы собрали сервер — он отвечает на запросы. Но <b style={{ color: T.ink }}>где хранятся</b> товары, цены, заказы? Посмотрите на сайт, а потом откройте <b style={{ color: T.accent }}>базу за ним</b> — одни и те же данные с двух сторон.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off>{/* F-0926-06: yorliq olingach ⛶ 1-variant matnini yopardi */}
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               <button className={`chip ${view === 'sayt' ? 'chip-on' : ''}`} onClick={() => swap('sayt')}>{tr({ uz: 'Sayt', ru: 'Сайт' })} {seen.has('sayt') ? '✓' : ''}</button>
               <button className={`chip ${view === 'baza' ? 'chip-on' : ''}`} onClick={() => swap('baza')}>{tr({ uz: 'Ortidagi baza', ru: 'База за ним' })} {seen.has('baza') ? '✓' : ''}</button>
             </div>
+            <div className="vis-card">{/* F-0926-06 (160-qonun): oyna va uning izohi bitta kartada */}
             {view === 'sayt'
               ? <Win title={tr({ uz: "zakaz-shop.uz — onlayn do'kon", ru: 'zakaz-shop.uz — онлайн-магазин' })} minH={172}>
                   <div className="demo-swap shopmock">
@@ -658,10 +659,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               : <Win title={tr({ uz: 'PostgreSQL — products jadvali', ru: 'PostgreSQL — таблица products' })} minH={172} hotTitle>
                   <div className="demo-swap"><DataTable cols={PCOLS} rows={PRODUCTS} /></div>
                 </Win>}
-            <p className="mono small" style={{ margin: 0, color: view === 'sayt' ? T.ink2 : T.accent }}>{view === 'sayt' ? tr({ uz: "Foydalanuvchi ko'radigan chiroyli tomon", ru: 'Красивая сторона, которую видит пользователь' }) : tr({ uz: "Ma'lumot qator-ustun bo'lib bazada yotadi", ru: 'Данные лежат в базе строками и столбцами' })}</p>
+            <p className="mono small" style={{ margin: 0, color: view === 'sayt' ? T.ink2 : T.accent }}>{view === 'sayt' ? tr({ uz: "Foydalanuvchi ko'radigan chiroyli tomon", ru: 'Красивая сторона, которую видит пользователь' }) : tr({ uz: "Ma'lumot qator-ustun bo'lib bazada yotadi", ru: 'Данные лежат в базе строками и столбцами' })}</p></div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha mahsulotlar asosan qayerda saqlanadi?', ru: 'Как вы думаете, где в основном хранятся товары?' })}</p>
+            {/* F-0926-06: «Sizningcha … qayerda saqlanadi?» yorlig'i olindi — savol mentor gapida (159/7, G1) */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -700,7 +701,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <Win title={tr({ uz: 'PostgreSQL — products jadvali', ru: 'PostgreSQL — таблица products' })} minH={150}>
         <DataTable cols={PCOLS} rows={PRODUCTS} />
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ qo'shamiz · ko'ramiz · o'zgartiramiz · o'chiramiz", ru: '→ добавим · посмотрим · изменим · удалим' })}</p>
+      {/* F-0926-06: «→ qo'shamiz · ko'ramiz …» izohi olindi — o'sha ishlar yondagi 5 qadam ro'yxatida (159/7) */}
     </Col>
   );
   const StepsBlock = (
@@ -766,7 +767,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {!ran
-              ? <><div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: <>Hali jadval yo'q.<br />Tugmani bosing — bo'sh jadval tug'iladi.</>, ru: <>Таблицы пока нет.<br />Нажмите кнопку — родится пустая таблица.</> })}</p></div>
+              ? <>{/* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida va tugmada (159/3) */}
                 <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: '▶ Jadvalni yaratish', ru: '▶ Создать таблицу' })}</button></>
               : <><DataTable cols={PCOLS} rows={[]} />
                 <SqlStatus>{tr({ uz: <>Jadval tayyor! Ustunlar bor, lekin hali <b>0 qator</b>. Endi mahsulot qo'shamiz.</>, ru: <>Таблица готова! Столбцы есть, но пока <b>0 строк</b>. Теперь добавим товары.</> })}</SqlStatus></>}
@@ -791,7 +792,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "INSERT · qo'shish", ru: 'INSERT · добавление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Yana', ru: 'Добавьте ещё' })} ${2 - rows.length} ${tr({ uz: "ta qo'shing", ru: 'шт.' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Jadvalga mahsulotni <span className="italic" style={{ color: T.accent }}>qanday qo'shamiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>добавить товар</span> в таблицу?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yangi qator qo'shish — <span className="mono">INSERT INTO</span> buyrug'i. Qaysi ustunlarga, qanday qiymat: <span className="mono">VALUES (...)</span>. Pastdagi mahsulotlarni bosing — har bosishda bitta INSERT bajariladi va jadvalga yangi qator qo'shiladi.</>, ru: <>Добавить новую строку — команда <span className="mono">INSERT INTO</span>. В какие столбцы и какие значения: <span className="mono">VALUES (...)</span>. Нажимайте на товары внизу — при каждом нажатии выполняется один INSERT, и в таблице появляется новая строка.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yangi qator qo'shish — <span className="mono">INSERT INTO</span> buyrug'i. Qaysi ustunlarga, qanday qiymat: <span className="mono">VALUES (...)</span>. Mahsulotlarni bosing — har bosishda bitta INSERT bajariladi va jadvalga yangi qator qo'shiladi.</>, ru: <>Добавить новую строку — команда <span className="mono">INSERT INTO</span>. В какие столбцы и какие значения: <span className="mono">VALUES (...)</span>. Нажимайте на товары — при каждом нажатии выполняется один INSERT, и в таблице появляется новая строка.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -824,8 +825,8 @@ const Screen4 = (props) => (
     audioText="Do'konga yangi mahsulot keldi. Uni jadvalga yangi qator qilib qo'shish uchun qaysi buyruq kerak?"
     questionText="Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Do'konga yangi mahsulot keldi. Jadvalga yangi qator qo'shish uchun <span className="italic" style={{ color: T.accent }}>qaysi buyruq</span>?</>, ru: <>В магазин привезли новый товар. <span className="italic" style={{ color: T.accent }}>Какая команда</span> добавит в таблицу новую строку?</> })}</h2></>}
-    options={[{ uz: "INSERT INTO — yangi qator qo'shadi", ru: 'INSERT INTO — добавляет новую строку' }, { uz: "SELECT — mavjud ma'lumotni ko'rsatadi", ru: 'SELECT — показывает существующие данные' }, { uz: "DELETE — mavjud qatorni o'chiradi", ru: 'DELETE — удаляет существующую строку' }, { uz: "UPDATE — mavjud qatorni o'zgartiradi", ru: 'UPDATE — изменяет существующую строку' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! INSERT INTO ... VALUES (...) jadvalga yangi qator (mahsulot) qo'shadi.", ru: 'Верно! INSERT INTO ... VALUES (...) добавляет в таблицу новую строку (товар).' }}
+    options={['INSERT INTO', 'SELECT', 'DELETE', 'UPDATE']} correctIdx={0} /* F-0926-06 P1: variantda faqat buyruq nomi, tavsif izohda */
+    explainCorrect={{ uz: "INSERT INTO jadvalga yangi qator qo'shadi. INSERT INTO ... VALUES (...) — qavs ichida yangi mahsulotning qiymatlari turadi.", ru: 'INSERT INTO добавляет в таблицу новую строку. INSERT INTO ... VALUES (...) — в скобках стоят значения нового товара.' /* F-0926-06: izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi (159/11) */ }}
     explainWrong={{
       1: { uz: "SELECT faqat ko'rsatadi — yangi ma'lumot qo'shmaydi.", ru: 'SELECT только показывает — новых данных не добавляет.' },
       2: { uz: "DELETE o'chiradi, qo'shmaydi.", ru: 'DELETE удаляет, а не добавляет.' },
@@ -847,7 +848,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazadagi ma'lumotni <span className="italic" style={{ color: T.accent }}>qanday ko'ramiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>посмотреть данные</span> в базе?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ma'lumotni o'qib olish — <span className="mono">SELECT</span> buyrug'i. <span className="mono">SELECT * FROM products</span> = "products jadvalidagi <b>hamma ustunni</b> ko'rsat" (yulduzcha <b>*</b> = barchasi). Faqat kerakli ustunlarni ham so'rash mumkin: <span className="mono">SELECT nom, narx</span>.</>, ru: <>Прочитать данные — команда <span className="mono">SELECT</span>. <span className="mono">SELECT * FROM products</span> = «покажи <b>все столбцы</b> таблицы products» (звёздочка <b>*</b> = всё). Можно запросить и только нужные столбцы: <span className="mono">SELECT nom, narx</span>.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!done}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "So'rovni tanlang", ru: 'Выберите запрос' })}</p>
@@ -855,14 +856,15 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => setMode('all')}>{tr({ uz: 'SELECT * (hammasi)', ru: 'SELECT * (всё)' })}</button>
               <button className={`chip ${mode === 'cols' ? 'chip-on' : ''}`} onClick={() => setMode('cols')}>SELECT nom, narx</button>
             </div>
+            <div className="vis-card">{/* F-0926-06 (160-qonun): so'rov va uning «O'qilishi» izohi bitta kartada */}
             <SqlCode q={mode ? query : 'SELECT * FROM products'} />
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'O\'qilishi:', ru: 'Читается так:' })} "{mode === 'cols' ? tr({ uz: 'products jadvalidan faqat nom va narx ustunlarini', ru: 'покажи из таблицы products только столбцы nom и narx' }) : tr({ uz: 'products jadvalidan hamma narsani', ru: 'покажи из таблицы products всё' })}{tr({ uz: ' ko\'rsat', ru: '' })}".</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'O\'qilishi:', ru: 'Читается так:' })} "{mode === 'cols' ? tr({ uz: 'products jadvalidan faqat nom va narx ustunlarini', ru: 'покажи из таблицы products только столбцы nom и narx' }) : tr({ uz: 'products jadvalidan hamma narsani', ru: 'покажи из таблицы products всё' })}{tr({ uz: ' ko\'rsat', ru: '' })}".</p></div>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {done
               ? <><DataTable key={mode} cols={cols} rows={PRODUCTS} /><SqlStatus>{tr({ uz: <>SELECT ma'lumotni <b>o'zgartirmaydi</b> — faqat ko'rsatadi (o'qiydi).</>, ru: <>SELECT данные <b>не изменяет</b> — только показывает (читает).</> })}</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← So'rovni tanlang — natija jadval bo'lib chiqadi", ru: '← Выберите запрос — результат появится таблицей' })}</p></div>}
+              : null /* F-0926-06: joy so'zli bo'sh-holat ramkasi olindi — chorlov chiplar yorlig'ida («So'rovni tanlang») (159/3) */}
           </Col>
         </div>
         </Zoomable>
@@ -878,7 +880,7 @@ const Screen5b = (props) => (
     questionText="SELECT buyrug'i nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>SELECT</span> buyrug'i ma'lumot bilan nima qiladi?</>, ru: <>Что команда <span className="italic" style={{ color: T.accent }}>SELECT</span> делает с данными?</> })}</h2></>}
     options={[{ uz: "Jadvalni butunlay o'chiradi", ru: 'Полностью удаляет таблицу' }, { uz: "Ustundagi narxlarni o'zgartiradi", ru: 'Изменяет цены в столбце' }, { uz: "Ma'lumotni o'qib ko'rsatadi", ru: 'Читает и показывает данные' }, { uz: "Yangi bo'sh jadval yaratadi", ru: 'Создаёт новую пустую таблицу' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! SELECT — bu o'qish buyrug'i: jadvaldan ma'lumotni olib ko'rsatadi, hech narsani o'zgartirmaydi.", ru: 'Верно! SELECT — команда чтения: берёт данные из таблицы и показывает их, ничего не меняя.' }}
+    explainCorrect={{ uz: "SELECT jadvalni faqat o'qiydi — hech narsani o'zgartirmaydi.", ru: 'SELECT только читает таблицу — ничего не меняет.' }}
     explainWrong={{
       0: { uz: "O'chirish — DELETE/DROP. SELECT hech narsani o'chirmaydi.", ru: 'Удаление — это DELETE/DROP. SELECT ничего не удаляет.' },
       1: { uz: "O'zgartirish — UPDATE. SELECT faqat o'qiydi.", ru: 'Изменение — это UPDATE. SELECT только читает.' },
@@ -912,7 +914,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {CONDS.map(c => <button key={c.id} className={`chip ${sel === c.id ? 'chip-on' : ''}`} style={{ justifyContent: 'flex-start' }} onClick={() => setSel(c.id)}>{c.label}</button>)}
             </div>
-            <SqlCode q={`SELECT * FROM products\nWHERE ${cond ? cond.sql : 'narx < 100000'}`} />
+            <SqlCode q={`SELECT * FROM products\nWHERE ${cond ? cond.sql : '…'}`} />{/* F-0927 (S7: kod = natija): tanlovgacha jadval filtrsiz, kod ham shartsiz ko'rinsin */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })} {cond && <span className="mono" style={{ color: T.accent }}>({rows.length} {tr({ uz: 'ta topildi', ru: 'найдено' })})</span>}</p>
@@ -1001,8 +1003,8 @@ const Screen9 = (props) => (
     audioText="Sichqoncha narxini yangilamoqchisiz. Mavjud qatorni o'zgartirish uchun qaysi buyruq kerak?"
     questionText="Mahsulot narxini o'zgartirish uchun qaysi buyruq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sichqoncha narxini yangilamoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi buyruq</span> kerak?</>, ru: <>Вы хотите обновить цену Sichqoncha. <span className="italic" style={{ color: T.accent }}>Какая команда</span> нужна?</> })}</h2></>}
-    options={[{ uz: "INSERT — yangi qator qo'shadi", ru: 'INSERT — добавляет новую строку' }, { uz: "SELECT — faqat o'qib ko'rsatadi", ru: 'SELECT — только читает и показывает' }, { uz: "DELETE — qatorni o'chiradi", ru: 'DELETE — удаляет строку' }, { uz: "UPDATE — qatorni o'zgartiradi", ru: 'UPDATE — изменяет строку' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! UPDATE ... SET narx=... WHERE id=... mavjud qatorning qiymatini o'zgartiradi.", ru: 'Верно! UPDATE ... SET narx=... WHERE id=... изменяет значение существующей строки.' }}
+    options={['INSERT', 'SELECT', 'DELETE', 'UPDATE']} correctIdx={3} /* F-0926-06 P1: variantda faqat buyruq nomi, tavsif izohda */
+    explainCorrect={{ uz: "UPDATE mavjud qatorni o'zgartiradi: SET yangi narxni beradi, WHERE — qaysi qatorni o'zgartirishni.", ru: 'UPDATE изменяет существующую строку: SET задаёт новую цену, WHERE — какую строку менять.' }}
     explainWrong={{
       0: { uz: "INSERT yangi qator qo'shadi — eski narxni o'zgartirmaydi.", ru: 'INSERT добавляет новую строку — старую цену не меняет.' },
       1: { uz: "SELECT faqat ko'rsatadi, o'zgartirmaydi.", ru: 'SELECT только показывает, не меняет.' },
@@ -1080,7 +1082,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {ev ? (
               <div className="mn-event" key={ev.id}>
-                <div className="mn-ev-h"><span className="mn-ev-ic">{ev.icon}</span><span className={`mn-ev-step ${resolved ? 'done' : ''}`}>{tr({ uz: 'Hodisa', ru: 'Событие' })} {step + 1}/4</span></div>
+                {/* F-0926-06: «Hodisa N/4» sanog'i va sarlavha oldidagi emoji olindi — sanoq tugmada («0/4 hodisa») (H2, H3) */}
                 <p className="mn-ev-title">{ev.title}</p>
                 <p className="mn-ev-desc">{ev.desc}</p>
               </div>
@@ -1088,7 +1090,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="takeaway fade-step"><div className="ta-bulb">🗄️</div><p className="ta-h">{tr({ uz: "Smena tugadi — CRUD = do'kon hayoti", ru: 'Смена окончена — CRUD = жизнь магазина' })}</p><p className="ta-sub">Create · Read · Update · Delete</p></div>
             )}
             {ev && <>
-              <p className="flow-label">{tr({ uz: 'Qaysi amalni bajarasiz?', ru: 'Какое действие выполните?' })}</p>
+              {/* F-0926-06: «Qaysi amalni bajarasiz?» yorlig'i olindi — mentor «amalini tanlang» deydi (G1) */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
                 {CHIPS.map((c, ci) => {
                   const isOk = resolved && pickedOp === c.op;
@@ -1138,7 +1140,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SQL'ni yoddan bilish shartmi? <span className="italic" style={{ color: T.accent }}>Yo'q.</span></>, ru: <>Нужно ли знать SQL наизусть? <span className="italic" style={{ color: T.accent }}>Нет.</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Zamonaviy usul: siz <b style={{ color: T.ink }}>oddiy tilda</b> nima xohlashingizni aytasiz — AI SQL yozadi. Lekin muhimi: AI yozgan kodni <b style={{ color: T.accent }}>o'qib, tekshirib</b> ishlatasiz. Bir vazifani tanlang, AI'ning so'rovini ko'ring va bajaring.</>, ru: <>Современный способ: вы <b style={{ color: T.ink }}>простыми словами</b> говорите, что хотите — ИИ пишет SQL. Но главное: код от ИИ вы <b style={{ color: T.accent }}>читаете и проверяете</b> перед запуском. Выберите задачу, посмотрите запрос ИИ и выполните его.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!(ran && cur)}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "AI'ga vazifa bering (oddiy tilda)", ru: 'Дайте ИИ задачу (простыми словами)' })}</p>
@@ -1155,7 +1157,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {ran && cur
               ? <><DataTable key={cur.id} cols={PCOLS} rows={rows} /><SqlStatus>{tr({ uz: <>AI to'g'ri yozdi — <b>{rows.length} ta</b> mos mahsulot topildi. Siz tekshirdingiz va ishlatdingiz.</>, ru: <>ИИ написал верно — найдено <b>{rows.length}</b> подходящих товара(ов). Вы проверили и применили.</> })}</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: 'Vazifa tanlang → AI SQL yozadi → tekshirib bajaring', ru: 'Выберите задачу → ИИ напишет SQL → проверьте и выполните' })}</p></div>}
+              : null /* F-0926-06: bo'sh-holat ramkasi olindi — mentor gapini takrorlardi («Bir vazifani tanlang, … bajaring») (159/3, 159/7) */}
           </Col>
         </div>
         </Zoomable>
@@ -1171,7 +1173,7 @@ const Screen12 = (props) => (
     questionText="AI siz uchun SQL yozib bersa, eng to'g'ri yo'l qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI sizga SQL so'rov yozib berdi. <span className="italic" style={{ color: T.accent }}>Endi nima qilasiz?</span></>, ru: <>ИИ написал вам SQL-запрос. <span className="italic" style={{ color: T.accent }}>Что делаете дальше?</span></> })}</h2></>}
     options={[{ uz: "Ko'rmasdan darrov ishga tushiraman", ru: 'Запущу сразу, не глядя' }, { uz: "Kodni o'qib, tekshirib, keyin ishlataman", ru: 'Прочитаю код, проверю, потом применю' }, { uz: "AI har doim to'g'ri yozadi — tekshirish shart emas", ru: 'ИИ всегда пишет верно — проверять не нужно' }, { uz: "O'chirib, hammasini qo'lda qaytadan yozaman", ru: 'Удалю и перепишу всё вручную' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! AI — kuchli yordamchi, lekin u ham adashadi. Siz arxitektorsiz: kodni o'qib, tekshirib, keyin ishlatasiz.", ru: 'Верно! ИИ — мощный помощник, но и он ошибается. Вы архитектор: читаете код, проверяете, потом применяете.' }}
+    explainCorrect={{ uz: "AI — kuchli yordamchi, lekin u ham adashadi. Oxirgi so'z — sizniki.", ru: 'ИИ — мощный помощник, но и он ошибается. Последнее слово — за вами.' }}
     explainWrong={{
       0: { uz: "Tekshirmasdan ishlatish xavfli — AI noto'g'ri jadval yoki WHERE yozsa, ma'lumot buziladi.", ru: 'Запускать без проверки опасно — если ИИ напишет не ту таблицу или WHERE, данные испортятся.' },
       2: { uz: "AI ham xato qiladi (keyingi ekranda ko'rasiz). Tekshirish shart.", ru: 'ИИ тоже ошибается (увидите на следующем экране). Проверка обязательна.' },
@@ -1192,7 +1194,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshqa jadvalni ko'rmoqchimisiz? <span className="italic" style={{ color: T.accent }}>Shunchaki so'rang.</span></>, ru: <>Хотите посмотреть другую таблицу? <span className="italic" style={{ color: T.accent }}>Просто попросите.</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Bazada faqat products emas — <span className="mono">users</span> (xaridorlar) jadvali ham bor. Uni ko'rish uchun SQL'ni eslab o'tirmaysiz: <b style={{ color: T.ink }}>AI'ga oddiy tilda aytasiz</b>, u SQL yozadi va bajaradi. Siz esa natijani tekshirasiz.</>, ru: <>В базе не только products — есть и таблица <span className="mono">users</span> (покупатели). Чтобы её посмотреть, не нужно вспоминать SQL: <b style={{ color: T.ink }}>скажите ИИ простыми словами</b>, он напишет SQL и выполнит. А вы проверите результат.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!done}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "Sizning so'rovingiz", ru: 'Ваш запрос' })}</p>
@@ -1210,7 +1212,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija — users jadvali', ru: 'Результат — таблица users' })}</p>
             {done
               ? <><DataTable cols={UCOLS} rows={USERS} /><SqlStatus>{tr({ uz: <>AI boshqa jadvalni ham bir zumda ochib berdi. Siz nima xohlashni bildingiz — u SQL'ni yozdi.</>, ru: <>ИИ мгновенно открыл и другую таблицу. Вы знали, чего хотите, — он написал SQL.</> })}</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "So'rovni AI'ga yuboring → SQL → natija", ru: 'Отправьте запрос ИИ → SQL → результат' })}</p></div>}
+              : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov tugmada («AI'ga yuborish») va mentor gapida (159/3) */}
           </Col>
         </div>
         </Zoomable>
@@ -1242,9 +1244,8 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
           </div>
         ))}
       </div>
-      {!solved
-        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите на неё' })}</p>
-        : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
+      {/* F-0926-06: xato-qatorni topish yo'rig'i olindi — mentor gapida bor (159/6, 159/7) */}
+      {solved && <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
     </div>
   );
 }
@@ -1316,7 +1317,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazaga <span className="italic" style={{ color: T.accent }}>o'z mahsulotingizni</span> qo'shing</>, ru: <>Добавьте в базу <span className="italic" style={{ color: T.accent }}>свой собственный товар</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana SQL <b>Editor</b> (muharrir). 2-qatorga <b style={{ color: T.ink }}>INSERT</b> yozing — masalan: <span className="mono">INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)</span>. Nomni qo'shtirnoq ichida, narx va sonini raqam bilan yozing. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing.</>, ru: <>Вот SQL-редактор. Во 2-й строке напишите <b style={{ color: T.ink }}>INSERT</b> — например: <span className="mono">INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)</span>. Название в кавычках, цену и количество цифрами. Когда допишете — нажмите <b style={{ color: T.ink }}>▶ Run</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana SQL <b>Editor</b> (muharrir). 1-qatordagi vazifani 2-qatorga <b style={{ color: T.ink }}>SQL</b> bilan yozing{/* F-0926-06: baholanadigan testda namuna-kod olindi (S6) */}. Nomni qo'shtirnoq ichida, narx va sonini raqam bilan yozing. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing.</>, ru: <>Вот SQL-редактор. Задание из 1-й строки напишите во 2-й строке на <b style={{ color: T.ink }}>SQL</b>. Название в кавычках, цену и количество цифрами. Когда допишете — нажмите <b style={{ color: T.ink }}>▶ Run</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1324,13 +1325,13 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="vsc-bar"><span className="vsc-tab on"><span style={{ color: '#3FA0DB' }}>🐘</span> shop.sql <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span></div>
               <div className="vsc-body">
                 <div className="vsc-line"><span className="vsc-ln">1</span><span style={{ whiteSpace: 'pre', color: '#6A9955' }}>{tr({ uz: "-- products jadvaliga yangi mahsulot qo'shing", ru: '-- добавьте в таблицу products новый товар' })}</span></div>
-                <div className="vsc-line"><span className="vsc-ln">2</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)" spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
+                <div className="vsc-line"><span className="vsc-ln">2</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="…" /* F-0926-06: placeholder javob-kodini aytmaydi (S6) */ spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasInsert ? 1 : 0.4 }}>{hasInsert ? '✓' : '1'} INSERT INTO products</span>
-              <span className="tagpill" style={{ opacity: hasValues ? 1 : 0.4 }}>{hasValues ? '✓' : '2'} VALUES (...)</span>
-              <span className="tagpill" style={{ opacity: hasThree ? 1 : 0.4 }}>{hasThree ? '✓' : '3'} 'nom', narx, soni</span>
+              <span className="tagpill" style={{ opacity: hasInsert ? 1 : 0.4 }}>{hasInsert ? '✓' : '1'} {tr({ uz: 'buyruq va jadval', ru: 'команда и таблица' })}</span>{/* F-0926-06: teglar kod bo'lagini emas, tavsifni aytadi (S6) */}
+              <span className="tagpill" style={{ opacity: hasValues ? 1 : 0.4 }}>{hasValues ? '✓' : '2'} {tr({ uz: 'qiymatlar qismi', ru: 'часть со значениями' })}</span>
+              <span className="tagpill" style={{ opacity: hasThree ? 1 : 0.4 }}>{hasThree ? '✓' : '3'} {tr({ uz: 'uchta qiymat', ru: 'три значения' })}</span>
             </div>
             {valid && !ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: "▶ Run — so'rovni bajarish", ru: '▶ Run — выполнить запрос' })}</button>}
           </Col>
@@ -1340,7 +1341,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
             {ran && newRow
               ? <DataTable cols={PCOLS} rows={[...PRODUCTS, newRow]} hiRow={PRODUCTS.length} />
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 80 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{valid ? tr({ uz: "▶ Run bosing — mahsulotingiz qo'shiladi", ru: '▶ Нажмите Run — ваш товар добавится' }) : tr({ uz: 'INSERT qatorini yozing…', ru: 'Напишите строку INSERT…' })}</p></div>}
+              : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida va «▶ Run» tugmasida (159/3) */}
             {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Siz bazaga <b>"{newRow ? newRow.nom : ''}"</b> ni qo'shdingiz. Endi siz ma'lumotlar bazasini boshqara olasiz!</>, ru: <>🎉 Поздравляем! Вы добавили в базу <b>«{newRow ? newRow.nom : ''}»</b>. Теперь вы умеете управлять базой данных!</> })}</p></div>}
           </Col>
         </div>
@@ -2450,7 +2451,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: baland rang yo'q — tanlangan chip yumshoq fon + halqa (159/10) */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
 
@@ -2481,6 +2482,8 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + izohi bitta blok */
+        .vis-card .bp-window, .vis-card .sql-box { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* kartadagi oyna — ikkinchi soya yo'q */
 
         .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
@@ -2599,7 +2602,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         .pick-row { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); color: ${T.ink}; }
         .pick-row:hover:not(:disabled) { box-shadow: 0 9px 20px -6px rgba(${T.shadowBase},0.2); }
         .pick-row:disabled { cursor: default; }
-        .pick-row.on { background: ${T.successSoft}; box-shadow: 0 8px 18px -6px rgba(31,122,77,0.25), inset 0 0 0 1.5px ${T.success}; }
+        .pick-row.on { background: ${T.successSoft}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); } /* F-0926-06: tanlangan qator — ✓ + yumshoq yashil fon, qo'shimcha yashil ramka olindi (G3) */
         .pick-box { width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: ${T.success}; font-weight: 800; }
         .pick-row.on .pick-box { box-shadow: inset 0 0 0 2px ${T.success}; background: #fff; }
 
@@ -2610,7 +2613,6 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
 
         .srunner { display: flex; flex-direction: column; gap: 10px; }
         .srun-btn { align-self: flex-start; }
-        .srun-done { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; font-weight: 700; color: ${T.success}; }
         .sql-status { background: ${T.successSoft}; border-radius: 12px; padding: 11px 14px; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.5; }
         .sql-status.warn { background: ${T.accentSoft}; }
         .sql-status b { color: ${T.ink}; }
@@ -2638,8 +2640,6 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         /* hodisa-karta konveyer kabi o'ngdan sirg'alib almashadi */
         @keyframes mn-conveyor { from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: none; } }
         .mn-event { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); display: flex; flex-direction: column; gap: 6px; animation: mn-conveyor 0.42s cubic-bezier(.2,.7,.3,1); }
-        .mn-ev-h { display: flex; align-items: center; gap: 10px; }
-        .mn-ev-ic { font-size: 26px; }
         .mn-ev-step { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; color: ${T.accent}; background: ${T.accentSoft}; padding: 3px 9px; border-radius: 99px; transition: background .2s, color .2s; }
         /* smena hodisasi bajarilganda — hisoblagich to'lish zarbasi */
         @keyframes mn-step-bump { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }

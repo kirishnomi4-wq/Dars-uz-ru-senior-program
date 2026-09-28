@@ -12,6 +12,7 @@
 //   ALIGN — 2–4 ustunli qatorda ustunlarning birinchi qutisi (ustun karta bo'lsa — o'zi) har xil balandlikdan boshlanadi (bridge 38–40), farq > 6px
 //   SCROLL— hujjat YOKI ichki aylanuvchi quti 1280×800 ga sig'maydi (26.09: ichki quti ham o'lchanadi)
 //   EQH   — tepasi bir chiziqdagi o'xshash juft qutining pasti farq qiladi (nomzod, majburiy emas; 159/16)
+//   LOOSE — blokka tegishli yorliq/izoh-matn blok TASHQARISIDA, uning tepasi yoki tagida yopishib turibdi (F-0927-01: «o'z blokidan chiqib ketibdi»)
 //   DUP   — bir sahifada bir ma'noni beruvchi ikki matn-blok (so'z-o'zak Jaccard ≥ 0.5 yoki biri ikkinchisini o'z ichiga oladi)
 // ============================================================================
 import { chromium } from 'playwright-core';
@@ -66,7 +67,7 @@ function measure() {
   const root = document.querySelector('.lesson-root') || document.body;
   const vis = (el) => { const r = el.getBoundingClientRect(); const cs = getComputedStyle(el); return r.width > 2 && r.height > 2 && cs.visibility !== 'hidden' && cs.display !== 'none' && Number(cs.opacity) > 0.05 && !el.closest('[aria-hidden="true"],.cc-ghost'); };
   const txt = (el) => (el.innerText || '').replace(/\s+/g, ' ').trim();
-  const out = { inp: [], align: [], dup: [], scroll: 0, loud: [], eqh: [] };
+  const out = { inp: [], align: [], dup: [], scroll: 0, loud: [], eqh: [], loose: [] };
   const skip = (el) => el.closest('nav,.nav,.stage-nav,.topbar,.progress,.ach-counter,.mentor-stats,.mstats,.live-badge,.zoom-btn,.fc-bar,.qz-hud,.cs-hud,footer');
   // ---- INP
   for (const inp of root.querySelectorAll('input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]),textarea')) {
@@ -142,6 +143,34 @@ function measure() {
     if (Number.isFinite(dInk) && dInk <= 6) continue;
     const key = Math.round(rs[0].top) + ':' + Math.round(rs[1].left);
     if (d > 6 && !seen.has(key)) { seen.add(key); out.align.push({ diff: d, cols: kids.length, left: fs[0].el, right: fs[fs.length - 1].el, y: Math.round(Math.min(...tops)), row: (el.className || el.tagName).toString().slice(0, 40), kids: kids.map(k => (k.className || k.tagName).toString().slice(0, 30) + '@' + Math.round(k.getBoundingClientRect().top)), tops: tops.map(Math.round) }); }
+  }
+  // ---- LOOSE (F-0927-01): ota-quti karta EMAS, ichida karta-qo'shni va unga ≤24px yopishgan sof matn-bola bor
+  {
+    const boxy2 = (n) => { const cs = getComputedStyle(n); const bg = cs.backgroundColor.match(/[\d.]+/g);
+      return (bg && (bg.length < 4 || Number(bg[3]) > 0.05)) || cs.boxShadow !== 'none' || parseFloat(cs.borderTopWidth) > 0; };
+    const inBox = (el) => { for (let p = el.parentElement; p && p !== root; p = p.parentElement) if (boxy2(p)) return true; return false; };
+    const pureTxt = (el) => { const t = txt(el); if (!t || t.length > 200) return false; if (boxy2(el)) return false;
+      if (el.matches('h1,h2,h3,button,input,textarea,label') || el.querySelector('button,input,textarea,img,svg,canvas,[class*=btn]')) return false;
+      if (el.closest('.mentor,.mentor-bubble,[class*=mentor],.head')) return false; return true; };
+    const lseen = new Set();
+    for (const par of root.querySelectorAll('div,section')) {
+      if (!vis(par) || skip(par) || boxy2(par) || inBox(par)) continue;
+      const kids = [...par.children].filter(vis);
+      for (let i = 0; i < kids.length; i++) {
+        const k = kids[i]; if (!pureTxt(k)) continue; const kr = k.getBoundingClientRect();
+        for (const [j, pos] of [[i + 1, 'tepada'], [i - 1, 'tagida']]) {
+          const b = kids[j]; if (!b || /stage-|nav|header/.test(b.className || '')) continue; const br = b.getBoundingClientRect();
+          // quti o'zi yoki uning asosiy ichki bo'lagi karta bo'lishi mumkin (GitLesson s0: noutbuk-rasm — ekrani quti, o'rami emas)
+          if (!boxy2(b) && ![...b.querySelectorAll('*')].some(n => { const r = n.getBoundingClientRect(); return boxy2(n) && r.width >= br.width * 0.6 && r.height >= 40; })) continue;
+          if (br.height < 40 || br.width < 120) continue;
+          const gap = pos === 'tepada' ? br.top - kr.bottom : kr.top - br.bottom;
+          if (gap < -2 || gap > 24) continue;
+          if (kr.left > br.right || kr.right < br.left) continue;
+          const key = pos + '|' + txt(k).slice(0, 60); if (lseen.has(key)) continue; lseen.add(key);
+          out.loose.push({ pos, t: txt(k).slice(0, 90), box: (b.className || b.tagName).toString().slice(0, 40), gap: Math.round(gap) });
+        }
+      }
+    }
   }
   // ---- DUP
   const blocks = [];
@@ -226,7 +255,7 @@ async function main() {
     const m = metaRows[s] || {};
     if (SKIP_T.test(m.template || '') || SKIP_TY.test(m.type || '')) continue;
     const url = pathToFileURL(html).href + `?lang=${LANG}&s=${s}&id=${encodeURIComponent(lessonId)}&total=${total}`;
-    const agg = { s, id: m.id, type: m.type, inp: new Map(), align: new Map(), dup: new Map(), loud: new Map(), eqh: new Map(), scroll: 0, zbtn0: 0, states: 0, err: null };
+    const agg = { s, id: m.id, type: m.type, inp: new Map(), align: new Map(), dup: new Map(), loud: new Map(), eqh: new Map(), loose: new Map(), scroll: 0, zbtn0: 0, states: 0, err: null };
     try {
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 }); // 26.09: 'load' tashqi rasmni kutardi (go.coddycamp.uz sekin) — .lesson-root pastda kutiladi
       await page.waitForSelector('.lesson-root', { timeout: 15000 });
@@ -238,6 +267,7 @@ async function main() {
         for (const x of o.dup) agg.dup.set(x.a + '|' + x.b, x);
         for (const x of o.loud) agg.loud.set(x.cls, x);
         for (const x of (o.eqh || [])) agg.eqh.set(x.left + '|' + x.right, x);
+        for (const x of (o.loose || [])) agg.loose.set(x.pos + '|' + x.t, x);
         agg.scroll = Math.max(agg.scroll, o.scroll);
         if (agg.states === 1) agg.zbtn0 = o.zbtn || 0; // faqat boshlang'ich holat: bosishdan oldin
       };
@@ -252,13 +282,13 @@ async function main() {
       }
       if (opts.shots) await page.screenshot({ path: join(outDir, `s${String(s).padStart(2, '0')}-z.png`) });
     } catch (e) { agg.err = String(e.message).split('\n')[0].slice(0, 120); }
-    res.push({ ...agg, inp: [...agg.inp.values()], loud: [...agg.loud.values()], eqh: [...agg.eqh.values()], align: [...agg.align.values()], dup: [...agg.dup.values()].sort((a, b) => b.score - a.score) });
+    res.push({ ...agg, inp: [...agg.inp.values()], loud: [...agg.loud.values()], eqh: [...agg.eqh.values()], loose: [...agg.loose.values()], align: [...agg.align.values()], dup: [...agg.dup.values()].sort((a, b) => b.score - a.score) });
     process.stdout.write(`\r  s${s} ✓   `);
   }
   await browser.close();
   writeFileSync(join(outDir, 'audit.json'), JSON.stringify({ file, lessonId, lang: LANG, res }, null, 1));
-  const t = { inp: 0, align: 0, dup: 0, scroll: 0, loud: 0, zbtn: 0, eqh: 0 };
-  for (const r of res) { t.inp += r.inp.length; t.align += r.align.length; t.dup += r.dup.length; t.loud += r.loud.length; t.eqh += (r.eqh || []).length; if (r.scroll > 40) t.scroll++; if (r.zbtn0) t.zbtn++; }
-  console.log(`\n${basename(file)}  ekran=${res.length}  INP=${t.inp}  ALIGN=${t.align}  DUP=${t.dup}  LOUD=${t.loud}  SCROLL=${t.scroll}  ZBTN=${t.zbtn}  EQH=${t.eqh}  → ${join(outDir, 'audit.json')}`);
+  const t = { inp: 0, align: 0, dup: 0, scroll: 0, loud: 0, zbtn: 0, eqh: 0, loose: 0 };
+  for (const r of res) { t.inp += r.inp.length; t.align += r.align.length; t.dup += r.dup.length; t.loud += r.loud.length; t.eqh += (r.eqh || []).length; t.loose += (r.loose || []).length; if (r.scroll > 40) t.scroll++; if (r.zbtn0) t.zbtn++; }
+  console.log(`\n${basename(file)}  ekran=${res.length}  INP=${t.inp}  ALIGN=${t.align}  DUP=${t.dup}  LOUD=${t.loud}  SCROLL=${t.scroll}  ZBTN=${t.zbtn}  EQH=${t.eqh}  LOOSE=${t.loose}  → ${join(outDir, 'audit.json')}`);
 }
 main().catch(e => { console.error(e); process.exit(1); });

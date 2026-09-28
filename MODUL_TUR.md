@@ -377,3 +377,14 @@ chiqariladi: olam **uzilganmi**, yoki **nomi** tushib, aholisi qolganmi.
 
 🔴 **Bu hujjat ko'rik-materiali** — tuzatish ro'yxati emas. Bandlar **ekranda** ko'rilib,
 belgi olgandan **keyin** ish boshlanadi.
+
+### 2026-09-28 · Tongi javoblardan keyin ekranda ko'riladigan bandlar (F-0928)
+| Dars · ekran | Nima ko'riladi |
+|---|---|
+| JestUnitTest s0/s5/s7/s9 | ⛶ tugma o'ng ustun 1-kartasini yopmaydimi (46px); tor ekranda chap ustun ustida |
+| NestArchPractice s0 | «Biznes boshqa…» satri hook-ack ostida ko'rinadimi (tugmalar orqasida emas) |
+| AiPipeline s7 · CiCdIntro s7 | bosiladigan lenta bekatlari: tap-hint, ✓, faol halqa, tafsilot lenta ostida |
+| CiCdIntro s9 | 🧳 bekat markazida, 884px da osilmaydi; jurnal birinchi yurishgacha yashirin |
+| GithubActions s13 | yashil quti lentalar bilan bir kenglikda |
+| Routing s13 | katak yozuvi + chip yonma-yon sig'adimi |
+| DataIntro (ru) | post-ma'lumotlari ruscha, JSON-oyna buzilmagan |

@@ -683,7 +683,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: "To'g'ri yo'nalish! Sayt boshqa kompyuterda — serverda yashaydi. Buni internet yetkazib beradi.", ru: 'Верное направление! Сайт живёт на другом компьютере — на сервере. А доставляет его интернет.' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
+              ? tr({ uz: "To'g'ri yo'nalish! Sayt boshqa kompyuterda — serverda yashaydi. Buni internet yetkazib beradi.", ru: 'Верное направление! Сайт живёт на другом компьютере — на сервере. А доставляет его интернет.' })
+              : tr({ uz: "Aslida sayt boshqa kompyuterda — serverda yashaydi. Buni internet yetkazib beradi.", ru: 'На самом деле сайт живёт на другом компьютере — на сервере. А доставляет его интернет.' })}</p>}{/* F-0926-06 (I2): noto'g'ri variantga «to'g'ri» deyilmaydi (test halolligi) */}
           </Col>
         </Split>
       </div>
@@ -971,7 +973,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <div className="col">
             {done ? (
-              <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div className="vis-card fade-step">{/* F-0927-01 (A): yorliq + domen bo'laklari + izoh bitta kartada */}
                 {/* F-0926-06: yorliq faqat natija bilan — birinchi tanlovgacha ustun bo'sh (159/3) */}
                 <div className="flow-label">{tr({ uz: 'Domen qismlari', ru: 'Части домена' })}</div>
                 <div className="domsplit" key={cur.full}><span className="dpart dpart-name dsp-l">{cur.name}</span><span className="dpart dpart-tld dsp-r">{cur.tld}</span></div>
@@ -1036,9 +1038,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </div>
           <div className="col" style={{ justifyContent: 'center' }}>
+            <div className="vis-card">{/* F-0927-01 (A): yorliq + o'xshatish + izoh bitta kartada */}
             <div className="flow-label">{tr({ uz: 'Xuddi telefon kontaktidek', ru: 'Как контакт в телефоне' })}</div>
             <div className="anabox fade-up delay-2"><span className="ana-name">📇 "Aziza"</span><span className="ana-arr">→</span><span className="ana-num">+998 90 123-45-67</span></div>
-            <p className="small" style={{ margin: '6px 2px 0', color: T.ink2 }}>{tr({ uz: <>Siz <b style={{ color: T.ink }}>nom</b>ni eslaysiz, qurilma esa <b style={{ color: T.ink }}>raqam</b>ni ishlatadi.</>, ru: <>Вы запоминаете <b style={{ color: T.ink }}>имя</b>, а устройство использует <b style={{ color: T.ink }}>номер</b>.</> })}</p>
+            <p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Siz <b style={{ color: T.ink }}>nom</b>ni eslaysiz, qurilma esa <b style={{ color: T.ink }}>raqam</b>ni ishlatadi.</>, ru: <>Вы запоминаете <b style={{ color: T.ink }}>имя</b>, а устройство использует <b style={{ color: T.ink }}>номер</b>.</> })}</p>
+            </div>
           </div>
         </div>
         </Zoomable>
@@ -1095,7 +1099,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
           </div>
-          <div className="col">            <div className="flow-label">{tr({ uz: 'DNS qanday aylantiradi', ru: 'Как DNS превращает' })}</div>
+          <div className="col">
+            <div className="vis-card">{/* F-0927-01 (A): yorliq + sxema + izoh bitta kartada */}
+            <div className="flow-label">{tr({ uz: 'DNS qanday aylantiradi', ru: 'Как DNS превращает' })}</div>
             <div className="dnsconv fade-up delay-2">
               <div className="dc-node"><span className="dc-ic">🌐</span><span className="dc-k">{tr({ uz: 'domen', ru: 'домен' })}</span><span className="dc-v">{q || 'youtube.com'}</span></div>
               <div className={`dc-mid ${phase === 'looking' ? 'busy' : ''} ${phase === 'found' ? 'ok' : ''}`}>
@@ -1105,7 +1111,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
               <div className={`dc-node dc-ip ${phase === 'found' ? 'hit' : ''}`}><span className="dc-ic">🔢</span><span className="dc-k">{tr({ uz: 'IP manzil', ru: 'IP-адрес' })}</span><span className="dc-v" key={phase === 'found' ? 'f' : 'x'}>{rightIP}</span></div>
             </div>
-            <p className="small" style={{ margin: '4px 2px 0', color: T.ink2 }}>{/* F-0926-06: «nom berasiz — raqam qaytaradi» mentor gapida — faqat yangi qadam qoldi (159/7) */}{tr({ uz: <>Brauzer keyin shu <b style={{ color: T.ink }}>IP</b>'ga boradi.</>, ru: <>Затем браузер идёт на этот <b style={{ color: T.ink }}>IP</b>.</> })}</p>
+            <p className="small" style={{ margin: 0, color: T.ink2 }}>{/* F-0926-06: «nom berasiz — raqam qaytaradi» mentor gapida — faqat yangi qadam qoldi (159/7) */}{tr({ uz: <>Brauzer keyin shu <b style={{ color: T.ink }}>IP</b>'ga boradi.</>, ru: <>Затем браузер идёт на этот <b style={{ color: T.ink }}>IP</b>.</> })}</p>
+            </div>
           </div>
         </div>
         </Zoomable>
@@ -1949,7 +1956,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {stage === 'idle' && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fail}>{tr({ uz: '↵ Saytni ochish', ru: '↵ Открыть сайт' })}</button>}
             {stage === 'failed' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: 'Yetishmagan "e" harfini qo\'shish', ru: 'Добавить недостающую букву «e»' /* F-0926-06: uz bilan juft — ico olindi */ })}</button>}
-            {stage === 'fixed' && <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>{tr({ uz: '✓ youtube.com — endi to\'g\'ri!', ru: '✓ youtube.com — теперь верно!' })}</p>}
+            {/* F-0926-06 (I3): «✓ youtube.com — endi to'g'ri!» olindi — natijani yashil manzil satri va o'ngdagi karta aytadi (159/14) */}
           </div>
           <div className="col">
             {/* F-0926-06: bo'sh-holat .hint ramkasi olindi — chorlov mentor gapida (159/3) */}
@@ -3605,6 +3612,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .ip-conv.go { color: ${T.accent}; animation: ip-convpulse 0.85s ease 2; }
         @keyframes ip-convpulse { 0%,100% { transform: translateY(0); opacity: 0.75; } 50% { transform: translateY(2px); opacity: 1; } }
         .anabox { display: flex; align-items: center; justify-content: center; gap: 12px; background: ${T.paper}; border-radius: 12px; padding: 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); text-align: center; }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0927-01: vizual + yorlig'i + izohi bitta blok */
+        .vis-card .bp-window, .vis-card .web, .vis-card .anabox, .vis-card .dnsconv { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.1); } /* kartadagi vizual — ikkinchi soya yo'q */
         .ana-name { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink}; }
         .ana-arr { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; color: ${T.accent}; font-size: 12px; flex-shrink: 0; }
         .ana-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${T.ink2}; }
@@ -3821,7 +3830,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .net-slot.bad { color: ${T.accent}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.5); }
         .net-slot-ic { font-size: 14px; }
         .net-moves { margin-left: auto; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink3}; }
-        .net-map { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 300px; /* F-0926-06: 330 dan — pastki qator navigatsiya orqasida qolardi (159/12) */ background: radial-gradient(circle at 50% 45%, #FFFDF9, ${T.paper}); border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.06); overflow: hidden; }
+        .net-map { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 268px; /* F-0926-06: 330 dan — pastki qator navigatsiya orqasida qolardi (159/12); F-0927 (layout-lint E): 300→268 — «Server topildi» qatori 1280×773 da yana 21px tushardi */ background: radial-gradient(circle at 50% 45%, #FFFDF9, ${T.paper}); border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.06); overflow: hidden; }
         .net-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
         .net-edge { stroke: rgba(${T.shadowBase},0.18); stroke-width: 2.5; fill: none; transition: stroke 0.3s; }
         .net-edge.live { stroke: ${T.accent}; stroke-width: 3; stroke-dasharray: 6 5; animation: net-dash 0.7s linear infinite; }

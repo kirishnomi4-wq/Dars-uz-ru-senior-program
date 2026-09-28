@@ -437,7 +437,6 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>Xom ma'lumot → MVP qarori</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>Tekshir bosqichining finali: 1 muammo + 3 ficha + aniq chegara.</p></div>
       </div>
       <ArcStrip />
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ Keyingi darsdan QURISH boshlanadi 🔧</p>
     </Col>
   );
   const StepsBlock = (<Col><p className="flow-label">Bugungi 5 qadam</p><ol className="roadmap">{STEPS_R.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol></Col>);
@@ -610,7 +609,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               <button className={`chip ${isAll ? 'chip-on' : ''}`} onClick={() => set('all')}>🐙 Hammasini yechaman</button>
-              <button className={`chip ${!isAll ? 'chip-on' : ''}`} onClick={() => set('one')}>🎯 Bittasini zo'r yechaman</button>
+              <button className={`chip ${!isAll ? 'chip-on' : ''}`} onClick={() => set('one')}>🎯 Bittasini yaxshi yechaman</button>
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isAll ? T.accent : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isAll
@@ -694,7 +693,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const isMin = v === 'min';
   return (
-    <Stage eyebrow="MVP anatomiyasi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
+    <Stage eyebrow="MVP tuzilishi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">MVP: <span className="italic" style={{ color: T.accent }}>Minimal</span> lekin <span className="italic" style={{ color: T.success }}>Ishlaydigan</span></h2></div>
         <Mentor>MVP ikki so'zdan: Minimal (ortiqcha yo'q) + Viable (ish bajaradi). Bittasi yetmaydi — ikkalasini bosing.</Mentor>
@@ -706,7 +705,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isMin ? T.grape : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isMin
-                ? 'Minimal ≠ chala. «Avtobus jadval PDF fayli» — minimal, lekin jonli vaqtni ko\'rsatmaydi = JOB BAJARILMAYDI = hech kim ishlatmaydi. Juda ko\'p kesib yuborish ham xato.'
+                ? 'Minimal — chala degani emas. «Avtobus jadval PDF fayli» — minimal, lekin jonli vaqtni ko\'rsatmaydi. Demak, JOB BAJARILMAYDI va uni hech kim ishlatmaydi. Juda ko\'p kesib yuborish ham xato.'
                 : 'Viable = Malika ertalab ochadi va SAVOLIGA JAVOB OLADI: «avtobus 7 daqiqada keladi». Dizayn oddiy, ficha 3 ta — lekin JOB BAJARILDI. Shu — viable.'}</p>
             </div>
           </Col>
@@ -859,7 +858,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«23 ta ficha chiqdi!»</span></h2></div>
-        <Mentor>Aziz 5 intervyusini qildi (qoyil!) va tahlilga o'tirdi. Natijani ko'ring…</Mentor>
+        <Mentor>Aziz 5 intervyusini o'tkazdi (ajoyib!) va tahlilga o'tirdi. Natijani ko'ring…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
           <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 kishi bilan gaplashdim — har biri nimadir so'radi: biri taymer, biri musiqa, biri do'stlar reytingi, biri ovqat rejasi… Hammasini yozib chiqdim: 23 ta ficha! Hammasi REAL so'rovlar — demak hammasini quraman!»</p>
@@ -875,8 +874,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'So\'ralgan ≠ kerak. Odamlar suhbatda ko\'p narsa aytadi — lekin QAYTIB KELISHINI bitta narsa hal qiladi: core job bajarilishi. Azizning ishi: 23 tadan core jobga xizmat qiladigan 3 tasini ajratish, qolgan 20 tasini «keyin» ro\'yxatiga. Burbn ham hamma so\'raganini qurgan edi — Instagram esa kesganini.'
-            : (picked === 0 ? 'Bu Burbn yo\'li: hamma so\'ragan → hech kim ishlatmagan. Ficha so\'rovi ≠ og\'riq.' : '10 ham, 23 ham — son emas muammo. Mezon: core job. Balki to\'g\'ri javob 3 tadir, balki 4 — lekin JOB bo\'yicha.')}</p>
+            ? 'So\'ralgan narsa hali kerakli narsa degani emas. Odamlar suhbatda ko\'p narsa aytadi — lekin QAYTIB KELISHINI bitta narsa hal qiladi: core job bajarilishi. Azizning ishi: 23 tadan core jobga xizmat qiladigan 3 tasini ajratish, qolgan 20 tasini «keyin» ro\'yxatiga. Burbn ham hamma so\'raganini qurgan edi — Instagram esa kesganini.'
+            : (picked === 0 ? 'Bu Burbn yo\'li: hamma so\'ragan → hech kim ishlatmagan. Ficha so\'rovi hali og\'riq degani emas.' : '10 ham, 23 ham — son emas muammo. Mezon: core job. Balki to\'g\'ri javob 3 tadir, balki 4 — lekin JOB bo\'yicha.')}</p>
         </FeedbackBlock>
       </div>
     </Stage>
@@ -947,7 +946,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {docRows.length === 0
               ? <div className="spec-card" style={{ minHeight: 150, justifyContent: 'center' }}><p className="spec-text" style={{ color: '#6B7585', fontStyle: 'italic', textAlign: 'center' }}>To'ldiring — chizma shu yerda yig'iladi…</p></div>
               : <div style={{ position: 'relative' }}><DecisionDoc rows={docRows} />{passed && <span className="seal">QAROR QABUL QILINDI ✓</span>}</div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Tekshir bosqichi TUGADI! Qo'lingizda: tasdiqlangan muammo, insayt va 3 fichali aniq chegara. Keyingi darsda bu chizma ARXITEKTURAGA aylanadi — kod bosqichi boshlanadi! 🔧</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Tekshir bosqichi TUGADI! Qo'lingizda: tasdiqlangan muammo, insayt va 3 fichali aniq chegara.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1131,7 +1130,7 @@ export default function PmLesson31({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

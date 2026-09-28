@@ -689,7 +689,7 @@ const Mentor = ({ children }) => {
 };
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — ramka olingan bo'sh ustunda ⛶ yolg'iz qolmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -711,7 +711,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -724,7 +724,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [view, setView] = useState('game');
   const OPTS = [
-    { id: 'a', label: { uz: 'Sehr bilan — shunchaki eslab qoladi', ru: 'Магией — просто запоминает' } },
+    { id: 'a', label: { uz: "O'zi — shunchaki eslab qoladi", ru: 'Сама — просто запоминает' } }, // F-0926-06: «sehr» so'zi olindi (til-lint)
     { id: 'b', label: { uz: "Nomlangan \"quti\" — o'zgaruvchida saqlaydi", ru: 'В «коробке» с именем — в переменной' } },
     { id: 'c', label: { uz: "Hech qayerda — har safar yo'qoladi", ru: 'Нигде — каждый раз теряется' } }
   ];
@@ -738,7 +738,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${view === 'game' ? 'chip-on' : ''}`} onClick={() => setView('game')}>{tr({ uz: "👾 O'yin", ru: '👾 Игра' })}</button>
+              <button className={`chip ${view === 'game' ? 'chip-on' : ''}`} onClick={() => setView('game')}>{tr({ uz: "O'yin", ru: 'Игра' }) /* F-0926-06: tugma emojisi olindi (H3) */}</button>
               <button className={`chip ${view === 'code' ? 'chip-on' : ''}`} onClick={() => setView('code')}>{'</>'} {tr({ uz: 'Kod', ru: 'Код' })}</button>
             </div>
             <div className="demo-swap" key={view}>
@@ -758,10 +758,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 <pre className="code-box"><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>1250</Nm>{'\n'}<Kw>let</Kw> <Vr>lives</Vr> <Op>=</Op> <Nm>3</Nm>{'\n'}<Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
               )}
             </div>
-            {view === 'code' && <p className="mono small" style={{ color: T.ink3, marginTop: 6, textAlign: 'center' }}>{tr({ uz: '↑ har bir qiymat — nomlangan "quti"da', ru: '↑ каждое значение — в «коробке» с именем' })}</p>}
+            {/* F-0926-06: «↑ har bir qiymat — nomlangan quti»da» izohi olindi — javobni oldindan aytardi (159/17) */}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, o'yin ballni qanday eslab qoladi?", ru: 'Как, по-вашему, игра запоминает счёт?' })}</p>
+            {/* F-0926-06: «Sizningcha, …?» yorlig'i olindi — savol mentor gapida bor (G1) */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -773,7 +773,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri yo'nalish! Bu "qutilar" — <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>Верное направление! Эти «коробки» — <b>переменные</b>. Сегодня мы их изучим.</> })}</p>}
+            {/* F-0926-06: noto'g'ri variantga «To'g'ri…» deyilmaydi (I2, KORPUS §215) */}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? tr({ uz: <>To'g'ri! Bu "qutilar" — <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>Верно! Эти «коробки» — <b>переменные</b>. Сегодня мы их изучим.</> }) : tr({ uz: <>Aslida o'yin har qiymatni nomlangan "quti"da saqlaydi — bu <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>На самом деле игра хранит каждое значение в «коробке» с именем — это <b>переменные</b>. Сегодня мы их изучим.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -796,9 +797,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'Bugun shunday kod yozasiz', ru: 'Сегодня вы напишете такой код' })}</p>
+      {/* F-0926-06: yorliq + kod + izoh bitta .vis-card ichida (160-qonun) */}
+      <div className="vis-card">
+      <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Bugun shunday kod yozasiz', ru: 'Сегодня вы напишете такой код' })}</p>
       <pre className="code-box" style={{ fontSize: 'clamp(13px,1.9vw,15px)' }}><span className="fade-up" style={{ display: 'block', animationDelay: '0.1s' }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.3s' }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></span><span className="fade-up" style={{ display: 'block', animationDelay: '0.5s' }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></span></pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ uchta o\'zgaruvchi, uchta "quti"', ru: '→ три переменные, три «коробки»' })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
@@ -815,13 +819,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>birinchi haqiqiy kodingizni</span> yozasiz!</>, ru: <>Сегодня вы напишете <span className="italic" style={{ color: T.accent }}>свой первый настоящий код</span>!</> })}</h2>
         </div>
-        <Mentor>{tr({ uz: <>Mana, eng qizig'i boshlanadi — bugun siz birinchi marta <b style={{ color: T.ink }}>haqiqiy JavaScript kodi</b> yozasiz! Hammasi <b style={{ color: T.ink }}>o'zgaruvchilardan</b> boshlanadi. 5 qadamda o'rganamiz va oxirida o'zingiz yozasiz.</>, ru: <>Вот и самое интересное — сегодня вы впервые напишете <b style={{ color: T.ink }}>настоящий код на JavaScript</b>! Всё начинается с <b style={{ color: T.ink }}>переменных</b>. Разберём их за 5 шагов, а в конце напишете сами.</> })}</Mentor>
+        {/* F-0926-06: «bugun birinchi haqiqiy kod yozasiz» sarlavhada bor — mentor takrorlamaydi (159/1) */}
+        <Mentor>{tr({ uz: <>Mana, eng qizig'i: <b style={{ color: T.ink }}>haqiqiy JavaScript kodi</b> <b style={{ color: T.ink }}>o'zgaruvchilardan</b> boshlanadi. 5 qadamda o'rganamiz va oxirida o'zingiz yozasiz.</>, ru: <>Вот самое интересное: <b style={{ color: T.ink }}>настоящий код на JavaScript</b> начинается с <b style={{ color: T.ink }}>переменных</b>. Разберём их за 5 шагов, а в конце напишете сами.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "📋 Bugungi 5 qadamni ko'rish", ru: '📋 Посмотреть 5 шагов на сегодня' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' }) /* F-0926-06: emoji olindi (H3) */}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
@@ -855,12 +860,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zgaruvchi aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>Что такое переменная <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">name</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">name</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
               <div style={{ background: T.paper, borderRadius: 16, boxShadow: `0 10px 26px -6px rgba(${T.shadowBase},0.16)`, overflow: 'hidden', minWidth: 210 }}>
-                <div onClick={() => tap('nom')} style={{ cursor: 'pointer', background: active === 'nom' ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'NOMI', ru: 'ИМЯ' })}</span>📦 name {seen.has('nom') && <span style={{ marginLeft: 'auto' }}>✓</span>}</div>
+                <div onClick={() => tap('nom')} style={{ cursor: 'pointer', background: active === 'nom' ? T.accent : T.accentSoft, color: active === 'nom' ? '#fff' : T.accent, /* F-0926-06: bosiladigan qora yorliq → accent (159/5) */ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'NOMI', ru: 'ИМЯ' })}</span>📦 name {seen.has('nom') && <span style={{ marginLeft: 'auto' }}>✓</span>}</div>
                 <div onClick={() => tap('qiymat')} style={{ cursor: 'pointer', padding: '18px 16px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: 'clamp(20px,4vw,28px)', color: active === 'qiymat' ? T.accent : T.ink, background: active === 'qiymat' ? T.accentSoft : '#fff', transition: 'all 0.2s' }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: '0.12em', fontWeight: 600, marginBottom: 5 }}>{tr({ uz: 'QIYMATI · ICHIDAGI', ru: 'ЗНАЧЕНИЕ · ВНУТРИ' })}</div>"Aziza" {seen.has('qiymat') && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
               </div>
             </div>
@@ -872,8 +877,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="sk-tagbig"><span className="sk-wordbadge">{PARTS[active].label}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].role}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Quti nomi yoki ichini bosing', ru: 'Нажмите на имя коробки или на её содержимое' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mana shu — <b>o'zgaruvchi</b>: nomi bor quti. <span className="mono">name</span> deb chaqirsangiz, ichidagi <span className="mono">"Aziza"</span> ni olasiz.</>, ru: <>✓ Вот это и есть <b>переменная</b>: коробка с именем. Позовёте <span className="mono">name</span> — получите <span className="mono">"Aziza"</span> изнутри.</> })}</p></div>}
+            ) : null /* F-0926-06: «Quti nomi yoki ichini bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
+            {/* F-0926-06: «✓ Mana shu — o'zgaruvchi…» yashil qutisi olindi — mentor gapini takrorlardi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -892,7 +897,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = val !== null && read;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Qiymat berish', ru: 'Присваивание' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : val === null ? tr({ uz: 'Bir qiymat tanlang', ru: 'Выберите значение' }) : tr({ uz: "Qutini o'qing 🤖", ru: 'Прочитайте коробку 🤖' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qiymat berish', ru: 'Присваивание' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : val === null ? tr({ uz: 'Bir qiymat tanlang', ru: 'Выберите значение' }) : tr({ uz: "Qutini o'qing", ru: 'Прочитайте коробку' }) /* F-0926-06: emoji olindi (H3) */} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qutiga qiymatni <span className="italic" style={{ color: T.accent }}>qanday</span> solamiz?</>, ru: <>А <span className="italic" style={{ color: T.accent }}>как</span> положить значение в коробку?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Matematikada <b style={{ color: T.ink }}>=</b> — «teng» degani. Dasturlashda esa <b style={{ color: T.ink }}>=</b> — <b style={{ color: T.ink }}>«qutiga joylashtir»</b> degani. Bir qiymat tanlab, nima bo'lishini kuzating.</>, ru: <>В математике <b style={{ color: T.ink }}>=</b> — это «равно». А в программировании <b style={{ color: T.ink }}>=</b> — это <b style={{ color: T.ink }}>«положи в коробку»</b>. Выберите значение и посмотрите, что произойдёт.</> })}</Mentor>
@@ -914,7 +919,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* OMBORCHI O'QI: nom orqali chaqirib qiymatni chiqarish (robot-qo'l) */}
             {val && (
               <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
-                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>🤖 {tr({ uz: <><span className="mono">name</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">name</span> (позвать)</> })}</button>
+                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>{/* F-0926-06: emoji olindi (H3) */}{tr({ uz: <><span className="mono">name</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">name</span> (позвать)</> })}</button>
                 {/* F-0803-10: matn o'rniga NATIJANING O'ZI — quti nomi → ichidagi qiymat (rasm gapiradi) */}
                 {read && (
                   <div className="pop-in" style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 'clamp(15px,2.4vw,19px)', fontWeight: 700 }}>
@@ -925,12 +930,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </div>
                 )}
                 {read && (
-                  <button className="btn" onClick={() => setSawNameless(true)} disabled={sawNameless} style={{ opacity: sawNameless ? 0.6 : 1 }}>{tr({ uz: "❓ Nomsiz qutini chaqirib ko'ring", ru: '❓ Попробуйте позвать коробку без имени' })}</button>
+                  <button className="btn" onClick={() => setSawNameless(true)} disabled={sawNameless} style={{ opacity: sawNameless ? 0.6 : 1 }}>{tr({ uz: "Nomsiz qutini chaqirib ko'ring", ru: 'Попробуйте позвать коробку без имени' }) /* F-0926-06: emoji olindi (H3) */}</button>
                 )}
                 {sawNameless && <div className="frame-dash pop-in" style={{ width: '100%' }}><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <><span className="wh-grope" style={{ display: 'inline-block' }}>🤖</span> Nomsiz qutini robot-qo'l paypaslab topolmadi — <span className="wh-graygone" style={{ display: 'inline-block' }}>bo'sh qaytdi</span>. Shuning uchun har qutiga <b style={{ color: T.ink }}>nom (yorliq)</b> kerak!</>, ru: <><span className="wh-grope" style={{ display: 'inline-block' }}>🤖</span> Коробку без имени рука-робот так и не нащупала — <span className="wh-graygone" style={{ display: 'inline-block' }}>вернулась пустой</span>. Вот почему каждой коробке нужно <b style={{ color: T.ink }}>имя (ярлык)</b>!</> })}</p></div>}
               </div>
             )}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Endi <span className="mono">name</span> ni chaqirsangiz <span className="mono">"{val}"</span> qaytadi.</>, ru: <>✓ Теперь, если позвать <span className="mono">name</span>, вернётся <span className="mono">"{val}"</span>.</> })}</p></div>}
+            {/* F-0926-06: «✓ Endi name ni chaqirsangiz … qaytadi» olindi — natija «🤖 name → …» qatorida bor (I3) */}
           </Col>
         </div>
         </Zoomable>
@@ -953,7 +958,7 @@ const Screen4 = (props) => (
 // ===== SCREEN 5 — let (o'zgaradigan quti) =====
 const S5_VALS = [25, 60, 100, 250]; // ball qutisiga soladigan yangi qiymat-tokenlar
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's5', text: `O'yindagi ballingizni eslang — u doim o'zgarib turadi-ku. Bunday o'zgarib turadigan qiymatlar uchun let so'zini ishlatamiz. let qutisiga yangi qiymat-tokenni soling — eski qiymat tushib ketadi, yangisi joylashadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `O'yindagi ballingizni eslang — u doim o'zgarib turadi. Bunday o'zgarib turadigan qiymatlar uchun let so'zini ishlatamiz. let qutisiga yangi qiymat-tokenni soling — eski qiymat tushib ketadi, yangisi joylashadi.`, trigger: 'on_mount', waits_for: null }]);
   // OMBORCHI: let qutisini qayta-to'ldirish (SOL naqshi) — eski qiymat tushadi, yangisi tushadi
   const [box, setBox] = useState(() => storedAnswer?.box || { value: 10 });
   const [refills, setRefills] = useState(storedAnswer?.refills || 0);
@@ -975,11 +980,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="let" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Yangi qiymat soling', ru: 'Положите новое значение' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic mono" style={{ color: T.accent }}>let</span> — qiymatni keyin o'zgartirsa bo'ladimi?</>, ru: <><span className="italic mono" style={{ color: T.accent }}>let</span> — можно ли потом изменить значение?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'yindagi <b style={{ color: T.ink }}>ballingiz</b> doim o'zgarib turadi-ku. Bunday qiymatlar uchun <b style={{ color: T.ink }}>let</b> so'zini ishlatamiz. Qutiga <b style={{ color: T.ink }}>yangi qiymat-tokenni</b> soling (sudrang yoki bosing) — eski qiymat tushib ketadi, yangisi joylashadi.</>, ru: <>Ваш <b style={{ color: T.ink }}>счёт</b> в игре всё время меняется, так ведь? Для таких значений используем слово <b style={{ color: T.ink }}>let</b>. Положите в коробку <b style={{ color: T.ink }}>новый жетон-значение</b> (перетащите или нажмите) — старое выпадет, новое займёт его место.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'yindagi <b style={{ color: T.ink }}>ballingiz</b> doim o'zgarib turadi. Bunday qiymatlar uchun <b style={{ color: T.ink }}>let</b> so'zini ishlatamiz. Qutiga <b style={{ color: T.ink }}>yangi qiymat-tokenni</b> soling (sudrang yoki bosing) — eski qiymat tushib ketadi, yangisi joylashadi.</>, ru: <>Ваш <b style={{ color: T.ink }}>счёт</b> в игре всё время меняется. Для таких значений используем слово <b style={{ color: T.ink }}>let</b>. Положите в коробку <b style={{ color: T.ink }}>новый жетон-значение</b> (перетащите или нажмите) — старое выпадет, новое займёт его место.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Yangi qiymat tokeni — qutiga soling', ru: 'Новый жетон значения — положите в коробку' })}</p>
+            <p className="flow-label">{tr({ uz: 'Yangi qiymatlar', ru: 'Новые значения' }) /* F-0926-06: chorlov mentor gapida — yorliq qisqardi (159/1) */}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
               {S5_VALS.map(v => (
                 <button key={v} draggable onDragStart={() => setDrag(v)} onDragEnd={() => setDrag(null)} onClick={() => place(v)} disabled={v === box.value}
@@ -1000,10 +1005,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</p>
-            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{"// boshlang'ich"}</span>{'\n'}{refills > 0 && <><Vr>score</Vr> <Op>=</Op> <Nm>{score}</Nm>  <span style={{ color: CODE.comment }}>{'// yangilandi'}</span></>}</pre>
-            {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>let</b> — bu o'zgaradigan quti. Eski qiymat tushdi, yangisi joylashdi. Xohlagancha yangilaysiz!</>, ru: <>✓ <b>let</b> — коробка, которую можно менять. Старое значение выпало, новое встало на место. Обновляйте сколько хотите!</> })}</p></div>
-              : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: ikkinchi marta <span className="mono">let</span> yozilmaydi — quti bor, faqat ichini almashtiramiz.</>, ru: <>Внимание: второй раз <span className="mono">let</span> не пишут — коробка уже есть, мы лишь меняем содержимое.</> })}</p></div>}
+            <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{tr({ uz: "// boshlang'ich", ru: '// начальное' })}</span>{'\n'}{refills > 0 && <><Vr>score</Vr> <Op>=</Op> <Nm>{ball /* F-0926-06: aniqlanmagan «score» → oq ekran edi */}</Nm>  <span style={{ color: CODE.comment }}>{'// yangilandi'}</span></>}</pre>
+            {/* F-0926-06: yashil «✓ let — o'zgaradigan quti…» olindi — mentor gapini takrorlardi (159/1); «Diqqat» javobdan keyin ham qoladi */}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: ikkinchi marta <span className="mono">let</span> yozilmaydi — quti bor, faqat ichini almashtiramiz.</>, ru: <>Внимание: второй раз <span className="mono">let</span> не пишут — коробка уже есть, мы лишь меняем содержимое.</> })}</p></div>
           </Col>
         </div>
         </Zoomable>
@@ -1038,7 +1042,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="const" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "O'zgartirishga urining", ru: 'Попробуйте изменить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ba'zi qiymatlar <span className="italic" style={{ color: T.accent }}>o'zgarmasligi</span> kerakmi?</>, ru: <>А если значение <span className="italic" style={{ color: T.accent }}>не должно меняться</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ba'zi qiymatlar hech qachon o'zgarmaydi: <b style={{ color: T.ink }}>tug'ilgan yilingiz</b> doim bir xil-ku. Bunday qiymatlar uchun <b style={{ color: T.ink }}>const</b> so'zini ishlatamiz — uning ichini o'zgartirib bo'lmaydi. Ishonmaysizmi? Tugmani bosing.</>, ru: <>Некоторые значения не меняются никогда: <b style={{ color: T.ink }}>год вашего рождения</b> всегда один и тот же. Для таких значений используем слово <b style={{ color: T.ink }}>const</b> — его содержимое изменить нельзя. Не верите? Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ba'zi qiymatlar hech qachon o'zgarmaydi: <b style={{ color: T.ink }}>tug'ilgan yilingiz</b> doim bir xil. Bunday qiymatlar uchun <b style={{ color: T.ink }}>const</b> so'zini ishlatamiz — uning ichini o'zgartirib bo'lmaydi. Ishonmaysizmi? Tugmani bosing.</>, ru: <>Некоторые значения не меняются никогда: <b style={{ color: T.ink }}>год вашего рождения</b> всегда один и тот же. Для таких значений используем слово <b style={{ color: T.ink }}>const</b> — его содержимое изменить нельзя. Не верите? Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1050,14 +1054,13 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {tried && <span className="mono wh-reject" style={{ position: 'absolute', top: 6, left: '50%', color: CODE.num, fontWeight: 700, fontSize: 17, pointerEvents: 'none' }}>2015 ↩</span>}
               </div>
             </div>
-            <button className="btn" onClick={() => setTried(true)} style={{ alignSelf: 'center' }}>{tr({ uz: "✏️ Qiymatni o'zgartirishga urinish", ru: '✏️ Попытаться изменить значение' })}</button>
+            <button className="btn" onClick={() => setTried(true)} style={{ alignSelf: 'center' }}>{tr({ uz: "Qiymatni o'zgartirishga urinish", ru: 'Попытаться изменить значение' }) /* F-0926-06: emoji olindi (H3) */}</button>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Kod', ru: 'Код' })}</p>
             <pre className="code-box fade-up" style={{ fontSize: 'clamp(13px,2vw,15px)' }}><Kw>const</Kw> <Vr>birth_year</Vr> <Op>=</Op> <Nm>2012</Nm>{'\n'}{tried && <><Vr>birth_year</Vr> <Op>=</Op> <Nm>2015</Nm>{'\n'}<span className="el-in" style={{ color: T.accent, display: 'inline-block' }}>{"❌ Xato: const o'zgarmaydi!"}</span></>}</pre>
-            {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — <b>const</b> qutini "qulflaydi" 🔒. Qiymat bir marta solinadi va o'zgarmaydi.</>, ru: <>Видели? <b>const</b> «запирает» коробку 🔒. Значение кладётся один раз и больше не меняется.</> })}</p></div>
-              : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>const = constant = o'zgarmas. Tug'ilgan yil, hafta kunlari soni (7), Pi soni — bularga const.</>, ru: <>const = constant = неизменный. Год рождения, число дней в неделе (7), число Пи — для них const.</> })}</p></div>}
+            {/* F-0926-06: yashil «Ko'rdingizmi — const qulflaydi» olindi — mentor gapi + qutidagi 🔒 aytadi (159/1); izoh javobdan keyin ham qoladi */}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>const = constant = o'zgarmas. Tug'ilgan yil, hafta kunlari soni (7), Pi soni — bularga const.</>, ru: <>const = constant = неизменный. Год рождения, число дней в неделе (7), число Пи — для них const.</> })}</p></div>
           </Col>
         </div>
         </Zoomable>
@@ -1068,7 +1071,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — let vs const (qaysini tanlash) =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's7', text: `Endi eng muhim qoidani mustahkamlaymiz. Qiymat o'zgaradimi — let. O'zgarmaydimi — const. Quyidagi har bir holat uchun to'g'ri so'zni tanlang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's7', text: `Endi eng muhim qoidani mustahkamlaymiz. Qiymat o'zgaradimi — let. O'zgarmaydimi — const. Har bir holat uchun to'g'ri so'zni tanlang.`, trigger: 'on_mount', waits_for: null }]);
   const CASES = [
     { t: { uz: "O'yindagi ballingiz", ru: 'Ваш счёт в игре' }, a: 'let', why: { uz: "doim o'zgaradi", ru: 'всё время меняется' } },
     { t: { uz: "Tug'ilgan yilingiz", ru: 'Год вашего рождения' }, a: 'const', why: { uz: "hech o'zgarmaydi", ru: 'никогда не меняется' } },
@@ -1133,22 +1136,22 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${era === 'old' ? 'chip-on' : ''}`} onClick={() => set('old')}>{tr({ uz: '🕰️ Eski (2015 gacha)', ru: '🕰️ Старый (до 2015)' })}</button>
-              <button className={`chip ${era === 'new' ? 'chip-on' : ''}`} onClick={() => set('new')}>{tr({ uz: '✨ Hozir', ru: '✨ Сейчас' })}</button>
+              <button className={`chip ${era === 'old' ? 'chip-on' : ''}`} onClick={() => set('old')}>{tr({ uz: 'Eski (2015 gacha)', ru: 'Старый (до 2015)' }) /* F-0926-06: emoji olindi (H3) */}</button>
+              <button className={`chip ${era === 'new' ? 'chip-on' : ''}`} onClick={() => set('new')}>{tr({ uz: 'Hozir', ru: 'Сейчас' })}</button>
             </div>
             <pre className="code-box demo-swap" key={`code-${era}`} style={{ fontSize: 'clamp(13px,2.1vw,16px)' }}>
               {era === 'old'
                 ? <><Kw>var</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>var</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></>
                 : <><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>const</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></>}
             </pre>
-            <p className="el-in" key={`note-${era}`} style={{ margin: '8px 0 0', fontSize: 13, fontWeight: 600, color: era === 'old' ? T.accent : T.success }}>{era === 'old' ? tr({ uz: '⚠️ Eski usul — kamchiliklari bor edi', ru: '⚠️ Старый способ — у него были недостатки' }) : tr({ uz: '✨ Zamonaviy va ishonchli usul', ru: '✨ Современный и надёжный способ' })}</p>
+            {/* F-0926-06: kod ostidagi «Eski usul / Zamonaviy usul» izohi olindi — «Qisqa xulosa» kartasi aytadi (159/1) */}
           </Col>
           <Col>
             <div className="frame fade-up delay-2">
               <p className="eyebrow" style={{ color: T.accent, margin: '0 0 6px' }}>{tr({ uz: 'Qisqa xulosa', ru: 'Коротко о главном' })}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">var</span> — eski usul, eski kodlarda ko'rasiz. <br /><span className="mono">let</span> va <span className="mono">const</span> — zamonaviy, ishonchli usul. <b>Siz doim shu ikkitasini ishlating.</b></>, ru: <><span className="mono">var</span> — старый способ, увидите его в старом коде. <br /><span className="mono">let</span> и <span className="mono">const</span> — современный, надёжный способ. <b>Всегда используйте эти два.</b></> })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi uchalasini ham bilasiz: <b>var</b> (eski), <b>let</b> va <b>const</b> (yangi). Tanlov oson — let yoki const.</>, ru: <>Теперь вы знаете все три: <b>var</b> (старый), <b>let</b> и <b>const</b> (новые). Выбор прост — let или const.</> })}</p></div>}
+            {/* F-0926-06: yashil «Endi uchalasini ham bilasiz…» olindi — «Qisqa xulosa» bilan bir ma'no (I3) */}
           </Col>
         </div>
         </Zoomable>
@@ -1192,7 +1195,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Quti ichida qanday <span className="italic" style={{ color: T.accent }}>qiymatlar</span> bo'ladi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>значения</span> бывают внутри коробки?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Qutiga turli xil narsa sig'adi: <b style={{ color: T.ink }}>matn</b> (qo'shtirnoq ichida), <b style={{ color: T.ink }}>son</b> (qo'shtirnoqsiz) va <b style={{ color: T.ink }}>rost/yolg'on</b> (true yoki false). Bular — <b style={{ color: T.ink }}>ma'lumot turlari</b>. Har birini bosing.</>, ru: <>В коробку помещается разное: <b style={{ color: T.ink }}>текст</b> (в кавычках), <b style={{ color: T.ink }}>число</b> (без кавычек) и <b style={{ color: T.ink }}>истина/ложь</b> (true или false). Это — <b style={{ color: T.ink }}>типы данных</b>. Нажмите на каждый.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -1211,8 +1214,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}><VarBox name={TYPES[active].box.n} value={TYPES[active].box.v} valColor={TYPES[active].color} small pulse /></div>
                 <div className="sk-info"><span className="sk-tagbig"><span className="sk-wordbadge">{tr(TYPES[active].name)}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr(TYPES[active].desc)}</p></div>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir turni bosing', ru: 'Нажмите на один из типов' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Uchta asosiy tur: <b>matn</b>, <b>son</b>, <b>boolean</b>. Eng muhim farq — qo'shtirnoq!</>, ru: <>✓ Три основных типа: <b>текст</b>, <b>число</b>, <b>boolean</b>. Главное отличие — кавычки!</> })}</p></div>}
+            ) : null /* F-0926-06: «Bir turni bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida (159/3) */}
+            {/* F-0926-06: yashil «✓ Uchta asosiy tur…» olindi — mentor uchala turni sanaydi, qatorlar ✓ bo'ladi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1239,8 +1242,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${isNum ? 'chip-on' : ''}`} onClick={() => set('num')}>{tr({ uz: '🔢 Son', ru: '🔢 Число' })}</button>
-              <button className={`chip ${!isNum ? 'chip-on' : ''}`} onClick={() => set('str')}>{tr({ uz: '🔤 Matn', ru: '🔤 Текст' })}</button>
+              <button className={`chip ${isNum ? 'chip-on' : ''}`} onClick={() => set('num')}>{tr({ uz: 'Son', ru: 'Число' }) /* F-0926-06: emoji olindi (H3) */}</button>
+              <button className={`chip ${!isNum ? 'chip-on' : ''}`} onClick={() => set('str')}>{tr({ uz: 'Matn', ru: 'Текст' })}</button>
             </div>
             <pre className="code-box demo-swap" key={mode} style={{ fontSize: 'clamp(14px,2.4vw,18px)' }}>
               {isNum
@@ -1254,7 +1257,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="pop-num" key={mode} style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(36px,8vw,52px)', color: isNum ? CODE.num : T.accent }}>{isNum ? '10' : '"55"'}</div>
               <p className="body" style={{ margin: '6px 0 0', color: T.ink2 }}>{isNum ? tr({ uz: "Qo'shildi — chunki son", ru: 'Сложилось — потому что числа' }) : tr({ uz: 'Yopishdi — chunki matn', ru: 'Склеилось — потому что текст' })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Esda saqlang: <b>qo'shtirnoq bor → matn</b>, <b>qo'shtirnoq yo'q → son</b>. Bu — eng ko'p chalkashtiradigan joy!</>, ru: <>✓ Запомните: <b>есть кавычки → текст</b>, <b>нет кавычек → число</b>. Тут путаются чаще всего!</> })}</p></div>}
+            {/* F-0926-06: yashil «✓ Esda saqlang: qo'shtirnoq bor → matn…» olindi — mentor gapini takrorlardi (159/1) */}
           </Col>
         </div>
         </Zoomable>
@@ -1308,7 +1311,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Bloklar — bosib qo'shing", ru: 'Блоки — нажмите, чтобы добавить' })}</p>
+            <p className="flow-label">{tr({ uz: 'Bloklar', ru: 'Блоки' }) /* F-0926-06: chorlov mentor gapida — yorliq qisqardi (159/1) */}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {S13_BLOCKS.map((b, i) => (
                 <button key={i} className="gchip" disabled={items.length >= MAX || !!items.find(x => x.name === b.name)} onClick={() => add(b)}>
@@ -1326,7 +1329,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? <span style={{ color: CODE.comment }}>{tr({ uz: "// blok qo'shing…", ru: '// добавьте блок…' })}</span>
                 : items.map((b, i) => (<span key={i} className="el-in" style={{ display: 'block' }}><Kw>{b.kw}</Kw> <Vr>{b.name}</Vr> <Op>=</Op> <span style={{ color: S13_COLOR(b.t) }}>{b.val}</span></span>))}
             </pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Siz {items.length} ta o'zgaruvchi yaratdingiz — har biri nomi va qiymati bor quti.</>, ru: <>✓ Отлично! Вы создали {items.length} переменные — каждая это коробка с именем и значением.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Juda yaxshi! Siz {items.length} ta o'zgaruvchi yaratdingiz — har biri nomi va qiymati bor quti.</>, ru: <>✓ Отлично! Вы создали {items.length} переменные — каждая это коробка с именем и значением.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1350,28 +1353,28 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kod ishlamadi — <span className="italic" style={{ color: T.accent }}>nega</span>?</>, ru: <>Код не заработал — <span className="italic" style={{ color: T.accent }}>почему</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>AI kod yozib berdi, lekin dastur <b style={{ color: T.ink }}>ishlamayapti</b>. Yaxshilab qarang: bir o'zgaruvchining <b style={{ color: T.ink }}>matn qiymati qo'shtirnoqsiz</b> qolib ketibdi. Xato qatorni toping va bosing.</>, ru: <>ИИ написал вам код, но программа <b style={{ color: T.ink }}>не работает</b>. Присмотритесь: у одной переменной <b style={{ color: T.ink }}>текстовое значение осталось без кавычек</b>. Найдите строку с ошибкой и нажмите на неё.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!found}>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana, o'zgaruvchilaringiz:", ru: 'Вот ваши переменные:' })}</span></div>
               <div className="ai-code">
                 <div className="ai-line" style={{ cursor: 'default' }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></div>
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIsm}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>} {!fixed && <span style={{ color: CODE.comment }}>{'// ?'}</span>}</div>
+                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickIsm}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>}{/* F-0926-06: xato qatordagi «// ?» belgisi olindi — javobni oldindan ko'rsatardi (159/17) */}</div>
                 <div className="ai-line" style={{ cursor: 'default' }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '"Aziza" ga qo\'shtirnoq qo\'shish', ru: '🔧 Добавить кавычки к "Aziza"' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — endi kod ishlaydi!', ru: '✓ Исправлено — теперь код работает!' })}</p>}
+              {/* F-0926-06: «Qaysi qatorda xato? Bosing.» olindi — mentor gapi (159/1) */}
+              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: '"Aziza" ga qo\'shtirnoq qo\'shish', ru: 'Добавить кавычки к "Aziza"' }) /* F-0926-06: ru emoji olindi */}</button>)}
+              {/* F-0926-06: «✓ Tuzatildi — endi kod ishlaydi!» olindi — qator yashil + «Endi ishlaydi» ustuni aytadi (I3) */}
             </div>
           </Col>
           <Col>
             {!found && (
               picked && picked !== 'name'
                 ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div>)
-                : (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: matn qiymati doim <b style={{ color: T.ink }}>qo'shtirnoq ichida</b> bo'lishi kerak. Qaysi qatorda yo'q?</>, ru: <>Вспомните: текстовое значение всегда должно быть <b style={{ color: T.ink }}>в кавычках</b>. В какой строке их нет?</> })}</p></div>)
+                : null /* F-0926-06: «Eslang: matn qiymati doim qo'shtirnoq ichida…» uzuq quti olindi — mentor aytadi (159/1, 159/3) */
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Chap tugmani bosing →</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку слева →</> })}</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Tugmani bosing.</> /* F-0926-06: joy so'zi olindi (159/11) */, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку.</> })}</p></div>)}
             {fixed && (<>
               <p className="flow-label">{tr({ uz: 'Endi ishlaydi', ru: 'Теперь работает' })}</p>
               <div style={{ display: 'flex', justifyContent: 'center' }}><VarBox name="name" value={'"Aziza"'} valColor={CODE.str} small /></div>
@@ -1408,7 +1411,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       setPassed(true);
       onAnswer(screen, { correct: true, picked: value });
       audio.triggerEvent('typed_ok');
-      if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Zo'r! Birinchi o'zgaruvchingizni o'zingiz yozdingiz. Tabriklayman!`); }, 300);
+      if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Juda yaxshi! Birinchi o'zgaruvchingizni o'zingiz yozdingiz. Tabriklayman!`); }, 300);
     }
   }, [valid]);
   return (
@@ -1416,10 +1419,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: o'zgaruvchini <span className="italic" style={{ color: T.accent }}>o'zingiz</span> yozing.</>, ru: <>Последний шаг: напишите переменную <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz.</b> Ismingizni saqlaydigan o'zgaruvchi yozing: <span className="mono">let</span>, keyin nom, <span className="mono">=</span> va qo'shtirnoqda ismingiz.</>, ru: <><b style={{ color: T.ink }}>До сих пор вы заполняли коробки руками — теперь создадите первую коробку словами.</b> Напишите переменную, которая хранит ваше имя: <span className="mono">let</span>, затем имя, <span className="mono">=</span> и ваше имя в кавычках.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!valid}>
         <div className="split">
           <Col>
-            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'let name = "Aziza"'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder={'let …' /* F-0926-06 (159/17, V2 namunasi): placeholder javobni to'liq ko'rsatardi */} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasKw ? 1 : 0.4 }}>{hasKw ? '✓' : '1'} let / const</span>
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} {tr({ uz: 'nom', ru: 'имя' })}</span>
@@ -1427,11 +1430,11 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '4'} {tr({ uz: 'qiymat', ru: 'значение' })}</span>
             </div>
             {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div>)
+              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Juda yaxshi! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div>)
               : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Son uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>)}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija — quti', ru: 'результат — коробка' })}</p>
+            {valid && <p className="flow-label">{tr({ uz: 'natija — quti', ru: 'результат — коробка' })}</p> /* F-0926-06: bo'sh ustun ustida yorliq yolg'iz osilmasin */}
             <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
               {valid
                 ? <VarBox name={nm} value={vv} valColor={valIsStr ? CODE.str : CODE.num} />
@@ -2861,6 +2864,8 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06: vizual + yorlig'i + izohi bitta blok (160-qonun) */
+        .vis-card .code-box { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.10); margin: 0; }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
         .demo-swap { animation: fade-step 0.3s ease-out; }
 

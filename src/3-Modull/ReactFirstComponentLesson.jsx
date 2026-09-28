@@ -682,7 +682,8 @@ const TLine = ({ cmd, out, dim }) => (
   </div>
 );
 
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => {
+  /* F-0926-06: off — bo'sh ustun ustida ⛶ yolg'iz qolmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -704,7 +705,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -752,10 +753,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               {phase >= 2 && <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: '✔ Tayyor! Pastga qarang —', ru: '✔ Готово! Посмотрите вниз —' })}</span>} />}
             </div>
             {phase === 0 && <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={run}>{tr({ uz: '⏎ Enter — ishga tushirish', ru: '⏎ Enter — запустить' })}</button>}
-            <p className="flow-label fade-up delay-2" style={{ margin: 0 }}>{tr({ uz: 'Kompyuteringizda', ru: 'На вашем компьютере' })}</p>
-            <div className="frame fade-up delay-2" style={{ padding: '11px 14px', minHeight: 138 }}>
+            {/* F-0926-06: bo'sh-holat ramkasi yo'q (159/3) — yorliq va ramka Enter'dan keyin chiqadi, chorlov mentorda */}
+            {phase >= 1 && <p className="flow-label fade-up" style={{ margin: 0 }}>{tr({ uz: 'Kompyuteringizda', ru: 'На вашем компьютере' })}</p>}
+            {phase >= 1 && <div className="frame fade-up" style={{ padding: '11px 14px', minHeight: 138 }}>
               {phase < 2 ? (
-                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13, textAlign: 'center', paddingTop: 38 }}>{phase === 0 ? tr({ uz: "Hozircha bo'sh — buyruqni ishga tushiring…", ru: 'Пока пусто — запустите команду…' }) : tr({ uz: 'yaratilmoqda…', ru: 'создаётся…' })}</p>
+                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13, textAlign: 'center', paddingTop: 38 }}>{tr({ uz: 'yaratilmoqda…', ru: 'создаётся…' })}</p>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {TREE.map((f, i) => (
@@ -766,7 +768,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   ))}
                 </div>
               )}
-            </div>
+            </div>}
             {phase === 2 && <span className="tagpill fade-up" style={{ color: T.success, animationDelay: '1.2s' }}>{tr({ uz: '✓ 1 buyruq → butun loyiha tuzilishi', ru: '✓ 1 команда → структура всего проекта' })}</span>}
           </Col>
           <Col>
@@ -805,6 +807,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
+      <div className="vis-card">{/* F-0926-06 (160-qonun): yorliq + oyna + kod + izoh bitta kartada */}
       <p className="flow-label">{tr({ uz: 'Dars oxirida — sizning natijangiz', ru: 'В конце урока — ваш результат' })}</p>
       <Win title="robo-games — localhost:5173" minH={110}>
         <div className="fade-up delay-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9, maxWidth: 320 }}>
@@ -814,6 +817,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       </Win>
       <pre className="code-box" style={{ padding: '10px 14px' }}><Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Blox Fruits"</St><Jx>{' />'}</Jx></pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ mana shu qatorni dars oxirida to'liq o'zingiz yozasiz", ru: '→ именно эту строку в конце урока вы напишете полностью сами' })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
@@ -867,10 +871,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha <span className="italic" style={{ color: T.accent }}>to'rt qadamda</span> tayyor bo'ladimi?</>, ru: <>Проект будет готов <span className="italic" style={{ color: T.accent }}>за четыре шага</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Har bir buyruqni <b style={{ color: T.ink }}>tartib bilan</b> bosing va nima qilishini o'qing. Oxirgi buyruqdan keyin loyihangiz brauzerda ochiladi — <span className="mono">localhost:5173</span>. Bu manzil — <b style={{ color: T.ink }}>o'z kompyuteringiz</b>, internet emas.</>, ru: <>Нажимайте команды <b style={{ color: T.ink }}>по порядку</b> и читайте, что делает каждая. После последней команды проект откроется в браузере — <span className="mono">localhost:5173</span>. Этот адрес — <b style={{ color: T.ink }}>ваш компьютер</b>, а не интернет.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!done}>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Terminal — buyruqlarni bosing', ru: 'Терминал — нажимайте команды' })}</p>
+            {/* F-0926-06: «bosing» chorlovi mentorda (159/7) — yorliq faqat nom */}
+            <p className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</p>
             <div className="code-box fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               {STEPS.map((s, i) => (
                 <div key={i} onClick={() => { if (i === step) setStep(v => v + 1); }}
@@ -884,7 +889,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {step > 0 && <div className="hint fade-step" key={step}><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(STEPS[step - 1].info)}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Natija — brauzeringizda', ru: 'Результат — в вашем браузере' })}</p>
+            {/* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — ustun 4-qadamgacha bo'sh, chorlov mentorda */}
+            {done && <p className="flow-label">{tr({ uz: 'Natija — brauzeringizda', ru: 'Результат — в вашем браузере' })}</p>}
             {done ? (
               <Win title="localhost:5173" minH={120}>
                 <div className="fade-step" style={{ textAlign: 'center', padding: '8px 0' }}>
@@ -895,7 +901,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </Win>
             ) : (
-              <div className="frame-dash" style={{ minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: '4 qadamni bajaring — sayt shu yerda ochiladi', ru: 'Выполните 4 шага — сайт откроется здесь' })}</p></div>
+              null
             )}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">localhost:5173</span> — saytingizning <b>kompyuteringizdagi</b> manzili. Hali internetda emas — faqat siz ko'rasiz. Xuddi Roblox Studio'da hali e'lon qilinmagan o'yiningizday!</>, ru: <><span className="mono">localhost:5173</span> — адрес вашего сайта <b>на вашем компьютере</b>. Он ещё не в интернете — видите его только вы. Как ваша ещё не опубликованная игра в Roblox Studio!</> })}</p></div>}
           </Col>
@@ -922,7 +928,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(prev => { const s = new Set(prev); s.add(k); return s; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const Row = ({ k, depth }) => (
-    <button onClick={() => tap(k)} className="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', borderRadius: 8, padding: '8px 11px', paddingLeft: 11 + depth * 18, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 'clamp(12px,1.5vw,13.5px)', background: active === k ? T.accentSoft : T.paper, boxShadow: seen.has(k) ? `inset 0 0 0 1.5px ${active === k ? T.accent : T.success}` : `0 3px 9px -4px rgba(${T.shadowBase},0.14)`, color: T.ink, transition: 'all 0.18s' }}>
+    <button onClick={() => tap(k)} className="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', borderRadius: 8, padding: '8px 11px', paddingLeft: 11 + depth * 18, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 'clamp(12px,1.5vw,13.5px)', background: active === k ? T.accentSoft : (seen.has(k) ? T.successSoft : T.paper), boxShadow: seen.has(k) ? 'none' : `0 3px 9px -4px rgba(${T.shadowBase},0.14)` /* F-0926-06 G3: ✓ + yumshoq fon, ramka yo'q */, color: T.ink, transition: 'all 0.18s' }}>
       <span>{FILES[k].icon}</span><span>{FILES[k].label}</span>
       {seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, fontSize: 11 }}>✓</span>}
     </button>
@@ -932,7 +938,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu fayllarning qaysi biri <span className="italic" style={{ color: T.accent }}>sizniki</span>?</>, ru: <>Какой из этих файлов — <span className="italic" style={{ color: T.accent }}>ваш</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Vite yaratgan papkada bir nechta fayl bor. Qo'rqmang — sizga faqat <b style={{ color: T.ink }}>to'rttasi</b> kerak. Har birini bosib, vazifasini bilib oling. Eng muhimi — <span className="mono">App.jsx</span>: <b style={{ color: T.ink }}>siz ishlaydigan joy</b>.</>, ru: <>В папке, которую создал Vite, несколько файлов. Не пугайтесь — вам нужны только <b style={{ color: T.ink }}>четыре</b>. Нажмите на каждый и узнайте его задачу. Самый важный — <span className="mono">App.jsx</span>: <b style={{ color: T.ink }}>место, где работаете вы</b>.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'robo-games/ papkasi', ru: 'папка robo-games/' })}</p>
@@ -947,17 +953,15 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Fayl nima qiladi?', ru: 'Что делает файл?' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 4</span>
-            </div>
+            {/* F-0926-06: sanoq tugmada (H2), bo'sh-holat ramkasi olindi (159/3) — yorliq birinchi bosishdan keyin */}
+            {active && <p className="flow-label">{tr({ uz: 'Fayl nima qiladi?', ru: 'Что делает файл?' })}</p>}
             {active ? (
               <div className="sk-info" key={active}>
                 <span className="sk-tagbig"><span style={{ fontSize: 22 }}>{FILES[active].icon}</span><span className="sk-wordbadge">{FILES[active].label}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(FILES[active].info)}</p>
               </div>
             ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdan faylni bosing', ru: 'Нажмите на файл слева' })}</p></div>
+              null
             )}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l aniq: <span className="mono">index.html</span> → <span className="mono">main.jsx</span> → <span className="mono">App.jsx</span>. Bugun butun ishimiz — <b>App.jsx</b> ichida.</>, ru: <>Путь ясен: <span className="mono">index.html</span> → <span className="mono">main.jsx</span> → <span className="mono">App.jsx</span>. Сегодня вся наша работа — внутри <b>App.jsx</b>.</> })}</p></div>}
           </Col>
@@ -1018,7 +1022,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu HTML'mi yoki <span className="italic" style={{ color: T.accent }}>JavaScript'mi</span>?</>, ru: <>Это HTML или <span className="italic" style={{ color: T.accent }}>JavaScript</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ikkalasi ham! <span className="mono">App.jsx</span> ichida <b style={{ color: T.ink }}>JavaScript ichida HTML teglar</b> yoziladi — bu <b style={{ color: T.ink }}>JSX</b> deyiladi. HTML'ga juda o'xshaydi, lekin <b style={{ color: T.ink }}>3 ta farqli qoidasi</b> bor. Har birini bosib o'rganing.</>, ru: <>И то и другое! Внутри <span className="mono">App.jsx</span> пишут <b style={{ color: T.ink }}>HTML-теги внутри JavaScript</b> — это называется <b style={{ color: T.ink }}>JSX</b>. Он очень похож на HTML, но есть <b style={{ color: T.ink }}>3 особых правила</b>. Нажмите на каждое и изучите.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -1038,10 +1042,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qoida nima deydi?', ru: 'О чём говорит правило?' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 3</span>
-            </div>
+            {/* F-0926-06: sanoq tugmada (H2), bo'sh-holat ramkasi olindi (159/3) */}
+            {active && <p className="flow-label">{tr({ uz: 'Qoida nima deydi?', ru: 'О чём говорит правило?' })}</p>}
             {active ? (
               <div className="sk-info" key={active}>
                 <span className="sk-tagbig"><span className="sk-wordbadge">{tr(RULES[active].word)}</span></span>
@@ -1049,7 +1051,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="hint" style={{ marginTop: 10 }}><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr(RULES[active].result)}</p></div>
               </div>
             ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdan qoidani tanlang', ru: 'Выберите правило слева' })}</p></div>
+              null
             )}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>JSX = HTML ko'rinishli JavaScript. 3 qoida: <b>{'{ }'} ichida JS</b> · <b>className</b> · <b>bitta tashqi teg</b>. Shu uchtasi bilan deyarli hamma JSX o'qiladi!</>, ru: <>JSX = JavaScript, похожий на HTML. 3 правила: <b>JS внутри {'{ }'}</b> · <b>className</b> · <b>один внешний тег</b>. С этими тремя читается почти весь JSX!</> })}</p></div>}
           </Col>
@@ -1082,7 +1084,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     name: { word: { uz: 'Katta harf!', ru: 'Заглавная буква!' }, info: { uz: <>Komponent nomi <b>Katta harf</b> bilan boshlanadi: <span className="mono">GameCard</span>. React shundan biladi: bu oddiy teg emas — komponent! (Funksiyalarni JS darsidan bilasiz — bu o'sha funksiya.)</>, ru: <>Имя компонента начинается с <b>Заглавной буквы</b>: <span className="mono">GameCard</span>. По ней React понимает: это не обычный тег — это компонент! (Функции вы знаете с урока JS — это та самая функция.)</> } },
     ret: { word: 'return', info: { uz: <>Funksiya JS darsida son yoki matn qaytarardi. Komponent esa <b>JSX qaytaradi</b> — ya'ni ekranda nima ko'rinishini.</>, ru: <>На уроке JS функция возвращала число или текст. А компонент <b>возвращает JSX</b> — то, что будет видно на экране.</> } },
-    jsx: { word: { uz: "JSX — ko'rinish", ru: 'JSX — внешний вид' }, info: { uz: <>Qaytarilayotgan JSX — o'ngdagi kartochkaning ko'rinishi. E'tibor bering: <span className="mono">className</span> va bitta tashqi teg <span className="mono">{'<div>'}</span> — hozirgina o'rgangan qoidalar!</>, ru: <>Возвращаемый JSX — это внешний вид карточки справа. Обратите внимание: <span className="mono">className</span> и один внешний тег <span className="mono">{'<div>'}</span> — правила, которые вы только что изучили!</> } }
+    jsx: { word: { uz: "JSX — ko'rinish", ru: 'JSX — внешний вид' }, info: { uz: <>Qaytarilayotgan JSX — kartochkaning ko'rinishi. E'tibor bering: <span className="mono">className</span> va bitta tashqi teg <span className="mono">{'<div>'}</span> — hozirgina o'rgangan qoidalar!</>, ru: <>Возвращаемый JSX — это внешний вид карточки. Обратите внимание: <span className="mono">className</span> и один внешний тег <span className="mono">{'<div>'}</span> — правила, которые вы только что изучили!</> } }
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(storedAnswer ? new Set(['name', 'ret', 'jsx']) : new Set());
@@ -1094,7 +1096,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Komponent', ru: 'Компонент' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: 'qism topildi', ru: 'части найдено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Komponent ichida <span className="italic" style={{ color: T.accent }}>nima yashaydi</span>?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>живёт внутри</span> компонента?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>birinchi komponentingiz</b> — <span className="mono">GameCard</span>. Aslida u oddiy <b style={{ color: T.ink }}>JavaScript funksiyasi</b> — funksiyalarni yaxshi bilasiz! Faqat 2 farq: <b style={{ color: T.ink }}>nomi Katta harf</b> bilan, va <b style={{ color: T.ink }}>JSX qaytaradi</b>. O'ngdagi kartochka — shu kodning natijasi. Koddagi 3 qismni bosing.</>, ru: <>Вот <b style={{ color: T.ink }}>ваш первый компонент</b> — <span className="mono">GameCard</span>. На самом деле это обычная <b style={{ color: T.ink }}>функция JavaScript</b> — функции вы знаете хорошо! Всего 2 отличия: <b style={{ color: T.ink }}>имя с Заглавной буквы</b> и <b style={{ color: T.ink }}>возвращает JSX</b>. Карточка справа — результат этого кода. Нажмите на 3 части кода.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>birinchi komponentingiz</b> — <span className="mono">GameCard</span>. Aslida u oddiy <b style={{ color: T.ink }}>JavaScript funksiyasi</b> — funksiyalarni yaxshi bilasiz! Faqat 2 farq: <b style={{ color: T.ink }}>nomi Katta harf</b> bilan, va <b style={{ color: T.ink }}>JSX qaytaradi</b>. Kartochka — shu kodning natijasi. Koddagi 3 qismni bosing.</>, ru: <>Вот <b style={{ color: T.ink }}>ваш первый компонент</b> — <span className="mono">GameCard</span>. На самом деле это обычная <b style={{ color: T.ink }}>функция JavaScript</b> — функции вы знаете хорошо! Всего 2 отличия: <b style={{ color: T.ink }}>имя с Заглавной буквы</b> и <b style={{ color: T.ink }}>возвращает JSX</b>. Карточка — результат этого кода. Нажмите на 3 части кода.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1111,7 +1113,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].info)}</p>
               </div>
             ) : (
-              <div className="frame-dash" style={{ padding: '10px 14px' }}><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Koddan bir qismni bosing', ru: 'Нажмите на часть кода' })}</p></div>
+              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3), chorlov mentorda */
             ))}
             {done && (
               <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Komponent = <b>Katta harfli funksiya + return JSX</b>. Tamom — butun formula shu!</>, ru: <>Компонент = <b>функция с Заглавной буквы + return JSX</b>. Всё — вот и вся формула!</> })}</p></div>
@@ -1120,10 +1122,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'Bloxy-Press — kod = mashina', ru: 'Bloxy-Press — код = машина' })}</p>
             <div className="fade-up delay-2"><CardMachine mode="anatomy" active={active} seen={seen} /></div>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismlar', ru: 'Части' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 3 {tr({ uz: 'topildi', ru: 'найдено' })}</span>
-            </div>
+            {/* F-0926-06: «Qismlar 0/3 topildi» olindi — sanoq tugmada (H2) */}
           </Col>
         </div>
         </Zoomable>
@@ -1246,7 +1245,6 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }, 1100);
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const STEPS = [{ uz: 'Chaqiruvda yoziladi: name="Blox Fruits"', ru: 'В вызове пишется: name="Blox Fruits"' }, { uz: "Komponent uni props orqali qabul qiladi", ru: 'Компонент принимает его через props' }, { uz: "JSX ichida {props.name} bo'lib chiqadi", ru: 'В JSX выводится как {props.name}' }];
   return (
     <Stage eyebrow={tr({ uz: "Ma'lumot yo'li", ru: 'Путь данных' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Yo'lni kuzating", ru: 'Проследите путь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1256,26 +1254,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: "▶ Ma'lumot yo'lini kuzating", ru: '▶ Проследить путь данных' }))}</button>
-            <div className="prop-flow fade-up delay-2">
-              {STEPS.map((s, i) => {
-                const reached = phase > i;
-                const now = running && phase === i + 1;
-                const hasToken = now || (phase >= 3 && i === 2);
-                return (
-                  <React.Fragment key={i}>
-                    {i > 0 && <span className={`prop-arrow ${phase > i ? 'on' : ''}`}>↓</span>}
-                    <div className={`prop-step ${reached ? 'on' : ''} ${now ? 'now' : ''}`}>
-                      <span className="prop-dot">{reached ? '✓' : i + 1}</span>
-                      <span className="prop-txt">{tr(s)}</span>
-                      {hasToken && <span className="prop-token">📦 "Blox Fruits"</span>}
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l aniq: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{'{props.name}'}</span> → ekranda <b>Blox Fruits</b>!</>, ru: <>Путь ясен: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{'{props.name}'}</span> → на экране <b>Blox Fruits</b>!</> })}</p></div>}
-          </Col>
-          <Col>
+            {/* F-0926-06: 3 qadam ro'yxati olindi — mentor va rentgen shu yo'lni aytadi (159/7, DUP) */}
             <p className="flow-label">{tr({ uz: 'Kod ichida', ru: 'Внутри кода' })}</p>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.6 }}>
               <span style={{ borderRadius: 5, padding: '1px 4px', background: phase === 1 ? 'rgba(255,79,40,0.22)' : 'transparent', boxShadow: phase === 1 ? `inset 0 0 0 1px ${T.accent}` : 'none', transition: 'all 0.3s' }}><Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Blox Fruits"</St><Jx>{' />'}</Jx></span>{'\n\n'}
@@ -1283,7 +1262,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  '}<Jx>{'return'}</Jx>{' '}<span style={{ borderRadius: 5, padding: '1px 4px', background: phase === 3 ? 'rgba(31,122,77,0.25)' : 'transparent', boxShadow: phase === 3 ? `inset 0 0 0 1px ${T.success}` : 'none', transition: 'all 0.3s' }}><Jx>{'<h3>'}</Jx>{'{'}<At>props.name</At>{'}'}<Jx>{'</h3>'}</Jx></span>{';'}{'\n'}
               {'}'}
             </pre>
-            <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Bloxy-Press — rentgen rejimi', ru: 'Bloxy-Press — режим рентгена' })}</p>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l aniq: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{'{props.name}'}</span> → ekranda <b>Blox Fruits</b>!</>, ru: <>Путь ясен: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{'{props.name}'}</span> → на экране <b>Blox Fruits</b>!</> })}</p></div>}
+          </Col>
+          <Col>
+            {/* F-0926-06: kod chapga ko'chdi — o'ng ustunda faqat rentgen (SCROLL 64px yo'qoldi) */}
+            <p className="flow-label">{tr({ uz: 'Bloxy-Press — rentgen rejimi', ru: 'Bloxy-Press — режим рентгена' })}</p>
             <CardMachine mode="xray" phase={phase} running={running} />
           </Col>
         </div>
@@ -1348,12 +1331,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   {cur.id === 't3' && <p style={{ fontFamily: "'Manrope',sans-serif", fontSize: 10.5, color: T.ink3, margin: 0, textAlign: 'center' }}>© robo-games · 2026 <span className="mono" style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: '+ yangi', ru: '+ новое' })}</span></p>}
                 </div>
               ) : (
-                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Buyruq bering va rejani tasdiqlang…', ru: 'Дайте команду и утвердите план…' })}</p>
+                null /* F-0926-06 P1: bo'sh oynadagi yo'riq olindi — mentor aytadi */
               )}
             </Win>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Agent kodini <b>o'qiy oldingizmi</b>? Komponent Katta harf bilan, props to'g'ri — siz buni endi <b>tekshira olasiz</b>. Aynan shu — vibecoding'dagi eng kuchli mahorat.</>, ru: <>Смогли <b>прочитать</b> код агента? Компонент с Заглавной буквы, props верные — теперь вы умеете это <b>проверять</b>. Именно это — самый сильный навык в вайбкодинге.</> })}</p></div>
-              : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.", ru: 'Результат появится здесь — потом вы сами его проверите.' })}</p>}
+              : null /* F-0926-06: takror yo'riq olindi (159/6) — «tekshiring» mentorda */}
           </Col>
         </div>
         </Zoomable>
@@ -1400,11 +1383,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">name props</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {GAMES.map(g => <button key={g.name} className={`gchip ${nm === g.name ? 'chip-on' : ''}`} style={nm === g.name ? { background: T.accent, color: '#fff' } : undefined} onClick={() => pickNm(g.name)}>{g.name}</button>)}
+              {GAMES.map(g => <button key={g.name} className={`gchip ${nm === g.name ? 'chip-on' : ''}`} /* F-0926-06: baland rang yo'q (159/10) */ onClick={() => pickNm(g.name)}>{g.name}</button>)}
             </div>
             <p className="flow-label" style={{ marginTop: 2 }}>emoji props</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {EMOJIS.map(e => <button key={e} className="gchip" style={em === e ? { background: T.accent } : undefined} onClick={() => pickEm(e)}>{e}</button>)}
+              {EMOJIS.map(e => <button key={e} className={`gchip ${em === e ? 'chip-on' : ''}`} onClick={() => pickEm(e)}>{e}</button>)}
             </div>
             <pre className="code-box fade-up delay-2">
               <Jx>{'<GameCard'}</Jx>{'\n'}
@@ -1452,9 +1435,8 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
           </div>
         ))}
       </div>
-      {!solved
-        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите на неё' })}</p>
-        : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
+      {/* F-0926-06: takror yo'riq olindi (159/6) — «toping» mentorda */}
+      {solved && <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
     </div>
   );
 }
@@ -2344,8 +2326,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>ajoyib yordamchi</b> — yangi komponentni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Shuni topib tuzatish — <b style={{ color: T.ink }}>debugging</b>, va bu eng yaxshi mahorat. Endi siz JSX qoidalarini bilasiz: bitta qator qoidaga zid — toping-chi.</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: новый компонент он написал за секунду. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Найти и исправить их — это <b style={{ color: T.ink }}>дебаггинг</b>, самый ценный навык. Вы уже знаете правила JSX: одна строка им противоречит — найдите её.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>ajoyib yordamchi</b> — yangi komponentni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Shuni topib tuzatish — <b style={{ color: T.ink }}>debugging</b>, va bu eng yaxshi mahorat. Eslang: JSX'da bitta so'z <b style={{ color: T.ink }}>band</b> edi. Qaysi qator shunga zid — toping-chi.</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: новый компонент он написал за секунду. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Найти и исправить их — это <b style={{ color: T.ink }}>дебаггинг</b>, самый ценный навык. Вспомните: одно слово в JSX было <b style={{ color: T.ink }}>занято</b>. Какая строка этому противоречит — найдите её.</> })}</Mentor>
+        <Zoomable off={!done}>
         <div className="split">
           <Col>
             <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'GameCard komponentini yozdim:', ru: 'Я написал компонент GameCard:' })}</span></div>
@@ -2359,9 +2341,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
-            {!done
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Endi siz JSX qoidalarini bilasiz — AI kodini <b style={{ color: T.ink }}>tekshira olasiz</b>. Eslang: JSX'da bitta so'z <b style={{ color: T.ink }}>band</b> edi… Qaysi qator shunga zid?</>, ru: <>Вы уже знаете правила JSX — значит, <b style={{ color: T.ink }}>можете проверить</b> код AI. Вспомните: одно слово в JSX было <b style={{ color: T.ink }}>занято</b>… Какая строка этому противоречит?</> })}</p></div>
-              : <Win title="localhost:5173"><div style={{ maxWidth: 160 }}><RoCard name="Adopt Me!" /></div></Win>}
+            {/* F-0926-06 C3: mentorni takrorlagan maslahat-quti olindi, yangi qismi («band so'z») mentorga qo'shildi */}
+            {done && <Win title="localhost:5173"><div style={{ maxWidth: 160 }}><RoCard name="Adopt Me!" /></div></Win>}
           </Col>
         </div>
         </Zoomable>
@@ -2398,7 +2379,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Chaqiruvni yozing', ru: 'Напишите вызов' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: komponentni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> chaqiring.</>, ru: <>Последний шаг: вызовите компонент <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>haqiqiy dasturchi muhiti</b> — VS Code'da <span className="mono">App.jsx</span> ochiq. 4-qatorda komponent chaqiruvi yetishmayapti: <b style={{ color: T.ink }}>{'<GameCard'}</b> + <b style={{ color: T.ink }}>name="…"</b> (istalgan o'yin nomi) + <b style={{ color: T.ink }}>{'/>'}</b> yozing. Yozishingiz bilan o'ngda kartochka jonlanadi.</>, ru: <>Вот <b style={{ color: T.ink }}>настоящая среда программиста</b> — в VS Code открыт <span className="mono">App.jsx</span>. В 4-й строке не хватает вызова компонента: напишите <b style={{ color: T.ink }}>{'<GameCard'}</b> + <b style={{ color: T.ink }}>name="…"</b> (любое название игры) + <b style={{ color: T.ink }}>{'/>'}</b>. Как только напишете — справа оживёт карточка.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>haqiqiy dasturchi muhiti</b> — VS Code'da <span className="mono">App.jsx</span> ochiq. 4-qatorda komponent chaqiruvi yetishmayapti: kartochkani <b style={{ color: T.ink }}>name</b> prop'i bilan chaqiring (istalgan o'yin nomi). Yozishingiz bilan kartochka jonlanadi.</>, ru: <>Вот <b style={{ color: T.ink }}>настоящая среда программиста</b> — в VS Code открыт <span className="mono">App.jsx</span>. В 4-й строке не хватает вызова компонента: вызовите карточку с пропом <b style={{ color: T.ink }}>name</b> (любое название игры). Как только напишете — карточка оживёт.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -2414,7 +2395,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="vsc-line">
                   <span className="vsc-ln">4</span>
                   <span style={{ whiteSpace: 'pre' }}>{'      '}</span>
-                  <input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder='<GameCard name="Blox Fruits" />' spellCheck={false} autoCapitalize="off" autoCorrect="off" />
+                  <input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder='<… />' /* F-0927 (S6 namunasi): baholanadigan yakuniy testda mentor va placeholder javobni aynan aytardi (159/17) */ spellCheck={false} autoCapitalize="off" autoCorrect="off" />
                 </div>
                 <Ln n={5}>{'    '}<Jx>{'</div>'}</Jx></Ln>
                 <Ln n={6}>{'  );'}</Ln>
@@ -2422,9 +2403,9 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {'<GameCard'} — {tr({ uz: 'Katta harf', ru: 'Заглавная буква' })}</span>
-              <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} name="…" props</span>
-              <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '3'} {'/>'} {tr({ uz: 'yopilishi', ru: 'закрытие' })}</span>
+              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {tr({ uz: 'komponent — Katta harf', ru: 'компонент — заглавная буква' }) /* F-0927 (S6): teg kod bo'lagini aytardi */}</span>
+              <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} {tr({ uz: 'name prop', ru: 'проп name' })}</span>
+              <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '3'} {tr({ uz: 'yopilishi', ru: 'закрытие' })}</span>
             </div>
             {hasLowerComp && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esingizdami? Komponent nomi <b>Katta harf</b> bilan: <span className="mono">GameCard</span> — aks holda React uni HTML teg deb o'ylaydi.</>, ru: <>Помните? Имя компонента — с <b>Заглавной буквы</b>: <span className="mono">GameCard</span> — иначе React примет его за HTML-тег.</> })}</p></div>}
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Komponent + props — chaqiruvni to'liq o'zingiz yozdingiz. Bu endi sizning mahoratingiz.", ru: '✓ Превосходно! Компонент + props — вы полностью сами написали вызов. Теперь это ваш навык.' })}</p></div>}
@@ -2434,7 +2415,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Win title="robo-games — localhost:5173" minH={130}>
               {valid
                 ? <div key={inner} className="fade-step" style={{ maxWidth: 170 }}><RoCard name={inner} likeable /></div>
-                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>{tr({ uz: "4-qatorni to'liq yozing:", ru: 'Напишите 4-ю строку полностью:' })} <span className="mono" style={{ fontStyle: 'normal' }}>{'<GameCard'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>name="…"</span> + <span className="mono" style={{ fontStyle: 'normal' }}>{'/>'}</span></p>}
+                : null /* F-0926-06 P1: bo'sh oynadagi yo'riq olindi — mentor aytadi */}
             </Win>
           </Col>
         </div>
@@ -2689,7 +2670,7 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on, .gchip.chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06: baland rang yo'q (159/10) — yumshoq fon + halqa */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 8px 13px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.2); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover:not(:disabled) { transform: translateY(-1px); } .gchip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
@@ -2736,6 +2717,9 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + yorlig'i + izohi bitta blok */
+        .vis-card .flow-label { margin: 0; }
+        .vis-card .bp-window, .vis-card .code-box { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); } /* kartadagi vizual — ikkinchi soya yo'q */
         .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }

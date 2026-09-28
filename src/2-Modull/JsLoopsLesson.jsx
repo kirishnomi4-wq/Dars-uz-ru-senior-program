@@ -642,7 +642,7 @@ const Terminal = ({ lines, empty = { uz: '// natija shu yerda chiqadi…', ru: '
 );
 
 // Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — birinchi bosishgacha bo'sh ustunda ⛶ chiqmaydi (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -664,7 +664,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -679,7 +679,7 @@ const Zoomable = ({ children }) => {
 // o'smir uchun begona so'z, «tekshiruvchi» esa nima qilishini o'zi aytadi).
 // load → massiv-yuk (quti yorliqlari).
 // HARAKAT SIFATI (quti tushishi, dastak tortilishi, silliqlik) — ✨ Animatsiya roli.
-const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step = 'i++', load = null, cheksiz = false, whileMode = false, done = false, onStep, onAuto, manual = false, compact = false }) => {
+const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step = 'i++', load = null, cheksiz = false, whileMode = false, done = false, onStep, onAuto, manual = false, compact = false, ding = true }) => { /* F-0926-06: ding=false — ekranda natija-karta holatni aytsa, «Tayyor» takrorlanmaydi (159/14) */
   const n = Math.max(0, count);
   const zeroBased = /=\s*0/.test(init);
   const boxes = Array.from({ length: n }, (_, k) => (load ? (load[k] ?? '?') : (zeroBased ? k : k + 1)));
@@ -692,7 +692,7 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
     <div className={`zavod ${overflow ? 'zavod-cheksiz' : ''} ${done && !cheksiz ? 'zavod-done' : ''} ${compact ? 'zavod-sm' : ''} ${idle ? 'zv-idle' : ''}`}>
       <div className="zavod-levers">
         <div className="zv-lever zv-init"><span className="zv-lbl">{tr({ uz: 'Boshlanish', ru: 'Старт' })}</span><span className="zv-code">{init}</span></div>
-        <div className="zv-lever zv-cond"><span className="zv-lbl">{whileMode ? tr({ uz: '👀 Tekshiruvchi', ru: '👀 Проверяющий' }) : tr({ uz: 'Shart', ru: 'Условие' })}</span><span className="zv-code">{cond}</span></div>
+        <div className="zv-lever zv-cond"><span className="zv-lbl">{whileMode ? tr({ uz: 'Tekshiruvchi', ru: 'Проверяющий' }) : tr({ uz: 'Shart', ru: 'Условие' })}</span><span className="zv-code">{cond}</span></div>
         <div className="zv-lever zv-step"><span className="zv-lbl">{tr({ uz: 'Qadam', ru: 'Шаг' })}</span><span className="zv-code">{step}</span></div>
       </div>
       <div className="zavod-body">
@@ -705,8 +705,8 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
         </div>
         {manual && (
           <div className="zavod-controls">
-            {onStep && <button className="btn-soft" onClick={onStep} disabled={done || overflow}>🔧 {tr({ uz: 'Bir marta aylantirish', ru: 'Прокрутить один раз' })}</button>}
-            {onAuto && <button className="zv-start" onClick={onAuto} disabled={done || overflow}>⚡ {tr({ uz: 'AUTO — hammasini', ru: 'AUTO — всё сразу' })}</button>}
+            {onStep && <button className="btn-soft" onClick={onStep} disabled={done || overflow}>{tr({ uz: 'Bir marta aylantirish', ru: 'Прокрутить один раз' })}</button>}
+            {onAuto && <button className="zv-start" onClick={onAuto} disabled={done || overflow}>{tr({ uz: 'AUTO — hammasini', ru: 'AUTO — всё сразу' })}</button>}
           </div>
         )}
       </div>
@@ -717,7 +717,7 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
       </div>
       {overflow
         ? <div className="zavod-alert">⚠️ {tr({ uz: "CHEKSIZ! — mashina to'xtamayapti", ru: 'БЕСКОНЕЧНО! — машина не останавливается' })}</div>
-        : done && <div className="zavod-ding">🔔 {tr({ uz: "Tayyor! — shart buzildi, sikl to'xtadi", ru: 'Готово! — условие нарушилось, цикл остановился' })}</div>}
+        : done && ding && <div className="zavod-ding">🔔 {tr({ uz: "Tayyor! — shart buzildi, sikl to'xtadi", ru: 'Готово! — условие нарушилось, цикл остановился' })}</div>}
     </div>
   );
 };
@@ -753,7 +753,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               ))}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-              <button className={`btn ${count >= 20 ? 'btn-tired' : ''}`} onClick={write} disabled={count >= NEED} style={{ alignSelf: 'flex-start' }}>{count >= NEED ? tr({ uz: '😮‍💨 Charchadim…', ru: '😮‍💨 Я устал…' }) : tr({ uz: '✍️ Yana bittasini yozish', ru: '✍️ Написать ещё одно' })}</button>
+              <button className={`btn ${count >= 20 ? 'btn-tired' : ''}`} onClick={write} disabled={count >= NEED} style={{ alignSelf: 'flex-start' }}>{count >= NEED ? tr({ uz: 'Charchadim…', ru: 'Я устал…' }) : tr({ uz: 'Yana bittasini yozish', ru: 'Написать ещё одно' })}</button>
               <span className="mono small" style={{ color: T.ink3 }}>{count} / {NEED}</span>
             </div>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -764,13 +764,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <div className="fatigue"><div className="fatigue-bar" style={{ width: `${(count / NEED) * 100}%`, color: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent, background: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent }} /></div>
             </div>
             {count >= 5 && count < NEED && <p className="hook-ack fade-step">{tr({ uz: <>Hali <b>{NEED - count} ta</b> qoldi… va bu atigi 30 ta. 1000 ta bo'lsa-chi? 😅</>, ru: <>Осталось ещё <b>{NEED - count}</b>… и это всего 30. А если 1000? 😅</> })}</p>}
-            {count >= NEED && <p className="hook-ack fade-step">{tr({ uz: <>⚡ Bir zarbada 30 tasi tayyor! Mana <b>sikl</b> — mehnatni kompyuterga o'tkazadi.</>, ru: <>⚡ Одним махом готовы все 30! Вот что такое <b>цикл</b> — он перекладывает труд на компьютер.</> })}</p>}
+            {/* F-0926-06: «⚡ Bir zarbada 30 tasi tayyor» olindi — zavod «Tayyor» deydi, «sikl kompyuterga takrorlatadi» ma'nosi o'ng ustun izohida (159/7) */}
           </Col>
           <Col>
             <div className="fade-up delay-2"><SiklZavodi count={count} max={NEED} init="i = 1" cond={`i <= ${NEED}`} step="i++" load={Array.from({ length: NEED }, (_, k) => k + 1)} manual onAuto={() => setCount(NEED)} done={count >= NEED} compact /></div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, paddingRight: 40 }}>{tr({ uz: 'Dasturchi 1000 ta xabarni qanday yozadi?', ru: 'Как программист напишет 1000 сообщений?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, paddingRight: 40 }}>{/* F-0926-06: yorliq bir qatorga qisqardi — variantlar qo'shni ustun bilan bir chiziqda (159/9) */}{tr({ uz: 'Dasturchi qanday yozadi?', ru: 'Как напишет программист?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -782,7 +782,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri yo'l — <b>sikl</b>! Bir marta yozasiz, kompyuter uni 1000 marta takrorlaydi. Bugun shuni o'rganamiz.</>, ru: <>Верный путь — <b>цикл</b>! Вы пишете один раз, а компьютер повторит 1000 раз. Этому сегодня и научимся.</> })}</p>}
+            {/* F-0926-06: noto'g'ri variantga «To'g'ri yo'l» deyilmaydi — «Aslida …» (KORPUS §215, I2) */}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? tr({ uz: <>Ha, <b>sikl</b>! Bir marta yozasiz, kompyuter uni 1000 marta takrorlaydi. Bugun shuni o'rganamiz.</>, ru: <>Да, <b>цикл</b>! Вы пишете один раз, а компьютер повторит 1000 раз. Этому сегодня и научимся.</> }) : tr({ uz: <>Aslida dasturchi <b>sikl</b> yozadi: bir marta yozadi, kompyuter uni 1000 marta takrorlaydi. Bugun shuni o'rganamiz.</>, ru: <>На самом деле программист пишет <b>цикл</b>: один раз пишет, а компьютер повторяет 1000 раз. Этому сегодня и научимся.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -817,7 +818,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
           </div>
         </div>
       </div>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ {tr({ uz: 'ikkalasini birga ishlatsak — haqiqiy kuch!', ru: 'вместе они — настоящая сила!' })}</p>
+      {/* F-0926-06 (H1 namunasi): «→ ikkalasini birga ishlatsak» olindi — 05-qadam «sikl + massiv» shuni aytadi */}
     </Col>
   );
   const StepsBlock = (
@@ -869,8 +870,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${mode === 'manual' ? 'chip-on' : ''}`} onClick={() => set('manual')}>😕 {tr({ uz: 'Siklsiz', ru: 'Без цикла' })}</button>
-              <button className={`chip ${mode === 'loop' ? 'chip-on' : ''}`} onClick={() => set('loop')}>🔁 {tr({ uz: 'Sikl bilan', ru: 'С циклом' })}</button>
+              <button className={`chip ${mode === 'manual' ? 'chip-on' : ''}`} onClick={() => set('manual')}>{tr({ uz: 'Siklsiz', ru: 'Без цикла' })}</button>
+              <button className={`chip ${mode === 'loop' ? 'chip-on' : ''}`} onClick={() => set('loop')}>{tr({ uz: 'Sikl bilan', ru: 'С циклом' })}</button>
             </div>
             <div className="codebox demo-swap" key={mode}>
               {mode === 'manual' ? (
@@ -893,7 +894,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Natija (ikkalasida bir xil)', ru: 'Результат (одинаковый в обоих)' })}</p>
+            <p className="flow-label">{/* F-0926-06: «ikkalasida bir xil» xulosani oldindan aytardi (159/17) */}{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             <Terminal lines={Array.from({ length: 5 }, () => tr({ uz: 'Salom', ru: 'Привет' }))} />
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Natija aynan bir xil! Lekin <b>sikl</b> bilan kod qisqa, o'zgartirishi oson. Mana shuning uchun sikl kerak.</>, ru: <>✓ Результат абсолютно одинаковый! Но с <b>циклом</b> код короче и его легко менять. Вот зачем нужен цикл.</> })}</p></div>}
           </Col>
@@ -950,17 +951,16 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {part ? (
               <div className="sk-info fade-step" key={part}>
                 <span className="sk-tagbig"><span className="lg-dot" style={{ background: PARTS[part].color, width: 14, height: 14 }} /><span className="sk-wordbadge" style={{ color: PARTS[part].color, background: PARTS[part].color + '22' }}>{PARTS[part].num}. {tr(PARTS[part].name)}</span><span className="mono" style={{ color: T.ink2 }}>{PARTS[part].code}</span></span>
-                <p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>⚙️ <b>{tr(PARTS[part].stair)}.</b> {tr(PARTS[part].desc)}</p>
+                <p className="body" style={{ color: T.ink, margin: '10px 0 0' }}><b>{tr(PARTS[part].stair)}.</b> {tr(PARTS[part].desc)}</p>
               </div>
-            ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>👆 {tr({ uz: 'Koddagi 3 ta rangli qismni bosing', ru: 'Нажмите на 3 цветные части кода' })}</p></div>
-            )}
+            ) : null}
+            {/* F-0926-06: «Koddagi 3 ta rangli qismni bosing» ramkasi olindi — chorlov mentor gapida (159/3); natija-karta o'ng ustundan shu yerga — u yerda tugmalar orqasiga tushardi (159/12) */}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ i 1→2→3→4→5 bo'ldi, har safar bir marta ishladi. i = 6 bo'lganda shart (<span className="mono">i &lt;= 5</span>) buzildi — sikl to'xtadi.</>, ru: <>✓ i прошёл 1→2→3→4→5, каждый раз срабатывая по одному. При i = 6 условие (<span className="mono">i &lt;= 5</span>) нарушилось — цикл остановился.</> })}</p></div>}
           </Col>
           <Col>
-            <div className="fade-up delay-1"><SiklZavodi count={iVal} max={N} init="i = 1" cond="i <= 5" step="i++" done={done} /></div>
+            <div className="fade-up delay-1"><SiklZavodi count={iVal} max={N} init="i = 1" cond="i <= 5" step="i++" done={done} ding={false} /></div>
             <Terminal lines={out.map(v => `${tr({ uz: 'Salom', ru: 'Привет' })} ${v}`)} empty={{ uz: '// ▶ ishga tushiring', ru: '// ▶ запустите' }} />
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Bajarilmoqda…', ru: 'Выполняется…' }) : (done ? tr({ uz: '↻ Yana ishga tushir', ru: '↻ Запустить ещё раз' }) : tr({ uz: '▶ Ishga tushir', ru: '▶ Запустить' }))}</button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ i 1→2→3→4→5 bo'ldi, har safar bir marta ishladi. i = 6 bo'lganda shart (<span className="mono">i &lt;= 5</span>) buzildi — sikl to'xtadi.</>, ru: <>✓ i прошёл 1→2→3→4→5, каждый раз срабатывая по одному. При i = 6 условие (<span className="mono">i &lt;= 5</span>) нарушилось — цикл остановился.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -999,7 +999,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Siklni boshqarish', ru: 'Управление циклом' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Parametrni o'zgartiring", ru: 'Измените параметр' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Siklni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> boshqarib ko'ring</>, ru: <>Попробуйте управлять циклом <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>3 qismni o'zgartirsangiz — sikl boshqacha ishlaydi. <b style={{ color: T.ink }}>Shart</b>ni o'zgartiring (qachongacha) yoki <b style={{ color: T.ink }}>qadam</b>ni (qancha sakraydi). Pastdagi natija darhol o'zgaradi.</>, ru: <>Поменяете эти части — цикл заработает иначе. Измените <b style={{ color: T.ink }}>условие</b> (до каких пор) или <b style={{ color: T.ink }}>шаг</b> (на сколько прыгать). Результат внизу изменится сразу.</> })}</Mentor>
+        {/* F-0926-06: joy so'zi «Pastdagi» olindi (159/11) */}<Mentor>{tr({ uz: <>3 qismni o'zgartirsangiz — sikl boshqacha ishlaydi. <b style={{ color: T.ink }}>Shart</b>ni o'zgartiring (qachongacha) yoki <b style={{ color: T.ink }}>qadam</b>ni (qancha sakraydi). Natija darhol o'zgaradi.</>, ru: <>Поменяете эти части — цикл заработает иначе. Измените <b style={{ color: T.ink }}>условие</b> (до каких пор) или <b style={{ color: T.ink }}>шаг</b> (на сколько прыгать). Результат изменится сразу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1093,7 +1093,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {done
                 ? <button className="btn" onClick={again}>{tr({ uz: '↻ Boshidan', ru: '↻ Сначала' })}</button>
                 : (<>
-                    <button className="btn" onClick={step} disabled={running}>👣 {tr({ uz: 'Bir marta quy', ru: 'Налить один раз' })}</button>
+                    <button className="btn" onClick={step} disabled={running}>{tr({ uz: 'Bir marta quy', ru: 'Налить один раз' })}</button>
                     <button className="btn-ghost" onClick={run} disabled={running} style={{ padding: '11px 18px', fontSize: 14 }}>{running ? tr({ uz: 'Quyilmoqda…', ru: 'Наливается…' }) : tr({ uz: "▶ To'liq quyib ko'rsat", ru: '▶ Показать целиком' })}</button>
                   </>)}
             </div>
@@ -1111,11 +1111,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="glass-pct">{suv}%</span>
                 {running && suv > 0 && <span className="splash" key={suv}>+20</span>}
               </div>
-              <p className="cond-label">👀 {tr({ uz: 'Tekshiruvchi', ru: 'Проверяющий' })}</p>
+              <p className="cond-label">{tr({ uz: 'Tekshiruvchi', ru: 'Проверяющий' })}</p>
               <div className={`cond-pill${done ? ' stop' : ''}`} style={{ background: suv < 100 ? T.successSoft : T.accentSoft, color: suv < 100 ? T.success : T.accent }}>suv {suv} &lt; 100 → {suv < 100 ? tr({ uz: '✓ rost — yana quy', ru: '✓ истина — лей ещё' }) : tr({ uz: "✗ yolg'on — to'xta", ru: '✗ ложь — стоп' })}</div>
-              <p className="mono small" style={{ color: T.ink3, margin: 0 }}>{tr({ uz: `${iter}-aylanish`, ru: `итерация ${iter}` })}</p>
+              {/* F-0926-06: «N-aylanish» olindi — sanoq chap ustundagi «aylanish bajarildi» hisoblagichida (159/7) */}
             </div>
-            <div className="fade-up delay-2"><SiklZavodi count={iter} max={5} whileMode init="suv = 0" cond="suv < 100" step="suv += 20" done={done} compact /></div>
+            <div className="fade-up delay-2"><SiklZavodi count={iter} max={5} whileMode init="suv = 0" cond="suv < 100" step="suv += 20" done={done} compact ding={false} /></div>
           </Col>
         </div>
         </Zoomable>
@@ -1141,13 +1141,13 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi birini <span className="italic" style={{ color: T.accent }}>qachon</span> ishlatamiz?</>, ru: <>Какой из них <span className="italic" style={{ color: T.accent }}>когда</span> использовать?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ikkalasi ham takrorlaydi. Farq <b style={{ color: T.ink }}>bitta savolda</b>: necha marta takrorlashni <b style={{ color: T.ink }}>oldindan bilamizmi?</b> Bilsak — <b style={{ color: T.accent }}>for</b>. Bilmasak, faqat shart bo'lsa — <b style={{ color: T.accent }}>while</b>. Ikkala kartani bosing.</>, ru: <>Оба повторяют. Разница — в <b style={{ color: T.ink }}>одном вопросе</b>: <b style={{ color: T.ink }}>знаем ли заранее</b>, сколько раз повторять? Знаем — <b style={{ color: T.accent }}>for</b>. Не знаем, есть только условие — <b style={{ color: T.accent }}>while</b>. Нажмите обе карточки.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={active === null}>{/* F-0926-06: ramka olingach ⛶ bo'sh ustunda yolg'iz qolmasin */}
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {Object.keys(CARDS).map(k => (
                 <button key={k} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 13, textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 14, padding: '15px 16px', background: T.paper, boxShadow: active === k ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -6px rgba(255,79,40,0.22)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.18s' }}>
-                  <span className={k === 'whilec' ? 'pulse-q' : 'ic-float'} style={{ fontSize: 28 }}>{CARDS[k].ic}</span>
+                  {/* F-0926-06 (H3 namunasi): karta oldidagi katta 🔢/❓ olindi — karta nomi (for/while) yetarli */}
                   <span className="mono" style={{ fontWeight: 700, fontSize: 18, color: T.accent }}>{CARDS[k].name}</span>
                   {seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, fontSize: 15 }}>✓</span>}
                 </button>
@@ -1157,14 +1157,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {active ? (
               <div className="sk-info fade-step" key={active}>
-                <span className="sk-tagbig"><span className={active === 'whilec' ? 'pulse-q' : 'ic-float'} style={{ fontSize: 24 }}>{CARDS[active].ic}</span><span className="sk-wordbadge">{CARDS[active].name}</span></span>
+                <span className="sk-tagbig">{/* F-0926-06: karta sarlavhasi oldidagi emoji olindi — chap kartada bor (H3) */}<span className="sk-wordbadge">{CARDS[active].name}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 9px', fontWeight: 600 }}>{tr(CARDS[active].when)}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {CARDS[active].ex.map((e, i) => (<div key={i} className="ex-row" style={{ display: 'flex', gap: 8, alignItems: 'center', background: T.bg, borderRadius: 8, padding: '8px 11px', animationDelay: `${0.05 + i * 0.09}s` }}><span style={{ color: T.accent }}>•</span><span className="body" style={{ margin: 0, color: T.ink2 }}>{tr(e)}</span></div>))}
                 </div>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Bir kartani bosing', ru: 'Нажмите на карточку' })}</p></div> : null)}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esda tuting: <b>for</b> = sanab bo'ladigan ishlar, <b>while</b> = "qachongacha?" deb so'raydigan ishlar.</>, ru: <>Запомните: <b>for</b> — задачи, которые можно сосчитать, <b>while</b> — задачи с вопросом «до каких пор?».</> })}</p></div>}
+            ) : null}
+            {/* F-0926-06: «Bir kartani bosing» ramkasi (chorlov mentor gapida, 159/3) va «Esda tuting» qutisi (mentor qoidani aytgan, 159/7) olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -1187,13 +1187,13 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ko'p narsani <span className="italic" style={{ color: T.accent }}>bitta joyda</span> qanday saqlaymiz?</>, ru: <>Как хранить много всего <span className="italic" style={{ color: T.accent }}>в одном месте</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>4 ta meva uchun 4 ta alohida o'zgaruvchi (<span className="mono">meva1, meva2…</span>) yasash — noqulay. 100 ta bo'lsa-chi? Yaxshisi — hammasini bitta <b style={{ color: T.ink }}>massivga</b>, raqamlangan qator qutilarga joylaymiz. Eng qizig'i: qutilar <b style={{ color: T.accent }}>1 dan emas, 0 dan</b> sanaladi! Dasturlashda shunday qabul qilingan: birinchi element — 0-o'rinda. Har bir qutini bosib ko'ring.</>, ru: <>Делать 4 отдельные переменные для 4 фруктов (<span className="mono">meva1, meva2…</span>) — неудобно. А если их 100? Лучше сложить всё в один <b style={{ color: T.ink }}>массив</b> — ряд пронумерованных коробок. Самое интересное: коробки считаются <b style={{ color: T.accent }}>не с 1, а с 0</b>! Так принято в программировании: первый элемент — на месте 0. Нажмите на каждую коробку.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={active === null}>{/* F-0926-06: ramka olingach ⛶ bo'sh ustunda yolg'iz qolmasin */}
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1">
               <div><KW>let</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>, <STR>"qulupnay"</STR>]</div>
             </div>
-            <p className="flow-label">{tr({ uz: 'Qutilar — indeksini bosing', ru: 'Коробки — нажмите на индекс' })}</p>
+            <p className="flow-label">{/* F-0926-06: «— indeksini bosing» olindi, chorlov mentor gapida (159/7) */}{tr({ uz: 'Qutilar', ru: 'Коробки' })}</p>
             <div className="arr-row">
               {ARR.map((it, i) => (
                 <button key={i} className={`arr-cell ex-row ${active === i ? 'on' : ''}`} onClick={() => tap(i)} style={{ animationDelay: `${0.15 + i * 0.09}s` }}>
@@ -1216,8 +1216,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 <p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{active === 0 ? tr({ uz: <>🎯 <b>Indeks 0</b> — eng birinchi element! Sanash noldan boshlanadi, shuning uchun "olma" — nolinchi.</>, ru: <>🎯 <b>Индекс 0</b> — самый первый элемент! Счёт идёт с нуля, поэтому "olma" — нулевая.</> }) : tr({ uz: <>Bu <b>{active + 1}-element</b>, lekin indeksi <b>{active}</b> — chunki 0 dan sanadik.</>, ru: <>Это <b>{active + 1}-й элемент</b>, но его индекс <b>{active}</b> — потому что считали с 0.</> })}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Bir qutini bosing — indeksini ko'ring", ru: 'Нажмите на коробку — увидите её индекс' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Birinchi element <b>[0]</b>, oxirgisi <b>[3]</b>. Bu "0 dan sanash" — dasturlashning eng mashhur "tuzog'i". Endi bilasiz! 😉</>, ru: <>✓ Первый элемент <b>[0]</b>, последний <b>[3]</b>. Этот «счёт с нуля» — самая известная «ловушка» программирования. Теперь вы в курсе! 😉</> })}</p></div>}
+            ) : null}
+            {/* F-0926-06: «Bir qutini bosing» ramkasi (chorlov mentor gapida, 159/3) va «✓ Birinchi element [0]…» qutisi (mentor va karta «0 dan» deb aytgan, 159/7) olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -1335,7 +1335,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div>{'}'}</div>
             </div>
             <Terminal maxH={90} lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'xabarlar', ru: 'сообщения' }} />
-            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Yuborilmoqda…', ru: 'Отправляется…' }) : (done ? tr({ uz: '↻ Yana yuborish', ru: '↻ Отправить ещё раз' }) : tr({ uz: '🎉 Hammaga tabrik yuborish', ru: '🎉 Отправить всем поздравление' }))}</button>
+            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Yuborilmoqda…', ru: 'Отправляется…' }) : (done ? tr({ uz: '↻ Yana yuborish', ru: '↻ Отправить ещё раз' }) : tr({ uz: 'Hammaga tabrik yuborish', ru: 'Отправить всем поздравление' }))}</button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ 3 ta shaxsiy tabrik — <b>bitta sikl bilan</b>! Ro'yxatda 1000 ta nom bo'lsa ham, kod aynan shu qoladi. Mana dasturchining "dangasaligi" — aslida zukkolik!</>, ru: <>✓ 3 личных поздравления — <b>одним циклом</b>! Даже если в списке 1000 имён, код останется тем же. Вот она, «лень» программиста — на самом деле смекалка!</> })}</p></div>}
           </Col>
           <Col>
@@ -1352,7 +1352,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            <div className="fade-up delay-2"><SiklZavodi count={out.length} max={N} init="i = 0" cond="i < dostlar.length" step="i++" load={NAMES} done={done} compact /></div>
+            <div className="fade-up delay-2"><SiklZavodi count={out.length} max={N} init="i = 0" cond="i < dostlar.length" step="i++" load={NAMES} done={done} compact ding={false} /></div>
           </Col>
         </div>
         </Zoomable>
@@ -1429,7 +1429,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {done && <span className="burst" key="cel" style={{ marginLeft: 'auto', fontSize: 30 }}>🎉</span>}
             </div>
             <Terminal lines={out} empty={{ uz: '// parametrni tanlab, ishga tushiring', ru: '// выберите параметры и запустите' }} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Siz haqiqiy sikl qurdingiz va ishga tushirdingiz. Parametrni o'zgartirib, yana sinab ko'ring.</>, ru: <>✓ Класс! Вы собрали настоящий цикл и запустили его. Поменяйте параметры и попробуйте ещё.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ajoyib! Siz haqiqiy sikl qurdingiz va ishga tushirdingiz. Parametrni o'zgartirib, yana sinab ko'ring.</>, ru: <>✓ Отлично! Вы собрали настоящий цикл и запустили его. Поменяйте параметры и попробуйте ещё.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1468,15 +1468,15 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="ai-line" style={{ cursor: 'default', paddingLeft: 16 }}><FN>console</FN>.<FN>log</FN>(i)</div>
                 <div className="ai-line" style={{ cursor: 'default' }}>{'}'}</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qism xato? Ustiga bosing.', ru: 'Какая часть с ошибкой? Нажмите на неё.' })}</p>}
+              {/* F-0926-06: «Qaysi qism xato? Ustiga bosing.» olindi — mentor «Xato qismni toping va bosing» deydi (159/7) */}
               {!done && <AchRule screen={screen} />}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: 'i-- ni i++ ga almashtirish', ru: 'Заменить i-- на i++' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: "Tuzatildi — endi i oshadi va sikl 5 da to'xtaydi!", ru: 'Исправлено — теперь i растёт, и цикл остановится на 5!' })}</p>}
+              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: 'i-- ni i++ ga almashtirish', ru: 'Заменить i-- на i++' })}</button>)}
+              {/* F-0926-06: «✓ Tuzatildi…» olindi — natijani konsol va xulosa-karta aytadi (159/14, I3) */}
             </div>
             {!fixed ? (
               <div className="term fade-up delay-2">
                 <div className="term-bar"><span className="term-dot" style={{ background: '#FF5F56' }} /><span className="term-dot" style={{ background: '#FFBD2E' }} /><span className="term-dot" style={{ background: '#27C93F' }} /><span className="term-title">console</span></div>
-                <div className="term-body" style={{ padding: '8px 14px', gap: 3 }}>{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div><p className="term-empty warn-pulse" style={{ color: T.accent }}>⚠️ {tr({ uz: '5 ga hech yetmaydi — cheksiz!', ru: 'До 5 не дойдёт никогда — бесконечно!' })}</p></div>
+                <div className="term-body" style={{ padding: '8px 14px', gap: 3 }}>{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div>{/* F-0926-06: «⚠️ 5 ga hech yetmaydi — cheksiz!» olindi — zavod «CHEKSIZ!» deydi (159/7) */}</div>
               </div>
             ) : (
               <div className="term fade-step">
@@ -1486,6 +1486,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </Col>
           <Col>
+            {/* F-0926-06: zavod ustun boshiga — ⛶ izoh-matnni yopmasin, izohlar zavod ostida (layout-lint) */}
+            <div className="fade-up delay-2"><SiklZavodi count={fixed ? 5 : 8} max={5} init="i = 1" cond="i <= 5" step={fixed ? 'i++' : 'i--'} cheksiz={!fixed} done={fixed} compact ding={false} /></div>
             {!found && (
               picked && picked !== 'step'
                 ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qism to'g'ri. {picked === 'init' ? 'Boshlanish (i = 1) — joyida.' : 'Shart (i <= 5) — joyida.'} Xato boshqa qismda — i qaysi tomonga o'zgaryapti?</>, ru: <>Эта часть верна. {picked === 'init' ? 'Старт (i = 1) — на месте.' : 'Условие (i <= 5) — на месте.'} Ошибка в другой части — в какую сторону меняется i?</> })}</p></div>)
@@ -1493,9 +1495,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                    frame-warn o'zi yo'l ko'rsatadi; bu quti faqat oraliq holatlarda qoladi */
                 : (picked === null ? null : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: sikl to'xtashi uchun i <b style={{ color: T.ink }}>shartga yaqinlashishi</b> kerak. Bu yerda i 5 ga tomon ketyaptimi yoki undan <b style={{ color: T.ink }}>uzoqlashyaptimi?</b></>, ru: <>Помните: чтобы цикл остановился, i должен <b style={{ color: T.ink }}>приближаться к условию</b>. Здесь i идёт к 5 или <b style={{ color: T.ink }}>удаляется от неё?</b></> })}</p></div>)
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">i--</span> i ni <b>kamaytiradi</b> (1, 0, -1, …) — 5 ga hech qachon yetmaydi. To'g'risi: <span className="mono">i++</span>. Chap tugmani bosing →</>, ru: <><span className="mono">i--</span> <b>уменьшает</b> i (1, 0, -1, …) — до 5 не дойдёт никогда. Правильно: <span className="mono">i++</span>. Нажмите кнопку слева →</> })}</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">i--</span> i ni <b>kamaytiradi</b> (1, 0, -1, …) — 5 ga hech qachon yetmaydi. To'g'risi: <span className="mono">i++</span>.</>, ru: <><span className="mono">i--</span> <b>уменьшает</b> i (1, 0, -1, …) — до 5 не дойдёт никогда. Правильно: <span className="mono">i++</span>.</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: 'Cheksiz sikl — qadam shartga yaqinlashmaganda yuz beradi', ru: 'Бесконечный цикл случается, когда шаг не приближает к условию' })}</p></div>)}
-            <div className="fade-up delay-2"><SiklZavodi count={fixed ? 5 : 8} max={5} init="i = 1" cond="i <= 5" step={fixed ? 'i++' : 'i--'} cheksiz={!fixed} done={fixed} compact /></div>
           </Col>
         </div>
         </Zoomable>
@@ -2467,7 +2468,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_SANOQ = {
   eyebrow: { uz: 'Praktika · for', ru: 'Практика · for' },
   title: { uz: "Kompyuterga 1 dan 5 gacha sanatib ko'ring", ru: 'Заставьте компьютер посчитать от 1 до 5' },
-  brief: { uz: "`for` sikli yozing: `i` birdan boshlansin, `5` gacha borsin, har qadamda bittaga oshsin. Sikl ichida `console.log(i)` yozing — pastdagi konsolda `1 2 3 4 5` chiqadi.", ru: 'Напишите цикл `for`: `i` начинается с единицы, идёт до `5`, на каждом шаге растёт на 1. Внутри цикла напишите `console.log(i)` — в консоли внизу появится `1 2 3 4 5`.' },
+  brief: { uz: "`for` sikli yozing: `i` birdan boshlansin, `5` gacha borsin, har qadamda bittaga oshsin. Sikl ichida `console.log(i)` yozing — konsolda `1 2 3 4 5` chiqadi.", ru: 'Напишите цикл `for`: `i` начинается с единицы, идёт до `5`, на каждом шаге растёт на 1. Внутри цикла напишите `console.log(i)` — в консоли появится `1 2 3 4 5`.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
@@ -2729,7 +2730,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { /* F-0926-06: to'liq accent fon → yumshoq fon + halqa (159/10) */ background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; }
 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
@@ -2816,10 +2817,10 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         /* === AI CARD / DEBUGGING / TAGPILL === */
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
         .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
-        .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .ai-card { /* F-0926-06: ixchamlash (ru uzunroq, 159/12) */ background: ${T.paper}; border-radius: 14px; padding: 13px 17px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
-        .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
-        .ai-line { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12.5px,1.7vw,14px); color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; word-break: break-word; }
+        .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 8px 12px; display: flex; flex-direction: column; gap: 3px; }
+        .ai-line { /* F-0926-06: ixchamlash — konsol tugmalar orqasiga tushmasin (159/12) */ font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12.5px,1.7vw,14px); color: ${CODE.text}; padding: 4px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; word-break: break-word; }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
@@ -2910,12 +2911,12 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .zavod.zavod-done { border-color: ${T.success}; background: linear-gradient(160deg, #FFFFFF, #EAF6EE); }
         .zavod-levers { display: flex; gap: 8px; }
         .zv-lever { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; border-radius: 11px; padding: 7px 6px 5px; text-align: center; overflow: hidden; }
-        .zv-lever::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        /* F-0926-06 (S5, foydalanuvchi 27.09): richag tepasidagi 3px rangli chiziq olindi — rang fon, halqa va yorliqda allaqachon bor (PM/bridge bilan bir xil) */
         .zv-lever .zv-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
         .zv-lever .zv-code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.ink}; }
-        .zv-init { background: ${T.blueSoft}; box-shadow: inset 0 0 0 1.5px ${T.blue}55; } .zv-init .zv-lbl { color: ${T.blue}; } .zv-init::before { background: ${T.blue}; }
-        .zv-cond { background: ${T.sunSoft}; box-shadow: inset 0 0 0 1.5px ${T.sun}55; } .zv-cond .zv-lbl { color: ${T.sun}; } .zv-cond::before { background: ${T.sun}; }
-        .zv-step { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; } .zv-step .zv-lbl { color: ${T.success}; } .zv-step::before { background: ${T.success}; }
+        .zv-init { background: ${T.blueSoft}; box-shadow: inset 0 0 0 1.5px ${T.blue}55; } .zv-init .zv-lbl { color: ${T.blue}; }
+        .zv-cond { background: ${T.sunSoft}; box-shadow: inset 0 0 0 1.5px ${T.sun}55; } .zv-cond .zv-lbl { color: ${T.sun}; }
+        .zv-step { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; } .zv-step .zv-lbl { color: ${T.success}; }
         .zavod-body { display: flex; align-items: center; gap: 12px; }
         .zavod-tablo { flex-shrink: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90px; height: 72px; border-radius: 14px; background: linear-gradient(180deg, #1F2B40, #141C2B); border: 2px solid #2C3A52; box-shadow: inset 0 2px 8px rgba(0,0,0,0.55), 0 5px 14px -7px rgba(0,0,0,0.45); }
         .zavod-sm .zavod-tablo { width: 78px; height: 62px; }
@@ -2926,7 +2927,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .zavod-cheksiz .zv-tablo-lbl { color: #FFB4A0; }
         .zavod-cheksiz .zv-tablo-num { color: #FF8A6E; text-shadow: 0 0 14px rgba(255,79,40,0.75); }
         @keyframes zv-flip { from { transform: translateY(-40%); opacity: 0; } }
-        .zavod-belt { flex: 1; display: flex; align-items: center; justify-content: space-around; height: 22px; border-radius: 99px; background: repeating-linear-gradient(90deg, ${T.ink3}33 0 8px, transparent 8px 16px); background-size: 16px 100%; animation: zv-belt-move 0.85s linear infinite; }
+        .zavod-belt { /* kesik-ok: konveyer lentasi — harakatlanadigan tasma, sikl aylanishini ko'rsatadi (F-0926-06) */ flex: 1; display: flex; align-items: center; justify-content: space-around; height: 22px; border-radius: 99px; background: repeating-linear-gradient(90deg, ${T.ink3}33 0 8px, transparent 8px 16px); background-size: 16px 100%; animation: zv-belt-move 0.85s linear infinite; }
         @keyframes zv-belt-move { to { background-position: -16px 0; } }
         .zavod-cheksiz .zavod-belt { animation-duration: 0.24s; }
         .zavod-done .zavod-belt { animation-play-state: paused; }
@@ -2940,8 +2941,8 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .zavod.zv-idle .zv-belt-arrow { animation: none; opacity: 0.28; }
         .zavod-done .zv-belt-arrow { animation-play-state: paused; opacity: 0.55; }
         .zavod-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .zv-start { font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: #FFFFFF; background: linear-gradient(180deg, #2FA968, #1F7A4D); border: none; border-radius: 12px; padding: 12px 20px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(31,122,77,0.55), inset 0 1px 0 rgba(255,255,255,0.25); transition: transform 0.12s, box-shadow 0.2s, filter 0.2s; }
-        .zv-start:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 24px -7px rgba(31,122,77,0.6), inset 0 1px 0 rgba(255,255,255,0.25); }
+        .zv-start { /* F-0926-06: to'liq yashil tugma → accent (159/5, V1) */ font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: #FFFFFF; background: ${T.accent}; border: none; border-radius: 12px; padding: 12px 20px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(255,79,40,0.45); transition: transform 0.12s, box-shadow 0.2s, filter 0.2s; }
+        .zv-start:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 24px -7px rgba(255,79,40,0.5); }
         .zv-start:active:not(:disabled) { transform: translateY(1px); }
         .zv-start:disabled { filter: grayscale(0.5) opacity(0.55); cursor: default; }
         .zavod-bin { display: flex; flex-wrap: wrap; gap: 6px; min-height: 44px; align-content: flex-start; background: ${T.bg}; border-radius: 12px; padding: 9px; box-shadow: inset 0 2px 8px -4px rgba(${T.shadowBase},0.2); }
@@ -3140,7 +3141,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         /* S5 — son chizig'i */
         .numline { display: flex; flex-wrap: wrap; gap: 5px; }
         .num-cell { width: 31px; height: 31px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12.5px; background: ${T.bg}; color: ${T.ink3}; transition: all 0.3s cubic-bezier(.4,0,.2,1); }
-        .num-cell.hit { background: ${T.accent}; color: #fff; transform: translateY(-3px) scale(1.06); box-shadow: 0 6px 15px -5px rgba(255,79,40,0.5); }
+        .num-cell.hit { /* F-0926-06: to'yingan fon → yumshoq fon + halqa (159/10) */ background: ${T.accentSoft}; color: ${T.accent}; transform: translateY(-3px) scale(1.06); box-shadow: 0 0 0 1.5px ${T.accent}; }
 
         /* S6 — stakan qo'shimchalari */
         .glass-wave { position: absolute; top: -5px; left: -4%; width: 108%; height: 11px; background: #5BC8EC; border-radius: 50%; animation: bob 1.05s ease-in-out infinite; }
@@ -3169,7 +3170,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
 
         /* S11 — do'stlar */
         .friend-card { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 12px; padding: 7px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); transition: all 0.4s cubic-bezier(.4,0,.2,1); opacity: 0.5; }
-        .friend-card.got { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25); }
+        .friend-card.got { /* F-0926-06: yashil ramka olindi — ✅ + yumshoq yashil fon (G3) */ opacity: 1; background: ${T.successSoft}; }
         .friend-ava { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; background: ${T.accentSoft}; flex-shrink: 0; transition: background 0.35s; }
         .friend-card.got .friend-ava { background: ${T.successSoft}; animation: hop 0.5s ease; }
         .friend-name { font-weight: 600; font-size: 14px; color: ${T.ink}; }

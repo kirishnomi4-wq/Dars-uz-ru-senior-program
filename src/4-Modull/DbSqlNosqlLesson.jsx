@@ -103,7 +103,7 @@ const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
 const Split = ({ children }) => <div className="split">{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — ramka olingan bo'sh ustunda ⛶ yolg'iz qolmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -125,7 +125,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -540,9 +540,9 @@ const USERS = [
   { id: 3, username: 'bek_777',    avatar: '🐼' }
 ];
 const POSTS = [
-  { id: 10, user_id: 1, rasm: '🏔️', izoh: "Tog' sayohati" },
-  { id: 11, user_id: 2, rasm: '🎨', izoh: 'Yangi rasm' },
-  { id: 12, user_id: 1, rasm: '🍜', izoh: 'Tushlik' },
+  { id: 10, user_id: 1, rasm: '🏔️', izoh: { uz: "Tog' sayohati", ru: 'Поход в горы' } }, /* F-0926-06: namuna-matn ruscha rejimda tarjima (S7) */
+  { id: 11, user_id: 2, rasm: '🎨', izoh: { uz: 'Yangi rasm', ru: 'Новый рисунок' } },
+  { id: 12, user_id: 1, rasm: '🍜', izoh: { uz: 'Tushlik', ru: 'Обед' } },
   { id: 13, user_id: 3, rasm: '⚽', izoh: 'Match kuni' }
 ];
 const userById = (id) => USERS.find(u => u.id === id);
@@ -656,15 +656,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <button className={`chip ${view === 'sql' ? 'chip-on' : ''} ${!seen.has('sql') ? 'taphint' : ''}`} onClick={() => swap('sql')}>{tr({ uz: 'SQL jadval', ru: 'SQL-таблица' })} {seen.has('sql') ? '✓' : ''}</button>
               <button className={`chip ${view === 'nosql' ? 'chip-on' : ''} ${!seen.has('nosql') ? 'taphint' : ''}`} onClick={() => swap('nosql')}>{tr({ uz: 'NoSQL hujjat', ru: 'NoSQL-документ' })} {seen.has('nosql') ? '✓' : ''}</button>
             </div>
+            <div className="vis-card">{/* F-0926-06 (160-qonun): oyna va uning izohi bitta kartada */}
             <Win title={view === 'sql' ? tr({ uz: 'PostgreSQL — posts jadvali', ru: 'PostgreSQL — таблица posts' }) : tr({ uz: 'MongoDB — posts hujjati', ru: 'MongoDB — документ posts' })} minH={150}>
               {view === 'sql'
-                ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'rasm', 'izoh']} rows={POSTS.slice(0, 3)} fkCols={['user_id']} /></div>
-                : <div className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, izoh: p.izoh }} />)}</div>}
+                ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'rasm', 'izoh']} rows={POSTS.slice(0, 3).map(p => ({ ...p, izoh: tr(p.izoh) }))} fkCols={['user_id']} /></div>
+                : <div className="demo-swap jv-pair">{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, izoh: tr(p.izoh) }} />)}</div>}
             </Win>
             <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? tr({ uz: 'Jadval — har qator bir xil', ru: 'Таблица — все строки одинаковые' }) : tr({ uz: "Hujjat — har biri o'zicha", ru: 'Документ — каждый по-своему' })}</p>
+            </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, qaysi biri to'g'ri saqlash usuli?", ru: 'Как вам кажется, какой способ хранения правильный?' })}</p>
+            {/* F-0926-06 (G1): sarlavha «Qaysi biri to'g'ri?» deb so'raydi — variantlar ustidagi «Sizningcha…» yorlig'i olindi */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -701,11 +703,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: "Dars oxirida — siz ishlatadigan qaror ko'rsatkichi", ru: 'В конце урока — указатель решения, которым воспользуетесь вы' })}</p>
+      <p className="flow-label">{tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}</p>{/* F-0926-06: «qaror ko'rsatkichi» oyna sarlavhasida bor — yorliq qisqardi */}
       <Win title={tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172}>
         <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={0.7} /></div>
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ 4 ta savolga javob berasiz — qaysi baza mosligini bilib olasiz", ru: '→ ответите на 4 вопроса — узнаете, какая база подходит' })}</p>
+      {/* F-0926-06: «4 ta savolga javob berasiz…» izohi olindi — mentor va 4-qadam tegi aytadi */}
     </Col>
   );
   const StepsBlock = (
@@ -720,7 +722,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki yo'l orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></>, ru: <>Сделать <span className="italic" style={{ color: T.accent }}>верный выбор</span> между двумя способами</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi mosligini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham yaxshi — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi ko'rsatkich bizni shu qarorga olib boradi.</>, ru: <>К концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Указатель справа приведёт нас к этому решению.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi mosligini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham yaxshi — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. Qaror ko'rsatkichi sizni shu javobga olib boradi.</>, ru: <>К концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Указатель решения приведёт вас к этому ответу.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -756,7 +758,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Ikki tur', ru: 'Два типа' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "tur ko'rildi", ru: 'типа просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotlar bazalari <span className="italic" style={{ color: T.accent }}>ikki turga</span> bo'linadi</>, ru: <>Базы данных делятся на <span className="italic" style={{ color: T.accent }}>два типа</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dunyodagi barcha bazalar ikki katta turga bo'linadi: <b style={{ color: T.accent }}>SQL</b> (jadvalli — relyatsion) va <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har turda ko'p baza bor. Ikkalasini bosib, farqini ko'ring.</>, ru: <>Все базы мира делятся на два больших типа: <b style={{ color: T.accent }}>SQL</b> (табличные — реляционные) и <b style={{ color: T.blue }}>NoSQL</b> (документные). В каждом типе много баз. Нажмите на оба и посмотрите разницу.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Birinchisi — <b style={{ color: T.accent }}>SQL</b> (jadvalli — relyatsion), ikkinchisi — <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har turda ko'p baza bor. Ikkalasini bosib, farqini ko'ring.</>, ru: <>Первый — <b style={{ color: T.accent }}>SQL</b> (табличные — реляционные), второй — <b style={{ color: T.blue }}>NoSQL</b> (документные). В каждом типе много баз. Нажмите на оба и посмотрите разницу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -844,7 +846,7 @@ function Qadoqxona({ solvedInit, onSolved }) {
     <div className="qx-wrap fade-up">
       <div className="qx-zones">
         <div ref={sqlRef} className="qx-zone sql">
-          <div className="qx-zone-h"><DbBadge kind="sql" /> <span>{tr({ uz: 'ustunlari oldindan belgilangan', ru: 'столбцы заданы заранее' })}</span></div>
+          <div className="qx-zone-h"><DbBadge kind="sql" /></div>{/* F-0926-06: zona izohi mentor gapini takrorlardi — olindi */}
           <div className="qx-slots">
             {QX_SLOTS.map(s => {
               const card = QX_CARDS.find(c => c.col === s.col && place[c.id] === 'sql');
@@ -858,19 +860,17 @@ function Qadoqxona({ solvedInit, onSolved }) {
           </div>
         </div>
         <div ref={nosqlRef} className="qx-zone nosql">
-          <div className="qx-zone-h"><DbBadge kind="nosql" /> <span>{tr({ uz: <>{ '{ }' } hujjat — yangi maydon qo'shish osonroq</>, ru: <>{ '{ }' } документ — новое поле добавить проще</> })}</span></div>
+          <div className="qx-zone-h"><DbBadge kind="nosql" /></div>
           <div className="qx-nos-body">
             <span className="qx-brace">{'{'}</span>
-            {nosqlCards.length === 0 && <span className="qx-nos-empty">{tr({ uz: "bu yerga istalgan kartani — hatto 🎵 ni ham — qo'ying", ru: 'кладите сюда любую карточку — даже 🎵' })}</span>}
+            {nosqlCards.length === 0 && <span className="qx-nos-empty" />}{/* F-0926-06 (P1): bo'sh hujjatdagi yo'riq olindi — mentor aytadi */}
             {nosqlCards.map(id => cardEl(id, 'nosql'))}
             <span className="qx-brace">{'}'}</span>
           </div>
         </div>
       </div>
-      <div className="qx-pool">
-        {pool.length === 0 ? <span className="qx-pool-empty">{tr({ uz: 'Hamma karta joylandi', ru: 'Все карточки разложены' })}</span> : pool.map(id => cardEl(id, 'pool'))}
-      </div>
-      {solved && <div className="qx-done">{tr({ uz: "✓ Tayyor! Oddiy maydonlar SQL jadvalida, 🎵 esa NoSQL hujjatida — chunki bu jadvalda musiqa uchun ustun yo'q.", ru: '✓ Готово! Обычные поля — в SQL-таблице, а 🎵 — в NoSQL-документе, потому что в этой таблице нет столбца для музыки.' })}</div>}
+      {/* F-0926-06 (G2, 159/8): «Hamma karta joylandi» va «✓ Tayyor! …» olindi — joylangan kartalar va tugma holatni aytadi */}
+      {pool.length > 0 && <div className="qx-pool">{pool.map(id => cardEl(id, 'pool'))}</div>}
     </div>
   );
 }
@@ -914,7 +914,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [armed, setArmed] = useState(false); // posts.user_id bosildi, endi users.id kutilyapti
   const [joined, setJoined] = useState(!!storedAnswer);
   const done = joined;
-  const result = POSTS.map(p => ({ username: userById(p.user_id).username, izoh: p.izoh }));
+  const result = POSTS.map(p => ({ username: userById(p.user_id).username, izoh: tr(p.izoh) }));
   const boxesRef = useRef(null), fkRef = useRef(null), pkRef = useRef(null);
   const [line, setLine] = useState(null);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -948,7 +948,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="jn-box-h">posts</div>
               <div className="jn-field">id · 10</div>
               <div ref={fkRef} className={`jn-field link ${armed ? 'armed' : ''} ${joined ? 'done' : ''} ${!armed && !joined ? 'taphint' : ''}`} onClick={clickFk}><span className="jn-badge fk">FK</span> user_id · 1 {joined ? '🔗' : '→'}</div>
-              <div className="jn-field">izoh · Tog' sayohati</div>
+              <div className="jn-field">izoh · {tr(POSTS[0].izoh)}</div>
             </div>
             <div className="jn-box">
               <div className="jn-box-h">users</div>
@@ -963,10 +963,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </svg>
             )}
           </div>
-          {!joined && <p className="jn-hint">{armed ? tr({ uz: 'Endi users jadvalidagi id ustunini bosing', ru: 'Теперь нажмите столбец id в таблице users' }) : tr({ uz: "posts jadvalidagi user_id ustunini bosing", ru: 'Нажмите столбец user_id в таблице posts' })}</p>}
+          {/* F-0926-06: «… ustunini bosing» yo'rig'i olindi — mentor aytadi, maydonlarda taphint va «⟵ bosing» bor */}
           <SqlCode q={"SELECT users.username, posts.izoh\nFROM posts\nJOIN users ON posts.user_id = users.id"} />
-          {joined && <><DataTable cols={['username', 'izoh']} rows={result} />
-            <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana SQL'ning kuchi: u <b>bog'liq ma'lumotlarni birlashtirib</b>, bitta natija qaytaradi.</>, ru: <>Вот сила SQL: он <b>объединяет связанные данные</b> и возвращает один результат.</> })}</p></div></>}
+          {joined && <DataTable cols={['username', 'izoh']} rows={result} />}{/* F-0926-06: «Mana SQL'ning kuchi…» mentor gapini takrorlardi — olindi */}
         </div>
         </Zoomable>
       </div>
@@ -1000,8 +999,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'SQL kuchi · ishonchlilik', ru: 'Сила SQL · надёжность' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Vaziyatni sinab ko'ring", ru: 'Испытайте ситуацию' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi mahsulotni <span className="italic" style={{ color: T.accent }}>ikki kishi bir vaqtda</span> sotib olmoqchi bo'lsa-chi?</>, ru: <>А если последний товар <span className="italic" style={{ color: T.accent }}>два человека одновременно</span> захотят купить?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza buni tekshirmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu holatda <b style={{ color: T.accent }}>maxsus nazorat</b> ishlatadi: mahsulot faqat bitta xaridorga sotiladi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim.</>, ru: <>В магазине остался <b style={{ color: T.ink }}>один</b> телефон. Али и Вали нажали «Купить» в один и тот же миг. Если база это не проверит — купят <b style={{ color: T.ink }}>оба</b> (ошибка!). SQL включает здесь <b style={{ color: T.accent }}>особый контроль</b>: товар продаётся только одному покупателю. В деньгах и заказах такая <b style={{ color: T.ink }}>надёжность</b> жизненно важна.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr({ uz: <>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza buni tekshirmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu holatda <b style={{ color: T.accent }}>maxsus nazorat</b> ishlatadi: mahsulot faqat bitta xaridorga sotiladi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim. Tugmani bosib ko'ring.</>, ru: <>В магазине остался <b style={{ color: T.ink }}>один</b> телефон. Али и Вали нажали «Купить» в один и тот же миг. Если база это не проверит — купят <b style={{ color: T.ink }}>оба</b> (ошибка!). SQL включает здесь <b style={{ color: T.accent }}>особый контроль</b>: товар продаётся только одному покупателю. В деньгах и заказах такая <b style={{ color: T.ink }}>надёжность</b> жизненно важна. Нажмите кнопку и проверьте.</> })}</Mentor>
+        <Zoomable off={!ran}>{/* F-0926-06: natija ustuni bo'sh — ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>
             <Win title={tr({ uz: "do'kon — ombor", ru: 'магазин — склад' })} minH={120}>
@@ -1013,17 +1012,17 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             </Win>
-            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: "🛒 Ali va Vali bir vaqtda «Sotib olish» bosdi", ru: '🛒 Али и Вали одновременно нажали «Купить»' })}</button>}
+            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: 'Bir vaqtda sotib olish', ru: 'Купить одновременно' })}</button>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Natija — SQL nazorati', ru: 'Результат — контроль SQL' })}</p>
+            {ran && <p className="flow-label">{tr({ uz: 'Natija — SQL nazorati', ru: 'Результат — контроль SQL' })}</p>}
             {ran ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div className="frame-success" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.success }}>✓ Ali</b> mahsulotni sotib oldi.</>, ru: <><b style={{ color: T.success }}>✓ Али</b> купил товар.</> })}</p></div>
                 <div className="frame-warn" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>✗ Vali</b> "Kechirasiz, mahsulot tugagan" xabarini oldi.</>, ru: <><b style={{ color: T.accent }}>✗ Вали</b> получил сообщение «Извините, товар закончился».</> })}</p></div>
-                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>SQL bir mahsulot <b>ikki marta sotilib ketishining oldini oladi</b> — bu mexanizm <b style={{ color: T.accent }}>tranzaksiya</b> deb ataladi. Shuning uchun bank, to'lov va buyurtma tizimlarida ishonchlilik juda muhim.</>, ru: <>SQL <b>не даёт продать один товар дважды</b> — этот механизм называется <b style={{ color: T.accent }}>транзакция</b>. Поэтому в банках, платежах и заказах надёжность так важна.</> })}</p></div>
+                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu nazorat <b style={{ color: T.accent }}>tranzaksiya</b> deb ataladi.</>, ru: <>Этот контроль называется <b style={{ color: T.accent }}>транзакция</b>.</> })}</p></div>{/* F-0926-06: mentor gapini takrorlagan qismi olindi, yangi atama qoldi */}
               </div>
-            ) : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 100 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Tugmani bosing — SQL nima qilishini ko'ring", ru: '← Нажмите кнопку — посмотрите, что сделает SQL' })}</p></div>}
+            ) : null}{/* F-0926-06 (159/3): «← Tugmani bosing» bo'sh-holat ramkasi olindi — chorlov mentor gapida va tugmada */}
           </Col>
         </div>
         </Zoomable>
@@ -1066,19 +1065,16 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <Win title={tr({ uz: 'chat.uz — jonli oqim', ru: 'chat.uz — живой поток' })} minH={150}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {msgs.length === 0
-                  ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Xabarlar shu yerda oqib o'tadi…", ru: 'Сообщения будут проплывать здесь…' })}</p>
-                  : msgs.map((m, i) => <div key={i} className="chatmsg el-in">{tr(m)}</div>)}
+                {msgs.map((m, i) => <div key={i} className="chatmsg el-in">{tr(m)}</div>)}{/* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi */}
               </div>
             </Win>
             {!running && !done && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run}>{tr({ uz: 'Xabarlar oqimini boshlash', ru: 'Запустить поток сообщений' })}</button>}
-            {running && <p className="mono small" style={{ color: T.blue, margin: 0 }}>{tr({ uz: 'oqim ketyapti…', ru: 'поток идёт…' })}</p>}
+            {/* F-0926-06: «oqim ketyapti…» holat-yozuvi olindi — oyna o'zi oqimni ko'rsatadi */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Jami xabarlar', ru: 'Всего сообщений' })}</p>
             <div className="bigcount">{count.toLocaleString('en-US')}</div>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</>, ru: <>Каждое сообщение — простой документ: <span className="mono">{'{ кто, текст, время }'}</span>. Связей мало, объём огромный, скорость обязательна.</> })}</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL <b>ko'p sonli va tez keladigan</b> ma'lumotlarni saqlashda qulay. Chat xabarlari bunga yaxshi misol.</>, ru: <>NoSQL удобен для хранения <b>многочисленных и быстро поступающих</b> данных. Чат-сообщения — хороший тому пример.</> })}</p></div>}
+            {/* F-0926-06: hisoblagich izohi va yakun-qutisi mentor gapini takrorlardi — olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -1108,7 +1104,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Qaror mezonlari', ru: 'Критерии решения' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/4 ${tr({ uz: "mezon ko'rildi", ru: 'критерия просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SQL va NoSQL tanlashda <span className="italic" style={{ color: T.accent }}>4 savol</span> yordam beradi</>, ru: <>Выбрать между SQL и NoSQL помогут <span className="italic" style={{ color: T.accent }}>4 вопроса</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>SQL va NoSQL orasida tanlashni 4 ta savol osonlashtiradi. Har birini bosing — u qaysi tomonni ko'rsatishini ko'ring. Har bir savol sizni <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tomonga yaqinlashtiradi.</>, ru: <>Выбрать между SQL и NoSQL помогают 4 вопроса. Нажмите на каждый — посмотрите, в какую сторону он указывает. Каждый вопрос приближает вас к <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har savolni bosing — u qaysi tomonni ko'rsatishini ko'ring. Har bir savol sizni <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tomonga yaqinlashtiradi.</>, ru: <>Нажмите на каждый вопрос — посмотрите, в какую сторону он указывает. Каждый вопрос приближает вас к <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1123,7 +1119,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {active && <div className="hint fade-step"><p className="small" style={{ margin: 0, color: T.ink2 }}>{CRIT.find(c => c.id === active).note}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Ko'rsatkich — javoblarga qarab siljiydi", ru: 'Указатель — сдвигается по ответам' })}</p>
+            {/* F-0926-06: ustun-yorlig'i oyna sarlavhasi va mentor gapini takrorlardi — olindi */}
             <Win title={tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172}>
               <div style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={lean} /></div>
             </Win>
@@ -1172,13 +1168,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Nega PostgreSQL', ru: 'Почему PostgreSQL' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "sabab ko'ring", ru: 'причины — изучите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega bizning loyihalarga aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</>, ru: <>Почему нашим проектам именно <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>SQL turiga ko'p baza kiradi — nega aynan <b style={{ color: T.accent }}>PostgreSQL</b>? Chunki u bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>har xil shakldagi ma'lumotni</b> JSON ko'rinishida ham saqlaydi. Sabablarni bosib ko'ring.</>, ru: <>К типу SQL относится много баз — почему именно <b style={{ color: T.accent }}>PostgreSQL</b>? Потому что он очень подходит нашим проектам (Instagram, магазин, планировщик): связи, надёжность, бесплатность — а при необходимости хранит и <b style={{ color: T.ink }}>данные разной формы</b> — в виде JSON. Нажмите на причины и посмотрите.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>SQL turiga ko'p baza kiradi. <b style={{ color: T.accent }}>PostgreSQL</b> bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>har xil shakldagi ma'lumotni</b> JSON ko'rinishida ham saqlaydi. Sabablarni bosib ko'ring.</>, ru: <>К типу SQL относится много баз. <b style={{ color: T.accent }}>PostgreSQL</b> очень подходит нашим проектам (Instagram, магазин, планировщик): связи, надёжность, бесплатность — а при необходимости хранит и <b style={{ color: T.ink }}>данные разной формы</b> — в виде JSON. Нажмите на причины и посмотрите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }} className="fade-up delay-1">
               <div className="pg-logo">🐘</div>
-              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p><p className="small mono" style={{ margin: '2px 0 0', color: T.accent }}>{tr({ uz: 'jadvalli · ishonchli · bepul', ru: 'табличная · надёжная · бесплатная' })}</p></div>
+              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p></div>{/* F-0926-06: «jadvalli · ishonchli · bepul» chiplar bilan takror — olindi */}
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {FEATS.map(f => <button key={f.id} className={`chip ${active === f.id ? 'chip-on' : ''}`} onClick={() => tap(f)}>{f.t} {seen.has(f.id) ? '✓' : ''}</button>)}
@@ -1189,10 +1185,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'Taqqoslash', ru: 'Сравнение' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>{tr({ uz: <>bog'langan + ishonchli + JSON ham — <b style={{ color: T.accent }}>bizga mos</b></>, ru: <>связанно + надёжно + ещё и JSON — <b style={{ color: T.accent }}>подходит нам</b></> })}</span></div>
+              <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>bizga mos</b></>, ru: <><b style={{ color: T.accent }}>подходит нам</b></> })}</span>{/* F-0926-06: sabablar mentor gapi va chiplarda — takror olindi */}</div>
               <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "katta va oddiy oqim uchun qulay, lekin bog'lanish qiyin", ru: 'удобен для большого и простого потока, но связи даются трудно' })}</span></div>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL — SQL ishonchliligi bilan birga <b>har xil shakldagi ma'lumotni</b> ham saqlay oladi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>PostgreSQL даёт надёжность SQL и при этом умеет хранить <b>данные разной формы</b>. Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shuning uchun butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}{/* F-0926-06: JSON-karta va mentor aytganini takrorlagan qismi olindi */}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1234,8 +1230,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-card fade-step" key={app || 'stored'}>
                 <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: "Taklifim bor — ko'rasizmi?", ru: 'У меня есть предложение — посмотрите?' }) : (phase === 'building' ? tr({ uz: "O'ylayapman…", ru: 'Думаю…' }) : tr({ uz: 'Taklifim tayyor', ru: 'Моё предложение готово' }))}</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  {phase !== 'planned' && <DbBadge kind={cur.db} />}
-                  <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? tr({ uz: "Loyihangizni ko'rdim.", ru: 'Я посмотрел ваш проект.' }) : cur.why}</span>
+                  {/* F-0926-06 (I3): baza belgisi natija oynasida — AI kartasida faqat sabab */}
+                  {phase !== 'building' && <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? tr({ uz: "Loyihangizni ko'rdim.", ru: 'Я посмотрел ваш проект.' }) : cur.why}</span>}
                 </div>
                 {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: "Taklifni ko'rsat", ru: 'Показать предложение' })}</button>}
               </div>
@@ -1249,7 +1245,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <DbBadge kind={cur.db} big />
                   <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? tr({ uz: 'PostgreSQL mos keladi', ru: 'Подходит PostgreSQL' }) : tr({ uz: 'MongoDB (NoSQL) mos keladi', ru: 'Подходит MongoDB (NoSQL)' })}</p>
                 </div>
-              ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Loyihani tanlang va taklifni ko'ring…", ru: 'Выберите проект и посмотрите предложение…' })}</p>}
+              ) : null}{/* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi */}
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tanlov <b>sababga asoslandi</b>: do'kon va blogda ma'lumotlar bog'langan → SQL. Chatda esa katta hajmdagi oddiy oqim bo'ladi — bunday ilovalarda NoSQL ko'p ishlatiladi.</>, ru: <>Выбор <b>опирается на причину</b>: в магазине и блоге данные связаны → SQL. В чате — большой поток простых данных, в таких приложениях чаще используют NoSQL.</> })}</p></div>}
           </Col>
@@ -1308,8 +1304,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   {a && <p className="small" style={{ margin: '2px 0 0', color: correct ? T.success : T.accent }}>{correct ? `✓ ${p.why}` : p.hint}</p>}
                 </div>
                 <div className={!a ? 'taphint' : undefined} style={{ display: 'flex', gap: 7 }}>
-                  <button className={`mbtn ${a === 'sql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'sql')}>📦 SQL</button>
-                  <button className={`mbtn ${a === 'nosql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'nosql')}>📄 NoSQL</button>
+                  <button className={`mbtn ${a === 'sql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'sql')}>SQL</button>{/* F-0926-06 (H3): tugma emojisi olindi */}
+                  <button className={`mbtn ${a === 'nosql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'nosql')}>NoSQL</button>
                 </div>
               </div>
             );
@@ -1352,9 +1348,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   return <div key={c.id} className={`ai-line ${found && isMyth ? 'bad' : ''} ${!found && picked === c.id && !isMyth ? 'ok' : ''}`} onClick={() => { if (found) return; if (!isMyth && achMiss) achMiss.miss(screen); setPicked(isMyth ? 'myth' : c.id); }}>{c.txt}</div>;
                 })}
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: "Qaysi fikr noto'g'ri? Bosing.", ru: 'Какое утверждение неверно? Нажмите.' })}</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 To'g'ri fikrga almashtirish", ru: '🔧 Заменить на верное утверждение' })}</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ To'g'irlandi!", ru: '✓ Исправлено!' })}</p>}
+              {/* F-0926-06: «Qaysi fikr noto'g'ri? Bosing.» mentor gapini takrorlardi — olindi */}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "To'g'ri fikrga almashtirish", ru: 'Заменить на верное утверждение' })}</button>}
+              {/* F-0926-06 (159/8): «✓ To'g'irlandi!» olindi — qator ✓ bilan yashil, xulosa-karta bor */}
             </div>
             {!done && <AchRule screen={screen} />}
           </Col>
@@ -1364,7 +1360,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               : null)}
             {/* F-0919-02: ekran boshidagi «Maslahat: "zamonaviyroq" — bu sabab emas…» olib tashlandi — javobni urinishdan OLDIN aytardi.
                 Xatodan keyingi yuqoridagi frame-warn o'sha yo'l-yo'riqni allaqachon beradi — ikkinchi quti takror bo'lardi (109-qonun). */}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Chapdagi tugma bilan to'g'irlang →</>, ru: <>«Современнее» — не аргумент. В магазине заказ, товар и оплата <b>связаны</b>, а <b>надёжность</b> обязательна — это работа <b>SQL</b> (PostgreSQL). Исправьте кнопкой слева →</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Tugma bilan to'g'irlang.</>, ru: <>«Современнее» — не аргумент. В магазине заказ, товар и оплата <b>связаны</b>, а <b>надёжность</b> обязательна — это работа <b>SQL</b> (PostgreSQL). Исправьте кнопкой.</> })}</p></div>}
             {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">{tr({ uz: 'Baza modaga emas, vazifaga qarab tanlanadi', ru: 'Базу выбирают не по моде, а по задаче' })}</p><p className="ta-sub">{tr({ uz: "Bog'langan va ishonchli → SQL · katta va oddiy → NoSQL", ru: 'Связанно и надёжно → SQL · большое и простое → NoSQL' })}</p></div>}
           </Col>
         </div>
@@ -1424,7 +1420,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Win title={passed ? tr({ uz: 'natija: PostgreSQL ✓', ru: 'результат: PostgreSQL ✓' }) : tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172} hotTitle={passed}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <Compass lean={lean} />
-                {passed && <DbBadge kind="sql" big />}
+                {/* F-0926-06 (I3): natija oyna sarlavhasi va xulosada — ikkinchi belgi olindi */}
               </div>
             </Win>
             {passed
@@ -2488,7 +2484,12 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06 (159/10): to'liq accent fon o'rniga yumshoq fon + halqa */
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + izohi bitta blok */
+        .vis-card .bp-window { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); }
+        .jv-pair { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; } /* F-0926-06: s0 ikki hujjat yonma-yon — kartaga o'ralgach tugmalar orqasiga tushmasin */
+        .jv-pair .json-view { font-size: 11.5px; line-height: 1.55; padding: 10px 12px; box-shadow: none; white-space: pre-wrap; overflow-wrap: anywhere; } /* F-0927: yonma-yon hujjatda uzun qiymat («Tog' sayohati») quti chetidan kesilardi — endi o'raladi */
+        @media (max-width: 560px) { .jv-pair { grid-template-columns: minmax(0,1fr); } }
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 8px 13px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.2); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover:not(:disabled) { transform: translateY(-1px); } .gchip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
@@ -2723,7 +2724,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
         .ynbtns { display: flex; gap: 6px; flex-shrink: 0; }
         .ynbtn { font-family: 'Manrope'; font-weight: 700; font-size: 13px; border: none; border-radius: 9px; padding: 7px 14px; cursor: pointer; background: ${T.bg}; color: ${T.ink2}; transition: all 0.16s; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.12); }
         .ynbtn:hover { transform: translateY(-1px); }
-        .ynbtn.on { background: ${T.accent}; color: #fff; box-shadow: 0 5px 13px -5px rgba(255,79,40,0.45); }
+        .ynbtn.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 2px ${T.accent}; } /* F-0926-06 (159/10): yumshoq fon + halqa */
 
         /* MOBIL: yig'iladigan Mentor */
         .mentor-mob .mentor-msg { overflow: hidden; max-height: 360px; transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.25s ease, padding 0.38s ease, box-shadow 0.3s ease; }
@@ -2803,7 +2804,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
 
         /* === 🔗 JOIN IPI (s5 ulash o'yini) === */
         .jn-wrap { display: flex; flex-direction: column; gap: 14px; }
-        .jn-boxes { position: relative; display: flex; align-items: center; justify-content: center; gap: clamp(16px,4vw,44px); flex-wrap: wrap; }
+        .jn-boxes { position: relative; display: flex; align-items: flex-start; justify-content: center; gap: clamp(16px,4vw,44px); flex-wrap: wrap; } /* F-0926-06 (159/9): posts va users jadvallari tepasi bir chiziqda */
         /* JOIN ipi — ulanganda chiziladi (stroke-dash) + yashil glow puls */
         .jn-thread { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 4; overflow: visible; }
         .jn-thread-line { stroke: ${T.success}; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: jn-draw 0.6s cubic-bezier(.4,0,.2,1) forwards, jn-glow 1.9s ease-in-out 0.6s infinite; }

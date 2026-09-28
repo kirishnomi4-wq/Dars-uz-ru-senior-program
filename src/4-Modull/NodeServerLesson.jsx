@@ -106,7 +106,7 @@ const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
 const Split = ({ children }) => <div className="split">{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — bo'sh ustun ustida ⛶ yolg'iz qolmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -128,7 +128,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -604,10 +604,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 ? <div className="frame-success demo-swap" style={{ padding: '10px 13px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '✓ Javob: ', ru: '✓ Ответ: ' })}<b style={{ color: T.success }}>"Salom, dunyo!"</b></p></div>
                 : <div className="frame-warn demo-swap" style={{ padding: '10px 13px' }}><p className="body" style={{ margin: 0, color: T.ink }}>❌ <span className="mono">ECONNREFUSED</span>{tr({ uz: " — ulanib bo'lmadi", ru: ' — не удалось подключиться' })}</p></div>}
             </Win>
-            <p className="mono small" style={{ margin: 0, color: on ? T.success : T.accent }}>{on ? tr({ uz: 'server yoniq → javob bor', ru: 'сервер включён → ответ есть' }) : tr({ uz: "server o'chiq → javob yo'q", ru: 'сервер выключен → ответа нет' })}</p>
+            {/* F-0926-06 (159/1): «server yoniq → javob bor» yozuvi olindi — oynadagi javob/ECONNREFUSED shuni aytadi */}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, fetch'ga kim javob beradi?", ru: 'Как Вы думаете, кто отвечает на fetch?' })}</p>
+            {/* F-0926-06 (159/1): «Sizningcha, fetch'ga kim javob beradi?» yorlig'i olindi — sarlavha shu savol */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const sel = picked === o.id;
@@ -654,7 +654,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="fade-up delay-1" style={{ fontFamily: 'Georgia, serif', fontSize: 20, color: T.ink, padding: '6px 2px' }}>Salom, dunyo!</div>
         <p className="mono small" style={{ margin: '4px 0 0', color: T.success }}>{tr({ uz: '✓ serveringiz javob berdi', ru: '✓ Ваш сервер ответил' })}</p>
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ shu javobni dars oxirida o'zingiz yozasiz va ishga tushirasiz", ru: '→ в конце урока Вы сами напишете и запустите этот ответ' })}</p>
+      {/* F-0926-06 (159/1): «→ shu javobni dars oxirida o'zingiz yozasiz» olindi — mentor aytadi */}
     </Col>
   );
   const StepsBlock = (
@@ -732,15 +732,15 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                         </span>
                       );
                     })}
-                    <span className="mono small" style={{ color: T.ink3, marginLeft: 'auto' }}>{served}/3 {tr({ uz: "xizmat ko'rdi", ru: 'обслужено' })}</span>
+                    {/* F-0926-06 (H2): «0/3 xizmat ko'rdi» sanog'i olindi — sanoq tugmada */}
                   </div>
                 </div>
                 {!done && <button className={`btn-soft ${on && served === 0 && !refused ? 'tap-hint' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={serve}>{tr({ uz: 'Javob ber (res.send)', ru: 'Ответить (res.send)' })}</button>}
                 {refused && <div className="frame-warn" style={{ padding: '9px 12px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ <span className="mono">ECONNREFUSED</span> — tablo YOPIQ, mijoz javob ololmadi. Server DOIM ishlashi kerak!</>, ru: <>❌ <span className="mono">ECONNREFUSED</span> — табло ЗАКРЫТО, клиент не получил ответ. Сервер должен работать ВСЕГДА!</> })}</p></div>}
-                {done && <div className="frame-success" style={{ padding: '9px 12px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Hamma mijozga javob berdingiz — do'koningiz ishlayapti!", ru: '✓ Вы ответили всем клиентам — Ваш магазин работает!' })}</p></div>}
+                {/* F-0926-06 (159/8): «✓ Hamma mijozga javob berdingiz» olindi — 😀 mijozlar va o'ng ustundagi xulosa aytadi */}
               </div>
             </Win>
-            <p className="mono small" style={{ margin: 0, color: on ? T.success : T.accent }}>{on ? tr({ uz: "tablo yoniq → so'rovga javob bor", ru: 'табло горит → на запрос есть ответ' }) : tr({ uz: 'tablo yopiq → hech kim javob ololmaydi', ru: 'табло погасло → никто не получит ответ' })}</p>
+            {/* F-0926-06 (159/1): «tablo yoniq/yopiq → …» yozuvi olindi — tablo va ECONNREFUSED qutisi aytadi */}
           </Col>
           <Col>
             <div className="sk-info">
@@ -778,7 +778,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Win title={tr({ uz: 'brauzer konsoli', ru: 'консоль браузера' })} minH={52}>{ran ? <TLine out={<span style={{ color: CODE.str }}>Salom!</span>} /> : <span style={{ color: T.ink3, fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 13 }}>{tr({ uz: 'kutilmoqda…', ru: 'ожидание…' })}</span>}</Win>
             <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Server (Node.js)', ru: 'Сервер (Node.js)' })}</p>
             <div className="code-box" style={{ padding: '9px 13px', minHeight: 46 }}>{ran ? <TLine cmd="node server.js" /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12 }}>{tr({ uz: 'terminal…', ru: 'терминал…' })}</span>}{ran && <TLine out={<span style={{ color: CODE.str }}>Salom!</span>} />}</div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil JS kodi — brauzerda ham, Node.js bilan serverda ham ishladi! Mana shu Node'ning kuchi: <b>siz bilgan til endi backend uchun ham</b>.</>, ru: <>Один и тот же JS-код сработал и в браузере, и на сервере с Node.js! В этом сила Node: <b>знакомый Вам язык теперь годится и для бэкенда</b>.</> })}</p></div>}
+            {/* F-0926-06 (159/1): natija-quti olindi — mentor aytadi, ikki oyna ko'rsatadi */}
           </Col>
         </div>
         </Zoomable>
@@ -818,7 +818,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har narsani <span className="italic" style={{ color: T.accent }}>noldan yozish</span> shartmi?</>, ru: <>Обязательно ли всё <span className="italic" style={{ color: T.accent }}>писать с нуля</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Yo'q! <b style={{ color: T.ink }}>npm</b> — bu tayyor paketlar to'plami (millionlab paket). Bitta buyruq bilan kerakli paketni o'rnatasiz: <span className="mono">npm install express</span>. Buni React darsida ham ko'rgansiz (<span className="mono">npm create vite</span>)! Tugmani bosib, express'ni o'rnating.</>, ru: <>Нет! <b style={{ color: T.ink }}>npm</b> — это набор готовых пакетов (миллионы пакетов). Одна команда — и нужный пакет установлен: <span className="mono">npm install express</span>. Вы уже видели это на уроке React (<span className="mono">npm create vite</span>)! Нажмите кнопку и установите express.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className={`split${phase === 'idle' ? ' eqh3' : ''}` /* F-0926-06 (159/16): terminal va package.json bir balandlikda — faqat boshlang'ich holatda */}>
           <Col>
             <p className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</p>
             <div className="code-box" style={{ minHeight: 80 }}>
@@ -832,7 +832,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: "package.json — o'rnatilgan paketlar", ru: 'package.json — установленные пакеты' })}</p>
             <pre className="code-box">{'{'}{'\n'}{'  '}<At>"dependencies"</At>{': {'}{'\n'}{'    '}{done ? <St>"express": "^4.18.0"</St> : <span style={{ color: CODE.comment }}>{tr({ uz: "// hali bo'sh", ru: '// пока пусто' })}</span>}{'\n'}{'  }'}{'\n'}{'}'}</pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>express o'rnatildi va <span className="mono">package.json</span>'ga yozildi. Endi uni kodimizda ishlatsak bo'ladi. npm — sizning <b>tayyor paketlar to'plamingiz</b>.</>, ru: <>express установлен и записан в <span className="mono">package.json</span>. Теперь его можно использовать в коде. npm — Ваш <b>набор готовых пакетов</b>.</> })}</p></div>}
+            {/* F-0926-06 (I3): natija-quti olindi — terminal va package.json o'zi ko'rsatadi */}
           </Col>
         </div>
         </Zoomable>
@@ -878,7 +878,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Butun serverni <span className="italic" style={{ color: T.accent }}>5 qatorda</span> yozsa bo'ladimi?</>, ru: <>Можно ли написать целый сервер <span className="italic" style={{ color: T.accent }}>в 5 строк</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ha! <b style={{ color: T.ink }}>Express</b> — serverni juda osonlashtiradi. Mana mashhur "Salom, dunyo" serveri — bor-yo'g'i bir necha qator. Har bir rangli qismni bosib, nima qilishini o'rganing.</>, ru: <>Да! <b style={{ color: T.ink }}>Express</b> делает сервер очень простым. Вот знаменитый сервер «Salom, dunyo» — всего несколько строк. Нажимайте на каждую цветную часть и узнайте, что она делает.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 2 }}>
@@ -891,10 +891,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismni bosing', ru: 'Нажмите на часть' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 5 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
-            </div>
+            {/* F-0926-06 (159/1, H2): «Qismni bosing» yorlig'i va «0 / 5 ko'rildi» sanog'i olindi — chorlov mentorda, sanoq tugmada */}
             {active ? <div className="sk-info" key={active}><span className="sk-tagbig"><span className="sk-wordbadge mono">{PARTS[active].word}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].info)}</p></div>
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana butun server! Asbobni chaqir → app yarat → endpoint och → javob ber → yoq. Endi <b>endpoint</b>ni chuqurroq ko'ramiz.</>, ru: <>Вот и весь сервер! Подключи инструмент → создай app → открой endpoint → ответь → включи. Теперь разберём <b>endpoint</b> поглубже.</> })}</p></div>}
@@ -928,7 +925,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Server eshiklari — bosing', ru: 'Двери сервера — нажимайте' })}</p>
+            <p className="flow-label">{tr({ uz: 'Server eshiklari', ru: 'Двери сервера' }) /* F-0926-06 (159/1): «— bosing» olindi, chorlov mentorda */}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {EPS.map(e => <EpBtn key={e.path} path={e.path} desc={tr(e.desc)} active={active === e.path} onClick={() => tap(e.path)} />)}
             </div>
@@ -937,9 +934,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Javob', ru: 'Ответ' })}</p>
             <Win title={cur ? `${tr({ uz: 'brauzer', ru: 'браузер' })} — localhost:3000${cur.path}` : tr({ uz: 'brauzer', ru: 'браузер' })} minH={90}>
               {cur ? <div className="demo-swap"><p className="mono small" style={{ color: T.ink3, margin: '0 0 6px' }}>GET {cur.path}</p><div style={{ fontFamily: 'Georgia, serif', fontSize: 16, color: T.ink }}>{cur.reply}</div></div>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Eshikni bosing — javobi shu yerda chiqadi', ru: 'Нажмите на дверь — здесь появится её ответ' })}</p>}
+                : null /* F-0926-06 (P1): bo'sh oynadagi «Eshikni bosing — …» yo'rig'i olindi */}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har endpoint — bitta manzil, bitta javob. Kodda har biri <span className="mono">app.get('/manzil', ...)</span> bilan ochiladi. Frontend shu manzillarga so'rov yuboradi.</>, ru: <>Каждый endpoint — один адрес, один ответ. В коде каждый открывается через <span className="mono">app.get('/адрес', ...)</span>. Фронтенд шлёт запросы на эти адреса.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda har endpoint <span className="mono">app.get('/manzil', ...)</span> bilan ochiladi.</>, ru: <>В коде каждый endpoint открывается через <span className="mono">app.get('/адрес', ...)</span>.</> /* F-0926-06 (159/1): mentor aytgan qism olindi, yangi qismi qoldi */ })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -960,7 +957,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha kattalashsa — <span className="italic" style={{ color: T.accent }}>Express yetadimi</span>?</>, ru: <>А если проект вырастет — <span className="italic" style={{ color: T.accent }}>хватит ли Express</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Express oson va tez — birinchi server uchun ayni kerakli. Loyiha <b style={{ color: T.ink }}>kattalashganda</b> esa tartib kerak bo'ladi — buning uchun <b style={{ color: T.accent }}>NestJS</b> bor. Kartani bosib, uning bitta asosiy ustunligini ko'ring.</>, ru: <>Express прост и быстр — для первого сервера то, что нужно. Когда проект <b style={{ color: T.ink }}>вырастает</b>, нужен порядок — для этого есть <b style={{ color: T.accent }}>NestJS</b>. Нажмите на карту и посмотрите его главный плюс.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!opened}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -971,7 +968,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {opened ? <div className="sk-info fade-step"><span className="sk-tagbig"><span className="sk-wordbadge">{tr({ uz: 'Tartib (modullar)', ru: 'Порядок (модули)' })}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr({ uz: "Kod papkalar va modullarga ajraladi — katta loyihada ham adashmaysiz.", ru: 'Код делится на папки и модули — не запутаетесь даже в большом проекте.' })}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bugun — <b>Express</b> bilan birinchi server. <b>NestJS</b> bilan katta loyihalarda keyin tanishasiz.</>, ru: <>Сегодня — первый сервер на <b>Express</b>. С <b>NestJS</b> познакомитесь позже, в больших проектах.</> })}</p></div>}
+            {/* F-0926-06 (159/1, HP3): «Bugun — Express … keyin tanishasiz» olindi — mentor aytadi, va'da faqat kirish/yakunda */}
           </Col>
         </div>
         </Zoomable>
@@ -1011,9 +1008,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Serveringizni qanday <span className="italic" style={{ color: T.accent }}>"yoqasiz"</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>«включить»</span> Ваш сервер?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Serverni ishga tushirish uchun terminalga bitta buyruq: <span className="mono">node server.js</span>. U yonadi va <span className="mono">localhost:3000</span> manzilida so'rov kuta boshlaydi. <b style={{ color: T.ink }}>localhost</b> = sizning o'z kompyuteringiz server bo'lib turibdi! Tugmani bosib, serverni yoqing va brauzerda ochib ko'ring.</>, ru: <>Чтобы запустить сервер, в терминале нужна одна команда: <span className="mono">node server.js</span>. Он загорается и начинает ждать запросы на <span className="mono">localhost:3000</span>. <b style={{ color: T.ink }}>localhost</b> = Ваш собственный компьютер работает сервером! Нажмите кнопку, включите сервер и откройте его в браузере.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className={`split${phase === 'idle' ? ' eqh3' : ''}` /* F-0926-06 (159/16): terminal va brauzer oynasi bir balandlikda — faqat boshlang'ich holatda */}>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</p>
+            <div className="lbl-row"><p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Terminal', ru: 'Терминал' })}</p></div>{/* F-0926-06 (159/3): yorliq qatori o'ng ustundagi tablo bilan bir balandlikda */}
             <div className="code-box" style={{ minHeight: 78 }}>
               {phase === 'idle' && <TLine out={<span style={{ color: CODE.comment }}>{tr({ uz: '# serverni ishga tushirishga tayyor', ru: '# готово к запуску сервера' })}</span>} />}
               {phase !== 'idle' && <TLine cmd="node server.js" />}
@@ -1023,12 +1020,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {phase === 'idle' && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run}>▶ node server.js</button>}
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}><p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Brauzer', ru: 'Браузер' })}</p><StoreSign on={done} /></div>
+            <div className="lbl-row"><p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Brauzer', ru: 'Браузер' })}</p><StoreSign on={done} /></div>
             <Win title="localhost:3000/salom" minH={92} hotTitle={done}>
               {done ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 19, color: T.ink }}>Salom, dunyo!</div>
                 : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Server o'chiq — sahifa ochilmaydi…", ru: 'Сервер выключен — страница не открывается…' })}</p>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Server yoqildi! Brauzerda <span className="mono">localhost:3000/salom</span> ochilsa — sizning serveringiz javob beryapti. <b>localhost = o'z kompyuteringiz</b>.</>, ru: <>Сервер включён! Если в браузере открывается <span className="mono">localhost:3000/salom</span> — отвечает Ваш сервер. <b>localhost = Ваш собственный компьютер</b>.</> })}</p></div>}
+            {/* F-0926-06 (I3): natija-quti olindi — terminal, tablo va brauzer aytadi, localhost ta'rifi mentorda */}
           </Col>
         </div>
         </Zoomable>
@@ -1079,9 +1076,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: '2. Natija — brauzerda sinang', ru: '2. Результат — проверьте в браузере' })}</p>
             <Win title={cur ? `localhost:3000${cur.path}` : tr({ uz: 'brauzer', ru: 'браузер' })} minH={92}>
               {done && cur ? <div className="demo-swap"><p className="mono small" style={{ color: T.ink3, margin: '0 0 6px' }}>GET {cur.path}</p><div style={{ fontFamily: 'Georgia, serif', fontSize: 16, color: T.ink }}>{cur.reply}</div></div>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Buyruq bering va kodni tasdiqlang…', ru: 'Дайте команду и подтвердите код…' })}</p>}
+                : null /* F-0926-06 (P1): bo'sh oynadagi «Buyruq bering …» yo'rig'i olindi */}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI endpoint yozdi, siz <b>kodni o'qib tekshirdingiz</b> va brauzerda sinadingiz. <span className="mono">app.get</span> + <span className="mono">res.send</span> — hammasi joyida!</>, ru: <>AI написал endpoint, Вы <b>прочитали и проверили код</b> и испытали его в браузере. <span className="mono">app.get</span> + <span className="mono">res.send</span> — всё на месте!</> })}</p></div>}
+            {/* F-0926-06 (159/8): natija-quti olindi — «✓ endpoint qo'shildi» va brauzer javobi aytadi */}
           </Col>
         </div>
         </Zoomable>
@@ -1132,11 +1129,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot · tartiblash', ru: 'Практика · порядок' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${placed.length}/4 ${tr({ uz: 'joylandi', ru: 'на месте' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Server qismlarini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'a olasizmi?</>, ru: <>Соберёте части сервера <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Server kodi aniq tartibda yoziladi — har bo'lak o'zidan oldingisiga tayanadi. Pastdagi to'rt bo'lakni to'g'ri ketma-ketlikda bosing.</>, ru: <>Код сервера пишется в строгом порядке — каждый блок опирается на предыдущий. Нажмите четыре блока ниже в правильной последовательности.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Server kodi aniq tartibda yoziladi — har bo'lak o'zidan oldingisiga tayanadi. To'rt bo'lakni to'g'ri ketma-ketlikda bosing.</>, ru: <>Код сервера пишется в строгом порядке — каждый блок опирается на предыдущий. Нажмите четыре блока в правильной последовательности.</> /* F-0926-06 (159/5): joy so'zi «pastdagi» olindi */ })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Bo'laklar — to'g'ri tartibda bosing", ru: 'Блоки — нажимайте в правильном порядке' })}</p>
+            <p className="flow-label">{tr({ uz: "Bo'laklar", ru: 'Блоки' }) /* F-0926-06 (159/1): chorlov mentorda — yorliq qisqardi (ustun tekisligi uchun qoladi) */}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {SHUFFLED.map(id => {
                 const o = ORDER.find(x => x.id === id);
@@ -1190,7 +1187,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI server yozdi, lekin brauzer <span className="italic" style={{ color: T.accent }}>"ulanib bo'lmadi"</span> deyapti. Nega?</>, ru: <>AI написал сервер, но браузер говорит <span className="italic" style={{ color: T.accent }}>«не удалось подключиться»</span>. Почему?</> })}</h2></div>
         <Mentor>{tr({ uz: <>AI kodni tez yozdi, lekin brauzerda <span className="mono">localhost:3000</span> ochilmayapti — "ulanib bo'lmadi". Demak server <b style={{ color: T.ink }}>umuman yoqilmagan</b>. Kodga qarang: qaysi muhim qator yetishmayapti?</>, ru: <>AI быстро написал код, но <span className="mono">localhost:3000</span> в браузере не открывается — «не удалось подключиться». Значит, сервер <b style={{ color: T.ink }}>вообще не включён</b>. Посмотрите на код: какой важной строки не хватает?</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={fixed}>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
@@ -1201,8 +1198,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/salom'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}{'\n'}{'})'}
                 {fixed && <div className="el-in" style={{ marginTop: 8 }}><At>app</At>{'.'}<Jx>{'listen'}</Jx>{'('}<St>3000</St>{')   '}<span style={{ color: CODE.str }}>{tr({ uz: "// ✓ qo'shildi", ru: '// ✓ добавлено' })}</span></div>}
               </pre>
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 app.listen(3000) qo'shish", ru: '🔧 Добавить app.listen(3000)' })}</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Endi server yoqildi!', ru: '✓ Теперь сервер включён!' })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "app.listen(3000) qo'shish", ru: 'Добавить app.listen(3000)' }) /* F-0926-06 (H3): tugma emojisi olindi */}</button>}
+              {/* F-0926-06 (159/8): «✓ Endi server yoqildi!» olindi — «// ✓ qo'shildi» va OCHIQ tablo aytadi */}
             </div>
             <div className="s14-store" aria-hidden="true">
               <StoreSign on={fixed} />
@@ -1215,10 +1212,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {OPTS.map(o => <button key={o.id} className={`pick-row ${picked === o.id ? 'on' : ''}`} onClick={() => { if (o.id !== 'listen' && achMiss) achMiss.miss(screen); setPicked(o.id); }}><span className="pick-box">{picked === o.id && '•'}</span><span className="body" style={{ color: T.ink }}>{tr(o.label)}</span></button>)}
               </div>
-              {picked && picked !== 'listen' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator kodda bor. Yana qarang: serverni <b>yoqadigan</b> qator (app.listen) bormi?</>, ru: <>Эта строка в коде есть. Посмотрите ещё раз: есть ли строка, которая <b>включает</b> сервер (app.listen)?</> })}</p></div>}
+              {picked && picked !== 'listen' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator kodda bor. Yana qarang: serverni <b>yoqadigan</b> qator bormi?</>, ru: <>Эта строка в коде есть. Посмотрите ещё раз: есть ли строка, которая <b>включает</b> сервер?</> /* F-0926-06 (V2): javob nomi olindi — qayerga qarash qoldi */ })}</p></div>}
             </>}
             {!done && <AchRule screen={screen} />}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">app.listen(3000)</span> yo'q — shuning uchun server umuman <b>yoqilmagan</b>, brauzer ulana olmaydi. Chapdagi tugma bilan qo'shing →</>, ru: <>Нет <span className="mono">app.listen(3000)</span> — поэтому сервер вообще <b>не включён</b>, браузер не может подключиться. Добавьте кнопкой слева →</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">app.listen(3000)</span> yo'q — shuning uchun server umuman <b>yoqilmagan</b>, brauzer ulana olmaydi. Tugma bilan qo'shing.</>, ru: <>Нет <span className="mono">app.listen(3000)</span> — поэтому сервер вообще <b>не включён</b>, браузер не может подключиться. Добавьте его кнопкой.</> /* F-0926-06 (159/5): joy so'zi «chapdagi» olindi */ })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1250,7 +1247,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi serveringizni <span className="italic" style={{ color: T.accent }}>javob berdiring</span>.</>, ru: <>Заставьте первый сервер <span className="italic" style={{ color: T.accent }}>ответить Вам</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">server.js</span> ochiq — faqat <b style={{ color: T.ink }}>endpoint qatori yetishmayapti</b>! 4-qatorga yozing: <b style={{ color: T.ink }}>app.get('/salom', (req, res) =&gt; res.send('Salom, dunyo!'))</b>. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing — serveringiz brauzerda javob beradi!</>, ru: <>В VS Code открыт <span className="mono">server.js</span> — не хватает только <b style={{ color: T.ink }}>строки endpoint</b>! Напишите в 4-й строке: <b style={{ color: T.ink }}>app.get('/salom', (req, res) =&gt; res.send('Salom, dunyo!'))</b>. Когда допишете, нажмите <b style={{ color: T.ink }}>▶ Run</b> — Ваш сервер ответит в браузере!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">server.js</span> ochiq — faqat <b style={{ color: T.ink }}>endpoint qatori yetishmayapti</b>! 4-qatorga <b style={{ color: T.ink }}>/salom</b> manzili uchun endpoint yozing — u «Salom, dunyo!» deb javob bersin. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing — serveringiz brauzerda javob beradi!</>, ru: <>В VS Code открыт <span className="mono">server.js</span> — не хватает только <b style={{ color: T.ink }}>строки endpoint</b>! В 4-й строке напишите endpoint для адреса <b style={{ color: T.ink }}>/salom</b> — пусть отвечает «Salom, dunyo!». Когда допишете, нажмите <b style={{ color: T.ink }}>▶ Run</b> — Ваш сервер ответит в браузере!</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1260,15 +1257,15 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Ln n={1}><span style={{ color: '#C586C0' }}>const</span> express = <span style={{ color: '#DCDCAA' }}>require</span>(<span style={{ color: '#CE9178' }}>'express'</span>)</Ln>
                 <Ln n={2}><span style={{ color: '#C586C0' }}>const</span> app = <span style={{ color: '#DCDCAA' }}>express</span>()</Ln>
                 <Ln n={3}>{' '}</Ln>
-                <div className="vsc-line"><span className="vsc-ln">4</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="app.get('/salom', (req, res) => res.send('...'))" spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
+                <div className="vsc-line"><span className="vsc-ln">4</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="…" /* F-0926-06 (S6): baholanadigan testda placeholder javob kodini aytmaydi */ spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
                 <Ln n={5}>{' '}</Ln>
                 <Ln n={6}>app.<span style={{ color: '#DCDCAA' }}>listen</span>(<span style={{ color: '#B5CEA8' }}>3000</span>)</Ln>
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasGet ? 1 : 0.4 }}>{hasGet ? '✓' : '1'} app.get</span>
-              <span className="tagpill" style={{ opacity: hasPath ? 1 : 0.4 }}>{hasPath ? '✓' : '2'} '/salom'</span>
-              <span className="tagpill" style={{ opacity: hasSend ? 1 : 0.4 }}>{hasSend ? '✓' : '3'} res.send('...')</span>
+              <span className="tagpill" style={{ opacity: hasGet ? 1 : 0.4 }}>{hasGet ? '✓' : '1'} {tr({ uz: 'endpoint ochish', ru: 'открыть endpoint' })}</span>{/* F-0926-06 (S6): kod bo'lagi o'rniga tavsif */}
+              <span className="tagpill" style={{ opacity: hasPath ? 1 : 0.4 }}>{hasPath ? '✓' : '2'} {tr({ uz: 'manzil /salom', ru: 'адрес /salom' })}</span>
+              <span className="tagpill" style={{ opacity: hasSend ? 1 : 0.4 }}>{hasSend ? '✓' : '3'} {tr({ uz: 'javob yuborish', ru: 'отправить ответ' })}</span>
             </div>
             {valid && !ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>▶ Run — node server.js</button>}
           </Col>
@@ -1278,7 +1275,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Brauzer', ru: 'Браузер' })}</p>
             <Win title="localhost:3000/salom" minH={86} hotTitle={ran}>
               {ran ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 19, color: T.ink }}>{reply}</div>
-                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, fontSize: 13 }}>{valid ? tr({ uz: '▶ Run bosing — serveringiz javob beradi', ru: '▶ Нажмите Run — Ваш сервер ответит' }) : tr({ uz: 'Endpoint qatorini yozing…', ru: 'Напишите строку endpoint…' })}</p>}
+                : null /* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi — tugma aytadi */}
             </Win>
             {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Sizning birinchi serveringiz ishga tushdi va <b>"{reply}"</b> deb javob berdi. Siz endi backend yoza olasiz!</>, ru: <>🎉 Поздравляем! Ваш первый сервер запустился и ответил: <b>"{reply}"</b>. Теперь Вы умеете писать бэкенд!</> })}</p></div>}
           </Col>
@@ -2369,7 +2366,7 @@ export default function NodeServerLesson({ lang: langProp, onFinished, liveToken
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .chip-on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; } /* F-0926-06 (159/10): to'liq accent fon → yumshoq fon + halqa */
         .chip:disabled { opacity: 0.4; cursor: not-allowed; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 8px 13px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.2); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover:not(:disabled) { transform: translateY(-1px); } .gchip:disabled { opacity: 0.4; cursor: not-allowed; }
         .tagpill { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.18); transition: opacity 0.2s; }
@@ -2434,6 +2431,14 @@ export default function NodeServerLesson({ lang: langProp, onFinished, liveToken
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
+        /* F-0926-06 (159/16): yorliq, quti, tugma — uch qatorli subgrid; ikki ustundagi qutilar bir balandlikda (faqat keng ekranda) */
+        @media (min-width: 761px) {
+          .split.eqh3 { grid-template-rows: auto auto 1fr; row-gap: clamp(12px,2vw,16px); }
+          .split.eqh3 > .col { display: grid; grid-row: span 3; grid-template-rows: subgrid; gap: inherit; align-content: start; }
+          .split.eqh3 > .col > .btn { justify-self: start; align-self: start; }
+        }
+        /* F-0926-06 (159/3): yorliq qatori — tablo turgan va turmagan ustunda bir balandlik */
+        .lbl-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 34px; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
         .demo-swap { animation: fade-step 0.3s ease-out; }

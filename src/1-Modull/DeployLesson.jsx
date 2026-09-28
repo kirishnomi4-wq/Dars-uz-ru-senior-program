@@ -1590,7 +1590,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { b: { uz: 'Saytni tugating', ru: 'Доведите сайт до конца' }, t: { uz: '— hamma sahifa ochilsin, menyu ishlasin', ru: '— чтобы открывались все страницы и работало меню' } },
     { b: { uz: 'Matnni tekshiring', ru: 'Проверьте тексты' }, t: { uz: '— har gap loyihangiz haqida bo\'lsin', ru: '— каждая фраза должна быть о вашем проекте' } },
     { b: { uz: 'Saytni yangilang', ru: 'Обновите сайт' }, t: { uz: "— Netlify'da saytingiz nomini bosing, Deploys bo'limini oching va o'zgargan papkani o'sha yerga qayta sudrab tashlang", ru: '— в Netlify нажмите на имя сайта, откройте раздел Deploys и снова перетащите туда изменённую папку' } },
-    { b: { uz: 'Havolani yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— mentorga va do'stlaringizga", ru: '— ментору и друзьям' } },
+    { b: { uz: 'Havolani yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— platformaga va do'stlaringizga", ru: '— на платформу и друзьям' } /* F-0926-06 (D2): mentor gapi bilan bir xil */ },
   ];
   return (
     <Stage eyebrow={tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>

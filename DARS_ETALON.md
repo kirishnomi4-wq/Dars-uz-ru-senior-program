@@ -3191,3 +3191,29 @@ emoji ≈170–220; 5–6-Modul texnik darslarida `ico:` qatlami ustiga qo'shili
 **O'lchov (26.09, 5-Modul 11 dars):** stripe 139 · qora tugma 60 · frame-dash 41 · ico 278 o'zgarish;
 emoji BotIntro 375→280; gates 6/6 · jsx TOZA · dizayn 0 (kesik-ok 3).
 **Bog'liq:** 111-qonun (7-soniya/olib-tashlash testi) · F-0819-56 (dark-lint) · bridge PILOT_DIZAYN_NAQSH 8-bo'lim.
+
+---
+
+## 12-W. 🗂️ 160-QONUN: VIZUALGA TEGISHLI MATN VIZUAL BILAN BITTA BLOKDA (2026-09-27, F-0927-01)
+
+**Foydalanuvchi (GitLesson 1-ekran):** «o'ng tomondagi "Bitta joydagi fayllar" va "Fayllar faqat shu kompyuterda turibdi"
+degan gaplar o'z blokidan tashqarida chiqib ketibdi — blok ichida bo'lishi kerak. GLOBAL tekshir.» Qaror: **A varianti**.
+
+1. Rasm, sxema yoki oyna **o'z izohi bilan** kelsa (tepada yorliq VA/YOKI tagida izoh-matn), uchalasi **bitta karta**
+   (`.vis-card`: paper-fon, 16px radius, bitta soya, ichida 12px gap) ichida turadi. Sahifa fonida sochilgan
+   «yorliq — vizual — izoh» uchligi yo'q.
+2. Karta ichidagi vizual ikkinchi soya olmaydi — `0 0 0 1px` chegara bilan (karta ichida karta ko'rinmasin).
+3. **Istisno — izohsiz ustun-yorlig'i** («NATIJA», «DARS OXIRIDA…», «5 QADAM», «PAPKANGIZDAGI FAYLLAR») vizual ustida
+   YOLG'IZ tursa (tagida izoh-matn yo'q), u ustun sarlavhasi: kartaga SOLINMAYDI — vizualda oyna-sarlavhasi bor-yo'qligidan
+   qat'i nazar (foydalanuvchi A javobi: «izohsiz ustun-yorlig'i qoladi»). Hamma vizualni kartaga solish har darsda
+   karta-ichida-karta yasaydi. Qoida faqat **izoh-matn** bor joyda ishlaydi (yorliq + vizual + izoh yoki vizual + izoh).
+4. Boshqaruv elementlari (chip, tugma) kartadan TASHQARIDA qoladi — kartada faqat ko'rsatiladigan narsa va uning izohi.
+5. Karta ustun tepasidan boshlanadi — qo'shni ustun bilan tekislik 159/9 bo'yicha qayta o'lchanadi
+   (kartaga o'ralgach ko'rinmas yorliq-nusxa kerak bo'lmay qolishi mumkin — GitLesson G4).
+6. **O'lchov:** `node tools/page-audit.mjs <dars> --clicks=2` → `LOOSE` (ota karta emas, karta-qo'shniga ≤24px yopishgan
+   sof matn). Nomzod — ko'z bilan ajratiladi: `tagida` izohlari asosiy nishon, yolg'iz `tepada` — 3-band istisnosi.
+   `tagida` bo'lsa ham qoidaga KIRMAYDI: javobdan keyingi izoh (hook-ack — variantlar ostida, vizual emas), nishon-sharti
+   («🏅 Birinchi urinishda…»), bosiladigan/holat tab-legendasi (4-band), yutuq-medali.
+
+1-Modulda qo'llangan (27.09): GitLesson s0 s1 s7 · CssLesson2 s0 s8 s12 · Htmllesson1 s0 s13 · InternetLesson s5 s7 s8 ·
+VsCode s0 s7. Qolgan modullar — o'z tozalash to'lqinida.

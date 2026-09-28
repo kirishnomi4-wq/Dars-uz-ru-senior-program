@@ -107,7 +107,7 @@ const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
 const Split = ({ children }) => <div className="split">{children}</div>;
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { // F-0926-06: off — ⛶ chiqmaydi (CssLesson1 naqshi)
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -129,7 +129,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -588,8 +588,8 @@ const Postman = ({ method, url, body, methodPicker, onMethod, onSend, sending, s
     </div>
     <div className="pm-bar">
       {methodPicker
-        ? <div className="pm-methods">{['GET', 'POST', 'PUT', 'DELETE'].map(m => (
-            <button key={m} className="pm-mbtn" onClick={() => onMethod && onMethod(m)} style={method === m ? { color: '#fff', background: METHODS[m] } : { color: METHODS[m], background: METHODS[m] + '18' }}>{m}</button>
+        ? <div className="pm-methods">{/* F-0926-06 (159/10): tanlangan method — to'liq rang emas, yumshoq fon + halqa */}{['GET', 'POST', 'PUT', 'DELETE'].map(m => (
+            <button key={m} className="pm-mbtn" onClick={() => onMethod && onMethod(m)} style={method === m ? { color: METHODS[m], background: METHODS[m] + '26', boxShadow: `0 0 0 2px ${METHODS[m]}` } : { color: METHODS[m], background: METHODS[m] + '18' }}>{m}</button>
           ))}</div>
         : <span className="pm-method" style={{ color: METHODS[method] }}>{method}</span>}
       <span className="pm-url mono">{url}</span>
@@ -600,7 +600,7 @@ const Postman = ({ method, url, body, methodPicker, onMethod, onSend, sending, s
       <div className="pm-resp-h"><span className="pm-resp-lbl">{tr({ uz: 'Javob (Response)', ru: 'Ответ (Response)' })}</span>{sent && status ? <StatusBadge code={status} punch /> : null}</div>
       {sending ? <div className="pm-loading"><span className="pm-flytrack" aria-hidden="true"><span className="pm-fly">📨</span></span> {tr({ uz: 'Yuborilmoqda…', ru: 'Отправляем…' })}</div>
         : sent ? <div className="pm-respbody fade-step">{children}</div>
-        : <div className="pm-empty">{tr({ uz: '▸ Send bosing — server javobi shu yerda chiqadi', ru: '▸ Нажмите Send — ответ сервера появится здесь' })}</div>}
+        : null /* F-0926-06 (P1): bo'sh javob oynasidagi «Send bosing — … chiqadi» yo'rig'i olindi — chorlov mentorda va tugmada */}
     </div>
   </div>
 );
@@ -660,7 +660,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Ilovani ochasiz — yangi ma'lumot <span className="italic" style={{ color: T.accent }}>qayerdan</span> keladi?</>, ru: <>Вы открываете приложение — <span className="italic" style={{ color: T.accent }}>откуда</span> приходят новые данные?</> })}</h1>
-        <Mentor>{tr({ uz: <>O'tgan darslarda server qurdik va bazada CRUD qildik. Lekin sayt (frontend) bazani <b style={{ color: T.ink }}>ko'rmaydi</b> — u serverga <b style={{ color: T.accent }}>xat (so'rov)</b> yuboradi, server javob qaytaradi. Tugmani bosing — konvert qanday uchishini ko'ring.</>, ru: <>На прошлых уроках мы собрали сервер и делали CRUD в базе. Но сайт (фронтенд) базу <b style={{ color: T.ink }}>не видит</b> — он отправляет серверу <b style={{ color: T.accent }}>письмо (запрос)</b>, а сервер возвращает ответ. Нажмите кнопку — посмотрите, как летит конверт.</> })}</Mentor>
+        {/* F-0926-06 (159/17): mentor savol javobini (b variant) oldindan aytardi — endi faqat chorlov */}
+        <Mentor>{tr({ uz: <>O'tgan darslarda server qurdik va bazada CRUD qildik. Endi <b style={{ color: T.ink }}>sayt (frontend)</b> tomoniga o'tamiz. Tugmani bosing — konvert qanday uchishini ko'ring.</>, ru: <>На прошлых уроках мы собрали сервер и делали CRUD в базе. Теперь перейдём на сторону <b style={{ color: T.ink }}>сайта (фронтенда)</b>. Нажмите кнопку — посмотрите, как летит конверт.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -693,7 +694,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! Sayt serverga <b>so'rov (API)</b> yuboradi, server javob qaytaradi. Bugun shu suhbatni o'rganamiz.</>, ru: <>Верно! Сайт отправляет серверу <b>запрос (API)</b>, а сервер возвращает ответ. Сегодня мы изучим этот разговор.</> }) : tr({ uz: <>Aslida sayt serverga <b>so'rov (API)</b> yuboradi va javob oladi — bazaga o'zi kira olmaydi. Mana shu suhbatni bugun o'rganamiz.</>, ru: <>На самом деле сайт отправляет серверу <b>запрос (API)</b> и получает ответ — сам в базу он попасть не может. Этот разговор мы сегодня и изучим.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! Bugun sayt va server orasidagi shu <b>so'rov–javob</b> suhbatini o'rganamiz.</>, ru: <>Верно! Сегодня изучим этот разговор <b>запрос–ответ</b> между сайтом и сервером.</> }) /* F-0926-06 (159/11): izoh variantni qaytarmaydi */ : tr({ uz: <>Aslida sayt serverga <b>so'rov (API)</b> yuboradi va javob oladi — bazaga o'zi kira olmaydi. Mana shu suhbatni bugun o'rganamiz.</>, ru: <>На самом деле сайт отправляет серверу <b>запрос (API)</b> и получает ответ — сам в базу он попасть не может. Этот разговор мы сегодня и изучим.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -715,9 +716,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: "Dars oxirida — siz Postman'da so'rov yuborasiz", ru: 'В конце урока вы сами отправите запрос в Postman' })}</p>
-      <Postman method="GET" url="/api/products" sent status={200}><JsonBox sm data={PRODUCTS.slice(0, 2)} /></Postman>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ method tanlaysiz, Send bosasiz, javobni ko'rasiz", ru: '→ выбираете метод, жмёте Send, видите ответ' })}</p>
+      {/* F-0926-06 (160-qonun): yorliq + Postman oynasi + izoh bitta .vis-card */}
+      <div className="vis-card">
+        <p className="flow-label">{tr({ uz: "Dars oxirida — siz Postman'da so'rov yuborasiz", ru: 'В конце урока вы сами отправите запрос в Postman' })}</p>
+        <Postman method="GET" url="/api/products" sent status={200}><JsonBox sm data={PRODUCTS.slice(0, 1)} /></Postman>{/* F-0926-06 (159/12): namuna-javob 1 mahsulot — ekran tugmalar orqasiga tushmasin */}
+        <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ method tanlaysiz, Send bosasiz, javobni ko'rasiz", ru: '→ выбираете метод, жмёте Send, видите ответ' })}</p>
+      </div>
     </Col>
   );
   const StepsBlock = (
@@ -773,7 +777,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Yo'q. Sayt va server — ikki alohida dastur. Ular orasida <b style={{ color: T.accent }}>API</b> turadi: bu <b style={{ color: T.ink }}>til va qoidalar</b> to'plami. Xuddi pochta kabi — xatni to'g'ri manzilga, qoida bilan yetkazadi; ofitsiant ham, jo'natma ham — shu pochtaning ichida. Uchta qismni bosib ko'ring.</>, ru: <>Нет. Сайт и сервер — две отдельные программы. Между ними стоит <b style={{ color: T.accent }}>API</b>: это набор <b style={{ color: T.ink }}>языка и правил</b>. Совсем как почта — доставляет письмо по нужному адресу и по правилам; и официант, и посылка — внутри этой почты. Нажмите на все три части.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Uchta qismdan qolganini bosing — har biri o'z ishini aytadi.", ru: '💡 Нажмите оставшиеся части — каждая расскажет о своей работе.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06: ramka olingach bo'sh ustun ustida ⛶ yolg'iz qolmasin */}
         <div className="split">
           <Col>
             <div className="apiflow">
@@ -784,12 +788,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ))}
             </div>
-            {cur && <div className="sk-info fade-step" key={cur.k}><span className="sk-tagbig"><span className="sk-wordbadge">{tr(cur.label)}</span></span><p className="body" style={{ color: T.ink, margin: '9px 0 0' }}>{tr(cur.desc)}</p></div>}
           </Col>
+          {/* F-0926-06 (159/1, 159/3): bo'sh-holat ramkasi va mentor gapini qaytargan xulosa-karta («API = ikki dastur gaplashadigan til») olindi; qism izohi bo'sh qolgan qo'shni ustunga ko'chdi */}
           <Col>
-            {done
-              ? <div className="takeaway fade-step"><div className="ta-bulb">📮</div><p className="ta-h">{tr({ uz: 'API = ikki dastur gaplashadigan til', ru: 'API = язык общения двух программ' })}</p><p className="ta-sub">{tr({ uz: "Sayt → API → Server. To'g'ridan-to'g'ri emas — qoida bilan.", ru: 'Сайт → API → Сервер. Не напрямую — по правилам.' })}</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Qismlarni bosib o'rganing", ru: '← Нажимайте на части и изучайте' })}</p></div>}
+            {cur && <div className="sk-info fade-step" key={cur.k}><span className="sk-tagbig"><span className="sk-wordbadge">{tr(cur.label)}</span></span><p className="body" style={{ color: T.ink, margin: '9px 0 0' }}>{tr(cur.desc)}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -895,27 +897,26 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
+            {/* F-0926-06 (H2): «0/5» sanog'i tugmada qoladi — sarlavhadagi nusxa olindi */}
             <div className="env-pool-h">
               <span className="ep-lbl" style={{ margin: 0 }}>{tr({ uz: "Bo'laklar", ru: 'Детали' })}</span>
-              <span className="env-count mono" key={nPlaced}>{nPlaced}/5</span>
             </div>
             <div className="env-pool">
               {pool.length === 0
                 ? <span className="env-pool-done">{tr({ uz: "✓ Ikkala konvert ham yig'ildi", ru: '✓ Оба конверта собраны' })}</span>
                 : pool.map(p => (
-                    <button key={p.k} className={`envpart chip ${sel === p.k ? 'sel' : ''} ${reject === p.k ? 'reject' : ''} ${sel || reject === p.k ? '' : 'tap-hint'}`} onPointerDown={(e) => down(e, p.k)}>{p.node}</button>
+                    <button key={p.k} className={`envpart chip ${sel === p.k ? 'sel' : ''} ${reject === p.k ? 'reject' : ''} ${sel || reject === p.k ? '' : 'tap-hint'}`} onPointerDown={(e) => down(e, p.k)}><span className="env-grip" aria-hidden="true">⠿</span>{p.node}</button>
                   ))}
             </div>
             {!done && <AchRule screen={screen} />}
             {sel && <p className="env-tip small">{tr({ uz: <>Endi konvertni bosing — <b>{sel.toUpperCase()}</b> shu yerga tushadi (yoki bo'lakni sudrang).</>, ru: <>Теперь нажмите на конверт — <b>{sel.toUpperCase()}</b> ляжет туда (или перетащите деталь).</> })}</p>}
+            {active && <div className="sk-info fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0 }}>{tr(S3_INFO[active])}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "So'rov = nima + qayerdan. Javob = o'tdimi + natija. Endi METHOD'larni ko'ramiz.", ru: 'Запрос = что + откуда. Ответ = получилось ли + результат. Теперь посмотрим на методы.' })}</p></div>}
+          </Col>
+          {/* F-0926-06 (159/12, 159/3): konvertlar bo'sh qo'shni ustunga — ekran tugmalar orqasiga tushmaydi; bo'sh-holat ramkasi olindi (chorlov mentorda) */}
+          <Col>
             {renderZone('req', tr({ uz: "So'rov konverti (siz → server)", ru: 'Конверт запроса (вы → сервер)' }), T.accent)}
             {renderZone('res', tr({ uz: 'Javob konverti (server → siz)', ru: 'Конверт ответа (сервер → вы)' }), T.success)}
-          </Col>
-          <Col>
-            {active
-              ? <div className="sk-info fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0 }}>{tr(S3_INFO[active])}</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Bo'lakni konvertga sudrang (yoki bosib tanlang)", ru: '← Перетащите деталь в конверт (или выберите нажатием)' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "So'rov = nima + qayerdan. Javob = o'tdimi + natija. Endi METHOD'larni ko'ramiz.", ru: 'Запрос = что + откуда. Ответ = получилось ли + результат. Теперь посмотрим на методы.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -930,7 +931,7 @@ const Screen4 = (props) => (
     questionText={tr({ uz: 'API nima vazifani bajaradi?', ru: 'Какую задачу выполняет API?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sayt va server orasida turadigan <span className="italic" style={{ color: T.accent }}>API</span> nima qiladi?</>, ru: <>Что делает <span className="italic" style={{ color: T.accent }}>API</span>, стоящий между сайтом и сервером?</> })}</h2></>}
     options={[tr({ uz: 'Saytning ranglari va shriftlarini chiroyli qilib bezaydi', ru: 'Красиво оформляет цвета и шрифты сайта' }), tr({ uz: 'Server rasmlarini saqlaydigan katta papka', ru: 'Большая папка, где сервер хранит картинки' }), tr({ uz: 'Ikki dastur (sayt va server) gaplashadigan til va qoidalar', ru: 'Язык и правила, на которых общаются две программы (сайт и сервер)' }), tr({ uz: 'Internet tezligini oshiradigan maxsus dastur', ru: 'Специальная программа для ускорения интернета' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! API — bu sayt va server bir-biri bilan gaplashadigan til va qoidalar. Sayt API orqali so'rov yuboradi, javob oladi.", ru: 'Верно! API — это язык и правила, на которых сайт и сервер общаются друг с другом. Сайт отправляет запрос через API и получает ответ.' })}
+    explainCorrect={tr({ uz: "Sayt API orqali so'rov yuboradi va javob oladi — bazaga o'zi kirmaydi.", ru: 'Сайт отправляет запрос через API и получает ответ — в базу сам не заходит.' })} /* F-0926-06 (159/11): izoh qisqa, variantni qaytarmaydi */
     explainWrong={{
       0: tr({ uz: "Bezash — CSS ishi. API ma'lumot almashish uchun.", ru: 'Оформление — работа CSS. API нужен для обмена данными.' }),
       1: tr({ uz: "API papka emas — u har qanday ma'lumotni so'rov-javob orqali uzatadi.", ru: 'API — не папка. Он передаёт любые данные через запрос-ответ.' }),
@@ -965,7 +966,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="maprow"><MethodBadge method="GET" big /><span className="maparrow">=</span><span className="mono" style={{ color: T.ink }}>{tr({ uz: "SELECT (o'qish)", ru: 'SELECT (чтение)' })}</span></div>
             {sent
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Server <b>200 OK</b> shtampi bilan 3 ta mahsulotni JSON qilib qaytardi. GET — ma'lumotni faqat <b>o'qiydi</b>, hech narsani o'zgartirmaydi.</>, ru: <>Сервер вернул 3 товара в JSON со штампом <b>200 OK</b>. GET только <b>читает</b> данные и ничего не меняет.</> })}</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'GET = "ma\'lumotni so\'rab ol". Eng ko\'p ishlatiladigan method. Postman\'da Send bosib, javobni ko\'ring.', ru: 'GET = «запроси данные». Самый частый метод. Нажмите Send в Postman и посмотрите ответ.' })}</p></div>}
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "GET — eng ko'p ishlatiladigan method.", ru: 'GET — самый частый метод.' }) /* F-0926-06 (159/1): mentor aytgan «so'rab ol» va «Send bosing» olindi — yangi gap qoldi */}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -980,7 +981,7 @@ const Screen5b = (props) => (
     questionText={tr({ uz: 'GET method nima qiladi?', ru: 'Что делает метод GET?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: METHODS.GET }}>GET</span> so'rovi serverdan nimani so'raydi?</>, ru: <>Что запрашивает у сервера <span className="italic" style={{ color: METHODS.GET }}>GET</span>?</> })}</h2></>}
     options={[tr({ uz: "Mavjud ma'lumotni o'qib (olib) keladi", ru: 'Читает (получает) существующие данные' }), tr({ uz: "Butunlay yangi ma'lumot qo'shib yozadi", ru: 'Записывает совершенно новые данные' }), tr({ uz: "Mavjud ma'lumotni bazadan o'chiradi", ru: 'Удаляет существующие данные из базы' }), tr({ uz: "Serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает сервер' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! GET — ma'lumotni o'qish uchun. Bazadagi SELECT bilan bir xil: faqat oladi, o'zgartirmaydi.", ru: 'Верно! GET — для чтения данных. Как SELECT в базе: только получает, ничего не меняет.' })}
+    explainCorrect={tr({ uz: "Bazadagi SELECT kabi: faqat oladi, hech narsani o'zgartirmaydi.", ru: 'Как SELECT в базе: только получает, ничего не меняет.' })} /* F-0926-06 (159/11) */
     explainWrong={{
       1: tr({ uz: "Qo'shish — POST ishi. GET faqat o'qiydi.", ru: 'Добавление — работа POST. GET только читает.' }),
       2: tr({ uz: "O'chirish — DELETE ishi. GET hech narsani o'chirmaydi.", ru: 'Удаление — работа DELETE. GET ничего не удаляет.' }),
@@ -1126,7 +1127,7 @@ const Screen9 = (props) => (
     questionText={tr({ uz: "Bazaga yangi mahsulot qo'shish uchun qaysi method?", ru: 'Каким методом добавить в базу новый товар?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Do'konga yangi mahsulot qo'shmoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi method?</span></>, ru: <>Вы хотите добавить в магазин новый товар. <span className="italic" style={{ color: T.accent }}>Какой метод?</span></> })}</h2></>}
     options={[tr({ uz: "GET — mavjud ma'lumotni o'qib oladi", ru: 'GET — читает существующие данные' }), tr({ uz: "DELETE — mavjud yozuvni o'chiradi", ru: 'DELETE — удаляет существующую запись' }), tr({ uz: "PUT — mavjud yozuvni o'zgartiradi", ru: 'PUT — изменяет существующую запись' }), tr({ uz: "POST — yangi ma'lumot qo'shib yozadi", ru: 'POST — записывает новые данные' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! POST yangi yozuv (mahsulot) yaratadi — BODY'da uning ma'lumoti ketadi. Server 201 Created qaytaradi.", ru: 'Верно! POST создаёт новую запись (товар) — её данные едут в BODY. Сервер возвращает 201 Created.' })}
+    explainCorrect={tr({ uz: "Yangi mahsulot ma'lumoti BODY'da ketadi, server 201 Created qaytaradi.", ru: 'Данные нового товара едут в BODY, сервер возвращает 201 Created.' })} /* F-0926-06 (159/11) */
     explainWrong={{
       0: tr({ uz: "GET faqat o'qiydi — yangi narsa qo'shmaydi.", ru: 'GET только читает — ничего нового не добавляет.' }),
       1: tr({ uz: "DELETE mavjud mahsulotni o'chiradi, yangi qo'shmaydi.", ru: 'DELETE удаляет существующий товар, а не добавляет новый.' }),
@@ -1158,7 +1159,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Eng muhim ko'prik: API method'lari o'tgan darsdagi <b style={{ color: T.ink }}>CRUD</b> amallariga to'g'ridan-to'g'ri mos keladi. Postman'da bir tugma bosasiz → server kodi ishlaydi → bazada SQL bajariladi. Har method'ni bosib, ortidagi SQL'ni ko'ring.</>, ru: <>Самый важный мост: методы API напрямую соответствуют операциям <b style={{ color: T.ink }}>CRUD</b> из прошлого урока. Нажимаете кнопку в Postman → работает код сервера → в базе выполняется SQL. Нажмите на каждый метод и посмотрите SQL за ним.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan method-kartalarni bosing — har biri ortidagi SQL'ni ko'rsatadi.", ru: '💡 Нажмите оставшиеся карточки методов — каждая покажет свой SQL.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06: ramka olingach bo'sh ustun ustida ⛶ yolg'iz qolmasin */}
         <div className="split">
           <Col>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
@@ -1178,7 +1179,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <p className="small" style={{ color: T.ink2, margin: '0 0 8px' }}>{tr({ uz: 'Server ortida:', ru: 'На стороне сервера:' })} <span className="mono" style={{ color: T.accent }}>{cur.sql}</span></p>
                   <p className="body" style={{ color: T.ink, margin: 0 }}>{tr(cur.desc)}</p>
                 </div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Method'lardan birini bosing", ru: '← Нажмите на один из методов' })}</p></div>}
+              : null /* F-0926-06 (159/3): bo'sh-holat ramkasi olindi — chorlov mentorda («Har method'ni bosib») */}
             {done && <div className="takeaway fade-step"><div className="ta-bulb">🔗</div><p className="ta-h">{tr({ uz: 'API method = baza amali', ru: 'Метод API = операция в базе' })}</p><p className="ta-sub">GET·POST·PUT·DELETE → SELECT·INSERT·UPDATE·DELETE</p></div>}
           </Col>
         </div>
@@ -1242,13 +1243,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           ))}
           <div className="jtrack"><span className="jenv" style={{ left: `${envLeft}%`, color: envColor }}>{cur && cur.dir === 'res' ? '📩' : '📨'}</span></div>
         </div>
-        <div className="jnote">
-          {cur ? <p className="body fade-step" key={step} style={{ margin: 0, color: T.ink }}><span className="mono" style={{ color: envColor, fontWeight: 700 }}>{cur.dir === 'req' ? tr({ uz: "SO'ROV →", ru: 'ЗАПРОС →' }) : tr({ uz: '← JAVOB', ru: '← ОТВЕТ' })}</span> &nbsp;{tr(cur.note)}</p>
-            : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: '▶ tugmasini bosing — konvert sayohatini boshlang', ru: '▶ Нажмите кнопку — отправьте конверт в путешествие' })}</p>}
-        </div>
+        {/* F-0926-06 (P1, 159/9): bo'sh izoh-qutisi (▶ chorlovi) olindi — quti birinchi qadamda chiqadi */}
+        {cur && <div className="jnote">
+          <p className="body fade-step" key={step} style={{ margin: 0, color: T.ink }}><span className="mono" style={{ color: envColor, fontWeight: 700 }}>{cur.dir === 'req' ? tr({ uz: "SO'ROV →", ru: 'ЗАПРОС →' }) : tr({ uz: '← JAVOB', ru: '← ОТВЕТ' })}</span> &nbsp;{tr(cur.note)}</p>
+        </div>}
         <div style={{ display: 'flex', gap: 10 }}>
           {!playing && <button className="btn" onClick={play}>{step < 0 ? tr({ uz: '▶ Sayohatni boshlash', ru: '▶ Начать путешествие' }) : tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
-          {done && !playing && <span className="mono small" style={{ color: T.success, alignSelf: 'center' }}>{tr({ uz: '✓ Javob saytga yetib keldi — 200 OK', ru: '✓ Ответ дошёл до сайта — 200 OK' })}</span>}
+          {/* F-0926-06 (I3): «✓ Javob saytga yetib keldi — 200 OK» olindi — oxirgi qadam izohi shuni aytadi */}
         </div>
       </div>
     </Stage>
@@ -1261,7 +1262,7 @@ const Screen12 = (props) => (
     questionText={tr({ uz: "Sayt ma'lumot kerak bo'lganda nima qiladi?", ru: 'Что делает сайт, когда ему нужны данные?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Frontend backend bilan <span className="italic" style={{ color: T.accent }}>qanday gaplashadi?</span></>, ru: <>Как фронтенд <span className="italic" style={{ color: T.accent }}>говорит с бэкендом?</span></> })}</h2></>}
     options={[tr({ uz: "Bazaga to'g'ridan-to'g'ri o'zi kirib ma'lumot oladi", ru: 'Сам напрямую заходит в базу и берёт данные' }), tr({ uz: "API'ga so'rov yuboradi, server javob qaytaradi", ru: 'Отправляет запрос в API, сервер возвращает ответ' }), tr({ uz: "Hech kim bilan gaplashmaydi — hammasini o'zi biladi", ru: 'Ни с кем не разговаривает — всё знает сам' }), tr({ uz: "Boshqa saytdan tayyor ma'lumot nusxasini oladi", ru: 'Берёт готовую копию данных с другого сайта' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Sayt API'ga so'rov (request) yuboradi → server bazada ishlaydi → javob (response) qaytaradi. Sayt bazaga o'zi kira olmaydi.", ru: 'Верно! Сайт отправляет запрос (request) в API → сервер работает с базой → возвращает ответ (response). Сам в базу сайт попасть не может.' })}
+    explainCorrect={tr({ uz: "Server bazada ishlaydi va javob (response) qaytaradi — sayt bazaga o'zi kira olmaydi.", ru: 'Сервер работает с базой и возвращает ответ (response) — сам сайт в базу попасть не может.' })} /* F-0926-06 (159/11) */
     explainWrong={{
       0: tr({ uz: "Sayt bazaga to'g'ridan-to'g'ri kira olmaydi — bu xavfli. U API orqali so'raydi.", ru: 'Сайт не может войти в базу напрямую — это опасно. Он спрашивает через API.' }),
       2: tr({ uz: "Sayt aniq gaplashadi — API orqali serverga so'rov yuboradi.", ru: 'Ещё как разговаривает — отправляет запрос серверу через API.' }),
@@ -1302,14 +1303,15 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Postman method={cur.method} url={cur.url} body={cur.body} sending={sending} sent={sent} status={cur.status} onSend={send} sendLabel="Send" sendDisabled={sent}>
               <JsonBox data={cur.data} />
             </Postman>
-            {sent && step < 2 && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={nextStep}>{tr({ uz: "Keyingi so'rov →", ru: 'Следующий запрос →' })}</button>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Vazifa:', ru: 'Задача:' })} {tr(cur.label)}</p>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Ajoyib! Siz GET → POST → GET qildingiz. Oxirgi GET'da <b>4 ta</b> mahsulot — Mikrofon ro'yxatga qo'shildi. Mana shu — API bilan ishlashning to'liq yo'li.</>, ru: <>🎉 Отлично! Вы сделали GET → POST → GET. В последнем GET — <b>4</b> товара: Mikrofon добавился в список. Вот он — полный цикл работы с API.</> })}</p></div>
               : sent
-                ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>{cur.status === 201 ? '201 Created' : '200 OK'}</b> — javob keldi. "Keyingi so'rov →" tugmasini bosing.</>, ru: <>✓ <b>{cur.status === 201 ? '201 Created' : '200 OK'}</b> — ответ пришёл. Нажмите «Следующий запрос →».</> })}</p></div>
+                ? <>{/* F-0926-06 (159/12): tugma bo'sh o'ng ustunga ko'chdi — chap ustun tugmalar orqasiga tushardi; karta ichidagi tugma-chorlovi endi ortiqcha */}
+                    <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>{cur.status === 201 ? '201 Created' : '200 OK'}</b> — javob keldi.</>, ru: <>✓ <b>{cur.status === 201 ? '201 Created' : '200 OK'}</b> — ответ пришёл.</> })}</p></div>
+                    {step < 2 && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={nextStep}>{tr({ uz: "Keyingi so'rov →", ru: 'Следующий запрос →' })}</button>}</>
                 : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(cur.hint)}</p></div>}
           </Col>
         </div>
@@ -1354,7 +1356,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="ai-line" style={found ? { cursor: 'default' } : undefined} onClick={() => { if (found) return; setMiss(true); if (achMiss) achMiss.miss(screen); }}>Host: zakaz-shop.uz</div>
                 <div className="ai-line" style={found ? { cursor: 'default' } : undefined} onClick={() => { if (found) return; setMiss(true); if (achMiss) achMiss.miss(screen); }}>Accept: application/json</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato bor? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
+              {/* F-0926-06 (159/1): «Qaysi qatorda xato bor? Bosing.» olindi — mentor shu savolni beradi */}
               {miss && !found && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p></div>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>🔧 produts → products</button>}
               {fixed && !sent && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: '▶ Qaytadan Send', ru: '▶ Send ещё раз' })}</button>}
@@ -1362,12 +1364,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
+            {/* F-0926-06 (159/7): «Javob» ↔ «Response» — bittasi qoladi: tashqi yorliq (⛶ shtamp ustiga tushmasin), ichki «Response» olindi */}
             <p className="flow-label">{tr({ uz: 'Javob', ru: 'Ответ' })}</p>
             {!fixed
-              ? <div className="pm-resp" style={{ marginTop: 0 }}><div className="pm-resp-h"><span className="pm-resp-lbl">Response</span><StatusBadge code={404} punch /></div><div className="pm-respbody"><JsonBox data={{ error: 'Not Found', message: tr({ uz: "Bunday manzil yo'q", ru: 'Такого адреса нет' }) }} /></div></div>
+              ? <div className="pm-resp" style={{ marginTop: 0 }}><div className="pm-resp-h" style={{ justifyContent: 'flex-end' }}><StatusBadge code={404} punch /></div><div className="pm-respbody"><JsonBox data={{ error: 'Not Found', message: tr({ uz: "Bunday manzil yo'q", ru: 'Такого адреса нет' }) }} /></div></div>
               : !sent
-                ? <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 90 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tuzatildi — endi Send bosing', ru: 'Исправлено — теперь нажмите Send' })}</p></div>
-                : <><div className="pm-resp" style={{ marginTop: 0 }}><div className="pm-resp-h"><span className="pm-resp-lbl">Response</span><StatusBadge code={200} punch /></div><div className="pm-respbody fade-step"><JsonBox data={PRODUCTS} /></div></div>
+                ? null /* F-0926-06 (159/3): bo'sh-holat ramkasi olindi — «▶ Qaytadan Send» tugmasi va nav chorlaydi */
+                : <><div className="pm-resp" style={{ marginTop: 0 }}><div className="pm-resp-h" style={{ justifyContent: 'flex-end' }}><StatusBadge code={200} punch /></div><div className="pm-respbody fade-step"><JsonBox data={PRODUCTS} /></div></div>
                   <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Topdingiz! Bitta harf (c) butun so'rovni ishlatdi. <b>Status kodi — sizning do'stingiz:</b> 404 = manzil noto'g'ri, 200 = hammasi joyida.</>, ru: <>Нашли! Одна буква (c) решила судьбу всего запроса. <b>Код статуса — ваш друг:</b> 404 = адрес неверный, 200 = всё в порядке.</> })}</p></div></>}
           </Col>
         </div>
@@ -1413,16 +1416,16 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </Postman>
           </Col>
           <Col>
-            <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingRight: 34 }}>{/* F-0926-06: ⛶ oxirgi teg ustiga tushmasin */}
               <span className="tagpill" style={{ opacity: method ? 1 : 0.4, color: method ? T.success : T.ink }}>{method ? '✓' : '1'} {tr({ uz: 'Method tanlandi', ru: 'Метод выбран' })}</span>
               <span className="tagpill" style={{ opacity: sent ? 1 : 0.4, color: sent ? T.success : T.ink }}>{sent ? '✓' : '2'} {tr({ uz: 'Send bosildi', ru: 'Send нажат' })}</span>
-              <span className="tagpill" style={{ opacity: passed ? 1 : 0.4, color: passed ? T.success : T.ink }}>{passed ? '✓' : '3'} 201 Created</span>
+              <span className="tagpill" style={{ opacity: passed ? 1 : 0.4, color: passed ? T.success : T.ink }}>{passed ? '✓' : '3'} {tr({ uz: "Mahsulot qo'shildi", ru: 'Товар добавлен' })}</span>{/* F-0926-06 (S6): «201 Created» — javob kodiga ishora, tavsif qoldi */}
             </div>
             {passed
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! <b>POST</b> bilan yangi mahsulot qo'shildi — <b>201 Created</b>. Siz endi API bilan gaplasha olasiz!</>, ru: <>🎉 Поздравляем! Новый товар добавлен через <b>POST</b> — <b>201 Created</b>. Теперь вы умеете говорить с API!</> })}</p></div>
               : sent && !isCorrect
                 ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{method === 'GET' ? tr({ uz: "GET faqat o'qiydi — ro'yxat keldi, lekin yangi narsa qo'shilmadi.", ru: 'GET только читает — список пришёл, но ничего нового не добавилось.' }) : tr({ uz: "Bu method yangi mahsulot qo'shmaydi.", ru: 'Этот метод не добавляет новый товар.' })} {tr({ uz: <>Eslatma: GET=o'qish, POST=qo'shish, PUT=o'zgartirish, DELETE=o'chirish. Yangi narsa <b>yaratish</b> qaysi method edi? Qayta tanlang.</>, ru: <>Напомним: GET=чтение, POST=добавление, PUT=изменение, DELETE=удаление. Какой метод <b>создаёт</b> новое? Выберите снова.</> })}</p></div>
-                : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Method tanlang va Send bosing — shtamp javob beradi.', ru: 'Выберите метод и нажмите Send — штамп ответит.' })}</p></div>}
+                : null /* F-0926-06 (159/1): «Method tanlang va Send bosing» — mentor gapining nusxasi, olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -2680,6 +2683,9 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
         .pm-send:active:not(:disabled) { transform: scale(0.94); }
         .pm-empty { font-size: 12.5px; color: ${T.ink3}; font-style: italic; padding: 12px 4px; }
         .pm-respbody { }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: 12px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun): vizual + izohi bitta blok */
+        .vis-card .postman { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); }
+        .pm-respbody .json-box { max-height: clamp(140px, 28vh, 230px); overflow-y: auto; } /* F-0926-06 (159/12): uzun javob tugmalar orqasiga tushmasin — javob oynasi o'zi aylanadi (s1 s5 s13 s14) */
 
         /* API oqimi (s2) */
         .apiflow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -2710,7 +2716,8 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
         .env-pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 48px; padding: 10px; border-radius: 12px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.08); align-items: center; }
         .env-pool-done { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.success}; animation: fade-step 0.35s ease-out both; }
         /* sudraladigan bo'lak: touch-action:none — barmoq bilan ham suriladi */
-        .envpart.chip { touch-action: none; user-select: none; cursor: grab; }
+        .envpart.chip { touch-action: none; user-select: none; cursor: grab; border: 2px solid ${T.accent}; } /* F-0926-06 (159/15): sudraladigan chip — oq fon + accent chegara + ushlagich */
+        .env-grip { color: ${T.accent}; font-size: 13px; line-height: 1; margin-right: -3px; }
         .envpart.chip:hover { transform: translateY(-2px); box-shadow: 0 9px 20px -7px rgba(${T.shadowBase},0.3); }
         .envpart.chip:active { cursor: grabbing; }
         .envpart.chip.sel { box-shadow: 0 0 0 2px ${T.accent}, 0 10px 20px -7px rgba(255,79,40,0.4); transform: translateY(-2px); }

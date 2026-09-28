@@ -514,8 +514,9 @@ function ScoreRing({ correct, total }) {
   );
 }
 
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => {
   const [big, setBig] = useState(false);
+  // F-0926-06: off — ⛶ bo'sh ustun ustida yoki matn ustida turmasin (CssLesson1 naqshi)
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
@@ -536,7 +537,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Развернуть' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -599,7 +600,11 @@ const JestWindow = ({ tone = 'ok', file = 'order.spec.ts', children }) => (
     <div className="jest">{children}</div>
   </div>
 );
-const JestRun = ({ status, testName = '2 kitob narxini hisoblaydi', expected = '20000', received = '10002' }) => {
+// F-0926-06 (S7): test nomi va log-satr ru rejimda ruscha — kod va natija-oyna bir xil matn
+const TN2 = { uz: '2 kitob narxini hisoblaydi', ru: 'считает цену 2 книг' };
+const TN3 = { uz: '3 kitob narxini hisoblaydi', ru: 'считает цену 3 книг' };
+const LOGMSG = { uz: 'test ishladi', ru: 'тест сработал' };
+const JestRun = ({ status, testName = tr(TN2), expected = '20000', received = '10002' }) => {
   if (status !== 'pass' && status !== 'fail') return null;
   if (status === 'pass') return (
     <JestWindow tone="ok">
@@ -639,21 +644,21 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
   };
   const pickedCorrect = correct.filter(c => picked.has(c.id));
   return (
-    <Zoomable>
+    <Zoomable>{/* F-0926-06 J1: ⛶ qaytdi — 1-qatorga o'ngdan joy berildi (CSS: zoomable pad) */}
     <div className="split">
       <Col>
-        <p className="flow-label">{fileName}</p>
+        {/* F-0926-06 (159/7): fayl nomi yorlig'i olindi — oyna sarlavhasida bor */}
         <CodeFile name={fileName} minH={120}>
           {scaffoldTop}{'\n'}
           {pickedCorrect.length === 0
-            ? <span className="line-empty">{'    // ' + tr({ uz: "qatorlarni o'ng tomondan tanlang →", ru: 'выберите строки справа →' })}</span>
+            ? <span className="line-empty">{'    // ' + tr({ uz: "qatorlarni tanlang", ru: 'выберите строки' }) /* F-0926-06: joy so'zi olindi — telefonda ro'yxat pastda (159/11) */}</span>
             : pickedCorrect.map((c, i) => <React.Fragment key={c.id}>{i > 0 ? '\n' : ''}{'    '}{c.node}</React.Fragment>)}
           {'\n'}{scaffoldBottom}
         </CodeFile>
         {agent && <AgentCard>{agent}</AgentCard>}
       </Col>
       <Col>
-        <p className="flow-label">{tr(instruction || { uz: 'Testga tegishli qatorlarni tanlang', ru: 'Выберите строки, относящиеся к тесту' })}</p>
+        {/* F-0926-06 (159/7, G1): ustun-savoli olindi — mentor «tanlang» deydi / sarlavha shu savol */}
         {/* bajarilgach tanlanmagan qatorlar ixcham (147 (e) 2-naqsh) — to'g'ri tanlanganlar va xulosa to'liq qoladi */}
         <div className={`pick-list${done ? ' is-done' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: done ? 5 : 7 }}>
           {candidates.map(c => (
@@ -736,7 +741,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Narx kodini o'zgartirdingiz — biror narsa <span className="italic" style={{ color: T.accent }}>buzilib qolmadimi</span>? Qanday bilasiz?</>, ru: <>Вы изменили код цены — вдруг что-то <span className="italic" style={{ color: T.accent }}>сломалось</span>? Как это узнать?</> })}</h1>
         <Mentor>{tr({ uz: <>KitobShop'da buyurtma summasini hisoblovchi funksiya bor. Uni o'zgartirdingiz. <b style={{ color: T.ink }}>Hisob hali ham to'g'rimi?</b> Funksiyani bosib, javobni tekshirib ko'ring.</>, ru: <>В KitobShop есть функция, которая считает сумму заказа. Вы её изменили. <b style={{ color: T.ink }}>Расчёт всё ещё верный?</b> Нажмите на функцию и проверьте ответ.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable>{/* F-0926-06 J1: ⛶ qaytdi — 1-variantga o'ngdan joy berildi */}
         <Split>
           <Col>
             <OrderFn />
@@ -744,7 +749,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             {tried && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Javob: <b className="mono">20000</b>. To'g'ri ko'rinadi. Lekin funksiyada 5 ta hisob bo'lsa? 50 ta? Har birini har safar <b>qo'lda</b> tekshirasizmi?</>, ru: <>Ответ: <b className="mono">20000</b>. Выглядит верно. А если в функции 5 расчётов? 50? Каждый раз проверять каждый <b>вручную</b>?</> })}</p></div>}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Kod to'g'ri ishlashiga qanday ishonch hosil qilamiz?", ru: 'Как убедиться, что код работает правильно?' })}</p>
+            {/* F-0926-06 (159/7): ustun-savoli olindi — sarlavha «Qanday bilasiz?» shu savol; variantlar kod bilan bir chiziqda */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -774,9 +779,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
+      {/* F-0926-06 (160): yorliq + natija-oyna + izoh bitta kartada */}
+      <div className="vis-card">
       <p className="flow-label">{tr({ uz: 'Dars oxirida — shu natijaga erishasiz', ru: 'В конце урока вы придёте к этому результату' })}</p>
       <JestRun status="pass" />
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sinaymiz: <span className="mono">orderTotal(price, quantity)</span> — KitobShop funksiyasi. Yashil <b style={{ color: T.success }}>PASS</b> — kod to'g'ri ishlayotganini kompyuter tasdiqlaydi.</>, ru: <>Испытываем: <span className="mono">orderTotal(price, quantity)</span> — функцию KitobShop. Зелёный <b style={{ color: T.success }}>PASS</b> — компьютер подтверждает, что код работает верно.</> })}</p></div>
+      <div><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sinaymiz: <span className="mono">orderTotal(price, quantity)</span> — KitobShop funksiyasi. Yashil <b style={{ color: T.success }}>PASS</b> — kod to'g'ri ishlayotganini kompyuter tasdiqlaydi.</>, ru: <>Испытываем: <span className="mono">orderTotal(price, quantity)</span> — функцию KitobShop. Зелёный <b style={{ color: T.success }}>PASS</b> — компьютер подтверждает, что код работает верно.</> })}</p></div>
+      </div>
     </Col>
   );
   const StepsB = (
@@ -820,7 +828,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Har funksiya bir mashina: <b style={{ color: T.ink }}>kirish</b> (price, quantity) berasiz, <b style={{ color: T.ink }}>chiqish</b> (summa) qaytaradi. Test — shu mashinani sinash: "shu kirishga shu chiqishni beradimi?". Misollarni bosib ko'ring.</>, ru: <>Каждая функция — машина: вы даёте <b style={{ color: T.ink }}>вход</b> (price, quantity), она возвращает <b style={{ color: T.ink }}>выход</b> (сумму). Тест — испытание этой машины: «на этот вход она даёт этот выход?». Понажимайте на примеры.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan misolni bosing — har biri mashinaning kirish → chiqish juftini ko'rsatadi.", ru: '💡 Нажмите оставшийся пример — каждый показывает пару вход → выход машины.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={active === null}>{/* F-0926-06: bosishgacha ustun bo'sh — zoom-tugma yolg'iz osilmasin */}
         <div className="split">
           <Col>
             <OrderFn />
@@ -829,9 +837,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'mashina natijasi', ru: 'результат машины' })}</p>
+            {/* F-0926-06 (159/3): bo'sh-holat ramkasi olindi — chorlov mentor gapida («Misollarni bosib ko'ring») */}
+            {active !== null && <p className="flow-label">{tr({ uz: 'mashina natijasi', ru: 'результат машины' })}</p>}
             {active === null
-              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Misolni bosing ←', ru: 'Нажмите на пример ←' })}</p></div>
+              ? null
               : <div className="frame fade-step" key={active}><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 14 }}>{tr({ uz: 'kirish', ru: 'вход' })}: <b>{CASES[active].in}</b><br />↓<br />{tr({ uz: 'chiqish', ru: 'выход' })}: <b style={{ color: T.success }}>{CASES[active].out}</b></p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana mashina mantig'i: <b>kirish → chiqish</b>. Test aynan shuni yozib qo'yadi va har safar tekshiradi.</>, ru: <>Вот логика машины: <b>вход → выход</b>. Тест именно это и записывает — и проверяет каждый раз.</> })}</p></div>}
           </Col>
@@ -891,10 +900,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Mana 5 ta hisob. Har birini <b style={{ color: T.ink }}>o'zingiz</b> bosib ochasiz, keyin natija to'g'riligini tasdiqlaysiz. Bosishlaringiz sanaladi, sekundomer ham ishlaydi. Hammasini tekshirib bo'lgach — <b style={{ color: T.ink }}>Jestbot</b>ga bitta buyruq beramiz va farqni ko'ramiz.</>, ru: <>Вот 5 расчётов. Каждый вы открываете <b style={{ color: T.ink }}>сами</b>, потом подтверждаете, что результат верный. Нажатия считаются, секундомер тикает. Когда проверите всё — дадим <b style={{ color: T.ink }}>Джестботу</b> одну команду и увидим разницу.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har hisobni bosib oching va «✓ To'g'ri» bilan tasdiqlang. Hammasi tekshirilgach ▶ Jestbot chiqadi.", ru: '💡 Откройте каждый расчёт и подтвердите его кнопкой «✓ Верно». Когда проверите все — появится ▶ Джестбот.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!manualDone}>{/* F-0926-06: Jestbot ustuni bo'sh paytda zoom-tugma yo'q */}
         <div className="split">
           <Col>
-            <p className="flow-label">🖐️ {tr({ uz: "Qo'lda tekshirish", ru: 'Проверка вручную' })}</p>
+            <p className="flow-label">{tr({ uz: "Qo'lda tekshirish", ru: 'Проверка вручную' })}</p>{/* F-0926-06 (H3): yorliq emojisi olindi */}
             <div className="race-list fade-up delay-1">
               {RACE_FNS.map(f => {
                 const op = opened.has(f.id), ck = checked.has(f.id);
@@ -916,9 +925,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">🤖 Jestbot</p>
+            {/* F-0926-06 (159/3, H3): bo'sh-holat ramkasi va yorliq emojisi olindi — chorlov mentor gapida */}
+            {manualDone && <p className="flow-label">Jestbot</p>}
             {!manualDone
-              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval 5 tasini qo'lda tekshiring ←", ru: 'Сначала проверьте все 5 вручную ←' })}</p></div>
+              ? null
               : !bot
                 ? <>
                     <Term title="bash" minH={60}><TLine cmd="npm test" /></Term>
@@ -978,7 +988,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Test asbobi kerak — <b style={{ color: T.ink }}>Jest</b>. Uni bir marta o'rnatamiz va <span className="mono">package.json</span>'ga <span className="mono">"test": "jest"</span> buyrug'ini yozamiz. Ikki qadamni bajaring.</>, ru: <>Нужен инструмент для тестов — <b style={{ color: T.ink }}>Jest</b>. Установим его один раз и запишем в <span className="mono">package.json</span> команду <span className="mono">"test": "jest"</span>. Выполните два шага.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Terminal ostidagi tugmani bosing — avval o'rnatish, keyin \"test\": \"jest\" qo'shiladi.", ru: '💡 Нажмите кнопку под терминалом — сначала установка, затем добавится "test": "jest".' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable>{/* F-0926-06 J1: ⛶ qaytdi — 1-izoh kartaga o'ngdan joy berildi */}
         <Split>
           <Col>
             <Term title="bash" minH={130}>
@@ -991,7 +1001,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>-D</b> (--save-dev) — Jest faqat ishlab chiqishda kerak, mijozga yuborilmaydi.</>, ru: <><b style={{ color: T.accent }}>-D</b> (--save-dev) — Jest нужен только при разработке, клиенту он не отправляется.</> })}</p></div>
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>"test": "jest"</b> — endi <span className="mono">npm test</span> deb yozsangiz, Jest ishga tushadi.</>, ru: <><b style={{ color: T.accent }}>"test": "jest"</b> — теперь по команде <span className="mono">npm test</span> запустится Jest.</> })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Jest tayyor! Endi birinchi test faylini yozamiz.', ru: 'Jest готов! Теперь напишем первый файл с тестом.' })}</p></div>}
+            {/* F-0926-06 (159/14): «Jest tayyor!» olindi — tugma «Tayyor» holatni aytadi */}
           </Col>
         </Split>
         </Zoomable>
@@ -1005,7 +1015,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = [
     { id: 'import', t: 'import', d: { uz: "Sinaladigan funksiyani olib kiramiz: import { orderTotal } from './order'.", ru: "Подключаем испытуемую функцию: import { orderTotal } from './order'." } },
     { id: 'describe', t: 'describe', d: { uz: "Bog'liq testlarni guruhlaydi: describe('orderTotal', () => { ... }).", ru: "Группирует связанные тесты: describe('orderTotal', () => { ... })." } },
-    { id: 'it', t: 'it', d: { uz: "Bitta testni yozadi: it('2 kitob narxini hisoblaydi', () => { ... }).", ru: "Описывает один тест: it('2 kitob narxini hisoblaydi', () => { ... })." } },
+    { id: 'it', t: 'it', d: { uz: "Bitta testni yozadi: it('2 kitob narxini hisoblaydi', () => { ... }).", ru: "Описывает один тест: it('считает цену 2 книг', () => { ... })." } },
     { id: 'expect', t: 'expect', d: { uz: "Tasdiq: expect(natija).toBe(kutilgan) — to'g'rimi tekshiradi.", ru: 'Утверждение: expect(результат).toBe(ожидаемое) — сверяет, всё ли верно.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(PARTS.map(p => p.id)) : new Set());
@@ -1030,7 +1040,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <CodeFile name="order.spec.ts" minH={150}>
               <Jx>import</Jx>{' { orderTotal } '}<Jx>from</Jx>{' '}<St>'./order'</St>{';'}{'\n\n'}
               <At>describe</At>{'('}<St>'orderTotal'</St>{', () => {'}{'\n'}
-              {'  '}<At>it</At>{'('}<St>'2 kitob narxini hisoblaydi'</St>{', () => {'}{'\n'}
+              {'  '}<At>it</At>{'('}<St>{"'" + tr(TN2) + "'"}</St>{', () => {'}{'\n'}
               {'    '}<At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000);'}{'\n'}
               {'  });'}{'\n'}
               {'});'}
@@ -1060,7 +1070,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const candidates = [
     { id: 'act', correct: true, label: 'const natija = orderTotal(10000, 2);', node: <>{'const natija = orderTotal(10000, 2);'}</> },
     { id: 'assert', correct: true, label: 'expect(natija).toBe(20000);', node: <><At>expect</At>{'(natija).'}<At>toBe</At>{'(20000);'}</> },
-    { id: 'log', correct: false, label: "console.log('test ishladi');", why: { uz: "console.log faqat ekranga chiqaradi — hech narsani tekshirmaydi. Test uchun expect kerak.", ru: 'console.log только выводит на экран — ничего не проверяет. Для теста нужен expect.' } },
+    { id: 'log', correct: false, label: "console.log('" + tr(LOGMSG) + "');", why: { uz: "console.log faqat ekranga chiqaradi — hech narsani tekshirmaydi. Test uchun expect kerak.", ru: 'console.log только выводит на экран — ничего не проверяет. Для теста нужен expect.' } },
     { id: 'if', correct: false, label: 'if (natija === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — expect(...).toBe(...) buni o'zi tekshiradi va hisobot beradi.", ru: 'В Jest не пишут if вручную — expect(...).toBe(...) сам проверит и отчитается.' } }
   ];
   return (
@@ -1072,16 +1082,17 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <PickLines
           fileName="order.spec.ts"
-          scaffoldTop={<><At>it</At>{'('}<St>'2 kitob narxini hisoblaydi'</St>{', () => {'}</>}
+          scaffoldTop={<><At>it</At>{'('}<St>{"'" + tr(TN2) + "'"}</St>{', () => {'}</>}
           scaffoldBottom={<>{'  });'}</>}
           candidates={candidates}
           agent={{ uz: "orderTotal'ni sinaydigan test yoz: 10000 narx, 2 dona → 20000 bo'lishini expect(...).toBe(...) bilan tekshir.", ru: 'Напиши тест для orderTotal: цена 10000, 2 штуки → проверь через expect(...).toBe(...), что выйдет 20000.' }}
           instruction={{ uz: 'Testga qaysi qatorlar kiradi?', ru: 'Какие строки входят в тест?' }}
+          doneNote={tr({ uz: <>Mana asosiy g'oya: funksiyani <b>chaqir</b>, natijani <b>expect bilan tekshir</b>. <span className="mono">console.log</span> tekshirmaydi — u test emas.</>, ru: <>Вот главная идея: <b>вызови</b> функцию, <b>проверь</b> результат через expect. <span className="mono">console.log</span> не проверяет — это не тест.</> })}
           onProgress={() => setProg(p => p + 1)}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
         />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana asosiy g'oya: funksiyani <b>chaqir</b>, natijani <b>expect bilan tekshir</b>. <span className="mono">console.log</span> tekshirmaydi — u test emas.</>, ru: <>Вот главная идея: <b>вызови</b> функцию, <b>проверь</b> результат через expect. <span className="mono">console.log</span> не проверяет — это не тест.</> })}</p></div>}
+        {/* F-0926-06 (159/14): xulosa PickLines doneNote'iga ko'chdi — ikki yashil quti edi */}
       </div>
     </Stage>
   );
@@ -1111,10 +1122,10 @@ const DD_SLOTS = [
 ];
 const DD_CHIPS = [
   { id: 'expect',   label: 'expect(orderTotal(10000, 2)).toBe(20000);', node: <><At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000);'}</> },
-  { id: 'log',      label: "console.log('test ishladi');", why: { uz: "console.log faqat ekranga chiqaradi — Jestbotga hech qanday etalon bermaydi.", ru: 'console.log только выводит на экран — никакого эталона Джестботу не даёт.' } },
+  { id: 'log',      get label() { return "console.log('" + tr(LOGMSG) + "');"; }, why: { uz: "console.log faqat ekranga chiqaradi — Jestbotga hech qanday etalon bermaydi.", ru: 'console.log только выводит на экран — никакого эталона Джестботу не даёт.' } },
   { id: 'describe', label: "describe('orderTotal', () => {", node: <><At>describe</At>{'('}<St>'orderTotal'</St>{', () => {'}</> },
   { id: 'if',       label: 'if (result === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — etalon kartochkasi expect(...).toBe(...) bilan beriladi.", ru: 'В Jest не пишут if вручную — карточка-эталон задаётся через expect(...).toBe(...).' } },
-  { id: 'it',       label: "it('2 kitob narxini hisoblaydi', () => {", node: <><At>it</At>{'('}<St>'2 kitob narxini hisoblaydi'</St>{', () => {'}</> },
+  { id: 'it',       get label() { return "it('" + tr(TN2) + "', () => {"; }, get node() { return <><At>it</At>{'('}<St>{"'" + tr(TN2) + "'"}</St>{', () => {'}</>; } }, // F-0926-06 (S7): getter — modul yuklanganda til hali 'uz'
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const solvedInit = () => ({ describe: 0, it: 1, expect: 2 });
@@ -1191,13 +1202,13 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mashq · varaqa', ru: 'Практика · бланк' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Jestbotga topshiriq varaqasini <span className="italic" style={{ color: T.accent }}>o'zingiz yig'ing</span>.</>, ru: <>Соберите бланк задания для Джестбота <span className="italic" style={{ color: T.accent }}>своими руками</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bo'sh <span className="mono">order.spec.ts</span> varaqasi. Bloklarni joyiga <b style={{ color: T.ink }}>bosib</b> qo'ying (sudrash ham mumkin) — har katak nima kutayotganini o'zi aytadi. Yig'ib bo'lgach <span className="mono">npm test</span> bilan robotni ishga tushiring — va nima chiqishini kuzating.</>, ru: <>Пустой бланк <span className="mono">order.spec.ts</span>. <b style={{ color: T.ink }}>Нажмите</b> на блоки, чтобы поставить их на места (можно и перетащить) — каждая ячейка сама говорит, что в неё нужно. Когда соберёте — запустите робота командой <span className="mono">npm test</span> и посмотрите, что получится.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bo'sh <span className="mono">order.spec.ts</span> varaqasi. Avval blokni, keyin uning qatorini <b style={{ color: T.ink }}>bosing</b> (sudrash ham mumkin) — har katak nima kutayotganini o'zi aytadi. Yig'ib bo'lgach <span className="mono">npm test</span> bilan robotni ishga tushiring — va nima chiqishini kuzating.</>, ru: <>Пустой бланк <span className="mono">order.spec.ts</span>. <b style={{ color: T.ink }}>Нажмите</b> сначала на блок, затем на его строку (можно и перетащить) — каждая ячейка сама говорит, что в неё нужно. Когда соберёте — запустите робота командой <span className="mono">npm test</span> и посмотрите, что получится.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Blokni bosing — u o'z qatoriga o'zi tushadi: avval describe, keyin it, keyin expect. So'ng ▶ npm test.", ru: '💡 Нажмите блок — он сам встанет в свою строку: сначала describe, потом it, потом expect. Затем ▶ npm test.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable>{/* F-0926-06 J1: ⛶ qaytdi — 1-blokka o'ngdan joy berildi */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'order.spec.ts — varaqa', ru: 'order.spec.ts — бланк' })}</p>
+            {/* F-0926-06 (159/7): «order.spec.ts — varaqa» olindi — oyna sarlavhasida bor */}
             <div className="dd-sheet">
               <div className="dd-sheet-bar"><span className="bb-dots"><i /><i /><i /></span><span className="editor-file">order.spec.ts</span></div>
               <div className="dd-sheet-body">
@@ -1217,7 +1228,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!canRun} onClick={runTests}>▶ npm test</button>
           </Col>
           <Col>
-            <p className="flow-label">{sel ? tr({ uz: 'endi blok qaysi qatorga tushishini bosing', ru: 'теперь нажмите строку, куда встанет блок' }) : tr({ uz: 'blokni tanlang — keyin qatorini bosing', ru: 'выберите блок — затем нажмите его строку' })}</p>
+            {/* F-0926-06 (159/7): yo'riq-yorliq olindi — ikki bosqichli bosish mentor gapiga ko'chdi */}
             <div className="dd-pool fade-up delay-1">
               {pool.length ? pool.map(c => (
                 <div key={c.id} className={`dd-chip ${shake === c.id ? 'shake' : ''}`} onPointerDown={(e) => down(e, c)}
@@ -1232,7 +1243,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               // Lampa ATAYIN yashil — yolg'on PASS: 0 ta tasdiq (assertion) tekshirilgan.
               <JestWindow tone="ok">
                 <div><span className="jest-tag">PASS</span><span className="jest-file"> order.spec.ts</span></div>
-                <div className="jest-block"><span style={{ color: CODE.ok }}>✓</span> 2 kitob narxini hisoblaydi <span style={{ color: CODE.comment }}>(1 ms)</span></div>
+                <div className="jest-block"><span style={{ color: CODE.ok }}>✓</span> {tr(TN2)} <span style={{ color: CODE.comment }}>(1 ms)</span></div>
                 <div className="jest-sum">Tests: <b style={{ color: CODE.ok }}>1 passed</b>, 1 total · <b style={{ color: CODE.attr }}>{tr({ uz: '0 ta tasdiq tekshirildi', ru: 'проверено 0 утверждений' })}</b></div>
               </JestWindow>
             )}
@@ -1273,7 +1284,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {ran
               ? <JestRun status="pass" />
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 <b style={{ color: T.success }}>1 passed</b>! Kodingiz to'g'ri ishlayapti — va buni kompyuter tasdiqladi. Lekin test qachon <b>qizil</b> bo'ladi?</>, ru: <>🎉 <b style={{ color: T.success }}>1 passed</b>! Ваш код работает верно — и это подтвердил компьютер. Но когда тест становится <b>красным</b>?</> })}</p></div>}
+            {/* F-0926-06 (I3, 159/14): «1 passed!» qutisi olindi — natija oynasi va «Bajarildi» tugmasi aytadi */}
           </Col>
         </div>
         </Zoomable>
@@ -1320,13 +1331,13 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Har test 3 qadamdan iborat: <b style={{ color: T.ink }}>Tayyorla → Chaqir → Tekshir</b> (ingliz tilida AAA: Arrange-Act-Assert). Har qadamni bosing.</>, ru: <>Каждый тест состоит из 3 шагов: <b style={{ color: T.ink }}>Подготовь → Вызови → Проверь</b> (по-английски AAA: Arrange-Act-Assert). Нажмите на каждый шаг.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan qadamni bosing — Tayyorla, Chaqir, Tekshir: har biri bir kod-qatorga to'g'ri keladi.", ru: '💡 Нажмите оставшийся шаг — Подготовь, Вызови, Проверь: каждый соответствует одной строке кода.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
-        <Zoomable>
+        <Zoomable off={!cur}>{/* F-0926-06 (ZBTN): bosishgacha o'ng ustun bo'sh */}
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {STEPS.map(s => (
                 <button key={s.id} className={`vcard ${s.id === firstUnseen ? 'tap-hint' : ''}`} onClick={() => tap(s.id)} style={{ boxShadow: active === s.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
-                  <span className="role-ico">{s.icon}</span>
+                  {/* F-0926-06 (159/4): ico-emoji olindi */}
                   <span className="vlbl">{tr(s.t)}</span>
                   <span className="role-r mono">{s.en}</span>
                   <span className="vseen" style={{ color: seen.has(s.id) ? T.success : T.ink3 }}>{seen.has(s.id) ? '✓' : ''}</span>
@@ -1336,9 +1347,9 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span>{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>({cur.en})</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
+              ? <div className="frame fade-step" key={active}><p className="note-h">{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>({cur.en})</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tayyorla → Chaqir → Tekshir. Har testni shu tartibda yozsangiz — toza va tushunarli bo'ladi.", ru: 'Подготовь → Вызови → Проверь. Пишите каждый тест в этом порядке — получится чисто и понятно.' })}</p></div>}
+            {/* F-0926-06 (159/7): xulosa olindi — mentor «Tayyorla → Chaqir → Tekshir» deydi */}
           </Col>
         </div>
         </Zoomable>
@@ -1407,11 +1418,13 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [prog, setProg] = useState(0);
   const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: yolg'on test tanlandi — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, prog);   // 13-band klapan
+  const K2 = { uz: '2 kitob', ru: '2 книги' }, K3 = { uz: '3 kitob', ru: '3 книги' };
   const candidates = [
-    { id: 'ok1', correct: true, label: "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); })", node: <><At>it</At>{'('}<St>'2 kitob'</St>{', () => { '}<At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000); });'}</> },
-    { id: 'ok2', correct: true, label: "it('3 kitob', () => { expect(orderTotal(5000, 3)).toBe(15000); })", node: <><At>it</At>{'('}<St>'3 kitob'</St>{', () => { '}<At>expect</At>{'(orderTotal(5000, 3)).'}<At>toBe</At>{'(15000); });'}</> },
-    { id: 'no-expect', correct: false, label: "it('ishlaydi', () => { orderTotal(10000, 2); })", why: { uz: "Bu testda etalon kartochkasi yo'q — expect yozilmagan. Jestbot hech narsani solishtirmaydi va DOIM yashil beradi. Yolg'on test.", ru: 'В этом тесте нет карточки-эталона — expect не написан. Джестбот ничего не сравнивает и ВСЕГДА даёт зелёный. Ложный тест.' } },
-    { id: 'bad-etalon', correct: false, label: "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(10002); })", why: { uz: "Etalon noto'g'ri: 10000 × 2 = 20000, 10002 emas. Robot etalonga ishonadi — kod to'g'ri bo'lsa ham qizil beradi. Noto'g'ri etalon = noto'g'ri test.", ru: 'Эталон неверный: 10000 × 2 = 20000, а не 10002. Робот верит эталону — даже при верном коде даст красный. Неверный эталон = неверный тест.' } },
+    // F-0926-06 (S7): test nomlari ru rejimda ruscha (qator ro'yxati va kod-oyna bir xil)
+    { id: 'ok1', correct: true, label: "it('" + tr(K2) + "', () => { expect(orderTotal(10000, 2)).toBe(20000); })", node: <><At>it</At>{'('}<St>{"'" + tr(K2) + "'"}</St>{', () => { '}<At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000); });'}</> },
+    { id: 'ok2', correct: true, label: "it('" + tr(K3) + "', () => { expect(orderTotal(5000, 3)).toBe(15000); })", node: <><At>it</At>{'('}<St>{"'" + tr(K3) + "'"}</St>{', () => { '}<At>expect</At>{'(orderTotal(5000, 3)).'}<At>toBe</At>{'(15000); });'}</> },
+    { id: 'no-expect', correct: false, label: "it('" + tr({ uz: 'ishlaydi', ru: 'работает' }) + "', () => { orderTotal(10000, 2); })", why: { uz: "Bu testda etalon kartochkasi yo'q — expect yozilmagan. Jestbot hech narsani solishtirmaydi va DOIM yashil beradi. Yolg'on test.", ru: 'В этом тесте нет карточки-эталона — expect не написан. Джестбот ничего не сравнивает и ВСЕГДА даёт зелёный. Ложный тест.' } },
+    { id: 'bad-etalon', correct: false, label: "it('" + tr(K2) + "', () => { expect(orderTotal(10000, 2)).toBe(10002); })", why: { uz: "Etalon noto'g'ri: 10000 × 2 = 20000, 10002 emas. Robot etalonga ishonadi — kod to'g'ri bo'lsa ham qizil beradi. Noto'g'ri etalon = noto'g'ri test.", ru: 'Эталон неверный: 10000 × 2 = 20000, а не 10002. Робот верит эталону — даже при верном коде даст красный. Неверный эталон = неверный тест.' } },
     { id: 'log', correct: false, label: "it('log', () => { console.log(orderTotal(5000, 3)); })", why: { uz: "console.log faqat chiqaradi. Tasdiq yo'q — bu ham yolg'on test.", ru: 'console.log только выводит. Утверждения нет — это тоже ложный тест.' } }
   ];
   return (
@@ -1490,12 +1503,12 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Jestbotning qo'lida <span className="italic" style={{ color: T.accent }}>bo'sh kartochka</span>. Etalonni siz yozasiz.</>, ru: <>У Джестбота в руках <span className="italic" style={{ color: T.accent }}>пустая карточка</span>. Эталон вписываете вы.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Holat: <b style={{ color: T.ink }}>5000 so'mlik kitob, 3 dona</b>. Robotga etalon kartochkasini berasiz: <span className="mono">expect(orderTotal(5000, 3)).toBe( ? )</span>. Qaysi qiymat kartochkaga yoziladi — <b style={{ color: T.ink }}>o'zingiz hisoblang</b>.</>, ru: <>Ситуация: <b style={{ color: T.ink }}>книга за 5000 сумов, 3 штуки</b>. Вы даёте роботу карточку-эталон: <span className="mono">expect(orderTotal(5000, 3)).toBe( ? )</span>. Какое значение вписать — <b style={{ color: T.ink }}>посчитайте сами</b>.</> })}{oneShot ? tr({ uz: ' Jonli dars — bitta urinish.', ru: ' Живой урок — одна попытка.' }) : ''}</Mentor>
-        <Zoomable>
+        <Zoomable off={!showAnswer}>{/* F-0926-06: javobgacha o'ng ustun bo'sh */}
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'order.spec.ts — etalon kartochkasi', ru: 'order.spec.ts — карточка-эталон' })}</p>
+            {/* F-0926-06 (159/7): yorliq olindi — oyna sarlavhasi order.spec.ts */}
             <CodeFile name="order.spec.ts" minH={110}>
-              <At>it</At>{'('}<St>'3 kitob narxini hisoblaydi'</St>{', () => {'}{'\n'}
+              <At>it</At>{'('}<St>{"'" + tr(TN3) + "'"}</St>{', () => {'}{'\n'}
               {'  '}<At>expect</At>{'(orderTotal(5000, 3)).'}<At>toBe</At>{'('}
               <span className={`card-slot ${showAnswer ? 'on' : ''}`}>{showAnswer ? CARD_OPTS[CARD_CORRECT] : '?'}</span>
               {');'}{'\n'}
@@ -1516,16 +1529,17 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "burilish — noto'g'ri etalon", ru: 'поворот — неверный эталон' })}</p>
+            {/* F-0926-06 (159/3): bo'sh-holat ramkasi olindi; yorliq javobdan keyin chiqadi */}
+            {showAnswer && <p className="flow-label">{tr({ uz: "burilish — noto'g'ri etalon", ru: 'поворот — неверный эталон' })}</p>}
             {!showAnswer
-              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval kartochkani to'ldiring ←", ru: 'Сначала заполните карточку ←' })}</p></div>
+              ? null
               : !twist
                 ? <>
                     <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi bir tajriba: kartochkaga <b className="mono">12000</b> yozib qo'yamiz. <b style={{ color: T.ink }}>Kod to'g'ri</b>, funksiya o'zgarmadi. Robot nima deydi?</>, ru: <>Теперь эксперимент: впишем в карточку <b className="mono">12000</b>. <b style={{ color: T.ink }}>Код верный</b>, функция не менялась. Что скажет робот?</> })}</p></div>
                     <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => { setTwist(true); setSc(n => n + 1); }}>{tr({ uz: "▶ Noto'g'ri etalon bilan ishga tushirish", ru: '▶ Запустить с неверным эталоном' })}</button>
                   </>
                 : <>
-                    <JestRun status="fail" testName="3 kitob narxini hisoblaydi" expected="12000" received="15000" />
+                    <JestRun status="fail" testName={tr(TN3)} expected="12000" received="15000" />
                     <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kod to'g'ri — lampa esa <b style={{ color: T.danger }}>QIZIL</b>. Chunki Jestbot <b>o'zi to'g'rini bilmaydi</b>: u faqat sizning etaloningiz bilan solishtiradi. Noto'g'ri etalon = noto'g'ri test.</>, ru: <>Код верный — а лампа <b style={{ color: T.danger }}>КРАСНАЯ</b>. Потому что Джестбот <b>сам не знает</b>, как правильно: он лишь сверяет с вашим эталоном. Неверный эталон = неверный тест.</> })}</p></div>
                   </>}
           </Col>
@@ -2247,7 +2261,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Этапы — отмечайте по ходу' })}</p>
+            {/* F-0926-06 (159/7): yorliq olindi — mentor «belgilab boring» deydi */}
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
@@ -2260,9 +2274,9 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Готово' })}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: 'Bajardim', ru: 'Выполнил' }) /* F-0926-06 (H3, D2): emoji olindi; ru — mentor «Выполнил» deydi */}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
+            {/* F-0926-06 (159/14): takror yashil quti olindi — tugma «Bajarildi — ustozni kuting» */}
           </Col>
         </div>
       </div>
@@ -2633,6 +2647,10 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .zoomable { position: relative; }
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .zoomable > .split > .col:last-child > .sk-info:first-child,
+        .zoomable > .split > .col:last-child > .pick-list:first-child > .pick-row:first-child,
+        .zoomable > .split > .col:last-child > :first-child > .hook-option:first-child,
+        .zoomable > .split > .col:last-child > .dd-pool:first-child > .dd-chip:first-child { padding-right: 46px; } /* F-0926-06 J1: ⛶ o'ng ustundagi birinchi karta matnini yopmasin (NestArchAlive naqshi) */
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
@@ -2744,8 +2762,8 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-steps { display: flex; flex-direction: column; gap: 6px; } /* F-0926-06 (159/12): ru da «Готово» tugmalar chizig'idan tushardi — ixchamlash */
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 13px; line-height: 1.42; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
@@ -3216,6 +3234,8 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
 
         /* JESTBOT HAKAMI — terminal oynasi (chrome + hukm chirog'i + PASS/FAIL + Expected/Received dalili) */
         .jestrun { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.3); }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: 14px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06 (160-qonun) */
+        .vis-card .jestrun { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); }
         .jestrun.ok { }
         .jestrun.bad { }
         .jestrun .term-bar { background: #22304A; }

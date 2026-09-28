@@ -483,9 +483,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: `Saytingiz 5 ta bo'limdan iborat bo'ladi: sarlavha — ismingiz va kasbingiz, men haqimda, loyihalar, aloqa va eng pastda footer. Har bir bo'limni birma-bir o'z qo'lingiz bilan quramiz. Ishonasizmi — dars oxirida o'ngdagi saytni o'zingiz qurasiz!`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: `Saytingiz 5 ta bo'limdan iborat bo'ladi: sarlavha — ismingiz va yo'nalishingiz, men haqimda, loyihalar, aloqa va eng pastda footer. Har bir bo'limni birma-bir o'z qo'lingiz bilan quramiz. Ishonasizmi — dars oxirida o'ngdagi saytni o'zingiz qurasiz!`, trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
-    { text: { uz: 'Sarlavha — ism va kasb', ru: 'Шапка — имя и профессия' }, tag: 'header' },
+    { text: { uz: "Sarlavha — ism va yo'nalish", ru: 'Шапка — имя и направление' }, tag: 'header' },
     { text: { uz: 'Men haqimda — rasm va matn', ru: 'Обо мне — фото и текст' }, tag: 'section' },
     { text: { uz: 'Loyihalar — ishlaringiz', ru: 'Проекты — ваши работы' }, tag: 'ul / li' },
     { text: { uz: 'Aloqa — sizni topishlari uchun', ru: 'Контакты — чтобы вас нашли' }, tag: 'a' },
@@ -565,11 +565,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <DragDropOrder items={SKELET_PIECES} hints={[{ uz: 'eng yuqorida', ru: 'в самом верху' }, { uz: "birinchi bo'lim", ru: 'первый раздел' }, { uz: "ikkinchi bo'lim", ru: 'второй раздел' }, { uz: "uchinchi bo'lim", ru: 'третий раздел' }, { uz: 'eng pastda', ru: 'в самом низу' }]} onSolved={() => setDragDone(true)} onWrong={onSkelWrong} />
               </div>
             )}
-            {!done && <AchRule screen={screen} />}
           </div>
           <div className="col">
             <div className="frame-wait"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Asosiy:</b> sahifani bo'laklarga bo'lamiz. Har bo'lak — alohida teg: <span className="mono">{'<header>'}</span>, <span className="mono">{'<section>'}</span>, <span className="mono">{'<footer>'}</span>. Ularni birma-bir to'ldiramiz.</>, ru: <><b>Главное:</b> делим страницу на части. Каждая часть — отдельный тег: <span className="mono">{'<header>'}</span>, <span className="mono">{'<section>'}</span>, <span className="mono">{'<footer>'}</span>. Заполним их по очереди.</> })}</p></div>
             {dragDone && <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: "Skeletni o'zingiz yig'dingiz", ru: 'Вы сами собрали скелет' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Endi har bir bo'sh blokni teglar bilan to'ldiramiz. Birinchi — sarlavha (header).", ru: 'Теперь заполним каждый пустой блок тегами. Первый — шапка (header).' })}</p></div>}
+            {/* F-0927 (layout-lint E): nishon-sharti o'ng ustunga — chapda 5 katak ostida 16px tushardi (159/6) */}
+            {!done && <AchRule screen={screen} />}
           </div>
         </div>
         </Zoomable>
@@ -580,7 +581,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 3 — BUILD: HEADER (shaxsiy) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's3', text: `Birinchi blok — sarlavha. Bu yerda ikkita narsa bor: ismingiz va kasbingiz. Ismingizni eng katta sarlavha — h1 teg ichiga, kasbingizni esa oddiy matn — p teg ichiga yozamiz. Ismingiz va kasbingizni yozing, keyin "Headerni qo'shish" tugmasini bosing.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's3', text: `Birinchi blok — sarlavha. Bu yerda ikkita narsa bor: ismingiz va yo'nalishingiz. Ismingizni eng katta sarlavha — h1 teg ichiga, yo'nalishingizni esa oddiy matn — p teg ichiga yozamiz. Ismingiz va yo'nalishingizni yozing, keyin "Headerni qo'shish" tugmasini bosing.`, trigger: 'on_mount', waits_for: null }]);
   const [name, setName] = useState(typeof storedAnswer?.name === 'string' ? storedAnswer.name : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [role, setRole] = useState(typeof storedAnswer?.role === 'string' ? storedAnswer.role : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [done, setDone] = useState(!!storedAnswer);
@@ -591,20 +592,20 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Build · Header" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Headerni qo'shing", ru: 'Добавьте header' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingiz qanday <span className="italic" style={{ color: T.accent }}>boshlanadi</span>?</>, ru: <>С чего <span className="italic" style={{ color: T.accent }}>начинается</span> ваш сайт?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Eng yuqoridagi blok — <b style={{ color: T.ink }}>header</b>. Ismingizni <span className="mono">{'<h1>'}</span> (asosiy sarlavha), kasbingizni <span className="mono">{'<p>'}</span> (oddiy matn) ichiga yozamiz. To'ldiring va qo'shing.</>, ru: <>Самый верхний блок — <b style={{ color: T.ink }}>header</b>. Имя запишем в <span className="mono">{'<h1>'}</span> (главный заголовок), профессию — в <span className="mono">{'<p>'}</span> (обычный текст). Заполните и добавьте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Eng yuqoridagi blok — <b style={{ color: T.ink }}>header</b>. Ismingizni <span className="mono">{'<h1>'}</span> (asosiy sarlavha), yo'nalishingizni <span className="mono">{'<p>'}</span> (oddiy matn) ichiga yozamiz. To'ldiring va qo'shing.</>, ru: <>Самый верхний блок — <b style={{ color: T.ink }}>header</b>. Имя запишем в <span className="mono">{'<h1>'}</span> (главный заголовок), направление — в <span className="mono">{'<p>'}</span> (обычный текст). Заполните и добавьте.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
             <div className="build-in fade-up delay-2">
               {/* F-0926-06 (159/8): maydon yorlig'i placeholder ichiga ko'chdi — tepada HAM ichida HAM yozuv yo'q */}
               <input className="text-input" value={name} aria-label={tr({ uz: 'Ismingiz (h1)', ru: 'Ваше имя (h1)' })} placeholder={tr({ uz: 'Ismingiz — masalan, Aziza Karimova', ru: 'Ваше имя — например, Азиза Каримова' })} onChange={e => setName(e.target.value)} />
-              <input className="text-input" value={role} aria-label={tr({ uz: "Kasbingiz / yo'nalishingiz (p)", ru: 'Ваша профессия / направление (p)' })} placeholder={tr({ uz: "Yo'nalishingiz — masalan, Frontend dasturchi", ru: 'Ваше направление — например, Frontend-разработчик' })} onChange={e => setRole(e.target.value)} />
+              <input className="text-input" value={role} aria-label={tr({ uz: "Yo'nalishingiz (p)", ru: 'Ваше направление (p)' })} placeholder={tr({ uz: "Yo'nalishingiz — masalan, Frontend dasturchi", ru: 'Ваше направление — например, Frontend-разработчик' })} onChange={e => setRole(e.target.value)} />
             </div>
             <pre className="code-box fade-up delay-2"><Tg>{'<header>'}</Tg>{'\n  '}<Tg>{'<h1>'}</Tg>{dispName}<Tg>{'</h1>'}</Tg>{'\n  '}<Tg>{'<p>'}</Tg>{dispRole}<Tg>{'</p>'}</Tg>{'\n'}<Tg>{'</header>'}</Tg></pre>
             {!done && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={add}>➕ {tr({ uz: "Headerni qo'shish", ru: 'Добавить header' })}</button>}
           </div>
           <div className="col">
-            <div className="flow-label">{tr({ uz: 'Brauzerda (hozircha bezaksiz)', ru: 'В браузере (пока без оформления)' })}</div>
+            <div className="flow-label">{tr({ uz: 'Brauzerda', ru: 'В браузере' } /* F-0926-06 (HP3): CSS-va'dasi faqat 1- va 19-ekranda */)}</div>
             <Preview title="portfolio.html" minH={140}>
               {done ? <div className="fade-step"><SiteRender name={dispName} role={dispRole} parts={['header']} /></div>
                 : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: '"Headerni qo\'shish" ni bosing — sarlavha shu yerda chiqadi', ru: 'Нажмите «Добавить header» — заголовок появится здесь' })}</p>}
@@ -662,7 +663,7 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
               {solved ? <div className="fade-step"><SiteRender name={pf.name} role={pf.role} parts={['header', 'nav']} /></div>
                 : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "To'g'ri tegni tanlang — menyu havolalari paydo bo'ladi", ru: 'Выберите верный тег — появятся ссылки меню' })}</p>}
             </Preview>
-            {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Havolalar hozir <b>ko'k va tagi chizilgan</b> — bu brauzerning standart ko'rinishi. CSS darsida ularni chiroyli qilamiz.</>, ru: <>Ссылки сейчас <b>синие и подчёркнутые</b> — это стандартный вид браузера. На уроке CSS сделаем их красивыми.</> })}</p></div>}
+            {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Havolalar hozir <b>ko'k va tagi chizilgan</b> — bu brauzerning standart ko'rinishi.</>, ru: <>Ссылки сейчас <b>синие и подчёркнутые</b> — это стандартный вид браузера.</> })}</p></div>}
           </div>
         </div>
         </Zoomable>
@@ -923,7 +924,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 15 — YIG'ISH (to'liq portfolio) =====
 const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pf = usePortfolio(answers);
-  const audio = useAudio([{ id: 's15', text: `Mana eng zo'r qismi — barcha bloklarni bitta sahifaga yig'amiz. Tugmani bosing va o'z portfolio saytingiz to'liq ko'rinishda paydo bo'lsin. Hozir u bezaksiz, oddiy — bu normal. Keyingi darsda CSS bilan uni chiroyli qilamiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's15', text: `Mana eng zo'r qismi — barcha bloklarni bitta sahifaga yig'amiz. Tugmani bosing va o'z portfolio saytingiz to'liq ko'rinishda paydo bo'lsin.`, trigger: 'on_mount', waits_for: null }]);
   const ALL = ['header', 'nav', 'about', 'projects', 'contact', 'footer'];
   const isNarrow = useIsMobile(768);
   const [built, setBuilt] = useState(storedAnswer ? ALL : []);
@@ -943,7 +944,7 @@ const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
     <Stage eyebrow={tr({ uz: "Saytni yig'ish", ru: 'Сборка сайта' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Yakuniy savol →', ru: 'Финальный вопрос →' } : { uz: "Avval saytni yig'ing", ru: 'Сначала соберите сайт' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasini bitta <span className="italic" style={{ color: T.accent }}>saytga</span> yig'amizmi?</>, ru: <>Соберём всё в один <span className="italic" style={{ color: T.accent }}>сайт</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana eng zo'r qismi! Tugmani bosing — barcha bloklar <b style={{ color: T.ink }}>birma-bir</b> yig'ilib, sizning to'liq portfolio saytingiz paydo bo'ladi. Bezaksiz — bu normal, CSS keyin.</>, ru: <>Вот самая крутая часть! Нажмите кнопку — все блоки соберутся <b style={{ color: T.ink }}>один за другим</b>, и появится ваш полный сайт-портфолио. Без оформления — это нормально, CSS потом.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana eng zo'r qismi! Tugmani bosing — barcha bloklar <b style={{ color: T.ink }}>birma-bir</b> yig'ilib, sizning to'liq portfolio saytingiz paydo bo'ladi.</>, ru: <>Вот самая крутая часть! Нажмите кнопку — все блоки соберутся <b style={{ color: T.ink }}>один за другим</b>, и появится ваш полный сайт-портфолио.</> })}</Mentor>
         <Zoomable>
         <div className="split" style={{ alignItems: 'stretch' }}>
           <div className="col">
@@ -951,7 +952,7 @@ const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
             <div className="asm-list fade-up delay-2">
               {ALL.map((p, i) => (<div key={p} className={`asm-row ${built.includes(p) ? 'on' : ''}`}><span className="asm-ic">{built.includes(p) ? '✓' : (i + 1)}</span><span className="mono small">{`<${p}>`}</span></div>))}
             </div>
-            {done && <div className="frame-success fade-step" style={{ marginTop: 'auto' }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Sayt tayyor!', ru: 'Сайт готов!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu — to'liq <b>HTML</b> bilan qurilgan, ishlaydigan sayt. Keyingi darsda CSS bilan ranglar va chiroyli ko'rinish beramiz.</>, ru: <>Это работающий сайт, целиком построенный на <b>HTML</b>. На следующем уроке добавим цвета и красивый вид с помощью CSS.</> })}</p></div>}
+            {done && <div className="frame-success fade-step" style={{ marginTop: 'auto' }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Sayt tayyor!', ru: 'Сайт готов!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu — to'liq <b>HTML</b> bilan qurilgan, ishlaydigan sayt.</>, ru: <>Это работающий сайт, целиком построенный на <b>HTML</b>.</> })}</p></div>}
           </div>
           <div className="col">
             <div className="flow-label">{pf.name} — portfolio.html</div>
@@ -987,7 +988,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const pf = usePortfolio(answers);
   const audio = useAudio([{ id: 's17', text: "Tabriklayman! Siz o'z qo'lingiz bilan to'liq portfolio saytini HTML bilan qurdingiz: header, navigatsiya, men haqimda, loyihalar, aloqa va footer. Hozir u bezaksiz. Keyingi darsda esa aynan shu saytni CSS bilan bezaymiz — ranglar, shriftlar, chiroyli joylashuv. Tayyor bo'ling!", trigger: 'on_mount', waits_for: null }]);
-  const RECAP = [{ uz: 'header — sahifa sarlavhasi (ism, kasb)', ru: 'header — шапка страницы (имя, профессия)' }, { uz: 'h1, h2 — sarlavhalar bosqichi', ru: 'h1, h2 — ступени заголовков' }, { uz: 'nav va a — menyu havolalari', ru: 'nav и a — ссылки меню' }, { uz: "section — alohida bo'limlar", ru: 'section — отдельные разделы' }, { uz: 'img (src, alt) — rasm', ru: 'img (src, alt) — картинка' }, { uz: "ul va li — ro'yxat", ru: 'ul и li — список' }, { uz: 'a + mailto — email havola', ru: 'a + mailto — email-ссылка' }, { uz: 'footer — pastki qism', ru: 'footer — нижняя часть' }];
+  const RECAP = [{ uz: "header — sahifa sarlavhasi (ism, yo'nalish)", ru: 'header — шапка страницы (имя, направление)' }, { uz: 'h1, h2 — sarlavhalar bosqichi', ru: 'h1, h2 — ступени заголовков' }, { uz: 'nav va a — menyu havolalari', ru: 'nav и a — ссылки меню' }, { uz: "section — alohida bo'limlar", ru: 'section — отдельные разделы' }, { uz: 'img (src, alt) — rasm', ru: 'img (src, alt) — картинка' }, { uz: "ul va li — ro'yxat", ru: 'ul и li — список' }, { uz: 'a + mailto — email havola', ru: 'a + mailto — email-ссылка' }, { uz: 'footer — pastki qism', ru: 'footer — нижняя часть' }];
   const HOMEWORK = [{ b: { uz: "O'zgartiring", ru: 'Измените' }, t: { uz: "— loyihalar ro'yxatiga yana bitta ish qo'shing", ru: '— добавьте в список проектов ещё одну работу' } }, { b: { uz: "To'ldiring", ru: 'Дополните' }, t: { uz: '— "Men haqimda" matnini o\'zingiz haqingizda yozing', ru: '— напишите текст «Обо мне» о себе' } }, { b: { uz: 'Tayyorlaning', ru: 'Подготовьтесь' }, t: { uz: '— keyingi darsda shu saytga CSS beramiz', ru: '— на следующем уроке дадим этому сайту CSS' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1103,8 +1104,8 @@ const RECAPS = {
       { ic: '📉', h: { uz: 'h2, h3 — kichikroq sarlavhalar', ru: 'h2, h3 — заголовки поменьше' },
         body: { uz: <>Sarlavhalar <b>bosqichma-bosqich</b> kichrayadi: <b className="mono">&lt;h1&gt;</b> eng katta, keyin <b className="mono">&lt;h2&gt;</b>, <b className="mono">&lt;h3&gt;</b> … <b className="mono">&lt;h6&gt;</b> eng kichik. Bo'lim sarlavhalari (Men haqimda, Loyihalar) — <b className="mono">&lt;h2&gt;</b>.</>, ru: <>Заголовки уменьшаются <b>ступенями</b>: <b className="mono">&lt;h1&gt;</b> самый большой, затем <b className="mono">&lt;h2&gt;</b>, <b className="mono">&lt;h3&gt;</b> … <b className="mono">&lt;h6&gt;</b> самый маленький. Заголовки разделов (Обо мне, Проекты) — <b className="mono">&lt;h2&gt;</b>.</> } },
       { ic: '📰', h: { uz: 'p — oddiy matn', ru: 'p — обычный текст' },
-        body: { uz: <><b className="mono">&lt;p&gt;</b> — sarlavha emas, <b>oddiy matn</b> (paragraf). Kasbingiz va tanishtiruv matni shu tegga yoziladi.</>, ru: <><b className="mono">&lt;p&gt;</b> — не заголовок, а <b>обычный текст</b> (абзац). Ваша профессия и текст-представление пишутся этим тегом.</> },
-        ask: { uz: "Kasbingiz qaysi tegga yoziladi — h1'gami yoki p'gami?", ru: 'Каким тегом пишется ваша профессия — h1 или p?' } },
+        body: { uz: <><b className="mono">&lt;p&gt;</b> — sarlavha emas, <b>oddiy matn</b> (paragraf). Yo'nalishingiz va tanishtiruv matni shu tegga yoziladi.</>, ru: <><b className="mono">&lt;p&gt;</b> — не заголовок, а <b>обычный текст</b> (абзац). Ваше направление и текст-представление пишутся этим тегом.</> },
+        ask: { uz: "Yo'nalishingiz qaysi tegga yoziladi — h1'gami yoki p'gami?", ru: 'Каким тегом пишется ваше направление — h1 или p?' } },
     ]
   },
   // idx 6 — s6: «Bosiladigan havola qaysi teg?» (portfolio: menyu, aloqa)
@@ -1147,7 +1148,7 @@ const RECAPS = {
   13: {
     title: { uz: 'Sahifa qismlari: header va footer', ru: 'Части страницы: header и footer' }, cards: [
       { ic: '🔝', h: { uz: 'header — yuqori qism', ru: 'header — верхняя часть' },
-        body: { uz: <><b className="mono">&lt;header&gt;</b> — sahifaning eng <b>yuqori</b> qismi: ism, kasb va menyu shu yerda turadi.</>, ru: <><b className="mono">&lt;header&gt;</b> — самая <b>верхняя</b> часть страницы: имя, профессия и меню живут здесь.</> } },
+        body: { uz: <><b className="mono">&lt;header&gt;</b> — sahifaning eng <b>yuqori</b> qismi: ism, yo'nalish va menyu shu yerda turadi.</>, ru: <><b className="mono">&lt;header&gt;</b> — самая <b>верхняя</b> часть страницы: имя, направление и меню живут здесь.</> } },
       { ic: '🔻', h: { uz: 'footer — pastki qism', ru: 'footer — нижняя часть' },
         body: { uz: <><b className="mono">&lt;footer&gt;</b> — sahifaning eng <b>pastki</b> qismi: mualliflik, yil, aloqa. Nomi ham «oyoq» (foot) degani.</>, ru: <><b className="mono">&lt;footer&gt;</b> — самая <b>нижняя</b> часть страницы: авторство, год, контакты. Название и значит «нога» (foot).</> } },
       { ic: '🧱', h: { uz: 'section — alohida bo\'lim', ru: 'section — отдельный раздел' },
@@ -1159,7 +1160,7 @@ const RECAPS = {
   16: {
     title: { uz: 'Sahifa tartibi (yuqoridan pastga)', ru: 'Порядок страницы (сверху вниз)' }, cards: [
       { ic: '📐', h: { uz: 'Header — birinchi', ru: 'Header — первый' },
-        body: { uz: <>Sahifa <b>yuqoridan</b> boshlanadi: eng tepada <b className="mono">&lt;header&gt;</b> — ism, kasb va menyu.</>, ru: <>Страница начинается <b>сверху</b>: в самом верху <b className="mono">&lt;header&gt;</b> — имя, профессия и меню.</> } },
+        body: { uz: <>Sahifa <b>yuqoridan</b> boshlanadi: eng tepada <b className="mono">&lt;header&gt;</b> — ism, yo'nalish va menyu.</>, ru: <>Страница начинается <b>сверху</b>: в самом верху <b className="mono">&lt;header&gt;</b> — имя, направление и меню.</> } },
       { ic: '📚', h: { uz: "Bo'limlar — o'rtada", ru: 'Разделы — посередине' },
         body: { uz: <>Header'dan keyin <b>bo'limlar</b> keladi: «Men haqimda» → «Loyihalar» → «Aloqa». Har biri alohida <b className="mono">&lt;section&gt;</b>.</>, ru: <>После header идут <b>разделы</b>: «Обо мне» → «Проекты» → «Контакты». Каждый — отдельный <b className="mono">&lt;section&gt;</b>.</> } },
       { ic: '🏁', h: { uz: 'Footer — oxirgi', ru: 'Footer — последний' },
@@ -1378,7 +1379,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 
 // Portfolio skeletini o'quvchi o'zi to'g'ri tartibda yig'adi (DragDropOrder uchun)
 const SKELET_PIECES = [
-  { id: 'header',   label: { uz: '<header> — sarlavha (ism, kasb)', ru: '<header> — шапка (имя, профессия)' } },
+  { id: 'header',   label: { uz: "<header> — sarlavha (ism, yo'nalish)", ru: '<header> — шапка (имя, направление)' } },
   { id: 'about',    label: { uz: '<section> — Men haqimda', ru: '<section> — Обо мне' } },
   { id: 'projects', label: { uz: '<section> — Loyihalar', ru: '<section> — Проекты' } },
   { id: 'contact',  label: { uz: '<section> — Aloqa', ru: '<section> — Контакты' } },
@@ -1497,10 +1498,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const HTML_FLASHCARDS = [
-  { front: { uz: 'Ism, kasb va menyu sahifaning qaysi qismida turadi?', ru: 'В какой части страницы стоят имя, профессия и меню?' }, back: '<header>', note: { uz: 'sahifaning eng birinchi qismi', ru: 'самая первая часть страницы' } },
+  { front: { uz: 'Ism, kasb va menyu sahifaning qaysi qismida turadi?', ru: 'В какой части страницы стоят имя, направление и меню?' }, back: '<header>', note: { uz: 'sahifaning eng birinchi qismi', ru: 'самая первая часть страницы' } },
   { front: { uz: 'Menyu havolalarini qaysi teg bir joyga yig\'adi?', ru: 'Какой тег собирает ссылки меню в одно место?' }, back: '<nav>', note: { uz: 'ichida bir nechta <a> havola turadi', ru: 'внутри стоят несколько ссылок <a>' } },
   { front: { uz: 'Portfolioda ismingizni qaysi teg bilan yozasiz?', ru: 'Каким тегом вы пишете своё имя в портфолио?' }, back: '<h1>', note: { uz: 'sahifada bitta bo\'ladi; bo\'lim sarlavhasi — <h2>', ru: 'на странице он один; заголовок раздела — <h2>' } },
-  { front: { uz: 'Kasbingiz va tanishtiruv matni qaysi teg ichiga yoziladi?', ru: 'В какой тег пишется профессия и текст-представление?' }, back: '<p>', note: { uz: 'p — oddiy matn (paragraf), sarlavha emas', ru: 'p — обычный текст (абзац), не заголовок' } },
+  { front: { uz: "Yo'nalishingiz va tanishtiruv matni qaysi teg ichiga yoziladi?", ru: 'В какой тег пишется направление и текст-представление?' }, back: '<p>', note: { uz: 'p — oddiy matn (paragraf), sarlavha emas', ru: 'p — обычный текст (абзац), не заголовок' } },
   { front: { uz: '«Loyihalar» kabi alohida bo\'limni qaysi teg yasaydi?', ru: 'Какой тег делает отдельный раздел вроде «Проекты»?' }, back: '<section>', note: { uz: 'har bo\'lim uchun alohida section', ru: 'для каждого раздела свой section' } },
   { front: { uz: 'Sahifaga rasm qo\'yish uchun qaysi teg kerak?', ru: 'Какой тег нужен, чтобы вставить картинку на страницу?' }, back: '<img>', note: { uz: 'yopuvchi tegi yo\'q, src va alt bilan ishlaydi', ru: 'закрывающего тега нет, работает с src и alt' } },
   { front: { uz: 'Rasm faylining manzili qaysi atributga yoziladi?', ru: 'В какой атрибут пишется адрес файла картинки?' }, back: 'src', note: '<img src="men.jpg">' },
@@ -1874,7 +1875,7 @@ const QUIZ_BANK = [
   { q: { uz: "`<!DOCTYPE html>` nimani bildiradi?", ru: 'Что означает `<!DOCTYPE html>`?' }, opts: [{ uz: 'Sahifaning fon rangini', ru: 'Цвет фона страницы' }, { uz: "Rasm qo'shilishini", ru: 'Добавление картинки' }, { uz: 'Sahifa tugaganini', ru: 'Конец страницы' }, { uz: 'HTML5 hujjat ekanini', ru: 'Что это документ HTML5' }], correct: 3 },
   { q: { uz: "Sahifa skeletining (shablonining) to'g'ri tartibi qaysi?", ru: 'Какой порядок скелета (шаблона) страницы верный?' }, opts: [{ uz: "`head` ichida `html` va `body`", ru: '`html` и `body` внутри `head`' }, { uz: "`body` ichida `head` va `html`", ru: '`head` и `html` внутри `body`' }, { uz: "`title` ichida `head`", ru: '`head` внутри `title`' }, { uz: "`html` ichida `head` va `body`", ru: '`head` и `body` внутри `html`' }], correct: 3 },
   { q: { uz: "Portfolio kodini o'qib, saytga aylantiradigan dastur qaysi?", ru: 'Какая программа читает код портфолио и превращает его в сайт?' }, opts: [{ uz: 'Server', ru: 'Сервер' }, { uz: 'Brauzer', ru: 'Браузер' }, 'Word', { uz: 'Fayl menejeri', ru: 'Файловый менеджер' }], correct: 1 },
-  { q: { uz: "Kasbingizni QIYA (kursiv) qilish uchun qaysi teg?", ru: 'Какой тег сделает вашу профессию НАКЛОННОЙ (курсив)?' }, opts: ["`em`", "`ul`", "`a`", "`h1`"], correct: 0 },
+  { q: { uz: "Yo'nalishingizni QIYA (kursiv) qilish uchun qaysi teg?", ru: 'Какой тег сделает ваше направление НАКЛОННЫМ (курсив)?' }, opts: ["`em`", "`ul`", "`a`", "`h1`"], correct: 0 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2334,10 +2335,10 @@ function QuizArena({ live, onClose, startSolo }) {
 const TASK_HEADER = {
   eyebrow: { uz: 'Praktika · header', ru: 'Практика · header' },
   title: { uz: "O'z headeringizni yozing", ru: 'Напишите свой header' },
-  brief: { uz: "Portfolio sarlavhasini o'zingiz yozing: ismingizni `<h1>` ichiga, kasbingizni `<p>` ichiga. To'g'ri bo'lsa \u201cDavom etish\u201d yonadi.", ru: 'Напишите шапку портфолио сами: имя — внутри `<h1>`, профессию — внутри `<p>`. Когда всё верно, загорится «Продолжить».' },
+  brief: { uz: "Portfolio sarlavhasini o'zingiz yozing: ismingizni `<h1>` ichiga, yo'nalishingizni `<p>` ichiga. To'g'ri bo'lsa \u201cDavom etish\u201d yonadi.", ru: 'Напишите шапку портфолио сами: имя — внутри `<h1>`, направление — внутри `<p>`. Когда всё верно, загорится «Продолжить».' },
   requirements: [
     { id: 'h1', label: { uz: '<h1> — ismingiz', ru: '<h1> — ваше имя' }, check: C.text('h1', { uz: "`<h1>` ichiga ismingizni yozing", ru: 'Напишите своё имя внутри `<h1>`' }) },
-    { id: 'p',  label: { uz: '<p> — kasbingiz', ru: '<p> — ваша профессия' }, check: C.text('p', { uz: "`<p>` ichiga kasbingizni yozing", ru: 'Напишите свою профессию внутри `<p>`' }) },
+    { id: 'p',  label: { uz: "<p> — yo'nalishingiz", ru: '<p> — ваше направление' }, check: C.text('p', { uz: "`<p>` ichiga yo'nalishingizni yozing", ru: 'Напишите своё направление внутри `<p>`' }) },
   ],
 };
 const STARTER_HEADER = `<!-- Bu yerga yozing -->

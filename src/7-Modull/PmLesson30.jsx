@@ -113,7 +113,7 @@ const RMAP = [
   { id: 'r2', ic: '🎒', name: '2-daraja: Sinfdosh yoki do\'st', d: 'Tanaffusda, yo\'lda, o\'yindan keyin. Tengdosh muammolarida (dars, jadval, transport, o\'yin) — eng aniq javoblar shulardan. Ogohlantirish: do\'st ham xushmuomala yolg\'on gapiradi — 5-savol bilan himoyalaning!' },
   { id: 'r3', ic: '🏘️', name: '3-daraja: Qo\'shni yoki tanish', d: 'Biroz notanishroq odam — halolroq javob. Qo\'shni, ota-onangizning do\'sti, sport bo\'limidagi tanish. «Maktab loyihasi uchun 3 daqiqa savolim bor edi» — deyarli hech kim yo\'q demaydi.' },
   { id: 'r4', ic: '💬', name: '4-daraja: Telegram guruh', d: 'Sinf guruhi, mahalla guruhi, qiziqish guruhi. Yozma so\'rov: «[Muammo] bo\'yicha 2 daqiqa savolim bor edi — kimga qulay?» Ovoz xabar yoki qo\'ng\'iroqqa chiqsangiz — yozishmadan yaxshi.' },
-  { id: 'r5', ic: '🔧', name: '5-daraja: Kasb egasi', d: 'Do\'kondor, sartarosh, usta, kutubxonachi — muammongiz ULARNING sohasida bo\'lsa. Eng qimmat daraja: ular og\'riq uchun PUL to\'lashga tayyor. Xarid paytida 2 savol — tabiiy suhbat.' }
+  { id: 'r5', ic: '🔧', name: '5-daraja: Kasb egasi', d: 'Do\'kondor, sartarosh, santexnik, kutubxonachi — muammongiz ULARNING sohasida bo\'lsa. Eng qimmat daraja: ular og\'riq uchun PUL to\'lashga tayyor. Xarid paytida 2 savol — tabiiy suhbat.' }
 ];
 
 // Kirish gapi elementlari (s5b uchun kontekst) — s5 toggle
@@ -165,7 +165,7 @@ const PLAN_HINTS = [
   'Masalan: Sardor — uy vazifasini qidirish',
   'Masalan: qo\'shni opa — navbat/vaqt muammosi',
   'Masalan: sinf guruhi — avtobus muammosi',
-  'Masalan: do\'kondor aka — hisob-kitob daftari'
+  'Masalan: do\'kondor — hisob-kitob daftari'
 ];
 
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
@@ -390,7 +390,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'To\'g\'ri! ' : 'Asosiy sabab: '}<b>jonli suhbat faktlari hech qanday statistikada yo'q</b>. Milliard dollarlik kompaniya founderlariga eshik taqillatish uyat bo'lmagan bo'lsa — sizga 5 ta suhbat nima bo'pti? Bugun: qo'rquvni yechamiz, reja tuzamiz — va siz EKSPEDITSIYAGA chiqasiz. Oxirida: 🎖 <b style={{ color: T.honey }}>Tadqiqotchi nishoni</b>.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'To\'g\'ri! ' : 'Asosiy sabab: '}<b>jonli suhbat faktlari hech qanday statistikada yo'q</b>. Milliard dollarlik kompaniya founderlariga eshik taqillatish uyat bo'lmagan bo'lsa — siz uchun 5 ta suhbat hech gap emas. Bugun: qo'rquvni yechamiz, reja tuzamiz — va siz EKSPEDITSIYAGA chiqasiz. Oxirida: 🎖 <b style={{ color: T.honey }}>Tadqiqotchi nishoni</b>.</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -590,7 +590,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{cur.emoji} {cur.label}</span><p style={{ fontFamily: G, fontSize: 'clamp(12.5px,1.7vw,14px)', color: T.ink, margin: '12px 0 0', lineHeight: 1.5, background: T.bg, borderRadius: 8, padding: '9px 11px' }}>{cur.ex}</p><p className="body" style={{ margin: '10px 0 0', color: T.ink2 }}>{cur.why}</p></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bo'limni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shu 5 bo'limni daftaringizga yoki telefon eslatmasiga ko'chirib oling — har intervyudan keyin <b>5 daqiqa ichida</b> to'ldiring (keyin unutiladi!).</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shu 5 bo'limni qog'ozga yoki telefon eslatmasiga ko'chirib oling — har intervyudan keyin <b>5 daqiqa ichida</b> to'ldiring (keyin unutiladi!).</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -616,7 +616,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Transkript tahlili · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Tahlil qiling (${okCount}/${TRANSCRIPT.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Azizning intervyusi: <span className="italic" style={{ color: T.accent }}>xatolarni toping</span></h2></div>
-        <Mentor>Aziz birinchi intervyusini o'tkazdi va yozib oldi (buni-ku qoyil!). Har jumlani baholang: 🚫 xato yoki ✅ to'g'ri yo'l?</Mentor>
+        <Mentor>Aziz birinchi intervyusini o'tkazdi va yozib oldi (bunisi — katta yutuq!). Har jumlani baholang: 🚫 xato yoki ✅ to'g'ri yo'l?</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -645,7 +645,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'O\'tgan dars mezonlarini eslang: pitch? yetaklash? kelajak/gipotetik savol? sitata yozilmadimi?'}</p>
               </div>
             ) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Jumla yonidagi 🚫 yoki ✅ ni bosing.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Aziz 4 ta xato qildi — lekin 2 ta savoli zo'r edi va u YOZIB OLDI. Birinchi intervyu mukammal bo'lmaydi — bo'lishi ham shart emas. Qilingan o'rtacha intervyu &gt; qilinmagan ideal intervyu.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Aziz 4 ta xato qildi — lekin 2 ta savoli yaxshi edi va u YOZIB OLDI. Birinchi intervyu mukammal bo'lmaydi — bo'lishi ham shart emas. Qilingan o'rtacha intervyu qilinmagan ideal intervyudan yaxshiroq.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -819,11 +819,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«1 ta intervyu yetdi-da?»</span></h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«1 ta intervyu yetdi, to'g'rimi?»</span></h2></div>
         <Mentor>Aziz Mom Test'ni o'rgandi va… birinchi intervyusini qildi. Endi dangasalik boshlanyapti 🙂</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Buvim bilan 40 daqiqa gaplashdim — hammasi shabl bo'yicha! Juda ko'p narsa bildim. Yana 4 ta qilish shartmi? Baribir bir xil gap chiqadi-ku…»</p>
+          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Buvim bilan 40 daqiqa gaplashdim — hammasi shabl bo'yicha! Juda ko'p narsa bildim. Yana 4 ta qilish shartmi? Baribir bir xil gap chiqadi…»</p>
         </div>
         <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {OPTS.map(o => {
@@ -1107,7 +1107,7 @@ export default function PmLesson30({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

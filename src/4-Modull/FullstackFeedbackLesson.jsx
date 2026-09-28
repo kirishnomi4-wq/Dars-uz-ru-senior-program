@@ -678,13 +678,16 @@ const SettingsDrawer = ({ open, narx, setNarx, count, setCount, onSave, onClose,
       <div className="drawer-bd" onClick={onClose} />
       <div className="drawer">
         <div className="drawer-top"><span className="drawer-title">⚙︎ {tr({ uz: 'Sozlamalar', ru: 'Настройки' })}</span><button className="drawer-x" onClick={onClose}>✕</button></div>
-        <p className="set-lbl">{tr({ uz: "Soatlik narx (so'm)", ru: 'Цена в час (сум)' })}</p>
-        <input className="set-input" value={narx} onChange={e => setNarx(e.target.value.replace(/[^0-9]/g, ''))} inputMode="numeric" />
+        {/* F-0926-06: E5 — oldindan to'lgan maydon nomi maydon ICHIDA, chap boshida (.name-fld naqshi) */}
+        <label className="set-input set-fld">
+          <span className="set-fld-l">{tr({ uz: "Narx, so'm/soat", ru: 'Цена, сум/час' })}</span>
+          <input value={narx} onChange={e => setNarx(e.target.value.replace(/[^0-9]/g, ''))} inputMode="numeric" aria-label={tr({ uz: "Soatlik narx (so'm)", ru: 'Цена в час (сум)' })} />
+        </label>
         <p className="set-lbl" style={{ marginTop: 13 }}>{tr({ uz: 'Joylar soni', ru: 'Число мест' })}</p>
         <div style={{ display: 'flex', gap: 7, marginTop: 8 }}>
           {[8, 12, 20].map(n => <button key={n} className="btn-soft" onClick={() => setCount(n)} style={count === n ? { boxShadow: `inset 0 0 0 1.5px ${T.accent}`, color: T.accent, background: T.accentSoft } : undefined}>{n}</button>)}
         </div>
-        <button className="btn" disabled={!dirty} onClick={onSave} style={{ marginTop: 15, width: '100%' }}>💾 {tr({ uz: 'Saqlash', ru: 'Сохранить' })}</button>
+        <button className="btn" disabled={!dirty} onClick={onSave} style={{ marginTop: 15, width: '100%' }}>{/* F-0926-06: H3 — tugma emojisi olindi */}{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</button>
       </div>
     </>
   );
@@ -758,8 +761,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Dars oxirida — yangilangan panel', ru: 'В конце урока — обновлённая панель' })}</p>
-      <GuardPanel spots={mkSpots()} tushum={20000} dash />
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ tasdiq · dashboard · sozlamalar (narx, joylar soni)', ru: '→ подтверждение · дашборд · настройки (цена, число мест)' })}</p>
+      {/* F-0926-06: 160-qonun — izoh panel ICHIDA (note), sahifa fonida sochilmaydi · ru'da pastki chiziqdan tushmasin — joylar ixcham */}
+      <GuardPanel spots={mkSpots()} tushum={20000} dash compact note={<p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ tasdiq · dashboard · sozlamalar (narx, joylar soni)', ru: '→ подтверждение · дашборд · настройки (цена, число мест)' })}</p>} />
     </Col>
   );
   const StepsBlock = (
@@ -988,13 +991,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Fikr-kartalar', ru: 'Карточки-отзывы' })} {armed && tr({ uz: '— endi katakni bosing', ru: '— теперь нажмите клетку' })}</p>
+            {/* F-0926-06: 159/7 — «endi katakni bosing» olindi: mentor va kartadagi «katakni tanlang» aytadi */}
+            <p className="flow-label">{tr({ uz: 'Fikr-kartalar', ru: 'Карточки-отзывы' })}</p>
             {pool.length
               ? <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{pool.map((f, i) => (
                   /* kirish-animatsiyasi O'RAMDA — kartaning o'zida sudrash transform'i va tap-hint erkin qoladi */
                   <div key={f.id} className="vc-in" style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
                     <button ref={el => (cardRefs.current[f.id] = el)} className={`vcard ${armed === f.id ? 'vcard-armed' : ''} ${inviteCards && i === 0 ? 'tap-hint' : ''}`} onPointerDown={e => down(e, f.id)}>
-                      <Ava name={f.who} color={f.color} sm /><span className="vlbl">{tr(f.short)}</span><span className="small" style={{ color: T.ink3, marginLeft: 'auto' }}>{armed === f.id ? tr({ uz: 'katakni tanlang', ru: 'выберите клетку' }) : tr({ uz: 'sudrang →', ru: 'тащите →' })}</span>
+                      <Ava name={f.who} color={f.color} sm /><span className="vlbl">{tr(f.short)}</span><span className={armed === f.id ? 'small' : 'vgrip'} style={armed === f.id ? { color: T.ink3, marginLeft: 'auto' } : undefined} aria-hidden={armed === f.id ? undefined : 'true'}>{armed === f.id ? tr({ uz: 'katakni tanlang', ru: 'выберите клетку' }) : '⠿'}</span>{/* F-0926-06: 159/15 — «sudrang →» o'rniga ⠿ ushlagich (mentor «sudrang» deydi) */}
                     </button>
                   </div>
                 ))}</div>
@@ -1070,19 +1074,20 @@ Bekor bo'lsa hech narsa o'zgarmasin.`, ru: `Перед выездом пусть
 «Точно выпустить?» → Если Да — выпустить,
 если Отмена — ничего не менять.` })}</pre>
             {!built
-              ? <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setBuilt(true); setSc(n => n + 1); }}>📤 {tr({ uz: "AI'ga yuborish", ru: 'Отправить AI' })}</button>
+              ? <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setBuilt(true); setSc(n => n + 1); }}>{tr({ uz: "AI'ga yuborish", ru: 'Отправить AI' })}</button>
               : <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Tasdiq qo'shildi:", ru: 'Подтверждение добавлено:' })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{tr({ uz: "function chiqar(id){\n  if(confirm('Rostdan chiqarilsinmi?')){\n    // PUT /api/sessiyalar/:id\n  }\n}", ru: "function chiqar(id){\n  if(confirm('Точно выпустить?')){\n    // PUT /api/sessiyalar/:id\n  }\n}" })}</div></div></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Yangilangan panel', ru: 'Обновлённая панель' })}</p>
-            <GuardPanel spots={spots} onSpotClick={built ? clickSpot : undefined} />
+            {/* F-0926-06: 159/12 — tasdiq oynasi/xulosa ochilganda joylar ixcham (1280×800 da tugmalar orqasida qolmasin) */}
+            <GuardPanel spots={spots} onSpotClick={built ? clickSpot : undefined} compact={!!asking || done} />
             {asking && (
               <div className="frame fade-step" style={{ boxShadow: `inset 0 0 0 1.5px ${T.danger}, 0 8px 22px -6px rgba(${T.shadowBase},0.2)` }}>
                 <p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Rostdan chiqarilsinmi?', ru: 'Точно выпустить?' })}</p>
                 <p className="body" style={{ margin: '0 0 11px', color: T.ink }}>{asking.raqam} ({asking.mashina}) {tr({ uz: "chiqariladi va to'lov yoziladi.", ru: 'будет выпущено, оплата запишется.' })}</p>
                 <div style={{ display: 'flex', gap: 9 }}>
                   <button className="btn-soft" onClick={() => { setAsking(null); setSc(n => n + 1); }}>{tr({ uz: 'Bekor', ru: 'Отмена' })}</button>
-                  <button className="btn" style={{ background: T.success }} onClick={confirmExit}>{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</button>
+                  <button className="btn" onClick={confirmExit}>{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</button>
                 </div>
               </div>
             )}
@@ -1114,8 +1119,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={on} onClick={() => { setOn(true); setSc(n => n + 1); }}>{on ? tr({ uz: '✓ Dashboard yoqildi', ru: '✓ Дашборд включён' }) : tr({ uz: '▶ Dashboardni yoqish', ru: '▶ Включить дашборд' })}</button>
-            <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🟩 bo'sh va 🟥 band soni — yirik, ranglar bilan.", ru: '🟩 свободные и 🟥 занятые — крупно, с цветами.' })}</p></div>
-            <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "💰 kunlik tushum ham darrov ko'rinadi.", ru: '💰 дневная выручка тоже видна сразу.' })}</p></div>
+            {/* F-0926-06: 159/7 — ikki izoh-karta (bo'sh/band soni · kunlik tushum) mentor gapini takrorlardi — olindi */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Endi qorovul boshini ko'tarib, bir soniyada hammasini ko'radi. Laylo ham mamnun!", ru: '✓ Теперь охранник поднимает голову и за секунду видит всё. Laylo довольна!' })}</p></div>}
           </Col>
         </div>
@@ -1156,17 +1160,18 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: "AI'ga prompt", ru: 'Промпт ИИ' })}</p>
             <pre className="prompt-box fade-up delay-1">{tr(SET_PROMPT)}</pre>
             {!built
-              ? <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setBuilt(true); setSc(n => n + 1); }}>📤 {tr({ uz: "Promptni AI'ga yuborish", ru: 'Отправить промпт AI' })}</button>
+              ? <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setBuilt(true); setSc(n => n + 1); }}>{tr({ uz: "Promptni AI'ga yuborish", ru: 'Отправить промпт AI' })}</button>
               : <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">⚙ {tr({ uz: "Sozlamalar paneli qo'shildi:", ru: 'Панель настроек добавлена:' })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{tr({ uz: "const [show,setShow]=useState(false);\n<button onClick={()=>setShow(true)}>⚙ Sozlamalar</button>\n{show && <Drawer narx={narx} joylar={count} onSave={saqla}/>}\n// saqla: UPDATE sozlamalar + joylar", ru: "const [show,setShow]=useState(false);\n<button onClick={()=>setShow(true)}>⚙ Настройки</button>\n{show && <Drawer narx={narx} joylar={count} onSave={saqla}/>}\n// saqla: UPDATE sozlamalar + joylar" })}</div></div></div>}
           </Col>
           <Col>
-            <p className="flow-label">{built ? tr({ uz: "Natija — ⚙ ni bosib ko'ring", ru: 'Результат — нажмите ⚙' }) : tr({ uz: 'Natija', ru: 'Результат' })}</p>
+            {/* F-0926-06: 159/7 — «⚙ ni bosib ko'ring» olindi: tugma «⚙ ni bosib oching» deydi */}
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             <div style={{ position: 'relative' }}>
               <GuardPanel spots={mkSpots()} tushum={20000} dash onSettings={built ? open : undefined} compact={done && !drawer}
                 note={done && !drawer ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana yondan ochiladigan Sozlamalar paneli! Endi narx va joylar sonini shu yerda boshqarasiz — keyingi qadamda o'zingiz sinab ko'rasiz.", ru: 'Вот боковая панель Настроек! Теперь цена и число мест управляются здесь — на следующем шаге попробуете сами.' })}</p></div> : null} />
               <SettingsDrawer open={drawer} narx={narx} setNarx={setNarx} count={count} setCount={setCount} dirty onSave={() => setDrawer(false)} onClose={() => setDrawer(false)} />
             </div>
-            {!built && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Prompt yuborilgach, panelda ⚙ paydo bo'ladi.", ru: 'После отправки промпта на панели появится ⚙.' })}</p>}
+            {/* F-0926-06: P1 — «Prompt yuborilgach, ⚙ paydo bo'ladi» yo'rig'i olindi */}
           </Col>
         </div>
         </Zoomable>
@@ -1225,7 +1230,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Sozlamalar saqlandi! Kod o'zgarmadi — qorovul panelni o'zi boshqardi. Ilova endi <b>sozlanadigan</b> va <b>o'sib boradigan</b>.</>, ru: <>✓ Настройки сохранены! Код не менялся — охранник сам управлял панелью. Приложение теперь <b>настраиваемое</b> и <b>растущее</b>.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Panel', ru: 'Панель' })} — {applied} {tr({ uz: 'joy', ru: 'мест' })} · {sp(savedNarx)} {tr({ uz: "so'm", ru: 'сум' })}</p>
+            {/* F-0926-06: 159/7 — «8 joy · 10 000 so'm» chapdagi «Joriy sozlamalar»ni takrorlardi */}
+            <p className="flow-label">{tr({ uz: 'Panel', ru: 'Панель' })}</p>
             <div style={{ position: 'relative' }}>
               <GuardPanel spots={spots} tushum={30000} dash cols={cols} onSettings={() => setDrawer(true)} />
               <SettingsDrawer open={drawer} narx={narx} setNarx={setNarx} count={count} setCount={setCount} dirty={dirty} onSave={save} onClose={() => setDrawer(false)} />
@@ -1253,22 +1259,23 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Qayta test', ru: 'Повторный тест' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bandlarni tasdiq bilan chiqaring', ru: 'Выпустите занятые с подтверждением' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangilangan panel — endi <span className="italic" style={{ color: T.accent }}>qanday ishlaydi</span>?</>, ru: <>Обновлённая панель — <span className="italic" style={{ color: T.accent }}>как она работает</span> теперь?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Hamma upgrade bir joyda: <b style={{ color: T.ink }}>dashboard</b>, <b style={{ color: T.ink }}>12 joy</b>, narx <b style={{ color: T.ink }}>15 000</b>, va <b style={{ color: T.ink }}>tasdiq</b>. Band joylarni chiqarib ko'ring — endi avval so'raydi, tushum yangi narxda o'sadi.</>, ru: <>Все апгрейды в одном месте: <b style={{ color: T.ink }}>дашборд</b>, <b style={{ color: T.ink }}>12 мест</b>, цена <b style={{ color: T.ink }}>15 000</b> и <b style={{ color: T.ink }}>подтверждение</b>. Попробуйте выпустить занятые места — теперь панель сначала спрашивает, а выручка растёт по новой цене.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Hamma upgrade bir joyda. Band joylarni chiqarib ko'ring — endi avval so'raydi, tushum yangi narxda o'sadi.</>, ru: <>Все апгрейды в одном месте. Попробуйте выпустить занятые места — теперь панель сначала спрашивает, а выручка растёт по новой цене.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Yangilangan qorovul paneli', ru: 'Обновлённая панель охранника' })}</p>
-            <GuardPanel spots={spots} onSpotClick={click} tushum={tushum} dash cols={4} />
+            {/* F-0926-06: H1 — upgrade ro'yxati teg-chiplarda, mentor qisqardi · 159/12 — 12 joy ixcham (tugmalar orqasida qolardi) */}
+            <GuardPanel spots={spots} onSpotClick={click} tushum={tushum} dash cols={4} compact />
           </Col>
           <Col>
             {asking
               ? <div className="frame fade-step" style={{ boxShadow: `inset 0 0 0 1.5px ${T.danger}` }}>
                 <p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Rostdan chiqarilsinmi?', ru: 'Точно выпустить?' })}</p>
                 <p className="body" style={{ margin: '0 0 11px', color: T.ink }}>{asking.raqam} ({asking.mashina}) — {tr({ uz: "to'lov", ru: 'оплата' })} {sp(15000)} {tr({ uz: "so'm", ru: 'сум' })}.</p>
-                <div style={{ display: 'flex', gap: 9 }}><button className="btn-soft" onClick={() => { setAsking(null); setSc(n => n + 1); }}>{tr({ uz: 'Bekor', ru: 'Отмена' })}</button><button className="btn" style={{ background: T.success }} onClick={confirmExit}>{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</button></div>
+                <div style={{ display: 'flex', gap: 9 }}><button className="btn-soft" onClick={() => { setAsking(null); setSc(n => n + 1); }}>{tr({ uz: 'Bekor', ru: 'Отмена' })}</button><button className="btn" onClick={confirmExit}>{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</button></div>
               </div>
               : null}
-            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7, paddingRight: 40 }}>{/* F-0926-06: ru da ⛶ oxirgi tegni yopardi (layout-lint cover) */}
               <span className="tagpill" style={{ color: T.success }}>✓ {tr({ uz: 'Tasdiq', ru: 'Подтверждение' })}</span>
               <span className="tagpill" style={{ color: T.success }}>✓ {tr({ uz: 'Dashboard', ru: 'Дашборд' })}</span>
               <span className="tagpill" style={{ color: T.success }}>✓ {tr({ uz: 'Narx 15 000', ru: 'Цена 15 000' })}</span>
@@ -1375,7 +1382,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Tasdiqni o'zingiz yozing", ru: 'Напишите подтверждение сами' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: chiqishda <span className="italic" style={{ color: T.accent }}>tasdiqni</span> o'zingiz yozing.</>, ru: <>Последний шаг: напишите <span className="italic" style={{ color: T.accent }}>подтверждение</span> при выезде сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Birinchi upgrade — chiqishda "Rostdan chiqarilsinmi?". Buni <span className="mono">confirm(...)</span> qiladi: foydalanuvchidan <b style={{ color: T.ink }}>Ha / Yo'q</b> so'raydi. Ha bo'lsa chiqaradi. Bo'sh joyga shu so'zni yozing.</>, ru: <>Первый апгрейд — «Точно выпустить?» при выезде. Это делает <span className="mono">confirm(...)</span>: спрашивает у пользователя <b style={{ color: T.ink }}>Да / Нет</b>. Если Да — выпускает. Впишите это слово в пустое поле.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Birinchi upgrade — chiqishda "Rostdan chiqarilsinmi?". Buni brauzerning tayyor <b style={{ color: T.ink }}>tasdiq funksiyasi</b> qiladi: foydalanuvchidan <b style={{ color: T.ink }}>Ha / Yo'q</b> so'raydi. Ha bo'lsa chiqaradi. Bo'sh joyga shu funksiya nomini yozing.</>, ru: <>Первый апгрейд — «Точно выпустить?» при выезде. Это делает встроенная <b style={{ color: T.ink }}>функция подтверждения</b> браузера: спрашивает у пользователя <b style={{ color: T.ink }}>Да / Нет</b>. Если Да — выпускает. Впишите имя этой функции в пустое поле.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="vsc fade-up delay-2">
@@ -1394,14 +1401,16 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '1'} confirm(...)</span>
+              {/* F-0926-06: S6 — baholanadigan testda teg javob-kodini aytmaydi, faqat tavsif */}
+              <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '1'} {tr({ uz: 'tasdiq funksiyasi', ru: 'функция подтверждения' })}</span>
             </div>
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Endi chiqarishdan oldin panel so'raydi — tasodifiy o'chirish yo'q. Aziz topgan muammo hal!", ru: '✓ Отлично! Теперь перед выездом панель спрашивает — случайного удаления нет. Проблема, которую нашёл Aziz, решена!' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija — panelda', ru: 'результат — на панели' })}</p>
+            {/* F-0926-06: 159/9 — yorliq bo'sh ustun ustida yolg'iz turmaydi, natija bilan chiqadi */}
+            {valid && <p className="flow-label">{tr({ uz: 'natija — panelda', ru: 'результат — на панели' })}</p>}
             {valid
-              ? <div className="frame fade-step" style={{ boxShadow: `inset 0 0 0 1.5px ${T.danger}` }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Rostdan chiqarilsinmi?', ru: 'Точно выпустить?' })}</p><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'A2 (01A123BC) chiqariladi.', ru: 'A2 (01A123BC) будет выпущено.' })}</p><div style={{ display: 'flex', gap: 9 }}><span className="btn-soft">{tr({ uz: 'Bekor', ru: 'Отмена' })}</span><span className="btn" style={{ background: T.success }}>{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</span></div></div>
+              ? <div className="frame fade-step" style={{ boxShadow: `inset 0 0 0 1.5px ${T.danger}` }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Rostdan chiqarilsinmi?', ru: 'Точно выпустить?' })}</p><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'A2 (01A123BC) chiqariladi.', ru: 'A2 (01A123BC) будет выпущено.' })}</p><div style={{ display: 'flex', gap: 9 }}><span className="btn-soft">{tr({ uz: 'Bekor', ru: 'Отмена' })}</span><span className="btn">{tr({ uz: 'Ha, chiqarilsin', ru: 'Да, выпустить' })}</span></div></div>
               : null}
           </Col>
         </div>
@@ -2484,6 +2493,9 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         /* === VCARD === */
         .vcard { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 12px 15px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .vcard:hover { transform: translateY(-1px); }
+        .vcard:not(.vcard-armed) { border: 2px solid ${T.accent}; padding: 10px 13px; } /* F-0926-06: 159/15 — sudraladigan karta: oq fon + accent chegara + ushlagich */
+        .vcard:not(.vcard-armed) .vlbl { color: ${T.accent}; }
+        .vgrip { margin-left: auto; color: ${T.accent}; font-size: 16px; line-height: 1; }
         .vlbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
 
         /* === MENTOR === */
@@ -2666,6 +2678,10 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .set-lbl { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .set-input { width: 100%; margin-top: 9px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 18px; font-weight: 700; text-align: center; padding: 11px 12px; border-radius: 10px; border: 1.5px dashed ${T.ink3}; background: ${T.bg}; color: ${T.ink}; outline: none; transition: border-color 0.2s, background 0.2s; }
         .set-input:focus { border-color: ${T.accent}; background: #fff; }
+        .set-fld { display: flex; align-items: center; gap: 10px; cursor: text; } /* F-0926-06: E5 — nom maydon ichida */
+        .set-fld-l { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: ${T.ink3}; white-space: nowrap; }
+        .set-fld input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font: inherit; color: inherit; text-align: right; padding: 0; font-feature-settings: "liga" 0, "calt" 0; }
+        .set-fld:focus-within { border-color: ${T.accent}; background: #fff; }
 
         /* === MODUL SAYOHATI === */
         .journey { display: flex; flex-direction: column; gap: 8px; }

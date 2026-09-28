@@ -575,10 +575,13 @@
       "flags": "i",
       "suggest": "inson anatomiyasi taqiq (4.1): HTML tuzilishi — «shablon»; «skelet» faqat «skelet (shablon)» shaklida ruxsat (F-0926-06 E4)",
       "law": "MATN_ETALONI 4.1 · KORPUS 85 · F-0810-02",
-      "except": "skeleton|скелетон|SkelCard|Skel[A-Z]"
+      "except": "skeleton|скелетон|SkelCard|Skel[A-Z]|yurakcha|yurak qizardi|сердечк|miyangizni o'qiy|miyani o'qiy|сердце современного веба",
+ "exceptNote": "27.09 foydalanuvchi (S2): metafora EMAS — «yurakcha» = like-tugma (PeanStack), «miyangizni o'qiy olmaydi» = ibora (PracticeLesson2), «сердце современного веба» = ibora (PracticeLesson1)"
     },
     {
       "id": "jon-kiritish",
+ "allowFiles": ["Js", "PracticeLesson", "PeanStack"],
+ "allowNote": "27.09: qoida CSS darslari uchun («jon — JS darslarining so'zi»); JS darslari (Js* · Practice* · PeanStack — til-lint fayl NOMI bo'yicha solishtiradi) da «jon kiritish» to'g'ri — PracticeLesson1 agenti topdi",
       "severity": "error",
       "pattern": "jon kirit|вдохн[ёе]м жизнь|оживля",
       "flags": "i",
@@ -688,8 +691,9 @@
       "id": "sheva-yuklama-da-a-ya",
       "severity": "error",
       "pattern": "(di|siz|miz|adi|gan|ing|dim|man|ng)-(da|a|ya|yu)\\b",
+      "except": "«[^»]{0,80}(di|siz|miz|adi|gan|ing|dim|man|ng)-(da|a|ya|yu)\\b",
       "flags": "i",
-      "suggest": "gap oxiridagi so'zlashuv yuklamasi «-da/-a/-ya» — olib tashlang: «toping-da,» → «toping,»; «Charchatadi-a?» → «Charchatadi, to'g'rimi?»",
+      "suggest": "gap oxiridagi so'zlashuv yuklamasi «-da/-a/-ya» — olib tashlang: «toping-da,» → «toping,»; «Charchatadi-a?» → «Charchatadi, to'g'rimi?». CHEGARA (F-0928-05, KORPUS §159): «…» ichidagi IQTIBOS — RUXSAT",
       "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
     },
     {

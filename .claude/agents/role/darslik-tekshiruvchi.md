@@ -362,3 +362,10 @@ uni meros oladi va rangli emoji 30% ko'rinadi (tanlangan variant belgisi kulrang
 keyin `disabled` bo'ladigan tugma ichidagi har belgi/matn `span`ining o'z `color`i bo'ladi. Ovlash: tanlovdan keyin
 `getComputedStyle(ic).color` — alfa < 1 bo'lsa nuqson. `.hopt-ic { color: ${T.ink} }` naqsh.
 
+
+## 🔴 F-0927 OV-BANDI — BOSISHDAN KEYIN BLOK TUGMALAR CHIZIG'IDAN TUSHADI (2026-09-27, 1-Modul 7 holat)
+page-audit SCROLL (asosiy dars-qutisi) «0» deganda ham blok navigatsiya chizig'i OSTIGA tushishi mumkin — ayniqsa
+bosishdan keyingi holatda (nishon-sharti `ach-rule`, tanlov ochilgan kod, yakuniy yashil xulosa) va ru-rejimda.
+1-Modulda 7 ta shunday holat kechagi «kesilish 0» xulosasidan o'tib ketgan. Ovlash: `npx vite --port 5300` +
+`npm run lint:layout -- --keys <kalit> --lang uz` va `--lang ru` → «PASTKI CHIZIQDAN TUSHGAN (E)» — 0 (panel/yakun sanalmaydi;
+`ach-coll`/`gloss` — umumiy qarz F-0923-01). Blokni boshqa ustunga ko'chirgan bo'lsang — qayta o'lcha (yomonlashishi mumkin).

@@ -631,7 +631,7 @@ const LikeDemo = ({ mode, title, onLiked, badge }) => {
   );
 };
 
-const Zoomable = ({ children }) => {
+const Zoomable = ({ children, off = false }) => { /* F-0926-06: off — birinchi bosishgacha ⛶ bo'sh ustun ustida yolg'iz osilmasin (CssLesson1 naqshi) */
   const [big, setBig] = useState(false);
   // bo'sh ustunda ⛶ va yorliq yolg'iz osilmasin (F-0926-01, 111-qonun): mazmun DOM bo'yicha o'lchanadi
   const zref = useRef(null);
@@ -653,7 +653,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -772,7 +772,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
         ))}
       </div>
       {!solved
-        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите на неё' })}</p>
+        ? null /* F-0926-06 (159/6): takror yo'riq olindi — mentor aytadi (DebugChallenge faqat s14 da) */
         : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
     </div>
   );
@@ -870,7 +870,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Like bossangiz, butun sahifa <span className="italic" style={{ color: T.accent }}>qayta yuklanadimi</span>?</>, ru: <>Нажали лайк — <span className="italic" style={{ color: T.accent }}>перезагружается ли</span> вся страница?</> })}</h1>
-        <Mentor>{tr({ uz: <>Telefoningizda like bosganingizda butun ekran o'chib-yonadimi? Albatta yo'q. Lekin <b style={{ color: T.ink }}>eski saytlarda</b> aynan shunday bo'lardi. Ikkala rejimni almashtirib, like bosib ko'ring — <b style={{ color: T.ink }}>farqni his qiling</b>.</>, ru: <>Когда вы ставите лайк на телефоне, весь экран гаснет и загорается заново? Нет же! А вот на <b style={{ color: T.ink }}>старых сайтах</b> было именно так. Переключайте оба режима и нажимайте лайк — <b style={{ color: T.ink }}>почувствуйте разницу</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Telefoningizda like bosganingizda butun ekran o'chib-yonadimi? Albatta yo'q. Lekin <b style={{ color: T.ink }}>eski saytlarda</b> aynan shunday bo'lardi. Ikkala rejimni almashtirib, like bosib ko'ring — <b style={{ color: T.ink }}>farqni his qiling</b>. Keyin tanlang: zamonaviy ilovalar buni qanday uddalaydi?</>, ru: <>Когда вы ставите лайк на телефоне, весь экран гаснет и загорается заново? Нет же! А вот на <b style={{ color: T.ink }}>старых сайтах</b> было именно так. Переключайте оба режима и нажимайте лайк — <b style={{ color: T.ink }}>почувствуйте разницу</b>. Потом выберите: как современные приложения это делают?</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -880,11 +880,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
             <div className="demo-swap" key={view}>
               <LikeDemo mode={view} title={view === 'old' ? 'eski-sayt.uz' : 'zamonaviy-ilova.uz'} />
-              <p className="mono small" style={{ color: T.ink3, marginTop: 6 }}>{view === 'old' ? tr({ uz: "↑ like bosing — nima bo'lishini kuzating", ru: '↑ нажмите лайк — смотрите, что произойдёт' }) : tr({ uz: '↑ like bosing — endi solishtiring', ru: '↑ нажмите лайк — теперь сравните' })}</p>
+              {/* F-0926-06 (159/6): «↑ like bosing» yo'rig'i olindi — mentor aytadi */}
             </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, zamonaviy ilovalar buni qanday uddalaydi?', ru: 'Как вы думаете, как современные приложения это делают?' })}</p>
+            {/* F-0926-06 (G1): «Sizningcha…» yorlig'i olindi — savol mentor gapida */}
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -896,7 +896,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri! <b>Faqat o'zgargan joy yangilanadi</b>. Buni qiladigan vositaning nomi — <b>React</b>. Hozir qanday ishlashini ko'ramiz.</>, ru: <>Верно! <b>Обновляется только изменившееся место</b>. Инструмент, который это делает, называется <b>React</b>. Сейчас посмотрим, как это работает.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06 (I2, KORPUS §215): noto'g'ri variantga «To'g'ri» emas — «Aslida» */}{tr({ uz: <>{picked === 'b' ? "To'g'ri! " : 'Aslida '}<b>{picked === 'b' ? 'Faqat' : 'faqat'} o'zgargan joy yangilanadi</b>. Buni qiladigan vositaning nomi — <b>React</b>. Hozir qanday ishlashini ko'ramiz.</>, ru: <>{picked === 'b' ? 'Верно! ' : 'На самом деле '}<b>{picked === 'b' ? 'Обновляется' : 'обновляется'} только изменившееся место</b>. Инструмент, который это делает, называется <b>React</b>. Сейчас посмотрим, как это работает.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -921,12 +921,10 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Col>
       <p className="flow-label">{tr({ uz: "Bugun o'rganadigan 2 tushuncha", ru: '2 понятия, которые изучим сегодня' })}</p>
       <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>
-          <span style={{ fontSize: 32 }}>🧩</span>
+        <div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>{/* F-0926-06 (H3): karta sarlavhasi oldidagi emoji olindi */}
           <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: 'KOMPONENT', ru: 'КОМПОНЕНТ' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Bir marta yaratasiz — istalgan joyda ishlatasiz', ru: 'Создаёте один раз — используете где угодно' })}</p></div>
         </div>
-        <div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>
-          <span style={{ fontSize: 32 }}>⚡</span>
+        <div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>{/* F-0926-06 (H3): karta sarlavhasi oldidagi emoji olindi */}
           <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>VIRTUAL DOM</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: "Solishtiradi — faqat o'zgargan joyni yangilaydi", ru: 'Сравнивает — обновляет только изменившееся место' })}</p></div>
         </div>
       </div>
@@ -946,7 +944,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up">{tr({ uz: <>Instagram nega buncha <span className="italic" style={{ color: T.accent }}>tez</span> ishlaydi?</>, ru: <>Почему Instagram работает так <span className="italic" style={{ color: T.accent }}>быстро</span>?</> })}</h2>
         </div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>Instagram nega buncha tez ishlashini</b> aniq bilib olasiz. Buning ortida <b style={{ color: T.ink }}>ikkita muhim tushuncha</b> bor: <b style={{ color: T.ink }}>Komponent</b> va <b style={{ color: T.ink }}>Virtual DOM</b>. Bugun shu ikkalasini o'rganamiz, 5 ta qadamda.</>, ru: <>Поверите ли — к концу урока вы точно будете знать, <b style={{ color: T.ink }}>почему Instagram работает так быстро</b>. За этим стоят <b style={{ color: T.ink }}>два важных понятия</b>: <b style={{ color: T.ink }}>Компонент</b> и <b style={{ color: T.ink }}>Virtual DOM</b>. Сегодня изучим оба, за 5 шагов.</> })}</Mentor>
+        {/* F-0926-06 (H1, §216): sarlavha savolni, ustunlar 2 tushuncha va 5 qadamni aytadi — mentor qisqardi */}
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida bu savolga <b style={{ color: T.ink }}>o'zingiz javob berasiz</b>.</>, ru: <>Поверите ли — к концу урока вы <b style={{ color: T.ink }}>сами ответите</b> на этот вопрос.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1000,7 +999,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Sayt shunday ko'rinadi — like bosib ko'ring", ru: 'Вот как выглядит сайт — нажмите лайк' })}</p>
+            <p className="flow-label">{tr({ uz: "Sayt shunday ko'rinadi", ru: 'Вот как выглядит сайт' }) /* F-0926-06: «like bosib ko'ring» — mentor vazifasiga zid qo'shimcha yo'riq, olindi */}</p>
             <Win title="mc-skinlar.uz" minH={120}>
               <div className="mk-grid">
                 {Array.from({ length: n }, (_, i) => <SkinCard key={i} n={i + 1} />)}
@@ -1035,7 +1034,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Shu nusxalash muammosi <span className="italic" style={{ color: T.accent }}>qanday</span> hal qilingan?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> решена эта проблема копирования?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bir xil kartochkani qayta-qayta yozish shart emas. React bu muammoni <b style={{ color: T.ink }}>komponentlar</b> yordamida hal qiladi. Avval React nima ekanini bilib olaylik — ilovalarni bosib ko'ring.</>, ru: <>Одну и ту же карточку не нужно писать снова и снова. React решает эту проблему с помощью <b style={{ color: T.ink }}>компонентов</b>. Сначала разберёмся, что такое React — нажимайте на приложения.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active && !done}>
         <div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: '13px 16px' }}>
@@ -1046,23 +1045,22 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button key={k} className={`appbtn ${active === k ? 'active' : ''} ${seen.has(k) ? 'seen' : ''}`} onClick={() => tap(k)}>
                   <span className="applogo" style={{ background: APPS[k].bg }}>{APPS[k].letter}</span>
                   <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 13, color: T.ink }}>{APPS[k].n}</span>
+                  {seen.has(k) && <span className="app-ok">✓</span>}
                 </button>
               ))}
             </div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            {(active || done) && <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "React'da qurilganmi?", ru: 'Построено на React?' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 4</span>
-            </div>
+              {/* F-0926-06 (H2): sarlavhadagi sanoq olindi — tugmada «N/4 ilova ko'rildi» bor */}
+            </div>} {/* F-0926-06 (bridge 40): yorliq birinchi bosishgacha bo'sh ustun ustida yolg'iz osilmaydi */}
             {active ? (
               <div className="sk-info" key={active}>
                 <span className="sk-tagbig"><span className="applogo" style={{ background: APPS[active].bg, width: 28, height: 28, fontSize: 12, borderRadius: 7 }}>{APPS[active].letter}</span><span className="sk-wordbadge">{tr({ uz: "React'da qurilgan ✓", ru: 'Построено на React ✓' })}</span></span>
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{APPS[active].fact}</p>
               </div>
-            ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Ilovalardan birini bosing', ru: 'Нажмите на одно из приложений' })}</p></div>
-            )}
+            ) : null /* F-0926-06 (159/3): bo'sh-holat ramkasi olindi — chorlov mentor gapida */}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz ishlatadigan <b>ko'plab ilovalar</b> React yordamida qurilgan. Endi shu texnologiyani o'rganishni boshlaymiz.</>, ru: <>Многие приложения, которыми вы пользуетесь, построены с помощью <b>React</b>. Теперь начинаем изучать эту технологию.</> })}</p></div>}
           </Col>
         </div>
@@ -1073,13 +1071,14 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 4 — TEST 1 (React nima?) =====
+/* F-0926-06 (159/11): 4 testda izoh boshidagi «To'g'ri!» olindi — natija yorlig'i tepada aytadi */
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="React aslida nima? To'g'ri javobni tanlang."
     questionText="React aslida nima?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что же такое <span className="italic" style={{ color: T.accent }}>React</span> на самом деле?</h2></> })}
     options={[tr({ uz: 'Yangi dasturlash tili', ru: 'Новый язык программирования' }), tr({ uz: 'JavaScript kutubxonasi', ru: 'Библиотека JavaScript' }), tr({ uz: 'Brauzer dasturining nomi', ru: 'Название браузера' }), tr({ uz: 'Operatsion tizim turi', ru: 'Вид операционной системы' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! React — JavaScript'da yozilgan kutubxona: sahifa interfeysini qurish uchun tayyor asboblar to'plami.", ru: 'Верно! React — библиотека, написанная на JavaScript: набор готовых инструментов для построения интерфейса страницы.' })}
+    explainCorrect={tr({ uz: "React — JavaScript'da yozilgan kutubxona: sahifa interfeysini qurish uchun tayyor asboblar to'plami.", ru: 'React — библиотека, написанная на JavaScript: набор готовых инструментов для построения интерфейса страницы.' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — React yangi til emas. U siz o'rgangan JavaScript'ning o'zida yozilgan kutubxona.", ru: 'Нет — React не новый язык. Это библиотека, написанная на самом JavaScript, который вы уже знаете.' }),
       2: tr({ uz: "Brauzer — Chrome, Safari kabi dastur. React esa kutubxona — kod uchun asboblar to'plami.", ru: 'Браузер — это программа вроде Chrome или Safari. А React — библиотека, набор инструментов для кода.' }),
@@ -1105,11 +1104,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const zc = (k) => `zone ${active === k ? 'active' : ''} ${seen.has(k) ? 'seen' : ''}`;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Komponent', ru: 'Компонент' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: '🎉 Davom etish', ru: '🎉 Продолжить' }) : `${seen.size}/4 ${tr({ uz: 'komponent topildi', ru: 'компонента найдено' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Komponent', ru: 'Компонент' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) /* F-0926-06 (C1): tugmadagi emoji olindi */ : `${seen.size}/4 ${tr({ uz: 'komponent topildi', ru: 'компонента найдено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu sahifa nechta <span className="italic" style={{ color: T.accent }}>blokdan</span> yig'ilgan?</>, ru: <>Из скольких <span className="italic" style={{ color: T.accent }}>блоков</span> собрана эта страница?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Minecraft'dagi kabi, React'da ham sahifa <b style={{ color: T.ink }}>kichik bo'laklardan</b> yig'iladi. Bu bo'laklar <b style={{ color: T.ink }}>komponentlar</b> deb ataladi. Sahifadagi <b style={{ color: T.ink }}>har bir qismni bosib</b>, qaysi komponent ekanini bilib oling.</>, ru: <>Как в Minecraft, в React страница тоже собирается из <b style={{ color: T.ink }}>маленьких блоков</b>. Эти блоки называются <b style={{ color: T.ink }}>компонентами</b>. <b style={{ color: T.ink }}>Нажимайте на каждую часть</b> страницы — узнайте, какой это компонент.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!active && !done}>
         <div className="split">
           <Col>
             <div className="frame fade-up delay-2" style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1139,21 +1138,19 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            {(active || done) && <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Komponentlar', ru: 'Компоненты' })}</p>
-              <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 4 {tr({ uz: 'komponent topildi', ru: 'компонента найдено' })}</span>
-            </div>
+              {/* F-0926-06 (H2): sarlavhadagi sanoq olindi — tugmada «N/4 komponent topildi» bor */}
+            </div>} {/* F-0926-06 (bridge 40): yorliq birinchi bosishgacha bo'sh ustun ustida yolg'iz osilmaydi */}
             {done ? (
-              <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '✓ Hammasini topdingiz', ru: '✓ Вы нашли всё' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa = komponentlar yig'indisi: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Har biri — mustaqil blok.</>, ru: <>Страница = сумма компонентов: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Каждый — самостоятельный блок.</> })}</p></div>
+              <div className="frame-success fade-step">{/* F-0926-06 (G2): «✓ Hammasini topdingiz» olindi — zonalar va tugma holatni aytadi */}<p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa = komponentlar yig'indisi: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Har biri — mustaqil blok.</>, ru: <>Страница = сумма компонентов: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Каждый — самостоятельный блок.</> })}</p></div>
             ) : active ? (
               <div className="sk-info" key={active}>
                 <span className="sk-tagbig"><span className="mono" data-dark-ok="kod-bo'lagi" style={{ fontWeight: 700, fontSize: 14, color: CODE.tag, background: CODE.bg, padding: '4px 10px', borderRadius: 7 }}>{PARTS[active].jx}</span><span className="sk-wordbadge">{PARTS[active].word}</span></span>
                 <div className="sk-fact"><span className="sk-fact-l">{tr({ uz: 'Vazifasi', ru: 'Задача' })}</span><p className="body">{PARTS[active].role}</p></div>
                 <div className="sk-fact"><span className="sk-fact-l">{tr({ uz: 'Qayta ishlatish', ru: 'Переиспользование' })}</span><p className="body">{PARTS[active].reuse}</p></div>
               </div>
-            ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Chapdagi sahifada 4 ta komponent yashiringan. Bosib toping.", ru: 'На странице слева спрятаны 4 компонента. Найдите их нажатием.' })}</p></div>
-            )}
+            ) : null /* F-0926-06 (159/3, 159/11): bo'sh-holat ramkasi («Chapdagi…») olindi — chorlov mentor gapida, sanoq tugmada */}
           </Col>
         </div>
         </Zoomable>
@@ -1169,7 +1166,7 @@ const Screen5b = (props) => (
     questionText="Komponent nima?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Komponent</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что такое <span className="italic" style={{ color: T.accent }}>компонент</span>?</h2></> })}
     options={[tr({ uz: 'Brauzerning ichki sozlamasi', ru: 'Внутренняя настройка браузера' }), tr({ uz: 'Internetni tezlashtiradigan dastur', ru: 'Программа, ускоряющая интернет' }), tr({ uz: "Sahifaning qayta ishlatiladigan bo'lagi", ru: 'Переиспользуемая часть страницы' }), tr({ uz: 'Rasm va video fayllari turi', ru: 'Тип файлов картинок и видео' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Komponent — sahifaning mustaqil bo'lagi: bir marta yoziladi, istalgancha qayta ishlatiladi.", ru: 'Верно! Компонент — самостоятельная часть страницы: пишется один раз, переиспользуется сколько угодно.' })}
+    explainCorrect={tr({ uz: "Komponent — sahifaning mustaqil bo'lagi: bir marta yoziladi, istalgancha qayta ishlatiladi.", ru: 'Компонент — самостоятельная часть страницы: пишется один раз, переиспользуется сколько угодно.' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — sozlama emas. Komponent — sahifaning qayta ishlatiladigan bo'lagi.", ru: 'Нет — не настройка. Компонент — переиспользуемая часть страницы.' }),
       1: tr({ uz: "Yo'q — tezlikka aloqasi yo'q. Komponent — sahifaning qayta ishlatiladigan bloki.", ru: 'Нет — к скорости это не относится. Компонент — переиспользуемый блок страницы.' }),
@@ -1217,7 +1214,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Sahifa — like bosib ko'ring", ru: 'Страница — нажмите лайк' })}</p>
+            <p className="flow-label">{tr({ uz: 'Sahifa', ru: 'Страница' }) /* F-0926-06: qo'shimcha yo'riq olindi */}</p>
             <Win title="mc-skinlar.uz" minH={120}>
               <div className="mk-grid">
                 {Array.from({ length: n }, (_, i) => <SkinCard key={i} n={i + 1} />)}
@@ -1338,7 +1335,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Virtual DOM" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Jarayonni kuzating', ru: 'Понаблюдайте за процессом' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React qaysi joy o'zgarganini <span className="italic" style={{ color: T.accent }}>qanday</span> aniqlaydi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> React определяет, какое место изменилось?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>React xotirasida sahifaning <b style={{ color: T.ink }}>yengil nusxasini</b> saqlaydi. Bu <b style={{ color: T.ink }}>Virtual DOM</b> deyiladi. O'zgarish bo'lganda: yangi nusxa → eskisi bilan solishtirish → <b style={{ color: T.ink }}>faqat o'zgargan joy</b> yangilanadi. Tugmani bosib kuzating.</>, ru: <>React хранит в памяти <b style={{ color: T.ink }}>лёгкую копию</b> страницы. Это называется <b style={{ color: T.ink }}>Virtual DOM</b>. При изменении: новая копия → сравнение со старой → обновляется <b style={{ color: T.ink }}>только изменившееся место</b>. Нажмите кнопку и наблюдайте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>React xotirasida sahifaning <b style={{ color: T.ink }}>yengil nusxasini</b> saqlaydi. Bu <b style={{ color: T.ink }}>Virtual DOM</b> deyiladi. O'zgarish bo'lganda React uch qadam bosadi — tugmani bosib kuzating.</> /* F-0926-06 (H1): qadamlar ro'yxatda, mentor sanamaydi */, ru: <>React хранит в памяти <b style={{ color: T.ink }}>лёгкую копию</b> страницы. Это называется <b style={{ color: T.ink }}>Virtual DOM</b>. При изменении React делает три шага — нажмите кнопку и наблюдайте.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1374,7 +1371,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#8FBF6B,#6D4C41)', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>🏰</span>
                 <span className={phase >= 3 ? 'jhot' : ''} key={`pg-${phase >= 3 ? 'new' : 'old'}`} style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 14, color: phase >= 3 ? T.success : T.ink, borderRadius: 7, padding: '3px 9px' }}>♥ {phase >= 3 ? 13 : 12}</span>
-                {phase >= 3 && <span className="small fade-step" style={{ color: T.success, fontWeight: 600 }}>{tr({ uz: 'faqat shu son yangilandi!', ru: 'обновилось только это число!' })}</span>}
+                {/* F-0926-06 (I3): «faqat shu son yangilandi!» olindi — natija 3-qadamda va yakun-kartada */}
               </div>
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>React butun sahifani emas, <b>faqat o'zgargan joyni</b> yangilaydi. Shu sababli u tez ishlaydi.</>, ru: <>React обновляет не всю страницу, а <b>только изменившееся место</b>. Поэтому он работает быстро.</> })}</p></div>}
@@ -1393,7 +1390,7 @@ const Screen9 = (props) => (
     questionText="Virtual DOM nima qiladi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Virtual DOM</span> nima qiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что делает <span className="italic" style={{ color: T.accent }}>Virtual DOM</span>?</h2></> })}
     options={[tr({ uz: "Sahifani har safar to'liq qayta yuklaydi", ru: 'Каждый раз полностью перезагружает страницу' }), tr({ uz: 'Internet ulanishini tezlashtiradi', ru: 'Ускоряет интернет-соединение' }), tr({ uz: "Kodni avtomatik o'zi yozib beradi", ru: 'Автоматически пишет код за вас' }), tr({ uz: "Farqni topib, faqat o'zgargan joyni yangilaydi", ru: 'Находит разницу и обновляет только изменившееся место' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Virtual DOM — xotiradagi nusxa: React eski va yangi nusxani solishtiradi va faqat o'zgargan joyni yangilaydi.", ru: 'Верно! Virtual DOM — копия в памяти: React сравнивает старую и новую копии и обновляет только изменившееся место.' })}
+    explainCorrect={tr({ uz: "Virtual DOM — xotiradagi nusxa: React eski va yangi nusxani solishtiradi va faqat o'zgargan joyni yangilaydi.", ru: 'Virtual DOM — копия в памяти: React сравнивает старую и новую копии и обновляет только изменившееся место.' })}
     explainWrong={{
       0: tr({ uz: "Aksincha! To'liq qayta yuklash — eski usul. Virtual DOM aynan shundan qutqaradi.", ru: 'Наоборот! Полная перезагрузка — это старый способ. Virtual DOM спасает именно от этого.' }),
       1: tr({ uz: "Yo'q — internet tezligiga aloqasi yo'q. Gap sahifani aqlli yangilashda.", ru: 'Нет — к скорости интернета это не относится. Речь об умном обновлении страницы.' }),
@@ -1409,8 +1406,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = liked.has('old') && liked.has('react');
   const mark = (k) => setLiked(prev => { const s = new Set(prev); s.add(k); return s; });
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+  /* F-0926-06 (I3): «Butun sahifa / Faqat o'zgargan joy» qatori olindi — buni har oyna ostidagi belgi aytadi */
   const ROWS = [
-    [tr({ uz: 'Butun sahifa yangilanadi', ru: 'Обновляется вся страница' }), tr({ uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' })],
     [tr({ uz: "Kod nusxa-nusxa ko'payadi", ru: 'Код растёт копия за копией' }), tr({ uz: 'Komponentlar qayta ishlatiladi', ru: 'Компоненты используются повторно' })],
     [tr({ uz: 'Sekin ishlaydi', ru: 'Работает медленно' }), tr({ uz: 'Tez ishlaydi', ru: 'Работает быстро' })]
   ];
@@ -1420,7 +1417,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oddiy sayt va React ilova — <span className="italic" style={{ color: T.accent }}>farqini ko'ring</span>.</>, ru: <>Обычный сайт и React-приложение — <span className="italic" style={{ color: T.accent }}>увидьте разницу</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Dars boshida oddiy sayt bilan ishlagandik. Endi React bilan <b style={{ color: T.ink }}>yonma-yon taqqoslang</b> — ikkalasida ham like bosing va <b style={{ color: T.ink }}>farqni kuzating</b>.</>, ru: <>В начале урока мы работали с обычным сайтом. Теперь <b style={{ color: T.ink }}>сравните его с React бок о бок</b> — нажмите лайк на обоих и <b style={{ color: T.ink }}>проследите за разницей</b>.</> })}</Mentor>
         <Zoomable>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className={done ? 'cmp-done' : undefined} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{/* F-0926-06 (159/12): jadval chiqqach rasm ixchamlanadi — tugmalar orqasida qolmasin */}
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Oddiy sayt (HTML + JS)', ru: 'Обычный сайт (HTML + JS)' })} {liked.has('old') ? '✓' : ''}</p>
@@ -1434,8 +1431,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {done && (
           <div className="cmp-wrap fade-step">
             <div className="cmp-grid">
-              <span className="cmp-hd bad">{tr({ uz: 'Oddiy sayt', ru: 'Обычный сайт' })}</span>
-              <span className="cmp-hd good">{tr({ uz: 'React ilova', ru: 'React-приложение' })}</span>
+              {/* F-0926-06 (159/1): ustun sarlavhalari olindi — oynalar ustidagi yorliqlar aytadi */}
               {ROWS.map(([a, b], i) => (
                 <React.Fragment key={i}>
                   <span className="cmp-cell bad">{a}</span>
@@ -1526,7 +1522,16 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Jx>{'<Inventory />'}</Jx>{'\n\n'}
               <Cm>{view === 'web' ? tr({ uz: "// → 🌐 brauzerda sayt bo'ladi — React", ru: '// → 🌐 в браузере станет сайтом — React' }) : tr({ uz: "// → 📱 telefonda ilova bo'ladi — React Native", ru: '// → 📱 на телефоне станет приложением — React Native' })}</Cm>
             </pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>React bilsangiz, <b>bir xil fikrlash</b> bilan ham sayt, ham telefon ilovasi yarata olasiz.</>, ru: <>Зная React, вы <b>одним и тем же мышлением</b> создаёте и сайт, и мобильное приложение.</> })}</p></div>}
+            <div className="rn-apps fade-up delay-3">{/* F-0926-06 (159/4, 159/12): chip-emoji olindi; ru'da telefon ostida tugmalar orqasiga tushardi — kod ostiga ko'chirildi */}
+              <span className="rn-apps-l">{tr({ uz: 'React Native bilan quriladigan ilovalar', ru: 'Что создают на React Native' })}</span>
+              <div className="rn-apps-row">
+                <span className="rn-app">{tr({ uz: "Onlayn do'kon", ru: 'Онлайн-магазин' })}</span>
+                <span className="rn-app">{tr({ uz: 'Chat', ru: 'Чат' })}</span>
+                <span className="rn-app">{tr({ uz: "O'yin", ru: 'Игра' })}</span>
+                <span className="rn-app">{tr({ uz: 'Video', ru: 'Видео' })}</span>
+              </div>
+            </div>
+            {/* F-0926-06 (159/1): «React bilsangiz… ham sayt, ham telefon ilovasi» — mentor aytadi, quti olindi */}
           </Col>
           <Col>
             <p className="flow-label">{view === 'web' ? tr({ uz: 'Brauzer (sayt)', ru: 'Браузер (сайт)' }) : tr({ uz: 'Telefon (ilova)', ru: 'Телефон (приложение)' })}</p>
@@ -1563,15 +1568,6 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </div>
-            <div className="rn-apps fade-up delay-3">
-              <span className="rn-apps-l">{tr({ uz: 'React Native bilan quriladigan ilovalar', ru: 'Что создают на React Native' })}</span>
-              <div className="rn-apps-row">
-                <span className="rn-app">🛒 {tr({ uz: "Onlayn do'kon", ru: 'Онлайн-магазин' })}</span>
-                <span className="rn-app">💬 {tr({ uz: 'Chat', ru: 'Чат' })}</span>
-                <span className="rn-app">🎮 {tr({ uz: "O'yin", ru: 'Игра' })}</span>
-                <span className="rn-app">🎬 {tr({ uz: 'Video', ru: 'Видео' })}</span>
-              </div>
-            </div>
             {fav && <p className="rn-proof fade-step">{tr({ uz: <>Bir xil React logikasi — <b>webda ham, telefonda ham</b> ishlaydi. Ko'rinishni almashtiring: son o'zgarmaydi.</>, ru: <>Одна и та же логика React работает <b>и в вебе, и на телефоне</b>. Переключите вид — число не изменится.</> })}</p>}
           </Col>
         </div>
@@ -1588,7 +1584,7 @@ const Screen12 = (props) => (
     questionText="React Native nima imkon beradi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>React Native</span> nima imkon beradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что даёт <span className="italic" style={{ color: T.accent }}>React Native</span>?</h2></> })}
     options={[tr({ uz: "Faqat kompyuter o'yinlarini yasash", ru: 'Делать только компьютерные игры' }), tr({ uz: 'React bilimi bilan telefon ilovasi yasash', ru: 'Делать мобильные приложения со знанием React' }), tr({ uz: 'Saytlarni rang bilan bezash', ru: 'Украшать сайты цветом' }), tr({ uz: 'Internetga simsiz ulanish', ru: 'Беспроводное подключение к интернету' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! React Native — o'sha React bilimi bilan iOS va Android ilovalari yasash imkonini beradi. Instagram va Discord shu yo'ldan foydalanadi.", ru: 'Верно! React Native позволяет с тем же знанием React делать приложения для iOS и Android. Instagram и Discord используют этот путь.' })}
+    explainCorrect={tr({ uz: "React Native — o'sha React bilimi bilan iOS va Android ilovalari yasash imkonini beradi. Instagram va Discord shu yo'ldan foydalanadi.", ru: 'React Native позволяет с тем же знанием React делать приложения для iOS и Android. Instagram и Discord используют этот путь.' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — o'yin emas. React Native telefon ilovalari yasaydi: Instagram, Discord kabi.", ru: 'Нет — не игры. React Native делает мобильные приложения: как Instagram, Discord.' }),
       2: tr({ uz: "Bezash — CSS'ning ishi. React Native — telefon ilovalarini qurish vositasi.", ru: 'Украшение — работа CSS. React Native — инструмент для создания мобильных приложений.' }),
@@ -1679,7 +1675,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Sahifangiz', ru: 'Ваша страница' })}</p>
             <Win title="mening-mc-saytim.uz" minH={130}>
               {items.length === 0
-                ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Bo'sh sahifa — blok qo'shing…", ru: 'Пустая страница — добавьте блок…' })}</p>
+                ? null /* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi — mentor aytadi */
                 : <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{items.map((k, i) => renderPart(k, i))}</div>}
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz hozir <b>React'cha fikrladingiz</b>: sahifa = komponentlar ro'yxati.</>, ru: <>Вы только что <b>мыслили как React</b>: страница = список компонентов.</> })}</p></div>}
@@ -1705,11 +1701,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>ИИ помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI Minecraft do'koni sahifasini bir zumda komponentlarga bo'lib berdi. Lekin <b style={{ color: T.ink }}>AI ham xato qiladi</b>. Bitta qator komponent qoidasiga zid — <b style={{ color: T.ink }}>toping va tuzating</b>.</>, ru: <>ИИ мигом разбил страницу Minecraft-магазина на компоненты. Но <b style={{ color: T.ink }}>ИИ тоже ошибается</b>. Одна строка нарушает правило компонента — <b style={{ color: T.ink }}>найдите и исправьте</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI Minecraft do'koni sahifasini bir zumda komponentlarga bo'lib berdi. Lekin <b style={{ color: T.ink }}>AI ham xato qiladi</b>. Bitta qator komponent qoidasiga zid — <b style={{ color: T.ink }}>uni toping va bosing</b>.</> /* F-0926-06 (159/6): kod ostidagi «👆 … toping va bosing» yo'rig'i olindi, chorlov mentorda */, ru: <>ИИ мигом разбил страницу Minecraft-магазина на компоненты. Но <b style={{ color: T.ink }}>ИИ тоже ошибается</b>. Одна строка нарушает правило компонента — <b style={{ color: T.ink }}>найдите её и нажмите</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Minecraft do'koni sahifasini komponentlarga bo'ldim:", ru: 'Я разбил страницу Minecraft-магазина на компоненты:' })}</span></div>
+            <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Tayyor — mana komponentlar:', ru: 'Готово — вот компоненты:' }) /* F-0926-06 (159/1): mentor gapini takrorlamaydi */}</span></div>
             <DebugChallenge
               lines={LINES}
               fixed={tr({ uz: "<SkinKartasi />  <Savat />   // ikki alohida blok", ru: '<КарточкаСкина />  <Корзина />   // два отдельных блока' })}
@@ -1741,18 +1737,19 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const wrongEverRef = useRef(false);
   const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const ITEMS = [
-    { id: 'change', label: tr({ uz: "👆 Foydalanuvchi like bosadi", ru: '👆 Пользователь нажимает лайк' }) },
-    { id: 'draft',  label: tr({ uz: "📝 React yangi nusxa yaratadi", ru: '📝 React создаёт новую копию' }) },
-    { id: 'diff',   label: tr({ uz: "🔍 Eski nusxa bilan solishtiradi", ru: '🔍 Сравнивает со старой копией' }) },
-    { id: 'update', label: tr({ uz: "⚡ Faqat farqni sahifaga qo'yadi", ru: '⚡ Переносит на страницу только разницу' }) },
+    { id: 'change', label: tr({ uz: "Foydalanuvchi like bosadi", ru: 'Пользователь нажимает лайк' }) },
+    { id: 'draft',  label: tr({ uz: "React yangi nusxa yaratadi", ru: 'React создаёт новую копию' }) },
+    { id: 'diff',   label: tr({ uz: "Eski nusxa bilan solishtiradi", ru: 'Сравнивает со старой копией' }) },
+    { id: 'update', label: tr({ uz: "Faqat farqni sahifaga qo'yadi", ru: 'Переносит на страницу только разницу' }) },
   ];
-  const HINTS = [tr({ uz: "1-qadam — nimadan boshlanadi?", ru: 'шаг 1 — с чего всё начинается?' }), tr({ uz: "keyin nima bo'ladi?", ru: 'что происходит потом?' }), tr({ uz: "keyin nima?", ru: 'а дальше?' }), tr({ uz: "oxirgi — natija", ru: 'последний — результат' })];
+  /* F-0926-06 (159/4, S6): bo'lak emojisi olindi; baholanadigan testda katak maslahatlari («oxirgi — natija») javobga ishora qilardi — faqat raqam */
+  const HINTS = [{ uz: '', ru: '' }, { uz: '', ru: '' }, { uz: '', ru: '' }, { uz: '', ru: '' }];
   const solve = () => { if (passed) return; setPassed(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Tartibni tuzing', ru: 'Составьте порядок' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Like bosildi — React ichida <span className="italic" style={{ color: T.accent }}>nima yuz beradi</span>?</>, ru: <>Лайк нажат — <span className="italic" style={{ color: T.accent }}>что происходит</span> внутри React?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Oxirgi sinov! Like bosilgandan to sahifa yangilangunigacha React ichida <b style={{ color: T.ink }}>nima yuz beradi</b>? Bo'laklarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — sudrab yoki bosib.</>, ru: <>Последнее испытание! От нажатия лайка до обновления страницы — <b style={{ color: T.ink }}>что происходит</b> внутри React? Разложите блоки <b style={{ color: T.ink }}>в правильном порядке</b> — перетаскивая или нажимая.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Oxirgi sinov! Like bosilgandan to sahifa yangilangunigacha bo'lgan bo'laklarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — sudrab yoki bosib.</>, ru: <>Последнее испытание! Разложите блоки от нажатия лайка до обновления страницы <b style={{ color: T.ink }}>в правильном порядке</b> — перетаскивая или нажимая.</> })}</Mentor>
         <div className="fc-center fc-top">
           <div style={{ maxWidth: 880, width: '100%' }}>
             <DragDropOrder items={ITEMS} hints={HINTS} onSolved={solve} onWrong={onWrong} />
@@ -2832,7 +2829,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { background: ${T.paper}; border: none; box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.12); border-radius: 12px; /* F-0926-06 (159/11): Yordam uzuq chiziqli quti emas */ padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === CONN (bog'lanish) === */
         .conn-flow { display: flex; align-items: center; justify-content: center; gap: 6px; background: ${T.paper}; border-radius: 16px; padding: 20px 14px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2858,8 +2855,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .loop-act { font-family: 'Manrope'; font-weight: 600; color: ${T.ink}; margin: 4px 0 0; padding-left: 14px; }
 
         /* === ALGO BUILD === */
-        .algo-build { background: ${T.paper}; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .algo-line { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; background: ${T.bg}; }
+        .algo-build { background: ${T.paper}; border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; /* F-0926-06 (159/12): 7 blokda ham tugmalar orqasida qolmasin */ box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .algo-line { display: flex; align-items: center; gap: 10px; padding: 3px 12px; border-radius: 8px; background: ${T.bg}; }
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2943,7 +2940,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .spinner { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgba(167,166,162,0.4); border-top-color: ${T.accent}; animation: spin360 0.7s linear infinite; }
         .appbtn { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border: none; border-radius: 12px; padding: 12px 14px; cursor: pointer; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); transition: all 0.18s; width: 100%; text-align: left; }
         .appbtn:hover { box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
-        .appbtn.seen { box-shadow: inset 0 0 0 1.5px ${T.success}, 0 4px 10px -5px rgba(${T.shadowBase},0.12); }
+        .appbtn.seen { background: ${T.successSoft}; box-shadow: 0 4px 10px -5px rgba(${T.shadowBase},0.12); } /* F-0926-06 (G3/P2): ko'rilgani ✓ + yumshoq yashil fon, yashil ramka olindi */
+        .appbtn .app-ok { margin-left: auto; color: ${T.success}; font-weight: 700; }
         .appbtn.active { box-shadow: inset 0 0 0 1.5px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); }
         .applogo { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; flex-shrink: 0; }
         .zone { cursor: pointer; transition: box-shadow 0.2s, transform 0.2s; border-radius: 10px; position: relative; }
@@ -3011,6 +3009,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .lk-badge.good { background: ${T.successSoft}; color: ${T.success}; }
         /* yakuniy taqqoslash (F-0819-21) */
         .cmp-wrap { display: flex; flex-direction: column; gap: 10px; }
+        .cmp-done .mc-shot { height: 84px; transition: height .3s ease; } /* F-0926-06 (159/12): ixchamlash */
+        .cmp-done .mc-castle { transform: translateX(-50%) scale(.62); transform-origin: 50% 100%; }
         .cmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
         .cmp-hd { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase; padding: 0 4px 2px; }
         .cmp-hd.bad { color: ${T.ink3}; } .cmp-hd.good { color: ${T.accent}; }
@@ -3049,7 +3049,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .mc-castle { position: absolute; bottom: 27px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; }
         .mc-tower { width: 21px; height: 48px; background: #9ba1a7; position: relative; box-shadow: inset -4px 0 0 rgba(0,0,0,0.14), inset 5px 0 0 rgba(255,255,255,0.16); }
         .mc-keep { width: 40px; height: 64px; background: #aeb4ba; position: relative; margin: 0 -3px; z-index: 1; box-shadow: inset -5px 0 0 rgba(0,0,0,0.12), inset 5px 0 0 rgba(255,255,255,0.18); }
-        .mc-keep::before { content: ''; position: absolute; top: -7px; left: -1px; right: -1px; height: 7px; background: repeating-linear-gradient(90deg, #aeb4ba 0 7px, transparent 7px 14px); }
+        .mc-keep::before { content: ''; position: absolute; top: -7px; left: -1px; right: -1px; height: 7px; background: repeating-linear-gradient(90deg, #aeb4ba 0 7px, transparent 7px 14px); } /* kesik-ok: qasr tishlari — Minecraft qasr rasmi, bezak emas (F-0926-06) */
         .mc-keep::after { content: ''; position: absolute; top: 13px; left: 50%; transform: translateX(-50%); width: 7px; height: 9px; background: #3a4a63; border-radius: 2px; box-shadow: -12px 0 0 #3a4a63, 12px 0 0 #3a4a63; }
         .mc-door { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 15px; height: 21px; background: #4a3526; border-radius: 8px 8px 0 0; box-shadow: inset 0 0 0 2px rgba(0,0,0,0.2); }
         .mc-flag { position: absolute; top: -22px; left: 50%; width: 2px; height: 16px; background: #6b6b70; }
@@ -3136,7 +3136,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(11.5px,1.5vw,13.5px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 10px 13px; line-height: 1.3; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(11.5px,1.5vw,13.5px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; line-height: 1.3; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — 1–2-Modul bilan bir xil */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

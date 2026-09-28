@@ -884,7 +884,7 @@ function PageBuild({ built = 0, glow = -1, intro = false, big = false }) {
       <li>Bek</li>
     </ul>,
     <a key="a" style={{ fontFamily: G, color: T.link, textDecoration: 'underline', fontSize: big ? 'clamp(13px,1.8vw,15px)' : 'clamp(12px,1.5vw,13.5px)', cursor: 'pointer' }}>{tr({ uz: 'Telegram kanalimiz', ru: 'Наш Telegram-канал' })}</a>,
-    <img key="i" src={PB_IMG} alt={tr({ uz: 'Jamoa surati', ru: 'Фото команды' })} style={{ display: 'block', width: '100%', maxHeight: big ? 150 : 92, objectFit: 'cover', borderRadius: 10 }} />,
+    <img key="i" src={PB_IMG} alt={tr({ uz: 'Jamoa surati', ru: 'Фото команды' })} style={{ display: 'block', width: '100%', maxHeight: big ? 96 : 92, objectFit: 'cover', borderRadius: 10 /* F-0927 (layout-lint E): 150→96 (ru ham) — s1 natija-oynasi tugmalar chizig'idan 24px tushardi (159/6) */ }} />,
   ];
   return (
     <div className={`pb-window ${big ? 'pb-big' : ''}`}>
@@ -1160,13 +1160,13 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}><span className="dd-grip" aria-hidden="true">⠿</span>{byId[sid].label}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
+            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}><span className="dd-grip" aria-hidden="true">⠿</span>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
           </div>
         ))}
       </div>
       <div className="dd-pool">
         {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — qizil bo'lakni bosib qaytaring", ru: 'Порядок неверный — нажмите красный блок, чтобы вернуть его' })}</span>}
-        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}><span className="dd-grip" aria-hidden="true">⠿</span>{byId[id].label}</button>)}
+        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}><span className="dd-grip" aria-hidden="true">⠿</span>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr({ uz: "To'g'ri! Qobiq aynan shu tartibda.", ru: 'Верно! Оболочка именно в таком порядке.' })}</div>}
       {wrong && !solved && <div className="dd-wrong">⚠️ {tr({ uz: "Tartib xato — qizil bo'lakni bosib qaytaring va boshqa katakka joylang.", ru: 'Порядок неверный — нажмите красный блок и поставьте его в другую ячейку.' })}</div>}
@@ -1196,7 +1196,7 @@ function StageShell({ screen, n, title, mentor, audioText, task, need, built, ne
               {/* Atama birinchi uchraganda ochiladi (1-bosqich), keyingi bosqichlarda takrorlanmaydi */}
               {n === 1 && <p className="small" style={{ margin: '0 0 8px', color: T.ink2 }}>{tr({ uz: 'Kompilyator — kod yozib, natijasini darhol ko\'radigan oyna.', ru: 'Компилятор — окно, где пишут код и сразу видят результат.' })}</p>}
               <ul className="sn-list">
-                {need.map((x, i) => <li key={i}><span className="mono sn-tag">{x.tag}</span><span className="body">{tr(x.t)}</span></li>)}
+                {need.map((x, i) => <li key={i}><span className="mono sn-tag">{x.tag}</span></li>)}{/* F-0926-06 (T1): izohlar olindi — vazifani mentor va VAZIFA kartasi aytadi, faqat teg-chiplar */}
               </ul>
               {/* F-0926-06 T2 (foydalanuvchi): «… bosilganda kod maydoni ochiladi» olindi — tugma nomini takrorlardi, sahifa qismi yonishini o'ngdagi maket ko'rsatadi */}
             </div>
@@ -1345,7 +1345,6 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {wrongLine >= 0 && <p className="small fade-step" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bu qator to'g'ri — belgilariga qarang: havola bosilmayapti va ro'yxatda ortiqcha nuqta bor.", ru: 'Эта строка верная — смотрите на признаки: не нажимается ссылка и лишняя точка в списке.' })}</p>}
             {/* F-0926-06 (159/7): «Xato bor qatorni toping» yo'rig'i olindi — mentor aytadi */}
-            {!done && <AchRule screen={screen} />}
             {done && (
               <div className="frame-success fade-step">
                 <p className="note-h" style={{ color: T.success, margin: '0 0 6px' }}>{tr({ uz: 'Ikkala xato ham tuzatildi!', ru: 'Обе ошибки исправлены!' })}</p>
@@ -1369,6 +1368,8 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             {/* F-0926-06 (159/7·14): holat-qatori olindi — belgilar sahifa ichida (⛔ · ←), tuzatilgach frame-success aytadi */}
+            {/* F-0927 (layout-lint E): nishon-sharti o'ng ustunga — chapda kod + tanlov ostida tugmalar chizig'idan 47px tushardi (159/6) */}
+            {!done && <AchRule screen={screen} />}
           </div>
         </div>
       </div>
@@ -1435,9 +1436,9 @@ const ScreenStage4 = ({ screen, onNext, onPrev }) => {
             <div className="card fade-up delay-2">
               <div className="card-lbl" style={{ color: T.accent }}>🛠 {tr({ uz: 'Kompilyatorda yozasiz', ru: 'Напишете в компиляторе' })}</div>
               <ul className="sn-list">
-                <li><span className="mono sn-tag">&lt;img&gt;</span><span className="body">{tr({ uz: 'rasm tegi (yopuvchisiz)', ru: 'тег картинки (без закрывающего)' })}</span></li>
-                <li><span className="mono sn-tag">src</span><span className="body">{tr({ uz: 'rasm manzili — pastdan nusxalang', ru: 'адрес картинки — скопируйте ниже' })}</span></li>
-                <li><span className="mono sn-tag">alt</span><span className="body">{tr({ uz: 'rasm ochilmasa chiqadigan matn', ru: 'текст, если картинка не открылась' })}</span></li>
+                <li><span className="mono sn-tag">&lt;img&gt;</span></li>
+                <li><span className="mono sn-tag">src</span></li>
+                <li><span className="mono sn-tag">alt</span></li>
               </ul>
               <div className="img-url-row">
                 <span className="mono img-url" title={IMG_URL}>{IMG_URL}</span>
@@ -1457,9 +1458,9 @@ const ScreenStage4 = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 10 (s10) — FORMA-YIG'ISH: jamoaga qo'shilish formasi (HTML-2 takrori) =====
 const FORM_PIECES = [
-  { id: 'label', label: '<label>Ismingiz</label>' },
+  { id: 'label', label: { uz: '<label>Ismingiz</label>', ru: '<label>Ваше имя</label>' } }, // F-0927: ru-rejimda o'zbekcha kod-bo'lak qolmasin (tekshiruv id bo'yicha)
   { id: 'input', label: '<input>' },
-  { id: 'button', label: "<button>Qo'shilish</button>" },
+  { id: 'button', label: { uz: "<button>Qo'shilish</button>", ru: '<button>Вступить</button>' } },
 ];
 const ScreenForm = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's10', text: "Jamoaga yangi o'yinchilar yozilmoqchi. Forma uchta bo'lakdan yig'iladi: label — katak ustidagi yozuv, input — yoziladigan katak, button — yuborish tugmasi. Bo'laklarni to'g'ri tartibda joylang, keyin formani o'zingiz sinab ko'ring.", trigger: 'on_mount', waits_for: null }]);
@@ -1628,7 +1629,7 @@ const ScreenParty = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <Confetti />
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Chempionlar» sahifasi <span className="italic" style={{ color: T.success }}>tayyor</span>! 🏆</>, ru: <>Страница «Чемпионов» <span className="italic" style={{ color: T.success }}>готова</span>! 🏆</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Beshala bosqich ham yopildi — <b style={{ color: T.ink }}>🧱 nishoni</b> sizniki. Sahifangizni ko'zdan kechiring va «Natijalarga» o'ting.</>, ru: <>Все пять этапов закрыты — <b style={{ color: T.ink }}>значок 🧱</b> ваш. Посмотрите на свою страницу и переходите «К результатам».</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Beshala bosqich ham yopildi. Sahifangizni ko'zdan kechiring va «Natijalarga» o'ting.</>, ru: <>Все пять этапов закрыты. Посмотрите на свою страницу и переходите «К результатам».</> })}</Mentor>
         <div className="party-center">
           <div className="party-glow fade-up delay-1"><PageBuild built={4} glow={3} big /></div>
           {/* F-0926-06 (159/7·12·14): «Siz bugun 5 bosqichda to'liq sahifa yasadingiz» olindi — sarlavha va mentor aytadi; tugmalar orqasiga tushardi */}
@@ -3118,7 +3119,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
         .dbg-box { display: flex; flex-direction: column; border-top: 1.5px dashed ${T.line}; padding-top: 12px; margin-top: 6px; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
         .dbg { display: flex; flex-direction: column; gap: 10px; }
         .dbg-code { background: ${CODE.bg}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 26px -14px rgba(${T.shadowBase},0.4); overflow-x: auto; }
-        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
+        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 5px 12px; /* F-0927 (layout-lint E): 8→5 — tanlov ochilganda kod qutisi tugmalar chizig'idan 13–37px tushardi (159/6) */ border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
@@ -4051,7 +4052,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
         .bl-opt.faded { opacity: 0.45; }
 
         /* 🛠 Bosqich-karta ro'yxati */
-        .sn-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+        .sn-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
         .sn-list li { display: flex; align-items: center; gap: 10px; }
         .sn-tag { background: ${T.bg}; border-radius: 8px; padding: 4px 9px; font-size: 12.5px; font-weight: 700; color: ${T.accent}; white-space: nowrap; box-shadow: inset 0 0 0 1px rgba(${T.shadowBase},0.1); }
         .img-url-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; background: ${T.bg}; border-radius: 10px; padding: 8px 10px; }
@@ -4059,9 +4060,9 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
 
         /* 🐞 Multi-debug (2 xato) — dbg-* poydevoriga qo'shimcha */
         .mdbg-active { outline: 2px solid ${T.accent}; border-radius: 8px; }
-        .mdbg-fixes { background: ${T.paper}; border-radius: 12px; padding: 12px 14px; margin: 6px 0 8px 28px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.25); }
+        .mdbg-fixes { background: ${T.paper}; border-radius: 12px; padding: 12px 14px; margin: 4px 0 4px 28px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.25); }
         .mdbg-fixes-h { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; }
-        .mdbg-fix { text-align: left; font-size: clamp(11.5px,1.5vw,13px); background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; cursor: pointer; transition: all 0.15s; }
+        .mdbg-fix { text-align: left; font-size: clamp(11.5px,1.5vw,13px); background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 9px; padding: 7px 11px; cursor: pointer; transition: all 0.15s; }
         .mdbg-fix:hover { background: ${T.accentSoft}; color: ${T.accent}; }
         .mdbg-fix.shake { animation: shake 0.35s ease; background: ${T.accentSoft}; color: ${T.accent}; }
         .mdbg-broken { transform: rotate(-0.6deg); }
