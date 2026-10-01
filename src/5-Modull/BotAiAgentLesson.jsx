@@ -2,18 +2,16 @@ import React, { useState, useEffect, useLayoutEffect, useRef, createContext, use
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
-// 5-MODUL (Telegram bot + AI) · DARS 10 — «BOTJON ISH BAJARADI — AI-AGENT» — PLATFORM STANDARD v18 (AUDIOSIZ)
-// Maqsad: o'quvchi AI-agentni tushunadi: 🧰 asbob sumkasi ko'targan Botjon GAPIRMAYDI — ISH BAJARADI.
-//         Sikl: idrok → qaror → amal → natijani ko'r → loop. tool-call=🧰 sumkadan asbobni olish ·
-//         tashqi API=tashqi xizmat · guardrails=🧰 sumkadagi chegara (xavfli/pul amalidan oldin ODAMDAN ruxsat).
-// 🧰 METAFORA — «BOTJON» (butun modul uchun yagona lug'at) + BU DARSNING YANGI BUYUMI: 🧰 VOSITALAR (asboblar).
-//   AI-bot=og'iz (gapiradi) · AI-agent=og'iz + 🧰 sumka (asboblar bilan amal) · tool=agent chaqiradigan funksiya ·
-//   maqsad=agentga berilgan vazifa · guardrails=xavfsizlik chegaralari · human-in-loop=muhim qarorda odam nazorati.
-// INTERAKTIV BEAT'lar: s2 «AI-bot vs AI-agent» · s3 «Agent sikli» · s5 MARKAZIY #1: «Agentni qurish» (cycleBuilder) ·
-//   s7 MARKAZIY #2: «Tool-pick — to'g'ri asbob» (toolPicker) · s9 MARKAZIY #3: «Guardrail qarori» (guardKeeper) ·
-//   s11 MARKAZIY #4: «Amal xavfsizligi» (safeActor) · s12 avtonom agent · s13 guardrails ·
-//   s15 FINAL: agent siklini yig'ish (DragDropOrder).
-// JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
+// 5-MODUL (Telegram bot + AI) · DARS 10 — «AI-agent yaratish» — PLATFORM STANDARD v18 (AUDIOSIZ)
+// Manba-haqiqat: feedback/F-0928-QA-5modul/10-BotAiAgent-v2.md (MD-birinchi, F-1001).
+// Asosiy model (A11): Maqsad olinadi → Idrok → Qaror → Amal → maqsadga yetdimi? Agentga siz beradigan uch narsa:
+//   maqsad, asboblar (tool — agent chaqira oladigan funksiya), chegara (guardrail).
+// Asboblar to'plami (A14): checkOrder() · saveOrder() · arrangeDelivery() · chargeCard() · cancelOrder().
+// Olam: AvtoPizza boti — «2 ta Pepperoni, Chilonzor 5-kvartal».
+// INTERAKTIV: s0 ikki bot · s3 agent sikli · s5 agentni qurish (cycleBuilder) · s7 asbob tanlash (toolPicker) ·
+//   s9 pul yechishdan oldin tasdiq (guardKeeper) · s11 amal xavfsizligi (safeActor) · s12 agent ishda ·
+//   s15 FINAL: tartibni yig'ish (DragDropOrder) · amaliyot: aistudio.google.com'da asbob chaqiruvi.
+// JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
 
@@ -83,7 +81,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'bot-ai-agent-05-10-v18', lessonTitle: { uz: 'Botjon ish bajaradi — AI-agent', ru: 'Бот выполняет задачи — AI-агент' } };
+const LESSON_META = { lessonId: 'bot-ai-agent-05-10-v18', lessonTitle: { uz: 'AI-agent yaratish', ru: "Создание ИИ-агента" } };
 // 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → markaziy o'yin → builder → debugging-final → praktika → podium → flashcard → summary
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -198,7 +196,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          <div className="ach-pop-h">{tr({ uz: 'Nishonlar', ru: "Значки" })} — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{a.name}</span></div>
           ); })}
@@ -247,7 +245,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
             <div className="chrome-left eyebrow"><span className="dot" /><span>{tr(eyebrow)}</span></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
-              <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
+              <div className="mono small" style={{ color: T.ink3, whiteSpace: 'nowrap' }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
             </div>
           </div>
         </div>
@@ -264,7 +262,7 @@ const NavNext = ({ disabled, label, onClick, optionalLive }) => {
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
   const goOn = tr({ uz: 'Davom etish', ru: 'Продолжить' });
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? goOn : (tr(label) || goOn))}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: 'Mentorni kuting', ru: "Подождите ментора" }) : (freeRide && disabled ? goOn : (tr(label) || goOn))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -295,43 +293,43 @@ const INLINE_KEYS = { s4: 2, s8: 0, s10: 3, s14: 1, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "AI-bot va AI-agent farqi", ru: 'Разница между AI-ботом и AI-агентом' },
+    title: { uz: "AI-bot va AI-agent farqi", ru: 'Разница между ИИ-ботом и ИИ-агентом' },
     cards: [
-      { ic: "💬", h: { uz: "Bot gapiradi", ru: 'Бот говорит' }, body: { uz: <>AI-bot faqat javob <b>matnini</b> yozadi — real amal qilmaydi.</>, ru: <>AI-бот пишет только <b>текст</b> ответа — реальных действий не делает.</> } },
-      { ic: "🧰", h: { uz: "Agent qiladi", ru: 'Агент делает' }, body: { uz: <>AI-agent maqsad sari 🧰 sumkadan <b>asboblarni</b> olib real amal bajaradi.</>, ru: <>AI-агент ради цели достаёт <b>инструменты</b> из 🧰 сумки и делает реальные действия.</> } },
-      { ic: "🔁", h: { uz: "Bir martalik vs sikl", ru: 'Один раз или цикл' }, body: { uz: <>Bot bir javob berib to'xtaydi; agent maqsadga yetguncha sikl bo'ylab aylanadi.</>, ru: <>Бот даёт один ответ и останавливается; агент крутится по циклу, пока не достигнет цели.</> }, ask: { uz: "AI-bot bilan AI-agent orasidagi asosiy farq nima?", ru: 'В чём главная разница между AI-ботом и AI-агентом?' } },
+      { ic: "1", h: { uz: "AI-bot", ru: "ИИ-бот" }, body: { uz: "AI faqat javob matnini yozadi.", ru: "ИИ только пишет текст ответа." } },
+      { ic: "saveOrder()", h: { uz: "AI-agent", ru: "ИИ-агент" }, body: { uz: "AI keyingi qadamni tanlaydi va asbob chaqiradi.", ru: "ИИ выбирает следующий шаг и вызывает инструмент." } },
+      { ic: "3", h: { uz: "Bitta javob va sikl", ru: "Один ответ и цикл" }, body: { uz: "Bot bitta javob bilan to'xtaydi, agent maqsadga yetguncha sikl bo'ylab ishlaydi.", ru: "Бот останавливается на одном ответе, а агент работает по циклу, пока не достигнет цели." }, ask: { uz: "AI-bot bilan AI-agentning asosiy farqi nima?", ru: "В чём главная разница между ИИ-ботом и ИИ-агентом?" } },
     ]
   },
   8: {
-    title: { uz: "Agent qanday amal qiladi", ru: 'Как агент выполняет действие' },
+    title: { uz: "Agent ishni qanday bajaradi", ru: "Как агент выполняет работу" },
     cards: [
-      { ic: "👁️", h: { uz: "Idrok", ru: 'Восприятие' }, body: { uz: <>Agent xabar va daftardagi holatni <b>o'qiydi</b> — hozir nima bo'layapti.</>, ru: <>Агент <b>читает</b> сообщение и состояние в тетради — что происходит сейчас.</> } },
-      { ic: "⚖️", h: { uz: "Qaror", ru: 'Решение' }, body: { uz: <>AI maqsadga qarab qaysi <b>asbobni</b> ishlatishni tanlaydi.</>, ru: <>AI по цели выбирает, какой <b>инструмент</b> использовать.</> } },
-      { ic: "🛠️", h: { uz: "Amal", ru: 'Действие' }, body: { uz: <>Tanlangan asbobni chaqiradi (masalan saveOrder) va natijani oladi.</>, ru: <>Вызывает выбранный инструмент (например saveOrder) и получает результат.</> }, ask: { uz: "Agent amalni nima orqali bajaradi?", ru: 'С помощью чего агент выполняет действие?' } },
+      { ic: "1", h: { uz: "Idrok", ru: 'Восприятие' }, body: { uz: "Vaziyatni ko'radi: xabar va bazadagi ma'lumot.", ru: "Видит ситуацию: сообщение и данные в базе." } },
+      { ic: "2", h: { uz: "Qaror", ru: 'Решение' }, body: { uz: "AI maqsadga qarab asbob tanlaydi.", ru: "ИИ выбирает инструмент, исходя из цели." } },
+      { ic: "saveOrder()", h: { uz: "Amal", ru: 'Действие' }, body: { uz: <>Asbob chaqiriladi (masalan, <code className="qcode">saveOrder()</code>) va natija qaytadi.</>, ru: <>Вызывается инструмент (например, <code className="qcode">saveOrder()</code>), и возвращается результат.</> }, ask: { uz: "Agent ishni nima orqali bajaradi?", ru: "С помощью чего агент выполняет работу?" } },
     ]
   },
   10: {
-    title: { uz: "Sikl — nega aylanadi", ru: 'Цикл — почему он крутится' },
+    title: { uz: "Nega sikl takrorlanadi", ru: "Почему цикл повторяется" },
     cards: [
-      { ic: "👁️", h: { uz: "Natijani ko'radi", ru: 'Смотрит на результат' }, body: { uz: <>Har amaldan keyin agent <b>natijani</b> ko'radi (yana idrok).</>, ru: <>После каждого действия агент видит <b>результат</b> (снова восприятие).</> } },
-      { ic: "🎯", h: { uz: "Maqsad tekshiriladi", ru: 'Цель проверяется' }, body: { uz: <>Maqsad bajarilmagan bo'lsa — agent keyingi qadamni tanlaydi.</>, ru: <>Если цель не достигнута — агент выбирает следующий шаг.</> } },
-      { ic: "🔁", h: { uz: "Loop", ru: 'Loop' }, body: { uz: <>Maqsadga yetguncha idrok → qaror → amal qayta aylanadi.</>, ru: <>Пока цель не достигнута, восприятие → решение → действие повторяются.</> }, ask: { uz: "Agent bitta amaldan keyin nima qiladi?", ru: 'Что агент делает после одного действия?' } },
+      { ic: "1", h: { uz: "Natijani ko'radi", ru: 'Смотрит на результат' }, body: { uz: "Har Amaldan keyin agent natijaga qaraydi, bu yangi Idrok.", ru: "После каждого Действия агент смотрит на результат — это новое Восприятие." } },
+      { ic: "2", h: { uz: "Maqsadga yetdimi?", ru: "Цель достигнута?" }, body: { uz: "Yetmagan bo'lsa, keyingi qadamni tanlaydi.", ru: "Если нет — выбирает следующий шаг." } },
+      { ic: "3", h: { uz: "Takrorlanadi", ru: "Повторяется" }, body: { uz: "Maqsadga yetguncha Idrok → Qaror → Amal.", ru: "Пока цель не достигнута: Восприятие → Решение → Действие." }, ask: { uz: "Agent bitta amaldan keyin nima qiladi?", ru: 'Что агент делает после одного действия?' } },
     ]
   },
   14: {
-    title: { uz: "Guardrails — 🧰 sumkadagi chegaralar", ru: 'Guardrails — ограничения в 🧰 сумке' },
+    title: { uz: "Chegara — agent nimani qila oladi", ru: "Ограничение — что агенту можно делать" },
     cards: [
-      { ic: "🧰", h: { uz: "Cheklangan asboblar", ru: 'Ограниченный набор инструментов' }, body: { uz: <>Sumkaga faqat <b>kerakli</b> asboblarni soling — xavflisini bermang.</>, ru: <>Кладите в сумку только <b>нужные</b> инструменты — опасные не давайте.</> } },
-      { ic: "✋", h: { uz: "Tasdiq so'rash", ru: 'Спросить подтверждение' }, body: { uz: <>Xavfli amaldan (to'lov, bekor) oldin odamdan <b>tasdiq</b> so'ralsin.</>, ru: <>Перед опасным действием (оплата, отмена) пусть спросит <b>подтверждение</b> у человека.</> } },
-      { ic: "🧑‍💼", h: { uz: "Odam nazorati", ru: 'Контроль человека' }, body: { uz: <>Shubhali holatni odamga uzat (human-in-loop) — hammasini o'zi hal qilmasin.</>, ru: <>Спорную ситуацию передавайте человеку (human-in-loop) — пусть не решает всё сам.</> }, ask: { uz: "Agent pul yechishdan oldin nima qilishi kerak?", ru: 'Что агент должен сделать перед списанием денег?' } },
+      { ic: "1", h: { uz: "Cheklangan asboblar", ru: 'Ограниченный набор инструментов' }, body: { uz: "Agentga faqat kerakli asboblar beriladi.", ru: "Агенту дают только нужные инструменты." } },
+      { ic: "chargeCard()", h: { uz: "Tasdiq so'rash", ru: 'Спросить подтверждение' }, body: { uz: "Xavfli amaldan (pul yechish, bekor qilish) oldin odamdan tasdiq so'raladi.", ru: "Перед опасным действием (списание денег, отмена) у человека спрашивают подтверждение." } },
+      { ic: "3", h: { uz: "Odam nazorati", ru: 'Контроль человека' }, body: { uz: "Shubhali holat odamga uzatiladi.", ru: "Спорную ситуацию передают человеку." }, ask: { uz: "Agent pul yechishdan oldin nima qilishi kerak?", ru: 'Что агент должен сделать перед списанием денег?' } },
     ]
   },
   15: {
-    title: { uz: "AI-agent sikli", ru: 'Цикл AI-агента' },
+    title: { uz: "Agent qanday ishlaydi", ru: "Как работает агент" },
     cards: [
-      { ic: "🎯", h: { uz: "Maqsad → Idrok", ru: 'Цель → Восприятие' }, body: { uz: <>Agent vazifa oladi va holatni <b>ko'radi</b>.</>, ru: <>Агент получает задачу и <b>видит</b> состояние.</> } },
-      { ic: "⚖️", h: { uz: "Qaror → Amal", ru: 'Решение → Действие' }, body: { uz: <>AI asbob tanlaydi va uni <b>chaqiradi</b>.</>, ru: <>AI выбирает инструмент и <b>вызывает</b> его.</> } },
-      { ic: "🔁", h: { uz: "Natijani ko'r", ru: 'Посмотри на результат' }, body: { uz: <>Tugamasa — qayta idrok.</>, ru: <>Не закончилось — снова восприятие.</> }, vis: <RcFlow items={[{ uz: 'Maqsad', ru: 'Цель' }, { uz: 'Idrok', ru: 'Восприятие' }, { uz: 'Qaror', ru: 'Решение' }, { uz: 'Amal', ru: 'Действие' }, { uz: "🔁 Natijani ko'r", ru: 'Смотри результат' }]} />, ask: { uz: "Agent sikli qaysi qadamdan boshlanadi?", ru: 'С какого шага начинается цикл агента?' } },
+      { ic: "1", h: { uz: "Maqsad olinadi", ru: "Цель получена" }, body: { uz: "Agent vazifani oladi.", ru: "Агент получает задачу." } },
+      { ic: "2", h: { uz: "Idrok → Qaror → Amal", ru: "Восприятие → Решение → Действие" }, body: { uz: "Vaziyatni ko'radi, asbob tanlaydi, uni chaqiradi.", ru: "Видит ситуацию, выбирает инструмент и вызывает его." } },
+      { ic: "3", h: { uz: "Maqsadga yetdimi?", ru: "Цель достигнута?" }, body: { uz: "Yetmagan bo'lsa, yana Idrok.", ru: "Если нет — снова Восприятие." }, vis: <RcFlow items={[{ uz: 'Maqsad olinadi', ru: "Цель получена" }, { uz: 'Idrok', ru: 'Восприятие' }, { uz: 'Qaror', ru: 'Решение' }, { uz: 'Amal', ru: 'Действие' }, { uz: "Maqsadga yetdimi?", ru: "Цель достигнута?" }]} />, ask: { uz: "Agent ishi nimadan boshlanadi?", ru: "С чего начинается работа агента?" } },
     ]
   }
 };
@@ -354,16 +352,16 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: 'Qayta tushuntirish', ru: "Объясняем заново" })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
-        <div className="rc-ic">{card.ic}</div>
+        <div className={`rc-ic ${/^\d+$/.test(card.ic) ? 'num' : 'code'}`}>{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: "Вопрос классу:" })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
@@ -519,7 +517,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing", ru: "Живой урок — одна попытка, подумайте перед нажатием" })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -544,7 +542,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
-                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
+                ? tr({ uz: 'Javobingiz qabul qilindi', ru: "Ваш ответ принят" })
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
@@ -561,7 +559,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "Короткое повторение — взглянуть на тему ещё раз" })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -620,42 +618,21 @@ const TLine = ({ cmd, out, col }) => (
   <div className="el-in tline">{cmd ? <><span style={{ color: CODE.str }}>$</span> <span style={{ color: CODE.text }}>{cmd}</span></> : <span style={{ color: col || CODE.comment }}>{out}</span>}</div>
 );
 
-// ===== 📱 TELEGRAM CHAT (jonli ko'rinish) =====
-const TgChat = ({ title = 'Botjon', ava = '🧰', status, children, minH }) => (
+// ===== TELEGRAM CHAT (jonli ko'rinish) =====
+// Avatar — sarlavhaning bosh harfi (A4: emoji yo'q)
+const TgChat = ({ title = 'AvtoPizza', status, children, minH }) => (
   <div className="tg">
-    <div className="tg-head"><span className="tg-ava">{ava}</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr(status) || tr({ uz: 'bot · onlayn', ru: 'бот · онлайн' })}</span></span></div>
+    <div className="tg-head"><span className="tg-ava" aria-hidden="true">{String(tr(title)).charAt(0)}</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr(status) || tr({ uz: 'bot · onlayn', ru: 'бот · онлайн' })}</span></span></div>
     <div className="tg-body" style={{ minHeight: minH }}>{children}</div>
   </div>
 );
 const Bubble = ({ from = 'bot', children, muted, thinking }) => <div className={`tg-bubble ${from} el-in ${muted ? 'muted' : ''}`}>{thinking ? <span className="gen-dots inline"><i /><i /><i /></span> : children}</div>;
-const TgBtns = ({ items }) => <div className="tg-btns el-in">{items.map((b, i) => <span key={i} className="tg-btn">{b}</span>)}</div>;
-// ===== 📜 YO'RIQNOMA (system prompt) kartasi =====
+// ===== AGENT KARTASI (s5: maqsad · asboblar · chegara) =====
 const PromptCard = ({ children, who, tone }) => (
-  <div className={`prompt-card ${tone || ''}`}><span className="prompt-who">{tr(who) || tr({ uz: "📜 YO'RIQNOMA", ru: '📜 ИНСТРУКЦИЯ' })}</span><p className="prompt-text">{children}</p></div>
-);
-// ===== 🎒 JIHOZLAR PANELI (butun 5-modulda qayta ishlatiladi) =====
-const GEAR_SLOTS = [
-  { id: 'key', label: { uz: 'Kalit', ru: 'Ключ' } },
-  { id: 'sheet', label: { uz: "Qoidalar varag'i", ru: 'Лист правил' } },
-  { id: 'btn', label: { uz: 'Tugmalar', ru: 'Кнопки' } },
-  { id: 'env', label: { uz: 'Konvert (ctx)', ru: 'Конверт (ctx)' } },
-  { id: 'note', label: { uz: 'Holat daftari', ru: 'Тетрадь состояния' } },
-  { id: 'menu', label: { uz: "Yo'l-yo'riq", ru: 'Маршрут' } },
-  { id: 'tools', label: { uz: 'Vositalar', ru: 'Инструменты' } },
-  { id: 'star', label: { uz: 'AI yordamchi', ru: 'AI-помощник' } }
-];
-const GearPanel = ({ active = [] }) => (
-  <div className="gear-panel">
-    {GEAR_SLOTS.map(g => (
-      <div key={g.id} className={`gear-slot ${active.includes(g.id) ? 'on' : ''}`}>
-        
-        <span className="gear-lbl">{tr(g.label)}</span>
-      </div>
-    ))}
-  </div>
+  <div className={`prompt-card ${tone || ''}`}><span className="prompt-who">{tr(who) || tr({ uz: 'Agent kartasi', ru: "Карточка агента" })}</span><div className="prompt-text">{children}</div></div>
 );
 
-function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
+function DragDropOrder({ items, hints, onSolved, onChange, onWrong, loopFrom, loopTo }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -672,6 +649,15 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
+  // A7 (s15): to'g'ri yig'ilgach loopFrom-joydan loopTo-joyga qaytuvchi strelka chiziladi (sikl Idrok'ka qaytadi)
+  const [loopBox, setLoopBox] = useState(null);
+  useLayoutEffect(() => {
+    if (!solved || loopFrom == null || loopTo == null) { setLoopBox(null); return; }
+    const a = slotRefs.current[loopTo], b = slotRefs.current[loopFrom];
+    if (!a || !b) return;
+    const top = a.offsetTop + a.offsetHeight / 2;
+    setLoopBox({ top, height: b.offsetTop + b.offsetHeight / 2 - top });
+  }, [solved, loopFrom, loopTo]);
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -721,24 +707,22 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
             {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
           </div>
         ))}
+        {loopBox && <><span className="dd-loop" style={{ top: loopBox.top, height: loopBox.height }} aria-hidden="true" /><i className="dd-loop-head" style={{ top: loopBox.top - 4 }} aria-hidden="true" /></>}
       </div>
-      <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, верните его и разложите заново' })}</span>}
+      {!solved && <div className="dd-pool">
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
-      </div>
-      {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      </div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: "Порядок неверный — нажмите на блок, верните его и разложите заново." })}</div>}
     </div>
   );
 }
 
-// ===== AGENT DATA (BOTJON — 🧰 asbob sumkasi, GAPIRMAYDI, ISH BAJARADI) =====
-// AI-bot vs AI-agent (s2)
+// ===== AGENT DATA (AvtoPizza boti; asboblar to'plami — A14) =====
+// AI-bot va AI-agent (s2) — 3 jihat
 const VS_ROWS = [
-  { id: 'mode', k: { uz: 'Qanday ishlaydi?', ru: 'Как работает?' }, bot: { uz: 'reaktiv — javob yozadi', ru: 'реактивно — пишет ответ' }, agent: { uz: 'proaktiv — maqsad sari amal qiladi', ru: 'проактивно — действует ради цели' } },
-  { id: 'steps', k: { uz: 'Necha qadam?', ru: 'Сколько шагов?' }, bot: { uz: 'bir martalik (xabar → javob)', ru: 'один раз (сообщение → ответ)' }, agent: { uz: "ko'p qadam — maqsadga yetguncha sikl", ru: 'много шагов — цикл, пока цель не достигнута' } },
-  { id: 'hands', k: { uz: 'Nimasi bor?', ru: 'Что у него есть?' }, bot: { uz: "faqat og'iz (gapiradi)", ru: 'только рот (говорит)' }, agent: { uz: "og'iz + 🧰 sumka (asboblar bilan amal)", ru: 'рот + 🧰 сумка (действует инструментами)' } },
-  { id: 'input', k: { uz: 'Siz nima berasiz?', ru: 'Что даёте Вы?' }, bot: { uz: "har javob uchun ko'rsatma", ru: 'указание для каждого ответа' }, agent: { uz: "maqsad — qadamlarni o'zi topadi", ru: 'цель — шаги он находит сам' } }
+  { id: 'steps', k: { uz: 'Necha qadam?', ru: 'Сколько шагов?' }, bot: { uz: 'bitta: xabar → javob', ru: "один: сообщение → ответ" }, agent: { uz: 'bir nechta: maqsadga yetguncha sikl', ru: "несколько: цикл, пока цель не достигнута" } },
+  { id: 'hands', k: { uz: 'Nima bilan ishlaydi?', ru: "С чем работает?" }, bot: { uz: 'faqat matn bilan', ru: "только с текстом" }, agent: { uz: <>asboblar bilan: siz yozgan funksiyalar (<code className="qcode">saveOrder()</code> kabi)</>, ru: <>с инструментами: функциями, которые написали вы (как <code className="qcode">saveOrder()</code>)</> } },
+  { id: 'input', k: { uz: 'Siz nima berasiz?', ru: 'Что даёте Вы?' }, bot: { uz: 'system prompt: qanday javob yozsin', ru: "system prompt: каким писать ответ" }, agent: { uz: 'maqsad, asboblar va chegara', ru: "цель, инструменты и ограничение" } }
 ];
 // Agent sikli (s3)
 const PHASES = [
@@ -747,141 +731,180 @@ const PHASES = [
   { id: 'act', label: { uz: 'Amal', ru: 'Действие' } }
 ];
 const CYCLE_STEPS = [
-  { phase: 'perceive', txt: { uz: "Mijoz: «2 dona A-model». Agent xabarni va daftardagi holatni o'qiydi.", ru: 'Клиент: «2 штуки A-модели». Агент читает сообщение и состояние в тетради.' } },
-  { phase: 'decide', txt: { uz: "Maqsad — buyurtmani qabul qil. Avval ro'yxatda bormi? → checkOrder tanlanadi.", ru: 'Цель — принять заказ. Сначала: есть ли в наличии? → выбирается checkOrder.' } },
-  { phase: 'act', txt: { uz: "sumkadan checkOrder() olindi → «A-model mavjud» natijasi qaytdi.", ru: 'Из 🧰 сумки взят checkOrder() → вернулся результат «A-модель есть».' } },
-  { phase: 'perceive', txt: { uz: "Natija keldi: mahsulot bor. Agent holatni qayta baholaydi.", ru: 'Результат пришёл: товар есть. Агент заново оценивает ситуацию.' } },
-  { phase: 'decide', txt: { uz: "Endi buyurtmani saqlash kerak → saveOrder tanlanadi.", ru: 'Теперь нужно сохранить заказ → выбирается saveOrder.' } },
-  { phase: 'act', txt: { uz: "sumkadan saveOrder() olindi → buyurtma doimiy daftarga yozildi ✅.", ru: 'Из 🧰 сумки взят saveOrder() → заказ записан в постоянную тетрадь ✅.' } }
+  { phase: 'perceive', txt: { uz: "Mijoz yozdi: «2 ta Pepperoni». Agent xabarni o'qidi. Pepperoni bugun bormi — hali noma'lum.", ru: "Клиент написал: «2 Пепперони». Агент прочитал сообщение. Есть ли сегодня Пепперони — пока неизвестно." } },
+  { phase: 'decide', txt: { uz: "Avval Pepperoni borligini bilish kerak → `checkOrder` asbobini tanlaydi.", ru: "Сначала нужно узнать, есть ли Пепперони → выбирает инструмент `checkOrder`." } },
+  { phase: 'act', txt: { uz: "`checkOrder()` chaqirildi → natija: «Pepperoni bor». Maqsadga hali yetmadi.", ru: "`checkOrder()` вызван → результат: «Пепперони есть». Цель ещё не достигнута." } },
+  { phase: 'perceive', txt: { uz: "Natijani o'qidi: Pepperoni bor, buyurtma esa hali bazada yo'q.", ru: "Прочитал результат: Пепперони есть, а заказа в базе ещё нет." } },
+  { phase: 'decide', txt: { uz: "Endi buyurtmani saqlash kerak → `saveOrder` asbobini tanlaydi.", ru: "Теперь нужно сохранить заказ → выбирает инструмент `saveOrder`." } },
+  { phase: 'act', txt: { uz: "`saveOrder()` chaqirildi → buyurtma bazaga yozildi. Maqsadga yetdi — sikl to'xtaydi.", ru: "`saveOrder()` вызван → заказ записан в базу. Цель достигнута — цикл останавливается." } }
 ];
-// Asboblar — 🧰 sumkadagi vositalar (s6)
+// Asboblar (s6) — butun darsda bitta to'plam (A14)
 const TOOLS = [
-  { id: 'check', tok: 'checkOrder()',     desc: { uz: "Buyurtma holatini yoki mahsulot borligini tekshiradi.", ru: 'Проверяет статус заказа или наличие товара.' } },
-  { id: 'save', tok: 'saveOrder()',      desc: { uz: "Buyurtmani doimiy daftarga (bazaga) yozadi.", ru: 'Записывает заказ в постоянную тетрадь (базу).' } },
-  { id: 'deliver', tok: 'arrangeDelivery()', desc: { uz: "Yetkazishni rasmiylashtiradi.", ru: 'Оформляет доставку.' } },
-  { id: 'notify', tok: 'notifyUser()',     desc: { uz: "Mijozga xabar yuboradi.", ru: 'Отправляет сообщение клиенту.' } }
+  { id: 'check', tok: 'checkOrder()', desc: { uz: "Taom borligini yoki buyurtma qaysi holatda ekanini tekshiradi.", ru: "Проверяет, есть ли блюдо или в каком состоянии заказ." } },
+  { id: 'save', tok: 'saveOrder()', desc: { uz: "Buyurtmani bazaga (PostgreSQL) yozadi.", ru: "Записывает заказ в базу (PostgreSQL)." } },
+  { id: 'deliver', tok: 'arrangeDelivery()', desc: { uz: "Yetkazishni rejalaydi: kuryerga manzil va vaqtni beradi.", ru: "Оформляет доставку: передаёт курьеру адрес и время." } },
+  { id: 'charge', tok: 'chargeCard()', desc: { uz: "Mijoz kartasidan pul yechadi.", ru: "Списывает деньги с карты клиента." } },
+  { id: 'cancel', tok: 'cancelOrder()', desc: { uz: "Buyurtmani bekor qiladi.", ru: "Отменяет заказ." } }
 ];
-// Tool-pick vaziyatlari (s7 — real yechim)
+// s7 — asboblar paneli vaziyat tartibidan boshqa tartibda (4-savol A)
+const TOOL_PICK_ORDER = ['save', 'cancel', 'deliver', 'check', 'charge'];
+// Asbob tanlash vaziyatlari (s7)
 const SITUATIONS = [
-  { id: 'q1', sit: { uz: "«Buyurtmam tayyormi?» — avval holatni bilish kerak", ru: '«Мой заказ готов?» — сначала нужно узнать статус' }, tool: 'check' },
-  { id: 'q2', sit: { uz: "Mijoz to'lovni tasdiqladi — endi yozib qo'yish kerak", ru: 'Клиент подтвердил оплату — теперь нужно записать' }, tool: 'save' },
-  { id: 'q3', sit: { uz: "Buyurtma yozildi — endi yetkazishni rasmiylashtirish kerak", ru: 'Заказ записан — теперь нужно оформить доставку' }, tool: 'deliver' }
+  { id: 'q1', sit: { uz: "Mijoz yozdi: «Buyurtmam qayerda?»", ru: "Клиент написал: «Где мой заказ?»" }, tool: 'check' },
+  { id: 'q2', sit: { uz: "Pul yechildi, lekin buyurtma hali bazada yo'q", ru: "Деньги списаны, но заказа в базе ещё нет" }, tool: 'save' },
+  { id: 'q3', sit: { uz: "Buyurtma bazaga yozildi. Endi uni kuryerga berish kerak", ru: "Заказ записан в базу. Теперь его нужно передать курьеру" }, tool: 'deliver' }
 ];
-// Agentni qurish (s5 — real yechim: maqsad + asboblar + chegara)
+// Agentni qurish (s5): maqsad + asboblar + chegara. To'g'ri variant o'rni aralash (4-savol A) — tekshiruv `ok` bayrog'i
+// bo'yicha (indeks emas); har xato variantning o'z yozuvi bor.
 const AGENT_BUILD = [
-  { id: 'goal',  q: { uz: 'Maqsad?', ru: 'Цель?' },   opts: [{ uz: "Buyurtmani qabul qilib, yetkazishga tayyorlash", ru: 'Принять заказ и подготовить его к доставке' }, { uz: "Har savolga o'zim javob yozib berish", ru: 'На каждый вопрос я сам напишу ответ' }, { uz: "Faqat salomlashish", ru: 'Только здороваться' }], right: 0 },
-  { id: 'tools', q: { uz: 'Asboblar?', ru: 'Инструменты?' }, opts: [{ uz: "checkOrder, saveOrder, arrangeDelivery, notifyUser", ru: 'checkOrder, saveOrder, arrangeDelivery, notifyUser' }, { uz: "Hech qanday asbob — faqat gaplashsin", ru: 'Никаких инструментов — пусть просто говорит' }, { uz: "Faqat bitta asbob — qolgani kerak emas", ru: 'Только один инструмент — остальные не нужны' }], right: 0 },
-  { id: 'guard', q: { uz: 'Chegara?', ru: 'Ограничение?' },  opts: [{ uz: "Xavfli amaldan (to'lov, bekor) oldin odamdan tasdiq so'rasin", ru: 'Перед опасным действием (оплата, отмена) пусть спросит подтверждение у человека' }, { uz: "Hamma narsani tasdiqsiz o'zi bajaraversin", ru: 'Пусть делает всё сам без подтверждения' }, { uz: "Hech qanday amal qilmasin", ru: 'Пусть вообще ничего не делает' }], right: 0 }
+  { id: 'goal', q: { uz: 'Maqsad?', ru: 'Цель?' }, k: { uz: 'MAQSAD:', ru: 'ЦЕЛЬ:' }, opts: [
+    { id: 'g-answer', t: { uz: "Buyurtma haqidagi savollarga javob yozish", ru: "Писать ответы на вопросы о заказе" }, err: { uz: "Faqat javob yozish — AI-botning ishi.", ru: "Только писать ответы — это работа ИИ-бота." } },
+    { id: 'g-accept', ok: true, t: { uz: "Buyurtmani qabul qilib, yetkazishga tayyorlash", ru: 'Принять заказ и подготовить его к доставке' } },
+    { id: 'g-check', t: { uz: "Taom bor-yo'qligini tekshirish", ru: "Проверять, есть ли блюдо" }, err: { uz: "Bu — bitta qadam, maqsad emas.", ru: "Это один шаг, а не цель." } }
+  ] },
+  { id: 'tools', q: { uz: 'Asboblar?', ru: 'Инструменты?' }, k: { uz: 'ASBOBLAR:', ru: 'ИНСТРУМЕНТЫ:' }, opts: [
+    { id: 't-fun', t: { uz: "sendSticker, changeAvatar, playMusic, setTheme, sendGif", ru: "sendSticker, changeAvatar, playMusic, setTheme, sendGif" }, err: { uz: "Bu asboblar buyurtmaga kerak emas.", ru: "Эти инструменты для заказа не нужны." } },
+    { id: 't-admin', t: { uz: "changePrice, banUser, refundAll, deleteMenu, sendAds", ru: "changePrice, banUser, refundAll, deleteMenu, sendAds" }, err: { uz: "Bu asboblar buyurtmani qabul qilishga kerak emas.", ru: "Эти инструменты не нужны, чтобы принять заказ." } },
+    { id: 't-order', ok: true, t: { uz: "checkOrder, saveOrder, arrangeDelivery, chargeCard, cancelOrder", ru: "checkOrder, saveOrder, arrangeDelivery, chargeCard, cancelOrder" } }
+  ] },
+  { id: 'guard', q: { uz: 'Chegara?', ru: 'Ограничение?' }, k: { uz: 'CHEGARA:', ru: "ОГРАНИЧЕНИЕ:" }, opts: [
+    { id: 'c-confirm', ok: true, t: { uz: "Pul yechish yoki bekor qilishdan oldin odamdan tasdiq so'rasin", ru: "Перед списанием денег или отменой пусть спросит подтверждение у человека" } },
+    { id: 'c-auto', t: { uz: "Mijoz so'rasa, har amalni tasdiqsiz bajarsin", ru: "Если клиент попросит, пусть выполняет любое действие без подтверждения" }, err: { uz: "Agent xato tushunsa, pul haqiqatan yechiladi.", ru: "Если агент поймёт неверно, деньги спишутся по-настоящему." } },
+    { id: 'c-none', t: { uz: "Hech qanday amal qilmay, faqat javob yozsin", ru: "Пусть ничего не делает, а только пишет ответы" }, err: { uz: "Unda u yana AI-bot bo'lib qoladi.", ru: "Тогда он снова станет ИИ-ботом." } }
+  ] }
 ];
-// Amal xavfsizligi (s11 — real yechim: qaysi amal odam ruxsatini talab qiladi?)
+const buildOk = (row) => row.opts.find(o => o.ok);
+// Amal xavfsizligi (s11): qaysi amalga odam tasdig'i kerak?
 const ACT_SAFETY = [
-  { id: 'a1', text: { uz: 'Buyurtma holatini tekshirish — checkOrder()', ru: 'Проверить статус заказа — checkOrder()' }, danger: false },
-  { id: 'a2', text: { uz: "Mijoz kartasidan pul yechish — chargeCard()", ru: 'Списать деньги с карты клиента — chargeCard()' }, danger: true },
-  { id: 'a3', text: { uz: 'Mijozga «qabul qilindi» xabari — notifyUser()', ru: 'Сообщение клиенту «принято» — notifyUser()' }, danger: false }
+  { id: 'a1', text: { uz: <>Buyurtma holatini tekshirish — <code className="qcode">checkOrder()</code></>, ru: <>Проверить состояние заказа — <code className="qcode">checkOrder()</code></> }, danger: false },
+  { id: 'a2', text: { uz: <>Buyurtmani bekor qilish — <code className="qcode">cancelOrder()</code></>, ru: <>Отменить заказ — <code className="qcode">cancelOrder()</code></> }, danger: true },
+  { id: 'a3', text: { uz: <>Buyurtmani bazaga yozish — <code className="qcode">saveOrder()</code></>, ru: <>Записать заказ в базу — <code className="qcode">saveOrder()</code></> }, danger: false }
 ];
-// Guardrails — 🧰 sumkadagi chegaralar (s13)
+// Chegaralar (s13)
 const GUARDS = [
-  { id: 'limit', label: { uz: 'Cheklangan asboblar', ru: 'Ограниченный набор инструментов' }, desc: { uz: "Sumkaga faqat kerakli asboblarni soling. «Pul qaytarish» yoki «o'chirish» kabilarni bermang — ishlata olmaydi.", ru: 'Кладите в сумку только нужные инструменты. «Возврат денег» или «удаление» не давайте — тогда он их не применит.' } },
-  { id: 'confirm', label: { uz: "Tasdiq so'rash", ru: 'Спросить подтверждение' }, desc: { uz: "Xavfli amaldan (to'lov, bekor qilish) oldin mijoz yoki admin tasdig'ini so'rasin.", ru: 'Перед опасным действием (оплата, отмена) пусть спросит подтверждение у клиента или админа.' } },
-  { id: 'human', label: { uz: 'Odam nazorati', ru: 'Контроль человека' }, desc: { uz: "Murakkab yoki shubhali holatni odamga uzatsin (human-in-loop) — hammasini o'zi hal qilmasin.", ru: 'Сложную или спорную ситуацию пусть передаёт человеку (human-in-loop) — не решает всё сам.' } }
+  { id: 'limit', label: { uz: 'Cheklangan asboblar', ru: 'Ограниченный набор инструментов' }, desc: { uz: "Agentga faqat kerakli asboblarni bering. Masalan, buyurtma agentiga narxni o'zgartirish yoki mijozni bloklash asbobini bermang: bermagan asbobini u chaqira olmaydi.", ru: "Давайте агенту только нужные инструменты. Например, агенту заказов не давайте инструмент, который меняет цену или блокирует клиента: инструмент, которого у него нет, он вызвать не сможет." } },
+  { id: 'confirm', label: { uz: "Tasdiq so'rash", ru: 'Спросить подтверждение' }, desc: { uz: "Xavfli amaldan oldin (pul yechish, bekor qilish) agent mijoz yoki admindan tasdiq so'raydi.", ru: "Перед опасным действием (списание денег, отмена) агент спрашивает подтверждение у клиента или админа." } },
+  { id: 'human', label: { uz: 'Odam nazorati', ru: 'Контроль человека' }, desc: { uz: "Murakkab yoki shubhali holatni agent odamga, masalan AvtoPizza adminiga, uzatadi. Inglizcha nomi — human-in-the-loop.", ru: "Сложную или спорную ситуацию агент передаёт человеку, например админу AvtoPizza. По-английски это называется human-in-the-loop." } }
 ];
-// Agent sikli (final s15)
+// Final (s15): agent qanday ishlaydi — 5 bo'lak (A11)
 const FLOW = [
-  { id: 'goal', label: { uz: 'Maqsad', ru: 'Цель' }, d: { uz: "agentga vazifa beriladi.", ru: 'агенту даётся задача.' } },
-  { id: 'perceive', label: { uz: 'Idrok', ru: 'Восприятие' }, d: { uz: "holatni o'qiydi (xabar, daftar).", ru: 'читает состояние (сообщение, тетрадь).' } },
-  { id: 'decide', label: { uz: 'Qaror', ru: 'Решение' }, d: { uz: "AI qaysi asbobni tanlaydi.", ru: 'AI выбирает инструмент.' } },
-  { id: 'act', label: { uz: 'Amal', ru: 'Действие' }, d: { uz: "sumkadan asbobni oladi.", ru: 'достаёт инструмент из сумки.' } },
-  { id: 'loop', label: { uz: "Natijani ko'r", ru: 'Смотри результат' }, d: { uz: "tugamasa — qayta idrok.", ru: 'не закончилось — снова восприятие.' } }
+  { id: 'goal', label: { uz: 'Maqsad olinadi', ru: "Цель получена" } },
+  { id: 'perceive', label: { uz: 'Idrok', ru: 'Восприятие' } },
+  { id: 'decide', label: { uz: 'Qaror', ru: 'Решение' } },
+  { id: 'act', label: { uz: 'Amal', ru: 'Действие' } },
+  { id: 'check', label: { uz: 'Maqsadga yetdimi?', ru: "Цель достигнута?" } }
 ];
-const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
+const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: f.label }));
 
-// ===== SCREEN 0 — HOOK: gapirdi vs qildi =====
+// ===== SCREEN 0 — HOOK: ikki bot, bir xil buyurtma =====
+// Javob izohi tanlovga qarab: «Aynan!» faqat to'g'ri variantga, qolganiga neytral «Qiziq fikr!» (A8)
+const HOOK_OPTS = [
+  { id: 'a', label: { uz: "Kodida xato bor — bot buzilgan", ru: "В коде ошибка — бот сломан" }, ack: { uz: <><b>Qiziq fikr!</b> Lekin ikkala bot ham ishladi — farq «Baza» qatorida.</>, ru: <><b>Интересная мысль!</b> Но оба бота сработали — разница в строке «База».</> } },
+  { id: 'b', label: { uz: "Bazaga yozadigan funksiyani chaqira olmaydi", ru: "Не может вызвать функцию, которая пишет в базу" }, ack: { uz: <><b>Aynan!</b> «Qabul qilindi» deb yozish bilan buyurtma bazaga tushmaydi — AI-agent buning uchun <code className="qcode">saveOrder()</code> ni chaqirdi.</>, ru: <><b>Именно!</b> От слов «заказ принят» заказ в базу не попадает — ИИ-агент для этого вызвал <code className="qcode">saveOrder()</code>.</> } },
+  { id: 'c', label: { uz: "Internet sekin ishlab, xabar kechikdi", ru: "Интернет работал медленно, и сообщение опоздало" }, ack: { uz: <><b>Qiziq fikr!</b> Lekin ikkala javob ham vaqtida keldi — farq «Baza» qatorida.</>, ru: <><b>Интересная мысль!</b> Но оба ответа пришли вовремя — разница в строке «База».</> } }
+];
+const HOOK_USER = { uz: "2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring", ru: "2 Пепперони, Чиланзар 5-квартал. Оформите заказ" };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const [tried, setTried] = useState(!!storedAnswer);
+  const [phase, setPhase] = useState(storedAnswer ? 3 : 0); // 0 — kutish · 1 — yozmoqda · 2 — javob + Baza · 3 — savol
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
-  const OPTS = [
-    { id: 'a', label: { uz: "Bot buzilgan — kodda xato bor", ru: 'Бот сломался — в коде ошибка' } },
-    { id: 'b', label: { uz: "AI-bot faqat gapiradi — amal qilish uchun unga maqsad va 🧰 sumka (asboblar) kerak", ru: 'AI-бот только говорит — чтобы действовать, ему нужны цель и 🧰 сумка (инструменты)' } },
-    { id: 'c', label: { uz: "Internet sekin ishlagan", ru: 'Интернет работал медленно' } }
-  ];
-  const poke = () => { setTried(true); setSc(n => n + 1); };
-  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  const timers = useRef([]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  const poke = () => {
+    if (phase > 0) return;
+    setPhase(1); setSc(n => n + 1);
+    timers.current.push(setTimeout(() => { setPhase(2); setSc(n => n + 1); }, 800));
+    timers.current.push(setTimeout(() => { setPhase(3); setSc(n => n + 1); }, 2100));
+  };
+  const pick = (v) => { if (picked !== null || phase < 3) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  const cur = HOOK_OPTS.find(o => o.id === picked);
   return (
-    <Stage eyebrow={tr({ uz: 'Loyiha · kirish', ru: 'Проект · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: "Вступление" })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>AI-bot «buyurtmani yubordim» dedi. Lekin daftarda <span className="italic" style={{ color: T.accent }}>hech narsa yo'q</span>. Nima yetishmaydi?</>, ru: <>AI-бот сказал «заказ отправил». Но в тетради <span className="italic" style={{ color: T.accent }}>ничего нет</span>. Чего не хватает?</> })}</h1>
-        <Mentor>{tr({ uz: "O'tgan darsni eslang: AI-bot chiroyli javob yozadi, lekin amal qilmaydi. Tugmani bosing — bir vaziyatda AI-bot va AI-agent qanday farq qilishini ko'ring.", ru: 'Вспомните прошлый урок: AI-бот пишет красивый ответ, но ничего не делает. Нажмите кнопку — посмотрите, чем AI-бот и AI-агент отличаются в одной и той же ситуации.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>AvtoPizza'ning ikki botiga bir xil buyurtma keldi. Qaysi biri uni <span className="italic" style={{ color: T.accent }}>haqiqatan qabul qiladi</span>?</>, ru: <>Двум ботам AvtoPizza пришёл один и тот же заказ. Какой из них его <span className="italic" style={{ color: T.accent }}>действительно принимает</span>?</> })}</h1>
+        <Mentor>{tr({ uz: "6-darsda botingizga AI ulagansiz: u system prompt bo'yicha javob yozadi. Bunday botni bugun AI-bot deb ataymiz. Tugmani bosing va ikki botni solishtiring.", ru: "На 6-м уроке вы подключили к боту ИИ: он пишет ответы по system prompt. Сегодня такого бота мы называем ИИ-ботом. Нажмите кнопку и сравните двух ботов." })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <TgChat title={tr({ uz: 'AI-bot (faqat gapiradi)', ru: 'AI-бот (только говорит)' })} ava="💬" status={tr({ uz: 'bot · reaktiv', ru: 'бот · реактивный' })} minH={110}>
-              <Bubble from="user">{tr({ uz: 'Buyurtmamni rasmiylashtir', ru: 'Оформи мой заказ' })}</Bubble>
-              {tried && <Bubble from="bot">{tr({ uz: 'Albatta, rasmiylashtirdim ✅', ru: 'Конечно, оформил ✅' })}</Bubble>}
+            <TgChat title={{ uz: 'AvtoPizza · AI-bot', ru: "AvtoPizza · ИИ-бот" }} status={{ uz: 'bot', ru: "бот" }} minH={110}>
+              <Bubble from="user">{tr(HOOK_USER)}</Bubble>
+              {phase === 1 && <Bubble from="bot" thinking />}
+              {phase >= 2 && <Bubble from="bot">{tr({ uz: 'Albatta! Buyurtmangiz qabul qilindi.', ru: "Конечно! Ваш заказ принят." })}</Bubble>}
             </TgChat>
-            <TgChat title={tr({ uz: 'AI-agent (amal qiladi)', ru: 'AI-агент (действует)' })} ava="🧰" status={tr({ uz: 'bot · proaktiv', ru: 'бот · проактивный' })} minH={110}>
-              <Bubble from="user">{tr({ uz: 'Buyurtmamni rasmiylashtir', ru: 'Оформи мой заказ' })}</Bubble>
-              {tried && <Bubble from="bot">{tr({ uz: 'saveOrder() ✅ Buyurtma daftarga yozildi, arrangeDelivery() ✅ yetkazish rejalashtirildi 📦', ru: 'saveOrder() ✅ Заказ записан в тетрадь, arrangeDelivery() ✅ доставка запланирована 📦' })}</Bubble>}
-            </TgChat>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Solishtirildi', ru: '✓ Сравнили' }) : tr({ uz: "▶ Ikki botni solishtirish", ru: '▶ Сравнить двух ботов' })}</button>
+            {phase >= 2 && <div className="ag-db fade-step"><span className="ag-db-k">{tr({ uz: 'Baza', ru: "База" })}</span><span className="ag-db-line"><span className="ag-db-none">{tr({ uz: "yangi buyurtma yo'q", ru: "новых заказов нет" })}</span></span></div>}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'AI-botda nima yetishmaydi?', ru: 'Чего не хватает AI-боту?' })}</p>
-            <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {OPTS.map(o => {
-                const on = picked === o.id;
-                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
-              })}
-            </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! AI-bot — og'iz (gapiradi). <b>AI-agent</b> — og'iz + 🧰 sumka (asboblar bilan AMAL qiladi). Bugun botingizga maqsad, asboblar va sikl beramiz.</>, ru: <>Именно! AI-бот — это рот (говорит). <b>AI-агент</b> — рот + 🧰 сумка (ДЕЙСТВУЕТ инструментами). Сегодня дадим Вашему боту цель, инструменты и цикл.</> })}</p>}
-            {tried && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📓 Daftar: <b>hech narsa yozilmadi</b> — faqat matn chiqdi.</>, ru: <>📓 Тетрадь: <b>ничего не записано</b> — вышел только текст.</> })}</p></div>}
+            <TgChat title={{ uz: 'AvtoPizza · AI-agent', ru: "AvtoPizza · ИИ-агент" }} status={{ uz: 'agent', ru: "агент" }} minH={110}>
+              <Bubble from="user">{tr(HOOK_USER)}</Bubble>
+              {phase === 1 && <Bubble from="bot" thinking />}
+              {phase >= 2 && <Bubble from="bot">{tr({ uz: 'Buyurtmangiz qabul qilindi: 2 ta Pepperoni. Taxminan 30 daqiqada yetkazamiz.', ru: "Ваш заказ принят: 2 Пепперони. Привезём примерно через 30 минут." })}</Bubble>}
+            </TgChat>
+            {phase >= 2 && <div className="ag-db fade-step">
+              <span className="ag-db-k">{tr({ uz: 'Baza', ru: "База" })}</span>
+              <span className="ag-db-line"><code className="qcode">saveOrder()</code><i className="ag-arr" aria-hidden="true" /><span className="ag-db-new">{tr({ uz: <>yangi buyurtma: 2 ta Pepperoni, <span style={{ whiteSpace: 'nowrap' }}>Chilonzor 5-kvartal</span></>, ru: <>новый заказ: 2 Пепперони, <span style={{ whiteSpace: 'nowrap' }}>Чиланзар 5-квартал</span></> })}</span></span>
+              <span className="ag-db-line ag-db-late"><code className="qcode">arrangeDelivery()</code><span className="ag-db-to" aria-hidden="true">→</span><span>{tr({ uz: 'kuryer belgilandi', ru: "курьер назначен" })}</span></span>
+            </div>}
           </Col>
         </Split></Zoomable>
+        <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={phase > 0}>{phase > 0 ? tr({ uz: '✓ Solishtirildi', ru: '✓ Сравнили' }) : tr({ uz: "▶ Ikki botni solishtirish", ru: '▶ Сравнить двух ботов' })}</button>
+        {phase >= 3 && <div className="col fade-step">
+          <p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>{tr({ uz: 'AI-botda nima yetishmaydi?', ru: 'Чего не хватает ИИ-боту?' })}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+            {HOOK_OPTS.map(o => {
+              const on = picked === o.id;
+              return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
+            })}
+          </div>
+          {cur && <p className="hook-ack fade-step">{tr(cur.ack)}</p>}
+        </div>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 1 — REJA + JIHOZLAR PANELI =====
+// ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "AI-bot → AI-agent: gapirishdan amalga", ru: 'AI-бот → AI-агент: от слов к делу' }, tag: { uz: 'farq', ru: 'разница' } },
-    { text: { uz: "Sikl: idrok → qaror → amal (loop)", ru: 'Цикл: восприятие → решение → действие (loop)' }, tag: { uz: 'sikl', ru: 'цикл' } },
-    { text: { uz: "🧰 Asboblar (tools) — agentning qo'li", ru: '🧰 Инструменты (tools) — руки агента' }, tag: { uz: "qo'l", ru: 'руки' } },
-    { text: { uz: "Maqsad + chegaralar bilan agent qurish", ru: 'Строим агента: цель + ограничения' }, tag: { uz: 'qurish', ru: 'сборка' } }
+    { uz: "AI-bot va AI-agent — farqi nimada", ru: "ИИ-бот и ИИ-агент — в чём разница" },
+    { uz: "Agent sikli: Idrok → Qaror → Amal", ru: "Цикл агента: Восприятие → Решение → Действие" },
+    { uz: "Asbob (tool) — agent chaqira oladigan funksiya", ru: "Инструмент (tool) — функция, которую агент может вызвать" },
+    { uz: "Maqsad, asboblar va chegara bilan agent qurish", ru: "Строим агента: цель, инструменты и ограничение" }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
-  const Preview = (
-    <Col>
-      <p className="flow-label">{tr({ uz: "dars oxirida — o'zi ish bajaradigan agent", ru: 'в конце урока — агент, который сам делает работу' })}</p>
-      <TgChat title="AI-agent" ava="🧰" status={tr({ uz: 'agent · proaktiv 🟢', ru: 'агент · проактивный 🟢' })} minH={0}>
-        <Bubble from="user">{tr({ uz: '2 dona A-model, Chilonzor 5', ru: '2 штуки A-модели, Чиланзар 5' })}</Bubble>
-        <Bubble from="bot">{tr({ uz: 'Tekshirdim ✓ saqladim ✓ yetkazishni rejaladim ✓ — 30 daqiqada yetkazamiz 📦', ru: 'Проверил ✓ сохранил ✓ доставку запланировал ✓ — привезём за 30 минут 📦' })}</Bubble>
-      </TgChat>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Siz bitta maqsad berdingiz — agent o'zi qadamlarni topib, hammasini bajardi. Mana shuni quramiz.", ru: 'Вы дали одну цель — агент сам нашёл шаги и всё выполнил. Вот это мы и построим.' })}</p></div>
-      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note', 'menu', 'tools']} />
-    </Col>
+  const Scheme = (
+    <div className="ag-scheme fade-up delay-1">
+      <div className="ag-sc-box">
+        <span className="ag-sc-k">{tr({ uz: 'Siz berasiz:', ru: "Вы даёте:" })}</span>
+        <b className="ag-sc-v">{tr({ uz: 'Maqsad · Asboblar · Chegara', ru: "Цель · Инструменты · Ограничение" })}</b>
+      </div>
+      <span className="ag-sc-arr" aria-hidden="true">→</span>
+      <div className="ag-sc-box">
+        <span className="ag-sc-k">{tr({ uz: 'Agent:', ru: "Агент:" })}</span>
+        <span className="ag-sc-v"><b>{tr({ uz: 'Idrok → Qaror → Amal', ru: "Восприятие → Решение → Действие" })}</b> ↻</span>
+        <span className="ag-sc-n">{tr({ uz: '(maqsadga yetguncha)', ru: "(пока цель не достигнута)" })}</span>
+      </div>
+    </div>
   );
   const StepsB = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага на сегодня' })}</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
+      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.5 + i * 0.18}s` }}><span className="step-num">{i + 1}.</span><span className="step-body"><span className="step-text">{tr(s)}</span></span></li>))}</ol>
     </Col>
   );
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjon endi gapiribgina qolmay — <span className="italic" style={{ color: T.accent }}>ish bajaradi</span>.</>, ru: <>Ботжон теперь не просто говорит — он <span className="italic" style={{ color: T.accent }}>делает работу</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Hozirgacha Botjon javob yozardi. Bugun uning yelkasiga 🧰 <b style={{ color: T.ink }}>asbob sumkasi</b> ilinadi — u maqsad sari o'zi amal qiladi: idrok → qaror → amal. Bu — modulning cho'qqisi. Yangi jihoz yondi: 🧰 <b style={{ color: T.ink }}>Vositalar</b>.</>, ru: <>До сих пор Ботжон писал ответы. Сегодня на его плечо повесят 🧰 <b style={{ color: T.ink }}>сумку с инструментами</b> — он сам будет действовать ради цели: восприятие → решение → действие. Это вершина модуля. Загорелось новое снаряжение: 🧰 <b style={{ color: T.ink }}>Инструменты</b>.</> })}</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun: AI-agent — maqsad oladi, asbob tanlaydi va <span className="italic" style={{ color: T.accent }}>ishni bajaradi</span>.</>, ru: <>Сегодня: ИИ-агент — получает цель, выбирает инструмент и <span className="italic" style={{ color: T.accent }}>выполняет работу</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "O'tgan darsda botni mijozlar fikriga qarab o'zingiz yaxshiladingiz. Bugun botga maqsad berasiz: keyingi qadamni u o'zi tanlaydi — lekin faqat siz bergan asboblar va chegara ichida.", ru: "На прошлом уроке вы сами улучшили бота по отзывам клиентов. Сегодня вы дадите боту цель: следующий шаг он выберет сам — но только в рамках инструментов и ограничения, которые дали вы." })}</Mentor>
+        {!isNarrow ? (<Split><Col>{Scheme}</Col>{StepsB}</Split>)
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Scheme}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Chizmani ko'rish", ru: "↩ Посмотреть схему" })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 2 — AI-BOT vs AI-AGENT (explore) =====
+// ===== SCREEN 2 — AI-BOT va AI-AGENT (3 jihat) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(VS_ROWS.map(r => r.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -891,23 +914,23 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = VS_ROWS.find(r => r.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · farq', ru: 'Понятие · разница' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `4 farqni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 отличия (${seen.size}/4)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · farq', ru: 'Понятие · разница' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `3 farqni ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 отличия (${seen.size}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>AI-bot</span> va <span className="italic" style={{ color: T.accent }}>AI-agent</span> — eng muhim farq.</>, ru: <><span className="italic" style={{ color: T.accent }}>AI-бот</span> и <span className="italic" style={{ color: T.accent }}>AI-агент</span> — самое главное отличие.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu darsning asosi shu. AI-bot javob yozadi va to'xtaydi. AI-agent maqsadga qarab qadam-baqadam <b style={{ color: T.ink }}>amal qiladi</b>. Har jihatni bosib, farqni ko'ring.</>, ru: <>Это основа урока. AI-бот пишет ответ и останавливается. AI-агент шаг за шагом <b style={{ color: T.ink }}>действует</b> ради цели. Нажмите на каждый признак и увидите разницу.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI-bot va AI-agent: <span className="italic" style={{ color: T.accent }}>farq qayerda?</span></>, ru: <>ИИ-бот и ИИ-агент: <span className="italic" style={{ color: T.accent }}>в чём разница?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Ikkalasining ichida bir xil AI bo'lishi mumkin. Farq — AI'ga nima berilganida va u nima qila olishida. Har jihatni bosing.", ru: "Внутри у обоих может быть один и тот же ИИ. Разница — в том, что дали ИИ и что он может делать. Нажмите на каждый признак." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {VS_ROWS.map(r => <button key={r.id} className="gchip" onClick={() => tap(r.id)} style={seen.has(r.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(r.id) ? '✓ ' : ''}{tr(r.k)}</button>)}
+              {VS_ROWS.map(r => <button key={r.id} className={`gchip ${seen.has(r.id) ? 'seen' : ''} ${active === r.id ? 'cur' : ''}`} onClick={() => tap(r.id)}>{tr(r.k)}<span className="ag-chev" aria-hidden="true">{seen.has(r.id) ? '✓' : '›'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir jumla: <b>AI-bot gapiradi, AI-agent qiladi.</b> Bot — bir martalik javob; agent — maqsadga yetguncha amallar sikli.</>, ru: <>Одной фразой: <b>AI-бот говорит, AI-агент делает.</b> Бот — разовый ответ; агент — цикл действий до достижения цели.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qisqasi: AI-botda AI javob matnini yozadi. AI-agentda AI keyingi qadamni tanlaydi, ishni esa siz yozgan asbob bajaradi.", ru: "Коротко: в ИИ-боте ИИ пишет текст ответа. В ИИ-агенте ИИ выбирает следующий шаг, а работу выполняет инструмент, который написали вы." })}</p></div>}
           </Col>
           <Col>
             {cur
               ? <div className="fade-step" key={active} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <p className="flow-label">{tr(cur.k)}</p>
-                  <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 AI-bot', ru: '💬 AI-бот' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.bot)}</p></div>
-                  <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧰 AI-agent', ru: '🧰 AI-агент' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.agent)}</p></div>
+                  <div className="sk-info"><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: 'AI-bot', ru: 'ИИ-бот' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.bot)}</p></div>
+                  <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'AI-agent', ru: 'ИИ-агент' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.agent)}</p></div>
                 </div>
               : null}
           </Col>
@@ -917,7 +940,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — AGENT SIKLI (walkthrough) =====
+// ===== SCREEN 3 — AGENT SIKLI (qadam-baqadam) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? CYCLE_STEPS.length : 0);
   const [sc, setSc] = useState(0);
@@ -927,79 +950,96 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const curP = curPhase ? PHASES.find(p => p.id === curPhase) : null;
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · sikl', ru: 'Понятие · цикл' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Siklni yuriting (${step}/${CYCLE_STEPS.length})`, ru: `Прокрутите цикл (${step}/${CYCLE_STEPS.length})` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · sikl', ru: 'Понятие · цикл' })} screen={screen} narrow scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Siklni yuriting (${step}/${CYCLE_STEPS.length})`, ru: `Пройдите цикл (${step}/${CYCLE_STEPS.length})` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentning asosi: <span className="italic" style={{ color: T.accent }}>idrok → qaror → amal</span>, va u aylanadi.</>, ru: <>Основа агента: <span className="italic" style={{ color: T.accent }}>восприятие → решение → действие</span>, и оно крутится.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Agent bir martada to'xtamaydi — u <b style={{ color: T.ink }}>aylanadi</b>: ko'radi, qaror qiladi, amal qiladi, natijani ko'radi va yana. Tugmani bosib, bitta buyurtma uchun sikl ikki marta aylanishini kuzating.</>, ru: <>Агент не останавливается после одного раза — он <b style={{ color: T.ink }}>крутится</b>: смотрит, решает, действует, смотрит результат и снова. Нажмите кнопку и проследите, как для одного заказа цикл проходит два круга.</> })}</Mentor>
-        <div className="fade-up"><RcFlow items={[{ uz: 'Idrok', ru: 'Восприятие' }, { uz: 'Qaror', ru: 'Решение' }, { uz: 'Amal', ru: 'Действие' }, { uz: 'qayta', ru: 'снова' }]} /></div>
-        <Zoomable><div className="split">
-          <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Sikl aylandi', ru: '✓ Цикл прокрутился' }) : step === 0 ? tr({ uz: '▶ Siklni boshlash', ru: '▶ Запустить цикл' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
-            {step > 0 && <div className="sk-info fade-step" key={step}><p className="note-h">{tr(curP.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(CYCLE_STEPS[step - 1].txt)}</p></div>}
-          </Col>
-          <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega aylanadi?', ru: '🔁 Почему он крутится?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har amaldan keyin natija paydo bo'ladi — agent uni <b>ko'radi</b> (idrok) va maqsadga yetmagan bo'lsa, <b>keyingi qadamni</b> tanlaydi. Maqsad bajarilguncha davom etadi.</>, ru: <>После каждого действия появляется результат — агент его <b>видит</b> (восприятие) и, если цель не достигнута, выбирает <b>следующий шаг</b>. Так до выполнения цели.</> })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rdingiz: bitta buyurtma uchun agent ikki marta aylandi (tekshir → saqla). Mana shu — agentning mustaqilligi (avtonomlik).", ru: 'Вы увидели: ради одного заказа агент прошёл два круга (проверь → сохрани). Вот это и есть самостоятельность агента (автономность).' })}</p></div>}
-          </Col>
-        </div></Zoomable>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent sikli: <span className="italic" style={{ color: T.accent }}>Idrok → Qaror → Amal</span>.</>, ru: <>Цикл агента: <span className="italic" style={{ color: T.accent }}>Восприятие → Решение → Действие</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agent bitta amal bilan to'xtamaydi: har Amaldan keyin natijani ko'radi va keyingi qadamni tanlaydi. Tugmani bosing va bitta buyurtma uchun sikl necha marta takrorlanishini kuzating.", ru: "Агент не останавливается на одном действии: после каждого Действия он смотрит на результат и выбирает следующий шаг. Нажмите кнопку и проследите, сколько раз повторится цикл для одного заказа." })}</Mentor>
+        <div className="ag-cyc fade-up delay-1">
+          <p className="ag-goal"><b>{tr({ uz: 'Maqsad:', ru: "Цель:" })}</b> {tr({ uz: 'Buyurtmani qabul qilish', ru: "Принять заказ" })}</p>
+          <div className="ag-cyc-flow">
+            {PHASES.map((p, i) => <React.Fragment key={p.id}><span className={`ag-cyc-node ${curPhase === p.id ? 'on' : ''}`}>{tr(p.label)}</span>{i < PHASES.length - 1 && <span className="ag-cyc-arr" aria-hidden="true">→</span>}</React.Fragment>)}
+            <span className="ag-cyc-ret" aria-hidden="true">↻</span>
+            {step >= 3 && <><span className="ag-cyc-back" aria-hidden="true" /><span className="ag-cyc-head" aria-hidden="true" /></>}
+          </div>
+        </div>
+        <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Maqsadga yetdi', ru: "✓ Цель достигнута" }) : step === 0 ? tr({ uz: '▶ Siklni boshlash', ru: '▶ Запустить цикл' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+        {step > 0 && <div className="sk-info fade-step" key={step}><p className="note-h">{tr(curP.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(CYCLE_STEPS[step - 1].txt))}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Sikl ikki marta takrorlandi: avval tekshirdi, keyin saqladi. Keyingi asbobni har safar agent natijaga qarab o'zi tanladi.", ru: "Цикл повторился два раза: сначала проверил, потом сохранил. Следующий инструмент агент каждый раз выбирал сам, глядя на результат." })}</p></div>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 4 — TEST 1 (bot vs agent) =====
+// ===== SCREEN 4 — TEST 1 (bu qanday bot) =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
-    questionText="Bot mijoz xabarini o'qib, ro'yxatni tekshirdi, buyurtmani daftarga yozdi va yetkazishni rejaladi. Bu nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bot xabarni o'qib, ro'yxatni tekshirdi, daftarga yozdi va yetkazishni <span className="italic" style={{ color: T.accent }}>rejaladi</span>. Bu nima?</>, ru: <>Бот прочитал сообщение, проверил наличие, записал в тетрадь и <span className="italic" style={{ color: T.accent }}>запланировал</span> доставку. Что это?</> })}</h2></>}
-    options={[tr({ uz: "AI-bot — har qanday bot aslida shu tarzda ishlaydi", ru: 'AI-бот — любой бот на самом деле работает именно так' }), tr({ uz: "Oddiy kalkulyator — u shunchaki sonlarni hisoblaydi", ru: 'Обычный калькулятор — он просто считает числа' }), tr({ uz: "AI-agent — maqsad sari real amallar bajardi", ru: 'AI-агент — он выполнил реальные действия ради цели' }), tr({ uz: "Rule-bot — oldindan yozib qo'yilgan tayyor javoblar to'plami", ru: 'Rule-бот — набор заранее написанных готовых ответов' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Bu agent: u matn yozish bilan cheklanmadi, balki maqsadga (buyurtmani qabul qil) erishish uchun ketma-ket amallar bajardi — 🧰 sumkadan asboblarni oldi. AI-bot esa faqat javob matnini yozardi.", ru: 'Верно! Это агент: он не ограничился текстом, а ради цели (принять заказ) выполнил цепочку действий — доставал инструменты из 🧰 сумки. AI-бот же написал бы только текст ответа.' })}
+    questionText="Botdagi AI qadamlarni o'zi tanladi: avval Pepperoni borligini tekshirdi, keyin buyurtmani bazaga yozdi, oxirida yetkazishni rejaladi. Bu qanday bot?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Botdagi AI qadamlarni o'zi tanladi: avval Pepperoni borligini tekshirdi, keyin buyurtmani bazaga yozdi, oxirida yetkazishni rejaladi. <span className="italic" style={{ color: T.accent }}>Bu qanday bot?</span></>, ru: <>ИИ в боте сам выбрал шаги: сначала проверил, есть ли Пепперони, потом записал заказ в базу, а в конце запланировал доставку. <span className="italic" style={{ color: T.accent }}>Что это за бот?</span></> })}</h2></>}
+    options={[tr({ uz: "AI-bot — AI javob matnini yozib beradi", ru: "ИИ-бот — ИИ пишет текст ответа" }), tr({ uz: "Oddiy skript — bir marta ishlab, to'xtaydi", ru: "Обычный скрипт — сработает один раз и остановится" }), tr({ uz: "AI-agent — maqsad sari asboblarni ishlatadi", ru: "ИИ-агент — использует инструменты, чтобы достичь цели" }), tr({ uz: "Handlerli bot — oldindan yozilgan javob beradi", ru: "Бот с handler-ами — даёт заранее написанный ответ" })]} correctIdx={2}
+    explainCorrect={tr({ uz: "Qadamlarni AI o'zi tanladi va har qadamda asbob chaqirdi — bu AI-agent.", ru: "ИИ сам выбрал шаги и на каждом шаге вызывал инструмент — это ИИ-агент." })}
     explainWrong={{
-      0: tr({ uz: "AI-bot faqat matn yozadi — amal qilmaydi. Bu bot esa real ish bajardi — demak agent.", ru: 'AI-бот только пишет текст — действий не делает. А этот бот выполнил реальную работу — значит, агент.' }),
-      1: tr({ uz: "Kalkulyator hisoblaydi, lekin maqsad sari qaror chiqarib amal qilmaydi. Bu — AI-agent.", ru: 'Калькулятор считает, но не принимает решений ради цели и не действует. Это AI-агент.' }),
-      3: tr({ uz: "Rule-bot tayyor javoblar beradi, amal qilmaydi. Bu agent — ketma-ket amallar bajardi.", ru: 'Rule-бот выдаёт готовые ответы, но не действует. А это агент — он выполнил цепочку действий.' }),
-      default: tr({ uz: "Maqsad sari amallar bajargan — bu AI-agent.", ru: 'Выполнял действия ради цели — это AI-агент.' })
+      0: tr({ uz: "AI-bot faqat javob matnini yozadi — bazaga yozish yoki yetkazishni rejalash uchun asbob chaqirmaydi.", ru: "ИИ-бот только пишет текст ответа — он не вызывает инструменты, чтобы записать заказ в базу или запланировать доставку." }),
+      1: tr({ uz: "Oddiy skript bir marta yuqoridan pastga ishlaydi va qadamlarni o'zi tanlamaydi. Bu yerda qadamlarni AI tanladi.", ru: "Обычный скрипт один раз выполняется сверху вниз и сам шаги не выбирает. Здесь шаги выбрал ИИ." }),
+      3: tr({ uz: "Handlerli botda har hodisaga javobni siz oldindan yozasiz. Bu yerda esa qadamlarni AI o'zi tanladi.", ru: "В боте с handler-ами ответ на каждое событие вы пишете заранее. А здесь шаги ИИ выбрал сам." }),
+      default: tr({ uz: "Qadamlarni AI o'zi tanlab, asboblarni chaqirgan bo'lsa — bu AI-agent.", ru: "Если ИИ сам выбрал шаги и вызвал инструменты — это ИИ-агент." })
     }} />
 );
 
-// ===== SCREEN 5 — BUILDER: agentni qurish (maqsad + asboblar + chegara) → 🏅 cycleBuilder =====
+// ===== SCREEN 5 — AGENTNI QURISH (maqsad → asboblar → chegara, navbat bilan) → nishon cycleBuilder =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
-  const [choice, setChoice] = useState(() => storedAnswer ? { goal: 0, tools: 0, guard: 0 } : {});
+  // choice: { qator id → variant id }; qatorni faqat `ok` variant yopadi (nishon sharti — variant bo'yicha, indeks emas)
+  const [choice, setChoice] = useState(() => storedAnswer ? Object.fromEntries(AGENT_BUILD.map(r => [r.id, buildOk(r).id])) : {});
+  const [wrongPick, setWrongPick] = useState(null);
   const wrongEverRef = useRef(!!(storedAnswer && storedAnswer.correct === false));
-  const [tried, setTried] = useState(false);
   const [sc, setSc] = useState(0);
   const fired = useRef(!!storedAnswer);
-  const allRight = AGENT_BUILD.every(s => choice[s.id] === s.right);
-  const done = AGENT_BUILD.every(s => choice[s.id] !== undefined) && allRight;
-  const pick = (slotId, idx, right) => { setTried(true); if (idx !== right) { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); } setChoice(c => ({ ...c, [slotId]: idx })); setSc(n => n + 1); };
+  const chosen = (r) => r.opts.find(o => o.id === choice[r.id]);
+  const rowDone = (r) => { const o = chosen(r); return !!(o && o.ok); };
+  const done = AGENT_BUILD.every(rowDone);
+  const curRow = AGENT_BUILD.find(r => !rowDone(r));
+  const pick = (row, opt) => {
+    if (opt.ok) { setChoice(c => ({ ...c, [row.id]: opt.id })); setWrongPick(null); }
+    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrongPick({ row: row.id, opt: opt.id, k: Date.now() }); }
+    setSc(n => n + 1);
+  };
+  const reopen = (row) => { setChoice(c => { const n = { ...c }; delete n[row.id]; return n; }); setWrongPick(null); setSc(n => n + 1); };
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'builder', screenIdx: screen, correct: !wrongEverRef.current, picked: true, solved: true }); } }, [done]);
+  const errOpt = wrongPick && curRow && wrongPick.row === curRow.id ? curRow.opts.find(o => o.id === wrongPick.opt) : null;
   return (
     <Stage eyebrow={tr({ uz: 'Markaziy · qurish', ru: 'Ключевое · сборка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Agentni yig'ing", ru: 'Соберите агента' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentni 3 narsa bilan <span className="italic" style={{ color: T.accent }}>quring</span>: maqsad, asboblar, chegara.</>, ru: <><span className="italic" style={{ color: T.accent }}>Соберите</span> агента из 3 вещей: цель, инструменты, ограничение.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Siz direktorsiz — agentni ta'riflaysiz: nima qilsin (maqsad), nima bilan (asboblar), nimaga ruxsat yo'q (chegara). Har qatorda to'g'ri variantni tanlab, agentni yig'ing. Noto'g'ri variant ham bor — diqqat bilan tanlang.", ru: 'Вы директор — Вы описываете агента: что он должен делать (цель), чем (инструменты), что запрещено (ограничение). В каждой строке выберите верный вариант и соберите агента. Неверные варианты тоже есть — выбирайте внимательно.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentni quring: <span className="italic" style={{ color: T.accent }}>maqsad, asboblar, chegara</span>.</>, ru: <>Соберите агента: <span className="italic" style={{ color: T.accent }}>цель, инструменты, ограничение</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agentga uch narsani siz berasiz: nima qilsin (maqsad), nima bilan qilsin (asboblar), nimani so'ramasdan qilmasin (chegara). Har qatorda mos variantni tanlang.", ru: "Три вещи агенту даёте вы: что делать (цель), чем делать (инструменты), чего не делать без спроса (ограничение). В каждой строке выберите подходящий вариант." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            {AGENT_BUILD.map(s => (
-              <div key={s.id} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <p className="flow-label">{tr(s.q)}</p>
-                {s.opts.map((o, i) => {
-                  const sel = choice[s.id] === i;
-                  const wrongPick = sel && i !== s.right;
-                  return (<button key={i} className={`pick-row ${sel ? 'sel' : ''} ${wrongPick ? 'shake' : ''}`} onClick={() => pick(s.id, i, s.right)}><span style={{ flex: 1 }}>{tr(o)}</span><span className="pick-plus">{sel ? (i === s.right ? '✓' : '✗') : '▶'}</span></button>);
-                })}
-              </div>
-            ))}
+            {AGENT_BUILD.map(r => {
+              if (rowDone(r)) return (
+                <div key={r.id} className="ag-done-row fade-step">
+                  <span className="ag-done-t"><b>{tr(r.q).replace('?', ':')}</b> {tr(chosen(r).t)}</span>
+                  <span className="ag-done-ok" aria-hidden="true">✓</span>
+                  {!done && <button className="ag-redo" onClick={() => reopen(r)} aria-label={tr({ uz: "O'zgartirish", ru: "Изменить" })}>↻</button>}
+                </div>
+              );
+              if (r !== curRow) return null;
+              return (
+                <div key={r.id} className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <p className="flow-label">{tr(r.q)}</p>
+                  {r.opts.map(o => {
+                    const bad = !!(errOpt && errOpt.id === o.id);
+                    return (<button key={o.id} className={`pick-row ${bad ? 'bad shake' : ''}`} onClick={() => pick(r, o)}><span className={r.id === 'tools' ? 'mono' : undefined} style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>{tr(o.t)}</span><span className="pick-plus">{bad ? '✗' : '▶'}</span></button>);
+                  })}
+                  {errOpt && <div className="frame-warn fade-step" key={wrongPick.k}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(errOpt.err)}</p></div>}
+                </div>
+              );
+            })}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "yig'ilayotgan agent yo'riqnomasi", ru: 'собираемая инструкция агента' })}</p>
-            <PromptCard who={tr({ uz: '🧰 AGENT', ru: '🧰 АГЕНТ' })} tone={done ? 'live' : ''}>
-              {tr({ uz: 'MAQSAD:', ru: 'ЦЕЛЬ:' })} {choice.goal !== undefined ? tr(AGENT_BUILD[0].opts[choice.goal]) : '…'}. {tr({ uz: 'ASBOBLAR:', ru: 'ИНСТРУМЕНТЫ:' })} {choice.tools !== undefined ? tr(AGENT_BUILD[1].opts[choice.tools]) : '…'}. {tr({ uz: 'QOIDA:', ru: 'ПРАВИЛО:' })} {choice.guard !== undefined ? tr(AGENT_BUILD[2].opts[choice.guard]) : '…'}.
+            <PromptCard tone={done ? 'live' : ''}>
+              {AGENT_BUILD.map(r => <p key={r.id} className="ag-pc-row"><span className="ag-pc-k">{tr(r.k)}</span> {rowDone(r) ? tr(chosen(r).t) : '…'}</p>)}
             </PromptCard>
             {!done && <AchRule screen={screen} />}
-            {tried && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ba'zi javoblar hali noto'g'ri — ✗ belgisini toping va to'g'risini tanlang.", ru: 'Некоторые ответы пока неверные — найдите значок ✗ и выберите верный вариант.' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Agentga aniq ish yo'riqnomasi berildi: <b>maqsad + asboblar + chegara</b>. Bu — har agentning skeleti.</>, ru: <>Отлично! Агент получил чёткую рабочую инструкцию: <b>цель + инструменты + ограничение</b>. Это скелет любого агента.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent tayyor. Amaliyotda o'z botingiz uchun ham shu uch qismni yozasiz.", ru: "Агент готов. В практике вы напишете эти три части и для своего бота." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1007,7 +1047,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 6 — ASBOBLAR (🧰 sumka, explore) =====
+// ===== SCREEN 6 — ASBOB NIMA (5 asbob) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(TOOLS.map(t => t.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1017,16 +1057,16 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = TOOLS.find(t => t.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Asboblar · sumka', ru: 'Инструменты · сумка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `4 asbobni oching (${seen.size}/4)`, ru: `Откройте 4 инструмента (${seen.size}/4)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · asbob', ru: "Понятие · инструмент" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `5 asbobni oching (${seen.size}/5)`, ru: `Откройте 5 инструментов (${seen.size}/5)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sumkadagi asboblar (tools) — agentning <span className="italic" style={{ color: T.accent }}>qo'li</span>.</>, ru: <>Инструменты в сумке (tools) — это <span className="italic" style={{ color: T.accent }}>руки</span> агента.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Agent amalni «asbob» orqali qiladi — bular siz yozgan funksiyalar. AI o'zi gapira oladi, lekin <b style={{ color: T.ink }}>ish qilish uchun asboblar</b> kerak. Har asbobni bosib ko'ring.</>, ru: <>Агент действует через «инструмент» — это функции, которые пишете Вы. AI умеет говорить сам, но <b style={{ color: T.ink }}>чтобы делать работу, нужны инструменты</b>. Нажмите на каждый инструмент.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Asbob (tool) — agent chaqira oladigan <span className="italic" style={{ color: T.accent }}>funksiya</span>.</>, ru: <>Инструмент (tool) — <span className="italic" style={{ color: T.accent }}>функция</span>, которую агент может вызвать.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Asbobni siz yozasiz — oddiy JS funksiya, xuddi handler ichidagi kod kabi. AI o'zi faqat matn yozadi; bazaga yozish yoki kartadan pul yechishni asbob bajaradi. Har asbobni bosing.", ru: "Инструмент пишете вы — это обычная JS-функция, как код внутри handler. Сам ИИ только пишет текст, а записывает в базу или списывает деньги с карты инструмент. Нажмите на каждый инструмент." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {TOOLS.map(t => <button key={t.id} className="gchip" onClick={() => tap(t.id)} style={seen.has(t.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(t.id) ? '✓ ' : ''}<span className="mono">{t.tok}</span></button>)}
+              {TOOLS.map(t => <button key={t.id} className={`gchip ${seen.has(t.id) ? 'seen' : ''} ${active === t.id ? 'cur' : ''}`} onClick={() => tap(t.id)}><span className="mono">{t.tok}</span><span className="ag-chev" aria-hidden="true">{seen.has(t.id) ? '✓' : '›'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Asboblar — agentga bergan <b>qo'l</b>laringiz. Qancha asbob solsangiz — shuncha ish qila oladi (lekin ehtiyot bo'ling — keyin ko'ramiz).</>, ru: <>Инструменты — это <b>руки</b>, которые Вы дали агенту. Сколько инструментов положите — столько дел он и сможет сделать (но осторожно — скоро увидим почему).</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent faqat siz bergan asboblar bilan ishlaydi. Pul yechish va bekor qilishda xato qimmatga tushadi — ularga chegara qo'yiladi.", ru: "Агент работает только с теми инструментами, которые дали вы. При списании денег и отмене ошибка обходится дорого — для них ставят ограничение." })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -1039,11 +1079,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — TOOL-PICK (qaror, real yechim) → 🏅 toolPicker =====
+// ===== SCREEN 7 — QAROR: vaziyatga mos asbob → nishon toolPicker =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const [idx, setIdx] = useState(storedAnswer ? SITUATIONS.length : 0);
   const [wrong, setWrong] = useState(null);
+  const [shakeId, setShakeId] = useState(null);
   const wrongEverRef = useRef(!!(storedAnswer && storedAnswer.correct === false));
   const [sc, setSc] = useState(0);
   const fired = useRef(!!storedAnswer);
@@ -1053,30 +1094,31 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const choose = (toolId) => {
     if (done) return;
     if (toolId === cur.tool) { setWrong(null); setIdx(n => n + 1); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrong(toolId); setTimeout(() => setWrong(w => (w === toolId ? null : w)), 450); }
+    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrong(toolId); setShakeId(toolId); setTimeout(() => setShakeId(w => (w === toolId ? null : w)), 450); setSc(n => n + 1); }
   };
+  const pickTools = TOOL_PICK_ORDER.map(id => TOOLS.find(t => t.id === id));
   return (
-    <Stage eyebrow={tr({ uz: 'Qaror · tanlash', ru: 'Решение · выбор' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Asbobni tanlang (${idx}/${SITUATIONS.length})`, ru: `Выберите инструмент (${idx}/${SITUATIONS.length})` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qaror · asbob tanlash', ru: "Решение · выбор инструмента" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Asbobni tanlang (${idx}/${SITUATIONS.length})`, ru: `Выберите инструмент (${idx}/${SITUATIONS.length})` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Qaror» qadami: vaziyatga qarab <span className="italic" style={{ color: T.accent }}>to'g'ri asbobni</span> tanlang.</>, ru: <>Шаг «решение»: по ситуации выберите <span className="italic" style={{ color: T.accent }}>верный инструмент</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Haqiqiy agentda qaysi asbobni chaqirishni AI o'zi tanlaydi. Hozir siz uning o'rnida sinab ko'ring: har vaziyatga mos asbobni 🧰 sumkadan oling.", ru: 'В настоящем агенте AI сам выбирает, какой инструмент вызвать. Сейчас попробуйте побыть на его месте: для каждой ситуации достаньте подходящий инструмент из 🧰 сумки.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaror qadami: vaziyatga <span className="italic" style={{ color: T.accent }}>mos asbobni</span> tanlang.</>, ru: <>Шаг Решение: выберите <span className="italic" style={{ color: T.accent }}>подходящий инструмент</span> для ситуации.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Haqiqiy agentda qaysi asbobni chaqirishni AI tanlaydi. Hozir uning o'rnida siz tanlang.", ru: "В настоящем агенте, какой инструмент вызвать, выбирает ИИ. Сейчас выберите вы вместо него." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             {cur
-              ? <div className="sk-info" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🎯 Vaziyat', ru: '🎯 Ситуация' })} {idx + 1}/{SITUATIONS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.sit)}</p></div>
-              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hammasi to'g'ri! Har vaziyatga mos asbobni tanladingiz — aynan shu «qaror» qadami agentni aqlli qiladi.", ru: 'Всё верно! Для каждой ситуации Вы выбрали подходящий инструмент — именно шаг «решение» делает агента умным.' })}</p></div>}
+              ? <div className="sk-info fade-step" key={cur.id}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Vaziyat', ru: "Ситуация" })} {idx + 1}/{SITUATIONS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.sit)}</p></div>
+              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Siz vaziyatni ko'rdingiz (Idrok) va asbobni tanladingiz (Qaror) — uni chaqirish esa Amal.", ru: "Вы увидели ситуацию (Восприятие) и выбрали инструмент (Решение), а вызвать его — это Действие." })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'qaysi asbobni chaqirasiz?', ru: 'какой инструмент вызовете?' })}</p>
+            <p className="flow-label">{tr({ uz: 'Avval qaysi asbob kerak?', ru: "Какой инструмент нужен сначала?" })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {TOOLS.map(t => (
-                <button key={t.id} className={`pick-row ${wrong === t.id ? 'shake' : ''}`} disabled={done} onClick={() => choose(t.id)}>
+              {pickTools.map(t => (
+                <button key={t.id} className={`pick-row ${shakeId === t.id ? 'shake' : ''}`} disabled={done} onClick={() => choose(t.id)}>
                   <span className="mono" style={{ flex: 1 }}>{t.tok}</span><span className="pick-plus">▶</span>
                 </button>
               ))}
             </div>
             {!done && <AchRule screen={screen} />}
-            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu vaziyatga mos emas — vaziyatni qayta o'qing va boshqa asbobni tanlang.", ru: 'Для этой ситуации не подходит — перечитайте ситуацию и выберите другой инструмент.' })}</p></div>}
+            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu vaziyatda avval boshqa asbob kerak. Vaziyatni qayta o'qing.", ru: "В этой ситуации сначала нужен другой инструмент. Перечитайте ситуацию." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1084,22 +1126,23 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 8 — TEST 2 (qanday amal qiladi) =====
+// ===== SCREEN 8 — TEST 2 (agent ishni qanday bajaradi) =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
-    questionText="AI-agent biror ishni qanday bajaradi (amal qiladi)?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI-agent biror ishni qanday <span className="italic" style={{ color: T.accent }}>bajaradi</span>?</>, ru: <>Как AI-агент <span className="italic" style={{ color: T.accent }}>выполняет</span> работу?</> })}</h2></>}
-    options={[tr({ uz: "Maqsadga mos asbobni (funksiyani) tanlab chaqiradi", ru: 'Выбирает подходящий цели инструмент (функцию) и вызывает его' }), tr({ uz: "Faqat matn yozib beradi — qolgan ishni odam qiladi", ru: 'Только пишет текст — остальное делает человек' }), tr({ uz: "Hech qanday kodsiz, o'z-o'zidan bajaradi", ru: 'Без всякого кода, сам собой' }), tr({ uz: "Har doim bitta oldindan belgilangan amalni qiladi", ru: 'Всегда делает одно заранее заданное действие' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Agent amalni asboblar (siz yozgan funksiyalar) orqali qiladi. AI vaziyatni ko'rib, maqsadga mos asbobni tanlaydi va chaqiradi — masalan saveOrder(). Tanlash AI'da, bajarish — asbobda.", ru: 'Верно! Агент действует через инструменты (функции, которые пишете Вы). AI смотрит на ситуацию, выбирает подходящий цели инструмент и вызывает его — например saveOrder(). Выбор за AI, исполнение — за инструментом.' })}
+    questionText="AI-agent ishni qanday bajaradi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI-agent ishni qanday <span className="italic" style={{ color: T.accent }}>bajaradi</span>?</>, ru: <>Как ИИ-агент <span className="italic" style={{ color: T.accent }}>выполняет</span> работу?</> })}</h2></>}
+    options={[tr({ uz: "Maqsadga mos asbobni tanlab chaqiradi", ru: "Выбирает подходящий для цели инструмент и вызывает его" }), tr({ uz: "Faqat matn yozib beradi, ishni odam qiladi", ru: "Только пишет текст, а работу делает человек" }), tr({ uz: "Kod yozilmasa ham, o'zi bajarib qo'yadi", ru: "Сам всё сделает, даже если код не написан" }), tr({ uz: "Oldindan belgilangan bitta amalni takrorlaydi", ru: "Повторяет одно заранее заданное действие" })]} correctIdx={0}
+    explainCorrect={tr({ uz: "AI asbobni tanlaydi, uni esa siz yozgan kod bajaradi.", ru: "ИИ выбирает инструмент, а выполняет его код, который написали вы." })}
     explainWrong={{
-      1: tr({ uz: "Faqat matn yozish — bu AI-bot. Agent matndan tashqari real amal (asbob chaqirish) qiladi.", ru: 'Только писать текст — это AI-бот. Агент кроме текста делает реальное действие (вызывает инструмент).' }),
-      2: tr({ uz: "Asboblar — siz yozgan oddiy funksiyalar. AI faqat qaysi birini ishlatishni tanlaydi.", ru: 'Инструменты — это обычные функции, написанные Вами. AI только выбирает, какую применить.' }),
-      3: tr({ uz: "Aksincha — agent vaziyatga qarab har xil asbobni tanlaydi. Bitta qotib qolgan amal — bu agent emas.", ru: 'Наоборот — агент по ситуации выбирает разные инструменты. Одно застывшее действие — это не агент.' }),
+      1: tr({ uz: "Faqat matn yozish — bu AI-bot. Agent asbob chaqirib, ishni o'zi bajaradi.", ru: "Только писать текст — это ИИ-бот. Агент вызывает инструмент и сам выполняет работу." }),
+      2: tr({ uz: "Asboblar — siz yozgan oddiy funksiyalar. Ularsiz agent bazaga ham, kuryerga ham yeta olmaydi.", ru: "Инструменты — это обычные функции, которые написали вы. Без них агент не доберётся ни до базы, ни до курьера." }),
+      3: tr({ uz: "Agent vaziyatga qarab har xil asbobni tanlaydi. Doim bitta amalni takrorlash — agent emas.", ru: "Агент по ситуации выбирает разные инструменты. Всё время повторять одно действие — это не агент." }),
       default: tr({ uz: "Agent maqsadga mos asbobni tanlab chaqiradi.", ru: 'Агент выбирает подходящий цели инструмент и вызывает его.' })
     }} />
 );
 
-// ===== SCREEN 9 — GUARDRAIL QARORI (real yechim) → 🏅 guardKeeper =====
+// ===== SCREEN 9 — PUL YECHISHDAN OLDIN (tasdiq) → nishon guardKeeper =====
+const SUM_450 = "450 000 so'm";
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const [choice, setChoice] = useState(storedAnswer ? (storedAnswer.picked ?? 'confirm') : null);
@@ -1109,23 +1152,30 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: choice === 'confirm', picked: choice, solved: true }); } }, [done, choice]);
   const pick = (v) => { if (choice !== null) return; if (v !== 'confirm' && achMiss) achMiss.miss(screen); setChoice(v); setSc(n => n + 1); };
   return (
-    <Stage eyebrow={tr({ uz: 'Xavfsizlik · chegara', ru: 'Безопасность · ограничение' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qarorni tanlang", ru: 'Выберите решение' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Xavfsizlik · tasdiq', ru: "Безопасность · подтверждение" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qarorni tanlang", ru: 'Выберите решение' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent <span className="italic" style={{ color: T.accent }}>xavfli amal</span> qilmoqchi — nima to'g'ri?</>, ru: <>Агент собирается сделать <span className="italic" style={{ color: T.accent }}>опасное действие</span> — как правильно?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Agent real ishlarni bajaradi — jumladan pul bilan. Xato qilsa, oqibati real bo'ladi. Bu vaziyatda to'g'ri chegarani tanlang.", ru: 'Агент делает реальные дела — в том числе с деньгами. Если он ошибётся, последствия будут настоящими. Выберите верное ограничение для этой ситуации.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent pul yechmoqchi. <span className="italic" style={{ color: T.accent }}>Qanday qilish to'g'ri?</span></>, ru: <>Агент хочет списать деньги. <span className="italic" style={{ color: T.accent }}>Как сделать правильно?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Agent asbob bilan real ish qiladi, jumladan pul yechadi. Xato qilsa, pul ham haqiqatan yechiladi. Vaziyatni o'qing va tanlang.", ru: "Агент с помощью инструментов делает настоящую работу, в том числе списывает деньги. Если он ошибётся, деньги тоже спишутся по-настоящему. Прочитайте ситуацию и выберите." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '💳 Vaziyat', ru: '💳 Ситуация' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Agent mijozning kartasidan <b>450 000 so'm</b> yechmoqchi (chargeCard). Bu — xavfli amal.</>, ru: <>Агент собирается списать с карты клиента <b>450 000 сумов</b> (chargeCard). Это опасное действие.</> })}</p></div>
+            <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Vaziyat', ru: "Ситуация" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mijoz 5 ta katta pitsa buyurdi. Agent <code className="qcode">chargeCard()</code> bilan uning kartasidan <b>{SUM_450}</b> yechmoqchi.</>, ru: <>Клиент заказал 5 больших пицц. Агент хочет с помощью <code className="qcode">chargeCard()</code> списать с его карты <b>450 000 сумов</b>.</> })}</p></div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "qaysi chegara to'g'ri?", ru: 'какое ограничение верное?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              <button className={`pick-row ${choice === 'auto' ? 'sel' : ''}`} disabled={choice !== null} onClick={() => pick('auto')}><span style={{ flex: 1 }}>{tr({ uz: "Agent o'zi, tasdiqsiz yechib yuboraversin", ru: 'Пусть агент списывает сам, без подтверждения' })}</span><span className="pick-plus">{choice === 'auto' ? '✗' : '▶'}</span></button>
-              <button className={`pick-row ${choice === 'confirm' ? 'sel' : ''}`} disabled={choice !== null} onClick={() => pick('confirm')}><span style={{ flex: 1 }}>{tr({ uz: "Avval odamdan (mijoz/admin) tasdiq so'rasin", ru: 'Пусть сначала спросит подтверждение у человека (клиент/админ)' })}</span><span className="pick-plus">{choice === 'confirm' ? '✓' : '▶'}</span></button>
+              <button className={`pick-row ${choice === 'auto' ? 'bad' : ''}`} disabled={choice !== null} onClick={() => pick('auto')}><span style={{ flex: 1 }}>{tr({ uz: "Mijoz o'zi buyurdi — agent tasdiqsiz yechaversin", ru: "Клиент сам заказал — пусть агент списывает без подтверждения" })}</span><span className="pick-plus">{choice === 'auto' ? '✗' : '▶'}</span></button>
+              <button className={`pick-row ${choice === 'confirm' ? 'picked' : ''}`} disabled={choice !== null} onClick={() => pick('confirm')}><span style={{ flex: 1 }}>{tr({ uz: "Yechishdan oldin mijozdan summani tasdiqlatsin", ru: "Пусть перед списанием клиент подтвердит сумму" })}</span><span className="pick-plus">{choice === 'confirm' ? '✓' : '▶'}</span></button>
             </div>
             <AchRule screen={screen} once />
-            {done && choice === 'confirm' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! Pul yechish — xavfli amal. 🧰 Sumkadagi chegara (guardrail) shuni talab qiladi: xavfli amaldan oldin odamdan tasdiq so'ralsin.", ru: '✓ Верно! Списание денег — опасное действие. Ограничение в 🧰 сумке (guardrail) требует именно этого: перед опасным действием спросить подтверждение у человека.' })}</p></div>}
-            {done && choice === 'auto' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tasdiqsiz pul yechish xavfli — agent xato qilsa, real zarar. To'g'ri yo'l: xavfli amaldan oldin odam tasdig'i.", ru: 'Списывать деньги без подтверждения опасно — если агент ошибётся, ущерб будет настоящим. Верный путь: перед опасным действием — подтверждение человека.' })}</p></div>}
+            {done && choice === 'confirm' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent 5 o'rniga 15 deb tushungan bo'lsa ham, tasdiq xatoni pul yechilmasdan to'xtatadi.", ru: "Даже если агент понял 15 вместо 5, подтверждение остановит ошибку до списания денег." })}</p></div>}
+            {done && choice === 'auto' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mijoz summani hali ko'rmagan: agent 5 o'rniga 15 deb tushunsa, ortiqcha pul yechiladi.", ru: "Клиент ещё не видел сумму: если агент поймёт 15 вместо 5, спишутся лишние деньги." })}</p></div>}
+            {done && choice === 'confirm' && (
+              <div className="ag-seq">
+                <div className="ag-seq-head"><span>{tr({ uz: 'Agent', ru: "Агент" })}</span><span>{tr({ uz: 'Mijoz', ru: "Клиент" })}</span></div>
+                <div className="ag-seq-row"><span className="ag-seq-msg">{tr({ uz: `«${SUM_450} yechilsinmi?»`, ru: '«Списать 450 000 сумов?»' })}</span><i className="ag-seq-line to-r" aria-hidden="true" /></div>
+                <div className="ag-seq-row"><span className="ag-seq-msg">{tr({ uz: '«Ha»', ru: "«Да»" })}</span><i className="ag-seq-line to-l" aria-hidden="true" /></div>
+                <div className="ag-seq-call"><code className="qcode">chargeCard()</code></div>
+              </div>
+            )}
           </Col>
         </div></Zoomable>
       </div>
@@ -1133,22 +1183,22 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — TEST 3 (loop) =====
+// ===== SCREEN 10 — TEST 3 (Amaldan keyin) =====
 const Screen10 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
-    questionText="AI-agent bitta amalni bajardi (buyurtmani saqladi). Endi nima qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Agent bitta amalni bajardi (buyurtmani <span className="italic" style={{ color: T.accent }}>saqladi</span>). Endi nima qiladi?</>, ru: <>Агент выполнил одно действие (<span className="italic" style={{ color: T.accent }}>сохранил</span> заказ). Что он делает дальше?</> })}</h2></>}
-    options={[tr({ uz: "Darrov to'xtaydi — bitta amal doimo yetarli bo'ladi", ru: 'Сразу останавливается — одного действия всегда достаточно' }), tr({ uz: "Foydalanuvchidan keyingi buyruq berishini kutib turaveradi", ru: 'Ждёт, пока пользователь даст следующую команду' }), tr({ uz: "Hammasini boshidan, butunlay noldan qayta boshlab yuboradi", ru: 'Начинает всё заново, полностью с нуля' }), tr({ uz: "Natijani ko'radi va keyingi qadamni tanlaydi", ru: 'Смотрит на результат и выбирает следующий шаг' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Agentni avtonom qiladigan narsa shu: u amaldan keyin natijani ko'radi (idrok) va maqsad bajarilmagan bo'lsa keyingi qadamni tanlaydi. Saqladi → endi yetkazishni rejalash kerak → sikl davom etadi.", ru: 'Верно! Именно это делает агента автономным: после действия он смотрит на результат (восприятие) и, если цель не достигнута, выбирает следующий шаг. Сохранил → теперь надо запланировать доставку → цикл продолжается.' })}
+    questionText="Agentning maqsadi — buyurtmani qabul qilib, yetkazishga tayyorlash. U buyurtmani saqladi. Endi nima qiladi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Agentning maqsadi — buyurtmani qabul qilib, yetkazishga tayyorlash. U buyurtmani <span className="italic" style={{ color: T.accent }}>saqladi</span>. Endi nima qiladi?</>, ru: <>Цель агента — принять заказ и подготовить его к доставке. Он <span className="italic" style={{ color: T.accent }}>сохранил</span> заказ. Что он сделает дальше?</> })}</h2></>}
+    options={[tr({ uz: "Mijozga «qabul qilindi» deb yozib, ishni tugatadi", ru: "Напишет клиенту «заказ принят» и закончит работу" }), tr({ uz: "Mijoz keyingi buyruq yozishini kutib turadi", ru: "Будет ждать, пока клиент напишет следующую команду" }), tr({ uz: "Buyurtmani yana bir marta bazaga yozadi", ru: "Ещё раз запишет заказ в базу" }), tr({ uz: "Natijani ko'radi va keyingi qadamni tanlaydi", ru: 'Смотрит на результат и выбирает следующий шаг' })]} correctIdx={3}
+    explainCorrect={tr({ uz: "Yetkazish hali rejalanmagan — maqsadga yetmadi, shuning uchun agent keyingi qadamni tanlaydi.", ru: "Доставка ещё не запланирована — цель не достигнута, поэтому агент выбирает следующий шаг." })}
     explainWrong={{
-      0: tr({ uz: "Bitta amal kamdan-kam yetarli. Maqsadga yetguncha agent sikl bo'ylab davom etadi.", ru: 'Одного действия редко хватает. Пока цель не достигнута, агент продолжает крутиться по циклу.' }),
-      1: tr({ uz: "Buyruq kutish — bu reaktiv AI-bot. Agent maqsad sari o'zi davom etadi, kutib turmaydi.", ru: 'Ждать команду — это реактивный AI-бот. Агент сам идёт к цели и не ждёт.' }),
-      2: tr({ uz: "Noldan boshlamaydi — u qilingan ishni hisobga olib, keyingi qadamga o'tadi.", ru: 'С нуля он не начинает — учитывает сделанное и переходит к следующему шагу.' }),
-      default: tr({ uz: "Natijani ko'radi va sikl davom etadi.", ru: 'Смотрит на результат, и цикл продолжается.' })
+      0: tr({ uz: "Yetkazish hali rejalanmagan: maqsadga yetmay turib ish tugamaydi.", ru: "Доставка ещё не запланирована: пока цель не достигнута, работа не закончена." }),
+      1: tr({ uz: "Keyingi buyruqni kutish — AI-botning ishi. Agent keyingi qadamni o'zi tanlaydi.", ru: "Ждать следующую команду — это работа ИИ-бота. Агент сам выбирает следующий шаг." }),
+      2: tr({ uz: "Buyurtma allaqachon saqlangan — natijani ko'rgan agent uni qayta yozmaydi.", ru: "Заказ уже сохранён — агент видит результат и второй раз его не записывает." }),
+      default: tr({ uz: "Agent natijani ko'radi va maqsadga yetguncha sikl davom etadi.", ru: "Агент смотрит на результат, и цикл продолжается, пока цель не достигнута." })
     }} />
 );
 
-// ===== SCREEN 11 — AMAL XAVFSIZLIGI (real yechim: qaysi amal odam ruxsatini talab qiladi?) → 🏅 safeActor =====
+// ===== SCREEN 11 — AMAL XAVFSIZLIGI (navbat bilan, bitta urinish) → nishon safeActor =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const [ans, setAns] = useState(() => storedAnswer ? (storedAnswer.actAnswers || { a1: false, a2: true, a3: false }) : {});
@@ -1156,25 +1206,33 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const fired = useRef(!!storedAnswer);
   const done = ACT_SAFETY.every(a => ans[a.id] !== undefined);
   const allCorrect = ACT_SAFETY.every(a => ans[a.id] === a.danger);
+  const curA = ACT_SAFETY.find(a => ans[a.id] === undefined);
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: allCorrect, picked: true, solved: true, actAnswers: ans }); } }, [done, allCorrect]);
   const mark = (id, val) => { if (ans[id] !== undefined) return; const a = ACT_SAFETY.find(x => x.id === id); if (a && val !== a.danger && achMiss) achMiss.miss(screen); setAns(prev => ({ ...prev, [id]: val })); setSc(n => n + 1); };
+  const L_SELF = { uz: "O'zi", ru: "Сам" };
+  const L_CONF = { uz: 'Tasdiq kerak', ru: "Нужно подтверждение" };
   return (
     <Stage eyebrow={tr({ uz: 'Markaziy · xavfsizlik', ru: 'Ключевое · безопасность' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Har amalni belgilang (${Object.keys(ans).length}/3)`, ru: `Отметьте каждое действие (${Object.keys(ans).length}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi amalni agent <span className="italic" style={{ color: T.accent }}>o'zi</span>, qaysini <span className="italic" style={{ color: T.accent }}>odam ruxsati</span> bilan bajarsin?</>, ru: <>Какое действие агент делает <span className="italic" style={{ color: T.accent }}>сам</span>, а какое — только <span className="italic" style={{ color: T.accent }}>с разрешения человека</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Har amalni ko'rib chiqing: xavfsizmi (agent o'zi bajaraversin) yoki xavflimi (avval odamdan ruxsat so'ralsin)? Har amalni belgilang.", ru: 'Разберите каждое действие: оно безопасное (пусть агент делает сам) или опасное (сначала спросить разрешение у человека)? Отметьте каждое действие.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi amalni agent <span className="italic" style={{ color: T.accent }}>o'zi</span>, qaysini <span className="italic" style={{ color: T.accent }}>odam tasdig'i</span> bilan bajarsin?</>, ru: <>Какое действие агент выполнит <span className="italic" style={{ color: T.accent }}>сам</span>, а какое — с <span className="italic" style={{ color: T.accent }}>подтверждением человека</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Har amalni belgilang: agent uni o'zi bajarsinmi yoki avval odamdan tasdiq so'rasinmi? Har qatorda bitta urinish.", ru: "Отметьте каждое действие: агент выполнит его сам или сначала спросит подтверждение у человека? В каждой строке одна попытка." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             {ACT_SAFETY.map(a => {
               const v = ans[a.id];
-              const isDone = v !== undefined;
-              const rowCls = isDone ? (v === a.danger ? 'ok done' : 'bad done') : '';
+              if (v !== undefined) return (
+                <div key={a.id} className={`claim-row done ${v === a.danger ? 'ok' : 'bad'} fade-step`}>
+                  <span className="claim-txt">{tr(a.text)}</span>
+                  <span className="ag-claim-res">{v === a.danger ? '✓' : '✕'} {tr(v ? L_CONF : L_SELF)}</span>
+                </div>
+              );
+              if (a !== curA) return null;
               return (
-                <div key={a.id} className={`claim-row ${rowCls}`}>
+                <div key={a.id} className="claim-row fade-step">
                   <span className="claim-txt">{tr(a.text)}</span>
                   <span className="claim-btns">
-                    <button className={`claim-btn pick ${v === false ? 'correct' : ''}`} disabled={isDone} onClick={() => mark(a.id, false)}>{tr({ uz: "🛠️ O'zi", ru: '🛠️ Сам' })}</button>
-                    <button className={`claim-btn pick ${v === true ? 'correct' : ''}`} disabled={isDone} onClick={() => mark(a.id, true)}>{tr({ uz: '✋ Ruxsat kerak', ru: '✋ Нужно разрешение' })}</button>
+                    <button className="claim-btn pick" onClick={() => mark(a.id, false)}>{tr(L_SELF)}</button>
+                    <button className="claim-btn pick" onClick={() => mark(a.id, true)}>{tr(L_CONF)}</button>
                   </span>
                 </div>
               );
@@ -1183,8 +1241,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done ? null
-              : allCorrect ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Ajoyib! Pul yechish — xavfli, odam ruxsati kerak. Tekshirish va xabar — xavfsiz, agent o'zi bajaraveradi. Mana guardrail mantig'i.", ru: '✓ Отлично! Списание денег — опасно, нужно разрешение человека. Проверка и сообщение — безопасно, агент делает сам. Вот логика guardrail.' })}</p></div>
-              : <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Diqqat: pul yechish (chargeCard) — xavfli, odam ruxsatini talab qiladi. Oddiy tekshirish va xabar — xavfsiz, o'zi bajaraveradi.", ru: 'Внимание: списание денег (chargeCard) — опасно и требует разрешения человека. Обычная проверка и сообщение — безопасны, агент делает их сам.' })}</p></div>}
+              : allCorrect ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu agentda tekshirish va saqlash tasdiqsiz bajariladi, bekor qilish esa buyurtmani yo'qotadi — uni odam tasdiqlaydi.", ru: "У этого агента проверка и сохранение идут без подтверждения, а отмена удаляет заказ — её подтверждает человек." })}</p></div>
+              : <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qarang: bekor qilish buyurtmani yo'qotadi — odam tasdig'i kerak; tekshirish va saqlashni agent o'zi bajaradi.", ru: "Смотрите: отмена удаляет заказ — нужно подтверждение человека; проверку и сохранение агент выполняет сам." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1192,51 +1250,73 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 12 — CASE: avtonom agent =====
+// ===== SCREEN 12 — AGENT ISHDA (8 qadam) =====
+const AGENT_RUN = [
+  { kind: 'perceive', phase: { uz: 'Idrok', ru: 'Восприятие' }, txt: { uz: "Mijoz: «2 ta Pepperoni, Chilonzor 5-kvartal». Agent xabarni o'qidi.", ru: "Клиент: «2 Пепперони, Чиланзар 5-квартал». Агент прочитал сообщение." }, tool: null },
+  { kind: 'decide', phase: { uz: 'Qaror', ru: 'Решение' }, txt: { uz: "Avval Pepperoni borligini tekshiraman.", ru: "Сначала проверю, есть ли Пепперони." }, tool: 'checkOrder()' },
+  { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "Natija: «Pepperoni bor».", ru: "Результат: «Пепперони есть»." }, tool: 'checkOrder()' },
+  { kind: 'decide', phase: { uz: 'Idrok · Qaror', ru: "Восприятие · Решение" }, txt: { uz: "Pepperoni bor, buyurtma hali bazada yo'q → saqlayman.", ru: "Пепперони есть, заказа в базе ещё нет → сохраню." }, tool: 'saveOrder()' },
+  { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "Natija: buyurtma bazaga yozildi.", ru: "Результат: заказ записан в базу." }, tool: 'saveOrder()' },
+  { kind: 'decide', phase: { uz: 'Idrok · Qaror', ru: "Восприятие · Решение" }, txt: { uz: "Buyurtma saqlandi, yetkazish hali rejalanmagan → rejalayman.", ru: "Заказ сохранён, доставка ещё не запланирована → запланирую." }, tool: 'arrangeDelivery()' },
+  { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "Natija: kuryer taxminan 30 daqiqada yetkazadi.", ru: "Результат: курьер привезёт примерно через 30 минут." }, tool: 'arrangeDelivery()' },
+  { kind: 'done', phase: { uz: 'Maqsadga yetdi', ru: "Цель достигнута" }, txt: { uz: "Buyurtma qabul qilindi va yetkazishga tayyor. Sikl to'xtaydi, mijozga javob ketadi.", ru: "Заказ принят и готов к доставке. Цикл останавливается, клиенту уходит ответ." }, tool: null }
+];
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  // `kind` — til-mustaqil kalit (calledTools filtri shunga bog'lanadi); `phase` — ko'rinadigan yorliq
-  const STEPS = [
-    { kind: 'perceive', phase: { uz: 'Idrok', ru: 'Восприятие' }, txt: { uz: "Mijoz: «2 dona A-model, Chilonzor 5». Agent xabarni o'qidi.", ru: 'Клиент: «2 штуки A-модели, Чиланзар 5». Агент прочитал сообщение.' }, tool: null },
-    { kind: 'decide', phase: { uz: 'Qaror', ru: 'Решение' }, txt: { uz: "Avval ro'yxatda bormi — tekshiraman.", ru: 'Сначала проверю, есть ли в наличии.' }, tool: 'checkOrder()' },
-    { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "checkOrder() → «A-model mavjud» ✅", ru: 'checkOrder() → «A-модель есть» ✅' }, tool: 'checkOrder()' },
-    { kind: 'decide', phase: { uz: 'Qaror', ru: 'Решение' }, txt: { uz: "Bor ekan — buyurtmani saqlayman.", ru: 'Есть в наличии — сохраню заказ.' }, tool: 'saveOrder()' },
-    { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "saveOrder() → buyurtma daftarga yozildi ✅", ru: 'saveOrder() → заказ записан в тетрадь ✅' }, tool: 'saveOrder()' },
-    { kind: 'decide', phase: { uz: 'Qaror', ru: 'Решение' }, txt: { uz: "Saqlandi — endi yetkazishni rejalayman.", ru: 'Сохранено — теперь запланирую доставку.' }, tool: 'arrangeDelivery()' },
-    { kind: 'act', phase: { uz: 'Amal', ru: 'Действие' }, txt: { uz: "arrangeDelivery() → yetkazish rejalashtirildi 📦✅", ru: 'arrangeDelivery() → доставка запланирована 📦✅' }, tool: 'arrangeDelivery()' },
-    { kind: 'done', phase: { uz: 'Tayyor', ru: 'Готово' }, txt: { uz: "Maqsadga yetildi. Mijozga javob yuboriladi.", ru: 'Цель достигнута. Клиенту отправляется ответ.' }, tool: null }
-  ];
-  const [shown, setShown] = useState(storedAnswer ? STEPS.length : 0);
+  const [shown, setShown] = useState(storedAnswer ? AGENT_RUN.length : 0);
   const [sc, setSc] = useState(0);
-  const done = shown >= STEPS.length;
+  const done = shown >= AGENT_RUN.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => { if (!done) { setShown(n => n + 1); setSc(n => n + 1); } };
-  const calledTools = STEPS.slice(0, shown).filter(s => s.kind === 'act').map(s => s.tool);
+  const calledTools = AGENT_RUN.slice(0, shown).filter(s => s.kind === 'act').map(s => s.tool);
+  const curStep = shown > 0 ? AGENT_RUN[shown - 1] : null;
+  const isAct = !!(curStep && curStep.kind === 'act');
+  // A7: Amal qadamida asbob nomidan «Chaqirilgan asboblar» kartasiga chiziq chiziladi (≤760px da ustunlararo chiziq yo'q)
+  const wrapRef = useRef(null), toolRef = useRef(null), chipRef = useRef(null);
+  const [wire, setWire] = useState(null);
+  useLayoutEffect(() => {
+    if (!isAct) { setWire(null); return; }
+    const calc = () => {
+      const w = wrapRef.current, a = toolRef.current, b = chipRef.current;
+      if (!w || !a || !b || window.innerWidth <= 760) { setWire(null); return; }
+      const wr = w.getBoundingClientRect(); const k = w.offsetWidth ? wr.width / w.offsetWidth : 1;
+      const ar = a.getBoundingClientRect(), br = b.getBoundingClientRect();
+      const x1 = (ar.right - wr.left) / k + 4, y1 = (ar.top + ar.height / 2 - wr.top) / k;
+      const x2 = (br.left - wr.left) / k - 4, y2 = (br.top + br.height / 2 - wr.top) / k;
+      if (x2 <= x1) { setWire(null); return; }
+      setWire({ d: `M${x1},${y1} C${x1 + (x2 - x1) * 0.5},${y1} ${x1 + (x2 - x1) * 0.5},${y2} ${x2},${y2}`, k: shown });
+    };
+    setWire(null);
+    const t = setTimeout(calc, 320); // kartaning kirish harakati tugagach o'lchanadi
+    window.addEventListener('resize', calc);
+    return () => { clearTimeout(t); window.removeEventListener('resize', calc); };
+  }, [shown, isAct]);
   return (
-    <Stage eyebrow={tr({ uz: 'Hayotiy · avtonom agent', ru: 'Из жизни · автономный агент' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Agentni kuzating (${shown}/${STEPS.length})`, ru: `Следите за агентом (${shown}/${STEPS.length})` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hayotiy · agent ishda', ru: "Из жизни · агент в работе" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Agentni kuzating (${shown}/${AGENT_RUN.length})`, ru: `Следите за агентом (${shown}/${AGENT_RUN.length})` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta maqsad — agent qolganini <span className="italic" style={{ color: T.accent }}>o'zi</span> bajaradi.</>, ru: <>Одна цель — остальное агент делает <span className="italic" style={{ color: T.accent }}>сам</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mijoz bitta xabar yozdi. Agent endi sikl bo'ylab o'zi yuradi: ko'radi, qaror qiladi, 🧰 sumkadan asbob oladi — maqsadga yetguncha. Tugmani bosib, har qadamni kuzating.", ru: 'Клиент написал одно сообщение. Дальше агент сам идёт по циклу: смотрит, решает, достаёт инструмент из 🧰 сумки — пока не достигнет цели. Нажимайте кнопку и следите за каждым шагом.' })}</Mentor>
-        <Zoomable><div className="split">
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta xabar — agent qadamlarni <span className="italic" style={{ color: T.accent }}>o'zi tanlab</span>, ishni oxirigacha bajaradi.</>, ru: <>Одно сообщение — агент <span className="italic" style={{ color: T.accent }}>сам выбирает</span> шаги и доводит работу до конца.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bu — siz yig'gan agent: maqsadi buyurtmani qabul qilib, yetkazishga tayyorlash. Tugmani bosing va u har qadamda nima qilishini kuzating.", ru: "Это агент, которого вы собрали: его цель — принять заказ и подготовить его к доставке. Нажмите кнопку и проследите, что он делает на каждом шаге." })}</Mentor>
+        <Zoomable><div className="split ag-run" ref={wrapRef}>
+          {wire && <svg className="ag-wire" aria-hidden="true"><path key={wire.k} d={wire.d} pathLength="1" /></svg>}
           <Col>
-            <p className="flow-label">{tr({ uz: 'agent ichki qadamlari (sahna ortida)', ru: 'внутренние шаги агента (за кулисами)' })}</p>
+            <p className="flow-label">{tr({ uz: 'Agent qadamlari (mijoz ularni ko\'rmaydi)', ru: "Шаги агента (клиент их не видит)" })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {STEPS.slice(0, shown).map((s, i) => (
-                <div key={i} className="sk-info fade-step">
-                  <p className="note-h" style={{ margin: '0 0 3px' }}>{tr(s.phase)} {s.tool && <span className="mono" style={{ color: T.accent, fontSize: 12, marginLeft: 6 }}>{s.tool}</span>}</p>
-                  <p className="body" style={{ margin: 0, color: T.ink }}>{tr(s.txt)}</p>
-                </div>
-              ))}
+              {AGENT_RUN.slice(0, shown).map((s, i) => i < shown - 1
+                ? <div key={i} className="ag-run-row"><span className="lp-check">✓</span><b>{tr(s.phase)}</b>{s.tool && <code className="qcode">{s.tool}</code>}</div>
+                : <div key={i} className="sk-info fade-step">
+                    <p className="note-h" style={{ margin: '0 0 3px' }}>{tr(s.phase)} {s.tool && <code className="qcode" ref={toolRef} style={{ marginLeft: 6 }}>{s.tool}</code>}</p>
+                    <p className="body" style={{ margin: 0, color: T.ink }}>{tr(s.txt)}</p>
+                  </div>)}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Maqsadga yetildi', ru: '✓ Цель достигнута' }) : shown === 0 ? tr({ uz: '▶ Agentni ishga tushirish', ru: '▶ Запустить агента' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Maqsadga yetdi', ru: "✓ Цель достигнута" }) : shown === 0 ? tr({ uz: '▶ Agentni ishga tushirish', ru: '▶ Запустить агента' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "mijoz ko'radigan chat", ru: 'чат, который видит клиент' })}</p>
-            <TgChat title="AI-agent" ava="🧰" status={tr({ uz: 'agent · proaktiv 🟢', ru: 'агент · проактивный 🟢' })} minH={90}>
-              <Bubble from="user">{tr({ uz: '2 dona A-model, Chilonzor 5', ru: '2 штуки A-модели, Чиланзар 5' })}</Bubble>
-              {done && <Bubble from="bot">{tr({ uz: '2 dona A-model qabul qilindi ✅ Chilonzor 5 manziliga ~30 daqiqada yetkazamiz 📦', ru: '2 штуки A-модели приняты ✅ Привезём на Чиланзар 5 примерно за 30 минут 📦' })}</Bubble>}
+            <p className="flow-label">{tr({ uz: "Mijoz ko'radigan chat", ru: "Чат, который видит клиент" })}</p>
+            <TgChat title={{ uz: 'AvtoPizza · AI-agent', ru: "AvtoPizza · ИИ-агент" }} status={{ uz: 'agent', ru: "агент" }} minH={90}>
+              <Bubble from="user">{tr({ uz: '2 ta Pepperoni, Chilonzor 5-kvartal', ru: "2 Пепперони, Чиланзар 5-квартал" })}</Bubble>
+              {done && <Bubble from="bot">{tr({ uz: <>2 ta Pepperoni qabul qilindi. Chilonzor <span style={{ whiteSpace: 'nowrap' }}>5-kvartalga</span> taxminan 30 daqiqada yetkazamiz.</>, ru: <>2 Пепперони приняты. Привезём на Чиланзар <span style={{ whiteSpace: 'nowrap' }}>5-квартал</span> примерно через 30 минут.</> })}</Bubble>}
             </TgChat>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🧰 Chaqirilgan asboblar', ru: '🧰 Вызванные инструменты' })}</p>{calledTools.length === 0 ? <p className="body" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: "hali yo'q", ru: 'пока нет' })}</p> : <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>{calledTools.map((t, i) => <span key={i} className="gchip mono">{t}</span>)}</div>}</div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mijoz bitta gap yozdi — agent 3 ta asbobni o'zi chaqirdi va ishni bajardi. Mana AI-agent kuchi.", ru: 'Клиент написал одну фразу — агент сам вызвал 3 инструмента и сделал работу. Вот сила AI-агента.' })}</p></div>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: 'Chaqirilgan asboblar', ru: "Вызванные инструменты" })}</p>{calledTools.length === 0 ? <p className="body" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: "hali yo'q", ru: 'пока нет' })}</p> : <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>{calledTools.map((t, i) => { const fresh = isAct && i === calledTools.length - 1; return <span key={t} ref={fresh ? chipRef : undefined} className={`ag-called mono ${fresh ? 'fresh' : ''}`}>{t}</span>; })}</div>}</div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mijoz bitta xabar yozdi, agent esa uchta asbobni chaqirdi. Qaysi birini qachon chaqirishni u o'zi tanladi — lekin faqat siz bergan asboblar orasidan.", ru: "Клиент написал одно сообщение, а агент вызвал три инструмента. Какой и когда вызывать, он выбрал сам — но только из инструментов, которые дали вы." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1244,7 +1324,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 13 — GUARDRAILS (chegaralar, explore) =====
+// ===== SCREEN 13 — CHEGARALAR (3 tur) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(GUARDS.map(g => g.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1254,20 +1334,20 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = GUARDS.find(g => g.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Xavfsizlik · chegaralar', ru: 'Безопасность · ограничения' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `3 chegarani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 ограничения (${seen.size}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Xavfsizlik · chegara', ru: "Безопасность · ограничение" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `3 chegarani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 ограничения (${seen.size}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Amal qiladigan agent — kuchli, lekin <span className="italic" style={{ color: T.accent }}>xavfli</span>. Chegara qo'ying.</>, ru: <>Действующий агент силён, но <span className="italic" style={{ color: T.accent }}>опасен</span>. Поставьте ограничения.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Agent real ishlar qiladi: pul, xabar, o'chirish. Xato qilsa — oqibati real. Shuning uchun direktor 🧰 sumkaga <b style={{ color: T.ink }}>chegara</b> qo'yadi. Har birini bosing.</>, ru: <>Агент делает реальные вещи: деньги, сообщения, удаление. Ошибётся — последствия настоящие. Поэтому директор ставит на 🧰 сумку <b style={{ color: T.ink }}>ограничения</b>. Нажмите на каждое.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent real ish qiladi — shuning uchun unga <span className="italic" style={{ color: T.accent }}>chegara</span> qo'yiladi.</>, ru: <>Агент делает настоящую работу — поэтому ему ставят <span className="italic" style={{ color: T.accent }}>ограничение</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Chegara (inglizcha guardrail) agent nimani qila olishini va nimani so'ramasdan qilmasligini belgilaydi. Uch turini bosib ko'ring.", ru: "Ограничение (по-английски guardrail) определяет, что агенту можно делать и чего он не делает без спроса. Нажмите на каждый из трёх видов." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {GUARDS.map(g => <button key={g.id} className="gchip" onClick={() => tap(g.id)} style={seen.has(g.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(g.id) ? '✓ ' : ''}{tr(g.label)}</button>)}
+              {GUARDS.map(g => <button key={g.id} className={`gchip ${seen.has(g.id) ? 'seen' : ''} ${active === g.id ? 'cur' : ''}`} onClick={() => tap(g.id)}>{tr(g.label)}<span className="ag-chev" aria-hidden="true">{seen.has(g.id) ? '✓' : '›'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Avtonomlik + chegara = ishonchli agent. Erkinlikni asta-sekin, ishonch ortgani sari kengaytirasiz.", ru: 'Автономность + ограничения = надёжный агент. Свободу расширяют постепенно, по мере роста доверия.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agentga erkinlik asta-sekin beriladi: avval kam asbob va ko'proq tasdiq, ishonch ortgani sari — ko'proq.", ru: "Свободу агенту дают постепенно: сначала мало инструментов и больше подтверждений, а по мере роста доверия — больше." })}</p></div>}
           </Col>
           <Col>
             {cur
-              ? <div className="frame-warn fade-step" key={active}><p className="note-h" style={{ margin: '0 0 4px' }}>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              ? <div className="sk-info fade-step" key={active}><p className="note-h" style={{ margin: '0 0 4px' }}>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
               : null}
           </Col>
         </div></Zoomable>
@@ -1276,44 +1356,49 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 14 — TEST 4 (guardrails) =====
+// ===== SCREEN 14 — TEST 4 (pul yechishdan oldin) =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
-    questionText="Agent real pul yechadigan yoki mijozga xabar yuboradigan amal qilishidan oldin nima muhim?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Agent real <span className="italic" style={{ color: T.accent }}>pul yechadigan</span> amal qilishidan oldin nima muhim?</>, ru: <>Что важно перед тем, как агент реально <span className="italic" style={{ color: T.accent }}>спишет деньги</span>?</> })}</h2></>}
-    options={[tr({ uz: "Hech narsa — agentga hamma ishda to'liq erkinlik berib qo'yish kerak", ru: 'Ничего — агенту нужно дать полную свободу во всём' }), tr({ uz: "Chegara: ruxsat etilgan asboblar va xavfli amalga tasdiq", ru: 'Ограничения: разрешённые инструменты и подтверждение опасного действия' }), tr({ uz: "Agentni bunday ishlarda umuman ishlatmaslik kerak", ru: 'Агента в таких делах вообще нельзя использовать' }), tr({ uz: "Faqat javob berish tezligini iloji boricha oshirish", ru: 'Только максимально ускорить ответ' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Amal qiladigan agent xato qilsa, oqibati real (pul, mijoz). Shuning uchun chegara qo'yiladi: cheklangan asboblar, xavfli amaldan oldin tasdiq, kerakli joyda odam nazorati (human-in-loop). Bu — har avtonom tizimda muhim.", ru: 'Верно! Если действующий агент ошибётся, последствия реальны (деньги, клиент). Поэтому ставят ограничения: ограниченный набор инструментов, подтверждение перед опасным действием, где нужно — контроль человека (human-in-loop). Это важно в любой автономной системе.' })}
+    questionText="Agent mijozning kartasidan pul yechishidan oldin nima muhim?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Agent mijozning kartasidan <span className="italic" style={{ color: T.accent }}>pul yechishidan</span> oldin nima muhim?</>, ru: <>Что важно, прежде чем агент <span className="italic" style={{ color: T.accent }}>спишет деньги</span> с карты клиента?</> })}</h2></>}
+    options={[tr({ uz: "Unga hamma ishda to'liq erkinlik berib qo'yish", ru: "Дать ему полную свободу во всём" }), tr({ uz: "Faqat kerakli asboblarni berish va tasdiq so'ratish", ru: "Дать только нужные инструменты и требовать подтверждение" }), tr({ uz: "Pul yechilgach, mijozga xabar yuborib qo'yish", ru: "После списания отправить клиенту сообщение" }), tr({ uz: "Javob berish tezligini iloji boricha oshirish", ru: "Как можно сильнее ускорить ответ" })]} correctIdx={1}
+    explainCorrect={tr({ uz: "Xato pul yechilmasdan oldin to'xtashi kerak — chegara shuning uchun.", ru: "Ошибка должна остановиться до списания денег — для этого и нужно ограничение." })}
     explainWrong={{
-      0: tr({ uz: "To'liq erkinlik xavfli — agent xato qilsa real zarar. Chegara shart.", ru: 'Полная свобода опасна — ошибка агента даёт реальный ущерб. Ограничения обязательны.' }),
-      2: tr({ uz: "Ishlatmaslik — yechim emas. To'g'ri yo'l: chegara bilan xavfsiz ishlatish.", ru: 'Отказаться — не решение. Верный путь: использовать безопасно, с ограничениями.' }),
-      3: tr({ uz: "Tezlik bu yerda asosiy emas — xavfsizlik (chegara, tasdiq) muhim.", ru: 'Скорость тут не главное — важна безопасность (ограничения, подтверждение).' }),
-      default: tr({ uz: "Chegara qo'yish: ruxsat etilgan asboblar va tasdiq/odam nazorati.", ru: 'Поставить ограничения: разрешённые инструменты и подтверждение / контроль человека.' })
+      0: tr({ uz: "To'liq erkinlik xavfli: agent xato qilsa, pul haqiqatan yechiladi. Chegara kerak.", ru: "Полная свобода опасна: если агент ошибётся, деньги спишутся по-настоящему. Нужно ограничение." }),
+      2: tr({ uz: "Xabar pul yechilgandan keyin ketadi — xatoni to'xtata olmaydi. Tasdiq pul yechilishidan oldin so'raladi.", ru: "Сообщение уходит после списания — ошибку оно не остановит. Подтверждение спрашивают до списания денег." }),
+      3: tr({ uz: "Bu yerda tezlik asosiy emas — xavfsizlik muhim: kerakli asboblar va tasdiq.", ru: "Здесь главное не скорость, а безопасность: нужные инструменты и подтверждение." }),
+      default: tr({ uz: "Pul yechishdan oldin chegara kerak: faqat kerakli asboblar va odam tasdig'i.", ru: "Перед списанием денег нужно ограничение: только нужные инструменты и подтверждение человека." })
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: agent siklini yig'ish =====
+// ===== SCREEN 15 — YAKUNIY: agent qanday ishlashini yig'ish =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const fired = useRef(!!storedAnswer);
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const isMentorLive = !!(gate.live && gate.live.mode === 'mentor');
   const wrongEverRef = useRef(false);
-  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
-  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "AI-agent siklini to'g'ri tartibda joylang", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } };
+  const [hadWrong, setHadWrong] = useState(false);
+  const onWrong = () => { wrongEverRef.current = true; setHadWrong(true); if (achMiss) achMiss.miss(screen); };
+  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Oxirgi qadam: agent qanday ishlashini to'g'ri tartibda yig'ing.", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } };
   const [recapOpen, setRecapOpen] = useState(false);
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Siklni yig'ing", ru: 'Соберите цикл' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Tartibni yig'ing", ru: "Соберите порядок" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: AI-agent <span className="italic" style={{ color: T.accent }}>siklini</span> to'g'ri tartibda yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>цикл</span> AI-агента в верном порядке.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Agent qanday ishlaydi? Maqsad oladi, holatni ko'radi, asbob tanlaydi, amal qiladi va natijani ko'rib qaytadi. To'g'ri tartibni yig'ing.", ru: 'Как работает агент? Получает цель, смотрит на состояние, выбирает инструмент, действует и, посмотрев результат, возвращается назад. Соберите верный порядок.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: agent qanday ishlashini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите, как работает агент, <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga qo'ying.", ru: "Перетащите блоки в правильном порядке." })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
           hints={[{ uz: '1-qadam', ru: 'Шаг 1' }, { uz: '2-qadam', ru: 'Шаг 2' }, { uz: '3-qadam', ru: 'Шаг 3' }, { uz: '4-qadam', ru: 'Шаг 4' }, { uz: '5-qadam', ru: 'Шаг 5' }]}
           onSolved={onSolved}
           onWrong={onWrong}
-          doneText={{ uz: "AI-agent sikli tayyor!", ru: 'Цикл AI-агента готов!' }}
+          loopFrom={4}
+          loopTo={1}
         />
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib: <b>Maqsad → Idrok → Qaror → Amal → Natijani ko'r</b> — va maqsadga yetguncha qayta aylanadi. Mana AI-agent.</>, ru: <>✓ Порядок: <b>Цель → Восприятие → Решение → Действие → Смотри результат</b> — и так по кругу, пока цель не достигнута. Вот это и есть AI-агент.</> })}</p></div>}
+        {hadWrong && !solved && !isMentorLive && RECAPS[screen] && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "Короткое повторение — взглянуть на тему ещё раз" })}</button>}
+        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib to'g'ri: maqsadga yetmaguncha agent yana Idrok'ka qaytadi.", ru: "Порядок верный: пока цель не достигнута, агент снова возвращается к Восприятию." })}</p></div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
     </Stage>
@@ -1322,10 +1407,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  cycleBuilder: { icon: '🧰', name: 'Cycle Builder',   desc: { uz: "Idrok → qaror → amal rejasini yig'dingiz", ru: "Вы собрали план: восприятие → решение → действие" } },
-  toolPicker:   { icon: '🔧', name: 'Tool Picker',     desc: { uz: "Vaziyatga to'g'ri asbobni (tool-call) tanladingiz", ru: "Вы выбрали верный инструмент (tool-call)" } },
-  guardKeeper:  { icon: '🛡️', name: 'Guardrail Keeper', desc: { uz: "Agentga chegara (guardrail) qo'ydingiz", ru: "Вы поставили агенту ограничение (guardrail)" } },
-  safeActor:    { icon: '✋', name: 'Safe Actor',       desc: { uz: "Qaysi amal odam ruxsatini so'rashini bildingiz", ru: "Вы поняли, какое действие требует разрешения" } },
+  cycleBuilder: { icon: '🧰', name: 'Agent Builder',   desc: { uz: "Agentga maqsad, asboblar va chegara berdingiz", ru: "Вы дали агенту цель, инструменты и ограничение" } },
+  toolPicker:   { icon: '🔧', name: 'Tool Picker',     desc: { uz: "Har vaziyatga mos asbobni tanladingiz", ru: "Вы выбрали подходящий инструмент для каждой ситуации" } },
+  guardKeeper:  { icon: '🛡️', name: 'Guardrail Keeper', desc: { uz: "Pul yechishdan oldin tasdiq so'rashni tanladingiz", ru: "Вы решили спрашивать подтверждение перед списанием денег" } },
+  safeActor:    { icon: '✋', name: 'Safe Actor',       desc: { uz: "Qaysi amalga odam tasdig'i kerakligini to'g'ri belgiladingiz", ru: "Вы верно отметили, какому действию нужно подтверждение человека" } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli, real-xato-imkonli ekranlar: s5 (builder — noto'g'ri chip tanlansa
 // `wrongEverRef` yonadi va `correct:false` ketadi) · s7 (case — nomzodlardan noto'g'risini tanlash mumkin) ·
@@ -1346,7 +1431,7 @@ const AchRule = ({ screen, once }) => {
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
     ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
-    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+    : tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "Справитесь с первой попытки — значок ваш." })}</p>;
 };
 
 function AchCelebrate({ ach, onDone }) {
@@ -1405,45 +1490,41 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 10, 14, 15)
 const Q_LABELS = {
-  4: { uz: '1 — Agent nima', ru: '1 — Что такое агент' },
-  8: { uz: '2 — Tool-call', ru: '2 — Tool-call' },
-  10: { uz: '3 — Tashqi xizmat', ru: '3 — Внешний сервис' },
-  14: { uz: '4 — Guardrails', ru: '4 — Guardrails' },
+  4: { uz: '1 — AI-agent nima', ru: "1 — Что такое ИИ-агент" },
+  8: { uz: '2 — Asbob', ru: "2 — Инструмент" },
+  10: { uz: '3 — Amaldan keyin', ru: "3 — После Действия" },
+  14: { uz: '4 — Chegara', ru: "4 — Ограничение" },
   15: { uz: '5 — Agent sikli', ru: '5 — Цикл агента' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (AI-agent atamalari)
 const QZ_BG_SHAPES = [
-  { ch: 'agent',         l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '🧰',             l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
-  { ch: 'tool-call',     l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
-  { ch: 'idrok',         l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
-  { ch: 'qaror',         l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
-  { ch: 'amal',          l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
-  { ch: 'guardrails',    l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
-  { ch: '🛡️',            l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
-  { ch: '✗',             l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
-  { ch: '✓',             l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
-  { ch: 'tashqi xizmat', l: 34, t: 62, s: 18, d: 29, dl: 3.4 },
-  { ch: '🔧',            l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
-  { ch: 'sikl',          l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
-  { ch: '✋',             l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: 'agent',   l: 5,  t: 10, s: 32, d: 19, dl: 0 },
+  { ch: 'asbob',   l: 82, t: 8,  s: 28, d: 23, dl: 1.5 },
+  { ch: 'maqsad',  l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: 'idrok',   l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
+  { ch: 'qaror',   l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
+  { ch: 'amal',    l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
+  { ch: 'chegara', l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
+  { ch: 'sikl',    l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
+  { ch: '✗',       l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
+  { ch: '✓',       l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "AI-bot va AI-agent orasidagi asosiy farq nima?", ru: 'В чём главная разница между AI-ботом и AI-агентом?' }, opts: [{ uz: "Bot rangi va shrifti butunlay boshqacha bo'ladi", ru: 'У бота совсем другие цвет и шрифт' }, { uz: "Bot gapiradi, agent asbob bilan amal qiladi", ru: 'Бот говорит, а агент действует инструментами' }, { uz: "Ular orasida hech qanday farq mavjud emas", ru: 'Между ними вообще нет разницы' }, { uz: "Agent har doim botdan sekinroq ishlaydi", ru: 'Агент всегда работает медленнее бота' }], correct: 1 },
-  { q: { uz: "AI-agentning «amal» qadami nima?", ru: 'Что такое шаг «действие» у AI-агента?' }, opts: [{ uz: "Foydalanuvchini jimgina kutib turish", ru: 'Молча ждать пользователя' }, { uz: "Shunchaki salom berib qo'yish va kutish", ru: 'Просто поздороваться и ждать' }, { uz: "O'zini o'chirib qo'yib, butun ishni to'xtatish", ru: 'Выключить себя и остановить всю работу' }, { uz: "Asbobni (funksiyani) chaqirib ish bajarish", ru: 'Вызвать инструмент (функцию) и выполнить работу' }], correct: 3 },
-  { q: { uz: "«Tool» (asbob) nima?", ru: 'Что такое «tool» (инструмент)?' }, opts: [{ uz: "Agent chaqiradigan funksiya (saveOrder)", ru: 'Функция, которую вызывает агент (saveOrder)' }, { uz: "Botning rang va shrift sozlamasi", ru: 'Настройка цвета и шрифта бота' }, { uz: "Server joylashgan aniq manzil (IP-raqam)", ru: 'Точный адрес сервера (IP-номер)' }, { uz: "Internetga ulanish tezligi", ru: 'Скорость подключения к интернету' }], correct: 0 },
-  { q: { uz: "Agent qaysi asbobni ishlatishni qanday hal qiladi?", ru: 'Как агент решает, какой инструмент применить?' }, opts: [{ uz: "Har doim ro'yxatdagi eng birinchisini oladi", ru: 'Всегда берёт самый первый в списке' }, { uz: "Tasodifan, tavakkaliga tanlaydi", ru: 'Выбирает случайно, наугад' }, { uz: "AI maqsad va holatga qarab tanlaydi", ru: 'AI выбирает по цели и ситуации' }, { uz: "Hech qachon o'zi tanlamaydi — odam tanlaydi", ru: 'Никогда не выбирает сам — выбирает человек' }], correct: 2 },
-  { q: { uz: "Agent bitta amalni bajardi. Endi nima qiladi?", ru: 'Агент выполнил одно действие. Что дальше?' }, opts: [{ uz: "Darrov butunlay to'xtab qoladi", ru: 'Сразу полностью останавливается' }, { uz: "Natijani ko'radi va maqsadga yetmasa davom etadi", ru: 'Смотрит результат и, если цель не достигнута, продолжает' }, { uz: "Hammasini noldan boshdan qayta boshlaydi", ru: 'Начинает всё заново с нуля' }, { uz: "Foydalanuvchining keyingi buyrug'ini kutib qoladi", ru: 'Ждёт следующую команду пользователя' }], correct: 1 },
-  { q: { uz: "Agentga qadam emas, nima beriladi?", ru: 'Агенту дают не шаги, а что?' }, opts: [{ uz: "Maqsad — qadamlarni o'zi topadi", ru: 'Цель — шаги он находит сам' }, { uz: "Har bir javobning aniq to'liq matni", ru: 'Точный полный текст каждого ответа' }, { uz: "Serverning maxfiy paroli", ru: 'Секретный пароль сервера' }, { uz: "Faqat rang va shrift sxemasi", ru: 'Только схему цветов и шрифтов' }], correct: 0 },
-  { q: { uz: "Guardrails (chegaralar) nima uchun kerak?", ru: 'Зачем нужны guardrails (ограничения)?' }, opts: [{ uz: "Botni foydalanuvchiga chiroyliroq ko'rsatish uchun", ru: 'Чтобы бот выглядел красивее для пользователя' }, { uz: "Javob berish tezligini oshirish uchun", ru: 'Чтобы увеличить скорость ответа' }, { uz: "Chiroyli rang tanlab qo'yish uchun", ru: 'Чтобы подобрать красивый цвет' }, { uz: "Xavfli amaldan (masalan pul) himoya qilish uchun", ru: 'Чтобы защитить от опасного действия (например с деньгами)' }], correct: 3 },
-  { q: { uz: "Agent pul yechadigan xavfli amaldan oldin nima qilishi kerak?", ru: 'Что агент должен сделать перед опасным действием со списанием денег?' }, opts: [{ uz: "Hech narsa — tasdiqsiz o'zi yechaversin", ru: 'Ничего — пусть списывает сам без подтверждения' }, { uz: "Odamdan (mijoz/admin) tasdiq so'rash", ru: 'Спросить подтверждение у человека (клиент/админ)' }, { uz: "Botni butunlay o'chirib qo'yish", ru: 'Полностью выключить бота' }, { uz: "Imkon boricha tezroq yechib olish", ru: 'Списать как можно быстрее' }], correct: 1 },
-  { q: { uz: "Human-in-loop nimani anglatadi?", ru: 'Что означает human-in-loop?' }, opts: [{ uz: "Agent hamma ishni butunlay yolg'iz bajaradi", ru: 'Агент делает всю работу совершенно один' }, { uz: "Odam jarayonga umuman aralashmaydi", ru: 'Человек вообще не вмешивается в процесс' }, { uz: "Muhim qarorda odam nazorat qiladi", ru: 'В важном решении контролирует человек' }, { uz: "Foydalanuvchi butunlay bloklanadi", ru: 'Пользователя полностью блокируют' }], correct: 2 },
-  { q: { uz: "«Cheklangan asboblar» chegarasi nimani bildiradi?", ru: 'Что означает ограничение «ограниченный набор инструментов»?' }, opts: [{ uz: "Asboblar ancha sekinroq ishlab qoladi", ru: 'Инструменты начинают работать заметно медленнее' }, { uz: "Barcha asboblar bepulga aylanadi", ru: 'Все инструменты становятся бесплатными' }, { uz: "Mavjud barcha asboblar unga berilishi shart", ru: 'Ему обязательно отдают все имеющиеся инструменты' }, { uz: "Sumkaga faqat kerakli asboblar solinadi", ru: 'В сумку кладут только нужные инструменты' }], correct: 3 },
-  { q: { uz: "AI-agent siklining to'g'ri tartibi qanday?", ru: 'Каков верный порядок цикла AI-агента?' }, opts: [{ uz: "Idrok → Qaror → Amal → Natijani ko'r → (qayta)", ru: 'Восприятие → Решение → Действие → Смотри результат → (снова)' }, { uz: "Amal → Idrok → Maqsad → Qaror", ru: 'Действие → Восприятие → Цель → Решение' }, { uz: "Qaror → Natija → Idrok → Amal", ru: 'Решение → Результат → Восприятие → Действие' }, { uz: "Faqat bitta Amal — boshqa qadam yo'q", ru: 'Только одно Действие — других шагов нет' }], correct: 0 },
-  { q: { uz: "AI-agentda «qaror» qadamini kim bajaradi?", ru: 'Кто выполняет шаг «решение» у AI-агента?' }, opts: [{ uz: "Foydalanuvchi har safar buni qo'lda qiladi", ru: 'Пользователь каждый раз делает это вручную' }, { uz: "Umuman hech kim bajarmaydi", ru: 'Вообще никто не выполняет' }, { uz: "AI — qaysi asbobni ishlatishni tanlaydi", ru: 'AI — он выбирает, какой инструмент применить' }, { uz: "Asbobning o'zi mustaqil hal qiladi", ru: 'Сам инструмент решает самостоятельно' }], correct: 2 },
+  { q: { uz: "AI-bot va AI-agentning asosiy farqi nima?", ru: "В чём главная разница между ИИ-ботом и ИИ-агентом?" }, opts: [{ uz: "Agentning rangi va shrifti boshqacha bo'ladi", ru: "У агента другой цвет и шрифт" }, { uz: "Agent maqsad sari qadamlarni o'zi tanlaydi", ru: "Агент сам выбирает шаги к цели" }, { uz: "Ular orasida hech qanday farq yo'q", ru: "Между ними нет никакой разницы" }, { uz: "Agent botdan ancha sekin ishlaydi", ru: "Агент работает намного медленнее бота" }], correct: 1 },
+  { q: { uz: "Agent siklidagi «Amal» qadami nima?", ru: "Что такое шаг «Действие» в цикле агента?" }, opts: [{ uz: "Mijozning keyingi xabarini kutish", ru: "Ждать следующее сообщение клиента" }, { uz: "Salom berib, menyuni yuborish", ru: "Поздороваться и отправить меню" }, { uz: "O'zini o'chirib, ishni to'xtatish", ru: "Выключить себя и остановить работу" }, { uz: "Tanlangan asbobni chaqirish", ru: "Вызвать выбранный инструмент" }], correct: 3 },
+  { q: { uz: "Asbob (tool) nima?", ru: "Что такое инструмент (tool)?" }, opts: [{ uz: "Agent chaqira oladigan funksiya", ru: "Функция, которую агент может вызвать" }, { uz: "Botning rang va shrift sozlamasi", ru: 'Настройка цвета и шрифта бота' }, { uz: "Server joylashgan IP-manzil", ru: "IP-адрес, где находится сервер" }, { uz: "Internetga ulanish tezligi", ru: 'Скорость подключения к интернету' }], correct: 0 },
+  { q: { uz: "Agent qaysi asbobni chaqirishni qanday tanlaydi?", ru: "Как агент выбирает, какой инструмент вызвать?" }, opts: [{ uz: "Ro'yxatdagi birinchi asbobni oladi", ru: "Берёт первый инструмент в списке" }, { uz: "AI tasodifan, tavakkaliga tanlaydi", ru: "ИИ выбирает случайно, наугад" }, { uz: "AI maqsad va vaziyatga qarab tanlaydi", ru: "ИИ выбирает по цели и ситуации" }, { uz: "Har safar odam qo'lda tanlab beradi", ru: "Каждый раз вручную выбирает человек" }], correct: 2 },
+  { q: { uz: "Agent bitta amalni bajardi. Endi nima qiladi?", ru: 'Агент выполнил одно действие. Что дальше?' }, opts: [{ uz: "Ish tugadi deb, shu zahoti to'xtaydi", ru: "Решает, что работа закончена, и сразу останавливается" }, { uz: "Natijani ko'rib, keyingi qadamni tanlaydi", ru: "Смотрит на результат и выбирает следующий шаг" }, { uz: "O'sha amalni yana bir marta bajaradi", ru: "Выполняет то же действие ещё раз" }, { uz: "Mijoz keyingi buyruq yozishini kutadi", ru: "Ждёт, пока клиент напишет следующую команду" }], correct: 1 },
+  { q: { uz: "Agentga siz qaysi uch narsani berasiz?", ru: "Какие три вещи вы даёте агенту?" }, opts: [{ uz: "Maqsad, asboblar va chegara", ru: "Цель, инструменты и ограничение" }, { uz: "Faqat system prompt: qanday javob yozsin", ru: "Только system prompt: каким писать ответ" }, { uz: "Har hodisa uchun tayyor javob matni", ru: "Готовый текст ответа на каждое событие" }, { uz: "Bot tokeni va server manzili", ru: "Токен бота и адрес сервера" }], correct: 0 },
+  { q: { uz: "Chegara (guardrail) nima uchun kerak?", ru: "Зачем нужно ограничение (guardrail)?" }, opts: [{ uz: "Botni chiroyliroq ko'rsatish uchun", ru: "Чтобы бот выглядел красивее" }, { uz: "Javob tezligini oshirish uchun", ru: "Чтобы ускорить ответ" }, { uz: "Mijozga rang tanlab berish uchun", ru: "Чтобы подобрать клиенту цвет" }, { uz: "Agentni xavfli amaldan to'xtatish uchun", ru: "Чтобы остановить агента перед опасным действием" }], correct: 3 },
+  { q: { uz: "Agent pul yechishdan oldin nima qilishi kerak?", ru: "Что агент должен сделать перед списанием денег?" }, opts: [{ uz: "Tasdiqsiz, o'zi yechaverishi", ru: "Списывать сам, без подтверждения" }, { uz: "Odamdan tasdiq so'rashi", ru: "Спросить подтверждение у человека" }, { uz: "Botni o'chirib qo'yishi", ru: "Выключить бота" }, { uz: "Imkon boricha tez yechishi", ru: "Списать как можно быстрее" }], correct: 1 },
+  { q: { uz: "Odam nazorati (human-in-the-loop) nimani anglatadi?", ru: "Что означает контроль человека (human-in-the-loop)?" }, opts: [{ uz: "Agent hamma ishni yolg'iz bajaradi", ru: "Агент делает всю работу в одиночку" }, { uz: "Odam jarayonga umuman aralashmaydi", ru: 'Человек вообще не вмешивается в процесс' }, { uz: "Muhim holatda qarorni odam qiladi", ru: "В важной ситуации решение принимает человек" }, { uz: "Mijoz botdan butunlay bloklanadi", ru: "Клиента полностью блокируют в боте" }], correct: 2 },
+  { q: { uz: "«Cheklangan asboblar» chegarasi nimani bildiradi?", ru: 'Что означает ограничение «ограниченный набор инструментов»?' }, opts: [{ uz: "Asboblar sekinroq ishlay boshlaydi", ru: "Инструменты начинают работать медленнее" }, { uz: "Hamma asboblar bepul bo'ladi", ru: "Все инструменты становятся бесплатными" }, { uz: "Agentga barcha asboblar beriladi", ru: "Агенту дают все инструменты" }, { uz: "Agentga faqat kerakli asboblar beriladi", ru: "Агенту дают только нужные инструменты" }], correct: 3 },
+  { q: { uz: "Agent sikli qaysi tartibda ishlaydi?", ru: "В каком порядке работает цикл агента?" }, opts: [{ uz: "Idrok → Qaror → Amal → yana Idrok", ru: "Восприятие → Решение → Действие → снова Восприятие" }, { uz: "Amal → Idrok → Qaror → yana Amal", ru: "Действие → Восприятие → Решение → снова Действие" }, { uz: "Qaror → Amal → Idrok → yana Qaror", ru: "Решение → Действие → Восприятие → снова Решение" }, { uz: "Idrok → Amal → Qaror → yana Idrok", ru: "Восприятие → Действие → Решение → снова Восприятие" }], correct: 0 },
+  { q: { uz: "Agent siklida «Qaror» qadamini kim bajaradi?", ru: "Кто выполняет шаг «Решение» в цикле агента?" }, opts: [{ uz: "Mijoz har safar qo'lda tanlaydi", ru: "Клиент каждый раз выбирает вручную" }, { uz: "Hech kim — qadam o'z-o'zidan o'tadi", ru: "Никто — шаг проходит сам собой" }, { uz: "AI — qaysi asbob kerakligini tanlaydi", ru: "ИИ — выбирает, какой инструмент нужен" }, { uz: "Asbob o'zi hal qiladi, AI faqat kutadi", ru: "Инструмент решает сам, а ИИ только ждёт" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1545,8 +1626,8 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    // Arena tokenlari — SHU darsning mavzusidan (Botjon): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['idrok', '🧰', 'qaror', 'saveOrder()', 'amal', 'tool-call', 'guardrail', 'checkOrder()', '↻', 'human-in-loop'];
+    // Arena tokenlari — MD «Arena fonida suzuvchi so'zlar»
+    const TOK = ['agent', 'asbob', 'maqsad', 'idrok', 'qaror', 'amal', 'chegara', 'sikl', '✓', '✗'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -1990,13 +2071,35 @@ const MentorPracticeStats = ({ live, screen }) => {
     </div>
   );
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place }) {
+// Namuna kod kartasi — «Nusxalash» tugmasi bilan (navigator.clipboard; xato bo'lsa jim)
+const SampleCard = ({ n, title, code }) => {
+  const text = typeof code === 'string' ? code : tr(code);
+  const [copied, setCopied] = useState(false);
+  const tRef = useRef(0);
+  useEffect(() => () => clearTimeout(tRef.current), []);
+  const copy = () => {
+    try {
+      const p = navigator.clipboard && navigator.clipboard.writeText(text);
+      if (p && p.then) p.then(() => { setCopied(true); clearTimeout(tRef.current); tRef.current = setTimeout(() => setCopied(false), 1600); }).catch(() => {});
+    } catch (e) { /* jim */ }
+  };
+  return (
+    <div className="smp-card fade-up delay-1">
+      <div className="smp-head">
+        <span className="smp-title">{tr(n)} — <b>{tr(title)}</b></span>
+        <button type="button" className={`smp-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? tr({ uz: '✓ Nusxalandi', ru: "✓ Скопировано" }) : tr({ uz: 'Nusxalash', ru: "Копировать" })}</button>
+      </div>
+      <pre className="smp-code">{text}</pre>
+    </div>
+  );
+};
+function ScreenLivePractice({ title, task, checklist, samples, extra, doneText, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place }) {
   const placeT = tr(place) || tr({ uz: 'kompyuteringizda', ru: 'на своём компьютере' });
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
-  const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
+  // A6: qadamlar navbat bilan — joriy qadam to'liq, bajarilgani ✓ bilan bitta qatorga yig'iladi, keyingisi hali ko'rinmaydi
+  const [step, setStep] = useState(() => (storedAnswer && storedAnswer.solved ? checklist.length : 0));
   const complete = () => {
     if (done) return;
     setDone(true);
@@ -2004,38 +2107,47 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
+  const doStep = () => { if (step >= checklist.length) return; const n = step + 1; setStep(n); if (n >= checklist.length) complete(); };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
   const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z ${uzOf(place) || 'kompyuteringizda'} bajarasiz.`, trigger: 'on_mount', waits_for: null }]); // AUDIOSIZ
   return (
-    <Stage eyebrow={tr(eyebrow) || tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr(eyebrow) || tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} scrollSignal={step} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z {placeT}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{placeT}</b>. Выполняйте шаг за шагом и отмечайте. В конце нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Topshiriqni o'z {placeT} bajaring. Har qadamdan keyin «Bajardim» ni bosing — keyingisi ochiladi.</>, ru: <>Выполните задание {placeT}. После каждого шага нажимайте «Готово» — откроется следующий.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
+            {samples && samples.map((sm, i) => <SampleCard key={i} n={sm.n} title={sm.title} code={sm.code} />)}
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
-                const on = checked.has(i);
+                if (i > step) return null;
+                if (i < step) return (
+                  <div key={i} className="lp-step on lp-done-row">
+                    <span className="lp-check">✓</span>
+                    <span className="lp-step-t lp-one">{fmtCode(tr(c))}</span>
+                  </div>
+                );
                 return (
-                  <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                    <span className="lp-check">{on ? '✓' : i + 1}</span>
+                  <div key={i} className="lp-step lp-cur fade-step">
+                    <span className="lp-check">{i + 1}</span>
                     <span className="lp-step-t">{fmtCode(tr(c))}</span>
-                  </button>
+                    <button className="btn lp-step-btn" onClick={doStep}>{tr({ uz: 'Bajardim', ru: "Готово" })}</button>
+                  </div>
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
+            {done && extra && <p className="lp-extra fade-step">{tr(extra)}</p>}
+            {done && <>
+              <button className="lp-done-btn is-done" disabled>{tr({ uz: '✓ Bajarildi — Mentorni kuting', ru: "✓ Выполнено — подождите ментора" })}</button>
+              <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(doneText) || tr({ uz: "Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: "Ментор проверит и переведёт вас на следующий шаг." })}</p></div>
+            </>}
           </Col>
         </div>
       </div>
@@ -2097,7 +2209,7 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов запомнено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">✓</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов запомнено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
@@ -2107,7 +2219,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
-          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{fmtCode(tr(card.note))}</span>}</div>
         </div>
         </div>
       </div>
@@ -2118,34 +2230,97 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🛠️ PRAKTIKA — o'quvchi AI chatda agent yo'riqnomasini yozib sinaydi (mentor-gate, kod kiritilmaydi)
+// PRAKTIKA — aistudio.google.com'da haqiqiy asbob chaqiruvi (22-savol A, 01.10): maqsad va chegara — System instructions,
+// asboblar — Function calling. Model asbobni chaqiradi, natijani o'quvchi qaytaradi (mentor-gate).
+// Namuna ikki tilli: o'quvchi o'z tilidagi matnni nusxalaydi; kalitlar (taom, soni, manzil) bir xil.
+const PRAC_SAMPLE_1 = { uz: `MAQSAD: Buyurtmani qabul qilib, bazaga yozish.
+CHEGARA: Taom borligini tekshirmasdan buyurtma yozilmasin.`, ru: `ЦЕЛЬ: Принять заказ и записать его в базу.
+ОГРАНИЧЕНИЕ: Не записывать заказ, пока не проверено, есть ли блюдо.` };
+const PRAC_SAMPLE_2 = { uz: `[
+  {
+    "name": "checkOrder",
+    "description": "Taom borligini tekshiradi",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "taom": { "type": "string" },
+        "soni": { "type": "integer" }
+      },
+      "required": ["taom", "soni"]
+    }
+  },
+  {
+    "name": "saveOrder",
+    "description": "Buyurtmani bazaga yozadi",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "taom": { "type": "string" },
+        "soni": { "type": "integer" },
+        "manzil": { "type": "string" }
+      },
+      "required": ["taom", "soni", "manzil"]
+    }
+  }
+]`, ru: `[
+  {
+    "name": "checkOrder",
+    "description": "Проверяет, есть ли блюдо",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "taom": { "type": "string" },
+        "soni": { "type": "integer" }
+      },
+      "required": ["taom", "soni"]
+    }
+  },
+  {
+    "name": "saveOrder",
+    "description": "Записывает заказ в базу",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "taom": { "type": "string" },
+        "soni": { "type": "integer" },
+        "manzil": { "type": "string" }
+      },
+      "required": ["taom", "soni", "manzil"]
+    }
+  }
+]` };
 const ScreenBotPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · AI-agent', ru: 'Практика · AI-агент' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
-    title={{ uz: "O'z agentingiz uchun maqsad + asboblar + chegara yozing", ru: 'Напишите для своего агента цель + инструменты + ограничение' }}
-    task={{ uz: "AI chat (masalan, Claude yoki ChatGPT) oching. O'z botingiz (yoki istalgan mavzu) uchun agent yo'riqnomasini yozing: MAQSAD (nima qilsin), ASBOBLAR (3-4 funksiya), CHEGARA (qaysi amal xavfli — odam tasdig'i kerak). Keyin AI'dan agent qaysi tartibda ishlashini so'rang.", ru: 'Откройте AI-чат (например, Claude или ChatGPT). Напишите инструкцию агента для своего бота (или любой темы): ЦЕЛЬ (что он должен делать), ИНСТРУМЕНТЫ (3-4 функции), ОГРАНИЧЕНИЕ (какое действие опасно — нужно подтверждение человека). Затем спросите у AI, в каком порядке агент будет работать.' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · AI-agent', ru: 'Практика · ИИ-агент' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
+    title={{ uz: "Agentga ikki asbob bering — qaysi birini chaqirishini ko'ring", ru: "Дайте агенту два инструмента — посмотрите, какой он вызовет" }}
+    task={{ uz: "aistudio.google.com'da agentga maqsad, chegara va ikki asbob berasiz. Model asbobni chaqiradi, natijani siz qaytarasiz — keyingi asbobni u o'zi tanlaydi.", ru: "На aistudio.google.com вы дадите агенту цель, ограничение и два инструмента. Модель вызывает инструмент, результат возвращаете вы — следующий инструмент она выбирает сама." }}
+    samples={[
+      { n: { uz: '1-namuna', ru: "Пример 1" }, title: { uz: 'Maqsad va chegara', ru: "Цель и ограничение" }, code: PRAC_SAMPLE_1 },
+      { n: { uz: '2-namuna', ru: "Пример 2" }, title: { uz: 'Asboblar', ru: "Инструменты" }, code: PRAC_SAMPLE_2 }
+    ]}
     checklist={[
-      { uz: "AI chat sahifasini oching (masalan, `claude.ai`)", ru: 'Откройте страницу AI-чата (например, `claude.ai`)' },
-      { uz: "MAQSAD yozing: agent nimaga erishishi kerak (masalan, buyurtmani qabul qilish)", ru: 'Напишите ЦЕЛЬ: чего агент должен достичь (например, принять заказ)' },
-      { uz: "3-4 ASBOB (funksiya) ro'yxatini yozing: masalan checkOrder, saveOrder, notifyUser", ru: 'Напишите список из 3-4 ИНСТРУМЕНТОВ (функций): например checkOrder, saveOrder, notifyUser' },
-      { uz: "CHEGARA belgilang: qaysi amal xavfli (pul) — undan oldin odamdan tasdiq so'ralsin", ru: 'Задайте ОГРАНИЧЕНИЕ: какое действие опасно (деньги) — перед ним спросить подтверждение у человека' },
-      { uz: "AI'dan agent idrok → qaror → amal siklini qanday yurishini tushuntirishni so'rang", ru: 'Попросите AI объяснить, как агент пройдёт цикл восприятие → решение → действие' },
-    ]} />
+      { uz: <>aistudio.google.com'ni oching <span style={{ whiteSpace: 'nowrap' }}>(6-darsda</span> temperature'ni shu yerda sinagansiz). <b>System instructions</b> maydoniga <span style={{ whiteSpace: 'nowrap' }}>1-namunani</span> joylang.</>, ru: <>Откройте aistudio.google.com <span style={{ whiteSpace: 'nowrap' }}>(на 6-м</span> уроке вы пробовали здесь temperature). Вставьте <span style={{ whiteSpace: 'nowrap' }}>пример 1</span> в поле <b>System instructions</b>.</> },
+      { uz: <>O'ngdagi sozlamalarda <b>Function calling</b> ni yoqing, <b>Edit</b> ni bosing va 2-namunani joylang.</>, ru: <>В настройках справа включите <b>Function calling</b>, нажмите <b>Edit</b> и вставьте пример 2.</> },
+      { uz: <>Xabar yozing: «2 ta Pepperoni, Chilonzor 5-kvartal». Model javob matnini yozmaydi — <code className="qcode">checkOrder</code> ni chaqiradi. Asbobni tanlagani — Qaror.</>, ru: <>Напишите сообщение: «2 Пепперони, Чиланзар 5-квартал». Модель не пишет текст ответа — она вызывает <code className="qcode">checkOrder</code>. Выбор инструмента — это Решение.</> },
+      { uz: <>Asbob o'rnida natijani o'zingiz yozing: <code className="qcode">{'{ "bor": true }'}</code>. Model natijani ko'radi — bu yangi Idrok — va <code className="qcode">saveOrder</code> ni chaqiradi.</>, ru: <>Вместо инструмента сами напишите результат: <code className="qcode">{'{ "bor": true }'}</code>. Модель видит результат — это новое Восприятие — и вызывает <code className="qcode">saveOrder</code>.</> }
+    ]}
+    extra={{ uz: <><b>Qo'shimcha:</b> yangi suhbat ochib, natijaga <code className="qcode">{'{ "bor": false }'}</code> yozing. Model <code className="qcode">saveOrder</code> ni chaqiradimi?</>, ru: <><b>Дополнительно:</b> откройте новый чат и как результат напишите <code className="qcode">{'{ "bor": false }'}</code>. Вызовет ли модель <code className="qcode">saveOrder</code>?</> }}
+    doneText={{ uz: "Agent ikki asbobni o'zi tanladi. Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: "Агент сам выбрал два инструмента. Ментор проверит и переведёт вас на следующий шаг." }} />
 );
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (AI-agent tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "Maqsad sari o'zi amal qiladigan botni nima deb ataymiz?", ru: 'Как мы называем бота, который сам действует ради цели?' }, back: { uz: 'AI-agent', ru: 'AI-агент' }, note: { uz: 'sumkadan asbob olib real ish bajaradi', ru: 'достаёт инструмент из сумки и делает реальную работу' } },
-  { front: { uz: "Faqat javob yozib, hech narsa qilmaydigan bot qanday ataladi?", ru: 'Как называется бот, который только пишет ответ и ничего не делает?' }, back: { uz: 'AI-bot', ru: 'AI-бот' }, note: { uz: 'bir javob berib to\'xtaydi', ru: 'даёт один ответ и останавливается' } },
-  { front: { uz: "Agent sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл агента?' }, back: { uz: 'Idrok, qaror, amal', ru: 'Восприятие, решение, действие' }, note: { uz: 'maqsadga yetguncha qayta aylanadi', ru: 'крутится, пока цель не достигнута' } },
-  { front: { uz: "Agent hozir nima bo'layotganini qaysi qadamda o'qiydi?", ru: 'На каком шаге агент читает, что происходит сейчас?' }, back: { uz: 'Idrok qadamida', ru: 'На шаге восприятия' }, note: { uz: 'xabar va daftardagi holat o\'qiladi', ru: 'читает сообщение и состояние в тетради' } },
-  { front: { uz: "Qaysi asbobni ishlatishni agent qaysi qadamda tanlaydi?", ru: 'На каком шаге агент выбирает, какой инструмент применить?' }, back: { uz: 'Qaror qadamida', ru: 'На шаге решения' }, note: { uz: 'tanlovni maqsadga qarab AI qiladi', ru: 'выбор делает AI, глядя на цель' } },
-  { front: { uz: "Agent asbobni chaqirib, ishni qaysi qadamda bajaradi?", ru: 'На каком шаге агент вызывает инструмент и делает работу?' }, back: { uz: 'Amal qadamida', ru: 'На шаге действия' }, note: { uz: 'masalan saveOrder chaqiriladi', ru: 'например вызывается saveOrder' } },
-  { front: { uz: "Agent chaqiradigan funksiya nima deb ataladi?", ru: 'Как называется функция, которую вызывает агент?' }, back: { uz: 'Asbob', ru: 'Инструмент' }, note: { uz: 'tool — sumkadagi har bir funksiya', ru: 'tool — каждая функция в сумке' } },
-  { front: { uz: "Agentga qadamlar beriladimi yoki maqsadmi?", ru: 'Агенту дают шаги или цель?' }, back: { uz: 'Maqsad', ru: 'Цель' }, note: { uz: 'qadamlarni agent o\'zi topadi', ru: 'шаги агент находит сам' } },
-  { front: { uz: "Agent bitta amaldan keyin nima qiladi?", ru: 'Что агент делает после одного действия?' }, back: { uz: 'Natijani ko\'radi', ru: 'Смотрит на результат' }, note: { uz: 'maqsad bajarilmasa, sikl qayta aylanadi', ru: 'если цель не достигнута, цикл повторяется' } },
-  { front: { uz: "Agentga qo'yiladigan xavfsizlik chegaralari qanday ataladi?", ru: 'Как называются границы безопасности, которые ставят агенту?' }, back: 'Guardrails', note: { uz: 'sumkaga faqat kerakli asboblar solinadi', ru: 'в сумку кладут только нужные инструменты' } },
-  { front: { uz: "Pul yechish kabi xavfli amaldan oldin agent nima so'raydi?", ru: 'Что агент спрашивает перед опасным действием, например списанием денег?' }, back: { uz: 'Odam tasdig\'ini', ru: 'Подтверждение человека' }, note: { uz: 'tasdiqsiz xavfli amal bajarilmaydi', ru: 'без подтверждения опасное действие не выполняется' } },
-  { front: { uz: "Muhim qarorni odam nazorat qiladigan tamoyil nima deyiladi?", ru: 'Как называется принцип, при котором важное решение контролирует человек?' }, back: 'Human-in-loop', note: { uz: 'shubhali holat odamga uzatiladi', ru: 'спорную ситуацию передают человеку' } },
+  { front: { uz: "Maqsad olib, asboblar bilan qadamma-qadam ish bajaradigan bot nima deb ataladi?", ru: "Как называется бот, который получает цель и шаг за шагом выполняет работу с помощью инструментов?" }, back: { uz: "AI-agent", ru: "ИИ-агент" }, note: { uz: "Masalan, buyurtmani tekshiradi, saqlaydi, yetkazishni rejalaydi", ru: "Например, проверяет заказ, сохраняет его, планирует доставку" } },
+  { front: { uz: "AI faqat javob matnini yozadigan bot qanday ataladi?", ru: "Как называется бот, в котором ИИ только пишет текст ответа?" }, back: { uz: "AI-bot", ru: "ИИ-бот" }, note: { uz: "6-darsdagi bot: system prompt bo'yicha javob yozadi", ru: "Бот с 6-го урока: пишет ответы по system prompt" } },
+  { front: { uz: "Agent sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл агента?' }, back: { uz: "Idrok, Qaror, Amal", ru: "Восприятие, Решение, Действие" }, note: { uz: "Maqsadga yetguncha takrorlanadi", ru: "Повторяется, пока цель не достигнута" } },
+  { front: { uz: "Agent vaziyatni qaysi qadamda ko'radi?", ru: "На каком шаге агент видит ситуацию?" }, back: { uz: "Idrok", ru: "Восприятие" }, note: { uz: "Xabar, bazadagi ma'lumot va oldingi Amal natijasi", ru: "Сообщение, данные в базе и результат прошлого Действия" } },
+  { front: { uz: "Qaysi asbobni chaqirishni agent qaysi qadamda tanlaydi?", ru: "На каком шаге агент выбирает, какой инструмент вызвать?" }, back: { uz: "Qaror", ru: "Решение" }, note: { uz: "Tanlovni AI maqsadga qarab qiladi", ru: "Выбор делает ИИ, исходя из цели" } },
+  { front: { uz: "Agent asbobni qaysi qadamda chaqiradi?", ru: "На каком шаге агент вызывает инструмент?" }, back: { uz: "Amal", ru: "Действие" }, note: { uz: "Masalan, `saveOrder()` buyurtmani bazaga yozadi", ru: "Например, `saveOrder()` записывает заказ в базу" } },
+  { front: { uz: "Agent chaqira oladigan funksiya nima deb ataladi?", ru: "Как называется функция, которую агент может вызвать?" }, back: { uz: "Asbob (tool)", ru: "Инструмент (tool)" }, note: { uz: "Uni siz yozasiz, agent faqat tanlaydi", ru: "Его пишете вы, а агент только выбирает" } },
+  { front: { uz: "Agentga siz qaysi uch narsani berasiz?", ru: "Какие три вещи вы даёте агенту?" }, back: { uz: "Maqsad, asboblar, chegara", ru: "Цель, инструменты, ограничение" }, note: { uz: "Keyingi qadamni agent shular ichida tanlaydi", ru: "Следующий шаг агент выбирает в этих рамках" } },
+  { front: { uz: "Agent Amaldan keyin nima qiladi?", ru: "Что агент делает после Действия?" }, back: { uz: "Natijani ko'radi", ru: 'Смотрит на результат' }, note: { uz: "Maqsadga yetmagan bo'lsa — yana Idrok", ru: "Если цель не достигнута — снова Восприятие" } },
+  { front: { uz: "Agent nimani qila olishi va nimani so'ramasdan qilmasligini nima belgilaydi?", ru: "Что определяет, что агенту можно делать и чего он не делает без спроса?" }, back: { uz: "Chegara (guardrail)", ru: "Ограничение (guardrail)" }, note: { uz: "Masalan, agentga faqat kerakli asboblar beriladi", ru: "Например, агенту дают только нужные инструменты" } },
+  { front: { uz: "Pul yechish kabi xavfli amaldan oldin agent nima so'raydi?", ru: 'Что агент спрашивает перед опасным действием, например списанием денег?' }, back: { uz: "Odam tasdig'ini", ru: "Подтверждение человека" }, note: { uz: "Tasdiqsiz xavfli amal bajarilmaydi", ru: "Без подтверждения опасное действие не выполняется" } },
+  { front: { uz: "Murakkab holatni agent odamga uzatishi nima deyiladi?", ru: "Как называется, когда агент передаёт сложную ситуацию человеку?" }, back: { uz: "Odam nazorati", ru: "Контроль человека" }, note: { uz: "Inglizcha: human-in-the-loop", ru: "По-английски: human-in-the-loop" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2181,16 +2356,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "AI-bot gapiradi, AI-agent 🧰 sumkadan asboblarni olib ISH BAJARADI", ru: 'AI-бот говорит, а AI-агент достаёт инструменты из 🧰 сумки и ДЕЛАЕТ РАБОТУ' },
-    { uz: "Agent sikli: idrok → qaror → amal → natijani ko'r — maqsadga yetguncha aylanadi", ru: 'Цикл агента: восприятие → решение → действие → смотри результат — крутится до цели' },
-    { uz: "Asbob (tool) — agent chaqiradigan funksiya; AI qaysi asbobni ishlatishni tanlaydi", ru: 'Инструмент (tool) — функция, которую вызывает агент; AI выбирает, какую применить' },
-    { uz: "Agentga qadam emas, MAQSAD berasiz — qadamlarni u o'zi topadi", ru: 'Агенту дают не шаги, а ЦЕЛЬ — шаги он находит сам' },
-    { uz: "Guardrails: cheklangan asboblar, xavfli amaldan oldin odam tasdig'i (human-in-loop)", ru: 'Guardrails: ограниченный набор инструментов, подтверждение человека перед опасным действием (human-in-loop)' }
+    { uz: "AI-bot javob matnini yozadi; AI-agent maqsad sari keyingi qadamni o'zi tanlab, asbob chaqiradi", ru: "ИИ-бот пишет текст ответа; ИИ-агент сам выбирает следующий шаг к цели и вызывает инструмент" },
+    { uz: "Agent sikli: Idrok → Qaror → Amal — maqsadga yetguncha takrorlanadi", ru: "Цикл агента: Восприятие → Решение → Действие — повторяется, пока цель не достигнута" },
+    { uz: "Asbob (tool) — agent chaqira oladigan funksiya: uni siz yozasiz, qaysi birini chaqirishni AI tanlaydi", ru: "Инструмент (tool) — функция, которую агент может вызвать: её пишете вы, а какую вызвать — выбирает ИИ" },
+    { uz: "Agentga siz maqsad, asboblar va chegara berasiz — keyingi qadamni u shular ichida tanlaydi", ru: "Вы даёте агенту цель, инструменты и ограничение — следующий шаг он выбирает в этих рамках" },
+    { uz: "Xavfli amaldan (pul yechish, bekor qilish) oldin agent odamdan tasdiq so'raydi", ru: "Перед опасным действием (списание денег, отмена) агент спрашивает подтверждение у человека" }
   ];
   const HOMEWORK = [
-    { b: { uz: 'Loyihalang', ru: 'Спроектируйте' }, t: { uz: "— o'z botingiz uchun bitta maqsad va 3-4 ta asbob (funksiya) yozing", ru: '— напишите для своего бота одну цель и 3-4 инструмента (функции)' } },
-    { b: { uz: 'Chegaralang', ru: 'Ограничьте' }, t: { uz: "— qaysi amal xavfli (pul, o'chirish)? Unga odam tasdig'i yoki taqiq qo'ying", ru: '— какое действие опасно (деньги, удаление)? Поставьте на него подтверждение человека или запрет' } },
-    { b: { uz: 'Quring', ru: 'Постройте' }, t: { uz: "— AI'ga maqsad + asboblar + chegarani bering va agent siklini sinab ko'ring", ru: '— дайте AI цель + инструменты + ограничение и испытайте цикл агента' } }
+    { b: { uz: 'Loyihalang', ru: 'Спроектируйте' }, t: { uz: "— o'z botingiz uchun bitta maqsad va 3–4 ta asbob yozing", ru: "— напишите для своего бота одну цель и 3–4 инструмента" } },
+    { b: { uz: 'Chegaralang', ru: 'Ограничьте' }, t: { uz: "— qaysi amal xavfli (pul yechish, bekor qilish)? Unga odam tasdig'ini qo'ying yoki bu asbobni bermang", ru: "— какое действие опасно (списание денег, отмена)? Поставьте на него подтверждение человека или не давайте агенту этот инструмент" } },
+    { b: { uz: "Sinab ko'ring", ru: "Попробуйте" }, t: { uz: "— aistudio.google.com'da o'z botingizning ikki asbobini yozing va ikki xil xabarda model qaysi asbobni chaqirishini ko'ring", ru: "— на aistudio.google.com напишите два инструмента своего бота и посмотрите, какой инструмент модель вызовет на два разных сообщения" } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2198,12 +2373,12 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Botjon ish bajaradi', ru: 'Ботжон выполняет работу' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi Botjon gapiribgina qolmay — <span className="italic" style={{ color: T.accent }}>o'zi ish bajaradi</span> (AI-agent).</>, ru: <>Теперь Ботжон не просто говорит — он <span className="italic" style={{ color: T.accent }}>сам делает работу</span> (AI-агент).</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'AI-agent qanday ishlashini bilasiz', ru: "Вы знаете, как работает ИИ-агент" })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI-agent qanday ishlashini <span className="italic" style={{ color: T.accent }}>bilasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>знаете</span>, как работает ИИ-агент.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: "Подождите ментора" }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2214,9 +2389,9 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Botjon o'z javobidan fikr-mulohaza (fidbek) asosida o'zini yaxshilashni o'rganadi!", ru: '🚀 Следующий урок — Ботжон научится улучшать себя по обратной связи (фидбеку) на свои ответы!' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>Keyingi dars — <b>«Botingiz yaxshi ishlayotganini qaysi raqam aytadi?»</b> Botingiz foydali ekanini ko'rsatadigan bitta bosh raqamni va unga yordam beradigan uch raqamni tanlaymiz.</>, ru: <>Следующий урок — <b>«Какое число скажет, что ваш бот работает хорошо?»</b> Выберем одно главное число, которое показывает, что ваш бот полезен, и три числа, которые ему помогают.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz —', ru: "Ваши значки —" })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
               <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
@@ -2378,7 +2553,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
-        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
+        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.ink}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 14px; font-size: 13px; }
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
         .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -2395,6 +2570,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } /* U2: ⛶ matn ustiga tushmaydi — unga joy ajratilgan */
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
@@ -2411,11 +2587,11 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         /* === HOOK OPSIYALARI (radio) === */
         .hook-option { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,16px) clamp(15px,2.2vw,18px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .hook-option:hover:not(:disabled):not(.on) { box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
-        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        .hook-option.on { background: ${T.paper}; color: ${T.ink}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.22), inset 0 0 0 2px ${T.ink}; } /* U1: ballsiz hook — neytral to'q ramka */
         .hook-option:disabled { cursor: default; }
         .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
-        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
-        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
+        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.ink}; }
+        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.ink}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
@@ -2458,14 +2634,14 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
-        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
+        .step-card { display: flex; align-items: baseline; gap: 10px; background: none; border-radius: 0; padding: 4px 0; box-shadow: none; } /* U1: reja — oddiy raqamli ro'yxat, bosilmaydi */
         .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
         .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
         /* === SK-INFO === */
-        .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
+        .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; border: 1px solid ${T.line}; box-shadow: none; animation: fade-step 0.3s; } /* U1: ma'lumot kartasi — belgisiz va soyasiz */
         .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === 🧰 AI-AGENT DARSI: agent kartasi / asboblar / tool-pick / guardrails / amal xavfsizligi === */
@@ -2498,7 +2674,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
-        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
+        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; } .ring-wrap svg { width: 100%; height: 100%; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
@@ -2623,7 +2799,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
         .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
-        .fc-done-emoji { font-size: 40px; }
+        .fc-done-emoji { font-size: 40px; color: ${T.success}; font-weight: 800; line-height: 1; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
         .fc-done-s { font-family: 'Manrope'; color: ${T.ink2}; margin: 0 0 8px; font-size: 14px; }
 
@@ -2858,6 +3034,9 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .rc-x:hover { color: ${T.accent}; }
         .rc-card { flex: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: clamp(10px,2.2vw,20px); padding: clamp(16px,3vw,28px) 0; animation: fade-step 0.35s ease-out; }
         .rc-ic { font-size: clamp(44px,8vw,76px); line-height: 1; }
+        /* U3: karta belgisi — kod misoli yoki raqam (emoji emas) */
+        .rc-ic.code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(15px,2.4vw,22px); line-height: 1.3; background: ${CODE.bg}; color: ${CODE.text}; border-radius: 12px; padding: 10px 16px; max-width: 100%; overflow-wrap: anywhere; }
+        .rc-ic.num { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(28px,4.6vw,44px); color: ${T.accent}; background: ${T.accentSoft}; width: clamp(56px,9vw,78px); height: clamp(56px,9vw,78px); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .rc-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(24px,4.6vw,44px); color: ${T.ink}; line-height: 1.12; max-width: 800px; margin: 0; }
         .rc-body { font-size: clamp(15px,2.4vw,21px); line-height: 1.55; color: ${T.ink2}; max-width: 720px; margin: 0; }
         .rc-body b { color: ${T.ink}; }
@@ -3005,11 +3184,11 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         /* ===== 📱 TELEGRAM CHAT ===== */
         .tg { border-radius: 14px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.26); border: 1px solid rgba(167,166,162,0.2); }
         .tg-head { background: linear-gradient(180deg,#5A9FD4,#4E8FC0); padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
-        .tg-ava { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .tg-ava { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: #4E8FC0; flex-shrink: 0; }
         .tg-name { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: #fff; display: flex; flex-direction: column; line-height: 1.25; }
         .tg-status { font-weight: 500; font-size: 10.5px; color: #DCEBF7; }
-        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 7px; }
-        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: break-word; }
+        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 10px; } /* U2: xabarlar orasida bir xil ~10px */
+        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: normal; overflow-wrap: break-word; hyphens: none; } /* U2: so'z ichida bo'linmaydi */
         .tg-bubble.bot { align-self: flex-start; background: #fff; color: #0E0E10; border-bottom-left-radius: 5px; }
         .tg-bubble.user { align-self: flex-end; background: #EFFDDE; color: #0E0E10; border-bottom-right-radius: 5px; }
         .tg-bubble.muted { opacity: 0.55; }
@@ -3021,11 +3200,6 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         @keyframes tg-typing-bounce { 0%,60%,100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-3px); opacity: 1; } }
 
 
-        /* ===== 🎒 JIHOZLAR PANELI ===== */
-        .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
-        .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
-        .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
 
         /* ===== 🔑 XIZMAT OYNASI (s5) ===== */
         .sw-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -3164,6 +3338,104 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .tg-typing span { animation: none !important; }
         }
 
+        /* ===== AI-AGENT DARSI (10-dars v2) — yangi bloklar ===== */
+        .gchip .ag-chev { font-weight: 800; color: ${T.ink3}; margin-left: 2px; } /* U1: ochiladigan tugmada doimiy chevron, bosilgach ✓ */
+        .gchip.seen { box-shadow: inset 0 0 0 1.5px ${T.success}; color: ${T.success}; }
+        .gchip.seen .ag-chev { color: ${T.success}; }
+        .gchip.cur { box-shadow: inset 0 0 0 2px ${T.ink}; color: ${T.ink}; }
+        /* s0 — har chat ostidagi «Baza» qatori */
+        .ag-db { display: flex; flex-direction: column; gap: 6px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 10px 13px; font-size: 13px; color: ${T.ink}; }
+        .ag-db-k { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+        .ag-db-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+        .ag-db-none { color: ${T.ink3}; font-style: italic; }
+        .ag-arr { position: relative; display: inline-block; width: 30px; height: 2px; background: ${T.accent}; transform-origin: left center; animation: ag-draw-x 0.8s ease-out both; }
+        .ag-arr::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid ${T.accent}; border-right: 0; }
+        @keyframes ag-draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .ag-db-new { flex: 1 1 0; min-width: 0; font-weight: 700; color: ${T.success}; animation: ag-appear 0.4s ease-out 0.8s both; } /* matn strelkaning o'ng tomonida turadi, o'z ichida o'raladi */
+        .ag-db-late { animation: ag-appear 0.4s ease-out 1.1s both; }
+        .ag-db-to { color: ${T.ink3}; font-weight: 800; }
+        @keyframes ag-appear { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+        /* s1 — statik chizma: siz berasiz → agent */
+        .ag-scheme { display: flex; align-items: stretch; gap: 10px; }
+        .ag-sc-box { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 14px; padding: 14px 16px; }
+        .ag-sc-k { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+        .ag-sc-v { font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .ag-sc-n { font-size: 12.5px; color: ${T.ink2}; }
+        .ag-sc-arr { align-self: center; font-weight: 800; font-size: 20px; color: ${T.accent}; }
+        @media (max-width: 760px) { .ag-scheme { flex-direction: column; } .ag-sc-arr { transform: rotate(90deg); } }
+        /* s3 — agent sikli: maqsad qatori, oqim, Amal → Idrok qaytuvchi strelka */
+        .ag-cyc { display: flex; flex-direction: column; gap: 10px; }
+        .ag-goal.ag-goal { margin: 0; font-size: 14px; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 12px; align-self: flex-start; }
+        .ag-cyc-flow { position: relative; display: flex; align-items: center; padding-bottom: 24px; align-self: flex-start; }
+        .ag-cyc-node { width: 92px; text-align: center; font-weight: 700; font-size: 14px; padding: 9px 6px; border-radius: 11px; background: ${T.paper}; color: ${T.ink2}; border: 1px solid ${T.line}; transition: all 0.3s; }
+        .ag-cyc-node.on { background: ${T.accent}; color: #fff; border-color: ${T.accent}; box-shadow: 0 6px 16px -6px rgba(255,79,40,0.45); }
+        .ag-cyc-arr { width: 24px; text-align: center; font-weight: 800; color: ${T.ink3}; }
+        .ag-cyc-ret { margin-left: 8px; font-weight: 800; font-size: 18px; color: ${T.accent}; }
+        .ag-cyc-back { position: absolute; left: 46px; width: 232px; bottom: 2px; height: 18px; border: 2px solid ${T.accent}; border-top: 0; border-radius: 0 0 12px 12px; animation: ag-draw-back 0.8s ease-out both; }
+        .ag-cyc-head { position: absolute; left: 41px; bottom: 19px; border: 6px solid transparent; border-bottom: 8px solid ${T.accent}; border-top: 0; animation: ag-appear 0.2s ease-out 0.75s both; } /* uch — klip tashqarisida, chiziq yetib kelgach chiqadi */
+        @keyframes ag-draw-back { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+        /* s5 — agentni qurish: yig'ilgan qator va xato variant */
+        .ag-done-row { display: flex; align-items: center; gap: 9px; background: ${T.successSoft}; color: ${T.success}; border-radius: 10px; padding: 8px 12px; font-size: 13.5px; min-width: 0; }
+        .ag-done-t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: ${T.ink}; }
+        .ag-done-ok { font-weight: 800; color: ${T.success}; }
+        .ag-redo { border: none; background: ${T.paper}; color: ${T.ink2}; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-weight: 800; flex-shrink: 0; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .ag-redo:hover { color: ${T.ink}; }
+        .pick-row.bad { background: ${T.dangerSoft}; box-shadow: inset 0 0 0 1.5px ${T.danger}; }
+        .pick-row.bad .pick-plus { color: ${T.danger}; }
+        .ag-pc-row { margin: 0; overflow-wrap: anywhere; }
+        .ag-pc-k { color: ${CODE.attr}; font-weight: 700; }
+        /* s9 — tasdiq tartibi: Agent → Mijoz → Agent → chargeCard() */
+        .ag-seq { display: flex; flex-direction: column; gap: 8px; padding: 4px 2px; }
+        .ag-seq-head { display: flex; justify-content: space-between; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: ${T.ink2}; }
+        .ag-seq-row { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+        .ag-seq-msg { font-size: 13px; color: ${T.ink}; animation: ag-appear 0.3s ease-out both; }
+        .ag-seq-row:nth-of-type(3) .ag-seq-msg { animation-delay: 0.4s; }
+        .ag-seq-line { position: relative; display: block; width: 100%; height: 2px; background: ${T.accent}; animation: ag-draw-x 0.4s ease-out both; }
+        .ag-seq-line.to-r { transform-origin: left center; }
+        .ag-seq-line.to-r::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid ${T.accent}; border-right: 0; }
+        .ag-seq-line.to-l { transform-origin: right center; animation-delay: 0.4s; }
+        .ag-seq-line.to-l::after { content: ''; position: absolute; left: -1px; top: -4px; border: 5px solid transparent; border-right: 7px solid ${T.accent}; border-left: 0; }
+        .ag-seq-call { align-self: flex-start; animation: ag-appear 0.4s ease-out 0.8s both; }
+        /* s11 — belgilangan qator bitta qatorga yig'iladi */
+        .claim-row.done.ok { background: ${T.successSoft}; }
+        .claim-row.done.bad { background: ${T.dangerSoft}; }
+        .ag-claim-res { flex-shrink: 0; font-weight: 700; font-size: 12.5px; }
+        .claim-row.done.ok .ag-claim-res { color: ${T.success}; }
+        .claim-row.done.bad .ag-claim-res { color: ${T.danger}; }
+        /* s12 — agent ishda: yig'ilgan qadamlar, asbob → «Chaqirilgan asboblar» chizig'i */
+        .ag-run { position: relative; }
+        .ag-wire { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 2; }
+        .ag-wire path { fill: none; stroke: ${T.accent}; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: ag-draw-path 0.8s ease-out forwards; }
+        @keyframes ag-draw-path { to { stroke-dashoffset: 0; } }
+        .ag-run-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: ${T.ink2}; padding: 5px 10px; border-radius: 9px; background: ${T.paper}; border: 1px solid ${T.line}; min-width: 0; }
+        .ag-run-row .lp-check { width: 18px; height: 18px; font-size: 10px; background: ${T.successSoft}; color: ${T.success}; box-shadow: none; }
+        .ag-called { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 99px; background: ${T.bg}; color: ${T.ink}; }
+        .ag-called.fresh { animation: ag-appear 0.4s ease-out 1.05s both; }
+        @media (max-width: 760px) { .ag-wire { display: none; } .ag-called.fresh { animation-delay: 0.2s; } }
+        /* s15 — to'g'ri yig'ilgach 5-joydan 2-joyga (Idrok) qaytuvchi strelka */
+        .dd-loop { position: absolute; right: 10px; width: 22px; border: 2px solid ${T.success}; border-left: 0; border-radius: 0 12px 12px 0; pointer-events: none; animation: dd-loop-draw 0.9s ease-out both; }
+        .dd-loop-head { position: absolute; right: 32px; border: 5px solid transparent; border-right: 8px solid ${T.success}; border-left: 0; pointer-events: none; animation: ag-appear 0.2s ease-out 0.85s both; }
+        @keyframes dd-loop-draw { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+        /* amaliyot — namuna kod kartalari (telefonda gorizontal aylanadi, sahifa kengaymaydi) va navbatli qadamlar */
+        .smp-card { min-width: 0; max-width: 100%; background: ${CODE.bg}; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.3); }
+        .smp-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .smp-title { font-family: 'Manrope'; font-size: 12.5px; color: ${CODE.punct}; min-width: 0; }
+        .smp-title b { color: ${CODE.text}; }
+        .smp-copy { flex-shrink: 0; border: none; border-radius: 8px; padding: 6px 11px; font-family: 'Manrope'; font-weight: 700; font-size: 12px; cursor: pointer; background: rgba(255,255,255,0.12); color: ${CODE.text}; transition: background 0.2s; }
+        .smp-copy:hover { background: rgba(255,255,255,0.2); }
+        .smp-copy.ok { background: ${T.success}; color: #fff; }
+        .smp-code { margin: 0; padding: 12px 14px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.55; color: ${CODE.text}; white-space: pre; overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+        .lp-step.lp-cur { cursor: default; flex-wrap: wrap; }
+        .lp-step.lp-cur:hover { box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-step-btn { margin-left: auto; padding: 8px 16px; font-size: 13px; }
+        .lp-done-row { cursor: default; padding: 8px 13px; }
+        .lp-one { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .lp-one .qcode { white-space: nowrap; overflow-wrap: normal; }
+        .lp-extra.lp-extra { margin: 0; font-size: 13.5px; line-height: 1.5; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 11px; padding: 10px 13px; }
+        @media (prefers-reduced-motion: reduce) {
+          .ag-arr, .ag-db-new, .ag-db-late, .ag-cyc-back, .ag-seq-msg, .ag-seq-line, .ag-seq-call, .ag-wire path, .ag-called.fresh, .dd-loop, .dd-loop-head, .ag-cyc-head { animation: none !important; }
+          .ag-wire path { stroke-dashoffset: 0; }
+        }
       .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
       .ach-rule.lost { font-style: italic; }
       `}</style>
@@ -3172,7 +3444,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title={{ uz: 'Botjon darsi', ru: 'Урок Ботжона' }} />
+            <LiveGate live={live} title={{ uz: 'AI-agent yaratish', ru: "Создание ИИ-агента" }} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />

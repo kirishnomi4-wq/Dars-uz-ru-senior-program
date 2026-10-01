@@ -2,19 +2,14 @@ import React, { useState, useEffect, useLayoutEffect, useRef, createContext, use
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
-// 5-MODUL (Telegram bot + AI) · DARS 7 (LOYIHA KUNI) — «BOTJON DOIM YASHAYDI — TO'LIQ LOYIHA + DOIMIY JOY» — PLATFORM STANDARD v18 (AUDIOSIZ)
-// Maqsad: o'quvchi butun modulning 4 buyumini (🔑 KALIT + 📋 VARAQ + 📓 DAFTAR + 🧭 MASLAHATCHI) bitta ISHLAYDIGAN
-//         Botjonga yig'adi va uni LAPTOPDAN olib, DOIMIY JOYGA (🏠 doim yoqilgan kompyuter) KO'CHIRADI —
-//         Botjon endi 24/7 uxlamaydi. Yangi tushunchalar: KO'CHIRISH (deploy) · DOIMIY JOY (server) ·
-//         O'ZI-SO'RAB-TURISH vs QO'NG'IROQ (polling vs webhook) · YIQILMASLIK QOIDASI (fallback).
-// 🤖 METAFORA — «BOTJON» (butun modul uchun yagona lug'at) + BU DARSNING YANGI SO'ZLARI:
-//   KO'CHIRISH = deploy (kodni doimiy joyga qo'yish) · 🏠 DOIMIY JOY = server (doim yoqilgan kompyuter, o'chmaydi).
-//   Laptop = vaqtinchalik joy (yopilsa Botjon jim) · O'ZI-SO'RAB-TURISH=polling · QO'NG'IROQ=webhook ·
-//   qulfli tortma = .env (🔑 kalit shu yerda) · YIQILMASLIK QOIDASI=error handling / oxirgi qator=fallback.
-// INTERAKTIV BEAT'lar: s3 «Laptop vs Doimiy joy» · s5 MARKAZIY #1: «To'liq Botjonni yig'ish» (Assemble Master) ·
-//   s6 «Kompyuter o'chdi — qaysi Botjon ishlaydi» · s7 MARKAZIY #2: «Kalit sinovi — doimiy joyga xavfsiz ko'chirish»
-//   (Key Master) · s9 MARKAZIY #3: «Aloqa usuli — o'zi-so'rab-turish yoki qo'ng'iroq» (Link Master) ·
-//   s11 MARKAZIY #4: «Ko'chirishdan oldin tekshiruv» (Check Master) · s15 FINAL: ko'chirish tartibi (DragDropOrder).
+// 5-MODUL (Telegram bot + AI) · DARS 7 (LOYIHA KUNI) — «Loyiha kuni: bot + DB + AI» — PLATFORM STANDARD v18 (AUDIOSIZ)
+// v2 (F-0928-QA-5modul/07-BotFullProject-v2.md, MD-birinchi): o'quvchi to'liq botni (token · handlerlar · baza · AI) yig'adi
+//         va uni serverga joylashga tayyorlaydi. Yangi tushunchalar: server · deploy · serverda token (sozlamalar) ·
+//         polling/webhook (1-dars ta'rifi) · xatoni ushlash (bot.catch — fallback handler emas).
+// Atamalar (A1): asosiy nom — haqiqiy atama; metafora (Botjon, buyum, doimiy joy, ko'chirish) ishlatilmaydi.
+// INTERAKTIV BEAT'lar: s3 xabar yo'li (laptop yoniq/yopiq) · s5 MARKAZIY #1: to'liq botni yig'ish (Bot Builder) ·
+//   s6 laptop va server · s7 MARKAZIY #2: serverda token (Safe Deploy) · s9 MARKAZIY #3: polling/webhook (Message Catcher) ·
+//   s11 MARKAZIY #4: joylashdan oldin tekshiruv (Launch Ready) · s15 FINAL: deploy tartibi (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -75,7 +70,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'bot-full-project-05-07-v18', lessonTitle: { uz: 'Botjon doim yashaydi — to\'liq loyiha va doimiy joy', ru: 'Полный проект бота и хостинг' } };
+const LESSON_META = { lessonId: 'bot-full-project-05-07-v18', lessonTitle: { uz: 'Loyiha kuni: bot + DB + AI', ru: "Проектный день: бот + БД + ИИ" } };
 // 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → markaziy o'yin → builder → debugging-final → praktika → podium → flashcard → summary
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -190,7 +185,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          <div className="ach-pop-h">{tr({ uz: 'Nishonlar', ru: "Значки" })} — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{tr(a.name)}</span></div>
           ); })}
@@ -239,7 +234,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
             <div className="chrome-left eyebrow"><span className="dot" /><span>{tr(eyebrow)}</span></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
-              <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
+              <div className="mono small" style={{ color: T.ink3, whiteSpace: 'nowrap' }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
             </div>
           </div>
         </div>
@@ -255,7 +250,7 @@ const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжи�
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: 'Mentorni kuting', ru: "Дождитесь ментора" }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -286,43 +281,43 @@ const INLINE_KEYS = { s4: 2, s8: 0, s10: 3, s14: 1, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "To'liq Botjon — 4 buyum birga", ru: 'Полный Ботжон — 4 предмета вместе' },
+    title: { uz: "To'liq bot — to'rt qism", ru: "Полный бот — четыре части" },
     cards: [
-      { ic: "🧩", h: { uz: "Har buyum — bitta ish", ru: 'Каждый предмет — одно дело' }, body: { uz: <>To'liq Botjon 4 buyumdan: 🔑 kalit (kim ekanini isbotlaydi), 📋 varaq (tez buyruqlar), 📓 daftar (eslab qoladi), 🧭 maslahatchi (erkin savolga o'ylab javob).</>, ru: <>Полный Ботжон состоит из 4 предметов: 🔑 ключ (подтверждает, кто он), 📋 лист (быстрые команды), 📓 тетрадь (запоминает), 🧭 советчик (обдуманный ответ на свободный вопрос).</> } },
-      { ic: "📓", h: { uz: "Eslab qolish — daftar ishi", ru: 'Запоминание — дело тетради' }, body: { uz: <>Buyurtmani ertaga ham eslab qolish kerak bo'lsa, bu <b>📓 daftar (DB)</b> ishi — u ma'lumotni doimiy saqlaydi.</>, ru: <>Если заказ нужно помнить и завтра — это дело <b>📓 тетради (БД)</b>: она хранит данные постоянно.</> } },
-      { ic: "🤝", h: { uz: "Birga ishlaydi", ru: 'Работают вместе' }, body: { uz: <>Oddiy buyruqqa 📋 varaq, erkin savolga 🧭 maslahatchi, eslab qolishga 📓 daftar — birgalikda to'liq mahsulot.</>, ru: <>На простую команду — 📋 лист, на свободный вопрос — 🧭 советчик, на запоминание — 📓 тетрадь. Вместе получается полный продукт.</> }, ask: { uz: "Buyurtmani ertaga ham eslab qolish qaysi buyumning ishi?", ru: 'Помнить заказ и завтра — дело какого предмета?' } },
+      { ic: '1', h: { uz: "Har qism — o'z ishi", ru: "У каждой части — своё дело" }, body: { uz: 'Token botni tanitadi, handlerlar tayyor javob beradi, baza saqlaydi, AI erkin savolga javob yozadi.', ru: "Токен представляет бота в Telegram, handler-ы дают готовый ответ, база хранит, ИИ пишет ответ на свободный вопрос." } },
+      { ic: '2', h: { uz: 'Eslab qolish — baza ishi', ru: "Запоминать — дело базы" }, body: { uz: <>Buyurtma ertasi kungacha kerak bo'lsa, u <b>bazaga (PostgreSQL)</b> yoziladi va diskda turadi.</>, ru: <>Если заказ нужен и на следующий день, его записывают <b>в базу (PostgreSQL)</b>, и он хранится на диске.</> } },
+      { ic: '3', h: { uz: 'Birga ishlaydi', ru: "Работают вместе" }, body: { uz: "Bitta suhbatda to'rttasi ham ishlaydi — handler tugmaga, AI erkin savolga javob beradi, baza buyurtmani saqlaydi.", ru: "В одном разговоре работают все четыре: handler отвечает на кнопку, ИИ — на свободный вопрос, база хранит заказ." }, ask: { uz: 'Buyurtmani ertasi kungacha qaysi qism saqlaydi?', ru: "Какая часть хранит заказ до следующего дня?" } },
     ]
   },
   8: {
-    title: { uz: "Doimiy joy — server", ru: 'Постоянное место — сервер' },
+    title: { uz: 'Token serverda', ru: "Токен на сервере" },
     cards: [
-      { ic: "💻", h: { uz: "Laptop — vaqtinchalik", ru: 'Ноутбук — временно' }, body: { uz: <>Botjon laptopingizda yashasa, siz laptopni yopganda u ham <b>jim bo'ladi</b>.</>, ru: <>Если Ботжон живёт на вашем ноутбуке, то, закрыв ноутбук, вы делаете его <b>немым</b>.</> } },
-      { ic: "🏠", h: { uz: "Doimiy joy — o'chmaydi", ru: 'Постоянное место — не выключается' }, body: { uz: <>Doimiy joy (server) — doim yoqilgan kompyuter. Botjonni u yerga ko'chirsangiz, u <b>24/7</b> ishlaydi.</>, ru: <>Постоянное место (сервер) — всегда включённый компьютер. Перенесёте Ботжона туда — он работает <b>24/7</b>.</> } },
-      { ic: "🚚", h: { uz: "Ko'chirish — deploy", ru: 'Перенос — deploy' }, body: { uz: <>Kodni laptopdan doimiy joyga qo'yish — «ko'chirish» deyiladi.</>, ru: <>Положить код с ноутбука на постоянное место — это и называется «перенос» (деплой).</> }, ask: { uz: "Nega jiddiy Botjon laptopda emas, doimiy joyda yashashi kerak?", ru: 'Почему серьёзный Ботжон должен жить не на ноутбуке, а на постоянном месте?' } },
+      { ic: '.env', h: { uz: '`.env` serverga bormaydi', ru: "`.env` не попадает на сервер" }, body: { uz: 'U `.gitignore` da, Git uni yuklamaydi.', ru: "Он в `.gitignore`, Git его не загружает." } },
+      { ic: 'BOT_TOKEN=…', h: { uz: 'Token server sozlamalariga yoziladi', ru: "Токен записывают в настройки сервера" }, body: { uz: "`BOT_TOKEN` nomi bilan — kod uni `process.env` dan o'qiydi.", ru: "Под именем `BOT_TOKEN` — код читает его из `process.env`." } },
+      { ic: 'process.env.AI_API_KEY', h: { uz: 'AI API kaliti ham shunday', ru: "С ключом AI API — так же" }, body: { uz: 'Sirlar kodda emas, sozlamada turadi.', ru: "Секреты хранятся не в коде, а в настройках." }, ask: { uz: 'Nega serverda BOT_TOKEN ni alohida sozlaymiz?', ru: "Почему на сервере BOT_TOKEN настраивают отдельно?" } },
     ]
   },
   10: {
-    title: { uz: "Aloqa usuli — o'zi-so'rab-turish yoki qo'ng'iroq", ru: 'Способ связи — сам спрашивает или звонок' },
+    title: { uz: 'Polling va webhook', ru: "Polling и webhook" },
     cards: [
-      { ic: "🔁", h: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, body: { uz: <>Botjon tinmay so'raydi: «yangi xabar bormi?» — sodda, kichik Botjon uchun qulay.</>, ru: <>Ботжон без остановки спрашивает: «есть новое сообщение?» — просто и удобно для маленького Ботжона.</> } },
-      { ic: "🔔", h: { uz: "Qo'ng'iroq", ru: 'Звонок' }, body: { uz: <>Telegram yangi xabar kelganda Botjonga o'zi «xabar bor!» deb qo'ng'iroq qiladi — tezroq, ko'p foydalanuvchi uchun.</>, ru: <>Когда приходит новое сообщение, Telegram сам «звонит» Ботжону: «есть сообщение!» — быстрее, для большого числа пользователей.</> } },
-      { ic: "🌱", h: { uz: "Kichikdan boshlang", ru: 'Начинайте с малого' }, body: { uz: <>Boshida o'zi-so'rab-turish yetarli; foydalanuvchi ko'paysa qo'ng'iroqqa o'tasiz.</>, ru: <>Сначала хватит «сам спрашивает»; станет больше пользователей — перейдёте на звонок.</> }, ask: { uz: "Kichik Botjon uchun qaysi usul soddaroq?", ru: 'Какой способ проще для маленького Ботжона?' } },
+      { ic: 'bot.launch()', h: { uz: 'Polling', ru: "Polling" }, body: { uz: "Bot Telegram'dan qayta-qayta so'raydi: «Yangi xabar bormi?».", ru: "Бот снова и снова спрашивает у Telegram: «Есть новое сообщение?»." } },
+      { ic: '2', h: { uz: 'Webhook', ru: "Webhook" }, body: { uz: 'Telegram yangi xabarni botning internetdagi manziliga (URL) yuboradi; buning uchun ochiq manzil kerak.', ru: "Telegram отправляет новое сообщение на адрес бота в интернете (URL); для этого нужен открытый адрес." } },
+      { ic: '3', h: { uz: 'Kichikdan boshlang', ru: "Начните с малого" }, body: { uz: "Polling qo'shimcha sozlashsiz ishlaydi, serverda ham.", ru: "Polling работает без дополнительной настройки, и на сервере тоже." }, ask: { uz: 'Kichik bot uchun qaysi usul soddaroq?', ru: "Какой способ проще для маленького бота?" } },
     ]
   },
   14: {
-    title: { uz: "Nega serverda 24/7 jonli", ru: 'Почему на сервере он живой 24/7' },
+    title: { uz: 'Nega server kerak', ru: "Зачем нужен сервер" },
     cards: [
-      { ic: "🌙", h: { uz: "Siz uxlaysiz — Botjon yo'q", ru: 'Вы спите — Ботжона нет' }, body: { uz: <>Botjon laptopda bo'lsa, siz uxlaganda u ham javob berolmaydi.</>, ru: <>Если Ботжон на ноутбуке, то, пока вы спите, он тоже не может отвечать.</> } },
-      { ic: "🏠", h: { uz: "Doimiy joy uxlamaydi", ru: 'Постоянное место не спит' }, body: { uz: <>Doimiy joy (server) hech qachon o'chmaydi — Botjon u yerdan <b>tunu-kun</b> javob beradi.</>, ru: <>Постоянное место (сервер) не выключается никогда — Ботжон отвечает оттуда <b>днём и ночью</b>.</> } },
-      { ic: "✅", h: { uz: "Shuning uchun ko'chiramiz", ru: 'Поэтому и переносим' }, body: { uz: <>Botni doimiy joyga ko'chirish — uni 24/7 jonli qilishning yagona yo'li.</>, ru: <>Перенести бота на постоянное место — единственный способ сделать его живым 24/7.</> }, ask: { uz: "Laptop o'chgani bilan Botjon ishlayotgani nimadan?", ru: 'Ноутбук выключен, а Ботжон работает — почему?' } },
+      { ic: '1', h: { uz: "Laptop yopilsa, dastur to'xtaydi", ru: "Закрыли ноутбук — программа остановилась" }, body: { uz: 'Bot javob bermaydi.', ru: "Бот не отвечает." } },
+      { ic: '2', h: { uz: "Server to'xtamay ishlashga mo'ljallangan", ru: "Сервер рассчитан на работу без остановки" }, body: { uz: "Bot laptop yopiq bo'lsa ham javob beradi.", ru: "Бот отвечает, даже когда ноутбук закрыт." } },
+      { ic: '3', h: { uz: 'Shuning uchun deploy qilamiz', ru: "Поэтому делаем деплой" }, body: { uz: 'Kodni serverga joylab, u yerda ishga tushiramiz.', ru: "Размещаем код на сервере и запускаем его там." }, ask: { uz: 'Laptop yopiq, lekin bot javob beryapti — nega?', ru: "Ноутбук закрыт, а бот отвечает — почему?" } },
     ]
   },
   15: {
-    title: { uz: "Ko'chirish tartibi", ru: 'Порядок переноса' },
+    title: { uz: 'Deploy tartibi', ru: "Порядок деплоя" },
     cards: [
-      { ic: "🔧", h: { uz: "Avval — qurish va sinash", ru: 'Сначала — собрать и проверить' }, body: { uz: <>Birinchi kodni yozasiz (4 buyum) va uni <b>laptopda sinab</b> ko'rasiz.</>, ru: <>Сначала вы пишете код (4 предмета) и <b>проверяете его на ноутбуке</b>.</> } },
-      { ic: "🔑", h: { uz: "Keyin — kalitlarni sozlash", ru: 'Потом — настроить ключи' }, body: { uz: <>Doimiy joyda 🔑 kalit va sozlamalar <b>qulfli tortmaga</b> (.env) qo'yiladi.</>, ru: <>На постоянном месте 🔑 ключ и настройки кладутся в <b>запертый ящик</b> (.env).</> } },
-      { ic: "🚚", h: { uz: "Eng oxiri — ko'chirish va jonli", ru: 'В самом конце — перенос и запуск' }, body: { uz: <>Kod doimiy joyga ko'chiriladi va Botjon 24/7 jonli bo'ladi.</>, ru: <>Код переносится на постоянное место, и Ботжон становится живым 24/7.</> }, vis: { uz: <RcFlow items={['🔧 Qur', '🧪 Lokal test', '🔑 .env sozla', '🚚 Ko\'chir', '🌐 24/7 jonli']} />, ru: <RcFlow items={['🔧 Собери', '🧪 Локальный тест', '🔑 Настрой .env', '🚚 Перенеси', '🌐 Живой 24/7']} /> }, ask: { uz: "Nega ko'chirishdan oldin laptopda sinaymiz?", ru: 'Почему перед переносом мы проверяем на ноутбуке?' } },
+      { ic: '1', h: { uz: 'Avval — laptopda', ru: "Сначала — на ноутбуке" }, body: { uz: "Botni yig'ib, ishga tushirib sinaysiz.", ru: "Собираете бота, запускаете и тестируете." } },
+      { ic: '2', h: { uz: 'Keyin — serverda', ru: "Потом — на сервере" }, body: { uz: 'Tokenni sozlaysiz, kodni joylab, ishga tushirasiz.', ru: "Настраиваете токен, размещаете код и запускаете." } },
+      { ic: '/start', h: { uz: 'Oxirida — tekshiruv', ru: "В конце — проверка" }, body: { uz: "Botga /start yozib, javob kelishini ko'rasiz.", ru: "Пишете боту /start и смотрите, пришёл ли ответ." }, vis: { uz: <RcFlow items={["Yig'ish", 'Laptopda sinash', 'Serverda token', 'Joylash', '/start bilan tekshirish']} />, ru: <RcFlow items={['Сборка', 'Тест на ноутбуке', 'Токен на сервере', 'Размещение', 'Проверка через /start']} /> }, ask: { uz: 'Nega kodni serverga joylashdan oldin laptopda sinaymiz?', ru: "Зачем тестировать код на ноутбуке перед размещением на сервере?" } },
     ]
   }
 };
@@ -345,16 +340,16 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: 'Qayta tushuntirish', ru: "Объясняем заново" })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
-        <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{tr(card.h)}</h2>
-        <p className="rc-body">{tr(card.body)}</p>
+        <div className={`rc-ic ${/^\d+$/.test(String(card.ic)) ? 'num' : 'code'}`}>{card.ic}</div>
+        <h2 className="rc-h">{fmtCode(tr(card.h))}</h2>
+        <p className="rc-body">{fmtCode(tr(card.body))}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: "Вопрос классу:" })} {fmtCode(tr(card.ask))}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -510,7 +505,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, жмите обдуманно!" })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -535,7 +530,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
-                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
+                ? tr({ uz: 'Javobingiz qabul qilindi', ru: "Ваш ответ принят" })
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
@@ -552,7 +547,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: "Короткое повторение — ещё раз взглянуть на тему" })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -612,42 +607,15 @@ const TLine = ({ cmd, out, col }) => (
 );
 
 // ===== 📱 TELEGRAM CHAT (jonli ko'rinish) =====
-const TgChat = ({ title = { uz: 'Botjon', ru: 'Ботжон' }, ava = '🤖', status = { uz: 'bot · onlayn', ru: 'бот · онлайн' }, children, minH }) => (
+const TgChat = ({ title = 'AvtoPizza', ava = 'A', status = { uz: 'bot', ru: "бот" }, children, minH }) => (
   <div className="tg">
     <div className="tg-head"><span className="tg-ava">{ava}</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr(status)}</span></span></div>
     <div className="tg-body" style={{ minHeight: minH }}>{children}</div>
   </div>
 );
-const Bubble = ({ from = 'bot', children, muted, thinking }) => <div className={`tg-bubble ${from} el-in ${muted ? 'muted' : ''}`}>{thinking ? <span className="gen-dots inline"><i /><i /><i /></span> : children}</div>;
+const Bubble = ({ from = 'bot', children, muted, thinking, delay }) => <div className={`tg-bubble ${from} el-in ${muted ? 'muted' : ''}`} style={delay ? { animationDelay: delay, animationFillMode: 'both' } : undefined}>{thinking ? <span className="gen-dots inline"><i /><i /><i /></span> : children}</div>;
 const TgBtns = ({ items }) => <div className="tg-btns el-in">{items.map((b, i) => <span key={i} className="tg-btn">{tr(b)}</span>)}</div>;
-// ===== 📜 YO'RIQNOMA (system prompt) kartasi =====
-const PromptCard = ({ children, who = { uz: "📜 YO'RIQNOMA", ru: '📜 ИНСТРУКЦИЯ' }, tone }) => (
-  <div className={`prompt-card ${tone || ''}`}><span className="prompt-who">{tr(who)}</span><p className="prompt-text">{children}</p></div>
-);
-// ===== 🎒 JIHOZLAR PANELI (butun 5-modulda qayta ishlatiladi) =====
-// 🎒 8 uyacha = 8 dars. Har dars o'z buyumini yoqadi; bu dars (7-slot) — 🏠 DOIMIY JOY.
-const GEAR_SLOTS = [
-  { id: 'key', label: { uz: 'Javob bera oladi', ru: 'Умеет отвечать' } },        // 1 · BotIntro
-  { id: 'btn', label: { uz: 'Muloqot qiladi', ru: 'Общается' } },                // 2 · ApiButtons
-  { id: 'note', label: { uz: 'Eslab qoladi', ru: 'Запоминает' } },                // 3 · StatefulMemory
-  { id: 'menu', label: { uz: "O'ylay boshlaydi", ru: 'Начинает думать' } },       // 4 · AiBrain
-  { id: 'tools', label: { uz: 'Ish bajaradi', ru: 'Выполняет работу' } },          // 5 · AiAgent
-  { id: 'wish', label: { uz: 'Yaxshilanadi', ru: 'Становится лучше' } },          // 6 · Feedback
-  { id: 'home', label: { uz: 'Doim yashaydi', ru: 'Живёт всегда' } },             // 7 · FullProject (BU DARS)
-  { id: 'star', label: { uz: 'To\'liq jihozlangan', ru: 'Полностью снаряжён' } }  // 8 · AiProject
-];
-const GearPanel = ({ active = [] }) => (
-  <div className="gear-panel">
-    {GEAR_SLOTS.map(g => (
-      <div key={g.id} className={`gear-slot ${active.includes(g.id) ? 'on' : ''}`}>
-        
-        <span className="gear-lbl">{tr(g.label)}</span>
-      </div>
-    ))}
-  </div>
-);
-
-function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong, wrongText, divider }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -708,65 +676,81 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
     <div className="dd fade-up">
       <div className="dd-slots">
         {slots.map((sid, i) => (
-          <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
+          <React.Fragment key={i}>
+          <div ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
             {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поставьте сюда' })}</span>}
           </div>
+          {divider && solved && i === divider.after && <div className="dd-div" aria-hidden="true"><span>↑ {tr(divider.top)}</span><i className="dd-div-line" /><span>↓ {tr(divider.bottom)}</span></div>}
+          </React.Fragment>
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
+      {/* Natija-yozuv bitta: to'g'ri — dd-done, xato — dd-wrong (ekranning o'zi alohida ramka chiqarmaydi) */}
       {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr(typeof wrongText === 'function' ? wrongText(slots) : (wrongText || { uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: "Порядок неверный — нажмите на блок, чтобы вернуть его, и поставьте заново." }))}</div>}
     </div>
   );
 }
 
-// ===== 🧩 TO'LIQ BOTJONNING 4 BUYUMI =====
-const BOTJON_PARTS = [
-  { id: 'key', label: { uz: 'Kalit', ru: 'Ключ' },                        desc: { uz: <>Botjonning kim ekanini isbotlaydigan maxfiy 🔑 kalit. Usiz Botjon Telegram bilan gaplasha olmaydi. Doimiy joyga ko'chirganda kalit <b>qulfli tortmaga</b> (.env) qo'yiladi.</>, ru: <>Секретный 🔑 ключ, который подтверждает, кто такой Ботжон. Без него он не сможет говорить с Telegram. При переносе на постоянное место ключ кладут в <b>запертый ящик</b> (.env).</> } },
-  { id: 'sheet', label: { uz: "Qoidalar varag'i", ru: 'Лист правил' },      desc: { uz: <>Tez va aniq buyruqlar shu yerda: <b>signal keladi → shu amalni qil</b>. /start, menyu, tugmalar — hammasi 📋 varaqda.</>, ru: <>Быстрые и точные команды тут: <b>пришёл сигнал → сделай это действие</b>. /start, меню, кнопки — всё на 📋 листе.</> } },
-  { id: 'note', label: { uz: 'Daftar (DB)', ru: 'Тетрадь (БД)' },          desc: { uz: <>Botjonning doimiy 📓 daftari — buyurtma, mijoz ismi, holat shu yerda saqlanadi va Botjon o'chib-yonsa ham <b>yo'qolmaydi</b>.</>, ru: <>Постоянная 📓 тетрадь Ботжона — заказ, имя клиента, состояние хранятся здесь и <b>не пропадают</b>, даже если Ботжона выключить и включить.</> } },
-  { id: 'brain', label: { uz: 'Maslahatchi', ru: 'Советчик' },              desc: { uz: <>Erkin, kutilmagan savolga 🧭 maslahatchi (AI) o'ylab tabiiy javob yozadi — varaqda tayyor qator bo'lmagan holatlar uchun.</>, ru: <>На свободный, неожиданный вопрос 🧭 советчик (ИИ) обдумает и напишет живой ответ — для случаев, которых нет на листе.</> } }
+// ===== NAVBATLI OCHILISH (A6): bajarilgan qadam bitta qatorga yig'iladi =====
+const DoneRow = ({ children, onRedo, bad, mark, redoLabel }) => (
+  <div className={`seq-done fade-step ${bad ? 'bad' : ''}`}>
+    <span className="seq-ck" aria-hidden="true">{bad ? '✕' : '✓'}</span>
+    <span className="seq-t">{children}</span>
+    {mark}
+    {onRedo && <button type="button" className="seq-redo" onClick={onRedo} aria-label={tr(redoLabel || { uz: 'Qayta ochish', ru: "Открыть снова" })} title={tr(redoLabel || { uz: 'Qayta ochish', ru: "Открыть снова" })}>↻</button>}
+  </div>
+);
+
+// ===== TO'LIQ BOTNING TO'RT QISMI (s2) =====
+const BOT_PARTS = [
+  { id: 'token', label: { uz: 'Token', ru: "Токен" }, desc: { uz: "Botni Telegram Bot API'ga tanitadigan maxfiy qator. U `.env` faylida turadi, kodda faqat `process.env.BOT_TOKEN` yoziladi.", ru: "Секретная строка, которая представляет бота в Telegram Bot API. Она хранится в файле `.env`, а в коде пишут только `process.env.BOT_TOKEN`." } },
+  { id: 'handlers', label: { uz: 'Handlerlar', ru: "Handler-ы" }, desc: { uz: "/start, «Menyu» tugmasi, buyurtma bosqichlari: aniq hodisaga tayyor javob. Hech biri mos kelmasa, fallback handler javob beradi.", ru: "/start, кнопка «Меню», шаги заказа: готовый ответ на конкретное событие. Если ни один не подходит, отвечает fallback handler." } },
+  { id: 'baza', label: { uz: 'Baza (PostgreSQL)', ru: "База (PostgreSQL)" }, desc: { uz: "Buyurtma, mijoz va holat shu yerda saqlanadi. Ma'lumot diskda turadi — bot qayta ishga tushsa ham yo'qolmaydi.", ru: "Здесь хранятся заказ, клиент и состояние. Данные лежат на диске — они не пропадут, даже если бот запустится заново." } },
+  { id: 'ai', label: { uz: 'AI', ru: "ИИ" }, desc: { uz: "Handlerda tayyor javobi yo'q erkin savolga javob yozadi: siz yozgan system prompt'ga qarab, AI API kaliti bilan.", ru: "Пишет ответ на свободный вопрос, на который у handler-а нет готового ответа: по вашему system prompt, с ключом AI API." } }
 ];
 
-// ===== SCREEN 0 — HOOK: laptop yopildi, Botjon jim qoldi =====
+// ===== SCREEN 0 — HOOK: laptop yopildi, bot javob bermadi =====
+const HOOK_OPTS = [
+  { id: 'a', label: { uz: 'Bot kodida kechasi kutilmagan xato chiqdi', ru: "Ночью в коде бота случилась неожиданная ошибка" } },
+  { id: 'b', label: { uz: "Bot dasturi laptop bilan birga to'xtadi", ru: "Программа бота остановилась вместе с ноутбуком" } },
+  { id: 'c', label: { uz: 'Telegram tunda botlarga xabar yetkazmaydi', ru: "Telegram ночью не доставляет сообщения ботам" } }
+];
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [tried, setTried] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
-  const OPTS = [
-    { id: 'a', label: { uz: "Botjonning kodida xato paydo bo'lgan", ru: 'В коде Ботжона появилась ошибка' } },
-    { id: 'b', label: { uz: "Botjon laptopingizda yashardi — laptop yopilsa, u ham jim bo'ladi", ru: 'Ботжон жил на вашем ноутбуке — закрыли ноутбук, и он замолчал' } },
-    { id: 'c', label: { uz: "Telegram tunda umuman ishlamaydi", ru: 'Telegram ночью вообще не работает' } }
-  ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
     <Stage eyebrow={{ uz: 'Loyiha kuni · kirish', ru: 'Проектный день · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Botjoningiz zo'r ishlayapti. Kechqurun laptopni yopdingiz — va u <span className="italic" style={{ color: T.accent }}>jim bo'ldi</span>. Nega?</>, ru: <>Ваш Ботжон работает отлично. Вечером вы закрыли ноутбук — и он <span className="italic" style={{ color: T.accent }}>замолчал</span>. Почему?</> })}</h1>
-        <Mentor>{tr({ uz: <>Botjonda hammasi bor: 🔑 kalit, 📋 varaq, 📓 daftar, 🧭 maslahatchi. Lekin u sizning <b style={{ color: T.ink }}>laptopingizda</b> yashardi. Tugmani bosing — tunda nima bo'lishini ko'ring.</>, ru: <>У Ботжона есть всё: 🔑 ключ, 📋 лист, 📓 тетрадь, 🧭 советчик. Но жил он на <b style={{ color: T.ink }}>вашем ноутбуке</b>. Нажмите кнопку — посмотрите, что бывает ночью.</> })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Kechqurun laptopni yopdingiz. Soat <span className="italic" style={{ color: T.accent }}>02:14</span> da botingizga mijoz yozdi.</>, ru: <>Вечером вы закрыли ноутбук. В <span className="italic" style={{ color: T.accent }}>02:14</span> вашему боту написал клиент.</> })}</h1>
+        <Mentor>{tr({ uz: "Botingizda hammasi bor: token, handlerlar, baza va AI. Kunduzi u yaxshi ishladi. Tugmani bosing va tunda nima bo'lishini ko'ring.", ru: "В вашем боте есть всё: токен, handler-ы, база и ИИ. Днём он работал хорошо. Нажмите кнопку и посмотрите, что будет ночью." })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <TgChat title={{ uz: 'Botjon', ru: 'Ботжон' }} ava="🤖" status={{ uz: 'bot · oflayn ⚫', ru: 'бот · офлайн ⚫' }} minH={140}>
-              <Bubble from="user">{tr({ uz: '02:14 — Salom, buyurtma beraman', ru: '02:14 — Здравствуйте, хочу заказать' })}</Bubble>
-              {tried && <><p className="small" style={{ color: T.danger, fontStyle: 'italic', textAlign: 'center', margin: '6px 0' }}>{tr({ uz: '💻 Laptop yopiq — Botjon oflayn', ru: '💻 Ноутбук закрыт — Ботжон офлайн' })}</p>
-                <Bubble from="user" muted>{tr({ uz: "Hali ham javob yo'q… 😕", ru: 'Ответа всё ещё нет… 😕' })}</Bubble></>}
+            <TgChat minH={120}>
+              <Bubble from="user">{tr({ uz: "02:14 — Salom! Hozir buyurtma bersam bo'ladimi?", ru: "02:14 — Здравствуйте! Можно сейчас сделать заказ?" })}</Bubble>
+              {tried && <Bubble from="user" muted>{tr({ uz: "02:21 — Hali ham javob yo'q…", ru: "02:21 — Ответа всё ещё нет…" })}</Bubble>}
             </TgChat>
-            <button className={`btn-soft ${tried ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: '▶ Tunda mijoz yozdi', ru: '▶ Ночью написал клиент' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: "▶ Nima bo'lishini ko'rish", ru: "▶ Посмотреть, что будет" })}</button>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Nega Botjon javob bermadi?', ru: 'Почему Ботжон не ответил?' })}</p>
-            <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {OPTS.map(o => {
-                const on = picked === o.id;
-                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
-              })}
-            </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Botjon laptopda yashasa — siz uxlasangiz, u ham «uxlaydi». Bugun Botjonga <b>doimiy joy</b> beramiz: uni doim yoqilgan kompyuterga (serverga) ko'chiramiz — u 24/7 uxlamasin.</>, ru: <>Именно! Если Ботжон живёт на ноутбуке — вы заснули, и он «спит». Сегодня дадим Ботжону <b>постоянное место</b>: перенесём его на всегда включённый компьютер (сервер) — чтобы он не спал 24/7.</> })}</p>}
+            {tried && <>
+              <p className="q-ask fade-step">{tr({ uz: 'Nega bot javob bermadi?', ru: "Почему бот не ответил?" })}</p>
+              <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+                {HOOK_OPTS.map(o => {
+                  const on = picked === o.id;
+                  return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
+                })}
+              </div>
+              {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
+                ? tr({ uz: <><b>Aynan!</b> Bot dasturi laptopingizda ishlardi — laptop yopilganda u ham to'xtadi. Bugun botni serverga joylaymiz: u laptop yopiq bo'lsa ham ishlaydi.</>, ru: <><b>Именно!</b> Программа бота работала на вашем ноутбуке — когда ноутбук закрыли, она тоже остановилась. Сегодня разместим бота на сервере: он работает, даже когда ноутбук закрыт.</> })
+                : tr({ uz: <><b>Qiziq fikr!</b> Kunduzi kod yaxshi ishlagan, Telegram esa tunda ham xabar yetkazadi. Sabab boshqa: bot dasturi laptopingizda ishlardi va laptop yopilganda to'xtadi. Bugun botni serverga joylaymiz.</>, ru: <><b>Интересная мысль!</b> Днём код работал хорошо, а Telegram доставляет сообщения и ночью. Причина в другом: программа бота работала на вашем ноутбуке и остановилась, когда его закрыли. Сегодня разместим бота на сервере.</> })}</p>}
+            </>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -774,72 +758,68 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA + JIHOZLAR PANELI =====
+// ===== SCREEN 1 — REJA: laptop → server chizmasi + 4 qadam =====
+const PLAN_STEPS = [
+  { uz: "To'liq bot: token, handlerlar, baza va AI", ru: "Полный бот: токен, handler-ы, база и ИИ" },
+  { uz: 'Bot qayerda ishlaydi: laptop va server', ru: "Где работает бот: ноутбук и сервер" },
+  { uz: 'Serverda token va xabar olish usuli', ru: "Токен на сервере и способ получать сообщения" },
+  { uz: 'Serverga joylashdan oldingi tekshiruv', ru: "Проверка перед размещением на сервере" }
+];
+// Chizma: bot.js laptopda → «deploy» strelkasi chiziladi → serverdagi bot.js yonadi (A7, ~1 s)
+const DeployMap = () => (
+  <div className="dpl">
+    <div className="dpl-box"><span className="dpl-h">{tr({ uz: 'Laptop', ru: "Ноутбук" })}</span><code className="dpl-file">bot.js</code><span className="dpl-cap">{tr({ uz: 'hozir shu yerda', ru: "сейчас здесь" })}</span></div>
+    <div className="dpl-arrow"><span className="dpl-lbl">deploy</span><svg className="dpl-svg" viewBox="0 0 76 14" aria-hidden="true"><path d="M2 7 H72 M64 1 L72 7 L64 13" /></svg></div>
+    <div className="dpl-box srv"><span className="dpl-h">{tr({ uz: 'Server', ru: "Сервер" })}</span><code className="dpl-file">bot.js</code><span className="dpl-cap">{tr({ uz: 'dars oxirida', ru: "в конце урока" })}</span></div>
+  </div>
+);
 const Screen1 = ({ screen, onNext, onPrev }) => {
-  const STEPS = [
-    { text: { uz: "4 buyumni bitta Botjonga yig'amiz", ru: 'Соберём 4 предмета в одного Ботжона' }, tag: { uz: 'to\'liq bot', ru: 'полный бот' } },
-    { text: { uz: "Botjonga doimiy joy — server beramiz", ru: 'Дадим Ботжону постоянное место — сервер' }, tag: { uz: 'doimiy joy', ru: 'постоянное место' } },
-    { text: { uz: "Aloqa usuli: o'zi-so'rab-turish yoki qo'ng'iroq", ru: 'Способ связи: сам спрашивает или звонок' }, tag: { uz: 'aloqa', ru: 'связь' } },
-    { text: { uz: "Ko'chirish: sina → sozla → ko'chir → 24/7 jonli", ru: 'Перенос: проверь → настрой → перенеси → живой 24/7' }, tag: { uz: 'ko\'chirish', ru: 'перенос' } }
-  ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
-  const Preview = (
-    <Col>
-      <p className="flow-label">{tr({ uz: 'dars oxirida — Botjon doimiy joyda, 24/7 jonli', ru: 'в конце урока — Ботжон на постоянном месте, живой 24/7' })}</p>
-      <TgChat title={{ uz: 'Botjon', ru: 'Ботжон' }} ava="🤖" status={{ uz: 'bot · onlayn 🟢', ru: 'бот · онлайн 🟢' }} input={false} minH={0}>
-        <Bubble from="user">{tr({ uz: '03:00 — glutensiz pizza bormi?', ru: '03:00 — есть пицца без глютена?' })}</Bubble>
-        <Bubble from="bot">{tr({ uz: "Afsus, hozircha yo'q 😔 Lekin yupqa Margarita yengil bo'ladi 🌿 Saqlab qo'yaymi?", ru: 'Увы, пока нет 😔 Но тонкая «Маргарита» получится лёгкой 🌿 Отложить её для вас?' })}</Bubble>
-      </TgChat>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Kalit, varaq, daftar, maslahatchi — birga ishlayapti, doimiy joyda 24/7. Mana shu to'liq mahsulotni bugun quramiz.", ru: 'Ключ, лист, тетрадь, советчик — работают вместе, на постоянном месте 24/7. Именно такой полный продукт мы сегодня и соберём.' })}</p></div>
-      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 🏠 doimiy joy yonadi', ru: 'Панель снаряжения — сегодня загорается 🏠 постоянное место' })}</p>
-      <GearPanel active={['key', 'btn', 'note', 'menu', 'tools', 'wish', 'home']} />
-    </Col>
-  );
+  const base = isNarrow ? 0.05 : 1.2; // kompyuterda qadamlar chizmadan keyin birma-bir chiqadi
   const StepsB = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага на сегодня' })}</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
+      <p className="flow-label plan-item" style={{ animationDelay: `${base}s` }}>{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага на сегодня' })}</p>
+      <ol className="plan-list">{PLAN_STEPS.map((s, i) => (<li key={i} className="plan-item" style={{ animationDelay: `${base + 0.15 + i * 0.15}s` }}><span className="plan-n">{i + 1}</span><span>{tr(s)}</span></li>))}</ol>
     </Col>
   );
   return (
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bo'laklardan — <span className="italic" style={{ color: T.accent }}>doim yashaydigan Botjon</span>.</>, ru: <>Из кусочков — <span className="italic" style={{ color: T.accent }}>Ботжон, который живёт всегда</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bugun yangi sintaksis kam — ko'proq <b style={{ color: T.ink }}>yig'amiz</b>. Kalit, varaq, daftar, maslahatchi tayyor. Ularni birlashtiramiz va Botjonga doimiy joy beramiz — u doim jonli tursin. Yangi jihoz yondi: 🏠 <b style={{ color: T.ink }}>Doimiy joy</b>.</>, ru: <>Сегодня нового синтаксиса мало — больше <b style={{ color: T.ink }}>собираем</b>. Ключ, лист, тетрадь, советчик готовы. Соединим их и дадим Ботжону постоянное место — пусть будет живым всегда. Загорелось новое снаряжение: 🏠 <b style={{ color: T.ink }}>Постоянное место</b>.</> })}</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun botingizni <span className="italic" style={{ color: T.accent }}>serverga</span> joylaysiz.</>, ru: <>Сегодня вы разместите бота <span className="italic" style={{ color: T.accent }}>на сервере</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Yangi kod kam bo'ladi. Oldingi darslarda qo'shgan qismlarni bitta botga yig'asiz, keyin uni laptop yopiq bo'lsa ham ishlaydigan kompyuterga joylaysiz.", ru: "Нового кода будет немного. Вы соберёте в один бот части, которые добавили на прошлых уроках, а потом разместите его на компьютере, который работает, даже когда ноутбук закрыт." })}</Mentor>
+        {!isNarrow ? (<Zoomable><Split><Col><DeployMap /></Col>{StepsB}</Split></Zoomable>)
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><DeployMap /><button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Chizmani ko'rish", ru: "↩ Посмотреть схему" })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 2 — TO'LIQ BOTJON: 4 BUYUM =====
+// ===== SCREEN 2 — TO'LIQ BOT: TO'RT QISM =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(BOTJON_PARTS.map(a => a.id)) : new Set());
+  const [seen, setSeen] = useState(storedAnswer ? new Set(BOT_PARTS.map(a => a.id)) : new Set());
   const [active, setActive] = useState(null);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= BOTJON_PARTS.length;
+  const done = seen.size >= BOT_PARTS.length;
   const tap = (id) => { setActive(id); setSeen(prev => new Set(prev).add(id)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const cur = BOTJON_PARTS.find(a => a.id === active);
+  const cur = BOT_PARTS.find(a => a.id === active);
   return (
-    <Stage eyebrow={{ uz: "Yig'ish · to'liq Botjon", ru: 'Сборка · полный Ботжон' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 buyumni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 предмета (${seen.size}/4)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Yig'ish · to'liq bot", ru: "Сборка · полный бот" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 qismni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 предмета (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq Botjon — <span className="italic" style={{ color: T.accent }}>4 buyum</span> birga ishlaydi.</>, ru: <>Полный Ботжон — <span className="italic" style={{ color: T.accent }}>4 предмета</span> работают вместе.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Har dars sizga bitta buyum berdi. Endi ularni bitta Botjonga yig'amiz. Har buyumni bosib, u nima qilishini eslang.", ru: 'Каждый урок давал вам по одному предмету. Теперь соберём их в одного Ботжона. Нажмите на каждый предмет и вспомните, что он делает.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq botda <span className="italic" style={{ color: T.accent }}>to'rt qism</span> birga ishlaydi.</>, ru: <>В полном боте вместе работают <span className="italic" style={{ color: T.accent }}>четыре части</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bu to'rt qismni oldingi darslarda qo'shgansiz. Har birini bosing va u botda nima qilishini eslang.", ru: "Эти четыре части вы добавили на прошлых уроках. Нажмите на каждую и вспомните, что она делает в боте." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {BOTJON_PARTS.map(a => <button key={a.id} className="gchip" onClick={() => tap(a.id)} style={seen.has(a.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(a.id) ? '✓ ' : ''}{tr(a.label)}</button>)}
+              {BOT_PARTS.map(a => <button key={a.id} className={`gchip ${seen.has(a.id) ? 'seen' : ''} ${active === a.id ? 'cur' : ''}`} onClick={() => tap(a.id)}>{tr(a.label)}<span className="gchip-ar" aria-hidden="true">{seen.has(a.id) ? '✓' : '›'}</span></button>)}
             </div>
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(cur.desc))}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq Botjon tayyor: oddiy buyruqqa 📋 varaq, erkin savolga 🧭 maslahatchi, eslab qolishga 📓 daftar, kirishga 🔑 kalit. Endi unga doimiy joy topamiz.", ru: 'Полный Ботжон готов: на простую команду — 📋 лист, на свободный вопрос — 🧭 советчик, на запоминание — 📓 тетрадь, на вход — 🔑 ключ. Теперь найдём ему постоянное место.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -847,31 +827,63 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — LAPTOP vs DOIMIY JOY (kichik) =====
+// ===== SCREEN 3 — BOT QAYERDA ISHLAYDI: xabar yo'li (laptop yoniq / yopiq) =====
+const MP_CLIENT = { uz: 'Mijoz', ru: "Клиент" };
+// Xabar yo'li: strelkalar navbat bilan chiziladi (A7). Yopiq holatda strelka Telegram'da to'xtaydi.
+const MsgPath = ({ on }) => {
+  const nodes = on ? [MP_CLIENT, 'Telegram', { uz: 'bot.js (laptopda)', ru: "bot.js (на ноутбуке)" }, 'Telegram', MP_CLIENT] : [MP_CLIENT, 'Telegram'];
+  const step = 0.25;
+  return (
+    <div className="mp">
+      {nodes.map((n, i) => (
+        <React.Fragment key={i}>
+          {i > 0 && <i className="mp-arr" style={{ animationDelay: `${(i - 1) * step}s` }} aria-hidden="true" />}
+          <span className={`mp-node mp-in ${on && i === 2 ? 'code' : ''}`} style={{ animationDelay: `${i * step}s` }}>{tr(n)}</span>
+        </React.Fragment>
+      ))}
+      {!on && <><i className="mp-gap mp-in" style={{ animationDelay: `${2 * step}s` }} aria-hidden="true" /><span className="mp-node off mp-in" style={{ animationDelay: `${2 * step}s` }}>…</span><span className="mp-note mp-in" style={{ animationDelay: `${2 * step}s` }}>{tr({ uz: '(bot.js ishlamayapti)', ru: "(bot.js не работает)" })}</span></>}
+    </div>
+  );
+};
+const WHERE_KINDS = [
+  { id: 'on', label: { uz: 'Laptop yoniq', ru: "Ноутбук открыт" } },
+  { id: 'off', label: { uz: 'Laptop yopiq', ru: "Ноутбук закрыт" } }
+];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [tried, setTried] = useState(storedAnswer ? new Set(['laptop', 'home']) : new Set());
+  const [tried, setTried] = useState(storedAnswer ? new Set(['on', 'off']) : new Set());
+  const [view, setView] = useState(storedAnswer ? 'off' : null);
   const [sc, setSc] = useState(0);
   const done = tried.size >= 2;
-  const send = (kind) => { setTried(prev => new Set(prev).add(kind)); setSc(n => n + 1); };
+  const send = (kind) => { setTried(prev => new Set(prev).add(kind)); setView(kind); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+  const nextKind = WHERE_KINDS.find(k => !tried.has(k.id));
+  const viewKind = WHERE_KINDS.find(k => k.id === view);
   return (
-    <Stage eyebrow={{ uz: 'Sinov · qayerda yashaydi', ru: 'Проба · где он живёт' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ikkalasini sinang (${tried.size}/2)`, ru: `Попробуйте оба (${tried.size}/2)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Tushuncha · bot qayerda ishlaydi', ru: "Понятие · где работает бот" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ikkalasini sinang (${tried.size}/2)`, ru: `Попробуйте оба (${tried.size}/2)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Laptop</span> yoki <span className="italic" style={{ color: T.accent }}>doimiy joy</span> — qayerda yashasin?</>, ru: <><span className="italic" style={{ color: T.accent }}>Ноутбук</span> или <span className="italic" style={{ color: T.accent }}>постоянное место</span> — где ему жить?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Botjon ikki joyda yashashi mumkin. Ikkala tugmani bosib, tunda (siz uxlaganda) nima bo\'lishini solishtiring.', ru: 'Ботжон может жить в двух местах. Нажмите обе кнопки и сравните, что происходит ночью (пока вы спите).' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bot Telegram ichida emas. Unda <span className="italic" style={{ color: T.accent }}>javobni kim yozadi</span>?</>, ru: <>Бот не внутри Telegram. Тогда <span className="italic" style={{ color: T.accent }}>кто пишет ответ</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "1-darsda ko'rgansiz: bot dasturi ishlab tursagina javob beradi. Endi bu dastur qayerda ishlashini ko'ramiz. Ikkala holatda xabar yuborib ko'ring.", ru: "На 1-м уроке вы видели: бот отвечает, только пока работает его программа. Теперь посмотрим, где эта программа работает. Отправьте сообщение в обоих случаях." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: '💻 laptop — vaqtinchalik joy', ru: '💻 ноутбук — временное место' })}</p>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled={tried.has('laptop')} onClick={() => send('laptop')}>{tried.has('laptop') ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: "▶ Laptopda tunni ko'rish", ru: '▶ Посмотреть ночь на ноутбуке' })}</button>
-            {tried.has('laptop') && <TgChat title={{ uz: 'Botjon', ru: 'Ботжон' }} ava="🤖" status={{ uz: 'bot · oflayn ⚫', ru: 'бот · офлайн ⚫' }} input={false} minH={0}><Bubble from="user">{tr({ uz: '03:00 — bormisiz?', ru: '03:00 — вы тут?' })}</Bubble><p className="small" style={{ color: T.danger, fontStyle: 'italic', textAlign: 'center', margin: '4px 0' }}>{tr({ uz: 'Laptop yopiq — Botjon jim ⚫', ru: 'Ноутбук закрыт — Ботжон молчит ⚫' })}</p></TgChat>}
+            {WHERE_KINDS.filter(k => tried.has(k.id)).map(k => <DoneRow key={k.id} onRedo={() => setView(k.id)}>{tr(k.label)}</DoneRow>)}
+            {nextKind && <div className="seq-block fade-step" key={nextKind.id}>
+              <p className="seq-h">{tr(nextKind.label)}</p>
+              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => send(nextKind.id)}>{tr({ uz: '▶ Xabar yuborish', ru: "▶ Отправить сообщение" })}</button>
+            </div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: '🏠 doimiy joy — doim yoqilgan', ru: '🏠 постоянное место — всегда включено' })}</p>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled={tried.has('home')} onClick={() => send('home')}>{tried.has('home') ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: "▶ Doimiy joyda tunni ko'rish", ru: '▶ Посмотреть ночь на постоянном месте' })}</button>
-            {tried.has('home') && <TgChat title={{ uz: 'Botjon', ru: 'Ботжон' }} ava="🤖" status={{ uz: 'bot · onlayn 🟢', ru: 'бот · онлайн 🟢' }} input={false} minH={0}><Bubble from="user">{tr({ uz: '03:00 — bormisiz?', ru: '03:00 — вы тут?' })}</Bubble><Bubble from="bot">{tr({ uz: 'Ha, men 24/7 shu yerdaman 🟢 Buyurtmani qabul qilaman!', ru: 'Да, я здесь 24/7 🟢 Приму ваш заказ!' })}</Bubble></TgChat>}
+            {viewKind && <div className="seq-block fade-step" key={view}>
+              <p className="seq-h">{tr(viewKind.label)}</p>
+              <p className="flow-label">{tr({ uz: "Yo'l", ru: "Путь" })}</p>
+              <MsgPath on={view === 'on'} />
+              <TgChat minH={0}>
+                <Bubble from="user">{tr({ uz: 'Salom!', ru: "Привет!" })}</Bubble>
+                {view === 'on' && <Bubble from="bot" delay="1.05s">{tr({ uz: "Salom! Menyuni ko'rasizmi?", ru: "Привет! Хотите посмотреть меню?" })}</Bubble>}
+              </TgChat>
+            </div>}
           </Col>
         </div></Zoomable>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Farqi aniq: laptop yopilsa Botjon jim, doimiy joy esa hech qachon o'chmaydi. Shuning uchun jiddiy Botjonni doimiy joyga (serverga) <b>ko'chiramiz</b>.</>, ru: <>Разница видна: закрыли ноутбук — Ботжон молчит, а постоянное место не выключается никогда. Поэтому серьёзного Ботжона мы <b>переносим</b> на постоянное место (сервер).</> })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Xabarni Telegram qabul qiladi, javobni esa bot.js yozadi — u laptopingizda ishlaydi. Laptop yopiq bo'lsa, xabar Telegram'da kutib turadi va javob faqat dastur qayta ishga tushganda ketadi — ehtimol, ertalab.", ru: "Сообщение принимает Telegram, а ответ пишет bot.js — он работает на вашем ноутбуке. Если ноутбук закрыт, сообщение ждёт в Telegram, и ответ уйдёт, только когда программа снова запустится, — возможно, утром." })}</p></div>}
       </div>
     </Stage>
   );
@@ -880,78 +892,98 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
-    questionText="Mijozning buyurtmasini ertasi kuni ham eslab qolish — qaysi buyum ishi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mijoz buyurtmasini <span className="italic" style={{ color: T.accent }}>ertasi kuni ham</span> eslab qolish — qaysi buyum?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Помнить заказ клиента <span className="italic" style={{ color: T.accent }}>и на следующий день</span> — какой предмет?</h2></> })}
+    questionText="Mijoz buyurtmasini ertasi kungacha qaysi qism saqlaydi?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mijoz buyurtmasini <span className="italic" style={{ color: T.accent }}>ertasi kungacha</span> qaysi qism saqlaydi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая часть хранит заказ клиента <span className="italic" style={{ color: T.accent }}>до следующего дня</span>?</h2></> })}
     options={[
-      { uz: "🧭 Maslahatchi — chunki u aqlli", ru: '🧭 Советчик — он же умный' },
-      { uz: "📋 Qoidalar varag'i — chunki u ekranda ko'rinib turadi", ru: '📋 Лист правил — он же виден на экране' },
-      { uz: "📓 Daftar (DB) — ma'lumotni doimiy saqlaydi", ru: '📓 Тетрадь (БД) — хранит данные постоянно' },
-      { uz: "Hech qaysi — Botjon eslab qola olmaydi", ru: 'Никакой — Ботжон не умеет запоминать' }
+      { uz: 'AI — suhbatni o\'zi eslab, ertaga davom ettiradi', ru: "ИИ — сам запоминает разговор и продолжит его завтра" },
+      { uz: 'Token — har bir mijozni tanib, eslab turadi', ru: "Токен — узнаёт и запоминает каждого клиента" },
+      { uz: "Baza (PostgreSQL) — ma'lumotni diskda saqlab qoladi", ru: "База (PostgreSQL) — сохраняет данные на диске" },
+      { uz: 'Hech qaysi — bot ertasi kunga hech narsani eslamaydi', ru: "Никакая — до завтра бот ничего не помнит" }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Eslab qolish — 📓 daftar (DB) ishi. Maslahatchi o'ylaydi, varaq buyruq beradi, lekin ma'lumotni doimiy saqlaydigan yagona buyum — daftar.", ru: 'Верно! Запоминание — дело 📓 тетради (БД). Советчик думает, лист даёт команды, но постоянно хранит данные только тетрадь.' }}
+    explainCorrect={{ uz: "Buyurtmani ertasi kungacha baza saqlaydi — ma'lumot diskda turadi.", ru: "Заказ до следующего дня хранит база — данные лежат на диске." }}
     explainWrong={{
-      0: { uz: "Maslahatchi o'ylaydi, lekin o'zi hech narsani saqlamaydi. Saqlash — daftar ishi.", ru: 'Советчик думает, но сам ничего не хранит. Хранение — дело тетради.' },
-      1: { uz: "Varaq tez buyruq uchun — u ma'lumotni saqlamaydi. Bu daftar ishi.", ru: 'Лист нужен для быстрых команд — он не хранит данные. Это дело тетради.' },
-      3: { uz: "Aksincha — daftar (DB) bilan Botjon bemalol eslab qoladi. Aynan shuning uchun o'tgan darsda daftar qo'shdik.", ru: 'Наоборот — с тетрадью (БД) Ботжон отлично запоминает. Именно поэтому на прошлом уроке мы её и добавили.' },
-      default: { uz: "Eslab qolish — 📓 daftar (DB) ishi.", ru: 'Запоминание — дело 📓 тетради (БД).' }
+      0: { uz: "AI suhbatni o'zi eslab qolmaydi — buni 6-darsda ko'rgansiz. Saqlash — baza ishi.", ru: "ИИ сам не запоминает разговор — вы видели это на 6-м уроке. Хранить — дело базы." },
+      1: { uz: "Token botni Telegram'ga tanitadi, mijozlarni esa eslamaydi. Saqlash — baza ishi.", ru: "Токен представляет бота в Telegram, а клиентов не запоминает. Хранить — дело базы." },
+      3: { uz: "Aksincha: baza bilan bot eslab qoladi. Bazani 4-darsda aynan shuning uchun qo'shgansiz.", ru: "Наоборот: с базой бот запоминает. Базу вы добавили на 4-м уроке именно для этого." },
+      default: { uz: 'Buyurtmani ertasi kungacha baza (PostgreSQL) saqlaydi.', ru: "Заказ до следующего дня хранит база (PostgreSQL)." }
     }} />
 );
 
-// ===== SCREEN 5 — MARKAZIY #1: TO'LIQ BOTJONNI YIG'ISH =====
-const ASSEMBLE_SLOTS = [
-  { id: 'fast',   q: { uz: 'Tez buyruq (/start, menyu)?', ru: 'Быстрая команда (/start, меню)?' },              opts: [{ uz: "📋 Varaq — tayyor tugmalar va qatorlar", ru: '📋 Лист — готовые кнопки и строки' }, { uz: "🧭 Maslahatchi — har safar qaytadan o'ylaydi", ru: '🧭 Советчик — каждый раз думает заново' }, { uz: "📓 Daftar — faqat saqlaydi, javob bermaydi", ru: '📓 Тетрадь — только хранит, не отвечает' }], right: 0 },
-  { id: 'free',   q: { uz: 'Erkin, kutilmagan savolga javob?', ru: 'Ответ на свободный, неожиданный вопрос?' },         opts: [{ uz: "📋 Varaqdagi tayyor qator", ru: '📋 Готовая строка на листе' }, { uz: "🧭 Maslahatchi — o'ylab tabiiy javob yozadi", ru: '🧭 Советчик — обдумает и напишет живой ответ' }, { uz: "🔑 Kalit — faqat kirishni ochadi", ru: '🔑 Ключ — только открывает вход' }], right: 1 },
-  { id: 'memory', q: { uz: 'Buyurtmani ertaga ham eslab qolish?', ru: 'Помнить заказ и завтра?' },      opts: [{ uz: "🧭 Maslahatchi — u sizni eslamaydi", ru: '🧭 Советчик — он вас не запоминает' }, { uz: "📋 Varaq — bir martalik javob", ru: '📋 Лист — одноразовый ответ' }, { uz: "📓 Daftar (DB) — doimiy saqlaydi", ru: '📓 Тетрадь (БД) — хранит постоянно' }], right: 2 }
+// ===== SCREEN 5 — MARKAZIY #1: TO'LIQ BOTNI YIG'ISH (vazifalar navbat bilan) =====
+// Ballsiz tanlov (4-savol A): to'g'ri variant o'rni aralash (1 · 1 · 2), shart variant id bo'yicha (indeks emas).
+const PART_NAME = { handler: { uz: 'Handler', ru: "Handler" }, ai: { uz: 'AI', ru: "ИИ" }, baza: { uz: 'Baza', ru: "База" }, token: { uz: 'Token', ru: "Токен" } };
+const ASSEMBLE_TASKS = [
+  { id: 'fast', name: { uz: 'Tez javob', ru: "Быстрый ответ" }, q: { uz: '/start va «Menyu» tugmasiga tayyor javob', ru: "Готовый ответ на /start и кнопку «Меню»" }, right: 'handler',
+    opts: [
+      { id: 'ai', t: { uz: 'AI — har safar javobni qaytadan yozadi', ru: "ИИ — каждый раз пишет ответ заново" } },
+      { id: 'handler', t: { uz: 'Handler — hodisaga oldindan yozilgan javob', ru: "Handler — заранее написанный ответ на событие" } },
+      { id: 'baza', t: { uz: "Baza — ma'lumotni saqlaydi, javob yubormaydi", ru: "База — хранит данные, ответы не отправляет" } }
+    ] },
+  { id: 'free', name: { uz: 'Erkin savol', ru: "Свободный вопрос" }, q: { uz: "Menyuda yo'q erkin savol: «Achchiq bo'lmagani qaysi?»", ru: "Свободный вопрос, которого нет в меню: «Какая из них не острая?»" }, right: 'ai',
+    opts: [
+      { id: 'handler', t: { uz: 'Handler — faqat oldindan yozilgan javob', ru: "Handler — только заранее написанный ответ" } },
+      { id: 'ai', t: { uz: 'AI — savolga qarab javob yozadi', ru: "ИИ — пишет ответ под вопрос" } },
+      { id: 'token', t: { uz: "Token — faqat botni Telegram'ga tanitadi", ru: "Токен — только представляет бота в Telegram" } }
+    ] },
+  { id: 'proof', name: { uz: "Telegram'ga tanitish", ru: "Представить бота в Telegram" }, q: { uz: "Telegram'ga «bu bot meniki» deb isbotlash", ru: "Доказать Telegram: «это мой бот»" }, right: 'token',
+    opts: [
+      { id: 'ai', t: { uz: "AI — o'zini bot egasi deb tanishtiradi", ru: "ИИ — представляется владельцем бота" } },
+      { id: 'handler', t: { uz: 'Handler — /start da egasining ismini aytadi', ru: "Handler — на /start называет имя владельца" } },
+      { id: 'token', t: { uz: "Token — so'rov sizning botingizdan ekanini tasdiqlaydi", ru: "Токен — подтверждает, что запрос от вашего бота" } }
+    ] }
 ];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
-  const [choice, setChoice] = useState(() => storedAnswer ? { fast: 0, free: 1, memory: 2 } : {});
+  const [choice, setChoice] = useState(() => storedAnswer ? { fast: 'handler', free: 'ai', proof: 'token' } : {});
   const wrongEverRef = useRef(!!(storedAnswer && storedAnswer.correct === false));
-  const [tried, setTried] = useState(false);
   const [sc, setSc] = useState(0);
   const fired = useRef(!!storedAnswer);
-  const allRight = ASSEMBLE_SLOTS.every(s => choice[s.id] === s.right);
-  const done = ASSEMBLE_SLOTS.every(s => choice[s.id] !== undefined) && allRight;
-  const pick = (slotId, idx, right) => {
-    setTried(true);
-    if (idx !== right) {
+  const isOk = (t) => choice[t.id] === t.right;
+  const done = ASSEMBLE_TASKS.every(isOk);
+  const cur = ASSEMBLE_TASKS.find(t => !isOk(t));
+  const pick = (task, optId) => {
+    if (optId !== task.right) {
       wrongEverRef.current = true;
-      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: xato buyum — nishon birinchi urinishga (F5 da ham saqlanadi)
+      if (achMiss) achMiss.miss(screen); // 151-qonun: xato qism — nishon birinchi urinishga (F5 da ham saqlanadi)
     }
-    setChoice(c => ({ ...c, [slotId]: idx }));
+    setChoice(c => ({ ...c, [task.id]: optId }));
     setSc(n => n + 1);
   };
+  const redo = (taskId) => { setChoice(c => { const n = { ...c }; delete n[taskId]; return n; }); setSc(n => n + 1); };
   useEffect(() => {
     if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'builder', screenIdx: screen, correct: !wrongEverRef.current, picked: true, solved: true }); }
   }, [done]);
-  const labelOf = (slotId) => choice[slotId] !== undefined ? tr(ASSEMBLE_SLOTS.find(s => s.id === slotId).opts[choice[slotId]]) : '…';
   return (
-    <Stage eyebrow={{ uz: 'Markaziy · #1', ru: 'Главное · #1' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Botjonni yig'ing", ru: 'Соберите Ботжона' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Markaziy · #1', ru: 'Главное · #1' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Botni yig'ing", ru: "Соберите бота" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>To'liq Botjonni</span> o'zingiz yig'ing.</>, ru: <>Соберите <span className="italic" style={{ color: T.accent }}>полного Ботжона</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Har vazifaga to'g'ri buyumni ulang — birga qo'shilib, to'liq ishlaydigan Botjon bo'ladi. Noto'g'ri buyum ham tanlanishi mumkin — ehtiyot bo'ling.", ru: 'К каждой задаче подключите правильный предмет — вместе получится полностью рабочий Ботжон. Неправильный предмет тоже можно выбрать — будьте внимательны.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>To'liq botni</span> o'zingiz yig'ing.</>, ru: <>Соберите <span className="italic" style={{ color: T.accent }}>полного бота</span> сами.</> })}</h2></div>
+        <Mentor>{tr({ uz: 'Har vazifaga uni bajaradigan qismni tanlang.', ru: "Для каждой задачи выберите часть, которая её выполняет." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            {ASSEMBLE_SLOTS.map(s => (
-              <div key={s.id} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <p className="flow-label">{tr(s.q)}</p>
-                {s.opts.map((o, i) => {
-                  const sel = choice[s.id] === i;
-                  const wrongPick = sel && i !== s.right;
-                  return (<button key={i} className={`pick-row ${sel ? 'sel' : ''} ${wrongPick ? 'shake' : ''}`} onClick={() => pick(s.id, i, s.right)}><span style={{ flex: 1 }}>{tr(o)}</span><span className="pick-plus">{sel ? (i === s.right ? '✓' : '✗') : '▶'}</span></button>);
-                })}
-              </div>
-            ))}
+            {ASSEMBLE_TASKS.map(t => {
+              if (isOk(t)) return <DoneRow key={t.id} onRedo={done ? undefined : () => redo(t.id)} redoLabel={{ uz: "O'zgartirish", ru: "Изменить" }}>{tr(t.name)} → {tr(PART_NAME[t.right])}</DoneRow>;
+              if (t !== cur) return null;
+              const sel = choice[t.id];
+              return (
+                <div key={t.id} className="seq-block fade-step">
+                  <p className="seq-h">{tr(t.q)}</p>
+                  {t.opts.map(o => {
+                    const isSel = sel === o.id;
+                    const cls = isSel ? (o.id === t.right ? 'ok' : 'bad') : '';
+                    return (<button key={o.id} className={`pick-row ${cls}`} onClick={() => pick(t, o.id)}><span style={{ flex: 1 }}>{tr(o.t)}</span><span className="pick-plus">{isSel ? (o.id === t.right ? '✓' : '✕') : ''}</span></button>);
+                  })}
+                  {sel !== undefined && sel !== t.right && <p className="seq-err fade-step">{tr({ uz: 'Bu qism bu vazifani bajarmaydi — boshqasini tanlang.', ru: "Эта часть не выполняет эту задачу — выберите другую." })}</p>}
+                </div>
+              );
+            })}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "yig'ilayotgan Botjon", ru: 'Ботжон в сборке' })}</p>
-            <div className={`sk-info ${done ? '' : ''}`}>
-              <p className="note-h">{tr({ uz: '🤖 Botjon', ru: '🤖 Ботжон' })}</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Tez buyruqqa →', ru: 'На быструю команду →' })} {labelOf('fast')}. {tr({ uz: 'Erkin savolga →', ru: 'На свободный вопрос →' })} {labelOf('free')}. {tr({ uz: 'Eslab qolishga →', ru: 'На запоминание →' })} {labelOf('memory')}.</p>
+            <p className="flow-label">{tr({ uz: "Yig'ilayotgan bot", ru: "Бот в сборке" })}</p>
+            <div className={`asm-panel ${done ? 'done' : ''}`}>
+              {ASSEMBLE_TASKS.map(t => { const on = isOk(t); return (<div key={t.id} className={`asm-row ${on ? 'on' : ''}`}><i className="asm-link" aria-hidden="true" /><span>{tr(t.name)} → <b>{on ? tr(PART_NAME[t.right]) : '…'}</b></span></div>); })}
+              {done && <p className="asm-ok fade-step">{tr({ uz: "✓ Bot yig'ildi. Hozircha u laptopingizda ishlaydi.", ru: "✓ Бот собран. Пока он работает на вашем ноутбуке." })}</p>}
             </div>
             {!done && <AchRule screen={screen} />}
-            {tried && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ba'zi buyumlar hali noto'g'ri — ✗ belgisini toping va to'g'risini ulang.", ru: 'Некоторые предметы пока подобраны неверно — найдите знак ✗ и подключите правильный.' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Har vazifa o'z buyumiga bog'landi: 📋 varaq, 🧭 maslahatchi, 📓 daftar. To'liq Botjon tayyor — endi unga doimiy joy beramiz.", ru: 'Отлично! Каждая задача связана со своим предметом: 📋 лист, 🧭 советчик, 📓 тетрадь. Полный Ботжон готов — теперь дадим ему постоянное место.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -959,46 +991,40 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 6 — KOMPYUTER O'CHDI: QAYSI BOTJON ISHLAYDI (kichik) =====
+// ===== SCREEN 6 — LAPTOP VA SERVER: laptopni yopsak, qaysi bot javob beradi =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [off, setOff] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = off;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Sinov · doimiy joy', ru: 'Проба · постоянное место' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Kompyuterni o'chiring", ru: 'Выключите компьютер' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Tushuncha · server', ru: "Понятие · сервер" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Laptopni yoping', ru: "Закройте ноутбук" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kompyuterni o'chirsak — <span className="italic" style={{ color: T.accent }}>qaysi Botjon</span> ishlaydi?</>, ru: <>Выключим компьютер — <span className="italic" style={{ color: T.accent }}>какой Ботжон</span> будет работать?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Bitta Botjon laptopda, bittasi doimiy joyda yashaydi. Tugmani bosib, laptopni o\'chiring — ikkalasiga nima bo\'lishini ko\'ring.', ru: 'Один Ботжон живёт на ноутбуке, другой — на постоянном месте. Нажмите кнопку и выключите ноутбук — посмотрите, что станет с обоими.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Laptopni yopsak, <span className="italic" style={{ color: T.accent }}>qaysi bot</span> javob beradi?</>, ru: <>Если закрыть ноутбук, <span className="italic" style={{ color: T.accent }}>какой бот</span> ответит?</> })}</h2></div>
+        <Mentor>{tr({ uz: 'Bir xil bot ikki joyda ishlayapti: laptopingizda va serverda. Laptopni yoping va ikkalasini solishtiring.', ru: "Один и тот же бот работает в двух местах: на вашем ноутбуке и на сервере. Закройте ноутбук и сравните оба." })}</Mentor>
         <Zoomable><div className="split">
-          <Col>
-            <div className="sk-info" style={{ opacity: off ? 0.55 : 1 }}>
-              <p className="note-h" style={{ color: off ? T.danger : T.ink2 }}>{tr({ uz: '💻 Laptop (vaqtinchalik joy)', ru: '💻 Ноутбук (временное место)' })}</p>
-              <p className="body" style={{ margin: 0, color: off ? T.danger : T.ink }}>{off ? tr({ uz: "⚫ O'chdi — Botjon ham jim!", ru: '⚫ Выключился — и Ботжон замолчал!' }) : tr({ uz: '🟢 Botjon ishlayapti (siz onlaynsiz)', ru: '🟢 Ботжон работает (вы онлайн)' })}</p>
-            </div>
-            <div className="sk-info" style={{ boxShadow: `inset 0 0 0 1.5px ${T.success}55` }}>
-              <p className="note-h" style={{ color: T.success }}>{tr({ uz: '🏠 Doimiy joy (server)', ru: '🏠 Постоянное место (сервер)' })}</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '🟢 Botjon doim onlayn — siz uxlasangiz ham 24/7 ishlaydi ✅', ru: '🟢 Ботжон всегда онлайн — работает 24/7, даже пока вы спите ✅' })}</p>
-            </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={off} onClick={() => { setOff(true); setSc(n => n + 1); }}>{off ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: "💻 Kompyuterni o'chirish", ru: '💻 Выключить компьютер' })}</button>
-          </Col>
-          <Col>
-            {off
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Laptop o'chdi — undagi Botjon jim. Lekin <b>doimiy joydagi Botjon ishlayveradi</b>. Shuning uchun jiddiy Botjonni doimo doimiy joyga qo'yamiz.</>, ru: <>Ноутбук выключился — Ботжон на нём молчит. Но <b>Ботжон на постоянном месте продолжает работать</b>. Поэтому серьёзного Ботжона всегда селим на постоянное место.</> })}</p></div>
-              : null}
-            {done && <div className="sk-info fade-step"><p className="note-h">{tr({ uz: '🏠 Doimiy joy', ru: '🏠 Постоянное место' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Doimiy joy — doim yoqilgan kompyuter. Uni ijaraga olasiz; qaysi xizmatni tanlashni AI'dan so'rashingiz mumkin. Siz uchun muhimi — <b>Botjon doim jonli</b> turishi.</>, ru: <>Постоянное место — всегда включённый компьютер. Его арендуют; какую именно услугу выбрать, можно спросить у ИИ. Для вас важно одно — чтобы <b>Ботжон всегда был живым</b>.</> })}</p></div>}
-          </Col>
+          <div className={`st-card ${off ? 'dim' : ''}`}>
+            <p className="st-h">{tr({ uz: 'Laptop', ru: "Ноутбук" })}</p>
+            <p className="st-row"><span className={`st-dot ${off ? 'off' : ''}`} aria-hidden="true" />{off ? tr({ uz: "to'xtadi — javob yo'q", ru: "остановился — ответа нет" }) : tr({ uz: 'ishlayapti', ru: "работает" })}</p>
+          </div>
+          <div className="st-card">
+            <p className="st-h">{tr({ uz: 'Server', ru: "Сервер" })}</p>
+            <p className="st-row"><span className="st-dot" aria-hidden="true" />{off ? tr({ uz: 'ishlayapti — javob berdi', ru: "работает — ответил" }) : tr({ uz: 'ishlayapti', ru: "работает" })}</p>
+          </div>
         </div></Zoomable>
+        <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={off} onClick={() => { setOff(true); setSc(n => n + 1); }}>{off ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: '▶ Laptopni yopish', ru: "▶ Закрыть ноутбук" })}</button>
+        {off && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Server</b> — internetga ulangan va to'xtamay ishlashga mo'ljallangan kompyuter. U uyingizda turmaydi: botlar uchun uni hosting xizmatidan ijaraga olasiz. Kodni serverga joylab, u yerda ishga tushirish <b>deploy</b> deyiladi.</>, ru: <><b>Сервер</b> — компьютер, подключённый к интернету и рассчитанный на работу без остановки. Он стоит не у вас дома: для ботов его арендуют у хостинг-сервиса. Разместить код на сервере и запустить его там — это и называется <b>деплой</b>.</> })}</p></div>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 7 — MARKAZIY #2: KALIT SINOVI (doimiy joyga xavfsiz ko'chirish) =====
+// ===== SCREEN 7 — MARKAZIY #2: TOKEN SERVERDA =====
+// Ballsiz tanlov: to'g'ri variant 2-o'rinda, shart variant id bo'yicha ('env').
 const KEY_SPOTS = [
-  { id: 'open', label: { uz: "Kod ichida ochiq — ko'rish oson bo'lsin", ru: 'Открыто в коде — чтобы было легко смотреть' } },
-  { id: 'env',  label: { uz: "Qulfli tortmada (.env) — kod faqat `process.env` yozuvini ko'radi", ru: 'В запертом ящике (.env) — код видит только запись `process.env`' } },
-  { id: 'chat', label: { uz: "Mijozga chatda yuborib qo'yamiz", ru: 'Отправим клиенту в чат' } }
+  { id: 'code', label: { uz: 'bot.js ichiga — kod bilan birga serverga boradi', ru: "В bot.js — попадёт на сервер вместе с кодом" } },
+  { id: 'env', label: { uz: "Server sozlamalariga — kod uni `process.env` dan o'qiydi", ru: "В настройки сервера — код читает его из `process.env`" } },
+  { id: 'git', label: { uz: "`.env` ni ham GitHub'ga yuklaymiz — server o'zi topadi", ru: "Загрузим и `.env` на GitHub — сервер сам найдёт" } }
 ];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1010,32 +1036,33 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: choice === 'env', picked: choice, solved: true }); } }, [done, choice]);
   const pick = (id) => { if (choice !== null) return; if (id !== 'env' && achMiss) achMiss.miss(screen); setChoice(id); setSc(n => n + 1); };
   return (
-    <Stage eyebrow={{ uz: 'Markaziy · #2', ru: 'Главное · #2' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Kalitni to'g'ri joylang", ru: 'Положите ключ правильно' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Markaziy · #2', ru: 'Главное · #2' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tokenni to'g'ri joylang", ru: "Разместите токен правильно" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Kalit sinovi</span> — doimiy joyga xavfsiz ko'chiring.</>, ru: <><span className="italic" style={{ color: T.accent }}>Испытание ключом</span> — перенесите на постоянное место безопасно.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Botjonni doimiy joyga ko'chirayapmiz. Avval tugmani bosib, 🔑 kalitni kod ichida ochiq qoldirsak nima bo'lishini ko'ring — keyin uni qayerda saqlashni tanlang.", ru: 'Переносим Ботжона на постоянное место. Сначала нажмите кнопку и посмотрите, что будет, если оставить 🔑 ключ открытым в коде, — потом выберите, где его хранить.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Token serverga <span className="italic" style={{ color: T.accent }}>qanday yetib boradi</span>?</>, ru: <>Как токен <span className="italic" style={{ color: T.accent }}>попадает на сервер</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Kodni GitHub orqali serverga joyladingiz. Tugmani bosing va bot u yerda ishga tushadimi — ko'ring.", ru: "Вы разместили код на сервере через GitHub. Нажмите кнопку и посмотрите, запустится ли там бот." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <Term title="bot.js" minH={64}>
-              <TLine out={tr({ uz: '// 🔑 kalit ochiq kodda:', ru: '// 🔑 ключ открыто в коде:' })} />
-              <TLine out={`const token = ${demoed ? '"12345:AbC-xizmat-kaliti"' : '"..."'};`} col={CODE.str} />
+            <Term title={{ uz: 'bot.js · serverda', ru: "bot.js · на сервере" }} minH={64}>
+              <TLine out="const bot = new Telegraf(process.env.BOT_TOKEN)" col={CODE.text} />
+              <TLine out="bot.launch()" col={CODE.text} />
             </Term>
-            <button className={`btn-soft ${demoed ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={demoed} onClick={() => { setDemoed(true); setSc(n => n + 1); }}>{demoed ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: "▶ Kalitni ochiq qoldirib ko'rish", ru: '▶ Посмотреть, если оставить ключ открытым' })}</button>
-            {demoed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ Kalit ochiq ko'rinib qoldi! Kimdir kodni ko'rsa (masalan git'da), kalitni nusxalab, <b>sizning Botjoningizni boshqarib</b> ketishi mumkin.</>, ru: <>⚠️ Ключ оказался на виду! Если кто-то увидит код (например, в git), он скопирует ключ и сможет <b>управлять вашим Ботжоном</b>.</> })}</p></div>}
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={demoed} onClick={() => { setDemoed(true); setSc(n => n + 1); }}>{demoed ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: '▶ Serverda ishga tushirish', ru: "▶ Запустить на сервере" })}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Doimiy joyda 🔑 kalitni qayerda saqlaymiz?', ru: 'Где на постоянном месте хранить 🔑 ключ?' })}</p>
-            {demoed && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+            {demoed && <>
+              {!done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "Bot ishga tushmadi: `process.env.BOT_TOKEN` bo'sh. Kod serverga keldi, `.env` esa kelmadi — u `.gitignore` da, Git uni yuklamaydi.", ru: "Бот не запустился: `process.env.BOT_TOKEN` пуст. Код пришёл на сервер, а `.env` — нет: он в `.gitignore`, Git его не загружает." }))}</p></div>}
+              {done && choice === 'env' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "✓ Token server sozlamalariga (odatda Environment yoki Variables bo'limi) yoziladi — kod uni `process.env` dan o'qiydi.", ru: "✓ Токен записывают в настройки сервера (обычно раздел Environment или Variables) — код читает его из `process.env`." }))}</p></div>}
+              {done && choice !== 'env' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "Bu xavfli: kod yoki `.env` GitHub'ga chiqsa, token hammaga ko'rinadi. To'g'ri yo'l — tokenni server sozlamalariga yozish; kodda faqat `process.env.BOT_TOKEN` qoladi.", ru: "Это опасно: если код или `.env` попадут на GitHub, токен увидят все. Правильный путь — записать токен в настройки сервера; в коде остаётся только `process.env.BOT_TOKEN`." }))}</p></div>}
+              <p className="q-ask fade-step">{tr({ uz: 'Serverda tokenni qayerga yozasiz?', ru: "Куда на сервере вы запишете токен?" })}</p>
+              <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 {KEY_SPOTS.map(s => {
                   const sel = choice === s.id;
-                  return <button key={s.id} className={`pick-row ${sel ? 'sel' : ''}`} disabled={choice !== null} onClick={() => pick(s.id)}><span style={{ flex: 1 }}>{fmtCode(tr(s.label))}</span><span className="pick-plus">{sel ? (s.id === 'env' ? '✓' : '✗') : '▶'}</span></button>;
+                  const cls = sel ? (s.id === 'env' ? 'ok' : 'bad') : '';
+                  return <button key={s.id} className={`pick-row ${cls}`} disabled={choice !== null} onClick={() => pick(s.id)}><span style={{ flex: 1 }}>{fmtCode(tr(s.label))}</span><span className="pick-plus">{sel ? (s.id === 'env' ? '✓' : '✕') : ''}</span></button>;
                 })}
               </div>
-            )}
-            <AchRule screen={screen} once />
-            {done && choice === 'env' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! Kalit qulfli tortmada (.env) — kod faqat `process.env` yozuvini ko'radi, kalitning o'zi maxfiy qoladi va git'ga tushmaydi.", ru: '✓ Верно! Ключ в запертом ящике (.env) — код видит только запись `process.env`, сам ключ остаётся секретным и не попадает в git.' })}</p></div>}
-            {done && choice !== 'env' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu xavfli — kalit oshkor bo'ladi. To'g'ri javob: kalit <b>qulfli tortmada (.env)</b> saqlanadi, kodda faqat `process.env` yozuvi turadi.</>, ru: <>Это опасно — ключ станет открытым. Правильный ответ: ключ хранится <b>в запертом ящике (.env)</b>, а в коде стоит только запись `process.env`.</> })}</p></div>}
+              <AchRule screen={screen} once />
+            </>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1046,66 +1073,97 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — TEST 2 =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
-    questionText="Doimiy joy (server) Botjonga nima beradi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>🏠 <span className="mono" style={{ color: T.accent }}>Doimiy joy</span> (server) Botjonga nima beradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>🏠 Что даёт Ботжону <span className="mono" style={{ color: T.accent }}>постоянное место</span> (сервер)?</h2></> })}
+    questionText="Nega serverda BOT_TOKEN ni alohida sozlash kerak?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nega serverda <span style={{ whiteSpace: 'nowrap' }}><span className="mono" style={{ color: T.accent }}>BOT_TOKEN</span> ni</span> alohida sozlash kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Почему на сервере <span style={{ whiteSpace: 'nowrap' }}><span className="mono" style={{ color: T.accent }}>BOT_TOKEN</span></span> нужно настраивать отдельно?</h2></> })}
     options={[
-      { uz: "24/7 ishlashni — siz uxlasangiz ham u jonli qoladi", ru: 'Работу 24/7 — он остаётся живым, даже когда вы спите' },
-      { uz: "Botni chiroyliroq rangga bo'yaydi", ru: 'Красит бота в более красивый цвет' },
-      { uz: "Butun uy uchun internetni tezlashtiradi", ru: 'Ускоряет интернет во всём доме' },
-      { uz: "Kodni o'zi to'liq yozib beradi, endi sizga kod yozish kerak emas", ru: 'Сам полностью пишет код — теперь вам код писать не нужно' }
+      { uz: 'Token yozilgan fayl serverga kod bilan bormaydi', ru: "Файл с токеном не попадает на сервер вместе с кодом" },
+      { uz: 'Serverda Telegram botga boshqa token beradi', ru: "На сервере Telegram выдаёт боту другой токен" },
+      { uz: 'Token faqat bir kun ishlaydi, keyin almashadi', ru: "Токен работает только один день, потом меняется" },
+      { uz: 'Laptopdagi token serverda ishlamay qoladi', ru: "Токен с ноутбука перестаёт работать на сервере" }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Doimiy joy — doim yoqilgan kompyuter. Botjonni u yerga ko'chirsangiz, u siz uxlaganda ham, laptopingiz o'chganda ham 24/7 jonli ishlaydi.", ru: 'Верно! Постоянное место — всегда включённый компьютер. Перенесёте Ботжона туда — и он работает 24/7: и пока вы спите, и когда ноутбук выключен.' }}
+    explainCorrect={{ uz: 'Token yozilgan `.env` fayli `.gitignore` da — Git uni serverga yuklamaydi.', ru: "Файл `.env` с токеном лежит в `.gitignore` — Git не загружает его на сервер." }}
     explainWrong={{
-      1: { uz: "Rangga aloqasi yo'q — doimiy joy Botjonni doim jonli ushlab turadi, xolos.", ru: 'К цвету это отношения не имеет — постоянное место просто держит Ботжона живым.' },
-      2: { uz: "Uy internetiga aloqasi yo'q — bu Botjonning yashash joyi.", ru: 'К домашнему интернету отношения нет — это место жительства Ботжона.' },
-      3: { uz: "Kodni siz (AI yordamida) yozasiz; doimiy joy shuni doim jonli ishlatib turadi.", ru: 'Код пишете вы (с помощью ИИ); постоянное место просто держит его живым.' },
-      default: { uz: "Doimiy joy Botjonni 24/7 jonli ishlatadi.", ru: 'Постоянное место держит Ботжона живым 24/7.' }
+      1: { uz: 'Token bitta — uni @BotFather bergan. Server uchun Telegram yangi token bermaydi.', ru: "Токен один — его выдал @BotFather. Для сервера Telegram новый токен не выдаёт." },
+      2: { uz: 'Token /revoke qilinmaguncha ishlayveradi — har kuni almashmaydi.', ru: "Токен работает, пока его не отозвали через /revoke, — каждый день он не меняется." },
+      3: { uz: 'Token istalgan kompyuterda ishlaydi. Muammo boshqa: u yozilgan `.env` fayli serverga bormaydi.', ru: "Токен работает на любом компьютере. Проблема в другом: файл `.env`, где он записан, не попадает на сервер." },
+      default: { uz: 'Token yozilgan `.env` fayli kod bilan birga serverga bormaydi.', ru: "Файл `.env` с токеном не попадает на сервер вместе с кодом." }
     }} />
 );
 
-// ===== SCREEN 9 — MARKAZIY #3: ALOQA USULI (o'zi-so'rab-turish vs qo'ng'iroq) =====
-const RECEIVE_DEMO = {
-  poll: [{ uz: "Botjon: yangi xabar bormi?", ru: 'Ботжон: есть новое сообщение?' }, { uz: "Telegram: yo'q.", ru: 'Telegram: нет.' }, { uz: "Botjon: yangi xabar bormi?", ru: 'Ботжон: есть новое сообщение?' }, { uz: "Telegram: ha, bitta bor! → Botjon javob beradi", ru: 'Telegram: да, одно есть! → Ботжон отвечает' }],
-  hook: [{ uz: "Telegram: xabar bor! 🔔", ru: 'Telegram: есть сообщение! 🔔' }, { uz: "Botjon: qabul qildim, darhol javob beraman", ru: 'Ботжон: принял, отвечаю сейчас же' }]
+// ===== SCREEN 9 — MARKAZIY #3: POLLING VA WEBHOOK =====
+const RECEIVE_KINDS = [
+  { id: 'poll', label: 'Polling', def: { uz: "Bot Telegram'dan qayta-qayta so'raydi: «Yangi xabar bormi?».", ru: "Бот снова и снова спрашивает у Telegram: «Есть новое сообщение?»." },
+    rows: [
+      { from: { uz: 'bot', ru: 'бот' }, to: 'Telegram', m: { uz: 'Yangi xabar bormi?', ru: "Есть новое сообщение?" } },
+      { from: 'Telegram', to: { uz: 'bot', ru: 'бот' }, m: { uz: "Yo'q.", ru: "Нет." } },
+      { from: { uz: 'bot', ru: 'бот' }, to: 'Telegram', m: { uz: 'Yangi xabar bormi?', ru: "Есть новое сообщение?" } },
+      { from: 'Telegram', to: { uz: 'bot', ru: 'бот' }, m: { uz: 'Ha, bitta: «Salom!»', ru: "Да, одно: «Привет!»" } }
+    ] },
+  { id: 'hook', label: 'Webhook', def: { uz: 'Telegram yangi xabarni botning internetdagi manziliga (URL) yuboradi. Buning uchun ochiq manzil kerak.', ru: "Telegram отправляет новое сообщение на адрес бота в интернете (URL). Для этого нужен открытый адрес." },
+    rows: [
+      { from: 'Telegram', to: { uz: 'botning manzili', ru: "адрес бота" }, m: { uz: 'yangi xabar «Salom!»', ru: "новое сообщение «Привет!»" } }
+    ] }
+];
+// Polling: bot → Telegram strelkasi qayta chiziladi; webhook: bot jim turadi, keyin bitta strelka Telegram → bot (A7)
+const Exchange = ({ kind }) => {
+  const k = RECEIVE_KINDS.find(x => x.id === kind);
+  const step = kind === 'poll' ? 0.3 : 0.5;
+  const base = kind === 'poll' ? 0 : 0.4;
+  return (
+    <div className="ex">
+      {k.rows.map((r, i) => (
+        <div key={i} className="ex-row" style={{ animationDelay: `${base + i * step}s` }}>
+          <span className="ex-who">{tr(r.from)}</span>
+          <i className="mp-arr" style={{ animationDelay: `${base + i * step + 0.05}s` }} aria-hidden="true" />
+          <span className="ex-who">{tr(r.to)}</span>
+          <span className="ex-msg">{tr(r.m)}</span>
+        </div>
+      ))}
+      <p className="ex-row ex-end" style={{ animationDelay: `${base + k.rows.length * step}s` }}>{tr({ uz: 'bot javob beradi', ru: "бот отвечает" })}</p>
+    </div>
+  );
 };
+// Ballsiz tanlov: to'g'ri variant 2-o'rinda, shart variant id bo'yicha ('poll').
+const RECEIVE_CHOICES = [{ id: 'hook', label: 'Webhook' }, { id: 'poll', label: 'Polling' }];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
-  const [seenPoll, setSeenPoll] = useState(!!storedAnswer);
-  const [seenHook, setSeenHook] = useState(!!storedAnswer);
+  const [seen, setSeen] = useState(storedAnswer ? new Set(['poll', 'hook']) : new Set());
+  const [view, setView] = useState(storedAnswer ? 'hook' : null);
   const [choice, setChoice] = useState(storedAnswer ? (storedAnswer.picked ?? 'poll') : null);
   const [sc, setSc] = useState(0);
-  const bothSeen = seenPoll && seenHook;
+  const bothSeen = seen.size >= 2;
   const done = bothSeen && choice !== null;
   const fired = useRef(!!storedAnswer);
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: choice === 'poll', picked: choice, solved: true }); } }, [done, choice]);
-  const seeP = () => { setSeenPoll(true); setSc(n => n + 1); };
-  const seeH = () => { setSeenHook(true); setSc(n => n + 1); };
+  const see = (id) => { setSeen(prev => new Set(prev).add(id)); setView(id); setSc(n => n + 1); };
   const pick = (v) => { if (choice !== null) return; if (v !== 'poll' && achMiss) achMiss.miss(screen); setChoice(v); setSc(n => n + 1); };
+  const nextKind = RECEIVE_KINDS.find(k => !seen.has(k.id));
+  const viewKind = RECEIVE_KINDS.find(k => k.id === view);
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #3', ru: 'Главное · #3' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini sinab ko'ring", ru: 'Попробуйте оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjon xabarni qanday <span className="italic" style={{ color: T.accent }}>oladi</span> — 2 usul.</>, ru: <>Как Ботжон <span className="italic" style={{ color: T.accent }}>получает</span> сообщение — 2 способа.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Yangi xabar kelganini Botjon ikki yo'l bilan biladi. Ikkala tugmani bosib, farqni ko'ring — keyin kichik do'kon boti uchun qaysi soddaroq ekanini tanlang.", ru: 'О новом сообщении Ботжон узнаёт двумя путями. Нажмите обе кнопки и увидьте разницу — затем выберите, какой способ проще для бота маленького магазина.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Serverdagi bot yangi xabarni <span className="italic" style={{ color: T.accent }}>qanday oladi</span>?</>, ru: <>Как бот на сервере <span className="italic" style={{ color: T.accent }}>получает</span> новое сообщение?</> })}</h2></div>
+        <Mentor>{tr({ uz: "1-darsda ikki usulni ko'rgansiz. Endi bot serverda — ikkalasini yana bosib ko'ring.", ru: "На 1-м уроке вы видели два способа. Теперь бот на сервере — нажмите на оба ещё раз." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="dial-row">
-              <button className={`dial-btn ${seenPoll ? 'on' : ''}`} onClick={seeP}>{tr({ uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' })}</button>
-              <button className={`dial-btn ${seenHook ? 'on' : ''}`} onClick={seeH}>{tr({ uz: "Qo'ng'iroq", ru: 'Звонок' })}</button>
-            </div>
-            {seenPoll && <TgChat title={{ uz: "🔁 o'zi-so'rab-turish", ru: '🔁 сам спрашивает' }} ava="🔁" status="polling" input={false} minH={0}>{RECEIVE_DEMO.poll.map((r, i) => <Bubble from={i % 2 ? 'bot' : 'user'} key={`p${i}`}>{tr(r)}</Bubble>)}</TgChat>}
-            {seenHook && <TgChat title={{ uz: "🔔 qo'ng'iroq", ru: '🔔 звонок' }} ava="🔔" status="webhook" input={false} minH={0}>{RECEIVE_DEMO.hook.map((r, i) => <Bubble from={i % 2 ? 'bot' : 'user'} key={`h${i}`}>{tr(r)}</Bubble>)}</TgChat>}
+            {RECEIVE_KINDS.filter(k => seen.has(k.id)).map(k => <DoneRow key={k.id} onRedo={() => setView(k.id)}>{k.label}</DoneRow>)}
+            {nextKind && <button key={nextKind.id} className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => see(nextKind.id)}>▶ {nextKind.label}</button>}
+            {bothSeen && <div className="seq-block fade-step">
+              <p className="q-ask">{tr({ uz: 'Kichik bot uchun qaysi usulni sozlash soddaroq?', ru: "Какой способ проще настроить для маленького бота?" })}</p>
+              <div className="dial-row">
+                {RECEIVE_CHOICES.map(c => <button key={c.id} className={`dial-btn ${choice === c.id ? (c.id === 'poll' ? 'ok' : 'bad') : ''}`} disabled={choice !== null} onClick={() => pick(c.id)}>{c.label}</button>)}
+              </div>
+              <AchRule screen={screen} once />
+              {done && choice === 'poll' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "✓ Polling qo'shimcha sozlashsiz ishlaydi — 5-darsdagi `bot.launch()` ham shu usulda.", ru: "✓ Polling работает без дополнительной настройки — `bot.launch()` с 5-го урока тоже работает так." }))}</p></div>}
+              {done && choice === 'hook' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Webhook ham ishlaydi, lekin unga serverda ochiq manzil (URL) va qo'shimcha sozlash kerak — sozlash soddaroq yo'l polling.", ru: "Webhook тоже работает, но ему нужен открытый адрес (URL) на сервере и дополнительная настройка — проще настроить polling." })}</p></div>}
+            </div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Tanlov', ru: 'Выбор' })}</p>
-            {!bothSeen ? null : (
-              <div className="dial-row">
-                <button className={`dial-btn ${choice === 'poll' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('poll')}>{tr({ uz: "🔁 O'zi-so'rab-turish", ru: '🔁 Сам спрашивает' })}</button>
-                <button className={`dial-btn ${choice === 'hook' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('hook')}>{tr({ uz: "🔔 Qo'ng'iroq", ru: '🔔 Звонок' })}</button>
-              </div>
-            )}
-            <AchRule screen={screen} once />
-            {done && choice === 'poll' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! Kichik bot uchun o'zi-so'rab-turish (polling) soddaroq — hech qanday maxsus sozlash kerak emas. Foydalanuvchi ko'paysa, qo'ng'iroqqa (webhook) o'tasiz.", ru: '✓ Верно! Для маленького бота «сам спрашивает» (polling) проще — никакой особой настройки не нужно. Станет больше пользователей — перейдёте на звонок (webhook).' })}</p></div>}
-            {done && choice === 'hook' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qo'ng'iroq (webhook) tezroq, lekin qo'shimcha sozlash talab qiladi. Kichik bot uchun soddaroq yo'l — o'zi-so'rab-turish (polling).", ru: 'Звонок (webhook) быстрее, но требует дополнительной настройки. Для маленького бота проще путь — «сам спрашивает» (polling).' })}</p></div>}
+            {viewKind && <div className="seq-block fade-step" key={view}>
+              <p className="seq-h">{viewKind.label}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(viewKind.def)}</p>
+              <Exchange kind={view} />
+            </div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1116,28 +1174,28 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — TEST 3 =====
 const Screen10 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText="O'zi-so'rab-turish (polling) va qo'ng'iroq (webhook) — asosiy farqi nima?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>O'zi-so'rab-turish va qo'ng'iroq — <span className="italic" style={{ color: T.accent }}>asosiy farqi</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«Сам спрашивает» и «звонок» — в чём <span className="italic" style={{ color: T.accent }}>главная разница</span>?</h2></> })}
+    questionText="Polling va webhook — asosiy farqi nima?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Polling va webhook — <span className="italic" style={{ color: T.accent }}>asosiy farqi</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Polling и webhook — в чём <span className="italic" style={{ color: T.accent }}>главная разница</span>?</h2></> })}
     options={[
-      { uz: "O'zi-so'rab-turish botni ancha chiroyliroq va zamonaviyroq qiladi, qo'ng'iroq esa yo'q", ru: '«Сам спрашивает» делает бота намного красивее и современнее, а звонок — нет' },
-      { uz: "Ikkalasi mutlaqo bir xil, hech qanday farqi yo'q", ru: 'Оба совершенно одинаковы, никакой разницы нет' },
-      { uz: "Qo'ng'iroq faqat kechasi ishlaydi, kunduzi ishlamaydi", ru: 'Звонок работает только ночью, а днём нет' },
-      { uz: "O'zi-so'rab-turishda Botjon tinmay so'raydi, qo'ng'iroqda Telegram xabar beradi", ru: 'При «сам спрашивает» Ботжон спрашивает без остановки, при звонке Telegram сам сообщает' }
+      { uz: 'Polling faqat kompyuterda, webhook faqat telefonda ishlaydi', ru: "Polling работает только на компьютере, webhook — только на телефоне" },
+      { uz: 'Polling matnli xabar uchun, webhook rasm va fayl uchun', ru: "Polling — для текстовых сообщений, webhook — для фото и файлов" },
+      { uz: 'Webhook faqat kechasi, polling esa kunduzi ishlaydi', ru: "Webhook работает только ночью, а polling — днём" },
+      { uz: "Polling'da bot so'raydi, webhook'da Telegram o'zi yuboradi", ru: "При polling спрашивает бот, при webhook Telegram отправляет сам" }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! O'zi-so'rab-turishda (polling) Botjon Telegram'dan tinmay «yangi xabar bormi?» deb so'raydi. Qo'ng'iroqda (webhook) esa Telegram yangi xabar kelganda Botjonga o'zi «xabar bor!» deb bildiradi.", ru: 'Верно! При «сам спрашивает» (polling) Ботжон без остановки спрашивает у Telegram: «есть новое сообщение?». При звонке (webhook) Telegram сам сообщает Ботжону: «есть сообщение!».' }}
+    explainCorrect={{ uz: "Polling'da bot so'raydi, webhook'da Telegram xabarni botning manziliga o'zi yuboradi.", ru: "При polling спрашивает бот, при webhook Telegram сам отправляет сообщение на адрес бота." }}
     explainWrong={{
-      0: { uz: "Ko'rinishga aloqasi yo'q — farq xabarni qanday olishida.", ru: 'К внешнему виду это отношения не имеет — разница в том, как получают сообщение.' },
-      1: { uz: "Farqi bor: kim tashabbus qiladi — Botjonmi (so'raydi) yoki Telegrammi (xabar beradi).", ru: 'Разница есть: кто делает первый шаг — Ботжон (спрашивает) или Telegram (сообщает).' },
-      2: { uz: "Ikkalasi ham istalgan vaqtda ishlaydi — farq vaqt emas, usulda.", ru: 'Оба работают в любое время — разница не во времени, а в способе.' },
-      default: { uz: "Polling — Botjon so'raydi; webhook — Telegram o'zi xabar beradi.", ru: 'Polling — спрашивает Ботжон; webhook — Telegram сам сообщает.' }
+      0: { uz: 'Farq qurilmada emas: ikkala usul ham serverda ishlaydi. Farq — xabarni kim boshlab uzatadi.', ru: "Разница не в устройстве: оба способа работают на сервере. Разница в том, кто начинает передачу сообщения." },
+      1: { uz: 'Ikkala usul ham har qanday xabarni yetkazadi: matn, rasm, fayl.', ru: "Оба способа доставляют любые сообщения: текст, фото, файлы." },
+      2: { uz: 'Ikkalasi ham istalgan vaqtda ishlaydi — farq vaqtda emas, usulda.', ru: "Оба работают в любое время — разница не во времени, а в способе." },
+      default: { uz: "Polling — bot so'raydi; webhook — Telegram o'zi yuboradi.", ru: "Polling — спрашивает бот; webhook — Telegram отправляет сам." }
     }} />
 );
 
-// ===== SCREEN 11 — MARKAZIY #4: KO'CHIRISHDAN OLDIN TEKSHIRUV =====
+// ===== SCREEN 11 — MARKAZIY #4: JOYLASHDAN OLDIN TEKSHIRUV (bandlar navbat bilan) =====
 const DEPLOY_CHECKS = [
-  { id: 'c1', text: { uz: "🔑 kalit qulfli tortmada (.env), ochiq kodda emas", ru: '🔑 ключ в запертом ящике (.env), а не открыто в коде' }, real: true },
-  { id: 'c2', text: { uz: "Kod laptopda sinalmagan — to'g'ridan-to'g'ri ko'chiraveramiz", ru: 'Код на ноутбуке не проверен — переносим сразу' }, real: false },
-  { id: 'c3', text: { uz: "Doimiy joy (server) doim yoqilgan — 24/7 jonli turadi", ru: 'Постоянное место (сервер) всегда включено — живёт 24/7' }, real: true }
+  { id: 'c1', text: { uz: "Token kodda yozilmagan: bot uni `process.env.BOT_TOKEN` dan o'qiydi", ru: "Токен не записан в коде: бот читает его из `process.env.BOT_TOKEN`" }, real: true },
+  { id: 'c2', text: { uz: "Kod laptopda sinalmagan — to'g'ridan-to'g'ri serverga joylaymiz", ru: "Код не тестировали на ноутбуке — сразу размещаем на сервере" }, real: false },
+  { id: 'c3', text: { uz: 'Fallback handler bor: mos handler topilmasa ham bot javob beradi', ru: "Есть fallback handler: даже если подходящий handler не найден, бот ответит" }, real: true }
 ];
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1146,26 +1204,34 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const fired = useRef(!!storedAnswer);
   const done = DEPLOY_CHECKS.every(c => answers[c.id] !== undefined);
   const allCorrect = DEPLOY_CHECKS.every(c => answers[c.id] === c.real);
+  const cur = DEPLOY_CHECKS.find(c => answers[c.id] === undefined);
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: allCorrect, picked: true, solved: true, claimAnswers: answers }); } }, [done, allCorrect]);
   const mark = (id, val) => { if (answers[id] !== undefined) return; const c = DEPLOY_CHECKS.find(x => x.id === id); if (c && val !== c.real && achMiss) achMiss.miss(screen); setAnswers(prev => ({ ...prev, [id]: val })); setSc(n => n + 1); };
+  const TXT_OK = { uz: "✓ To'g'ri", ru: "✓ Верно" };
+  const TXT_BAD = { uz: '✕ Xato', ru: "✕ Ошибка" };
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #4', ru: 'Главное · #4' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Har bandni tekshiring (${Object.keys(answers).length}/3)`, ru: `Проверьте каждый пункт (${Object.keys(answers).length}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Ko'chirishdan oldin</span> — tekshiruv.</>, ru: <><span className="italic" style={{ color: T.accent }}>Перед переносом</span> — проверка.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Botjonni doimiy joyga ko'chirishdan oldin 3 ta band bor. Har birini o'qib, u <b>to'g'ri qoidami</b> yoki <b>xato</b> ekanini belgilang.</>, ru: <>Перед переносом Ботжона на постоянное место есть 3 пункта. Прочитайте каждый и отметьте, <b>верное это правило</b> или <b>ошибка</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Serverga joylashdan oldin</span> — tekshiruv.</>, ru: <><span className="italic" style={{ color: T.accent }}>Перед размещением на сервере</span> — проверка.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har bandni o'qing va u <b>to'g'ri qoidami</b> yoki <b>xato</b> ekanini belgilang.</>, ru: <>Прочитайте каждый пункт и отметьте, <b>верное это правило</b> или <b>ошибка</b>.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "ko'chirishga tayyorlik ro'yxati", ru: 'список готовности к переносу' })}</p>
+            <p className="flow-label">{tr({ uz: "joylashga tayyorlik ro'yxati", ru: "список готовности к размещению" })}</p>
             {DEPLOY_CHECKS.map(c => {
               const a = answers[c.id];
-              const isDone = a !== undefined;
-              const rowCls = isDone ? (a === c.real ? 'ok done' : 'bad done') : '';
+              if (a !== undefined) return (
+                <div key={c.id} className={`claim-row done fade-step ${a === c.real ? 'ok' : 'bad'}`}>
+                  <span className="claim-txt">{fmtCode(tr(c.text))}</span>
+                  <span className="claim-mark">{tr(a ? TXT_OK : TXT_BAD)}</span>
+                </div>
+              );
+              if (c !== cur) return null;
               return (
-                <div key={c.id} className={`claim-row ${rowCls}`}>
+                <div key={c.id} className="claim-row fade-step">
                   <span className="claim-txt">{fmtCode(tr(c.text))}</span>
                   <span className="claim-btns">
-                    <button className={`claim-btn pick ${a === true ? 'correct' : ''}`} disabled={isDone} onClick={() => mark(c.id, true)}>{tr({ uz: "✅ To'g'ri", ru: '✅ Верно' })}</button>
-                    <button className={`claim-btn pick ${a === false ? 'correct' : ''}`} disabled={isDone} onClick={() => mark(c.id, false)}>{tr({ uz: '❌ Xato', ru: '❌ Ошибка' })}</button>
+                    <button className="claim-btn pick" onClick={() => mark(c.id, true)}>{tr(TXT_OK)}</button>
+                    <button className="claim-btn pick" onClick={() => mark(c.id, false)}>{tr(TXT_BAD)}</button>
                   </span>
                 </div>
               );
@@ -1174,8 +1240,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done ? null
-              : allCorrect ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ajoyib! Kodni ko'chirishdan oldin <b>albatta laptopda sinash</b> kerak — bu «to'g'ridan-to'g'ri ko'chiraveramiz» bandi xato edi. Qolgan ikkitasi to'g'ri qoida.</>, ru: <>✓ Отлично! Перед переносом код <b>обязательно проверяют на ноутбуке</b> — пункт «переносим сразу» был ошибкой. Остальные два — верные правила.</> })}</p></div>
-              : <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: kodni <b>sinamasdan</b> ko'chirish xato — avval laptopda test qilinadi. Kalit .env'da bo'lishi va doimiy joy yoqilgan turishi esa to'g'ri qoidalar.</>, ru: <>Внимание: переносить код <b>без проверки</b> — ошибка, сначала тест на ноутбуке. А то, что ключ лежит в .env и постоянное место включено, — верные правила.</> })}</p></div>}
+              : allCorrect ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Hammasi to'g'ri — kod avval laptopda sinaladi, keyin serverga joylanadi.", ru: "✓ Всё верно — код сначала тестируют на ноутбуке, потом размещают на сервере." })}</p></div>
+              : <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qarang: sinalmagan kodni serverga joylash — xato, avval laptopda sinaladi. Token kodda emasligi va fallback handler borligi esa — to'g'ri qoidalar.", ru: "Смотрите: размещать на сервере непротестированный код — ошибка, сначала его тестируют на ноутбуке. А то, что токена нет в коде и есть fallback handler, — верные правила." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1183,44 +1249,45 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 12 — CASE: TO'LIQ BOTJON DOIMIY JOYDA =====
+// ===== SCREEN 12 — HAYOTIY: SERVERDAGI BOT TUNDA (har javob ostida — qaysi qism ishladi) =====
+const NIGHT_STEPS = [
+  { u: { uz: "03:00 — Achchiq bo'lmagan pitsa bormi?", ru: "03:00 — Есть неострая пицца?" }, b: { uz: 'Ha, Margarita achchiq emas: pomidor sousi va pishloq. Buyurtma qilasizmi?', ru: "Да, Маргарита не острая: томатный соус и сыр. Будете заказывать?" }, btns: ['Margarita'], who: { uz: "ishladi: AI (bu savolga tayyor handler yo'q)", ru: "сработал: ИИ (готового handler-а на этот вопрос нет)" } },
+  { u: { uz: 'Margarita', ru: "Маргарита" }, b: { uz: "Margarita — 35 000 so'm. Buyurtmangizni yozib oldim. Manzilingizni yuboring.", ru: "Маргарита — 35 000 сумов. Записал ваш заказ. Отправьте ваш адрес." }, who: { uz: 'ishladi: handler + baza (buyurtma bazaga yozildi)', ru: "сработали: handler + база (заказ записан в базу)" } },
+  { u: { uz: 'Chilonzor, 5-kvartal', ru: "Чиланзар, 5-й квартал" }, b: { uz: 'Qabul qilindi. Buyurtmangiz 30 daqiqada yetib boradi. Rahmat!', ru: "Принято. Заказ приедет через 30 минут. Спасибо!" }, who: { uz: "ishladi: handler + baza (holatdan manzil kutilayotgani bilindi, manzil buyurtmaga qo'shildi)", ru: "сработали: handler + база (по состоянию понятно, что ждём адрес; адрес добавлен в заказ)" } }
+];
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const STEPS = [
-    { u: { uz: '03:00 — glutensiz pizza bormi? 🌙', ru: '03:00 — есть пицца без глютена? 🌙' }, b: { uz: "Salom! 🟢 Men 24/7 shu yerdaman. Afsus, glutensiz hozircha yo'q — lekin yupqa Margarita yengil bo'ladi 🌿", ru: 'Здравствуйте! 🟢 Я здесь 24/7. Увы, без глютена пока нет — но тонкая «Маргарита» получится лёгкой 🌿' } },
-    { u: { uz: "Bo'ldi, Margarita olaman", ru: 'Хорошо, возьму «Маргариту»' }, b: { uz: "Zo'r tanlov! 🎉 Margarita — 35 000 so'm. Buyurtmangizni 📓 daftarga yozib qo'ydim, ertaga ham eslayman 📝", ru: 'Отличный выбор! 🎉 «Маргарита» — 35 000 сум. Ваш заказ я записал в 📓 тетрадь, вспомню и завтра 📝' } },
-    { u: { uz: 'Rahmat! Manzil: Chilonzor', ru: 'Спасибо! Адрес: Чиланзар' }, b: { uz: "Qabul qilindi 📍 Chilonzor — daftarga qo'shdim. Buyurtmangiz yo'lga chiqadi ✅", ru: 'Принято 📍 Чиланзар — добавил в тетрадь. Ваш заказ отправляется ✅' } }
-  ];
-  const [shown, setShown] = useState(storedAnswer ? STEPS.length : 0);
+  const [shown, setShown] = useState(storedAnswer ? NIGHT_STEPS.length : 0);
   const [phase, setPhase] = useState('idle');
   const [sc, setSc] = useState(0);
-  const done = shown >= STEPS.length;
+  const done = shown >= NIGHT_STEPS.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => {
     if (phase === 'think') return;
     setPhase('think'); setSc(n => n + 1);
-    setTimeout(() => { setShown(n => Math.min(n + 1, STEPS.length)); setPhase('idle'); setSc(n => n + 1); }, 850);
+    setTimeout(() => { setShown(n => Math.min(n + 1, NIGHT_STEPS.length)); setPhase('idle'); setSc(n => n + 1); }, 850);
   };
   return (
-    <Stage eyebrow={{ uz: "Hayotiy · to'liq Botjon", ru: 'Из жизни · полный Ботжон' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Suhbatni davom ettiring (${shown}/3)`, ru: `Продолжите разговор (${shown}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Hayotiy · to'liq bot", ru: "Из жизни · полный бот" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Suhbatni davom ettiring (${shown}/3)`, ru: `Продолжите разговор (${shown}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Doimiy joyda — Botjon <span className="italic" style={{ color: T.accent }}>tunda ham</span> ishlaydi.</>, ru: <>На постоянном месте Ботжон работает <span className="italic" style={{ color: T.accent }}>и ночью</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Endi to'liq Botjon doimiy joyda. Tugmani bosib, tungi suhbatni davom ettiring — 🧭 maslahatchi javob beradi, 📓 daftar eslab qoladi.", ru: 'Теперь полный Ботжон на постоянном месте. Нажимайте кнопку и продолжайте ночной разговор — 🧭 советчик отвечает, 📓 тетрадь запоминает.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Serverdagi bot <span className="italic" style={{ color: T.accent }}>03:00 da</span> buyurtma qabul qiladi.</>, ru: <>Бот на сервере принимает заказ <span className="italic" style={{ color: T.accent }}>в 03:00</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Laptopingiz yopiq, bot serverda ishlayapti. Suhbatni qadam-baqadam oching va har javob ostida qaysi qism ishlaganiga qarang.", ru: "Ваш ноутбук закрыт, бот работает на сервере. Открывайте разговор шаг за шагом и смотрите под каждым ответом, какая часть сработала." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <TgChat title={{ uz: 'Botjon', ru: 'Ботжон' }} ava="🤖" status={{ uz: 'bot · onlayn 🟢', ru: 'бот · онлайн 🟢' }} minH={200} input={false}>
-              {STEPS.slice(0, shown).map((s, i) => (
+            <TgChat minH={200}>
+              {NIGHT_STEPS.slice(0, shown).map((s, i) => (
                 <React.Fragment key={i}>
                   <Bubble from="user">{tr(s.u)}</Bubble>
                   <Bubble from="bot">{tr(s.b)}</Bubble>
+                  {s.btns && <TgBtns items={s.btns} />}
+                  <p className="tg-note el-in">{tr(s.who)}</p>
                 </React.Fragment>
               ))}
               {phase === 'think' && <Bubble from="bot" thinking />}
             </TgChat>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done || phase === 'think'} onClick={advance}>{done ? tr({ uz: '✓ Botjon 24/7 ishlayapti', ru: '✓ Ботжон работает 24/7' }) : shown === 0 ? tr({ uz: '▶ Tungi suhbatni boshlash', ru: '▶ Начать ночной разговор' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done || phase === 'think'} onClick={advance}>{done ? tr({ uz: '✓ Suhbat tugadi', ru: "✓ Разговор окончен" }) : shown === 0 ? tr({ uz: '▶ Suhbatni boshlash', ru: "▶ Начать разговор" }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🏠 Har javob ortida', ru: '🏠 За каждым ответом' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Botjon doimiy joyda (serverda) — 🧭 maslahatchi o'ylaydi, 📓 daftar buyurtmani saqlaydi. Siz uxlasangiz ham u jonli.", ru: 'Ботжон на постоянном месте (на сервере) — 🧭 советчик думает, 📓 тетрадь хранит заказ. Он живой, даже пока вы спите.' })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rdingizmi? 03:00 da, siz uxlaganda ham Botjon buyurtmani qabul qildi va daftarga yozdi. To'liq mahsulot — doimiy joyda, 24/7 jonli.", ru: 'Видели? В 03:00, пока вы спали, Ботжон принял заказ и записал его в тетрадь. Полный продукт — на постоянном месте, живой 24/7.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu suhbatda bot, baza va AI laptopsiz ishladi. Shuning uchun serverda faqat bot.js emas: bot serverdan bazaga ulana olishi va AI API kaliti server sozlamalarida turishi kerak.", ru: "В этом разговоре бот, база и ИИ работали без ноутбука. Поэтому на сервере нужен не только bot.js: бот должен подключаться к базе с сервера, а ключ AI API — лежать в настройках сервера." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1228,27 +1295,21 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 13 — 2 AMALIY NUQTA (yiqilmaslik + kuzatish) =====
+// ===== SCREEN 13 — YANA IKKI QOIDA (xatoni ushlash + kuzatish) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Amalda · 2 nuqta', ru: 'На практике · 2 момента' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Tushundingiz ✓', ru: 'Вы поняли ✓' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Amalda · 2 qoida', ru: "На практике · 2 правила" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Tushundingiz ✓', ru: 'Вы поняли ✓' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Doimiy joyga qo'yishdan oldin — <span className="italic" style={{ color: T.accent }}>2 ta</span> amaliy nuqta.</>, ru: <>Перед переездом на постоянное место — <span className="italic" style={{ color: T.accent }}>2</span> практических момента.</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Botjon doimiy joyda 24/7 ishlaydi. Ikki narsani yodda tuting: yiqilmaslik qoidasi va kuzatish.', ru: 'На постоянном месте Ботжон работает 24/7. Запомните две вещи: правило «не падать» и наблюдение.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Serverdagi bot uchun <span className="italic" style={{ color: T.accent }}>yana ikki qoida</span>.</>, ru: <>Для бота на сервере — <span className="italic" style={{ color: T.accent }}>ещё два правила</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Serverdagi botni doim ko'rib o'tirmaysiz. Xato bo'lsa, buni birinchi bo'lib mijoz sezadi — shuning uchun ikkala qoidani oldindan qo'llang.", ru: "Вы не будете всё время следить за ботом на сервере. Если что-то сломается, первым это заметит клиент, — поэтому примените оба правила заранее." })}</Mentor>
         <Zoomable><div className="split">
-          <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🛟 1. Yiqilmaslik qoidasi', ru: '🛟 1. Правило «не падать»' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Botjon xatoga uchrasa ham <b>jim qolmasin</b>. Oxirgi qator (fallback) tayyor bo'lsin: «Uzr, birozdan keyin urinib ko'ring 🙏». Shunda mijoz javobsiz qolmaydi.</>, ru: <>Даже если Ботжон наткнулся на ошибку, он <b>не должен молчать</b>. Пусть будет готова последняя строка (запасной ответ): «Извините, попробуйте чуть позже 🙏». Тогда клиент не останется без ответа.</> })}</p></div>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '📈 2. Kuzatib turing', ru: '📈 2. Наблюдайте' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Doimiy joy jonli ekanini vaqti-vaqti bilan tekshiring. Botjon to'xtab qolsa, xabar olib, qayta yoqasiz.", ru: 'Время от времени проверяйте, живо ли постоянное место. Если Ботжон остановился, вы узнаете об этом и запустите его снова.' })}</p></div>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={() => { setDone(true); setSc(n => n + 1); }}>{done ? tr({ uz: '✓ Tushundim', ru: '✓ Понял' }) : tr({ uz: 'Tushundim ✓', ru: 'Понял ✓' })}</button>
-          </Col>
-          <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '📍 Bugungi qoidalar — qisqacha', ru: '📍 Сегодняшние правила — коротко' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🧩 4 buyumni yig' → 🔑 kalitni .env'ga → 🏠 doimiy joyga ko'chir → 🛟 yiqilmaslik qoidasi → 📈 kuzatib tur.", ru: '🧩 Собери 4 предмета → 🔑 ключ в .env → 🏠 перенеси на постоянное место → 🛟 правило «не падать» → 📈 наблюдай.' })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Ana shu qoidalar bilan Botjon doimiy joyda ishonchli, doim jonli yordamchiga aylanadi.', ru: 'С этими правилами Ботжон на постоянном месте становится надёжным помощником, который всегда живой.' })}</p></div>}
-          </Col>
+          <div className="sk-info"><p className="note-h">{tr({ uz: '1. Xatoni ushlang', ru: "1. Ловите ошибку" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "AI javob bermasa yoki bazaga ulanib bo'lmasa, kod xato beradi. Xato ushlanmasa, bot to'xtab qolishi mumkin. Telegraf'da buning uchun `bot.catch` bor: xatoni ushlab, mijozga «Uzr, hozir javob bera olmadim. Birozdan keyin qayta yozing» deb yozasiz. Bu fallback handler emas: fallback mos handler topilmaganda ishlaydi, `bot.catch` — kod xato berganda.", ru: "Если ИИ не ответил или не удалось подключиться к базе, код выдаёт ошибку. Если ошибку не поймать, бот может остановиться. В Telegraf для этого есть `bot.catch`: вы ловите ошибку и пишете клиенту: «Извините, сейчас не получилось ответить. Напишите чуть позже». Это не fallback handler: fallback срабатывает, когда не найден подходящий handler, а `bot.catch` — когда код выдал ошибку." }))}</p></div>
+          <div className="sk-info"><p className="note-h">{tr({ uz: '2. Kuzatib turing', ru: "2. Наблюдайте" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Server ham to'xtashi mumkin. Vaqti-vaqti bilan botingizga /start yozib ko'ring. Javob kelmasa, hosting sahifasida bot holatini tekshirib, uni qayta ishga tushirasiz.", ru: "Сервер тоже может остановиться. Время от времени пишите своему боту /start. Если ответа нет, проверьте состояние бота на странице хостинга и запустите его заново." })}</p></div>
         </div></Zoomable>
+        <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={() => { setDone(true); setSc(n => n + 1); }}>{done ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: 'Tushundim', ru: "Понятно" })}</button>
       </div>
     </Stage>
   );
@@ -1257,54 +1318,67 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — TEST 4 =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
-    questionText="Laptopingiz o'chgan, lekin Botjon hali ham javob beryapti. Nega?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Laptopingiz o'chgan, lekin Botjon <span className="italic" style={{ color: T.accent }}>hali ham javob beryapti</span>. Nega?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ноутбук выключен, а Ботжон <span className="italic" style={{ color: T.accent }}>всё ещё отвечает</span>. Почему?</h2></> })}
+    questionText="Laptopingiz yopiq, lekin bot hali ham javob beryapti. Nega?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Laptopingiz yopiq, lekin bot <span className="italic" style={{ color: T.accent }}>hali ham javob beryapti</span>. Nega?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ваш ноутбук закрыт, а бот <span className="italic" style={{ color: T.accent }}>всё ещё отвечает</span>. Почему?</h2></> })}
     options={[
-      { uz: "Chunki Telegram endi botni butunlay o'zi yuritib turadi", ru: 'Потому что теперь Telegram полностью сам ведёт бота' },
-      { uz: "Chunki Botjon doimiy joyga (serverga) ko'chirilgan", ru: 'Потому что Ботжон перенесён на постоянное место (сервер)' },
-      { uz: "Chunki laptop aslida o'chmagan", ru: 'Потому что ноутбук на самом деле не выключен' },
-      { uz: "Chunki mijoz botni o'zi ishga tushirgan", ru: 'Потому что клиент сам запустил бота' }
+      { uz: 'Telegram bot dasturini o\'z serverida ishlatadi', ru: "Telegram запускает программу бота на своём сервере" },
+      { uz: "Bot dasturi serverga joylangan, o'sha yerda ishlaydi", ru: "Программа бота размещена на сервере и работает там" },
+      { uz: 'Javoblar oldindan yozilib, navbatda turgan edi', ru: "Ответы были написаны заранее и стояли в очереди" },
+      { uz: "Mijoz botni o'z telefonida ishga tushirib qo'ygan", ru: "Клиент запустил бота на своём телефоне" }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Botjon doimiy joyga (serverga) ko'chirilgan — u doim yoqilgan kompyuterda yashaydi. Shuning uchun laptopingiz o'chsa ham, u 24/7 jonli ishlayveradi.", ru: 'Верно! Ботжон перенесён на постоянное место (сервер) — он живёт на всегда включённом компьютере. Поэтому даже с выключенным ноутбуком он работает 24/7.' }}
+    explainCorrect={{ uz: "Bot dasturi serverda ishlayapti — laptop yopilishi unga ta'sir qilmaydi.", ru: "Программа бота работает на сервере — закрытый ноутбук на неё не влияет." }}
     explainWrong={{
-      0: { uz: "Telegram faqat xabarlarni yetkazadi — Botjonni yuritmaydi. Uni doimiy joy (server) yuritadi.", ru: 'Telegram только доставляет сообщения — он не ведёт Ботжона. Его ведёт постоянное место (сервер).' },
-      2: { uz: "Laptop chindan o'chgan — Botjon boshqa joyda (doimiy joyda) ishlayapti.", ru: 'Ноутбук действительно выключен — Ботжон работает в другом месте (на постоянном).' },
-      3: { uz: "Mijoz botni ishga tushirmaydi. Bot doimiy joyda o'zi jonli turadi.", ru: 'Клиент бота не запускает. Бот сам живёт на постоянном месте.' },
-      default: { uz: "Sabab — Botjon doimiy joyga (serverga) ko'chirilgan.", ru: 'Причина — Ботжон перенесён на постоянное место (сервер).' }
+      0: { uz: 'Telegram faqat xabarni yetkazadi. Javobni sizning bot dasturingiz yozadi — u serverda ishlayapti.', ru: "Telegram только доставляет сообщения. Ответ пишет программа вашего бота — она работает на сервере." },
+      2: { uz: "Javoblar oldindan yozilmaydi: har xabarga bot dasturi o'sha paytda javob yozadi.", ru: "Ответы не пишутся заранее: на каждое сообщение программа бота отвечает в тот же момент." },
+      3: { uz: 'Mijoz botni ishga tushirmaydi — u faqat xabar yozadi. Dastur serverda ishlab turibdi.', ru: "Клиент бота не запускает — он только пишет сообщения. Программа работает на сервере." },
+      default: { uz: "Sabab — bot dasturi serverga joylangan va o'sha yerda ishlayapti.", ru: "Причина — программа бота размещена на сервере и работает там." }
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: KO'CHIRISH TARTIBI =====
+// ===== SCREEN 15 — YAKUNIY: DEPLOY TARTIBI (DragDropOrder) =====
+// Tartib va id — kod kaliti (build → test → env → move → live), o'zgarmaydi.
 const DEPLOY_FLOW = [
-  { id: 'build', label: { uz: "4 buyumni bitta Botjonga yig'", ru: 'Собери 4 предмета в одного Ботжона' } },
-  { id: 'test', label: { uz: 'Laptopda sinab ko\'r', ru: 'Проверь на ноутбуке' } },
-  { id: 'env', label: { uz: 'Kalitni .env\'ga sozla', ru: 'Настрой ключ в .env' } },
-  { id: 'move', label: { uz: 'Doimiy joyga ko\'chir', ru: 'Перенеси на постоянное место' } },
-  { id: 'live', label: { uz: '24/7 jonli — tayyor', ru: 'Живой 24/7 — готово' } }
+  { id: 'build', label: { uz: "Botni yig'ing: handlerlar, baza va AI", ru: "Соберите бота: handler-ы, база и ИИ" } },
+  { id: 'test', label: { uz: 'Laptopda ishga tushirib sinang', ru: "Запустите и протестируйте на ноутбуке" } },
+  { id: 'env', label: { uz: 'Serverda BOT_TOKEN ni sozlang', ru: "Настройте BOT_TOKEN на сервере" } },
+  { id: 'move', label: { uz: 'Kodni serverga joylab, ishga tushiring', ru: "Разместите код на сервере и запустите" } },
+  { id: 'live', label: { uz: 'Botga /start yozib tekshiring', ru: "Проверьте: напишите боту /start" } }
 ];
 const DEPLOY_ITEMS = DEPLOY_FLOW.map(c => ({ id: c.id, label: { uz: `${c.label.uz}`, ru: `${c.label.ru}` } }));
+// Xato yozuvi bitta: «joylash tokendan oldin» bo'lsa — alohida izoh, aks holda umumiy
+const deployWrongText = (slots) => {
+  const iEnv = slots.indexOf('env'), iMove = slots.indexOf('move');
+  return (iEnv >= 0 && iMove >= 0 && iMove < iEnv)
+    ? { uz: "Serverda token sozlanmagan bo'lsa, bot ishga tushmaydi — tokenni avval yozing.", ru: "Если токен на сервере не настроен, бот не запустится — сначала запишите токен." }
+    : { uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: "Порядок неверный — нажмите на блок, чтобы вернуть его, и поставьте заново." };
+};
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const fired = useRef(!!storedAnswer);
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const isMentorLive = !!(gate.live && gate.live.mode === 'mentor');
   const wrongEverRef = useRef(false);
-  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
-  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Botjonni doimiy joyga ko'chirish tartibini to'g'ri joylang", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } };
+  const [wrongEver, setWrongEver] = useState(!!(storedAnswer && storedAnswer.correct === false));
+  const onWrong = () => { wrongEverRef.current = true; setWrongEver(true); if (achMiss) achMiss.miss(screen); };
+  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Deploy tartibini yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } };
   const [recapOpen, setRecapOpen] = useState(false);
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>ko'chirish tartibini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>порядок переноса</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Botjonni doimiy joyga ko'chirishning to'g'ri tartibini eslang: avval nima quriladi, keyin nima sinaladi, oxirida nima jonli bo'ladi?", ru: 'Вспомните правильный порядок переноса Ботжона на постоянное место: что собирают сначала, что проверяют потом, что становится живым в конце?' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>deploy tartibini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>порядок деплоя</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga qo'ying.", ru: "Перетащите блоки в правильном порядке." })}</Mentor>
         <DragDropOrder
           items={DEPLOY_ITEMS}
           hints={[{ uz: '1-qadam', ru: 'Шаг 1' }, { uz: '2-qadam', ru: 'Шаг 2' }, { uz: '3-qadam', ru: 'Шаг 3' }, { uz: '4-qadam', ru: 'Шаг 4' }, { uz: '5-qadam', ru: 'Шаг 5' }]}
           onSolved={onSolved}
           onWrong={onWrong}
-          doneText={{ uz: "Ko'chirish tartibi tayyor!", ru: 'Порядок переноса готов!' }}
+          doneText={{ uz: "Deploy tartibi to'g'ri: avval laptopda yig'ib sinaysiz, keyin serverda tokenni sozlab, kodni joylaysiz va /start bilan tekshirasiz.", ru: "Порядок деплоя верный: сначала собираете и тестируете бота на ноутбуке, потом настраиваете токен на сервере, размещаете код и проверяете через /start." }}
+          wrongText={deployWrongText}
+          divider={{ after: 1, top: { uz: 'laptop', ru: "ноутбук" }, bottom: { uz: 'server', ru: "сервер" } }}
         />
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib: <b>Qur → Lokal test → .env sozla → Ko'chir → 24/7 jonli</b>. Shu tartib bilan Botjon doimiy joyda ishonchli, doim jonli bo'ladi.</>, ru: <>✓ Порядок: <b>Собери → Локальный тест → Настрой .env → Перенеси → Живой 24/7</b>. С таким порядком Ботжон на постоянном месте будет надёжным и всегда живым.</> })}</p></div>}
+        {wrongEver && !isMentorLive && RECAPS[screen] && <button className="rc-open-mini" style={{ alignSelf: 'flex-start' }} onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "Короткое повторение — ещё раз взглянуть на тему" })}</button>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
     </Stage>
@@ -1313,10 +1387,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  assembleMaster: { icon: '🧩', name: 'Assemble Master', desc: { uz: "To'liq Botjonni o'zingiz yig'dingiz", ru: "Вы сами собрали полного Ботжона" } },
-  keyMaster:      { icon: '🔑', name: 'Key Master',      desc: { uz: "Kalitni qulfli tortmaga (.env) qo'ydingiz", ru: "Вы положили ключ в запертый ящик (.env)" } },
-  linkMaster:     { icon: '🔔', name: 'Link Master',     desc: { uz: "Botjonga to'g'ri aloqa usulini tanladingiz", ru: "Вы выбрали верный способ связи для бота" } },
-  checkMaster:    { icon: '✅', name: 'Check Master',    desc: { uz: "Ko'chirishdan oldin tekshiruvni bajardingiz", ru: "Вы прошли проверку перед переносом" } },
+  assembleMaster: { icon: '🧩', name: 'Bot Builder', desc: { uz: "To'liq botni birinchi urinishda to'g'ri yig'dingiz", ru: "Вы с первой попытки правильно собрали полного бота" } },
+  keyMaster:      { icon: '🔑', name: 'Safe Deploy',     desc: { uz: "Tokenni serverga kodga yozmasdan yetkazdingiz", ru: "Вы доставили токен на сервер, не записывая его в код" } },
+  linkMaster:     { icon: '🔔', name: 'Message Catcher', desc: { uz: "Kichik bot uchun xabar olishning mos usulini tanladingiz", ru: "Вы выбрали подходящий способ получать сообщения для маленького бота" } },
+  checkMaster:    { icon: '✅', name: 'Launch Ready',    desc: { uz: "Serverga joylashdan oldingi tekshiruvni birinchi urinishda to'g'ri bajardingiz", ru: "Вы с первой попытки правильно прошли проверку перед размещением на сервере" } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli, real-xato-imkonli ekranlar: s5 (Botjonni yig'ish — noto'g'ri buyum tanlansa
 // `wrongEverRef` yonadi va `correct:false` ketadi) · s7 (kalit sinovi — 3 joydan noto'g'risini tanlash mumkin) ·
@@ -1337,7 +1411,7 @@ const AchRule = ({ screen, once }) => {
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
     ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
-    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+    : tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "Справитесь с первой попытки — значок ваш." })}</p>;
 };
 
 function AchCelebrate({ ach, onDone }) {
@@ -1397,44 +1471,44 @@ const Confetti = () => {
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 10, 14, 15)
 const Q_LABELS = {
   4: { uz: "1 — To'liq bot", ru: '1 — Полный бот' },
-  8: { uz: '2 — Doimiy joy', ru: '2 — Постоянное место' },
-  10: { uz: '3 — Aloqa usuli', ru: '3 — Способ связи' },
-  14: { uz: '4 — Nega jonli', ru: '4 — Почему живой' },
-  15: { uz: "5 — Ko'chirish tartibi", ru: '5 — Порядок переноса' }
+  8: { uz: '2 — Token serverda', ru: "2 — Токен на сервере" },
+  10: { uz: '3 — Polling va webhook', ru: "3 — Polling и webhook" },
+  14: { uz: '4 — Server', ru: "4 — Сервер" },
+  15: { uz: '5 — Deploy tartibi', ru: "5 — Порядок деплоя" }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (loyiha kuni atamalari)
 const QZ_BG_SHAPES = [
   { ch: 'deploy',        l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '🏠',             l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: 'bot.js',        l: 85, t: 8,  s: 26, d: 23, dl: 1.5 },
   { ch: 'server',        l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'polling',       l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: '.env',          l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: 'webhook',       l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
-  { ch: { uz: 'daftar', ru: 'тетрадь' },        l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
-  { ch: '🔑',             l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
-  { ch: '24/7',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
+  { ch: { uz: 'PostgreSQL', ru: "PostgreSQL" },        l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
+  { ch: 'BOT_TOKEN',     l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
+  { ch: 'bot.catch',     l: 91, t: 42, s: 22, d: 24, dl: 1.3 },
   { ch: '✓',             l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'fallback',      l: 34, t: 62, s: 18, d: 29, dl: 3.4 },
-  { ch: '🧩',            l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
-  { ch: { uz: 'doimiy joy', ru: 'пост. место' },    l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
+  { ch: 'AI',            l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
+  { ch: { uz: 'server', ru: "сервер" },    l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
   { ch: 'token',         l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "To'liq ishlaydigan Botjonda nechta asosiy buyum bor?", ru: 'Сколько основных предметов у полностью рабочего Ботжона?' }, opts: [{ uz: "Bitta — faqat 🧭 maslahatchi", ru: 'Один — только 🧭 советчик' }, { uz: "To'rtta — 🔑 kalit, 📋 varaq, 📓 daftar, 🧭 maslahatchi", ru: 'Четыре — 🔑 ключ, 📋 лист, 📓 тетрадь, 🧭 советчик' }, { uz: "Ikkita — 🔑 kalit va 📋 varaq", ru: 'Два — 🔑 ключ и 📋 лист' }, { uz: "Umuman buyum kerak emas — Telegram bularning barchasini o'zi bajaradi", ru: 'Предметы вообще не нужны — Telegram всё делает сам' }], correct: 1 },
-  { q: { uz: "Buyurtmani ertaga ham eslab qolish — qaysi buyum ishi?", ru: 'Помнить заказ и завтра — дело какого предмета?' }, opts: [{ uz: "🔑 kalit", ru: '🔑 ключ' }, { uz: "📋 qoidalar varag'i", ru: '📋 лист правил' }, { uz: "🧭 maslahatchi", ru: '🧭 советчик' }, { uz: "📓 daftar (DB)", ru: '📓 тетрадь (БД)' }], correct: 3 },
-  { q: { uz: "«Ko'chirish» (deploy) nima degani?", ru: 'Что значит «перенос» (deploy)?' }, opts: [{ uz: "Kodni doimiy joyga (serverga) qo'yish", ru: 'Положить код на постоянное место (на сервер)' }, { uz: "Botni butunlay o'chirib qo'yish", ru: 'Полностью выключить бота' }, { uz: "Eski 🔑 kalitni yangisiga almashtirib qo'yish", ru: 'Заменить старый 🔑 ключ новым' }, { uz: "Yangi mijoz qo'shish", ru: 'Добавить нового клиента' }], correct: 0 },
-  { q: { uz: "🏠 Doimiy joy (server) — bu nima?", ru: '🏠 Постоянное место (сервер) — что это?' }, opts: [{ uz: "Sizning laptopingiz", ru: 'Ваш ноутбук' }, { uz: "Telegram kanali", ru: 'Telegram-канал' }, { uz: "Doim yoqilgan kompyuter — o'chmaydi", ru: 'Всегда включённый компьютер — не выключается' }, { uz: "Buyurtma bergan mijozning shaxsiy telefoni", ru: 'Личный телефон клиента, сделавшего заказ' }], correct: 2 },
-  { q: { uz: "Botjonni laptopdan doimiy joyga ko'chirsak, nima o'zgaradi?", ru: 'Что изменится, если перенести Ботжона с ноутбука на постоянное место?' }, opts: [{ uz: "Botjon sezilarli darajada sekinroq ishlaydigan bo'lib qoladi", ru: 'Ботжон станет работать заметно медленнее' }, { uz: "Botjon 24/7 jonli bo'ladi — siz uxlasangiz ham ishlaydi", ru: 'Ботжон станет живым 24/7 — работает, даже пока вы спите' }, { uz: "Botjon faqat kunduzi ishlaydi", ru: 'Ботжон будет работать только днём' }, { uz: "Hech narsa — hammasi avvalgidek qoladi", ru: 'Ничего — всё останется как было' }], correct: 1 },
-  { q: { uz: "🔑 kalit doimiy joyda qayerda saqlanadi?", ru: 'Где на постоянном месте хранится 🔑 ключ?' }, opts: [{ uz: "Qulfli tortmada (.env) — maxfiy, kodda ochiq emas", ru: 'В запертом ящике (.env) — секретно, не открыто в коде' }, { uz: "To'g'ridan-to'g'ri ochiq kodda, hamma ko'radigan joyda", ru: 'Прямо в открытом коде, там, где всем видно' }, { uz: "Mijozga chatda yuboriladi", ru: 'Отправляется клиенту в чат' }, { uz: "Hech qayerda saqlanmaydi", ru: 'Нигде не хранится' }], correct: 0 },
-  { q: { uz: "O'zi-so'rab-turish (polling)da tashabbusni kim qiladi?", ru: 'Кто делает первый шаг при «сам спрашивает» (polling)?' }, opts: [{ uz: "Mijozning o'zi to'g'ridan-to'g'ri Botjonga murojaat qiladi", ru: 'Клиент сам напрямую обращается к Ботжону' }, { uz: "Telegram — yangi xabar kelganda Botjonga o'zi darhol xabar beradi", ru: 'Telegram — при новом сообщении сам сразу сообщает Ботжону' }, { uz: "Doimiy joy (server)", ru: 'Постоянное место (сервер)' }, { uz: "Botjon — u tinmay «yangi xabar bormi?» deb so'raydi", ru: 'Ботжон — он без остановки спрашивает: «есть новое сообщение?»' }], correct: 3 },
-  { q: { uz: "Qo'ng'iroq (webhook)da kim xabar beradi?", ru: 'Кто сообщает при звонке (webhook)?' }, opts: [{ uz: "Botjonning o'zi tinmay «yangi xabar bormi?» deb so'rab turadi", ru: 'Сам Ботжон без остановки спрашивает: «есть новое сообщение?»' }, { uz: "Telegram — yangi xabar kelganda Botjonga o'zi bildiradi", ru: 'Telegram — при новом сообщении сам извещает Ботжона' }, { uz: "Mijoz to'g'ridan-to'g'ri", ru: 'Клиент напрямую' }, { uz: "Hech kim — o'zi sodir bo'ladi", ru: 'Никто — происходит само собой' }], correct: 1 },
-  { q: { uz: "Kichik do'kon boti uchun qaysi aloqa usuli soddaroq?", ru: 'Какой способ связи проще для бота маленького магазина?' }, opts: [{ uz: "Qo'ng'iroq (webhook)", ru: 'Звонок (webhook)' }, { uz: "Ikkala usul ham umuman kerak bo'lmaydigan narsa", ru: 'Оба способа вообще не нужны' }, { uz: "O'zi-so'rab-turish (polling)", ru: '«Сам спрашивает» (polling)' }, { uz: "Hech qaysi ishlamaydi", ru: 'Ни один не работает' }], correct: 2 },
-  { q: { uz: "Kodni doimiy joyga ko'chirishdan oldin nima qilish kerak?", ru: 'Что нужно сделать перед переносом кода на постоянное место?' }, opts: [{ uz: "🔑 kalitni ochiq kodga ko'chirib yozib qo'yish", ru: 'Переписать 🔑 ключ прямо в открытый код' }, { uz: "Hech narsa, to'g'ridan-to'g'ri ko'chiraveramiz", ru: 'Ничего, переносим сразу' }, { uz: "Laptopni butunlay o'chirib qo'yish", ru: 'Полностью выключить ноутбук' }, { uz: "Kodni laptopda sinab ko'rish", ru: 'Проверить код на ноутбуке' }], correct: 3 },
-  { q: { uz: "Botjon xatoga uchrasa ham jim qolmasligi uchun nima tayyorlanadi?", ru: 'Что готовят, чтобы Ботжон не молчал даже при ошибке?' }, opts: [{ uz: "Oxirgi qator (fallback): «birozdan keyin urinib ko'ring»", ru: 'Последнюю строку (запасной ответ): «попробуйте чуть позже»' }, { uz: "Xato chiqqan zahoti Botni butunlay o'chirib, keyin qaytadan yoqish", ru: 'При первой же ошибке полностью выключить бота и включить снова' }, { uz: "🔑 kalitni yangilash", ru: 'Обновить 🔑 ключ' }, { uz: "Hech narsa tayyorlash shart emas — Botjon o'zi to'xtab qoladi", ru: 'Готовить ничего не нужно — Ботжон просто остановится' }], correct: 0 },
-  { q: { uz: "Laptop o'chgan, lekin Botjon javob beryapti. Sababi?", ru: 'Ноутбук выключен, а Ботжон отвечает. Причина?' }, opts: [{ uz: "Laptop aslida umuman o'chmagan bo'lishi kerak", ru: 'Наверное, ноутбук на самом деле не выключен' }, { uz: "Telegram botni endi o'zi yuritadi", ru: 'Теперь Telegram сам ведёт бота' }, { uz: "Botjon doimiy joyga (serverga) ko'chirilgan", ru: 'Ботжон перенесён на постоянное место (сервер)' }, { uz: "Mijoz botni o'zi ishga tushirgan", ru: 'Клиент сам запустил бота' }], correct: 2 },
+  { q: { uz: "To'liq botning to'rt asosiy qismi qaysilar?", ru: "Какие четыре основные части у полного бота?" }, opts: [{ uz: 'Token, API, dizayn va reklama', ru: "Токен, API, дизайн и реклама" }, { uz: 'Token, handlerlar, baza va AI', ru: "Токен, handler-ы, база и ИИ" }, { uz: 'Handlerlar, rasm, video va musiqa', ru: "Handler-ы, фото, видео и музыка" }, { uz: 'Telegram, telefon, laptop va internet', ru: "Telegram, телефон, ноутбук и интернет" }], correct: 1 },
+  { q: { uz: 'Buyurtmani ertasi kungacha qaysi qism saqlaydi?', ru: "Какая часть хранит заказ до следующего дня?" }, opts: [{ uz: 'Token', ru: "Токен" }, { uz: 'Handler', ru: "Handler" }, { uz: 'AI', ru: "ИИ" }, { uz: 'Baza', ru: "База" }], correct: 3 },
+  { q: { uz: 'Deploy nima degani?', ru: "Что значит деплой?" }, opts: [{ uz: 'Kodni serverga joylab, u yerda ishga tushirish', ru: "Разместить код на сервере и запустить его там" }, { uz: "Botni butunlay o'chirib, qaytadan yaratish", ru: "Полностью удалить бота и создать заново" }, { uz: "Eski tokenni yangisiga almashtirib qo'yish", ru: "Заменить старый токен на новый" }, { uz: 'Botga yangi mijozlarni taklif qilib chiqish', ru: "Пригласить в бота новых клиентов" }], correct: 0 },
+  { q: { uz: 'Server — bu nima?', ru: "Сервер — что это?" }, opts: [{ uz: 'Telegram ichidagi maxsus kanal', ru: "Специальный канал внутри Telegram" }, { uz: 'Laptopingizdagi alohida papka', ru: "Отдельная папка на вашем ноутбуке" }, { uz: "To'xtamay ishlashga mo'ljallangan kompyuter", ru: "Компьютер, рассчитанный на работу без остановки" }, { uz: 'Mijoz telefonidagi Telegram ilovasi', ru: "Приложение Telegram на телефоне клиента" }], correct: 2 },
+  { q: { uz: "Botni serverga joylasak, nima o'zgaradi?", ru: "Что изменится, если разместить бота на сервере?" }, opts: [{ uz: 'Bot ancha sekin javob bera boshlaydi', ru: "Бот станет отвечать заметно медленнее" }, { uz: "Laptop yopiq bo'lsa ham bot javob beradi", ru: "Бот отвечает, даже когда ноутбук закрыт" }, { uz: "Bot faqat kunduzi javob beradigan bo'ladi", ru: "Бот будет отвечать только днём" }, { uz: 'Hech narsa, hammasi avvalgidek qoladi', ru: "Ничего, всё останется как было" }], correct: 1 },
+  { q: { uz: 'Serverda BOT_TOKEN qayerga yoziladi?', ru: "Куда на сервере записывают BOT_TOKEN?" }, opts: [{ uz: "Server sozlamalariga, kod uni process.env dan o'qiydi", ru: "В настройки сервера, код читает его из process.env" }, { uz: 'bot.js ichiga, kod bilan birga yuklanadi', ru: "В bot.js, он загружается вместе с кодом" }, { uz: "Botning Telegram'dagi tavsifiga yoziladi", ru: "В описание бота в Telegram" }, { uz: "Hech qayerga, server uni o'zi topadi", ru: "Никуда, сервер сам его найдёт" }], correct: 0 },
+  { q: { uz: "Polling'da yangi xabarni kim so'raydi?", ru: "Кто при polling спрашивает о новом сообщении?" }, opts: [{ uz: "Mijoz — u Telegram'dan qayta-qayta so'raydi", ru: "Клиент — он снова и снова спрашивает у Telegram" }, { uz: "Telegram — u botdan qayta-qayta so'raydi", ru: "Telegram — он снова и снова спрашивает у бота" }, { uz: "Server — u mijozdan qayta-qayta so'raydi", ru: "Сервер — он снова и снова спрашивает у клиента" }, { uz: "Bot — u Telegram'dan qayta-qayta so'raydi", ru: "Бот — он снова и снова спрашивает у Telegram" }], correct: 3 },
+  { q: { uz: "Webhook'da yangi xabarni botga kim yetkazadi?", ru: "Кто при webhook доставляет боту новое сообщение?" }, opts: [{ uz: "Bot o'zi — Telegram'dan qayta-qayta so'rab oladi", ru: "Сам бот — снова и снова спрашивает у Telegram" }, { uz: "Telegram — xabarni botning manziliga o'zi yuboradi", ru: "Telegram — сам отправляет сообщение на адрес бота" }, { uz: "Mijoz — xabarni to'g'ridan-to'g'ri serverga yozadi", ru: "Клиент — пишет сообщение прямо на сервер" }, { uz: "Hech kim — xabar botda o'zi paydo bo'ladi", ru: "Никто — сообщение само появляется в боте" }], correct: 1 },
+  { q: { uz: 'Kichik bot uchun qaysi usul soddaroq?', ru: "Какой способ проще для маленького бота?" }, opts: [{ uz: 'Webhook', ru: "Webhook" }, { uz: 'Ikkalasini birga ishlatish', ru: "Использовать оба вместе" }, { uz: 'Polling', ru: "Polling" }, { uz: "Hech qaysi, bot o'zi biladi", ru: "Никакой, бот сам разберётся" }], correct: 2 },
+  { q: { uz: 'Kodni serverga joylashdan oldin nima qilinadi?', ru: "Что делают перед размещением кода на сервере?" }, opts: [{ uz: "Token kodga ochiq yozib qo'yiladi", ru: "Записывают токен в код открыто" }, { uz: "Hech narsa, kod to'g'ridan-to'g'ri joylanadi", ru: "Ничего, код сразу размещают" }, { uz: "Laptopdagi baza o'chirib tashlanadi", ru: "Удаляют базу на ноутбуке" }, { uz: 'Kod laptopda ishga tushirib sinaladi', ru: "Запускают и тестируют код на ноутбуке" }], correct: 3 },
+  { q: { uz: 'AI javob bermasa ham bot jim qolmasligi uchun nima qilinadi?', ru: "Что делают, чтобы бот не молчал, даже если ИИ не ответил?" }, opts: [{ uz: "Xato ushlanadi va mijozdan uzr so'raladi", ru: "Ловят ошибку и извиняются перед клиентом" }, { uz: "Bot har safar qo'lda qayta yoqiladi", ru: "Каждый раз включают бота вручную" }, { uz: "@BotFather'dan yangi token olinadi", ru: "Берут новый токен у @BotFather" }, { uz: "Hech narsa, bot o'zi tiklanib ketadi", ru: "Ничего, бот сам восстановится" }], correct: 0 },
+  { q: { uz: 'Laptop yopiq, lekin bot javob beryapti. Sababi?', ru: "Ноутбук закрыт, а бот отвечает. Почему?" }, opts: [{ uz: 'Javoblar oldindan navbatda turgan edi', ru: "Ответы заранее стояли в очереди" }, { uz: "Telegram bot dasturini o'zi ishlatadi", ru: "Telegram сам запускает программу бота" }, { uz: 'Bot dasturi serverda ishlayapti', ru: "Программа бота работает на сервере" }, { uz: "Mijoz botni o'zi ishga tushirgan", ru: 'Клиент сам запустил бота' }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1537,7 +1611,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (Botjon): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['deploy', '🏠', '.env', 'polling', 'webhook', '24/7', 'server', '🔑', '↻', 'fallback'];
+    const TOK = ['deploy', 'bot.js', '.env', 'polling', 'webhook', 'BOT_TOKEN', 'server', 'PostgreSQL', '↻', 'fallback'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -1967,7 +2041,7 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: 'Kim bajardi', ru: "Кто выполнил" })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
         <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружаем…' })}</p>
       ) : players.length === 0 ? (
@@ -1984,9 +2058,9 @@ const MentorPracticeStats = ({ live, screen }) => {
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = { uz: 'kompyuteringizda', ru: 'на своём компьютере' } }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
-  const [checked, setChecked] = useState(() => new Set());
+  // A6: qadamlar bittadan — joriy qadam to'liq, bajarilgani ✓ bilan bitta qatorga yig'iladi (↻ bilan qayta ochiladi), keyingisi hali ko'rinmaydi
+  const [doneN, setDoneN] = useState(() => (storedAnswer && storedAnswer.solved) ? checklist.length : 0);
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
     if (done) return;
     setDone(true);
@@ -1994,38 +2068,40 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
+  const stepDone = () => { const n = Math.min(doneN + 1, checklist.length); setDoneN(n); if (n >= checklist.length) complete(); };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z ${ou(place)} bajarasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `practice_${screen}`, text: `Topshiriqni o'z ${ou(place)} bajaring. Har qadamdan keyin «Bajardim» ni bosing — keyingisi ochiladi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={eyebrow || { uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' }} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z {tr(place)}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{tr(place)}</b>. Отмечайте каждый шаг по мере выполнения. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b>, наставник наблюдает.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Topshiriqni <b style={{ color: T.ink }}>o'z {tr(place)}</b> bajaring. Har qadamdan keyin <b style={{ color: T.ink }}>«Bajardim»</b> ni bosing — keyingisi ochiladi.</>, ru: <>Выполните задание <b style={{ color: T.ink }}>{tr(place)}</b>. После каждого шага нажимайте <b style={{ color: T.ink }}>«Готово»</b> — откроется следующий.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(task))}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
+            <p className="flow-label">{tr({ uz: 'Qadamlar', ru: "Шаги" })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
-                const on = checked.has(i);
+                if (i < doneN) return <DoneRow key={i} onRedo={() => setDoneN(i)}>{fmtCode(tr(c))}</DoneRow>;
+                if (i > doneN) return null;
                 return (
-                  <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                    <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
-                  </button>
+                  <div key={i} className="lp-cur fade-step">
+                    <div className="lp-cur-t"><span className="lp-check">{i + 1}</span><span className="lp-step-t">{fmtCode(tr(c))}</span></div>
+                    <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={stepDone}>{tr({ uz: 'Bajardim', ru: "Готово" })}</button>
+                  </div>
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
+            {done && doneN >= checklist.length && <>
+              <button className="lp-done-btn is-done" disabled>{tr({ uz: '✓ Bajarildi — Mentorni kuting', ru: "✓ Выполнено — дождитесь ментора" })}</button>
+              <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tayyorlik tugadi. Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: "Подготовка закончена. Ментор проверит и переведёт вас к следующему шагу." })}</p></div>
+            </>}
           </Col>
         </div>
       </div>
@@ -2087,7 +2163,7 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">✓</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
@@ -2096,8 +2172,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
-          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{fmtCode(tr(card.front))}</span></div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{fmtCode(tr(card.note))}</span>}</div>
         </div>
         </div>
       </div>
@@ -2108,34 +2184,34 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🛠️ PRAKTIKA — o'quvchi AI chatda yo'riqnoma yozib sinaydi (mentor-gate, kod kiritilmaydi)
+// 🛠️ PRAKTIKA — o'quvchi o'z botini serverga joylashga tayyorlaydi (mentor-gate, kod kiritilmaydi)
 const ScreenBotPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · Doimiy joy', ru: 'Практика · Постоянное место' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
-    title={{ uz: "Botjoningizni doimiy joyga ko'chirish rejasini yozing", ru: 'Напишите план переноса вашего Ботжона на постоянное место' }}
-    task={{ uz: "O'z Botjoningiz (yoki istalgan loyiha) uchun ko'chirish rejasini tayyorlang: 4 buyumni tekshiring, kalitni qulfli tortmaga (.env) ko'chiring, kodni laptopda sinang va doimiy joyni tanlang. Har bosqichni bajarib, belgilab boring.", ru: 'Подготовьте план переноса для своего Ботжона (или любого проекта): проверьте 4 предмета, перенесите ключ в запертый ящик (.env), проверьте код на ноутбуке и выберите постоянное место. Отмечайте каждый шаг по мере выполнения.' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · server', ru: "Практика · сервер" }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
+    title={{ uz: 'Botingizni serverga joylashga tayyorlang', ru: "Подготовьте бота к размещению на сервере" }}
+    task={{ uz: "O'z botingizni serverga joylashga tayyorlang: laptopda sinang, sirlarni tekshiring, xatoni ushlang va deploy rejasini yozing.", ru: "Подготовьте свой бот к размещению на сервере: протестируйте его на ноутбуке, проверьте секреты, настройте ловлю ошибок и напишите план деплоя." }}
     checklist={[
-      { uz: "To'liq Botjonning 4 buyumi borligini tekshiring: 🔑 kalit, 📋 varaq, 📓 daftar, 🧭 maslahatchi", ru: 'Проверьте, что у полного Ботжона есть все 4 предмета: 🔑 ключ, 📋 лист, 📓 тетрадь, 🧭 советчик' },
-      { uz: "🔑 kalitni qulfli tortmaga (`.env`) ko'chiring — kodda faqat `process.env` qolsin", ru: 'Перенесите 🔑 ключ в запертый ящик (`.env`) — в коде пусть останется только `process.env`' },
-      { uz: "Kodni o'z laptopingizda ishga tushirib, sinab ko'ring", ru: 'Запустите код на своём ноутбуке и проверьте его' },
-      { uz: "Doimiy joy (hosting xizmati)ni tanlang va uni AI'dan so'rab aniqlang", ru: 'Выберите постоянное место (хостинг) — уточните выбор у ИИ' },
-      { uz: "Yiqilmaslik qatorini (fallback) qo'shing: xato bo'lsa ham Botjon jim qolmasin", ru: 'Добавьте строку «не падать» (запасной ответ): даже при ошибке Ботжон не должен молчать' },
+      { uz: 'Botingizni laptopda ishga tushiring va tekshiring: /start, menyu, erkin savol (AI javob beradi), buyurtma bazaga yoziladi.', ru: "Запустите бота на ноутбуке и проверьте: /start, меню, свободный вопрос (отвечает ИИ), заказ записывается в базу." },
+      { uz: 'Token va AI API kaliti `.env` faylida, `.env` esa `.gitignore` da ekanini tekshiring — kodda faqat `process.env` qolsin.', ru: "Проверьте, что токен и ключ AI API лежат в файле `.env`, а `.env` — в `.gitignore`: в коде пусть останется только `process.env`." },
+      { uz: "`bot.catch` qo'shing: xato bo'lsa, bot mijozga «Uzr, birozdan keyin qayta yozing» deb javob yuborsin.", ru: "Добавьте `bot.catch`: если случится ошибка, пусть бот ответит клиенту «Извините, напишите чуть позже»." },
+      { uz: "gemini.google.com'dan so'rang: «Telegraf botini to'xtovsiz ishlatish uchun qaysi hosting xizmatlari bor va deploy qadamlari qanday?». Uchta narsaga qarang: Node.js'ni ishga tushiradimi, sozlamalarga `BOT_TOKEN` yozish mumkinmi, bepul yoki arzon rejasi bormi. Javobni Mentor bilan ko'rib, bitta xizmatni tanlang.", ru: "Спросите на gemini.google.com: «Какие есть хостинг-сервисы, чтобы бот на Telegraf работал без остановки, и какие шаги деплоя?». Обратите внимание на три вещи: запускает ли сервис Node.js, можно ли записать `BOT_TOKEN` в настройки, есть ли бесплатный или недорогой тариф. Разберите ответ с ментором и выберите один сервис." },
+      { uz: 'Tanlangan xizmat uchun deploy rejasini yozing: kod qayerga yuklanadi, `BOT_TOKEN` qayerga yoziladi, bot qanday ishga tushadi.', ru: "Напишите план деплоя для выбранного сервиса: куда загружается код, куда записывается `BOT_TOKEN`, как запускается бот." },
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 atama (loyiha kuni: to'liq bot + doimiy joy)
+// 🃏 FLASHCARD KARTALARI — 12 atama (loyiha kuni: to'liq bot + server + deploy)
 const BOT_FLASHCARDS = [
-  { front: { uz: "To'liq Botjonning 4 buyumi qaysilar?", ru: 'Какие 4 предмета у полного Ботжона?' }, back: { uz: '🔑 kalit, 📋 varaq, 📓 daftar, 🧭 maslahatchi', ru: '🔑 ключ, 📋 лист, 📓 тетрадь, 🧭 советчик' }, note: { uz: 'har buyum bitta ishni bajaradi', ru: 'каждый предмет делает одно дело' } },
-  { front: { uz: "Buyurtmani ertaga ham eslab qolish qaysi buyumning ishi?", ru: 'Помнить заказ и завтра — дело какого предмета?' }, back: { uz: '📓 daftar', ru: '📓 тетрадь' }, note: { uz: 'daftar (DB) ma\'lumotni doimiy saqlaydi', ru: 'тетрадь (БД) хранит данные постоянно' } },
-  { front: { uz: "Erkin savolga o'ylab javob berish qaysi buyumning ishi?", ru: 'Обдуманно ответить на свободный вопрос — дело какого предмета?' }, back: { uz: '🧭 maslahatchi', ru: '🧭 советчик' }, note: { uz: 'oddiy buyruqqa esa 📋 varaq javob beradi', ru: 'а на простую команду отвечает 📋 лист' } },
-  { front: { uz: "Botjon laptopda yashasa, laptopni yopganingizda nima bo'ladi?", ru: 'Если Ботжон живёт на ноутбуке, что будет, когда Вы закроете ноутбук?' }, back: { uz: 'Botjon jim qoladi', ru: 'Ботжон замолчит' }, note: { uz: 'laptop — vaqtinchalik joy', ru: 'ноутбук — временное место' } },
-  { front: { uz: "Doim yoqilgan, o'chmaydigan kompyuter qanday ataladi?", ru: 'Как называется всегда включённый компьютер, который не выключается?' }, back: { uz: 'Doimiy joy', ru: 'Постоянное место' }, note: { uz: 'server: Botjon u yerda tunu-kun ishlaydi', ru: 'сервер: Ботжон работает там днём и ночью' } },
-  { front: { uz: "Kodni laptopdan doimiy joyga qo'yish nima deyiladi?", ru: 'Как называется перенос кода с ноутбука на постоянное место?' }, back: { uz: "Ko'chirish", ru: 'Перенос' }, note: { uz: 'deploy — shundan keyin bot 24/7 jonli', ru: 'deploy — после него бот живой 24/7' } },
-  { front: { uz: "Botjon Telegram'dan tinmay «yangi xabar bormi?» deb so'rasa, bu qaysi usul?", ru: 'Если Ботжон без остановки спрашивает у Telegram «есть новое сообщение?», это какой способ?' }, back: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, note: { uz: 'polling — sodda, kichik bot uchun', ru: 'polling — просто, для маленького бота' } },
-  { front: { uz: "Telegram yangi xabarni Botjonga o'zi bildirsa, bu qaysi usul?", ru: 'Если Telegram сам извещает Ботжона о новом сообщении, это какой способ?' }, back: { uz: "Qo'ng'iroq", ru: 'Звонок' }, note: { uz: 'webhook — tezroq, foydalanuvchi ko\'p bo\'lganda', ru: 'webhook — быстрее, когда пользователей много' } },
-  { front: { uz: "Kichik Botjon uchun qaysi aloqa usuli soddaroq?", ru: 'Какой способ связи проще для маленького Ботжона?' }, back: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, note: { uz: 'foydalanuvchi ko\'paysa, qo\'ng\'iroqqa o\'tasiz', ru: 'станет больше пользователей — перейдёте на звонок' } },
-  { front: { uz: "Doimiy joyda 🔑 kalit qayerda saqlanadi?", ru: 'Где на постоянном месте хранится 🔑 ключ?' }, back: { uz: '.env faylda', ru: 'В файле .env' }, note: { uz: 'bu qulfli tortma: kalit ochiq yotmaydi', ru: 'это запертый ящик: ключ не лежит открыто' } },
-  { front: { uz: "Xato bo'lganda ham Botjon jim qolmasligi uchun nima qo'shiladi?", ru: 'Что добавляют, чтобы Ботжон не молчал даже при ошибке?' }, back: { uz: 'Yiqilmaslik qatori', ru: 'Строка «не падать»' }, note: { uz: 'fallback — zaxira javob har doim chiqadi', ru: 'fallback — запасной ответ выходит всегда' } },
-  { front: { uz: "Kodni ko'chirishdan oldin oxirgi qadam qaysi?", ru: 'Какой шаг последний перед переносом кода?' }, back: { uz: 'Laptopda sinash', ru: 'Проверка на ноутбуке' }, note: { uz: 'lokal test: xatolar shu yerda topiladi', ru: 'локальный тест: ошибки находятся здесь' } },
+  { front: { uz: "To'liq botning to'rt qismi qaysilar?", ru: "Какие четыре части у полного бота?" }, back: { uz: 'Token, handlerlar, baza, AI', ru: "Токен, handler-ы, база, ИИ" }, note: { uz: "Har qism o'z ishini qiladi", ru: "Каждая часть делает своё дело" } },
+  { front: { uz: 'Buyurtmani ertasi kungacha qaysi qism saqlaydi?', ru: "Какая часть хранит заказ до следующего дня?" }, back: { uz: 'Baza (PostgreSQL)', ru: "База (PostgreSQL)" }, note: { uz: "Diskda turadi — bot qayta ishga tushsa ham yo'qolmaydi", ru: "Данные лежат на диске — не пропадут, даже если бот запустится заново" } },
+  { front: { uz: "Handlerda tayyor javobi yo'q erkin savolga kim javob yozadi?", ru: "Кто пишет ответ на свободный вопрос, на который у handler-а нет готового ответа?" }, back: { uz: 'AI', ru: "ИИ" }, note: { uz: "Siz yozgan system prompt bo'yicha", ru: "По system prompt, который написали вы" } },
+  { front: { uz: "Bot dasturi laptopda bo'lsa, laptop yopilganda nima bo'ladi?", ru: "Если программа бота работает на ноутбуке, что будет, когда ноутбук закроют?" }, back: { uz: 'Bot javob bermaydi', ru: "Бот не отвечает" }, note: { uz: "Xabar Telegram'da kutib turadi, dastur esa to'xtagan", ru: "Сообщение ждёт в Telegram, а программа остановилась" } },
+  { front: { uz: "Internetga ulangan, to'xtamay ishlashga mo'ljallangan kompyuter nima deyiladi?", ru: "Как называется компьютер, подключённый к интернету и рассчитанный на работу без остановки?" }, back: { uz: 'Server', ru: "Сервер" }, note: { uz: 'Uni hosting xizmatidan ijaraga olasiz', ru: "Его арендуют у хостинг-сервиса" } },
+  { front: { uz: 'Kodni serverga joylab, u yerda ishga tushirish nima deyiladi?', ru: "Как называется размещение кода на сервере и его запуск там?" }, back: { uz: 'Deploy', ru: "Деплой" }, note: { uz: "Shundan keyin laptop yopiq bo'lsa ham bot ishlaydi", ru: "После него бот работает, даже когда ноутбук закрыт" } },
+  { front: { uz: 'Kodni Git orqali serverga joylaganda `.env` nega bormaydi?', ru: "Почему при размещении кода на сервере через Git файл `.env` туда не попадает?" }, back: { uz: 'U .gitignore da', ru: "Он в .gitignore" }, note: { uz: 'Shuning uchun `BOT_TOKEN` serverda alohida sozlanadi', ru: "Поэтому `BOT_TOKEN` на сервере настраивают отдельно" } },
+  { front: { uz: "Bot Telegram'dan «yangi xabar bormi?» deb qayta-qayta so'rasa, bu qaysi usul?", ru: "Если бот снова и снова спрашивает у Telegram «есть новое сообщение?», какой это способ?" }, back: { uz: 'Polling', ru: "Polling" }, note: { uz: '`bot.launch()` shu usulda ishlaydi', ru: "`bot.launch()` работает этим способом" } },
+  { front: { uz: "Telegram yangi xabarni botning internetdagi manziliga o'zi yuborsa, bu qaysi usul?", ru: "Если Telegram сам отправляет новое сообщение на адрес бота в интернете, какой это способ?" }, back: { uz: 'Webhook', ru: "Webhook" }, note: { uz: 'Botga ochiq manzil (URL) kerak', ru: "Боту нужен открытый адрес (URL)" } },
+  { front: { uz: 'Kichik bot uchun qaysi usul soddaroq?', ru: "Какой способ проще для маленького бота?" }, back: { uz: 'Polling', ru: "Polling" }, note: { uz: "Qo'shimcha sozlash kerak emas, serverda ham ishlaydi", ru: "Дополнительная настройка не нужна, работает и на сервере" } },
+  { front: { uz: 'AI yoki baza javob bermasa, bot jim qolmasligi uchun nima qilinadi?', ru: "Что делают, чтобы бот не молчал, если ИИ или база не ответили?" }, back: { uz: 'Xato ushlanadi', ru: "Ловят ошибку" }, note: { uz: "Telegraf'da `bot.catch` — mijozga «birozdan keyin yozing» deyiladi", ru: "В Telegraf это `bot.catch` — клиенту отвечают «напишите чуть позже»" } },
+  { front: { uz: 'Kodni serverga joylashdan oldin uni qayerda sinaysiz?', ru: "Где вы тестируете код перед размещением на сервере?" }, back: { uz: 'Laptopda', ru: "На ноутбуке" }, note: { uz: 'Xatoni serverga chiqmasdan oldin topasiz', ru: "Ошибки находите до того, как код попадёт на сервер" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2171,16 +2247,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "To'liq Botjon — 4 buyum birga: 🔑 kalit, 📋 varaq, 📓 daftar (DB), 🧭 maslahatchi (AI)", ru: 'Полный Ботжон — 4 предмета вместе: 🔑 ключ, 📋 лист, 📓 тетрадь (БД), 🧭 советчик (ИИ)' },
-    { uz: "🏠 Doimiy joy (server) — doim yoqilgan kompyuter; Botjon u yerda 24/7 uxlamaydi", ru: '🏠 Постоянное место (сервер) — всегда включённый компьютер; там Ботжон не спит 24/7' },
-    { uz: "Ko'chirish (deploy): laptopda sina → 🔑 kalitni .env'ga sozla → doimiy joyga ko'chir → jonli", ru: 'Перенос (deploy): проверь на ноутбуке → настрой 🔑 ключ в .env → перенеси на постоянное место → живой' },
-    { uz: "Aloqa usuli: o'zi-so'rab-turish (polling) — sodda, kichik botga; qo'ng'iroq (webhook) — tez, ko'p foydalanuvchiga", ru: 'Способ связи: «сам спрашивает» (polling) — просто, для маленького бота; звонок (webhook) — быстро, для многих пользователей' },
-    { uz: "Yiqilmaslik qoidasi (fallback) — Botjon xato bo'lsa ham jim qolmasin: oxirgi qator tayyor tursin", ru: 'Правило «не падать» (запасной ответ) — даже при ошибке Ботжон не молчит: последняя строка наготове' }
+    { uz: "To'liq bot — to'rt qism: token, handlerlar, baza (PostgreSQL) va AI", ru: "Полный бот — четыре части: токен, handler-ы, база (PostgreSQL) и ИИ" },
+    { uz: "Bot dasturi laptopda bo'lsa, laptop yopilganda u ham to'xtaydi; server esa to'xtamay ishlashga mo'ljallangan", ru: "Если программа бота на ноутбуке, она останавливается, когда ноутбук закрывают; а сервер рассчитан на работу без остановки" },
+    { uz: "`.env` serverga kod bilan bormaydi — `BOT_TOKEN` va AI API kaliti server sozlamalariga yoziladi", ru: "`.env` не попадает на сервер вместе с кодом — `BOT_TOKEN` и ключ AI API записывают в настройки сервера" },
+    { uz: "Polling — bot so'raydi, sozlash oson; webhook — Telegram o'zi yuboradi, ochiq manzil kerak", ru: "Polling — спрашивает бот, настроить легко; webhook — Telegram отправляет сам, нужен открытый адрес" },
+    { uz: "Deploy tartibi: laptopda sinash → serverda token → kodni joylash → /start bilan tekshirish", ru: "Порядок деплоя: тест на ноутбуке → токен на сервере → размещение кода → проверка через /start" }
   ];
   const HOMEWORK = [
-    { b: { uz: 'Yig\'ing', ru: 'Соберите' }, t: { uz: "— o'z Botjoningiz uchun 4 buyumni bitta joyga yig'ing va laptopda ishga tushiring", ru: '— соберите 4 предмета своего Ботжона в одном месте и запустите его на ноутбуке' } },
-    { b: { uz: 'Ko\'chiring', ru: 'Перенесите' }, t: { uz: "— 🔑 kalitni .env'ga qo'ying, doimiy joy (hosting) tanlang va Botjonni u yerga ko'chiring", ru: '— положите 🔑 ключ в .env, выберите постоянное место (хостинг) и перенесите Ботжона туда' } },
-    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: "— laptopingizni o'chiring va Botjon 24/7 jonli ekanini o'z ko'zingiz bilan ko'ring", ru: '— выключите ноутбук и убедитесь своими глазами, что Ботжон живой 24/7' } }
+    { b: { uz: 'Tayyorlang', ru: "Подготовьте" }, t: { uz: "— botingiz laptopda to'liq ishlashini tekshiring: /start, menyu, erkin savol va buyurtma bazaga yozilishi", ru: "— проверьте, что ваш бот полностью работает на ноутбуке: /start, меню, свободный вопрос и запись заказа в базу" } },
+    { b: { uz: 'Rejalang', ru: "Спланируйте" }, t: { uz: "— amaliyotda tanlagan xizmat uchun deploy qadamlarini yozing: kod qayerga yuklanadi, `BOT_TOKEN` qayerga yoziladi, bot qanday ishga tushadi", ru: "— напишите шаги деплоя для сервиса, который выбрали на практике: куда загружается код, куда записывается `BOT_TOKEN`, как запускается бот" } },
+    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: "— botni serverga joylagach, laptopingizni yoping va botga /start yozing: javob kelsa, bot serverda ishlayapti", ru: "— когда разместите бота на сервере, закройте ноутбук и напишите боту /start: если пришёл ответ, бот работает на сервере" } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2188,12 +2264,12 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Botjon endi doim yashaydi', ru: 'Теперь Ботжон живёт всегда' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Botjoningiz endi laptopda emas — <span className="italic" style={{ color: T.accent }}>doimiy joyda</span>, 24/7 jonli.</>, ru: <>Ваш Ботжон теперь не на ноутбуке — он <span className="italic" style={{ color: T.accent }}>на постоянном месте</span>, живой 24/7.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Bot serverga tayyor', ru: "Бот готов к серверу" })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi botni <span className="italic" style={{ color: T.accent }}>serverga joylash</span> tartibini bilasiz.</>, ru: <>Теперь вы знаете порядок <span className="italic" style={{ color: T.accent }}>размещения бота на сервере</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: 'Mentorni kuting', ru: "Дождитесь ментора" } : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{fmtCode(tr(r))}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2204,9 +2280,9 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Botjon to'liq jihozlanadi: barcha buyumlar bilan yakuniy AI-loyihani boshdan-oxir quramiz! ⭐", ru: '🚀 Следующий урок — Ботжон снаряжается полностью: со всеми предметами строим финальный ИИ-проект от начала до конца! ⭐' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: "Домашнее задание" })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{fmtCode(tr(h.t))}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>Keyingi dars — <b>«Botingizni ishlatgan odamdan nimani so'raysiz?»</b> Botingizni sinab ko'rgan odamdan u aynan nima qilganini so'rashni va eshitganingizni yozib olishni o'rganamiz.</>, ru: <>Следующий урок — <b>«Что спросить у того, кто пользовался ботом?»</b> Научимся спрашивать у человека, который попробовал ваш бот, что именно он делал, и записывать услышанное.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz', ru: "Ваши значки" })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
               <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
@@ -2368,7 +2444,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
-        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
+        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.ink}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 14px; font-size: 13px; }
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
         .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -2385,6 +2461,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } /* U2: kattalashtirish tugmasiga joy — matn ustiga tushmaydi */
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
@@ -2401,11 +2478,11 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         /* === HOOK OPSIYALARI (radio) === */
         .hook-option { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,16px) clamp(15px,2.2vw,18px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .hook-option:hover:not(:disabled):not(.on) { box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
-        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        .hook-option.on { background: ${T.paper}; color: ${T.ink}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.22), inset 0 0 0 2px ${T.ink}; } /* U1: hook tanlovi ballsiz — neytral to'q ramka */
         .hook-option:disabled { cursor: default; }
         .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
-        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
-        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
+        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.ink}; }
+        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.ink}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
@@ -2504,7 +2581,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
-        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
+        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; } .ring-wrap svg { width: 100%; height: 100%; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
@@ -2634,7 +2711,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .fc-done-s { font-family: 'Manrope'; color: ${T.ink2}; margin: 0 0 8px; font-size: 14px; }
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
-        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: normal; overflow-wrap: anywhere; }
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }
@@ -2667,7 +2744,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .ach-badge.locked .ach-badge-name { color: ${T.ink3}; }
         .ach-badge-desc { font-family: 'Manrope'; font-size: 10.5px; color: ${T.ink2}; line-height: 1.3; }
         .acu-overlay { position: fixed; inset: 0; z-index: 11000; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer;
-          background: radial-gradient(circle at 50% 42%, rgba(20,14,6,0.34) 0%, rgba(10,8,14,0.72) 62%, rgba(8,6,12,0.86) 100%);
+          background: radial-gradient(circle at 50% 42%, rgb(42,33,22) 0%, rgb(17,14,22) 62%, rgb(11,9,16) 100%);
           animation: acu-bg-in 0.35s ease-out, acu-bg-out 0.55s ease-in 3.45s forwards; }
         @keyframes acu-bg-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes acu-bg-out { to { opacity: 0; } }
@@ -3014,12 +3091,12 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
         .tg-ava { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
         .tg-name { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: #fff; display: flex; flex-direction: column; line-height: 1.25; }
         .tg-status { font-weight: 500; font-size: 10.5px; color: #DCEBF7; }
-        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 7px; }
-        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: break-word; }
+        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 10px; }
+        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: normal; overflow-wrap: break-word; hyphens: none; }
         .tg-bubble.bot { align-self: flex-start; background: #fff; color: #0E0E10; border-bottom-left-radius: 5px; }
         .tg-bubble.user { align-self: flex-end; background: #EFFDDE; color: #0E0E10; border-bottom-right-radius: 5px; }
         .tg-bubble.muted { opacity: 0.55; }
-        .tg-btns { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 5px; max-width: 92%; }
+        .tg-btns { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 5px; max-width: 92%; margin-top: 4px; }
         .tg-btn { font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; color: #2E6FA6; background: rgba(255,255,255,0.92); padding: 6px 11px; border-radius: 9px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .tg-typing { display: flex; gap: 4px; align-items: center; padding: 11px 13px; }
         .tg-typing span { width: 6px; height: 6px; border-radius: 50%; background: ${T.ink3}; animation: tg-typing-bounce 1s ease-in-out infinite; }
@@ -3170,6 +3247,97 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .tg-typing span, .desk-paper.fell { animation: none !important; }
         }
 
+        /* ===== 5-Modul v2 · 7-dars: navbatli ochilish (A6), chizmalar (A7), UI (U1–U3) ===== */
+        .q-ask { font-family: 'Manrope'; font-weight: 700; font-size: clamp(15px,1.8vw,17px); color: ${T.ink}; margin: 0; }
+        .gchip.seen { box-shadow: inset 0 0 0 1.5px ${T.success}; color: ${T.success}; }
+        .gchip.cur { box-shadow: inset 0 0 0 2px ${T.ink}; color: ${T.ink}; }
+        .gchip-ar { font-weight: 800; opacity: 0.75; margin-left: 2px; }
+        .seq-block { display: flex; flex-direction: column; gap: 8px; }
+        .seq-h { font-family: 'Manrope'; font-weight: 700; font-size: 14.5px; color: ${T.ink}; margin: 0; }
+        .seq-err { font-size: 13px; color: ${T.danger}; margin: 0; }
+        .seq-done { display: flex; align-items: center; gap: 10px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 10px 8px 12px; font-size: 13.5px; color: ${T.ink}; min-width: 0; }
+        .seq-ck { width: 20px; height: 20px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+        .seq-done.bad .seq-ck { background: ${T.danger}; }
+        .seq-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .seq-t .qcode { white-space: nowrap; overflow-wrap: normal; }
+        .seq-redo { border: none; background: ${T.bg}; color: ${T.ink2}; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 14px; flex-shrink: 0; }
+        .seq-redo:hover { color: ${T.ink}; box-shadow: 0 4px 10px -4px rgba(${T.shadowBase},0.3); }
+        .pick-row.ok { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .pick-row.bad { background: ${T.dangerSoft}; color: ${T.danger}; box-shadow: inset 0 0 0 1.5px ${T.danger}66; }
+        .pick-row.ok .pick-plus { color: ${T.success}; } .pick-row.bad .pick-plus { color: ${T.danger}; }
+        .dial-btn.ok { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .dial-btn.bad { background: ${T.dangerSoft}; color: ${T.danger}; box-shadow: inset 0 0 0 1.5px ${T.danger}66; }
+        .claim-mark { flex-shrink: 0; font-family: 'Manrope'; font-weight: 700; font-size: 12px; padding: 5px 9px; border-radius: 8px; }
+        .claim-row.ok .claim-mark { background: ${T.successSoft}; color: ${T.success}; }
+        .claim-row.bad .claim-mark { background: ${T.dangerSoft}; color: ${T.danger}; }
+        .claim-row.ok { box-shadow: inset 0 0 0 1.5px ${T.success}55; } .claim-row.bad { box-shadow: inset 0 0 0 1.5px ${T.danger}55; }
+        /* s1 — laptop → deploy → server chizmasi */
+        .dpl { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dpl-box { flex: 1; min-width: 118px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 12px 14px; }
+        .dpl-h { font-weight: 700; font-size: 14px; color: ${T.ink}; }
+        .dpl-file { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; font-weight: 700; color: ${CODE.text}; background: ${CODE.bg}; border-radius: 7px; padding: 3px 8px; }
+        .dpl-cap { font-size: 12px; color: ${T.ink2}; }
+        .dpl-box.srv .dpl-file { opacity: 0.35; animation: dpl-lit 0.35s ease-out 1.05s forwards; }
+        @keyframes dpl-lit { to { opacity: 1; background: ${T.success}; color: #fff; } }
+        .dpl-arrow { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 0 0 auto; }
+        .dpl-lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: ${T.accent}; }
+        .dpl-svg { width: 76px; height: 14px; overflow: visible; }
+        .dpl-svg path { fill: none; stroke: ${T.accent}; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 92; stroke-dashoffset: 92; animation: dpl-draw 0.6s ease-out 0.4s forwards; }
+        @keyframes dpl-draw { to { stroke-dashoffset: 0; } }
+        .plan-list { list-style: none; display: flex; flex-direction: column; }
+        .plan-item { opacity: 0; animation: fade-in-up 0.4s ease-out forwards; }
+        li.plan-item { display: flex; gap: 12px; align-items: baseline; padding: 9px 2px; border-bottom: 1px solid ${T.line}; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        li.plan-item:last-child { border-bottom: none; }
+        .plan-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
+        /* s3/s9 — xabar yo'li: strelkalar navbat bilan chiziladi */
+        .mp { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .mp-node { font-size: 12.5px; font-weight: 700; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 8px; padding: 5px 9px; white-space: nowrap; }
+        .mp-node.code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
+        .mp-node.off { opacity: 0.5; border-style: dashed; }
+        .mp-note { font-size: 12px; color: ${T.danger}; font-style: italic; }
+        .mp-in { opacity: 0; animation: fade-step 0.25s ease-out forwards; }
+        .mp-arr { position: relative; display: inline-block; width: 22px; height: 2px; background: ${T.ink2}; flex-shrink: 0; transform-origin: left center; transform: scaleX(0); animation: mp-draw 0.25s ease-out forwards; }
+        .mp-arr::after { content: ''; position: absolute; right: -2px; top: -4px; border-left: 6px solid ${T.ink2}; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+        @keyframes mp-draw { to { transform: scaleX(1); } }
+        .mp-gap { display: inline-block; width: 22px; height: 0; border-top: 2px dashed ${T.ink3}; }
+        .tg-note { align-self: flex-start; margin: -4px 0 0 4px; font-size: 11.5px; color: ${T.ink2}; font-style: italic; }
+        .ex { display: flex; flex-direction: column; gap: 7px; }
+        .ex-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13px; margin: 0; opacity: 0; animation: fade-step 0.3s ease-out forwards; }
+        .ex-who { font-weight: 700; color: ${T.ink}; }
+        .ex-msg { background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 9px; padding: 5px 9px; color: ${T.ink}; }
+        .ex-end { font-weight: 700; color: ${T.success}; }
+        /* s5 — yig'ilayotgan bot paneli: to'g'ri qism ulanganda chiziq chiziladi */
+        .asm-panel { display: flex; flex-direction: column; gap: 9px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 13px 15px; transition: background 0.3s, border-color 0.3s; }
+        .asm-panel.done { background: ${T.successSoft}; border-color: ${T.success}66; }
+        .asm-row { display: flex; align-items: center; gap: 8px; font-size: 14px; color: ${T.ink}; }
+        .asm-link { display: inline-block; width: 26px; height: 2px; background: ${T.ink3}; opacity: 0.4; flex-shrink: 0; }
+        .asm-row.on .asm-link { background: ${T.success}; opacity: 1; transform-origin: left center; animation: asm-draw 0.7s ease-out; }
+        @keyframes asm-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .asm-ok { font-weight: 700; color: ${T.success}; font-size: 13.5px; margin: 2px 0 0; }
+        /* s6 — holat kartasi: rangli CSS nuqta (A-7.3) */
+        .st-card { display: flex; flex-direction: column; gap: 6px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 13px 15px; transition: opacity 0.4s; }
+        .st-card.dim { opacity: 0.55; }
+        .st-h { font-weight: 700; font-size: 15px; color: ${T.ink}; margin: 0; }
+        .st-row { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: ${T.ink}; margin: 0; }
+        .st-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.success}; flex-shrink: 0; }
+        .st-dot.off { background: ${T.danger}; }
+        /* s15 — to'g'ri yig'ilgach 2- va 3-qadam orasida «laptop | server» chegarasi chiziladi */
+        .dd-div { display: flex; align-items: center; gap: 10px; margin: 2px 4px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; color: ${T.ink2}; }
+        .dd-div-line { flex: 1; height: 0; border-top: 2px dashed ${T.accent}; transform-origin: left center; animation: dd-div-draw 0.9s ease-out both; }
+        @keyframes dd-div-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        /* s16 — amaliyot: joriy qadam */
+        .lp-cur { display: flex; flex-direction: column; gap: 10px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 11px; padding: 12px 14px; }
+        .lp-cur-t { display: flex; gap: 11px; align-items: flex-start; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; line-height: 1.45; }
+        /* U3 — qisqa takrorlash belgisi: kod misoli yoki raqam */
+        .rc-ic.code { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(15px,2.2vw,20px); font-weight: 700; line-height: 1.3; color: ${CODE.str}; background: ${CODE.bg}; border-radius: 10px; padding: 8px 14px; max-width: 100%; overflow-wrap: anywhere; }
+        .rc-ic.num { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(36px,6vw,56px); color: ${T.accent}; }
+        @media (prefers-reduced-motion: reduce) {
+          .dpl-svg path { animation: none !important; stroke-dashoffset: 0; }
+          .dpl-box.srv .dpl-file { animation: none !important; opacity: 1; background: ${T.success}; color: #fff; }
+          .plan-item, .mp-in, .ex-row { animation: none !important; opacity: 1; }
+          .mp-arr, .dd-div-line, .asm-row.on .asm-link { animation: none !important; transform: none; }
+        }
+
       .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
       .ach-rule.lost { font-style: italic; }
       `}</style>
@@ -3178,7 +3346,7 @@ export default function BotFullProjectLesson({ lang: langProp, onFinished, liveT
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title={{ uz: 'Botjon darsi', ru: 'Урок про Ботжона' }} />
+            <LiveGate live={live} title={{ uz: 'Loyiha kuni: bot + DB + AI', ru: "Проектный день: бот + БД + ИИ" }} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />

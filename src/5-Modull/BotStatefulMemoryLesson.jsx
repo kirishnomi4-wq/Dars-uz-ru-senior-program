@@ -2,17 +2,13 @@ import React, { useState, useEffect, useLayoutEffect, useRef, createContext, use
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
-// 5-MODUL (Telegram bot + AI) · DARS 3 — «BOTJON ESLAB QOLADI — STATEFUL LOGIKA + POSTGRESQL» — PLATFORM STANDARD v18 (AUDIOSIZ)
-// Maqsad: o'quvchi bot tabiatan DAFTARSIZ (xotirasiz) ekanini tushunadi; suhbat holatini (bosqichni) va
-//         PostgreSQL (doimiy daftar) bilan Botjonni ESLAB QOLADIGAN qiladi. Xabar oqimi: SELECT → tekshir → UPDATE.
-// 🤖 METAFORA — «BOTJON» (butun modul uchun yagona lug'at, davomi T1/T2'dan):
-//   Botjon = uxlamaydigan yordamchi. Bu darsning yangi buyumi — 📓 DAFTAR (state/xotira):
-//   daftarsiz = har xabarni «birinchi marta» qabul qiladi · sessiya = bitta mijozning daftar sahifasi ·
-//   cho'ntakdagi varaqcha (in-memory) = tez, lekin dastur o'chsa YO'QOLADI ·
-//   javondagi doimiy daftar (PostgreSQL) = dastur o'chib-yonsa ham yozuvlar qoladi.
-// INTERAKTIV BEAT'lar: s2 «Daftarsiz Botjon» (frustratsiya) · s3 MARKAZIY: «Daftar beriladi» (jonli yangilanuvchi
-//   sahifa) · s6 MARKAZIY: «Cho'ntak vs javon» (restart) · s7/s9/s10 «Ikki mijoz sinovi» (aralashuv → tuzatish) ·
-//   s13 «SQL qoidalarini to'ldiring» · s15 FINAL: stateful oqim tartibi (DragDropOrder).
+// 5-MODUL (Telegram bot + AI) · 4-DARS — «BOT ESLAB QOLADI — HOLAT VA POSTGRESQL» — PLATFORM STANDARD v18 (AUDIOSIZ)
+// Manba-haqiqat: feedback/F-0928-QA-5modul/04-BotStatefulMemory-v2.md (MD-birinchi, 01.10).
+// Asosiy model: holat — suhbat qaysi bosqichda va mijoz nimani tanlagan. U chat.id bo'yicha ajratiladi (sessiya)
+//   va PostgreSQL'da saqlanadi. Har xabar: SELECT → holat tekshiriladi → javob va yangi holat → UPDATE;
+//   yangi mijozga avval INSERT. O'xshatish (metafora) yo'q — React darslaridagi tajriba bilan bog'lanadi.
+// INTERAKTIV: s2 holatsiz bot · s3 MARKAZIY holat qo'shish (xabar → holat strelkasi) · s6 MARKAZIY qayta ishga tushirish ·
+//   s7 umumiy holat (aralashuv) · s9 har mijozga sessiya · s13 SQL bo'shliqlari (navbat bilan) · s15 FINAL oqim (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -72,7 +68,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'bot-stateful-memory-05-03-v18', lessonTitle: { uz: 'Botjon eslab qoladi — stateful logika va PostgreSQL', ru: 'Bot запоминает — stateful логика и PostgreSQL' } };
+const LESSON_META = { lessonId: 'bot-stateful-memory-05-03-v18', lessonTitle: { uz: 'Bot eslab qoladi — holat va PostgreSQL', ru: "Бот запоминает — состояние и PostgreSQL" } };
 // 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → markaziy o'yin → builder → debugging-final → praktika → podium → flashcard → summary
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -187,7 +183,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          <div className="ach-pop-h">{tr({ uz: 'Nishonlar', ru: "Значки" })} — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{tr(a.name)}</span></div>
           ); })}
@@ -236,7 +232,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
             <div className="chrome-left eyebrow"><span className="dot" /><span>{tr(eyebrow)}</span></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
-              <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
+              <div className="mono small" style={{ color: T.ink3, whiteSpace: 'nowrap' }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
             </div>
           </div>
         </div>
@@ -252,7 +248,7 @@ const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжи�
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: 'Mentorni kuting', ru: "Подождите Ментора" }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -286,41 +282,41 @@ const RECAPS = {
   4: {
     title: { uz: 'Bot nega unutadi', ru: 'Почему бот забывает' },
     cards: [
-      { ic: '🔁', h: { uz: 'Har xabar — alohida hodisa', ru: 'Каждое сообщение — отдельное событие' }, body: { uz: <>Bot signalni oladi, amalni bajaradi va <b>unutadi</b> — u tabiatan daftarsiz.</>, ru: <>Бот получает сигнал, выполняет действие и <b>забывает</b> — он по природе без блокнота.</> } },
-      { ic: '😳', h: { uz: "Shuning uchun «tushunmadim» deydi", ru: 'Поэтому он говорит «не понял»' }, body: { uz: <>Oldingi javobga bog'liq savol kelsa, bot uni tanimaydi — chunki hech narsani eslamaydi.</>, ru: <>Если приходит вопрос, связанный с прошлым ответом, бот его не узнаёт — ведь он ничего не помнит.</> } },
-      { ic: '📓', h: { uz: 'Yechim — daftar', ru: 'Решение — блокнот' }, body: { uz: <>Bosqichni (holatni) alohida joyda saqlasak, bot endi «qayerda to'xtaganini» biladi.</>, ru: <>Если хранить этап (состояние) в отдельном месте, бот будет знать, «где он остановился».</> }, ask: { uz: 'Bot nega bir necha xabardan keyin adashadi?', ru: 'Почему бот путается через несколько сообщений?' } },
+      { ic: 1, h: { uz: 'Holat saqlanmasa, har xabar — alohida hodisa', ru: "Без состояния каждое сообщение — отдельное событие" }, body: { uz: 'Bot hodisani oladi, javob beradi va keyingisini yangidan boshlaydi.', ru: "Бот получает событие, отвечает и начинает следующее с нуля." } },
+      { ic: 2, h: { uz: 'Shuning uchun «Tushunmadim» deydi', ru: "Поэтому он говорит «Не понял»" }, body: { uz: '«Katta» kabi qisqa javob qaysi savolga tegishli ekanini bilmaydi.', ru: "Он не знает, к какому вопросу относится короткий ответ вроде «Большая»." } },
+      { ic: { code: 'holat = "OLCHAM_KUTYAPMAN"' }, h: { uz: 'Yechim — holat', ru: "Решение — состояние" }, body: { uz: "Suhbat qaysi bosqichda ekanini saqlasak, bot qayerda to'xtaganini biladi.", ru: "Если сохранять, на каком этапе диалог, бот будет знать, где остановился." }, ask: { uz: 'Bot nega bir necha xabardan keyin adashadi?', ru: 'Почему бот путается через несколько сообщений?' } },
     ]
   },
   8: {
-    title: { uz: "Cho'ntak vs javon", ru: 'Карман против шкафа' },
+    title: { uz: 'Dastur xotirasi va PostgreSQL', ru: "Память программы и PostgreSQL" },
     cards: [
-      { ic: '👖', h: { uz: "Cho'ntak — tez, lekin vaqtinchalik", ru: 'Карман — быстро, но временно' }, body: { uz: <>Kod ichidagi oddiy obyekt tez ishlaydi, lekin <b>RAM'da</b> yashaydi.</>, ru: <>Обычный объект в коде работает быстро, но живёт <b>в оперативной памяти (RAM)</b>.</> } },
-      { ic: '💨', h: { uz: "Restart — hammasi yo'qoladi", ru: 'Перезапуск — всё пропадает' }, body: { uz: <>Server qayta ishga tushsa, cho'ntakdagi hamma yozuv <b>g'oyib bo'ladi</b>.</>, ru: <>Если сервер перезапустится, все записи из кармана <b>исчезнут</b>.</> } },
-      { ic: '🗄️', h: { uz: 'Javon — doimiy', ru: 'Шкаф — постоянный' }, body: { uz: <>PostgreSQL diskda saqlanadi — restart unga ta'sir qilmaydi.</>, ru: <>PostgreSQL хранится на диске — перезапуск на него не влияет.</> }, ask: { uz: "Bot o'chib-yonganda qaysi ma'lumot saqlanib qoladi?", ru: 'Какие данные сохранятся после перезапуска бота?' } },
+      { ic: { code: 'const holatlar = {}' }, h: { uz: 'Koddagi obyekt — tez, lekin vaqtinchalik', ru: "Объект в коде — быстро, но временно" }, body: { uz: 'U dastur xotirasida (RAM) turadi.', ru: "Он хранится в памяти программы (RAM)." } },
+      { ic: 2, h: { uz: "Qayta ishga tushsa — yo'qoladi", ru: "При перезапуске — пропадает" }, body: { uz: "Xotiradagi hamma holat o'chadi.", ru: "Все состояния в памяти стираются." } },
+      { ic: { code: 'CREATE TABLE users' }, h: { uz: 'PostgreSQL — doimiy', ru: "PostgreSQL — постоянное хранилище" }, body: { uz: "Ma'lumot diskda, bot qayta ishga tushsa ham qoladi.", ru: "Данные на диске и остаются даже после перезапуска бота." }, ask: { uz: "Bot o'chib-yonganda qaysi ma'lumot saqlanib qoladi?", ru: 'Какие данные сохранятся после перезапуска бота?' } },
     ]
   },
   10: {
     title: { uz: 'Ikki mijoz aralashmasligi uchun', ru: 'Чтобы два клиента не перепутались' },
     cards: [
-      { ic: '📄', h: { uz: 'Bitta umumiy sahifa — xavfli', ru: 'Одна общая страница — опасно' }, body: { uz: <>Hamma mijoz bitta sahifaga yozsa, oxirgi yozuv <b>avvalgisini bosib yuboradi</b>.</>, ru: <>Если все клиенты пишут на одну страницу, последняя запись <b>затирает предыдущую</b>.</> } },
-      { ic: '👥', h: { uz: "Har mijoz — o'z sahifasi", ru: 'Каждому клиенту — своя страница' }, body: { uz: <>Har mijozga alohida sessiya (sahifa) berilsa, ular <b>bir-biriga tegmaydi</b>.</>, ru: <>Если каждому клиенту дать отдельную сессию (страницу), они <b>не пересекутся</b>.</> } },
-      { ic: '✅', h: { uz: 'Natija — toza suhbat', ru: 'Результат — чистый диалог' }, body: { uz: <>Aziza va Bekning buyurtmasi endi hech qachon aralashmaydi.</>, ru: <>Заказы Азизы и Бека теперь никогда не перепутаются.</> }, ask: { uz: 'Ikki mijoz aralashib ketmasligi uchun nima kerak?', ru: 'Что нужно, чтобы два клиента не перепутались?' } },
+      { ic: 1, h: { uz: 'Bitta umumiy holat — xavfli', ru: "Одно общее состояние — опасно" }, body: { uz: 'Oxirgi yozuv oldingisining ustiga yoziladi.', ru: "Последняя запись затирает предыдущую." } },
+      { ic: { code: 'holatlar[ctx.chat.id]' }, h: { uz: "Har mijozga o'z sessiyasi", ru: "Каждому клиенту — своя сессия" }, body: { uz: "Holat `chat.id` bo'yicha alohida saqlanadi.", ru: "Состояние хранится отдельно по `chat.id`." } },
+      { ic: 3, h: { uz: 'Natija', ru: "Результат" }, body: { uz: "Har kim o'z buyurtmasini oladi.", ru: "Каждый получает свой заказ." }, ask: { uz: 'Ikki mijoz aralashib ketmasligi uchun nima kerak?', ru: 'Что нужно, чтобы два клиента не перепутались?' } },
     ]
   },
   14: {
     title: { uz: 'INSERT, SELECT, UPDATE', ru: 'INSERT, SELECT, UPDATE' },
     cards: [
-      { ic: '➕', h: { uz: 'INSERT — yangi qator', ru: 'INSERT — новая строка' }, body: { uz: <>Yangi mijoz kelganda jadvalga <b>yangi qator qo'shiladi</b>.</>, ru: <>Когда приходит новый клиент, в таблицу <b>добавляется новая строка</b>.</> } },
-      { ic: '🔍', h: { uz: "SELECT — o'qish", ru: 'SELECT — чтение' }, body: { uz: <>Mavjud mijozning holatini <b>o'qib olish</b> uchun ishlatiladi.</>, ru: <>Используется, чтобы <b>прочитать</b> состояние существующего клиента.</> } },
-      { ic: '💾', h: { uz: 'UPDATE — yangilash', ru: 'UPDATE — обновление' }, body: { uz: <>Holat o'zgarganda mavjud qator <b>yangilanadi</b>, yangisi qo'shilmaydi.</>, ru: <>Когда состояние меняется, существующая строка <b>обновляется</b>, новая не добавляется.</> }, ask: { uz: 'Yangi mijoz uchun qaysi SQL ishlatiladi?', ru: 'Какой SQL используется для нового клиента?' } },
+      { ic: { code: 'INSERT' }, h: { uz: 'INSERT — yangi qator', ru: 'INSERT — новая строка' }, body: { uz: "Yangi mijoz kelganda jadvalga qator qo'shiladi.", ru: "Когда приходит новый клиент, в таблицу добавляется строка." } },
+      { ic: { code: 'SELECT' }, h: { uz: "SELECT — o'qish", ru: 'SELECT — чтение' }, body: { uz: "Mavjud mijozning holatini o'qib olish uchun.", ru: "Чтобы прочитать состояние существующего клиента." } },
+      { ic: { code: 'UPDATE' }, h: { uz: 'UPDATE — yangilash', ru: 'UPDATE — обновление' }, body: { uz: "Holat o'zgarganda mavjud qator yangilanadi, yangisi qo'shilmaydi.", ru: "Когда состояние меняется, существующая строка обновляется, новая не добавляется." }, ask: { uz: 'Yangi mijoz uchun qaysi SQL ishlatiladi?', ru: 'Какой SQL используется для нового клиента?' } },
     ]
   },
   15: {
-    title: { uz: 'Stateful xabar oqimi', ru: 'Поток сообщений с памятью (stateful)' },
+    title: { uz: 'Holatli botning xabar oqimi', ru: "Поток сообщения в боте с состоянием" },
     cards: [
-      { ic: '📩', h: { uz: 'Avval — xabar keladi', ru: 'Сначала — приходит сообщение' }, body: { uz: <>Har narsa <b>xabar kelishidan</b> boshlanadi.</>, ru: <>Всё начинается <b>с прихода сообщения</b>.</> } },
-      { ic: '🔍', h: { uz: "Keyin — o'qi va tekshir", ru: 'Потом — прочитай и проверь' }, body: { uz: <>Bot daftardan mijozni <b>o'qiydi</b> (SELECT), holatni tekshiradi.</>, ru: <>Бот <b>читает</b> клиента из блокнота (SELECT) и проверяет этап.</> } },
-      { ic: '💾', h: { uz: 'Eng oxiri — saqla', ru: 'В самом конце — сохрани' }, body: { uz: <>Amal bajarilgach, yangi holat <b>daftarga yoziladi</b> (UPDATE).</>, ru: <>После действия новое состояние <b>записывается в блокнот</b> (UPDATE).</> }, vis: <RcFlow items={[{ uz: 'Xabar', ru: 'Сообщение' }, '🔍 SELECT', { uz: 'Tekshir', ru: 'Проверь' }, { uz: 'Amal', ru: 'Действие' }, '💾 UPDATE']} />, ask: { uz: 'Xabar kelganda bot birinchi nima qiladi?', ru: 'Что бот делает первым, когда приходит сообщение?' } },
+      { ic: 1, h: { uz: 'Avval — xabar keladi', ru: 'Сначала — приходит сообщение' }, body: { uz: 'Hammasi shundan boshlanadi.', ru: "С этого всё начинается." } },
+      { ic: { code: 'SELECT' }, h: { uz: "Keyin — o'qish va tekshirish", ru: "Потом — чтение и проверка" }, body: { uz: "Bot mijoz holatini o'qiydi (SELECT) va tekshiradi.", ru: "Бот читает состояние клиента (SELECT) и проверяет его." } },
+      { ic: { code: 'UPDATE' }, h: { uz: 'Eng oxiri — saqlash', ru: "В самом конце — сохранение" }, body: { uz: 'Yangi holat bazaga yoziladi (UPDATE).', ru: "Новое состояние записывается в базу (UPDATE)." }, vis: <RcFlow items={[{ uz: 'Xabar', ru: 'Сообщение' }, 'SELECT', { uz: 'Tekshirish', ru: "Проверка" }, { uz: 'Javob', ru: "Ответ" }, 'UPDATE']} />, ask: { uz: 'Xabar kelganda bot birinchi nima qiladi?', ru: 'Что бот делает первым, когда приходит сообщение?' } },
     ]
   }
 };
@@ -344,16 +340,16 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить заново' })}</span>
+        <span className="rc-tag">{tr({ uz: 'Qayta tushuntirish', ru: "Объяснить заново" })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
-        <div className="rc-ic">{card.ic}</div>
+        {card.ic && typeof card.ic === 'object' ? <div className="rc-ic code"><span>{card.ic.code}</span></div> : <div className="rc-ic num">{card.ic}</div>}
         <h2 className="rc-h">{tr(card.h)}</h2>
-        <p className="rc-body">{tr(card.body)}</p>
+        <p className="rc-body">{fmtCode(tr(card.body))}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: "Вопрос классу:" })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -511,7 +507,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, жмите обдуманно!" })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -536,7 +532,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
-                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
+                ? tr({ uz: 'Javobingiz qabul qilindi', ru: "Ваш ответ принят" })
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
@@ -553,7 +549,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "Короткое повторение — ещё раз взглянуть на тему" })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -609,40 +605,92 @@ const Cm = ({ children }) => <span style={{ color: CODE.comment, fontStyle: 'ita
 
 
 // ===== 📱 TELEGRAM CHAT (jonli ko'rinish) =====
-const TgChat = ({ title = { uz: 'Botjon', ru: 'Ботжон' }, children, minH }) => (
+const TgChat = ({ title = { uz: 'AvtoPizza bot', ru: "AvtoPizza bot" }, children, minH }) => (
   <div className="tg">
-    <div className="tg-head"><span className="tg-ava">🤖</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr({ uz: 'bot · onlayn', ru: 'бот · онлайн' })}</span></span></div>
+    <div className="tg-head"><span className="tg-ava" aria-hidden="true">{String(tr(title)).charAt(0)}</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr({ uz: 'bot · onlayn', ru: 'бот · онлайн' })}</span></span></div>
     <div className="tg-body" style={{ minHeight: minH }}>{children}</div>
   </div>
 );
-const Bubble = ({ from = 'bot', children, muted }) => <div className={`tg-bubble ${from} el-in ${muted ? 'muted' : ''}`}>{children}</div>;
+const Bubble = ({ from = 'bot', children, muted, ln }) => <div data-ln={ln} className={`tg-bubble ${from} el-in ${muted ? 'muted' : ''}`}>{children}</div>;
 const TgTyping = () => <div className="tg-bubble bot el-in tg-typing"><span /><span /><span /></div>;
 
 
-// ===== 🎒 JIHOZLAR PANELI (butun 5-modulda qayta ishlatiladi) =====
-const GEAR_SLOTS = [
-  { id: 'key', label: { uz: 'Kalit', ru: 'Ключ' } },
-  { id: 'sheet', label: { uz: "Qoidalar varag'i", ru: 'Лист правил' } },
-  { id: 'btn', label: { uz: 'Tugmalar', ru: 'Кнопки' } },
-  { id: 'env', label: { uz: 'Konvert (ctx)', ru: 'Конверт (ctx)' } },
-  { id: 'note', label: { uz: 'Holat daftari', ru: 'Блокнот состояния' } },
-  { id: 'menu', label: { uz: "Yo'l-yo'riq", ru: 'Навигация' } },
-  { id: 'tools', label: { uz: 'Vositalar', ru: 'Инструменты' } },
-  { id: 'star', label: { uz: 'AI yordamchi', ru: 'AI-помощник' } }
-];
-const GearPanel = ({ active = [] }) => (
-  <div className="gear-panel">
-    {GEAR_SLOTS.map(g => (
-      <div key={g.id} className={`gear-slot ${active.includes(g.id) ? 'on' : ''}`}>
-        
-        <span className="gear-lbl">{tr(g.label)}</span>
-      </div>
-    ))}
-  </div>
-);
+// ===== A7: STRELKA — xabar → holat bog'lanishi (konteyner ichidagi [data-ln] elementlar orasida SVG chiziq) =====
+// links: [{ from, to, still }] — still: avvalgi strelka (qayta chizilmaydi). k o'zgarsa — yangisi ~0.8 s da chiziladi.
+// prefers-reduced-motion: chiziq darhol to'liq turadi (CSS).
+const LinkArrows = ({ wrapRef, links, k }) => {
+  const [segs, setSegs] = useState([]);
+  useEffect(() => {
+    const w = wrapRef.current;
+    if (!w || !links || !links.length) { setSegs([]); return undefined; }
+    let raf = 0;
+    const calc = () => {
+      const wr = w.getBoundingClientRect();
+      const sc = w.offsetWidth ? wr.width / w.offsetWidth : 1;
+      const bx = (r) => ({ l: (r.left - wr.left) / sc, t: (r.top - wr.top) / sc, w: r.width / sc, h: r.height / sc });
+      const box = (el) => bx(el.getBoundingClientRect());
+      const out = [];
+      links.forEach((ln) => {
+        const a = w.querySelector(`[data-ln="${ln.from}"]`);
+        const b = w.querySelector(`[data-ln="${ln.to}"]`);
+        if (!a || !b) return;
+        const A = box(a), B = box(b);
+        let x1, y1, x2, y2, c1x, c1y, c2x, c2y, d = null;
+        if (A.l + A.w <= B.l - 4) {
+          x1 = A.l + A.w; y1 = A.t + A.h / 2; x2 = B.l - 2; y2 = B.t + B.h / 2;
+          const dx = Math.max(24, (x2 - x1) / 2); c1x = x1 + dx; c1y = y1; c2x = x2 - dx; c2y = y2;
+          // ln.row: uch qator QIYMATIGA tegadi, chiziq esa yorliq matnini kesmaydi —
+          // qatorlar orasidagi bo'shliqdan yorliq oxirigacha boradi, keyin qiymatga ko'tariladi.
+          const rowEl = ln.row ? w.querySelector(`[data-ln="${ln.row}"]`) : null;
+          const kEl = rowEl ? rowEl.querySelector('.daf-k') : null;
+          if (rowEl && kEl) {
+            const R = box(rowEl);
+            const rg = document.createRange(); rg.selectNodeContents(kEl);
+            const K = bx(rg.getBoundingClientRect());
+            const ly = y1 >= y2 ? R.t + R.h : R.t;
+            const sx = K.l + K.w + 4;
+            if (R.l > x1 + 8 && sx < x2 - 12) {
+              const d1 = Math.max(16, (R.l - x1) / 2);
+              c2x = x2 - 12; c2y = y2;
+              d = `M${x1} ${y1} C${x1 + d1} ${y1} ${R.l - d1} ${ly} ${R.l} ${ly} L${sx} ${ly} C${sx + 10} ${ly} ${c2x} ${c2y} ${x2} ${y2}`;
+            }
+          }
+        } else if (B.l + B.w <= A.l - 4) {
+          x1 = A.l; y1 = A.t + A.h / 2; x2 = B.l + B.w + 2; y2 = B.t + B.h / 2;
+          const dx = Math.max(24, (x1 - x2) / 2); c1x = x1 - dx; c1y = y1; c2x = x2 + dx; c2y = y2;
+        } else if (A.t + A.h <= B.t) {
+          x1 = A.l + A.w / 2; y1 = A.t + A.h; x2 = B.l + B.w / 2; y2 = B.t - 2;
+          const dy = Math.max(18, (y2 - y1) / 2); c1x = x1; c1y = y1 + dy; c2x = x2; c2y = y2 - dy;
+        } else {
+          x1 = A.l + A.w / 2; y1 = A.t; x2 = B.l + B.w / 2; y2 = B.t + B.h + 2;
+          const dy = Math.max(18, (y1 - y2) / 2); c1x = x1; c1y = y1 - dy; c2x = x2; c2y = y2 + dy;
+        }
+        const ang = Math.atan2(y2 - c2y, x2 - c2x) * 180 / Math.PI;
+        out.push({ key: `${ln.from}>${ln.to}`, d: d || `M${x1} ${y1} C${c1x} ${c1y} ${c2x} ${c2y} ${x2} ${y2}`, x2, y2, ang, still: !!ln.still });
+      });
+      setSegs(out);
+    };
+    const t = setTimeout(() => { raf = requestAnimationFrame(calc); }, 340); // kirish animatsiyalari (el-in, fade) tugagach o'lchanadi
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(calc); }) : null;
+    if (ro) ro.observe(w);
+    window.addEventListener('resize', calc);
+    return () => { clearTimeout(t); cancelAnimationFrame(raf); if (ro) ro.disconnect(); window.removeEventListener('resize', calc); };
+  }, [k]); // eslint-disable-line
+  if (!segs.length) return null;
+  return (
+    <svg className="ln-svg" aria-hidden="true">
+      {segs.map(s => (
+        <g key={`${s.key}-${k}`} className={s.still ? 'ln-still' : 'ln-draw'}>
+          <path d={s.d} pathLength="1" className="ln-path" />
+          <polygon points="0,0 -9,-5 -9,5" transform={`translate(${s.x2} ${s.y2}) rotate(${s.ang})`} className="ln-head" />
+        </g>
+      ))}
+    </svg>
+  );
+};
 
 
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, slotLabels, onSolved, onChange }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -656,6 +704,15 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  // A7: to'g'ri yig'ilgach oxirgi qadamdan 1-qadamga qaytuvchi strelka (keyingi xabar — yana shu oqim)
+  const [loop, setLoop] = useState(null);
+  useLayoutEffect(() => {
+    if (!solved) { setLoop(null); return; }
+    const a = slotRefs.current[0], b = slotRefs.current[order.length - 1];
+    if (!a || !b) return;
+    const y1 = b.offsetTop + b.offsetHeight / 2, y2 = a.offsetTop + a.offsetHeight / 2;
+    setLoop({ d: `M0 ${y1} C-22 ${y1} -22 ${y2} -2 ${y2}`, y2 });
+  }, [solved]); // eslint-disable-line
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -698,63 +755,71 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
     };
     window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
   };
+  // Natija va xato yozuvi — ekranning o'zida, bitta (KOD 12): bu yerda faqat uyalar va hovuz.
   return (
     <div className="dd fade-up">
       <div className="dd-slots">
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
-            <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
+            <span className={`dd-slotn ${slotLabels ? 'wide' : ''}`}>{slotLabels ? tr(slotLabels[i]) : i + 1}</span>
+            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: "bu yerga qo'ying", ru: "поместите сюда" })}</span>}
           </div>
         ))}
+        {loop && <svg className="ln-svg dd-loop" aria-hidden="true"><g className="ln-draw"><path d={loop.d} pathLength="1" className="ln-path" /><polygon points="0,0 -9,-5 -9,5" transform={`translate(-2 ${loop.y2})`} className="ln-head" /></g></svg>}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть, и расставьте заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
-      {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — расставьте заново.' })}</div>}
     </div>
   );
 }
 
 
-// ===== 📓 DAFTAR SAHIFASI (bu darsning markaziy vizual metaforasi) =====
-const DaftarPage = ({ mijoz, bosqich, maz }) => (
-  <div className="daf-page fade-step">
-    <div className="daf-page-h">{tr({ uz: '📓 Daftar sahifasi', ru: '📓 Страница блокнота' })}</div>
-    <div className="daf-row"><span className="daf-k">{tr({ uz: 'mijoz', ru: 'клиент' })}</span><span className="daf-v">{tr(mijoz)}</span></div>
-    <div className="daf-row"><span className="daf-k">{tr({ uz: 'bosqich', ru: 'этап' })}</span><span className="daf-v hl">{tr(bosqich)}</span></div>
-    <div className="daf-row"><span className="daf-k">{tr({ uz: 'tanlov', ru: 'выбор' })}</span><span className="daf-v">{tr(maz)}</span></div>
+// ===== SUHBAT HOLATI PANELI (mijoz · holat · tanlov) — sarlavha ekran bo'yicha prop bilan =====
+// chg: o'zgargan qatorlar (['holat','tanlov']) — qisqa yonadi; ln: strelka uchi uchun data-ln.
+const HolatPanel = ({ title, mijoz, holat, tanlov, chg = [], ln }) => (
+  <div className="daf-page fade-step" data-ln={ln}>
+    <div className="daf-page-h">{tr(title)}</div>
+    {mijoz !== undefined && <div className="daf-row"><span className="daf-k">{tr({ uz: 'mijoz', ru: 'клиент' })}</span><span className={`daf-v ${chg.includes('mijoz') ? 'chg' : ''}`}>{tr(mijoz)}</span></div>}
+    <div className="daf-row" data-ln={ln ? `${ln}-holat` : undefined}><span className="daf-k">{tr({ uz: 'holat', ru: "состояние" })}</span><span className={`daf-v hl mono ${chg.includes('holat') ? 'chg' : ''}`} data-ln={ln ? `${ln}-holat-v` : undefined}>{tr(holat)}</span></div>
+    <div className="daf-row"><span className="daf-k">{tr({ uz: 'tanlov', ru: 'выбор' })}</span><span className={`daf-v ${chg.includes('tanlov') ? 'chg' : ''}`}>{tr(tanlov)}</span></div>
   </div>
 );
 
-// ===== 🗄️ POSTGRESQL JADVAL KO'RINISHI =====
-const DB_COLS = [{ k: 'id', h: 'id' }, { k: 'tg', h: 'telegram_id' }, { k: 'ism', h: 'ism' }, { k: 'holat', h: 'holat' }];
+// ===== POSTGRESQL JADVAL KO'RINISHI (users) =====
+const DB_COLS = [{ k: 'id', h: 'id' }, { k: 'tg', h: 'telegram_id' }, { k: 'ism', h: 'ism' }, { k: 'holat', h: 'holat' }, { k: 'tanlov', h: 'tanlov' }];
 const DbTable = ({ rows, hlRow, hlCol, newRow }) => (
   <div className="dbt-wrap">
-    <div className="dbt-cap">{tr({ uz: '🗄️ jadval:', ru: '🗄️ таблица:' })} <span className="mono">users</span></div>
+    <div className="dbt-cap">{tr({ uz: 'jadval:', ru: "таблица:" })} <span className="mono">users</span></div>
+    <div className="dbt-scroll">
     <table className="dbt">
-      <thead><tr>{DB_COLS.map(c => <th key={c.k}>{c.h}</th>)}</tr></thead>
+      <thead><tr>{DB_COLS.map(c => <th key={c.k} className={hlCol === c.k ? 'hlh' : ''}>{c.h}</th>)}</tr></thead>
       <tbody>
         {rows.length === 0
           ? <tr className="empty"><td colSpan={DB_COLS.length}>{tr({ uz: "— jadval bo'sh —", ru: '— таблица пуста —' })}</td></tr>
           : rows.map((r, ri) => (
               <tr key={ri} className={`${hlRow === ri ? 'hl' : ''} ${newRow === ri ? 'rowin' : ''}`}>
-                {DB_COLS.map(c => <td key={c.k} className={(hlCol === c.k && hlRow === ri) ? 'hlc' : ''}>{r[c.k]}</td>)}
+                {DB_COLS.map(c => <td key={c.k} className={(hlCol === c.k && hlRow === ri) ? 'hlc' : ''}>{r[c.k] && typeof r[c.k] === 'object' ? tr(r[c.k]) : r[c.k]}</td>)}
               </tr>
             ))}
       </tbody>
     </table>
+    </div>
   </div>
 );
 
-// ===== SCREEN 0 — HOOK: Botjon «Pepperoni»ni tushunmaydi =====
+// ===== SCREEN 0 — HOOK: Aziza «Pepperoni» deb yozdi, bot tushunmadi =====
+// Ballsiz hook: savol tugmadan keyin chiqadi; tanlangan variant neytral ramka (U1); javob izohi tanlovga qarab uch xil.
 const HOOK_OPTS = [
-  { id: 'a', label: { uz: 'Botjon buzuq — kodda xatolik bor', ru: 'Ботжон сломался — в коде ошибка' } },
-  { id: 'b', label: { uz: "Botjon har xabarni alohida ko'radi — oldingi gapni eslamaydi", ru: 'Ботжон видит каждое сообщение отдельно — предыдущую фразу не помнит' } },
-  { id: 'c', label: { uz: "Internet sekin ishlagani uchun xabar yo'qolgan", ru: 'Из-за медленного интернета сообщение потерялось' } }
+  { id: 'a', label: { uz: 'Bot buzilgan, dasturi ishlamay qoldi', ru: "Бот сломался, программа перестала работать" } },
+  { id: 'b', label: { uz: "Bot har xabarni alohida ko'radi, oldingisini eslamaydi", ru: "Бот видит каждое сообщение отдельно и не помнит предыдущее" } },
+  { id: 'c', label: { uz: "Internet sekin, xabarning bir qismi yo'qoldi", ru: "Интернет медленный, часть сообщения потерялась" } }
 ];
+const HOOK_ACK = {
+  b: { uz: <><b>Aynan!</b> Bu bot oldingi xabarlarni saqlamaydi: «Pepperoni» kelganda o'zi «Qaysi pitsa?» deb so'raganini bilmaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.</>, ru: <><b>Именно!</b> Этот бот не хранит прошлые сообщения: когда приходит «Пепперони», он не знает, что сам спросил «Какую пиццу?». Боту нужно состояние — запись о том, на каком этапе диалог.</> },
+  a: { uz: <><b>Qiziq fikr!</b> Lekin bot ishlayapti: u «Pepperoni» ga javob berdi. U faqat o'zi «Qaysi pitsa?» deb so'raganini saqlamaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.</>, ru: <><b>Интересная мысль!</b> Но бот работает: он ответил на «Пепперони». Он просто не хранит то, что сам спросил «Какую пиццу?». Боту нужно состояние — запись о том, на каком этапе диалог.</> },
+  c: { uz: <><b>Qiziq fikr!</b> Lekin xabar yetib keldi: bot «Pepperoni» ga javob berdi. U faqat o'zi «Qaysi pitsa?» deb so'raganini saqlamaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.</>, ru: <><b>Интересная мысль!</b> Но сообщение дошло: бот ответил на «Пепперони». Он просто не хранит то, что сам спросил «Какую пиццу?». Боту нужно состояние — запись о том, на каком этапе диалог.</> }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [tried, setTried] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -762,27 +827,29 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
-    <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: "Введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Bola Botjonga <span className="italic" style={{ color: T.accent }}>«Pepperoni»</span> deydi. Botjon: <span className="italic" style={{ color: T.accent }}>«Nima pepperoni? Tushunmadim.»</span> Nega?</>, ru: <>Подросток пишет Ботжону: <span className="italic" style={{ color: T.accent }}>«Пепперони»</span>. Ботжон: <span className="italic" style={{ color: T.accent }}>«Какое пепперони? Не понял.»</span> Почему?</> })}</h1>
-        <Mentor>{tr({ uz: <>Botjon savolga javob bera oladi va muloqot qiladi (o'tgan darslarda ko'rdingiz) — lekin u <b style={{ color: T.ink }}>bir necha soniya oldin nima gaplashganini eslay olmaydi</b>. Tugmani bosing va o'z ko'zingiz bilan ko'ring.</>, ru: <>Ботжон умеет отвечать и общаться (Вы видели это в прошлых уроках) — но он <b style={{ color: T.ink }}>не помнит, о чём говорил несколько секунд назад</b>. Нажмите кнопку и убедитесь сами.</> })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Aziza <span className="italic" style={{ color: T.accent }}>«Pepperoni»</span> deb yozdi, bot esa tushunmadi. Nega?</>, ru: <>Азиза написала <span className="italic" style={{ color: T.accent }}>«Пепперони»</span>, а бот не понял. Почему?</> })}</h1>
+        <Mentor>{tr({ uz: "3-darsda botingizga handler va tugmalar yozdingiz. Endi mijoz bir necha xabar bilan buyurtma beryapti. Tugmani bosing va bot qanday javob berishini kuzating.", ru: "На 3-м уроке Вы написали для своего бота handler и кнопки. Теперь клиент делает заказ в несколько сообщений. Нажмите кнопку и посмотрите, как отвечает бот." })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <TgChat title={{ uz: 'Botjon (daftarsiz)', ru: 'Ботжон (без блокнота)' }} minH={150}>
+            <TgChat title={{ uz: 'AvtoPizza bot', ru: "AvtoPizza bot" }} minH={150}>
               <Bubble from="bot">{tr({ uz: 'Salom! Nima buyurtma qilasiz?', ru: 'Привет! Что заказываете?' })}</Bubble>
               {tried && <><Bubble from="user">{tr({ uz: 'Pitsa buyurtma qilaman', ru: 'Хочу заказать пиццу' })}</Bubble>
                 <Bubble from="bot">{tr({ uz: 'Ajoyib! Qaysi pitsa?', ru: 'Отлично! Какую пиццу?' })}</Bubble>
                 <Bubble from="user">{tr({ uz: 'Pepperoni', ru: 'Пепперони' })}</Bubble>
-                <Bubble from="bot">{tr({ uz: 'Nima pepperoni? Tushunmadim. 😳', ru: 'Какое пепперони? Не понял. 😳' })}</Bubble></>}
+                <Bubble from="bot">{tr({ uz: 'Nima pepperoni? Tushunmadim.', ru: "Какое пепперони? Не понял." })}</Bubble></>}
             </TgChat>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Suhbatni ko'rdingiz", ru: '✓ Вы увидели диалог' }) : tr({ uz: '▶ Suhbatni davom ettirish', ru: '▶ Продолжить диалог' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Suhbatni ko'rdingiz", ru: '✓ Вы увидели диалог' }) : tr({ uz: '▶ Suhbatni davom ettirish', ru: '▶ Продолжить диалог' })}</button>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Nega Botjon adashdi?', ru: 'Почему Ботжон запутался?' })}</p>
-            <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {HOOK_OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
-            </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Botjon tabiatan <b>daftarsiz</b> — har xabarni «birinchi marta ko'rgandek» qabul qiladi. Bugun unga <b>📓 daftar</b> beramiz — endi u eslab qoladi.</>, ru: <>Именно! Ботжон по природе <b>без блокнота</b> — каждое сообщение он видит «впервые». Сегодня мы дадим ему <b>📓 блокнот</b> — и он станет запоминать.</> })}</p>}
+            {tried && <>
+              <p className="eyebrow fade-step" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, bot nega adashdi?', ru: "Как Вы думаете, почему бот ошибся?" })}</p>
+              <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+                {HOOK_OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
+              </div>
+              {picked !== null && HOOK_ACK[picked] && <p className="hook-ack fade-step">{tr(HOOK_ACK[picked])}</p>}
+            </>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -790,39 +857,37 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA + JIHOZLAR PANELI =====
+// ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
+  // U1: qadamlar — oddiy raqamli ro'yxat, yorliq-teglarsiz
   const STEPS = [
-    { text: { uz: 'Botjon nega unutadi — daftarsiz muammosi', ru: 'Почему Ботжон забывает — проблема без блокнота' }, tag: { uz: 'muammo', ru: 'проблема' } },
-    { text: { uz: "Cho'ntak (vaqtinchalik) va javon (doimiy) daftar", ru: 'Карман (временно) и шкаф (навсегда)' }, tag: { uz: 'xotira', ru: 'память' } },
-    { text: { uz: 'Ikki mijoz — aralashmasligi uchun alohida sahifa', ru: 'Два клиента — отдельная страница, чтобы не перепутались' }, tag: { uz: 'sessiya', ru: 'сессия' } },
-    { text: { uz: 'Xabar oqimi: SELECT → tekshir → UPDATE', ru: 'Поток сообщения: SELECT → проверка → UPDATE' }, tag: { uz: 'oqim', ru: 'поток' } }
+    { uz: 'Bot nega unutadi — holatsiz bot', ru: "Почему бот забывает — бот без состояния" },
+    { uz: "Holat: dastur xotirasida va PostgreSQL'da", ru: "Состояние: в памяти программы и в PostgreSQL" },
+    { uz: 'Ikki mijoz — har biriga alohida sessiya', ru: "Два клиента — каждому отдельная сессия" },
+    { uz: 'Xabar oqimi: SELECT → tekshirish → UPDATE, yangi mijozga INSERT', ru: "Поток сообщения: SELECT → проверка → UPDATE, новому клиенту — INSERT" }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'dars oxirida — Botjon eslab qoladi', ru: 'в конце урока — Ботжон запоминает' })}</p>
-      <TgChat title={{ uz: 'Botjon (daftar bilan)', ru: 'Ботжон (с блокнотом)' }} minH={0}>
-        <Bubble from="user">{tr({ uz: 'Salom!', ru: 'Привет!' })}</Bubble>
-        <Bubble from="bot">{tr({ uz: "Yana xush kelibsiz, Aziza! 😊 O'tgan safargi Margaritani yana olasizmi?", ru: 'С возвращением, Азиза! 😊 Возьмёте ту же Маргариту, что в прошлый раз?' })}</Bubble>
+      <p className="flow-label">{tr({ uz: 'dars oxirida — bot suhbatni eslab qoladi', ru: "в конце урока — бот запоминает диалог" })}</p>
+      <TgChat title={{ uz: 'AvtoPizza bot · holat bilan', ru: "AvtoPizza bot · с состоянием" }} minH={0}>
+        <Bubble from="user">{tr({ uz: 'Katta', ru: "Большая" })}</Bubble>
+        <Bubble from="bot">{tr({ uz: 'Yaxshi, Aziza: katta Pepperoni. Endi manzilingizni yuboring.', ru: "Хорошо, Азиза: большая Пепперони. Теперь отправьте свой адрес." })}</Bubble>
       </TgChat>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Botjon ismni va o'tgan buyurtmani esladi — chunki ularni <b>daftarga</b> yozib qo'ygan. Mana shuni quramiz.</>, ru: <>Ботжон вспомнил имя и прошлый заказ — ведь он записал их <b>в блокнот</b>. Именно это мы и построим.</> })}</p></div>
-      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 3-uyacha yonadi', ru: 'Панель снаряжения — сегодня загорается 3-я ячейка' })}</p>
-      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note']} />
     </Col>
   );
   const StepsB = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага сегодня' })}</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
+      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{i + 1}.</span><span className="step-body"><span className="step-text">{tr(s)}</span></span></li>))}</ol>
     </Col>
   );
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjonga <span className="italic" style={{ color: T.accent }}>xotira</span> beramiz.</>, ru: <>Даём Ботжону <span className="italic" style={{ color: T.accent }}>память</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu — modulning eng «texnik» darsi, lekin g'oya oddiy: Botjon daftarsiz, biz unga <b style={{ color: T.ink }}>📓 daftar</b> beramiz. PostgreSQL'ni oldingi modulda o'rgangansiz — endi uni Botjonga ulaymiz.</>, ru: <>Это самый «технический» урок модуля, но идея простая: у Ботжона нет блокнота — мы даём ему <b style={{ color: T.ink }}>📓 блокнот</b>. PostgreSQL Вы уже изучали в прошлом модуле — теперь подключим его к Ботжону.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun botingiz suhbatni <span className="italic" style={{ color: T.accent }}>eslab qolishni</span> o'rganadi.</>, ru: <>Сегодня Ваш бот научится <span className="italic" style={{ color: T.accent }}>запоминать</span> диалог.</> })}</h2></div>
+        <Mentor>{tr({ uz: "1-darsda buyurtma suhbatini ko'rgansiz: manzil kelganda bot qaysi pitsa tanlanganini bilishi kerak edi. Buning uchun holat kerak. Bugun botga holat qo'shamiz va uni backend darslaridan tanish PostgreSQL'da saqlaymiz.", ru: "На 1-м уроке Вы видели диалог заказа: когда приходит адрес, бот должен знать, какую пиццу выбрали. Для этого нужно состояние. Сегодня добавим боту состояние и будем хранить его в PostgreSQL, знакомом Вам по урокам backend." })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
             : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
@@ -832,12 +897,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 };
 
 
-// ===== SCREEN 2 — DAFTARSIZ BOTJON (frustratsiya) =====
+// ===== SCREEN 2 — HOLATSIZ BOT =====
 const PIZZA_STEPS = [
   { u: { uz: 'Pitsa buyurtma qilaman', ru: 'Хочу заказать пиццу' }, b: { uz: 'Ajoyib! Qaysi pitsa?', ru: 'Отлично! Какую пиццу?' } },
-  { u: { uz: 'Pepperoni', ru: 'Пепперони' }, b: { uz: 'Nima pepperoni? Tushunmadim. 😳', ru: 'Какое пепперони? Не понял. 😳' } },
+  { u: { uz: 'Pepperoni', ru: 'Пепперони' }, b: { uz: 'Nima pepperoni? Tushunmadim.', ru: "Какое пепперони? Не понял." } },
   { u: { uz: 'Pepperoni pitsa haqida gapiryapman', ru: 'Я говорю про пиццу пепперони' }, b: { uz: "Qaysi o'lchamda? Kichikmi, kattami?", ru: 'Какого размера? Маленькая или большая?' } },
-  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: 'Nima katta? Tushunmadim. 😳', ru: 'Что большая? Не понял. 😳' } }
+  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: 'Nima katta? Tushunmadim.', ru: "Что большая? Не понял." } }
 ];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? PIZZA_STEPS.length : 0);
@@ -846,20 +911,20 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   return (
-    <Stage eyebrow={tr({ uz: 'Tajriba · daftarsiz', ru: 'Опыт · без блокнота' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Suhbatni davom ettiring', ru: 'Продолжите диалог' })} (${step}/${PIZZA_STEPS.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tajriba · holatsiz bot', ru: "Опыт · бот без состояния" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Suhbatni davom ettiring', ru: 'Продолжите диалог' })} (${step}/${PIZZA_STEPS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Daftarsiz Botjon — har xabar unga <span className="italic" style={{ color: T.accent }}>«birinchi marta»</span> ko'rinadi.</>, ru: <>Ботжон без блокнота — каждое сообщение для него <span className="italic" style={{ color: T.accent }}>«впервые»</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bola pitsa buyurtma qilishga urinmoqda. Botjonda hali daftar yo'q. Tugmani bosib, suhbatni davom ettiring va Botjonning holatini kuzating.", ru: 'Подросток пытается заказать пиццу. Блокнота у Ботжона пока нет. Жмите кнопку, продолжайте диалог и следите за Ботжоном.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Holatsiz bot har xabarni <span className="italic" style={{ color: T.accent }}>birinchi marta ko'rgandek</span> qabul qiladi.</>, ru: <>Бот без состояния принимает каждое сообщение <span className="italic" style={{ color: T.accent }}>так, будто видит его впервые</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Aziza pitsa buyurtma qilmoqchi. Botda hali holat yo'q. Tugmani bosib suhbatni davom ettiring va o'ngda bot nimani bilishini kuzating.", ru: "Азиза хочет заказать пиццу. Состояния у бота пока нет. Нажимайте кнопку, продолжайте диалог и следите справа, что знает бот." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <TgChat title={{ uz: 'Botjon (daftarsiz)', ru: 'Ботжон (без блокнота)' }} minH={190}>
+            <TgChat title={{ uz: 'AvtoPizza bot · holatsiz', ru: "AvtoPizza bot · без состояния" }} minH={190}>
               {PIZZA_STEPS.slice(0, step).map((m, i) => (<React.Fragment key={i}><Bubble from="user">{tr(m.u)}</Bubble><Bubble from="bot">{tr(m.b)}</Bubble></React.Fragment>))}
             </TgChat>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Bola charchab qoldi', ru: '✓ Подросток устал' }) : step === 0 ? tr({ uz: '▶ Yozishni boshlash', ru: '▶ Начать переписку' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Aziza buyurtmasiz ketdi', ru: "✓ Азиза ушла без заказа" }) : step === 0 ? tr({ uz: '▶ Yozishni boshlash', ru: '▶ Начать переписку' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '📍 Botjon nimani biladi', ru: '📍 Что знает Ботжон' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{step === 0 ? tr({ uz: 'Hali hech narsa — birinchi xabarni kutmoqda.', ru: 'Пока ничего — ждёт первого сообщения.' }) : tr({ uz: 'Faqat oxirgi xabarni. Undan oldingi hech narsani eslamaydi.', ru: 'Только последнее сообщение. Всё, что было до него, он не помнит.' })}</p></div>
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>😕 Bola 2 marta bir xil xatoga duch keldi — «Pepperoni» va «Katta» so'zlari Botjon uchun ma'nosiz, chunki u qaysi savolga javob berilayotganini bilmaydi. Unga <b>📓 daftar</b> kerak.</>, ru: <>😕 Подросток дважды наткнулся на одну и ту же ошибку: слова «Пепперони» и «Большая» для Ботжона бессмысленны — он не знает, на какой вопрос ему отвечают. Ему нужен <b>📓 блокнот</b>.</> })}</p></div>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: 'Bot nimani biladi', ru: "Что знает бот" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{step === 0 ? tr({ uz: 'Hali hech narsa — birinchi xabarni kutyapti.', ru: "Пока ничего — ждёт первого сообщения." }) : tr({ uz: 'Faqat hozirgi xabarni. Oldingilarini eslamaydi.', ru: "Только текущее сообщение. Предыдущие он не помнит." })}</p></div>
+            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Aziza ikki marta «Tushunmadim» javobini oldi. Bot «Pepperoni» va «Katta» ni oldi, lekin ular qaysi savolga javob ekanini bilmadi: o'zi nima so'raganini eslamaydi. Unga <b>holat</b> kerak.</>, ru: <>Азиза дважды получила ответ «Не понял». Бот получил «Пепперони» и «Большая», но не знал, на какой вопрос это ответы: он не помнит, что сам спрашивал. Ему нужно <b>состояние</b>.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -867,96 +932,101 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — MARKAZIY: DAFTAR BERILADI (jonli yangilanuvchi sahifa) =====
-const DAFTAR_STEPS = [
-  { u: { uz: 'Pitsa buyurtma qilaman', ru: 'Хочу заказать пиццу' }, b: { uz: 'Ajoyib! Qaysi pitsa?', ru: 'Отлично! Какую пиццу?' }, bosqich: { uz: 'Pitsa tanlash', ru: 'Выбор пиццы' }, maz: '—' },
-  { u: { uz: 'Pepperoni', ru: 'Пепперони' }, b: { uz: "Pepperoni, zo'r! Qaysi o'lchamda?", ru: 'Пепперони, класс! Какого размера?' }, bosqich: { uz: "O'lcham tanlash", ru: 'Выбор размера' }, maz: { uz: 'Pepperoni', ru: 'Пепперони' } },
-  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: 'Rahmat! Buyurtmangiz: Katta Pepperoni. Manzilni yuboring 📍', ru: 'Спасибо! Ваш заказ: большая Пепперони. Отправьте адрес 📍' }, bosqich: { uz: 'Manzil kutilmoqda', ru: 'Ждём адрес' }, maz: { uz: 'Pepperoni · Katta', ru: 'Пепперони · большая' } }
+// ===== SCREEN 3 — MARKAZIY: BOTGA HOLAT QO'SHAMIZ (xabar → holat strelkasi, A7) =====
+// A10: holat qiymatlari butun darsda bir xil yozuvda (PITSA_KUTYAPMAN · OLCHAM_KUTYAPMAN · … · TAYYOR).
+const HOLAT_STEPS = [
+  { u: { uz: 'Pitsa buyurtma qilaman', ru: 'Хочу заказать пиццу' }, b: { uz: 'Ajoyib! Qaysi pitsa?', ru: 'Отлично! Какую пиццу?' }, holat: 'PITSA_KUTYAPMAN', tanlov: '—', chg: ['holat'] },
+  { u: { uz: 'Pepperoni', ru: 'Пепперони' }, b: { uz: "Pepperoni — yaxshi tanlov! Qaysi o'lchamda?", ru: "Пепперони — отличный выбор! Какого размера?" }, holat: 'OLCHAM_KUTYAPMAN', tanlov: { uz: 'Pepperoni', ru: 'Пепперони' }, chg: ['holat', 'tanlov'] },
+  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: 'Rahmat! Buyurtmangiz: katta Pepperoni. Manzilni yuboring.', ru: "Спасибо! Ваш заказ: большая Пепперони. Отправьте адрес." }, holat: 'MANZIL_KUTYAPMAN', tanlov: { uz: 'Pepperoni, katta', ru: "Пепперони, большая" }, chg: ['holat', 'tanlov'] }
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [attached, setAttached] = useState(!!storedAnswer);
-  const [step, setStep] = useState(storedAnswer ? DAFTAR_STEPS.length : 0);
+  const [step, setStep] = useState(storedAnswer ? HOLAT_STEPS.length : 0);
   const [sc, setSc] = useState(0);
-  const done = attached && step >= DAFTAR_STEPS.length;
+  const wrapRef = useRef(null);
+  const done = attached && step >= HOLAT_STEPS.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const attach = () => { setAttached(true); setSc(n => n + 1); };
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
-  const cur = step > 0 ? DAFTAR_STEPS[step - 1] : null;
+  const cur = step > 0 ? HOLAT_STEPS[step - 1] : null;
+  const arrows = step > 0 && !storedAnswer ? [{ from: 'u-last', to: 'hp-holat-v', row: 'hp-holat' }] : [];
   return (
-    <Stage eyebrow={tr({ uz: 'Markaziy · daftar', ru: 'Главное · блокнот' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (!attached ? tr({ uz: 'Daftar biriktiring', ru: 'Прикрепите блокнот' }) : `${tr({ uz: 'Suhbatni kuzating', ru: 'Следите за диалогом' })} (${step}/${DAFTAR_STEPS.length})`)} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Markaziy · holat', ru: "Главное · состояние" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (!attached ? tr({ uz: "Holat qo'shing", ru: "Добавьте состояние" }) : `${tr({ uz: 'Suhbatni kuzating', ru: 'Следите за диалогом' })} (${step}/${HOLAT_STEPS.length})`)} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjonga <span className="italic" style={{ color: T.accent }}>📓 daftar</span> beramiz — endi u eslab qoladi.</>, ru: <>Даём Ботжону <span className="italic" style={{ color: T.accent }}>📓 блокнот</span> — теперь он запоминает.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bola Botjonga daftar biriktiradi. Endi har xabarda daftar sahifasi <b style={{ color: T.ink }}>jonli yangilanadi</b> — o'ng tomondan kuzating.</>, ru: <>Подросток прикрепляет Ботжону блокнот. Теперь на каждом сообщении страница блокнота <b style={{ color: T.ink }}>обновляется на глазах</b> — смотрите справа.</> })}</Mentor>
-        <Zoomable><div className="split">
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botga holat qo'shamiz — endi u suhbatni <span className="italic" style={{ color: T.accent }}>eslab qoladi</span>.</>, ru: <>Добавляем боту состояние — теперь он <span className="italic" style={{ color: T.accent }}>запоминает</span> диалог.</> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Holat</b> — bot suhbat haqida eslab qoladigan yozuv: suhbat qaysi bosqichda va mijoz nimani tanlagan. Holat qo'shing, keyin xabarlarni birma-bir oching va o'ngda holat qanday o'zgarishini kuzating.</>, ru: <><b style={{ color: T.ink }}>Состояние</b> — запись, которую бот хранит о диалоге: на каком он этапе и что выбрал клиент. Добавьте состояние, затем открывайте сообщения по одному и следите справа, как меняется состояние.</> })}</Mentor>
+        <Zoomable><div className="split ln-wrap" ref={wrapRef}>
           <Col>
             {!attached ? (
               <div className="frame-dash" style={{ textAlign: 'center' }}>
-                <p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Botjonda hali daftar yo'q.", ru: 'Блокнота у Ботжона пока нет.' })}</p>
-                <button className="btn" onClick={attach}>{tr({ uz: 'Daftar biriktirish', ru: 'Прикрепить блокнот' })}</button>
+                <p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Botda hali holat yo'q.", ru: "У бота пока нет состояния." })}</p>
+                <button className="btn" onClick={attach}>{tr({ uz: "Holat qo'shish", ru: "Добавить состояние" })}</button>
               </div>
             ) : (
               <>
-                <TgChat title={{ uz: 'Botjon (daftar bilan)', ru: 'Ботжон (с блокнотом)' }} minH={190}>
-                  {DAFTAR_STEPS.slice(0, step).map((m, i) => (<React.Fragment key={i}><Bubble from="user">{tr(m.u)}</Bubble><Bubble from="bot">{tr(m.b)}</Bubble></React.Fragment>))}
+                <TgChat title={{ uz: 'AvtoPizza bot · holat bilan', ru: "AvtoPizza bot · с состоянием" }} minH={190}>
+                  {HOLAT_STEPS.slice(0, step).map((m, i) => (<React.Fragment key={i}><Bubble from="user" ln={i === step - 1 ? 'u-last' : undefined}>{tr(m.u)}</Bubble><Bubble from="bot">{tr(m.b)}</Bubble></React.Fragment>))}
                 </TgChat>
                 <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Buyurtma qabul qilindi', ru: '✓ Заказ принят' }) : step === 0 ? tr({ uz: '▶ Yozishni boshlash', ru: '▶ Начать переписку' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
               </>
             )}
           </Col>
           <Col>
-            <DaftarPage key={step} mijoz={attached ? tr({ uz: 'Aziza', ru: 'Азиза' }) : '—'} bosqich={cur ? cur.bosqich : (attached ? { uz: 'Kutilmoqda', ru: 'Ожидание' } : '—')} maz={cur ? cur.maz : '—'} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Har xabarda daftar sahifasi yangilandi. Endi «Pepperoni» yoki «Katta» so'zlari Botjon uchun ma'noli — chunki u daftardan <b>qaysi savolga javob berilayotganini</b> biladi.</>, ru: <>Видели? На каждом сообщении страница блокнота обновлялась. Теперь слова «Пепперони» и «Большая» для Ботжона осмысленны — он видит в блокноте, <b>на какой вопрос ему отвечают</b>.</> })}</p></div>}
+            <HolatPanel key={`${attached}-${step}`} ln="hp" title={{ uz: 'Suhbat holati', ru: "Состояние диалога" }}
+              mijoz={attached ? { uz: 'Aziza', ru: 'Азиза' } : '—'} holat={cur ? cur.holat : '—'} tanlov={cur ? cur.tanlov : '—'}
+              chg={cur ? cur.chg : (attached ? ['mijoz'] : [])} />
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har xabardan keyin holat yangilandi. Shuning uchun «Katta» endi ma'noli: bot holatdan o'zi o'lcham so'raganini biladi. Holatni eslab qoladigan bot <b>holatli (stateful) bot</b> deb ataladi.</>, ru: <>После каждого сообщения состояние обновлялось. Поэтому «Большая» теперь понятна: из состояния бот знает, что сам спросил размер. Бот, который запоминает состояние, называется <b>ботом с состоянием (stateful)</b>.</> })}</p></div>}
           </Col>
+          <LinkArrows wrapRef={wrapRef} links={arrows} k={step} />
         </div></Zoomable>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 4 — TEST 1 =====
+// ===== SCREEN 4 — TEST 1 (✔ o'rni: 2) =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
-    questionText="Bot nima uchun oldingi xabarni tez-tez unutib qoladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bot nima uchun <span className="italic" style={{ color: T.accent }}>oldingi xabarni</span> tez-tez unutib qoladi?</>, ru: <>Почему бот так часто забывает <span className="italic" style={{ color: T.accent }}>предыдущее сообщение</span>?</> })}</h2></>}
-    options={[tr({ uz: "Internet aloqasi doimo beqaror bo'lgani sababli shunday bo'ladi", ru: 'Потому что интернет-связь всегда нестабильна' }), tr({ uz: 'Foydalanuvchi xabarlarni juda tez ketma-ket yuborayotgani sababli', ru: 'Потому что пользователь шлёт сообщения слишком быстро подряд' }), tr({ uz: 'Bot tabiatan daftarsiz — har xabarni birinchi marta deb qabul qiladi', ru: 'Бот по природе без блокнота — каждое сообщение видит впервые' }), tr({ uz: 'Telegram serverlari xabarlarni tasodifiy tartibda yetkazgani sababli', ru: 'Потому что серверы Telegram доставляют сообщения в случайном порядке' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Bot tabiatan daftarsiz (stateless) — u har xabarni alohida, mustaqil hodisa deb ko'radi. Eslab qolishi uchun unga daftar (holat) kerak.", ru: 'Верно! Бот по природе без блокнота (stateless) — он видит каждое сообщение как отдельное событие. Чтобы запоминать, ему нужен блокнот (состояние).' })}
+    questionText="Bot o'zi o'lcham so'radi, lekin «Katta» javobini tushunmadi. Nega?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bot o'zi o'lcham so'radi, lekin <span className="italic" style={{ color: T.accent }}>«Katta»</span> javobini tushunmadi. Nega?</>, ru: <>Бот сам спросил размер, но не понял ответ <span className="italic" style={{ color: T.accent }}>«Большая»</span>. Почему?</> })}</h2></>}
+    options={[tr({ uz: "Internet sekin bo'lib, xabar Bot API'ga yetmadi", ru: "Интернет был медленный, сообщение не дошло до Bot API" }), tr({ uz: 'Mijoz juda tez yozdi, handler ulgurmay qoldi', ru: "Клиент писал слишком быстро, handler не успел" }), tr({ uz: "Bot holatni saqlamaydi, o'z savolini eslamaydi", ru: "Бот не хранит состояние и не помнит свой вопрос" }), tr({ uz: 'Telegram xabarlarni aralash tartibda yetkazdi', ru: "Telegram доставил сообщения вперемешку" })]} correctIdx={2}
+    explainCorrect={tr({ uz: "Bot holatni saqlamaydi, shuning uchun «Katta» qaysi savolga javob ekanini bilmaydi.", ru: "Бот не хранит состояние, поэтому не знает, на какой вопрос отвечает «Большая»." })}
     explainWrong={{
-      0: tr({ uz: 'Internet holati bunga sabab emas — muammo botning ichki tabiatida.', ru: 'Дело не в интернете — проблема в самой природе бота.' }),
-      1: tr({ uz: 'Xabar tezligi sabab emas — muammo Botjonning daftarsizligida.', ru: 'Дело не в скорости сообщений — у Ботжона просто нет блокнота.' }),
-      3: tr({ uz: 'Telegram xabarlarni tartib bilan yetkazadi — muammo boshqa joyda.', ru: 'Telegram доставляет сообщения по порядку — причина в другом.' }),
-      default: tr({ uz: 'Bot tabiatan daftarsiz — shuning uchun eslay olmaydi.', ru: 'Бот по природе без блокнота — поэтому и не помнит.' })
+      0: tr({ uz: "Xabar yetib kelgan: bot unga javob berdi. Muammo — bot o'z savolini eslamaydi.", ru: "Сообщение дошло: бот на него ответил. Проблема — бот не помнит свой вопрос." }),
+      1: tr({ uz: "Tezlik sabab emas: handler har xabarni oladi. Muammo — oldingi xabar hech qayerda saqlanmaydi.", ru: "Дело не в скорости: handler получает каждое сообщение. Проблема — предыдущее сообщение нигде не сохраняется." }),
+      3: tr({ uz: 'Telegram bitta chatdagi xabarlarni kelgan tartibida yetkazadi. Muammo boshqa joyda.', ru: "Telegram доставляет сообщения одного чата в том порядке, в каком они пришли. Проблема в другом." }),
+      default: tr({ uz: "Holat saqlanmasa, bot har xabarni alohida ko'radi va oldingisini eslamaydi.", ru: "Если состояние не хранится, бот видит каждое сообщение отдельно и не помнит предыдущее." })
     }} />
 );
 
 
-// ===== SCREEN 5 — CHO'NTAKDAGI VARAQCHA (in-memory, sodda lekin zaif) =====
+// ===== SCREEN 5 — HOLAT KODDAGI OBYEKTDA (dastur xotirasi) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: "Kod · cho'ntak", ru: 'Код · карман' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Kamchiligini ko'ring", ru: 'Посмотрите на минус' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Kod · dastur xotirasi', ru: "Код · память программы" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Kamchiligini ko'ring", ru: 'Посмотрите на минус' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Daftarning eng sodda shakli — <span className="italic" style={{ color: T.accent }}>cho'ntakdagi varaqcha</span>.</>, ru: <>Самая простая форма блокнота — <span className="italic" style={{ color: T.accent }}>листок в кармане</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bosqichni shunchaki kod ichidagi oddiy obyektda saqlash mumkin — bu «cho'ntakdagi varaqcha». Ishlaydi, lekin bitta jiddiy kamchiligi bor. Tugmani bosing.", ru: 'Этап можно хранить просто в обычном объекте внутри кода — это и есть «листок в кармане». Работает, но есть один серьёзный минус. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Holatni saqlashning eng sodda yo'li — <span className="italic" style={{ color: T.accent }}>koddagi obyekt</span>.</>, ru: <>Самый простой способ хранить состояние — <span className="italic" style={{ color: T.accent }}>объект в коде</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Holatni oddiy JavaScript obyektida saqlash mumkin. Mijoz bot bilan shaxsiy chatda yozadi, shuning uchun uning holati chat raqami — <code className="qcode">ctx.chat.id</code> bo'yicha yoziladi. Bu ishlaydi, lekin bitta jiddiy kamchiligi bor. Tugmani bosing.</>, ru: <>Состояние можно хранить в обычном объекте JavaScript. Клиент пишет боту в личном чате, поэтому его состояние записывается по номеру чата — <code className="qcode">ctx.chat.id</code>. Это работает, но есть один серьёзный минус. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <pre className="code-box" style={{ lineHeight: 1.9 }}>
-              <Cm>{"// Bosqichni oddiy obyektda (cho'ntakda) saqlash"}</Cm>{'\n'}
-              <Jx>const</Jx>{" chontak = {}"}{'  '}<Cm>{'// { [mijozId]: bosqich }'}</Cm>{'\n\n'}
-              <Cm>{'// Bola pitsa tanlaganda:'}</Cm>{'\n'}
-              {"chontak[ctx.chat.id] = "}<St>"OLCHAM_KUTYAPMAN"</St>{'\n\n'}
-              <Cm>{'// Xabar kelganda:'}</Cm>{'\n'}
-              <Jx>const</Jx>{' bosqich = chontak[ctx.chat.id]'}
+              <Cm>{tr({ uz: "// Har chatning holati — oddiy obyektda", ru: "// Состояние каждого чата — в обычном объекте" })}</Cm>{'\n'}
+              <Jx>const</Jx>{" holatlar = {}"}{'   '}<Cm>{'// { chat.id: holat }'}</Cm>{'\n\n'}
+              <Cm>{tr({ uz: '// Mijoz pitsani tanladi:', ru: '// Клиент выбрал пиццу:' })}</Cm>{'\n'}
+              {"holatlar[ctx.chat.id] = "}<St>"OLCHAM_KUTYAPMAN"</St>{'\n\n'}
+              <Cm>{tr({ uz: '// Keyingi xabar kelganda:', ru: '// Когда приходит следующее сообщение:' })}</Cm>{'\n'}
+              <Jx>const</Jx>{' holat = holatlar[ctx.chat.id]'}
             </pre>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: 'Kamchiligi nimada? 🤔', ru: 'В чём минус? 🤔' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы увидели' }) : tr({ uz: 'Kamchiligi nimada?', ru: "В чём минус?" })}</button>
           </Col>
           <Col>
             {show
-              ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ <b>Bu obyekt RAM'da — dasturning cho'ntagida</b> yashaydi. Server o'chsa yoki qayta ishga tushsa — cho'ntak bo'shab qoladi. Barcha bosqichlar <b>g'oyib bo'ladi</b>, yuzlab mijoz suhbat o'rtasida qolib ketadi.</>, ru: <>❌ <b>Этот объект живёт в RAM — в кармане программы</b>. Если сервер выключится или перезапустится — карман опустеет. Все этапы <b>исчезнут</b>, сотни клиентов зависнут посреди диалога.</> })}</p></div>
+              ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu obyekt <b>dastur xotirasida (RAM)</b> turadi. Bot qayta ishga tushsa, xotira tozalanadi va barcha holatlar yo'qoladi: suhbat o'rtasidagi mijozlar boshidan boshlashga majbur bo'ladi. React darslarida ham shunday edi: sahifani yangilasangiz, xotiradagi ro'yxat yo'qolardi. Yechim — holatni <b>PostgreSQL'ga</b> yozish.</>, ru: <>Этот объект хранится <b>в памяти программы (RAM)</b>. При перезапуске бота память очищается и все состояния пропадают: клиентам посреди диалога придётся начинать сначала. На уроках React было так же: если обновить страницу, список в памяти пропадал. Решение — записывать состояние <b>в PostgreSQL</b>.</> })}</p></div>
               : null}
-            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 YECHIM', ru: '📍 РЕШЕНИЕ' })}</span><p className="agent-msg">{tr({ uz: <>Cho'ntak emas — <b>javondagi doimiy daftar</b> kerak. Mana shu yerda <b>PostgreSQL</b> kiradi.</>, ru: <>Нужен не карман, а <b>постоянный блокнот на полке шкафа</b>. Вот тут и вступает <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -964,36 +1034,43 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 6 — MARKAZIY: CHO'NTAK VS JAVON (restart simulyatsiyasi) =====
+// ===== SCREEN 6 — MARKAZIY: QAYTA ISHGA TUSHIRISH (RAM qatori o'chib boradi, A7) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [restarted, setRestarted] = useState(!!storedAnswer);
+  const [wiping, setWiping] = useState(false);
   const [sc, setSc] = useState(0);
   const done = restarted;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
+  const restart = () => {
+    if (restarted || wiping) return;
+    const calm = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (calm) { setRestarted(true); setSc(n => n + 1); return; }
+    setWiping(true);
+    setTimeout(() => { setWiping(false); setRestarted(true); setSc(n => n + 1); }, 850);
+  };
   return (
-    <Stage eyebrow={tr({ uz: "Markaziy · cho'ntak vs javon", ru: 'Главное · карман против шкафа' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Botni qayta ishga tushiring', ru: 'Перезапустите бота' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Markaziy · qayta ishga tushirish', ru: "Главное · перезапуск" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Botni qayta ishga tushiring', ru: 'Перезапустите бота' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botni <span className="italic" style={{ color: T.accent }}>o'chir-yoqing</span> — nima qoladi, nima yo'qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Выключите и включите</span> бота — что останется, а что пропадёт?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Serverlar har kuni qayta ishga tushadi (yangilanish, nosozlik, deploy). Tugmani bosib, restart paytida cho'ntak va javonga nima bo'lishini ko'ring.", ru: 'Серверы перезапускаются каждый день (обновления, сбои, деплой). Нажмите кнопку и посмотрите, что при этом будет с карманом и шкафом.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botni <span className="italic" style={{ color: T.accent }}>qayta ishga tushiring</span>: nima qoladi, nima yo'qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Перезапустите</span> бота: что останется, а что пропадёт?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bot serveri vaqti-vaqti bilan qayta ishga tushadi: yangi versiya chiqqanda yoki nosozlikdan keyin. Tugmani bosing va ikkala qutiga qarang.", ru: "Сервер бота время от времени перезапускается: когда выходит новая версия или после сбоя. Нажмите кнопку и посмотрите на оба блока." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className={`mem-box ${restarted ? 'gone' : ''}`}>
-              <p className="note-h" style={{ color: restarted ? T.danger : T.ink2 }}>{tr({ uz: "👖 Cho'ntak — vaqtinchalik xotira", ru: '👖 Карман — временная память' })}</p>
+              <p className="note-h" style={{ color: restarted ? T.danger : T.ink2 }}>{tr({ uz: 'Dastur xotirasi (RAM) — vaqtinchalik', ru: "Память программы (RAM) — временная" })}</p>
               {restarted
-                ? <p className="body" style={{ margin: 0, color: T.danger }}>{tr({ uz: "💨 bo'sh — hammasi to'kilib ketdi!", ru: '💨 пусто — всё высыпалось!' })}</p>
-                : <p className="body mono" style={{ margin: 0, color: T.ink }}>chontak = {'{'} 5582: "MANZIL_KUTYAPMAN" {'}'}</p>}
+                ? <p className="body" style={{ margin: 0, color: T.danger }}>{tr({ uz: "bo'sh — holatlar yo'qoldi", ru: "пусто — состояния пропали" })}</p>
+                : <p className={`body mono mem-line ${wiping ? 'wipe' : ''}`} style={{ margin: 0, color: T.ink }}>holatlar = {'{'} 558210300: "MANZIL_KUTYAPMAN" {'}'}</p>}
             </div>
             <div className="mem-box keep">
-              <p className="note-h" style={{ color: T.success }}>{tr({ uz: '🗄️ Javon — doimiy daftar (PostgreSQL)', ru: '🗄️ Шкаф — постоянный блокнот (PostgreSQL)' })}</p>
-              <p className="body mono" style={{ margin: 0, color: T.ink }}>users: Aziza · MANZIL_KUTYAPMAN ✅</p>
+              <p className="note-h" style={{ color: T.success }}>{tr({ uz: 'PostgreSQL — doimiy', ru: "PostgreSQL — постоянное хранилище" })}</p>
+              <p className="body mono" style={{ margin: 0, color: T.ink }}>users: 558210300 · Aziza · MANZIL_KUTYAPMAN</p>
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={restarted} onClick={() => { setRestarted(true); setSc(n => n + 1); }}>{restarted ? tr({ uz: "✓ Restart bo'ldi", ru: '✓ Перезапуск прошёл' }) : tr({ uz: '🔌 Botni qayta ishga tushirish', ru: '🔌 Перезапустить бота' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={restarted || wiping} onClick={restart}>{restarted ? tr({ uz: '✓ Bot qayta ishga tushdi', ru: "✓ Бот перезапущен" }) : tr({ uz: 'Botni qayta ishga tushirish', ru: "Перезапустить бота" })}</button>
           </Col>
           <Col>
             {restarted
-              ? <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Cho'ntak bo'shab qoldi, lekin <b>javondagi daftar joyida</b>. Shuning uchun bosqichni ham, ma'lumotni ham javonga (PostgreSQL'ga) yozamiz.</>, ru: <>Видели? Карман опустел, а <b>блокнот в шкафу на месте</b>. Поэтому и этап, и данные мы пишем в шкаф (в PostgreSQL).</> })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Dastur xotirasi bo'shab qoldi, <b>PostgreSQL'dagi qator esa joyida</b>. Shuning uchun holatni PostgreSQL'ga yozamiz: bot qayta ishga tushgach, Azizaning holatini bazadan o'qiydi va suhbat shu joydan davom etadi.</>, ru: <>Память программы опустела, <b>а строка в PostgreSQL на месте</b>. Поэтому состояние записываем в PostgreSQL: после перезапуска бот читает состояние Азизы из базы, и диалог продолжается с того же места.</> })}</p></div>
               : null}
-            {done && <div className="sk-info fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Xulosa: <b>cho'ntak — vaqtinchalik</b>, <b>javon — doimiy</b>. Ishonchli bot ma'lumotni javonga yozadi.</>, ru: <>Вывод: <b>карман — временный</b>, <b>шкаф — постоянный</b>. Надёжный бот пишет данные в шкаф.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1001,96 +1078,120 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — IKKI MIJOZ SINOVI: ARALASHUV (bug demo) =====
+// ===== SCREEN 7 — IKKI MIJOZ: UMUMIY HOLAT (aralashuv; strelkalar bitta qutiga, A7) =====
 const MIX_MSGS = [
-  { who: { uz: 'Aziza', ru: 'Азиза' }, u: { uz: 'Pitsa buyurtma qilaman — Margarita', ru: 'Хочу заказать пиццу — Маргарита' } },
-  { who: { uz: 'Bek', ru: 'Бек' }, u: { uz: 'Menga ham pitsa — Pepperoni', ru: 'Мне тоже пиццу — Пепперони' } },
+  { who: { uz: 'Aziza', ru: 'Азиза' }, u: { uz: 'Pepperoni olmoqchiman', ru: "Хочу Пепперони" } },
+  { who: { uz: 'Bek', ru: 'Бек' }, u: { uz: 'Menga Margarita', ru: "Мне Маргариту" } },
   { who: { uz: 'Aziza', ru: 'Азиза' }, u: { uz: "Katta o'lchamda, iltimos", ru: 'Большого размера, пожалуйста' } }
 ];
-// umumiy sahifa har xabardan keyin ustiga yoziladi — oxirgi mijoz ma'lumoti qoladi
-const MIX_PAGE_AFTER = [{ uz: 'Margarita (Aziza)', ru: 'Маргарита (Азиза)' }, { uz: 'Pepperoni (Bek)', ru: 'Пепперони (Бек)' }, { uz: 'Pepperoni · Katta (kim buyurtma qildi?)', ru: 'Пепперони · большая (а кто заказал?)' }];
+// umumiy holat har xabardan keyin ustiga yoziladi — oxirgi yozuv qoladi
+const MIX_PAGE_AFTER = [{ uz: 'Pepperoni (Aziza)', ru: "Пепперони (Азиза)" }, { uz: 'Margarita (Bek)', ru: "Маргарита (Бек)" }, { uz: 'Margarita, katta (kimniki?)', ru: "Маргарита, большая (чья?)" }];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? MIX_MSGS.length : 0);
   const [sc, setSc] = useState(0);
+  const wrapRef = useRef(null);
   const done = step >= MIX_MSGS.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
+  // har xabardan bitta qutiga strelka: oldingilari turadi, yangisi chiziladi
+  const arrows = MIX_MSGS.slice(0, step).map((_, i) => ({ from: `mx-${i}`, to: 'mx-box', still: i < step - 1 || !!storedAnswer }));
   return (
     <Stage eyebrow={tr({ uz: 'Muammo · ikki mijoz', ru: 'Проблема · два клиента' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Xabarlarni ko'ring", ru: 'Посмотрите сообщения' })} (${step}/${MIX_MSGS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Aziza va Bek <span className="italic" style={{ color: T.accent }}>bir vaqtda</span> yozishmoqda — bitta umumiy sahifada.</>, ru: <>Азиза и Бек пишут <span className="italic" style={{ color: T.accent }}>одновременно</span> — на одну общую страницу.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Botjonda bitta umumiy daftar sahifasi bor — hamma mijoz uchun bitta. Har xabar keyingi qatorda shu sahifaga yoziladi. Tugmani bosib, nima bo'lishini kuzating.", ru: 'У Ботжона одна общая страница блокнота — одна на всех клиентов. Каждое сообщение пишется туда же следующей строкой. Нажмите кнопку и смотрите, что будет.' })}</Mentor>
-        <Zoomable><div className="split">
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Aziza va Bek bir vaqtda yozyapti. Holat ikkalasiga <span className="italic" style={{ color: T.accent }}>bitta</span> bo'lsa-chi?</>, ru: <>Азиза и Бек пишут одновременно. А если состояние у них <span className="italic" style={{ color: T.accent }}>одно</span> на двоих?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Faraz qiling: kodda holat <code className="qcode">chat.id</code> bo'yicha ajratilmagan — hamma mijoz uchun bitta o'zgaruvchi. Tugmani bosing va holat qanday o'zgarishini kuzating.</>, ru: <>Представьте: в коде состояние не разделено по <code className="qcode">chat.id</code> — одна переменная на всех клиентов. Нажмите кнопку и следите, как меняется состояние.</> })}</Mentor>
+        <Zoomable><div className="split ln-wrap" ref={wrapRef}>
           <Col>
             <div className="mix-chat">
-              {MIX_MSGS.slice(0, step).map((m, i) => (<div key={i} className="mix-line el-in"><span className="mix-who">{tr(m.who)}:</span><span className="mix-txt">{tr(m.u)}</span></div>))}
+              {MIX_MSGS.slice(0, step).map((m, i) => (<div key={i} className="mix-line el-in"><span className="mix-who">{tr(m.who)}:</span><span className="mix-txt" data-ln={`mx-${i}`}>{tr(m.u)}</span></div>))}
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: "✓ Hammasi ko'rildi", ru: '✓ Всё просмотрено' }) : step === 0 ? tr({ uz: '▶ Xabarlarni boshlash', ru: '▶ Запустить сообщения' }) : tr({ uz: 'Keyingi xabar →', ru: 'Следующее сообщение →' })}</button>
           </Col>
           <Col>
-            <DaftarPage key={step} mijoz={{ uz: '? (umumiy sahifa)', ru: '? (общая страница)' }} bosqich={{ uz: 'Tanlov', ru: 'Выбор' }} maz={step > 0 ? MIX_PAGE_AFTER[step - 1] : '—'} />
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>😳 Oxirgi qatorda «Pepperoni · Katta» yozilgan — lekin buni <b>Aziza</b> yubordi! Sahifa umumiy bo'lgani uchun Bekning Pepperonisi Azizaning Margaritasi ustiga yozilib ketdi. Ikkalasining buyurtmasi <b>aralashib qoldi</b>.</>, ru: <>😳 В последней строке записано «Пепперони · большая» — но это отправила <b>Азиза</b>! Страница общая, поэтому Пепперони Бека затёрла Маргариту Азизы. Заказы обоих <b>перепутались</b>.</> })}</p></div>}
+            <HolatPanel key={step} ln="mx-box" title={{ uz: 'Umumiy holat (hamma uchun bitta)', ru: "Общее состояние (одно на всех)" }}
+              mijoz="?" holat="OLCHAM_KUTYAPMAN" tanlov={step > 0 ? MIX_PAGE_AFTER[step - 1] : '—'} />
+            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Oxirgi qatorda «Margarita, katta» turibdi, lekin «Katta» ni <b>Aziza</b> yozgan edi. Holat bitta bo'lgani uchun Bekning Margaritasi Azizaning Pepperonisi ustiga yozildi. Endi Aziza Bekning pitsasini oladi.</>, ru: <>В последней строке стоит «Маргарита, большая», но «Большого размера» писала <b>Азиза</b>. Состояние одно, поэтому Маргарита Бека записалась поверх Пепперони Азизы. Теперь Азиза получит пиццу Бека.</> })}</p></div>}
           </Col>
+          <LinkArrows wrapRef={wrapRef} links={arrows} k={step} />
         </div></Zoomable>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 8 — TEST 2 (Safe Notes) =====
+// ===== SCREEN 8 — TEST 2 (Safe Storage; ✔ o'rni: 1) =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} idx={8} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
-    questionText="Bot serveri birdan o'chib qolsa, qaysi joyda saqlangan ma'lumot yo'qolmaydi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bot serveri birdan <span className="italic" style={{ color: T.accent }}>o'chib qolsa</span>, qaysi joyda saqlangan ma'lumot yo'qolmaydi?</>, ru: <>Если сервер бота вдруг <span className="italic" style={{ color: T.accent }}>выключится</span>, где сохранённые данные не пропадут?</> })}</h2></>}
-    options={[tr({ uz: "Kod ichidagi oddiy JavaScript obyektida saqlangan ma'lumot", ru: 'Данные в обычном JavaScript-объекте внутри кода' }), tr({ uz: "PostgreSQL — doimiy daftarga yozilgan ma'lumot", ru: 'PostgreSQL — данные, записанные в постоянный блокнот' }), tr({ uz: "Faqat brauzer xotirasida turgan ma'lumot", ru: 'Данные, лежащие только в памяти браузера' }), tr({ uz: "Hech qanday ma'lumot saqlanib qolmaydi", ru: 'Никакие данные не сохранятся' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! PostgreSQL — javondagi doimiy daftar, diskda saqlanadi. Server o'chib-yonsa ham bu yozuvlar joyida qoladi. Faqat cho'ntakdagi (RAM'dagi) vaqtinchalik holat yo'qoladi.", ru: 'Верно! PostgreSQL — это постоянный блокнот в шкафу, он хранится на диске. Даже при перезапуске записи останутся. Пропадает только временное состояние в кармане (в RAM).' })}
+    questionText="Bot serveri birdan o'chib qoldi. Qaysi holat yo'qolmaydi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bot serveri birdan <span className="italic" style={{ color: T.accent }}>o'chib qoldi</span>. Qaysi holat yo'qolmaydi?</>, ru: <>Сервер бота вдруг <span className="italic" style={{ color: T.accent }}>выключился</span>. Какое состояние не пропадёт?</> })}</h2></>}
+    options={[tr({ uz: 'Koddagi oddiy JavaScript obyektiga yozilgan holat', ru: "Состояние, записанное в обычный JavaScript-объект в коде" }), tr({ uz: "PostgreSQL'dagi users jadvaliga yozilgan holat", ru: "Состояние, записанное в таблицу users в PostgreSQL" }), tr({ uz: "Handler ichidagi o'zgaruvchiga yozilgan holat", ru: "Состояние, записанное в переменную внутри handler-а" }), tr({ uz: "Hech qaysi: server o'chsa, hammasi yo'qoladi", ru: "Никакое: если сервер выключится, пропадёт всё" })]} correctIdx={1}
+    explainCorrect={tr({ uz: "PostgreSQL ma'lumotni diskka yozadi — server qayta ishga tushsa ham u joyida qoladi.", ru: "PostgreSQL записывает данные на диск — даже после перезапуска сервера они остаются на месте." })}
     explainWrong={{
-      0: tr({ uz: "Aksincha — bu cho'ntakdagi (RAM'dagi) vaqtinchalik varaqcha, restart'da yo'qoladi.", ru: 'Наоборот — это временный листок в кармане (в RAM), при перезапуске он пропадёт.' }),
-      2: tr({ uz: "Bot serverida brauzer xotirasi ishlamaydi — bu bot bilan bog'liq emas.", ru: 'На сервере бота памяти браузера нет — это к боту не относится.' }),
-      3: tr({ uz: "Javonga (PostgreSQL'ga) yozilgan ma'lumot saqlanib qoladi — hammasi yo'qolmaydi.", ru: 'Данные, записанные в шкаф (в PostgreSQL), сохранятся — пропадает не всё.' }),
-      default: tr({ uz: "Faqat doimiy daftarga (PostgreSQL) yozilgan ma'lumot restart'dan keyin ham qoladi.", ru: 'После перезапуска остаются только данные из постоянного блокнота (PostgreSQL).' })
+      0: tr({ uz: "Bu obyekt dastur xotirasida (RAM) turadi — bot qayta ishga tushsa, bo'shab qoladi.", ru: "Этот объект хранится в памяти программы (RAM) — при перезапуске бота он опустеет." }),
+      2: tr({ uz: "Handler ichidagi o'zgaruvchi ham dastur xotirasida — u keyingi xabargacha ham saqlanmaydi.", ru: "Переменная внутри handler-а тоже в памяти программы — она не сохраняется даже до следующего сообщения." }),
+      3: tr({ uz: "PostgreSQL'ga yozilgan holat saqlanib qoladi — hammasi yo'qolmaydi.", ru: "Состояние, записанное в PostgreSQL, сохранится — пропадает не всё." }),
+      default: tr({ uz: "Qayta ishga tushgandan keyin faqat PostgreSQL'ga yozilgan holat qoladi.", ru: "После перезапуска остаётся только состояние, записанное в PostgreSQL." })
     }} />
 );
 
 
-// ===== SCREEN 9 — IKKI MIJOZ SINOVI: TUZATISH (alohida sessiya) =====
+// ===== SCREEN 9 — TUZATISH: HAR MIJOZGA SESSIYA (ikki strelka — har biri o'z sessiyasiga, A7) =====
+// A11: Aziza — chat.id 558210300, Pepperoni · Bek — 604417829, Margarita.
 const SESS_CLIENTS = [
-  { id: 'aziza', name: { uz: 'Aziza', ru: 'Азиза' }, order: { uz: 'Margarita · Katta', ru: 'Маргарита · большая' } },
-  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, order: { uz: 'Pepperoni · Kichik', ru: 'Пепперони · маленькая' } }
+  { id: 'aziza', name: { uz: 'Aziza', ru: 'Азиза' }, chatId: '558210300', tanlov0: { uz: 'Pepperoni', ru: 'Пепперони' }, msg: { uz: 'Katta', ru: 'Большая' }, order: { uz: 'Pepperoni, katta', ru: "Пепперони, большая" } },
+  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, chatId: '604417829', tanlov0: { uz: 'Margarita', ru: "Маргарита" }, msg: { uz: 'Kichik', ru: "Маленькая" }, order: { uz: 'Margarita, kichik', ru: "Маргарита, маленькая" } }
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(SESS_CLIENTS.map(c => c.id)) : new Set());
   const [together, setTogether] = useState(!!storedAnswer);
+  const [showRes, setShowRes] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= SESS_CLIENTS.length && together;
+  const wrapRef = useRef(null);
+  const bothSeen = seen.size >= SESS_CLIENTS.length;
+  const done = bothSeen && together && showRes;
   const tap = (id) => { setSeen(prev => new Set(prev).add(id)); setSc(n => n + 1); };
-  const all = () => { setSeen(new Set(SESS_CLIENTS.map(c => c.id))); setTogether(true); setSc(n => n + 1); };
+  const all = () => {
+    if (together || !bothSeen) return;
+    setTogether(true); setSc(n => n + 1);
+    setTimeout(() => { setShowRes(true); setSc(n => n + 1); }, 1000); // avval xabarlar va strelkalar, keyin natija
+  };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
+  const arrows = together ? SESS_CLIENTS.map(c => ({ from: `sm-${c.id}`, to: `ss-${c.id}`, still: !!storedAnswer })) : [];
   return (
-    <Stage eyebrow={tr({ uz: 'Case · tuzatish', ru: 'Кейс · исправление' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkalasini birdan sinang', ru: 'Попробуйте обоих сразу' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tuzatish · sessiya', ru: "Исправление · сессия" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkalasini birdan sinang', ru: 'Попробуйте обоих сразу' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har mijozga <span className="italic" style={{ color: T.accent }}>o'z sahifasi</span> — endi aralashmaydi.</>, ru: <>Каждому клиенту — <span className="italic" style={{ color: T.accent }}>своя страница</span>, теперь ничего не перепутается.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi Botjon bitta umumiy sahifa emas, har mijozga <b style={{ color: T.ink }}>alohida daftar sahifasi</b> (sessiya) ochadi. Avval birma-bir bosing, keyin ikkalasini birdan sinang.</>, ru: <>Теперь Ботжон заводит не общую страницу, а <b style={{ color: T.ink }}>отдельную страницу блокнота</b> (сессию) каждому клиенту. Сначала нажмите по очереди, потом попробуйте обоих сразу.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har mijozga <span className="italic" style={{ color: T.accent }}>alohida holat</span>.</>, ru: <>Каждому клиенту — <span className="italic" style={{ color: T.accent }}>отдельное состояние</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Sessiya</b> — bitta mijozning holati, boshqalarnikidan alohida. Bot uni <code className="qcode">chat.id</code> bo'yicha topadi. Avval har mijozni bosing, keyin ikkalasini birdan sinang.</>, ru: <><b style={{ color: T.ink }}>Сессия</b> — состояние одного клиента, отдельно от других. Бот находит его по <code className="qcode">chat.id</code>. Сначала нажмите на каждого клиента, потом попробуйте обоих сразу.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className="split ln-wrap" ref={wrapRef}>
           <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {SESS_CLIENTS.map(c => (
-                <button key={c.id} className="vcard" onClick={() => tap(c.id)} style={seen.has(c.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}` } : undefined}>
-                  
-                  <span className="vlbl">{tr(c.name)} <span style={{ color: T.ink2, fontWeight: 500 }}>{tr({ uz: "· o'z sahifasi", ru: '· своя страница' })}</span></span>
-                  <span className="vseen" style={{ color: seen.has(c.id) ? T.success : T.ink3 }}>{seen.has(c.id) ? '✓' : ''}</span>
-                </button>
-              ))}
+            <div className="sess-list fade-up delay-1">
+              {SESS_CLIENTS.map(c => { const open = seen.has(c.id); return (
+                <div key={c.id} className="sess-item">
+                  <button className={`vcard ${open ? 'seen' : ''}`} onClick={() => tap(c.id)} aria-expanded={open}>
+                    <span className="vlbl">{tr(c.name)} <span style={{ color: T.ink2, fontWeight: 500 }}>{tr({ uz: "· o'z sessiyasi", ru: "· своя сессия" })}</span></span>
+                    <span className="vseen" style={{ color: open ? T.success : T.ink3 }}>{open ? '✓' : '›'}</span>
+                  </button>
+                  {open && <div className="sess-box fade-step" data-ln={`ss-${c.id}`}>
+                    <div className="daf-row"><span className="daf-k" style={{ textTransform: 'none' }}>chat.id</span><span className="daf-v mono">{c.chatId}</span></div>
+                    <div className="daf-row"><span className="daf-k">{tr({ uz: 'holat', ru: "состояние" })}</span><span className="daf-v hl mono">{together ? 'MANZIL_KUTYAPMAN' : 'OLCHAM_KUTYAPMAN'}</span></div>
+                    <div className="daf-row"><span className="daf-k">{tr({ uz: 'tanlov', ru: 'выбор' })}</span><span className="daf-v">{tr(together ? c.order : c.tanlov0)}</span></div>
+                  </div>}
+                </div>
+              ); })}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={all}>{together ? tr({ uz: '✓ Ikkalasi birdan yozdi', ru: '✓ Оба написали одновременно' }) : tr({ uz: '▶ Ikkalasi birdan yozsin', ru: '▶ Пусть напишут оба сразу' })}</button>
+            {bothSeen && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} disabled={together} onClick={all}>{together ? tr({ uz: '✓ Ikkalasi birdan yozdi', ru: '✓ Оба написали одновременно' }) : tr({ uz: '▶ Ikkalasi birdan yozsin', ru: '▶ Пусть напишут оба сразу' })}</button>}
           </Col>
           <Col>
-            {together
-              ? <div className="ns-shift-cards fade-step">{SESS_CLIENTS.map(c => <div key={c.id} className="ns-cust ok el-in"><span className="ns-cust-name">{tr(c.name)}</span><span className="ns-cust-msg">✅ {tr(c.order)}</span></div>)}</div>
-              : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi hech narsa aralashmaydi — Azizaning Margaritasi va Bekning Pepperonisi <b>o'z sahifasida</b> to'g'ri saqlanadi.</>, ru: <>Теперь ничего не перепутается — Маргарита Азизы и Пепперони Бека хранятся <b>каждый на своей странице</b>.</> })}</p></div>}
+            {together && <div className="sess-msgs">
+              {SESS_CLIENTS.map(c => <div key={c.id} className="tg-bubble user el-in sess-msg" data-ln={`sm-${c.id}`}><span className="sess-who">{tr(c.name)}</span>{tr(c.msg)}</div>)}
+            </div>}
+            {showRes && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>
+              {SESS_CLIENTS.map(c => <React.Fragment key={c.id}><b>{tr(c.name)}</b> — {tr(c.order)}<br /></React.Fragment>)}
+              {tr({ uz: "Ikkala javob bir vaqtda keldi, lekin har biri o'z sessiyasiga tushdi — hech narsa aralashmadi.", ru: "Оба ответа пришли одновременно, но каждый попал в свою сессию — ничего не перепуталось." })}
+            </p></div>}
           </Col>
+          <LinkArrows wrapRef={wrapRef} links={arrows} k={together ? 1 : 0} />
         </div>
         </Zoomable>
       </div>
@@ -1098,27 +1199,27 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — TEST 3 (No Mix-Up) =====
+// ===== SCREEN 10 — TEST 3 (No Mix-Up; ✔ o'rni: 3) =====
 const Screen10 = (props) => (
   <QuestionScreen {...props} idx={10} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
-    questionText="Aziza va Bek bir vaqtda buyurtma bersa, ularning suhbati aralashib ketmasligi uchun bot nimani ishlatishi kerak?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Aziza va Bek bir vaqtda buyurtma bersa, ularning suhbati <span className="italic" style={{ color: T.accent }}>aralashib ketmasligi</span> uchun bot nimani ishlatishi kerak?</>, ru: <>Если Азиза и Бек заказывают одновременно, что должен использовать бот, чтобы их диалоги <span className="italic" style={{ color: T.accent }}>не перепутались</span>?</> })}</h2></>}
-    options={[tr({ uz: "Ikkalasiga ham bitta umumiy o'zgaruvchida holatni birga saqlash", ru: 'Хранить состояние обоих в одной общей переменной' }), tr({ uz: 'Faqat birinchi yozgan mijozga navbat bilan javob berish', ru: 'Отвечать по очереди только тому, кто написал первым' }), tr({ uz: 'Kelgan xabarlarni tasodifiy tartibda aralashtirib javoblash', ru: 'Отвечать на сообщения в случайном порядке' }), tr({ uz: "Har mijoz uchun alohida sessiya — o'z sahifasini saqlash", ru: 'Отдельная сессия для каждого клиента — своя страница' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Har mijozga alohida sessiya (o'z daftar sahifasi) berilsa, ularning bosqichi va tanlovi bir-biriga tegmaydi — Aziza va Bek hech qachon aralashmaydi.", ru: 'Верно! Если у каждого клиента своя сессия (своя страница блокнота), их этапы и выбор не пересекаются — Азиза и Бек никогда не перепутаются.' })}
+    questionText="Aziza va Bek bir vaqtda buyurtma beryapti. Ularning suhbati aralashmasligi uchun nima kerak?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Aziza va Bek bir vaqtda buyurtma beryapti. Ularning suhbati <span className="italic" style={{ color: T.accent }}>aralashmasligi</span> uchun nima kerak?</>, ru: <>Азиза и Бек заказывают одновременно. Что нужно, чтобы их диалоги <span className="italic" style={{ color: T.accent }}>не перепутались</span>?</> })}</h2></>}
+    options={[tr({ uz: "Ikkala mijozning holatini bitta umumiy o'zgaruvchida saqlash", ru: "Хранить состояние обоих клиентов в одной общей переменной" }), tr({ uz: 'Har mijoz uchun alohida bot ochib, alohida token berish', ru: "Создать каждому клиенту отдельного бота и отдельный токен" }), tr({ uz: "Umumiy holatni obyektda emas, PostgreSQL'da saqlash", ru: "Хранить общее состояние не в объекте, а в PostgreSQL" }), tr({ uz: 'Har mijozga alohida sessiya ochib, holatini unda saqlash', ru: "Открыть каждому клиенту сессию и хранить состояние в ней" })]} correctIdx={3}
+    explainCorrect={tr({ uz: "Har mijozning holati o'z `chat.id` si bo'yicha alohida saqlanadi.", ru: "Состояние каждого клиента хранится отдельно по его `chat.id`." })}
     explainWrong={{
-      0: tr({ uz: 'Aynan shu — bitta umumiy sahifa — aralashuvga olib keladi. Har kimga alohida sahifa kerak.', ru: 'Именно это — одна общая страница — и приводит к путанице. Нужна страница каждому.' }),
-      1: tr({ uz: "Botjon hech kimni e'tiborsiz qoldirmaydi — muammo umumiy sahifada, e'tiborsizlikda emas.", ru: 'Ботжон никого не игнорирует — дело в общей странице, а не в очерёдности.' }),
-      2: tr({ uz: "Tasodifiylik muammoni yechmaydi — kerakli narsa aniq: har mijozga o'z sahifasi.", ru: 'Случайность проблему не решает — нужно другое: каждому клиенту своя страница.' }),
-      default: tr({ uz: "Har mijozga alohida sessiya (sahifa) berish — aralashuvning yagona to'g'ri yechimi.", ru: 'Отдельная сессия (страница) каждому клиенту — единственное верное решение.' })
+      0: tr({ uz: "Bitta umumiy o'zgaruvchi aralashuvga olib keladi: oxirgi yozuv oldingisining ustiga yoziladi.", ru: "Одна общая переменная приводит к путанице: последняя запись затирает предыдущую." }),
+      1: tr({ uz: "Har mijozga alohida bot kerak emas: bitta bot holatni `chat.id` bo'yicha ajratsa yetadi.", ru: "Отдельный бот каждому клиенту не нужен: достаточно, чтобы один бот разделял состояние по `chat.id`." }),
+      2: tr({ uz: "PostgreSQL holatni saqlab qoladi, lekin u hammaga bitta bo'lsa, baribir aralashadi.", ru: "PostgreSQL сохранит состояние, но если оно одно на всех, путаница всё равно будет." }),
+      default: tr({ uz: 'Har mijozning holatini alohida sessiyada saqlash kerak.', ru: "Состояние каждого клиента нужно хранить в отдельной сессии." })
     }} />
 );
 
-// ===== SCREEN 11 — POSTGRESQL: users JADVALI (sxema) =====
+// ===== SCREEN 11 — POSTGRESQL: users JADVALI (holat — urg'u rangida) =====
 const SCHEMA_COLS = [
-  { id: 'tg', tok: 'telegram_id', desc: { uz: 'Har mijozning noyob raqami — Botjon uni shu orqali taniydi (ctx.chat.id).', ru: 'Уникальный номер каждого клиента — по нему Ботжон его узнаёт (ctx.chat.id).' } },
-  { id: 'ism', tok: 'ism', desc: { uz: "Mijoz ismi — uzoq muddatli ma'lumot, bir marta so'rab saqlanadi.", ru: 'Имя клиента — долгосрочные данные: спросили один раз и сохранили.' } },
-  { id: 'holat', tok: 'holat', desc: { uz: "Suhbat hozir qaysi bosqichda — daftarning eng muhim ustuni, restart'da yo'qolmasin.", ru: 'На каком этапе сейчас диалог — самая важная колонка блокнота, она не должна теряться при перезапуске.' } },
-  { id: 'created', tok: 'created_at', desc: { uz: "Mijoz qachon qo'shilgani — standart vaqt ustuni.", ru: 'Когда клиент присоединился — стандартная колонка времени.' } }
+  { id: 'tg', tok: 'telegram_id', desc: { uz: "Mijozning Telegram raqami; shaxsiy chatda u `ctx.chat.id` ga teng. Bot mijozning qatorini shu raqam bilan topadi.", ru: "Telegram-номер клиента; в личном чате он равен `ctx.chat.id`. По этому номеру бот находит строку клиента." } },
+  { id: 'ism', tok: 'ism', desc: { uz: "Mijozning ismi. Bir marta so'raladi va keyingi safar ham kerak bo'ladi.", ru: "Имя клиента. Его спрашивают один раз, и оно пригодится в следующий раз." } },
+  { id: 'holat', tok: 'holat', desc: { uz: "Suhbat hozir qaysi bosqichda, masalan `MANZIL_KUTYAPMAN`. Keyingi xabarni bot shu qiymatga qarab tushunadi.", ru: "На каком этапе сейчас диалог, например `MANZIL_KUTYAPMAN`. По этому значению бот понимает следующее сообщение." } },
+  { id: 'tanlov', tok: 'tanlov', desc: { uz: "Mijoz hozirgacha nimani tanlagani, masalan «Pepperoni, katta». Buyurtma oxirida bot shu yerdan o'qiydi.", ru: "Что клиент уже выбрал, например «Пепперони, большая». В конце заказа бот читает это отсюда." } }
 ];
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(SCHEMA_COLS.map(c => c.id)) : new Set());
@@ -1129,33 +1230,30 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = SCHEMA_COLS.find(c => c.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Javon · users jadvali', ru: 'Шкаф · таблица users' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: '4 ustunni oching', ru: 'Откройте 4 колонки' })} (${seen.size}/4)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'PostgreSQL · users jadvali', ru: "PostgreSQL · таблица users" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: '4 ustunni oching', ru: 'Откройте 4 колонки' })} (${seen.size}/4)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>PostgreSQL</span> — Botjonning <span className="italic" style={{ color: T.accent }}>users</span> jadvali.</>, ru: <><span className="mono" style={{ color: T.accent }}>PostgreSQL</span> — таблица <span className="italic" style={{ color: T.accent }}>users</span> Ботжона.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bu — Botjonning doimiy daftari. Har ustunni bosib, u nima saqlashini o'qing.", ru: 'Это постоянный блокнот Ботжона. Нажмите на каждую колонку и прочитайте, что она хранит.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Holat PostgreSQL'da: <span className="italic" style={{ color: T.accent }}>users</span> jadvali.</>, ru: <>Состояние в PostgreSQL: таблица <span className="italic" style={{ color: T.accent }}>users</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Backend darslarida PostgreSQL'da jadval yaratgansiz. Bot uchun ham shunday jadval kerak: har mijoz — bitta qator, uning sessiyasi shu qatorda saqlanadi. Har ustunni bosib, nima saqlashini o'qing.", ru: "На уроках backend Вы создавали таблицы в PostgreSQL. Боту нужна такая же таблица: каждый клиент — одна строка, и его сессия хранится в этой строке. Нажмите на каждую колонку и прочитайте, что она хранит." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <pre className="code-box" style={{ lineHeight: 1.9 }}>
               <Jx>CREATE TABLE</Jx>{' users ('}{'\n'}
               {'  '}<At>id</At>{'           '}<Jx>SERIAL</Jx>{' PRIMARY KEY,'}{'\n'}
-              {'  '}<At>telegram_id</At>{'  '}<Jx>BIGINT</Jx>{' UNIQUE,'}{'\n'}
+              {'  '}<At>telegram_id</At>{'  '}<Jx>BIGINT</Jx>{' NOT NULL UNIQUE,'}{'\n'}
               {'  '}<At>ism</At>{'          '}<Jx>TEXT</Jx>{','}{'\n'}
-              {'  '}<At>holat</At>{'        '}<Jx>TEXT</Jx>{','}{'\n'}
-              {'  '}<At>created_at</At>{'   '}<Jx>TIMESTAMP</Jx>{' DEFAULT now()'}{'\n'}
+              <span className="code-hl">{'  '}<At>holat</At>{'        '}<Jx>TEXT</Jx>{' NOT NULL,'}</span>{'\n'}
+              {'  '}<At>tanlov</At>{'       '}<Jx>TEXT</Jx>{'\n'}
               {')'}
             </pre>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {SCHEMA_COLS.map(c => <button key={c.id} className="gchip" onClick={() => tap(c.id)} style={seen.has(c.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(c.id) ? '✓ ' : ''}<span className="mono">{c.tok}</span></button>)}
+              {SCHEMA_COLS.map(c => <button key={c.id} className={`gchip ${c.id === 'holat' ? 'gchip-hl' : ''} ${seen.has(c.id) ? 'seen' : ''}`} onClick={() => tap(c.id)}><span className="mono">{c.tok}</span><span className="gchip-mk">{seen.has(c.id) ? '✓' : '›'}</span></button>)}
             </div>
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent, fontSize: 12 }}>{cur.tok}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              ? <div className="sk-info fade-step" key={active}><p className="note-h zb-notch"><span className="mono" style={{ color: T.accent, fontSize: 12 }}>{cur.tok}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(cur.desc))}</p></div>
               : null}
-            {done && <>
-              <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Diqqat: <span className="mono">holat</span> ham shu yerda — suhbat bosqichini ham javonga yozamiz, restart'da yo'qolmasin.</>, ru: <>Внимание: <span className="mono">holat</span> тоже здесь — этап диалога мы тоже пишем в шкаф, чтобы он не пропал при перезапуске.</> })}</p></div>
-              <DbTable rows={[{ id: 1, tg: '558210300', ism: 'Aziza', holat: "MANZIL_KUTYAPMAN" }]} hlCol="holat" hlRow={0} />
-            </>}
+            {done && <DbTable rows={[{ id: 1, tg: '558210300', ism: 'Aziza', holat: 'MANZIL_KUTYAPMAN', tanlov: { uz: 'Pepperoni, katta', ru: "Пепперони, большая" } }]} hlCol="holat" hlRow={0} />}
           </Col>
         </div></Zoomable>
       </div>
@@ -1163,12 +1261,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 12 — HAYOTIY: TO'LIQ STATEFUL BUYURTMA =====
+// ===== SCREEN 12 — HAYOTIY: AVTOPIZZA BUYURTMASI (holat va tanlov paneli) =====
 const ORDER_STEPS = [
-  { u: '/start', b: { uz: "Salom! 🍕 Pitsa o'lchamini tanlang: kichik yoki katta?", ru: 'Привет! 🍕 Выберите размер пиццы: маленькая или большая?' }, bosqich: { uz: "O'lcham kutilmoqda", ru: 'Ждём размер' } },
-  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: "Zo'r! Qo'shimcha pishloq qo'shaymi? (ha / yo'q)", ru: 'Отлично! Добавить дополнительный сыр? (да / нет)' }, bosqich: { uz: "Qo'shimcha kutilmoqda", ru: 'Ждём добавку' } },
-  { u: { uz: 'Ha', ru: 'Да' }, b: { uz: 'Mazza 🧀 Endi manzilingizni yuboring 📍', ru: 'Вкусно 🧀 Теперь отправьте адрес 📍' }, bosqich: { uz: 'Manzil kutilmoqda', ru: 'Ждём адрес' } },
-  { u: { uz: 'Chilonzor 5-uy', ru: 'Чиланзар, дом 5' }, b: { uz: 'Rahmat! Buyurtma: Katta + pishloq, Chilonzor 5-uy. Qabul qilindi ✅', ru: 'Спасибо! Заказ: большая + сыр, Чиланзар, дом 5. Принято ✅' }, bosqich: { uz: 'TAYYOR', ru: 'ГОТОВО' } }
+  { u: '/start', b: { uz: "Salom! Pitsa o'lchamini tanlang: kichik yoki katta?", ru: "Привет! Выберите размер пиццы: маленькая или большая?" }, holat: 'OLCHAM_KUTYAPMAN', tanlov: '—' },
+  { u: { uz: 'Katta', ru: 'Большая' }, b: { uz: "Yaxshi! Qo'shimcha pishloq qo'shaymi? (ha / yo'q)", ru: "Отлично! Добавить дополнительный сыр? (да / нет)" }, holat: 'QOSHIMCHA_KUTYAPMAN', tanlov: { uz: 'katta', ru: "большая" } },
+  { u: { uz: 'Ha', ru: 'Да' }, b: { uz: "Qo'shdim. Endi manzilingizni yuboring.", ru: "Добавил. Теперь отправьте свой адрес." }, holat: 'MANZIL_KUTYAPMAN', tanlov: { uz: 'katta, pishloq', ru: "большая, сыр" } },
+  { u: { uz: 'Chilonzor 5-uy', ru: 'Чиланзар, дом 5' }, b: { uz: "Rahmat! Buyurtma: katta, qo'shimcha pishloq bilan, Chilonzor 5-uy. Qabul qilindi.", ru: "Спасибо! Заказ: большая, с дополнительным сыром, Чиланзар, дом 5. Принят." }, holat: 'TAYYOR', tanlov: { uz: 'katta, pishloq, Chilonzor 5-uy', ru: "большая, сыр, Чиланзар, дом 5" } }
 ];
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shown, setShown] = useState(storedAnswer ? ORDER_STEPS.length : 0);
@@ -1185,19 +1283,19 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Hayotiy · buyurtma', ru: 'Из жизни · заказ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Buyurtmani yig'ing", ru: 'Соберите заказ' })} (${shown}/4)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AvtoPizza buyurtmasi — har javob <span className="italic" style={{ color: T.accent }}>daftarga yoziladi</span>, bosqich siljiydi.</>, ru: <>Заказ в AvtoPizza — каждый ответ <span className="italic" style={{ color: T.accent }}>записывается в блокнот</span>, этап сдвигается.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bu — to'liq stateful suhbat. Botjon har javobni daftarga yozadi va keyingi bosqichga o'tadi. O'ng tomondan daftar sahifasini kuzating.", ru: 'Это полноценный stateful-диалог. Ботжон записывает каждый ответ в блокнот и переходит к следующему этапу. Следите за страницей блокнота справа.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AvtoPizza buyurtmasi <span className="italic" style={{ color: T.accent }}>qadam-baqadam</span>.</>, ru: <>Заказ в AvtoPizza <span className="italic" style={{ color: T.accent }}>шаг за шагом</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Buyurtmani qadam-baqadam oching va har javobdan keyin holat qanday o'zgarishini kuzating.", ru: "Открывайте заказ шаг за шагом и следите, как меняется состояние после каждого ответа." })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <TgChat title={{ uz: 'Botjon (buyurtma)', ru: 'Ботжон (заказ)' }} minH={210}>
+            <TgChat title={{ uz: 'AvtoPizza bot', ru: "AvtoPizza bot" }} minH={210}>
               {ORDER_STEPS.slice(0, shown).map((s, i) => (<React.Fragment key={i}><Bubble from="user">{tr(s.u)}</Bubble><Bubble from="bot">{tr(s.b)}</Bubble></React.Fragment>))}
               {phase === 'think' && <TgTyping />}
             </TgChat>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done || phase === 'think'} onClick={advance}>{done ? tr({ uz: '✓ Buyurtma qabul qilindi', ru: '✓ Заказ принят' }) : shown === 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Начать заказ' }) : tr({ uz: 'Keyingi javob →', ru: 'Следующий ответ →' })}</button>
           </Col>
           <Col>
-            <DaftarPage key={shown} mijoz={{ uz: 'Aziza', ru: 'Азиза' }} bosqich={cur ? cur.bosqich : { uz: "BO'SH", ru: 'ПУСТО' }} maz={shown > 0 ? `${shown}/4 ${tr({ uz: 'qadam', ru: 'шага' })}` : '—'} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Buyurtma bosqichma-bosqich yig'ildi — chunki Botjon har lahzada «qayerda turganini» esladi. Bot restart bo'lsa ham, holat javonda — suhbat davom etadi.", ru: 'Заказ собрался шаг за шагом — ведь Ботжон каждый раз помнил, «где он находится». Даже если бот перезапустится, состояние в шкафу — диалог продолжится.' })}</p></div>}
+            <HolatPanel key={shown} title={{ uz: 'Suhbat holati · Aziza', ru: "Состояние диалога · Азиза" }} holat={cur ? cur.holat : '—'} tanlov={cur ? cur.tanlov : '—'} />
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bot «Katta» va «Ha» kabi qisqa javoblarni holatga qarab tushundi. Har xabarda u holatni bazadan o'qiydi va yangisini yozadi — shuning uchun o'rtada qayta ishga tushsa ham, suhbat shu joydan davom etadi.", ru: "Бот понял короткие ответы вроде «Большая» и «Да» по состоянию. На каждом сообщении он читает состояние из базы и записывает новое — поэтому, даже если бот перезапустится посреди заказа, диалог продолжится с того же места." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1206,62 +1304,64 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 
-// ===== SCREEN 13 — BUILDER: SQL QOIDALARINI TO'LDIRING =====
+// ===== SCREEN 13 — AMALIYOT: SQL SO'ROVLARI (bo'shliqlar navbat bilan, A6) =====
+// Ballsiz (faqat SQL Writer nishoni): variantlar aralash (4-savol A), nishon sharti variant MATNI bo'yicha (indeks emas).
 const SQL_BLANKS = [
-  { key: 'sel', label: "____ * FROM users WHERE telegram_id=$1", correct: 'SELECT', options: ['SELECT', 'UPDATE', 'INSERT'], wrong: { UPDATE: { uz: "UPDATE — ma'lumotni o'zgartiradi, o'qish uchun emas.", ru: 'UPDATE — меняет данные, а не читает их.' }, INSERT: { uz: "INSERT — yangi qator qo'shadi, o'qish uchun emas.", ru: 'INSERT — добавляет новую строку, а не читает.' } } },
-  { key: 'upd', label: "____ users SET holat=$1 WHERE telegram_id=$2", correct: 'UPDATE', options: ['UPDATE', 'SELECT', 'DELETE'], wrong: { SELECT: { uz: "SELECT faqat o'qiydi — bu yerda yozish (o'zgartirish) kerak.", ru: 'SELECT только читает — а здесь нужно записать (изменить).' }, DELETE: { uz: "DELETE qatorni o'chiradi — bizga holatni yangilash kerak.", ru: 'DELETE удаляет строку — а нам нужно обновить состояние.' } } },
-  { key: 'ins', label: "____ INTO users(telegram_id, holat) VALUES($1, $2)", correct: 'INSERT', options: ['INSERT', 'SELECT', 'UPDATE'], wrong: { SELECT: { uz: "SELECT — mavjud qatorni o'qiydi, yangi qator qo'shmaydi.", ru: 'SELECT — читает существующую строку, новую не добавляет.' }, UPDATE: { uz: "UPDATE — faqat mavjud qatorni o'zgartiradi, yangisini qo'shmaydi.", ru: 'UPDATE — меняет только существующую строку, новую не добавляет.' } } }
+  { key: 'sel', correct: 'SELECT', options: ['UPDATE', 'SELECT', 'INSERT'], wrong: { UPDATE: { uz: "UPDATE — ma'lumotni o'zgartiradi; bu yerda esa avval o'qish kerak.", ru: "UPDATE — изменяет данные; а здесь сначала нужно прочитать." }, INSERT: { uz: "INSERT — yangi qator qo'shadi; bu yerda mavjud qatorni o'qiymiz.", ru: "INSERT — добавляет новую строку; а здесь мы читаем существующую." } } },
+  { key: 'upd', correct: 'UPDATE', options: ['SELECT', 'DELETE', 'UPDATE'], wrong: { SELECT: { uz: "SELECT faqat o'qiydi; bu yerda holatni yangilash kerak.", ru: "SELECT только читает; а здесь нужно обновить состояние." }, DELETE: { uz: "DELETE qatorni o'chiradi; bizga esa holatni yangilash kerak.", ru: "DELETE удаляет строку; а нам нужно обновить состояние." } } },
+  { key: 'ins', correct: 'INSERT', options: ['SELECT', 'INSERT', 'UPDATE'], wrong: { SELECT: { uz: "SELECT mavjud qatorni o'qiydi, yangi qator qo'shmaydi.", ru: "SELECT читает существующую строку и не добавляет новую." }, UPDATE: { uz: "UPDATE faqat mavjud qatorni o'zgartiradi — yangi mijozning qatori hali yo'q.", ru: "UPDATE изменяет только существующую строку — а строки нового клиента ещё нет." } } }
 ];
+const SQL_TAILS = [' * FROM users WHERE telegram_id = $1', ' users SET holat = $1 WHERE telegram_id = $2', ' INTO users (telegram_id, holat) VALUES ($1, $2)'];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(SQL_BLANKS.map(b => [b.key, b.correct])) : {}));
-  const [wrongKey, setWrongKey] = useState(null);
+  const [shakeKey, setShakeKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
   const wrongEverRef = useRef(storedAnswer ? (storedAnswer.correct === false) : false);
   const [sc, setSc] = useState(0);
   const done = SQL_BLANKS.every(b => filled[b.key] === b.correct);
+  const curIdx = SQL_BLANKS.findIndex(b => filled[b.key] !== b.correct);
+  const cur = curIdx >= 0 ? SQL_BLANKS[curIdx] : null;
   const fired = useRef(!!storedAnswer);
   useEffect(() => {
     if (done && !fired.current) {
       fired.current = true;
-      onAnswer(screen, { stage: 'builder', screenIdx: screen, question: "SQL qoidalarini to'ldiring", correct: !wrongEverRef.current, solved: true, picked: true });
+      onAnswer(screen, { stage: 'builder', screenIdx: screen, question: "SQL bo'shliqlarini to'ldiring", correct: !wrongEverRef.current, solved: true, picked: true });
     }
   }, [done]); // eslint-disable-line
   const pick = (blank, val) => {
     if (filled[blank.key] === blank.correct) return;
-    if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это неверно.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongMsg(''); setShakeKey(null); setSc(n => n + 1); }
+    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setShakeKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это неверно.' })); setTimeout(() => setShakeKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · daftar kodda', ru: 'Практика · блокнот в коде' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · SQL', ru: "Практика · SQL" })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Daftar kodda <span className="italic" style={{ color: T.accent }}>qanday yoziladi</span>?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как записать</span> блокнот в коде?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Uchta SQL so'rovi shu tarzda yoziladi. Har biri uchun to'g'ri variantni tanlab to'ldiring.", ru: 'Три SQL-запроса пишутся вот так. Для каждого выберите нужный вариант.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Holat bilan ishlaydigan <span className="italic" style={{ color: T.accent }}>uchta SQL so'rovi</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Три SQL-запроса</span> для работы с состоянием.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Handler bu so'rovlarni backend darslaridagidek <code className="qcode">pool.query(...)</code> bilan yuboradi. Bo'shliqlarni navbat bilan to'ldiring.</>, ru: <>Handler отправляет эти запросы через <code className="qcode">pool.query(...)</code>, как на уроках backend. Заполните пропуски по очереди.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <p className="flow-label">handler.ts</p>
+            <p className="flow-label">SQL</p>
             <pre className="code-box" style={{ lineHeight: 1.9 }}>
-              <Cm>{'// o\'qi → tekshir → yoz — xuddi daftar bilan ishlagandek'}</Cm>{'\n'}
-              <At>{filled.sel || '____'}</At>{' * FROM users WHERE telegram_id=$1'}{'\n\n'}
-              <At>{filled.upd || '____'}</At>{' users SET holat=$1 WHERE telegram_id=$2'}{'\n\n'}
-              <At>{filled.ins || '____'}</At>{' INTO users(telegram_id, holat) VALUES($1, $2)'}
+              {SQL_BLANKS.map((b, i) => (
+                <React.Fragment key={b.key}>
+                  <span className={`sql-blank ${i === curIdx ? 'cur' : ''} ${filled[b.key] ? 'ok' : ''}`}>{filled[b.key] || '____'}</span>{SQL_TAILS[i]}{i < SQL_BLANKS.length - 1 ? '\n\n' : ''}
+                </React.Fragment>
+              ))}
             </pre>
           </Col>
           <Col>
-            {SQL_BLANKS.map(b => (
-              <div key={b.key} className="blank-group">
-                <span className="bg-lbl">{b.label}</span>
+            {cur && (
+              <div key={cur.key} className="blank-group fade-step">
+                <span className="bg-lbl">{curIdx + 1}{tr({ uz: "-bo'shliq", ru: "-й пропуск" })}</span>
                 <div className="blank-row">
-                  {b.options.map(opt => {
-                    const okChosen = filled[b.key] === opt;
-                    return <button key={opt} className={`gchip ${wrongKey === b.key ? 'shake' : ''} ${filled[b.key] === b.correct ? '' : 'tap-hint'}`} disabled={filled[b.key] === b.correct} onClick={() => pick(b, opt)} style={okChosen ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{okChosen ? '✓ ' : ''}{opt}</button>;
-                  })}
+                  {cur.options.map(opt => <button key={opt} className={`gchip tap-hint ${shakeKey === cur.key ? 'shake' : ''}`} onClick={() => pick(cur, opt)}>{opt}</button>)}
                 </div>
+                {wrongMsg && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{wrongMsg}</p></div>}
               </div>
-            ))}
+            )}
             {!done && <AchRule screen={screen} />}
-            {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{wrongMsg}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Daftar to'ldi! <span className="mono">SELECT</span> = o'qish, <span className="mono">UPDATE</span> = yangilash, <span className="mono">INSERT</span> = yangi qator qo'shish.</>, ru: <>Блокнот заполнен! <span className="mono">SELECT</span> = чтение, <span className="mono">UPDATE</span> = обновление, <span className="mono">INSERT</span> = добавление новой строки.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{fmtCode(tr({ uz: "To'g'ri: `SELECT` holatni o'qiydi, `UPDATE` holatni yangilaydi, `INSERT` yangi mijozga qator qo'shadi.", ru: "Верно: `SELECT` читает состояние, `UPDATE` обновляет состояние, `INSERT` добавляет строку новому клиенту." }))}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1269,34 +1369,35 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 14 — TEST 4 =====
+// ===== SCREEN 14 — TEST 4 (✔ o'rni: 0) =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} idx={14} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
-    questionText="Foydalanuvchi birinchi marta /start bossa, uni jadvalga qo'shish uchun qaysi buyruq ishlatiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Foydalanuvchi birinchi marta <span className="mono" style={{ color: T.accent }}>/start</span> bossa, uni jadvalga <span className="italic" style={{ color: T.accent }}>qo'shish</span> uchun qaysi buyruq ishlatiladi?</>, ru: <>Пользователь впервые нажал <span className="mono" style={{ color: T.accent }}>/start</span> — какой командой <span className="italic" style={{ color: T.accent }}>добавить</span> его в таблицу?</> })}</h2></>}
-    options={[tr({ uz: "INSERT — yangi qator qo'shadi", ru: 'INSERT — добавляет новую строку' }), tr({ uz: "SELECT — faqat mavjud qatorni o'qiydi", ru: 'SELECT — только читает существующую строку' }), tr({ uz: "UPDATE — faqat mavjud qatorni o'zgartiradi", ru: 'UPDATE — меняет только существующую строку' }), tr({ uz: "DELETE — qatorni butunlay o'chiradi", ru: 'DELETE — полностью удаляет строку' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Yangi foydalanuvchi bazada hali yo'q, shuning uchun INSERT bilan yangi qator qo'shiladi. Keyin o'qish uchun SELECT, holatni o'zgartirish uchun UPDATE ishlatiladi.", ru: 'Верно! Нового пользователя в базе ещё нет, поэтому строка добавляется через INSERT. Дальше для чтения — SELECT, для смены состояния — UPDATE.' })}
+    questionText="Mijoz birinchi marta /start bosdi, jadvalda uning qatori hali yo'q. Qaysi buyruq kerak?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mijoz birinchi marta <span className="mono" style={{ color: T.accent }}>/start</span> bosdi, jadvalda uning qatori <span className="italic" style={{ color: T.accent }}>hali yo'q</span>. Qaysi buyruq kerak?</>, ru: <>Клиент впервые нажал <span className="mono" style={{ color: T.accent }}>/start</span>, его строки в таблице <span className="italic" style={{ color: T.accent }}>ещё нет</span>. Какая команда нужна?</> })}</h2></>}
+    options={[tr({ uz: "INSERT — jadvalga yangi qator qo'shadi", ru: "INSERT — добавляет в таблицу новую строку" }), tr({ uz: "SELECT — mavjud qatorni o'qiydi", ru: "SELECT — читает существующую строку" }), tr({ uz: "UPDATE — mavjud qatorni o'zgartiradi", ru: "UPDATE — изменяет существующую строку" }), tr({ uz: "DELETE — mavjud qatorni o'chiradi", ru: "DELETE — удаляет существующую строку" })]} correctIdx={0}
+    explainCorrect={tr({ uz: "Yangi mijozni SELECT topmaydi, shuning uchun unga INSERT bilan qator qo'shiladi.", ru: "SELECT не найдёт нового клиента, поэтому ему добавляют строку через INSERT." })}
     explainWrong={{
-      1: tr({ uz: "SELECT faqat o'qiydi — yangi qator qo'shmaydi. Yangi mijoz uchun INSERT kerak.", ru: 'SELECT только читает — новую строку он не добавит. Для нового клиента нужен INSERT.' }),
-      2: tr({ uz: "UPDATE mavjud qatorni o'zgartiradi. Lekin yangi mijoz hali yo'q — avval INSERT kerak.", ru: 'UPDATE меняет существующую строку. Но нового клиента ещё нет — сначала INSERT.' }),
-      3: tr({ uz: "DELETE o'chiradi — bizga aksincha, yangi qator qo'shish (INSERT) kerak.", ru: 'DELETE удаляет — а нам наоборот нужно добавить строку (INSERT).' }),
-      default: tr({ uz: "Yangi qator qo'shish uchun INSERT ishlatiladi.", ru: 'Для добавления новой строки используется INSERT.' })
+      1: tr({ uz: "SELECT o'qiydi, lekin yangi mijozning qatori hali yo'q — u hech narsa topmaydi.", ru: "SELECT читает, но строки нового клиента ещё нет — он ничего не найдёт." }),
+      2: tr({ uz: "UPDATE mavjud qatorni o'zgartiradi — yangi mijozning qatori hali yo'q.", ru: "UPDATE изменяет существующую строку — а строки нового клиента ещё нет." }),
+      3: tr({ uz: "DELETE o'chiradi — bizga esa yangi qator kerak.", ru: "DELETE удаляет — а нам нужна новая строка." }),
+      default: tr({ uz: "Yangi qator INSERT bilan qo'shiladi.", ru: "Новая строка добавляется через INSERT." })
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: STATEFUL XABAR OQIMINI TARTIBDA YIG'ISH =====
+// ===== SCREEN 15 — YAKUNIY: HOLATLI BOTNING XABAR OQIMI (DragDropOrder; to'g'rida qaytuvchi strelka, A7) =====
 const FLOW = [
   { id: 'msg', label: { uz: 'Xabar keladi', ru: 'Приходит сообщение' } },
-  { id: 'select', label: { uz: "SELECT — daftardan o'qi", ru: 'SELECT — прочитай из блокнота' } },
-  { id: 'check', label: { uz: 'Bosqichni tekshir', ru: 'Проверь этап' } },
-  { id: 'act', label: { uz: 'Amal bajar / javob tayyorla', ru: 'Выполни действие / подготовь ответ' } },
-  { id: 'update', label: { uz: 'UPDATE — daftarga yoz', ru: 'UPDATE — запиши в блокнот' } }
+  { id: 'select', label: { uz: "SELECT — holat bazadan o'qiladi", ru: "SELECT — состояние читается из базы" } },
+  { id: 'check', label: { uz: 'Holat tekshiriladi', ru: "Состояние проверяется" } },
+  { id: 'act', label: { uz: 'Javob va yangi holat tanlanadi', ru: "Выбираются ответ и новое состояние" } },
+  { id: 'update', label: { uz: 'UPDATE — yangi holat yoziladi', ru: "UPDATE — записывается новое состояние" } }
 ];
-const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
+const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: f.label }));
 const FLOW_ORDER = FLOW.map(f => f.id);
+const FLOW_SLOTS = FLOW.map((_, i) => ({ uz: `${i + 1}-qadam`, ru: `Шаг ${i + 1}` }));
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
-  const [consequence, setConsequence] = useState(null); // null | 'early-reply' | 'wrong'
+  const [consequence, setConsequence] = useState(null); // null | 'early-update' | 'wrong'
   // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
   const achMiss = useContext(AchMissCtx);
   const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
@@ -1307,7 +1408,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     fired.current = true;
     const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Stateful xabar oqimini to'g'ri tartibda joylang", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Holatli botning xabar oqimini yig'ing", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
   const onChange = (slots) => {
     if (fired.current) return;
@@ -1323,18 +1424,17 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Oqimni yig'ing", ru: 'Соберите поток' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: stateful xabar oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите stateful-поток сообщения <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga joylang. Diqqat: agar 💾 UPDATE'ni 🔍 SELECT'dan oldin qo'ysangiz — Botjon hali o'qimasdan yozib yuboradi.", ru: 'Перетащите блоки в верном порядке. Внимание: если поставить 💾 UPDATE перед 🔍 SELECT — Ботжон запишет, так и не прочитав.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: holatli botning <span className="italic" style={{ color: T.accent }}>xabar oqimini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>поток сообщения</span> бота с состоянием.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Aziza jadvalda bor va yangi xabar yozdi. Bo'laklarni sudrab to'g'ri tartibga qo'ying.", ru: "Азиза уже есть в таблице и написала новое сообщение. Перетащите блоки в правильном порядке." })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
-          hints={[{ uz: "birinchi nima bo'ladi", ru: 'что происходит первым' }, { uz: "keyin nima o'qiladi", ru: 'что читается дальше' }, { uz: 'keyin nima tekshiriladi', ru: 'что проверяется дальше' }, { uz: 'keyin nima bajariladi', ru: 'что выполняется дальше' }, { uz: 'eng oxiri nima yoziladi', ru: 'что записывается в самом конце' }]}
-          doneText={{ uz: "To'g'ri: Xabar keladi → SELECT → Bosqichni tekshir → Amal bajar → UPDATE.", ru: 'Верно: приходит сообщение → SELECT → проверка этапа → действие → UPDATE.' }}
+          slotLabels={FLOW_SLOTS}
           onSolved={onSolved}
           onChange={onChange} />
-        {consequence === 'early-update' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "😕 Botjon hali o'qimasdan daftarga yozib yubordi!", ru: '😕 Ботжон записал в блокнот, так и не прочитав!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "UPDATE SELECT'dan oldin bo'lsa, Botjon eski holatni bilmay turib yangi qiymat yozadi — bosqich noto'g'ri qolib ketishi mumkin.", ru: 'Если UPDATE идёт до SELECT, Ботжон запишет новое значение, не зная старого состояния — этап может остаться неверным.' })}</p></div>}
-        {consequence === 'wrong' && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang.", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и расставьте заново.' })}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Xabar → SELECT → Bosqichni tekshir → Amal bajar → UPDATE</b> → va yana keyingi xabarni kutadi.</>, ru: <>✓ Поток готов: <b>Сообщение → SELECT → проверка этапа → действие → UPDATE</b> → и снова ждём следующего сообщения.</> })}</p>
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>}
+        {consequence === 'early-update' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "Bot holatni o'qimasdan yozib yubordi.", ru: "Бот записал состояние, не прочитав его." })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "UPDATE SELECT'dan oldin bo'lsa, bot suhbat qaysi bosqichda ekanini bilmay turib yangi holat yozadi — mijoz noto'g'ri savol olishi mumkin.", ru: "Если UPDATE стоит перед SELECT, бот записывает новое состояние, не зная, на каком этапе диалог, — клиент может получить не тот вопрос." })}</p></div>}
+        {consequence === 'wrong' && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: "Порядок неверный — нажмите на блок, чтобы вернуть его, и поставьте заново." })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>xabar keladi → SELECT → holat tekshiriladi → javob va yangi holat tanlanadi → UPDATE</b>, keyin bot javobni yuboradi. Yangi mijozni SELECT topmaydi — shunda bot avval INSERT bilan qator qo'shadi.</>, ru: <>✓ Поток готов: <b>приходит сообщение → SELECT → состояние проверяется → выбираются ответ и новое состояние → UPDATE</b>, затем бот отправляет ответ. Нового клиента SELECT не найдёт — тогда бот сначала добавляет строку через INSERT.</> })}</p>
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "Короткое повторение — ещё раз взглянуть на тему" })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
@@ -1345,13 +1445,13 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  safeNotes:    { icon: '🗄️', name: 'Safe Notes',    desc: { uz: "Yo'qolmaydigan saqlash turini tanladingiz", ru: "Вы выбрали хранилище, которое не теряется" } },
-  noMixUp:      { icon: '👥', name: 'No Mix-Up',      desc: { uz: "Ikki suhbat aralashib ketgan sababini topdingiz", ru: "Вы нашли причину путаницы двух диалогов" } },
-  memoryKeeper: { icon: '📓', name: 'Memory Keeper',  desc: { uz: "Buyurtmani boshidan oxirigacha olib bordingiz", ru: "Вы провели заказ от начала до конца" } },
-  sqlWriter:    { icon: '📝', name: 'SQL Writer',     desc: { uz: "SQL bo'shliqlarini xatosiz to'ldirdingiz", ru: "Вы заполнили все SQL-пропуски без ошибок" } },
+  safeNotes:    { icon: '🗄️', name: 'Safe Storage',  desc: { uz: "Bot qayta ishga tushsa ham yo'qolmaydigan joyni tanladingiz", ru: "Вы выбрали место, которое не теряется при перезапуске бота" } },
+  noMixUp:      { icon: '👥', name: 'No Mix-Up',     desc: { uz: "Ikki mijozning suhbati aralashmaydigan yo'lni tanladingiz", ru: "Вы выбрали способ, при котором диалоги двух клиентов не путаются" } },
+  sqlWriter:    { icon: '📝', name: 'SQL Writer',    desc: { uz: "SQL bo'shliqlarini birinchi urinishda to'g'ri to'ldirdingiz", ru: "Вы с первой попытки верно заполнили пропуски в SQL" } },
+  memoryKeeper: { icon: '🔁', name: 'State Flow',    desc: { uz: "Holatli botning xabar oqimini birinchi urinishda to'g'ri yig'dingiz", ru: "Вы с первой попытки верно собрали поток сообщения бота с состоянием" } },
 };
-// Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s8 (Safe Notes — SCORED test), s10 (No Mix-Up — SCORED test),
-// s15 (Memory Keeper — yakuniy DragDropOrder challenge), s13 (SQL Writer — builder, `wrongEverRef` orqali xato imkoni
+// Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s8 (Safe Storage — SCORED test), s10 (No Mix-Up — SCORED test),
+// s15 (State Flow — yakuniy DragDropOrder challenge), s13 (SQL Writer — builder, `wrongEverRef` orqali xato imkoni
 // REAL: noto'g'ri chip tanlansa `correct:false` ketadi, ya'ni nishon tekin emas). Exploration/toggle ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s8: 'safeNotes', s10: 'noMixUp', s15: 'memoryKeeper', s13: 'sqlWriter' };
 
@@ -1368,7 +1468,7 @@ const AchRule = ({ screen, once }) => {
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
     ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
-    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+    : tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "Справитесь с первой попытки — значок ваш." })}</p>;
 };
 
 
@@ -1427,40 +1527,40 @@ const Confetti = () => {
 
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 10, 14, 15)
-const Q_LABELS = { 4: { uz: '1 — Xotirasiz muammo', ru: '1 — Проблема без памяти' }, 8: { uz: "2 — Cho'ntak vs javon", ru: '2 — Карман против шкафа' }, 10: { uz: '3 — Ikki mijoz', ru: '3 — Два клиента' }, 14: { uz: '4 — INSERT/SELECT/UPDATE', ru: '4 — INSERT/SELECT/UPDATE' }, 15: { uz: '5 — Oqim tartibi', ru: '5 — Порядок потока' } };
+const Q_LABELS = { 4: { uz: '1 — Holatsiz bot', ru: "1 — Бот без состояния" }, 8: { uz: '2 — Xotira va baza', ru: "2 — Память и база" }, 10: { uz: '3 — Ikki mijoz', ru: '3 — Два клиента' }, 14: { uz: '4 — INSERT/SELECT/UPDATE', ru: '4 — INSERT/SELECT/UPDATE' }, 15: { uz: '5 — Oqim tartibi', ru: '5 — Порядок потока' } };
 const QUIZ_MS = 15000;
-// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (daftar/holat atamalari)
+// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (holat atamalari)
 const QZ_BG_SHAPES = [
   { ch: 'SELECT',      l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '📓',           l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: 'chat.id',     l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: 'UPDATE',      l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'INSERT',      l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: 'holat',       l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
-  { ch: 'sessiya',     l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
+  { ch: { uz: 'sessiya', ru: 'сессия' }, l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
   { ch: 'PostgreSQL',  l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
-  { ch: 'daftar→javon', l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
+  { ch: 'tanlov',      l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
   { ch: '✗',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '✓',           l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
-  { ch: 'restart',     l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: '🗄️',           l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
+  { ch: 'WHERE',       l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
+  { ch: { uz: 'baza', ru: 'база' }, l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
   { ch: 'users',       l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
-  { ch: 'bosqich',     l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: 'NOT NULL',    l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: 'Bot nega bir necha xabardan keyin oldingi javobni unutadi?', ru: 'Почему бот через несколько сообщений забывает предыдущий ответ?' }, opts: [{ uz: 'Internet aloqasi doimo beqaror bo\'lib turgani sababli shunday bo\'ladi', ru: 'Потому что интернет-связь постоянно нестабильна' }, { uz: 'Foydalanuvchi xabarlarni juda tez ketma-ket jo\'natayotgani sababli', ru: 'Потому что пользователь шлёт сообщения слишком быстро подряд' }, { uz: 'Bot tabiatan daftarsiz — har xabarni birinchi marta deb biladi', ru: 'Бот по природе без блокнота — каждое сообщение считает первым' }, { uz: 'Telegram serverlari xabarlarni tasodifiy tartibda yetkazib berishi', ru: 'Серверы Telegram доставляют сообщения в случайном порядке' }], correct: 2 },
-  { q: { uz: 'Ikkita mijoz — Aziza va Bek — bir vaqtda botga yozsa, ularning suhbati aralashmasligi uchun nima kerak?', ru: 'Если два клиента — Азиза и Бек — пишут боту одновременно, что нужно, чтобы их диалоги не смешались?' }, opts: [{ uz: 'Ikkalasi uchun bitta umumiy sahifada bosqichni birga saqlash', ru: 'Хранить этап обоих на одной общей странице' }, { uz: 'Faqat birinchi xabar yuborgan mijozga javob qaytarib turish', ru: 'Отвечать только тому, кто написал первым' }, { uz: 'Kelgan barcha xabarlarni tasodifiy tartibda aralashtirib javoblash', ru: 'Отвечать на все сообщения в случайном порядке' }, { uz: 'Har mijoz uchun alohida sessiya — o\'z sahifasini ochish', ru: 'Отдельная сессия каждому клиенту — своя страница' }], correct: 3 },
-  { q: { uz: 'Bot serveri o\'chib-yonganda (restart) qaysi ma\'lumot saqlanib qoladi?', ru: 'Какие данные сохранятся при перезапуске сервера бота?' }, opts: [{ uz: 'Doimiy daftarga (PostgreSQL) yozilgan ma\'lumot', ru: 'Данные, записанные в постоянный блокнот (PostgreSQL)' }, { uz: 'Cho\'ntakdagi vaqtinchalik varaqchadagi holat ma\'lumoti', ru: 'Состояние на временном листке в кармане' }, { uz: 'Hech qanday ma\'lumot hech qayerda saqlanib qolmaydi', ru: 'Никакие данные нигде не сохранятся' }, { uz: 'Faqat foydalanuvchi telefonidagi ilova xotirasi', ru: 'Только память приложения на телефоне пользователя' }], correct: 0 },
-  { q: { uz: 'Suhbat holati (masalan, \'pitsa o\'lchamini kutyapman\') odatda nima deb ataladi?', ru: 'Как обычно называют состояние диалога (например, ´жду размер пиццы´)?' }, opts: [{ uz: 'Webhook — signal kelganda ishlaydigan ulanish usuli', ru: 'Webhook — способ связи, срабатывающий при приходе сигнала' }, { uz: 'Sessiya bosqichi — suhbat hozir qaysi joyda turgani', ru: 'Этап сессии — где сейчас находится диалог' }, { uz: 'Token — botning kim ekanini isbotlovchi maxfiy kalit', ru: 'Токен — секретный ключ, подтверждающий личность бота' }, { uz: 'Fallback — hech nimaga mos kelmagan holatdagi qator', ru: 'Fallback — ветка на случай, когда ничто не подошло' }], correct: 1 },
-  { q: { uz: 'SELECT buyrug\'i botga nima uchun kerak?', ru: 'Зачем боту команда SELECT?' }, opts: [{ uz: 'Yangi mijozni butunlay ro\'yxatdan o\'tkazish uchun', ru: 'Чтобы полностью зарегистрировать нового клиента' }, { uz: 'Mavjud ma\'lumotni bazadan butunlay o\'chirish uchun', ru: 'Чтобы полностью удалить данные из базы' }, { uz: 'Jadval tuzilishini o\'zgartirib qurish uchun', ru: 'Чтобы перестроить структуру таблицы' }, { uz: 'Mijoz va uning holatini bazadan o\'qib olish uchun', ru: 'Чтобы прочитать из базы клиента и его состояние' }], correct: 3 },
-  { q: { uz: 'Yangi foydalanuvchi birinchi marta /start bossa, uni jadvalga qo\'shish uchun qaysi buyruq ishlatiladi?', ru: 'Новый пользователь впервые нажал /start — какой командой добавить его в таблицу?' }, opts: [{ uz: 'SELECT — mavjud qatorni bazadan o\'qib chiqadi', ru: 'SELECT — читает существующую строку из базы' }, { uz: 'INSERT — yangi qator jadvalga qo\'shib beradi', ru: 'INSERT — добавляет в таблицу новую строку' }, { uz: 'UPDATE — mavjud qatorni o\'zgartirib yozadi', ru: 'UPDATE — изменяет существующую строку' }, { uz: 'DELETE — mavjud qatorni butunlay o\'chiradi', ru: 'DELETE — полностью удаляет существующую строку' }], correct: 1 },
-  { q: { uz: 'Mijoz javob berganda, bot holatni keyingi bosqichga o\'tkazish uchun nima qiladi?', ru: 'Когда клиент ответил, что делает бот, чтобы перевести состояние на следующий этап?' }, opts: [{ uz: 'UPDATE bilan holatni yangi qiymatga yangilaydi', ru: 'Обновляет состояние новым значением через UPDATE' }, { uz: 'Butunlay yangi bot yaratib, eskisini butunlay almashtiradi', ru: 'Создаёт совсем нового бота взамен старого' }, { uz: 'Eski xabarni serverdan butunlay va qaytarilmas holda o\'chiradi', ru: 'Безвозвратно удаляет старое сообщение с сервера' }, { uz: 'Foydalanuvchini jadvaldan butunlay va qaytarilmas holda o\'chiradi', ru: 'Безвозвратно удаляет пользователя из таблицы' }], correct: 0 },
-  { q: { uz: 'Cho\'ntakdagi oddiy JavaScript obyektida saqlangan holatning eng katta kamchiligi nima?', ru: 'В чём главный минус состояния, которое хранится в обычном JavaScript-объекте в кармане?' }, opts: [{ uz: 'Bu usul ishlash tezligini juda sezilarli darajada pasaytiradi', ru: 'Этот способ сильно замедляет работу' }, { uz: 'Bu usul diskda juda ko\'p ortiqcha joy egallab yuboradi', ru: 'Этот способ занимает много лишнего места на диске' }, { uz: 'Server qayta ishga tushsa, saqlangan hammasi yo\'qoladi', ru: 'При перезапуске сервера всё сохранённое пропадает' }, { uz: 'Buni faqat bitta mijoz bir vaqtning o\'zida ishlata oladi', ru: 'Этим может пользоваться только один клиент за раз' }], correct: 2 },
-  { q: { uz: 'PostgreSQL jadvalidagi \'holat\' ustuni nima uchun kerak?', ru: 'Зачем в таблице PostgreSQL колонка ´holat´?' }, opts: [{ uz: 'Foydalanuvchi ismini alohida saqlab qo\'yish uchun', ru: 'Чтобы отдельно хранить имя пользователя' }, { uz: 'Botning joriy versiya raqamini alohida belgilab qo\'yish uchun', ru: 'Чтобы отмечать номер текущей версии бота' }, { uz: 'Suhbat qaysi bosqichda ekanini eslab qolish uchun', ru: 'Чтобы запоминать, на каком этапе диалог' }, { uz: 'Xabar yuborilgan aniq vaqtni yozib qo\'yish uchun', ru: 'Чтобы записывать точное время отправки' }], correct: 2 },
-  { q: { uz: 'Nega har mijozga alohida sessiya (sahifa) berish muhim?', ru: 'Почему важно давать каждому клиенту отдельную сессию (страницу)?' }, opts: [{ uz: 'Har kimning suhbati o\'zinikida qolib aralashmaydi', ru: 'Диалог каждого остаётся своим и не смешивается' }, { uz: 'Bu botning ishlash tezligini sezilarli darajada ancha oshiradi', ru: 'Это заметно ускоряет работу бота' }, { uz: 'Bu PostgreSQL talab qiladigan majburiy va qat\'iy texnik qoida', ru: 'Это строгое требование самого PostgreSQL' }, { uz: 'Bu faqat juda katta va murakkab hajmdagi botlar uchun kerak', ru: 'Это нужно только очень большим и сложным ботам' }], correct: 0 },
-  { q: { uz: 'Bot xabar olganda avval nima qiladi (stateful oqim boshida)?', ru: 'Что бот делает первым, получив сообщение (в начале stateful-потока)?' }, opts: [{ uz: 'Darhol yangi mijoz sifatida jadvalga INSERT qiladi', ru: 'Сразу делает INSERT как для нового клиента' }, { uz: 'Foydalanuvchi va uning holatini SELECT bilan o\'qiydi', ru: 'Читает пользователя и его состояние через SELECT' }, { uz: 'Butun serverni qaytadan ishga tushirib yuboradi', ru: 'Перезапускает весь сервер' }, { uz: 'Foydalanuvchini jadvaldan butunlay o\'chirib tashlaydi', ru: 'Полностью удаляет пользователя из таблицы' }], correct: 1 },
-  { q: { uz: 'Bot restart bo\'lgandan keyin ham mijoz bilan suhbatni davom ettira olishi uchun nima shart?', ru: 'Что нужно, чтобы бот мог продолжить диалог даже после перезапуска?' }, opts: [{ uz: 'Mijoz botga qaytadan /start buyrug\'ini bosishi shart', ru: 'Клиент обязательно должен снова нажать /start' }, { uz: 'Bot internetga avvalgidan tezroq ulanib turishi shart', ru: 'Бот должен подключаться к интернету быстрее, чем раньше' }, { uz: 'Cho\'ntakdagi vaqtinchalik oddiy obyekt hali ham ishlatilishi shart', ru: 'Нужно по-прежнему использовать временный объект в кармане' }, { uz: 'Holat doimiy bazada (PostgreSQL) saqlangan bo\'lishi shart', ru: 'Состояние должно храниться в постоянной базе (PostgreSQL)' }], correct: 3 },
+  { q: { uz: "Bot nega bir necha xabardan keyin oldingi javobni unutadi?", ru: "Почему бот через несколько сообщений забывает предыдущий ответ?" }, opts: [{ uz: "Internet aloqasi beqaror bo'lib, xabar yo'qoladi", ru: "Интернет нестабилен, и сообщение теряется по пути" }, { uz: "Mijoz xabarlarni juda tez ketma-ket yuborib turadi", ru: "Клиент шлёт сообщения слишком быстро одно за другим" }, { uz: "Bot holatni saqlamaydi, har xabarni alohida ko'radi", ru: "Бот не хранит состояние — каждое сообщение отдельно" }, { uz: "Telegram xabarlarni tasodifiy tartibda yetkazadi", ru: "Telegram доставляет сообщения в случайном порядке" }], correct: 2 },
+  { q: { uz: "Aziza va Bek bir vaqtda botga yozsa, suhbatlari aralashmasligi uchun nima kerak?", ru: "Азиза и Бек пишут боту одновременно. Что нужно, чтобы их диалоги не перепутались?" }, opts: [{ uz: "Ikkalasining holatini bitta o'zgaruvchida saqlash", ru: "Хранить состояние обоих в одной переменной" }, { uz: "Har mijozga alohida bot ochib, alohida token berish", ru: "Создать каждому клиенту отдельного бота и токен" }, { uz: "Umumiy holatni obyektda emas, PostgreSQL'da saqlash", ru: "Хранить общее состояние не в объекте, а в PostgreSQL" }, { uz: "Har mijozga alohida sessiya ochib, holatni saqlash", ru: "Открыть каждому отдельную сессию и хранить состояние" }], correct: 3 },
+  { q: { uz: "Bot serveri qayta ishga tushganda qaysi ma'lumot saqlanib qoladi?", ru: "Какие данные сохранятся, когда сервер бота перезапустится?" }, opts: [{ uz: "PostgreSQL jadvaliga yozilgan ma'lumot", ru: "Данные, записанные в таблицу PostgreSQL" }, { uz: "Koddagi JavaScript obyektidagi holat ma'lumoti", ru: "Состояние в JavaScript-объекте в коде" }, { uz: "Hech qaysi, hammasi birdan yo'qoladi", ru: "Никакие, всё пропадёт сразу" }, { uz: "Handler ichidagi o'zgaruvchidagi ma'lumot", ru: "Данные в переменной внутри handler-а" }], correct: 0 },
+  { q: { uz: "Bot «pitsa o'lchamini kutyapman» degan yozuvni saqladi. Bu yozuv nima deyiladi?", ru: "Бот сохранил запись «жду размер пиццы». Как называется эта запись?" }, opts: [{ uz: "Webhook — Telegram xabarni botga o'zi yuboradigan usul", ru: "Webhook — способ, когда Telegram сам отправляет сообщение боту" }, { uz: "Holat — suhbat hozir qaysi bosqichda ekanini bildiradi", ru: "Состояние — показывает, на каком этапе сейчас диалог" }, { uz: "Token — bot sizniki ekanini tasdiqlaydigan maxfiy qator", ru: "Токен — секретная строка, подтверждающая, что бот Ваш" }, { uz: "Fallback — hech bir handler mos kelmaganda ishlaydi", ru: "Fallback — срабатывает, когда не подошёл ни один handler" }], correct: 1 },
+  { q: { uz: "SELECT buyrug'i botga nima uchun kerak?", ru: "Зачем боту команда SELECT?" }, opts: [{ uz: "Yangi mijozni jadvalga qo'shib qo'yish uchun", ru: "Чтобы добавить нового клиента в таблицу" }, { uz: "Mavjud ma'lumotni bazadan o'chirish uchun", ru: "Чтобы удалить существующие данные из базы" }, { uz: "Jadval tuzilishini o'zgartirib qurish uchun", ru: "Чтобы изменить и перестроить структуру таблицы" }, { uz: "Mijoz va uning holatini bazadan o'qish uchun", ru: "Чтобы прочитать клиента и его состояние из базы" }], correct: 3 },
+  { q: { uz: "Yangi mijoz birinchi marta /start bosdi, jadvalda uning qatori hali yo'q. Qaysi buyruq kerak?", ru: "Новый клиент впервые нажал /start, его строки в таблице ещё нет. Какая команда нужна?" }, opts: [{ uz: "SELECT — mavjud qatorni bazadan o'qiydi", ru: "SELECT — читает существующую строку из базы" }, { uz: "INSERT — jadvalga yangi qator qo'shadi", ru: "INSERT — добавляет в таблицу новую строку" }, { uz: "UPDATE — mavjud qatorni o'zgartiradi", ru: "UPDATE — изменяет существующую строку" }, { uz: "DELETE — mavjud qatorni o'chiradi", ru: "DELETE — удаляет существующую строку" }], correct: 1 },
+  { q: { uz: "Mijoz javob bergach, bot holatni keyingi bosqichga qanday o'tkazadi?", ru: "Как бот переводит состояние на следующий этап, когда клиент ответил?" }, opts: [{ uz: "UPDATE bilan holatni yangi qiymatga o'zgartiradi", ru: "Через UPDATE меняет состояние на новое значение" }, { uz: "INSERT bilan har safar yangi qator qo'shib boradi", ru: "Через INSERT каждый раз добавляет новую строку" }, { uz: "SELECT bilan holatni bazadan qayta o'qib oladi", ru: "Через SELECT заново читает состояние из базы" }, { uz: "DELETE bilan eski holatni o'chirib tashlaydi", ru: "Через DELETE удаляет старое состояние" }], correct: 0 },
+  { q: { uz: "Koddagi oddiy JavaScript obyektida saqlangan holatning eng katta kamchiligi nima?", ru: "В чём главный минус состояния, которое хранится в обычном JavaScript-объекте в коде?" }, opts: [{ uz: "Bu usul botni juda sekinlashtirib qo'yadi", ru: "Этот способ сильно замедляет бота" }, { uz: "Bu usul diskda juda ko'p joy egallaydi", ru: "Этот способ занимает много места на диске" }, { uz: "Bot qayta ishga tushsa, hammasi yo'qoladi", ru: "При перезапуске бота всё пропадает" }, { uz: "Uni bir vaqtda faqat bitta mijoz ishlata oladi", ru: "Им может пользоваться только один клиент за раз" }], correct: 2 },
+  { q: { uz: "users jadvalidagi `holat` ustuni nima uchun kerak?", ru: "Зачем в таблице users колонка `holat`?" }, opts: [{ uz: "Mijozning ismini saqlab qo'yish uchun", ru: "Чтобы сохранить имя клиента" }, { uz: "Mijoz tanlagan pitsani saqlab qo'yish uchun", ru: "Чтобы сохранить пиццу, которую выбрал клиент" }, { uz: "Suhbat qaysi bosqichda ekanini saqlash uchun", ru: "Чтобы хранить, на каком этапе диалог" }, { uz: "Xabar yuborilgan vaqtni yozib qo'yish uchun", ru: "Чтобы записать время отправки сообщения" }], correct: 2 },
+  { q: { uz: "Nega har mijozga alohida sessiya berish muhim?", ru: "Почему важно давать каждому клиенту отдельную сессию?" }, opts: [{ uz: "Har kimning suhbati o'zida qoladi, aralashmaydi", ru: "Диалог каждого остаётся своим и не смешивается" }, { uz: "Bot shundan keyin ancha tezroq ishlay boshlaydi", ru: "После этого бот начинает работать заметно быстрее" }, { uz: "Bot qayta ishga tushsa ham, holat saqlanib qoladi", ru: "Даже после перезапуска бота состояние сохранится" }, { uz: "Bu faqat juda katta va murakkab botlarga kerak", ru: "Это нужно только очень большим и сложным ботам" }], correct: 0 },
+  { q: { uz: "Holatli bot xabar olganda birinchi nima qiladi?", ru: "Что бот с состоянием делает первым, получив сообщение?" }, opts: [{ uz: "Har safar mijozni jadvalga yangidan INSERT qiladi", ru: "Каждый раз заново делает INSERT клиента в таблицу" }, { uz: "Mijoz va uning holatini SELECT bilan o'qiydi", ru: "Читает клиента и его состояние через SELECT" }, { uz: "Avval yangi holatni UPDATE bilan yozib qo'yadi", ru: "Сначала записывает новое состояние через UPDATE" }, { uz: "Mijozdan ismini har safar qaytadan so'raydi", ru: "Каждый раз заново спрашивает у клиента имя" }], correct: 1 },
+  { q: { uz: "Bot qayta ishga tushgandan keyin ham suhbatni davom ettirishi uchun nima kerak?", ru: "Что нужно, чтобы бот продолжил диалог даже после перезапуска?" }, opts: [{ uz: "Mijoz /start buyrug'ini qaytadan bosishi kerak", ru: "Клиент должен снова нажать /start" }, { uz: "Bot internetga avvalgidan tezroq ulanishi kerak", ru: "Бот должен подключаться к интернету быстрее" }, { uz: "Holat koddagi oddiy obyektda saqlanib turishi kerak", ru: "Состояние должно храниться в обычном объекте в коде" }, { uz: "Holat PostgreSQL bazasida saqlangan bo'lishi kerak", ru: "Состояние должно храниться в базе PostgreSQL" }], correct: 3 },
 ];
 
 
@@ -1490,7 +1590,7 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       <span className="cs-ring" aria-hidden="true" />
       <div className="cs-sky" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{s.ch}</span>
+          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{tr(s.ch)}</span>
         ))}
         {[[14, 30, 24], [38, 66, 15], [57, 20, 27], [76, 60, 18], [88, 36, 13]].map(([l, t, w], i) => (
           <i key={i} className="cs-dash" style={{ left: `${l}%`, top: `${t}%`, width: w, animationDelay: `-${i * 1.7}s` }} />
@@ -1564,11 +1664,11 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    // Arena tokenlari — SHU darsning mavzusidan (daftar/holat): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['SELECT', 'UPDATE', 'INSERT', 'holat', 'daftar', 'sessiya', 'WHERE', 'users', '📓', 'restart'];
+    // Arena tokenlari — SHU darsning mavzusidan (holat): dekorativ suzuvchi kod-bo'laklari
+    const TOK = ['SELECT', 'UPDATE', 'INSERT', 'holat', 'tanlov', { uz: 'sessiya', ru: 'сессия' }, 'WHERE', 'users', 'chat.id', 'PostgreSQL'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }
@@ -1731,7 +1831,7 @@ function QuizArena({ live, onClose, startSolo }) {
     <div className="qz-arena">
       <div className="qz-bg" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{s.ch}</span>
+          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{tr(s.ch)}</span>
         ))}
       </div>
       <QzFX />
@@ -1932,7 +2032,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
         ) : !loaded ? (
           <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Загружаем результаты…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не присоединился.' })}</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu darsga hali hech kim qo'shilmagan.", ru: "К этому уроку пока никто не присоединился." })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -1972,7 +2072,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 };
 
 
-// ===== 🛠️ JONLI PRAKTIKA (reusable) — o'quvchi VS Code'da bajaradi, ustoz kuzatadi =====
+// ===== 🛠️ JONLI PRAKTIKA — o'quvchi topshiriqni bajaradi, Mentor kuzatadi (qadamlar navbat bilan, A6) =====
 // signal zonasi: <100 test · 100+ arena · 500+ praktika (to'qnashmaydi).
 const PRACTICE_BASE = 500;
 // Mentor ko'rinishi sloti — "kim bajardi" jonli chiplar paneli. JONLI roli to'ldiradi.
@@ -2015,9 +2115,10 @@ const MentorPracticeStats = ({ live, screen }) => {
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = { uz: 'kompyuteringizda', ru: 'на своём компьютере' } }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
-  const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
+  // A6: qadamlar bittadan — joriy qadam to'liq, bajarilganlari ✓ bilan bitta qatorga yig'iladi, keyingilari hali ko'rinmaydi
+  const [stepIdx, setStepIdx] = useState(() => (storedAnswer && storedAnswer.solved ? checklist.length : 0));
+  const [sc, setSc] = useState(0);
   const complete = () => {
     if (done) return;
     setDone(true);
@@ -2025,38 +2126,41 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
-  // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z ${(place && place.uz) || place} bajarasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const stepDone = () => {
+    if (done || stepIdx >= checklist.length) return;
+    const n = stepIdx + 1;
+    setStepIdx(n); setSc(x => x + 1);
+    if (n >= checklist.length) complete();
+  };
   return (
-    <Stage eyebrow={tr(eyebrow) || tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr(eyebrow) || tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z {tr(place)}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{tr(place)}</b>. Отмечайте каждый шаг по мере выполнения. В конце нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник видит.</> })}</Mentor>
+        <Mentor>{tr({ uz: "Topshiriqni qog'ozda bajaring. Har qadamdan keyin «Bajardim» ni bosing — keyingisi ochiladi.", ru: "Выполните задание на бумаге. После каждого шага нажимайте «Готово» — откроется следующий." })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(task))}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте выполненное' })}</p>
+            <p className="flow-label">{tr({ uz: 'Qadamlar', ru: "Шаги" })}</p>
             <div className="lp-steps fade-up delay-2">
-              {checklist.map((c, i) => {
-                const on = checked.has(i);
-                return (
-                  <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                    <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
-                  </button>
-                );
-              })}
+              {checklist.slice(0, stepIdx).map((c, i) => (
+                <div key={i} className="lp-step on lp-compact"><span className="lp-check">✓</span><span className="lp-step-t">{fmtCode(tr(c))}</span></div>
+              ))}
+              {stepIdx < checklist.length && (
+                <div key={`cur-${stepIdx}`} className="lp-step lp-cur fade-step">
+                  <span className="lp-check">{stepIdx + 1}</span>
+                  <span className="lp-step-t">{fmtCode(tr(checklist[stepIdx]))}</span>
+                  <button className="btn lp-step-btn" onClick={stepDone}>{tr({ uz: 'Bajardim', ru: "Готово" })}</button>
+                </div>
+              )}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
+            {done && <button className="lp-done-btn is-done" disabled>{tr({ uz: '✓ Bajarildi — Mentorni kuting', ru: "✓ Выполнено — ждите Ментора" })}</button>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Vazifani bajardingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: "Вы выполнили задание. Ментор проверит и переведёт на следующий шаг." })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2119,7 +2223,7 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">✓</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
@@ -2129,7 +2233,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
-          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{fmtCode(tr(card.note))}</span>}</div>
         </div>
         </div>
       </div>
@@ -2144,31 +2248,31 @@ function Flashcards({ cards }) {
 // 🛠️ PRAKTIKA — o'quvchi loyihasida jadval sxemasini kengaytiradi (mentor-gate, kod kiritilmaydi)
 const ScreenDbPractice = (props) => (
   <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · loyihalash', ru: 'Практика · проектирование' }} place={{ uz: 'loyihangizda', ru: 'в своём проекте' }}
-    title={{ uz: "Users jadvaliga 'holat' ustunini qo'shing", ru: "Добавьте колонку 'holat' в таблицу users" }}
-    task={{ uz: "O'z loyihangiz uchun users jadvaliga suhbat holatini saqlaydigan 'holat' ustunini qo'shing va SELECT → UPDATE oqimini qog'ozga chizib chiqing. Hali kod yozmaysiz — faqat loyihalaysiz.", ru: "Для своего проекта добавьте в таблицу users колонку 'holat' для хранения этапа диалога и нарисуйте на бумаге поток SELECT → UPDATE. Код пока не пишете — только проектируете." }}
+    title={{ uz: 'Botingiz uchun users jadvalini loyihalang', ru: "Спроектируйте таблицу users для Вашего бота" }}
+    task={{ uz: "1-darsda ochgan botingiz uchun users jadvalini qog'ozda loyihalang: qaysi ustunlar kerak, holat qayerda saqlanadi va qaysi SQL qachon ishlatiladi. Bugun kod yozmaysiz — faqat loyihalaysiz.", ru: "Спроектируйте на бумаге таблицу users для бота, которого Вы создали на 1-м уроке: какие колонки нужны, где хранится состояние и какой SQL когда используется. Сегодня Вы не пишете код — только проектируете." }}
     checklist={[
-      { uz: "users jadvalida qaysi ustunlar borligini ro'yxat qiling (`telegram_id`, `ism`, ...)", ru: 'Выпишите, какие колонки есть в таблице users (`telegram_id`, `ism`, …)' },
-      { uz: 'Yangi `holat` nomli ustun qo\'shing (TEXT turi)', ru: 'Добавьте новую колонку `holat` (тип TEXT)' },
-      { uz: 'Xabar kelganda avval qaysi SQL ishlatilishini yozing (`SELECT`)', ru: 'Запишите, какой SQL выполняется первым при приходе сообщения (`SELECT`)' },
-      { uz: 'Holat o\'zgarganda qaysi SQL ishlatilishini yozing (`UPDATE`)', ru: 'Запишите, какой SQL нужен при смене состояния (`UPDATE`)' },
-      { uz: 'Yangi mijoz uchun qaysi SQL kerakligini yozing (`INSERT`)', ru: 'Запишите, какой SQL нужен для нового клиента (`INSERT`)' },
+      { uz: 'Botingizga qaysi ustunlar kerakligini yozing: `telegram_id`, `ism`, …', ru: "Запишите, какие колонки нужны Вашему боту: `telegram_id`, `ism`, …" },
+      { uz: "Ro'yxatga `holat` ustunini qo'shing (`TEXT NOT NULL`).", ru: "Добавьте в список колонку `holat` (`TEXT NOT NULL`)." },
+      { uz: 'Xabar kelganda avval qaysi SQL ishlatilishini yozing.', ru: "Запишите, какой SQL используется первым, когда приходит сообщение." },
+      { uz: "Holat o'zgarganda qaysi SQL ishlatilishini yozing.", ru: "Запишите, какой SQL используется, когда меняется состояние." },
+      { uz: 'Yangi mijoz uchun qaysi SQL kerakligini yozing.', ru: "Запишите, какой SQL нужен для нового клиента." },
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 atama (daftar/holat tili)
+// 🃏 FLASHCARD KARTALARI — 12 atama (holat tili)
 const MEMORY_FLASHCARDS = [
-  { front: { uz: "Bot bir necha xabardan keyin nega adashib qoladi?", ru: 'Почему бот путается уже через несколько сообщений?' }, back: { uz: 'Chunki eslamaydi', ru: 'Потому что не помнит' }, note: { uz: "Har xabarni alohida hodisa deb oladi — bu daftarsiz (stateless) bot", ru: 'Каждое сообщение он считает отдельным событием — это бот без блокнота (stateless)' } },
-  { front: { uz: "Suhbat hozir qaysi bosqichda ekanini saqlaydigan yozuv nima deyiladi?", ru: 'Как называется запись о том, на каком этапе сейчас диалог?' }, back: { uz: 'Holat (state)', ru: 'Состояние (state)' }, note: { uz: "Masalan: mijoz menyuni tanlab bo'ldi, endi manzil kutilmoqda", ru: 'Например: клиент уже выбрал меню, теперь ждём адрес' } },
-  { front: { uz: "Suhbat holatini eslab qoladigan botni qanday ataymiz?", ru: 'Как называют бота, который помнит состояние диалога?' }, back: 'Stateful', note: { uz: "Daftarli bot — qayerda to'xtaganini biladi", ru: 'Бот с блокнотом — он знает, где остановился' } },
-  { front: { uz: "Har mijozga alohida daftar sahifasi berilishi nima deb ataladi?", ru: 'Как называется отдельная страница блокнота для каждого клиента?' }, back: { uz: 'Sessiya', ru: 'Сессия' }, note: { uz: "Bitta mijoz — bitta sahifa, ular bir-biriga tegmaydi", ru: 'Один клиент — одна страница, они не пересекаются' } },
-  { front: { uz: "Hamma mijoz bitta umumiy sahifaga yozsa nima bo'ladi?", ru: 'Что будет, если все клиенты пишут на одну общую страницу?' }, back: { uz: 'Buyurtmalar aralashadi', ru: 'Заказы перепутаются' }, note: { uz: "Oxirgi yozuv avvalgisini bosib yuboradi", ru: 'Последняя запись затирает предыдущую' } },
-  { front: { uz: "Kod ichidagi oddiy obyektda saqlangan holat server qayta ishga tushsa nima bo'ladi?", ru: 'Что станет с состоянием в обычном объекте кода, если сервер перезапустится?' }, back: { uz: "Yo'qoladi", ru: 'Пропадёт' }, note: { uz: "Cho'ntak xotira (RAM) tez ishlaydi, lekin vaqtinchalik", ru: 'Карманная память (RAM) работает быстро, но она временная' } },
-  { front: { uz: "Server o'chib-yonsa ham holat saqlanib qolishi uchun uni qayerga yozasiz?", ru: 'Куда записать состояние, чтобы оно пережило перезапуск сервера?' }, back: 'PostgreSQL', note: { uz: "Javon: yozuv diskda turadi, restart unga ta'sir qilmaydi", ru: 'Шкаф: запись лежит на диске, перезапуск на неё не влияет' } },
-  { front: { uz: "Botning mijozlari haqidagi yozuvlar qaysi jadvalda turadi?", ru: 'В какой таблице лежат записи о клиентах бота?' }, back: 'users', note: { uz: "Ustunlari: id, telegram_id, ism, holat", ru: 'Колонки: id, telegram_id, ism, holat' } },
+  { front: { uz: "Holati yo'q bot bir necha xabardan keyin nega adashadi?", ru: "Почему бот без состояния путается уже через несколько сообщений?" }, back: { uz: 'Oldingi xabarni eslamaydi', ru: "Не помнит предыдущее сообщение" }, note: { uz: "Har xabarni alohida hodisa deb ko'radi — bu holatsiz bot", ru: "Он видит каждое сообщение как отдельное событие — это бот без состояния" } },
+  { front: { uz: 'Suhbat hozir qaysi bosqichda ekanini bildiradigan yozuv nima?', ru: "Как называется запись о том, на каком этапе сейчас диалог?" }, back: { uz: 'Holat (state)', ru: 'Состояние (state)' }, note: { uz: 'Masalan: `MANZIL_KUTYAPMAN` — bot manzil kutyapti', ru: "Например: `MANZIL_KUTYAPMAN` — бот ждёт адрес" } },
+  { front: { uz: 'Holatni eslab qoladigan bot qanday ataladi?', ru: "Как называется бот, который запоминает состояние?" }, back: { uz: 'Holatli bot (stateful)', ru: "Бот с состоянием (stateful)" }, note: { uz: "U suhbat qayerda to'xtaganini biladi", ru: "Он знает, где остановился диалог" } },
+  { front: { uz: 'Bitta mijozning boshqalarnikidan alohida saqlanadigan holati nima?', ru: "Как называется состояние одного клиента, которое хранится отдельно от других?" }, back: { uz: 'Sessiya', ru: 'Сессия' }, note: { uz: "Bot uni `chat.id` bo'yicha topadi", ru: "Бот находит её по `chat.id`" } },
+  { front: { uz: "Hamma mijozning holati bitta o'zgaruvchida bo'lsa, nima bo'ladi?", ru: "Что будет, если состояние всех клиентов хранится в одной переменной?" }, back: { uz: 'Buyurtmalar aralashadi', ru: 'Заказы перепутаются' }, note: { uz: 'Oxirgi yozuv oldingisining ustiga yoziladi', ru: "Последняя запись затирает предыдущую" } },
+  { front: { uz: "Koddagi oddiy obyektdagi holat bot qayta ishga tushsa nima bo'ladi?", ru: "Что станет с состоянием в обычном объекте кода, если бот перезапустится?" }, back: { uz: "Yo'qoladi", ru: 'Пропадёт' }, note: { uz: 'Obyekt dastur xotirasida (RAM) turadi — u vaqtinchalik', ru: "Объект хранится в памяти программы (RAM) — она временная" } },
+  { front: { uz: 'Bot qayta ishga tushsa ham holat qolishi uchun uni qayerga yozasiz?', ru: "Куда записать состояние, чтобы оно осталось даже после перезапуска бота?" }, back: 'PostgreSQL', note: { uz: "Baza ma'lumotni diskka yozadi", ru: "База записывает данные на диск" } },
+  { front: { uz: 'Bot mijozlari haqidagi yozuvlar qaysi jadvalda turadi?', ru: "В какой таблице лежат записи о клиентах бота?" }, back: 'users', note: { uz: 'Ustunlari: id, telegram_id, ism, holat, tanlov', ru: "Колонки: id, telegram_id, ism, holat, tanlov" } },
   { front: { uz: "Yangi mijoz birinchi marta /start bosganda qaysi SQL buyrug'i ishlatiladi?", ru: 'Какая SQL-команда используется, когда новый клиент впервые нажал /start?' }, back: 'INSERT', note: { uz: "Jadvalga yangi qator qo'shiladi", ru: 'В таблицу добавляется новая строка' } },
-  { front: { uz: "Mijozning holatini bazadan o'qish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы прочитать состояние клиента из базы?' }, back: 'SELECT', note: { uz: "SELECT users jadvalidan mijozni telegram_id bo'yicha topadi", ru: 'SELECT находит клиента в таблице users по telegram_id' } },
+  { front: { uz: "Mijozning holatini bazadan o'qish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы прочитать состояние клиента из базы?' }, back: 'SELECT', note: { uz: "Mijoz qatori `telegram_id` bo'yicha topiladi", ru: "Строка клиента находится по `telegram_id`" } },
   { front: { uz: "Holat o'zgarganda mavjud qatorni qaysi buyruq yangilaydi?", ru: 'Какая команда обновляет существующую строку, когда состояние изменилось?' }, back: 'UPDATE', note: { uz: "Yangi qator qo'shilmaydi — bori yangilanadi", ru: 'Новая строка не добавляется — обновляется имеющаяся' } },
-  { front: { uz: "Xabar kelganda bot birinchi navbatda nima qiladi?", ru: 'Что бот делает в первую очередь, когда приходит сообщение?' }, back: { uz: "Daftardan o'qiydi (SELECT)", ru: 'Читает из блокнота (SELECT)' }, note: { uz: "Keyin holatni tekshiradi, amalni bajaradi va oxirida yangi holatni yozadi (UPDATE)", ru: 'Потом проверяет состояние, выполняет действие и в конце записывает новое состояние (UPDATE)' } },
+  { front: { uz: 'Xabar kelganda bot birinchi navbatda nima qiladi?', ru: "Что бот делает в первую очередь, когда приходит сообщение?" }, back: { uz: "Holatni o'qiydi (SELECT)", ru: "Читает состояние (SELECT)" }, note: { uz: 'Keyin holatni tekshiradi, javob va yangi holatni tanlaydi, yangi holatni yozadi (UPDATE)', ru: "Потом проверяет состояние, выбирает ответ и новое состояние, записывает новое состояние (UPDATE)" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2204,16 +2308,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: 'Bot tabiatan daftarsiz — har xabarni alohida hodisa deb qabul qiladi', ru: 'Бот по природе без блокнота — каждое сообщение для него отдельное событие' },
-    { uz: "Bosqichni (holatni) daftarda saqlasak, bot 'qayerda to'xtaganini' biladi", ru: 'Если хранить этап (состояние) в блокноте, бот знает, «где он остановился»' },
-    { uz: "Cho'ntak (RAM) tez, lekin restart'da yo'qoladi — javon (PostgreSQL) doimiy", ru: 'Карман (RAM) быстрый, но пропадает при перезапуске — шкаф (PostgreSQL) постоянен' },
-    { uz: 'Har mijozga alohida sessiya (sahifa) kerak — aks holda suhbatlar aralashadi', ru: 'Каждому клиенту нужна отдельная сессия (страница) — иначе диалоги смешаются' },
-    { uz: "Xabar oqimi: SELECT (o'qi) → holatni tekshir → amal → UPDATE (saqla)", ru: 'Поток сообщения: SELECT (прочитай) → проверь состояние → действие → UPDATE (сохрани)' }
+    { uz: 'Holat saqlanmasa, bot qisqa javob qaysi savolga tegishli ekanini bilmaydi', ru: "Если состояние не хранится, бот не знает, к какому вопросу относится короткий ответ" },
+    { uz: 'Holat — suhbat qaysi bosqichda ekani va mijoz nimani tanlagani', ru: "Состояние — на каком этапе диалог и что выбрал клиент" },
+    { uz: "Dastur xotirasidagi holat qayta ishga tushganda yo'qoladi — PostgreSQL'dagisi qoladi", ru: "Состояние в памяти программы пропадает при перезапуске — в PostgreSQL остаётся" },
+    { uz: "Har mijozga alohida sessiya kerak — holat `chat.id` bo'yicha ajratiladi", ru: "Каждому клиенту нужна отдельная сессия — состояние разделяется по `chat.id`" },
+    { uz: 'Xabar oqimi: SELECT → holatni tekshirish → javob va yangi holat → UPDATE; yangi mijozga avval INSERT', ru: "Поток сообщения: SELECT → проверка состояния → ответ и новое состояние → UPDATE; новому клиенту сначала INSERT" }
   ];
   const HOMEWORK = [
-    { b: { uz: 'Loyihalang', ru: 'Спроектируйте' }, t: { uz: "— o'z botingiz uchun users jadvali sxemasini chizing: qaysi ustunlar kerak?", ru: '— нарисуйте схему таблицы users для своего бота: какие колонки нужны?' } },
-    { b: { uz: 'Ajrating', ru: 'Разделите' }, t: { uz: "— qaysi ma'lumot vaqtinchalik (cho'ntak), qaysi doimiy (javon)?", ru: '— какие данные временные (карман), а какие постоянные (шкаф)?' } },
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: "— AI'ga: 'yangi mijozni INSERT qil, holatga qarab UPDATE qil' deb topshiriq yozing", ru: "— задание для AI: 'добавь нового клиента через INSERT, по состоянию делай UPDATE'" } }
+    { b: { uz: 'Holatlarni yozing', ru: "Выпишите состояния" }, t: { uz: "— botingiz suhbati qaysi holatlardan o'tadi? Masalan: `OLCHAM_KUTYAPMAN` → `MANZIL_KUTYAPMAN` → `TAYYOR`", ru: "— через какие состояния проходит диалог Вашего бота? Например: `OLCHAM_KUTYAPMAN` → `MANZIL_KUTYAPMAN` → `TAYYOR`" } },
+    { b: { uz: 'Ajrating', ru: 'Разделите' }, t: { uz: "— botingizdagi qaysi ma'lumot vaqtinchalik bo'lsa bo'ladi, qaysi biri PostgreSQL'da saqlanishi kerak?", ru: "— какие данные Вашего бота могут быть временными, а какие нужно хранить в PostgreSQL?" } },
+    { b: { uz: "Gemini'dan so'rang", ru: "Спросите Gemini" }, t: { uz: "— gemini.google.com'ga botingizning users jadvalini va holatlarini yozing, so'ng ikki mijoz uchun kod so'rang: yangi mijoz (INSERT) va jadvalda bor mijoz (SELECT → UPDATE).", ru: "— напишите на gemini.google.com таблицу users и состояния Вашего бота, затем попросите код для двух клиентов: нового (INSERT) и уже записанного в таблицу (SELECT → UPDATE)." } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2221,12 +2325,12 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Botjoningizga xotira berdingiz', ru: 'Вы дали своему Ботжону память' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi Botjon <span className="italic" style={{ color: T.accent }}>eslab qoladi</span>.</>, ru: <>Теперь Ботжон <span className="italic" style={{ color: T.accent }}>запоминает</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Holatni saqlashni bilasiz', ru: "Вы умеете хранить состояние" })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi botingiz suhbatni <span className="italic" style={{ color: T.accent }}>eslab qoladi</span>.</>, ru: <>Теперь Ваш бот <span className="italic" style={{ color: T.accent }}>запоминает</span> диалог.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: "Подождите Ментора" }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{fmtCode(tr(r))}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2237,9 +2341,9 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — Botjon bilimlaringizni yanada chuqurlashtiramiz!', ru: '🚀 На следующем уроке ещё глубже разберём Ботжона!' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: "Домашнее задание" })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{fmtCode(tr(h.t))}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: AI bilan bot».</b> Aniq topshiriq yozib, botni AI yordamida qurasiz, uning kodini o'qiysiz va sinab ko'rasiz.</>, ru: <>Следующий урок — <b>«Проектный день: бот с ИИ».</b> Вы напишете чёткое задание, соберёте бота с помощью ИИ, прочитаете его код и проверите его в деле.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz', ru: "Ваши значки" })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
               <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
@@ -2402,7 +2506,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
-        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
+        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.ink}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 14px; font-size: 13px; }
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
         .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -2438,11 +2542,11 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         /* === HOOK OPSIYALARI (radio) === */
         .hook-option { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,16px) clamp(15px,2.2vw,18px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .hook-option:hover:not(:disabled):not(.on) { box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
-        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -6px rgba(255,79,40,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        .hook-option.on { background: ${T.paper}; color: ${T.ink}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.24), inset 0 0 0 2px ${T.ink}; } /* U1: ballsiz hook — neytral to'q ramka, qizil/yashil emas */
         .hook-option:disabled { cursor: default; }
         .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
-        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
-        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
+        .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.ink}; }
+        .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.ink}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
@@ -2486,7 +2590,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
-        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
+        .step-card { display: flex; align-items: baseline; gap: 10px; background: none; border-radius: 0; padding: 4px 0; box-shadow: none; } /* U1: reja — oddiy raqamli ro'yxat, bosilmaydi */
         .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
@@ -2502,7 +2606,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
-        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
+        .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; } .ring-wrap svg { width: 100%; height: 100%; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
@@ -2859,6 +2963,9 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .rc-x:hover { color: ${T.accent}; }
         .rc-card { flex: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: clamp(10px,2.2vw,20px); padding: clamp(16px,3vw,28px) 0; animation: fade-step 0.35s ease-out; }
         .rc-ic { font-size: clamp(44px,8vw,76px); line-height: 1; }
+        /* U3: karta belgisi — kod misoli yoki raqam (emoji emas) */
+        .rc-ic.num { width: clamp(52px,8vw,72px); height: clamp(52px,8vw,72px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(24px,4vw,34px); color: ${T.accent}; background: ${T.accentSoft}; }
+        .rc-ic.code span { display: inline-block; max-width: 100%; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: clamp(15px,2.4vw,22px); line-height: 1.4; color: ${CODE.text}; background: ${CODE.bg}; border-radius: 12px; padding: clamp(10px,1.6vw,14px) clamp(14px,2.4vw,22px); overflow-wrap: anywhere; }
         .rc-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(24px,4.6vw,44px); color: ${T.ink}; line-height: 1.12; max-width: 800px; margin: 0; }
         .rc-body { font-size: clamp(15px,2.4vw,21px); line-height: 1.55; color: ${T.ink2}; max-width: 720px; margin: 0; }
         .rc-body b { color: ${T.ink}; }
@@ -2994,16 +3101,16 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         @keyframes opt-wait-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
 
-        /* ============ 5-MODUL · BOTJON DARSI CSS ============ */
+        /* ============ 5-MODUL · BOT DARSI CSS ============ */
 
         /* ===== 📱 TELEGRAM CHAT ===== */
         .tg { border-radius: 14px; overflow: hidden; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.26); border: 1px solid rgba(167,166,162,0.2); }
         .tg-head { background: linear-gradient(180deg,#5A9FD4,#4E8FC0); padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
-        .tg-ava { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .tg-ava { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: #4E8FC0; flex-shrink: 0; }
         .tg-name { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: #fff; display: flex; flex-direction: column; line-height: 1.25; }
         .tg-status { font-weight: 500; font-size: 10.5px; color: #DCEBF7; }
-        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 7px; }
-        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: break-word; }
+        .tg-body { background: #CFD9E0; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 18px 18px; padding: 13px 12px; display: flex; flex-direction: column; gap: 10px; }
+        .tg-bubble { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-family: 'Manrope'; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; box-shadow: 0 1px 2px rgba(0,0,0,0.12); word-break: normal; overflow-wrap: break-word; hyphens: none; } /* U2: pufakcha so'z ichida bo'linmaydi */
         .tg-bubble.bot { align-self: flex-start; background: #fff; color: #0E0E10; border-bottom-left-radius: 5px; }
         .tg-bubble.user { align-self: flex-end; background: #EFFDDE; color: #0E0E10; border-bottom-right-radius: 5px; }
         .tg-bubble.muted { opacity: 0.55; }
@@ -3012,11 +3119,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .tg-typing span:nth-child(2) { animation-delay: 0.15s; } .tg-typing span:nth-child(3) { animation-delay: 0.3s; }
         @keyframes tg-typing-bounce { 0%,60%,100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-3px); opacity: 1; } }
 
-        /* ===== 🎒 JIHOZLAR PANELI ===== */
-        .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
-        .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
-        .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
+        /* Jihozlar paneli olindi (KOD 2, qaror F-0929-63). */
 
         /* ===== 📋 IKKI MIJOZ: TUZATISH (s9) ===== */
         .ns-shift-cards { display: flex; flex-direction: column; gap: 7px; }
@@ -3083,7 +3186,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         }
 
       
-        /* ===== DARSGA XOS QO'SHIMCHA STILLAR (daftar/DB vizuallari — v16'dan ko'chirilgan) ===== */
+        /* ===== DARSGA XOS QO'SHIMCHA STILLAR (holat/DB vizuallari — v16'dan ko'chirilgan) ===== */
         .agent-card { background: ${T.blueSoft}; border-radius: 10px; padding: 13px 16px; }
         .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 5px; letter-spacing: 0.04em; }
         .agent-msg { font-family: 'Manrope'; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; margin: 0; line-height: 1.55; }
@@ -3096,7 +3199,9 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .dbt th { background: ${CODE.bg}; color: ${CODE.text}; font-weight: 600; padding: 7px 9px; text-align: left; font-size: 10px; letter-spacing: 0.03em; white-space: nowrap; }
         .dbt td { padding: 8px 9px; border-top: 1px solid rgba(167,166,162,0.22); color: ${T.ink}; white-space: nowrap; transition: background 0.3s; }
         .dbt tr.hl td { background: ${T.blueSoft}; }
-        .dbt td.hlc { background: ${T.successSoft}; color: ${T.success}; font-weight: 700; }
+        .dbt td.hlc { background: ${T.accentSoft}; color: ${T.accent}; font-weight: 700; }
+        .dbt th.hlh { color: ${CODE.tag}; }
+        .dbt-scroll { overflow-x: auto; }
         .dbt .empty td { text-align: center; color: ${T.ink3}; font-style: italic; padding: 16px; }
         @keyframes row-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
         .dbt tr.rowin td { animation: row-in 0.45s ease; }
@@ -3105,10 +3210,10 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .mem-box.keep { background: ${T.successSoft}; }
         .mem-box.gone { background: ${T.dangerSoft}; }
 
-        /* 📓 daftar sahifasi — chiziqli qog'oz effekti */
-        .daf-page { background: ${T.paper}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.18); background-image: repeating-linear-gradient(${T.bg} 0px, ${T.bg} 27px, rgba(167,166,162,0.18) 28px); animation: fade-step 0.3s; } /* kesik-ok: daftar qatorlari — metafora, bezak emas */
+        /* Suhbat holati paneli (mijoz · holat · tanlov) */
+        .daf-page { background: ${T.paper}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.18); animation: fade-step 0.3s; }
         .daf-page-h { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.accent}; margin: 0 0 8px; }
-        /* qator qalam bilan yozilayotgandek birma-bir chiqadi (~120ms farq) */
+        /* qatorlar birma-bir chiqadi (~120ms farq) */
         @keyframes daf-write { from { opacity: 0; transform: translateX(-5px); } to { opacity: 1; transform: translateX(0); } }
         .daf-row { display: flex; align-items: baseline; gap: 8px; padding: 3px 0; font-size: clamp(12.5px,1.5vw,14px); animation: daf-write 0.26s ease-out both; }
         .daf-row:nth-child(2) { animation-delay: 0.05s; }
@@ -3124,8 +3229,59 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .mix-who { font-weight: 700; color: ${T.ink2}; flex-shrink: 0; }
         .mix-txt { color: ${T.ink}; }
 
+        /* A7: o'zgargan qiymat qisqa yonadi */
+        @keyframes ln-flash { 0% { background: transparent; } 35% { background: ${T.accentSoft}; } 100% { background: transparent; } }
+        .daf-v.chg { animation: ln-flash 1s ease-out 0.45s both; border-radius: 5px; padding: 0 4px; margin: 0 -4px; }
+        /* A7: strelka (xabar → holat) — SVG chiziq 0.8 s da chiziladi */
+        .ln-wrap { position: relative; }
+        .ln-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 4; }
+        .ln-path { fill: none; stroke: ${T.accent}; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+        .ln-head { fill: ${T.accent}; }
+        .ln-draw .ln-path { stroke-dashoffset: 1; animation: ln-draw 0.8s ease-out forwards; }
+        .ln-draw .ln-head { opacity: 0; animation: ln-head 0.2s ease-out 0.7s forwards; }
+        @keyframes ln-draw { to { stroke-dashoffset: 0; } }
+        @keyframes ln-head { to { opacity: 1; } }
+        .ln-still .ln-path { opacity: 0.45; } .ln-still .ln-head { opacity: 0.45; }
+        /* N20 (qoida 4): telefonda ustunlar ustma-ust — ustunlararo strelka chizilmaydi, ma'no qator matnida va rangda qoladi */
+        @media (max-width: 760px) { .split.ln-wrap > .ln-svg { display: none; } }
+        .dd-loop { left: 0; top: 0; }
+        /* s6: RAM qatori chapdan o'ngga o'chib boradi (0.8 s) */
+        @keyframes mem-wipe { from { clip-path: inset(0 0 0 0); opacity: 1; } to { clip-path: inset(0 0 0 100%); opacity: 0.2; } }
+        .mem-line.wipe { animation: mem-wipe 0.8s ease-in forwards; }
+        /* s11: holat — darsning asosiy ustuni (kodda, tugmada, jadvalda urg'u rangi) */
+        .code-hl { background: rgba(255,79,40,0.22); border-radius: 4px; box-shadow: 0 0 0 3px rgba(255,79,40,0.22); }
+        .gchip-mk { color: ${T.ink3}; font-weight: 800; }
+        .gchip.seen { box-shadow: inset 0 0 0 1.5px ${T.success}; color: ${T.success}; }
+        .gchip.seen .gchip-mk { color: ${T.success}; }
+        .gchip.gchip-hl { background: ${T.accentSoft}; color: ${T.accent}; }
+        .gchip.gchip-hl.seen { box-shadow: inset 0 0 0 1.5px ${T.accent}; color: ${T.accent}; }
+        .gchip.gchip-hl .gchip-mk { color: ${T.accent}; }
+        /* s13: joriy bo'shliq kodda yonadi */
+        .sql-blank { color: ${CODE.attr}; border-radius: 4px; }
+        .sql-blank.cur { background: rgba(255,211,128,0.22); box-shadow: 0 0 0 2px rgba(255,211,128,0.5); }
+        .sql-blank.ok { color: ${CODE.str}; font-weight: 700; }
+        /* s9: sessiya kartalari (ochiladigan — doimiy ›, bosilgach ✓) */
+        .sess-list { display: flex; flex-direction: column; gap: 8px; }
+        .sess-item { display: flex; flex-direction: column; gap: 6px; }
+        .vcard.seen { box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .vseen { font-size: 16px; }
+        .sess-box { background: ${T.bg}; border-radius: 10px; padding: 9px 13px; margin-left: 12px; box-shadow: inset 3px 0 0 ${T.ink3}55; }
+        .sess-msgs { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+        .tg-bubble.sess-msg { align-self: flex-start; display: flex; flex-direction: column; gap: 2px; }
+        .sess-who { font-size: 11px; font-weight: 700; color: ${T.ink2}; }
+        @media (max-width: 760px) { .sess-list { padding-right: 38px; } } /* U2: ⛶ karta matni ustiga tushmaydi */
+        /* s15: slot yorlig'i «1-qadam» */
+        .dd-slotn.wide { width: auto; min-width: 26px; padding: 0 8px; white-space: nowrap; font-size: 12px; }
+        /* s16: qadamlar navbat bilan */
+        .lp-step.lp-compact { padding: 8px 12px; cursor: default; }
+        .lp-step.lp-compact .lp-step-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .lp-step.lp-cur { flex-wrap: wrap; cursor: default; box-shadow: inset 0 0 0 1.5px ${T.ink}22, 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
+        .lp-step.lp-cur .lp-step-t { flex: 1 1 200px; }
+        .lp-step-btn { margin-left: auto; padding: 9px 18px; }
         @media (prefers-reduced-motion: reduce) {
-          .daf-page, .daf-row, .mix-line, .dbt tr.rowin td { animation: none !important; }
+          .daf-page, .daf-row, .mix-line, .dbt tr.rowin td, .daf-v.chg, .mem-line.wipe { animation: none !important; }
+          .ln-draw .ln-path { animation: none !important; stroke-dashoffset: 0; }
+          .ln-draw .ln-head { animation: none !important; opacity: 1; }
         }
         .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
         .ach-rule.lost { font-style: italic; }
@@ -3135,7 +3291,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title={{ uz: 'Botjon darsi', ru: 'Урок Ботжона' }} />
+            <LiveGate live={live} title={{ uz: 'Bot eslab qoladi — holat va PostgreSQL', ru: "Бот запоминает — состояние и PostgreSQL" }} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />

@@ -54,7 +54,7 @@ o'zi so'rab turish (polling) · qo'ng'iroq (webhook) · revoke · tungi smena
 - Tugma: Davom etish
 
 ## 1 · Reja  `[796]`
-- Sarlavha: **Botjon — oddiy mantiq: signal keladi, javob qaytadi.**
+- Sarlavha: **Botjon — `oddiy` mantiq: signal keladi, javob qaytadi.**
 - Mentor: Botjon — signalga reaksiya qiladigan, uxlamaydigan yordamchi. Uning uchta buyumi bor: 🔑 kalit, 📋 qoidalar varag'i va to'xtamaydigan aylana. Mana natija va unga olib boradigan 4 qadam.
 - Blok: Botjonning butun mantig'i — bitta jumlada → «Salom! 👋» misoli
   - Signal keladi → Botjon qoidalar varag'idan mos qatorni qidiradi → amal bajaradi. Shu — botning butun ishi. Mana shu darsda buni to'liq ochamiz.

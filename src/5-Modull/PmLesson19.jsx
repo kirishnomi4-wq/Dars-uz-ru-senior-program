@@ -13,7 +13,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Bosh keys: K8 META (Facebook) — burchak «QAYERDAN va nega bitta joydan» (M1-D2 dan farqli).
 // Kirish-artefakt: YO'Q (modul boshi) — «topilmadi/saqlanmagan» tarmog'i YOZILMAYDI (§69).
 // Chiqish-artefakt: pm-m5d2-yigirmata = { kanallar: [{ kanal, kim, nechta } x 3], savedAt }.
-//   Kod-kaliti `kanal` (ASCII), o'quvchi ko'radigan har joyda — «joy» (§121 omonim-ajratmasi).
+//   Kod-kaliti `kanal` (ASCII), o'quvchi ko'radigan har joyda — «guruh» (v2, F-0930-57).
 // INFRA MANBAI: src/4c-Modull/PmLesson18.jsx (jonli relslar, Stage, QuestionScreen,
 //   MentorTestStats, RecapOverlay, PairTimer, ScreenPodium, CodeStrike-arena, ccProgress)
 //   + src/4a-Modull/PmLesson15.jsx (kompilyator fixed-qobiq + zoom: calc(1 / var(--lz))).
@@ -98,18 +98,18 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // SCREEN_INTENTS — har ekran nima uchun mavjud: 1 gaplik niyat (bola nima QILADI yoki nima BILADI).
 export const SCREEN_INTENTS = {
   s0: "Bola hozir nechta botni ishlatishini tanlaydi va botni ko'pincha kimdir aytgani uchun ochishini ko'radi",
-  s1: "Bola dars oxirida uchta joy yozib olishini oldindan ko'radi",
-  s2: "Bola tayyor bot bilan odam ishlatgan botni solishtirib, birinchi yigirma nima ekanini biladi",
+  s1: "Bola dars oxirida uchta guruh yozib olishini oldindan ko'radi",
+  s2: "Bola tayyor bot bilan odam ishlatgan botni solishtirib, birinchi foydalanuvchilar kimlar ekanini biladi",
   s3: "Bola hech kimga aytilmagan bot bir haftada nechta odam olishini tanlaydi",
   s4: "Bola uch halqani ochadi va bir haftani navbat bilan berib, qaysi halqa ko'p odam berishini o'zi ko'radi",
   s5: "Bola tanish va notanish odamlardan qaysi biri ko'proq javob berishini aniqlaydi",
-  s6: "Bola Facebook sayti bitta yopiq joydan boshlanganini bashorat bilan ochadi",
+  s6: "Bola Facebook sayti bitta universitetdan boshlanganini bashorat bilan ochadi",
   s7: "Bola sayt bitta universitetda nega tez tarqalganini tanlaydi",
-  s8: "Bola o'zining uchta joyini bittalab yozadi: joy nomi, u yerda kimlar borligi va odam soni",
-  s9: "Bola to'rt joyni uch qadamdan o'tkazib, yigirmata odamni yig'adi",
-  s10: "Bola kompilyatorda uch joyni sanaydigan va yigirmaga yetganini aytadigan kod yozadi",
-  s11: "Bola katta joyga yuborilgan xabar ertasiga nima berishini tanlaydi",
-  s12: "Bola eng zich joyini yoddan aytadi va bir qatorda yozib qoldiradi",
+  s8: "Bola o'zining uchta guruhini bittalab yozadi: guruh nomi, unda kimlar borligi va odam soni",
+  s9: "Bola to'rt guruhni uch qadamdan o'tkazib, yigirmata odamni iloji boricha kam guruhdan yig'adi",
+  s10: "Bola kod oynasida uchta guruhni sanaydigan va yigirmaga yetganini aytadigan kod yozadi",
+  s11: "Bola katta notanish guruhga yuborilgan havola ertasiga nima berishini tanlaydi",
+  s12: "Bola eng yaqin guruhini yoddan aytadi va bir qatorda yozib qoldiradi",
   s13: "Bola o'z natijasini (jonlida — sinf reytingini) ko'radi",
   s14: "Bola o'nta takrorlash kartasi bilan o'zini o'zi tekshiradi",
   s15: "Bola arenada bilimini tezlikda sinaydi, uy-vazifasini va nishonlarini bitta yakun-sahifada ko'radi"
@@ -137,7 +137,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">{tr({ uz: '🏅 Nishonlar', ru: '🏅 Значки' })} — {count}/{total}</div>
+          <div className="ach-pop-h">{tr({ uz: 'Nishonlar', ru: 'Значки' })} — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-tx"><span className="ach-pop-nm">{a.name}</span><span className="ach-pop-ds">{achDesc(a.desc)}</span></span></div>
           ); })}
@@ -178,7 +178,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
             <div className="chrome-left eyebrow"><span className="dot" /><span>{eyebrow}</span></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <AchCounter />
-              <div className="mono small" style={{ color: T.ink3 }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
+              <div className="mono small" style={{ color: T.ink3, whiteSpace: 'nowrap' }}>{String(screen + 1).padStart(2, '0')} / {String(totalScreens).padStart(2, '0')}</div>
             </div>
           </div>
         </div>
@@ -240,7 +240,7 @@ const NavNext = ({ disabled, label = tr({ uz: 'Davom etish', ru: 'Продолж
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
   const isOff = (freeRide ? false : disabled) || locked;
   const hint = useTurnHint(!isOff && !turnBusy);
-  return <button className={`btn-white-accent${hint ? ' turn-hint' : ''}`} disabled={isOff} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : (freeRide && disabled ? tr({ uz: "Jonli dars: bajarmasdan ham o'tishingiz mumkin", ru: 'Живой урок: можно идти дальше, даже не выполнив' }) : undefined)} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : tr(label)}</button>;
+  return <button className={`btn-white-accent${hint ? ' turn-hint' : ''}`} disabled={isOff} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : (freeRide && disabled ? tr({ uz: "Jonli dars: bajarmasdan ham o'tishingiz mumkin", ru: 'Живой урок: можно идти дальше, даже не выполнив' }) : undefined)} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: 'Mentorni kuting', ru: "Дождитесь ментора" }) : tr(label)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -266,35 +266,35 @@ const INLINE_KEYS = { s3: 1, s5: 0, s7: 2, s11: 1, halqa: -1, joy: -1, quvur: -1
 // Har scored ekran uchun qayta-tushuntirish. Kalitlar = scored ekran INDEKSI (3/5/7/11).
 const RECAPS = {
   3: {
-    title: { uz: 'Birinchi odamlarni siz olib kelasiz', ru: 'Первых людей приводите вы' },
+    title: { uz: 'Birinchi foydalanuvchilarni siz olib kelasiz', ru: "Первых пользователей приводите вы" },
     cards: [
-      { ic: '👥', h: { uz: 'Birinchi yigirma', ru: 'Первые двадцать' }, body: { uz: <>Botingizni birinchi bo'lib ishlatadigan yigirmata odam — <b>birinchi yigirma</b>.</>, ru: <>Двадцать человек, которые первыми начнут пользоваться вашим ботом, — <b>первые двадцать</b>.</> } },
-      { ic: '🗣', h: { uz: 'Bot o\'zi olib kelmaydi', ru: 'Бот сам никого не приведёт' }, body: { uz: <>Bot bo'sh turganda uni hech kim ko'rmaydi. Birinchi odamlarning <b>har biriga siz aytasiz</b>.</>, ru: <>Пока бот стоит пустой, его никто не видит. Первым людям <b>каждому говорите вы</b>.</> } },
-      { ic: '🤖', h: { uz: 'Tayyor bo\'lgani yetmaydi', ru: 'Готового бота мало' }, body: { uz: <>Buyruqlar ishlashi — ishning yarmi. Ikkinchi yarmi: botni odam ochib ishlatishi.</>, ru: <>Команды работают — это половина дела. Вторая половина: человек открывает бота и пользуется им.</> }, ask: { uz: 'Oxirgi botni siz kimning gapidan keyin ochgansiz?', ru: 'После чьих слов вы открыли свой последний бот?' } }
+      { ic: '1', h: { uz: 'Birinchi foydalanuvchilar', ru: "Первые пользователи" }, body: { uz: <>Botingizni birinchi bo'lib ishlatadigan odamlar.</>, ru: <>Люди, которые первыми начнут пользоваться вашим ботом.</> } },
+      { ic: '2', h: { uz: 'Bot o\'zi olib kelmaydi', ru: 'Бот сам никого не приведёт' }, body: { uz: <>Bot bo'sh turganda uni hech kim ko'rmaydi. Birinchi odamlarning <b>har biriga siz aytasiz</b>.</>, ru: <>Пока бот стоит пустой, его никто не видит. Первым людям <b>каждому говорите вы</b>.</> } },
+      { ic: '3', h: { uz: 'Tayyor bo\'lgani yetmaydi', ru: 'Готового бота мало' }, body: { uz: <>Buyruqlar ishlashi — ishning yarmi. Ikkinchi yarmi: botni odam ochib ishlatishi.</>, ru: <>Команды работают — это половина дела. Вторая половина: человек открывает бота и пользуется им.</> }, ask: { uz: 'Oxirgi botni siz kimning gapidan keyin ochgansiz?', ru: 'После чьих слов вы открыли свой последний бот?' } }
     ]
   },
   5: {
-    title: { uz: 'Zich joy ko\'p odam beradi', ru: 'Тесное место даёт много людей' },
+    title: { uz: 'Yaqin guruhdan ko\'p foydalanuvchi keladi', ru: "Из близкой группы приходит много пользователей" },
     cards: [
-      { ic: '🏫', h: { uz: 'Zich joy', ru: 'Тесное место' }, body: { uz: <>Odamlar bir-birini har kuni ko'radigan joy — <b>zich joy</b>.</>, ru: <>Место, где люди видят друг друга каждый день, — <b>тесное место</b>.</> } },
-      { ic: '🗣', h: { uz: 'Xabar o\'zi yuradi', ru: 'Весть идёт сама' }, body: { uz: <>Zich joyda bitta odam aytsa, <b>qolganlari eshitadi</b> va o'zlari ham ochadi.</>, ru: <>В тесном месте скажет один — <b>услышат остальные</b> и откроют сами.</> } },
-      { ic: '🌐', h: { uz: 'Katta guruh', ru: 'Большая группа' }, body: { uz: <>Katta guruhda odam ko'p, lekin ular sizni tanimaydi: xabar bitta odamda qolib ketadi.</>, ru: <>В большой группе людей много, но они вас не знают: сообщение застревает у одного человека.</> }, ask: { uz: 'Sizni ismingiz bilan taniydigan odamlar qayerda ko\'p?', ru: 'Где больше всего людей, которые знают вас по имени?' } }
+      { ic: '1', h: { uz: 'Yaqin guruh', ru: "Близкая группа" }, body: { uz: <>Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.</>, ru: <>Люди, которые вас знают и часто видят друг друга.</> } },
+      { ic: '2', h: { uz: 'Xabar o\'zi yuradi', ru: 'Весть идёт сама' }, body: { uz: <>Yaqin guruhda bitta odam aytsa, <b>qolganlar ham eshitadi</b> va ko'pincha o'zlari ham ochadi.</>, ru: <>Если в близкой группе скажет один, <b>услышат и остальные</b> — и часто сами тоже откроют.</> } },
+      { ic: '3', h: { uz: 'Katta guruh', ru: 'Большая группа' }, body: { uz: <>Katta guruhda odam ko'p, lekin ular sizni tanimaydi: xabar odatda bitta odamda qolib ketadi.</>, ru: <>В большой группе людей много, но они вас не знают: сообщение обычно застревает у одного человека.</> }, ask: { uz: 'Sizni ismingiz bilan taniydigan odamlar qaysi guruhingizda ko\'p?', ru: "В какой вашей группе больше всего людей, которые знают вас по имени?" } }
     ]
   },
   7: {
-    title: { uz: 'Facebook bitta joydan boshlagan', ru: 'Facebook начался с одного места' },
+    title: { uz: 'Facebook bitta universitetdan boshlagan', ru: "Facebook начался с одного университета" },
     cards: [
-      { ic: '🎓', h: { uz: '2004-yil', ru: '2004 год' }, body: { uz: <>Sayt <b>bitta universitetda</b> ochildi: boshqalar ro'yxatdan o'ta olmasdi.</>, ru: <>Сайт открылся <b>в одном университете</b>: остальные не могли зарегистрироваться.</> } },
-      { ic: '🌍', h: { uz: 'Dunyoga chiqish', ru: 'Выход в мир' }, body: { uz: <>Butun dunyoga sayt <b>ikki yildan keyin</b> ochildi — avval joyma-joy kengaydi.</>, ru: <>Для всего мира сайт открылся <b>через два года</b> — сначала он расширялся место за местом.</> } },
-      { ic: '🤝', h: { uz: 'Nima ish bergan', ru: 'Что сработало' }, body: { uz: <>Odam soni emas — odamlarning bir-birini tanishi ish bergan.</>, ru: <>Сработало не число людей, а то, что люди знали друг друга.</> }, ask: { uz: 'Sizning universitetingiz yo\'q. Uning o\'rniga qaysi joyingiz bor?', ru: 'Университета у вас нет. Какое место есть у вас вместо него?' } }
+      { ic: '1', h: { uz: '2004-yil', ru: '2004 год' }, body: { uz: <>Sayt <b>bitta universitetda</b> ochildi: boshqalar ro'yxatdan o'ta olmasdi.</>, ru: <>Сайт открылся <b>в одном университете</b>: остальные не могли зарегистрироваться.</> } },
+      { ic: '2', h: { uz: 'Dunyoga chiqish', ru: 'Выход в мир' }, body: { uz: <>Butun dunyo uchun sayt <b>2006-yilda, ikki yarim yil o'tib</b> ochildi; ungacha boshqa universitetlar va maktablarga birin-ketin ochildi.</>, ru: <>Для всего мира сайт открылся <b>в 2006 году, через два с половиной года</b>; до этого он по очереди открывался для других университетов и школ.</> } },
+      { ic: '3', h: { uz: 'Nima ish bergan', ru: 'Что сработало' }, body: { uz: <>Odam soni emas, odamlarning bir-birini tanishi ish bergan.</>, ru: <>Сработало не число людей, а то, что люди знали друг друга.</> }, ask: { uz: 'Sizda universitet yo\'q. Uning o\'rniga qaysi guruhingiz bor?', ru: "Университета у вас нет. Какая ваша группа есть вместо него?" } }
     ]
   },
   11: {
-    title: { uz: 'Katta joy odam bermaydi', ru: 'Большое место людей не даёт' },
+    title: { uz: 'Katta guruhdan foydalanuvchi kam chiqadi', ru: "Из большой группы пользователей выходит мало" },
     cards: [
-      { ic: '📣', h: { uz: 'Xabar yetadi', ru: 'Сообщение доходит' }, body: { uz: <>Katta joyda xabar ko'p odamga yetadi, lekin <b>ochib ishlatadigani kam qoladi</b>.</>, ru: <>В большом месте сообщение доходит до многих, но <b>тех, кто откроет и станет пользоваться, остаётся мало</b>.</> } },
-      { ic: '🏫', h: { uz: 'Yigirma qayerdan', ru: 'Откуда двадцать' }, body: { uz: <>Yigirmata odam ikki-uchta zich joydan yig'iladi — bitta katta guruhdan emas.</>, ru: <>Двадцать человек собираются из двух-трёх тесных мест — не из одной большой группы.</> } },
-      { ic: '👥', h: { uz: 'Uch qadam', ru: 'Три шага' }, body: { uz: <>Odam botga uch qadamda keladi: eshitdi, ochdi, ishlatdi. Har qadamda odam kamayadi.</>, ru: <>Человек приходит к боту за три шага: услышал, открыл, воспользовался. На каждом шаге людей становится меньше.</> }, ask: { uz: 'Qaysi qadamda eng ko\'p odam yo\'qoladi?', ru: 'На каком шаге теряется больше всего людей?' } }
+      { ic: '1', h: { uz: 'Xabar yetadi', ru: 'Сообщение доходит' }, body: { uz: <>Katta guruhda xabar ko'p odamga yetadi, lekin <b>ochib ishlatadigani kam qoladi</b>.</>, ru: <>В большой группе сообщение доходит до многих, но <b>тех, кто откроет и станет пользоваться, остаётся мало</b>.</> } },
+      { ic: '2', h: { uz: 'Yigirma qayerdan', ru: 'Откуда двадцать' }, body: { uz: <>Yigirmata foydalanuvchi ikki-uchta yaqin guruhdan keladi, bitta katta guruhdan emas.</>, ru: <>Двадцать пользователей приходят из двух-трёх близких групп, а не из одной большой.</> } },
+      { ic: '3', h: { uz: 'Uch qadam', ru: 'Три шага' }, body: { uz: <>Odam botga uch qadamda keladi: eshitdi, ochdi, ishlatdi. Har qadamda odam kamayadi.</>, ru: <>Человек приходит к боту за три шага: услышал, открыл, воспользовался. На каждом шаге людей становится меньше.</> }, ask: { uz: 'Qaysi qadamda eng ko\'p odam yo\'qoladi?', ru: 'На каком шаге теряется больше всего людей?' } }
     ]
   }
 };
@@ -316,7 +316,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: 'Qayta tushuntirish', ru: "Объясняем заново" })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -324,7 +324,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: "Вопрос классу:" })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
@@ -467,7 +467,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (ctaLabel || tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing.", ru: "Живой урок — одна попытка, жмите обдуманно." })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -494,7 +494,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
-                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
+                ? tr({ uz: 'Javobingiz qabul qilindi', ru: "Ваш ответ принят" })
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
@@ -627,7 +627,7 @@ const StudentPracticePulse = ({ live, screen }) => {
   const doing = Math.max(0, data.total - data.done);
   return (
     <div className="done-mini fade-up" style={{ alignSelf: 'flex-start' }}>
-      {tr({ uz: <>👥 Sinfda: <b>{data.done}</b> bajardi{doing > 0 && <span className="dm-sub">· ✏️ {doing} hali bajarmoqda</span>}</>, ru: <>👥 В классе: <b>{data.done}</b> выполнили{doing > 0 && <span className="dm-sub">· ✏️ {doing} ещё делают</span>}</> })}
+      {tr({ uz: <>Sinfda: <b>{data.done}</b> bajardi{doing > 0 && <span className="dm-sub">· {doing} hali bajarmoqda</span>}</>, ru: <>В классе: <b>{data.done}</b> выполнили{doing > 0 && <span className="dm-sub">· {doing} ещё делают</span>}</> })}
     </div>
   );
 };
@@ -649,11 +649,12 @@ const readJoylar = () => {
 };
 
 // ===== SCREEN 0 — HOOK: Telegramda hozir nechta botni ishlatasiz? =====
-// 104-qonun: ikki tanlov teng og'irlikda; javob-gapi IKKALASIDA BIR XIL, maqtov yo'q.
+// 104-qonun: ikki tanlov teng og'irlikda; maqtov yo'q. v2: har tanlovga o'z izohi, oxiri (HOOK_END) bir xil.
 const HOOK_OPTS = [
-  { k: 'bor', ic: '🤖', t: { uz: 'Bir-ikkitasi bor — kimdir aytgani uchun ochganman', ru: 'Один-два есть — открыл, потому что кто-то посоветовал' } },
-  { k: 'yoq', ic: '🔎', t: { uz: "Yo'q shekilli — o'zim hech qachon qidirmaganman", ru: 'Кажется, нет — сам никогда не искал' } },
+  { k: 'bor', t: { uz: 'Bir nechtasi bor — kimdir aytgani uchun ochganman', ru: "Есть несколько — открыл, потому что кто-то сказал" }, izoh: { uz: "Demak, botni siz ham kimdir aytgani uchun ochgansiz — ko'pchilik shunday ochadi.", ru: "Значит, и вы открыли бота, потому что кто-то о нём сказал, — так открывает большинство." } },
+  { k: 'yoq', t: { uz: "Yo'q shekilli — o'zim hech qachon qidirmaganman", ru: 'Кажется, нет — сам никогда не искал' }, izoh: { uz: "Demak, bot o'zi sizga kelmagan: kimdir aytmasa, odam botni qidirmaydi.", ru: "Значит, бот сам к вам не пришёл: если никто не скажет, человек бота не ищет." } },
 ];
+const HOOK_END = { uz: "1-darsda ochgan botingizni ham kimdir aytmaguncha hech kim topmaydi. Bugun kimga aytishni rejalashtiramiz.", ru: "Бота, которого вы открыли на 1-м уроке, тоже никто не найдёт, пока о нём кто-то не скажет. Сегодня спланируем, кому сказать." };
 // 100-qonun: tanlov yoziladi, hech qayerda O'QILMAYDI.
 const HOOK_KEY = 'pm-m5d2-hook-choice';
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
@@ -686,19 +687,18 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish · botlar', ru: 'Вступление · боты' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telegramda hozir <span className="italic" style={{ color: T.accent }}>nechta</span> botni ishlatasiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Сколькими</span> ботами в Telegram вы пользуетесь сейчас?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bittasi ham esingizga kelmasligi mumkin — ikkala javob ham to'g'ri.", ru: 'Может, ни один и не вспомнится — оба ответа верные.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telegram'da hozir <span className="italic" style={{ color: T.accent }}>nechta</span> botni ishlatasiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Сколькими</span> ботами в Telegram вы пользуетесь сейчас?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bu savolda xato javob yo'q: o'zingizda qanday bo'lsa, shuni tanlang.", ru: "В этом вопросе нет неправильного ответа: выберите то, как есть у вас." })}</Mentor>
         <div className="hrow two fade-up delay-1">
           {HOOK_OPTS.map((o, i) => (
             <button key={o.k} className={`hopt${picked === i ? ' on' : ''}${opened ? ' open' : ''}${!opened && optWave ? waveCls(true, i, HOOK_OPTS.length) : ''}`} disabled={opened} onClick={() => pick(i)}>
-              <span className="hopt-ic">{o.ic}</span>
               <span className="hopt-nom">{tr(o.t)}</span>
             </button>
           ))}
         </div>
         {opened && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ikkalasi ham bo'ladi. Botni ko'pincha qidirib emas, kimdir aytgani uchun ochamiz. Siz quradigan bot haqida ham birinchi odamlarga kimdir aytishi kerak — o'sha odam siz bo'lasiz.", ru: 'Подходят оба. Бота мы чаще открываем не потому, что искали, а потому, что кто-то сказал. О боте, который построите вы, первым людям тоже должен кто-то сказать — этим человеком будете вы.' })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{picked !== null && HOOK_OPTS[picked] ? <>{tr(HOOK_OPTS[picked].izoh)} </> : null}{tr(HOOK_END)}</p>
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
@@ -710,7 +710,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               const top = totalVotes > 0 && n === Math.max(...counts);
               return (
                 <div key={o.k} className={`hvote-row ${picked === i ? 'mine' : ''} ${top ? 'top' : ''}`}>
-                  <span className="hvote-lbl">{o.ic} {tr(o.t)}</span>
+                  <span className="hvote-lbl">{tr(o.t)}</span>
                   <span className="hvote-track"><span className="hvote-fill" style={{ width: `${Math.max(pct, totalVotes ? 4 : 0)}%` }} /></span>
                   <span className="hvote-pct mono">{pct}%</span>
                 </div>
@@ -718,32 +718,42 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             })}
           </div>
         )}
-        <MentorNote>{tr({ uz: "Ovozlar bo'linadi — ikkalasi ham halol javob. «O'sha odam siz bo'lasiz» degan joyda bir lahza to'xtang: bugungi darsning ishi aynan shu. Odamlarni qayerdan topishni oldindan aytmang.", ru: 'Голоса разделятся — оба ответа честные. На словах «этим человеком будете вы» задержитесь на мгновение: работа сегодняшнего урока именно в этом. Где искать людей — заранее не говорите.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Ovozlar bo'linadi — ikkalasi ham halol javob. «Kimdir aytmaguncha hech kim topmaydi» degan joyda bir lahza to'xtang: bugungi darsning ishi aynan shu. Odamlarni qayerdan topishni oldindan aytmang.", ru: "Голоса разделятся — оба ответа честные. На словах «никто не найдёт, пока о нём кто-то не скажет» задержитесь на мгновение: работа сегодняшнего урока именно в этом. Где искать людей — заранее не говорите." })}</MentorNote>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 1 — MAQSAD: uch joy-qatori o'z-o'zidan yozilib chiqadi (18-qonun) =====
-// 🔴 Demo NOMLARI s9 dagi to'rt joydan ham boshqa (§135-A: bir nom — bir son), «birinchi
-//    yigirma» va «zich joy» atamalari bu ekranda YO'Q (§126) — ko'chirib olinadigan javob yo'q.
+// ===== SCREEN 1 — MAQSAD: uchta guruh-qatori o'z-o'zidan yozilib chiqadi (18-qonun) =====
+// 🔴 Demo NOMLARI s9 dagi to'rt guruhdan ham boshqa (§135-A: bir nom — bir son), «birinchi
+//    foydalanuvchilar» va «yaqin guruh» atamalari bu ekranda YO'Q (§126) — ko'chirib olinadigan javob yo'q.
+// v2 (A7): «Jami» har qator soni chiqqanda o'sadi (12 → 18 → 22) — maqsad sanoq ekanini ko'rsatadi.
 const DEMO_JOY = [
-  { ic: '🎮', nom: { uz: "O'yin guruhi", ru: 'Игровая группа' }, kim: { uz: "birga o'ynaydiganlar", ru: 'те, с кем играем вместе' }, n: 12 },
-  { ic: '👪', nom: { uz: 'Qarindoshlar', ru: 'Родственники' }, kim: { uz: "bayramda ko'rishadiganlar", ru: 'видимся на праздниках' }, n: 6 },
-  { ic: '🏠', nom: { uz: "Qo'shnilar", ru: 'Соседи' }, kim: { uz: "bir ko'chadagilar", ru: 'живём на одной улице' }, n: 4 },
+  { nom: { uz: "O'yin guruhi", ru: 'Игровая группа' }, kim: { uz: "birga o'ynaydiganlar", ru: 'те, с кем играем вместе' }, n: 12 },
+  { nom: { uz: 'Kursdoshlar', ru: "Ребята с курсов" }, kim: { uz: "kursda haftada uch marta ko'rishadiganlar", ru: "те, с кем три раза в неделю видимся на курсах" }, n: 6 },
+  { nom: { uz: "Qo'shnilar", ru: 'Соседи' }, kim: { uz: 'bir hovlidagilar', ru: "те, кто живёт в одном дворе" }, n: 4 },
 ];
-const DEMO_JAMI = DEMO_JOY.reduce((s, r) => s + r.n, 0);
-const Screen1 = ({ screen, onNext, onPrev }) => (
+// Qator soni chiqadigan vaqt (CSS --dd3 bilan bir xil: 1.32 + i*0.85 s) — shu paytda «Jami» o'sadi
+const S1_COUNT_MS = DEMO_JOY.map((_, i) => Math.round((1.32 + i * 0.85) * 1000) + 250);
+const Screen1 = ({ screen, onNext, onPrev }) => {
+  const [reduce] = useState(() => { try { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch { return false; } });
+  const [shown, setShown] = useState(reduce ? DEMO_JOY.length : 0);
+  useEffect(() => {
+    if (reduce) return;
+    const ts = S1_COUNT_MS.map((ms, i) => setTimeout(() => setShown(v => Math.max(v, i + 1)), ms));
+    return () => ts.forEach(clearTimeout);
+  }, [reduce]);
+  const jami = DEMO_JOY.slice(0, shown).reduce((sum, r) => sum + r.n, 0);
+  return (
   <Stage eyebrow={tr({ uz: 'Maqsad', ru: 'Цель' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начнём →' })} onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun birinchi yigirma odam keladigan <span className="italic" style={{ color: T.accent }}>uch joyni</span> yozasiz.</>, ru: <>Сегодня вы запишете <span className="italic" style={{ color: T.accent }}>три места</span>, откуда придут первые двадцать человек.</> })}</h2></div>
-      <Mentor>{tr({ uz: "Bu modulda botingizni qurasiz — bugun uni birinchi ishlatadigan odamlarni topamiz.", ru: 'В этом модуле вы строите бота — сегодня найдём тех, кто первым им воспользуется.' })}</Mentor>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun birinchi yigirmata foydalanuvchingiz keladigan <span className="italic" style={{ color: T.accent }}>uchta guruhni</span> yozasiz.</>, ru: <>Сегодня вы запишете <span className="italic" style={{ color: T.accent }}>три группы</span>, из которых придут ваши первые двадцать пользователей.</> })}</h2></div>
+      <Mentor>{tr({ uz: "O'tgan darsda botingizni @BotFather'da ro'yxatdan o'tkazdingiz, kodini esa keyingi darsda yozasiz. Bugun boshqa savol: botingizni birinchi bo'lib kim ishlatadi?", ru: "На прошлом уроке вы зарегистрировали бота в @BotFather, а код напишете на следующем. Сегодня другой вопрос: кто первым начнёт пользоваться вашим ботом?" })}</Mentor>
       <div className="s1demo">
-        <span className="s1demo-lbl">{tr({ uz: "🗂 Odamlar to'planadigan uch joyingiz", ru: '🗂 Три ваших места, где собираются люди' })}</span>
+        <span className="s1demo-lbl">{tr({ uz: 'Namuna: uchta guruh', ru: "Пример: три группы" })}</span>
         <div className="s1demo-list">
           {DEMO_JOY.map((r, i) => (
             <span key={tr(r.nom)} className="s1row" style={{ '--dd': `${0.5 + i * 0.85}s` }}>
-              <span className="s1row-ic" style={{ '--dd': `${0.5 + i * 0.85}s` }} aria-hidden="true">{r.ic}</span>
               <span className="s1row-t" style={{ '--dd': `${0.5 + i * 0.85}s` }}>{tr(r.nom)}</span>
               <span className="s1row-mark" style={{ '--dd2': `${0.95 + i * 0.85}s` }}>→</span>
               <span className="s1row-why" style={{ '--dd3': `${1.15 + i * 0.85}s` }}>{tr(r.kim)}</span>
@@ -751,17 +761,18 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
             </span>
           ))}
         </div>
-        <span className="s1sum mono">{tr({ uz: <>Jami: {DEMO_JAMI} odam</>, ru: <>Всего: {DEMO_JAMI} человек</> })}</span>
+        {shown > 0 && <span className="s1sum mono">{tr({ uz: <>Jami: <b className="s1sum-n" key={jami}>{jami}</b> odam</>, ru: <>Всего: <b className="s1sum-n" key={jami}>{jami}</b> человек</> })}</span>}
       </div>
       <MentorNote>{tr({ uz: "Ro'yxat yozilib bo'lgunicha gapirmang — vizual o'zi tanishtiradi.", ru: 'Пока список дописывается, не говорите — картинка представит себя сама.' })}</MentorNote>
     </div>
   </Stage>
-);
+  );
+};
 
 // ===== SCREEN 2 — TEORIYA-1: bot tayyor ↔ botni odam ishlatdi (46-qonun toggle) =====
 const S2_CARDS = [
-  { ic: '🤖', h: { uz: 'Bot tayyor', ru: 'Бот готов' }, b: { uz: "Buyruqlar ishlaydi, javob keladi. Lekin uni hali hech kim ochmagan — bot bo'sh turibdi", ru: 'Команды работают, ответ приходит. Но его ещё никто не открыл — бот стоит пустой' } },
-  { ic: '👥', h: { uz: 'Botni odam ishlatdi', ru: 'Ботом воспользовался человек' }, b: { uz: "Kimdir ochdi, yozdi, javob oldi", ru: 'Кто-то открыл, написал, получил ответ' } },
+  { h: { uz: 'Bot tayyor', ru: 'Бот готов' }, b: { uz: "Buyruqlar ishlaydi, javob keladi. Lekin uni hali hech kim ochmagan: bot bo'sh turibdi.", ru: "Команды работают, ответ приходит. Но его ещё никто не открыл: бот стоит пустой." } },
+  { h: { uz: 'Botni odam ishlatdi', ru: 'Ботом воспользовался человек' }, b: { uz: "Kimdir botni ochdi, /start bosdi va javob oldi.", ru: "Кто-то открыл бота, нажал /start и получил ответ." } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -786,22 +797,22 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     return () => clearTimeout(t);
   }, [allSeen]);
   return (
-    <Stage eyebrow={tr({ uz: 'Muhokama · ikki holat', ru: 'Обсуждение · два случая' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Откройте ещё карточек: ${qoldi}` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Muhokama · ikki holat', ru: 'Обсуждение · два случая' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yana ${qoldi} kartani oching`, ru: `Откройте ещё карточек: ${qoldi}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bot tayyor bo'ldi — endi u <span className="italic" style={{ color: T.accent }}>kimga</span> kerak?</>, ru: <>Бот готов — а <span className="italic" style={{ color: T.accent }}>кому</span> он теперь нужен?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Tasavvur qiling: kod yozilgan, tugmalar ishlayapti. Ikki kartani bosib solishtiring.', ru: 'Представьте: код написан, кнопки работают. Нажмите на обе карточки и сравните.' })}</Mentor>
+        <Mentor>{tr({ uz: "Tasavvur qiling: botingizning kodi yozilgan, tugmalar ishlayapti. Ikki kartani bosib solishtiring.", ru: "Представьте: код вашего бота написан, кнопки работают. Нажмите на обе карточки и сравните." })}</Mentor>
         <div className="dfc-grid fade-up delay-1">
           {S2_CARDS.map((c, i) => (
             <button key={tr(c.h)} type="button" className={`dfc${opened[i] ? ' open' : ''}${turnCls(lit, String(i), pend.length > 1)}`} onClick={() => toggle(i)}>
-              <span className="dfc-top"><span className="dfc-ic">{c.ic}</span><span className="dfc-h">{tr(c.h)}</span></span>
+              <span className="dfc-top"><span className="dfc-h">{tr(c.h)}</span><span className={`dfc-mark${seen[i] ? ' ok' : ''}`} aria-hidden="true">{seen[i] ? '✓' : '›'}</span></span>
               <span className="dfc-b">{opened[i] ? tr(c.b) : '· · ·'}</span>
             </button>
           ))}
         </div>
         {allSeen && (
           <div className="xul fade-step" ref={xulRef}>
-            <span className="xul-h">{tr({ uz: "Botingizni birinchi bo'lib ishlatadigan yigirmata odam — birinchi yigirma.", ru: 'Двадцать человек, которые первыми начнут пользоваться вашим ботом, — первые двадцать.' })}</span>
-            <p className="xul-b">{tr({ uz: "Ularni bot o'zi olib kelmaydi: har biriga siz aytasiz.", ru: 'Бот сам их не приведёт: каждому говорите вы.' })}</p>
+            <span className="xul-h">{tr({ uz: "Botingizni birinchi bo'lib ishlatadigan odamlar — birinchi foydalanuvchilar.", ru: "Люди, которые первыми начнут пользоваться вашим ботом, — первые пользователи." })}</span>
+            <p className="xul-b">{tr({ uz: "Ularni bot o'zi olib kelmaydi: har biriga siz aytasiz. Bugungi maqsad — yigirmata: bir-ikki odam fikr aytishga kam, yuztasiga esa bittalab aytib chiqa olmaysiz.", ru: "Бот сам их не приведёт: каждому скажете вы. Цель на сегодня — двадцать: одного-двух человек мало, чтобы услышать мнение, а сотне вы не сможете рассказать по одному." })}</p>
           </div>
         )}
       </div>
@@ -819,11 +830,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Hech kimga aytilmagan bot bir haftada nechta odam oldi", ru: 'Сколько человек за неделю получил бот, о котором никому не сказали' })}
     options={[tr({ uz: "Bir nechta — Telegram botni o'zi ko'rsatadi", ru: 'Несколько — Telegram сам показывает бота' }), tr({ uz: "Hech kim — uni topadigan odam bo'lmadi", ru: 'Никто — не нашлось человека, который бы его нашёл' }), tr({ uz: 'Ko\'p — bot qidiruvda birinchi chiqadi', ru: 'Много — бот выходит первым в поиске' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Bot o'zi odam olib kelmaydi. Birinchi odamlarga siz aytasiz, keyin ular boshqasiga aytadi.", ru: 'Бот сам людей не приводит. Первым людям говорите вы, потом они рассказывают другим.' })}
+    explainCorrect={tr({ uz: "Bot o'zi odam olib kelmaydi — birinchi odamlarga siz aytasiz.", ru: "Бот сам людей не приводит — первым людям говорите вы." })}
     explainWrong={{
-      0: tr({ uz: "Telegram yangi botlarni hech kimga ko'rsatib yurmaydi — bot shunchaki ro'yxatda turadi.", ru: 'Telegram никому не показывает новых ботов — бот просто стоит в списке.' }),
-      2: tr({ uz: 'Qidiruvda chiqish uchun ham botni kimdir izlashi kerak. Uni izlash kimning xayoliga keladi?', ru: 'Чтобы выйти в поиске, бота тоже должен кто-то искать. Кому придёт в голову его искать?' }),
-      default: tr({ uz: "Botni topadigan odam bo'lmasa, hech kim yozmaydi.", ru: 'Если некому найти бота, никто не напишет.' })
+      0: tr({ uz: "Telegram yangi botni hech kimga tavsiya qilmaydi: uni nomini bilgan odamgina qidirib topadi.", ru: "Telegram никому не советует новых ботов: найти его может только тот, кто знает его название." }),
+      2: tr({ uz: "Qidiruvda chiqish uchun ham kimdir botni izlashi kerak. Siz aytmagan botni kim izlaydi?", ru: "Чтобы бот появился в поиске, его тоже должен кто-то искать. Кто станет искать бота, о котором вы не сказали?" }),
+      default: tr({ uz: "Botni topadigan odam bo'lmasa, unga hech kim yozmaydi.", ru: "Если бота некому найти, ему никто не напишет." })
     }}
   />
 );
@@ -834,30 +845,33 @@ const Screen3 = (props) => (
 //    atama ko'rilgan hodisadan keyin YAKUN-KARTASIDA tug'iladi.
 // 🔴 Rang-qonuni (§134): halqalar rang bilan baholanmaydi — tanlangani accent, qolgani neytral.
 const HALQA_KEY = 'pm-m5d2-halqa';
-const RAQAM = ['①', '②', '③'];
+// v2: halqa raqami — matn emas, CSS doira (.hnum / .wring-badge) ichidagi oddiy raqam (① ② ③ olindi).
 // §134 rang-legendasi: indigo QUYUQLIGI = «qanchalik tez-tez ko'rishasiz». Ma'no o'quvchi
 // matnida ikki joyda aytilgan — mentor gapi («ichkarida yaqinlar, tashqarida notanishlar») va
-// har halqaning O'Z nomi (① har kuni · ② ba'zan · ③ tanimaydiganlar). Bu baho EMAS:
+// har halqaning O'Z nomi (1 har kuni · 2 ba'zan · 3 tanimaydiganlar). Bu baho EMAS:
 // uzoq halqaga qizil berilmaydi — u neytral kulrangda qoladi.
 const ZICH = ['z3', 'z2', 'z1'];
 const HALQA = [
   {
     id: 1, nom: { uz: "Har kuni ko'rishadiganlar", ru: 'Те, кого вижу каждый день' }, n: 12, r: 62,
-    qator: { uz: "Sinfdoshlar, to'garakdagilar, qo'shnilar. Ular sizni ismingiz bilan biladi", ru: 'Одноклассники, ребята из кружка, соседи. Они знают вас по имени' },
+    qator: { uz: "Yaqin sinfdoshlar, qo'shnilar, to'garakdagilar. Ismingizni biladi.", ru: "Близкие одноклассники, соседи, ребята из кружка. Знают вас по имени." },
     ishlatdi: 9, qoshildi: 8,
-    res: { uz: "Bir hafta ichida 9 odam ishlatdi. Ular yonidagilarga ko'rsatdi — yana 8 odam qo'shildi. Jami 17.", ru: 'За неделю воспользовались 9 человек. Они показали тем, кто рядом, — добавились ещё 8. Всего 17.' }
+    resH: { uz: '9 → 17 odam.', ru: "9 → 17 человек." },
+    resB: { uz: "9 odam ishlatdi, yana 8 odam qo'shildi.", ru: "Пользовались 9 человек, добавились ещё 8." }
   },
   {
     id: 2, nom: { uz: "Ba'zan ko'rishadiganlar", ru: 'Те, кого вижу иногда' }, n: 40, r: 104,
-    qator: { uz: 'Boshqa sinflar, maktabdagi tanishlar. Sizni yuzdan taniydi', ru: 'Другие классы, знакомые по школе. Знают вас в лицо' },
+    qator: { uz: 'Maktabdagi tanishlar. Yuzingizdan taniydi.', ru: "Знакомые по школе. Знают вас в лицо." },
     ishlatdi: 6, qoshildi: 2,
-    res: { uz: "Bir hafta ichida 6 odam ishlatdi. Yana qo'shilgani — 2 odam. Jami 8.", ru: 'За неделю воспользовались 6 человек. Добавились ещё 2. Всего 8.' }
+    resH: { uz: '6 → 8 odam.', ru: "6 → 8 человек." },
+    resB: { uz: "6 odam ishlatdi, yana 2 odam qo'shildi.", ru: "Пользовались 6 человек, добавились ещё 2." }
   },
   {
     id: 3, nom: { uz: 'Sizni tanimaydiganlar', ru: 'Те, кто вас не знает' }, n: 300, r: 146,
-    qator: { uz: 'Katta guruhlardagi begona odamlar. Sizni umuman bilmaydi', ru: 'Чужие люди из больших групп. Вас совсем не знают' },
+    qator: { uz: 'Katta Telegram guruhlaridagi odamlar. Sizni bilmaydi.', ru: "Люди из больших групп в Telegram. Вас не знают." },
     ishlatdi: 4, qoshildi: 0,
-    res: { uz: "Bir hafta ichida 4 odam ishlatdi. Yana qo'shilgani yo'q. Jami 4.", ru: 'За неделю воспользовались 4 человека. Никто не добавился. Всего 4.' }
+    resH: { uz: '4 → 4 odam.', ru: "4 → 4 человека." },
+    resB: { uz: "4 odam ishlatdi, yangi qo'shilgan yo'q.", ru: "Пользовались 4 человека, новых не добавилось." }
   },
 ];
 // Yonadigan nuqtalar halqa bo'ylab teng tarqaladi: 12 dan 9 tasi, 40 dan 6 tasi, 300 dan 4 tasi (§95).
@@ -929,14 +943,14 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return () => clearTimeout(t);
   }, [picked.length]); // eslint-disable-line
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
-    : !mapDone ? tr({ uz: `① Uch halqani oching (${opened.length}/3)`, ru: `① Откройте три круга (${opened.length}/3)` })
-      : tr({ uz: `② Har halqaga bir hafta bering (${picked.length}/3)`, ru: `② Дайте каждому кругу по неделе (${picked.length}/3)` });
+    : !mapDone ? tr({ uz: `Uch halqani oching (${opened.length}/3)`, ru: `Откройте три круга (${opened.length}/3)` })
+      : tr({ uz: `Har halqaga bir hafta bering (${picked.length}/3)`, ru: `Дайте каждому кругу по неделе (${picked.length}/3)` });
   const weekPct = run ? (run.phase === 'lit' ? Math.round((run.lit / Math.max(1, HALQA.find(x => x.id === run.id).ishlatdi)) * 100) : 100) : 0;
   return (
     <Stage eyebrow={tr({ uz: 'Sinov · odamlar xaritasi', ru: 'Опыт · карта людей' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.3vw,13px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sizni <span className="italic" style={{ color: T.accent }}>o'rab</span> turgan odamlar kimlar?</>, ru: <>Кто те люди, что вас <span className="italic" style={{ color: T.accent }}>окружают</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Markazda siz turasiz. Halqa — atrofingizdagi odamlar doirasi: ichkarida yaqinlar, tashqarida notanishlar.', ru: 'В центре стоите вы. Круг — это люди вокруг вас: внутри близкие, снаружи незнакомые.' })}</Mentor>
+        <Mentor>{tr({ uz: "Markazda siz turasiz, halqalarda — atrofingizdagi odamlar: ichkarida yaqinlar, tashqarida notanishlar. Avval uchala halqani oching.", ru: "В центре стоите вы, в кругах — люди вокруг вас: внутри близкие, снаружи незнакомые. Сначала откройте все три круга." })}</Mentor>
         <div className="split">
           <Col gap={9}>
             <div className="wmap fade-up delay-1">
@@ -945,7 +959,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   disabled={isMentor || !!run || (mapDone && picked.includes(h.id))}
                   className={`wring ${ZICH[i]}${opened.includes(h.id) ? ' on' : ''}${run && run.id === h.id ? ' live' : ''}${!mapDone && !opened.includes(h.id) ? waveCls(ringTurn, i, HALQA.length) : ''}`}
                   style={{ '--r': `${h.r}px`, zIndex: 10 - h.id }}>
-                  <span className="wring-badge">{RAQAM[i]}</span>
+                  <span className="wring-badge">{h.id}</span>
                 </button>
               ))}
               <span className="wdots" aria-hidden="true">
@@ -958,54 +972,59 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     style={{ '--a': `${j * (360 / Math.max(1, HALQA.find(x => x.id === run.id).qoshildi)) + 14}deg`, '--r': `${HALQA.find(x => x.id === run.id).r + 21}px` }} />
                 ))}
               </span>
-              <span className="wme" aria-hidden="true">🙋<b>{tr({ uz: 'siz', ru: 'вы' })}</b></span>
+              <span className="wme" aria-hidden="true"><b>{tr({ uz: 'siz', ru: 'вы' })}</b></span>
             </div>
           </Col>
           <Col gap={9}>
+            {/* v2 (A6): uchala halqa ochilgach qatorlar bitta «✓ Uch halqa ochildi» qatoriga yig'iladi */}
+            {!mapDone ? (
             <div className="hrings">
               {HALQA.map((h, i) => (
                 <button key={h.id} type="button" onClick={() => bosish(h.id)}
-                  disabled={isMentor || !!run || (mapDone && picked.includes(h.id))}
+                  disabled={isMentor || !!run}
                   className={`hrr ${ZICH[i]}${opened.includes(h.id) ? ' on' : ''}${run && run.id === h.id ? ' live' : ''}`}>
-                  <span className="hrr-h">{RAQAM[i]} {tr(h.nom)} <b className="mono">{tr({ uz: <>{h.n} odam</>, ru: <>{h.n} человек</> })}</b></span>
+                  <span className="hrr-h"><span className="hnum">{h.id}</span>{tr(h.nom)} <b className="mono">{tr({ uz: <>{h.n} odam</>, ru: <>{h.n} человек</> })}</b><span className={`hrr-mark${opened.includes(h.id) ? ' ok' : ''}`} aria-hidden="true">{opened.includes(h.id) ? '✓' : '›'}</span></span>
                   <span className="hrr-b">{opened.includes(h.id) ? tr(h.qator) : '· · ·'}</span>
                 </button>
               ))}
             </div>
+            ) : (
+              <div className="hrr-fold fade-step">{tr({ uz: '✓ Uch halqa ochildi', ru: "✓ Три круга открыты" })} <span className="mono">· {HALQA.map(h => h.n).join(' · ')}</span></div>
+            )}
             {mapDone && !done && (
               <div className="thr fade-step">
-                <p className="flow-label">{tr({ uz: '🗓 Bir hafta', ru: '🗓 Одна неделя' })}</p>
-                <span className="thr-q">{tr({ uz: 'Bir hafta vaqtingiz bor. Bot haqida qaysi halqadagilarga aytasiz?', ru: 'У вас есть одна неделя. Людям из какого круга расскажете о боте?' })}</span>
+                <p className="flow-label">{tr({ uz: 'Bir hafta', ru: "Одна неделя" })}</p>
+                <span className="thr-q">{tr({ uz: "Har halqaga bir hafta bering: bot haqida faqat o'sha halqadagilarga aytasiz. Qaysi biridan boshlaysiz?", ru: "Дайте каждому кругу по неделе: о боте вы рассказываете только людям из этого круга. С какого начнёте?" })}</span>
                 <div className="thr-btns">
                   {HALQA.map((h, i) => (
                     <button key={h.id} type="button" disabled={isMentor || !!run || picked.includes(h.id)}
                       className={`thr-b ${ZICH[i]}${picked.includes(h.id) ? ' used' : ''}${run && run.id === h.id ? ' live' : ''}${!picked.includes(h.id) && !run ? waveCls(weekTurn, i, HALQA.length) : ''}`}
-                      onClick={() => bosish(h.id)}>{RAQAM[i]} {tr(h.nom)}{tr({ uz: 'ga', ru: '' })}</button>
+                      onClick={() => bosish(h.id)}><span className="hnum">{h.id}</span>{tr(h.nom)}{tr({ uz: 'ga', ru: '' })}</button>
                   ))}
                 </div>
                 {run && <span className="wweek" aria-hidden="true"><i style={{ width: `${weekPct}%` }} /></span>}
-                {run && <p className="bhint">{tr({ uz: "🗓 Bir hafta o'tmoqda…", ru: '🗓 Неделя идёт…' })}</p>}
-                {tip && <p className="bhint fade-step">{tr({ uz: '🤔 Boshqa halqaga ham bir hafta berib, natijani solishtiring.', ru: '🤔 Дайте неделю и другому кругу — сравните результат.' })}</p>}
+                {run && <p className="bhint">{tr({ uz: "Bir hafta o'tmoqda…", ru: "Неделя идёт…" })}</p>}
+                {tip && <p className="bhint fade-step">{tr({ uz: 'Qolgan halqalarga ham bir hafta bering.', ru: "Дайте неделю и остальным кругам." })}</p>}
               </div>
             )}
             {natijalar.length > 0 && (
               <div className="thr-res" ref={resRef}>
                 {/* §134: natija rang bilan baholanmaydi — uchala qator ham bir xil neytral */}
                 {natijalar.map(h => (
-                  <span key={h.id} className="res-line"><b>{RAQAM[h.id - 1]}</b> {tr(h.res)}</span>
+                  <span key={h.id} className="res-line two"><span className="hnum">{h.id}</span><span className="res-tx"><b>{tr(h.resH)}</b><span className="res-sub">{tr(h.resB)}</span></span></span>
                 ))}
               </div>
             )}
             {done && (
               <div className="xul fade-step" ref={xulRef}>
-                <span className="xul-h">{tr({ uz: "Odamlar bir-birini har kuni ko'radigan joy — zich joy.", ru: 'Место, где люди видят друг друга каждый день, — тесное место.' })}</span>
-                <p className="xul-b">{tr({ uz: "Zich joyda bitta odam botni ochsa, qolganlari ko'radi va o'zlari ham ochadi. Birinchi yigirma shunday joydan yig'iladi.", ru: 'Если в тесном месте бота откроет один, остальные увидят и откроют сами. Первые двадцать собираются из такого места.' })}</p>
+                <span className="xul-h">{tr({ uz: "Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — yaqin guruh.", ru: "Люди, которые вас знают и часто видят друг друга, — близкая группа." })}</span>
+                <p className="xul-b">{tr({ uz: "Bitta odam botni ochadi → yonidagilar ko'radi → ular ham ochadi. Birinchi foydalanuvchilar shunday guruhlardan keladi.", ru: "Один человек открывает бота → те, кто рядом, видят → они тоже открывают. Первые пользователи приходят из таких групп." })}</p>
               </div>
             )}
           </Col>
         </div>
         {done && <StudentPracticePulse live={live} screen={screen} />}
-        <MentorPracticeStats live={live} screen={screen} label={{ uz: '🎯 Uchala halqaga hafta berganlar', ru: '🎯 Дали неделю всем трём кругам' }} />
+        <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Uchala halqaga hafta berganlar', ru: "Дали неделю всем трём кругам" }} />
         <MentorNote>{tr({ uz: "Bolalar odatda uchinchi halqani bosadi — «u yerda odam ko'p». Uchalasi bosilgach so'rang: birinchi halqada 12 odam bor edi, natija esa 17 — bu qo'shimcha odamlar qayerdan keldi? Javobni siz aytmang, bolalar natija-qatoridan o'zi o'qiydi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Дети обычно нажимают третий круг — «там людей много». Когда нажаты все три, спросите: в первом круге было 12 человек, а результат — 17. Откуда взялись лишние люди? Ответ не говорите — дети сами прочитают его в строке результата. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
     </Stage>
@@ -1015,70 +1034,64 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · tanish va notanish', ru: 'Проверка · знакомые и незнакомые' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Xabarni 15 tanishga va 500 notanishga yubordingiz. Ertasiga ko'proq javob qayerdan keladi?", ru: 'Вы отправили сообщение 15 знакомым и 500 незнакомым. Откуда назавтра придёт больше ответов?' })} />}
-    questionText={tr({ uz: "Tanishlar va notanishlardan qaysi tomon ko'proq javob beradi", ru: 'Кто ответит больше — знакомые или незнакомые' })}
-    options={[tr({ uz: "O'n beshtasidan — ular xabarni yonidagiga ko'rsatadi", ru: 'От пятнадцати — они покажут сообщение тем, кто рядом' }), tr({ uz: "Besh yuztasidan — xabarni ko'rgan odam ko'p bo'ladi", ru: 'От пятисот — сообщение увидит больше людей' }), tr({ uz: 'Ikkalasidan teng — xabar ikkalasiga ham yetdi', ru: 'Поровну — сообщение дошло до обеих сторон' })]}
+    question={<TestQ ask={tr({ uz: "Bot havolasini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam qaysi tomondan keladi?", ru: "Вы отправили ссылку на бота 15 знакомым и 500 незнакомым. С какой стороны назавтра к боту придёт больше людей?" })} />}
+    questionText={tr({ uz: "Bot havolasi 15 tanish va 500 notanishga yuborilsa, botga ko'proq odam qaysi tomondan keladi", ru: "Ссылку на бота отправили 15 знакомым и 500 незнакомым — с какой стороны к боту придёт больше людей" })}
+    options={[tr({ uz: "O'n beshtasidan — ular havolani yonidagilarga ko'rsatadi", ru: "От пятнадцати — они покажут ссылку тем, кто рядом" }), tr({ uz: "Besh yuztasidan — havolani ko'rgan odam ko'proq bo'ladi", ru: "От пятисот — ссылку увидит больше людей" }), tr({ uz: 'Ikkalasidan teng — havola ikkalasiga ham yetib bordi', ru: "Поровну — ссылка дошла до обеих сторон" })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Har kuni ko'rishadiganlar xabarni yonidagiga ko'rsatadi; notanishlar orasida u bitta odamda qolib ketadi.", ru: 'Те, кого вы видите каждый день, покажут сообщение соседу; среди незнакомых оно застрянет у одного человека.' })}
+    explainCorrect={tr({ uz: "Tanishlar havolani ochib, yonidagilarga ko'rsatadi; notanishlarda u odatda qolib ketadi.", ru: "Знакомые откроют ссылку и покажут тем, кто рядом; у незнакомых она обычно застревает." })}
     explainWrong={{
-      1: tr({ uz: "Xabarni ko'rgan odam ko'p, lekin ular sizni tanimaydi — xabar o'sha yerda to'xtaydi.", ru: 'Сообщение увидят многие, но они вас не знают — там оно и остановится.' }),
-      2: tr({ uz: "Xabar ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagiga ko'rsatadi, notanishlar esa yo'q.", ru: 'Сообщение дошло до обеих сторон. Разница в том, что знакомые покажут его соседу, а незнакомые — нет.' }),
-      default: tr({ uz: "Tanishlar tomonidan ko'proq odam yozadi — ular bir-birini ko'rib turadi.", ru: 'Со стороны знакомых напишет больше людей — они видят друг друга.' })
+      1: tr({ uz: "Havolani ko'rgan odam ko'p, lekin ular sizni tanimaydi — ko'pchiligi uni ochmaydi ham.", ru: "Ссылку увидят многие, но они вас не знают — большинство её даже не откроет." }),
+      2: tr({ uz: "Havola ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.", ru: "Ссылка дошла до обеих сторон. Разница в том, что знакомые покажут её тем, кто рядом, а незнакомые обычно не покажут." }),
+      default: tr({ uz: "Odatda tanishlardan ko'proq odam keladi: ular bir-birini ko'rib turadi.", ru: "Обычно от знакомых приходит больше людей: они видят друг друга." })
     }}
   />
 );
-// ===== SCREEN 6 — KEYS (K8 · Facebook): 4 slayd + 2 bashorat + ko'prik (33/56/91b-qonun) =====
-// 🔴 Bosqich-hisoblagichi UZLUKSIZ: kartada har bosqichda «n / 7» (Stage eyebrow takrorlanmaydi),
+// ===== SCREEN 6 — KEYS (K8 · Facebook): 3 slayd + 2 bashorat (33/56/91b-qonun) =====
+// 🔴 Bosqich-hisoblagichi UZLUKSIZ: kartada har bosqichda «n / 5» (Stage eyebrow takrorlanmaydi),
 //    bashorat javobidan keyin ham yo'qolmaydi (naqsh: PmLesson9 s6).
 // 🔴 Ikki bashorat IKKI o'lchovda: (1) tarqalish tezligi, (2) dunyoga ochilish vaqti —
 //    birinchisi ikkinchisining javobini oshkor qilmaydi (17-ov c).
-// 🔴 Ko'prik-gap ALOHIDA bosqich (7/7) — u darsning o'z ishiga bog'laydi.
+// v2 (30.09): 7 → 5 bosqich — eski 3-bosqich (1-bashorat natijasi takrori) va eski 6-bosqichdagi
+//    sana gapi (2-bashorat takrori) olindi; «Butun dunyoga» va ko'prik 5-bosqichga birlashdi.
+//    Bashorat indekslari (ans 1 · 1) o'zgarmagan. Bosqich emojilari olindi — kartada raqam qoladi.
 const KEYS_STEPS = [
   {
-    ic: '🎓', h: { uz: '2004-yil', ru: '2004 год' },
-    body: { uz: <>Bitta universitetda oddiy sayt ochildi. Unga <b>faqat o'sha universitet talabalari</b> yozila olardi — boshqalar ro'yxatdan o'ta olmasdi.</>, ru: <>В одном университете открылся простой сайт. Записаться на него могли <b>только студенты этого университета</b> — остальные не могли зарегистрироваться.</> }
+    h: { uz: '2004-yil', ru: '2004 год' },
+    body: { uz: <>AQShdagi bitta universitetda oddiy sayt ochildi. Unga <b>faqat o'sha universitet talabalari</b> yozila olardi.</>, ru: <>В одном университете в США открылся простой сайт. Записаться на него могли <b>только студенты этого университета</b>.</> }
   },
   {
     predict: {
       ask: { uz: 'Sayt faqat bitta universitetda ochiq edi. Sizningcha, u yerda qanday tarqaldi?', ru: 'Сайт был открыт только в одном университете. Как, по-вашему, он там расходился?' },
       chips: [
-        { ic: '🐢', t: { uz: "Sekin — har kim o'zi qidirib topdi", ru: 'Медленно — каждый искал и находил сам' } },
-        { ic: '⚡', t: { uz: "Tez — u yerda hamma o'ziniki edi", ru: 'Быстро — там все были свои' } },
-        { ic: '🚫', t: { uz: 'Tarqalmadi — odam soni kam edi', ru: 'Не разошёлся — людей было мало' } },
+        { t: { uz: "Sekin — har kim o'zi qidirib topdi", ru: 'Медленно — каждый искал и находил сам' } },
+        { t: { uz: 'Tez — u yerda hamma bir-birini tanirdi', ru: "Быстро — там все знали друг друга" } },
+        { t: { uz: 'Tarqalmadi — odam soni kam edi', ru: 'Не разошёлся — людей было мало' } },
       ],
       ans: 1,
-      hit: { uz: "🎯 Topdingiz! Tez — u yerda hamma o'ziniki edi", ru: '🎯 Угадали! Быстро — там все были свои' },
-      miss: { uz: "Adashdingiz — asl javob: tez, u yerda hamma o'ziniki edi", ru: 'Не угадали — верный ответ: быстро, там все были свои' }
+      hit: { uz: 'Topdingiz: tez — u yerda hamma bir-birini tanirdi.', ru: "Угадали: быстро — там все знали друг друга." },
+      miss: { uz: 'Adashdingiz — asl javob: tez, u yerda hamma bir-birini tanirdi.', ru: "Не угадали — верный ответ: быстро, там все знали друг друга." }
     }
   },
   {
-    ic: '🔥', h: { uz: 'Sayt tez tarqaldi', ru: 'Сайт быстро разошёлся' },
-    body: { uz: <>Universitetdagilar uni «o'zimizniki» deb ishlata boshladi.</>, ru: <>В университете им стали пользоваться как «своим».</> }
+    h: { uz: 'Keyin boshqa universitetlar', ru: 'Потом другие университеты' },
+    body: { uz: <>Sayt boshqa universitetlarga birin-ketin ochildi, 2005-yilda — maktablarga ham.</>, ru: <>Сайт по очереди открылся для других университетов, а в 2005 году — и для школ.</> }
   },
   {
     predict: {
       ask: { uz: 'Sayt butun dunyoga qachon ochilgan?', ru: 'Когда сайт открылся для всего мира?' },
       chips: [
-        { ic: '📅', t: { uz: "O'sha yilning o'zida ochilgan", ru: 'В том же году' } },
-        { ic: '🗓', t: { uz: 'Ikki yildan keyin ochilgan', ru: 'Через два года' } },
-        { ic: '⏳', t: { uz: 'Bir necha oydan keyin ochilgan', ru: 'Через несколько месяцев' } },
+        { t: { uz: "O'sha yilning o'zida", ru: "В том же году" } },
+        { t: { uz: 'Ikki yarim yildan keyin', ru: "Через два с половиной года" } },
+        { t: { uz: 'Bir necha oydan keyin', ru: "Через несколько месяцев" } },
       ],
       ans: 1,
-      hit: { uz: '🎯 Topdingiz! Ikki yildan keyin ochilgan', ru: '🎯 Угадали! Через два года' },
-      miss: { uz: 'Adashdingiz — asl javob: ikki yildan keyin ochilgan', ru: 'Не угадали — верный ответ: через два года' }
+      hit: { uz: 'Topdingiz: ikki yarim yildan keyin, 2006-yilda.', ru: "Угадали: через два с половиной года, в 2006 году." },
+      miss: { uz: 'Adashdingiz — asl javob: ikki yarim yildan keyin, 2006-yilda.', ru: "Не угадали — верный ответ: через два с половиной года, в 2006 году." }
     }
   },
   {
-    ic: '🏫', h: { uz: 'Keyin boshqa universitetlar', ru: 'Потом другие университеты' },
-    body: { uz: <>Sayt boshqa universitetlarga ochildi — bittalab, joyma-joy.</>, ru: <>Сайт открылся для других университетов — по одному, место за местом.</> }
-  },
-  {
-    ic: '🌍', h: { uz: 'Butun dunyoga', ru: 'Для всего мира' },
-    body: { uz: <>Butun dunyoga sayt ikki yil o'tib ochildi. Bugun uni <b>Facebook</b> nomi bilan bilamiz. Bu voqeada odam soni emas — odamlarning bir-birini tanishi ish bergan.</>, ru: <>Для всего мира сайт открылся спустя два года. Сегодня мы знаем его под именем <b>Facebook</b>. В этой истории сработало не число людей, а то, что люди знали друг друга.</> }
-  },
-  {
-    bridge: true, ic: '🌉',
-    body: { uz: <>Facebook birinchi odamlarni butun dunyodan qidirmagan — bitta zich joydan boshlagan, keyin joyma-joy kengaygan. Sizda ham shunday joylar bor. Endi ularni o'zingiz yozasiz.</>, ru: <>Facebook не искал первых людей по всему миру — начал с одного тесного места, потом расширялся место за местом. У вас тоже есть такие места. Теперь вы запишете их сами.</> }
+    h: { uz: 'Bu sayt — Facebook', ru: "Этот сайт — Facebook" },
+    body: { uz: <>Bu voqeada odam soni emas, odamlarning bir-birini tanishi ish bergan. Sizda ham shunday guruhlar bor — bitta savoldan keyin ularni yozasiz.</>, ru: <>В этой истории сработало не число людей, а то, что люди знали друг друга. У вас тоже есть такие группы — после одного вопроса вы их запишете.</> }
   },
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1096,12 +1109,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const betHint = useTurnHint(betPending && !isMentorK);
   const showSlide = !c.predict;
   return (
-    <Stage eyebrow={tr({ uz: '👥 Biznes olamidan · Facebook', ru: '👥 Из мира бизнеса · Facebook' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${KEYS_STEPS.length})`, ru: `Следующий шаг (${i + 1}/${KEYS_STEPS.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
+    <Stage eyebrow={tr({ uz: 'Biznes olamidan · bitta sayt tarixi', ru: "Из мира бизнеса · история одного сайта" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${KEYS_STEPS.length})`, ru: `Следующий шаг (${i + 1}/${KEYS_STEPS.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu sayt birinchi odamlarni <span className="italic" style={{ color: T.accent }}>qayerdan</span> olgan?</>, ru: <><span className="italic" style={{ color: T.accent }}>Откуда</span> этот сайт взял первых людей?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu sayt birinchi foydalanuvchilarini <span className="italic" style={{ color: T.accent }}>qayerdan</span> olgan?</>, ru: <><span className="italic" style={{ color: T.accent }}>Откуда</span> этот сайт взял первых пользователей?</> })}</h2></div>
         {c.predict && (
           <div className={`kp-bet fade-step${bet !== undefined ? ' answered' : ''}`} key={`b${i}`}>
-            <span className="k-slide-eyebrow">{bet === undefined ? <>{tr({ uz: "🎲 Avval o'zingiz belgilab ko'ring", ru: '🎲 Сначала попробуйте отметить сами' })} · </> : null}{i + 1} / {KEYS_STEPS.length}</span>
+            <span className="k-slide-eyebrow">{bet === undefined ? <>{tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: "Сначала попробуйте отметить сами" })} · </> : null}{i + 1} / {KEYS_STEPS.length}</span>
             <h3 className="k-slide-h">{tr(c.predict.ask)}</h3>
             <div className="kp-chips">
               {c.predict.chips.map((ch, k) => {
@@ -1112,7 +1125,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 else cls += waveCls(betHint, k, c.predict.chips.length);
                 return (
                   <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
-                    <span className="kp-ic">{ch.ic}</span>{tr(ch.t)}
+                    {tr(ch.t)}
                     {locked && isAns && <span className="kp-mark ok">✓</span>}
                     {locked && !isAns && bet === k && !isMentorK && <span className="kp-mark no">✗</span>}
                   </button>
@@ -1129,7 +1142,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {showSlide && (
           <div className="k-slide fade-step" key={`s${i}`}>
             <span className="k-slide-eyebrow">{i + 1} / {KEYS_STEPS.length}</span>
-            <div className="k-slide-ic">{c.ic}</div>
             {c.h && <h3 className="k-slide-h">{tr(c.h)}</h3>}
             <p className="k-slide-body">{tr(c.body)}</p>
           </div>
@@ -1145,7 +1157,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 const Screen7 = (props) => (
-  <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · bitta joydan', ru: 'Проверка · из одного места' })} scope="module-mikro"
+  <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · bitta universitet', ru: "Проверка · один университет" })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Sayt bitta universitetda tez tarqaldi. Buni nima tezlashtirdi?", ru: 'Сайт быстро разошёлся в одном университете. Что это ускорило?' })} />}
     questionText={tr({ uz: "Sayt bitta universitetda nega tez tarqaldi", ru: 'Почему сайт быстро разошёлся в одном университете' })}
@@ -1154,19 +1166,21 @@ const Screen7 = (props) => (
     explainCorrect={tr({ uz: "Saytga faqat o'sha universitetdagilar kira olardi, ular esa bir-birini har kuni ko'rardi.", ru: 'На сайт могли зайти только студенты этого университета, а они видели друг друга каждый день.' })}
     explainWrong={{
       0: tr({ uz: "Odam soni emas: saytga faqat o'sha universitetdagilar yozila olardi, butun shahar emas.", ru: 'Дело не в числе людей: записаться могли только из этого университета, а не весь город.' }),
-      1: tr({ uz: 'Butun dunyoga sayt ikki yildan keyin ochilgan — birinchi kuni emas.', ru: 'Для всего мира сайт открылся через два года — не в первый день.' }),
-      default: tr({ uz: "Sabab bitta: u yerdagilar bir-birini kunda ko'rardi — yangilikni yonidagiga aytardi.", ru: 'Причина одна: люди там видели друг друга каждый день — и рассказывали новость соседу.' })
+      1: tr({ uz: 'Butun dunyo uchun sayt ikki yarim yildan keyin ochilgan — birinchi kuni emas.', ru: "Для всего мира сайт открылся через два с половиной года — не в первый день." }),
+      default: tr({ uz: "Sabab bitta: u yerdagilar bir-birini har kuni ko'rardi va yangilikni yonidagiga aytardi.", ru: "Причина одна: люди там видели друг друга каждый день и рассказывали новость тем, кто рядом." })
     }}
   />
 );
 
-// ===== SCREEN 8 — YOZISH-EKRANI: uchta joy, bittalab (48/80/85/92/106d-qonun) =====
+// ===== SCREEN 8 — YOZISH-EKRANI: uchta guruh, bittalab (48/80/85/92/106d-qonun) =====
+// v2: o'quvchi ko'radigan so'z «guruh»; ichki o'zgaruvchi nomlari (joy) va chiqish-artefakt kaliti
+//    (kanallar[].kanal · kim · nechta) O'ZGARMAGAN — 8-dars shu kalitni o'qiydi.
 // 🔴 Kirish-artefakt YO'Q (modul boshi): tasma ham, zaxira-gap ham chizilmaydi (§69).
 const DRAFT_KEY = 'pm-m5d2-draft';
 const JOY_QADAM = [
-  { n: 1, nom: { uz: '1-joy', ru: '1-е место' } },
-  { n: 2, nom: { uz: '2-joy', ru: '2-е место' } },
-  { n: 3, nom: { uz: '3-joy', ru: '3-е место' } },
+  { n: 1, nom: { uz: '1-guruh', ru: "1-я группа" } },
+  { n: 2, nom: { uz: '2-guruh', ru: "2-я группа" } },
+  { n: 3, nom: { uz: '3-guruh', ru: "3-я группа" } },
 ];
 const M_APO = "['\u02BB\u2019]";
 const normJoy = (s) => s.toLowerCase().replace(new RegExp(M_APO, 'g'), "'").replace(/\s+/g, ' ').trim();
@@ -1241,14 +1255,14 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const t = setTimeout(() => { if (xulRef.current) xulRef.current.scrollIntoView({ behavior: kam ? 'auto' : 'smooth', block: 'nearest' }); }, 320);
     return () => clearTimeout(t);
   }, [done]);
-  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : list.length === 0 ? tr({ uz: '① Birinchi joyingizni yozing', ru: '① Запишите первое место' }) : tr({ uz: `② Yana ${3 - list.length} joy qoldi`, ru: `② Осталось мест: ${3 - list.length}` });
-  const needTxt = !joyOk ? tr({ uz: 'joy nomi yozilmagan', ru: 'не записано название места' }) : !kimOk ? tr({ uz: 'kimlar borligi yozilmagan', ru: 'не записано, кто там есть' }) : sonVal === null ? tr({ uz: 'odam soni yozilmagan', ru: 'не записано число людей' }) : '';
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : list.length === 0 ? tr({ uz: 'Birinchi guruhingizni yozing', ru: "Запишите первую группу" }) : tr({ uz: `Yana ${3 - list.length} guruh qoldi`, ru: `Осталось групп: ${3 - list.length}` });
+  const needTxt = !joyOk ? tr({ uz: 'guruh nomi yozilmagan', ru: "не записано название группы" }) : !kimOk ? tr({ uz: 'kimlar borligi yozilmagan', ru: 'не записано, кто там есть' }) : sonVal === null ? tr({ uz: 'odam soni yozilmagan', ru: 'не записано число людей' }) : '';
   const specOk = [list.length >= 3, list.length > 0 && list.every(r => Number(r.nechta) > 0), list.length > 0 && list.every(r => !umumiyMi(r.kim))];
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · uch joy', ru: 'Самостоятельная работа · три места' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish · uchta guruh', ru: "Самостоятельная работа · три группы" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchta <span className="italic" style={{ color: T.accent }}>joyingizni</span> yozing.</>, ru: <>Запишите три <span className="italic" style={{ color: T.accent }}>своих места</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Zich joyni eslang: odamlar bir-birini har kuni ko'radigan joy.", ru: 'Вспомните тесное место: там люди видят друг друга каждый день.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchta <span className="italic" style={{ color: T.accent }}>guruhingizni</span> yozing.</>, ru: <>Запишите три <span className="italic" style={{ color: T.accent }}>свои группы</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Yaqin guruhni eslang: sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.", ru: "Вспомните близкую группу: люди, которые вас знают и часто видят друг друга." })}</Mentor>
         {/* 80a: havoda uch doira — nechanchi joyni yozayotgani ko'rinib turadi */}
         <div className="stps fade-up">
           {JOY_QADAM.map((m, k) => (
@@ -1259,8 +1273,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col gap={9}>
             {(!done || edit !== null) && (
               <div className="wsp-ed">
-                <input className={`reflect-input${joyOk ? ' filled' : ''}`} value={joy} maxLength={48} aria-label={tr({ uz: 'Qaysi joy?', ru: 'Какое место?' })} placeholder={tr({ uz: 'Qaysi joy?', ru: 'Какое место?' })} onChange={e => setJoy(e.target.value)} />
-                <input className={`reflect-input${kimTurn ? ' await' : ''}${kimOk ? ' filled' : ''}`} value={kim} maxLength={90} aria-label={tr({ uz: 'U yerda kimlar bor?', ru: 'Кто там есть?' })} placeholder={tr({ uz: 'U yerda kimlar bor?', ru: 'Кто там есть?' })}
+                <input className={`reflect-input${joyOk ? ' filled' : ''}`} value={joy} maxLength={48} aria-label={tr({ uz: 'Qaysi guruh?', ru: "Какая группа?" })} placeholder={tr({ uz: 'Qaysi guruh?', ru: "Какая группа?" })} onChange={e => setJoy(e.target.value)} />
+                <input className={`reflect-input${kimTurn ? ' await' : ''}${kimOk ? ' filled' : ''}`} value={kim} maxLength={90} aria-label={tr({ uz: 'Unda kimlar bor?', ru: "Кто в ней есть?" })} placeholder={tr({ uz: 'Unda kimlar bor?', ru: "Кто в ней есть?" })}
                   onFocus={() => setKimFocus(true)} onBlur={() => setKimFocus(false)} onChange={e => setKim(e.target.value)} />
                 <div className="numrow">
                   <input className={`reflect-input num-in${sonVal !== null ? ' filled' : ''}`} value={son} maxLength={4} inputMode="numeric" aria-label={tr({ uz: 'Nechta odam?', ru: 'Сколько человек?' })} placeholder={tr({ uz: 'Nechta?', ru: 'Сколько?' })}
@@ -1268,10 +1282,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span className="numrow-u">{tr({ uz: 'odam', ru: 'чел.' })}</span>
                 </div>
                 {/* 106d: ikki tomonlama javob — bloklamaydi, yo'naltiradi */}
-                {sonVal === null && son.trim().length > 0 && <p className="sfb ask">{tr({ uz: '🤔 Nechta odam? Sonini yozing.', ru: '🤔 Сколько человек? Напишите число.' })}</p>}
-                {kimUmumiy && <p className="sfb ask">{tr({ uz: "🤔 Bu hali javob emas. U yerda kimlar bor: sinfdoshlarmi, qo'shnilarmi, to'garakdagilarmi? Shuni yozing.", ru: '🤔 Это ещё не ответ. Кто там есть: одноклассники, соседи, ребята из кружка? Напишите это.' })}</p>}
-                {kattaSon && <p className="sfb ask">{tr({ uz: "🤔 Bu joyda odam ko'p. Ularning nechtasi sizni taniydi? O'sha sonni yozing.", ru: '🤔 В этом месте людей много. Сколько из них знают вас? Напишите это число.' })}</p>}
-                {canSave && !kimUmumiy && !kattaSon && <p className="sfb ok">{tr({ uz: "✅ Bu joydagi odamlarni siz o'zingiz taniysiz.", ru: '✅ Людей в этом месте вы знаете сами.' })}</p>}
+                {sonVal === null && son.trim().length > 0 && <p className="sfb ask">{tr({ uz: 'Nechta odam? Sonini yozing.', ru: "Сколько человек? Напишите число." })}</p>}
+                {kimUmumiy && <p className="sfb ask">{tr({ uz: "Aniqroq yozing: guruhda kimlar bor — sinfdoshlarmi, qo'shnilarmi, to'garakdagilarmi?", ru: "Напишите точнее: кто в группе — одноклассники, соседи, ребята из кружка?" })}</p>}
+                {kattaSon && <p className="sfb ask">{tr({ uz: "Bu guruhda odam ko'p. Ularning nechtasi sizni taniydi? O'sha sonni yozing.", ru: "В этой группе людей много. Сколько из них знают вас? Напишите это число." })}</p>}
+                {canSave && !kimUmumiy && !kattaSon && <p className="sfb ok">{tr({ uz: "Guruh, kimlar va odam soni yozildi — saqlashingiz mumkin.", ru: "Группа, кто в ней есть и число людей записаны — можно сохранять." })}</p>}
                 <div className="wsp-saverow">
                   <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? tr({ uz: '✓ Saqlash', ru: '✓ Сохранить' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
                   {!canSave && needTxt && <span className="wsp-need">{needTxt}</span>}
@@ -1281,10 +1295,9 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* 80c: yozilganlar yozish paytida ko'rinmaydi; uchtasi tayyor bo'lgach ro'yxat ochiladi */}
             {done && edit === null && (
               <div className="wsp-list fade-step" ref={xulRef}>
-                <span className="wsp-list-h">{tr({ uz: '🗂 Uch joyingiz', ru: '🗂 Три ваших места' })}</span>
+                <span className="wsp-list-h">{tr({ uz: 'Uchta guruhingiz', ru: "Ваши три группы" })}</span>
                 {list.slice(0, 3).map((r, k) => (
                   <span key={k} className="wsp-item">
-                    <span className="wsp-item-m">📍</span>
                     <span className="wsp-item-t"><b>{r.joy}</b> → {r.kim} → {r.nechta} {tr({ uz: 'odam', ru: 'чел.' })}</span>
                     <button type="button" className="wsp-item-edit" title={tr({ uz: 'Tahrirlash', ru: 'Изменить' })} onClick={() => startEdit(k)}>✎</button>
                   </span>
@@ -1294,62 +1307,56 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col gap={9}>
             <div className="wsp-task">
-              <span className="wsp-task-lbl">{tr({ uz: '🎯 Topshiriq', ru: '🎯 Задание' })}</span>
-              {JOY_QADAM.map((m, k) => (
-                <span key={m.n} className={`wsp-task-row${list.length > k ? ' done' : ''}`}>
-                  <span>📍 {tr(m.nom)}</span>
-                  {list[k] && <span className="wsp-task-m mono" aria-hidden="true">{list[k].nechta}</span>}
-                </span>
-              ))}
+              <span className="wsp-task-lbl">{tr({ uz: 'Topshiriq', ru: "Задание" })}</span>
               <div className="spec">
-                {[tr({ uz: 'Uchta joy yozilgan', ru: 'Записаны три места' }), tr({ uz: 'Har joyda odam soni', ru: 'В каждом — число людей' }), tr({ uz: 'Har joyda kimlar borligi', ru: 'В каждом — кто там есть' })].map((t, k) => (
+                {[tr({ uz: 'Uchta guruh yozilgan', ru: "Записаны три группы" }), tr({ uz: 'Har guruhda odam soni', ru: "В каждой группе — число людей" }), tr({ uz: 'Har guruhda kimlar borligi', ru: "В каждой группе — кто в ней есть" })].map((t, k) => (
                   <span key={t} className={`spec-c${specOk[k] ? ' ok' : ''}`}>{specOk[k] ? '✓' : '○'} {t}</span>
                 ))}
               </div>
               {/* 106c-b: holat ko'rsatkichi va §131: yig'iladigan natija har qadamda sanaladi */}
               <span className="wsp-sum mono">{done ? tr({ uz: `Jami: ${jami} odam`, ru: `Всего: ${jami} чел.` }) : tr({ uz: `Hozircha: ${jami} odam`, ru: `Пока: ${jami} чел.` })}</span>
-              {done && jami < 20 && <span className="wsp-need">{tr({ uz: 'Yigirmaga yetmadi — ✎ tugmasini bosib biror joydagi odam sonini qayta sanang.', ru: 'До двадцати не дотянули — нажмите ✎ и пересчитайте людей в каком-нибудь месте.' })}</span>}
+              {done && jami < 20 && <span className="wsp-need">{tr({ uz: 'Yigirmaga yetmadi — bu ham natija. Kod yozganingizda u yana nechta odam kerakligini sanab beradi.', ru: "До двадцати не дотянули — это тоже результат. Когда напишете код, он посчитает, сколько ещё человек нужно." })}</span>}
             </div>
             <div className="wsxrow">
               <div className={`wsx ${yordamOpen ? 'open' : ''}`}>
-                <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
+                <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                 {yordamOpen && <div className="wsx-body"><p>{tr({ uz: "Bu odamlarni haftada necha marta ko'rasiz?", ru: 'Сколько раз в неделю вы видите этих людей?' })}</p><p>{tr({ uz: 'Ular sizni ismingiz bilan biladimi?', ru: 'Они знают вас по имени?' })}</p></div>}
               </div>
               <div className={`wsx star ${starOpen ? 'open' : ''}`}>
-                <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>{tr({ uz: "⭐ Qo'shimcha", ru: '⭐ Дополнительно' })} {starOpen ? '▾' : '▸'}</button>
-                {starOpen && <div className="wsx-body"><p>{tr({ uz: "Odam soni eng ko'p joyingizni oling. Agar ularning yarmi botni ochmasa, uchala joydan jami nechta odam qoladi? Javobni ovoz chiqarib ayting.", ru: 'Возьмите место, где людей больше всего. Если половина из них не откроет бота, сколько человек останется из всех трёх мест? Скажите ответ вслух.' })}</p></div>}
+                <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>{tr({ uz: "Qo'shimcha", ru: "Дополнительно" })} {starOpen ? '▾' : '›'}</button>
+                {starOpen && <div className="wsx-body"><p>{tr({ uz: "Odam soni eng ko'p guruhingizni oling. Agar ularning yarmi botni ochmasa, uchala guruhdan jami nechta odam qoladi? Javobni ovoz chiqarib ayting.", ru: "Возьмите группу, где больше всего людей. Если половина из них не откроет бота, сколько человек останется во всех трёх группах? Скажите ответ вслух." })}</p></div>}
               </div>
             </div>
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Uch joyni yozganlar', ru: '✍️ Записали три места' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Uchta guruhni yozganlar', ru: "Записали три группы" }} />
           </Col>
         </div>
-        {done && edit === null && <div className="done-mini fade-step">{tr({ uz: '✅ Uch joyingiz saqlandi', ru: '✅ Три ваших места сохранены' })} <span className="dm-sub">{tr({ uz: '— har birida kimlar borligi va odam soni bor', ru: '— в каждом есть, кто там, и число людей' })}</span></div>}
-        <MentorNote>{tr({ uz: "«Butun maktab», «Telegramdagi hamma» kabi katta joylar chiqadi — eng foydali xato. Javob-qatori uni tutadi; siz uchinchi halqa natijasini eslating: 300 odamdan 4 tasi. Baholash-mezoni: uchala joyda son bor · har joyda kimlar borligi aniq aytilgan. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Появятся большие места вроде «вся школа», «все в Telegram» — самая полезная ошибка. Строка-ответ её поймает; вы напомните результат третьего круга: из 300 человек — 4. Критерий оценки: во всех трёх местах есть число · в каждом месте ясно сказано, кто там. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "«Butun maktab», «Telegram'dagi hamma» kabi katta guruhlar chiqadi — eng foydali xato. Javob-qatori uni tutadi; siz uchinchi halqa natijasini eslating: 300 odamdan 4 tasi. Baholash-mezoni: uchala guruhda son bor · har guruhda kimlar borligi aniq aytilgan. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: "Появятся большие группы вроде «вся школа», «все в Telegram» — самая полезная ошибка. Строка-ответ её поймает; вы напомните результат третьего круга: из 300 человек — 4. Критерий оценки: во всех трёх группах есть число · в каждой группе ясно сказано, кто в ней есть. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто." })}</MentorNote>
       </div>
     </Stage>
   );
 };
-// ===== SCREEN 9 — TEKSHIRUV: JOY-QUVURI (26/59-qonun: yangi mexanika) =====
+// ===== SCREEN 9 — TEKSHIRUV: GURUH-QUVURI (26/59-qonun: yangi mexanika) =====
 // Bu yerda hech narsa baholanmaydi, tartiblanmaydi va hech qayerga tushmaydi: o'quvchi
-// MAQSADGA (yigirmaga) yetguncha joy tanlaydi va har joyning uch qadamdagi yo'qotishini o'qiydi.
-// §120: har kartada bosishdan OLDIN uchala ma'lumot turadi — joy nomi · odam soni · ko'rishish
-// tezligi. Ikki oxirgisining YORLIG'I kartada emas, grid ustidagi legendada (9-qonun o'lchovi).
-// §107: to'rt joyning ikkitasi zich, ikkitasi tarqoq; tartib naqshsiz (🏫 · 🌐 · 🏀 · 📌).
+// MAQSADGA (yigirmaga, iloji boricha kam guruhdan) yetguncha guruh tanlaydi va har guruhning
+// uch qadamdagi yo'qotishini o'qiydi.
+// §120: har kartada bosishdan OLDIN uchala ma'lumot turadi — guruh nomi · odam soni · ko'rishish
+// tezligi. v2: legenda olindi — kartada belgi o'rniga so'z turadi («26 odam · har kuni ko'rishadi»).
+// §107: to'rt guruhning ikkitasi yaqin, ikkitasi tarqoq; tartib naqshsiz.
 const QUVUR_KEY = 'pm-m5d2-quvur';
 const MAQSAD = 20;
 const QUVUR = [
-  { id: 'j1', ic: '🏫', nom: { uz: 'Sinfdoshlar guruhi', ru: 'Группа класса' }, bor: 26, tez: { uz: "har kuni ko'rishadi", ru: 'видятся каждый день' }, eshitdi: 26, ochdi: 18, ishlatdi: 13, sabab: { uz: "Biri ochdi, yonidagilarga ko'rsatdi", ru: 'Один открыл, показал тем, кто рядом' } },
-  { id: 'j2', ic: '🌐', nom: { uz: 'Notanish odamlar guruhi', ru: 'Группа незнакомых людей' }, bor: 1200, tez: { uz: "umuman ko'rishmaydi", ru: 'совсем не видятся' }, eshitdi: 1200, ochdi: 46, ishlatdi: 2, sabab: { uz: "Sizni tanimaydi — ochib, yopib qo'ydi", ru: 'Вас не знают — открыли и закрыли' } },
-  { id: 'j3', ic: '🏀', nom: { uz: 'To\'garakdagilar', ru: 'Ребята из кружка' }, bor: 11, tez: { uz: "haftada uch marta ko'rishadi", ru: 'видятся три раза в неделю' }, eshitdi: 11, ochdi: 9, ishlatdi: 7, sabab: { uz: 'Haftada uch marta uchrashadi — bir-biriga eslatadi', ru: 'Встречаются три раза в неделю — напоминают друг другу' } },
-  { id: 'j4', ic: '📌', nom: { uz: 'Maktab e\'lonlar taxtasi', ru: 'Школьная доска объявлений' }, bor: 300, tez: { uz: "faqat o'tib ketayotganda ko'rishadi", ru: 'видятся только мимоходом' }, eshitdi: 300, ochdi: 12, ishlatdi: 1, sabab: { uz: "O'qidi va o'tib ketdi — eslatadigan odam yo'q", ru: 'Прочитали и прошли мимо — напомнить некому' } },
+  { id: 'j1', nom: { uz: 'Sinfdoshlar', ru: "Одноклассники" }, bor: 26, tez: { uz: "har kuni ko'rishadi", ru: 'видятся каждый день' }, eshitdi: 26, ochdi: 18, ishlatdi: 13, sabab: { uz: "biri ochdi, yonidagilarga ko'rsatdi.", ru: "один открыл, показал тем, кто рядом." } },
+  { id: 'j2', nom: { uz: 'Notanish odamlar guruhi', ru: 'Группа незнакомых людей' }, bor: 1200, tez: { uz: "umuman ko'rishmaydi", ru: 'совсем не видятся' }, eshitdi: 1200, ochdi: 46, ishlatdi: 2, sabab: { uz: "sizni tanimaydi, ochib yopib qo'ydi.", ru: "вас не знают, открыли и закрыли." } },
+  { id: 'j3', nom: { uz: 'To\'garakdagilar', ru: 'Ребята из кружка' }, bor: 11, tez: { uz: "haftada uch marta ko'rishadi", ru: 'видятся три раза в неделю' }, eshitdi: 11, ochdi: 9, ishlatdi: 7, sabab: { uz: 'haftada uch marta uchrashadi, bir-biriga eslatadi.', ru: "встречаются три раза в неделю, напоминают друг другу." } },
+  { id: 'j4', nom: { uz: "E'lon taxtasini o'qiydiganlar", ru: "Те, кто читает доску объявлений" }, bor: 300, tez: { uz: "faqat o'tib ketayotganda ko'rishadi", ru: 'видятся только мимоходом' }, eshitdi: 300, ochdi: 12, ishlatdi: 1, sabab: { uz: "o'qidi va o'tib ketdi, eslatadigan odam yo'q.", ru: "прочитали и прошли мимо, напомнить некому." } },
 ];
 // §134: s4 dagi indigo-narvon shu yerda ham ishlaydi — lekin RANG faqat «qanchalik tez-tez
 // ko'rishadi» yorlig'ining O'Z so'zlariga yopishtirilgan (chip ichidagi matn = legendasi).
 // Karta-tanasi bo'yalmaydi: tanlov o'quvchining O'QIB tanlashi bilan qolsin.
 const TEZLIK = { j1: 'z3', j3: 'z2', j2: 'z1', j4: 'z1' };
 // 1-o'qish tuzatishi: yakun-xulosa uchun so'z-sanoq (bosilgan joy soniga qarab).
-const JOY_SONI = { uz: ['bitta', 'ikkita', 'uchta', "to'rtta"], ru: ['одного места', 'двух мест', 'трёх мест', 'четырёх мест'] };
+const JOY_SONI = { uz: ['bitta', 'ikkita', 'uchta', "to'rtta"], ru: ['одной группы', 'двух групп', 'трёх групп', 'четырёх групп'] };
 const pastBosh = (t) => `${String(t).charAt(0).toLowerCase()}${String(t).slice(1)}`;
 const QADAM = [
   { k: 'eshitdi', nom: { uz: 'eshitdi', ru: 'услышали' } },
@@ -1406,34 +1413,27 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const t = setTimeout(() => { if (xulRef.current) xulRef.current.scrollIntoView({ behavior: kam ? 'auto' : 'smooth', block: 'nearest' }); }, 320);
     return () => clearTimeout(t);
   }, [done]);
-  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : faza === 'brief' ? tr({ uz: "① Topshiriqni o'qing", ru: '① Прочитайте задание' }) : yigildi === 0 ? tr({ uz: '② Bitta joyni bosing', ru: '② Нажмите одно место' }) : tr({ uz: `③ Yigirmagacha ${MAQSAD - yigildi} odam qoldi`, ru: `③ До двадцати осталось: ${MAQSAD - yigildi}` });
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : faza === 'brief' ? tr({ uz: "Topshiriqni o'qing", ru: "Прочитайте задание" }) : yigildi === 0 ? tr({ uz: 'Bitta guruhni bosing', ru: "Нажмите на одну группу" }) : tr({ uz: `Yigirmagacha ${MAQSAD - yigildi} odam qoldi`, ru: `До двадцати осталось: ${MAQSAD - yigildi}` });
   const bigBosilgan = bosilgan.includes('j2');
   // 🔴 Yakun o'quvchi HAQIQATDA bosgan joylardan yig'iladi: nechta joy bosgan bo'lsa —
   // o'shancha, sonlar ham o'sha joylarniki. Oldindan yozilgan natija-matni YO'Q.
   const olinganlar = bosilgan.map(id => QUVUR.find(x => x.id === id)).filter(Boolean);
-  const nechtaJoy = tr(JOY_SONI)[olinganlar.length - 1] || tr({ uz: `${olinganlar.length} ta`, ru: `${olinganlar.length} мест` });
+  const nechtaJoy = tr(JOY_SONI)[olinganlar.length - 1] || tr({ uz: `${olinganlar.length} ta`, ru: `${olinganlar.length} групп` });
   const joySoz = olinganlar.map(q => `${pastBosh(tr(q.nom))} ${q.ishlatdi}`).join(', ');
   return (
-    <Stage eyebrow={tr({ uz: "Tekshiruv · to'rt joy", ru: 'Проверка · четыре места' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Sinov · to'rt guruh", ru: "Испытание · четыре группы" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yigirmata odamni <span className="italic" style={{ color: T.accent }}>yig'ing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Соберите</span> двадцать человек.</> })}</h2></div>
-        {faza === 'brief' && <Mentor>{tr({ uz: "To'rt joy bor. Bittasini tanlang — undan nechta odam botni ochib ishlatgani ko'rinadi.", ru: 'Есть четыре места. Выберите одно — увидите, сколько человек оттуда открыли бота и пользуются им.' })}</Mentor>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yigirmata odamni iloji boricha <span className="italic" style={{ color: T.accent }}>kam guruhdan</span> yig'ing.</>, ru: <>Соберите двадцать человек, взяв <span className="italic" style={{ color: T.accent }}>как можно меньше групп</span>.</> })}</h2></div>
+        {faza === 'brief' && <Mentor>{tr({ uz: "To'rt guruh bor. Bittasini bosing — o'sha guruhdan nechta odam botni ishlatgani ko'rinadi.", ru: "Есть четыре группы. Нажмите на одну — увидите, сколько человек из этой группы пользуются ботом." })}</Mentor>}
         <div className={`qsum fade-up${done ? ' done' : ''}`}>
           <span className="qsum-lbl">{tr({ uz: "Yig'ildi", ru: 'Собрано' })}</span>
           <span className="qsum-track"><i style={{ width: `${Math.min(100, Math.round((yigildi / MAQSAD) * 100))}%` }} /></span>
           <b className="mono">{yigildi} / {MAQSAD}</b>
         </div>
-        {faza === 'brief' ? (
+        {faza === 'brief' && (
           <div className="klaunch qbrief fade-up delay-1">
-            <p className="cmt-b">{tr({ uz: "Yigirmaga yetguncha davom eting. Har joy uch qadamdan o'tadi: eshitdi → ochdi → ishlatdi.", ru: 'Продолжайте, пока не наберётся двадцать. Каждое место проходит три шага: услышали → открыли → пользуются.' })}</p>
-            <button type="button" className={`kod-launch-btn${briefTurn ? ' turn-ring' : ''}`} onClick={() => setFaza('ish')}>{tr({ uz: "To'rt joyni ko'rish ▸", ru: 'Посмотреть четыре места ▸' })}</button>
-          </div>
-        ) : (
-          /* Yorliq-legendasi: ikki yorliq to'rt kartada takrorlanmaydi — bir marta shu yerda
-             turadi, kartada esa o'sha belgi bilan faqat qiymat qoladi (9-qonun o'lchovi). */
-          <div className="qleg fade-up delay-1">
-            <span className="qleg-i"><i>👥</i> {tr({ uz: "Nechta odam ko'radi", ru: 'Сколько человек увидит' })}</span>
-            <span className="qleg-i"><i>🔁</i> {tr({ uz: "Odamlar qanchalik tez-tez ko'rishadi", ru: 'Как часто люди видятся' })}</span>
+            <p className="cmt-b">{tr({ uz: "Har odam botga uch qadamda keladi: eshitdi → ochdi → ishlatdi. Yigirmaga yetguncha guruh tanlang.", ru: "Каждый человек приходит к боту за три шага: услышал → открыл → пользуется. Выбирайте группы, пока не наберётся двадцать." })}</p>
+            <button type="button" className={`kod-launch-btn${briefTurn ? ' turn-ring' : ''}`} onClick={() => setFaza('ish')}>{tr({ uz: "To'rt guruhni ko'rish ▸", ru: "Посмотреть четыре группы ▸" })}</button>
           </div>
         )}
         {!done && <AchRule screen={screen} />}
@@ -1447,9 +1447,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <button key={q.id} type="button" disabled={isMentor || !!run || ochilgan || done}
                     className={`qc${ochilgan ? ' on' : ''}${yuryapti ? ' live' : ''}${!ochilgan && !run && !done ? waveCls(qTurn, i, QUVUR.length) : ''}`}
                     onClick={() => bosish(q)}>
-                    <span className="qc-h">{q.ic} {tr(q.nom)}</span>
-                    <span className="qc-row"><i className="qc-m">👥</i><b className="mono">{q.bor}</b></span>
-                    <span className={`qc-row tez ${TEZLIK[q.id]}`}><i className="qc-m">🔁</i><b>{tr(q.tez)}</b></span>
+                    <span className="qc-h">{tr(q.nom)}</span>
+                    <span className="qc-row"><b className="mono">{q.bor}</b> {tr({ uz: 'odam', ru: 'чел.' })}</span>
+                    <span className={`qc-row tez ${TEZLIK[q.id]}`}><b>{tr(q.tez)}</b></span>
                     {(ochilgan || yuryapti) && (
                       <span className="qc-steps">
                         {QADAM.map((s, k) => {
@@ -1470,14 +1470,14 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="thr-res">
                 {bosilgan.map(id => {
                   const q = QUVUR.find(x => x.id === id);
-                  return <span key={id} className="res-line"><b>{q.ic} {q.ishlatdi}</b> {tr(q.sabab)}</span>;
+                  return <span key={id} className="res-line"><b className="res-nm">{tr(q.nom)} — {q.ishlatdi}:</b> {tr(q.sabab)}</span>;
                 })}
               </div>
             )}
             {/* YORDAM ekran boshida turmaydi — faqat birinchi kam natijadan keyin ochiladi */}
             {kamKordi && !done && (
               <div className={`wsx ${yordamOpen ? 'open' : ''}`}>
-                <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
+                <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                 {yordamOpen && <div className="wsx-body"><p>{tr({ uz: 'Ikki savol bering: bu odamlar bir-birini taniydimi?', ru: 'Задайте два вопроса: эти люди знают друг друга?' })}</p><p>{tr({ uz: "Ular bir-birini haftada necha marta ko'radi?", ru: 'Сколько раз в неделю они видят друг друга?' })}</p></div>}
               </div>
             )}
@@ -1486,17 +1486,17 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="strip">
                   {bosilgan.map((id, k) => {
                     const q = QUVUR.find(x => x.id === id);
-                    return <span key={id} className="strip-i" style={{ '--i': k }}>{q.ic} {tr(q.nom)} <b className="mono">+{q.ishlatdi}</b></span>;
+                    return <span key={id} className="strip-i" style={{ '--i': k }}>{tr(q.nom)} <b className="mono">+{q.ishlatdi}</b></span>;
                   })}
                 </div>
-                <span className="done-mini">{tr({ uz: <>✅ {yigildi} odam {nechtaJoy} joydan yig'ildi</>, ru: <>✅ Собрано {yigildi} человек из {nechtaJoy}</> })} <span className="dm-sub">— {joySoz}{bigBosilgan ? tr({ uz: ' · 1200 odamdan atigi 2 tasi', ru: ' · из 1200 человек всего 2' }) : ''}</span></span>
+                <span className="done-mini">{tr({ uz: <>{yigildi} odam {nechtaJoy} guruhdan yig'ildi</>, ru: <>Собрано {yigildi} человек из {nechtaJoy}</> })} <span className="dm-sub">— {joySoz}{bigBosilgan ? tr({ uz: ' · 1200 odamdan atigi 2 tasi', ru: ' · из 1200 человек всего 2' }) : ''}</span></span>
               </div>
             )}
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: "🎯 Yigirmani yig'ganlar", ru: '🎯 Собрали двадцать' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: "Yigirmani yig'ganlar", ru: "Собрали двадцать" }} />
           </Col>
         </div>)}
-        <MentorNote>{tr({ uz: "Eng ko'p bosiladigan joy — 1200 kishilik guruh. Uch qadam ochilgach so'rang: 1200 odam eshitdi, ishlatgani 2 ta — qolgan 1198 tasi qayerda qoldi? Sinf ish-tartibi: juftlikda har o'quvchi sherigining uch joyini o'qib, har biriga «bu odamlar bir-birini haftada necha marta ko'radi?» deb so'raydi; javob topilmasa — joy qayta yoziladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Чаще всего нажимают группу на 1200 человек. Когда откроются три шага, спросите: 1200 услышали, пользуются 2 — где остались 1198? Порядок работы в классе: в паре каждый ученик читает три места напарника и про каждое спрашивает: «сколько раз в неделю эти люди видят друг друга?»; если ответа нет — место переписывается. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Eng ko'p bosiladigan guruh — 1200 odamli guruh. Uch qadam ochilgach so'rang: 1200 odam eshitdi, ishlatgani 2 ta — qolgan 1198 tasi qayerda qoldi? Sinf ish-tartibi: juftlikda har o'quvchi sherigining uchta guruhini o'qib, har biriga «bu odamlar bir-birini haftada necha marta ko'radi?» deb so'raydi; javob topilmasa — guruh qayta yoziladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: "Чаще всего нажимают группу на 1200 человек. Когда откроются три шага, спросите: 1200 человек услышали, пользуются 2 — где остались остальные 1198? Порядок работы в классе: в паре каждый ученик читает три группы напарника и про каждую спрашивает: «сколько раз в неделю эти люди видят друг друга?»; если ответа нет — группа переписывается. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто." })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1512,36 +1512,44 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const KODING_KEY = 'pm-m5d2-code';
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
 const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localStorage.setItem(KODING_KEY, JSON.stringify({ ...p, open })); } catch {} };
-// §135: kod-satrlari QO'SHTIRNOQDA — o'quvchi yozgan joy nomidagi apostrof kodni sindirmaydi.
-const kodStarter = (rows) => `// yigirma.js — birinchi yigirmani sanaydigan kod
-// Ro'yxat siz yozgan uch joydan to'ldirildi.
-const joylar = [
-  { joy: ${JSON.stringify(rows[0].joy)}, nechta: ${rows[0].nechta} },
-  { joy: ${JSON.stringify(rows[1].joy)}, nechta: ${rows[1].nechta} },
-  { joy: ${JSON.stringify(rows[2].joy)}, nechta: ${rows[2].nechta} }
+// §135: kod-satrlari QO'SHTIRNOQDA — o'quvchi yozgan guruh nomidagi apostrof kodni sindirmaydi.
+// v2 (🔴 FAKT): zaxirada nom `tr(d.nom)` bilan satr bo'lib tushadi (avval obyekt → JSON chiqardi);
+//    zaxira bo'lsa 2-izoh qatori boshqacha (`demo` belgisi). Kodda `joylar/joy` → `guruhlar/nom`.
+const kodStarter = (rows, demo) => `// yigirma.js — birinchi yigirmata foydalanuvchini sanaydigan kod
+${demo ? "// Ro'yxatda namunadagi uchta guruh turibdi." : "// Ro'yxat siz yozgan uchta guruhdan to'ldirildi."}
+const guruhlar = [
+  { nom: ${JSON.stringify(rows[0].nom)}, nechta: ${rows[0].nechta} },
+  { nom: ${JSON.stringify(rows[1].nom)}, nechta: ${rows[1].nechta} },
+  { nom: ${JSON.stringify(rows[2].nom)}, nechta: ${rows[2].nechta} }
 ];
 
 let jami = 0;
 
-for (let i = 0; i < joylar.length; i++) {
-  // 1) shu joy uchun bitta qator chiqaring: console.log ichida joy nomi va nechta odam
-  // 2) jami ga shu joyning odam sonini qo'shing
+for (let i = 0; i < guruhlar.length; i++) {
+  // 1) shu guruh uchun bitta qator chiqaring: console.log ichida guruh nomi va nechta odam
+  // 2) jami ga shu guruhning odam sonini qo'shing
 }
 
 // 3) jami 20 dan kam bo'lsa: "Yana ... odam kerak"
 //    aks holda:              "Yigirmata odam bor"`;
+const kodStarterFor = () => {
+  const mine = readJoylar();
+  return mine
+    ? kodStarter(mine.map(r => ({ nom: r.joy, nechta: r.nechta })), false)
+    : kodStarter(DEMO_JOY.map(d => ({ nom: tr(d.nom), nechta: d.n })), true);
+};
 // Xulq-atvor shartlari: chiqqan qatorlar bo'yicha tekshiriladi (manba-regex sanog'i EMAS).
-const JAMI_EXPR = 'var s=0;for(var i=0;i<joylar.length;i++){s+=joylar[i].nechta;}';
+const JAMI_EXPR = 'var s=0;for(var i=0;i<guruhlar.length;i++){s+=guruhlar[i].nechta;}';
 const KOD_REQS = [
   {
-    id: 'qatorlar', label: { uz: 'Har joy uchun bitta qator chiqadi', ru: 'Для каждого места выводится одна строка' },
-    check: C.evalEquals(`(function(){${JAMI_EXPR}return logs.length>=3 && joylar.every(function(j){return joined.indexOf(j.joy)!==-1;});})()`, 'true',
-      { uz: "Uchala joy nomi uchta alohida qatorda chiqsin — har joy uchun console.log yozing", ru: 'Названия всех трёх мест должны выйти в трёх отдельных строках — напишите console.log для каждого места' })
+    id: 'qatorlar', label: { uz: 'Har guruh uchun bitta qator chiqadi', ru: "Для каждой группы выводится одна строка" },
+    check: C.evalEquals(`(function(){${JAMI_EXPR}return logs.length>=3 && guruhlar.every(function(j){return joined.indexOf(j.nom)!==-1;});})()`, 'true',
+      { uz: "Uchala guruh nomi uchta alohida qatorda chiqsin — har guruh uchun console.log yozing", ru: "Названия всех трёх групп должны выйти в трёх отдельных строках — напишите console.log для каждой группы" })
   },
   {
     id: 'jami', label: { uz: 'Jami son chiqadi', ru: 'Выводится общее число' },
     check: C.evalEquals(`(function(){${JAMI_EXPR}return jami===s && joined.indexOf(""+s)!==-1;})()`, 'true',
-      { uz: "jami ga har joyning sonini qo'shing va oxirida uni chiqaring", ru: 'Прибавьте к jami число каждого места и в конце выведите его' })
+      { uz: "jami ga har guruhning sonini qo'shing va oxirida uni chiqaring", ru: "Прибавьте к jami число людей каждой группы и в конце выведите его" })
   },
   {
     id: 'yetdimi', label: { uz: "Oxirgi qator: yigirmaga yetdi yoki yana nechta odam kerak", ru: 'Последняя строка: набралось ли двадцать или сколько ещё человек нужно' },
@@ -1561,12 +1569,12 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const isSelf = !live || live.mode === 'self';
   const [saved] = useState(() => readKoding());
-  const [starter] = useState(() => kodStarter(readJoylar() || DEMO_JOY.map(d => ({ joy: d.nom, nechta: d.n }))));
+  const [starter] = useState(() => kodStarterFor());
   const [task] = useState(() => ({
     eyebrow: { uz: 'Koding · odamlarni sanaymiz', ru: 'Кодинг · считаем людей' },
     title: { uz: 'Odamlarni sanaydigan kod', ru: 'Код, который считает людей' },
-    brief: { uz: <>Ro'yxat bo'ylab yuring: console.log ichida joy nomi va odam soni, sonni <b>jami</b> ga qo'shing, oxirida — «Yigirmata odam bor» yoki «Yana ... odam kerak».</>, ru: <>Пройдитесь по списку: в console.log название места и число людей, прибавьте число к <b>jami</b>, в конце — «Двадцать человек есть» или «Нужно ещё ... человек».</> },
-    files: [{ name: 'yigirma.js', lang: 'js', starter, placeholder: { uz: '// shu joy uchun bitta qator chiqaring', ru: '// выведите одну строку для этого места' } }],
+    brief: { uz: <>Ro'yxat bo'ylab yuring: console.log ichida guruh nomi va odam soni, sonni <b>jami</b> ga qo'shing, oxirida — «Yigirmata odam bor» yoki «Yana ... odam kerak».</>, ru: <>Пройдитесь по списку: в console.log название группы и число людей, прибавьте число к <b>jami</b>, в конце — «Двадцать человек есть» или «Нужно ещё ... человек».</> },
+    files: [{ name: 'yigirma.js', lang: 'js', starter, placeholder: { uz: '// shu guruh uchun bitta qator chiqaring', ru: "// выведите одну строку для этой группы" } }],
     requirements: KOD_REQS,
   }));
   const [open, setOpen] = useState(() => !!(saved && saved.open));
@@ -1611,27 +1619,28 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
     }
   };
-  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Avval kod-savolini yeching', ru: '① Сначала решите вопрос по коду' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' });
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: 'Avval kod-savolini yeching', ru: "Сначала решите вопрос по коду" }) : tr({ uz: 'Kodni yozing', ru: "Напишите код" });
   return (
-    <Stage eyebrow={tr({ uz: 'Koding · 🛠 kod oynasi', ru: 'Кодинг · 🛠 окно кода' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Koding · kod oynasi', ru: "Кодинг · окно кода" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.5vw,15px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Odamlarni sanaydigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который считает людей.</> })}</h2></div>
         {!stage2 ? (
           <>
-            <Mentor>{tr({ uz: 'Avval bitta savol — keyin kod yoziladi.', ru: 'Сначала один вопрос — потом пишем код.' })}</Mentor>
+            <Mentor>{tr({ uz: 'Avval bitta savol, keyin kodni yozasiz.', ru: "Сначала один вопрос, потом вы напишете код." })}</Mentor>
+            <p className="cmt-rule fade-up">{tr({ uz: "Kod uchta guruhning odam sonini qo'shadi. Jami 20 dan kam bo'lsa — «Yana ... odam kerak», aks holda — «Yigirmata odam bor» deb yozadi.", ru: "Код складывает число людей в трёх группах. Если всего меньше 20 — пишет «Нужно ещё ... человек», иначе — «Двадцать человек есть»." })}</p>
             <div className={`cmt hunt${missedOnce ? ' calm' : ''}`}>
-              <span className="cmt-lbl">{tr({ uz: '🔎 Uch joyda 13, 7 va 4 odam bor. Kod nima chiqaradi?', ru: '🔎 В трёх местах 13, 7 и 4 человека. Что выведет код?' })}</span>
+              <span className="cmt-lbl">{tr({ uz: 'Uchta guruhda 13, 7 va 4 odam bor. Kod nima chiqaradi?', ru: "В трёх группах 13, 7 и 4 человека. Что выведет код?" })}</span>
               <div className="gt-rows">
                 {GATE_ITEMS.map(g => (
                   <button key={g.id} type="button" className={`fchoice${miss === g.id ? ' miss' : ''}`} onClick={() => pickGate(g)}>{tr(g.t)}</button>
                 ))}
               </div>
-              {missedOnce && <p className="cmt-tip">{tr({ uz: "🤔 Ikki narsani alohida sanang: uchta son qo'shilsa nechta bo'ladi va u yigirmadan kammi?", ru: '🤔 Посчитайте две вещи отдельно: сколько будет, если сложить три числа, и меньше ли это двадцати?' })}</p>}
+              {missedOnce && <p className="cmt-tip">{tr({ uz: "Ikki narsani alohida sanang: uchta son qo'shilsa nechta bo'ladi va u yigirmadan kammi?", ru: "Посчитайте две вещи отдельно: сколько будет, если сложить три числа, и меньше ли это двадцати?" })}</p>}
             </div>
           </>
         ) : (
           <>
-            <Mentor>{tr({ uz: "Uchta joyingiz kodda ro'yxat bo'lib turibdi. Sizga sanash va bitta shart qoladi.", ru: 'Ваши три места уже лежат в коде списком. Вам остаётся посчитать и написать одно условие.' })}</Mentor>
+            <Mentor>{tr({ uz: "Uchta guruhingiz kodda ro'yxat bo'lib turibdi. Sizga sanash va bitta shart qoladi.", ru: "Ваши три группы уже стоят в коде списком. Вам остаётся посчитать и написать одно условие." })}</Mentor>
             <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: '✓ 13 + 7 + 4 = 24 — yigirmadan kam emas', ru: '✓ 13 + 7 + 4 = 24 — не меньше двадцати' })}</span></div>
             <div className="split kod">
               <Col gap={10}>
@@ -1641,34 +1650,34 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     {KOD_REQS.map(r => <li key={r.id}>{tr(r.label)}</li>)}
                   </ol>
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
-                    <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
+                    <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Qatorni <code className="qcode">console.log(...)</code> ekranga chiqaradi. Bittasidan boshlang: <code className="qcode">console.log(joylar[0].joy)</code>.</>, ru: <>Строку на экран выводит <code className="qcode">console.log(...)</code>. Начните с одного: <code className="qcode">console.log(joylar[0].joy)</code>.</> })}</p>
-                      <p>{tr({ uz: <>Ishlagach, shu joyning sonini <code className="qcode">jami</code> ga qo'shing.</>, ru: <>Когда заработает, прибавьте число этого места к <code className="qcode">jami</code>.</> })}</p>
-                      <p>{tr({ uz: "⭐ Qo'shimcha: eng ko'p odam beradigan joyning nomini alohida qatorda chiqaring.", ru: '⭐ Дополнительно: выведите отдельной строкой название места, которое даёт больше всего людей.' })}</p>
+                      <p>{tr({ uz: <>Qatorni <code className="qcode">console.log(...)</code> ekranga chiqaradi. Bittasidan boshlang: <code className="qcode">console.log(guruhlar[0].nom)</code>.</>, ru: <>Строку на экран выводит <code className="qcode">console.log(...)</code>. Начните с одной: <code className="qcode">console.log(guruhlar[0].nom)</code>.</> })}</p>
+                      <p>{tr({ uz: <>Ishlagach, shu guruhning sonini <code className="qcode">jami</code> ga qo'shing.</>, ru: <>Когда заработает, прибавьте число людей этой группы к <code className="qcode">jami</code>.</> })}</p>
+                      <p>{tr({ uz: "Qo'shimcha: eng ko'p odam beradigan guruhning nomini alohida qatorda chiqaring.", ru: "Дополнительно: выведите отдельной строкой название группы, которая даёт больше всего людей." })}</p>
                     </div>}
                   </div>
-                  {done && <div className="done-mini fade-step">{tr({ uz: <>✅ Kod uch joyni sanab berdi <span className="dm-sub">— jami son va yigirma sharti chiqdi</span></>, ru: <>✅ Код посчитал три места <span className="dm-sub">— вышли общее число и условие двадцати</span></> })}</div>}
+                  {done && <div className="done-mini fade-step">{tr({ uz: <>Kod uchta guruhni sanab berdi: <span className="dm-sub">jami son va yigirma sharti chiqdi.</span></>, ru: <>Код посчитал три группы: <span className="dm-sub">вышли общее число и условие про двадцать.</span></> })}</div>}
                   {!done && isSelf && (
                     <button className="kd-skip" onClick={onNext}>{tr({ uz: '✓ Bu kodni sinfda yozganman →', ru: '✓ Я писал этот код в классе →' })}</button>
                   )}
                 </div>
                 <StudentPracticePulse live={live} screen={screen} />
-                <MentorPracticeStats live={live} screen={screen} label={{ uz: "🛠 Kodni yozib bo'lganlar", ru: '🛠 Дописали код' }} />
+                <MentorPracticeStats live={live} screen={screen} label={{ uz: "Kodni yozib bo'lganlar", ru: "Дописали код" }} />
               </Col>
               <Col gap={10}>
                 <div className="klaunch">
-                  <span className="klaunch-lbl">{tr({ uz: '🧮 Uch joy — bitta hisob', ru: '🧮 Три места — один подсчёт' })}</span>
+                  <span className="klaunch-lbl">{tr({ uz: 'Uchta guruh — bitta hisob', ru: "Три группы — один подсчёт" })}</span>
                   <button className={`kod-launch-btn${openHint ? ' turn-ring' : ''}`} onClick={() => { setOpen(true); writeKodingOpen(true); }}>
-                    {done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор снова' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}
+                    {done ? tr({ uz: '↻ Kod oynasini qayta ochish', ru: "↻ Открыть окно кода снова" }) : tr({ uz: 'Kod oynasini ochish', ru: "Открыть окно кода" })}
                   </button>
-                  {done && <span className="klaunch-sub">{tr({ uz: 'Bajarildi — xohlasangiz kodni yana sayqallang', ru: 'Выполнено — при желании ещё отшлифуйте код' })}</span>}
+                  {done && <span className="klaunch-sub">{tr({ uz: "Bajarildi — xohlasangiz kodni yana o'zgartirib ko'ring", ru: "Выполнено — если хотите, попробуйте ещё изменить код" })}</span>}
                 </div>
               </Col>
             </div>
           </>
         )}
-        <MentorNote>{tr({ uz: "Ro'yxat o'quvchining o'z uch joyi bilan to'ldirilgan bo'ladi. Sonlar har kimda har xil — natija ham har xil chiqadi, bu to'g'ri. Kod shu oynada yoziladi, 10 daqiqa yetadi; ulgurmagan o'quvchi uyga qisqa variantni oladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Список заполнен тремя местами самого ученика. Числа у всех разные — и результат выйдет разный, это нормально. Код пишется в этом окне, 10 минут хватит; кто не успел, получает домой короткий вариант. Эту работу делают ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Ro'yxat o'quvchining o'z uchta guruhi bilan to'ldirilgan bo'ladi. Sonlar har kimda har xil — natija ham har xil chiqadi, bu to'g'ri. Kod shu oynada yoziladi, 10 daqiqa yetadi; ulgurmagan o'quvchi uyga qisqa variantni oladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: "Список будет заполнен тремя группами самого ученика. Числа у всех разные — и результат выйдет разный, это правильно. Код пишется в этом окне, 10 минут хватит; кто не успел, получает домой короткий вариант. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто." })}</MentorNote>
       </div>
       {/* To'liq-ekran qobiq (18-ov (a)): `.lesson-root` da `zoom: var(--lz)` bor, `.hc-root` ham
           o'zi `zoom: var(--lz)` qo'yadi — keng ekranda kattalashuv lz² ga chiqib, shart-chiplari va
@@ -1682,9 +1691,9 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>
   );
 };
-function PairTimer({ onStage, muted, solo }) {
+function PairTimer({ onStage, muted, solo, autoStart }) {
   const TOTAL = solo ? 30 : 60;
-  const [st, setSt] = useState({ running: false, left: TOTAL, done: false });
+  const [st, setSt] = useState({ running: !!autoStart, left: TOTAL, done: false });
   const stage = st.running ? 'running' : (st.done ? 'done' : 'idle');
   useEffect(() => { if (onStage) onStage(stage); }, [stage]); // eslint-disable-line
   const startTurn = useTurnHint(!st.running && !st.done && !muted);
@@ -1716,17 +1725,19 @@ function PairTimer({ onStage, muted, solo }) {
         </div>
       ) : (st.done || !solo) ? (
         <p className="pair-now" style={{ margin: 0 }}>{st.done
-          ? (solo ? tr({ uz: "✓ Vaqt tugadi — aytib bo'ldingiz. Barakalla!", ru: '✓ Время вышло — вы рассказали. Молодец!' }) : tr({ uz: "✓ Vaqt tugadi — ikkalangiz ham aytib bo'ldingiz. Barakalla!", ru: '✓ Время вышло — рассказали оба. Молодцы!' }))
+          ? (solo ? tr({ uz: "✓ Vaqt tugadi — aytib bo'ldingiz.", ru: "✓ Время вышло — вы рассказали." }) : tr({ uz: "✓ Vaqt tugadi — ikkalangiz ham aytib bo'ldingiz.", ru: "✓ Время вышло — вы оба рассказали." }))
           : tr({ uz: 'Har biringizga 30 soniyadan — avval A, keyin B.', ru: 'По 30 секунд каждому — сначала A, потом B.' })}</p>
       ) : null}
       <div className="pair-timer-btns">
         {!st.running && <button className={st.done ? 'btn-soft' : `pair-start${startTurn ? '' : ' calm'}`} onClick={() => setSt({ running: true, left: TOTAL, done: false })}>{st.done ? (solo ? tr({ uz: '↻ Yana 30 soniya', ru: '↻ Ещё 30 секунд' }) : tr({ uz: '↻ Yana 1 daqiqa', ru: '↻ Ещё 1 минута' })) : (solo ? tr({ uz: '▶ 30 soniyani boshlash', ru: '▶ Запустить 30 секунд' }) : tr({ uz: '▶ 1 daqiqani boshlash', ru: '▶ Запустить минуту' }))}</button>}
-        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: TOTAL, done: false })}>{tr({ uz: "⏹ To'xtatish", ru: '⏹ Остановить' })}</button>}
+        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: TOTAL, done: false })}>{tr({ uz: "To'xtatish", ru: "Остановить" })}</button>}
       </div>
     </div>
   );
 }
 const REFLECT_KEY = 'pm-m5d2-reflection';
+// v2 (A6): 1-qadam vaqti tugagach «✓ Aytdingiz» qatoriga yig'iladi (↻ bilan qayta aytiladi), shundan keyin 2-qadam ochiladi.
+const S12_FOLD_MS = 1400;
 const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1736,31 +1747,48 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
   const written = text.trim().length >= 8;
   const [pairStage, setPairStage] = useState('idle');
+  const [said, setSaid] = useState(written);
+  const [unlocked, setUnlocked] = useState(written);
+  const [again, setAgain] = useState(0);
+  useEffect(() => {
+    if (pairStage !== 'done' || said) return;
+    const t = setTimeout(() => { setSaid(true); setUnlocked(true); }, S12_FOLD_MS);
+    return () => clearTimeout(t);
+  }, [pairStage, said]);
+  const sayAgain = () => { setPairStage('running'); setAgain(n => n + 1); setSaid(false); };
   const [reflFocus, setReflFocus] = useState(false);
-  const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
+  const inputTurn = useTurnHint(unlocked && !written && !reflFocus);
   return (
     <Stage eyebrow={tr({ uz: 'Mustahkamlash · 2 qadam', ru: 'Закрепление · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uch joyingizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать свои три места <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Ekranga qaramay javob bering: eng zich joyingiz qaysi va u yerdagi odamlar bir-birini haftada necha marta ko'radi?", ru: 'Ответьте, не глядя на экран: какое ваше самое тесное место и сколько раз в неделю люди там видят друг друга?' })}</Mentor>
-        <div className="rcp-flow">
-          <div className="rcp-step fade-up delay-1">
-            <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 {yakka ? tr({ uz: "Ovoz chiqarib ayting: joy va necha marta", ru: 'Скажите вслух: место и сколько раз' }) : tr({ uz: 'Sherigingizga ayting: joy va necha marta', ru: 'Скажите напарнику: место и сколько раз' })}</span></div></div>
-            <PairTimer onStage={setPairStage} muted={written} solo={yakka} />
-          </div>
-          <div className="rcp-step fade-up delay-2">
-            <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: '✍️ Endi bir qator yozing', ru: '✍️ Теперь напишите одну строку' })}</span></div></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Eng yaqin guruhingizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать свою самую близкую группу <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Ekranga qaramasdan ikki narsani ayting: guruh nomi va undagi odamlar bir-birini haftada necha marta ko'radi.", ru: "Не глядя на экран, скажите две вещи: название группы и сколько раз в неделю люди в ней видят друг друга." })}</Mentor>
+        <div className="rcp-flow one">
+          {!said ? (
+            <div className="rcp-step fade-up delay-1">
+              <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">{yakka ? tr({ uz: 'Ovoz chiqarib ayting', ru: "Скажите вслух" }) : tr({ uz: 'Sherigingizga ayting', ru: "Скажите напарнику" })}</span></div></div>
+              <PairTimer key={again} onStage={setPairStage} muted={written} solo={yakka} autoStart={again > 0} />
+            </div>
+          ) : (
+            <div className="rcp-fold fade-step">
+              <span className="rcp-fold-t">{tr({ uz: '✓ Aytdingiz', ru: "✓ Вы рассказали" })}</span>
+              <button type="button" className="btn-soft rcp-again" onClick={sayAgain}>{yakka ? tr({ uz: '↻ Yana 30 soniya', ru: '↻ Ещё 30 секунд' }) : tr({ uz: '↻ Yana 1 daqiqa', ru: '↻ Ещё 1 минута' })}</button>
+            </div>
+          )}
+          {unlocked && (
+          <div className="rcp-step fade-step">
+            <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: 'Endi bir qator yozing', ru: "Теперь напишите одну строку" })}</span></div></div>
             <span className={`turn-wrap${inputTurn ? ' turn-ring' : ''}`}>
-              <input className="reflect-input" value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: "Eng zich joyim ... , ularni haftada ... marta ko'raman", ru: 'Моё самое тесное место ... , я вижу их ... раз в неделю' })} maxLength={160} />
+              <input className="reflect-input" value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: "Eng yaqin guruhim — ..., ularni haftada ... marta ko'raman", ru: "Моя самая близкая группа — ..., я вижу их ... раз в неделю" })} maxLength={160} />
             </span>
-            {/* 106f(b): yozib bo'lgach mukofot — bitta tabrik-gap va bitta qoida-qatori */}
+            {/* 106f(b): yozib bo'lgach bitta xulosa-gap («Bugungi qoida» qatori v2 da olindi — Yakundagi asosiy fikr bilan bir ma'no) */}
             {written && (
               <div className="rwd fade-step">
-                <p className="rwd-t">{tr({ uz: "✓ Endi siz botni qurib qo'yib ketmaysiz — birinchi odamlarni o'zingiz olib kelasiz.", ru: '✓ Теперь вы не бросите бота сразу после запуска — первых людей вы приведёте сами.' })}</p>
-                <span className="rwd-rule">{tr({ uz: "🎯 Bugungi qoida: birinchi yigirma zich joydan yig'iladi", ru: '🎯 Правило дня: первые двадцать собираются из тесного места' })}</span>
+                <p className="rwd-t">{tr({ uz: "✓ Endi bilasiz: botni qurish — ishning yarmi, birinchi foydalanuvchilarni o'zingiz olib kelasiz.", ru: "✓ Теперь вы знаете: построить бота — половина дела, первых пользователей вы приведёте сами." })}</p>
               </div>
             )}
           </div>
+          )}
         </div>
         <MentorNote>{tr({ uz: "Uchdan biri «haftada necha marta ko'radi» savoliga javob berolmasa — odamlar xaritasi ekranini qayta oching va birinchi halqa natijasini birga o'qing.", ru: 'Если треть класса не может ответить на вопрос «сколько раз в неделю видит» — снова откройте экран с картой людей и вместе прочитайте результат первого круга.' })}</MentorNote>
       </div>
@@ -1788,7 +1816,7 @@ function Flashcards({ cards }) {
   };
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{tr({ uz: <>{total}/{total} karta yodlandi</>, ru: <>Выучено карточек: {total}/{total}</> })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
+    <div className="fc-done fade-up"><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{tr({ uz: <>{total}/{total} karta yodlandi</>, ru: <>Выучено карточек: {total}/{total}</> })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
@@ -1809,15 +1837,15 @@ function Flashcards({ cards }) {
   );
 }
 const FLASHCARDS = [
-  { front: { uz: 'Birinchi yigirma nima?', ru: 'Что такое первые двадцать?' }, back: { uz: "Botingizni birinchi bo'lib ishlatadigan yigirmata odam", ru: 'Двадцать человек, которые первыми начнут пользоваться вашим ботом' } },
-  { front: { uz: 'Zich joy nima?', ru: 'Что такое тесное место?' }, back: { uz: "Odamlar bir-birini har kuni ko'radigan joy", ru: 'Место, где люди видят друг друга каждый день' } },
-  { front: { uz: 'Zich joyda xabar nega tez tarqaladi?', ru: 'Почему в тесном месте новость расходится быстро?' }, back: { uz: 'Bittasi aytsa, qolganlari eshitadi', ru: 'Скажет один — услышат остальные' } },
+  { front: { uz: 'Birinchi foydalanuvchilar kimlar?', ru: "Кто такие первые пользователи?" }, back: { uz: "Botingizni birinchi bo'lib ishlatadigan odamlar", ru: "Люди, которые первыми начнут пользоваться вашим ботом" } },
+  { front: { uz: 'Yaqin guruh nima?', ru: "Что такое близкая группа?" }, back: { uz: "Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar", ru: "Люди, которые вас знают и часто видят друг друга" } },
+  { front: { uz: 'Yaqin guruhda xabar nega tez tarqaladi?', ru: "Почему в близкой группе новость расходится быстро?" }, back: { uz: 'Bittasi aytsa, qolganlar ham eshitadi', ru: "Скажет один — услышат и остальные" } },
   { front: { uz: "Katta guruhda odam ko'p — nega ishlatgani kam?", ru: 'В большой группе людей много — почему пользуются мало?' }, back: { uz: 'Ular sizni tanimaydi', ru: 'Они вас не знают' } },
   { front: { uz: 'Botga birinchi odamlarni kim olib keladi?', ru: 'Кто приводит к боту первых людей?' }, back: { uz: "Siz aytasiz — bot o'zi olib kelmaydi", ru: 'Вы рассказываете — бот сам не приводит' } },
-  { front: { uz: "Bitta joy haqida nimalarni yozib qo'yasiz?", ru: 'Что вы записываете про одно место?' }, back: { uz: 'Joy nomi, u yerda kimlar borligi va odam soni', ru: 'Название места, кто там бывает и сколько людей' } },
+  { front: { uz: "Bitta guruh haqida nimalarni yozib qo'yasiz?", ru: "Что вы записываете про одну группу?" }, back: { uz: 'Guruh nomi, unda kimlar borligi va odam soni', ru: "Название группы, кто в ней есть и сколько людей" } },
   { front: { uz: "Odam botga kelguncha qaysi uch qadamdan o'tadi?", ru: 'Какие три шага проходит человек, пока дойдёт до бота?' }, back: { uz: 'Eshitdi, ochdi, ishlatdi', ru: 'Услышал, открыл, пользуется' } },
   { front: { uz: 'Facebook sayti qayerdan boshlangan?', ru: 'С чего начался сайт Facebook?' }, back: { uz: 'Bitta universitetdan — boshqalar yozila olmasdi', ru: 'С одного университета — другие не могли зарегистрироваться' } },
-  { front: { uz: 'Facebook butun dunyoga qachon ochilgan?', ru: 'Когда Facebook открылся для всего мира?' }, back: { uz: 'Ikki yildan keyin', ru: 'Через два года' } },
+  { front: { uz: 'Facebook butun dunyo uchun qachon ochilgan?', ru: "Когда Facebook открылся для всего мира?" }, back: { uz: 'Ikki yarim yildan keyin — 2006-yilda', ru: "Через два с половиной года — в 2006 году" } },
   { front: { uz: 'Facebook voqeasida nima ish bergan?', ru: 'Что сработало в истории Facebook?' }, back: { uz: 'Odam soni emas, odamlarning bir-birini tanishi', ru: 'Не число людей, а то, что люди знали друг друга' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1836,13 +1864,13 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Bot havolasi 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?", ru: 'Ссылку на бота отправили 900 незнакомым людям. Сколько человек будут пользоваться ботом на следующий день?' })} />}
     questionText={tr({ uz: "900 notanish odamga yuborilgan havoladan ertasiga nechta odam botni ishlatadi", ru: 'Сколько человек на следующий день будут пользоваться ботом по ссылке, отправленной 900 незнакомым' })}
-    options={[tr({ uz: "Yigirmatadan ko'p — havolani ochadigan odam ko'p chiqadi", ru: 'Больше двадцати — открывших ссылку будет много' }), tr({ uz: "Bir-ikki odam — ochganlari ham ishlatib ketmaydi", ru: 'Один-два человека — даже открывшие не станут пользоваться' }), tr({ uz: "Hech kim — bunday havolani odamlar ochmaydi", ru: 'Никто — такие ссылки люди не открывают' })]}
+    options={[tr({ uz: "Yigirmatadan ko'p — havolani ochadigan odam ko'p chiqadi", ru: 'Больше двадцати — открывших ссылку будет много' }), tr({ uz: "Bir-ikki odam — ochganlar ham ishlatmay qo'yadi", ru: "Один-два человека — даже открывшие перестанут пользоваться" }), tr({ uz: "Hech kim — bunday havolani odamlar ochmaydi", ru: 'Никто — такие ссылки люди не открывают' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Notanish odam botni ochadi va yopib qo'yadi. Yigirmata odam zich joydan yig'iladi.", ru: 'Незнакомый человек откроет бота и закроет. Двадцать человек собираются из тесного места.' })}
+    explainCorrect={tr({ uz: "Notanish odam botni odatda ochib ko'radi va yopib qo'yadi.", ru: "Незнакомый человек обычно откроет бота, посмотрит и закроет." })}
     explainWrong={{
-      0: tr({ uz: "Ochgan odam bo'ladi, lekin ishlatib ketmaydi: notanish odam botni ochib, yopib qo'yadi.", ru: 'Открывшие будут, но пользоваться не станут: незнакомый человек откроет бота и закроет.' }),
+      0: tr({ uz: "Ochganlar bo'ladi, lekin ishlatmay qo'yadi: notanish odam botni odatda ochib ko'radi va yopadi.", ru: "Открывшие будут, но перестанут пользоваться: незнакомый человек обычно откроет бота, посмотрит и закроет." }),
       2: tr({ uz: "Havola yetib bordi, ochganlar ham bo'ldi — gap ochgandan keyin nima bo'lishida.", ru: 'Ссылка дошла, открывшие тоже нашлись — вопрос в том, что будет после открытия.' }),
-      default: tr({ uz: "Katta joydan bir-ikki odam qoladi — qolganlari ochsa ham ishlatmaydi.", ru: 'Из большого места останутся один-два человека — остальные, даже открыв, пользоваться не будут.' })
+      default: tr({ uz: "Katta notanish guruhdan bir-ikki odam qoladi — qolganlari ochsa ham ishlatmaydi.", ru: "Из большой незнакомой группы останутся один-два человека — остальные, даже если откроют, пользоваться не будут." })
     }}
   />
 );
@@ -1860,20 +1888,20 @@ const HW_STEPS = {
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
 // Uy-vazifa kapsulasi fonidagi xira so'z-tokenlar — SHU darsning atamalari (§114)
 const HW_TOKENS = [
-  { t: { uz: 'joy', ru: 'место' }, l: 5, tp: 16, s: 12, d: 6.5 },
-  { t: { uz: 'zich', ru: 'тесно' }, l: 80, tp: 12, s: 11, d: 7.5 },
+  { t: { uz: 'guruh', ru: "группа" }, l: 5, tp: 16, s: 12, d: 6.5 },
+  { t: { uz: 'yaqin', ru: "близкая" }, l: 80, tp: 12, s: 11, d: 7.5 },
   { t: { uz: 'odam', ru: 'человек' }, l: 12, tp: 70, s: 11, d: 8 },
   { t: { uz: 'halqa', ru: 'круг' }, l: 64, tp: 76, s: 12, d: 6 },
   { t: { uz: 'yigirma', ru: 'двадцать' }, l: 86, tp: 52, s: 10, d: 9 },
-  { t: '🏫', l: 36, tp: 8, s: 12, d: 7 },
-  { t: '👥', l: 3, tp: 44, s: 12, d: 8.5 },
+  { t: { uz: 'ochdi', ru: 'открыл' }, l: 36, tp: 8, s: 12, d: 7 },
+  { t: { uz: 'ishlatdi', ru: 'пользуется' }, l: 3, tp: 44, s: 12, d: 8.5 },
 ];
 const HwCard = ({ variant, onPick }) => {
   const steps = HW_STEPS[variant] || HW_STEPS.toliq;
   const pickTurn = useTurnHint(!variant && !!onPick);
   return (
     <div className="card fade-step">
-      <div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
+      <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
       <p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Uyda uchta joyingizdagi odamlarni ismma-ism yozib chiqasiz: maqsad — yigirmata ism. Qancha vaqtingiz bor — o'zingiz tanlaysiz.", ru: 'Дома вы выпишете поимённо людей из своих трёх мест: цель — двадцать имён. Сколько у вас времени — выбираете сами.' })}</p>
       <div className="hw-chips">
         {HW_VARIANT.map((v, vi) => (
@@ -1882,7 +1910,7 @@ const HwCard = ({ variant, onPick }) => {
       </div>
       {variant ? (
         <div className="pmtask fade-step">
-          <div className="pmtask-head"><span className="pmtask-tag">{tr({ uz: '🗂 Topshiriq kartasi', ru: '🗂 Карточка задания' })}</span><span className="pmtask-id">{variant === 'qisqa' ? tr({ uz: 'QISQA', ru: 'КОРОТКИЙ' }) : tr({ uz: "TO'LIQ", ru: 'ПОЛНЫЙ' })}</span></div>
+          <div className="pmtask-head"><span className="pmtask-tag">{tr({ uz: 'Topshiriq kartasi', ru: "Карточка задания" })}</span><span className="pmtask-id">{variant === 'qisqa' ? tr({ uz: 'QISQA', ru: 'КОРОТКИЙ' }) : tr({ uz: "TO'LIQ", ru: 'ПОЛНЫЙ' })}</span></div>
           <div className="pmtask-rows">
             <div className="pmtask-row"><span className="pmtask-k">{tr({ uz: 'Nechta ism', ru: 'Сколько имён' })}</span><span className="pmtask-v"><b>{variant === 'qisqa' ? tr({ uz: 'yettita ism', ru: 'семь имён' }) : tr({ uz: 'yigirmata ism', ru: 'двадцать имён' })}</b></span></div>
             <div className="pmtask-row"><span className="pmtask-k">{tr({ uz: 'Qayerdan', ru: 'Откуда' })}</span><span className="pmtask-v"><b>{variant === 'qisqa' ? tr({ uz: 'eng zich joyingizdan', ru: 'из самого тесного места' }) : tr({ uz: 'uchala joyingizdan', ru: 'из всех трёх мест' })}</b></span></div>
@@ -1893,7 +1921,7 @@ const HwCard = ({ variant, onPick }) => {
           </div>
         </div>
       ) : (
-        <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '👆 Avval variantni tanlang — topshiriq-karta shunga moslashadi.', ru: '👆 Сначала выберите вариант — карточка задания подстроится под него.' })}</p></div>
+        <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Avval variantni tanlang — topshiriq-karta shunga moslashadi.', ru: "Сначала выберите вариант — карточка задания подстроится под него." })}</p></div>
       )}
     </div>
   );
@@ -1902,10 +1930,10 @@ const HwCard = ({ variant, onPick }) => {
 // Nishon tavsifi `{ uz, ru }` yoki oddiy satr bo'lishi mumkin (M3, 19.09: fullHouse ikki tilda) — tilga qarab chiqariladi
 const achDesc = (d) => (d && typeof d === 'object' ? ((typeof __lang !== 'undefined' && __lang === 'ru' && d.ru) ? d.ru : d.uz) : d);
 const ACHIEVEMENTS = {
-  innerCircle: { icon: '🎯', name: 'Map Pro!', desc: { uz: "Uch halqani ochib solishtirdingiz", ru: 'Вы открыли и сравнили три круга' } },
-  twentyPlan: { icon: '🗂', name: 'My Plan!', desc: { uz: 'Uchta joyni odam soni bilan yozdingiz', ru: 'Вы записали три места с числом людей' } },
-  fullHouse: { icon: '👥', name: '20 Done!', desc: { uz: "Yigirmata odamni to'g'ri joylardan yig'dingiz", ru: 'Вы собрали двадцать человек в нужных местах' } },
-  headCount: { icon: '🧮', name: 'Code Master!', desc: { uz: 'Kodingiz uch joyni sanab berdi', ru: 'Ваш код посчитал три места' } },
+  innerCircle: { icon: '🎯', name: 'Circle Explorer', desc: { uz: "Uch halqani ochib solishtirdingiz", ru: 'Вы открыли и сравнили три круга' } },
+  twentyPlan: { icon: '🗂', name: 'Three Groups', desc: { uz: 'Uchta guruhni kimlar borligi va odam soni bilan yozdingiz', ru: "Вы записали три группы: кто в них и сколько людей" } },
+  fullHouse: { icon: '👥', name: 'First Twenty', desc: { uz: "Yigirmata odamni ikki guruhdan yig'dingiz", ru: "Вы собрали двадцать человек из двух групп" } },
+  headCount: { icon: '🧮', name: 'Head Counter', desc: { uz: 'Kodingiz uchta guruhdagi odamlarni sanab berdi', ru: "Ваш код посчитал людей в трёх группах" } },
 };
 const ACH_TRIGGERS = { s4: 'innerCircle', s8: 'twentyPlan', s9: 'fullHouse', s10: 'headCount' };
 
@@ -1922,7 +1950,7 @@ const AchRule = ({ screen, once }) => {
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
     ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
-    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Сделаете верно с первой попытки — значок ваш.' })}</p>;
+    : tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "Справитесь с первой попытки — значок ваш." })}</p>;
 };
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -1976,37 +2004,34 @@ const Confetti = () => {
   );
 };
 // Podium savol yorliqlari (scored indekslar 3/5/7/11)
-const Q_LABELS = { 3: { uz: '1 — Bot va odam', ru: '1 — Бот и человек' }, 5: { uz: '2 — Tanish va notanish', ru: '2 — Знакомые и незнакомые' }, 7: { uz: '3 — Bitta joydan', ru: '3 — Из одного места' }, 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
+const Q_LABELS = { 3: { uz: '1 — Bot va odam', ru: '1 — Бот и человек' }, 5: { uz: '2 — Tanish va notanish', ru: '2 — Знакомые и незнакомые' }, 7: { uz: '3 — Bitta universitet', ru: "3 — Один университет" }, 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
 const QUIZ_MS = 15000;
 // §114: arena-fon so'zlari SHU darsning lug'atidan.
 const QZ_BG_SHAPES = [
-  { ch: { uz: 'joy', ru: 'место' }, l: 5, t: 10, s: 30, d: 19, dl: 0 },
-  { ch: { uz: 'zich', ru: 'тесно' }, l: 85, t: 8, s: 28, d: 23, dl: 1.5 },
+  { ch: { uz: 'guruh', ru: "группа" }, l: 5, t: 10, s: 30, d: 19, dl: 0 },
+  { ch: { uz: 'yaqin', ru: "близкая" }, l: 85, t: 8, s: 28, d: 23, dl: 1.5 },
   { ch: { uz: 'odam', ru: 'человек' }, l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: { uz: 'halqa', ru: 'круг' }, l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: { uz: 'yigirma', ru: 'двадцать' }, l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
   { ch: { uz: 'eshitdi', ru: 'услышал' }, l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
   { ch: { uz: 'ochdi', ru: 'открыл' }, l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
   { ch: { uz: 'ishlatdi', ru: 'пользуется' }, l: 55, t: 5, s: 20, d: 22, dl: 0.6 },
-  { ch: '🏫', l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
-  { ch: '👥', l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
-  { ch: '🤖', l: 2, t: 30, s: 30, d: 28, dl: 3.1 },
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · to'g'ri indekslar 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 // darslik-jonli TASDIQLAYDI. Har savol darsda AYTILGAN ekranga bog'langan (65-qonun).
 const QUIZ_BANK = [
-  { q: { uz: 'Birinchi yigirma nima?', ru: 'Что такое первые двадцать?' }, opts: [{ uz: "Botni birinchi ishlatadigan yigirmata odam", ru: 'Двадцать человек, которые первыми пользуются ботом' }, { uz: "Botga bir marta xabar yozgan yigirmata odam", ru: 'Двадцать человек, которые один раз написали боту' }, { uz: "Bot bir kunda javob bergan yigirmata xabar", ru: 'Двадцать сообщений, на которые бот ответил за день' }, { uz: "Botni qidiruvdan izlab topgan yigirmata odam", ru: 'Двадцать человек, нашедших бота через поиск' }], correct: 0 },
+  { q: { uz: 'Birinchi foydalanuvchilar kimlar?', ru: "Кто такие первые пользователи?" }, opts: [{ uz: "Botni birinchi bo'lib ishlatadigan odamlar", ru: "Люди, которые первыми пользуются ботом" }, { uz: "Botni yaratishga yordam bergan odamlar", ru: "Люди, которые помогли создать бота" }, { uz: "Botga faqat bir marta yozgan odamlar", ru: "Люди, которые написали боту только раз" }, { uz: "Bot haqida faqat eshitgan odamlar", ru: "Люди, которые только слышали о боте" }], correct: 0 },
   { q: { uz: 'Botga birinchi odamlarni kim olib keladi?', ru: 'Кто приводит к боту первых людей?' }, opts: [{ uz: "Telegram — u yangi botlarni hammaga aytib turadi", ru: 'Telegram — он всем рассказывает о новых ботах' }, { uz: "Qidiruv — bot qidiruvda o'zi yuqoriga chiqadi", ru: 'Поиск — бот сам поднимается наверх в поиске' }, { uz: "Bot — u yozilgan kuni odamlarni chaqiradi", ru: 'Бот — в день создания он сам зовёт людей' }, { uz: "Siz — birinchi odamlarga o'zingiz aytasiz", ru: 'Вы — первым людям вы рассказываете сами' }], correct: 3 },
-  { q: { uz: 'Zich joyda xabar nega tez tarqaladi?', ru: 'Почему в тесном месте новость расходится быстро?' }, opts: [{ uz: "Chunki u yerda odam soni eng ko'p", ru: 'Потому что там больше всего людей' }, { uz: "Chunki xabarni u yerda bot o'zi aytadi", ru: 'Потому что там новость рассказывает сам бот' }, { uz: "Chunki bittasi aytsa, qolganlari eshitadi", ru: 'Потому что скажет один — услышат остальные' }, { uz: "Chunki u yerdagilar bir-birini izlaydi", ru: 'Потому что люди там ищут друг друга' }], correct: 2 },
+  { q: { uz: 'Yaqin guruhda xabar nega tez tarqaladi?', ru: "Почему в близкой группе новость расходится быстро?" }, opts: [{ uz: "Chunki u yerda odam soni eng ko'p", ru: 'Потому что там больше всего людей' }, { uz: "Chunki xabarni u yerda bot o'zi aytadi", ru: 'Потому что там новость рассказывает сам бот' }, { uz: "Chunki u yerdagilar bir-birini tez-tez ko'radi", ru: "Потому что люди там часто видят друг друга" }, { uz: "Chunki u yerdagilar bir-birini izlab yuradi", ru: "Потому что люди там ищут друг друга" }], correct: 2 },
   { q: { uz: "Uch halqadan qaysi biri ko'proq odam berdi?", ru: 'Какой из трёх кругов дал больше людей?' }, opts: [{ uz: 'Sizni tanimaydiganlar halqasi', ru: 'Круг тех, кто вас не знает' }, { uz: "Har kuni ko'rishadiganlar halqasi", ru: 'Круг тех, кто видится каждый день' }, { uz: "Ba'zan ko'rishadiganlar halqasi", ru: 'Круг тех, кто видится иногда' }, { uz: 'Uchala halqa ham bir xil odam berdi', ru: 'Все три круга дали одинаково людей' }], correct: 1 },
   { q: { uz: "Katta guruhda odam ko'p — nega ishlatgani kam?", ru: 'В большой группе людей много — почему пользуются мало?' }, opts: [{ uz: 'Chunki katta guruhda bot ochilmaydi', ru: 'Потому что в большой группе бот не открывается' }, { uz: 'Chunki u yerdagilar sizni tanimaydi', ru: 'Потому что люди там вас не знают' }, { uz: 'Chunki xabar u yerga umuman yetmaydi', ru: 'Потому что новость туда вообще не доходит' }, { uz: 'Chunki bot u yerda sekin ochiladi', ru: 'Потому что бот там медленно открывается' }], correct: 1 },
-  { q: { uz: 'Xabar qaysi joydan tez tarqaladi?', ru: 'Из какого места новость расходится быстрее?' }, opts: [{ uz: "Har kuni ko'rishadigan joydan — ular bir-biriga aytadi", ru: 'Из места, где видятся каждый день, — там рассказывают друг другу' }, { uz: "Har kuni ko'rishadigan joydan — odam soni ko'p", ru: 'Из места, где видятся каждый день, — там много людей' }, { uz: "Bir-birini tanimaydigan joydan — odam soni ko'p", ru: 'Из места, где друг друга не знают, — там много людей' }, { uz: 'Bir-birini tanimaydigan joydan — ular bir-biriga aytadi', ru: 'Из места, где друг друга не знают, — там рассказывают друг другу' }], correct: 0 },
+  { q: { uz: 'Xabar qaysi guruhdan tez tarqaladi?', ru: "Из какой группы новость расходится быстрее?" }, opts: [{ uz: "Har kuni ko'rishadigan guruhdan — ular bir-biriga aytadi", ru: "Из группы, где видятся каждый день, — там рассказывают друг другу" }, { uz: "Har kuni ko'rishadigan guruhdan — odam soni ko'p", ru: "Из группы, где видятся каждый день, — там много людей" }, { uz: "Bir-birini tanimaydigan guruhdan — odam soni ko'p", ru: "Из группы, где друг друга не знают, — там много людей" }, { uz: 'Bir-birini tanimaydigan guruhdan — ular bir-biriga aytadi', ru: "Из группы, где друг друга не знают, — там рассказывают друг другу" }], correct: 0 },
   { q: { uz: "Odam botga kelguncha qaysi uch qadamdan o'tadi?", ru: 'Какие три шага проходит человек, пока дойдёт до бота?' }, opts: [{ uz: 'Qidirdi, topdi, yozdi', ru: 'Искал, нашёл, написал' }, { uz: 'Ochdi, ishlatdi, eshitdi', ru: 'Открыл, пользуется, услышал' }, { uz: 'Eshitdi, ochdi, ishlatdi', ru: 'Услышал, открыл, пользуется' }, { uz: "Ko'rdi, yozdi, o'chirdi", ru: 'Увидел, написал, удалил' }], correct: 2 },
-  { q: { uz: 'Facebook sayti 2004-yilda qayerda ochilgan?', ru: 'Где открылся сайт Facebook в 2004 году?' }, opts: [{ uz: "Butun dunyoda — istagan odam yozila olardi", ru: 'По всему миру — мог зарегистрироваться кто угодно' }, { uz: "Ikki shaharda — ikkita katta maktabda", ru: 'В двух городах — в двух больших школах' }, { uz: "Uchta shaharda — har birida bitta joyda", ru: 'В трёх городах — в каждом в одном месте' }, { uz: "Bitta universitetda — o'sha talabalarga", ru: 'В одном университете — для его студентов' }], correct: 3 },
-  { q: { uz: 'Facebook butun dunyoga qachon ochilgan?', ru: 'Когда Facebook открылся для всего мира?' }, opts: [{ uz: "Oradan ikki yil o'tgach", ru: 'Спустя два года' }, { uz: "Birinchi kunidan boshlab", ru: 'С первого же дня' }, { uz: "Bir necha oydan keyin", ru: 'Через несколько месяцев' }, { uz: "O'sha yilning oxirida", ru: 'В конце того же года' }], correct: 0 },
+  { q: { uz: 'Facebook sayti 2004-yilda qayerda ochilgan?', ru: 'Где открылся сайт Facebook в 2004 году?' }, opts: [{ uz: "Butun dunyoda — istagan odam yozila olardi", ru: 'По всему миру — мог зарегистрироваться кто угодно' }, { uz: "Ikki shaharda — ikkita katta maktabda", ru: 'В двух городах — в двух больших школах' }, { uz: "Uchta shaharda — har birida bitta joyda", ru: 'В трёх городах — в каждом в одном месте' }, { uz: "Bitta universitetda — faqat o'z talabalariga", ru: "В одном университете — только для своих студентов" }], correct: 3 },
+  { q: { uz: 'Facebook butun dunyo uchun qachon ochilgan?', ru: "Когда Facebook открылся для всего мира?" }, opts: [{ uz: "Oradan ikki yarim yil o'tgach", ru: "Спустя два с половиной года" }, { uz: "Birinchi kunidan boshlab", ru: 'С первого же дня' }, { uz: "Bir necha oydan keyin", ru: 'Через несколько месяцев' }, { uz: "O'sha yilning oxirida", ru: 'В конце того же года' }], correct: 0 },
   { q: { uz: 'Facebook voqeasida nima ish bergan?', ru: 'Что сработало в истории Facebook?' }, opts: [{ uz: "Saytning tez ochilishi", ru: 'Быстрая загрузка сайта' }, { uz: "Saytga yozilgan odamlar soni", ru: 'Число зарегистрированных на сайте' }, { uz: "Odamlarning bir-birini tanishi", ru: 'То, что люди знали друг друга' }, { uz: "Saytdagi tugmalarning ko'pligi", ru: 'Много кнопок на сайте' }], correct: 2 },
-  { q: { uz: 'Zich joy qanday joy?', ru: 'Что такое тесное место?' }, opts: [{ uz: "Zich joy — har kuni ko'p odam yig'iladigan joy", ru: 'Тесное место — где каждый день собирается много людей' }, { uz: "Zich joy — odamlar bir-birini har kuni ko'radi", ru: 'Тесное место — где люди видят друг друга каждый день' }, { uz: "Zich joy — odamlar bir-birini ko'rmaydigan joy", ru: 'Тесное место — где люди не видят друг друга' }, { uz: "Zich joy — xabar o'zi tarqalmaydigan joy", ru: 'Тесное место — где новость сама не расходится' }], correct: 1 },
-  { q: { uz: 'Uchta joy yozganda har joyda nimalarni yozasiz?', ru: 'Когда записываете три места, что пишете про каждое?' }, opts: [{ uz: "Joy nomi va u yerdagi odamlarning yoshi", ru: 'Название места и возраст людей там' }, { uz: "Faqat odam soni — qolgani kerak emas", ru: 'Только число людей — остальное не нужно' }, { uz: "Joy nomi va u yerga borish yo'li", ru: 'Название места и дорогу туда' }, { uz: "Joy nomi, kimlar borligi va odam soni", ru: 'Название места, кто там бывает и сколько людей' }], correct: 3 },
+  { q: { uz: 'Yaqin guruh qanday guruh?', ru: "Что такое близкая группа?" }, opts: [{ uz: "Uyingizga eng yaqin yashaydigan odamlar guruhi", ru: "Люди, которые живут ближе всего к вашему дому" }, { uz: "Sizni taniydigan va tez-tez ko'rishadigan guruh", ru: "Группа, которая вас знает и часто видится" }, { uz: "A'zosi ko'p va hammaga ochiq katta guruh", ru: "Большая группа, открытая всем, где много участников" }, { uz: "Siz har kuni yozadigan va o'qiydigan guruh", ru: "Группа, в которой вы каждый день пишете и читаете" }], correct: 1 },
+  { q: { uz: 'Uchta guruh yozganda har guruh haqida nimalarni yozasiz?', ru: "Когда записываете три группы, что пишете про каждую?" }, opts: [{ uz: "Guruh nomi va undagi odamlarning yoshi", ru: "Название группы и возраст людей в ней" }, { uz: "Faqat odam soni — qolgani kerak emas", ru: 'Только число людей — остальное не нужно' }, { uz: "Guruh nomi, admini va ochilgan kuni", ru: "Название группы, её админа и день создания" }, { uz: "Guruh nomi, kimlar borligi va odam soni", ru: "Название группы, кто в ней есть и сколько людей" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2105,7 +2130,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['joy', 'odam', 'zich', 'halqa', 'yigirma', 'eshitdi', 'ochdi', 'ishlatdi', '🏫', '👥'];
+    const TOK = ['guruh', 'odam', 'yaqin', 'halqa', 'yigirma', 'eshitdi', 'ochdi', 'ishlatdi'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2522,10 +2547,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const RECAP = [
-    { uz: "Botingizni birinchi bo'lib ishlatadigan yigirmata odam — birinchi yigirma.", ru: 'Двадцать человек, которые первыми начнут пользоваться вашим ботом, — это первые двадцать.' },
-    { uz: "Odamlar bir-birini har kuni ko'radigan joy — zich joy.", ru: 'Место, где люди видят друг друга каждый день, — тесное место.' },
-    { uz: 'Zich joyda bitta odam aytsa, qolganlari eshitadi.', ru: 'В тесном месте скажет один — услышат остальные.' },
-    { uz: 'Birinchi odamlarni bot emas, siz olib kelasiz.', ru: 'Первых людей приводит не бот, а вы.' },
+    { uz: "Botingizni birinchi bo'lib ishlatadigan odamlar — birinchi foydalanuvchilar.", ru: "Люди, которые первыми начнут пользоваться вашим ботом, — первые пользователи." },
+    { uz: "Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — yaqin guruh.", ru: "Люди, которые вас знают и часто видят друг друга, — близкая группа." },
+    { uz: 'Yaqin guruhda bitta odam botni ochsa, xabar qolganlarga ham yetadi.', ru: "Если в близкой группе бота откроет один человек, новость дойдёт и до остальных." },
+    { uz: 'Birinchi foydalanuvchilarni bot emas, siz olib kelasiz.', ru: "Первых пользователей приводит не бот, а вы." },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2567,14 +2592,14 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className="hero">
           <div className="hero-l">
             <span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>
-            <h2 className="title h-title fade-up d1">Uchta <span className="italic" style={{ color: T.accent }}>joyingizni</span> yozdingiz.</h2>
+            <h2 className="title h-title fade-up d1">{tr({ uz: <>Uchta <span className="italic" style={{ color: T.accent }}>guruhingizni</span> yozdingiz.</>, ru: <>Вы записали три <span className="italic" style={{ color: T.accent }}>свои группы</span>.</> })}</h2>
           </div>
           {!isMentorL && <ScoreRing correct={correct} total={total} />}
         </div>
         {/* 103-qonun: darsni bitta gap yopadi */}
-        <div className="bigidea fade-up d2"><span className="bigidea-lbl">{tr({ uz: 'Bugungi asosiy fikr —', ru: 'Главная мысль дня —' })}</span><p className="bigidea-t">{tr({ uz: "Birinchi yigirma zich joydan yig'iladi.", ru: 'Первые двадцать собираются из тесного места.' })}</p></div>
+        <div className="bigidea fade-up d2"><span className="bigidea-lbl">{tr({ uz: 'Bugungi asosiy fikr —', ru: 'Главная мысль дня —' })}</span><p className="bigidea-t">{tr({ uz: 'Birinchi foydalanuvchilar yaqin guruhlardan keladi.', ru: "Первые пользователи приходят из близких групп." })}</p></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : undefined} />
+          <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: "Дождитесь ментора" }) : undefined} />
         </div>
         {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {/* «Endi siz bilasiz» va nishonlar yonma-yon (58-qonun) */}
@@ -2582,7 +2607,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="split sum2">
             {recapCard}
             <div className="card ach-coll fade-up d4">
-              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz', ru: "Ваши значки" })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
               <div className="ach-grid">
                 {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
                   <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={achDesc(a.desc)}>
@@ -2613,7 +2638,9 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </button>
         </div>
         {hwOpen && <div ref={xulRef}><HwCard variant={hwVariant} onPick={pickHw} /></div>}
-        <MentorNote>{tr({ uz: "Arena tugagach g'oliblarni nomlab tabriklang. Uy-vazifa: kod topshirig'ini sinfda tugatganlarga to'liq variant, ulgurmaganlarga qisqa. Tekshirishda bitta savolga qarang: har ism yonida qaysi joydan ekani belgilanganmi? Yigirmata ism chiqmasa — bu ham natija: joylardan biri zich emas ekan, uni qayta ko'radi.", ru: 'После арены назовите победителей и поздравьте их. Домашнее задание: тем, кто закончил кодовое задание в классе, — полный вариант, не успевшим — короткий. При проверке смотрите на один вопрос: отмечено ли рядом с каждым именем, из какого он места? Если двадцати имён не набралось — это тоже результат: одно из мест, значит, не тесное, и ученик пересмотрит его.' })}</MentorNote>
+        {/* A9: «Keyingi dars» App.jsx m5-03 bilan mos — uyga vazifa tugmasi ostida */}
+        <p className="next-l fade-up d4">{tr({ uz: <>Keyingi dars — <b>«Telegram Bot API + tugmalar»</b>. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.</>, ru: <>Следующий урок — <b>«Telegram Bot API + кнопки»</b>. Для бота, которого вы открыли на 1-м уроке, вы напишете первый код: команду /start и кнопки меню.</> })}</p>
+        <MentorNote>{tr({ uz: "Arena tugagach g'oliblarni nomlab tabriklang. Uy-vazifa: kod topshirig'ini sinfda tugatganlarga to'liq variant, ulgurmaganlarga qisqa. Tekshirishda bitta savolga qarang: har ism yonida qaysi guruhdan ekani belgilanganmi? Yigirmata ism chiqmasa — bu ham natija: guruhlardan biri yaqin emas ekan, uni qayta ko'radi.", ru: "После арены назовите победителей и поздравьте их. Домашнее задание: тем, кто закончил кодовое задание в классе, — полный вариант, не успевшим — короткий. При проверке смотрите на один вопрос: отмечено ли рядом с каждым именем, из какой он группы? Если двадцати имён не набралось — это тоже результат: значит, одна из групп не близкая, ученик пересмотрит её." })}</MentorNote>
       </div>
     </Stage>
   );
@@ -2672,7 +2699,7 @@ const CSS_BASE = `
   .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
   .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
   .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
+  .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.ink}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 14px; font-size: 13px; }
   .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
   .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); min-width: 0; overflow-wrap: anywhere; }
@@ -2753,7 +2780,7 @@ const CSS_BASE = `
   .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
   .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; }
   .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
-  .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
+  .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; } .ring-wrap svg { width: 100%; height: 100%; }
   .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .ring-num { font-family: 'Source Serif 4', serif; font-size: 30px; font-weight: 500; line-height: 1; }
   .ring-den { color: ${T.ink3}; font-size: 20px; }
@@ -2810,13 +2837,15 @@ const CSS_LESSON = `
   .s1row-mark { margin-left: auto; font-size: 15px; color: ${T.accent}; opacity: 0; animation: s1-ok 0.4s ease-out forwards; animation-delay: var(--dd2); }
   .s1row-why { font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink2}; text-align: right; min-width: 0; overflow-wrap: anywhere; opacity: 0; animation: s1-arrive 0.5s cubic-bezier(.3,1.35,.45,1) var(--dd3) forwards; }
   .s1row-n { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(11.5px,1.4vw,13px); color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 4px 11px; box-shadow: inset 0 0 0 1.5px rgba(91,61,230,0.26); opacity: 0; animation: s1-arrive 0.5s cubic-bezier(.3,1.35,.45,1) var(--dd3) forwards; }
-  .s1sum { align-self: flex-end; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; opacity: 0; animation: s1-arrive 0.5s ease-out 3.5s forwards; }
+  .s1sum { align-self: flex-end; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; animation: s1-arrive 0.5s ease-out both; }
+  .s1sum-n { display: inline-block; min-width: 2ch; text-align: center; color: ${T.accent}; animation: s1-count 0.7s cubic-bezier(.3,1.4,.45,1); }
+  @keyframes s1-count { 0% { transform: translateY(-6px) scale(1.35); opacity: 0.4; } 60% { transform: translateY(0) scale(1.12); opacity: 1; } 100% { transform: none; } }
   @keyframes s1-arrive { 0% { opacity: 0; transform: translateX(16px) scale(0.9); } 100% { opacity: 1; transform: translateX(0) scale(1); } }
   @keyframes s1-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
   @keyframes s1-write { to { clip-path: inset(0 0 0 0); } }
   @keyframes s1-link { 0% { width: 0; opacity: 0.95; } 40% { width: 10px; opacity: 0.95; } 100% { width: 10px; opacity: 0; } }
   @keyframes s1-ok { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .s1row, .s1row-mark, .s1row-ic, .s1row-why, .s1row-n, .s1sum { animation: none; opacity: 1; transform: none; } .s1row-t { animation: none; clip-path: none; } .s1row::before { animation: none; width: 0; } }
+  @media (prefers-reduced-motion: reduce) { .s1row, .s1row-mark, .s1row-ic, .s1row-why, .s1row-n, .s1sum, .s1sum-n { animation: none; opacity: 1; transform: none; } .s1row-t { animation: none; clip-path: none; } .s1row::before { animation: none; width: 0; } }
 
   /* TEORIYA-1 (s2): ikki karta — bosilsa ochiladi/yopiladi (46-qonun) */
   .dfc-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(10px,1.8vw,16px); }
@@ -2826,7 +2855,8 @@ const CSS_LESSON = `
   .dfc:active { transform: translateY(0); }
   .dfc.open { box-shadow: inset 0 0 0 1.5px ${T.accent}66, 0 12px 26px -14px rgba(91,61,230,0.3); }
   .dfc-top { display: flex; align-items: center; gap: 9px; }
-  .dfc-ic { font-size: clamp(20px,2.8vw,26px); line-height: 1; }
+  .dfc-mark { margin-left: auto; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; } /* U1: ochiladigan kartada doimiy › belgi, bosilgach ✓ */
+  .dfc-mark.ok { color: ${T.success}; background: ${T.successSoft}; font-size: 12px; }
   .dfc-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; overflow-wrap: anywhere; min-width: 0; }
   .dfc-b { font-family: 'Manrope'; font-weight: 600; font-size: clamp(13px,1.6vw,14.5px); line-height: 1.5; color: ${T.ink2}; background: ${T.bg}; border-radius: 11px; padding: 9px 12px; min-height: 44px; display: flex; align-items: center; overflow-wrap: anywhere; min-width: 0; transition: background 0.2s, color 0.2s; }
   .dfc:not(.open) .dfc-b { justify-content: center; color: ${T.ink3}; letter-spacing: 0.34em; }
@@ -2895,6 +2925,17 @@ const CSS_LESSON = `
   .thr-res { display: flex; flex-direction: column; gap: 6px; }
   .res-line { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.45vw,13.5px); line-height: 1.45; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 10px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; animation: fade-step 0.3s ease-out; }
   .res-line b { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
+  .res-line.two { display: flex; align-items: flex-start; gap: 9px; }
+  .res-tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .res-line b.res-nm { font-family: 'Manrope', sans-serif; font-weight: 800; }
+  .res-sub { font-weight: 600; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink2}; }
+  /* v2: halqa raqami CSS doira ichida (① ② ③ belgilari o'rniga) */
+  .hnum { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-right: 7px; vertical-align: -4px; border-radius: 50%; background: ${T.paper}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; line-height: 1; box-shadow: inset 0 0 0 1.5px rgba(91,61,230,0.4); }
+  .hrr-h .hnum, .res-line.two .hnum { margin-right: 0; }
+  .hrr-mark { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; align-self: center; font-weight: 800; font-size: 14px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; }
+  .hrr-mark.ok { color: ${T.success}; background: ${T.successSoft}; font-size: 11px; }
+  .hrr-fold { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.success}; background: ${T.successSoft}; border-radius: 12px; padding: 9px 13px; box-shadow: inset 0 0 0 1.5px ${T.success}44; min-width: 0; overflow-wrap: anywhere; }
+  .hrr-fold .mono { font-weight: 700; color: ${T.ink2}; }
   @media (prefers-reduced-motion: reduce) { .wdot, .wdot.plus, .res-line, .wring { animation: none; transition: none; } .wweek i { transition: none; } .thr-b:hover:not(:disabled), .hrr:hover:not(:disabled) { transform: none; } }
 
   /* 🔴 TEKSHIRUV (s9): JOY-QUVURI — to'rt joy, uch qadam, yigirmagacha */
@@ -3049,6 +3090,7 @@ const CSS_LESSON = `
   .cmt.calm { animation: none; }
   @keyframes cmt-hunt { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,75,255,0.4); } 50% { box-shadow: 0 0 0 9px rgba(110,75,255,0); } }
   .cmt-lbl { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12px,1.5vw,13.5px); color: ${T.ink}; }
+  .cmt-rule { margin: 0; max-width: 680px; width: 100%; align-self: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink2}; background: ${T.paper}; border-radius: 12px; padding: 10px 13px; box-shadow: inset 0 0 0 1.5px ${T.line}; min-width: 0; overflow-wrap: anywhere; } /* v2: kod-savol ustidagi qoida-qatori */
   .cmt-b { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; }
   .cmt-fold { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; background: ${T.successSoft}; border-radius: 99px; padding: 7px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
   .cmt-done { font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); color: ${T.success}; animation: fade-step 0.3s ease-out; }
@@ -3077,6 +3119,12 @@ const CSS_LESSON = `
   .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
   .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
   .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}66; /* F-0926-05 #8: biroz yumshatildi */ font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+  .next-l { margin: 0; max-width: 760px; width: 100%; align-self: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink2}; text-align: center; min-width: 0; overflow-wrap: anywhere; }
+  .next-l b { color: ${T.ink}; font-weight: 800; }
+  .rcp-flow.one { grid-template-columns: minmax(0,1fr); max-width: 680px; width: 100%; align-self: center; }
+  .rcp-fold { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: ${T.successSoft}; border-radius: 14px; padding: 9px 12px 9px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; min-width: 0; }
+  .rcp-fold-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.6vw,15px); color: ${T.success}; }
+  .rcp-fold .rcp-again { margin-left: auto; }
   .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
   .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
   .pair-timer.bare { background: none; box-shadow: none; padding: 0; } /* F-0926-05 #20: yakka rejim, taymer boshlanmagan — faqat tugma, ramkasiz */
@@ -3309,7 +3357,7 @@ const CSS_ARENA = `
   .rc-x { background: ${T.paper}; border: none; border-radius: 10px; width: 36px; height: 36px; font-size: 15px; color: ${T.ink2}; cursor: pointer; flex-shrink: 0; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
   .rc-x:hover { color: ${T.accent}; }
   .rc-card { flex: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: clamp(10px,2.2vw,20px); padding: clamp(16px,3vw,28px) 0; animation: fade-step 0.35s ease-out; }
-  .rc-ic { font-size: clamp(44px,8vw,76px); line-height: 1; }
+  .rc-ic { font-size: clamp(44px,8vw,76px); line-height: 1; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ${T.accent}; } /* U3: PM darsida karta belgisi raqam */
   .rc-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(24px,4.6vw,44px); color: ${T.ink}; line-height: 1.12; max-width: 800px; margin: 0; }
   .rc-body { font-size: clamp(15px,2.4vw,21px); line-height: 1.55; color: ${T.ink2}; max-width: 720px; margin: 0; }
   .rc-body b { color: ${T.ink}; }
