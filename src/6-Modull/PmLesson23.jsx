@@ -101,12 +101,12 @@ export const SCREEN_INTENTS = {
   s1: "Bola dars oxirida uchta qarorni o'zi yozib olishini oldindan ko'radi",
   s2: "Bola ikki kartani ochib ilova so'rab qiladigan ish bilan o'zi qiladigan ishning farqini topadi",
   s3: "Bola uchta do'kondan qay birida chegara borligini tanlaydi",
-  s4: "Bola uch ishda «AI o'zi qiladi» tugmasini bosib kim jabr ko'rishini ko'radi, so'ng bitta ishni odamga qaytaradi",
+  s4: "Bola uch ishda «AI o'zi qiladi» tugmasini bosib qaror kimga tegishini ko'radi, so'ng bitta ishni odamga qaytaradi",
   s5: "Bola chegara birinchi navbatda qaysi ishga qo'yilishini aniqlaydi",
   s6: "Bola AI ilovasi ekranining pastidagi qator nima uchun turganini biladi",
   s7: "Bola chegara qaysi ikki qadam orasiga qo'yilishini tanlaydi",
-  s8: "Bola mahsulotiga uchta chegarani bittalab yozadi va har biriga jabr ko'radigan bitta odamni qo'yadi",
-  s9: "Bola do'kon botining to'rt qarorini jabr ko'radigan odamiga qo'shadi",
+  s8: "Bola mahsulotiga uchta chegarani bittalab yozadi va har biriga bu qaror tegadigan aniq odamni qo'yadi",
+  s9: "Bola do'kon botining to'rt qarorini u tegadigan odamga qo'shadi",
   s10: "Bola kompilyatorda chegara kerak ishlarni topadigan funksiyani yozadi",
   s11: "Bola hamma ishga chegara qo'yilsa do'konda nima bo'lishini tanlaydi",
   s12: "Bola uch chegarasini yoddan aytadi va bir qatorda yozib qoldiradi",
@@ -270,17 +270,17 @@ const RECAPS = {
   3: {
     title: { uz: 'Chegara — oldindan qilingan qaror', ru: 'Граница — решение, принятое заранее' },
     cards: [
-      { ic: '⚖️', h: { uz: 'Chegara nima', ru: 'Что такое граница' }, body: { uz: <>Ilova qaysi ishni <b>o'zi qilmasligini</b> oldindan hal qilasiz — shu qaror chegara.</>, ru: <>Вы заранее решаете, какую работу приложение <b>не будет делать само</b>, — это решение и есть граница.</> } },
+      { ic: '⚖️', h: { uz: 'Chegara nima', ru: 'Что такое граница' }, body: { uz: <>Ilova qaysi ishni o'zi qilaverishi, qaysisini odamdan o'tkazishi haqida oldindan qilingan qaror.</>, ru: <>Заранее принятое решение о том, какую работу приложение делает само, а какую пропускает через человека.</> } },
       { ic: '🙋', h: { uz: 'Chegara ilovani to\'xtatmaydi', ru: 'Граница не останавливает приложение' }, body: { uz: <>U bitta ishni ilovadan olib, <b>odamga qaytaradi</b>. Qolgan ishlarni ilova avvalgidek o'zi qilaveradi.</>, ru: <>Она забирает у приложения одну работу и <b>возвращает её человеку</b>. Остальное приложение делает само, как и раньше.</> } },
       { ic: '🛒', h: { uz: 'Do\'konda buni qanday ko\'rasiz', ru: 'Как это выглядит в магазине' }, body: { uz: <>Javobni AI yozadi, yuborishdan oldin uni <b>do'kon egasi o'qiydi</b> — ish AI da qoldi, qaror odamda.</>, ru: <>Ответ пишет AI, а перед отправкой его <b>читает владелец магазина</b> — работа осталась у AI, решение у человека.</> }, ask: { uz: "Do'koningizda qaysi ish odamdan o'tishi kerak?", ru: 'Какая работа в вашем магазине должна проходить через человека?' } }
     ]
   },
   5: {
-    title: { uz: 'Chegara o\'zi qiladigan ishga qo\'yiladi', ru: 'Границу ставят на работу, которую приложение делает само' },
+    title: { uz: 'Chegara qaysi ishga kerak', ru: 'Какой работе нужна граница' },
     cards: [
       { ic: '🙋', h: { uz: 'So\'ralgan ishni odam to\'xtata oladi', ru: 'Работу, о которой спросили, человек может остановить' }, body: { uz: <>Ilova avval so'rasa, xato javob <b>odamning oldida</b> to'xtaydi — chegara u yerda allaqachon bor.</>, ru: <>Если приложение сначала спрашивает, ошибочный ответ останавливается <b>перед человеком</b> — граница там уже есть.</> } },
       { ic: '🤖', h: { uz: 'O\'zi qilingan ishni hech kim to\'xtatmaydi', ru: 'Работу, которую приложение сделало само, никто не остановит' }, body: { uz: <>Ilova so'ramay qilsa, ish to'g'ri mijozga boradi. Shuning uchun chegara <b>birinchi navbatda</b> shunday ishga qo'yiladi.</>, ru: <>Если приложение делает, не спросив, работа уходит прямо к клиенту. Поэтому границу ставят <b>в первую очередь</b> именно на такую работу.</> } },
-      { ic: '🔎', h: { uz: 'Bitta savol yetadi', ru: 'Хватит одного вопроса' }, body: { uz: <>Har ishga bitta savol bering: buni ilova <b>o'zi qiladimi</b>? Ha bo'lsa — shu ishga qarang.</>, ru: <>Задайте каждой работе один вопрос: приложение делает это <b>само</b>? Если да — смотрите на эту работу.</> }, ask: { uz: "Do'konda ilova o'zi qiladigan yana qaysi ish bor?", ru: 'Какую ещё работу приложение в магазине делает само?' } }
+      { ic: '🔎', h: { uz: 'Ikki savol yetadi', ru: 'Хватит двух вопросов' }, body: { uz: <>Buni ilova <b>o'zi qiladimi</b>? Bu ish <b>odamga tegadimi</b>? Ikkalasi ham «ha» bo'lsa — shu ishga chegara kerak.</>, ru: <>Приложение <b>делает это само</b>? Эта работа <b>касается человека</b>? Если оба ответа «да» — этой работе нужна граница.</> }, ask: { uz: "Do'konda ilova o'zi qiladigan yana qaysi ish bor?", ru: 'Какую ещё работу приложение в магазине делает само?' } }
     ]
   },
   7: {
@@ -292,11 +292,11 @@ const RECAPS = {
     ]
   },
   11: {
-    title: { uz: 'Har qaror bitta odamga tegadi', ru: 'Каждое решение касается одного человека' },
+    title: { uz: "Chegara tanlab qo'yiladi", ru: 'Границу ставят выборочно' },
     cards: [
       { ic: '🎯', h: { uz: 'Chegarani qaysi ish oladi', ru: 'Какая работа получает границу' }, body: { uz: <>Chegara <b>odamga eng og'ir tegadigan</b> ishga qo'yiladi — hamma ishga emas.</>, ru: <>Границу ставят на работу, которая <b>тяжелее всего ударит по человеку</b>, — а не на всё подряд.</> } },
-      { ic: '🛑', h: { uz: 'Hamma ishga qo\'ysangiz', ru: 'Если поставить на всё' }, body: { uz: <>Har ish do'kon egasi o'qiguncha turib qoladi — <b>do'kon to'xtaydi</b>. Chegara tanlab qo'yiladi.</>, ru: <>Каждая работа ждёт, пока её прочитает владелец магазина, — <b>магазин встаёт</b>. Границу ставят выборочно.</> } },
-      { ic: '🙋', h: { uz: 'Odam nomlangan bo\'lsin', ru: 'Пусть человек будет назван' }, body: { uz: <>Har chegarada bitta aniq odam turadi: «buyurtma bergan mijoz», «manzilini qisqa yozgan mijoz».</>, ru: <>В каждой границе стоит один конкретный человек: «клиент, сделавший заказ», «клиент, коротко написавший адрес».</> }, ask: { uz: "Uch chegarangizdan qay biri eng aniq odamni aytadi?", ru: 'Какая из ваших трёх границ называет самого конкретного человека?' } }
+      { ic: '🛑', h: { uz: 'Hamma ishga qo\'ysangiz', ru: 'Если поставить на всё' }, body: { uz: <>Har ish do'kon egasini kutadi — <b>do'kon sekinlashadi</b>.</>, ru: <>Каждая работа ждёт владельца магазина — <b>магазин замедляется</b>.</> } },
+      { ic: '🙋', h: { uz: 'Aniq kim', ru: 'Кто именно' }, body: { uz: <>Har chegarada bu qaror tegadigan aniq odamlar yoziladi: «buyurtma bergan mijoz», «manzilini qisqa yozgan mijoz».</>, ru: <>В каждой границе записывают конкретных людей, которых касается это решение: «клиент, сделавший заказ», «клиент, коротко написавший адрес».</> }, ask: { uz: "Uch chegarangizdan qay biri eng aniq odamni aytadi?", ru: 'Какая из ваших трёх границ называет самого конкретного человека?' } }
     ]
   }
 };
@@ -690,7 +690,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         {opened && (
           /* IMZO-SAHNA: ikkala tanlovda ham AYNAN bir xil natija ochiladi (104/119-qonun) */
           <div className="frame-soft h0end fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham bo'ladi: ba'zi ishni ilova o'zi qilsa qulay, ba'zisini odam o'zi qilmoqchi. Farq bitta savolda: <b>shu qaror kimga tegadi</b>. Bugun shu savolni quradigan mini-do'koningizga berasiz.</>, ru: <>Бывает и то, и другое: одну работу удобно отдать приложению, другую человек хочет сделать сам. Разница в одном вопросе: <b>кого касается это решение</b>. Сегодня вы зададите этот вопрос мини-магазину, который будете строить.</> })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham bo'ladi: ba'zi ishni ilova o'zi qilsa qulay, ba'zisini odam o'zi hal qilmoqchi. Farq bitta savolda: <b>bu qaror kimga tegadi?</b> Bugun shu savolni o'zingiz qurayotgan mini-do'konga berasiz.</>, ru: <>Бывает и то, и другое: одну работу удобно отдать приложению, другую человек хочет решить сам. Разница в одном вопросе: <b>кого касается это решение?</b> Сегодня вы зададите этот вопрос мини-магазину, который сами строите.</> })}</p>
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida «ko'pchilik» yo'q */}
@@ -749,8 +749,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 2 — TEORIYA-1: ilova so'raydimi yoki o'zi qiladimi (46-qonun toggle) =====
 const S2_CARDS = [
-  { ic: '🙋', h: { uz: "Ilova so'raydi", ru: 'Приложение спрашивает' },     b: { uz: "Avval odamdan so'raydi, keyin qiladi — xato bo'lsa odam to'xtatadi", ru: 'Сначала спрашивает человека, потом делает — если ошибка, человек остановит' } },
-  { ic: '🤖', h: { uz: "Ilova o'zi qiladi", ru: 'Приложение делает само' },  b: { uz: "So'ramay qiladi — tez bo'ladi, lekin xato bo'lsa hech kim to'xtatmaydi", ru: 'Делает без спроса — быстро, но если ошибка, никто не остановит' } },
+  { ic: '🙋', h: { uz: "Ilova so'raydi", ru: 'Приложение спрашивает' },     b: { uz: "Avval odamdan so'raydi, keyin qiladi — xato bo'lsa odam to'xtatadi.", ru: 'Сначала спрашивает человека, потом делает — если ошибка, человек её остановит.' } },
+  { ic: '🤖', h: { uz: "Ilova o'zi qiladi", ru: 'Приложение делает само' },  b: { uz: "So'ramay qiladi — tez bo'ladi, lekin xato bo'lsa uni to'xtatadigan odam yo'q.", ru: 'Делает без спроса — это быстро, но если ошибка, остановить её некому.' } },
+];
+// Chegaraning uch darajasi (MD v2, A-bo'lim): xulosa-bosqichida ta'rif ostida chiqadi.
+const S2_LEVELS = [
+  { ic: '🤖', h: { uz: "O'zi qilaversin", ru: 'Пусть делает само' },            b: { uz: "masalan, mahsulot narxini ko'rsatish", ru: 'например, показывать цену товара' } },
+  { ic: '🙋', h: { uz: 'Odam tasdiqlagach qilsin', ru: 'Пусть делает после подтверждения человека' }, b: { uz: 'masalan, buyurtmani bekor qilish', ru: 'например, отменять заказ' } },
+  { ic: '⛔', h: { uz: "O'zi umuman qilmasin", ru: 'Пусть вообще не делает само' },   b: { uz: 'masalan, pulni qaytarish', ru: 'например, возвращать деньги' } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -780,7 +786,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Muhokama · ikki karta', ru: 'Обсуждение · две карточки' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Осталось открыть карточек: ${qoldi}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)', justifyContent: 'flex-start' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilova o'zi qaror qilsa, <span className="italic" style={{ color: T.accent }}>kimga</span> tegadi?</>, ru: <>Если приложение решает само, <span className="italic" style={{ color: T.accent }}>кого</span> это касается?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Ilovaning har ishi oxirida bitta odam turadi. Ikki kartani bosib solishtiring.', ru: 'В конце каждой работы приложения стоит один человек. Нажмите на две карточки и сравните.' })}</Mentor>
+        <Mentor>{tr({ uz: 'Ilovaning har ishi oxirida odam turadi. Ikki kartani bosib solishtiring.', ru: 'В конце каждой работы приложения стоит человек. Нажмите на две карточки и сравните.' })}</Mentor>
         {!xulosa && (
           <div className="dfc-grid fade-up delay-1">
             {S2_CARDS.map((c, i) => (
@@ -794,8 +800,11 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
         {xulosa && (
           <>
             <div className="xul fade-step">
-              <span className="xul-h">{tr({ uz: "Ilova qaysi ishni o'zi qilmasligini oldindan hal qilasiz — shu qaror chegara.", ru: 'Вы заранее решаете, какую работу приложение не делает само, — это решение и есть граница.' })}</span>
-              <p className="xul-b">{tr({ uz: <>Agent — o'rningizga ish qiladigan dastur. O'tgan darsda unga <b>bitta joyda</b> vakolat chegarasi qo'ygan edingiz; bugun butun mini-do'koningizga chegara qo'yasiz.</>, ru: <>Агент — программа, которая делает работу вместо вас. На прошлом уроке вы поставили ему границу полномочий <b>в одном месте</b>; сегодня поставите границы всему мини-магазину.</> })}</p>
+              <span className="xul-h">{tr({ uz: "Chegara — ilova qaysi ishni o'zi qilaverishi, qaysi ishni avval odamga ko'rsatishi yoki umuman qilmasligi haqida oldindan qilingan qaror.", ru: 'Граница — это заранее принятое решение о том, какую работу приложение делает само, какую сначала показывает человеку, а какую не делает вообще.' })}</span>
+              <ul className="xul-lv">
+                {S2_LEVELS.map(l => <li key={l.ic}><i>{l.ic}</i><span><b>{tr(l.h)}</b> — {tr(l.b)}</span></li>)}
+              </ul>
+              <p className="xul-b">{tr({ uz: <>4-darsda agentga <b>vakolat chegarasi</b> qo'ygan edingiz: nima mumkin, nima mumkin emas va qachon odam tasdig'i kerak. Bugun xuddi shu fikrni butun mini-do'koningizga qo'llaysiz.</>, ru: <>На 4-м уроке вы поставили агенту <b>границу полномочий</b>: что можно, что нельзя и когда нужно подтверждение человека. Сегодня вы примените ту же идею ко всему мини-магазину.</> })}</p>
             </div>
             <button type="button" className="nextsig" onClick={() => setFaza('kartalar')}>{tr({ uz: '◂ Kartalarga qaytish', ru: '◂ Вернуться к карточкам' })}</button>
           </>
@@ -815,11 +824,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Uchala do'konda ham mijozga AI javob yozadi, qaysi birida chegara bor", ru: 'Во всех трёх магазинах клиенту отвечает AI, в каком из них есть граница' })}
     options={[tr({ uz: "Javobni AI yozib, o'zi yuboradigan do'konda", ru: 'В магазине, где AI пишет ответ и сам его отправляет' }), tr({ uz: "Javobni AI yozib, egasi yuboradigan do'konda", ru: 'В магазине, где AI пишет ответ, а отправляет владелец' }), tr({ uz: "Javobni AI ikki marta yozadigan do'konda", ru: 'В магазине, где AI пишет ответ дважды' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Chegara AI ni to'xtatmaydi, uni odamdan o'tkazadi.", ru: 'Граница не останавливает AI, она пропускает его работу через человека.' })}
+    explainCorrect={tr({ uz: "Chegara AI'ni to'xtatmaydi — uning ishini odamdan o'tkazadi.", ru: 'Граница не останавливает AI — она пропускает его работу через человека.' })}
     explainWrong={{
       0: tr({ uz: "Bu yerda javob hech kimdan o'tmaydi: AI yozdi va o'zi yubordi.", ru: 'Здесь ответ ни через кого не проходит: AI написал и сам отправил.' }),
       2: tr({ uz: "Ikki marta yozilgan javob ham AI niki — uni o'qib chiqadigan odam yo'q.", ru: 'Ответ, написанный дважды, всё равно от AI — нет человека, который бы его прочитал.' }),
-      default: tr({ uz: "Chegara AI ni to'xtatmaydi, uni odamdan o'tkazadi.", ru: 'Граница не останавливает AI, она пропускает его работу через человека.' })
+      default: tr({ uz: "Chegara AI'ni to'xtatmaydi — uning ishini odamdan o'tkazadi.", ru: 'Граница не останавливает AI — она пропускает его работу через человека.' })
     }}
   />
 );
@@ -893,8 +902,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Sinov · qaror va odam', ru: 'Опыт · решение и человек' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor && !rescue} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.3vw,13px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ishda «AI o'zi qiladi» tugmasini bosing va <span className="italic" style={{ color: T.accent }}>kimga tegishini</span> ko'ring.</>, ru: <>В каждой работе нажмите кнопку AI и посмотрите, <span className="italic" style={{ color: T.accent }}>кого это коснётся</span>.</> })}</h2></div>
-        {!stage1 && <Mentor>{tr({ uz: "Ilovaning uch ishi, har birida ikki tanlov. Har tanlovda shu qaror tegadigan odam chiqadi.", ru: 'Три работы приложения, в каждой два варианта. При каждом выборе появляется человек, которого касается это решение.' })}</Mentor>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ishda «AI o'zi qiladi» tugmasini bosing: AI xato qilsa, <span className="italic" style={{ color: T.accent }}>kimga tegadi?</span></>, ru: <>В каждой работе нажмите кнопку «AI делает сам»: если AI ошибётся, <span className="italic" style={{ color: T.accent }}>кого это коснётся?</span></> })}</h2></div>
+        {!stage1 && <Mentor>{tr({ uz: "Avtomatlashtirish foydali — lekin ba'zi ishda odam nazorati kerak. Ilovaning uch ishi, har birida ikki tanlov. Har tanlovda shu qaror tegadigan odam chiqadi.", ru: 'Автоматизация полезна — но в некоторых работах нужен контроль человека. У приложения три работы, в каждой два варианта. При каждом выборе появляется человек, которого касается это решение.' })}</Mentor>}
         <div className="split s4">
           <Col gap={9}>
             <div className={`kzg${Object.keys(pick).length > 0 ? ' calm' : ''}`}>
@@ -911,10 +920,10 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col gap={9}>
             <div className="mir">
-              <span className="mir-lgd">{tr({ uz: "🔴 — bu qaror shu odamning kunini buzadi: u jabr ko'radi · ⚪ — bu qaror uning kunini buzmaydi", ru: '🔴 — это решение портит человеку день: он пострадает · ⚪ — это решение его день не портит' })}</span>
+              <span className="mir-lgd">{tr({ uz: "🔴 — AI xato qilsa, shu odamga zarar yetadi · ⚪ — xato bo'lsa ham, u odamga yetib bormaydi", ru: '🔴 — если AI ошибётся, этот человек пострадает · ⚪ — даже если будет ошибка, до этого человека она не дойдёт' })}</span>
               {kuz ? (
                 <div className={`mir-card ${kuzAi ? 'hit' : 'calm'}`} key={`${kuz.id}-${kuzAi ? 'a' : 'o'}`}>
-                  <span className="mir-dot">{kuzAi ? '🔴' : '⚪'}</span>
+                  <span className="mir-dot" aria-hidden="true"><i /></span>
                   <span className="mir-who">{tr(kuz.kim)}</span>
                   <span className="mir-fact">{tr(kuzAi ? kuz.fakt : kuz.tinch)}</span>
                 </div>
@@ -923,11 +932,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               )}
             </div>
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: '🪞 Uch ishni ochganlar', ru: '🪞 Открыли три работы' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Uch ishni ochganlar', ru: 'Открыли три работы' }} />
           </Col>
         </div>
         {stage1 && !chegara && hammasiOdam && (
-          <p className="bhint fade-step">{tr({ uz: "Uchala ishni ham do'kon egasi o'qisa, har buyurtma uni kutib turadi — do'kon to'xtab qoladi. Faqat bittasi odamda qolsin, qolgan ikkitasini AI qilaversin.", ru: 'Если все три работы будет читать владелец магазина, каждый заказ будет его ждать — магазин встанет. Пусть у человека останется только одна, а две другие делает AI.' })}</p>
+          <p className="bhint fade-step">{tr({ uz: "Uchala ishni ham do'kon egasi o'qisa, har buyurtma uni kutib turadi — do'kon sekinlashadi, egasi esa hammasiga ulgurmaydi. Faqat bittasini odamga qoldiring, qolgan ikkitasini AI qilaversin.", ru: 'Если все три работы будет читать владелец магазина, каждый заказ будет его ждать — магазин замедлится, а владелец не успеет за всем. Оставьте человеку только одну, а две другие пусть делает AI.' })}</p>
         )}
         {stage1 && !chegara && !hammasiOdam && (
           <div className="kzq fade-step">
@@ -940,11 +949,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {chegara && (
           <div className="bdone fade-step">
             <p className="kzq-res">{tr(KZQ_RES[chegara])}</p>
-            <span className="done-mini">{tr({ uz: "✅ Buni o'zingiz topdingiz: chegara ilovani to'xtatmaydi — bitta ishni odamga qaytaradi", ru: '✅ Вы нашли это сами: граница не останавливает приложение — она возвращает одну работу человеку' })}</span>
+            <span className="done-mini">{tr({ uz: "Buni o'zingiz topdingiz: chegara ilovani to'xtatmaydi — bitta ishni odamga qaytaradi", ru: 'Вы нашли это сами: граница не останавливает приложение — она возвращает одну работу человеку' })}</span>
             <button type="button" className="btn-soft kzq-again" onClick={() => setChegara(null)}>{tr({ uz: '↻ Boshqasini tanlash', ru: '↻ Выбрать другую' })}</button>
           </div>
         )}
-        {tipOn && !done && <p className="bhint fade-step">{tr({ uz: "💡 Yana bir kartada «AI o'zi qiladi» tugmasini bosing.", ru: '💡 Нажмите кнопку AI ещё на одной карточке.' })}</p>}
+        {tipOn && !done && <p className="bhint fade-step">{tr({ uz: "Yana bir kartada «AI o'zi qiladi» tugmasini bosing.", ru: 'Нажмите кнопку «AI делает сам» ещё на одной карточке.' })}</p>}
         {rescue && !done && <p className="small fade-step" style={{ margin: 0, color: T.ink3, fontWeight: 600 }}>{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе чуть позже — «Продолжить» открыто.' })}</p>}
         <MentorNote>{tr({ uz: "Bolalar uchala tugmani ham «odam o'qiydi» holatiga o'tkazib qo'yadi — bu eng foydali xato. Ekranning o'zi to'xtatadi; siz so'rang: har buyurtma do'kon egasini kutib tursa, do'kon ishlaydimi? Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Дети переключат все три кнопки на «читает человек» — это самая полезная ошибка. Экран сам остановит; а вы спросите: если каждый заказ ждёт владельца, будет ли магазин работать? Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
@@ -955,15 +964,15 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · chegara qayerga', ru: 'Проверка · куда ставят границу' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Chegara birinchi navbatda qaysi ishga qo'yiladi?", ru: 'На какую работу границу ставят в первую очередь?' })} />}
-    questionText={tr({ uz: "Chegara birinchi navbatda qaysi ishga qo'yiladi", ru: 'На какую работу границу ставят в первую очередь' })}
-    options={[tr({ uz: "Ilova mijozdan so'rab qiladigan ishga", ru: 'На работу, которую приложение делает, спросив клиента' }), tr({ uz: "Do'kon egasi o'zi qo'lda qiladigan ishga", ru: 'На работу, которую владелец магазина делает сам вручную' }), tr({ uz: "Ilova o'zi qilib qo'yadigan ishga", ru: 'На работу, которую приложение делает само' })]}
+    question={<TestQ ask={tr({ uz: "Chegara birinchi navbatda qaysi ishga kerak bo'ladi?", ru: 'На какую работу границу ставят в первую очередь?' })} />}
+    questionText={tr({ uz: "Chegara birinchi navbatda qaysi ishga kerak bo'ladi", ru: 'На какую работу границу ставят в первую очередь' })}
+    options={[tr({ uz: "Ilova mijozdan so'rab qiladigan ishga", ru: 'На работу, которую приложение делает, спросив клиента' }), tr({ uz: "Do'kon egasi o'zi qo'lda qiladigan ishga", ru: 'На работу, которую владелец магазина делает сам вручную' }), tr({ uz: "Ilova so'ramay, o'zi qiladigan ishga", ru: 'На работу, которую приложение делает само, без спроса' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "So'ralgan ishni odam to'xtata oladi; ilova o'zi qiladigan ishni esa hech kim to'xtatmaydi.", ru: 'Работу, о которой спросили, человек может остановить, а работу, которую приложение делает само, не остановит никто.' })}
+    explainCorrect={tr({ uz: "So'rab qilingan ishni odam to'xtata oladi; ilova so'ramay qiladigan ishni esa hech kim to'xtatmaydi. Lekin har bunday ishga emas — faqat odamga tegadiganiga, ayniqsa muhim yoki xavfli ishga: pul, bekor qilish, mijozga va'da.", ru: 'Работу, о которой спросили, человек может остановить, а работу, которую приложение делает без спроса, не остановит никто. Но не каждую такую работу — только ту, что касается человека, особенно важную или опасную: деньги, отмена, обещание клиенту.' })}
     explainWrong={{
       0: tr({ uz: "So'rab qilingan ishda odam allaqachon turibdi — u xatoni ko'rib to'xtatadi.", ru: 'В работе «со спросом» человек уже стоит — он увидит ошибку и остановит её.' }),
       1: tr({ uz: "Qo'lda qilinadigan ishni odam boshidan oxirigacha o'zi bajaradi.", ru: 'Ручную работу человек от начала до конца делает сам.' }),
-      default: tr({ uz: "Chegara ilova o'zi qilib qo'yadigan ishga qo'yiladi.", ru: 'Границу ставят на работу, которую приложение делает само.' })
+      default: tr({ uz: "Chegara ilova o'zi qiladigan va odamga tegadigan ishga qo'yiladi.", ru: 'Границу ставят на работу, которую приложение делает само и которая касается человека.' })
     }}
   />
 );
@@ -973,20 +982,20 @@ const Screen5 = (props) => (
 // tekshirib ko'ra oladigan holat. Ekranda birorta foiz, sana yoki statistika yo'q.
 // 🔴 109-qonun: ball bermaydigan bashorat — bitta.
 const HOLAT_SLIDES = [
-  { ic: '💬', h: { uz: 'Telefoningizda AI bilan yozishadigan ilova bor', ru: 'В вашем телефоне есть приложение для переписки с AI' },
-    body: { uz: <>Savol yozasiz — javob bir necha soniyada keladi.</>, ru: <>Пишете вопрос — ответ приходит за несколько секунд.</> } },
+  { ic: '💬', h: { uz: 'Telefon yoki kompyuterda AI bilan yozishasiz (masalan, Gemini, ChatGPT yoki Claude)', ru: 'Вы переписываетесь с AI на телефоне или компьютере (например, Gemini, ChatGPT или Claude)' },
+    body: { uz: <>Savol yozasiz, javob bir necha soniyada keladi.</>, ru: <>Пишете вопрос — ответ приходит за несколько секунд.</> } },
   { ic: '📄', h: { uz: 'Ekranning pastida kichkina bitta qator turadi', ru: 'Внизу экрана стоит одна маленькая строка' },
-    body: { uz: <>Kulrang, mayda harflar bilan yozilgan — uni bosib ham bo'lmaydi. Qaysi savol yozsangiz ham o'sha qator yo'qolmaydi.</>, ru: <>Серые мелкие буквы — на неё даже нельзя нажать. Какой бы вопрос вы ни написали, эта строка не исчезает.</> } },
-  { ic: '🔮', h: null, body: null,
+    body: { uz: <>Kulrang, mayda harflar bilan. Qaysi savol yozsangiz ham, u o'sha joyda turaveradi.</>, ru: <>Серыми мелкими буквами. Какой бы вопрос вы ни написали, она остаётся на том же месте.</> } },
+  { ic: null, h: null, body: null,
     predict: { ask: { uz: "Sizningcha, o'sha qator u yerda nima uchun turadi?", ru: 'Как вы думаете, зачем там стоит эта строка?' }, chips: [
-      { ic: '🏷', t: { uz: "Ilovani yozganlarning nomi ko'rinib tursin", ru: 'Чтобы были видны имена создателей приложения' } },
-      { ic: '🔢', t: { uz: "Javob necha so'z bo'lgani ko'rinib tursin", ru: 'Чтобы было видно, сколько слов в ответе' } },
-      { ic: '🔎', t: { uz: "O'qigan odam javobni tekshirib ko'rsin", ru: 'Чтобы читающий проверил ответ' } },
+      { t: { uz: "Ilovani yozganlarning nomi ko'rinib tursin", ru: 'Чтобы были видны имена создателей приложения' } },
+      { t: { uz: "Javob necha so'z bo'lgani ko'rinib tursin", ru: 'Чтобы было видно, сколько слов в ответе' } },
+      { t: { uz: "O'qigan odam javobni tekshirib ko'rsin", ru: 'Чтобы читающий проверил ответ' } },
     ], ans: 2,
-      hit: { uz: "🎯 Topdingiz! O'qigan odam javobni tekshirib ko'rsin", ru: '🎯 Угадали! Чтобы читающий проверил ответ' },
+      hit: { uz: "Topdingiz! O'qigan odam javobni tekshirib ko'rsin", ru: 'Угадали! Чтобы читающий проверил ответ' },
       miss: { uz: "Adashdingiz — asl javob: o'qigan odam javobni tekshirib ko'rsin", ru: 'Мимо — правильный ответ: чтобы читающий проверил ответ' } } },
   { ic: '✅', h: { uz: "O'sha qatorda nima yozilgan", ru: 'Что написано в этой строке' },
-    body: { uz: <>Taxminan shunday: «AI xato qilishi mumkin — muhim narsani tekshiring». Javobni AI yozdi, javobga ishonadigan esa <b>odam</b>.</>, ru: <>Примерно так: «AI может ошибаться — проверяйте важное». Ответ написал AI, а верит ответу <b>человек</b>.</> } },
+    body: { uz: <>Taxminan shunday: «AI xato qilishi mumkin — muhim ma'lumotni tekshiring». Aniq so'zlari ilovaga qarab biroz farq qiladi. Javobni AI yozdi, unga ishonadigan esa — <b>odam</b>.</>, ru: <>Примерно так: «AI может ошибаться — проверяйте важную информацию». Точные слова немного отличаются в разных приложениях. Ответ написал AI, а верит ему <b>человек</b>.</> } },
   { ic: null, h: null, body: null, bridge: true },
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1009,12 +1018,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: '📱 Haqiqiy holat', ru: '📱 Реальный случай' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${HOLAT_SLIDES.length})`, ru: `Следующий шаг (${i + 1}/${HOLAT_SLIDES.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telefoningizda har kuni ko'radigan <span className="italic" style={{ color: T.accent }}>bitta qator</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Одна строка</span>, которую вы каждый день видите в телефоне</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI bilan yozishganda har kuni ko'radigan <span className="italic" style={{ color: T.accent }}>bitta qator</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Одна строка</span>, которую вы каждый день видите, когда переписываетесь с AI</> })}</h2></div>
         {c.predict && (
           <div className={`kp-bet fade-step${bet !== undefined ? ' answered' : ''}`} key={`b${i}`}>
             {/* 🔴 ETALON 22 (sanoq-mosligi): bashoratli bosqichda ham hisoblagich uzluksiz
                 turadi (1·2·3·4·5) va har bosqichda AYNAN BITTA joyda ko'rinadi. */}
-            <span className="k-slide-eyebrow">{bet === undefined ? tr({ uz: "🎲 Avval o'zingiz belgilab ko'ring", ru: '🎲 Сначала попробуйте отметить сами' }) : tr({ uz: '📱 Haqiqiy holat', ru: '📱 Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>
+            <span className="k-slide-eyebrow">{bet === undefined ? tr({ uz: "🎲 Avval o'zingiz belgilab ko'ring", ru: '🎲 Сначала попробуйте отметить сами' }) : tr({ uz: 'Haqiqiy holat', ru: 'Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>
             <h3 className="k-slide-h">{tr(c.predict.ask)}</h3>
             <div className="kp-chips">
               {c.predict.chips.map((ch, k) => {
@@ -1025,7 +1034,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 else cls += waveCls(betHint, k, c.predict.chips.length);
                 return (
                   <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
-                    <span className="kp-ic">{ch.ic}</span>{tr(ch.t)}
+                    {ch.ic && <span className="kp-ic">{ch.ic}</span>}{tr(ch.t)}
                     {locked && isAns && <span className="kp-mark ok">✓</span>}
                     {locked && !isAns && bet === k && !isMentorK && <span className="kp-mark no">✗</span>}
                   </button>
@@ -1041,7 +1050,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         {showSlide && (
           <div className="k-slide fade-step" key={`s${i}`}>
-            {!c.predict && <span className="k-slide-eyebrow">{tr({ uz: '📱 Haqiqiy holat', ru: '📱 Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>}
+            {!c.predict && <span className="k-slide-eyebrow">{tr({ uz: 'Haqiqiy holat', ru: 'Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>}
             <div className="k-slide-ic">{c.ic}</div>
             <h3 className="k-slide-h">{tr(c.h)}</h3>
             <p className="k-slide-body">{tr(c.body)}</p>
@@ -1054,8 +1063,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {c.bridge && (
           <div className="frame-soft fade-step" key={`k${i}`}>
             {/* ETALON 22: ko'prik-bosqichi ham sanoqqa kiradi — zanjir uzilmaydi */}
-            <span className="k-slide-eyebrow">{tr({ uz: '📱 Haqiqiy holat', ru: '📱 Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>
-            <p className="body" style={{ margin: '10px 0 0', color: T.ink }}>{tr({ uz: <>Demak AI javob yozadi, tekshirishni odam qiladi — buni ilovaning o'zi ochiq yozib qo'ygan. Quradigan mini-do'koningizda ham shu savol turadi: qaysi ishni AI o'zi qilaversin, qaysi biri odamdan o'tsin. <b>Bu qarorni ilova emas, mahsulotni o'ylaydigan odam qiladi</b> — ya'ni siz.</>, ru: <>Значит, AI пишет ответ, а проверяет человек — приложение само открыто об этом написало. В мини-магазине, который вы будете строить, стоит тот же вопрос: какую работу пусть AI делает сам, а какая пусть проходит через человека. <b>Это решение принимает не приложение, а человек, который продумывает продукт</b>, — то есть вы.</> })}</p>
+            <span className="k-slide-eyebrow">{tr({ uz: 'Haqiqiy holat', ru: 'Реальный случай' })} · {i + 1} / {HOLAT_SLIDES.length}</span>
+            <p className="body" style={{ margin: '10px 0 0', color: T.ink }}>{tr({ uz: <>Demak AI javob yozadi, tekshirishni odam qiladi — buni ilovaning o'zi ochiq yozib qo'ygan. Mini-do'koningizda ham shu savol turadi: qaysi ishni AI o'zi qilaversin, qaysi biri odamdan o'tsin. <b>Bu qarorni ilova emas, ilovani yaratayotgan odam qiladi</b> — ya'ni siz.</>, ru: <>Значит, AI пишет ответ, а проверяет человек — приложение само открыто об этом написало. В вашем мини-магазине стоит тот же вопрос: какую работу пусть AI делает сам, а какая пусть проходит через человека. <b>Это решение принимает не приложение, а тот, кто его создаёт</b>, — то есть вы.</> })}</p>
           </div>
         )}
         <MentorNote>{tr({ uz: "Hozir telefonini ochib ko'rmoqchi bo'lganlar bo'ladi — ruxsat bering, bu darsning eng foydali o'ttiz soniyasi.", ru: 'Кто-то захочет открыть телефон и проверить — разрешите, это самые полезные тридцать секунд урока.' })}</MentorNote>
@@ -1067,7 +1076,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen7 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · chegara qaysi oraliqda', ru: 'Проверка · в каком промежутке граница' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "✍️ AI mahsulot tavsifini yozdi. Chegara qaysi ikki qadam orasiga qo'yiladi?", ru: '✍️ AI написал описание товара. Между какими двумя шагами ставят границу?' })} />}
+    question={<TestQ ask={tr({ uz: "AI mahsulot tavsifini yozdi. Chegara qaysi ikki qadam orasiga qo'yiladi?", ru: 'AI написал описание товара. Между какими двумя шагами ставят границу?' })} />}
     questionText={tr({ uz: "AI tavsif yozdi, chegara qaysi ikki qadam orasiga qo'yiladi", ru: 'AI написал описание, между какими двумя шагами ставят границу' })}
     options={[tr({ uz: 'Yozilgandan keyin, saytga chiqishdan oldin', ru: 'После написания, до публикации на сайте' }), tr({ uz: "Saytga chiqqandan keyin, mijoz o'qishidan oldin", ru: 'После публикации на сайте, до того как прочитает клиент' }), tr({ uz: "Mijoz o'qigandan keyin, buyurtma berishdan oldin", ru: 'После того как клиент прочитал, до заказа' })]}
     correctIdx={0}
@@ -1160,11 +1169,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningizga <span className="italic" style={{ color: T.accent }}>uchta chegara</span> yozing.</>, ru: <>Напишите для мини-магазина <span className="italic" style={{ color: T.accent }}>три границы</span>.</> })}</h2></div>
         {prd && (
           <div className="varaq fade-up">
-            <span className="varaq-t">{tr({ uz: <>📄 O'z varag'ingizdan: {prd.kim} uchun — {prd.yechim}</>, ru: <>📄 Из вашего листа: для {prd.kim} — {prd.yechim}</> })}</span>
+            <span className="varaq-t">{tr({ uz: <>O'z varag'ingizdan: {prd.kim} uchun — {prd.yechim}</>, ru: <>Из вашего листа: для {prd.kim} — {prd.yechim}</> })}</span>
             <span className="varaq-s">{tr({ uz: "Bu — shu modulda quradigan mini-do'koningiz. Unga uchta chegara yozasiz.", ru: 'Это мини-магазин, который вы строите в этом модуле. Вы напишете для него три границы.' })}</span>
           </div>
         )}
-        <Mentor>{tr({ uz: "Har ishga bitta savol bering: ilova buni o'zi qilsa, kim jabr ko'radi?", ru: 'Задайте каждой работе один вопрос: если приложение сделает это само, кто пострадает?' })}</Mentor>
+        <Mentor>{tr({ uz: "Har ishga bitta savol bering: ilova buni o'zi qilsa va xato qilsa, kimga tegadi?", ru: 'Задайте каждой работе один вопрос: если приложение сделает это само и ошибётся, кого это коснётся?' })}</Mentor>
         {/* 80a: havoda uch doira — yozilgani yashil, joriysi aksent halqada, kelgusi punktir */}
         <div className="stps fade-up">
           {[0, 1, 2].map(k => (
@@ -1187,19 +1196,19 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   onChange={e => setDJabr(e.target.value)}
                   onKeyDown={e => { if (e.key === 'Enter') save(); }} />
                 {/* 106d: ikki tomonlama javob — bloklamaydi, yo'naltiradi */}
-                {dQaror.trim().length > 0 && !uzunQ && <p className="sfb ask">{tr({ uz: "🤔 Juda qisqa qoldi — ilova aynan qaysi ishni o'zi qilmasligini yozing.", ru: '🤔 Слишком коротко — напишите, какую именно работу приложение не делает само.' })}</p>}
-                {uzunQ && takror && <p className="sfb ask">{tr({ uz: '🤔 Bu ish yuqorida allaqachon yozilgan — boshqa ishni oling.', ru: '🤔 Эта работа уже написана выше — возьмите другую.' })}</p>}
-                {uzunQ && !takror && !inkorBor && <p className="sfb ask">{tr({ uz: <>🤔 Chegara — ilova nima <b>qilmasligi</b>. «…maydi» shaklida yozing.</>, ru: <>🤔 Граница — это то, что приложение <b>не делает</b>. Напишите в форме «…не делает».</> })}</p>}
-                {guruhOnly && <p className="sfb ask">{tr({ uz: "🤔 Bu hali bitta odam emas. Qaysi mijoz? O'sha paytda u nima qilayotgan edi?", ru: '🤔 Это ещё не один человек. Какой клиент? Что он делал в тот момент?' })}</p>}
-                {!guruhOnly && birXil && <p className="sfb ask">{tr({ uz: "🤔 Uchala qator bitta odamga tegyapti — do'konda boshqa odam ham bor.", ru: '🤔 Все три строки касаются одного человека — в магазине есть и другие люди.' })}</p>}
-                {canSave && inkorBor && !birXil && <p className="sfb ok">{tr({ uz: '✅ Ish ham, odam ham yozildi.', ru: '✅ Записаны и работа, и человек.' })}</p>}
+                {dQaror.trim().length > 0 && !uzunQ && <p className="sfb ask">{tr({ uz: "Juda qisqa qoldi — ilova aynan qaysi ishni o'zi qilmasligini yozing.", ru: 'Слишком коротко — напишите, какую именно работу приложение не делает само.' })}</p>}
+                {uzunQ && takror && <p className="sfb ask">{tr({ uz: 'Bu ish yuqorida allaqachon yozilgan — boshqa ishni oling.', ru: 'Эта работа уже написана выше — возьмите другую.' })}</p>}
+                {uzunQ && !takror && !inkorBor && <p className="sfb ask">{tr({ uz: <>Chegara — ilova nima <b>qilmasligi</b>. «…maydi» shaklida yozing.</>, ru: <>Граница — это то, что приложение <b>не делает</b>. Напишите в форме «…не делает».</> })}</p>}
+                {guruhOnly && <p className="sfb ask">{tr({ uz: "«Hamma», «mijozlar» — bu kim? Qaysi mijoz? O'sha paytda u nima qilayotgan edi?", ru: '«Все», «клиенты» — это кто? Какой клиент? Что он делал в тот момент?' })}</p>}
+                {!guruhOnly && birXil && <p className="sfb ask">{tr({ uz: "Uchala qator bitta odamga tegyapti — do'konda boshqa odam ham bor.", ru: 'Все три строки касаются одного человека — в магазине есть и другие люди.' })}</p>}
+                {canSave && inkorBor && !birXil && <p className="sfb ok">{tr({ uz: 'Ish ham, odam ham yozildi.', ru: 'Записаны и работа, и человек.' })}</p>}
                 <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? tr({ uz: 'Saqlash →', ru: 'Сохранить →' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
               </div>
             )}
             {/* 80c: yozilganlar YOZISH PAYTIDA ko'rinmaydi; uchtasi yozilgach ro'yxat ochiladi */}
             {done && edit === null && (
               <div className="wsp-list fade-step">
-                <span className="wsp-list-h">{tr({ uz: "🛒 Mini-do'koningizning uch chegarasi", ru: '🛒 Три границы вашего мини-магазина' })}</span>
+                <span className="wsp-list-h">{tr({ uz: "Mini-do'koningizning uch chegarasi", ru: 'Три границы вашего мини-магазина' })}</span>
                 {list.slice(0, 3).map((r, k) => (
                   <span key={k} className="wsp-item">
                     <span className="wsp-item-n">{k + 1}</span>
@@ -1213,17 +1222,17 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col gap={9}>
             <div className="wsp-task">
               <span className="wsp-task-lbl">{tr({ uz: '🎯 Topshiriq', ru: '🎯 Задание' })}</span>
-              <span className="wsp-task-nom">{tr({ uz: 'Har chegarada bitta aniq odam', ru: 'В каждой границе — один конкретный человек' })}</span>
+              <span className="wsp-task-nom">{tr({ uz: 'Har chegarada aniq kim ekani', ru: 'В каждой границе — кто именно' })}</span>
               <div className="wsp-chk">
                 <span className={`wsp-chk-i${done ? ' on' : ''}`}><i>{done ? '✓' : '○'}</i>{tr({ uz: 'Uchta chegara yozilgan', ru: 'Написаны три границы' })}</span>
                 <span className={`wsp-chk-i${done && bariInkor ? ' on' : ''}`}><i>{done && bariInkor ? '✓' : '○'}</i>{tr({ uz: '«…maydi» bilan tugaydi', ru: 'Сформулировано с «не»' })}</span>
-                <span className={`wsp-chk-i${done && bariAniq ? ' on' : ''}`}><i>{done && bariAniq ? '✓' : '○'}</i>{tr({ uz: 'Bitta aniq odam', ru: 'Один конкретный человек' })}</span>
+                <span className={`wsp-chk-i${done && bariAniq ? ' on' : ''}`}><i>{done && bariAniq ? '✓' : '○'}</i>{tr({ uz: 'Aniq kim yozilgan', ru: 'Написано, кто именно' })}</span>
               </div>
             </div>
             <div className="wsxrow">
               <div className={`wsx ${yordamOpen ? 'open' : ''}`}>
                 <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
-                {yordamOpen && <div className="wsx-body"><p>{tr({ uz: "Ikki savol bering: ilova buni so'ramay qilsa nima bo'ladi? Bu bitta odamning kuniga qanday tushadi?", ru: 'Задайте два вопроса: что будет, если приложение сделает это без спроса? Как это отразится на дне одного человека?' })}</p></div>}
+                {yordamOpen && <div className="wsx-body"><p>{tr({ uz: "Ikki savol bering: ilova buni so'ramay qilsa nima bo'ladi? Bu qaror aniq kimga tegadi?", ru: 'Задайте два вопроса: что будет, если приложение сделает это без спроса? Кого именно касается это решение?' })}</p></div>}
               </div>
               <div className={`wsx star ${starOpen ? 'open' : ''}`}>
                 <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>{tr({ uz: "⭐ Qo'shimcha", ru: '⭐ Дополнительно' })} {starOpen ? '▾' : '▸'}</button>
@@ -1234,11 +1243,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Uch chegarani yozganlar', ru: '✍️ Написали три границы' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Uch chegarani yozganlar', ru: 'Написали три границы' }} />
           </Col>
         </div>
-        {done && edit === null && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch chegarangiz yozildi <span className="dm-sub">— har birida jabr ko'radigan bitta odam turibdi</span></>, ru: <>✅ Три ваши границы записаны <span className="dm-sub">— в каждой стоит один человек, который пострадает</span></> })}</div>}
-        <MentorNote>{tr({ uz: "«Ilova hech qanday xato qilmasin» degan qatorlar chiqadi — bu eng foydali xato. Javob-qatori uni tutadi, siz so'rang: bu qaysi ISH haqida? Baholash mezoni bitta: qator «…maydi» bilan tugaydimi va yonida bitta aniq odam turibdimi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Появятся строки вроде «Приложение не должно ошибаться» — это самая полезная ошибка. Строка-подсказка её поймает, а вы спросите: о какой РАБОТЕ это? Критерий оценки один: сформулировано ли «…не делает» и стоит ли рядом один конкретный человек. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
+        {done && edit === null && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch chegarangiz yozildi <span className="dm-sub">— har birida bu qaror tegadigan aniq odamlar yozilgan.</span></>, ru: <>✅ Три ваши границы записаны <span className="dm-sub">— в каждой указано, кого именно касается это решение.</span></> })}</div>}
+        <MentorNote>{tr({ uz: "«Ilova hech qanday xato qilmasin» degan qatorlar chiqadi — bu eng foydali xato. Javob-qatori uni tutadi, siz so'rang: bu qaysi ISH haqida? Baholash mezoni bitta: qator «…maydi» bilan tugaydimi va yonida aniq kim ekani yozilganmi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Появятся строки вроде «Приложение не должно ошибаться» — это самая полезная ошибка. Строка-подсказка её поймает, а вы спросите: о какой РАБОТЕ это? Критерий оценки один: сформулирована ли строка через «…не делает» и указано ли рядом, кто именно. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1302,7 +1311,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (q && q.odam === oid) { setPairs(p => ({ ...p, [q.id]: oid })); setSelQ(null); setMiss(''); return; }
     setMissedOnce(true);
     if (achMiss) achMiss.miss(screen);
-    setMiss({ uz: "🤔 Bu odam ham bot bilan uchrashadi — lekin boshqa paytda. Qaysi qaror aynan shu paytga tushadi?", ru: '🤔 Этот человек тоже сталкивается с ботом — но в другой момент. Какое решение попадает именно на этот момент?' });
+    setMiss({ uz: "Bu odam ham bot bilan uchrashadi — lekin boshqa paytda. Qaysi qaror aynan shu paytga tushadi?", ru: 'Этот человек тоже сталкивается с ботом — но в другой момент. Какое решение приходится именно на этот момент?' });
   };
   const korinsin = !isMentor || mReveal;
   const juftlangan = (oid) => Object.values(pairs).includes(oid);
@@ -1310,11 +1319,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: "Tekshiruv · do'konning boti", ru: 'Проверка · бот магазина' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har qarorni jabr ko'radigan odamga <span className="italic" style={{ color: T.accent }}>qo'shing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Соедините</span> каждое решение с человеком, который от него пострадает.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Uch chegarangiz tayyor — endi shu savolni do'konning botiga beramiz. Avval bot o'zi qiladigan ishni, so'ng shu qaror tegadigan odamni bosing.", ru: 'Три ваши границы готовы — теперь зададим тот же вопрос боту магазина. Сначала нажмите работу, которую бот делает сам, затем — человека, которого касается это решение.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har qarorni u tegadigan odamga <span className="italic" style={{ color: T.accent }}>qo'shing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Соедините</span> каждое решение с человеком, которого оно касается.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Uch chegarangiz tayyor — endi shu savolni do'konning botiga beramiz. Avval bot o'zi qiladigan ishni, keyin shu qaror tegadigan odamni bosing.", ru: 'Три ваши границы готовы — теперь зададим тот же вопрос боту магазина. Сначала нажмите работу, которую бот делает сам, затем — человека, которого касается это решение.' })}</Mentor>
         {isMentor && !mReveal && (
           <div className="jft-mrev">
-            <span>{tr({ uz: "🙈 Javoblar «Natijani ochish»da ko'rinadi — proyektorda oldindan ochilmaydi.", ru: '🙈 Ответы видны после «Открыть результат» — на проекторе заранее не открываются.' })}</span>
+            <span>{tr({ uz: "Javoblar «Natijani ochish»da ko'rinadi — proyektorda oldindan ochilmaydi.", ru: 'Ответы видны после «Открыть результат» — на проекторе заранее не открываются.' })}</span>
             <button type="button" className="wsp-save" onClick={() => { setMReveal(true); setPairs(Object.fromEntries(BOT_QARORLAR.map(q => [q.id, q.odam]))); }}>{tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>
           </div>
         )}
@@ -1348,7 +1357,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               })}
             </div>
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: "🔗 To'rt juftlikni tuzganlar", ru: '🔗 Составили четыре пары' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: "To'rt juftlikni tuzganlar", ru: 'Составили четыре пары' }} />
           </Col>
         </div>
         {!done && <AchRule screen={screen} />}
@@ -1379,9 +1388,9 @@ const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localSto
 
 // Darvoza-mashq (82e): darsning O'Z bilimi — m6-04 dagi vakolat chegarasi qadami
 const GATE_ITEMS = [
-  { id: 'g1', ic: '🙋', t: { uz: "Odamdan tasdiq so'raydi", ru: 'Просит подтверждения у человека' },       ok: true },
-  { id: 'g2', ic: '🔁', t: { uz: 'Ishni ikki marta bajaradi', ru: 'Выполняет работу дважды' },      ok: false },
-  { id: 'g3', ic: '📓', t: { uz: "Xabarni jurnalga yozib qo'yadi", ru: 'Записывает сообщение в журнал' }, ok: false },
+  { id: 'g1', t: { uz: "Odamdan tasdiq so'raydi", ru: 'Просит подтверждения у человека' },       ok: true },
+  { id: 'g2', t: { uz: 'Ishni ikki marta bajaradi', ru: 'Выполняет работу дважды' },      ok: false },
+  { id: 'g3', t: { uz: "Darhol o'zi bajarib qo'yadi", ru: 'Сразу выполняет сам' }, ok: false },
 ];
 
 const KOD_STARTER = { uz: `// Har ish uchun ikki qiymat: ilova buni o'zi qiladimi va bu ish kimga tegadi
@@ -1429,7 +1438,7 @@ console.log(chegaraKerak(dokonIshlari));
 console.log(chegaraKerak(botIshlari));` };
 
 const KOD_TASK = {
-  eyebrow: { uz: 'Koding · chegara kerak ishlar', ru: 'Кодинг · работы, которым нужна граница' },
+  eyebrow: { uz: 'Kod yozish · chegara kerak ishlar', ru: 'Пишем код · работы, которым нужна граница' },
   title: { uz: 'Chegara kerak ishlarni toping', ru: 'Найдите работы, которым нужна граница' },
   brief: { uz: <>Funksiya ilova <b>o'zi qiladigan</b> va <b>odamga tegadigan</b> ishlarning nomini qaytarsin. Pastdagi <span className="mono">console.log</span> ikki ro'yxatning natijasini ko'rsatadi.</>, ru: <>Пусть функция вернёт имена работ, которые приложение <b>делает само</b> и которые <b>касаются человека</b>. Внизу <span className="mono">console.log</span> покажет результат для двух списков.</> },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// ikki shartga ham mos ishlarning nomini yig'ib qaytaring", ru: '// соберите и верните имена работ, подходящих под оба условия' } }],
@@ -1494,28 +1503,28 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Javobni belgilang', ru: '① Отметьте ответ' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' });
   return (
-    <Stage eyebrow={tr({ uz: 'Koding · 🛠 kod oynasi', ru: 'Кодинг · 🛠 окно кода' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Kod yozish · kod oynasi', ru: 'Пишем код · окно кода' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.5vw,15px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Chegara kerak ishlarni topadigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который находит работы, которым нужна граница.</> })}</h2></div>
         {!stage2 ? (
           <>
             <Mentor>{tr({ uz: 'Kodda ish ikki shartga tekshiriladi. Avval bitta savolga javob bering.', ru: 'В коде работа проверяется по двум условиям. Сначала ответьте на один вопрос.' })}</Mentor>
             <div className={`cmt hunt${missedOnce ? ' calm' : ''}`}>
-              <span className="cmt-lbl">{tr({ uz: "🔎 Vakolat chegarasi qo'yilgan agent ishni bajarishdan oldin nima qiladi?", ru: '🔎 Что делает агент с границей полномочий, прежде чем выполнить работу?' })}</span>
+              <span className="cmt-lbl">{tr({ uz: "Chegarada odam tasdig'i talab qilingan. Agent ishni boshlashdan oldin nima qiladi?", ru: 'Граница требует подтверждения человека. Что делает агент, прежде чем начать работу?' })}</span>
               <div className="gt-rows">
                 {GATE_ITEMS.map(g => (
                   <button key={g.id} type="button" className={`fchoice${miss === g.id ? ' miss' : ''}`} onClick={() => pickGate(g)}>
-                    {g.ic} {tr(g.t)}
+                    {tr(g.t)}
                   </button>
                 ))}
               </div>
-              {missedOnce && <p className="cmt-tip">{tr({ uz: "🤔 Bu ish boshlangandan keyin bo'ladi. Agent ishni boshlashdan oldin kimga murojaat qiladi?", ru: '🤔 Это происходит уже после начала работы. К кому агент обращается до того, как начать работу?' })}</p>}
+              {missedOnce && <p className="cmt-tip">{tr({ uz: "Tasdiq ish boshlanishidan oldin so'raladi. Agent ishni boshlashdan oldin kimga murojaat qiladi?", ru: 'Подтверждение спрашивают до начала работы. К кому агент обращается, прежде чем начать работу?' })}</p>}
             </div>
           </>
         ) : (
           <>
-            <Mentor>{tr({ uz: <>Hozirgina har qarorni odamiga qo'shdingiz — endi o'sha ishni kod bajaradi. Bot o'zi qiladimi — endi <b style={{ color: T.ink }}>oziQiladi</b> qiymati, qaror tegadigan odam esa <b style={{ color: T.ink }}>tegadi</b> qiymati.</>, ru: <>Вы только что соединили каждое решение с человеком — теперь ту же работу выполнит код. Делает ли бот это сам — теперь значение <b style={{ color: T.ink }}>oziQiladi</b>, а человек, которого касается решение, — значение <b style={{ color: T.ink }}>tegadi</b>.</> })}</Mentor>
-            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: "✓ Belgilandi: 🙋 Odamdan tasdiq so'raydi", ru: '✓ Отмечено: 🙋 Просит подтверждения у человека' })}</span></div>
+            <Mentor>{tr({ uz: <>Hozir har qarorni odamiga qo'shdingiz — endi shu ishni kod bajaradi. Kodda har ishning ikki qiymati bor: <b style={{ color: T.ink }}>oziQiladi</b> — ilova buni o'zi qiladimi, <b style={{ color: T.ink }}>tegadi</b> — bu ish kimga tegadi.</>, ru: <>Вы только что соединили каждое решение с его человеком — теперь эту работу выполнит код. В коде у каждой работы два значения: <b style={{ color: T.ink }}>oziQiladi</b> — делает ли приложение это само, <b style={{ color: T.ink }}>tegadi</b> — кого касается эта работа.</> })}</Mentor>
+            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: "✓ Belgilandi: Odamdan tasdiq so'raydi", ru: '✓ Отмечено: Просит подтверждения у человека' })}</span></div>
             <div className="split">
               <Col gap={10}>
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
@@ -1538,12 +1547,12 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   )}
                 </div>
                 <StudentPracticePulse live={live} screen={screen} />
-                <MentorPracticeStats live={live} screen={screen} label={{ uz: "🛠 Kodni yozib bo'lganlar", ru: '🛠 Дописали код' }} />
+                <MentorPracticeStats live={live} screen={screen} label={{ uz: "Kodni yozib bo'lganlar", ru: 'Дописали код' }} />
               </Col>
               <Col gap={10}>
                 <div className="klaunch">
-                  <span className="klaunch-lbl">{tr({ uz: "🛒 Ikki ro'yxat — bitta funksiya", ru: '🛒 Два списка — одна функция' })}</span>
-                  <p className="klaunch-b">{tr({ uz: "Kod yoziladigan oyna: chapda kod, o'ngda natija.", ru: 'Окно для кода: слева код, справа результат.' })}</p>
+                  <span className="klaunch-lbl">{tr({ uz: "Ikki ro'yxat — bitta funksiya", ru: 'Два списка — одна функция' })}</span>
+                  <p className="klaunch-b">{tr({ uz: "Kompilyator — kod yozib, natijasini darhol ko'rsatadigan oyna: chapda kod, o'ngda natija.", ru: 'Компилятор — окно, где вы пишете код и сразу видите результат: слева код, справа результат.' })}</p>
                   <button className={`kod-launch-btn${openHint ? ' turn-ring' : ''}`} onClick={() => { setOpen(true); writeKodingOpen(true); }}>
                     {done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор снова' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}
                   </button>
@@ -1628,7 +1637,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
   return (
-    <Stage eyebrow={tr({ uz: 'Mustahkamlash · 2 qadam', ru: 'Закрепление · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'zingiz o'ylab ko'ring · 2 qadam", ru: 'Подумайте сами · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uch chegarangizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать свои три границы <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: "Ekranga qaramasdan javob bering: ilova qaysi ishni o'zi qilmaydi va bu kimga tegadi?", ru: 'Ответьте, не глядя на экран: какую работу приложение не делает само и кого это касается?' })}</Mentor>
@@ -1692,16 +1701,16 @@ function Flashcards({ cards }) {
   );
 }
 const FLASHCARDS = [
-  { front: { uz: 'Chegara nima?', ru: 'Что такое граница?' }, back: { uz: "Ilova qaysi ishni o'zi qilmasligini oldindan hal qilasiz — shu qaror", ru: 'Вы заранее решаете, какую работу приложение не делает само, — это решение' } },
-  { front: { uz: 'Chegara birinchi navbatda qaysi ishga qo\'yiladi?', ru: 'На какую работу границу ставят в первую очередь?' }, back: { uz: "Ilova o'zi qilib qo'yadigan ishga", ru: 'На работу, которую приложение делает само' } },
+  { front: { uz: 'Chegara nima?', ru: 'Что такое граница?' }, back: { uz: "Ilova qaysi ishni o'zi qilaverishi, qaysisini odamdan o'tkazishi haqida oldindan qilingan qaror", ru: 'Заранее принятое решение о том, какую работу приложение делает само, а какую пропускает через человека' } },
+  { front: { uz: "Chegara qaysi ishga qo'yiladi?", ru: 'На какую работу ставят границу?' }, back: { uz: "Ilova o'zi qiladigan va odamga tegadigan ishga", ru: 'На работу, которую приложение делает само и которая касается человека' } },
   { front: { uz: 'Chegara yozishdan oldin qaysi savol beriladi?', ru: 'Какой вопрос задают, прежде чем написать границу?' }, back: { uz: 'Bu qaror kimga tegadi?', ru: 'Кого касается это решение?' } },
-  { front: { uz: 'Jabr ko\'radigan odam qanday yoziladi?', ru: 'Как записывают человека, который пострадает?' }, back: { uz: "Bitta aniq odam bo'lib — «hamma» deb emas", ru: 'Как одного конкретного человека — не «все»' } },
+  { front: { uz: 'Qaror tegadigan odam qanday yoziladi?', ru: 'Как записывают человека, которого касается решение?' }, back: { uz: "Aniq kim ekanini aytib — «hamma» deb emas", ru: 'Называют, кто именно, — а не «все»' } },
   { front: { uz: 'AI yozgan tavsif saytga chiqishidan oldin nima bo\'ladi?', ru: 'Что происходит, прежде чем описание от AI попадёт на сайт?' }, back: { uz: "Do'kon egasi o'qib chiqadi", ru: 'Его читает владелец магазина' } },
-  { front: { uz: 'Hamma ishga chegara qo\'yilsa nima bo\'ladi?', ru: 'Что будет, если поставить границу на все работы?' }, back: { uz: "Har ish do'kon egasi o'qiguncha turib qoladi — do'kon to'xtaydi", ru: 'Каждая работа ждёт, пока её прочитает владелец, — магазин встаёт' } },
-  { front: { uz: 'Bot tasdiqni kechasi yuborsa, kim jabr ko\'radi?', ru: 'Бот отправил подтверждение ночью — кто пострадает?' }, back: { uz: 'Telefonini yostiq yonida qoldiradigan mijoz', ru: 'Клиент, который оставляет телефон у подушки' } },
-  { front: { uz: "AI javobni mijozga o'zi yozib yuborsa, kim jabr ko'radi?", ru: 'AI сам написал и отправил ответ клиенту — кто пострадает?' }, back: { uz: "«Zaryadlagich qo'shib berasizmi?» deb so'ragan mijoz", ru: 'Клиент, спросивший «Положите зарядку в комплект?»' } },
-  { front: { uz: 'Ilovaning qarorini kim qiladi?', ru: 'Кто принимает решения за приложение?' }, back: { uz: "Mahsulotni o'ylaydigan odam", ru: 'Человек, который продумывает продукт' } },
-  { front: { uz: 'Agentga qo\'yilgan chegara nima deb ataladi?', ru: 'Как называется граница, поставленная агенту?' }, back: { uz: "Vakolat chegarasi — inglizcha kitoblarda «guardrails» deb yoziladi", ru: 'Граница полномочий — в английских книгах пишут «guardrails»' } },
+  { front: { uz: 'Hamma ishga chegara qo\'yilsa nima bo\'ladi?', ru: 'Что будет, если поставить границу на все работы?' }, back: { uz: "Har ish odamni kutadi — do'kon sekinlashadi", ru: 'Каждая работа ждёт человека — магазин замедляется' } },
+  { front: { uz: 'Bot tasdiqni kechasi yuborsa, kimga tegadi?', ru: 'Если бот отправит подтверждение ночью, кого это коснётся?' }, back: { uz: 'Telefonini yostiq yonida qoldiradigan mijozga', ru: 'Клиента, который оставляет телефон у подушки' } },
+  { front: { uz: "AI javobni mijozga o'zi yozib yuborsa, kimga tegadi?", ru: 'Если AI сам напишет и отправит ответ клиенту, кого это коснётся?' }, back: { uz: "«Zaryadlagich qo'shib berasizmi?» deb so'ragan mijozga", ru: 'Клиента, который спросил «Положите зарядку в комплект?»' } },
+  { front: { uz: 'Chegarani kim qo\'yadi?', ru: 'Кто ставит границу?' }, back: { uz: 'Ilovani yaratayotgan odam — ya\'ni siz', ru: 'Тот, кто создаёт приложение, — то есть вы' } },
+  { front: { uz: 'Agentga qo\'yilgan chegara nima deb ataladi?', ru: 'Как называется граница, поставленная агенту?' }, back: { uz: 'Vakolat chegarasi — inglizcha guardrail', ru: 'Граница полномочий — по-английски guardrail' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1722,7 +1731,7 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: "Do'kon egasi hamma ishga chegara qo'ydi, endi nima bo'ladi", ru: 'Владелец магазина поставил границу на все работы, что теперь будет' })}
     options={[tr({ uz: "Xatolar kamayadi, ish tezligi esa o'zgarmaydi", ru: 'Ошибок станет меньше, а скорость работы не изменится' }), tr({ uz: "Har ish do'kon egasi o'qiguncha turib qoladi", ru: 'Каждая работа будет ждать, пока её прочитает владелец' }), tr({ uz: "Do'kon egasi faqat eng muhim ishlarni o'qiydi", ru: 'Владелец будет читать только самые важные работы' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Do'kon to'xtab qoladi. Shuning uchun chegara faqat odamga eng og'ir tegadigan ishga qo'yiladi.", ru: 'Магазин встаёт. Поэтому границу ставят только на работу, которая тяжелее всего ударит по человеку.' })}
+    explainCorrect={tr({ uz: "Do'kon sekinlashadi: har ish odamni kutadi, egasi esa hammasiga ulgurmaydi. Shuning uchun chegara tanlab qo'yiladi — odamga eng og'ir tegadigan ishga.", ru: 'Магазин замедляется: каждая работа ждёт человека, а владелец не успевает за всем. Поэтому границу ставят выборочно — на работу, которая тяжелее всего ударит по человеку.' })}
     explainWrong={{
       0: tr({ uz: "Xatolar kamayadi, lekin tezlik tushadi: har ish do'kon egasini kutadi.", ru: 'Ошибок станет меньше, но скорость упадёт: каждая работа ждёт владельца.' }),
       2: tr({ uz: "Chegara hamma ishga qo'yilgan — demak do'kon egasi eng muhimini emas, har bir ishni o'qiydi.", ru: 'Граница стоит на всех работах — значит, владелец читает не только самое важное, а каждую работу.' }),
@@ -1881,15 +1890,15 @@ const QUIZ_BANK = [
   { q: { uz: 'Chegara nima?', ru: 'Что такое граница?' }, opts: [{ uz: "Ilova qaysi ishni o'zi qilmasligi haqidagi qaror", ru: 'Решение о том, какую работу приложение не делает само' }, { uz: "Ilova qaysi ishni birinchi bo'lib o'zi qilishi haqidagi qaror", ru: 'Решение о том, какую работу приложение первым делает само' }, { uz: "Ilova qaysi mijozga xabar yuborishi haqidagi qaror", ru: 'Решение о том, какому клиенту приложение отправит сообщение' }, { uz: "Ilova qaysi sahifani o'zi ochmasligi haqidagi qaror", ru: 'Решение о том, какую страницу приложение не открывает само' }], correct: 0 },
   { q: { uz: "Ilova so'raydigan ish bilan o'zi qiladigan ishning farqi nimada?", ru: 'Чем работа, о которой приложение спрашивает, отличается от работы, которую оно делает само?' }, opts: [{ uz: "So'ralgan ish odamga tezroq yetib boradi", ru: 'Работа со спросом быстрее доходит до человека' }, { uz: "O'zi qiladigan ishda odam kamroq xato qiladi", ru: 'В работе, которую приложение делает само, человек меньше ошибается' }, { uz: "So'ralgan ishni ilova ikki marta bajaradi", ru: 'Работу со спросом приложение выполняет дважды' }, { uz: "So'ralgan ishni odam to'xtata oladi", ru: 'Работу со спросом человек может остановить' }], correct: 3 },
   { q: { uz: "Do'kon egasi kuniga faqat bitta ishni o'zi o'qib chiqa oladi. Qaysi ishni tanlagani to'g'ri?", ru: 'Владелец магазина может сам прочитать только одну работу в день. Какую правильно выбрать?' }, opts: [{ uz: "Mijozga o'zi qo'ng'iroq qiladigan ishni", ru: 'Работу, где он сам звонит клиенту' }, { uz: "Ilova mijozdan so'rab bajaradigan ishni", ru: 'Работу, которую приложение делает, спросив клиента' }, { uz: "Ilova hech kimdan so'ramay bajaradigan ishni", ru: 'Работу, которую приложение делает, ни у кого не спросив' }, { uz: "Ilova hech qachon bajarmaydigan ishni", ru: 'Работу, которую приложение никогда не делает' }], correct: 2 },
-  { q: { uz: "Ilova mijozning savatidan mahsulotni o'zi olib tashlasa, kim jabr ko'radi?", ru: 'Приложение само убрало товар из корзины клиента. Кто пострадает?' }, opts: [{ uz: "Do'konga tovar keltirib beradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Savatni to'ldirib, to'lovga o'tayotgan mijoz", ru: 'Клиент, который наполнил корзину и переходит к оплате' }, { uz: "Do'kon saytini yasab bergan dasturchi", ru: 'Программист, который сделал сайт магазина' }, { uz: "Mijozlar buyurtmasini omborda yig'adigan xodim", ru: 'Сотрудник, который собирает заказы на складе' }], correct: 1 },
+  { q: { uz: "Ilova mijozning savatidan mahsulotni o'zi olib tashlasa, kimga tegadi?", ru: 'Если приложение само уберёт товар из корзины клиента, кого это коснётся?' }, opts: [{ uz: "Do'konga tovar keltirib beradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Savatni to'ldirib, to'lovga o'tayotgan mijoz", ru: 'Клиент, который наполнил корзину и переходит к оплате' }, { uz: "Do'kon saytini yasab bergan dasturchi", ru: 'Программист, который сделал сайт магазина' }, { uz: "Mijozlar buyurtmasini omborda yig'adigan xodim", ru: 'Сотрудник, который собирает заказы на складе' }], correct: 1 },
   { q: { uz: "Tavsif hech kim o'qimay saytga chiqsa, nima bo'ladi?", ru: 'Что будет, если описание попадёт на сайт, никем не прочитанное?' }, opts: [{ uz: "Mijoz tavsifni saytda umuman ko'rmay qoladi", ru: 'Клиент вообще не увидит описание на сайте' }, { uz: "Xato tavsifni mijoz o'qib, ishonib qoladi", ru: 'Клиент прочитает ошибочное описание и поверит ему' }, { uz: "Sayt tavsifni o'zi qayta yozib chiqadi", ru: 'Сайт сам перепишет описание' }, { uz: "Mijozning buyurtmasi o'z-o'zidan bekor bo'ladi", ru: 'Заказ клиента сам собой отменится' }], correct: 1 },
-  { q: { uz: "Buyurtmani ilova o'zi bekor qilsa, kim jabr ko'radi?", ru: 'Приложение само отменило заказ. Кто пострадает?' }, opts: [{ uz: "Manzilini qisqa yozib yuborgan mijoz", ru: 'Клиент, коротко написавший адрес' }, { uz: "Buyurtmani mijozga yetkazadigan haydovchi", ru: 'Водитель, который доставляет заказ клиенту' }, { uz: "Do'konga tovar keltiradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Mijozlar to'lovini hisoblab boradigan xodim", ru: 'Сотрудник, который считает оплаты клиентов' }], correct: 0 },
+  { q: { uz: "Buyurtmani ilova o'zi bekor qilsa, kimga tegadi?", ru: 'Если приложение само отменит заказ, кого это коснётся?' }, opts: [{ uz: "Manzilini qisqa yozib yuborgan mijoz", ru: 'Клиент, коротко написавший адрес' }, { uz: "Buyurtmani mijozga yetkazadigan haydovchi", ru: 'Водитель, который доставляет заказ клиенту' }, { uz: "Do'konga tovar keltiradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Mijozlar to'lovini hisoblab boradigan xodim", ru: 'Сотрудник, который считает оплаты клиентов' }], correct: 0 },
   { q: { uz: "Ilova kech qolgan buyurtmaning yetkazish vaqtini o'zi o'zgartirib qo'ydi. Bu ishga nega chegara kerak?", ru: 'Приложение само изменило время доставки опаздывающего заказа. Зачем этой работе граница?' }, opts: [{ uz: "Ilova vaqtni tez-tez o'zgartirsa, sayt sekinlashadi", ru: 'Если приложение часто меняет время, сайт тормозит' }, { uz: "Yangi vaqt do'kon ro'yxatida ikki marta yoziladi", ru: 'Новое время дважды записывается в список магазина' }, { uz: "Yangi vaqtga ishonib kutgan mijoz aldanib qoladi", ru: 'Клиент, который поверил новому времени и ждал, окажется обманут' }, { uz: "Vaqt o'zgargani do'kon hisobotiga tushmay qoladi", ru: 'Изменение времени не попадёт в отчёт магазина' }], correct: 2 },
-  { q: { uz: "Bot tasdiq xabarini kechasi soat ikkida yuborsa, kim jabr ko'radi?", ru: 'Бот отправил подтверждение в два часа ночи. Кто пострадает?' }, opts: [{ uz: "Ertalab ishga shoshib chiqadigan mijoz", ru: 'Клиент, который утром торопится на работу' }, { uz: "Kechasi do'konni yopib ketgan do'kon egasi", ru: 'Владелец, который ночью закрыл магазин' }, { uz: "Buyurtmani ertalab mijozga olib chiqadigan haydovchi", ru: 'Водитель, который утром везёт заказ клиенту' }, { uz: "Telefonini o'chirmasdan uxlaydigan mijoz", ru: 'Клиент, который спит, не выключив телефон' }], correct: 3 },
+  { q: { uz: "Bot tasdiq xabarini kechasi soat ikkida yuborsa, kimga tegadi?", ru: 'Если бот отправит подтверждение в два часа ночи, кого это коснётся?' }, opts: [{ uz: "Ertalab ishga shoshib chiqadigan mijoz", ru: 'Клиент, который утром торопится на работу' }, { uz: "Kechasi do'konni yopib ketgan do'kon egasi", ru: 'Владелец, который ночью закрыл магазин' }, { uz: "Buyurtmani ertalab mijozga olib chiqadigan haydovchi", ru: 'Водитель, который утром везёт заказ клиенту' }, { uz: 'Telefonini yostiq yonida qoldiradigan mijoz', ru: 'Клиент, который спит, не выключив телефон' }], correct: 3 },
   { q: { uz: "Bir hafta telefoniga qaray olmagan mijozga botning qaysi qarori tegdi?", ru: 'Клиент неделю не мог посмотреть в телефон. Какое решение бота его задело?' }, opts: [{ uz: "Bot buyurtmani o'zi bekor qilib yubordi", ru: 'Бот сам отменил заказ' }, { uz: "Bot tasdiq xabarini o'zi kechasi yubordi", ru: 'Бот сам отправил подтверждение ночью' }, { uz: "Bot mahsulot tavsifini o'zi qayta yozdi", ru: 'Бот сам переписал описание товара' }, { uz: "Bot chegirmani ko'p buyurtma berganlarga yubordi", ru: 'Бот отправил скидку тем, кто много заказывает' }], correct: 0 },
-  { q: { uz: "Do'konga endi qo'shilgan mijoz chegirmadan bexabar qoldi. Botning qaysi qarori shunga olib keldi?", ru: 'Новый клиент магазина не узнал о скидке. Какое решение бота к этому привело?' }, opts: [{ uz: "Tasdiq xabarini kechasi soat ikkida yuborishi", ru: 'Отправлять подтверждение в два часа ночи' }, { uz: "Javob kelmagan buyurtmani o'zi bekor qilishi", ru: 'Самому отменять заказ, если нет ответа' }, { uz: "Chegirmani faqat ko'p buyurtma berganlarga yuborishi", ru: 'Отправлять скидку только тем, кто много заказывает' }, { uz: "Javob kelmaguncha har o'n daqiqada yozib turishi", ru: 'Писать каждые десять минут, пока нет ответа' }], correct: 2 },
+  { q: { uz: "Birinchi marta buyurtma bergan mijoz chegirmadan bexabar qoldi. Botning qaysi qarori shunga olib keldi?", ru: 'Клиент, сделавший первый заказ, не узнал о скидке. Какое решение бота к этому привело?' }, opts: [{ uz: "Tasdiq xabarini kechasi soat ikkida yuborishi", ru: 'Отправлять подтверждение в два часа ночи' }, { uz: "Javob kelmagan buyurtmani o'zi bekor qilishi", ru: 'Самому отменять заказ, если нет ответа' }, { uz: "Chegirmani faqat ko'p buyurtma berganlarga yuborishi", ru: 'Отправлять скидку только тем, кто много заказывает' }, { uz: "Javob kelmaguncha har o'n daqiqada yozib turishi", ru: 'Писать каждые десять минут, пока нет ответа' }], correct: 2 },
   { q: { uz: "Do'kon egasi endi har bir buyurtmani o'zi o'qib chiqishga majbur. Sabab nima?", ru: 'Владелец магазина теперь вынужден сам читать каждый заказ. В чём причина?' }, opts: [{ uz: "AI javoblari mijozlarga to'g'ridan-to'g'ri ketgan", ru: 'Ответы AI уходили прямо клиентам' }, { uz: "Do'kondagi hamma ishga chegara qo'yib chiqilgan", ru: 'На все работы в магазине поставили границы' }, { uz: "Bot kechalari umuman ishlamay qo'ygan", ru: 'Бот совсем перестал работать по ночам' }, { uz: "Chegirma xabari hamma mijozlarga yuborilgan", ru: 'Сообщение о скидке отправили всем клиентам' }], correct: 1 },
-  { q: { uz: "Ilovaga yangi ish qo'shilmoqchi: mijozga tabrikni o'zi yuborish. Chegara kerakmi — buni kim hal qiladi?", ru: 'В приложение хотят добавить новую работу: самому отправлять клиенту поздравление. Нужна ли граница — кто это решает?' }, opts: [{ uz: "Ilovaning o'zi sinab hal qiladi", ru: 'Приложение само проверит и решит' }, { uz: "Tabrik keladigan mijozning o'zi", ru: 'Сам клиент, которому придёт поздравление' }, { uz: "Ilovaga kod yozgan dasturchi", ru: 'Программист, написавший код приложения' }, { uz: "Mahsulotni o'ylaydigan odam", ru: 'Человек, который продумывает продукт' }], correct: 3 },
+  { q: { uz: "Ilovaga yangi ish qo'shilmoqchi: mijozga tabrikni o'zi yuborish. Chegara kerakmi — buni kim hal qiladi?", ru: 'В приложение хотят добавить новую работу: самому отправлять клиенту поздравление. Нужна ли граница — кто это решает?' }, opts: [{ uz: "Ilovaning o'zi sinab hal qiladi", ru: 'Приложение само проверит и решит' }, { uz: "Tabrik keladigan mijozning o'zi", ru: 'Сам клиент, которому придёт поздравление' }, { uz: "Ilovaga kod yozgan dasturchi", ru: 'Программист, написавший код приложения' }, { uz: 'Ilovani yaratayotgan odam', ru: 'Тот, кто создаёт приложение' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2408,10 +2417,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const RECAP = [
-    { uz: "Ilova qaysi ishni o'zi qilmasligini oldindan hal qilasiz — shu qaror chegara.", ru: 'Вы заранее решаете, какую работу приложение не делает само, — это решение и есть граница.' },
-    { uz: "Chegara ilova o'zi qilib qo'yadigan ishga qo'yiladi.", ru: 'Границу ставят на работу, которую приложение делает само.' },
-    { uz: "Har qaror bitta aniq odamga tegadi — chegara o'sha odamni himoya qiladi.", ru: 'Каждое решение касается одного конкретного человека — граница защищает этого человека.' },
-    { uz: "Chegarani ilova emas, mahsulotni o'ylaydigan odam qo'yadi — ya'ni siz.", ru: 'Границу ставит не приложение, а человек, который продумывает продукт, — то есть вы.' },
+    { uz: "Chegara — ilova qaysi ishni o'zi qilaverishi, qaysisini odamdan o'tkazishi haqida oldindan qilingan qaror.", ru: 'Граница — это заранее принятое решение о том, какую работу приложение делает само, а какую пропускает через человека.' },
+    { uz: "Chegara ilova o'zi qiladigan va odamga tegadigan ishga qo'yiladi — ayniqsa muhim yoki xavfli ishga.", ru: 'Границу ставят на работу, которую приложение делает само и которая касается человека, — особенно на важную или опасную.' },
+    { uz: 'Har chegarada bu qaror tegadigan aniq odamlar yoziladi.', ru: 'В каждой границе записывают конкретных людей, которых касается это решение.' },
+    { uz: "Chegarani ilova emas, ilovani yaratayotgan odam qo'yadi — ya'ni siz.", ru: 'Границу ставит не приложение, а тот, кто его создаёт, — то есть вы.' },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2455,7 +2464,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className="hero">
           <div className="hero-l">
             <span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>
-            <h2 className="title h-title fade-up d1">Uchta <span className="italic" style={{ color: T.accent }}>chegarangiz</span> yozildi.</h2>
+            <h2 className="title h-title fade-up d1">{tr({ uz: <>Uchta <span className="italic" style={{ color: T.accent }}>chegarangiz</span> yozildi.</>, ru: <>Три ваши <span className="italic" style={{ color: T.accent }}>границы</span> записаны.</> })}</h2>
           </div>
           {!isMentorL && <ScoreRing correct={correct} total={total} />}
         </div>
@@ -2481,6 +2490,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             </div>
           </div>
         )}
+        <p className="next-note fade-up d4">{tr({ uz: <>🚀 Keyingi dars — <b>O'z Skill'ingizni yozing:</b> AI uchun o'zingiz yo'riqnoma yozib, uni sinab ko'rasiz.</>, ru: <>🚀 Следующий урок — <b>Создаём свой Skill:</b> вы сами напишете инструкцию для AI и проверите её.</> })}</p>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${charge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2762,6 +2772,9 @@ const CSS_LESSON = `
   .mir-dot { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; flex-shrink: 0; width: 30px; height: 30px; font-size: 15px; line-height: 1; }
   .mir-card.hit .mir-dot { background: ${T.errSoft}; border-radius: 9px; box-shadow: inset 0 0 0 2px ${T.err}88; }
   .mir-card.calm .mir-dot { background: ${T.successSoft}; border-radius: 50%; box-shadow: inset 0 0 0 2px ${T.success}88; }
+  .mir-dot i { display: block; width: 12px; height: 12px; border-radius: 50%; }
+  .mir-card.hit .mir-dot i { background: ${T.err}; }
+  .mir-card.calm .mir-dot i { background: #fff; box-shadow: inset 0 0 0 1.5px ${T.ink3}; }
   .mir-who { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(14px,1.85vw,16.5px); line-height: 1.3; color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; }
   .mir-fact { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; background: ${T.bg}; border-radius: 10px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; }
   .mir-empty { font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); line-height: 1.5; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); border-radius: 14px; padding: clamp(16px,2.6vw,26px) clamp(12px,1.8vw,16px); text-align: center; min-width: 0; overflow-wrap: anywhere; }
@@ -2873,6 +2886,11 @@ const CSS_LESSON = `
   .xul { background: ${T.paper}; border-radius: 14px; padding: clamp(13px,2vw,18px); display: flex; flex-direction: column; gap: 7px; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.2); }
   .xul-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; }
   .xul-b { margin: 0; font-size: clamp(13.5px,1.6vw,15px); line-height: 1.5; color: ${T.ink2}; }
+  .xul-lv { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+  .xul-lv li { display: flex; align-items: flex-start; gap: 8px; font-size: clamp(13.5px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
+  .xul-lv li i { font-style: normal; flex: none; }
+  .next-note { margin: 0; text-align: center; font-size: clamp(13px,1.5vw,14.5px); line-height: 1.45; color: ${T.ink2}; }
+  .next-note b { color: ${T.ink}; }
   .bhint { margin: 0; align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 9px; padding: 7px 12px; min-width: 0; overflow-wrap: anywhere; }
   .bdone { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
 

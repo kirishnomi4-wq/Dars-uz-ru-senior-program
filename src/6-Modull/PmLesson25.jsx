@@ -19,7 +19,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //   jonli relslar, Stage, QuestionScreen, MentorTestStats, RecapOverlay, PairTimer, ScreenPodium,
 //   CodeStrike-arena, nishonlar, to'liq-ekran kompilyator qobig'i (zoom-bekori).
 // KODING: umumiy kompilyator (registr R1 navbati: m6-12 VS Code -> m6-14 kompilyator), sof JS.
-// ATAMA-INTIZOMI: darsning yagona so'zi — «raqam»; hukm-juftligi «isbot ↔ shovqin» s2 da tug'iladi
+// ATAMA-INTIZOMI: darsning yagona so'zi — «raqam»; hukm-juftligi «dalil (natija raqami) ↔ mehnat raqami» s2 da tug'iladi
 //   (s0/s1 da 0). M8-D1 ning atamalari va ularning kalka-qo'shnilari o'quvchi matnida 0
 //   (29-qonun · senariy 13-b residue ro'yxati). «Pitch» so'zi o'quvchi matnida UMUMAN yo'q:
 //   flashcard-10 uni so'ragan edi, 👦 1-o'qishda «javob berolmadim» chiqdi — karta darsda
@@ -106,15 +106,15 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 export const SCREEN_INTENTS = {
   s0: "Bola sahnada yolg'iz turgan raqam nima qilishini belgilaydi va ikkala tanlovda bir xil javobni ko'radi",
   s1: "Bola dars oxirida sahnaga chiqadigan slaydning uch qatorini yozib olishini oldindan ko'radi",
-  s2: "Bola ikki kartani solishtirib, qaysi raqam tizim odam uchun qilgan ishni sanashini topadi",
-  s3: "Bola uch raqamdan tizim ishlaganini ko'rsatadiganini tanlaydi",
+  s2: "Bola ikki kartani solishtirib, qaysi raqam tizim foydalanuvchi uchun qilgan ishni sanashini topadi",
+  s3: "Bola uch raqamdan tizim foydalanuvchiga bergan natijani ko'rsatadiganini tanlaydi",
   s4: "Bola slaydning uch qatorini birma-bir ochib, keyin ikki rost raqamdan tizim ishni oxirigacha bajarganini ko'rsatganini tanlaydi",
   s5: "Bola uchinchi qator raqam tizim haqida nimani ko'rsatishini yozishini aniqlaydi",
-  s6: "Bola Airbnb varaqlarida raqamli qadam bittagina ekanini va u o'rtada turganini biladi",
+  s6: "Bola Airbnb varaqlarida raqam qiyinchilik va yechimdan keyingi varaqda turganini biladi",
   s7: "Bola o'sha raqam qiyinchilik qancha odamda borligini ko'rsatganini tanlaydi",
   s8: "Bola o'z tizimi uchun slaydning uch qatorini bittalab yozadi",
   s9: "Bola uch juftlikda slaydga chiqadigan raqamni tanlaydi",
-  s10: "Bola kompilyatorda odam ishini sanagan raqamlarni ajratadigan funksiyani yozadi",
+  s10: "Bola kompilyatorda natija raqamlarini ajratadigan funksiyani yozadi",
   s11: "Bola sahnaga chiqadigan raqam qanday tanlanishini belgilaydi",
   s12: "Bola slaydini yoddan aytadi va bir qatorda yozib qoldiradi",
   s13: "Bola o'z natijasini (jonlida — guruh reytingini) ko'radi",
@@ -276,11 +276,11 @@ const INLINE_KEYS = { s3: 1, s5: 2, s7: 0, s11: 1, slayd: -1, practice: -1, juft
 // Har scored ekran uchun qayta-tushuntirish. Kalitlar = scored ekran INDEKSI (3/5/7/11).
 const RECAPS = {
   3: {
-    title: { uz: 'Isbot — tizim odam uchun nima qilganini sanagan raqam', ru: 'Доказательство — число, которое считает, что система сделала для человека' },
+    title: { uz: 'Dalil — foydalanuvchi uchun bajarilgan ishni sanagan raqam', ru: 'Довод — число, которое считает работу, сделанную для пользователя' },
     cards: [
-      { ic: '👥', h: { uz: 'Isbot qanday raqam', ru: 'Какое число — доказательство' }, body: { uz: <>Tizim odam uchun nima qilganini sanab turgan raqam — <b>isbot</b>.</>, ru: <>Число, которое считает, что система сделала для человека, — это <b>доказательство</b>.</> } },
-      { ic: '🔧', h: { uz: 'Mehnatni sanagan raqam', ru: 'Число, которое считает труд' }, body: { uz: <>Faqat siz qancha ishlaganingizni sanaydigan raqam sahnada boshqa ishni bajaradi: u tizim ishlaganini ko'rsatmaydi.</>, ru: <>Число, которое считает только то, сколько вы работали, на сцене делает другую работу: оно не показывает, что система работает.</> } },
-      { ic: '🔎', h: { uz: 'Ikki tomonni yonma-yon qo\'ying', ru: 'Поставьте две стороны рядом' }, body: { uz: <>Har raqamdan bitta narsani so'rang: u kimning ishini sanadi — tizimni qurgan odamningmi, tizimdan foydalangan odamningmi?</>, ru: <>Спросите у каждого числа одно: чью работу оно посчитало — того, кто строил систему, или того, кто ею пользовался?</> }, ask: { uz: 'Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim ishlaganini ko\'rsatadi?', ru: 'Для слайда на сцене предложили три числа. Какое из них показывает, что система работает?' } }
+      { ic: '👥', h: { uz: 'Dalil qanday raqam', ru: 'Какое число — довод' }, body: { uz: <>Tizim foydalanuvchi uchun bajargan ishni sanagan raqam — <b>kuchli dalil</b>.</>, ru: <>Число, которое считает работу системы для пользователя, — <b>сильный довод</b>.</> } },
+      { ic: '🔧', h: { uz: 'Mehnat raqami', ru: 'Число труда' }, body: { uz: <>Mehnat raqami (satr, hafta) jarayonni ko'rsatadi — natijani emas.</>, ru: <>Число труда (строки, недели) показывает процесс — а не результат.</> } },
+      { ic: '🔎', h: { uz: 'Ikki tomonni yonma-yon qo\'ying', ru: 'Поставьте две стороны рядом' }, body: { uz: <>Har raqamdan so'rang: u kimning ishini sanadi — tizimni qurgan odamningmi, foydalanuvchi olgan natijanimi?</>, ru: <>Спросите у каждого числа: чью работу оно посчитало — того, кто строил систему, или результат, который получил пользователь?</> }, ask: { uz: "Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили три числа. Какое из них показывает результат, который система дала пользователю?' } }
     ]
   },
   5: {
@@ -294,17 +294,17 @@ const RECAPS = {
   7: {
     title: { uz: 'Raqam qiyinchilikning davomi', ru: 'Число — продолжение проблемы' },
     cards: [
-      { ic: '🪜', h: { uz: 'Raqamli qadam qayerda', ru: 'Где стоит шаг с числом' }, body: { uz: <>Airbnb varaqlarida raqamli qadam <b>uchinchi o'rinda</b> turgan — qiyinchilik va yechim aytilgandan keyin.</>, ru: <>На листах Airbnb шаг с числом стоял <b>третьим</b> — после того как назвали проблему и решение.</> } },
-      { ic: '😣', h: { uz: 'U nimani ko\'rsatgan', ru: 'Что оно показало' }, body: { uz: <>O'sha raqam qiyinchilik qancha odamda borligini ko'rsatgan: u qiyinchilikning kattaligini aytgan.</>, ru: <>Это число показало, у скольких людей есть эта проблема: оно рассказало о её размере.</> } },
-      { ic: '📚', h: { uz: 'Raqam yolg\'iz turmagan', ru: 'Число не стояло в одиночку' }, body: { uz: <>Varaq raqamni yolg'iz qoldirmagan — u oldingi ikki qadamning davomi bo'lib chiqqan.</>, ru: <>Лист не оставил число в одиночестве — оно стало продолжением двух предыдущих шагов.</> }, ask: { uz: 'Airbnb varag\'idagi raqamni ko\'rgan odam nimani bilib olgan?', ru: 'Что узнал человек, увидевший число на листе Airbnb?' } }
+      { ic: '🪜', h: { uz: 'Raqamli qadam qayerda', ru: 'Где стоит шаг с числом' }, body: { uz: <>Airbnb varaqlarida qiyinchilik va yechimdan keyingi varaq <b>raqam bilan gapirgan</b>.</>, ru: <>Среди листов Airbnb тот, что шёл после проблемы и решения, <b>говорил числом</b>.</> } },
+      { ic: '😣', h: { uz: 'U nimani ko\'rsatgan', ru: 'Что оно показало' }, body: { uz: <>U qiyinchilikni qancha odam boshdan kechirayotganini ko'rsatgan.</>, ru: <>Оно показывало, сколько людей сталкиваются с этой проблемой.</> } },
+      { ic: '📚', h: { uz: 'Raqam yolg\'iz turmagan', ru: 'Число не стояло в одиночку' }, body: { uz: <>U oldingi ikki qadamning davomi bo'lgan.</>, ru: <>Оно было продолжением двух предыдущих шагов.</> }, ask: { uz: 'Airbnb varag\'idagi raqamni ko\'rgan odam nimani bilib olgan?', ru: 'Что узнал человек, увидевший число на листе Airbnb?' } }
     ]
   },
   11: {
     title: { uz: 'Sahnaga bitta raqam chiqadi', ru: 'На сцену выходит одно число' },
     cards: [
-      { ic: '🎯', h: { uz: 'Qaysi raqam chiqadi', ru: 'Какое число выходит' }, body: { uz: <>Sahnaga tizim odam uchun bajargan ishni sanagan raqam chiqadi.</>, ru: <>На сцену выходит число, которое посчитало работу, сделанную системой для человека.</> } },
-      { ic: '⚖️', h: { uz: 'Ikkalasi ham odamniki bo\'lsa', ru: 'Если оба про людей' }, body: { uz: <>Tizim ishni oxirigacha bajarganini sanagan raqam chiqadi — ishning boshlanishini sanagani emas.</>, ru: <>Выходит число, которое посчитало, что система довела дело до конца, — а не то, что посчитало только начало.</> } },
-      { ic: '🧭', h: { uz: 'Raqam topilmasa', ru: 'Если числа нет' }, body: { uz: <>Yo'q raqam o'ylab topilmaydi: tizim bajarib bergan ishlar sanaladi va o'sha son olinadi.</>, ru: <>Несуществующее число не выдумывают: считают дела, которые система выполнила, и берут это число.</> }, ask: { uz: 'Sahnaga chiqadigan raqam qanday tanlanadi?', ru: 'Как выбирают число для сцены?' } }
+      { ic: '🎯', h: { uz: 'Qaysi raqam chiqadi', ru: 'Какое число выходит' }, body: { uz: <>Sahnaga tizim foydalanuvchi uchun bajargan ishni sanagan raqam chiqadi.</>, ru: <>На сцену выходит число, которое считает работу системы для пользователя.</> } },
+      { ic: '⚖️', h: { uz: "Ikkalasi ham natija raqami bo'lsa", ru: 'Если оба — числа результата' }, body: { uz: <>Ish oxirigacha yetganini ko'rsatgani chiqadi.</>, ru: <>Выходит то, которое показывает, что дело дошло до конца.</> } },
+      { ic: '🧭', h: { uz: 'Raqam topilmasa', ru: 'Если числа нет' }, body: { uz: <>Yo'q raqam o'ylab topilmaydi: tizim bajarib bergan ishlar sanaladi.</>, ru: <>Число, которого нет, не выдумывают: считают дела, которые выполнила система.</> }, ask: { uz: 'Sahnaga chiqadigan raqam qanday tanlanadi?', ru: 'Как выбирают число для сцены?' } }
     ]
   }
 };
@@ -646,7 +646,7 @@ const StudentPracticePulse = ({ live, screen }) => {
 
 // ============================================================
 // 🎤 DARS MA'LUMOTLARI — Demo Day sahnasi va o'quvchining O'Z tizimi (bitta misol-ip, 108-qonun).
-// s2 kartalari · s4 slaydi · s9 juftliklari · s10 kodi — bir olam, bir til: «isbot» va «shovqin».
+// s2 kartalari · s4 slaydi · s9 juftliklari · s10 kodi — bir olam, bir til: «dalil» (natija raqami) va «mehnat raqami».
 // ============================================================
 
 // ===== SCREEN 0 — HOOK: sahnada yolg'iz turgan raqam =====
@@ -712,7 +712,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         {/* 104-qonun · korpus §119: ikkala tanlovda ham AYNAN bir xil javob ochiladi */}
         {opened && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham bo'ladi: katta raqam darrov ko'rinadi va savol tug'diradi. Yolg'iz raqam esa javob bermaydi — u <b>nimaning</b> 41 tasi ekanini aytmaydi. Bugun raqamni gapirtirasiz: yoniga shu savolning javobini yozasiz.</>, ru: <>Верно и то и другое: большое число сразу видно, и оно вызывает вопрос. Но одинокое число не отвечает — оно не говорит, 41 <b>чего</b> это. Сегодня вы заставите число говорить: рядом с ним напишете ответ на этот вопрос.</> })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham bo'ladi: katta raqam darrov ko'rinadi va savol tug'diradi. Yolg'iz raqam esa javob bermaydi — u <b>nimaning</b> 41 tasi ekanini aytmaydi. Bugun raqamga izoh berasiz: yoniga u nimani sanaganini va nimani ko'rsatishini yozasiz.</>, ru: <>Верно и то и другое: большое число сразу видно, и оно вызывает вопрос. Но одинокое число не отвечает — оно не говорит, 41 <b>чего</b> это. Сегодня вы поясните число: рядом с ним напишете, что оно посчитало и что показывает.</> })}</p>
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda */}
@@ -739,11 +739,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 };
 
 // ===== SCREEN 1 — MAQSAD: slaydning uch qatori o'z-o'zidan yozilib chiqadi (18-qonun WOW) =====
-// §126: «isbot» va «shovqin» bu ekranda YO'Q. Demo raqami 8 — s4/s9 to'plamiga kirmaydi (spoyler-taqiq).
+// §126: «dalil» va «mehnat raqami» bu ekranda aytilmaydi. Demo raqami 8 — s4/s9 to'plamiga kirmaydi (spoyler-taqiq).
 const DEMO_SLAYD = [
   { yorliq: { uz: 'raqam', ru: 'число' }, matn: '8' },
-  { yorliq: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam tizimdan foydalandi', ru: 'человек воспользовались системой' } },
-  { yorliq: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, matn: { uz: 'demak tizim odamlarning ishini bajarib berdi', ru: 'значит, система сделала работу за людей' } },
+  { yorliq: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam arizasiga javob oldi', ru: 'человек воспользовались системой' } },
+  { yorliq: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, matn: { uz: "demak tizim arizani oxirigacha ko'rib chiqa oladi", ru: 'значит, система может рассмотреть заявку до конца' } },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Maqsad', ru: 'Цель' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начнём →' })} onClick={onNext} /></>}>
@@ -769,7 +769,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 // ===== SCREEN 2 — TEORIYA-1: men qilgan ish ↔ tizim odam uchun qilgan ish (46-qonun toggle) =====
 const S2_CARDS = [
   { ic: '🔧', h: { uz: 'Men qilgan ish', ru: 'Работа, которую сделал я' }, b: { uz: '312 ta kod satri yozildi · 5 hafta ishlandi · 7 ta sahifa qilindi', ru: 'написано 312 строк кода · 5 недель работы · сделано 7 страниц' } },
-  { ic: '👥', h: { uz: 'Tizim odam uchun qilgan ish', ru: 'Работа, которую система сделала для человека' }, b: { uz: "41 odam tizimni ochdi · 9 odam telefondan ochdi · 12 odam arizasiga javob oldi", ru: '41 человек открыли систему · 9 человек открыли с телефона · 12 человек получили ответ на заявку' } },
+  { ic: '👥', h: { uz: 'Tizim foydalanuvchi uchun qilgan ish', ru: 'Работа, которую система сделала для пользователя' }, b: { uz: "41 odam tizimni ochdi · 9 odam telefondan ochdi · 12 odam arizasiga javob oldi", ru: '41 человек открыли систему · 9 человек открыли с телефона · 12 человек получили ответ на заявку' } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -789,7 +789,8 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Muhokama · ikki karta', ru: 'Обсуждение · две карточки' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Откройте ещё карточек: ${qoldi}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi raqam sahnada <span className="italic" style={{ color: T.accent }}>gapira oladi?</span></>, ru: <>Какое число может <span className="italic" style={{ color: T.accent }}>говорить на сцене?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: 'Ikki kartada bitta tizim haqidagi oltita raqam turibdi. Bosib solishtiring.', ru: 'На двух карточках шесть чисел об одной системе. Нажимайте и сравнивайте.' })}</Mentor>
+        <Mentor>{tr({ uz: 'Ikki kartada bitta tizim haqidagi oltita raqam turibdi — hammasi rost. Bosib solishtiring.', ru: 'На двух карточках шесть чисел об одной системе — все они честные. Нажимайте и сравнивайте.' })}</Mentor>
+        <span className="kirish fade-up">{tr({ uz: "Ariza — foydalanuvchi ilovada to'ldirib yuborgan forma (masalan, navbatga yozilish).", ru: 'Заявка — форма, которую пользователь заполнил и отправил в приложении (например, запись в очередь).' })}</span>
         <div className="dfc-grid fade-up delay-1">
           {S2_CARDS.map((c, i) => (
             <button key={i} type="button" className={`dfc${opened[i] ? ' open' : ''}${turnCls(lit, String(i), pend.length > 1)}`} onClick={() => toggle(i)}>
@@ -800,8 +801,8 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
         </div>
         {allSeen && (
           <div className="xul fade-step">
-            <span className="xul-h">{tr({ uz: 'Tizim odam uchun nima qilganini sanab turgan raqam — isbot.', ru: 'Число, которое считает, что система сделала для человека, — доказательство.' })}</span>
-            <p className="xul-b">{tr({ uz: "Faqat mehnatingizni sanaydigan raqam esa shovqin: u quloqni band qiladi, lekin hech narsani isbotlamaydi.", ru: 'А число, которое считает только ваш труд, — шум: оно занимает уши, но ничего не доказывает.' })}</p>
+            <span className="xul-h">{tr({ uz: 'Tizim foydalanuvchi uchun bajargan ishni sanagan raqam — kuchli dalil.', ru: 'Число, которое считает работу системы для пользователя, — сильный довод.' })}</span>
+            <p className="xul-b">{tr({ uz: "Birinchi kartadagi raqamlar mehnat va jarayonni ko'rsatadi — ular foydasiz emas, lekin Demo Day'da foydalanuvchiga qanday natija berganingizni ko'rsatmaydi.", ru: 'Числа на первой карточке показывают труд и процесс — они не бесполезны, но на Demo Day не показывают, какой результат вы дали пользователю.' })}</p>
           </div>
         )}
       </div>
@@ -813,17 +814,17 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
 const TestQ = ({ ask }) => <h2 className="title h-ask">{ask}</h2>;
 
 const Screen3 = (props) => (
-  <QuestionScreen {...props} eyebrow={tr({ uz: "Tekshiruv · qaysi raqam ko'rsatadi", ru: 'Проверка · какое число показывает' })} scope="module-mikro"
+  <QuestionScreen {...props} eyebrow={tr({ uz: "Tekshiruv · qaysi raqam natijani ko'rsatadi", ru: 'Проверка · какое число показывает результат' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim ishlaganini ko'rsatadi?", ru: 'Для слайда на сцене предложили три числа. Какое из них показывает, что система работает?' })} />}
-    questionText={tr({ uz: "Uch raqamdan qaysi biri tizim ishlaganini ko'rsatadi", ru: 'Какое из трёх чисел показывает, что система работает' })}
-    options={[tr({ uz: 'Uch odam tizimni qurishga yordam berdi', ru: 'Три человека помогли построить систему' }), tr({ uz: 'Uch odam ariza yuborib javob oldi', ru: 'Три человека отправили заявку и получили ответ' }), tr({ uz: 'Uch hafta ariza formasiga ketdi', ru: 'Три недели ушли на форму заявки' })]}
+    question={<TestQ ask={tr({ uz: "Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили три числа. Какое из них показывает результат, который система дала пользователю?' })} />}
+    questionText={tr({ uz: "Uch raqamdan qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi", ru: 'Какое из трёх чисел показывает результат, который система дала пользователю' })}
+    options={[tr({ uz: 'Uch odam tizimni qurishda qatnashdi', ru: 'Три человека участвовали в создании системы' }), tr({ uz: "Uch odamning arizasi oxirigacha ko'rib chiqildi", ru: 'Заявки трёх человек рассмотрели до конца' }), tr({ uz: 'Uch hafta ariza formasiga sarflandi', ru: 'Три недели ушли на форму заявки' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Qolgan ikkitasi tizim qanday qurilganini sanaydi.", ru: 'Два других считают, как систему строили.' })}
+    explainCorrect={tr({ uz: "Bu raqam tizim foydalanuvchi uchun bajargan ishni sanaydi. Qolgan ikkitasi tizim qanday qurilganini sanaydi.", ru: 'Это число считает работу системы для пользователя. Два других считают, как строили систему.' })}
     explainWrong={{
-      0: tr({ uz: "Bu uch odam tizimni qurgan — raqam yana mehnat tomonini sanadi.", ru: 'Эти три человека строили систему — число снова посчитало сторону труда.' }),
-      2: tr({ uz: "Uch hafta — ishga ketgan vaqt; u tizim odam uchun nima qilganini aytmaydi.", ru: 'Три недели — это время, ушедшее на работу; оно не говорит, что система сделала для человека.' }),
-      default: tr({ uz: "Tizim odam uchun nima qilganini sanagan raqam ishlaganini ko'rsatadi.", ru: 'Что система работает, показывает число, которое посчитало, что она сделала для человека.' })
+      0: tr({ uz: "Bu uch odam tizimni qurgan — raqam mehnat tomonini sanadi.", ru: 'Эти три человека строили систему — число посчитало сторону труда.' }),
+      2: tr({ uz: "Uch hafta — ishga ketgan vaqt; u tizim foydalanuvchi uchun nima qilganini aytmaydi.", ru: 'Три недели — это время, ушедшее на работу; оно не говорит, что система сделала для пользователя.' }),
+      default: tr({ uz: "Tizim foydalanuvchi uchun bajargan ishni sanagan raqam natijani ko'rsatadi.", ru: 'Результат показывает число, которое считает работу системы для пользователя.' })
     }}
   />
 );
@@ -836,13 +837,13 @@ const kamHarakat = () => typeof window !== 'undefined' && window.matchMedia && w
 // Uch qator: har ochilishda slaydga bitta qator qo'shiladi va javob-qatori yangilanadi (106d/71).
 const S4_ROWS = [
   { nom: { uz: 'raqam', ru: 'число' }, matn: '41', say: { uz: "🤔 Slayd bitta narsa aytdi: 41. Nimaning 41 tasi ekani noma'lum.", ru: '🤔 Слайд сказал одно: 41. Но 41 чего — неизвестно.' }, ok: false },
-  { nom: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, say: { uz: "🤔 Endi ma'lum: 41 odam ochgan. Bu tizim haqida nima ko'rsatishi hali aytilmagan.", ru: '🤔 Теперь ясно: систему открыл 41 человек. Но что это показывает о системе, пока не сказано.' }, ok: false },
-  { nom: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, matn: { uz: "demak odamlar tizimni ochib ko'rgan", ru: 'значит, люди открыли систему и посмотрели её' }, say: { uz: "✅ Slayd to'liq gapirdi: raqam, nimani sanagani va nimani ko'rsatgani.", ru: '✅ Слайд сказал всё: число, что оно посчитало и что показало.' }, ok: true },
+  { nom: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, say: { uz: "Endi ma'lum: 41 odam ochgan. Bu tizim haqida nima ko'rsatishi hali aytilmagan.", ru: 'Теперь ясно: систему открыл 41 человек. Но что это показывает о системе, пока не сказано.' }, ok: false },
+  { nom: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, matn: { uz: "demak odamlar tizimni ochib ko'rgan", ru: 'значит, люди открыли систему и посмотрели её' }, say: { uz: "✅ Slayd to'liq gapirdi: raqam, nimani sanagani va nimani ko'rsatgani. Diqqat: «ochdi» — tizimdan foydalanish boshlanganini ko'rsatadi, ish oxirigacha yetganini emas.", ru: '✅ Слайд сказал всё: число, что оно посчитало и что показало. Внимание: «открыли» показывает, что системой начали пользоваться, а не что дело дошло до конца.' }, ok: true },
 ];
 // 2-bosqich: ikkala raqam ham ROST va ikkalasi ham odam bilan bog'liq (56-qonun: qizil baho yo'q).
 const S4_DUO = [
-  { son: '9', t: { uz: 'odam tizimni telefondan ochdi', ru: 'человек открыли систему с телефона' }, why: { uz: "Ochish — ishning boshlanishi. Tizim ishni oxirigacha bajarganini 12 ko'rsatadi.", ru: 'Открыть — это только начало дела. Что система довела дело до конца, показывает 12.' } },
-  { son: '12', t: { uz: 'odam arizasiga javob oldi', ru: 'человек получили ответ на заявку' }, why: { uz: "Ariza javob olgan — demak tizim ishni oxirigacha bajarib bergan.", ru: 'Заявка получила ответ — значит, система довела дело до конца.' } },
+  { son: '9', t: { uz: 'odam tizimni telefondan ochdi', ru: 'человек открыли систему с телефона' }, why: { uz: "Ochish — foydalanish boshlanganini ko'rsatadi. Ish oxirigacha yetganini 12 ko'rsatadi.", ru: 'Открытие показывает, что системой начали пользоваться. Что дело дошло до конца, показывает 12.' } },
+  { son: '12', t: { uz: 'odam arizasiga javob oldi', ru: 'человек получили ответ на заявку' }, why: { uz: "Ariza javob olgan — tizim ishni oxirigacha bajarganini ko'rsatadi.", ru: 'Заявка получила ответ — это показывает, что система довела дело до конца.' } },
 ];
 const S4_DUO_ANS = 1;
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -917,14 +918,14 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {tipOn && <p className="bhint fade-step">{tr({ uz: "💡 Keyingi qatorni oching — slayd yana nima aytishini ko'ring.", ru: '💡 Откройте следующую строку — посмотрите, что ещё скажет слайд.' })}</p>}
             {stage2 && (
               <div className="duq fade-step">
-                <span className="duq-t">{tr({ uz: "Ikkalasi ham odam bilan bog'liq. Sahnada bitta joy bor — qaysi biri tizim ishlaganini ko'proq ko'rsatadi?", ru: 'Оба связаны с людьми. На сцене одно место — какое из них лучше показывает, что система работает?' })}</span>
+                <span className="duq-t">{tr({ uz: <>Ikkalasi ham rost, ikkalasi ham foydalanuvchi haqida. Sahnada bitta joy bor — qaysi biri <b>natijaga yaqinroq</b>?</>, ru: <>Оба честные, оба про пользователей. На сцене одно место — какое из них <b>ближе к результату</b>?</> })}</span>
                 {pick !== null && (
                   <span className={`duq-res ${pick === S4_DUO_ANS ? 'ok' : 'ask'}`}>{pick === S4_DUO_ANS ? '✅ ' : ''}{tr(S4_DUO[pick].why)}</span>
                 )}
               </div>
             )}
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: '🎤 Slaydni ochganlar', ru: '🎤 Открыли слайд' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Slaydni ochganlar', ru: 'Открыли слайд' }} />
           </Col>
           <Col gap={9}>
             <div className="sl">
@@ -958,7 +959,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {done && (
           <div className="xul fade-step" ref={xulRef}>
             <span className="xul-h">{tr({ uz: "Buni o'zingiz ko'rdingiz: raqam uch qator bilan gapiradi.", ru: 'Вы сами это увидели: число говорит тремя строками.' })}</span>
-            <p className="xul-b">{tr({ uz: "Ikkita rost raqamdan sahnaga tizim ishni oxirigacha bajarganini ko'rsatgani chiqadi.", ru: 'Из двух честных чисел на сцену выходит то, которое показывает, что система довела дело до конца.' })}</p>
+            <p className="xul-b">{tr({ uz: "Ochish hali natija emas: sahnaga ish oxirigacha yetganini ko'rsatgan raqam chiqadi.", ru: 'Открытие — ещё не результат: на сцену выходит число, которое показывает, что дело дошло до конца.' })}</p>
           </div>
         )}
         <MentorNote>{tr({ uz: "Bolalar uchinchi qatorni ochib to'xtaydi. Ikki raqamli savol chiqqach «endi bittasini tanlang» deb turtki bering — qaror aynan shu lahzada. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Ребята откроют третью строку и остановятся. Когда появится вопрос с двумя числами, подтолкните: «теперь выберите одно» — решение принимается именно в этот момент. Эту работу делают ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
@@ -970,11 +971,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · uchinchi qator', ru: 'Проверка · третья строка' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "⌨️ Slaydda raqam va u nimani sanagani turibdi. Odam yana nimani bilishi kerak?", ru: '⌨️ На слайде есть число и то, что оно посчитало. Что ещё должен узнать человек?' })} />}
+    question={<TestQ ask={tr({ uz: "Slaydda raqam va u nimani sanagani turibdi. Odam yana nimani bilishi kerak?", ru: '⌨️ На слайде есть число и то, что оно посчитало. Что ещё должен узнать человек?' })} />}
     questionText={tr({ uz: "Slaydda raqam va sanagani turibdi — odam yana nimani bilishi kerak", ru: 'На слайде число и то, что оно посчитало, — что ещё нужно знать человеку' })}
-    options={[tr({ uz: 'Bu raqam siz haqingizda nima deyishini', ru: 'Что это число говорит о вас' }), tr({ uz: 'Bu raqamni tizim qanday sanaganini', ru: 'Как система посчитала это число' }), tr({ uz: "Bu raqam tizim haqida nima deyishini", ru: 'Что это число говорит о системе' })]}
+    options={[tr({ uz: 'Bu raqam siz haqingizda nima deyishini', ru: 'Что это число говорит о вас' }), tr({ uz: 'Bu raqamni tizim qanday sanaganini', ru: 'Как система посчитала это число' }), tr({ uz: "Bu raqam tizim haqida nimani ko'rsatishini", ru: 'Что это число показывает о системе' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Shu qatordan keyingina slayd to'liq gapiradi.", ru: 'Только после этой строки слайд говорит полностью.' })}
+    explainCorrect={tr({ uz: "Shu qatordan keyingina slayd to'liq gapiradi. Javob ehtiyotkor bo'lsin: raqam nimani ko'rsatsa — shuni, undan ortig'ini emas.", ru: 'Только после этой строки слайд говорит полностью. Отвечайте осторожно: что число показывает — то и пишите, не больше.' })}
     explainWrong={{
       0: tr({ uz: "Slayd sizni emas, tizimni tanishtiradi.", ru: 'Слайд представляет не вас, а систему.' }),
       1: tr({ uz: "Bu ish ichida qoladi — sahnadagi odamga kerak emas.", ru: 'Это остаётся внутри работы — человеку в зале это не нужно.' }),
@@ -984,40 +985,42 @@ const Screen5 = (props) => (
 );
 
 // ===== SCREEN 6 — K12 AIRBNB: 4 slayd + 2 bashorat + ko'prik (33/56/91b-qonun) =====
-// 🔴 Beshinchi burchak: besh qadamda raqam bilan gapiradigan qadam BITTA va u o'rtada turadi.
-// 🔴 Raqam-chegarasi (§101/§122): varaqdagi raqamning NECHALIGI hech qayerda aytilmaydi.
+// 🔴 Beshinchi burchak: raqamli varaq qiyinchilik va yechimdan KEYIN turadi («besh qadam» — bizning soddalashtirishimiz).
+// 🔴 Raqam-chegarasi (§101/§122): varaqdagi raqamning NECHALIGI ekranda aytilmaydi (mentor eslatmasida — manba).
+// 🔴 Ko'prik (bridge) HISOBLAGICHGA KIRMAYDI: «n / N» va doiralar faqat 6 kartani sanaydi.
 // 🔴 Ikki bashorat IKKI O'LCHOVDA: (1) raqamning ISHI · (2) qadamning O'RNI.
 const K12_SLIDES = [
   { ic: '🏠', h: { uz: "Airbnb — odam boshqa birovning uyida ijaraga turadigan sayt", ru: 'Airbnb — сайт, где можно снять жильё у другого человека' },
-    body: { uz: <>O'z ishini birinchi marta tushuntirganda qo'lida <b>o'nga yaqin oddiy varaq</b> bor edi.</>, ru: <>Когда Airbnb впервые объясняла свою идею, у неё в руках было <b>около десяти простых листов</b>.</> } },
-  { ic: '🔮', h: null, body: null,
+    body: { uz: <>O'z ishini birinchi marta investorlarga tushuntirganda qo'lida <b>o'ndan ortiq oddiy varaq</b> bor edi.</>, ru: <>Когда Airbnb впервые объясняла инвесторам своё дело, у неё в руках было <b>больше десяти простых листов</b>.</> } },
+  { ic: null, h: null, body: null,
     predict: { ask: { uz: "O'sha varaqlarning bittasi raqam bilan gapirgan. Sizningcha, u raqam nimani ko'rsatgan?", ru: 'Один из этих листов говорил числом. Как вы думаете, что показывало это число?' }, chips: [
-      { ic: '🏘', t: { uz: 'Saytda nechta uy borligini', ru: 'Сколько на сайте жилья' } },
-      { ic: '😣', t: { uz: 'Qiyinchilik qancha odamda borligini', ru: 'У скольких людей есть проблема' } },
-      { ic: '👨‍👩‍👧', t: { uz: 'Jamoada nechta odam ishlaganini', ru: 'Сколько человек работало в команде' } },
+      { t: { uz: 'Saytda nechta uy borligini', ru: 'Сколько на сайте жилья' } },
+      { t: { uz: 'Qiyinchilik qancha odamda borligini', ru: 'У скольких людей есть проблема' } },
+      { t: { uz: 'Jamoada nechta odam ishlaganini', ru: 'Сколько человек работало в команде' } },
     ], ans: 1,
-      hit: { uz: '🎯 Topdingiz! Qiyinchilik qancha odamda borligini', ru: '🎯 Угадали! У скольких людей есть проблема' },
+      hit: { uz: 'Topdingiz! Qiyinchilik qancha odamda borligini', ru: 'Угадали! У скольких людей есть проблема' },
       miss: { uz: 'Adashdingiz — asl javob: qiyinchilik qancha odamda borligini', ru: 'Не угадали — на самом деле: у скольких людей есть проблема' } } },
   { ic: '📄', h: { uz: 'Raqam qaysi varaqda turgan', ru: 'На каком листе стояло число' },
-    body: { uz: <>Varaqlardan biri — «yechimni qancha odam kutayotgani». Raqam o'sha yerda turgan: u <b>qiyinchilik qancha odamda borligini</b> ko'rsatgan.</>, ru: <>Один из листов — «сколько людей ждут решения». Число стояло именно там: оно показывало, <b>у скольких людей есть проблема</b>.</> } },
-  { ic: '🔮', h: null, body: null,
+    body: { uz: <>Qiyinchilik va yechimdan keyingi varaq raqam bilan gapirgan: u <b>shu qiyinchilikni qancha odam boshdan kechirayotganini</b> ko'rsatgan.</>, ru: <>Лист, который шёл после проблемы и решения, говорил числом: он показывал, <b>сколько людей сталкиваются с этой проблемой</b>.</> } },
+  { ic: null, h: null, body: null,
     predict: { ask: { uz: 'O\'sha varaqlar besh qadamga bo\'lingan. Sizningcha, raqamli qadam qayerda turgan?', ru: 'Эти листы делились на пять шагов. Как вы думаете, где стоял шаг с числом?' }, chips: [
-      { ic: '1️⃣', t: { uz: 'Eng birinchi qadamda — hammasidan oldin', ru: 'На самом первом шаге — раньше всего' } },
-      { ic: '➡️', t: { uz: "Qiyinchilik va yechimdan keyin", ru: 'После проблемы и решения' } },
-      { ic: '🔚', t: { uz: 'Eng oxirgi qadamda — jamoadan keyin', ru: 'На самом последнем шаге — после команды' } },
+      { t: { uz: 'Eng birinchi qadamda — hammasidan oldin', ru: 'На самом первом шаге — раньше всего' } },
+      { t: { uz: "Qiyinchilik va yechimdan keyin", ru: 'После проблемы и решения' } },
+      { t: { uz: 'Eng oxirgi qadamda — jamoadan keyin', ru: 'На самом последнем шаге — после команды' } },
     ], ans: 1,
-      hit: { uz: '🎯 Topdingiz! Qiyinchilik va yechimdan keyin', ru: '🎯 Угадали! После проблемы и решения' },
+      hit: { uz: 'Topdingiz! Qiyinchilik va yechimdan keyin', ru: 'Угадали! После проблемы и решения' },
       miss: { uz: 'Adashdingiz — asl javob: qiyinchilik va yechimdan keyin', ru: 'Не угадали — на самом деле: после проблемы и решения' } } },
   { ic: '🪜', h: { uz: "Raqamli qadam o'rtada turgan", ru: 'Шаг с числом стоял в середине' },
-    body: { uz: <>Besh qadam shunday bo'lgan:</>, ru: <>Пять шагов были такими:</> },
+    body: { uz: <>Varaqlarni sodda qilib besh qadamga bo'lsak:</>, ru: <>Если упростить и разбить листы на пять шагов:</> },
     // Besh qadam qatorga chiqarildi: qadamlar bir-biridan ajraladi va uchinchisi ko'z bilan o'rtada ko'rinadi.
-    steps: [{ uz: "odamlarning qiyinchiligi", ru: 'проблема людей' }, { uz: 'yechim', ru: 'решение' }, { uz: 'yechimni qancha odam kutayotgani', ru: 'сколько людей ждут решения' }, { uz: "mahsulot, ya'ni saytning o'zi", ru: 'продукт, то есть сам сайт' }, { uz: 'jamoa', ru: 'команда' }],
+    steps: [{ uz: "odamlarning qiyinchiligi", ru: 'проблема людей' }, { uz: 'yechim', ru: 'решение' }, { uz: 'shu qiyinchilikni qancha odam boshdan kechirayotgani', ru: 'сколько людей сталкиваются с этой проблемой' }, { uz: "mahsulot, ya'ni saytning o'zi", ru: 'продукт, то есть сам сайт' }, { uz: 'jamoa', ru: 'команда' }],
     stepOn: 2,
-    tail: { uz: <>Besh qadamdan faqat bittasi raqam bilan gapirgan — u <b>uchinchi o'rinda</b>, qiyinchilik va yechimdan keyin turgan.</>, ru: <>Из пяти шагов числом говорил только один — он стоял <b>третьим</b>, после проблемы и решения.</> } },
+    tail: { uz: <>Raqam <b>uchinchi o'rinda</b> — qiyinchilik va yechimdan keyin turgan.</>, ru: <>Число стоит <b>на третьем месте</b> — после проблемы и решения.</> } },
   { ic: '📚', h: { uz: "Raqam yolg'iz turmagan", ru: 'Число не стояло в одиночку' },
     body: { uz: <>U qiyinchilikning davomi bo'lgan. O'sha varaqlar bugungacha internetda ochiq turibdi — ular eng ko'p o'rganiladigan taqdimotlardan biri.</>, ru: <>Оно было продолжением проблемы. Эти листы до сих пор открыто лежат в интернете — это одна из самых изучаемых презентаций.</> } },
   { ic: null, h: null, body: null, bridge: true },
 ];
+const K12_N = K12_SLIDES.filter(s => !s.bridge).length;
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gateK = useContext(LiveGateCtx) || {};
   const isMentorK = !!(gateK.live && gateK.live.mode === 'mentor');
@@ -1026,7 +1029,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [maxSeen, setMaxSeen] = useState(0);
   useEffect(() => { setMaxSeen(m => Math.max(m, i)); }, [i]);
   const last = i === K12_SLIDES.length - 1;
-  useEffect(() => { if (last && storedAnswer === undefined) onAnswer(screen, { correct: true }); }, [last]); // eslint-disable-line
+  // «Hammasini oching» sharti = 6 karta ko'rildi (ko'prik hisobga kirmaydi).
+  const kartaTugadi = i >= K12_N - 1;
+  useEffect(() => { if (kartaTugadi && storedAnswer === undefined) onAnswer(screen, { correct: true }); }, [kartaTugadi]); // eslint-disable-line
   const c = K12_SLIDES[i];
   const bet = c.predict ? bets[i] : undefined;
   const betPending = !!(c.predict && bet === undefined);
@@ -1034,12 +1039,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // 44-qonun oilasi: mentor rejimida ham javob OLDINDAN ochilmaydi — u ham bosib ochadi.
   const showSlide = c.h && (!c.predict || bet !== undefined);
   return (
-    <Stage eyebrow={tr({ uz: '🏠 Haqiqiy voqea', ru: '🏠 Реальная история' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${K12_SLIDES.length})`, ru: `Следующий этап (${i + 1}/${K12_SLIDES.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
+    <Stage eyebrow={tr({ uz: 'Haqiqiy voqea', ru: 'Реальная история' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${K12_N})`, ru: `Следующий этап (${i + 1}/${K12_N})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen k-fill" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bizning olamdan <span className="italic" style={{ color: T.accent }}>mashhur voqea</span></>, ru: <>Известная история <span className="italic" style={{ color: T.accent }}>из нашего мира</span></> })}</h2></div>
         {/* UZLUKSIZ HISOBLAGICH (registr R3): bosqich-doiralari ekran tepasida; bashorat topilsa 🎯,
             adashsa ⚪ bo'lib QOLADI — qizil ham, reset ham yo'q; javob mazmuni ochilmaydi (§123). */}
-        <div className="k-dots top">{K12_SLIDES.map((s, k) => {
+        <div className="k-dots top">{K12_SLIDES.slice(0, K12_N).map((s, k) => {
           const ochiq = k <= maxSeen && !(betPending && k > i);
           const b = s.predict ? bets[k] : undefined;
           const mark = s.predict && b !== undefined ? (b === s.predict.ans ? 'hit' : 'miss') : '';
@@ -1047,7 +1052,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         })}</div>
         {c.predict && (
           <div className={`kp-bet fade-step${bet !== undefined ? ' answered' : ''}`} key={`b${i}`}>
-            <span className="k-slide-eyebrow">{bet === undefined ? tr({ uz: "🎲 Avval o'zingiz belgilab ko'ring", ru: '🎲 Сначала попробуйте отметить сами' }) : '🏠 Airbnb'} · {i + 1} / {K12_SLIDES.length}</span>
+            <span className="k-slide-eyebrow">{bet === undefined ? tr({ uz: "🎲 Avval o'zingiz belgilab ko'ring", ru: '🎲 Сначала попробуйте отметить сами' }) : 'Airbnb'} · {i + 1} / {K12_N}</span>
             <h3 className="k-slide-h">{tr(c.predict.ask)}</h3>
             <div className="kp-chips">
               {c.predict.chips.map((ch, k) => {
@@ -1058,7 +1063,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 else cls += waveCls(betHint, k, c.predict.chips.length);
                 return (
                   <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
-                    <span className="kp-ic">{ch.ic}</span>{tr(ch.t)}
+                    {ch.ic && <span className="kp-ic">{ch.ic}</span>}{tr(ch.t)}
                     {locked && isAns && <span className="kp-mark ok">✓</span>}
                     {locked && !isAns && bet === k && !isMentorK && <span className="kp-mark no">✗</span>}
                   </button>
@@ -1074,7 +1079,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         {showSlide && (
           <div className="k-slide fade-step" key={`s${i}`}>
-            {!c.predict && <span className="k-slide-eyebrow">🏠 Airbnb · {i + 1} / {K12_SLIDES.length}</span>}
+            {!c.predict && <span className="k-slide-eyebrow">🏠 Airbnb · {i + 1} / {K12_N}</span>}
             <div className="k-slide-ic">{c.ic}</div>
             <h3 className="k-slide-h">{tr(c.h)}</h3>
             <p className="k-slide-body">{tr(c.body)}</p>
@@ -1092,11 +1097,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         {c.bridge && (
           <div className="frame-soft fade-step" key={`k${i}`}>
-            <span className="k-slide-eyebrow">🏠 Airbnb · {i + 1} / {K12_SLIDES.length}</span>
-            <p className="body" style={{ margin: '10px 0 0', color: T.ink }}>{tr({ uz: "Airbnb varag'ida raqam yolg'iz turmagan: u qiyinchilik qancha odamda borligini ko'rsatgan. Sahnaga chiqadigan slaydingizda ham shunday bo'ladi — raqam nimani sanaganini va nimani ko'rsatishini o'zi bilan olib chiqadi. Buni kod emas, mahsulotni o'ylaydigan odam hal qiladi.", ru: 'На листе Airbnb число не стояло в одиночку: оно показывало, у скольких людей есть проблема. На вашем слайде для сцены будет так же — число выйдет вместе с тем, что оно посчитало и что показывает. Это решает не код, а человек, который думает о продукте.' })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Airbnb varag'ida raqam yolg'iz turmagan: u qiyinchilik qancha odamda borligini ko'rsatgan. Sahnaga chiqadigan slaydingizda ham shunday bo'ladi — raqam nimani sanaganini va nimani ko'rsatishini o'zi bilan olib chiqadi. Buni kod emas, ilovani yaratayotgan odam hal qiladi — ya'ni siz.", ru: 'На листе Airbnb число не стояло в одиночку: оно показывало, у скольких людей есть проблема. На вашем слайде для сцены будет так же — число выйдет вместе с тем, что оно посчитало и что показывает. Это решает не код, а тот, кто создаёт приложение, — то есть вы.' })}</p>
           </div>
         )}
-        <MentorNote>{tr({ uz: "Bu voqeada varaqdagi raqamning nechaligi aytilmaydi — bolalar so'rasa ochiq ayting: o'sha son bizgacha yetib kelmagan, bizga qadamning o'zi muhim. Taqqoslash musobaqasiga aylantirmang.", ru: 'В этой истории не говорится, каким было число на листе, — если ребята спросят, скажите прямо: само число до нас не дошло, нам важен сам шаг. Не превращайте это в соревнование по сравнению.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bolalar raqamning o'zini so'rasa — asl varaqlarni internetdan ochib ko'rsating (raqam vaqtinchalik uy e'lonlari soni edi); taqqoslash musobaqasiga aylantirmang.", ru: 'Если ребята спросят само число — откройте настоящие листы в интернете и покажите (это было число объявлений о временном жилье); не превращайте это в соревнование по сравнению.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1146,7 +1150,7 @@ const faqatMehnat = (s) => {
 const S8_STEPS = [
   { nom: { uz: 'raqam', ru: 'число' }, lbl: { uz: 'Qaysi raqam sahnaga chiqadi', ru: 'Какое число выйдет на сцену' }, ip: { uz: 'Qaysi raqam sahnaga chiqadi?', ru: 'Какое число выйдет на сцену?' } },
   { nom: { uz: 'nimani sanadi', ru: 'что посчитало' }, lbl: { uz: 'Bu raqam nimani sanadi', ru: 'Что посчитало это число' }, ip: { uz: 'Bu raqam nimani sanadi?', ru: 'Что посчитало это число?' } },
-  { nom: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, lbl: { uz: "Bu raqam nimani ko'rsatadi", ru: 'Что показывает это число' }, ip: { uz: 'Bu raqam tizim haqida nima deydi?', ru: 'Что это число говорит о системе?' } },
+  { nom: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, lbl: { uz: "Bu raqam nimani ko'rsatadi", ru: 'Что показывает это число' }, ip: { uz: "Bu raqam tizim haqida nimani ko'rsatadi?", ru: 'Что это число показывает о системе?' } },
 ];
 const sodda = (s) => String(s).toLowerCase().replace(/[^a-z0-9\u0400-\u04ff]+/g, ' ').trim();
 // Uchinchi qator «men …» / «я …» bilan boshlansa — gap tizim haqida emas (ikki tilli).
@@ -1188,7 +1192,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const save = () => {
     if (!canSave) return;
     setList(p => (edit === null ? [...p, v] : p.map((r, k) => (k === edit ? v : r))));
-    setMsg(tr({ uz: `✅ «${tr(spec.nom)}» qatori slaydga chiqdi.`, ru: `✅ Строка «${tr(spec.nom)}» вышла на слайд.` }));
+    setMsg(tr({ uz: `«${tr(spec.nom)}» qatori slaydga chiqdi.`, ru: `Строка «${tr(spec.nom)}» вышла на слайд.` }));
     setD(''); setEdit(null);
   };
   const startEdit = (k) => { setEdit(k); setD(String(list[k])); setMsg(''); };
@@ -1209,7 +1213,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {yordamOpen && <div className="wsx-body"><p>{tr({ uz: <>Sanashni ikki joydan boshlang: tizimingizni kimdir sinab ko'rgan bo'lsa — <b>o'sha odamlar soni</b>; hali sinamagan bo'lsa — <b>tizim bajarib bergan ishlar soni</b>.</>, ru: <>Начните считать с одного из двух мест: если систему уже кто-то пробовал — <b>число этих людей</b>; если ещё никто — <b>число дел, которые выполнила система</b>.</> })}</p></div>}
       </div>
       <div className={`wsx star ${starOpen ? 'open' : ''}`}>
-        <button className="wsx-toggle" onClick={() => { setStarOpen(o => !o); setYordamOpen(false); }}>{tr({ uz: "⭐ Qo'shimcha", ru: '⭐ Дополнительно' })} {starOpen ? '▾' : '▸'}</button>
+        <button className="wsx-toggle" onClick={() => { setStarOpen(o => !o); setYordamOpen(false); }}>{tr({ uz: "Qo'shimcha", ru: 'Дополнительно' })} {starOpen ? '▾' : '▸'}</button>
         {starOpen && <div className="wsx-body"><p>{tr({ uz: 'Ikkinchi slayd yozing: shu tizim haqidagi boshqa raqam bilan.', ru: 'Напишите второй слайд — с другим числом об этой же системе.' })}</p></div>}
       </div>
     </div>
@@ -1218,7 +1222,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mustaqil ish · uch qator', ru: 'Самостоятельная работа · три строки' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahnaga chiqadigan slaydni <span className="italic" style={{ color: T.accent }}>yozing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Напишите</span> слайд для сцены.</> })}</h2></div>
-        <span className="kirish fade-up">{tr({ uz: <>🧭 {ish ? <>Yo'lingizda hozir turgan ish: «{ish}»</> : <>Hozir turgan ish: «{tr(ZAXIRA_ISH)}»</>}. Tizimingiz shu ishni bajarganini qaysi raqam ko'rsatadi?</>, ru: <>🧭 {ish ? <>Дело, которое сейчас стоит на вашем пути: «{ish}»</> : <>Дело, которое стоит сейчас: «{tr(ZAXIRA_ISH)}»</>}. Какое число покажет, что ваша система это дело выполнила?</> })}</span>
+        <span className="kirish fade-up">{tr({ uz: <>{ish ? <>Rejangizda hozir turgan ish: «{ish}»</> : <>Hozir turgan ish: «{tr(ZAXIRA_ISH)}»</>}. Tizimingiz shu ishni bajarganini qaysi raqam ko'rsatadi?</>, ru: <>🧭 {ish ? <>Дело, которое сейчас стоит на вашем пути: «{ish}»</> : <>Дело, которое стоит сейчас: «{tr(ZAXIRA_ISH)}»</>}. Какое число покажет, что ваша система это дело выполнила?</> })}</span>
         <Mentor>{tr({ uz: "Uchta qatorni birma-bir to'ldiring — slayd yonma-yon yozilib boradi.", ru: 'Заполните три строки по одной — слайд будет заполняться рядом.' })}</Mentor>
         {/* 80a: havoda uch doira — yozilgani yashil, joriysi nurda, kelgusi punktir */}
         <div className="stps fade-up">
@@ -1238,15 +1242,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     onKeyDown={e => { if (e.key === 'Enter') save(); }} />
                 </div>
                 {/* 106d: ikki tomonlama javob — nima yetmayapti va qanday to'g'rilanadi */}
-                {qadam === 0 && v.length > 0 && !sonBor && <p className="sfb ask">{tr({ uz: '🤔 Birinchi qatorga son yozing — sahnada raqam turadi.', ru: '🤔 В первой строке напишите число — на сцене стоит число.' })}</p>}
-                {qadam === 1 && v.length >= 3 && faqatMehnat(v) && <p className="sfb ask">{tr({ uz: '🤔 Bu raqam mehnatingizni sanabdi. Tizim odam uchun nima qilganini sanaydigan raqam toping.', ru: '🤔 Это число посчитало ваш труд. Найдите число, которое считает, что система сделала для человека.' })}</p>}
-                {takror && <p className="sfb ask">{tr({ uz: "🤔 Uchinchi qator yangi narsa aytsin: shu raqam tizim haqida nimani ko'rsatadi?", ru: '🤔 Пусть третья строка скажет новое: что это число показывает о системе?' })}</p>}
-                {qadam === 2 && v.length >= 3 && menBilan(v) && <p className="sfb ask">{tr({ uz: "🤔 Uchinchi qator tizim haqida gapirsin — sahnada tizim ishlagani ko'rinishi kerak.", ru: '🤔 Пусть третья строка говорит о системе — на сцене должно быть видно, что система работает.' })}</p>}
+                {qadam === 0 && v.length > 0 && !sonBor && <p className="sfb ask">{tr({ uz: 'Birinchi qatorga son yozing — sahnada raqam turadi.', ru: 'В первой строке напишите число — на сцене стоит число.' })}</p>}
+                {qadam === 1 && v.length >= 3 && faqatMehnat(v) && <p className="sfb ask">{tr({ uz: "Bu raqam asosan qilgan ishingizni sanayapti. Demo Day uchun foydalanuvchiga qanday natija berganingizni ko'rsatadigan raqam toping.", ru: 'Это число в основном считает вашу работу. Для Demo Day найдите число, которое показывает, какой результат вы дали пользователю.' })}</p>}
+                {takror && <p className="sfb ask">{tr({ uz: "Uchinchi qator yangi narsa aytsin: shu raqam tizim haqida nimani ko'rsatadi?", ru: 'Пусть третья строка скажет новое: что это число показывает о системе?' })}</p>}
+                {qadam === 2 && v.length >= 3 && menBilan(v) && <p className="sfb ask">{tr({ uz: "Uchinchi qator tizim haqida gapirsin: shu raqam tizim haqida nimani ko'rsatadi?", ru: 'Пусть третья строка говорит о системе: что показывает о ней это число?' })}</p>}
                 <div className="wsp-go">
                   <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? tr({ uz: 'Slaydga chiqarish →', ru: 'Вывести на слайд →' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
                 </div>
                 {/* Darsning ochiq qoidasi — doim ko'rinadigan bitta qator (§40) */}
-                <span className="halol">{tr({ uz: "Yo'q raqamni o'ylab topmaysiz — bor raqamni gapirtirasiz.", ru: 'Вы не выдумываете несуществующее число — вы заставляете говорить то, что есть.' })}</span>
+                <span className="halol">{tr({ uz: "Yo'q raqamni o'ylab topmaysiz — bor raqamga izoh berasiz.", ru: 'Вы не выдумываете число, которого нет, — вы поясняете то, что есть.' })}</span>
               </div>
             )}
             {msg && !done && <p className="sfb ok fade-step">{msg}</p>}
@@ -1273,16 +1277,16 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="wsp-task-nom">{tr({ uz: 'Uch qator — bitta slayd', ru: 'Три строки — один слайд' })}</span>
               <div className="wsp-chk">
                 <span className={`wsp-chk-i${list.length > 0 ? ' on' : ''}`}><i>{list.length > 0 ? '✓' : '○'}</i>{tr({ uz: 'Raqam yozilgan', ru: 'Число написано' })}</span>
-                <span className={`wsp-chk-i${chip2 ? ' on' : ''}`}><i>{chip2 ? '✓' : '○'}</i>{tr({ uz: 'Odam foydalangani sanalgan', ru: 'Посчитано, что человек воспользовался' })}</span>
+                <span className={`wsp-chk-i${chip2 ? ' on' : ''}`}><i>{chip2 ? '✓' : '○'}</i>{tr({ uz: 'Foydalanuvchi uchun bajarilgan ish sanalgan', ru: 'Посчитана работа, сделанная для пользователя' })}</span>
                 <span className={`wsp-chk-i${chip3 ? ' on' : ''}`}><i>{chip3 ? '✓' : '○'}</i>{tr({ uz: 'Tizim haqida yangi gap', ru: 'Новое о системе' })}</span>
               </div>
             </div>
             {!bosh && wsxBlok}
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={{ uz: '✍️ Slaydni yozganlar', ru: '✍️ Написали слайд' }} />
+            <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Slaydni yozganlar', ru: 'Написали слайд' }} />
           </Col>
         </div>
-        <MentorNote>{tr({ uz: "«312 ta kod satri» turidagi javoblar chiqadi — bu eng foydali xato. Javob-qatori uni tutadi, siz so'rang: shu raqam tizim odam uchun nima qilganini aytyaptimi? Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Будут ответы вроде «312 строк кода» — это самая полезная ошибка. Строка ответа её поймает, а вы спросите: говорит ли это число, что система сделала для человека? Эту работу делают ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "«312 ta kod satri» turidagi javoblar chiqadi — bu eng foydali xato. Javob-qatori uni tutadi, siz so'rang: shu raqam tizim foydalanuvchi uchun nima qilganini aytyaptimi? Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Будут ответы вроде «312 строк кода» — это самая полезная ошибка. Строка ответа её поймает, а вы спросите: говорит ли это число, что система сделала для пользователя? Эту работу делают ученики, вы наблюдаете; кнопка «Продолжить» для вас открыта.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1294,16 +1298,16 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const JUFT_KEY = 'pm-m6d14-juft';
 const JUFTLIKLAR = [
   { juft: [
-      { n: '312', t: { uz: 'ta kod satri yozildi', ru: 'строк кода написано' }, why: { uz: '312 mehnatingizni sanadi', ru: '312 посчитало ваш труд' } },
-      { n: '41', t: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, why: { uz: "41 tizimdan foydalangan odamlarni sanadi", ru: '41 посчитало людей, которые пользовались системой' } },
+      { n: '312', t: { uz: 'ta kod satri yozildi', ru: 'строк кода написано' }, why: { uz: '312 — mehnat raqami', ru: '312 — число труда' } },
+      { n: '41', t: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, why: { uz: "41 — tizimdan foydalanish boshlanganini ko'rsatadi", ru: '41 — показывает, что системой начали пользоваться' } },
     ], ans: 1 },
   { juft: [
-      { n: '9', t: { uz: 'odam telefondan ochdi', ru: 'человек открыли с телефона' }, why: { uz: "9 tizim telefonda ham ishlaganini ko'rsatdi", ru: '9 показало, что система работает и на телефоне' } },
-      { n: '7', t: { uz: 'ta sahifa qilindi', ru: 'страниц сделано' }, why: { uz: '7 sizning ishingiz', ru: '7 — это ваша работа' } },
+      { n: '9', t: { uz: 'odam telefondan ochdi', ru: 'человек открыли с телефона' }, why: { uz: "9 — tizim telefonda ham ishlaganini ko'rsatadi", ru: '9 — показывает, что система работала и на телефоне' } },
+      { n: '7', t: { uz: 'ta sahifa qilindi', ru: 'страниц сделано' }, why: { uz: '7 — mehnat raqami', ru: '7 — число труда' } },
     ], ans: 0 },
   { juft: [
-      { n: '41', t: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, why: { uz: '41 ishning boshlanishini sanadi', ru: '41 посчитало только начало дела' } },
-      { n: '12', t: { uz: 'odam arizasiga javob oldi', ru: 'человек получили ответ на заявку' }, why: { uz: "12 tizim ishni oxirigacha bajarganini sanadi", ru: '12 посчитало, что система довела дело до конца' } },
+      { n: '41', t: { uz: 'odam tizimni ochdi', ru: 'человек открыли систему' }, why: { uz: '41 — foydalanish boshlangani', ru: '41 — пользоваться только начали' } },
+      { n: '12', t: { uz: 'odam arizasiga javob oldi', ru: 'человек получили ответ на заявку' }, why: { uz: '12 — ish oxirigacha yetgani', ru: '12 — дело дошло до конца' } },
     ], ans: 1 },
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1342,7 +1346,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tekshiruv · uch juftlik', ru: 'Проверка · три пары' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,15px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har juftlikdan slaydga chiqadigan raqamni <span className="italic" style={{ color: T.accent }}>tanlang</span>.</>, ru: <>В каждой паре <span className="italic" style={{ color: T.accent }}>выберите</span> число для слайда.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Slaydingiz tayyor — endi shu qoidani uch juftlikda qo'llaymiz. Har juftlikda slaydda bitta joy bor: qaysi raqam tizim ishlaganini ko'proq ko'rsatadi?", ru: 'Ваш слайд готов — теперь применим это правило к трём парам. В каждой паре на слайде одно место: какое число лучше показывает, что система работает?' })}</Mentor>
+        <Mentor>{tr({ uz: "Slaydingiz tayyor — endi shu qoidani uch juftlikda qo'llaymiz. Har juftlikda slaydda bitta joy bor: qaysi raqam foydalanuvchi uchun natijani ko'proq ko'rsatadi?", ru: 'Ваш слайд готов — теперь применим это правило к трём парам. В каждой паре на слайде одно место: какое число лучше показывает результат для пользователя?' })}</Mentor>
         {!done && (
           <>
             <div className="duel-h">
@@ -1365,8 +1369,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {pick !== null && (
               <div className="bdone fade-step">
                 <p className={`sfb ${pick === raund.ans ? 'ok' : 'ask'}`}>{pick === raund.ans
-                  ? tr({ uz: "✅ Sahnaga shu raqam chiqadi — u tizim odam uchun bajargan ishni sanadi.", ru: '✅ На сцену выходит это число — оно посчитало работу, которую система сделала для человека.' })
-                  : tr({ uz: "🤔 Bu raqam ham rost, lekin sahnaga tizim odam uchun bajargan ishni sanagani chiqadi.", ru: '🤔 Это число тоже честное, но на сцену выходит то, которое считает работу системы для человека.' })}</p>
+                  ? tr({ uz: "✅ Sahnaga shu raqam chiqadi — u tizim foydalanuvchi uchun bajargan ishni sanaydi.", ru: '✅ На сцену выходит это число — оно считает работу системы для пользователя.' })
+                  : tr({ uz: "🤔 Bu raqam ham rost, lekin sahnaga tizim foydalanuvchi uchun bajargan ishni sanagani chiqadi.", ru: '🤔 Это число тоже честное, но на сцену выходит число, которое считает работу системы для пользователя.' })}</p>
                 <button type="button" className="wsp-save" onClick={keyingi}>{i + 1 < JUFTLIKLAR.length ? tr({ uz: 'Keyingisi ▸', ru: 'Дальше ▸' }) : tr({ uz: 'Yakunlash ▸', ru: 'Завершить ▸' })}</button>
               </div>
             )}
@@ -1374,7 +1378,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {missedOnce && (
               <div className={`wsx ${yordamOpen ? 'open' : ''}`} style={{ maxWidth: 560 }}>
                 <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
-                {yordamOpen && <div className="wsx-body"><p>{tr({ uz: <>Bitta savol bering: bu raqam <b>kimning ishini</b> sanadi — tizimni qurgan odamningmi, tizimdan foydalangan odamningmi?</>, ru: <>Задайте один вопрос: <b>чью работу</b> посчитало это число — того, кто строил систему, или того, кто ею пользовался?</> })}</p></div>}
+                {yordamOpen && <div className="wsx-body"><p>{tr({ uz: <>Bitta savol bering: bu raqam <b>kimning ishini</b> sanadi — tizimni qurgan odamningmi, tizimdan foydalangan odamning natijasinimi?</>, ru: <>Задайте один вопрос: <b>чью работу</b> посчитало это число — того, кто строил систему, или результат того, кто ею пользовался?</> })}</p></div>}
               </div>
             )}
           </>
@@ -1386,86 +1390,86 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span key={k} className="duel-chip">{tr({ uz: <>{k + 1}-juftlik <i>{r.juft[r.ans].n} {tr(r.juft[r.ans].t)}</i></>, ru: <>Пара {k + 1} <i>{r.juft[r.ans].n} {tr(r.juft[r.ans].t)}</i></> })}</span>
               ))}
             </div>
-            <span className="done-mini">{tr({ uz: <>✅ Sahnaga tizim odam uchun bajargan ishni sanagan raqam chiqadi <span className="dm-sub">— ikkala raqam ham shunday bo'lsa, tizim ishni oxirigacha bajarganini sanagani chiqadi.</span></>, ru: <>✅ На сцену выходит число, которое посчитало работу системы для человека <span className="dm-sub">— а если такие оба, выходит то, что посчитало доведённое до конца дело.</span></> })}</span>
+            <span className="done-mini">{tr({ uz: <>Sahnaga tizim foydalanuvchi uchun bajargan ishni sanagan raqam chiqadi <span className="dm-sub">— ikkalasi ham natija raqami bo'lsa, ish oxirigacha yetganini ko'rsatgani chiqadi.</span></>, ru: <>На сцену выходит число, которое считает работу системы для пользователя <span className="dm-sub">— а если оба числа результата, выходит то, которое показывает, что дело дошло до конца.</span></> })}</span>
           </div>
         )}
         <StudentPracticePulse live={live} screen={screen} />
-        <MentorPracticeStats live={live} screen={screen} label={{ uz: '⚖️ Juftliklarni tanlaganlar', ru: '⚖️ Выбрали в парах' }} />
+        <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Juftliklarni tanlaganlar', ru: 'Выбрали в парах' }} />
         <MentorNote>{tr({ uz: "Eng ko'p adashiladigan joy — uchinchi juftlik: ikkala raqam ham rost va ikkalasi ham odam bilan bog'liq. Farqni ochiq so'rang: qaysi biri tugagan ishni sanadi? Juftlikda ishlating: har o'quvchi sherigining slaydini o'qib, uchinchi qatorga bitta savol beradi — «shu raqam tizim haqida nimani ko'rsatyapti?»; javob topilmasa, uchinchi qator qayta yoziladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Чаще всего ошибаются в третьей паре: оба числа честные и оба связаны с людьми. Спросите о разнице прямо: какое из них посчитало законченное дело? Работа в парах: каждый читает слайд партнёра и задаёт к третьей строке один вопрос — «что это число показывает о системе?»; если ответа нет, третья строка переписывается. Эту работу делают ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 10 — KODING: isbot beradigan raqamlarni ajratadigan kod (26/82/87-qonun) =====
+// ===== SCREEN 10 — KOD YOZISH: dalil beradigan (natija) raqamlarni ajratadigan kod (26/82/87-qonun) =====
 // Registr R1 navbati: m6-12 VS Code -> m6-14 KOMPILYATOR (src/compilator/HtmlCompiler.jsx).
 const KODING_KEY = 'pm-m6d14-code';
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
 const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localStorage.setItem(KODING_KEY, JSON.stringify({ ...p, open })); } catch {} };
 
-// Darvoza-mashq (82e): isbot-qoidasi kod yozishdan OLDIN muhrlanadi.
+// Darvoza-mashq (82e): dalil-qoidasi kod yozishdan OLDIN muhrlanadi.
 const GATE_ITEMS = [
-  { id: 'g1', ic: '⏳', t: { uz: 'Tizimni qurishga ketgan umumiy vaqtni', ru: 'Всё время, ушедшее на постройку системы' }, ok: false },
-  { id: 'g2', ic: '👥', t: { uz: 'Tizim odam uchun bajargan ishni', ru: 'Работу, которую система сделала для человека' }, ok: true },
+  { id: 'g1', ic: '⏳', t: { uz: 'Tizimni qurishga ketgan vaqtni', ru: 'Время, ушедшее на постройку системы' }, ok: false },
+  { id: 'g2', ic: '👥', t: { uz: 'Tizim foydalanuvchi uchun bajargan ishni', ru: 'Работу системы для пользователя' }, ok: true },
   { id: 'g3', ic: '📄', t: { uz: 'Tizim kodidagi satrlar sonini', ru: 'Число строк в коде системы' }, ok: false },
 ];
 
-// Kod-nomlari ASCII, apostrofsiz (royxat · isbotlar · son · nima · sanagani).
+// Kod-nomlari ASCII, apostrofsiz (royxat · dalillar · son · nima · sanagani: "natija" | "mehnat").
 // §135-D: kod-satrlaridagi o'zbekcha matn faqat qo'shtirnoqda — bitta tirnoq kodni sindiradi.
 const KOD_STARTER = { uz: `// Sahnadagi tizimning raqamlari (juftliklardan tanish)
 const royxat = [
   { son: 312, nima: "kod satri yozildi",         sanagani: "mehnat" },
-  { son: 41,  nima: "odam tizimni ochdi",        sanagani: "odam"   },
+  { son: 41,  nima: "odam tizimni ochdi",        sanagani: "natija" },
   { son: 5,   nima: "hafta ishlandi",            sanagani: "mehnat" },
-  { son: 12,  nima: "odam arizasiga javob oldi", sanagani: "odam"   }
+  { son: 12,  nima: "odam arizasiga javob oldi", sanagani: "natija" }
 ];
 
-function isbotlar(raqamlar) {
-  // Odam ishini sanagan raqamlarni bitta royxatga toplang: avval son, keyin nima.
+function dalillar(raqamlar) {
+  // Foydalanuvchi uchun natijani sanagan raqamlarni bitta ro'yxatga to'plang: avval son, keyin nima.
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(isbotlar(royxat));
+console.log(dalillar(royxat));
 // ["41 odam tizimni ochdi", "12 odam arizasiga javob oldi"]
-console.log(isbotlar([]));
+console.log(dalillar([]));
 // []
-console.log(isbotlar([royxat[1]]));
+console.log(dalillar([royxat[1]]));
 // ["41 odam tizimni ochdi"]`, ru: `// Числа системы на сцене (знакомые по парам)
-// sanagani: "odam" — число считает людей, "mehnat" — число считает ваш труд
+// sanagani: "natija" — число результата, "mehnat" — число труда
 const royxat = [
   { son: 312, nima: "строк кода написано",              sanagani: "mehnat" },
-  { son: 41,  nima: "человек открыли систему",          sanagani: "odam"   },
+  { son: 41,  nima: "человек открыли систему",          sanagani: "natija" },
   { son: 5,   nima: "недель работы",                    sanagani: "mehnat" },
-  { son: 12,  nima: "человек получили ответ на заявку", sanagani: "odam"   }
+  { son: 12,  nima: "человек получили ответ на заявку", sanagani: "natija" }
 ];
 
-function isbotlar(raqamlar) {
-  // Соберите в один список числа, которые считают работу для людей: сначала son, потом nima.
+function dalillar(raqamlar) {
+  // Соберите в один список числа, которые считают результат для пользователя: сначала son, потом nima.
   return [];   // это место пишете вы
 }
 
-console.log(isbotlar(royxat));
+console.log(dalillar(royxat));
 // ["41 человек открыли систему", "12 человек получили ответ на заявку"]
-console.log(isbotlar([]));
+console.log(dalillar([]));
 // []
-console.log(isbotlar([royxat[1]]));
+console.log(dalillar([royxat[1]]));
 // ["41 человек открыли систему"]` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): for...of bilan ham,
 // filter bilan ham yozilgan to'g'ri yechim o'tadi; starter holatida uchalasi ham qizil.
-const KOD_DATA = '[{son:312,nima:"kod satri yozildi",sanagani:"mehnat"},{son:41,nima:"odam tizimni ochdi",sanagani:"odam"},{son:5,nima:"hafta ishlandi",sanagani:"mehnat"},{son:12,nima:"odam arizasiga javob oldi",sanagani:"odam"}]';
+const KOD_DATA = '[{son:312,nima:"kod satri yozildi",sanagani:"mehnat"},{son:41,nima:"odam tizimni ochdi",sanagani:"natija"},{son:5,nima:"hafta ishlandi",sanagani:"mehnat"},{son:12,nima:"odam arizasiga javob oldi",sanagani:"natija"}]';
 const KOD_TASK = {
-  eyebrow: { uz: 'Koding · isbotlarni ajratish', ru: 'Кодинг · отбираем доказательства' },
-  title: { uz: 'app.js — isbotlar funksiyasini yakunlang', ru: 'app.js — допишите функцию isbotlar' },
-  brief: { uz: <>Kodda tayyor bo'lak turibdi — <span className="mono">isbotlar</span> funksiyasi. U odam ishini sanagan raqamlarni bitta ro'yxatga yig'ib qaytarsin. Har yozuvda avval <span className="mono">son</span>, keyin uning yonidagi <span className="mono">nima</span> tursin. Pastdagi <span className="mono">console.log</span> uch natijani ko'rsatadi.</>, ru: <>В коде есть готовый кусочек — функция <span className="mono">isbotlar</span>. Пусть она соберёт в один список числа, которые считают работу для людей (<span className="mono">sanagani</span> равно <span className="mono">"odam"</span>), и вернёт его. В каждой записи сначала <span className="mono">son</span>, потом стоящее рядом <span className="mono">nima</span>. Нижние <span className="mono">console.log</span> покажут три результата.</> },
-  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// odam ishini sanagan raqamlarni yigib qaytaring', ru: '// соберите и верните числа, которые считают работу для людей' } }],
+  eyebrow: { uz: 'Kod yozish · dalillarni ajratish', ru: 'Пишем код · отбираем доводы' },
+  title: { uz: 'app.js — dalillar funksiyasini yakunlang', ru: 'app.js — допишите функцию dalillar' },
+  brief: { uz: <>Kodda tayyor bo'lak turibdi — <span className="mono">dalillar</span> funksiyasi. U natijani sanagan raqamlarni bitta ro'yxatga yig'ib qaytarsin. Har yozuvda avval <span className="mono">son</span>, keyin uning yonidagi <span className="mono">nima</span> tursin. Pastdagi <span className="mono">console.log</span> uch natijani ko'rsatadi.</>, ru: <>В коде есть готовый кусочек — функция <span className="mono">dalillar</span>. Пусть она соберёт в один список числа, которые считают результат, и вернёт его. В каждой записи сначала <span className="mono">son</span>, потом стоящее рядом <span className="mono">nima</span>. Нижние <span className="mono">console.log</span> покажут три результата.</> },
+  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// natija raqamlarini yig'ib qaytaring", ru: '// соберите и верните числа результата' } }],
   requirements: [
     { id: 'royxat', label: { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
-      check: C.evalEquals(`(function(){var a=isbotlar(${KOD_DATA}),b=isbotlar([]);return (Array.isArray(a)&&Array.isArray(b)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin — to'rt raqamdan odam ishini sanagan ikkitasi ichiga tushsin", ru: 'Функция должна вернуть список — из четырёх чисел в него попадают два, которые считают работу для людей' }) },
-    { id: 'faqat', label: { uz: 'Faqat odam ishini sanagan raqam tushadi', ru: 'Попадают только числа, которые считают работу для людей' },
-      check: C.evalEquals(`(function(){var a=isbotlar(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, '41 odam tizimni ochdi|12 odam arizasiga javob oldi', { uz: "Har yozuv «son bo'shliq nima» ko'rinishida bo'lsin; mehnatni sanagan raqamlar tushmasin", ru: 'Каждая запись — в виде «son пробел nima»; числа, которые считают труд, не попадают' }) },
+      check: C.evalEquals(`(function(){var a=dalillar(${KOD_DATA}),b=dalillar([]);return (Array.isArray(a)&&Array.isArray(b)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin — to'rt raqamdan natijani sanagan ikkitasi ichiga tushsin", ru: 'Функция должна вернуть список — из четырёх чисел в него попадают два, которые считают результат' }) },
+    { id: 'faqat', label: { uz: 'Faqat natija raqamlari tushadi', ru: 'Попадают только числа результата' },
+      check: C.evalEquals(`(function(){var a=dalillar(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, '41 odam tizimni ochdi|12 odam arizasiga javob oldi', { uz: "Har yozuv «son bo'shliq nima» ko'rinishida bo'lsin; mehnatni sanagan raqamlar tushmasin", ru: 'Каждая запись — в виде «son пробел nima»; числа, которые считают труд, не попадают' }) },
     { id: 'uch', label: { uz: "Uch natija to'g'ri chiqdi", ru: 'Все три результата верные' },
-      check: C.evalEquals(`(function(){var b=isbotlar([]),c=isbotlar([${KOD_DATA}[1]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/41 odam tizimni ochdi', { uz: "Bo'sh ro'yxat kelsa natija ham bo'sh; bitta odam-raqami kelsa faqat o'sha chiqadi", ru: 'Пришёл пустой список — результат тоже пустой; пришло одно число про людей — выходит только оно' }) },
+      check: C.evalEquals(`(function(){var b=dalillar([]),c=dalillar([${KOD_DATA}[1]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/41 odam tizimni ochdi', { uz: "Bo'sh ro'yxat kelsa natija ham bo'sh; bitta natija raqami kelsa faqat o'sha chiqadi", ru: 'Пришёл пустой список — вернётся пустой; пришло одно число результата — выйдет только оно' }) },
   ],
 };
 
@@ -1518,16 +1522,16 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
     }
   };
-  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Isbot-qoidasini belgilang', ru: '① Отметьте правило доказательства' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' });
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Dalil qoidasini belgilang', ru: '① Отметьте правило: что такое довод' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' });
   return (
-    <Stage eyebrow={tr({ uz: 'Koding · 🛠 kod oynasi', ru: 'Кодинг · 🛠 окно кода' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Kod yozish · kod oynasi', ru: 'Пишем код · окно кода' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.5vw,15px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Isbot beradigan raqamlarni ajratadigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который отбирает числа-доказательства.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dalil beradigan raqamlarni ajratadigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который отбирает числа-доводы.</> })}</h2></div>
         {!stage2 ? (
           <>
             <Mentor>{tr({ uz: "Hozirgina uch juftlikni qo'lda ajratdingiz — endi o'sha ishni kod bajaradi. Raqamlar o'sha tizimniki.", ru: 'Только что вы вручную разобрали три пары — теперь эту работу сделает код. Числа — той же системы.' })}</Mentor>
             <div className={`cmt hunt${missedOnce ? ' calm' : ''}`}>
-              <span className="cmt-lbl">{tr({ uz: '🔎 Isbot beradigan raqam nimani sanaydi?', ru: '🔎 Что считает число-доказательство?' })}</span>
+              <span className="cmt-lbl">{tr({ uz: '🔎 Dalil beradigan raqam nimani sanaydi?', ru: '🔎 Что считает число-довод?' })}</span>
               <div className="gt-rows">
                 {GATE_ITEMS.map(g => (
                   <button key={g.id} type="button" className={`fchoice${miss === g.id ? ' miss' : ''}`} onClick={() => pickGate(g)}>
@@ -1535,41 +1539,42 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </button>
                 ))}
               </div>
-              {missedOnce && <p className="cmt-tip">{tr({ uz: '🤔 Bu raqam mehnatni sanaydi. Tizim odam uchun nima qilganini sanaydigan javobni toping.', ru: '🤔 Это число считает труд. Найдите ответ, который считает, что система сделала для человека.' })}</p>}
+              {missedOnce && <p className="cmt-tip">{tr({ uz: 'Bu raqam mehnatni sanaydi. Tizim foydalanuvchi uchun nima qilganini sanaydigan javobni toping.', ru: 'Это число считает труд. Найдите ответ, который считает, что система сделала для пользователя.' })}</p>}
             </div>
           </>
         ) : (
           <>
-            <Mentor>{tr({ uz: "Qo'lda bosgan tanlovingiz endi kodda bitta savolga aylanadi: bu raqam odam ishini sanadimi?", ru: 'Ваш ручной выбор теперь превращается в коде в один вопрос: считает ли это число работу для людей?' })}</Mentor>
-            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: '✓ Isbot — tizim odam uchun bajargan ishni sanagan raqam', ru: '✓ Доказательство — число, которое считает работу системы для человека' })}</span></div>
+            <Mentor>{tr({ uz: "Qo'lda bosgan tanlovingiz endi kodda bitta savolga aylanadi: bu raqam foydalanuvchi uchun natijani sanadimi?", ru: 'Выбор, который вы делали вручную, теперь превращается в коде в один вопрос: считает ли это число результат для пользователя?' })}</Mentor>
+            <span className="kirish fade-step">{tr({ uz: <>Eslatma (JavaScript darslaridan): <span className="mono">function</span> — bitta vazifani bajaradigan kod bo'lagi · massiv — ro'yxat · <span className="mono">console.log</span> — natijani chiqaradi</>, ru: <>Напоминание (из уроков JavaScript): <span className="mono">function</span> — кусочек кода, который выполняет одну задачу · массив — список · <span className="mono">console.log</span> — выводит результат</> })}</span>
+            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: '✓ Dalil — tizim foydalanuvchi uchun bajargan ishni sanagan raqam', ru: '✓ Довод — число, которое считает работу системы для пользователя' })}</span></div>
             <div className="split kod">
               <Col gap={10}>
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
                   <p className="flow-label">{tr({ uz: 'Kod nima qilsin', ru: 'Что должен делать код' })}</p>
                   <ol className="kdreq">
                     <li>{tr({ uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' })}</li>
-                    <li>{tr({ uz: 'Faqat odam ishini sanagan raqam tushadi', ru: 'Попадают только числа, которые считают работу для людей' })}</li>
+                    <li>{tr({ uz: 'Faqat natija raqamlari tushadi', ru: 'Попадают только числа результата' })}</li>
                     <li>{tr({ uz: "Uch natija to'g'ri chiqdi", ru: 'Все три результата верные' })}</li>
                   </ol>
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: birinchi raqamning <span className="mono">sanagani</span> qiymati <span className="mono">"odam"</span> mi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: равно ли значение <span className="mono">sanagani</span> у первого числа <span className="mono">"odam"</span>? Когда заработает, переходите к остальным.</> })}</p>
-                      <p>{tr({ uz: <>⭐ Qo'shimcha: <span className="mono">royxat</span> ga o'z tizimingizdan bitta raqam qo'shing va natijada chiqishini ko'ring.</>, ru: <>⭐ Дополнительно: добавьте в <span className="mono">royxat</span> одно число из своей системы и посмотрите, попадёт ли оно в результат.</> })}</p>
+                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: birinchi raqamning <span className="mono">sanagani</span> qiymati <span className="mono">"natija"</span> mi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: равно ли значение <span className="mono">sanagani</span> у первого числа <span className="mono">"natija"</span>? Когда заработает, переходите к остальным.</> })}</p>
+                      <p>{tr({ uz: <>Qo'shimcha: <span className="mono">royxat</span> ga o'z tizimingizdan bitta raqam qo'shing va natijada chiqishini ko'ring.</>, ru: <>Дополнительно: добавьте в <span className="mono">royxat</span> одно число из своей системы и посмотрите, попадёт ли оно в результат.</> })}</p>
                     </div>}
                   </div>
-                  {done && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch natija to'g'ri chiqdi <span className="dm-sub">— kod endi isbotlarni o'zi ajratadi</span></>, ru: <>✅ Все три результата верные <span className="dm-sub">— теперь код сам отбирает доказательства</span></> })}</div>}
+                  {done && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch natija to'g'ri chiqdi <span className="dm-sub">— kod endi dalillarni o'zi ajratadi</span></>, ru: <>✅ Все три результата верные <span className="dm-sub">— теперь код сам отбирает доводы</span></> })}</div>}
                   {!done && isSelf && (
                     <button className="kd-skip" onClick={onNext}>{tr({ uz: '✓ Bu kodni sinfda yozganman →', ru: '✓ Я писал этот код в классе →' })}</button>
                   )}
                 </div>
                 <StudentPracticePulse live={live} screen={screen} />
-                <MentorPracticeStats live={live} screen={screen} label={{ uz: "🛠 Kodni yozib bo'lganlar", ru: '🛠 Дописали код' }} />
+                <MentorPracticeStats live={live} screen={screen} label={{ uz: "Kodni yozib bo'lganlar", ru: 'Дописали код' }} />
               </Col>
               <Col gap={10}>
                 <div className="klaunch">
-                  <span className="klaunch-lbl">{tr({ uz: "🧮 To'rt raqam — bitta kod bo'lagi", ru: '🧮 Четыре числа — один кусочек кода' })}</span>
-                  <p className="klaunch-b">{tr({ uz: "Kompilyator — kod yoziladigan oyna: chapda kod, o'ngda natija.", ru: 'Компилятор — окно для кода: слева код, справа результат.' })}</p>
+                  <span className="klaunch-lbl">{tr({ uz: "To'rt raqam — bitta kod bo'lagi", ru: 'Четыре числа — один кусочек кода' })}</span>
+                  <p className="klaunch-b">{tr({ uz: "Kompilyator — kod yozib, natijasini darhol ko'rsatadigan oyna.", ru: 'Компилятор — окно, где вы пишете код и сразу видите результат.' })}</p>
                   <button className={`kod-launch-btn${openHint ? ' turn-ring' : ''}`} onClick={() => { setOpen(true); writeKodingOpen(true); }}>
                     {done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор снова' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}
                   </button>
@@ -1654,7 +1659,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
   return (
-    <Stage eyebrow={tr({ uz: 'Mustahkamlash · 2 qadam', ru: 'Закрепление · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'zingiz o'ylab ko'ring · 2 qadam", ru: 'Подумайте сами · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Slaydingizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете рассказать свой слайд <span className="italic" style={{ color: T.accent }}>наизусть</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ekranga qaramasdan javob bering: qaysi raqamni sahnaga chiqarasiz va u nimani ko'rsatadi? Avval {yakka ? "ovoz chiqarib o'zingizga" : 'sherigingizga'} ayting, so'ng shu javobni bir qatorda yozing.</>, ru: <>Ответьте, не глядя на экран: какое число вы выведете на сцену и что оно показывает? Сначала скажите {yakka ? 'вслух самому себе' : 'партнёру'}, потом запишите этот ответ одной строкой.</> })}</Mentor>
@@ -1671,7 +1676,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
             {written && (
               <div className="rcp-win fade-step">
                 <span className="rcp-win-t">{tr({ uz: "✓ Endi sahnaga chiqadigan raqamingizni ham, u nimani ko'rsatishini ham yoddan aytasiz.", ru: '✓ Теперь вы наизусть называете и своё число для сцены, и то, что оно показывает.' })}</span>
-                <span className="rcp-win-s">{tr({ uz: '🎯 Bugungi qoida: sahnaga tizim odam uchun bajargan ishni sanagan raqam chiqadi.', ru: '🎯 Правило дня: на сцену выходит число, которое посчитало работу системы для человека.' })}</span>
+                <span className="rcp-win-s">{tr({ uz: '🎯 Bugungi qoida: sahnaga tizim foydalanuvchi uchun bajargan ishni sanagan raqam chiqadi.', ru: '🎯 Правило дня: на сцену выходит число, которое считает работу системы для пользователя.' })}</span>
               </div>
             )}
           </div>
@@ -1723,16 +1728,16 @@ function Flashcards({ cards }) {
   );
 }
 const FLASHCARDS = [
-  { front: { uz: 'Isbot beradigan raqam qanday raqam?', ru: 'Какое число — доказательство?' }, back: { uz: "Tizim odam uchun nima qilganini sanab turgan raqam", ru: 'Число, которое считает, что система сделала для человека' } },
-  { front: { uz: 'Shovqin nimani sanaydi?', ru: 'Что считает шум?' }, back: { uz: "Faqat siz qancha ishlaganingizni", ru: 'Только то, сколько вы работали' } },
+  { front: { uz: 'Dalil beradigan raqam qanday raqam?', ru: 'Какое число становится доводом?' }, back: { uz: 'Tizim foydalanuvchi uchun bajargan ishni sanagan raqam', ru: 'Число, которое считает работу системы для пользователя' } },
+  { front: { uz: "Mehnat raqami nimani ko'rsatadi?", ru: 'Что показывает число труда?' }, back: { uz: 'Jarayon va mehnatni — natijani emas', ru: 'Процесс и труд — а не результат' } },
   { front: { uz: 'Gapiradigan slaydda nechta qator bor?', ru: 'Сколько строк в говорящем слайде?' }, back: { uz: "Uchta: raqam, u nimani sanadi, u nimani ko'rsatadi", ru: 'Три: число, что оно посчитало, что оно показывает' } },
-  { front: { uz: 'Uchinchi qator nima yozadi?', ru: 'Что пишет третья строка?' }, back: { uz: "Raqam tizim haqida nimani ko'rsatishini", ru: 'Что число показывает о системе' } },
+  { front: { uz: 'Uchinchi qator nima yozadi?', ru: 'Что пишет третья строка?' }, back: { uz: "Raqam tizim haqida nimani ko'rsatishini — undan ortig'ini emas", ru: 'Что число показывает о системе — и не больше' } },
   { front: { uz: "Yolg'iz raqam sahnada nima qiladi?", ru: 'Что делает одинокое число на сцене?' }, back: { uz: "Savol tug'diradi, lekin javob bermaydi", ru: 'Вызывает вопрос, но не отвечает' } },
-  { front: { uz: 'Ikki rost raqamdan qaysi biri sahnaga chiqadi?', ru: 'Какое из двух честных чисел выходит на сцену?' }, back: { uz: "Tizim ishni oxirigacha bajarganini ko'rsatgani", ru: 'То, что показывает: система довела дело до конца' } },
-  { front: { uz: "Airbnb varaqlarida raqamli qadam qayerda turgan?", ru: 'Где на листах Airbnb стоял шаг с числом?' }, back: { uz: 'Qiyinchilik va yechim aytilgandan keyin', ru: 'После того как назвали проблему и решение' } },
-  { front: { uz: "O'sha raqam nimani ko'rsatgan?", ru: 'Что показывало это число?' }, back: { uz: 'Qiyinchilik qancha odamda borligini', ru: 'У скольких людей есть проблема' } },
+  { front: { uz: '«Ochdi» va «javob oldi» — farqi nima?', ru: 'Чем отличаются «открыли» и «получили ответ»?' }, back: { uz: 'Ochdi — foydalanish boshlangani; javob oldi — ish oxirigacha yetgani', ru: 'Открыли — начали пользоваться; получили ответ — дело дошло до конца' } },
+  { front: { uz: 'Ikki natija raqamidan qaysi biri sahnaga chiqadi?', ru: 'Какое из двух чисел результата выходит на сцену?' }, back: { uz: "Ish oxirigacha yetganini ko'rsatgani", ru: 'То, которое показывает, что дело дошло до конца' } },
+  { front: { uz: 'Airbnb varaqlarida raqam qayerda turgan?', ru: 'Где на листах Airbnb стояло число?' }, back: { uz: 'Qiyinchilik va yechim aytilgandan keyin', ru: 'После того как назвали проблему и решение' } },
   { front: { uz: 'Sanaydigan raqam topilmasa nima qilinadi?', ru: 'Что делать, если числа для подсчёта нет?' }, back: { uz: "Yo'q raqam o'ylab topilmaydi — bor raqam olinadi", ru: 'Несуществующее число не выдумывают — берут то, что есть' } },
-  { front: { uz: "«Raqamni gapirtirish» nima demak?", ru: 'Что значит «заставить число говорить»?' }, back: { uz: "Yoniga u nimani sanagani va nimani ko'rsatishini yozish", ru: 'Написать рядом, что оно посчитало и что показывает' } },
+  { front: { uz: '«Raqamga izoh berish» nima demak?', ru: 'Что значит «пояснить число»?' }, back: { uz: "Yoniga u nimani sanagani va nimani ko'rsatishini yozish", ru: 'Написать рядом, что оно посчитало и что показывает' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1752,13 +1757,13 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Sahnaga chiqadigan raqam qanday tanlanadi?", ru: 'Как выбирают число для сцены?' })} />}
     questionText={tr({ uz: "Sahnaga chiqadigan raqam qanday tanlanadi", ru: 'Как выбирают число для сцены' })}
-    options={[tr({ uz: "Sahnada eng katta ko'ringani tanlanadi", ru: 'Выбирают то, что на сцене выглядит больше всех' }), tr({ uz: 'Tizim odam uchun qilganini sanagani tanlanadi', ru: 'Выбирают то, что посчитало сделанное системой для человека' }), tr({ uz: "Tizim qurilishiga odam ko'p vaqt bergani tanlanadi", ru: 'Выбирают то, что показывает, сколько времени ушло на постройку системы' })]}
+    options={[tr({ uz: "Sahnada eng katta ko'rinadigani tanlanadi", ru: 'Выбирают то, что на сцене выглядит самым большим' }), tr({ uz: 'Foydalanuvchi olgan natijani sanagani tanlanadi', ru: 'Выбирают то, что считает результат, полученный пользователем' }), tr({ uz: "Qurishga eng ko'p vaqt ketgani tanlanadi", ru: 'Выбирают то, на постройку чего ушло больше всего времени' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Katta son ham, mehnat vaqti ham o'zi hech narsani isbotlamaydi.", ru: 'Ни большое число, ни время работы сами по себе ничего не доказывают.' })}
+    explainCorrect={tr({ uz: "Katta son ham, mehnat vaqti ham o'zi natijani ko'rsatmaydi. Sahnaga tizim foydalanuvchi uchun bajargan ishni sanagan raqam chiqadi.", ru: 'Ни большое число, ни время работы сами по себе не показывают результат. На сцену выходит число, которое считает работу системы для пользователя.' })}
     explainWrong={{
-      0: tr({ uz: "Odamga katta ko'ringan son sahnada savol tug'diradi, lekin javob bermaydi.", ru: 'Число, которое кажется большим, вызывает на сцене вопрос, но не отвечает.' }),
-      2: tr({ uz: "Qurilishga ketgan vaqt mehnatingizni sanaydi — u sahnada boshqa ishni bajaradi.", ru: 'Время на постройку считает ваш труд — на сцене у него другая работа.' }),
-      default: tr({ uz: "Tizim odam uchun bajargan ishni sanagan raqam sahnaga chiqadi.", ru: 'На сцену выходит число, которое посчитало работу системы для человека.' })
+      0: tr({ uz: "Katta son sahnada savol tug'diradi, lekin javob bermaydi.", ru: 'Большое число вызывает на сцене вопрос, но не отвечает.' }),
+      2: tr({ uz: "Qurishga ketgan vaqt mehnatingizni sanaydi — u boshqa maqsadga xizmat qiladi.", ru: 'Время на постройку считает ваш труд — оно служит другой цели.' }),
+      default: tr({ uz: "Foydalanuvchi olgan natijani sanagan raqam sahnaga chiqadi.", ru: 'На сцену выходит число, которое считает результат, полученный пользователем.' })
     }}
   />
 );
@@ -1820,7 +1825,7 @@ const HwCard = ({ variant, onPick, innerRef }) => {
 // ===== 🏅 NISHONLAR — 4 ta, faqat REAL tekshiriladigan harakatga =====
 const ACHIEVEMENTS = {
   slideTalker: { icon: '🎤', name: 'Slide Talker!', desc: { uz: "Slaydning uch qatorini o'zingiz ochdingiz", ru: 'Вы сами открыли три строки слайда' } },
-  proofFinder: { icon: '🎯', name: 'Proof Finder!', desc: { uz: "Ikki rost raqamdan isbot beradiganini topdingiz", ru: 'Из двух честных чисел вы нашли доказательство' } },
+  proofFinder: { icon: '🎯', name: 'Result Finder!', desc: { uz: "Ikki rost raqamdan natijani ko'rsatganini topdingiz", ru: 'Из двух честных чисел вы нашли то, что показывает результат' } },
   stageReady:  { icon: '🖼', name: 'Stage Ready!',  desc: { uz: 'Sahnaga chiqadigan slaydni yozdingiz', ru: 'Вы написали слайд для сцены' } },
   numberDuel:  { icon: '⚖️', name: 'Number Duel!',  desc: { uz: 'Uch juftlikda raqamni tanladingiz', ru: 'Вы выбрали число в трёх парах' } },
 };
@@ -1896,16 +1901,16 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (scored indekslar 3/5/7/11)
-const Q_LABELS = { 3: { uz: "1 — Qaysi raqam ko'rsatadi", ru: '1 — Какое число показывает' }, 5: { uz: '2 — Uchinchi qator', ru: '2 — Третья строка' }, 7: { uz: "3 — Airbnb varag'i", ru: '3 — Лист Airbnb' }, 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
+const Q_LABELS = { 3: { uz: "1 — Qaysi raqam natijani ko'rsatadi", ru: '1 — Какое число показывает результат' }, 5: { uz: '2 — Uchinchi qator', ru: '2 — Третья строка' }, 7: { uz: "3 — Airbnb varag'i", ru: '3 — Лист Airbnb' }, 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
 const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
   { ch: { uz: 'raqam', ru: 'число' },   l: 5,  t: 10, s: 30, d: 19, dl: 0 },
-  { ch: { uz: 'isbot', ru: 'доказательство' },   l: 85, t: 8,  s: 28, d: 23, dl: 1.5 },
+  { ch: { uz: 'dalil', ru: 'довод' },   l: 85, t: 8,  s: 28, d: 23, dl: 1.5 },
   { ch: { uz: 'slayd', ru: 'слайд' },   l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: { uz: 'qator', ru: 'строка' },   l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: { uz: 'sahna', ru: 'сцена' },   l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
   { ch: { uz: 'odam', ru: 'люди' },    l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: { uz: 'shovqin', ru: 'шум' }, l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
+  { ch: { uz: 'mehnat', ru: 'труд' }, l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
   { ch: { uz: 'tizim', ru: 'система' },   l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
   { ch: '✅',       l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '🎤',       l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
@@ -1913,18 +1918,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · naqshsiz. darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: "Sahnaga raqam tanlayapsiz. Isbot bo'lishi uchun u nimani sanasin?", ru: 'Вы выбираете число для сцены. Что оно должно считать, чтобы быть доказательством?' }, opts: [{ uz: 'Tizim odam uchun bajargan ishni', ru: 'Работу, которую система сделала для человека' }, { uz: 'Tizimni qurishda odam sarflagan vaqtni', ru: 'Время, которое человек потратил на постройку системы' }, { uz: 'Tizim kodida yozilgan satrlarni', ru: 'Строки, написанные в коде системы' }, { uz: 'Tizim ustida ishlagan odamlar sonini', ru: 'Число людей, которые работали над системой' }], correct: 0 },
-  { q: { uz: '«28 ta rasm chizildi» qatori nimani sanaydi?', ru: 'Что считает строка «нарисовано 28 картинок»?' }, opts: [{ uz: "Siz qurgan tizimni ochib ko'rgan odamlarni", ru: 'Людей, которые открыли вашу систему' }, { uz: 'Arizasiga javob olgan odamlarni', ru: 'Людей, которые получили ответ на заявку' }, { uz: 'Tizimni telefondan ochgan odamlarni', ru: 'Людей, которые открыли систему с телефона' }, { uz: 'Faqat sizning mehnatingiz qanchaligini', ru: 'Только то, сколько вы потрудились' }], correct: 3 },
+  { q: { uz: "Sahnaga raqam tanlayapsiz. Kuchli dalil bo'lishi uchun u nimani sanasin?", ru: 'Вы выбираете число для сцены. Что оно должно считать, чтобы стать сильным доводом?' }, opts: [{ uz: 'Tizim foydalanuvchi uchun bajargan ishni', ru: 'Работу системы для пользователя' }, { uz: 'Tizimni qurishda odam sarflagan vaqtni', ru: 'Время, которое человек потратил на постройку системы' }, { uz: 'Tizim kodida yozilgan satrlarni', ru: 'Строки, написанные в коде системы' }, { uz: 'Tizim ustida ishlagan odamlar sonini', ru: 'Число людей, которые работали над системой' }], correct: 0 },
+  { q: { uz: '«28 ta rasm chizildi» qatori nimani sanaydi?', ru: 'Что считает строка «нарисовано 28 картинок»?' }, opts: [{ uz: "Siz qurgan tizimni ochib ko'rgan odamlarni", ru: 'Людей, которые открыли вашу систему' }, { uz: 'Arizasiga javob olgan odamlarni', ru: 'Людей, которые получили ответ на заявку' }, { uz: 'Tizimni telefondan ochgan odamlarni', ru: 'Людей, которые открыли систему с телефона' }, { uz: 'Sizning mehnatingizni va ish jarayonini', ru: 'Ваш труд и процесс работы' }], correct: 3 },
   { q: { uz: 'Ekranga faqat «150» yozilgan slayd chiqdi. Bu raqam nima qiladi?', ru: 'На экран вышел слайд, где написано только «150». Что делает это число?' }, opts: [{ uz: 'Tizim haqida hammasini aytib beradi', ru: 'Рассказывает о системе всё' }, { uz: 'Sahnadagi odamlarni sanab turadi', ru: 'Считает людей в зале' }, { uz: 'Odamda savol qoldiradi, javob bermaydi', ru: 'Оставляет у человека вопрос и не отвечает' }, { uz: "Slaydning qolgan qatorlarini o'zi to'ldiradi", ru: 'Само заполняет остальные строки слайда' }], correct: 2 },
   { q: { uz: "Sahnaga slayd tayyorlayapsiz. Unda nechta qator bo'ladi?", ru: 'Вы готовите слайд для сцены. Сколько в нём строк?' }, opts: [{ uz: 'Ikkita — raqam va uning nomi', ru: 'Две — число и его название' }, { uz: "Uchta — raqam, sanagani, ko'rsatgani", ru: 'Три — число, что посчитало, что показывает' }, { uz: "To'rtta — raqam, nom, sana va xulosa", ru: 'Четыре — число, название, дата и вывод' }, { uz: "Bitta — faqat katta raqamning o'zi", ru: 'Одна — только само большое число' }], correct: 1 },
-  { q: { uz: 'Slaydda «120» va «odam saytdan foydalandi» bor. Endi yana nimani yozish kerak?', ru: 'На слайде есть «120» и «человек воспользовались сайтом». Что ещё нужно написать?' }, opts: [{ uz: 'Raqamni qaysi kuni sanab olganini', ru: 'В какой день посчитали число' }, { uz: 'Bu raqam sayt haqida nimani aytishini', ru: 'Что это число говорит о сайте' }, { uz: 'Saytning qaysi sahifasi sanoqni yuritganini', ru: 'Какая страница сайта вела подсчёт' }, { uz: 'Faqat 120 raqamini yana bir marta', ru: 'Ещё раз только число 120' }], correct: 1 },
-  { q: { uz: 'Ikki raqam ham odam ishini sanadi. Sahnadagi bitta joyni qaysi biri oladi?', ru: 'Оба числа считают работу для людей. Какое займёт единственное место на сцене?' }, opts: [{ uz: "Tizim ishni oxiriga yetkazganini ko'rsatgani", ru: 'То, что показывает: система довела дело до конца' }, { uz: "Tizim ishni endi boshlab qo'yganini ko'rsatgani", ru: 'То, что показывает: система только начала дело' }, { uz: "Sahnada soni kattaroq bo'lib chiqqani", ru: 'То, которое на сцене оказалось больше' }, { uz: "Slaydga birinchi bo'lib yozib qo'yilgani", ru: 'То, которое первым записали на слайд' }], correct: 0 },
-  { q: { uz: "«41 odam tizimni ochdi» nimani ko'rsatadi?", ru: 'Что показывает «41 человек открыли систему»?' }, opts: [{ uz: 'Tizim necha hafta qurilganini', ru: 'Сколько недель строили систему' }, { uz: 'Tizimda nechta sahifa borligini', ru: 'Сколько в системе страниц' }, { uz: "Odamlar tizimni ochib ko'rganini", ru: 'Что люди открыли систему и посмотрели её' }, { uz: 'Arizalarga javob berilganini', ru: 'Что на заявки ответили' }], correct: 2 },
+  { q: { uz: 'Slaydda «120» va «odam saytdan foydalandi» bor. Endi yana nimani yozish kerak?', ru: 'На слайде есть «120» и «человек воспользовались сайтом». Что ещё нужно написать?' }, opts: [{ uz: 'Raqamni qaysi kuni sanab olganini', ru: 'В какой день посчитали число' }, { uz: "Bu raqam sayt haqida nimani ko'rsatishini", ru: 'Что это число показывает о сайте' }, { uz: 'Saytning qaysi sahifasi sanoqni yuritganini', ru: 'Какая страница сайта вела подсчёт' }, { uz: 'Faqat 120 raqamini yana bir marta', ru: 'Ещё раз только число 120' }], correct: 1 },
+  { q: { uz: 'Ikki raqam ham natijani sanadi. Sahnadagi bitta joyni qaysi biri oladi?', ru: 'Оба числа считают результат. Какое займёт единственное место на сцене?' }, opts: [{ uz: "Ish oxirigacha yetganini ko'rsatgani", ru: 'То, которое показывает, что дело дошло до конца' }, { uz: "Foydalanish endi boshlanganini ko'rsatgani", ru: 'То, которое показывает, что пользоваться только начали' }, { uz: "Soni kattaroq bo'lgani", ru: 'То, у которого число больше' }, { uz: 'Slaydga birinchi yozilgani', ru: 'То, которое первым записали на слайд' }], correct: 0 },
+  { q: { uz: "«41 odam tizimni ochdi» nimani ko'rsatadi?", ru: 'Что показывает «41 человек открыли систему»?' }, opts: [{ uz: 'Tizim necha hafta qurilganini', ru: 'Сколько недель строили систему' }, { uz: 'Tizimda nechta sahifa borligini', ru: 'Сколько в системе страниц' }, { uz: 'Tizimdan foydalanish boshlanganini', ru: 'Что системой начали пользоваться' }, { uz: 'Arizalarga javob berilganini', ru: 'Что на заявки ответили' }], correct: 2 },
   { q: { uz: "Airbnb besh qadamining qaysi o'rnida raqam turgan?", ru: 'На каком месте из пяти шагов Airbnb стояло число?' }, opts: [{ uz: 'Jamoa tanishtirilgandan keyin, oxirida', ru: 'В конце, после рассказа о команде' }, { uz: 'Mahsulot aytilgandan keyingi qadamda', ru: 'На шаге после рассказа о продукте' }, { uz: 'Qiyinchilik aytilishidan oldin', ru: 'До того, как назвали проблему' }, { uz: 'Yechim aytilgandan keyingi qadamda', ru: 'На шаге после того, как назвали решение' }], correct: 3 },
   { q: { uz: "Airbnb varag'ida raqam qiyinchilik qadamiga nima qo'shgan?", ru: 'Что число на листе Airbnb добавило к шагу о проблеме?' }, opts: [{ uz: 'Uni sezgan odamlar qancha ekanini', ru: 'Сколько людей её ощущают' }, { uz: 'Yechim qancha vaqtda topilganini', ru: 'За сколько времени нашли решение' }, { uz: "Saytga uy qo'ygan odamlar sonini", ru: 'Сколько людей разместили жильё на сайте' }, { uz: 'Jamoada ishlaganlarning ismlarini', ru: 'Имена тех, кто работал в команде' }], correct: 0 },
-  { q: { uz: 'Sahnada «5 hafta ishlandi» yozilgan. Nega bu isbot emas?', ru: 'На сцене написано «5 недель работы». Почему это не доказательство?' }, opts: [{ uz: 'Chunki 5 — sahna uchun juda kichik son', ru: 'Потому что 5 — слишком маленькое число для сцены' }, { uz: "Chunki hafta soni doim o'zgarib turadi", ru: 'Потому что число недель всё время меняется' }, { uz: 'Chunki u faqat sizning mehnatingizni sanaydi', ru: 'Потому что оно считает только ваш труд' }, { uz: "Chunki bu raqamni sahnadan hech kim ko'rmaydi", ru: 'Потому что это число со сцены никто не увидит' }], correct: 2 },
+  { q: { uz: 'Sahnada «5 hafta ishlandi» yozilgan. Nega bu natija raqami emas?', ru: 'На сцене написано «5 недель работы». Почему это не число результата?' }, opts: [{ uz: 'Chunki 5 — sahna uchun juda kichik son', ru: 'Потому что 5 — слишком маленькое число для сцены' }, { uz: "Chunki hafta soni doim o'zgarib turadi", ru: 'Потому что число недель всё время меняется' }, { uz: 'Chunki u mehnat va jarayonni sanaydi', ru: 'Потому что оно считает труд и процесс' }, { uz: "Chunki bu raqamni sahnadan hech kim ko'rmaydi", ru: 'Потому что это число со сцены никто не увидит' }], correct: 2 },
   { q: { uz: 'Tizimingizni hali hech kim sinamagan. Endi nima qilinadi?', ru: 'Вашу систему ещё никто не пробовал. Что делать?' }, opts: [{ uz: "Tizimga taxminiy raqam o'ylab topiladi", ru: 'Для системы выдумывают примерное число' }, { uz: 'Tizim bajarib bergan ishlar sanaladi', ru: 'Считают дела, которые выполнила система' }, { uz: 'Tizim haqidagi slayd raqamsiz chiqadi', ru: 'Слайд о системе выходит без числа' }, { uz: "Tizimga ketgan soatlar raqam o'rniga yoziladi", ru: 'Вместо числа пишут часы, потраченные на систему' }], correct: 1 },
-  { q: { uz: 'Sahnaga qaysi raqam chiqishini kim hal qiladi?', ru: 'Кто решает, какое число выйдет на сцену?' }, opts: [{ uz: 'Siz uchun kodni yozgan dasturchi', ru: 'Программист, который написал для вас код' }, { uz: "Sahnadagi katta ekranning o'zi", ru: 'Сам большой экран на сцене' }, { uz: "Tizim raqamni siz uchun o'zi tanlaydi", ru: 'Система сама выбирает число за вас' }, { uz: "Mahsulotni o'ylaydigan odam — siz", ru: 'Человек, который думает о продукте, — вы' }], correct: 3 },
+  { q: { uz: 'Sahnaga qaysi raqam chiqishini kim hal qiladi?', ru: 'Кто решает, какое число выйдет на сцену?' }, opts: [{ uz: 'Siz uchun kodni yozgan dasturchi', ru: 'Программист, который написал для вас код' }, { uz: "Sahnadagi katta ekranning o'zi", ru: 'Сам большой экран на сцене' }, { uz: "Tizim raqamni siz uchun o'zi tanlaydi", ru: 'Система сама выбирает число за вас' }, { uz: "Ilovani yaratayotgan odam, ya'ni siz", ru: 'Тот, кто создаёт приложение, — то есть вы' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2023,7 +2028,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['raqam', 'isbot', 'slayd', 'odam', 'sahna', 'qator', 'shovqin', 'tizim', '✅', '🎤'];
+    const TOK = ['raqam', 'dalil', 'slayd', 'odam', 'sahna', 'qator', 'mehnat', 'tizim', '✅', '🎤'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2443,10 +2448,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const RECAP = [
-    { uz: 'Tizim odam uchun nima qilganini sanab turgan raqam — isbot.', ru: 'Число, которое считает, что система сделала для человека, — доказательство.' },
-    { uz: 'Faqat mehnatingizni sanaydigan raqam — shovqin: u sahnada hech narsani isbotlamaydi.', ru: 'Число, которое считает только ваш труд, — шум: на сцене оно ничего не доказывает.' },
+    { uz: "Foydalanuvchiga qanday natija berganingizni ko'rsatadigan raqam — kuchli dalil.", ru: 'Число, которое показывает, какой результат вы дали пользователю, — сильный довод.' },
+    { uz: "Mehnat raqami (satr, hafta) jarayonni ko'rsatadi — u Demo Day'da natija o'rnini bosmaydi.", ru: 'Число труда (строки, недели) показывает процесс — на Demo Day оно не заменяет результат.' },
     { uz: "Gapiradigan slaydda uch qator bor: raqam, u nimani sanadi, u nimani ko'rsatadi.", ru: 'В говорящем слайде три строки: число, что оно посчитало, что оно показывает.' },
-    { uz: "Yo'q raqamni o'ylab topmaysiz — bor raqamni gapirtirasiz.", ru: 'Вы не выдумываете несуществующее число — вы заставляете говорить то, что есть.' },
+    { uz: "Yo'q raqamni o'ylab topmaysiz — bor raqamga izoh berasiz.", ru: 'Вы не выдумываете число, которого нет, — вы поясняете то, что есть.' },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2488,7 +2493,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className="hero">
           <div className="hero-l">
             <span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>
-            <h2 className="title h-title fade-up d1">Sahnaga chiqadigan <span className="italic" style={{ color: T.accent }}>slaydingiz</span> yozildi.</h2>
+            <h2 className="title h-title fade-up d1">{tr({ uz: <>Sahnaga chiqadigan <span className="italic" style={{ color: T.accent }}>slaydingiz</span> yozildi.</>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>слайд</span> для сцены написан.</> })}</h2>
           </div>
           {!isMentorL && <ScoreRing correct={correct} total={total} />}
         </div>
@@ -2514,6 +2519,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             </div>
           </div>
         )}
+        <div className="frame-soft fade-up d4"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🚀 Keyingi: zaxira dars, so'ng <b>Demo Day 3</b> — IT-hamjamiyat oldida 3 daqiqalik pitch. Slaydingiz o'sha kuni sahnaga chiqadi.</>, ru: <>🚀 Дальше: резервный урок, затем <b>Demo Day 3</b> — 3-минутный питч перед IT-сообществом. В этот день ваш слайд выйдет на сцену.</> })}</p></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${charge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2773,7 +2779,7 @@ const CSS_LESSON = `
   .duq-res.ask { color: ${T.accent}; background: ${T.accentSoft}; }
 
   /* IKKI RAQAM — BIR JOY (s4 2-bosqichi va s9): yonma-yon ikki ROST raqam, bitta joy.
-     Tanlanmagan raqam QIZIL bo'lmaydi — u ham rost, faqat kuchsizroq isbot (56-qonun). */
+     Tanlanmagan raqam QIZIL bo'lmaydi — u ham rost, faqat kuchsizroq dalil (56-qonun). */
   .duo { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(9px,1.6vw,14px); }
   .duo.wide { max-width: 780px; align-self: center; width: 100%; }
   @media (max-width: 620px) { .duo { grid-template-columns: minmax(0,1fr); } }

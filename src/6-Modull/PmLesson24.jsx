@@ -98,12 +98,12 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 export const SCREEN_INTENTS = {
   s0: "Bola oltita ishdan qaysinisidan boshlashini tanlaydi va ba'zi ish bugun umuman boshlanmasligini eshitadi",
   s1: "Bola dars oxirida uch qatorli reja yozishini oldindan ko'radi",
-  s2: "Bola bitta ro'yxat bilan uch bo'lakka ajratilgan rejani solishtiradi va ufq ta'rifini oladi",
+  s2: "Bola bitta ro'yxat bilan uch vaqt bo'lagiga ajratilgan rejani solishtiradi va ufq ta'rifini oladi",
   s3: "Bola ufq ishning uzunligini emas, boshlanish paytini aytishini tanlaydi",
   s4: "Bola oltita ishni bugun boshlab ko'radi, qaysi ish nimani kutayotganini topadi va bitta ishni yaqinroq ufqqa ko'chirib qaraydi",
-  s5: "Bola ish o'zi kutgan narsa tayyor bo'lmaguncha boshlanmasligini aniqlaydi",
-  s6: "Bola bir varaqqa yozilgan uzoq reja o'n yildan ortiq bajarilganini ko'radi",
-  s7: "Bola uzoq reja ochiq e'lon qilinganini tanlaydi",
+  s5: "Bola ishga kerak narsa tayyor bo'lmaguncha u boshlanmasligini aniqlaydi",
+  s6: "Bola qisqa yozuv qilib e'lon qilingan uzoq reja bosqichma-bosqich o'n yildan ortiq bajarilganini ko'radi",
+  s7: "Bola uzoq rejada bosqichlar ketma-ket, har biri oldingisiga tayanishini tanlaydi",
   s8: "Bola o'z tizimi uchun uch ufqqa bittalab uchta ish yozadi",
   s9: "Bola oltita yangi ishni o'z ufqiga qo'yadi va har birining sababini o'qiydi",
   s10: "Bola VS Code'da rejani ufqlarga ajratadigan kod yozadi va terminalda uch sarlavhani ko'radi",
@@ -268,7 +268,7 @@ const RECAPS = {
   3: {
     title: { uz: 'Ufq ishning boshlanish paytini aytadi', ru: 'Горизонт говорит, когда задача начинается' },
     cards: [
-      { ic: '🛣', h: { uz: 'Ufq nima', ru: 'Что такое горизонт' }, body: { uz: <>Ishlar qachon boshlanishiga qarab bo'lingan bo'lak — <b>ufq</b>. Rejada uch ufq bor: hozir · uch oydan keyin · olti oydan keyin.</>, ru: <>Часть плана, куда задачи попадают по тому, когда они начинаются, — это <b>горизонт</b>. В плане три горизонта: сейчас · через три месяца · через шесть месяцев.</> } },
+      { ic: '🛣', h: { uz: 'Ufq nima', ru: 'Что такое горизонт' }, body: { uz: <>Ishlar qachon boshlanishiga qarab ajratilgan <b>vaqt bo'lagi</b>. Bugungi darsda uch ufq: hozir · uch oydan keyin · olti oydan keyin (mashq uchun tanlangan muddatlar).</>, ru: <><b>Отрезок времени</b>, куда задачи попадают по тому, когда они начинаются. На сегодняшнем уроке три горизонта: сейчас · через три месяца · через шесть месяцев (сроки выбраны для тренировки).</> } },
       { ic: '⏱', h: { uz: 'Uzunlik emas, boshlanish', ru: 'Не длительность, а начало' }, body: { uz: <>«Olti oydan keyin» degani ish olti oy <b>davom etadi</b> degani emas — u olti oydan keyin <b>boshlanadi</b>.</>, ru: <>«Через шесть месяцев» не значит, что задача <b>длится</b> шесть месяцев, — она <b>начинается</b> через шесть месяцев.</> } },
       { ic: '🙋', h: { uz: 'Savolni ishga bering', ru: 'Задайте вопрос задаче' }, body: { uz: <>Har ishga bitta savol: buni <b>bugun boshlab bo'ladimi?</b> Javob «yo'q» bo'lsa, ish uzoqroq ufqda turadi.</>, ru: <>Каждой задаче — один вопрос: <b>можно ли начать её сегодня?</b> Если ответ «нет», задача стоит на более дальнем горизонте.</> }, ask: { uz: "Rejangizdagi qaysi ish bugun boshlanadi?", ru: 'Какая задача из вашего плана начинается сегодня?' } }
     ]
@@ -276,17 +276,17 @@ const RECAPS = {
   5: {
     title: { uz: 'Ish kutgan narsasini kutadi', ru: 'Задача ждёт то, что ей нужно' },
     cards: [
-      { ic: '🚦', h: { uz: 'Ish qachon boshlanadi', ru: 'Когда задача начинается' }, body: { uz: <>Ish <b>o'zi kutgan narsa tayyor bo'lganda</b> boshlanadi. Kutgan narsasi yo'q ish esa bugunoq boshlanadi.</>, ru: <>Задача начинается, <b>когда готово то, чего она ждёт</b>. А задача, которой ждать нечего, начинается уже сегодня.</> } },
+      { ic: '🚦', h: { uz: 'Ish qachon boshlanadi', ru: 'Когда задача начинается' }, body: { uz: <><b>Unga kerak narsa va shartlar tayyor bo'lganda.</b> Hech narsa kutmaydigan ish bugunoq boshlanadi.</>, ru: <><b>Когда готово то, что ей нужно, и выполнены условия.</b> Задача, которой нечего ждать, начинается уже сегодня.</> } },
       { ic: '⭐', h: { uz: 'Baho real navbatlarni kutadi', ru: 'Оценка ждёт настоящих записей' }, body: { uz: <>Sartaroshga baho qo'yish uchun odam avval navbat olishi kerak. Navbat hali yo'q — shuning uchun ish to'xtadi.</>, ru: <>Чтобы поставить оценку парикмахеру, человек сначала должен к нему записаться. Записей пока нет — поэтому задача остановилась.</> } },
       { ic: '🔎', h: { uz: 'Nimasi yetishmayapti', ru: 'Чего не хватает' }, body: { uz: <>To'xtagan ishga ikkinchi savol beriladi: <b>nimasi hali yo'q?</b> Javob ishning ufqini o'zi ko'rsatadi.</>, ru: <>Остановившейся задаче задают второй вопрос: <b>чего ещё нет?</b> Ответ сам показывает горизонт задачи.</> }, ask: { uz: "Tizimingizdagi qaysi ish nimanidir kutyapti?", ru: 'Какая задача в вашей системе чего-то ждёт?' } }
     ]
   },
   7: {
-    title: { uz: "Uzoq reja bir varaqqa sig'adi", ru: 'Длинный план помещается на одном листе' },
+    title: { uz: "Uzoq reja — ketma-ket bosqichlar", ru: 'Длинный план — этапы один за другим' },
     cards: [
-      { ic: '📜', h: { uz: 'Tesla misolida', ru: 'На примере Tesla' }, body: { uz: <>Tesla — elektr avtomobil ishlab chiqaradigan kompaniya. 2006-yilda u uch bosqichli uzoq rejasini bir varaqqa yozdi va uni <b>hammaga ochiq</b> e'lon qildi.</>, ru: <>Tesla — компания, которая выпускает электромобили. В 2006 году она записала свой длинный план из трёх этапов на одном листе и объявила его <b>открыто для всех</b>.</> } },
-      { ic: '🚗', h: { uz: 'Har bosqich oldingisini kutdi', ru: 'Каждый этап ждал предыдущего' }, body: { uz: <>Qimmat mashinadan tushgan pulga arzonrog'i, undan tushgan pulga eng arzoni qurildi. Reja <b>o'n yildan ortiq</b> bajarildi.</>, ru: <>На деньги от дорогой машины построили машину подешевле, а на деньги от неё — самую дешёвую. План выполнялся <b>больше десяти лет</b>.</> } },
-      { ic: '📄', h: { uz: 'Reja yashirin qog\'oz emas', ru: 'План — не секретная бумага' }, body: { uz: <>Uzoq reja hamma ko'radigan varaq bo'ladi: unda nima bugun boshlanishi va nima keyinroq boshlanishi yozilgan.</>, ru: <>Длинный план — это лист, который видят все: в нём написано, что начинается сегодня, а что — позже.</> }, ask: { uz: "Rejangizni ochiq aytsangiz, kim yordam bera oladi?", ru: 'Если вы расскажете о своём плане открыто, кто сможет помочь?' } }
+      { ic: '📜', h: { uz: 'Tesla misolida', ru: 'На примере Tesla' }, body: { uz: <>Tesla — elektr avtomobil ishlab chiqaradigan kompaniya; 2006-yilda uch bosqichli uzoq rejasini qisqa yozuv qilib <b>ochiq</b> e'lon qildi.</>, ru: <>Tesla — компания, которая выпускает электромобили. В 2006 году она <b>открыто</b> объявила свой длинный план из трёх этапов в виде короткой записи.</> } },
+      { ic: '🚗', h: { uz: 'Har bosqich oldingisini kutdi', ru: 'Каждый этап ждал предыдущего' }, body: { uz: <>Har bosqich oldingisiga tayandi — reja <b>o'n yildan ortiq</b> bajarildi.</>, ru: <>Каждый этап опирался на предыдущий — план выполнялся <b>больше десяти лет</b>.</> } },
+      { ic: '📄', h: { uz: 'Reja yashirin qog\'oz emas', ru: 'План — не секретная бумага' }, body: { uz: <>Reja ochiq bo'lsa, boshqalar ham yordam bera oladi.</>, ru: <>Если план открыт, помочь могут и другие.</> }, ask: { uz: "Rejangizda qaysi ish qaysi ishga tayanadi?", ru: 'Какая задача в вашем плане опирается на другую?' } }
     ]
   },
   11: {
@@ -648,12 +648,12 @@ const ufqNom = (k) => tr((UFQLAR.find(u => u.k === k) || UFQLAR[0]).nom);
 // s4 oltiligi — bugungi tizimning ishlari. `ok` = bugun boshlanadimi; `ufq` = yo'ldagi joyi.
 // Ekran qaysi ish to'xtashini OLDINDAN aytmaydi (98b): fakt-qator faqat bosilgandan keyin.
 const ISHLAR = [
-  { id: 'surat',   ic: '📸', nom: { uz: "Sartarosh ishlaridan surat qo'yish", ru: 'Фото работ парикмахеров' },      ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — suratlar sartaroshlarning telefonida bor', ru: 'Началась — фото уже есть в телефонах парикмахеров' } },
-  { id: 'eslatma', ic: '🔔', nom: { uz: 'Navbatdan bir soat oldin eslatma', ru: 'Напоминание за час до записи' },        ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — bot allaqachon xabar yubora oladi', ru: 'Началась — бот уже умеет отправлять сообщения' } },
-  { id: 'manzil',  ic: '📍', nom: { uz: "Manzilni sahifada ko'rsatish", ru: 'Показать адрес на странице' },            ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — manzillar bazada yozilgan', ru: 'Началась — адреса уже записаны в базе' } },
-  { id: 'baho',    ic: '⭐', nom: { uz: "Sartaroshga baho qo'yish", ru: 'Оценка парикмахеру' },                ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — baho qo'yish uchun odam avval navbat olishi kerak. Navbat hali yo'q", ru: 'Остановилась — чтобы поставить оценку, человек сначала должен записаться. Записей пока нет' } },
-  { id: 'kunlar',  ic: '📆', nom: { uz: "Sartaroshning band kunlarini ko'rsatish", ru: 'Показать занятые дни парикмахера' }, ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — band kunlar real navbatlardan chiqadi. Navbat hali yo'q", ru: 'Остановилась — занятые дни берутся из настоящих записей. Записей пока нет' } },
-  { id: 'tolash',  ic: '💳', nom: { uz: "Ilovada oldindan to'lash", ru: 'Предоплата в приложении' },                ufq: 'olti-oy', ok: false, fakt: { uz: "To'xtadi — pulini oldindan berish uchun odam sartaroshga ishonishi kerak. Ishonch baholardan chiqadi, baho hali yo'q", ru: 'Остановилась — чтобы заплатить заранее, человек должен доверять парикмахеру. Доверие появляется из оценок, а оценок пока нет' } },
+  { id: 'surat', nom: { uz: "Sartarosh ishlaridan surat qo'yish", ru: 'Фото работ парикмахеров' },      ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — suratlar sartaroshlarning telefonida bor', ru: 'Началась — фото уже есть в телефонах парикмахеров' } },
+  { id: 'eslatma', nom: { uz: 'Navbatdan bir soat oldin eslatma', ru: 'Напоминание за час до записи' },        ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — bot allaqachon xabar yubora oladi', ru: 'Началась — бот уже умеет отправлять сообщения' } },
+  { id: 'manzil', nom: { uz: "Manzilni sahifada ko'rsatish", ru: 'Показать адрес на странице' },            ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — manzillar bazada yozilgan', ru: 'Началась — адреса уже записаны в базе' } },
+  { id: 'baho', nom: { uz: "Sartaroshga baho qo'yish", ru: 'Оценка парикмахеру' },                ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — baho qo'yish uchun odam avval navbat olishi kerak. Navbat hali yo'q", ru: 'Остановилась — чтобы поставить оценку, человек сначала должен записаться. Записей пока нет' } },
+  { id: 'kunlar', nom: { uz: "Sartaroshning band kunlarini ko'rsatish", ru: 'Показать занятые дни парикмахера' }, ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — band kunlar real navbatlardan chiqadi. Navbat hali yo'q", ru: 'Остановилась — занятые дни берутся из настоящих записей. Записей пока нет' } },
+  { id: 'tolash', nom: { uz: "Ilovada oldindan to'lash", ru: 'Предоплата в приложении' },                ufq: 'olti-oy', ok: false, fakt: { uz: "To'xtadi — pulini oldindan berish uchun odam sartaroshga ishonishi kerak; ishonch boshqa mijozlarning baholaridan keladi, baho hali yo'q. Bu ishga to'lov ulanishi ham kerak", ru: 'Остановилась — чтобы заплатить заранее, человек должен доверять парикмахеру; доверие появляется из оценок других клиентов, а оценок пока нет. К тому же для этой задачи нужно подключить оплату' } },
 ];
 
 // ===== SCREEN 0 — HOOK: hammasi kerak, qaysinisidan boshlaysiz? =====
@@ -692,7 +692,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: "Kirish · yangi oltita ish", ru: 'Вступление · шесть новых задач' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: "Kirish · oltita yangi ish", ru: 'Вступление · шесть новых задач' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasi kerak — <span className="italic" style={{ color: T.accent }}>qaysinisidan</span> boshlaysiz?</>, ru: <>Нужно всё — <span className="italic" style={{ color: T.accent }}>с какой</span> начнёте?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Tizimingizga oltita yangi ish o'ylab topdingiz. Hammasini birdan boshlab bo'lmaydi.</>, ru: <>Вы придумали для своей системы шесть новых задач. Начать все сразу нельзя.</> })}</Mentor>
@@ -706,7 +706,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         </div>
         {opened && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham ishlaydi. Lekin oltita ishning ba'zisi bugun umuman boshlanmaydi — u sizni emas, <b>boshqa narsani</b> kutib turibdi. Qaysi ish nimani kutayotganini bugun o'zingiz topasiz.</>, ru: <>Оба варианта работают. Но часть из шести задач сегодня вообще не начнётся — она ждёт не вас, а <b>что-то другое</b>. Какая задача чего ждёт, вы сегодня найдёте сами.</> })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu ikki qarorning ham o'z sababi bor. Lekin yana bir savol muhim: <b>ishni bugun boshlashga nima imkon beradi?</b> Oltita ishning ba'zisi bugun umuman boshlanmaydi — unga kerak narsa hali yo'q. Qaysi ish nimani kutayotganini bugun o'zingiz topasiz.</>, ru: <>У обоих решений есть своя причина. Но важен ещё один вопрос: <b>что позволяет начать задачу сегодня?</b> Часть из шести задач сегодня вообще не начнётся — того, что ей нужно, пока нет. Какая задача чего ждёт, вы сегодня найдёте сами.</> })}</p>
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
@@ -763,8 +763,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 2 — TEORIYA-1: bitta ro'yxat ↔ uch bo'lakka ajratilgan reja (46-qonun toggle) =====
 const S2_CARDS = [
-  { ic: '📋', h: { uz: "Bitta ro'yxat", ru: 'Один список' }, b: { uz: 'Oltita ish yonma-yon turibdi — qaysi biri bugun boshlanishini hech narsa aytmaydi', ru: 'Шесть задач стоят рядом — ничто не говорит, какая из них начинается сегодня' } },
-  { ic: '🛣', h: { uz: "Uch bo'lakka ajratilgan", ru: 'Разделён на три части' }, b: { uz: "O'sha oltita ish uch bo'lakka bo'lingan: bugun boshlanadiganlar alohida, keyinroq boshlanadiganlar alohida", ru: 'Те же шесть задач разделены на три части: то, что начинается сегодня, — отдельно, то, что позже, — отдельно' } },
+  { ic: '📋', h: { uz: "Bitta ro'yxat", ru: 'Один список' }, b: { uz: 'Oltita ish yonma-yon turibdi — qaysi biri bugun boshlanishini hech narsa aytmaydi.', ru: 'Шесть задач стоят рядом — ничто не говорит, какая из них начинается сегодня.' } },
+  { ic: '🛣', h: { uz: "Uch vaqt bo'lagiga ajratilgan", ru: 'Разделён на три отрезка времени' }, b: { uz: "O'sha oltita ish uchga bo'lingan: bugun boshlanadiganlar alohida, keyinroq boshlanadiganlar alohida.", ru: 'Те же шесть задач разделены на три части: отдельно то, что начинается сегодня, и отдельно то, что начинается позже.' } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -796,7 +796,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
         {allSeen && (
           <div className="xul fade-step">
             <span className="xul-h">{tr({ uz: <>Uzoqqa qarasangiz, ko'z yetadigan eng olis joy — ufq. Rejada ham yaqini va uzog'i bor.</>, ru: <>Если смотреть вдаль, самое далёкое место, куда достаёт взгляд, — горизонт. В плане тоже есть ближнее и дальнее.</> })}</span>
-            <p className="xul-b">{tr({ uz: <><b>Ishlar qachon boshlanishiga qarab bo'lingan bo'lak — ufq.</b> Rejada uch ufq bor: hozir · uch oydan keyin · olti oydan keyin.</>, ru: <><b>Часть плана, куда задачи попадают по тому, когда они начинаются, — горизонт.</b> В плане три горизонта: сейчас · через три месяца · через шесть месяцев.</> })}</p>
+            <p className="xul-b">{tr({ uz: <><b>Ufq — ishlar qachon boshlanishiga qarab ajratilgan vaqt bo'lagi.</b> Bugungi darsda uch ufq bilan ishlaymiz: hozir · keyinroq · uzoqroq. Mashq uchun «keyinroq»ni uch oy, «uzoqroq»ni olti oy deb olamiz — real loyihada bu muddatlar boshqacha bo'lishi mumkin.</>, ru: <><b>Горизонт — отрезок времени, куда задачи попадают по тому, когда они начинаются.</b> Сегодня работаем с тремя горизонтами: сейчас · позже · ещё позже. Для тренировки возьмём «позже» за три месяца, а «ещё позже» за шесть — в реальном проекте эти сроки могут быть другими.</> })}</p>
           </div>
         )}
       </div>
@@ -812,12 +812,12 @@ const Screen3 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Rejadagi ish eng uzoq ufqqa tushdi. Bu nimani bildiradi?", ru: 'Задача из плана попала на самый дальний горизонт. Что это значит?' })} />}
     questionText={tr({ uz: "Ish eng uzoq ufqqa tushsa, bu nimani bildiradi", ru: 'Что значит, если задача попала на самый дальний горизонт' })}
-    options={[tr({ uz: 'Ish bugun boshlanadi, olti oy davom etadi', ru: 'Задача начинается сегодня и длится шесть месяцев' }), tr({ uz: 'Ish bugun emas, olti oydan keyin boshlanadi', ru: 'Задача начинается не сегодня, а через шесть месяцев' }), tr({ uz: 'Ish bugun boshlanadi, olti oyda tugaydi', ru: 'Задача начинается сегодня и заканчивается через шесть месяцев' })]}
+    options={[tr({ uz: 'Ish olti oy davom etadi', ru: 'Задача длится шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin boshlanadi', ru: 'Задача начинается через шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin tugaydi', ru: 'Задача заканчивается через шесть месяцев' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Ufq ishning uzunligini emas, boshlanish paytini aytadi.", ru: 'Горизонт говорит не о длительности задачи, а о том, когда она начинается.' })}
     explainWrong={{
-      0: tr({ uz: 'Ufq ish necha oy davom etishini aytmaydi — eng uzoq ufqdagi ish bugun boshlanmaydi.', ru: 'Горизонт не говорит, сколько месяцев длится задача, — задача на самом дальнем горизонте сегодня не начинается.' }),
-      2: tr({ uz: 'Ufq ish qachon tugashini ham aytmaydi — u faqat qachon boshlanishini aytadi.', ru: 'Горизонт не говорит и о том, когда задача закончится, — только о том, когда она начнётся.' }),
+      0: tr({ uz: 'Ufq ish necha oy davom etishini aytmaydi — u qachon boshlanishini aytadi.', ru: 'Горизонт не говорит, сколько месяцев длится задача, — он говорит, когда она начинается.' }),
+      2: tr({ uz: 'Ufq ish qachon tugashini ham aytmaydi — faqat qachon boshlanishini.', ru: 'Горизонт не говорит и о том, когда задача закончится, — только о том, когда она начнётся.' }),
       default: tr({ uz: 'Ufq bitta narsani aytadi: ish qachon boshlanadi.', ru: 'Горизонт говорит одно: когда задача начинается.' })
     }}
   />
@@ -833,7 +833,7 @@ const readYolHolat = () => { try { const v = JSON.parse(localStorage.getItem(YOL
 const TIP_SEC = 42; // kashfiyot-himoyasi: harakatsizlikdan keyin qoida-ipuchasi (javobni AYTMAYDI)
 const KOCH_OPTS = [
   { k: 'uch', t: { uz: 'Uch oyda boshlanadi', ru: 'Начнётся через три месяца' }, res: { uz: "Uch oyda birinchi baholar endi kelgan bo'ladi — odam hali notanish sartaroshga pulini oldindan bermaydi. Ish baribir to'xtaydi.", ru: 'Через три месяца первые оценки только появятся — человек ещё не отдаст деньги заранее незнакомому парикмахеру. Задача всё равно остановится.' } },
-  { k: 'toxtaydi', t: { uz: "Baribir to'xtaydi", ru: 'Всё равно остановится' }, res: { uz: "✅ Shunday: ishni ufqqa bizning xohishimiz emas, uning kutayotgan narsasi qo'yadi.", ru: '✅ Так и есть: задачу на горизонт ставит не наше желание, а то, чего она ждёт.' } },
+  { k: 'toxtaydi', t: { uz: "Baribir to'xtaydi", ru: 'Всё равно остановится' }, res: { uz: "✅ Shunday: ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.", ru: '✅ Так и есть: задачу на горизонт ставит не наше желание, а момент, когда готово то, что ей нужно.' } },
 ];
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -877,26 +877,25 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     : !hammasi ? tr({ uz: `① Har ishning ▶ tugmasini bosing (${bosilgan.length}/6)`, ru: `① Нажмите ▶ у каждой задачи (${bosilgan.length}/6)` })
       : tr({ uz: "② Ko'chirish savoliga javob bering", ru: '② Ответьте на вопрос о переносе' });
   return (
-    <Stage eyebrow={tr({ uz: "Sinov · uch ufq yo'li", ru: 'Проба · дорога трёх горизонтов' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Sinov · uch ufqli reja", ru: 'Проба · план на три горизонта' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ishni <span className="italic" style={{ color: T.accent }}>bugun</span> boshlab ko'ring.</>, ru: <>Попробуйте начать каждую задачу <span className="italic" style={{ color: T.accent }}>сегодня</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Sartaroshxona tizimida oltita ish bor. Har ishning ▶ tugmasini bosing.</>, ru: <>В системе парикмахерской шесть задач. Нажмите ▶ у каждой.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Sartaroshxona tizimida oltita ish bor. Har ishning ▶ tugmasini bosing — qaysi biri boshlanadi, qaysi biri to'xtaydi?</>, ru: <>В системе парикмахерской шесть задач. Нажмите ▶ у каждой — какая начнётся, а какая остановится?</> })}</Mentor>
         {/* 72-qonun: oltita ish alohida laganchada, harakat-chorlovi bilan; birinchi bosishdan keyin chorlov tinadi */}
         {qolgan.length > 0 && (
           <div className={`itray${bosilgan.length > 0 ? ' calm' : ''}`}>
-            <span className="itray-lbl">{tr({ uz: <>🧰 Sartaroshxona tizimining ishlari</>, ru: <>🧰 Задачи системы парикмахерской</> })}</span>
+            <span className="itray-lbl">{tr({ uz: <>Sartaroshxona tizimining ishlari</>, ru: <>Задачи системы парикмахерской</> })}</span>
             <div className="itray-grid">
               {qolgan.map(ish => (
                 <button key={ish.id} type="button" className={`ibtn${turnCls(lit, ish.id, qolgan.length > 1)}`} disabled={isMentor} onClick={() => boshla(ish)}>
-                  <span className="ibtn-ic">{ish.ic}</span>
-                  <span className="ibtn-t">{tr(ish.nom)}</span>
+                                    <span className="ibtn-t">{tr(ish.nom)}</span>
                   <span className="ibtn-go">{tr({ uz: <>▶ Bugun boshlash</>, ru: <>▶ Начать сегодня</> })}</span>
                 </button>
               ))}
             </div>
           </div>
         )}
-        {just && <p className={`jres ${just.ok ? 'ok' : 'stop'} fade-step`}>{just.ok ? '✅' : '🔴'} {tr(just.fakt)}</p>}
+        {just && <p className={`jres ${just.ok ? 'ok' : 'stop'} fade-step`}>{just.ok ? '✓' : '🔴'} {tr(just.fakt)}</p>}
         {tip && !just && <p className="bhint fade-step">{tr({ uz: <>🤔 Yana bitta ishning ▶ tugmasini bosib ko'ring.</>, ru: <>🤔 Нажмите ▶ ещё у одной задачи.</> })}</p>}
         {/* 🔴 YO'L: uch ufq ma'no-rangida, rang-yozuvi ochiq turadi (§134/§135-C) */}
         <div className="road">
@@ -907,7 +906,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="stop-dot" aria-hidden="true">{u.ic}</span>
                 <span className="stop-h">{tr(u.nom)}</span>
                 <div className="stop-list">
-                  {list.map(i => <span key={i.id} className={`stop-chip${i.ok ? ' go' : ''}`}>{i.ic} {tr(i.nom)}</span>)}
+                  {list.map(i => <span key={i.id} className={`stop-chip${i.ok ? ' go' : ''}`}>{tr(i.nom)}</span>)}
                 </div>
                 {list.length > 0 && <span className="stop-n mono">{tr({ uz: <>{list.length} ta ish</>, ru: <>задач: {list.length}</> })}</span>}
               </div>
@@ -916,13 +915,13 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         {hammasi && (
           <div className="bdone fade-step">
-            <span className="done-mini">{tr({ uz: <>✅ Buni o'zingiz ko'rdingiz: ish o'zi kutgan narsa tayyor bo'lganda boshlanadi.</>, ru: <>✅ Вы увидели это сами: задача начинается, когда готово то, чего она ждёт.</> })}</span>
+            <span className="done-mini">{tr({ uz: <>✅ Buni o'zingiz ko'rdingiz: ishga kerak narsa tayyor bo'lsa — ish boshlanadi; hech narsa kutmaydigan ish bugunoq boshlanadi.</>, ru: <>✅ Вы увидели это сами: когда готово то, что нужно задаче, — она начинается; задача, которой нечего ждать, начинается уже сегодня.</> })}</span>
           </div>
         )}
         {/* 2-bosqich (94-qonun): qaror faqat yo'l qurilgach ochiladi. 56-qonun: ball yo'q, qizil baho yo'q. */}
         {hammasi && (
           <div className="mvq fade-step">
-            <span className="mvq-ask">{tr({ uz: <>💳 «Oldindan to'lash» eng uzoq ufqda turibdi. Uni «Uch oydan keyin» ufqiga ko'chirsangiz nima bo'ladi?</>, ru: <>💳 «Предоплата» стоит на самом дальнем горизонте. Что будет, если перенести её на горизонт «Через три месяца»?</> })}</span>
+            <span className="mvq-ask">{tr({ uz: <>«Oldindan to'lash» eng uzoq ufqda turibdi. Uni «Uch oydan keyin»ga ko'chirsangiz nima bo'ladi?</>, ru: <>«Предоплата» стоит на самом дальнем горизонте. Что будет, если перенести её на горизонт «Через три месяца»?</> })}</span>
             <div className="mvq-btns">
               {KOCH_OPTS.map(o => (
                 <button key={o.k} type="button" className={`mvq-b${qaror === o.k ? ' on' : ''}`} disabled={isMentor} onClick={() => setQaror(o.k)}>{tr(o.t)}</button>
@@ -932,7 +931,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         )}
         <StudentPracticePulse live={live} screen={screen} />
-        <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🛣 Yo'lni qurganlar", ru: '🛣 Построили дорогу' })} />
+        <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "Rejani qurganlar", ru: 'Построили план' })} />
         <MentorNote>{tr({ uz: <>Bolalar odatda uchta yashil ishni bosib to'xtaydi. To'rtinchi ish to'xtagach «nimasi yetishmayapti?» deb so'rang — kashfiyot aynan shu lahzada. Qaysi ish to'xtashini oldindan aytmang. Jonli darsda bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.</>, ru: <>Обычно дети нажимают три зелёные задачи и останавливаются. Когда остановится четвёртая, спросите: «чего не хватает?» — открытие происходит именно в этот момент. Не говорите заранее, какая задача остановится. На живом уроке эту практику выполняют ученики, вы наблюдаете; «Продолжить» для вас открыта.</> })}</MentorNote>
       </div>
     </Stage>
@@ -944,9 +943,9 @@ const Screen5 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "«Sartaroshga baho qo'yish» ishi nega bugun boshlanmaydi?", ru: 'Почему задача «Оценка парикмахеру» не начинается сегодня?' })} />}
     questionText={tr({ uz: "Sartaroshga baho qo'yish nega bugun boshlanmaydi", ru: 'Почему оценка парикмахеру не начинается сегодня' })}
-    options={[tr({ uz: "Boshqa ishlar undan oldin qilinishi kerak", ru: 'Сначала нужно сделать другие задачи' }), tr({ uz: "Uni kutayotgan odam juda kam bo'lgan", ru: 'Её ждёт слишком мало людей' }), tr({ uz: "U kutayotgan narsa hali paydo bo'lmagan", ru: 'То, чего она ждёт, ещё не появилось' })]}
+    options={[tr({ uz: "Boshqa ishlar undan oldin qilinishi kerak", ru: 'Сначала нужно сделать другие задачи' }), tr({ uz: "Uni kutayotgan odam juda kam bo'lgan", ru: 'Её ждёт слишком мало людей' }), tr({ uz: "Unga kerak narsa hali paydo bo'lmagan", ru: 'То, что ей нужно, ещё не появилось' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Baho qo'yish uchun avval real navbatlar kerak, ular hali yo'q. Ish o'zi kutgan narsa tayyor bo'lganda boshlanadi.", ru: 'Чтобы ставить оценки, сначала нужны настоящие записи, а их пока нет. Задача начинается, когда готово то, чего она ждёт.' })}
+    explainCorrect={tr({ uz: "Baho qo'yish uchun avval real navbatlar kerak, ular hali yo'q. Kerak narsa tayyor bo'lganda ish boshlanadi.", ru: 'Чтобы ставить оценки, сначала нужны настоящие записи, а их пока нет. Когда нужное готово, задача начинается.' })}
     explainWrong={{
       0: tr({ uz: "Ishlarning tartibi uni to'xtatmadi — unga kerak navbatlar hali yo'q.", ru: 'Её остановил не порядок задач — нужных ей записей пока нет.' }),
       1: tr({ uz: "Nechta odam kutayotgani ham to'xtatmaydi — unga kerak navbatlar hali yo'q.", ru: 'Число ждущих людей тоже не останавливает — нужных ей записей пока нет.' }),
@@ -965,42 +964,42 @@ const Screen5 = (props) => (
 // bu yerda esa uch qator — shuni ko'rish keysning ma'nosini ochadi.
 const REJA_QATOR = [{ uz: 'Qimmat mashina — oz sonda', ru: 'Дорогая машина — малым тиражом' }, { uz: "Arzonrog'i — ko'proq sonda", ru: 'Подешевле — тиражом побольше' }, { uz: 'Eng arzoni — hamma uchun', ru: 'Самая дешёвая — для всех' }];
 const RejaVaraq = ({ yopiq = false }) => (
-  <div className="rv-sheet" role="img" aria-label={yopiq ? tr({ uz: "Bir varaqli reja: uchta qator, hozircha yopiq", ru: 'План на одном листе: три строки, пока закрыты' }) : tr({ uz: "Bir varaqli reja: qimmat mashina, arzonrog'i, eng arzoni", ru: 'План на одном листе: дорогая машина, подешевле, самая дешёвая' })}>
-    <span className="rv-top">{tr({ uz: <>2006 · BIR VARAQ</>, ru: <>2006 · ОДИН ЛИСТ</> })}</span>
+  <div className="rv-sheet" role="img" aria-label={yopiq ? tr({ uz: "Qisqa yozuvdagi reja: uchta qator, hozircha yopiq", ru: 'План в короткой записи: три строки, пока закрыты' }) : tr({ uz: "Qisqa yozuvdagi reja: qimmat mashina, arzonrog'i, eng arzoni", ru: 'План в короткой записи: дорогая машина, подешевле, самая дешёвая' })}>
+    <span className="rv-top">{tr({ uz: <>2006 · QISQA YOZUV</>, ru: <>2006 · КОРОТКАЯ ЗАПИСЬ</> })}</span>
     <ol className="rv-list">
       {REJA_QATOR.map((t, i) => (
         <li key={i}><span className="rv-n">{i + 1}</span>{yopiq ? <span className="rv-hid" /> : tr(t)}</li>
       ))}
     </ol>
-    <span className="rv-foot">{yopiq ? tr({ uz: 'uch qator — bitta betda', ru: 'три строки — на одной странице' }) : tr({ uz: "hammaga ochiq e'lon qilindi", ru: 'объявлен открыто для всех' })}</span>
+    <span className="rv-foot">{yopiq ? tr({ uz: 'uch qator — qisqa yozuvda', ru: 'три строки — в короткой записи' }) : tr({ uz: "hammaga ochiq e'lon qilindi", ru: 'объявлен открыто для всех' })}</span>
   </div>
 );
 
 const K_SLIDES = [
   { ic: '📜', h: { uz: '2006-yil', ru: '2006 год' }, bosqich: 0, vis: <RejaVaraq yopiq />,
-    body: { uz: <>Tesla o'zining uzoq rejasini bir varaqqa yozdi va uni hammaga <b>ochiq</b> e'lon qildi. O'shanda kompaniyaning bironta mashinasi ko'chada yurmasdi.</>, ru: <>Tesla записала свой длинный план на одном листе и объявила его <b>открыто</b> для всех. Тогда ни одна машина компании ещё не ездила по улицам.</> } },
-  { ic: '🔮', h: null, body: null, bosqich: 0,
+    body: { uz: <><b>Tesla — elektr avtomobil ishlab chiqaradigan kompaniya.</b> 2006-yilda u o'zining uzoq rejasini qisqa, hamma o'qiy oladigan yozuv qilib ochiq e'lon qildi. O'shanda kompaniyaning bironta mashinasi hali sotuvda yo'q edi.</>, ru: <><b>Tesla — компания, которая выпускает электромобили.</b> В 2006 году она открыто объявила свой длинный план в виде короткой записи, которую может прочитать каждый. Тогда ни одна машина компании ещё не продавалась.</> } },
+  { h: null, body: null, bosqich: 0,
     predict: { ask: { uz: 'Reja qaysi mashinadan boshlangan?', ru: 'С какой машины начинался план?' }, chips: [
-      { ic: '🚙', t: { uz: 'Hammabop arzon mashinadan', ru: 'С недорогой машины для всех' } },
-      { ic: '🏎', t: { uz: 'Oz sonda chiqarilgan qimmat mashinadan', ru: 'С дорогой машины, выпущенной малым тиражом' } },
-      { ic: '🚚', t: { uz: 'Yuk tashiydigan katta mashinadan', ru: 'С большой грузовой машины' } },
+      { t: { uz: 'Hammabop arzon mashinadan', ru: 'С недорогой машины для всех' } },
+      { t: { uz: 'Oz sonda chiqarilgan qimmat mashinadan', ru: 'С дорогой машины, выпущенной малым тиражом' } },
+      { t: { uz: 'Yuk tashiydigan katta mashinadan', ru: 'С большой грузовой машины' } },
     ], ans: 1,
-      hit: { uz: '🎯 Topdingiz! Oz sonda chiqarilgan qimmat mashinadan', ru: '🎯 Угадали! С дорогой машины, выпущенной малым тиражом' },
+      hit: { uz: 'Topdingiz! Oz sonda chiqarilgan qimmat mashinadan', ru: 'Угадали! С дорогой машины, выпущенной малым тиражом' },
       miss: { uz: 'Adashdingiz — asl javob: oz sonda chiqarilgan qimmat mashinadan', ru: 'Не угадали — правильный ответ: с дорогой машины, выпущенной малым тиражом' } } },
   { ic: '🏎', h: { uz: 'Birinchi bosqich', ru: 'Первый этап' }, bosqich: 1,
-    body: { uz: <>Reja qimmat sport-mashinadan boshlandi — u juda oz sonda chiqarildi, ko'p odam uni sotib ololmasdi.</>, ru: <>План начался с дорогого спорткара — его выпустили совсем мало, и купить его могли немногие.</> } },
-  { ic: '🔮', h: null, body: null, bosqich: 1,
-    predict: { ask: { uz: 'Keyingi mashinani nima bilan qurgan?', ru: 'На что построили следующую машину?' }, chips: [
-      { ic: '🏦', t: { uz: 'Bankdan olingan qarz puli bilan', ru: 'На деньги, взятые в долг в банке' } },
-      { ic: '💰', t: { uz: 'Birinchi mashinadan tushgan pul bilan', ru: 'На деньги от продажи первой машины' } },
-      { ic: '🤝', t: { uz: 'Boshqa kompaniyaning yordami bilan', ru: 'С помощью другой компании' } },
+    body: { uz: <>Reja qimmat sport-mashinadan boshlandi — u oz sonda chiqarildi, ko'p odam uni sotib ololmasdi.</>, ru: <>План начался с дорогого спорткара — его выпустили совсем мало, и купить его могли немногие.</> } },
+  { h: null, body: null, bosqich: 1,
+    predict: { ask: { uz: "Reja bo'yicha keyingi mashina nima bilan qurilishi kerak edi?", ru: 'За счёт чего по плану должны были построить следующую машину?' }, chips: [
+      { t: { uz: 'Bankdan olingan qarz puli bilan', ru: 'На деньги, взятые в долг в банке' } },
+      { t: { uz: 'Birinchi mashinadan tushgan pul bilan', ru: 'На деньги от продажи первой машины' } },
+      { t: { uz: 'Boshqa kompaniyaning yordami bilan', ru: 'С помощью другой компании' } },
     ], ans: 1,
-      hit: { uz: '🎯 Topdingiz! Birinchi mashinadan tushgan pul bilan', ru: '🎯 Угадали! На деньги от продажи первой машины' },
+      hit: { uz: 'Topdingiz! Birinchi mashinadan tushgan pul bilan', ru: 'Угадали! На деньги от продажи первой машины' },
       miss: { uz: 'Adashdingiz — asl javob: birinchi mashinadan tushgan pul bilan', ru: 'Не угадали — правильный ответ: на деньги от продажи первой машины' } } },
   { ic: '🚙', h: { uz: 'Ikkinchi bosqich', ru: 'Второй этап' }, bosqich: 2,
-    body: { uz: <>Birinchi mashinadan tushgan pulga arzonroq mashina qurildi — endi uni ko'proq odam ola oldi.</>, ru: <>На деньги от первой машины построили машину подешевле — теперь её могли купить больше людей.</> } },
+    body: { uz: <>Reja shunday edi: birinchi mashinadan tushgan pul keyingisiga sarflanadi. Amalda investorlar puli ham qo'shildi — lekin tartib rejadagidek qoldi: arzonroq mashina qurildi, uni ko'proq odam ola oldi.</>, ru: <>План был такой: деньги от первой машины идут на следующую. На деле добавились и деньги инвесторов — но порядок остался как в плане: построили машину подешевле, и её смогли купить больше людей.</> } },
   { ic: '🚗', h: { uz: 'Uchinchi bosqich', ru: 'Третий этап' }, vis: <RejaVaraq />, bosqich: 3, oxir: true,
-    body: { uz: <>O'sha puldan hamma sotib oladigan arzon mashina qurildi. Bir varaqqa yozilgan reja <b>o'n yildan ortiq</b> bajarildi.</>, ru: <>На эти деньги построили дешёвую машину, которую покупают все. План, записанный на одном листе, выполнялся <b>больше десяти лет</b>.</> } },
+    body: { uz: <>Keyin hamma sotib oladigan arzon mashina qurildi. Qisqa yozuvdagi reja <b>o'n yildan ortiq</b> bajarildi.</>, ru: <>Потом построили дешёвую машину, которую покупают все. План из короткой записи выполнялся <b>больше десяти лет</b>.</> } },
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gateK = useContext(LiveGateCtx) || {};
@@ -1021,9 +1020,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const showSlide = c.h && (!c.predict || bet !== undefined);
   const bosqich = c.bosqich;
   return (
-    <Stage eyebrow={tr({ uz: "🚗 Haqiqiy voqea", ru: '🚗 Реальная история' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${K_SLIDES.length})`, ru: `Следующий этап (${i + 1}/${K_SLIDES.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
+    <Stage eyebrow={tr({ uz: "Haqiqiy voqea", ru: 'Реальная история' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={betPending && !isMentorK} disabled={betPending && !isMentorK} label={betPending && !isMentorK ? tr({ uz: "Avval o'zingiz belgilang", ru: 'Сначала отметьте сами' }) : last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Keyingi bosqich (${i + 1}/${K_SLIDES.length})`, ru: `Следующий этап (${i + 1}/${K_SLIDES.length})` })} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uzoq reja bir varaqqa <span className="italic" style={{ color: T.accent }}>sig'adimi?</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Поместится ли</span> длинный план на одном листе?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uzoq reja qisqa yozuvga <span className="italic" style={{ color: T.accent }}>sig'adimi?</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Поместится ли</span> длинный план в короткую запись?</> })}</h2></div>
         {/* Yil-yo'li + jonli hisoblagich (§130: yorliq o'z-o'zini tushuntiradi) */}
         <div className="ylane fade-up">
           <span className="ylane-a mono">2006</span>
@@ -1045,7 +1044,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 else cls += waveCls(betHint, k, c.predict.chips.length);
                 return (
                   <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
-                    <span className="kp-ic">{ch.ic}</span>{tr(ch.t)}
+                    {ch.ic && <span className="kp-ic">{ch.ic}</span>}{tr(ch.t)}
                     {locked && isAns && <span className="kp-mark ok">✓</span>}
                     {locked && !isAns && bet === k && !isMentorK && <span className="kp-mark no">✗</span>}
                   </button>
@@ -1075,7 +1074,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {/* Ko'prik-gap oxirgi bosqich-kartasi ICHIDA — hisoblagichni uzmaydi (44/91b-qonun) */}
         {last && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tesla uch bosqichni bir varaqqa yozdi va har bosqich o'zidan oldingisini kutdi. Sizning tizimingizda ham shunday: bugun boshlanadigan ish bor, kutadigan ish bor. Buni kod emas, <b>mahsulotni o'ylaydigan odam</b> hal qiladi — endi shu reja sizniki.</>, ru: <>Tesla записала три этапа на одном листе, и каждый этап ждал предыдущего. В вашей системе так же: есть задача, которая начинается сегодня, и есть задача, которая ждёт. Это решает не код, а <b>человек, который думает о продукте</b>, — теперь этот план ваш.</> })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tesla uch bosqichni ketma-ket rejalashtirdi: har bosqich o'zidan oldingisiga tayandi. Sizning tizimingizda ham shunday: bugun boshlanadigan ish bor, kutadigan ish bor. Buni kod emas, <b>ilovani yaratayotgan odam</b> hal qiladi — endi shu reja sizniki.</>, ru: <>Tesla спланировала три этапа один за другим: каждый этап опирался на предыдущий. В вашей системе так же: есть задача, которая начинается сегодня, и есть задача, которая ждёт. Это решает не код, а <b>тот, кто создаёт приложение</b>, — теперь этот план ваш.</> })}</p>
           </div>
         )}
       </div>
@@ -1086,15 +1085,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen7 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: "Tekshiruv · uzoq reja", ru: 'Проверка · длинный план' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Tesla rejasiga o'xshagan uzoq reja qanday bo'ladi?", ru: 'Каким бывает длинный план, похожий на план Tesla?' })} />}
-    questionText={tr({ uz: "Uzoq reja Tesla rejasiga o'xshasa qanday bo'ladi", ru: 'Каким бывает длинный план, если он похож на план Tesla' })}
-    options={[tr({ uz: "Hamma o'qiy oladigan bir varaq bo'ladi", ru: 'Лист, который может прочитать каждый' }), tr({ uz: "Faqat o'zingiz ko'radigan yozuv bo'ladi", ru: 'Запись, которую видите только вы' }), tr({ uz: "Har oy qaytadan yoziladigan ro'yxat bo'ladi", ru: 'Список, который каждый месяц пишут заново' })]}
+    question={<TestQ ask={tr({ uz: "Tesla misolida uzoq rejaning asosiy xususiyati nima?", ru: 'Что главное в длинном плане на примере Tesla?' })} />}
+    questionText={tr({ uz: "Tesla misolida uzoq rejaning asosiy xususiyati nima", ru: 'Что главное в длинном плане на примере Tesla' })}
+    options={[tr({ uz: "Bosqichlar ketma-ket, har biri oldingisiga tayanadi", ru: 'Этапы идут один за другим, каждый опирается на предыдущий' }), tr({ uz: "Hamma bosqich bir vaqtning o'zida boshlanadi", ru: 'Все этапы начинаются одновременно' }), tr({ uz: "Reja har oy boshidan qaytadan yoziladi", ru: 'План каждый месяц переписывают с нуля' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Tesla uzoq rejasini bir varaqqa yozib, hammaga ochiq qo'ygan.", ru: 'Tesla записала длинный план на одном листе и выложила его открыто для всех.' })}
+    explainCorrect={tr({ uz: "Tesla rejasida har bosqich oldingisini kutdi: birinchisidan keyin ikkinchisi, undan keyin uchinchisi. Rejani ochiq e'lon qilgani — qo'shimcha yaxshi tomoni.", ru: 'В плане Tesla каждый этап ждал предыдущего: после первого шёл второй, после него третий. То, что план объявили открыто, — дополнительный плюс.' })}
     explainWrong={{
-      1: tr({ uz: "Reja faqat o'zingizda qolsa, hech kim yordam bera olmaydi — Tesla uni hammaga ochiq qo'ygan.", ru: 'Если план остаётся только у вас, никто не сможет помочь, — Tesla выложила его открыто для всех.' }),
+      1: tr({ uz: "Hammasi birdan boshlanmadi — ikkinchi mashinaga birinchisidan tushadigan pul kerak edi.", ru: 'Всё началось не сразу — для второй машины нужны были деньги от первой.' }),
       2: tr({ uz: "Har oy qaytadan yozilgan ro'yxat uzoq reja emas — Tesla rejasi o'n yildan ortiq bajarildi.", ru: 'Список, который каждый месяц пишут заново, — не длинный план: план Tesla выполнялся больше десяти лет.' }),
-      default: tr({ uz: "Uzoq reja — hamma o'qiy oladigan bir varaq.", ru: 'Длинный план — лист, который может прочитать каждый.' })
+      default: tr({ uz: "Uzoq rejada bosqichlar ketma-ket, har biri oldingisiga tayanadi.", ru: 'В длинном плане этапы идут один за другим, каждый опирается на предыдущий.' })
     }}
   />
 );
@@ -1187,10 +1186,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Mustaqil ish · uch ufq", ru: 'Самостоятельная работа · три горизонта' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className={`screen s8-scr${chegaralar ? ' has-ch' : ''}`}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uch ufqqa <span className="italic" style={{ color: T.accent }}>uchta</span> ish yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>три</span> задачи на три горизонта.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har ishga bitta savol bering: buni bugun boshlab bo'ladimi?</>, ru: <>Задайте каждой задаче один вопрос: можно ли начать её сегодня?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har ishga bitta savol bering: buni bugun boshlab bo'ladimi? Bo'lmasa — unga nima kerak va u qachon tayyor bo'ladi?</>, ru: <>Задайте каждой задаче один вопрос: можно ли начать её сегодня? Если нет — что ей нужно и когда это будет готово?</> })}</Mentor>
         {chegaralar && (
           <div className="chpanel fade-up">
-            <span className="chpanel-lbl">{tr({ uz: <>⚖️ Oldingi darsda uchta chegara qo'ygan edingiz</>, ru: <>⚖️ На прошлом уроке вы поставили три границы</> })}</span>
+            <span className="chpanel-lbl">{tr({ uz: <>⚖️ 6-darsda uchta chegara yozgan edingiz</>, ru: <>⚖️ На 6-м уроке вы написали три границы</> })}</span>
             <div className="chpanel-rows">{chegaralar.map((q, k) => <span key={k} className="chpanel-row">{q}</span>)}</div>
             <span className="chpanel-note">{tr({ uz: <>Rejangizdagi ish shu chegaralarni buzmasin.</>, ru: <>Пусть задачи из вашего плана не нарушают эти границы.</> })}</span>
           </div>
@@ -1207,12 +1206,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   onChange={e => setDraft(e.target.value)}
                   onKeyDown={e => { if (e.key === 'Enter') save(); }} />
                 {/* 106d: ikki tomonlama javob — bloklamaydi, yo'naltiradi */}
-                {uzun && takror && <p className="sfb ask">{tr({ uz: <>🤔 Bu ish yuqorida allaqachon yozilgan — boshqa ish yozing.</>, ru: <>🤔 Эта задача уже написана выше — напишите другую.</> })}</p>}
-                {uzun && !takror && bosh && <p className="sfb ask">{tr({ uz: <>🤔 Bu hali ish emas. Tizimingiz nima qilishini yozing.</>, ru: <>🤔 Это ещё не задача. Напишите, что будет делать ваша система.</> })}</p>}
-                {uzun && !takror && !bosh && kutadi && <p className="sfb ask">{tr({ uz: <>🤔 Bu ish nimanidir kutyapti. «Hozir» ufqiga bugun boshlanadigan ishni yozing — kutadigan ishni keyingi ufqda yozasiz.</>, ru: <>🤔 Эта задача чего-то ждёт. На горизонт «Сейчас» напишите задачу, которая начинается сегодня, — ждущую задачу вы напишете на следующем горизонте.</> })}</p>}
-                {uzun && !takror && !bosh && hammasiBugun && <p className="sfb ask">{tr({ uz: <>🤔 Uchalasi ham bugun boshlanadi — unda bu reja emas, bugungi ro'yxat. Kutadigan bitta ish toping.</>, ru: <>🤔 Все три начинаются сегодня — тогда это не план, а список на сегодня. Найдите одну задачу, которая ждёт.</> })}</p>}
-                {uzun && !takror && !bosh && !kutadi && !hammasiBugun && <p className="sfb ok">{tr({ uz: <>✅ Yozildi — bu ish o'z ufqida turibdi.</>, ru: <>✅ Записано — эта задача стоит на своём горизонте.</> })}</p>}
-                {!uzun && draft.trim().length > 0 && <p className="sfb ask">{tr({ uz: <>🤔 Qisqa qoldi: ish nomini to'liq yozing.</>, ru: <>🤔 Коротковато: напишите название задачи полностью.</> })}</p>}
+                {uzun && takror && <p className="sfb ask">{tr({ uz: <>Bu ish yuqorida allaqachon yozilgan — boshqa ish yozing.</>, ru: <>Эта задача уже написана выше — напишите другую.</> })}</p>}
+                {uzun && !takror && bosh && <p className="sfb ask">{tr({ uz: <>Bu hali ish emas. Tizimingiz nima qilishini yozing.</>, ru: <>Это ещё не задача. Напишите, что будет делать ваша система.</> })}</p>}
+                {uzun && !takror && !bosh && kutadi && <p className="sfb ask">{tr({ uz: <>Bu ishga hali tayyor bo'lmagan narsa kerak. «Hozir» ufqiga bugun boshlanadigan ishni yozing — kutadigan ishni keyingi ufqda yozasiz.</>, ru: <>Этой задаче нужно то, что ещё не готово. На горизонт «Сейчас» напишите задачу, которая начинается сегодня, — ждущую задачу вы напишете на следующем горизонте.</> })}</p>}
+                {uzun && !takror && !bosh && hammasiBugun && <p className="sfb ask">{tr({ uz: <>Uchalasi ham bugun boshlanadi — unda bu reja emas, bugungi ro'yxat. Kutadigan bitta ish toping.</>, ru: <>Все три начинаются сегодня — тогда это не план, а список на сегодня. Найдите одну задачу, которая ждёт.</> })}</p>}
+                {uzun && !takror && !bosh && !kutadi && !hammasiBugun && <p className="sfb ok">{tr({ uz: <>✓ Yozildi — bu ish o'z ufqida turibdi.</>, ru: <>✓ Записано — эта задача стоит на своём горизонте.</> })}</p>}
+                {!uzun && draft.trim().length > 0 && <p className="sfb ask">{tr({ uz: <>Qisqa qoldi: ish nomini to'liq yozing.</>, ru: <>Коротковато: напишите название задачи полностью.</> })}</p>}
                 <div className="wsp-saverow">
                   <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? tr({ uz: '✓ Saqlash', ru: '✓ Сохранить' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
                   </div>
@@ -1221,7 +1220,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* 80c: yozilganlar yozish paytida ko'rinmaydi; uchtasi tayyor bo'lgach yo'l ochiladi */}
             {done && edit === null && (
               <div className="wsp-list fade-step">
-                <span className="wsp-list-h">{tr({ uz: <>🛣 Uch qatorli rejangiz</>, ru: <>🛣 Ваш план из трёх строк</> })}</span>
+                <span className="wsp-list-h">{tr({ uz: <>Uch qatorli rejangiz</>, ru: <>Ваш план из трёх строк</> })}</span>
                 {list.slice(0, 3).map((r, k) => (
                   <span key={k} className="wsp-item">
                     <span className="wsp-item-m">{UFQLAR.find(u => u.k === r.ufq)?.ic}</span>
@@ -1234,7 +1233,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col gap={9}>
             <div className="wsp-task">
-              <span className="wsp-task-lbl">{tr({ uz: <>🎯 Uch ufqingiz</>, ru: <>🎯 Ваши три горизонта</> })}</span>
+              <span className="wsp-task-lbl">{tr({ uz: <>Uch ufqingiz</>, ru: <>Ваши три горизонта</> })}</span>
               {UFQLAR.map((u, k) => (
                 <span key={u.k} className={`wsp-task-row${list.length > k ? ' done' : ''}`}>
                   <span>{u.ic} {tr(u.nom)}</span>
@@ -1254,7 +1253,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "✍️ Uch ufqni yozganlar", ru: '✍️ Написали три горизонта' })} />
+            <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "Uch ufqni yozganlar", ru: 'Написали три горизонта' })} />
           </Col>
         </div>
         {done && edit === null && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch qatorli rejangiz saqlandi <span className="dm-sub">— har ish o'z ufqida turibdi</span></>, ru: <>✅ Ваш план из трёх строк сохранён <span className="dm-sub">— каждая задача стоит на своём горизонте</span></> })}</div>}
@@ -1270,12 +1269,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // bir nechta ish tushadi, ufq ichida tartib YO'Q va oltala ish ham rejada qoladi.
 // s4 oltiligidan BOSHQA to'plam (§102): tizim ochilganiga bir necha oy bo'lgan payt.
 const ISHLAR9 = [
-  { id: 'qidir',   ic: '🔎', nom: { uz: "Ismi bo'yicha sartarosh qidirish", ru: 'Поиск парикмахера по имени' },        ufq: 'hozir',   sabab: { uz: 'Sartaroshlarning ismi bazada allaqachon yozilgan', ru: 'Имена парикмахеров уже записаны в базе' } },
-  { id: 'bekor',   ic: '❌', nom: { uz: 'Navbatni bekor qilish tugmasi', ru: 'Кнопка отмены записи' },           ufq: 'hozir',   sabab: { uz: "Navbatlar tushib turibdi — bekor qilishni bugun qo'shsa bo'ladi", ru: 'Записи уже поступают — отмену можно добавить сегодня' } },
-  { id: 'tungi',   ic: '🌙', nom: { uz: "Ilovada tungi ko'rinish", ru: 'Ночная тема в приложении' },                 ufq: 'hozir',   sabab: { uz: "Ilova ishlab turibdi, ranglarni bugun o'zgartirsa bo'ladi", ru: 'Приложение работает, цвета можно поменять сегодня' } },
-  { id: 'chegirma',ic: '🎁', nom: { uz: 'Uchinchi tashrifga chegirma', ru: 'Скидка на третий визит' },             ufq: 'uch-oy',  sabab: { uz: "Uchinchi tashrif uchun odam avval uch marta kelishi kerak — ko'pchilik hozircha bir-ikki marta kelgan", ru: 'Для третьего визита человек должен сначала прийти три раза — большинство пока приходили один-два раза' } },
-  { id: 'reyting', ic: '🏅', nom: { uz: "Sartaroshlar ro'yxati — kim ko'p maqtalgan", ru: 'Список парикмахеров — кого больше хвалят' }, ufq: 'uch-oy', sabab: { uz: 'Ro\'yxat baholardan tuziladi — birinchi baholar endi kelyapti, ular hali oz', ru: 'Список строится из оценок — первые оценки только приходят, их пока мало' } },
-  { id: 'shahar',  ic: '🏙', nom: { uz: 'Boshqa shaharga ochish', ru: 'Открыться в другом городе' },                  ufq: 'olti-oy', sabab: { uz: "Boshqa shaharga chiqish uchun avval bitta shaharda sartaroshlar to'lishi kerak", ru: 'Чтобы выйти в другой город, сначала нужно набрать парикмахеров в одном городе' } },
+  { id: 'qidir', nom: { uz: "Ismi bo'yicha sartarosh qidirish", ru: 'Поиск парикмахера по имени' },        ufq: 'hozir',   sabab: { uz: 'Sartaroshlarning ismi bazada allaqachon yozilgan', ru: 'Имена парикмахеров уже записаны в базе' } },
+  { id: 'bekor', nom: { uz: 'Navbatni bekor qilish tugmasi', ru: 'Кнопка отмены записи' },           ufq: 'hozir',   sabab: { uz: "Navbatlar tushib turibdi — bekor qilishni bugun qo'shsa bo'ladi", ru: 'Записи уже поступают — отмену можно добавить сегодня' } },
+  { id: 'tungi', nom: { uz: "Ilovada tungi ko'rinish", ru: 'Ночная тема в приложении' },                 ufq: 'hozir',   sabab: { uz: "Ilova ishlab turibdi, ranglarni bugun o'zgartirsa bo'ladi", ru: 'Приложение работает, цвета можно поменять сегодня' } },
+  { id: 'chegirma', nom: { uz: 'Uchinchi tashrifga chegirma', ru: 'Скидка на третий визит' },             ufq: 'uch-oy',  sabab: { uz: "Uchinchi tashrif uchun odam avval uch marta kelishi kerak — ko'pchilik hozircha bir-ikki marta kelgan", ru: 'Для третьего визита человек должен сначала прийти три раза — большинство пока приходили один-два раза' } },
+  { id: 'reyting', nom: { uz: "Sartaroshlar ro'yxati — kim ko'p maqtalgan", ru: 'Список парикмахеров — кого больше хвалят' }, ufq: 'uch-oy', sabab: { uz: 'Ro\'yxat baholardan tuziladi — birinchi baholar endi kelyapti, ular hali oz', ru: 'Список строится из оценок — первые оценки только приходят, их пока мало' } },
+  { id: 'shahar', nom: { uz: 'Boshqa shaharga ochish', ru: 'Открыться в другом городе' },                  ufq: 'olti-oy', sabab: { uz: "Boshqa shaharga chiqish uchun avval bitta shaharda sartaroshlar to'lishi kerak", ru: 'Чтобы выйти в другой город, сначала нужно набрать парикмахеров в одном городе' } },
 ];
 const ufqIdx = (k) => UFQLAR.findIndex(u => u.k === k);
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1313,17 +1312,17 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const btnTurn = useTurnHint(!javob && !isMentor && !done);
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `① Ishni o'z ufqiga qo'ying (${qoyilgan.length}/6)`, ru: `① Поставьте задачу на её горизонт (${qoyilgan.length}/6)` });
   return (
-    <Stage eyebrow={tr({ uz: "Tekshiruv · yangi oltita ish", ru: 'Проверка · шесть новых задач' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tekshiruv · yana oltita ish", ru: 'Проверка · ещё шесть задач' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ishni <span className="italic" style={{ color: T.accent }}>o'z ufqiga</span> qo'ying.</>, ru: <>Поставьте каждую задачу <span className="italic" style={{ color: T.accent }}>на её горизонт</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Uch qatoringiz tayyor — endi shu savolni o'sha tizimning yangi oltita ishida beramiz.</>, ru: <>Ваши три строки готовы — теперь зададим тот же вопрос шести новым задачам той же системы.</> })}</Mentor>
-        <p className="sahna fade-up">{tr({ uz: <>✂️ Sartaroshxona tizimi ochilganiga bir necha oy bo'ldi: har kuni navbatlar tushyapti, birinchi baholar endi kelyapti. Oldida yangi oltita ish turibdi.</>, ru: <>✂️ Системе парикмахерской уже несколько месяцев: каждый день приходят записи, первые оценки только появляются. Впереди — шесть новых задач.</> })}</p>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ishni <span className="italic" style={{ color: T.accent }}>o'z ufqiga</span> qo'ying — va nega shu ufq ekanini o'qing.</>, ru: <>Поставьте каждую задачу <span className="italic" style={{ color: T.accent }}>на её горизонт</span> — и прочитайте, почему именно на этот.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Uch qatoringiz tayyor — endi shu savolni sartaroshxona tizimining yana oltita ishiga beramiz. Har javobdan keyin sabab ochiladi — uni o'qing: aynan sabab to'g'ri qo'yishni o'rgatadi.</>, ru: <>Ваши три строки готовы — теперь зададим тот же вопрос ещё шести задачам системы парикмахерской. После каждого ответа откроется причина — прочитайте её: именно причина учит ставить правильно.</> })}</Mentor>
+        <p className="sahna fade-up">{tr({ uz: <>Sartaroshxona tizimi ochilganiga bir necha oy bo'ldi: har kuni navbatlar tushyapti, birinchi baholar endi kelyapti. Oldida yangi oltita ish turibdi.</>, ru: <>Система парикмахерской работает уже несколько месяцев: каждый день приходят записи, первые оценки только появляются. Впереди шесть новых задач.</> })}</p>
         {!done ? (
           <div className="split">
             <Col gap={9}>
               <div className="uj-card">
                 <span className="uj-n mono">{i + 1} / {ISHLAR9.length}</span>
-                <span className="uj-ic">{cur.ic}</span>
+                {cur.ic && <span className="uj-ic">{cur.ic}</span>}
                 <span className="uj-t">{tr(cur.nom)}</span>
                 <div className="uj-btns">
                   {UFQLAR.map((u, k) => (
@@ -1336,21 +1335,21 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {javob && (
                   <div className="uj-ans fade-step">
                     {/* 106d: ikki tomonlama javob — to'g'ri ufq AYTILMAYDI, keyin asl javob DOIM ochiladi */}
-                    {!togri && <p className={`sfb ask`}>🤔 {uzoqroq ? tr({ uz: "Bu ish kutmaydi — unga kerak narsa allaqachon bor.", ru: 'Эта задача не ждёт — нужное ей уже есть.' }) : tr({ uz: "Buni hali boshlab bo'lmaydi — nimasi yetishmayotganini o'ylab ko'ring.", ru: 'Это пока нельзя начать — подумайте, чего не хватает.' })}</p>}
-                    {togri && <p className="sfb ok">{tr({ uz: <>✅ Shu ufqda turadi.</>, ru: <>✅ Стоит на этом горизонте.</> })}</p>}
+                    {!togri && <p className={`sfb ask`}>{uzoqroq ? tr({ uz: "Bu ish kutmaydi — unga kerak narsa allaqachon bor.", ru: 'Эта задача не ждёт — нужное ей уже есть.' }) : tr({ uz: "Buni hali boshlab bo'lmaydi — nimasi yetishmayotganini o'ylab ko'ring.", ru: 'Это пока нельзя начать — подумайте, чего не хватает.' })}</p>}
+                    {togri && <p className="sfb ok">{tr({ uz: <>✓ Shu ufqda turadi.</>, ru: <>✓ Стоит на этом горизонте.</> })}</p>}
                     <span className={`uj-real ${cur.ufq}`}>{UFQLAR[ufqIdx(cur.ufq)].ic} {ufqNom(cur.ufq)}</span>
                     <p className="uj-sabab">{tr(cur.sabab)}</p>
-                    <button type="button" className="wsp-save" onClick={oxirgi ? () => setYakun(true) : keyingi}>{oxirgi ? tr({ uz: "✓ Yo'lni ko'rish", ru: '✓ Посмотреть дорогу' }) : tr({ uz: 'Keyingi ish →', ru: 'Следующая задача →' })}</button>
+                    <button type="button" className="wsp-save" onClick={oxirgi ? () => setYakun(true) : keyingi}>{oxirgi ? tr({ uz: "✓ Rejani ko'rish", ru: '✓ Посмотреть план' }) : tr({ uz: 'Keyingi ish →', ru: 'Следующая задача →' })}</button>
                   </div>
                 )}
               </div>
             </Col>
             <Col gap={9}>
               <div className="wsp-task">
-                <span className="wsp-task-lbl">{tr({ uz: <>🎯 Oltita ish</>, ru: <>🎯 Шесть задач</> })}</span>
+                <span className="wsp-task-lbl">{tr({ uz: <>Oltita ish</>, ru: <>Шесть задач</> })}</span>
                 {ISHLAR9.map((x, k) => (
                   <span key={x.id} className={`wsp-task-row${qoyilgan.some(q => q.id === x.id) ? ' done' : ''}`}>
-                    <span>{x.ic} {tr(x.nom)}</span>
+                    <span>{tr(x.nom)}</span>
                     {qoyilgan.some(q => q.id === x.id) && <span className="wsp-task-m" aria-hidden="true">✓</span>}
                   </span>
                 ))}
@@ -1363,7 +1362,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
               <StudentPracticePulse live={live} screen={screen} />
-              <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🧭 Oltalasini qo'yganlar", ru: '🧭 Расставили все шесть' })} />
+              <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "Oltalasini qo'yganlar", ru: 'Расставили все шесть' })} />
             </Col>
           </div>
         ) : (
@@ -1375,16 +1374,16 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div key={u.k} className={`stop ${u.k} has`}>
                     <span className="stop-dot" aria-hidden="true">{u.ic}</span>
                     <span className="stop-h">{tr(u.nom)}</span>
-                    <div className="stop-list">{list.map(x => <span key={x.id} className="stop-chip">{x.ic} {tr(x.nom)}</span>)}</div>
+                    <div className="stop-list">{list.map(x => <span key={x.id} className="stop-chip">{tr(x.nom)}</span>)}</div>
                     <span className="stop-n mono">{tr({ uz: <>{list.length} ta ish</>, ru: <>задач: {list.length}</> })}</span>
                   </div>
                 );
               })}
             </div>
             <div className="bdone fade-step">
-              <span className="done-mini">{tr({ uz: <>✅ Yaqin ufqda ish ko'p turadi, uzoq ufqda esa oz <span className="dm-sub">— reja shunday ko'rinadi</span></>, ru: <>✅ На ближнем горизонте задач много, на дальнем — мало <span className="dm-sub">— так выглядит план</span></> })}</span>
+              <span className="done-mini">{tr({ uz: <>✅ Yaqin ufqda ish ko'p turadi, uzoq ufqda esa oz <span className="dm-sub">— reja odatda shunday ko'rinadi</span></>, ru: <>✅ На ближнем горизонте задач много, а на дальнем мало <span className="dm-sub">— обычно план так и выглядит</span></> })}</span>
             </div>
-            <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🧭 Oltalasini qo'yganlar", ru: '🧭 Расставили все шесть' })} />
+            <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "Oltalasini qo'yganlar", ru: 'Расставили все шесть' })} />
           </>
         )}
         <MentorNote>{tr({ uz: <>Eng ko'p adashiladigan joy — «sartaroshlar ro'yxati»: baholar endi kelyapti, ular hali oz. Sabab-qatori ochilgach shuni ovoz chiqarib o'qing. Sinf ish-tartibi: har o'quvchi sherigining uch qatorini o'qib, «olti oydagi ishingiz nimani kutyapti?» deb so'raydi — javob topilmasa, ish boshqa ufqqa ko'chadi. Jonli darsda bu amaliyotni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.</>, ru: <>Чаще всего ошибаются на «списке парикмахеров»: оценки только приходят, их пока мало. Когда откроется строка с причиной, прочитайте её вслух. Работа в классе: каждый ученик читает три строки соседа и спрашивает: «чего ждёт ваша задача на шесть месяцев?» — если ответа нет, задача переезжает на другой горизонт. На живом уроке эту практику выполняют ученики, вы наблюдаете; «Продолжить» для вас открыта.</> })}</MentorNote>
@@ -1470,6 +1469,14 @@ const KD_SHART = [
   { uz: <>Har sarlavha ostida o'z ishlari</>, ru: <>Под каждым заголовком — свои задачи</> },
   { uz: <>Ish boshqa sarlavha ostiga tushmaydi</>, ru: <>Задача не попадает под чужой заголовок</> },
 ];
+// 87-qonun: kod-atamalar o'tilgan bo'lsa ham birinchi uchraganda bir qatorlik eslatma.
+const KD_ESLATMA = [
+  { k: 'reja[3]', t: { uz: <>ro'yxatdagi to'rtinchi ish (sanash 0 dan boshlanadi)</>, ru: <>четвёртая задача в списке (счёт идёт с 0)</> } },
+  { k: '.ufq', t: { uz: <>shu ishning ufq maydoni (qiymati)</>, ru: <>поле горизонта этой задачи (его значение)</> } },
+  { k: 'for', t: { uz: <>ishlarni birma-bir ko'rib chiqadi (sikl)</>, ru: <>перебирает задачи по одной (цикл)</> } },
+  { k: 'if (a === b)', t: { uz: <>shartni tekshiradi: teng bo'lsa, qavs ichidagi qator ishlaydi</>, ru: <>проверяет условие: если значения равны, срабатывает строка в скобках</> } },
+  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node reja.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где вы пишете <code className="qcode">node reja.js</code> и видите результат</> } },
+];
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1510,30 +1517,36 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const lines = tr(KD_CODE).split('\n');
   const doneTurn = useTurnHint(stage2 && !done && !isMentor);
-  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '🔒 Avval kod-savolini yeching', ru: '🔒 Сначала ответьте на вопрос о коде' }) : tr({ uz: '② Kodni yozing va tugmani bosing', ru: '② Напишите код и нажмите кнопку' });
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: 'Avval kod-savolini yeching', ru: 'Сначала ответьте на вопрос о коде' }) : tr({ uz: '② Kodni yozing va tugmani bosing', ru: '② Напишите код и нажмите кнопку' });
   return (
-    <Stage eyebrow={tr({ uz: "Koding · ⌨️ VS Code", ru: 'Кодинг · ⌨️ VS Code' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Kod yozish · ⌨️ VS Code", ru: 'Пишем код · ⌨️ VS Code' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.5vw,15px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Rejani ufqlarga ajratadigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который раскладывает план по горизонтам.</> })}</h2></div>
         {!stage2 ? (
           <>
             <Mentor>{tr({ uz: 'Avval bitta savol — keyin kod yoziladi.', ru: 'Сначала один вопрос — потом пишем код.' })}</Mentor>
             <div className="cmt hunt">
-              <span className="cmt-lbl">{tr({ uz: <>🔎 Kod <code className="qcode">reja[3].ufq</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>🔎 Если код выведет <code className="qcode">reja[3].ufq</code>, что появится в терминале?</> })}</span>
+              <span className="cmt-lbl">{tr({ uz: <>Kod <code className="qcode">reja[3].ufq</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">reja[3].ufq</code>, что появится в терминале?</> })}</span>
               <div className="gt-btns col3">
                 {GATE_OPTS.map((g, i) => (
                   <button key={i} type="button" className={`gt-b${miss === i ? ' miss' : ''}`} onClick={() => pickGate(i)}>{tr(g.t)}</button>
                 ))}
               </div>
-              {missedOnce && <p className="cmt-tip">{tr({ uz: <>🤔 Nuqtadan keyin qaysi maydon yozilgan bo'lsa, terminalda o'sha maydonning qiymati chiqadi.</>, ru: <>🤔 Какое поле написано после точки, значение этого поля и появится в терминале.</> })}</p>}
+              {missedOnce && <p className="cmt-tip">{tr({ uz: <>Nuqtadan keyin qaysi maydon yozilgan bo'lsa, terminalda o'sha maydonning qiymati chiqadi.</>, ru: <>Какое поле написано после точки, значение этого поля и появится в терминале.</> })}</p>}
             </div>
           </>
         ) : (
           <>
-            <Mentor>{tr({ uz: <>Qo'lingiz bilan qo'ygan ishni endi kod bajaradi.</>, ru: <>Задачи, которые вы расставили руками, теперь расставит код.</> })}</Mentor>
+            <Mentor>{tr({ uz: <>Qo'lingiz bilan ufqqa qo'ygan ishni endi kod xuddi shunday guruhlaydi. Avval eslatma, keyin kod.</>, ru: <>Задачи, которые вы расставили по горизонтам руками, теперь точно так же сгруппирует код. Сначала напоминание, потом код.</> })}</Mentor>
             <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: <>✓ <code className="qcode">reja[3].ufq</code> — to'rtinchi ishning ufq nomi</>, ru: <>✓ <code className="qcode">reja[3].ufq</code> — горизонт четвёртой задачи</> })}</span></div>
             <div className="split">
               <Col gap={10}>
+                <div className="cmt kd-esl fade-step">
+                  <span className="cmt-lbl">{tr({ uz: <>🔎 Eslatma (JavaScript darslaridan)</>, ru: <>🔎 Напоминание (из уроков JavaScript)</> })}</span>
+                  <ul className="kdreq" style={{ margin: 0, paddingLeft: 19, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    {KD_ESLATMA.map((e, k) => <li key={k}>{e.plain ? <b>{e.k}</b> : <code className="qcode">{e.k}</code>} — {tr(e.t)}</li>)}
+                  </ul>
+                </div>
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
                   <p className="flow-label">{tr({ uz: 'Kod nima chiqarsin', ru: 'Что должен вывести код' })}</p>
                   <ol className="kdreq">{KD_SHART.map((sh, i) => <li key={i}>{tr(sh)}</li>)}</ol>
@@ -1554,7 +1567,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     </div>
                   </div>
                   <button className={`lp-done-btn ${done ? 'is-done' : ''}${!done && doneTurn ? ' turn-ring' : ''}`} disabled={done} onClick={done ? undefined : complete}>
-                    {done ? tr({ uz: '✓ Bajarildi', ru: '✓ Выполнено' }) : tr({ uz: '✅ Bajardim — uch sarlavha chiqdi', ru: '✅ Готово — вывелись три заголовка' })}
+                    {done ? tr({ uz: '✓ Bajarildi', ru: '✓ Выполнено' }) : tr({ uz: '✓ Bajardim — uch sarlavha chiqdi', ru: '✓ Готово — вывелись три заголовка' })}
                   </button>
                   {/* F-0926-05 #16: «✓ Bajarildi» tugmasi o'zi aytadi — takror yashil yozuv olindi */}
                   {!done && isSelf && (
@@ -1562,13 +1575,13 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   )}
                 </div>
                 <StudentPracticePulse live={live} screen={screen} />
-                <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "⌨️ Kodni yozib bo'lganlar", ru: '⌨️ Дописали код' })} />
+                <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "Kodni yozib bo'lganlar", ru: 'Дописали код' })} />
               </Col>
               <Col gap={10}>
                 <div className="vsc no-copy" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onPaste={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
                   <div className="vsc-bar">
-                    <span className="vsc-tab on"><span style={{ color: '#4FC1FF' }}>🛣</span> reja.js</span>
-                    <span className="vsc-lock" title={tr({ uz: "Kod nusxalanmaydi — o'zingiz terib yozasiz", ru: 'Код не копируется — набираете сами' })}>🔒 {tr({ uz: "qo'lda yoziladi", ru: 'пишется руками' })}</span>
+                    <span className="vsc-tab on"><span style={{ color: '#E8C547', fontWeight: 800, fontSize: '0.85em' }}>JS</span> reja.js</span>
+                    <span className="vsc-lock" title={tr({ uz: "Kod nusxalanmaydi — o'zingiz terib yozasiz", ru: 'Код не копируется — набираете сами' })}>{tr({ uz: "qo'lda yoziladi", ru: 'пишется руками' })}</span>
                   </div>
                   <div className="vsc-body">
                     {lines.map((ln, i) => (
@@ -1577,7 +1590,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </div>
                   <div className="vsc-term"><span className="vsc-term-lbl">TERMINAL</span><span className="mono">$ node reja.js</span></div>
                 </div>
-                <p className="bhint">{tr({ uz: <>🔒 VS Code (kod yoziladigan dastur)da o'zingiz terasiz.</>, ru: <>🔒 Набираете сами в VS Code (программе для написания кода).</> })}</p>
+                <p className="bhint">{tr({ uz: <>VS Code (kod yoziladigan dastur)da o'zingiz terasiz.</>, ru: <>Набираете сами в VS Code (программе для написания кода).</> })}</p>
               </Col>
             </div>
           </>
@@ -1647,10 +1660,10 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
   return (
-    <Stage eyebrow={tr({ uz: 'Mustahkamlash · 2 qadam', ru: 'Закрепление · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'zingiz o'ylab ko'ring · 2 qadam", ru: 'Подумайте сами · 2 шага' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uch qatoringizni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать свои три строки <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ekranga qaramasdan javob bering: olti oydagi ishingiz nimani kutyapti?</>, ru: <>Ответьте, не глядя на экран: чего ждёт ваша задача на шесть месяцев?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ekranga qaramasdan javob bering: olti oydagi ishingizga nima kerak va u qachon tayyor bo'ladi?</>, ru: <>Ответьте, не глядя на экран: что нужно вашей задаче на шесть месяцев и когда это будет готово?</> })}</Mentor>
         <div className="rcp-flow">
           <div className="rcp-step fade-up delay-1">
             <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 {yakka ? tr({ uz: "Ovoz chiqarib o'zingizga ayting", ru: 'Скажите себе вслух' }) : tr({ uz: 'Sherigingizga ayting', ru: 'Скажите соседу' })}</span></div></div>
@@ -1659,18 +1672,18 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: '✍️ Endi shu javobni bir qatorda yozing', ru: '✍️ Теперь запишите этот ответ одной строкой' })}</span></div></div>
             <span className={`turn-wrap${inputTurn ? ' turn-ring' : ''}`}>
-              <input className="reflect-input" value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: "Olti oydagi ishim ... kutyapti", ru: 'Моя задача на шесть месяцев ждёт ...' })} maxLength={160} />
+              <input className="reflect-input" value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: "Olti oydagi ishimga ... kerak, u ... tayyor bo'ladi", ru: 'Моей задаче на шесть месяцев нужно ..., это будет готово ...' })} maxLength={160} />
             </span>
             {/* 106f(b): yozib bo'lgach mukofot — bitta tabrik-gap va bitta qoida-qatori */}
             {written && (
               <div className="rwd fade-step">
                 <p className="rwd-t">{tr({ uz: <>✓ Endi siz har ishga «buni bugun boshlab bo'ladimi?» degan savol bilan qaraydigan bo'ldingiz.</>, ru: <>✓ Теперь вы смотрите на каждую задачу с вопросом «можно ли начать её сегодня?».</> })}</p>
-                <span className="rwd-rule">{tr({ uz: <>🎯 Bugungi qoida: ish o'zi kutgan narsa tayyor bo'lganda boshlanadi</>, ru: <>🎯 Правило дня: задача начинается, когда готово то, чего она ждёт</> })}</span>
+                <span className="rwd-rule">{tr({ uz: <>🎯 Bugungi qoida: ishni qachon boshlash mumkinligini unga kerak narsalar va shartlar belgilaydi.</>, ru: <>🎯 Правило дня: когда можно начать задачу, зависит от того, что ей нужно, и от условий.</> })}</span>
               </div>
             )}
           </div>
         </div>
-        <MentorNote>{tr({ uz: <>Uchdan biri «nimani kutyapti» savoliga javob berolmasa — uch ufq yo'li ekranini qayta oching va to'xtagan uch ishni birga o'qing.</>, ru: <>Если треть класса не может ответить на вопрос «чего ждёт», снова откройте экран с дорогой трёх горизонтов и вместе прочитайте три остановившиеся задачи.</> })}</MentorNote>
+        <MentorNote>{tr({ uz: <>Uchdan biri «unga nima kerak» savoliga javob berolmasa — uch ufqli reja ekranini qayta oching va to'xtagan uch ishni birga o'qing.</>, ru: <>Если треть класса не может ответить на вопрос «что ей нужно» — снова откройте экран с планом на три горизонта и вместе прочитайте три остановившиеся задачи.</> })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1718,15 +1731,15 @@ function Flashcards({ cards }) {
   );
 }
 const FLASHCARDS = [
-  { front: { uz: 'Ufq nima?', ru: 'Что такое горизонт?' }, back: { uz: "Ishlar qachon boshlanishiga qarab bo'lingan bo'lak", ru: 'Часть плана, куда задачи попадают по тому, когда они начинаются' } },
-  { front: { uz: 'Rejada nechta ufq bor?', ru: 'Сколько горизонтов в плане?' }, back: { uz: 'Uchta: hozir · uch oydan keyin · olti oydan keyin', ru: 'Три: сейчас · через три месяца · через шесть месяцев' } },
+  { front: { uz: 'Ufq nima?', ru: 'Что такое горизонт?' }, back: { uz: "Ishlar qachon boshlanishiga qarab ajratilgan vaqt bo'lagi", ru: 'Отрезок времени, куда задачи попадают по тому, когда они начинаются' } },
+  { front: { uz: 'Bugungi darsda nechta ufq bilan ishladik?', ru: 'Со сколькими горизонтами мы работали на уроке?' }, back: { uz: 'Uchta: hozir · uch oydan keyin · olti oydan keyin (mashq uchun tanlangan muddatlar)', ru: 'Три: сейчас · через три месяца · через шесть месяцев (сроки выбраны для тренировки)' } },
   { front: { uz: 'Ishni ufqqa nima qo\'yadi?', ru: 'Что ставит задачу на горизонт?' }, back: { uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Момент, когда будет готово нужное ей' } },
-  { front: { uz: 'Ish qachon boshlanadi?', ru: 'Когда задача начинается?' }, back: { uz: "O'zi kutgan narsa tayyor bo'lganda", ru: 'Когда готово то, чего она ждёт' } },
+  { front: { uz: 'Ish qachon boshlanadi?', ru: 'Когда задача начинается?' }, back: { uz: "Unga kerak narsa va shartlar tayyor bo'lganda; hech narsa kutmasa — bugunoq", ru: 'Когда готово то, что ей нужно, и выполнены условия; если ей нечего ждать — уже сегодня' } },
   { front: { uz: '«Olti oydan keyin» ufqi nimani bildiradi?', ru: 'Что значит горизонт «Через шесть месяцев»?' }, back: { uz: 'Ish olti oydan keyin boshlanadi — olti oy davom etmaydi', ru: 'Задача начнётся через шесть месяцев — а не будет длиться шесть месяцев' } },
-  { front: { uz: 'Qaysi ufqda ish ko\'p turadi?', ru: 'На каком горизонте задач больше всего?' }, back: { uz: 'Eng yaqinida — «hozir» ufqida', ru: 'На самом ближнем — на горизонте «сейчас»' } },
+  { front: { uz: 'Qaysi ufqda ish ko\'p turadi?', ru: 'На каком горизонте задач больше всего?' }, back: { uz: 'Odatda eng yaqinida — «hozir» ufqida', ru: 'Обычно на самом ближнем — на горизонте «сейчас»' } },
   { front: { uz: '«Hozir» ufqiga qanday ish yoziladi?', ru: 'Какую задачу пишут на горизонт «Сейчас»?' }, back: { uz: 'Bugun boshlanadigani — hech narsa kutmaydigani', ru: 'Ту, что начинается сегодня, — которая ничего не ждёт' } },
   { front: { uz: 'Tesla rejasi qaysi mashinadan boshlangan?', ru: 'С какой машины начинался план Tesla?' }, back: { uz: 'Oz sonda chiqarilgan qimmat sport-mashinadan (2006)', ru: 'С дорогого спорткара, выпущенного малым тиражом (2006)' } },
-  { front: { uz: 'Tesla keyingi mashinani nima bilan qurgan?', ru: 'На что Tesla построила следующую машину?' }, back: { uz: 'Birinchi mashinadan tushgan pul bilan', ru: 'На деньги от продажи первой машины' } },
+  { front: { uz: 'Tesla rejasida bosqichlar qanday joylashgan?', ru: 'Как расположены этапы в плане Tesla?' }, back: { uz: 'Ketma-ket — har biri oldingisiga tayanadi', ru: 'Один за другим — каждый опирается на предыдущий' } },
   { front: { uz: "Nechta odam so'ragani nimani aytadi?", ru: 'О чём говорит число людей, которые просили?' }, back: { uz: 'Bitta ufq ichida qaysi ish oldin qilinishini', ru: 'Какая задача внутри одного горизонта делается раньше' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1746,9 +1759,9 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Ishni qaysi ufqqa qo'yishni nima hal qiladi?", ru: 'Что решает, на какой горизонт поставить задачу?' })} />}
     questionText={tr({ uz: "Ishni qaysi ufqqa qo'yishni nima hal qiladi", ru: 'Что решает, на какой горизонт поставить задачу' })}
-    options={[tr({ uz: "Ishni bajarish qancha vaqt olishi", ru: 'Сколько времени займёт выполнение задачи' }), tr({ uz: "Kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, что нужно' }), tr({ uz: "Qancha odam so'rab turgani", ru: 'Сколько людей об этом просят' })]}
+    options={[tr({ uz: "Ishni bajarish qancha vaqt olishi", ru: 'Сколько времени займёт выполнение задачи' }), tr({ uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, что нужно' }), tr({ uz: "Qancha odam so'rab turgani", ru: 'Сколько людей об этом просят' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Odamlar soni ufqni tanlamaydi — u bitta ufq ichida qaysi ish oldin qilinishini aytadi.", ru: 'Число людей не выбирает горизонт — оно говорит, какая задача внутри одного горизонта делается раньше.' })}
+    explainCorrect={tr({ uz: "Ish qaysi ufqqa tushishini unga kerak bo'lgan narsa yoki shart qachon tayyor bo'lishi belgilaydi — bizning xohishimiz emas.", ru: 'На какой горизонт попадёт задача, определяет момент, когда будет готово то, что ей нужно, или выполнится условие, — а не наше желание.' })}
     explainWrong={{
       0: tr({ uz: "Ishga ketadigan vaqt ufqni tanlamaydi — ish nimani kutayotganiga qarang.", ru: 'Время на выполнение не выбирает горизонт — посмотрите, чего ждёт задача.' }),
       2: tr({ uz: "Nechta odam so'ragani bitta ufq ichidagi tartibni aytadi — ufqni esa kerak narsaning payti hal qiladi.", ru: 'Число людей, которые просили, говорит о порядке внутри одного горизонта, — а горизонт решает момент, когда будет готово нужное.' }),
@@ -1810,7 +1823,7 @@ const HwCard = ({ variant, onPick }) => {
 
 // ===== 🏅 NISHONLAR — 4 ta, faqat REAL tekshiriladigan harakatga =====
 const ACHIEVEMENTS = {
-  roadBuilder:   { icon: '🛣',  name: 'Road Builder!',   desc: { uz: "Uch ufq yo'lini oxirigacha yurdingiz", ru: 'Вы прошли дорогу трёх горизонтов до конца' } },
+  roadBuilder:   { icon: '🛣',  name: 'Road Builder!',   desc: { uz: "Uch ufqli rejani oxirigacha yurdingiz", ru: 'Вы до конца прошли план на три горизонта' } },
   planWriter:    { icon: '✍️', name: 'Plan Writer!',    desc: { uz: 'Uch ufqqa uchta ishni yozdingiz', ru: 'Вы написали три задачи на три горизонта' } },
   horizonMaster: { icon: '🧭', name: 'Horizon Master!', desc: { uz: 'Oltita ishni ufqlarga joyladingiz', ru: 'Вы расставили шесть задач по горизонтам' } },
   codePlanner:   { icon: '⌨️', name: 'Code Planner!',   desc: { uz: 'Rejani kod bilan ufqlarga ajratdingiz', ru: 'Вы разложили план по горизонтам с помощью кода' } },
@@ -1893,9 +1906,9 @@ const QZ_BG_SHAPES = [
   { ch: { uz: 'ufq', ru: 'горизонт' },        l: 5,  t: 10, s: 30, d: 19, dl: 0 },
   { ch: { uz: 'reja', ru: 'план' },       l: 85, t: 8,  s: 28, d: 23, dl: 1.5 },
   { ch: { uz: 'ish', ru: 'задача' },        l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
-  { ch: { uz: "yo'l", ru: 'дорога' },       l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
+  { ch: { uz: 'muddat', ru: 'срок' },       l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: { uz: 'boshlanadi', ru: 'начинается' }, l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
-  { ch: { uz: 'kutadi', ru: 'ждёт' },     l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
+  { ch: { uz: 'kerak', ru: 'нужно' },     l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
   { ch: { uz: 'hozir', ru: 'сейчас' },      l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
   { ch: { uz: 'bosqich', ru: 'этап' },    l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
   { ch: '🟢',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
@@ -1907,17 +1920,17 @@ const QZ_BG_SHAPES = [
 // ham yashaydi — to'g'ri javob bitta so'z bilan topilmasin.
 const QUIZ_BANK = [
   { q: { uz: "To'garak uchun reja yozyapsiz. Ishlar nimaga qarab ufqlarga bo'linadi?", ru: 'Вы пишете план для кружка. По какому признаку задачи делятся на горизонты?' }, opts: [{ uz: "Ish qachon boshlanishiga qarab", ru: 'По тому, когда задача начинается' }, { uz: "Ish qancha vaqt olishiga qarab", ru: 'По тому, сколько времени она займёт' }, { uz: "Ishni qancha odam so'raganiga qarab", ru: 'По тому, сколько людей её просили' }, { uz: "Ishni qaysi o'quvchi boshlashiga qarab", ru: 'По тому, какой ученик её начнёт' }], correct: 0 },
-  { q: { uz: "Bitta yo'lda nechta ufq bo'ladi?", ru: 'Сколько горизонтов на одной дороге?' }, opts: [{ uz: 'Ikkita ufq', ru: 'Два горизонта' }, { uz: 'Beshta ufq', ru: 'Пять горизонтов' }, { uz: 'Oltita ufq', ru: 'Шесть горизонтов' }, { uz: 'Uchta ufq', ru: 'Три горизонта' }], correct: 3 },
-  { q: { uz: "To'garak rejangizdagi ish qaysi ufqda turishini nima belgilaydi?", ru: 'Что определяет, на каком горизонте стоит задача из плана кружка?' }, opts: [{ uz: "Ishning bajarilishi necha kun olishi", ru: 'Сколько дней займёт выполнение задачи' }, { uz: "Ishning qancha odamga kerak bo'lishi", ru: 'Скольким людям нужна задача' }, { uz: "Ishning kutgan narsasi qachon tayyor bo'lishi", ru: 'Когда будет готово то, чего ждёт задача' }, { uz: "Ishning ro'yxatga qachon qo'shilgani", ru: 'Когда задачу добавили в список' }], correct: 2 },
+  { q: { uz: "Bugungi rejada nechta ufq bilan ishladik?", ru: 'Со сколькими горизонтами мы работали в сегодняшнем плане?' }, opts: [{ uz: 'Ikkita', ru: 'Два' }, { uz: 'Beshta', ru: 'Пять' }, { uz: 'Oltita', ru: 'Шесть' }, { uz: 'Uchta', ru: 'Три' }], correct: 3 },
+  { q: { uz: "To'garak rejangizdagi ish qaysi ufqda turishini nima belgilaydi?", ru: 'Что определяет, на каком горизонте стоит задача из плана кружка?' }, opts: [{ uz: "Ishning bajarilishi necha kun olishi", ru: 'Сколько дней займёт выполнение задачи' }, { uz: "Ishning qancha odamga kerak bo'lishi", ru: 'Скольким людям нужна задача' }, { uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, чего ждёт задача' }, { uz: "Ishning ro'yxatga qachon qo'shilgani", ru: 'Когда задачу добавили в список' }], correct: 2 },
   { q: { uz: "To'garak saytida «eng yaxshi ishlar» sahifasi nega bugun boshlanmaydi?", ru: 'Почему страница «лучшие работы» на сайте кружка не начинается сегодня?' }, opts: [{ uz: 'Uni yozish juda uzoq vaqt oladi', ru: 'Её очень долго писать' }, { uz: "Ko'rsatadigan ishlar hali yig'ilmagan", ru: 'Работы, которые она покажет, ещё не собраны' }, { uz: 'Uni kam odam kutayotgani uchun', ru: 'Потому что её ждёт мало людей' }, { uz: "U rejaga keyinroq qo'shilgan", ru: 'Её добавили в план позже' }], correct: 1 },
-  { q: { uz: '«Sartarosh suratlari» nega bugun boshlangan?', ru: 'Почему задача «Фото парикмахеров» началась сегодня?' }, opts: [{ uz: "Suratlar eng oson ish bo'lgani uchun", ru: 'Потому что фото — самая лёгкая задача' }, { uz: 'Suratlar allaqachon bor — hech narsa kutmaydi', ru: 'Фото уже есть — задача ничего не ждёт' }, { uz: "Suratlarni ko'p odam kutayotgani uchun", ru: 'Потому что фото ждёт много людей' }, { uz: "Suratlar navbatlar to'plangach kerak bo'ladi", ru: 'Фото понадобятся, когда накопятся записи' }], correct: 1 },
+  { q: { uz: '«Sartarosh suratlari» nega bugun boshlangan?', ru: 'Почему задача «Фото парикмахеров» началась сегодня?' }, opts: [{ uz: "Suratlar eng oson ish bo'lgani uchun", ru: 'Потому что фото — самая лёгкая задача' }, { uz: 'Suratlar allaqachon bor, hech narsa kutmaydi', ru: 'Фото уже есть, задача ничего не ждёт' }, { uz: "Suratlarni ko'p odam kutayotgani uchun", ru: 'Потому что фото ждёт много людей' }, { uz: "Suratlar navbatlar to'plangach kerak bo'ladi", ru: 'Фото понадобятся, когда накопятся записи' }], correct: 1 },
   { q: { uz: "Do'stingiz «bu ish olti oydan keyin» dedi. U nimani aytdi?", ru: 'Друг сказал: «эта задача — через шесть месяцев». Что он имел в виду?' }, opts: [{ uz: "O'sha paytda ish boshlanadi", ru: 'Тогда задача начнётся' }, { uz: "O'sha paytda ish tugab bo'ladi", ru: 'К тому времени задача уже будет готова' }, { uz: 'Ish olti oy davomida qilinadi', ru: 'Задачу будут делать шесть месяцев' }, { uz: 'Ish olti oydan beri kutib turibdi', ru: 'Задача ждёт уже шесть месяцев' }], correct: 0 },
   { q: { uz: "Sinf ovoz berib, uzoq ishni «Hozir» ufqiga ko'chirdi. Nima bo'ladi?", ru: 'Класс проголосовал и перенёс дальнюю задачу на горизонт «Сейчас». Что будет?' }, opts: [{ uz: "Boshlanadi — ko'pchilik shuni tanladi", ru: 'Начнётся — так выбрало большинство' }, { uz: "Boshqa ish uning o'rniga kutib qoladi", ru: 'Вместо неё будет ждать другая задача' }, { uz: "Baribir kutadi — kerak narsa hali yo'q", ru: 'Всё равно будет ждать — нужного ещё нет' }, { uz: 'Baribir boshlanadi, lekin sekinroq yuradi', ru: 'Всё равно начнётся, но пойдёт медленнее' }], correct: 2 },
-  { q: { uz: "Uch ufqli yo'l qanday ko'rinadi?", ru: 'Как выглядит дорога трёх горизонтов?' }, opts: [{ uz: "Uzog'ida ish ko'p, yaqinida oz", ru: 'Вдали задач много, вблизи мало' }, { uz: "Uchala ufqda ham ish teng bo'linadi", ru: 'На всех трёх горизонтах задач поровну' }, { uz: "Faqat o'rtadagi ufqda ish to'planadi", ru: 'Задачи собираются только на среднем горизонте' }, { uz: "Yaqinida ish ko'p, uzog'ida oz", ru: 'Вблизи задач много, вдали мало' }], correct: 3 },
+  { q: { uz: "Uch ufqli reja odatda qanday ko'rinadi?", ru: 'Как обычно выглядит план на три горизонта?' }, opts: [{ uz: "Uzog'ida ish ko'p, yaqinida oz", ru: 'Вдали задач много, вблизи мало' }, { uz: "Uchala ufqda ham ish teng bo'linadi", ru: 'На всех трёх горизонтах задач поровну' }, { uz: "Faqat o'rtadagi ufqda ish to'planadi", ru: 'Задачи собираются только на среднем горизонте' }, { uz: "Yaqinida ish ko'p, uzog'ida oz", ru: 'Вблизи задач много, вдали мало' }], correct: 3 },
   { q: { uz: "Tesla usuli bilan reja yozsangiz, birinchi bosqich qanday bo'ladi?", ru: 'Если писать план по методу Tesla, каким будет первый этап?' }, opts: [{ uz: "Eng tez boshlanadigani — u keyingisiga yo'l ochadi", ru: 'Тот, что начинается быстрее всех, — он открывает дорогу следующему' }, { uz: "Eng kattasi — uni hamma birdan ko'radi", ru: 'Самый большой — его сразу увидят все' }, { uz: "Eng arzoni — unga pul deyarli ketmaydi", ru: 'Самый дешёвый — на него почти не нужны деньги' }, { uz: 'Eng qiyini — qiyin ish oldin boshlanadi', ru: 'Самый трудный — трудное начинают первым' }], correct: 0 },
-  { q: { uz: "Tesla birinchi mashinasini sotmaganida nima bo'lardi?", ru: 'Что было бы, если бы Tesla не продала первую машину?' }, opts: [{ uz: "Reja o'zgarmasdi — ikkinchisi baribir qurilardi", ru: 'План бы не изменился — вторую всё равно построили бы' }, { uz: 'Ikkinchisi bir yil oldin qurilardi', ru: 'Вторую построили бы на год раньше' }, { uz: "Ikkinchisiga puli bo'lmasdi — reja to'xtardi", ru: 'На вторую не хватило бы денег — план бы остановился' }, { uz: 'Uchinchisi ikkinchisidan oldin qurilardi', ru: 'Третью построили бы раньше второй' }], correct: 2 },
+  { q: { uz: "Tesla birinchi mashinasini sotmaganida, reja bo'yicha nima bo'lardi?", ru: 'Что было бы по плану, если бы Tesla не продала первую машину?' }, opts: [{ uz: "Reja o'zgarmasdi — ikkinchisi baribir qurilardi", ru: 'План бы не изменился — вторую всё равно построили бы' }, { uz: 'Ikkinchisi bir yil oldin qurilardi', ru: 'Вторую построили бы на год раньше' }, { uz: "Ikkinchisiga rejadagi pul bo'lmasdi — reja to'xtardi", ru: 'Для второй не было бы денег, заложенных в плане, — план бы остановился' }, { uz: 'Uchinchisi ikkinchisidan oldin qurilardi', ru: 'Третью построили бы раньше второй' }], correct: 2 },
   { q: { uz: "Tesla uzoq rejasini kimlar ko'ra olardi?", ru: 'Кто мог видеть длинный план Tesla?' }, opts: [{ uz: 'Faqat kompaniya ichidagilar', ru: 'Только сотрудники компании' }, { uz: 'Xohlagan har bir odam', ru: 'Любой желающий' }, { uz: 'Mashina sotib olganlar', ru: 'Те, кто купил машину' }, { uz: 'Hech kim — reja yopiq edi', ru: 'Никто — план был закрытым' }], correct: 1 },
-  { q: { uz: "Yangi ish qaysi ufqqa tushishini kim aytadi?", ru: 'Кто говорит, на какой горизонт попадёт новая задача?' }, opts: [{ uz: 'Kodni yozadigan dasturchi', ru: 'Программист, который пишет код' }, { uz: 'Ilovani yuklab olgan odam', ru: 'Человек, который скачал приложение' }, { uz: "Ma'lumotlarni saqlaydigan server", ru: 'Сервер, который хранит данные' }, { uz: "Mahsulotni o'ylaydigan odam", ru: 'Человек, который думает о продукте' }], correct: 3 }
+  { q: { uz: "Yangi ish qaysi ufqqa tushishini kim aytadi?", ru: 'Кто говорит, на какой горизонт попадёт новая задача?' }, opts: [{ uz: 'Kodni yozadigan dasturchi', ru: 'Программист, который пишет код' }, { uz: 'Ilovani yuklab olgan odam', ru: 'Человек, который скачал приложение' }, { uz: "Ma'lumotlarni saqlaydigan server", ru: 'Сервер, который хранит данные' }, { uz: "Ilovani yaratayotgan odam", ru: 'Тот, кто создаёт приложение' }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2017,7 +2030,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = [{ uz: 'ufq', ru: 'горизонт' }, { uz: 'reja', ru: 'план' }, { uz: 'ish', ru: 'задача' }, { uz: "yo'l", ru: 'дорога' }, { uz: 'boshlanadi', ru: 'начинается' }, { uz: 'kutadi', ru: 'ждёт' }, { uz: 'hozir', ru: 'сейчас' }, { uz: 'bosqich', ru: 'этап' }, '🟢', '🔵'];
+    const TOK = [{ uz: 'ufq', ru: 'горизонт' }, { uz: 'reja', ru: 'план' }, { uz: 'ish', ru: 'задача' }, { uz: 'muddat', ru: 'срок' }, { uz: 'boshlanadi', ru: 'начинается' }, { uz: 'kerak', ru: 'нужно' }, { uz: 'hozir', ru: 'сейчас' }, { uz: 'bosqich', ru: 'этап' }, '🟢', '🔵'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
@@ -2438,10 +2451,9 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const RECAP = [
-    { uz: "Ishlar qachon boshlanishiga qarab bo'lingan bo'lak — ufq.", ru: 'Часть плана, куда задачи попадают по тому, когда они начинаются, — горизонт.' },
-    { uz: "Ish o'zi kutgan narsa tayyor bo'lganda boshlanadi.", ru: 'Задача начинается, когда готово то, чего она ждёт.' },
-    { uz: "Yaqin ufqda ish ko'p turadi, uzoq ufqda esa oz.", ru: 'На ближнем горизонте задач много, на дальнем — мало.' },
-    { uz: "Uzoq rejani kod emas, mahsulotni o'ylaydigan odam yozadi.", ru: 'Длинный план пишет не код, а человек, который думает о продукте.' },
+    { uz: "Ufq — ishlar qachon boshlanishiga qarab ajratilgan vaqt bo'lagi; bugun uch ufq bilan ishladik.", ru: 'Горизонт — отрезок времени, куда задачи попадают по тому, когда они начинаются; сегодня мы работали с тремя горизонтами.' },
+    { uz: "Ishni qachon boshlash mumkinligini unga kerak narsalar va shartlar belgilaydi.", ru: 'Когда можно начать задачу, зависит от того, что ей нужно, и от условий.' },
+    { uz: "Uzoq rejani kod emas, ilovani yaratayotgan odam tuzadi — ya'ni siz.", ru: 'Длинный план составляет не код, а тот, кто создаёт приложение, — то есть вы.' },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2489,7 +2501,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           {!isMentorL && <ScoreRing correct={correct} total={total} />}
         </div>
         {/* 103-qonun: darsni bitta gap yopadi */}
-        <div className="bigidea fade-up d2"><span className="bigidea-lbl">{tr({ uz: <>Bugungi asosiy fikr —</>, ru: <>Главная мысль урока —</> })}</span><p className="bigidea-t">{tr({ uz: <>Ishni ufqqa bizning xohishimiz emas, uning kutayotgan narsasi qo'yadi.</>, ru: <>Задачу на горизонт ставит не наше желание, а то, чего она ждёт.</> })}</p></div>
+        <div className="bigidea fade-up d2"><span className="bigidea-lbl">{tr({ uz: <>Bugungi asosiy fikr —</>, ru: <>Главная мысль урока —</> })}</span><p className="bigidea-t">{tr({ uz: <>Ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.</>, ru: <>Задачу на горизонт ставит не наше желание, а момент, когда готово то, что ей нужно.</> })}</p></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : undefined} />
         </div>
@@ -2522,6 +2534,8 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
+        {/* Keyingi dars — uy-vazifa kartasidan TASHQARIDA (App.jsx: m6-13) */}
+        <p className="body next-l fade-up d4" style={{ margin: 0, color: T.ink2, textAlign: 'center' }}>{tr({ uz: <>🚀 Keyingi dars — <b>Loyiha kuni: to'liq tizim.</b> Web, mobil, bot, backend va bazani bitta ishlaydigan tizimga ulaysiz.</>, ru: <>🚀 Следующий урок — <b>Проектный день: полная система.</b> Веб, мобильное приложение, бота, бэкенд и базу вы соедините в одну работающую систему.</> })}</p>
         {hwOpen && (
           <div className="hw-ov" role="dialog" aria-modal="true" aria-label={tr({ uz: "Uyga vazifa", ru: 'Домашнее задание' })}>
             <div className="hw-ov-in">

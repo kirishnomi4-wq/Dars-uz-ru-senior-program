@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useCallback, useMemo, createContext
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 // ============================================================
 // TIZIMNI YAXLIT YIG'AMAN · PROYEKT — PRAKTIKA: TO'LIQ PIPELINE — v18 (JONLI INFRA · AUDIOSIZ)
-// Metafora: SHAHAR — KATTA OCHILISH. Bitta ariza Peshtoq(React)->Hokimlik(Node)->Arxiv(PostgreSQL)->Darvoza(Telegram)->Ekspert-byuro(AI)
-//           boylab uchidan-uchiga sayohat qiladi (toliq pipeline). Vibecoding: siz direktor, AI ishchi.
+// Oqim: React -> Node.js; Node.js dan uch tarmoq: PostgreSQL (saqlash) · Telegram (adminga xabar) · AI (savolga javob, alohida oqim).
+//           Asosiy formula: prompt -> AI kod -> test -> xato -> tuzat -> qayta test. Metafora YO'Q (F-0929 v2).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium + Badges (ball to'g'riligi — ⚡ Jonli roli).
 // Praktika: mentor-gate VS Code (o'quvchi o'zi yozadi, kod kiritilmaydi).
 // AUDIOSIZ. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -112,11 +112,11 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // ===== KONSEPT LEKSIKONI =====
 // 5 komponent (s2)
 const COMPONENTS = [
-  { id: 'react', label: 'React', color: T.blue, role: { uz: 'Frontend (web)', ru: 'Frontend (веб)' }, does: { uz: 'Mijoz ko\'radigan sahifa — mahsulotlar va "Buyurtma" tugmasi.', ru: 'Страница, которую видит клиент, — товары и кнопка «Заказать».' }, mod: { uz: 'Modul 3', ru: 'Модуль 3' } },
-  { id: 'node', label: 'Node.js', color: T.success, role: { uz: 'Backend (markaz)', ru: 'Backend (центр)' }, does: { uz: 'So\'rovlarni qabul qiladi va boshqaradi: GET /products, POST /orders.', ru: 'Принимает запросы и управляет ими: GET /products, POST /orders.' }, mod: { uz: 'Modul 4', ru: 'Модуль 4' } },
-  { id: 'pg', label: 'PostgreSQL', color: T.grape, role: { uz: 'Database', ru: 'База данных' }, does: { uz: 'Ma\'lumotni saqlaydi: products va orders jadvallari.', ru: 'Хранит данные: таблицы products и orders.' }, mod: { uz: 'Modul 4', ru: 'Модуль 4' } },
-  { id: 'tg', label: 'Telegram', color: T.blue, role: { uz: 'Bot', ru: 'Бот' }, does: { uz: 'Yangi buyurtmada adminga xabar yuboradi.', ru: 'При новом заказе отправляет сообщение админу.' }, mod: { uz: 'Modul 8', ru: 'Модуль 8' } },
-  { id: 'ai', label: 'AI (Claude)', color: T.honey, role: { uz: 'Ekspert', ru: 'Эксперт' }, does: { uz: 'Mijoz savoliga javob beradi, mahsulot tavsifini yozadi.', ru: 'Отвечает на вопрос клиента, пишет описание товара.' }, mod: { uz: 'Modul 8/9', ru: 'Модуль 8/9' } }
+  { id: 'react', label: 'React', color: T.blue, role: { uz: 'Frontend', ru: 'Frontend' }, does: { uz: "Mijoz ko'radigan sahifa: mahsulotlar va «Buyurtma» tugmasi.", ru: 'Страница, которую видит клиент: товары и кнопка «Заказать».' } },
+  { id: 'node', label: 'Node.js', color: T.success, role: { uz: 'Backend', ru: 'Backend' }, does: { uz: "So'rovlarni qabul qiladi va boshqaradi: `GET /products`, `POST /orders`.", ru: 'Принимает запросы и управляет ими: `GET /products`, `POST /orders`.' } },
+  { id: 'pg', label: 'PostgreSQL', color: T.grape, role: { uz: "Ma'lumotlar bazasi", ru: 'База данных' }, does: { uz: "Ma'lumotni saqlaydi: `products` va `orders` jadvallari.", ru: 'Хранит данные: таблицы `products` и `orders`.' } },
+  { id: 'tg', label: 'Telegram', color: T.blue, role: { uz: 'Bot', ru: 'Бот' }, does: { uz: 'Yangi buyurtma kelganda adminga xabar yuboradi.', ru: 'При новом заказе отправляет сообщение админу.' } },
+  { id: 'ai', label: 'AI (Claude)', color: T.honey, role: { uz: 'Yordamchi xizmat', ru: 'Вспомогательный сервис' }, does: { uz: "Node.js uni kerak bo'lganda chaqiradi: mijoz savoliga javob yozadi, mahsulot tavsifini tayyorlaydi.", ru: 'Node.js вызывает его, когда нужно: отвечает на вопрос клиента, готовит описание товара.' } }
 ];
 
 // Pipeline tugunlari va ulanishlari (s6)
@@ -129,26 +129,26 @@ const PNODES = [
 ];
 const LINKS = [
   { id: 'l1', label: 'React → Node', nodes: ['react', 'node'], prompt: { uz: '"Buyurtma" tugmasi POST /orders so\'rov yuborsin', ru: 'Пусть кнопка «Заказать» отправляет запрос POST /orders' }, code: 'fetch(API + "/orders", { method: "POST", body })' },
-  { id: 'l2', label: 'Node → PostgreSQL', nodes: ['node', 'pg'], prompt: { uz: 'Order\'ni orders jadvaliga INSERT qil', ru: 'Сделай INSERT заказа в таблицу orders' }, code: 'INSERT INTO orders(mahsulot, soni, narx) VALUES(...)' },
-  { id: 'l3', label: 'Node → Telegram', nodes: ['node', 'tg'], prompt: { uz: 'Adminga "Yangi buyurtma" xabar yubor', ru: 'Отправь админу сообщение «Новый заказ»' }, code: 'bot.sendMessage(ADMIN_ID, "Yangi buyurtma...")' },
+  { id: 'l2', label: 'Node → PostgreSQL', nodes: ['node', 'pg'], prompt: { uz: 'Buyurtmani orders jadvaliga INSERT qil', ru: 'Сделай INSERT заказа в таблицу orders' }, code: 'INSERT INTO orders(mahsulot, soni, narx) VALUES(...)' },
+  { id: 'l3', label: 'Node → Telegram', nodes: ['node', 'tg'], prompt: { uz: 'Adminga "Yangi buyurtma" xabar yubor', ru: 'Отправь админу сообщение «Новый заказ»' }, code: { uz: 'bot.sendMessage(ADMIN_ID, "Yangi buyurtma...")', ru: 'bot.sendMessage(ADMIN_ID, "Новый заказ...")' } },
   { id: 'l4', label: 'Node → AI', nodes: ['node', 'ai'], prompt: { uz: 'Mijoz savolini Claude\'ga yuborib javob ol', ru: 'Отправь вопрос клиента Claude и получи ответ' }, code: 'claude.messages.create({ messages: [...] })' }
 ];
 
 // Vibecoding sikli (s8)
 const VIBE_STEPS = [
-  { k: 'prompt', tag: { uz: '1 · PROMPT', ru: '1 · ПРОМПТ' }, color: T.accent, text: { uz: '"Express POST /orders yoz: req.body dan mahsulot va soni ol, orders jadvaliga INSERT qil, 201 qaytar."', ru: '«Напиши Express POST /orders: возьми из req.body товар и количество, сделай INSERT в таблицу orders, верни 201.»' }, note: { uz: 'Aniq buyruq berasiz — taxmin qoldirmaysiz.', ru: 'Вы даёте точную команду — не оставляете места для догадок.' } },
-  { k: 'code', tag: { uz: '2 · AI KOD', ru: '2 · КОД ИИ' }, color: T.blue, text: 'app.post("/orders", async (req, res) => { await db.query("INSERT ..."); res.status(201).json(ok); })', note: { uz: 'AI kod yozadi. Siz o\'qiysiz — tushunasiz.', ru: 'ИИ пишет код. Вы читаете — и понимаете.' } },
-  { k: 'test', tag: { uz: '3 · TEST', ru: '3 · ТЕСТ' }, color: T.honey, text: { uz: 'Buyurtma yuborib ko\'rasiz... ❌ Bug: narx (price) NULL bo\'lib saqlanyapti!', ru: 'Отправляете заказ… ❌ Баг: цена (price) сохраняется как NULL!' }, note: { uz: 'Sinab ko\'rmasangiz, bugni bilmaysiz.', ru: 'Не проверите — про баг не узнаете.' } },
-  { k: 'fix', tag: { uz: '4 · TUZATISH', ru: '4 · ПРАВКА' }, color: T.grape, text: { uz: '"INSERT so\'roviga narx (price) ustunini ham qo\'sh."', ru: '«Добавь в запрос INSERT ещё и колонку цены (price).»' }, note: { uz: 'Aniq tuzatish prompti — butun kodni qayta yozdirmaysiz.', ru: 'Точный промпт на правку — не заставляете переписывать весь код.' } },
-  { k: 'done', tag: { uz: '5 · QAYTA TEST', ru: '5 · ПОВТОРНЫЙ ТЕСТ' }, color: T.success, text: { uz: '✅ Ishladi! Narx ham saqlandi. Bitta ulanish tayyor — keyingisiga.', ru: '✅ Заработало! Цена тоже сохранилась. Одна связка готова — идём к следующей.' }, note: { uz: 'Sikl: prompt → kod → test → tuzat → qayta. Vibecoding shu.', ru: 'Цикл: промпт → код → тест → правка → заново. Это и есть вайбкодинг.' } }
+  { k: 'prompt', tag: { uz: '1 · PROMPT', ru: '1 · ПРОМПТ' }, color: T.accent, text: { uz: "«Express POST /orders yoz: req.body'dan mahsulot va soni ol, orders jadvaliga INSERT qil, 201 qaytar.»", ru: '«Напиши Express POST /orders: возьми из req.body товар и количество, сделай INSERT в таблицу orders, верни 201.»' }, note: { uz: 'Aniq topshiriq berasiz.', ru: 'Вы даёте точное задание.' } },
+  { k: 'code', tag: { uz: '2 · AI KOD', ru: '2 · КОД ИИ' }, color: T.blue, text: 'app.post("/orders", async (req, res) => { await db.query("INSERT ..."); res.status(201).json(ok); })', note: { uz: "AI kod yozadi. Siz o'qiysiz va tushunasiz.", ru: 'ИИ пишет код. Вы читаете и понимаете.' } },
+  { k: 'test', tag: { uz: '3 · TEST', ru: '3 · ТЕСТ' }, color: T.honey, text: { uz: "Buyurtma yuborib ko'rasiz… ❌ Xato: narx (price) bo'sh (NULL) saqlanyapti!", ru: 'Отправляете заказ… ❌ Ошибка: цена (price) сохраняется пустой (NULL)!' }, note: { uz: "Sinab ko'rmasangiz, xatoni bilmaysiz.", ru: 'Если не проверите, об ошибке не узнаете.' } },
+  { k: 'fix', tag: { uz: '4 · TUZATISH', ru: '4 · ПРАВКА' }, color: T.grape, text: { uz: "«INSERT so'roviga narx (price) ustunini ham qo'sh.»", ru: '«Добавь в запрос INSERT ещё и колонку цены (price).»' }, note: { uz: 'Aniq tuzatish — butun kodni qayta yozdirmaysiz.', ru: 'Точная правка — весь код заново переписывать не придётся.' } },
+  { k: 'done', tag: { uz: '5 · QAYTA TEST', ru: '5 · ПОВТОРНЫЙ ТЕСТ' }, color: T.success, text: { uz: '✅ Ishladi! Narx ham saqlandi.', ru: '✅ Заработало! Цена тоже сохранилась.' }, note: { uz: "Bitta ulanish tayyor — keyingisiga o'tamiz.", ru: 'Одна связка готова — переходим к следующей.' } }
 ];
 
 // To'liq hikoya (s13)
 const CASE_AC = [
-  { tag: { uz: 'BO\'LDI', ru: 'РАЗБИЛ' }, color: T.accent, text: { uz: 'Tizimni 4 ulanishga bo\'ldi (React→Node→DB→bot/AI)', ru: 'Разбил систему на 4 связки (React→Node→БД→бот/ИИ)' }, why: { uz: 'Katta vazifani kichik, aniq qadamlarga bo\'ldi — har biri alohida quriladi.', ru: 'Большую задачу разбил на маленькие точные шаги — каждый строится отдельно.' } },
-  { tag: { uz: 'PROMPT', ru: 'ПРОМПТ' }, color: T.honey, text: { uz: 'Har ulanish uchun aniq texnik prompt yozdi', ru: 'Для каждой связки написал точный технический промпт' }, why: { uz: 'Aniq buyruq = aniq kod. AI taxmin qilmadi, kerakli narsani yozdi.', ru: 'Точная команда = точный код. ИИ не гадал, а написал нужное.' } },
-  { tag: { uz: 'TEST', ru: 'ТЕСТ' }, color: T.blue, text: { uz: 'Har qadamda testladi, bug topib tuzatdi', ru: 'На каждом шаге тестировал, находил баг и правил' }, why: { uz: 'AI kodiga ko\'r-ko\'rona ishonmadi — o\'qib, sinab, tuzatib bordi.', ru: 'Не верил коду ИИ вслепую — читал, проверял, правил.' } },
-  { tag: { uz: 'ISHLADI', ru: 'ЗАРАБОТАЛО' }, color: T.success, text: { uz: 'Bitta buyurtma butun tizimni harakatga keltirdi', ru: 'Один заказ привёл в движение всю систему' }, why: { uz: '5 qism — bitta tirik pipeline. Direktor siz, ishchi AI.', ru: '5 частей — один живой pipeline. Режиссёр — вы, рабочий — ИИ.' } }
+  { tag: { uz: 'BO\'LDI', ru: 'РАЗБИЛ' }, color: T.accent, text: { uz: "Tizimni 4 ta ulanishga bo'ldi: React→Node, Node→baza, Node→bot, Node→AI", ru: 'Разбил систему на 4 связки: React→Node, Node→база, Node→бот, Node→ИИ' }, why: { uz: "Katta vazifani kichik, aniq qadamlarga bo'ldi.", ru: 'Большую задачу разбил на маленькие точные шаги.' } },
+  { tag: { uz: 'PROMPT', ru: 'ПРОМПТ' }, color: T.honey, text: { uz: 'Har ulanish uchun aniq prompt yozdi', ru: 'Для каждой связки написал точный промпт' }, why: { uz: "Aniq topshiriq berdi — AI'ga taxmin qilishga joy qoldirmadi.", ru: 'Дал точное задание — не оставил ИИ места для догадок.' } },
+  { tag: { uz: 'TEST', ru: 'ТЕСТ' }, color: T.blue, text: { uz: 'Har qadamda sinab, xato topib tuzatdi', ru: 'На каждом шаге проверял, находил ошибки и исправлял' }, why: { uz: "AI kodiga ko'r-ko'rona ishonmadi.", ru: 'Не доверял коду ИИ вслепую.' } },
+  { tag: { uz: 'ISHLADI', ru: 'ЗАРАБОТАЛО' }, color: T.success, text: { uz: 'Bitta buyurtma bazaga yozildi, admin xabar oldi', ru: 'Один заказ записался в базу, админ получил сообщение' }, why: { uz: "5 qism bitta tizim bo'lib ishladi.", ru: '5 частей заработали как одна система.' } }
 ];
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
@@ -323,35 +323,35 @@ const INLINE_KEYS = { s4: 3, s5b: 0, s9: 2, s12: 1, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist sayqallaydi.
 const RECAPS = {
   4: {
-    title: { uz: "Pipeline — bog'langan tizim", ru: 'Pipeline — связанная система' },
+    title: { uz: "Pipeline — ma'lumot oqimi", ru: 'Pipeline — поток данных' },
     cards: [
-      { ic: '🔗', h: { uz: 'Qismlar ulanadi', ru: 'Части соединяются' }, body: { uz: <>Pipeline — 5 komponent (React, Node, DB, bot, AI) <b>bir-biriga ulangan</b> yagona tizim.</>, ru: <>Pipeline — это 5 компонентов (React, Node, БД, бот, ИИ), <b>соединённых друг с другом</b> в одну систему.</> } },
-      { ic: '➡️', h: { uz: "Ma'lumot oqadi", ru: 'Данные текут' }, body: { uz: <>Ma'lumot ular orasida <b>ketma-ket oqadi</b> — biridan ikkinchisiga.</>, ru: <>Данные текут между ними <b>по порядку</b> — от одного к другому.</> } },
-      { ic: '⚡', h: { uz: 'Bitta amal — butun zanjir', ru: 'Одно действие — вся цепочка' }, body: { uz: <>Bitta «Arizani yubor» butun shaharni harakatga keltiradi.</>, ru: <>Одна «Отправить заявку» приводит в движение весь город.</> }, ask: { uz: 'Pipeline oddiy fayldan nimasi bilan farq qiladi?', ru: 'Чем pipeline отличается от обычного файла?' } },
+      { ic: '🔗', h: { uz: 'Qismlar ulanadi', ru: 'Части соединяются' }, body: { uz: <>React, Node.js, baza, bot, AI.</>, ru: <>React, Node.js, база, бот, ИИ.</> } },
+      { ic: '➡️', h: { uz: "Ma'lumot qismdan qismga o'tadi", ru: 'Данные переходят от части к части' }, body: { uz: <>Masalan, buyurtma React'dan Node.js'ga, undan <b>bazaga</b>.</>, ru: <>Например, заказ идёт из React в Node.js, а оттуда <b>в базу</b>.</> } },
+      { ic: '⚡', h: { uz: "Node.js'dan bir nechta yo'l chiqadi", ru: 'Из Node.js выходит несколько путей' }, body: { uz: <>Baza, bot, AI.</>, ru: <>База, бот, ИИ.</> }, ask: { uz: "Tizim bilan pipeline'ning farqi nima?", ru: 'Чем система отличается от pipeline?' } },
     ]
   },
   6: {
-    title: { uz: 'Vibecoding — siz direktor', ru: 'Вайбкодинг — режиссёр это вы' },
+    title: { uz: 'AI bilan kod — natijani siz tekshirasiz', ru: 'Код с ИИ — результат проверяете вы' },
     cards: [
-      { ic: '🎬', h: { uz: 'Siz buyurasiz', ru: 'Командуете вы' }, body: { uz: <>Direktor sifatida AI'ga <b>aniq buyruq</b> berasiz — kodni o'zingiz yozmaysiz.</>, ru: <>Как режиссёр вы даёте ИИ <b>точную команду</b> — код сами не пишете.</> } },
-      { ic: '👁️', h: { uz: "Kodni o'qiysiz", ru: 'Вы читаете код' }, body: { uz: <>AI yozgan kodni <b>o'qib tushunasiz</b> — ko'r-ko'rona ishonmaysiz.</>, ru: <>Код от ИИ вы <b>читаете и понимаете</b> — не верите вслепую.</> } },
-      { ic: '🔁', h: { uz: 'Testlab tuzatasiz', ru: 'Тестируете и правите' }, body: { uz: <>Sinab, bug topsangiz — aniq tuzatish prompti berasiz.</>, ru: <>Проверили, нашли баг — даёте точный промпт на правку.</> }, ask: { uz: "Nega kodni o'qib tushunish kerak?", ru: 'Зачем нужно читать и понимать код?' } },
+      { ic: '🎯', h: { uz: 'Topshiriq berasiz', ru: 'Вы даёте задание' }, body: { uz: <><b>Aniq topshiriq</b> berasiz.</>, ru: <>Вы даёте <b>точное задание</b>.</> } },
+      { ic: '👁️', h: { uz: "Kodni o'qiysiz", ru: 'Вы читаете код' }, body: { uz: <>AI yozgan kodni <b>o'qib tushunasiz</b>.</>, ru: <>Код, который написал ИИ, вы <b>читаете и понимаете</b>.</> } },
+      { ic: '🔁', h: { uz: 'Sinab tuzatasiz', ru: 'Проверяете и исправляете' }, body: { uz: <>Sinab, xato topsangiz — aniq tuzatish prompti berasiz.</>, ru: <>Проверили, нашли ошибку — даёте точный промпт на исправление.</> }, ask: { uz: "Nega kodni o'qib tushunish kerak?", ru: 'Зачем нужно читать и понимать код?' } },
     ]
   },
   10: {
-    title: { uz: 'Aniq prompt = aniq kod', ru: 'Точный промпт = точный код' },
+    title: { uz: 'Aniq prompt', ru: 'Точный промпт' },
     cards: [
-      { ic: '🎯', h: { uz: 'Nima, qayer, format', ru: 'Что, где, формат' }, body: { uz: <>Yaxshi prompt: <b>nima</b> qilish, <b>qayerda</b>, qanday <b>format</b> — aniq aytiladi.</>, ru: <>Хороший промпт точно говорит: <b>что</b> сделать, <b>где</b> и в каком <b>формате</b>.</> } },
-      { ic: '🌫️', h: { uz: 'Noaniq — taxmin', ru: 'Расплывчато — догадки' }, body: { uz: <>Noaniq prompt bilan AI <b>taxmin qiladi</b> — ko'pincha chala yoki xato.</>, ru: <>При расплывчатом промпте ИИ <b>догадывается</b> — чаще всего выходит криво или неверно.</> } },
-      { ic: '✅', h: { uz: "Aniq — to'g'ri kod", ru: 'Точно — верный код' }, body: { uz: <>Aniq prompt bilan AI kerakli kodni birinchi urinishda yozadi.</>, ru: <>С точным промптом ИИ пишет нужный код с первой попытки.</> }, ask: { uz: 'Qaysi prompt aniqroq: «sayt qil» yoki «POST /orders yoz»?', ru: 'Какой промпт точнее: «сделай сайт» или «напиши POST /orders»?' } },
+      { ic: '🎯', h: { uz: 'Nima, qayerda, qanday natija', ru: 'Что, где, какой результат' }, body: { uz: <><b>Nima</b> qilish, <b>qayerda</b>, qanday <b>natija</b> — aniq aytiladi.</>, ru: <><b>Что</b> сделать, <b>где</b> и какой нужен <b>результат</b> — всё сказано точно.</> } },
+      { ic: '🌫️', h: { uz: 'Noaniq — taxmin', ru: 'Расплывчато — догадки' }, body: { uz: <>Noaniq prompt bilan AI <b>taxmin qiladi</b>.</>, ru: <>При расплывчатом промпте ИИ <b>догадывается</b>.</> } },
+      { ic: '✅', h: { uz: 'Baribir sinaysiz', ru: 'Всё равно проверяете' }, body: { uz: <>Aniq prompt yordam beradi, lekin <b>baribir sinaysiz</b>.</>, ru: <>Точный промпт помогает, но вы <b>всё равно проверяете</b>.</> }, ask: { uz: 'Qaysi prompt aniqroq: «sayt qil» yoki «POST /orders yoz»?', ru: 'Какой промпт точнее: «сделай сайт» или «напиши POST /orders»?' } },
     ]
   },
   13: {
-    title: { uz: "Integratsiya bug'i — ulanish xatosi", ru: 'Баг интеграции — ошибка связки' },
+    title: { uz: 'Ulanish xatosi', ru: 'Ошибка связки' },
     cards: [
-      { ic: '🐞', h: { uz: 'Ulanish uziladi', ru: 'Связка рвётся' }, body: { uz: <>Eng ko'p bug — <b>ulanish manzili</b> (URL/.env) noto'g'ri bo'lishi.</>, ru: <>Самый частый баг — неверный <b>адрес связи</b> (URL/.env).</> } },
-      { ic: '🔍', h: { uz: 'End-to-end sinash', ru: 'Проверка end-to-end' }, body: { uz: <>Har ulanishni va butun oqimni <b>boshidan oxirigacha</b> sinaymiz.</>, ru: <>Проверяем каждую связку и весь поток <b>от начала до конца</b>.</> } },
-      { ic: '🔧', h: { uz: "Bug ko'rinadi", ru: 'Баг становится виден' }, body: { uz: <>Shunda «Failed to fetch» kabi integratsiya xatolari tutiladi.</>, ru: <>Тогда ловятся ошибки интеграции вроде «Failed to fetch».</> }, ask: { uz: "Ulanish bug'ini qanday tutamiz?", ru: 'Как поймать баг связки?' } },
+      { ic: '🐞', h: { uz: "Ko'p uchraydigan sabab", ru: 'Частая причина' }, body: { uz: <>Frontend <b>noto'g'ri manzilga</b> so'rov yuboradi.</>, ru: <>Frontend отправляет запрос <b>не по тому адресу</b>.</> } },
+      { ic: '🔍', h: { uz: 'Boshqa sabablar', ru: 'Другие причины' }, body: { uz: <>Server ishlamayapti, CORS ruxsat bermayapti.</>, ru: <>Сервер не работает, CORS не пропускает запрос.</> } },
+      { ic: '🔧', h: { uz: 'Sinab topamiz', ru: 'Находим проверкой' }, body: { uz: <>Har ulanishni va butun oqimni sinab, <b>xatoni topamiz</b>.</>, ru: <>Проверяя каждую связку и весь поток, <b>находим ошибку</b>.</> }, ask: { uz: 'Ulanish xatosini qanday topamiz?', ru: 'Как найти ошибку связки?' } },
     ]
   }
 };
@@ -708,11 +708,10 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново.' })}</div>}
     </div>
   );
 }
@@ -721,19 +720,19 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [v, setV] = useState('islands');
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
-    { id: 'a', label: { uz: 'Hech narsa — har biri alohida yaxshi', ru: 'Ничего — каждая часть хороша по отдельности' } },
-    { id: 'b', label: { uz: 'Ulanish — ular bir-biriga ma\'lumot uzatmasa, tizim emas', ru: 'Связи — если они не передают друг другу данные, это не система' } },
-    { id: 'c', label: { uz: 'Ko\'proq komponent qo\'shish', ru: 'Добавить ещё компонентов' } }
+    { id: 'a', label: { uz: 'Hech narsa — har biri alohida yaxshi ishlaydi', ru: 'Ничего — каждая часть хорошо работает по отдельности' } },
+    { id: 'b', label: { uz: "Ulanish — qismlar bir-biriga ma'lumot uzatishi", ru: 'Связь — части передают друг другу данные' } },
+    { id: 'c', label: { uz: "Ko'proq yangi komponent qo'shish kerak", ru: 'Нужно добавить больше новых компонентов' } }
   ];
   const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
   const cur = v === 'islands'
     ? { who: { uz: '5 alohida qism', ru: '5 отдельных частей' }, say: { uz: 'React bor, Node bor, baza bor, bot bor, AI bor — lekin har biri alohida ishlaydi, bir-biriga ulanmagan.', ru: 'Есть React, есть Node, есть база, есть бот, есть ИИ — но каждый работает сам по себе, между собой они не связаны.' }, ok: false }
-    : { who: { uz: 'Bitta tizim', ru: 'Одна система' }, say: { uz: 'Ular ulanganda: bitta "Buyurtma" → backend → baza → bot xabar + AI javob. Hammasi birga ishlaydi!', ru: 'Когда они связаны: одно нажатие «Заказать» → backend → база → сообщение бота + ответ ИИ. Всё работает вместе!' }, ok: true };
+    : { who: { uz: 'Bitta tizim', ru: 'Одна система' }, say: { uz: 'Ular ulanganda: «Buyurtma» bosiladi → backend qabul qiladi → baza saqlaydi → bot adminga xabar yuboradi. Mijoz savol bersa — AI javob beradi.', ru: 'Когда они связаны: нажимают «Заказать» → backend принимает → база сохраняет → бот отправляет админу сообщение. Если клиент задаёт вопрос — отвечает ИИ.' }, ok: true };
   return (
     <Stage eyebrow={{ uz: 'Kirish', ru: 'Введение' }} screen={screen} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>5 qism tayyor — lekin ular bir-biriga <span className="italic" style={{ color: T.accent }}>ulanmagan</span>. Nima yetishmayapti?</>, ru: <>5 частей готовы — но между собой они <span className="italic" style={{ color: T.accent }}>не связаны</span>. Чего не хватает?</> })}</h1>
-        <Mentor>{tr({ uz: "Oldingi modullarda React, Node, PostgreSQL, Telegram, AI ni o'rgandingiz. Endi ularni bitta tizimga ulaymiz. Ikki holatni bosing.", ru: 'В прошлых модулях вы изучили React, Node, PostgreSQL, Telegram и ИИ. Теперь соединим их в одну систему. Нажмите на оба состояния.' })}</Mentor>
+        <Mentor>{tr({ uz: "Oldingi modullarda React, Node.js, PostgreSQL, Telegram bot va AI bilan ishladingiz. Endi ularni bitta tizimga ulaymiz. Ikki holatni bosing.", ru: 'В прошлых модулях вы работали с React, Node.js, PostgreSQL, Telegram-ботом и ИИ. Теперь соединим их в одну систему. Нажмите на оба состояния.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -750,7 +749,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri — yetishmagani <b>ulanish (pipeline)</b>. Bugun beshala qismni bitta ishlaydigan tizimga ulaymiz. Va kodni qo'lda yozmaymiz — <b>AI-promptlar bilan</b> (vibecoding). Siz — direktor.</>, ru: <>Верно — не хватает <b>связей (pipeline)</b>. Сегодня соединим все пять частей в одну работающую систему. И код руками писать не будем — соберём его <b>промптами к ИИ</b> (вайбкодинг). Вы — режиссёр.</> })}</p>}
+            {picked === 'b' && <p className="hook-ack fade-step">{tr({ uz: <><b>Aynan!</b> Yetishmagani — <b>ulanish</b>. Bugun beshala qismni bitta ishlaydigan tizimga ulaymiz. Kodni AI yordamida yozamiz, lekin uni o'qib, tekshirib boramiz.</>, ru: <><b>Именно!</b> Не хватает — <b>связи</b>. Сегодня соединим все пять частей в одну работающую систему. Код напишем с помощью ИИ, но будем читать и проверять его по ходу.</> })}</p>}
+            {picked !== null && picked !== 'b' && <p className="hook-ack fade-step">{tr({ uz: <><b>Qiziq fikr!</b> Lekin qismlar alohida yaxshi ishlasa ham, bir-biriga ma'lumot uzatmasa — tizim bo'lmaydi. Yangi qism qo'shish ham yordam bermaydi. Yetishmagani — <b>ulanish</b>. Bugun shuni quramiz.</>, ru: <><b>Интересная мысль!</b> Но даже если части хорошо работают по отдельности, а данные друг другу не передают — системы нет. Новая часть тоже не поможет. Не хватает — <b>связи</b>. Сегодня её и построим.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -761,11 +761,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS_R = [
-    { text: { uz: '5 komponent: React, Node, PostgreSQL, Telegram, AI', ru: '5 компонентов: React, Node, PostgreSQL, Telegram, ИИ' }, tag: '' },
-    { text: { uz: 'Pipeline xaritasi: ma\'lumot qanday oqadi', ru: 'Карта pipeline: как текут данные' }, tag: '' },
-    { text: { uz: 'Vibecoding: aniq prompt → AI kod → test → tuzat', ru: 'Вайбкодинг: точный промпт → код ИИ → тест → правка' }, tag: '' },
-    { text: { uz: 'Pipeline\'ni ulash + sikl (jonli)', ru: 'Сборка pipeline + цикл (вживую)' }, tag: { uz: 'jonli', ru: 'вживую' } },
-    { text: { uz: 'O\'z pipeline build rejangizni yozasiz', ru: 'Напишете свой план сборки pipeline' }, tag: { uz: 'amaliyot', ru: 'практика' } }
+    { text: { uz: '5 qism: React, Node.js, PostgreSQL, Telegram, AI', ru: '5 частей: React, Node.js, PostgreSQL, Telegram, ИИ' }, tag: '' },
+    { text: { uz: "Ma'lumot qanday o'tadi (pipeline)", ru: 'Как проходят данные (pipeline)' }, tag: '' },
+    { text: { uz: 'AI bilan kod yozish: aniq prompt → kod → test → tuzat', ru: 'Пишем код с ИИ: точный промпт → код → тест → правка' }, tag: '' },
+    { text: { uz: 'Ulanishlarni qurish va sinash', ru: 'Строим и проверяем связки' }, tag: { uz: 'jonli', ru: 'вживую' } },
+    { text: { uz: "O'z loyihangizda ulanishlarni qurasiz", ru: 'Строите связки в своём проекте' }, tag: { uz: 'amaliyot', ru: 'практика' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -774,17 +774,16 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">{tr({ uz: 'Bugungi maqsad', ru: 'Цель на сегодня' })}</p>
       <div className="fade-up frame" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', alignItems: 'center', gap: 14 }}>
         <IcoChip size={50} color={T.grape} soft={T.grapeSoft}>{Ico.link(26)}</IcoChip>
-        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: '5 qism → bitta tizim', ru: '5 частей → одна система' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'AI-promptlar bilan ulaymiz (vibecoding).', ru: 'Соединяем промптами к ИИ (вайбкодинг).' })}</p></div>
+        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: '5 qism → bitta tizim', ru: '5 частей → одна система' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Ulanishlarni AI yordamida yozamiz va har birini tekshiramiz.', ru: 'Связки пишем с помощью ИИ и проверяем каждую.' })}</p></div>
       </div>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ Siz direktor, AI ishchi — butun tizimni siz boshqarasiz', ru: '→ Вы режиссёр, ИИ рабочий — всей системой управляете вы' })}</p>
     </Col>
   );
   const StepsBlock = (<Col><p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p><ol className="roadmap">{STEPS_R.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{tr(s.tag)}</span>}</span></li>))}</ol></Col>);
   return (
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: "Hamma qismni bitta pipeline'ga ulaymiz", ru: 'Соединим все части в один pipeline' })}</span></h2></div>
-        <Mentor>{tr({ uz: <>Qismlarni noldan yozmaymiz — siz <b style={{ color: T.ink }}>direktor</b> sifatida AI'ga aniq buyurasiz, kodini o'qib testlaysiz. Bu — vibecoding.</>, ru: <>Части с нуля писать не будем — вы как <b style={{ color: T.ink }}>режиссёр</b> даёте ИИ точные команды, читаете его код и тестируете. Это и есть вайбкодинг.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Tayyor qismlarni bitta tizimga ulaymiz', ru: 'Соединим готовые части в одну систему' })}</span></h2></div>
+        <Mentor>{tr({ uz: "Qismlarni noldan yozmaymiz. AI'ga aniq topshiriq berasiz, u kod yozadi, siz kodni o'qib, sinab ko'rasiz.", ru: 'Части с нуля писать не будем. Вы даёте ИИ точное задание, он пишет код, а вы читаете этот код и проверяете его.' })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Maqsadni ko\'rish', ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
@@ -801,10 +800,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = active ? COMPONENTS.find(c => c.id === active) : null;
   return (
-    <Stage eyebrow={{ uz: '5 komponent', ru: '5 компонентов' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/${COMPONENTS.length} komponentni ko'ring`, ru: `Посмотрите компоненты: ${seen.size}/${COMPONENTS.length}` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: '5 qism', ru: '5 частей' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/${COMPONENTS.length} qismni ko'ring`, ru: `Посмотрите части: ${seen.size}/${COMPONENTS.length}` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pipeline'ning <span className="italic" style={{ color: T.accent }}>5 qismi</span></>, ru: <><span className="italic" style={{ color: T.accent }}>5 частей</span> pipeline</> })}</h2></div>
-        <Mentor>{tr({ uz: "Hammasini avval o'rgandingiz — endi ular bitta jamoa. Har birini bosing: nima qiladi va qaysi moduldan.", ru: 'Всё это вы уже изучали — теперь они одна команда. Нажмите на каждый: что он делает и из какого модуля.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimning <span className="italic" style={{ color: T.accent }}>5 qismi</span></>, ru: <><span className="italic" style={{ color: T.accent }}>5 частей</span> системы</> })}</h2></div>
+        <Mentor>{tr({ uz: "Hammasini avval o'rgangansiz — endi ular birga ishlaydi. Har birini bosing: nima qiladi.", ru: 'Всё это вы уже изучали — теперь они работают вместе. Нажмите на каждую: что она делает.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -812,8 +811,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{cur.label} · {tr(cur.mod)}</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{tr(cur.does)}</p></div>) : (!isNarrow ? null : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Markazda Node.js — barcha so'rov u orqali oqadi. U — butun tizim markazi.", ru: 'В центре Node.js — все запросы текут через него. Он и есть центр всей системы.' })}</p></div>}
+            {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{cur.label} · {tr(cur.role)}</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{fmtCode(tr(cur.does))}</p></div>) : (!isNarrow ? null : null)}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu loyihada Node.js — asosiy boshqaruv qismi: frontend'dan kelgan so'rovlar u orqali o'tadi, baza, bot va AI bilan ham u ishlaydi.", ru: 'В этом проекте Node.js — главная управляющая часть: через него проходят запросы от frontend, и с базой, ботом и ИИ тоже работает он.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -823,34 +822,53 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 3 — PIPELINE XARITASI =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  // Oqim bitta zanjir emas: buyurtma oqimi (1-4 qadam) va alohida savol oqimi (5-qadam). Sxemada Node.js uch tarmoqqa bo'linadi.
   const FLOW = [
-    { t: { uz: 'Mijoz web\'da "Buyurtma" bosadi (React)', ru: 'Клиент на сайте нажимает «Заказать» (React)' } },
-    { t: { uz: 'React → Node\'ga POST /orders yuboradi', ru: 'React → отправляет Node запрос POST /orders' } },
-    { t: { uz: 'Node → PostgreSQL\'ga buyurtmani saqlaydi', ru: 'Node → сохраняет заказ в PostgreSQL' } },
-    { t: { uz: 'Node → Telegram\'da adminga xabar yuboradi', ru: 'Node → отправляет админу сообщение в Telegram' } },
-    { t: { uz: 'AI mijoz savoliga javob beradi', ru: 'ИИ отвечает на вопрос клиента' } }
+    { head: { uz: 'Buyurtma oqimi', ru: 'Поток заказа' }, t: { uz: 'Mijoz saytda «Buyurtma» bosadi (React)', ru: 'Клиент на сайте нажимает «Заказать» (React)' }, on: 'react' },
+    { t: { uz: "React Node.js'ga `POST /orders` so'rovini yuboradi", ru: 'React отправляет в Node.js запрос `POST /orders`' }, on: 'node' },
+    { t: { uz: "Node.js buyurtmani PostgreSQL'ga saqlaydi", ru: 'Node.js сохраняет заказ в PostgreSQL' }, on: 'pg' },
+    { t: { uz: 'Node.js Telegram orqali adminga xabar yuboradi', ru: 'Node.js отправляет админу сообщение через Telegram' }, on: 'tg' },
+    { head: { uz: 'Savol oqimi (alohida)', ru: 'Поток вопроса (отдельно)' }, t: { uz: "Mijoz savol yozsa — Node.js uni AI'ga yuboradi, AI javobi mijozga qaytadi", ru: 'Если клиент задаёт вопрос — Node.js отправляет его ИИ, и ответ ИИ возвращается клиенту' }, on: 'ai' }
   ];
   const [step, setStep] = useState(storedAnswer ? FLOW.length - 1 : -1);
   const done = step >= FLOW.length - 1;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => setStep(n => Math.min(n + 1, FLOW.length - 1));
+  const lit = new Set(FLOW.slice(0, step + 1).map(s => s.on));
+  const node = (k, label) => (<span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 13, padding: '7px 12px', borderRadius: 10, background: lit.has(k) ? T.grapeSoft : T.paper, color: lit.has(k) ? T.ink : T.ink3, boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.35s' }}>{label}</span>);
+  const arrow = (k, ch) => (<span style={{ color: lit.has(k) ? T.grape : T.ink3, fontSize: 15, transition: 'color 0.3s' }}>{ch}</span>);
   return (
-    <Stage eyebrow={{ uz: 'Pipeline xaritasi', ru: 'Карта pipeline' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Oqimni kuzating (${Math.max(0, step + 1)}/${FLOW.length})`, ru: `Проследите поток (${Math.max(0, step + 1)}/${FLOW.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Pipeline', ru: 'Pipeline' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Oqimni kuzating (${Math.max(0, step + 1)}/${FLOW.length})`, ru: `Проследите поток (${Math.max(0, step + 1)}/${FLOW.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta buyurtma — <span className="italic" style={{ color: T.accent }}>butun tizim harakatda</span></>, ru: <>Один заказ — <span className="italic" style={{ color: T.accent }}>вся система в движении</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Ma'lumot pipeline bo'ylab qanday oqishini ko'ring. Bosib, qadamlarni ochib boring.", ru: 'Посмотрите, как данные текут по pipeline. Нажимайте и открывайте шаги один за другим.' })}</Mentor>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 620, width: '100%', margin: '0 auto' }}>
-          {FLOW.map((s, i) => { const on = step >= i; return (
-            <React.Fragment key={i}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: T.paper, borderRadius: 12, padding: '12px 15px', opacity: on ? 1 : 0.3, transform: on ? 'translateX(0)' : 'translateX(-6px)', transition: 'all 0.4s', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}>
-                                <span style={{ fontFamily: G, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink }}>{tr(s.t)}</span>
-              </div>
-              {i < FLOW.length - 1 && <span style={{ textAlign: 'center', color: step > i ? T.grape : T.ink3, fontSize: 14, transition: 'color 0.3s' }}>↓</span>}
-            </React.Fragment>
-          ); })}
-        </div>
-        {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'center' }}>{step < 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Запустить заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
-        {done && <div className="frame-success fade-step" style={{ maxWidth: 620, width: '100%', margin: '0 auto' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Mana pipeline: bitta bosish — 5 qism ketma-ket ishlaydi. Endi shuni quramiz.', ru: 'Вот он, pipeline: одно нажатие — и 5 частей срабатывают по очереди. Теперь соберём его сами.' })}</p></div>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumot qismdan qismga <span className="italic" style={{ color: T.accent }}>qanday o'tadi</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Как проходят</span> данные от части к части</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ma'lumotning bir qismdan keyingisiga o'tish yo'lini <b style={{ color: T.ink }}>pipeline</b> deyishadi. Tizimda bunday yo'l bittadan ko'p bo'lishi mumkin. Bosib, qadamlarni ochib boring.</>, ru: <>Путь, по которому данные переходят от одной части к следующей, называют <b style={{ color: T.ink }}>pipeline</b>. В системе таких путей может быть больше одного. Нажимайте и открывайте шаги один за другим.</> })}</Mentor>
+        <Zoomable><div className="split">
+          <Col>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {FLOW.map((s, i) => { const on = step >= i; const nextHead = !!(FLOW[i + 1] && FLOW[i + 1].head); return (
+                <React.Fragment key={i}>
+                  {s.head && <p className="flow-label" style={{ margin: i ? '8px 0 0' : 0 }}>{tr(s.head)}</p>}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: T.paper, borderRadius: 12, padding: '12px 15px', opacity: on ? 1 : 0.3, transform: on ? 'translateX(0)' : 'translateX(-6px)', transition: 'all 0.4s', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}>
+                    <span style={{ fontFamily: G, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink }}>{fmtCode(tr(s.t))}</span>
+                  </div>
+                  {i < FLOW.length - 1 && !nextHead && <span style={{ textAlign: 'center', color: step > i ? T.grape : T.ink3, fontSize: 14, transition: 'color 0.3s' }}>↓</span>}
+                </React.Fragment>
+              ); })}
+            </div>
+            {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'flex-start' }}>{step < 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Запустить заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
+          </Col>
+          <Col>
+            <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sxema', ru: 'Схема' })}</p>
+            <div className="frame" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: 'clamp(14px,2.2vw,20px)' }}>
+              {node('react', 'React')}
+              {arrow('node', '↓')}
+              {node('node', 'Node.js')}
+              <div style={{ display: 'flex', gap: 'clamp(26px,5vw,48px)' }}>{arrow('pg', '↙')}{arrow('tg', '↓')}{arrow('ai', '↘')}</div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>{node('pg', 'PostgreSQL')}{node('tg', 'Telegram')}{node('ai', 'AI')}</div>
+            </div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hamma narsa bitta uzun zanjir emas: Node.js'dan bir nechta yo'l chiqadi. Qaysi yo'l ishlashi — qanday so'rov kelganiga bog'liq.", ru: 'Это не одна длинная цепочка: из Node.js выходит несколько путей. Какой путь сработает — зависит от того, какой запрос пришёл.' })}</p></div>}
+          </Col>
+        </div></Zoomable>
       </div>
     </Stage>
   );
@@ -858,12 +876,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Разминка · вопрос 1' }}
-    questionText="Pipeline (tizim) nima degani?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>"Pipeline" (tizim) <span className="italic" style={{ color: T.accent }}>nima</span> degani?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что <span className="italic" style={{ color: T.accent }}>значит</span> «pipeline» (система)?</h2></> })}
-    options={[{ uz: 'Bitta katta kod fayli — hammasi bir joyda', ru: 'Один большой файл кода — всё в одном месте' }, { uz: 'Faqat ko\'rinadigan frontend qismi', ru: 'Только видимая часть — frontend' }, { uz: 'Bir-biriga ulanmagan mustaqil dasturlar', ru: 'Независимые программы, не связанные друг с другом' }, { uz: 'Komponentlar bog\'lanib, ma\'lumot oqadigan tizim', ru: 'Система, где компоненты связаны и по ним текут данные' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Pipeline — komponentlar (React, Node, DB, bot, AI) bog'lanib, ma'lumot ular orasida oqadigan yagona tizim. Bitta amal butun zanjirni harakatga keltiradi.", ru: 'Верно! Pipeline — это единая система, где компоненты (React, Node, БД, бот, ИИ) связаны и данные текут между ними. Одно действие приводит в движение всю цепочку.' }}
-    explainWrong={{ 0: { uz: 'Bitta fayl emas — bog\'langan komponentlar tizimi.', ru: 'Не один файл — это система связанных компонентов.' }, 1: { uz: 'Faqat frontend emas — barcha qismlar birga.', ru: 'Не только frontend — работают все части вместе.' }, 2: { uz: 'Mustaqil emas — aynan ularning BOG\'LANISHI pipeline qiladi.', ru: 'Не независимые — pipeline делает именно их СВЯЗЬ.' }, default: { uz: 'Pipeline = bog\'langan komponentlar, ma\'lumot oqadi.', ru: 'Pipeline = связанные компоненты, по которым текут данные.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
+    questionText="«Pipeline» nima degani?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«Pipeline» <span className="italic" style={{ color: T.accent }}>nima</span> degani?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> значит «pipeline»?</h2></> })}
+    options={[{ uz: 'Bitta katta kod fayli — hammasi bir joyda', ru: 'Один большой файл кода — всё в одном месте' }, { uz: 'Faqat ko\'rinadigan frontend qismi', ru: 'Только видимая часть — frontend' }, { uz: 'Bir-biriga ulanmagan mustaqil dasturlar', ru: 'Независимые программы, не связанные друг с другом' }, { uz: "Ma'lumotning qismdan qismga o'tish oqimi", ru: 'Поток данных от части к части' }]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! Pipeline — ma'lumot yoki ishning bir qismdan keyingisiga o'tish oqimi. Masalan, buyurtma React'dan Node.js'ga, undan PostgreSQL'ga o'tadi.", ru: 'Верно! Pipeline — поток данных или работы от одной части к следующей. Например, заказ идёт из React в Node.js, а оттуда в PostgreSQL.' }}
+    explainWrong={{ 0: { uz: "Bitta fayl emas — bir-biriga ma'lumot uzatadigan qismlar.", ru: 'Не один файл — это части, которые передают друг другу данные.' }, 1: { uz: "Faqat frontend emas — ma'lumot bir necha qism orqali o'tadi.", ru: 'Не только frontend — данные проходят через несколько частей.' }, 2: { uz: "Aksincha — pipeline aynan qismlar bir-biriga ulanganda paydo bo'ladi.", ru: 'Наоборот — pipeline появляется именно тогда, когда части соединены друг с другом.' }, default: { uz: "Pipeline — ma'lumotning qismdan qismga o'tish oqimi.", ru: 'Pipeline — поток данных от части к части.' } }} />
 );
 
 // ===== SCREEN 5 — VIBECODING PRINTSIPI =====
@@ -874,28 +892,29 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const set = (x) => { setV(x); setSeen(prev => { const n = new Set(prev); n.add(x); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Vibecoding', ru: 'Вайбкодинг' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'AI bilan kod yozish', ru: 'Пишем код с ИИ' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Vibecoding: <span className="italic" style={{ color: T.accent }}>siz direktor, AI ishchi</span></>, ru: <>Вайбкодинг: <span className="italic" style={{ color: T.accent }}>вы режиссёр, ИИ рабочий</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Vibecoding — AI bilan kod yozish. Lekin ikki xil yo'l bor. Ikkalasini bosing.", ru: 'Вайбкодинг — это написание кода вместе с ИИ. Но путей два. Нажмите на оба.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI kod yozadi — <span className="italic" style={{ color: T.accent }}>nima qurilishini va natijani siz tekshirasiz</span></>, ru: <>ИИ пишет код — <span className="italic" style={{ color: T.accent }}>а что строится и какой результат, проверяете вы</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "AI bilan kod yozishning ikki yo'li bor. Ikkalasini bosing.", ru: 'Писать код с ИИ можно двумя способами. Нажмите на оба.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               <button className={`chip ${v === 'blind' ? 'chip-on' : ''}`} onClick={() => set('blind')}>{tr({ uz: "🙈 Ko'r-ko'rona", ru: '🙈 Вслепую' })}</button>
-              <button className={`chip ${v === 'director' ? 'chip-on' : ''}`} onClick={() => set('director')}>{tr({ uz: '🎬 Direktor', ru: '🎬 Режиссёр' })}</button>
+              <button className={`chip ${v === 'director' ? 'chip-on' : ''}`} onClick={() => set('director')}>{tr({ uz: '🎬 Nazorat bilan', ru: '🎬 С контролем' })}</button>
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <span style={{ fontSize: 26 }}>{v === 'director' ? '🎬' : '🙈'}</span>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.5 }}>{v === 'blind'
-                ? tr({ uz: '"Sayt qil" deb yozib, AI bergan kodni o\'qimasdan ishlatasiz. Bug chiqsa — nima qilishni bilmaysiz.', ru: 'Пишете «сделай сайт» и берёте код ИИ, не читая. Появится баг — не будете знать, что делать.' })
-                : tr({ uz: 'Aniq buyurasiz, AI kodini o\'qiysiz, testlaysiz, kerak bo\'lsa tuzatasiz. Tizimni siz boshqarasiz.', ru: 'Даёте точную команду, читаете код ИИ, тестируете, при нужде правите. Системой управляете вы.' })}</p>
+                ? tr({ uz: "«Sayt qil» deb yozib, AI bergan kodni o'qimasdan ishlatasiz. Xato chiqsa — nima qilishni bilmaysiz.", ru: 'Пишете «сделай сайт» и используете код ИИ, не читая. Появится ошибка — не будете знать, что делать.' })
+                : tr({ uz: "Aniq topshiriq berasiz, AI kodini o'qiysiz, sinaysiz, kerak bo'lsa tuzatasiz.", ru: 'Даёте точное задание, читаете код ИИ, проверяете и при необходимости исправляете.' })}</p>
             </div>
           </Col>
           <Col>
             {v === 'blind'
-              ? <div className="frame-warn fade-step" key="b"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'r-ko'rona — AI xatosini ko'rmaysiz. Tizim sizning nazoratingizdan chiqadi.", ru: 'Вслепую — вы не увидите ошибку ИИ. Система выходит из-под вашего контроля.' })}</p></div>
-              : <div className="frame-success fade-step" key="d"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Direktor — AI tez yozadi, siz aql va nazoratni berasiz. Eng kuchli juftlik.', ru: 'Режиссёр — ИИ пишет быстро, вы даёте ум и контроль. Самая сильная пара.' })}</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Vibecoding: aniq buyur · kodni o'qi · testla · tuzat. Siz mas'ulsiz.", ru: 'Вайбкодинг: точная команда · прочитай код · протестируй · поправь. Отвечаете вы.' })}</p></div>}
+              ? <div className="frame-warn fade-step" key="b"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI xatosini ko'rmaysiz — tizim nazoratingizdan chiqadi.", ru: 'Ошибку ИИ вы не увидите — система выходит из-под вашего контроля.' })}</p></div>
+              : <div className="frame-success fade-step" key="d"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Buni direktor ishiga o'xshatish mumkin: nima qilishni siz belgilaysiz, AI bajaradi, natijani siz tekshirasiz.", ru: 'Это можно сравнить с работой директора: что делать, решаете вы, ИИ выполняет, а результат проверяете вы.' })}</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI bilan kod yozish: aniq topshiriq ber · kodni o'qi · sina · tuzat. Natija uchun siz javobgarsiz.", ru: 'Пишем код с ИИ: точное задание · прочитать код · проверить · исправить. За результат отвечаете вы.' })}</p></div>}
+            {done && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Internetda bunday ishni ko'pincha <b>vibecoding</b> deyishadi. Bu so'z ba'zan «kodni o'qimay, AI'ga to'liq ishonish» ma'nosida ham ishlatiladi — biz esa aksincha, kodni o'qib, tekshirib ishlaymiz.</>, ru: <>В интернете такую работу часто называют <b>vibecoding</b>. Иногда это слово значит «не читать код и полностью доверять ИИ» — мы же, наоборот, читаем и проверяем код.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -905,12 +924,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
-    questionText="Vibecoding'da sizning (direktor) rolingiz nima?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Vibecoding'da sizning <span className="italic" style={{ color: T.accent }}>rolingiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая у вас <span className="italic" style={{ color: T.accent }}>роль</span> в вайбкодинге?</h2></> })}
-    options={[{ uz: 'Aniq buyurish, kodni o\'qib tushunish va testlash', ru: 'Давать точные команды, читать и понимать код, тестировать' }, { uz: 'AI bergan har narsani o\'qimasdan ishlatish', ru: 'Брать всё, что дал ИИ, не читая' }, { uz: 'Hamma kodni qo\'lda yozish', ru: 'Писать весь код руками' }, { uz: 'Hech narsa qilmaslik', ru: 'Не делать ничего' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Siz direktorsiz: aniq buyurasiz, AI kodini o'qib tushunasiz, testlaysiz va tuzatasiz. AI tez yozadi, siz nazorat qilasiz.", ru: 'Верно! Вы режиссёр: даёте точные команды, читаете и понимаете код ИИ, тестируете и правите. ИИ пишет быстро, вы контролируете.' }}
-    explainWrong={{ 1: { uz: 'O\'qimasdan ishlatish — xavfli. Siz tushunishingiz kerak.', ru: 'Брать не читая — опасно. Вы должны понимать код.' }, 2: { uz: 'Hammasini qo\'lda emas — AI yozadi, siz boshqarasiz.', ru: 'Не всё руками — пишет ИИ, а вы управляете.' }, 3: { uz: 'Direktor faol: buyuradi, o\'qiydi, testlaydi.', ru: 'Режиссёр активен: командует, читает, тестирует.' }, default: { uz: 'Aniq buyur, o\'qib tushun, testla.', ru: 'Давайте точную команду, читайте и понимайте, тестируйте.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
+    questionText="AI bilan kod yozganda sizning vazifangiz nima?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>AI bilan kod yozganda sizning <span className="italic" style={{ color: T.accent }}>vazifangiz</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая ваша <span className="italic" style={{ color: T.accent }}>задача</span>, когда вы пишете код с ИИ?</h2></> })}
+    options={[{ uz: "Aniq topshiriq berish, kodni o'qish va sinash", ru: 'Давать точное задание, читать и проверять код' }, { uz: "AI bergan kodni o'qimasdan darhol ishlatish", ru: 'Сразу использовать код ИИ, не читая его' }, { uz: "AI'siz, hamma kodni faqat qo'lda yozish", ru: 'Писать весь код только вручную, без ИИ' }, { uz: 'Hech narsa — hammasini AI o\'zi hal qiladi', ru: 'Ничего — ИИ сам со всем разберётся' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Siz aniq topshiriq berasiz, AI kodini o'qib tushunasiz, sinaysiz va kerak bo'lsa tuzatasiz. AI tez yozadi, natijani esa siz tekshirasiz.", ru: 'Верно! Вы даёте точное задание, читаете и понимаете код ИИ, проверяете и при необходимости исправляете. ИИ пишет быстро, а результат проверяете вы.' }}
+    explainWrong={{ 1: { uz: "O'qimasdan ishlatish xavfli — kod nima qilishini tushunishingiz kerak.", ru: 'Использовать не читая — опасно: нужно понимать, что делает код.' }, 2: { uz: "Hammasini qo'lda yozish shart emas — AI yozadi, siz tekshirasiz.", ru: 'Писать всё вручную не обязательно — пишет ИИ, проверяете вы.' }, 3: { uz: "AI hamma narsani o'zi hal qilmaydi — nima qurilishini siz belgilaysiz.", ru: 'ИИ не решает всё сам — что строить, определяете вы.' }, default: { uz: "Aniq topshiriq, o'qish va sinash.", ru: 'Точное задание, чтение и проверка.' } }} />
 );
 
 // ===== SCREEN 6 — PIPELINE QURUVCHI (SIGNATURE 1) =====
@@ -929,10 +948,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const nodeActive = (nid) => [...built].some(lid => { const l = LINKS.find(x => x.id === lid); return l && l.nodes.includes(nid); });
   const cur = active ? LINKS.find(l => l.id === active) : null;
   return (
-    <Stage eyebrow={{ uz: 'Pipeline quruvchi · jonli', ru: 'Конструктор pipeline · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ulanishlarni quring (${built.size}/${LINKS.length})`, ru: `Соберите связки (${built.size}/${LINKS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ulanishlar · jonli', ru: 'Связки · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ulanishlarni quring (${built.size}/${LINKS.length})`, ru: `Соберите связки (${built.size}/${LINKS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pipeline'ni <span className="italic" style={{ color: T.accent }}>prompt bilan ulang</span></>, ru: <>Соберите pipeline <span className="italic" style={{ color: T.accent }}>промптами</span></> })}</h2></div>
-        <Mentor>{tr({ uz: 'Har ulanish uchun AI\'ga prompt yuborasiz — AI kod yozadi, ulanish yonadi. 4 tasini ulang, keyin "Buyurtma yuboring"!', ru: 'На каждую связку вы отправляете ИИ промпт — ИИ пишет код, связка загорается. Соберите все 4, а потом «Отправьте заказ»!' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ulanishlarni <span className="italic" style={{ color: T.accent }}>prompt bilan quring</span></>, ru: <>Постройте связки <span className="italic" style={{ color: T.accent }}>с помощью промптов</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Har ulanish uchun AI'ga prompt yuborasiz — AI kod yozadi, ulanish yonadi. To'rttalasini ulang, keyin «Buyurtma yuborish»ni bosing.", ru: 'Для каждой связки вы отправляете ИИ промпт — ИИ пишет код, связка загорается. Соедините все четыре, затем нажмите «Отправить заказ».' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -951,9 +970,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {allBuilt && !flowing && <button className="btn" onClick={() => setFlowing(true)} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '▶ Buyurtma yuborish', ru: '▶ Отправить заказ' })}</button>}
           </Col>
           <Col>
-            {cur && !flowing && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{cur.label} — {tr({ uz: 'promptingiz', ru: 'ваш промпт' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>"{tr(cur.prompt)}"</p><div className="codepill">{cur.code}</div></div>)}
+            {cur && !flowing && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{cur.label} — {tr({ uz: 'promptingiz', ru: 'ваш промпт' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>"{tr(cur.prompt)}"</p><div className="codepill">{tr(cur.code)}</div></div>)}
             {!cur && !flowing && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Ulanishni bosing — promptni va AI yozgan kodni ko'rasiz.", ru: 'Нажмите на связку — увидите промпт и код, который написал ИИ.' })}</p></div>}
-            {flowing && <div className="takeaway fade-step"><div className="ta-bulb" style={{ fontSize: 30 }}>⚡</div><p className="ta-h">{tr({ uz: 'Tizim ishladi!', ru: 'Система заработала!' })}</p><p className="ta-sub">{tr({ uz: 'Buyurtma → bazaga saqlandi → admin xabardor → AI javob berdi. Bitta bosish, butun pipeline.', ru: 'Заказ → сохранён в базе → админ оповещён → ИИ ответил. Одно нажатие — весь pipeline.' })}</p></div>}
+            {flowing && <div className="takeaway fade-step"><div className="ta-bulb" style={{ fontSize: 30 }}>⚡</div><p className="ta-h">{tr({ uz: 'Tizim ishladi!', ru: 'Система заработала!' })}</p><p className="ta-sub">{tr({ uz: "Buyurtma bazaga saqlandi → admin Telegram'da xabar oldi. Mijoz savol yozsa — AI javob beradi.", ru: 'Заказ сохранён в базе → админ получил сообщение в Telegram. Если клиент задаст вопрос — ответит ИИ.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -971,8 +990,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Prompt sifati', ru: 'Качество промпта' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Aniq prompt = <span className="italic" style={{ color: T.accent }}>aniq kod</span></>, ru: <>Точный промпт = <span className="italic" style={{ color: T.accent }}>точный код</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "AI buyruq qanaqa bo'lsa, shunaqa yozadi. Noaniq prompt — taxmin. Aniq prompt — kerakli kod. Ikkalasini bosing.", ru: 'Каков запрос — таков и код от ИИ. Расплывчатый промпт — догадки. Точный промпт — нужный код. Нажмите на оба.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Aniq prompt — <span className="italic" style={{ color: T.accent }}>aniqroq kod</span></>, ru: <>Точный промпт — <span className="italic" style={{ color: T.accent }}>более точный код</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Prompt qanchalik noaniq bo'lsa, AI shunchalik ko'p taxmin qiladi. Aniq prompt kerakli kodni olishga yordam beradi. Ikkalasini bosing.", ru: 'Чем расплывчатее промпт, тем больше ИИ догадывается. Точный промпт помогает получить нужный код. Нажмите на оба.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -981,14 +1000,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <p className="mono small" style={{ margin: 0, color: T.ink2, fontWeight: 700 }}>{tr({ uz: 'PROMPT:', ru: 'ПРОМПТ:' })}</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, fontStyle: 'italic' }}>{v === 'vague' ? tr({ uz: '"buyurtma qismini yoz"', ru: '«напиши часть с заказами»' }) : tr({ uz: '"Express POST /orders: req.body dan {mahsulot, soni} ol, orders jadvaliga INSERT qil, 201 qaytar"', ru: '«Express POST /orders: возьми из req.body {товар, количество}, сделай INSERT в таблицу orders, верни 201»' })}</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, fontStyle: 'italic' }}>{v === 'vague' ? tr({ uz: '«buyurtma qismini yoz»', ru: '«напиши часть с заказами»' }) : tr({ uz: "«Express POST /orders: req.body'dan {mahsulot, soni} ol, orders jadvaliga INSERT qil, 201 qaytar»", ru: '«Express POST /orders: возьми из req.body {товар, количество}, сделай INSERT в таблицу orders, верни 201»' })}</p>
             </div>
           </Col>
           <Col>
             {v === 'vague'
-              ? <div className="frame-warn fade-step" key="va"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'AI taxmin qiladi', ru: 'ИИ начинает гадать' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaysi manzil? Qaysi jadval? Javob qanday? AI o'zicha taxmin qiladi — ko'pincha noto'g'ri yoki chala.", ru: 'Какой адрес? Какая таблица? Какой ответ? ИИ додумывает сам — чаще всего неверно или наполовину.' })}</p></div>
-              : <div className="frame-success fade-step" key="pr"><p className="note-h" style={{ color: T.success }}>{tr({ uz: 'AI aniq yozadi', ru: 'ИИ пишет точно' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yo'l, jadval, javob aniq — AI to'g'ri kodni birinchi urinishdayoq yozadi.", ru: 'Путь, таблица, ответ заданы точно — ИИ пишет верный код с первой попытки.' })}</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Yaxshi prompt: nima, qayerda, qanday format — aniq ayting.', ru: 'Хороший промпт: точно скажите что, где и в каком формате.' })}</p></div>}
+              ? <div className="frame-warn fade-step" key="va"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'AI taxmin qiladi', ru: 'ИИ начинает гадать' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaysi manzil? Qaysi jadval? Javob qanday? AI o'zicha taxmin qiladi — natija ko'pincha chala yoki noto'g'ri.", ru: 'Какой адрес? Какая таблица? Какой ответ? ИИ додумывает сам — результат часто неполный или неверный.' })}</p></div>
+              : <div className="frame-success fade-step" key="pr"><p className="note-h" style={{ color: T.success }}>{tr({ uz: 'AI aniqroq yozadi', ru: 'ИИ пишет точнее' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Manzil, jadval va javob aniq aytilgan — AI kerakli kodni yozishi ancha osonlashadi. Baribir sinab ko'rasiz.", ru: 'Адрес, таблица и ответ названы точно — ИИ гораздо проще написать нужный код. Но проверить всё равно нужно.' })}</p><p className="small" style={{ margin: '8px 0 0', color: T.ink2 }}>{tr({ uz: <><span className="mono">req.body</span> — mijoz yuborgan ma'lumot · <span className="mono">201</span> — «yangi yozuv yaratildi» degan server javobi</>, ru: <><span className="mono">req.body</span> — данные, которые прислал клиент · <span className="mono">201</span> — ответ сервера «новая запись создана»</> })}</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Yaxshi prompt: nima, qayerda, qanday natija — aniq ayting.', ru: 'Хороший промпт: что, где, какой результат — скажите точно.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1008,10 +1027,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const advance = () => setStep(n => Math.min(n + 1, VIBE_STEPS.length - 1));
   const cur = VIBE_STEPS[step] || VIBE_STEPS[0];
   return (
-    <Stage eyebrow={{ uz: 'Vibecoding sikli · jonli', ru: 'Цикл вайбкодинга · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni kuzating (${step + 1}/${VIBE_STEPS.length})`, ru: `Проследите цикл (${step + 1}/${VIBE_STEPS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Sikl · jonli', ru: 'Цикл · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni kuzating (${step + 1}/${VIBE_STEPS.length})`, ru: `Проследите цикл (${step + 1}/${VIBE_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Vibecoding sikli: <span className="italic" style={{ color: T.accent }}>prompt → kod → test → tuzat</span></>, ru: <>Цикл вайбкодинга: <span className="italic" style={{ color: T.accent }}>промпт → код → тест → правка</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Bir ulanishni qanday quramiz? Sikl orqali. Bosib, har qadamni ko'ring — bug ham chiqadi!", ru: 'Как собрать одну связку? По циклу. Нажимайте и смотрите каждый шаг — баг тоже будет!' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sikl: <span className="italic" style={{ color: T.accent }}>prompt → kod → test → tuzat</span></>, ru: <>Цикл: <span className="italic" style={{ color: T.accent }}>промпт → код → тест → правка</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Bitta ulanishni qanday quramiz? Sikl orqali. Bosib, har qadamni ko'ring — xato ham chiqadi!", ru: 'Как построить одну связку? С помощью цикла. Нажимайте и смотрите каждый шаг — ошибка тоже будет!' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -1026,7 +1045,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="codepill" style={{ margin: '12px 0 10px' }}>{tr(cur.text)}</div>
               <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(cur.note)}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Mana sikl: aniq prompt → AI kod → test → bug → tuzat → ishladi. Har ulanish shunday quriladi.', ru: 'Вот и цикл: точный промпт → код ИИ → тест → баг → правка → заработало. Так строится каждая связка.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Prompt → AI kod → Test → Xato → Tuzat → Qayta test.</b> Har ulanish shunday quriladi.</>, ru: <><b>Промпт → код ИИ → тест → ошибка → правка → повторный тест.</b> Так строится каждая связка.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1036,12 +1055,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Разминка · вопрос 2' }}
-    questionText="Qaysi prompt AI'dan yaxshi (aniq) natija beradi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Qaysi prompt <span className="italic" style={{ color: T.accent }}>yaxshi natija</span> beradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какой промпт даст <span className="italic" style={{ color: T.accent }}>хороший результат</span>?</h2></> })}
-    options={[{ uz: '"menga yaxshi ishlaydigan sayt qilib ber"', ru: '«сделай мне хорошо работающий сайт»' }, { uz: '"kerakli kodlarni o\'zing yozib tashla"', ru: '«напиши сам весь нужный код»' }, { uz: '"POST /orders yoz: body dan mahsulot/soni ol, INSERT qil"', ru: '«напиши POST /orders: возьми из body товар/количество, сделай INSERT»' }, { uz: '"hammasini o\'zing bilganingcha hal qilaver"', ru: '«реши всё сам, как считаешь нужным»' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Aniq prompt — nima (POST /orders), kirish (body), amal (INSERT) aniq aytilgan. AI taxmin qilmaydi, kerakli kodni yozadi.", ru: 'Верно! Точный промпт: что (POST /orders), вход (body), действие (INSERT) — всё названо. ИИ не гадает и пишет нужный код.' }}
-    explainWrong={{ 0: { uz: 'Juda umumiy — AI nimani, qanday qilishni bilmaydi.', ru: 'Слишком общо — ИИ не знает, что и как делать.' }, 1: { uz: 'Noaniq — qaysi kod, nima uchun?', ru: 'Расплывчато — какой код и для чего?' }, 3: { uz: '"O\'zing hal qil" — nazoratni yo\'qotasiz.', ru: '«Реши сам» — вы теряете контроль.' }, default: { uz: 'Aniq, texnik tafsilotli prompt eng yaxshi.', ru: 'Лучше всего точный промпт с техническими деталями.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
+    questionText="Qaysi prompt yaxshiroq natija beradi?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Qaysi prompt <span className="italic" style={{ color: T.accent }}>yaxshiroq natija</span> beradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какой промпт даст <span className="italic" style={{ color: T.accent }}>лучший результат</span>?</h2></> })}
+    options={[{ uz: '«Menga yaxshi ishlaydigan buyurtma sahifasi qilib ber»', ru: '«Сделай мне страницу заказа, которая будет хорошо работать»' }, { uz: "«Buyurtma bilan bog'liq kerakli kodlarni o'zing yoz»", ru: '«Напиши сам весь нужный код, связанный с заказами»' }, { uz: "«POST /orders yoz: body'dan mahsulot va soni ol, bazaga saqla»", ru: '«Напиши POST /orders: возьми из body товар и количество, сохрани в базу»' }, { uz: "«Buyurtmalarni o'zing bilganingcha qilib hal qilaver»", ru: '«С заказами разберись сам, как считаешь правильным»' }]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! Bu promptda nima (POST /orders), kirish (body) va amal (bazaga saqlash) aniq aytilgan. AI kerakli kodni yozishi ancha osonlashadi.", ru: 'Верно! В этом промпте точно сказано, что сделать (POST /orders), откуда взять данные (body) и что с ними сделать (сохранить в базу). ИИ гораздо проще написать нужный код.' }}
+    explainWrong={{ 0: { uz: 'Juda umumiy — AI nimani, qanday qilishni bilmaydi.', ru: 'Слишком общо — ИИ не знает, что и как делать.' }, 1: { uz: 'Noaniq — qaysi kod, nima uchun?', ru: 'Расплывчато — какой код и для чего?' }, 3: { uz: "«O'zing bilganingcha» — nazoratni yo'qotasiz.", ru: '«Как считаешь правильным» — вы теряете контроль.' }, default: { uz: 'Aniq, tafsilotli prompt.', ru: 'Точный промпт с деталями.' } }} />
 );
 
 // ===== SCREEN 10 — AI KODINI O'QISH =====
@@ -1055,7 +1074,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: "AI kodini o'qish", ru: 'Чтение кода ИИ' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI kodiga <span className="italic" style={{ color: T.accent }}>ko'r-ko'rona ishonmang</span></>, ru: <>Не верьте коду ИИ <span className="italic" style={{ color: T.accent }}>вслепую</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "AI tez yozadi, lekin xato ham qiladi. Direktor kodni o'qiydi. Ikkalasini bosing.", ru: 'ИИ пишет быстро, но и ошибается. Режиссёр читает код. Нажмите на оба.' })}</Mentor>
+        <Mentor>{tr({ uz: "AI tez yozadi, lekin xato ham qiladi. Kodni o'qib, tekshirasiz. Ikkalasini bosing.", ru: 'ИИ пишет быстро, но и ошибается. Код вы читаете и проверяете. Нажмите на оба.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -1065,7 +1084,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <span style={{ fontSize: 26 }}>{v === 'read' ? '👁️' : '🙈'}</span>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.5 }}>{v === 'trust'
-                ? tr({ uz: 'Kodni o\'qimasdan ishlatasiz. AI maxfiy token\'ni kodga yozib qo\'yibti — siz bilmaysiz, xavfsizlik teshigi.', ru: 'Берёте код, не читая. А ИИ вписал секретный токен прямо в код — вы об этом не знаете, и это дыра в безопасности.' })
+                ? tr({ uz: "Kodni o'qimasdan ishlatasiz. AI maxfiy kalitni (token) kodga ochiq yozib qo'yibdi — siz bilmaysiz, bu xavfsizlik teshigi.", ru: 'Используете код, не читая. ИИ вписал секретный ключ (token) прямо в код — вы об этом не знаете, а это дыра в безопасности.' })
                 : tr({ uz: 'Har qatorni o\'qiysiz: nima qilyapti, xavfsizmi? Xatoni darrov ko\'rasiz va tuzatasiz.', ru: 'Читаете каждую строку: что она делает, безопасно ли это? Ошибку заметите сразу и поправите.' })}</p>
             </div>
           </Col>
@@ -1073,7 +1092,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v === 'trust'
               ? <div className="frame-warn fade-step" key="t"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rmasdan ishonish — AI xatosi sizning xatongizga aylanadi.", ru: 'Верить не глядя — ошибка ИИ становится вашей ошибкой.' })}</p></div>
               : <div className="frame-success fade-step" key="r"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "O'qish — tushunish. Tushunsangiz, tuzata olasiz va nazorat sizda.", ru: 'Читать — значит понимать. Понимаете — сможете поправить, и контроль у вас.' })}</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qoida: AI yozadi, lekin oxirgi qaror — siznikida. Doim o'qing.", ru: 'Правило: пишет ИИ, но последнее слово за вами. Читайте всегда.' })}</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qoida: AI yozadi, lekin oxirgi qaror — sizniki. Kodni doim o'qing.", ru: 'Правило: пишет ИИ, но последнее слово — за вами. Всегда читайте код.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1084,24 +1103,24 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — INTEGRATSIYA BUG'I =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const CAUSES = [
-    { id: 'c1', t: { uz: 'Mahsulot rangi noto\'g\'ri', ru: 'Неверный цвет товара' }, ok: false },
-    { id: 'c2', t: { uz: '.env\'da API_URL yo\'q yoki noto\'g\'ri (frontend backendni topolmayapti)', ru: 'В .env нет API_URL или он неверный (frontend не находит backend)' }, ok: true },
-    { id: 'c3', t: { uz: 'Logotip kichik', ru: 'Логотип слишком мелкий' }, ok: false }
+    { id: 'c1', t: { uz: "Mahsulot rasmining rangi noto'g'ri", ru: 'Неверный цвет картинки товара' }, ok: false },
+    { id: 'c2', t: { uz: "Frontend'dagi backend manzili (URL) noto'g'ri", ru: 'Во frontend указан неверный адрес backend (URL)' }, ok: true },
+    { id: 'c3', t: { uz: 'Sahifadagi logotip juda kichik', ru: 'Логотип на странице слишком мелкий' }, ok: false }
   ];
   const [picked, setPicked] = useState(storedAnswer ? 'c2' : null);
   const solved = picked === 'c2';
   const pick = (id) => { if (solved) return; setPicked(id); };
   useEffect(() => { if (solved && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [solved]);
   return (
-    <Stage eyebrow={{ uz: "Integratsiya bug'i", ru: 'Баг интеграции' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Sababni toping', ru: 'Найдите причину' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ulanish xatosi', ru: 'Ошибка связки' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Sababni toping', ru: 'Найдите причину' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Klassik bug: <span className="italic" style={{ color: T.accent }}>frontend backendga ulanmayapti</span></>, ru: <>Классический баг: <span className="italic" style={{ color: T.accent }}>frontend не подключается к backend</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Qismlarni ulaganda eng ko'p uchraydigan bug — ulanish manzili. Simptomni o'qing, sababni toping.", ru: 'При соединении частей самый частый баг — адрес связи. Прочитайте симптом и найдите причину.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ko'p uchraydigan xato: <span className="italic" style={{ color: T.accent }}>frontend backend'ga yetib bormayapti</span></>, ru: <>Частая ошибка: <span className="italic" style={{ color: T.accent }}>frontend не может достучаться до backend</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Qismlarni ulaganda eng ko'p uchraydigan xatolardan biri — ulanish manzili. Belgini o'qing, sababini toping.", ru: 'Одна из самых частых ошибок при соединении частей — неверный адрес. Прочитайте симптом и найдите причину.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ padding: '14px 16px' }}>
-              <p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: '🐞 SIMPTOM', ru: '🐞 СИМПТОМ' })}</p>
-              <p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: 0, lineHeight: 1.5 }}>{tr({ uz: <>Mijoz "Buyurtma" bosadi — lekin hech narsa bo'lmaydi. Konsolda: <span className="mono" style={{ fontSize: 12, color: T.accent }}>Failed to fetch</span>. Backend ishlayapti, baza ham. Nima sabab?</>, ru: <>Клиент нажимает «Заказать» — и ничего не происходит. В консоли: <span className="mono" style={{ fontSize: 12, color: T.accent }}>Failed to fetch</span>. Backend работает, база тоже. В чём причина?</> })}</p>
+              <p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: '🐞 BELGI', ru: '🐞 СИМПТОМ' })}</p>
+              <p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: 0, lineHeight: 1.5 }}>{tr({ uz: <>Mijoz «Buyurtma» bosadi — lekin hech narsa bo'lmaydi. Konsolda: <span className="mono" style={{ fontSize: 12, color: T.accent }}>Failed to fetch</span>. Backend ishlayapti, baza ham.</>, ru: <>Клиент нажимает «Заказать» — но ничего не происходит. В консоли: <span className="mono" style={{ fontSize: 12, color: T.accent }}>Failed to fetch</span>. Backend работает, база тоже.</> })}</p>
             </div>
             <p className="flow-label">{tr({ uz: 'Sababni tanlang', ru: 'Выберите причину' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1114,8 +1133,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            {!solved && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: '"Failed to fetch" = frontend backend manziliga yeta olmadi. Manzil qayerda saqlanadi?', ru: '«Failed to fetch» = frontend не смог достучаться до адреса backend. А где хранится этот адрес?' })}</p></div>}
-            {solved && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: 'Topdingiz! 🔧', ru: 'Нашли! 🔧' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Frontend backend manzilini <span className="mono" style={{ fontSize: 12 }}>.env</span> dan oladi. API_URL yo'q yoki noto'g'ri bo'lsa — ulanmaydi. Tuzatish: to'g'ri URL'ni qo'ying. End-to-end test shu bug'larni tutadi.</>, ru: <>Frontend берёт адрес backend из <span className="mono" style={{ fontSize: 12 }}>.env</span>. Нет API_URL или он неверный — связи не будет. Правка: пропишите верный URL. Такие баги и ловит end-to-end тест.</> })}</p></div>}
+            {!solved && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "«Failed to fetch» — frontend backend'ga yetib bora olmadi. Backend ishlayotgan bo'lsa, u qaysi manzilga so'rov yuboryapti?", ru: '«Failed to fetch» — frontend не смог достучаться до backend. Если backend работает, по какому адресу отправляется запрос?' })}</p></div>}
+            {solved && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: 'Topdingiz! 🔧', ru: 'Нашли! 🔧' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Frontend so'rovni noto'g'ri manzilga (masalan, boshqa portga) yuboryapti. Tuzatish: to'g'ri manzilni qo'ying. Bu xatoning boshqa sabablari ham bo'ladi — server ishlamay qolgan bo'lishi yoki backend CORS orqali ruxsat bermagan bo'lishi mumkin (buni 4-Modulda ko'rgansiz). Boshidan oxirigacha (end-to-end) test shunday xatolarni tutadi.</>, ru: <>Frontend отправляет запрос не по тому адресу (например, на другой порт). Правка: укажите верный адрес. У этой ошибки бывают и другие причины — сервер мог перестать работать или backend не дал доступ через CORS (вы видели это в 4-м модуле). Такие ошибки ловит тест от начала до конца (end-to-end).</> })}</p><p className="small" style={{ margin: '8px 0 0', color: T.ink2, fontStyle: 'italic' }}>{tr({ uz: 'End-to-end — tizimni boshidan oxirigacha, bitta haqiqiy amal bilan tekshirish.', ru: 'End-to-end — проверка всей системы от начала до конца одним реальным действием.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1125,12 +1144,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Разминка · вопрос 3' }}
-    questionText="Integratsiya (ulanish) bug'larini qanday tutamiz?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ulanish bug'larini qanday <span className="italic" style={{ color: T.accent }}>tutamiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>поймать</span> баги связок?</h2></> })}
-    options={[{ uz: 'Kodni umuman testlamay ishonib qo\'yamiz', ru: 'Вообще не тестируем код, просто доверяем' }, { uz: 'Har ulanishni va oqimni (end-to-end) sinaymiz', ru: 'Проверяем каждую связку и весь поток (end-to-end)' }, { uz: 'Faqat tashqi ko\'rinish va rangga qaraymiz', ru: 'Смотрим только на внешний вид и цвета' }, { uz: 'AI hech qachon xato qilmaydi deb ishonamiz', ru: 'Верим, что ИИ никогда не ошибается' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Har ulanishni alohida, keyin butun pipeline'ni boshidan oxirigacha (end-to-end) sinaymiz. Shunda integratsiya bug'lari (URL, .env, format) ko'rinadi.", ru: 'Верно! Сначала проверяем каждую связку отдельно, затем весь pipeline от начала до конца (end-to-end). Тогда и видны баги интеграции (URL, .env, формат).' }}
-    explainWrong={{ 0: { uz: 'Testlamaslik — bug\'larni mijoz topadi. Yomon.', ru: 'Не тестировать — значит, баги найдёт клиент. Плохо.' }, 2: { uz: 'Rang emas — ulanish ishlayaptimi, shuni sinash kerak.', ru: 'Дело не в цвете — проверять надо, работает ли связка.' }, 3: { uz: 'AI ham xato qiladi — shuning uchun testlaymiz.', ru: 'ИИ тоже ошибается — поэтому и тестируем.' }, default: { uz: 'Har ulanishni va end-to-end oqimni sinang.', ru: 'Проверяйте каждую связку и весь поток end-to-end.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
+    questionText="Ulanish xatolarini qanday topamiz?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ulanish xatolarini qanday <span className="italic" style={{ color: T.accent }}>topamiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>найти</span> ошибки связок?</h2></> })}
+    options={[{ uz: 'Kodni sinamasdan, ishlaydi deb ishonamiz', ru: 'Не проверяем код, просто верим, что он работает' }, { uz: 'Har ulanishni, keyin butun oqimni sinaymiz', ru: 'Проверяем каждую связку, а потом весь поток' }, { uz: "Faqat sahifaning tashqi ko'rinishiga qaraymiz", ru: 'Смотрим только на внешний вид страницы' }, { uz: 'AI hech qachon xato qilmaydi deb hisoblaymiz', ru: 'Считаем, что ИИ никогда не ошибается' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! Avval har ulanishni alohida, keyin butun oqimni boshidan oxirigacha (end-to-end) sinaymiz. Shunda ulanish xatolari (manzil, ruxsat, ma'lumot shakli) ko'rinadi.", ru: 'Верно! Сначала проверяем каждую связку отдельно, потом весь поток от начала до конца (end-to-end). Так становятся видны ошибки связок (адрес, доступ, формат данных).' }}
+    explainWrong={{ 0: { uz: 'Sinamasangiz, xatoni mijoz topadi.', ru: 'Если не проверите, ошибку найдёт клиент.' }, 2: { uz: "Tashqi ko'rinish emas — ulanish ishlayaptimi, shuni sinash kerak.", ru: 'Дело не во внешнем виде — проверять нужно, работает ли связка.' }, 3: { uz: 'AI ham xato qiladi — shuning uchun sinaymiz.', ru: 'ИИ тоже ошибается — поэтому и проверяем.' }, default: { uz: 'Har ulanishni va butun oqimni sinang.', ru: 'Проверяйте каждую связку и весь поток.' } }} />
 );
 
 // ===== SCREEN 13 — NAMUNA (hikoya) =====
@@ -1146,17 +1165,17 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Namuna', ru: 'Пример' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Endi navbat sizga →', ru: 'Теперь ваш ход →' } : { uz: `${seen.size}/${CASE_AC.length} ko'ring`, ru: `Посмотрите ${seen.size}/${CASE_AC.length}` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq hikoya: <span className="italic" style={{ color: T.accent }}>5 qism → bitta tizim</span></>, ru: <>История целиком: <span className="italic" style={{ color: T.accent }}>5 частей → одна система</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Bir o'quvchining pipeline qurish yo'li — 4 qadam. Har qatorni bosing.", ru: 'Путь одного ученика к своему pipeline — 4 шага. Нажмите на каждую строку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Bir o'quvchi tizimni qanday ulagani — 4 qadam. Har qatorni bosing.", ru: 'Как один ученик соединил систему — 4 шага. Нажмите на каждую строку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="checklist fade-up delay-1">
-              <div className="cl-head"><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.link(16)}</span><span className="cl-title">{tr({ uz: 'Pipeline qurish — vibecoding hikoyasi', ru: 'Сборка pipeline — история вайбкодинга' })}</span></div>
+              <div className="cl-head"><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.link(16)}</span><span className="cl-title">{tr({ uz: 'Tizimni ulash — 4 qadam', ru: 'Соединяем систему — 4 шага' })}</span></div>
               {CASE_AC.map((c, i) => { const open = seen.has(i); return (<button key={i} onClick={() => tap(i)} className={`crit crit-${open ? 'pass' : 'pending'}`} style={{ width: '100%', textAlign: 'left', cursor: 'pointer', background: active === i ? c.color + '18' : undefined, boxShadow: active === i ? `inset 0 0 0 1.5px ${c.color}` : undefined }}><span className="crit-box">{open ? Ico.check(13) : ''}</span><span className="crit-text"><span className="mono" style={{ fontSize: 9, fontWeight: 800, color: c.color, marginRight: 6 }}>{tr(c.tag)}</span>{tr(c.text)}</span></button>); })}
             </div>
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{tr(cur.tag)}</span></span><p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: '12px 0 0' }}>"{tr(cur.text)}"</p><p className="body" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr(cur.why)}</p></div>) : (!isNarrow ? null : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bo'l → prompt → test → ishlat. Mana vibecoding bilan tizim qurish. Endi o'zingiz rejalang.", ru: 'Разбей → промпт → тест → запусти. Вот так система и строится вайбкодингом. Теперь спланируйте свою.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bo'l → prompt → sina → ula. Endi navbat sizga.", ru: 'Разбей → промпт → проверь → соедини. Теперь ваша очередь.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1168,34 +1187,28 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={{ uz: 'Qoida', ru: 'Правило' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Yakuniy ishga →', ru: 'К итоговому заданию →' }} onClick={onNext} /></>}>
     <div className="screen">
-      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Vibecoding: <span className="italic" style={{ color: T.accent }}>bo'l · buyur · testla · ula</span></>, ru: <>Вайбкодинг: <span className="italic" style={{ color: T.accent }}>разбей · скомандуй · протестируй · соедини</span></> })}</h2></div>
-      <Mentor>{tr({ uz: "Yodda tuting: tizimni qismlarga bo'l, aniq prompt ber, kodni o'qib testla, qadam-qadam ula.", ru: 'Запомните: разбейте систему на части, дайте точный промпт, прочитайте код и протестируйте, соединяйте шаг за шагом.' })}</Mentor>
-      <Zoomable><div className="split">
-        <Col>
-          <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
-            <span style={{ fontSize: 40 }}>🎬</span>
-            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>{tr({ uz: 'Siz — direktor', ru: 'Вы — режиссёр' })}</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>{tr({ uz: 'AI ishlaydi, siz butun tizimni boshqarasiz.', ru: 'ИИ работает, а всей системой управляете вы.' })}</p></div>
-          </div>
-        </Col>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimni ulash qoidasi: <span className="italic" style={{ color: T.accent }}>bo'l · buyur · sina · ula</span></>, ru: <>Правило соединения системы: <span className="italic" style={{ color: T.accent }}>разбей · поручи · проверь · соедини</span></> })}</h2></div>
+      <Mentor>{tr({ uz: "Yodda tuting: tizimni ulanishlarga bo'ling, aniq prompt bering, kodni o'qib sinang, qadamma-qadam ulang.", ru: 'Запомните: разбейте систему на связки, дайте точный промпт, прочитайте и проверьте код, соединяйте шаг за шагом.' })}</Mentor>
+      <Zoomable><div style={{ maxWidth: 620, width: '100%', margin: '0 auto' }}>
         <Col>
           <p className="flow-label">{tr({ uz: '3 narsani unutmang', ru: 'Не забудьте о трёх вещах' })}</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.target(18), c: T.accent, t: { uz: 'ANIQ PROMPT — nima, qayer, qanday format', ru: 'ТОЧНЫЙ ПРОМПТ — что, где, в каком формате' } }, { ic: Ico.eye(18), c: T.blue, t: { uz: 'KODNI O\'QI — ko\'r-ko\'rona ishonma', ru: 'ЧИТАЙ КОД — не верь вслепую' } }, { ic: Ico.repeat(18), c: T.success, t: { uz: 'TESTLA + TUZAT — har ulanishni sinab ula', ru: 'ТЕСТИРУЙ И ПРАВЬ — соединяй каждую связку с проверкой' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 2 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.target(18), c: T.accent, t: { uz: 'ANIQ PROMPT — nima, qayerda, qanday natija', ru: 'ТОЧНЫЙ ПРОМПТ — что, где, какой результат' } }, { ic: Ico.eye(18), c: T.blue, t: { uz: "KODNI O'QING — ko'r-ko'rona ishonmang", ru: 'ЧИТАЙТЕ КОД — не верьте вслепую' } }, { ic: Ico.repeat(18), c: T.success, t: { uz: 'SINANG VA TUZATING — har ulanishni sinab ulang', ru: 'ПРОВЕРЯЙТЕ И ИСПРАВЛЯЙТЕ — соединяйте каждую связку с проверкой' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 2 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
     </div>
   </Stage>
 );
-// ===== SCREEN 15 — YAKUNIY: SHAHAR ariza sayohati tartibi (DragDrop, final scored) =====
-const CITY_STAGES = [
-  { id: 'react', label: { uz: 'Peshtoq (React) — «Arizani yubor»', ru: 'Фасад (React) — «Отправить заявку»' } },
-  { id: 'node',  label: { uz: "Hokimlik (Node) — so'rovni qabul qiladi", ru: 'Мэрия (Node) — принимает запрос' } },
-  { id: 'pg',    label: { uz: 'Arxiv (PostgreSQL) — arizani saqlaydi', ru: 'Архив (PostgreSQL) — сохраняет заявку' } },
-  { id: 'tg',    label: { uz: '✈️ Darvoza (Telegram) — adminga xabar', ru: '✈️ Ворота (Telegram) — сообщение админу' } },
-  { id: 'ai',    label: { uz: 'Ekspert-byuro (AI) — javob yozadi', ru: 'Бюро экспертов (ИИ) — пишет ответ' } },
+// ===== SCREEN 15 — YAKUNIY: buyurtma yo'li tartibi (DragDrop, final scored). AI alohida oqim — tartibga kirmaydi =====
+const ORDER_STAGES = [
+  { id: 'click', label: { uz: 'React — mijoz «Buyurtma» bosadi', ru: 'React — клиент нажимает «Заказать»' } },
+  { id: 'post',  label: { uz: "React — POST /orders so'rovini yuboradi", ru: 'React — отправляет запрос POST /orders' } },
+  { id: 'node',  label: { uz: "Node.js — so'rovni qabul qiladi", ru: 'Node.js — принимает запрос' } },
+  { id: 'pg',    label: { uz: 'PostgreSQL — buyurtmani saqlaydi', ru: 'PostgreSQL — сохраняет заказ' } },
+  { id: 'tg',    label: { uz: 'Telegram — adminga xabar boradi', ru: 'Telegram — сообщение уходит админу' } },
 ];
-const CITY_HINTS = [{ uz: '1-bosqich', ru: '1-й этап' }, { uz: '2-bosqich', ru: '2-й этап' }, { uz: '3-bosqich', ru: '3-й этап' }, { uz: '4-bosqich', ru: '4-й этап' }, { uz: '5-bosqich', ru: '5-й этап' }];
+const ORDER_HINTS = Array.from({ length: 5 }, () => ({ uz: "bu yerga qo'ying", ru: 'положите сюда' }));
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
@@ -1214,22 +1227,21 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (typeof window !== 'undefined' && window.innerWidth < 768 && workRef.current) { const el = workRef.current; setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 360); }
   };
   return (
-    <Stage eyebrow={{ uz: 'Yakuniy ish · Katta ochilish', ru: 'Итоговое задание · Большое открытие' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ariza yo'lini tartiblang", ru: 'Разложите путь заявки' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Yakuniy ish', ru: 'Итоговое задание' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Buyurtma yo'lini yig'ing", ru: 'Соберите путь заказа' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta ariza — <span className="italic" style={{ color: T.accent }}>butun shahar bo'ylab</span></>, ru: <>Одна заявка — <span className="italic" style={{ color: T.accent }}>через весь город</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Katta ochilish! Bitta ariza Peshtoqdan chiqib, butun shahar bo'ylab sayohat qiladi. Bosqichlarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — ariza qayerdan qayerga o'tadi?</>, ru: <>Большое открытие! Одна заявка выходит из Фасада и путешествует через весь город. Разложите этапы <b style={{ color: T.ink }}>в правильном порядке</b> — откуда и куда идёт заявка?</> })}</Mentor>
-        <div ref={workRef}><DragDropOrder onWrong={onWrong} items={CITY_STAGES} hints={CITY_HINTS} onSolved={onSolved} doneText={{ uz: "To'g'ri! Ariza uchidan-uchiga sayohat qildi — shahar tirik!", ru: 'Верно! Заявка прошла путь от начала до конца — город ожил!' }} /></div>
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana to'liq pipeline: Peshtoq → Hokimlik → Arxiv → Darvoza → Ekspert-byuro. Bitta amal — butun tizim harakatda.", ru: 'Вот полный pipeline: Фасад → Мэрия → Архив → Ворота → Бюро экспертов. Одно действие — и вся система в движении.' })}</p></div>}
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta buyurtma — <span className="italic" style={{ color: T.accent }}>tizim bo'ylab</span></>, ru: <>Один заказ — <span className="italic" style={{ color: T.accent }}>через всю систему</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Mijoz «Buyurtma» bosdi. Bosqichlarni to'g'ri tartibda joylang — buyurtma qayerdan qayerga o'tadi?", ru: 'Клиент нажал «Заказать». Разложите этапы в правильном порядке — откуда и куда идёт заказ?' })}</Mentor>
+        <div ref={workRef}><DragDropOrder onWrong={onWrong} items={ORDER_STAGES} hints={ORDER_HINTS} onSolved={onSolved} doneText={{ uz: <>Buyurtma yo'li tayyor: <b>Bosish → So'rov → Node.js → PostgreSQL → Telegram</b>. AI esa alohida yo'lda — mijoz savol berganda ishlaydi.</>, ru: <>Путь заказа готов: <b>Нажатие → Запрос → Node.js → PostgreSQL → Telegram</b>. А ИИ работает на отдельном пути — когда клиент задаёт вопрос.</> }} /></div>
       </div>
     </Stage>
   );
 };
 // ===== 🏅 BADGES (nishonlar) — faqat REAL SCORED test/challenge uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  fullPipeline: { icon: '🔗', name: 'Full Pipeline', desc: { uz: "Pipeline — 5 qism bitta tizimda ekanini bildingiz", ru: "Вы поняли: pipeline — 5 частей в одной системе" } },
-  endToEnd:     { icon: '🚀', name: 'End to End',    desc: { uz: "Aniq promptni tanidingiz: nima, qayer, format", ru: "Вы узнали точный промпт: что, где, формат" } },
-  allConnected: { icon: '🏙️', name: 'All Connected', desc: { uz: "Integratsiya bug'ini test bilan tutishni bildingiz", ru: "Вы поняли, как ловить баг интеграции тестом" } },
-  cityLive:     { icon: '🎉', name: 'City Live',     desc: { uz: "Ariza sayohatini tartibladingiz — shahar tirik!", ru: "Вы верно выстроили путь заявки — город ожил!" } } };
+  fullPipeline: { icon: '🔗', name: 'Full Pipeline', desc: { uz: 'Pipeline nima ekanini bildingiz', ru: 'Вы поняли, что такое pipeline' } },
+  endToEnd:     { icon: '🎯', name: 'Clear Prompt',  desc: { uz: 'Aniq promptni tanidingiz', ru: 'Вы научились узнавать точный промпт' } },
+  allConnected: { icon: '🧪', name: 'Bug Catcher',   desc: { uz: 'Ulanish xatosini test bilan topishni bildingiz', ru: 'Вы научились находить ошибку связки тестом' } },
+  cityLive:     { icon: '🚚', name: 'Order Flow',    desc: { uz: "Buyurtma yo'lini to'g'ri tizdingiz", ru: 'Вы верно выстроили путь заказа' } } };
 // Ekran id -> nishon. ❗ FAQAT SCORED ekranlar: s4·s9·s12 (test) · s15 (final DragDrop challenge). Exploration'ga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s4: 'fullPipeline', s9: 'endToEnd', s12: 'allConnected', s15: 'cityLive' };
 function AchCelebrate({ ach, onDone }) {
@@ -1285,7 +1297,7 @@ const Confetti = () => {
   );
 };
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 6, 10, 13, 16)
-const Q_LABELS = { 4: { uz: '1 — Pipeline', ru: '1 — Pipeline' }, 6: { uz: '2 — Direktor', ru: '2 — Режиссёр' }, 10: { uz: '3 — Prompt', ru: '3 — Промпт' }, 13: { uz: '4 — Integratsiya', ru: '4 — Интеграция' }, 16: { uz: '5 — Tartib', ru: '5 — Порядок' } };
+const Q_LABELS = { 4: { uz: '1 — Pipeline', ru: '1 — Pipeline' }, 6: { uz: '2 — AI bilan kod', ru: '2 — Код с ИИ' }, 10: { uz: '3 — Prompt', ru: '3 — Промпт' }, 13: { uz: '4 — Ulanish xatosi', ru: '4 — Ошибка связки' }, 16: { uz: '5 — Tartib', ru: '5 — Порядок' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (pipeline atamalari)
 const QZ_BG_SHAPES = [
@@ -1306,18 +1318,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "Pipeline (tizim) nima degani?", ru: 'Что значит «pipeline» (система)?' }, opts: [{ uz: "Qismlar bog'lanib, ma'lumot oqadigan tizim", ru: 'Система, где части связаны и по ним текут данные' }, { uz: "Bitta katta kod fayli — hammasi ichida", ru: 'Один большой файл кода — всё внутри него' }, { uz: "Faqat ko'rinadigan frontend qismi", ru: 'Только видимая часть — frontend' }, { uz: "Bir-biriga ulanmagan mustaqil dasturlar", ru: 'Независимые программы, не связанные между собой' }], correct: 0 },
-  { q: { uz: "Vibecoding'da sizning rolingiz qanday?", ru: 'Какая у вас роль в вайбкодинге?' }, opts: [{ uz: "Hamma kodni qo'lda yozasiz", ru: 'Пишете весь код руками' }, { uz: "Direktor — buyurasiz, kodni o'qiysiz, testlaysiz", ru: 'Режиссёр — командуете, читаете код, тестируете' }, { uz: "Hech narsa qilmaysiz", ru: 'Не делаете ничего' }, { uz: "AI bergan narsani ko'rmasdan ishlatasiz", ru: 'Берёте всё от ИИ не глядя' }], correct: 1 },
-  { q: { uz: "Frontend backend manzilini qayerdan oladi?", ru: 'Откуда frontend берёт адрес backend?' }, opts: [{ uz: "Kod ichiga qattiq yozilgan", ru: 'Он жёстко вписан в код' }, { uz: "Foydalanuvchi kiritadi", ru: 'Его вводит пользователь' }, { uz: ".env faylidan (API_URL)", ru: 'Из файла .env (API_URL)' }, { uz: "Har safar o'zi topadi", ru: 'Каждый раз находит его сам' }], correct: 2 },
-  { q: { uz: "«Failed to fetch» xatosi ko'pincha nimadan?", ru: 'Из-за чего чаще всего ошибка «Failed to fetch»?' }, opts: [{ uz: "Logotip juda kichik bo'lganidan", ru: 'Из-за слишком мелкого логотипа' }, { uz: "Mahsulot rasmining rangidan", ru: 'Из-за цвета картинки товара' }, { uz: "Sahifa sarlavhasi noto'g'riligidan", ru: 'Из-за неверного заголовка страницы' }, { uz: "Backend manzili (URL/.env) xatoligidan", ru: 'Из-за неверного адреса backend (URL/.env)' }], correct: 3 },
-  { q: { uz: "Aniq prompt qanday bo'ladi?", ru: 'Какой промпт считается точным?' }, opts: [{ uz: "Nima, qayer, qanday format — aniq aytilgan", ru: 'Где ясно сказано: что, где и в каком формате' }, { uz: "«saytni yaxshi qilib yozib ber» degan", ru: 'Вроде «напиши сайт получше»' }, { uz: "«hammasini o'zing bilganingcha qil»", ru: 'Вроде «сделай всё как знаешь»' }, { uz: "Umuman aniq buyruq bermaslik", ru: 'Вообще не давать точных указаний' }], correct: 0 },
-  { q: { uz: "AI yozgan kodni nima uchun o'qiysiz?", ru: 'Зачем читать код, написанный ИИ?' }, opts: [{ uz: "Rangini o'zgartirish uchun", ru: 'Чтобы поменять цвет' }, { uz: "Xato/xavfni ko'rib, tuzatish uchun", ru: 'Чтобы увидеть ошибку или риск и поправить' }, { uz: "Faylni kattalashtirish uchun", ru: 'Чтобы файл стал больше' }, { uz: "AI'ni maqtash uchun", ru: 'Чтобы похвалить ИИ' }], correct: 1 },
-  { q: { uz: "Integratsiya bug'ini qanday tutamiz?", ru: 'Как поймать баг интеграции?' }, opts: [{ uz: "Faqat rangga qaraymiz", ru: 'Смотрим только на цвета' }, { uz: "Umuman testlamaymiz", ru: 'Вообще не тестируем' }, { uz: "End-to-end (boshidan oxirigacha) sinaymiz", ru: 'Проверяем end-to-end (от начала до конца)' }, { uz: "AI xato qilmaydi deb ishonamiz", ru: 'Верим, что ИИ не ошибается' }], correct: 2 },
-  { q: { uz: "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?", ru: 'Какая часть срабатывает первой при отправке заказа?' }, opts: [{ uz: "PostgreSQL (arxiv)", ru: 'PostgreSQL (архив)' }, { uz: "Telegram (darvoza)", ru: 'Telegram (ворота)' }, { uz: "AI (ekspert-byuro)", ru: 'ИИ (бюро экспертов)' }, { uz: "React (peshtoq/frontend)", ru: 'React (фасад/frontend)' }], correct: 3 },
-  { q: { uz: "Node.js (backend) pipeline'da qaysi rolni bajaradi?", ru: 'Какую роль играет Node.js (backend) в pipeline?' }, opts: [{ uz: "Markaz — so'rovlarni qabul qilib boshqaradi", ru: 'Центр — принимает запросы и управляет ими' }, { uz: "Faqat rasm va chizmalar chizadi", ru: 'Только рисует картинки и схемы' }, { uz: "Ma'lumotni umuman ko'rmay o'tkazadi", ru: 'Пропускает данные, вообще их не видя' }, { uz: "Foydalanuvchi parolini saqlaydi", ru: 'Хранит пароль пользователя' }], correct: 0 },
-  { q: { uz: "Buyurtma ma'lumoti qayerda saqlanadi?", ru: 'Где хранятся данные заказа?' }, opts: [{ uz: "Telegram bot xabarida", ru: 'В сообщении Telegram-бота' }, { uz: "PostgreSQL jadvalida (orders)", ru: 'В таблице PostgreSQL (orders)' }, { uz: "Brauzer tarixida saqlanadi", ru: 'В истории браузера' }, { uz: "Hech qayerda saqlanmaydi", ru: 'Нигде не хранятся' }], correct: 1 },
-  { q: { uz: "Vibecoding sikli qanday ketadi?", ru: 'Как идёт цикл вайбкодинга?' }, opts: [{ uz: "Faqat bitta prompt yozib to'xtab qolish", ru: 'Написать один промпт и на этом остановиться' }, { uz: "Kodni umuman ko'rmasdan ishlatish", ru: 'Использовать код, вообще его не глядя' }, { uz: "Prompt -> AI kod -> test -> tuzat -> qayta", ru: 'Промпт -> код ИИ -> тест -> правка -> заново' }, { uz: "Hammasini bir promptda yozdirish", ru: 'Заставить написать всё одним промптом' }], correct: 2 },
-  { q: { uz: "«End-to-end test» nimani tekshiradi?", ru: 'Что проверяет «end-to-end тест»?' }, opts: [{ uz: "Faqat bitta tugmaning rangini", ru: 'Только цвет одной кнопки' }, { uz: "Faqat kirish (login) sahifasini", ru: 'Только страницу входа (login)' }, { uz: "Faqat ma'lumotlar bazasi nomini", ru: 'Только название базы данных' }, { uz: "Butun oqimni — buyurtma zanjirdan o'tadimi", ru: 'Весь поток — проходит ли заказ по цепочке' }], correct: 3 },
+  { q: { uz: "Pipeline nima degani?", ru: 'Что значит «pipeline»?' }, opts: [{ uz: "Ma'lumotning qismdan qismga o'tish oqimi", ru: 'Поток данных от части к части' }, { uz: "Bitta katta kod fayli — hammasi ichida", ru: 'Один большой файл кода — всё внутри него' }, { uz: "Faqat ko'rinadigan frontend qismi", ru: 'Только видимая часть — frontend' }, { uz: "Bir-biriga ulanmagan mustaqil dasturlar", ru: 'Независимые программы, не связанные между собой' }], correct: 0 },
+  { q: { uz: "AI bilan kod yozganda sizning vazifangiz?", ru: 'Какая ваша задача, когда вы пишете код с ИИ?' }, opts: [{ uz: "Hamma kodni qo'lda yozish", ru: 'Пишете весь код руками' }, { uz: "Aniq topshiriq berish, o'qish va sinash", ru: 'Даёте точное задание, читаете и проверяете' }, { uz: "Hech narsa qilmaslik", ru: 'Не делаете ничего' }, { uz: "AI bergan kodni ko'rmasdan ishlatish", ru: 'Используете код ИИ, не глядя на него' }], correct: 1 },
+  { q: { uz: "Frontend so'rovni qayerga yuboradi?", ru: 'Куда frontend отправляет запрос?' }, opts: [{ uz: "Brauzer tarixiga", ru: 'В историю браузера' }, { uz: "Foydalanuvchining telefoniga", ru: 'На телефон пользователя' }, { uz: "Backend manziliga", ru: 'На адрес backend' }, { uz: "To'g'ridan-to'g'ri Telegram'ga", ru: 'Прямо в Telegram' }], correct: 2 },
+  { q: { uz: "«Failed to fetch» xatosining ko'p uchraydigan sababi?", ru: 'Частая причина ошибки «Failed to fetch»?' }, opts: [{ uz: "Logotip juda kichik bo'lgani", ru: 'Слишком мелкий логотип' }, { uz: "Mahsulot rasmining rangi", ru: 'Цвет картинки товара' }, { uz: "Sahifa sarlavhasi noto'g'riligi", ru: 'Неверный заголовок страницы' }, { uz: "Backend manzili noto'g'riligi", ru: 'Неверный адрес backend' }], correct: 3 },
+  { q: { uz: "Aniq prompt qanday bo'ladi?", ru: 'Какой промпт считается точным?' }, opts: [{ uz: "Nima, qayerda va qanday natija aniq aytilgan", ru: 'Где точно сказано: что, где и какой результат' }, { uz: "«saytni yaxshi qilib yozib ber» degan", ru: 'Вроде «напиши сайт получше»' }, { uz: "«hammasini o'zing bilganingcha qil»", ru: 'Вроде «сделай всё как знаешь»' }, { uz: "Umuman aniq topshiriq bermaslik", ru: 'Вообще не давать точного задания' }], correct: 0 },
+  { q: { uz: "AI yozgan kodni nima uchun o'qiysiz?", ru: 'Зачем читать код, написанный ИИ?' }, opts: [{ uz: "Rangini o'zgartirish uchun", ru: 'Чтобы поменять цвет' }, { uz: "Xato va xavfni ko'rib, tuzatish uchun", ru: 'Чтобы увидеть ошибку или риск и исправить' }, { uz: "Faylni kattalashtirish uchun", ru: 'Чтобы файл стал больше' }, { uz: "Kodni chiroyliroq ko'rsatish uchun", ru: 'Чтобы код выглядел красивее' }], correct: 1 },
+  { q: { uz: "Ulanish xatosini qanday topamiz?", ru: 'Как найти ошибку связки?' }, opts: [{ uz: "Faqat rangga qaraymiz", ru: 'Смотрим только на цвета' }, { uz: "Umuman sinamaymiz", ru: 'Вообще не проверяем' }, { uz: "Boshidan oxirigacha sinaymiz", ru: 'Проверяем от начала до конца' }, { uz: "AI xato qilmaydi deb ishonamiz", ru: 'Верим, что ИИ не ошибается' }], correct: 2 },
+  { q: { uz: "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?", ru: 'Какая часть срабатывает первой при отправке заказа?' }, opts: [{ uz: "PostgreSQL (baza)", ru: 'PostgreSQL (база)' }, { uz: "Telegram (bot)", ru: 'Telegram (бот)' }, { uz: "AI (yordamchi xizmat)", ru: 'ИИ (вспомогательный сервис)' }, { uz: "React (frontend)", ru: 'React (frontend)' }], correct: 3 },
+  { q: { uz: "Bu loyihada Node.js qanday vazifani bajaradi?", ru: 'Какую задачу выполняет Node.js в этом проекте?' }, opts: [{ uz: "So'rovlarni qabul qilib, boshqaradi", ru: 'Принимает запросы и управляет ими' }, { uz: "Faqat rasm va chizmalar chizadi", ru: 'Только рисует картинки и схемы' }, { uz: "Ma'lumotni ko'rmay o'tkazib yuboradi", ru: 'Пропускает данные, не глядя на них' }, { uz: "Foydalanuvchi parolini ko'rsatadi", ru: 'Показывает пароль пользователя' }], correct: 0 },
+  { q: { uz: "Buyurtma ma'lumoti qayerda saqlanadi?", ru: 'Где хранятся данные заказа?' }, opts: [{ uz: "Telegram bot xabarida", ru: 'В сообщении Telegram-бота' }, { uz: "Bazadagi orders jadvalida", ru: 'В таблице orders в базе' }, { uz: "Brauzer tarixida", ru: 'В истории браузера' }, { uz: "Hech qayerda saqlanmaydi", ru: 'Нигде не хранятся' }], correct: 1 },
+  { q: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, opts: [{ uz: "Prompt → kod → darhol ishlatish", ru: 'Промпт → код → сразу использовать' }, { uz: "Kodni ko'rmasdan ishlatish", ru: 'Использовать код, не глядя на него' }, { uz: "Prompt → kod → test → tuzat → qayta", ru: 'Промпт → код → тест → правка → заново' }, { uz: "Hammasini bitta promptda yozdirish", ru: 'Получить весь код одним промптом' }], correct: 2 },
+  { q: { uz: "«End-to-end test» nimani tekshiradi?", ru: 'Что проверяет «end-to-end тест»?' }, opts: [{ uz: "Faqat bitta tugmaning rangini", ru: 'Только цвет одной кнопки' }, { uz: "Faqat kirish (login) sahifasini", ru: 'Только страницу входа (login)' }, { uz: "Faqat bazaning nomini", ru: 'Только название базы' }, { uz: "Butun oqimni — buyurtma oxirigacha yetadimi", ru: 'Весь поток — доходит ли заказ до конца' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -1862,7 +1874,7 @@ const MentorPracticeStats = ({ live, screen }) => {
     </div>
   );
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = { uz: 'kompyuteringizda', ru: 'на своём компьютере' } }) {
+function ScreenLivePractice({ title, task, checklist, extra, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = { uz: 'kompyuteringizda', ru: 'на своём компьютере' } }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const [checked, setChecked] = useState(() => new Set());
@@ -1903,6 +1915,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
+            {extra && <p className="small" style={{ margin: 0, color: T.ink2 }}>{fmtCode(tr(extra))}</p>}
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
@@ -1916,15 +1929,16 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 // 🛠️ PRAKTIKA — o'quvchi VS Code'da o'z pipeline'ini AI bilan quradi (mentor-gate, kod kiritilmaydi)
 const ScreenPipelinePractice = (props) => (
   <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
-    title={{ uz: "Pipeline'ingizni AI bilan quring", ru: 'Соберите свой pipeline вместе с ИИ' }}
-    task={{ uz: "O'z mini-tizimingizni bosqichma-bosqich ulang: har ulanish uchun aniq prompt yozing, AI kodini o'qing, testlang. Biz baholamaymiz — siz direktor, ustoz kuzatadi.", ru: 'Соберите свою мини-систему шаг за шагом: на каждую связку напишите точный промпт, прочитайте код ИИ, протестируйте. Мы не оцениваем — вы режиссёр, наставник наблюдает.' }}
+    title={{ uz: 'Tizimingizni AI bilan ulang', ru: 'Соедините свою систему с помощью ИИ' }}
+    task={{ uz: "O'z mini-tizimingizni qadamma-qadam ulang: har ulanish uchun aniq prompt yozing, AI kodini o'qing, sinab ko'ring. Bugun asosiy ikki ulanishni quramiz; Telegram va AI ulanishi — qo'shimcha qadam.", ru: 'Соедините свою мини-систему шаг за шагом: для каждой связки напишите точный промпт, прочитайте код ИИ, проверьте его. Сегодня строим две главные связки; связки с Telegram и ИИ — дополнительный шаг.' }}
     checklist={[
-      { uz: "Loyihani oching: `frontend` (React) va `backend` (Node) papkalari", ru: 'Откройте проект: папки `frontend` (React) и `backend` (Node)' },
-      { uz: "1-ulanish: `React -> Node` — «`POST /orders` yuboradigan tugma yoz» deb prompt bering", ru: 'Связка 1: `React -> Node` — дайте промпт «напиши кнопку, которая отправляет `POST /orders`»' },
-      { uz: "AI kodini o'qing: `fetch(API_URL + \"/orders\")` to'g'ri manzilga ketyaptimi?", ru: 'Прочитайте код ИИ: `fetch(API_URL + \"/orders\")` уходит по верному адресу?' },
-      { uz: "2-ulanish: `Node -> PostgreSQL` — «buyurtmani `orders` jadvaliga `INSERT` qil» prompti", ru: 'Связка 2: `Node -> PostgreSQL` — промпт «сделай `INSERT` заказа в таблицу `orders`»' },
-      { uz: "End-to-end sinang: bitta «Buyurtma» bosing — butun oqim ishladimi tekshiring", ru: 'Проверьте end-to-end: нажмите один раз «Заказать» и убедитесь, что сработал весь поток' },
-    ]} />
+      { uz: "Loyihani oching: `frontend` (React) va `backend` (Node.js) papkalari", ru: 'Откройте проект: папки `frontend` (React) и `backend` (Node.js)' },
+      { uz: "1-ulanish: React → Node.js — «`POST /orders` yuboradigan tugma yoz» deb prompt bering", ru: 'Связка 1: React → Node.js — дайте промпт «напиши кнопку, которая отправляет `POST /orders`»' },
+      { uz: "AI kodini o'qing: `fetch` to'g'ri backend manziliga ketyaptimi?", ru: 'Прочитайте код ИИ: `fetch` отправляет запрос на правильный адрес backend?' },
+      { uz: "2-ulanish: Node.js → PostgreSQL — «buyurtmani `orders` jadvaliga `INSERT` qil» prompti", ru: 'Связка 2: Node.js → PostgreSQL — промпт «сделай `INSERT` заказа в таблицу `orders`»' },
+      { uz: "Boshidan oxirigacha sinang: bitta «Buyurtma» bosing — buyurtma bazada paydo bo'ldimi?", ru: 'Проверьте от начала до конца: нажмите «Заказать» один раз — появился ли заказ в базе?' },
+    ]}
+    extra={{ uz: "⭐ Qo'shimcha: Node.js → Telegram (adminga xabar) yoki Node.js → AI (savolga javob) ulanishini ham quring.", ru: '⭐ Дополнительно: постройте также связку Node.js → Telegram (сообщение админу) или Node.js → ИИ (ответ на вопрос).' }} />
 );
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
 // Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
@@ -2002,18 +2016,18 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — 12 savol (pipeline tili)
 const PIPE_FLASHCARDS = [
-  { front: { uz: "Pipeline nima degani?", ru: 'Что значит «pipeline»?' }, back: { uz: "Bog'langan komponentlar tizimi", ru: 'Система связанных компонентов' }, note: { uz: "Ma'lumot ular orasida ketma-ket oqadi", ru: 'Данные текут между ними по порядку' } },
-  { front: { uz: "Bizning pipeline nechta qismdan yig'ilgan?", ru: 'Из скольких частей собран наш pipeline?' }, back: { uz: "5 ta", ru: '5' }, note: { uz: "React, Node.js, PostgreSQL, Telegram bot, AI", ru: 'React, Node.js, PostgreSQL, Telegram-бот, ИИ' } },
+  { front: { uz: "Pipeline nima degani?", ru: 'Что значит «pipeline»?' }, back: { uz: "Ma'lumotning qismdan qismga o'tish oqimi", ru: 'Поток данных от части к части' }, note: { uz: "Masalan: React → Node.js → PostgreSQL", ru: 'Например: React → Node.js → PostgreSQL' } },
+  { front: { uz: "Tizim bilan pipeline bir narsami?", ru: 'Система и pipeline — одно и то же?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "Tizim — hamma qismlar; pipeline — ular orasidagi oqim", ru: 'Система — все части; pipeline — поток между ними' } },
   { front: { uz: "Mijoz ko'radigan sahifani nima chizadi?", ru: 'Что рисует страницу, которую видит клиент?' }, back: 'React', note: { uz: "Frontend: mahsulotlar va «Buyurtma» tugmasi", ru: 'Frontend: товары и кнопка «Заказать»' } },
-  { front: { uz: "So'rovlarni qabul qilib boshqaradigan markaz qaysi?", ru: 'Какой центр принимает запросы и управляет ими?' }, back: 'Node.js', note: { uz: "Backend: barcha so'rov u orqali oqadi", ru: 'Backend: все запросы текут через него' } },
+  { front: { uz: "Bu loyihada so'rovlarni qabul qiladigan qism qaysi?", ru: 'Какая часть в этом проекте принимает запросы?' }, back: 'Node.js', note: { uz: "Backend: baza, bot va AI bilan ham u ishlaydi", ru: 'Backend: с базой, ботом и ИИ тоже работает он' } },
   { front: { uz: "Buyurtmalar qayerda saqlanadi?", ru: 'Где хранятся заказы?' }, back: 'PostgreSQL', note: { uz: "Ma'lumotlar bazasi: products va orders jadvallari", ru: 'База данных: таблицы products и orders' } },
-  { front: { uz: "Yangi buyurtmada adminga kim xabar yuboradi?", ru: 'Кто отправляет админу сообщение при новом заказе?' }, back: { uz: "Telegram bot", ru: 'Telegram-бот' }, note: { uz: "Xabarni Node.js unga uzatadi", ru: 'Сообщение ему передаёт Node.js' } },
-  { front: { uz: "Mijoz savoliga kim javob yozadi?", ru: 'Кто пишет ответ на вопрос клиента?' }, back: { uz: "AI (Claude)", ru: 'ИИ (Claude)' }, note: { uz: "Mahsulot tavsifini ham u yozadi", ru: 'Описание товара пишет тоже он' } },
-  { front: { uz: "Vibecoding nima?", ru: 'Что такое вайбкодинг?' }, back: { uz: "AI'ga buyruq berib kod yozdirish", ru: 'Писать код командами к ИИ' }, note: { uz: "Siz direktorsiz, AI esa ishchi", ru: 'Вы режиссёр, а ИИ — рабочий' } },
+  { front: { uz: "Yangi buyurtmada adminga kim xabar yuboradi?", ru: 'Кто отправляет админу сообщение при новом заказе?' }, back: { uz: "Telegram bot", ru: 'Telegram-бот' }, note: { uz: "Xabarni unga Node.js yuboradi", ru: 'Сообщение ему передаёт Node.js' } },
+  { front: { uz: "AI tizimda qachon ishlaydi?", ru: 'Когда в системе работает ИИ?' }, back: { uz: "Node.js uni chaqirganda", ru: 'Когда его вызывает Node.js' }, note: { uz: "Masalan, mijoz savol yozganda", ru: 'Например, когда клиент пишет вопрос' } },
+  { front: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, back: { uz: "Prompt → kod → test → tuzat → qayta test", ru: 'Промпт → код → тест → правка → повторный тест' }, note: { uz: "Har ulanish shunday quriladi", ru: 'Так строится каждая связка' } },
   { front: { uz: "AI yozgan kodni nima qilish kerak?", ru: 'Что нужно сделать с кодом, который написал ИИ?' }, back: { uz: "O'qib tushunish", ru: 'Прочитать и понять' }, note: { uz: "Ko'r-ko'rona ishonsangiz, AI xatosi sizniki bo'ladi", ru: 'Поверите вслепую — ошибка ИИ станет вашей' } },
-  { front: { uz: "Aniq prompt nimalarni aytadi?", ru: 'Что говорит точный промпт?' }, back: { uz: "Nima, qayerda, qanday formatda", ru: 'Что, где и в каком формате' }, note: { uz: "«Sayt qil» emas, «POST /orders yoz»", ru: 'Не «сделай сайт», а «напиши POST /orders»' } },
-  { front: { uz: "Backend manzili qaysi faylda saqlanadi?", ru: 'В каком файле хранится адрес backend?' }, back: '.env', note: { uz: "Ichida API_URL yoziladi", ru: 'Внутри записывается API_URL' } },
-  { front: { uz: "Konsolda «Failed to fetch» chiqsa, avval nimani tekshirasiz?", ru: 'В консоли «Failed to fetch» — что проверите первым?' }, back: { uz: ".env ichidagi API_URL", ru: 'API_URL внутри .env' }, note: { uz: "Eng ko'p uchraydigan integratsiya bug'i", ru: 'Самый частый баг интеграции' } },
+  { front: { uz: "Aniq prompt nimalarni aytadi?", ru: 'Что говорит точный промпт?' }, back: { uz: "Nima, qayerda, qanday natija", ru: 'Что, где, какой результат' }, note: { uz: "«Sayt qil» emas, «POST /orders yoz»", ru: 'Не «сделай сайт», а «напиши POST /orders»' } },
+  { front: { uz: "Konsolda «Failed to fetch» chiqsa, avval nimani tekshirasiz?", ru: 'В консоли «Failed to fetch» — что проверите первым?' }, back: { uz: "Frontend so'rov yuborayotgan backend manzilini", ru: 'Адрес backend, на который frontend отправляет запрос' }, note: { uz: "Server ishlayaptimi va CORS ruxsat beryaptimi — ham tekshiriladi", ru: 'Работает ли сервер и разрешает ли CORS запрос — это тоже проверяют' } },
+  { front: { uz: "Kodni yozgandagi xato inglizcha qanday ataladi?", ru: 'Как по-английски называют ошибку в коде?' }, back: 'Bug', note: { uz: "Topib tuzatish — debugging", ru: 'Найти и исправить — debugging' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2048,11 +2062,11 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "Pipeline — 5 qism (React, Node, PostgreSQL, Telegram, AI) bitta tizimga ulanadi", ru: 'Pipeline — 5 частей (React, Node, PostgreSQL, Telegram, ИИ) соединяются в одну систему' },
-    { uz: "Vibecoding: siz direktor, AI ishchi — buyurasiz, kodni o'qiysiz, testlaysiz", ru: 'Вайбкодинг: вы режиссёр, ИИ рабочий — командуете, читаете код, тестируете' },
-    { uz: "Aniq prompt (nima·qayer·format) = aniq kod; AI kodini doim o'qing", ru: 'Точный промпт (что·где·формат) = точный код; код ИИ читайте всегда' },
-    { uz: "Integratsiya bug'i (URL/.env) — end-to-end test bilan tutiladi", ru: 'Баг интеграции (URL/.env) ловится end-to-end тестом' },
-    { uz: "Bitta ariza butun shahar bo'ylab uchidan-uchiga sayohat qiladi", ru: 'Одна заявка проходит через весь город от начала до конца' }
+    { uz: "Qismlar bir-biriga ma'lumot uzatsa, ular bitta tizim bo'lib ishlaydi", ru: 'Если части передают друг другу данные, они работают как одна система' },
+    { uz: "Pipeline — ma'lumotning qismdan qismga o'tish oqimi; u Node.js'dan tarmoqlanadi", ru: 'Pipeline — поток данных от части к части; он ветвится от Node.js' },
+    { uz: 'AI bilan kod yozish sikli: prompt → kod → test → tuzat → qayta test', ru: 'Цикл написания кода с ИИ: промпт → код → тест → правка → повторный тест' },
+    { uz: "Aniq prompt aniqroq kod olishga yordam beradi; AI kodini doim o'qing", ru: 'Точный промпт помогает получить более точный код; код ИИ читайте всегда' },
+    { uz: 'Ulanish xatolari boshidan oxirigacha (end-to-end) test bilan topiladi', ru: 'Ошибки связок находят тестом от начала до конца (end-to-end)' }
   ];
   const HOMEWORK = [
     { b: { uz: "Bo'ling", ru: 'Разбейте' }, t: { uz: "— tizimni ulanishlarga bo'ling, har biriga aniq prompt yozing", ru: '— разбейте систему на связки и на каждую напишите точный промпт' } },
@@ -2065,7 +2079,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Loyiha kuni tugadi', ru: 'Проектный день завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>butun tizim quryasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>строите систему целиком</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Loyiha kuni tugadi', ru: 'Проектный день завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi tayyor qismlarni <span className="italic" style={{ color: T.accent }}>bitta tizimga ulay olasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>можете соединить готовые части в одну систему</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2081,7 +2095,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "📱 Keyingi dars — React Native: pipeline'ingizga «ko'chma darvoza» (mobil ilova) qo'shamiz!", ru: '📱 Следующий урок — React Native: добавим вашему pipeline «переносные ворота» (мобильное приложение)!' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "📱 Keyingi dars — React Native: tizimingizga mobil ilova qo'shamiz!", ru: '📱 Следующий урок — React Native: добавим в вашу систему мобильное приложение!' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -5,10 +5,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // 6-MODUL (AI + Claude) · DARS 5 — «CLAUDE SKILLS — NIMA» — PLATFORM STANDARD v18 (AUDIOSIZ)
 // Maqsad: o'quvchi Claude Skill nima ekanini, SKILL.md tuzilishini va Skill AI xulqini qanday
 //         aniqlashtirishini tushunadi. Tayyor Skillni o'qiydi va tahlil qiladi.
-// 🎴 METAFORA — «SUPER-KUCH KARTASI»: AI = ko'p narsani biladigan qahramon (universal, har vaziyatda o'rtacha).
-//   Skill = super-kuch kartasi (aniq vaziyatda aniq harakat). SKILL.md maydonlari = karta maydonlari
-//   (nomi / qachon yonadi / qadamlar). description = kuch qaysi vaziyatda yonadi (trigger).
-//   Progressive disclosure = karta faqat kerakli paytda to'liq ochiladi. Kartasiz umumiy javob ↔ karta bilan aniq harakat.
+// METAFORA — faqat «yo'riqnoma / qo'llanma» (MD v2, F-0929-QA-6modul/05). Skill = papka, asosiy fayl SKILL.md
+//   (+ ixtiyoriy qo'shimcha fayllar). SKILL.md = frontmatter (name + description) + body (qadamlar + misol).
+//   Claude oldindan faqat name + description'ni ko'radi; body'ni vazifa mos deb topganda o'qiydi (progressive disclosure).
+//   Qarorni Claude qiladi — qat'iy mexanizm emas; natija uslubga YAQIN chiqadi (so'zma-so'z bir xil emas).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -278,46 +278,46 @@ const RcFlow = ({ items, sep = '→' }) => (
 // ⚡ To'g'ri javob pozitsiyalari ATAYIN har xil (3 · 0 · 2 · 3) — «doim A» naqshi yo'q, o'qimay bosgan ball to'plamaydi.
 // s15 (yakuniy debug) — REAL kalit: picked=0 → 1-urinishda topdi (to'g'ri), picked=1 → 1-urinishda xato bosdi.
 const INLINE_KEYS = { s4: 3, s8: 0, s10: 2, s14: 3, s15: 0, practice: -1 };
-// 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
+// RECAPS — har SCORED test uchun 3 ta qisqa takrorlash oynasi (kalit = ekran INDEKSI). Matn — MD v2.
 const RECAPS = {
   4: {
-    title: { uz: 'Skill — super-kuch kartasi', ru: 'Skill — карта суперсилы' },
+    title: { uz: "Skill — yozma yo'riqnoma", ru: 'Skill — письменная инструкция' },
     cards: [
-      { ic: "🎴", h: { uz: 'Karta = aniq harakat', ru: 'Карта = точное действие' }, body: { uz: <>AI universal qahramon; Skill esa <b>aniq vaziyatda aniq harakat</b> beruvchi karta.</>, ru: <>ИИ — универсальный герой; а Skill — карта, дающая <b>точное действие в точной ситуации</b>.</> } },
-      { ic: "📋", h: { uz: "Yo'riqnoma yuklanadi", ru: 'Инструкция загружается' }, body: { uz: <>Vazifa mos kelsa, Claude karta <b>yo'riqnomasini</b> o'qib, aynan shu bo'yicha ishlaydi.</>, ru: <>Если задача подходит, Claude читает <b>инструкцию</b> карты и работает именно по ней.</> } },
-      { ic: "🎯", h: { uz: 'Natija izchil', ru: 'Результат стабильный' }, body: { uz: <>Shuning uchun natija <b>izchil</b> va sizning usulingizda chiqadi.</>, ru: <>Поэтому результат получается <b>стабильным</b> и в вашем стиле.</> }, ask: { uz: "Skill oddiy so'rovdan (prompt) nimasi bilan farq qiladi?", ru: 'Чем Skill отличается от обычного запроса (prompt)?' } },
+      { ic: "📋", h: { uz: "Vazifani ko'rsatadi", ru: 'Показывает, как делать' }, body: { uz: <>Skill Claude'ga bitta vazifani <b>qanday bajarishni</b> ko'rsatadi.</>, ru: <>Skill показывает Claude, <b>как выполнять</b> одну задачу.</> } },
+      { ic: "🤖", h: { uz: "Model o'zgarmaydi", ru: 'Модель не меняется' }, body: { uz: <>Model o'zgarmaydi — o'sha Claude <b>yo'riqnomaga qarab</b> ishlaydi.</>, ru: <>Модель не меняется — тот же Claude работает <b>по инструкции</b>.</> } },
+      { ic: "🎯", h: { uz: 'Uslubga yaqin natija', ru: 'Результат ближе к стилю' }, body: { uz: <>Natija <b>bir xil uslubga</b> yaqinlashadi.</>, ru: <>Результат становится ближе к <b>одному стилю</b>.</> }, ask: { uz: "Skill oddiy so'rovdan (prompt) nimasi bilan farq qiladi?", ru: 'Чем Skill отличается от обычного запроса (prompt)?' } },
     ]
   },
   8: {
-    title: { uz: 'description — qachon yonadi', ru: 'description — когда срабатывает' },
+    title: { uz: 'description — qachon kerak', ru: 'description — когда нужен' },
     cards: [
-      { ic: "🔍", h: { uz: "Claude doim ko'radi", ru: 'Claude видит всегда' }, body: { uz: <>Claude DOIM faqat nom va <b>description</b>'ni ko'radi (arzon).</>, ru: <>Claude ВСЕГДА видит только имя и <b>description</b> (это дёшево).</> } },
-      { ic: "⚡", h: { uz: 'Mos kelsa — yonadi', ru: 'Совпало — сработало' }, body: { uz: <>Vazifa description'ga mos kelsa, karta <b>o'sha yerda</b> ishga tushadi.</>, ru: <>Если задача совпала с description, карта срабатывает <b>прямо там</b>.</> } },
-      { ic: "🎯", h: { uz: "Aniq bo'lishi shart", ru: 'Должно быть точно' }, body: { uz: <>Noaniq description → kuch noto'g'ri paytda yonadi yoki umuman yonmaydi.</>, ru: <>Размытый description → сила сработает не вовремя или не сработает совсем.</> }, ask: { uz: 'Nega description eng muhim qator?', ru: 'Почему description — самая важная строка?' } },
+      { ic: "🔍", h: { uz: "Oldindan ko'rinadi", ru: 'Видно заранее' }, body: { uz: <>Claude oldindan faqat nom va <b>description</b>'ni ko'radi.</>, ru: <>Claude заранее видит только имя и <b>description</b>.</> } },
+      { ic: "📂", h: { uz: 'Mos kelsa — ochiladi', ru: 'Подходит — открывается' }, body: { uz: <>Vazifa mos kelsa — Skill <b>ochiladi</b>.</>, ru: <>Если задача подходит — Skill <b>открывается</b>.</> } },
+      { ic: "🎯", h: { uz: "Aniq bo'lishi kerak", ru: 'Должно быть точным' }, body: { uz: <>Noaniq description → Skill kerakli paytda ishlamasligi mumkin.</>, ru: <>Размытый description → Skill может не сработать в нужный момент.</> }, ask: { uz: "Nega description aniq bo'lishi kerak?", ru: 'Почему description должен быть точным?' } },
     ]
   },
   10: {
     title: { uz: 'Progressive disclosure', ru: 'Progressive disclosure' },
     cards: [
-      { ic: "📂", h: { uz: 'Faqat mos karta ochiladi', ru: 'Открывается только подходящая карта' }, body: { uz: <>To'liq body faqat vazifa <b>description'ga mos</b> kelganda ochiladi.</>, ru: <>Полный body открывается, только когда задача <b>совпала с description</b>.</> } },
-      { ic: "💨", h: { uz: 'Tez va arzon', ru: 'Быстро и дёшево' }, body: { uz: <>Qolgan kartalar yopiq qoladi — yuzlab karta bo'lsa ham tizim <b>tez</b> ishlaydi.</>, ru: <>Остальные карты остаются закрытыми — даже с сотнями карт система работает <b>быстро</b>.</> } },
-      { ic: "🚫", h: { uz: 'Har safar hammasi emas', ru: 'Не всё и каждый раз' }, body: { uz: <>Har so'rovda barcha body'ni yuklash — bekorga sekin va qimmat bo'lardi.</>, ru: <>Грузить все body на каждый запрос — это зря медленно и дорого.</> }, ask: { uz: 'Body qachon yuklanadi?', ru: 'Когда загружается body?' } },
+      { ic: "📂", h: { uz: "Faqat mos Skill ochiladi", ru: 'Открывается только подходящий Skill' }, body: { uz: <>To'liq matn faqat vazifa <b>mos kelganda</b> ochiladi.</>, ru: <>Полный текст открывается, только когда задача <b>подходит</b>.</> } },
+      { ic: "🧠", h: { uz: "Joy bo'sh qoladi", ru: 'Место остаётся свободным' }, body: { uz: <>Qolgan Skill'lar yopiq qoladi — <b>kontekst oynasi</b> band bo'lmaydi.</>, ru: <>Остальные Skills остаются закрытыми — <b>контекстное окно</b> не занято.</> } },
+      { ic: "🚫", h: { uz: 'Hammasi birdaniga emas', ru: 'Не всё сразу' }, body: { uz: <>Har so'rovda hammasini ochish — joyni bekorga to'ldirardi.</>, ru: <>Открывать всё на каждый запрос — значит зря занимать место.</> }, ask: { uz: "Body qachon o'qiladi?", ru: 'Когда читается body?' } },
     ]
   },
   14: {
-    title: { uz: 'Takror vazifa → karta', ru: 'Повторяющаяся задача → карта' },
+    title: { uz: 'Takror vazifa → Skill', ru: 'Повторяющаяся задача → Skill' },
     cards: [
-      { ic: "♻️", h: { uz: 'Bir marta yoz', ru: 'Напишите один раз' }, body: { uz: <>Takrorlanuvchi vazifani <b>bir marta</b> kartaga yozasiz.</>, ru: <>Повторяющуюся задачу вы записываете в карту <b>один раз</b>.</> } },
-      { ic: "⚡", h: { uz: 'Har safar ishlat', ru: 'Используйте каждый раз' }, body: { uz: <>Keyin AI <b>har safar</b> aynan shu kartaga amal qiladi.</>, ru: <>Дальше ИИ <b>каждый раз</b> действует именно по этой карте.</> } },
-      { ic: "⏱️", h: { uz: 'Vaqt tejaladi', ru: 'Экономия времени' }, body: { uz: <>Qo'lda qayta-qayta tushuntirish — vaqt isrofi; karta buni yo'qotadi.</>, ru: <>Объяснять вручную снова и снова — трата времени; карта это убирает.</> }, ask: { uz: 'Qanday vazifa Skill uchun eng mos?', ru: 'Какая задача лучше всего подходит для Skill?' } },
+      { ic: "♻️", h: { uz: 'Bir marta yozasiz', ru: 'Пишете один раз' }, body: { uz: <>Yo'riqnomani <b>bir marta</b> yozasiz.</>, ru: <>Инструкцию вы пишете <b>один раз</b>.</> } },
+      { ic: "📋", h: { uz: 'Claude unga qarab ishlaydi', ru: 'Claude работает по ней' }, body: { uz: <>Claude shu vazifada <b>unga qarab</b> ishlaydi.</>, ru: <>В этой задаче Claude работает <b>по ней</b>.</> } },
+      { ic: "⏱️", h: { uz: 'Vaqt tejaladi', ru: 'Экономия времени' }, body: { uz: <>Qayta-qayta tushuntirish kerak bo'lmaydi.</>, ru: <>Не нужно объяснять снова и снова.</> }, ask: { uz: 'Qanday vazifa Skill uchun eng mos?', ru: 'Какая задача лучше всего подходит для Skill?' } },
     ]
   },
   15: {
-    title: { uz: 'Karta ishlash oqimi — tartib', ru: 'Поток работы карты — порядок' },
+    title: { uz: 'Skill ishlash tartibi', ru: 'Порядок работы Skill' },
     cards: [
-      { ic: "📩", h: { uz: 'Avval — vazifa', ru: 'Сначала — задача' }, body: { uz: <>Birinchi qadam: <b>vazifa keladi</b>.</>, ru: <>Первый шаг: <b>приходит задача</b>.</> } },
-      { ic: "🔍", h: { uz: 'Keyin — mos va yuklash', ru: 'Потом — совпадение и загрузка' }, body: { uz: <>description mos keladi, karta <b>yuklanadi</b>, so'ng AI amal qiladi.</>, ru: <>description совпадает, карта <b>загружается</b>, затем ИИ действует.</> } },
-      { ic: "✨", h: { uz: 'Eng oxiri — natija', ru: 'В самом конце — результат' }, body: { uz: <>Izchil natija faqat amaldan keyin chiqadi.</>, ru: <>Стабильный результат появляется только после действия.</> }, vis: { uz: <RcFlow items={['📩 Vazifa', '🔍 description mos', '📂 Karta', '✅ Amal', '✨ Natija']} />, ru: <RcFlow items={['📩 Задача', '🔍 description совпал', '📂 Карта', '✅ Действие', '✨ Результат']} /> }, ask: { uz: 'Nega tartib muhim?', ru: 'Почему порядок важен?' } },
+      { ic: "📩", h: { uz: 'Avval — vazifa', ru: 'Сначала — задача' }, body: { uz: <>Avval <b>vazifa keladi</b>.</>, ru: <>Сначала <b>приходит задача</b>.</> } },
+      { ic: "🔍", h: { uz: 'Keyin — mos Skill', ru: 'Потом — подходящий Skill' }, body: { uz: <>description mos keladi → Skill <b>ochiladi</b> → yo'riqnomaga amal qilinadi.</>, ru: <>description подходит → Skill <b>открывается</b> → Claude следует инструкции.</> } },
+      { ic: "✨", h: { uz: 'Oxirida — natija', ru: 'В конце — результат' }, body: { uz: <>Oxirida natija.</>, ru: <>В конце — результат.</> }, vis: { uz: <RcFlow items={['Vazifa', 'description', 'Skill', 'Amal', 'Natija']} />, ru: <RcFlow items={['Задача', 'description', 'Skill', 'Действие', 'Результат']} /> }, ask: { uz: 'Nega tartib muhim?', ru: 'Почему порядок важен?' } },
     ]
   }
 };
@@ -353,7 +353,7 @@ function RecapOverlay({ screenIdx, onClose }) {
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карта' })}`} />)}</div>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'oyna', ru: 'окно' })}`} />)}</div>
         {last
           ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
@@ -694,45 +694,44 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
-      {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {solved && doneText !== false && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на кусочек, чтобы вернуть его, и положите заново.' })}</div>}
     </div>
   );
 }
 
 
-// ============================================================ SUPER-KUCH KARTASI MA'LUMOTLARI
+// ============================================================ SKILL MA'LUMOTLARI (s3 · s11 · s12 · s15)
 const SKILL_PARTS = [
-  { id: 'fm', label: { uz: 'Frontmatter', ru: 'Frontmatter' }, tok: '--- name / description ---', desc: { uz: "Skillning «pasporti» — yuqoridagi --- orasidagi qism. Claude buni DOIM ko'radi.", ru: '«Паспорт» скилла — часть между верхними ---. Claude видит её ВСЕГДА.' } },
-  { id: 'desc', label: { uz: 'description', ru: 'description' }, tok: 'description: ...', desc: { uz: 'Skill NIMA qiladi va QACHON ishlatiladi. Eng muhim qator — Claude shunga qarab skillni tanlaydi.', ru: 'ЧТО делает скилл и КОГДА он применяется. Самая важная строка — именно по ней Claude выбирает скилл.' } },
-  { id: 'body', label: { uz: "Body (yo'riqnoma)", ru: 'Body (инструкция)' }, tok: '# qadamlar + misol', desc: { uz: "AI bajaradigan aniq qadamlar va misol. Faqat skill ishlatilganda to'liq yuklanadi.", ru: 'Точные шаги и пример, которые выполняет ИИ. Полностью загружается, только когда скилл применяется.' } }
+  { id: 'fm', label: { uz: 'Frontmatter', ru: 'Frontmatter' }, tok: '--- name / description ---', desc: { uz: <>Skill haqida qisqa ma'lumot. Faylning eng yuqorisida, ikki <span className="mono">---</span> chiziq orasida turadi. Ichida ikki majburiy maydon bor: <span className="mono">name</span> — nomi (kichik harflar va defis, masalan <span className="mono">mahsulot-tavsifi</span>) va <span className="mono">description</span>.</>, ru: <>Краткие сведения о Skill. Находятся в самом верху файла, между двумя линиями <span className="mono">---</span>. Внутри два обязательных поля: <span className="mono">name</span> — имя (строчные буквы и дефис, например <span className="mono">mahsulot-tavsifi</span>) и <span className="mono">description</span>.</> } },
+  { id: 'desc', label: { uz: 'description', ru: 'description' }, tok: 'description: ...', desc: { uz: "Skill nima qiladi va qachon ishlatiladi. Claude Skill'ni tanlashda asosan shu qatorga qaraydi.", ru: 'Что делает Skill и когда его применять. Выбирая Skill, Claude смотрит в основном на эту строку.' } },
+  { id: 'body', label: { uz: 'Body', ru: 'Body' }, tok: '# qadamlar + misol', desc: { uz: "Asosiy yo'riqnoma: AI bajaradigan qadamlar va misol. Claude Skill'ni ishlatishga qaror qilganda shu qismni to'liq o'qiydi.", ru: 'Основная инструкция: шаги и пример для ИИ. Когда Claude решает применить Skill, он читает эту часть целиком.' } }
 ];
 
 // ===== PROGRESSIVE DISCLOSURE (s10) =====
 // `name` — skill slug (KOD, o'zgarmaydi); `d`/`body` — ko'rinadigan proza
 const SHELF = [
-  { id: 'desc', name: 'mahsulot-tavsifi', d: { uz: 'mahsulot tavsifi yozish', ru: 'писать описание товара' }, body: { uz: "3 jumla, iliq ohang, narx, «Savatga qo'shing!»", ru: '3 предложения, тёплый тон, цена, «Добавьте в корзину!»' }, match: true },
-  { id: 'email', name: 'mijoz-xati', d: { uz: 'mijozga rasmiy email yozish', ru: 'писать официальное письмо клиенту' }, body: { uz: '', ru: '' }, match: false },
+  { id: 'desc', name: 'mahsulot-tavsifi', d: { uz: 'mahsulot uchun qisqa sotuvchi tavsif yozish', ru: 'писать короткое продающее описание для товара' }, body: { uz: "3 jumla, iliq ohang, narx, «Savatga qo'shing!»", ru: '3 предложения, тёплый тон, цена, «Добавьте в корзину!»' }, match: true },
+  { id: 'email', name: 'mijoz-xati', d: { uz: 'mijozga rasmiy xat yozish', ru: 'писать официальное письмо клиенту' }, body: { uz: '', ru: '' }, match: false },
   { id: 'sql', name: 'hisobot-sql', d: { uz: 'sotuv hisoboti uchun SQL yozish', ru: 'писать SQL для отчёта о продажах' }, body: { uz: '', ru: '' }, match: false }
 ];
 
 // ===== ANALYZE (s12) =====
 const ANALYZE = [
-  { id: 'desc', q: { uz: 'description aniqmi?', ru: 'description точный?' }, a: { uz: "Ha — «mahsulot tavsifi yozish, mahsulot nomi berilganda» aniq aytadi qachon ishlatishni. Claude adashmaydi.", ru: 'Да — «писать описание товара, когда дано название товара» точно говорит, когда применять. Claude не запутается.' } },
-  { id: 'steps', q: { uz: 'Qadamlar aniqmi?', ru: 'Шаги точные?' }, a: { uz: 'Ha — 3 jumla, ohang, narx, yakun. AI taxmin qilmaydi — aniq bajaradi.', ru: 'Да — 3 предложения, тон, цена, финал. ИИ не гадает — выполняет точно.' } },
-  { id: 'example', q: { uz: 'Misol bormi?', ru: 'Пример есть?' }, a: { uz: "Ha — bitta tayyor misol. Misol AI uchun eng kuchli yo'riqnoma: u shunga taqlid qiladi.", ru: 'Да — один готовый пример. Пример — самая сильная инструкция для ИИ: он ей подражает.' } }
+  { id: 'desc', q: { uz: 'description aniqmi?', ru: 'description точный?' }, a: { uz: "Ha: «mahsulot tavsifi yozish, mahsulot nomi berilganda» — nima va qachon ekanini aytadi.", ru: 'Да: «писать описание товара, когда дано его название» — сказано, что делать и когда.' } },
+  { id: 'steps', q: { uz: 'Qadamlar aniqmi?', ru: 'Шаги точные?' }, a: { uz: 'Ha: 3 jumla, ohang, narx, yakun. AI taxmin qilishi kamayadi.', ru: 'Да: 3 предложения, тон, цена, финал. ИИ меньше приходится гадать.' } },
+  { id: 'example', q: { uz: 'Misol bormi?', ru: 'Пример есть?' }, a: { uz: "Ha: bitta tayyor misol. Misol AI'ga kutilgan natijani yaxshiroq tushunishga yordam beradi.", ru: 'Да: один готовый пример. Пример помогает ИИ лучше понять, какой результат от него ждут.' } }
 ];
 
-// ===== SKILL LIFECYCLE (final s15) =====
+// ===== SKILL ISHLASH TARTIBI (final s15) =====
 const FLOW = [
   { id: 'task', label: { uz: 'Vazifa keladi', ru: 'Приходит задача' }, d: { uz: "foydalanuvchi so'rov beradi.", ru: 'пользователь даёт запрос.' } },
-  { id: 'match', label: { uz: 'description mos', ru: 'description совпал' }, d: { uz: 'Claude qaysi skill kerakligini topadi.', ru: 'Claude находит нужный скилл.' } },
-  { id: 'load', label: { uz: 'Skill yuklanadi', ru: 'Скилл загружается' }, d: { uz: "to'liq yo'riqnoma (body) o'qiladi.", ru: 'читается полная инструкция (body).' } },
-  { id: 'follow', label: { uz: "Yo'riqnomaga amal", ru: 'Действие по инструкции' }, d: { uz: 'AI sizning usulingizda bajaradi.', ru: 'ИИ выполняет в вашем стиле.' } },
-  { id: 'result', label: { uz: 'Izchil natija', ru: 'Стабильный результат' }, d: { uz: 'har safar bir xil sifat.', ru: 'каждый раз одинаковое качество.' } }
+  { id: 'match', label: { uz: 'description mos keladi', ru: 'description подходит' }, d: { uz: 'Claude qaysi skill kerakligini topadi.', ru: 'Claude находит, какой Skill нужен.' } },
+  { id: 'load', label: { uz: 'Skill ochiladi', ru: 'Skill открывается' }, d: { uz: "to'liq yo'riqnoma (body) o'qiladi.", ru: 'читается полная инструкция (body).' } },
+  { id: 'follow', label: { uz: "Yo'riqnomaga amal qilinadi", ru: 'Работа по инструкции' }, d: { uz: "Claude yo'riqnomaga qarab bajaradi.", ru: 'Claude выполняет задачу по инструкции.' } },
+  { id: 'result', label: { uz: 'Natija', ru: 'Результат' }, d: { uz: 'natija siz yozgan uslubga yaqin chiqadi.', ru: 'результат близок к стилю, который вы описали.' } }
 ];
 const FLOW_ORDER = FLOW.map(f => f.id);
 const FLOW_SCRAMBLED = ['load', 'task', 'result', 'match', 'follow'];
@@ -744,9 +743,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
   const OPTS = [
-    { id: 'a', label: { uz: "Har safar uzun ko'rsatma yozib beraman — boshqa yo'li yo'q", ru: 'Каждый раз буду писать длинную инструкцию — другого пути нет' } },
-    { id: 'b', label: { uz: "Bir marta yozma yo'riqnoma (Skill) beraman — har safar shunga amal qiladi", ru: 'Один раз дам письменную инструкцию (Skill) — и он каждый раз будет ей следовать' } },
-    { id: 'c', label: { uz: "Iloji yo'q — AI har doim har xil ishlaydi", ru: 'Невозможно — ИИ всегда работает по-разному' } }
+    { id: 'a', label: { uz: "Har safar uzun ko'rsatmani qaytadan yozaman", ru: 'Каждый раз заново пишу длинную инструкцию' } },
+    { id: 'b', label: { uz: "Ko'rsatmani bir marta yozib, saqlab qo'yaman", ru: 'Один раз пишу инструкцию и сохраняю её' } },
+    { id: 'c', label: { uz: "Iloji yo'q — AI har doim har xil yozadi", ru: 'Невозможно — ИИ всегда пишет по-разному' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
@@ -754,7 +753,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>AI'dan «mahsulot tavsifi yoz» dedingiz. Har safar <span className="italic" style={{ color: T.accent }}>boshqacha</span> chiqyapti. Nega?</>, ru: <>Вы попросили ИИ «напиши описание товара». Каждый раз выходит <span className="italic" style={{ color: T.accent }}>по-разному</span>. Почему?</> })}</h1>
-        <Mentor>{tr({ uz: "AI maslahatchini o'tgan darsda ko'rdik. Lekin uni har doim SIZNING usulingizda ishlatish — alohida mahorat. Tugmani bosing — muammoni ko'ring.", ru: 'ИИ-советчика мы разобрали в прошлом уроке. Но заставить его всегда работать ВАШИМ способом — отдельное умение. Нажмите кнопку — увидите проблему.' })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda agentga maqsad va asboblar berdik. Lekin AI'ga ishni <b style={{ color: T.ink }}>qanday</b> bajarishni ham tushuntirish kerak. Tugmani bosing — muammoni ko'ring.</>, ru: <>На прошлом уроке мы дали агенту цель и инструменты. Но ИИ нужно объяснить и то, <b style={{ color: T.ink }}>как</b> выполнять работу. Нажмите кнопку — увидите проблему.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="sk-info" style={{ }}>
@@ -765,14 +764,14 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Muammoni ko'rdingiz", ru: '✓ Вы увидели проблему' }) : tr({ uz: "▶ Ikki marta so'rab ko'rish", ru: '▶ Попросить два раза' })}</button>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "AI'ni har safar bir xil ishlatish-chi?", ru: 'А как заставить ИИ работать одинаково каждый раз?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "AI har safar sizga kerakli uslubda yozishi uchun nima qilasiz?", ru: 'Что вы сделаете, чтобы ИИ каждый раз писал в нужном вам стиле?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! <b>Claude Skill</b> — AI'ga bergan yozma yo'riqnoma (qo'llanma). Bir marta yozasiz — AI har safar aynan shunga amal qiladi. Bugun tayyor skillni o'qib, tahlil qilamiz.</>, ru: <>Именно! <b>Claude Skill</b> — это письменная инструкция (руководство), которую вы даёте ИИ. Пишете один раз — ИИ каждый раз следует именно ей. Сегодня прочитаем и разберём готовый скилл.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? tr({ uz: <>Aynan! Shunday saqlangan yozma yo'riqnomani Claude'da <b>Skill</b> deyishadi. Uni bir marta yozasiz, keyin Claude shu vazifada yo'riqnomaga qarab ishlaydi — natija siz xohlagan uslubga yaqin chiqadi. Bugun tayyor Skill'ni o'qib, tahlil qilamiz.</>, ru: <>Именно! Такую сохранённую письменную инструкцию в Claude называют <b>Skill</b>. Вы пишете её один раз, а дальше в этой задаче Claude работает по инструкции — результат получается близким к нужному вам стилю. Сегодня прочитаем и разберём готовый Skill.</> }) : tr({ uz: <>Qiziq fikr! Lekin har safar qaytadan yozish shart emas, «iloji yo'q» ham emas. Ko'rsatmani bir marta yozib, saqlab qo'yish mumkin — Claude'da buni <b>Skill</b> deyishadi. Bugun tayyor Skill'ni o'qib, tahlil qilamiz.</>, ru: <>Интересная мысль! Но переписывать каждый раз не обязательно, и «невозможно» — тоже не так. Инструкцию можно один раз написать и сохранить — в Claude это называют <b>Skill</b>. Сегодня прочитаем и разберём готовый Skill.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -784,15 +783,15 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: { uz: "Skill nima — AI uchun yozma yo'riqnoma", ru: 'Что такое Skill — письменная инструкция для ИИ' }, tag: { uz: 'tushuncha', ru: 'понятие' } },
-    { text: { uz: 'SKILL.md tuzilishi: frontmatter + body', ru: 'Устройство SKILL.md: frontmatter + body' }, tag: { uz: 'struktura', ru: 'структура' } },
-    { text: { uz: "Skill AI xulqini qanday o'zgartiradi", ru: 'Как Skill меняет поведение ИИ' }, tag: { uz: 'xulq', ru: 'поведение' } },
-    { text: { uz: "Tayyor skillni o'qish va tahlil qilish", ru: 'Прочитать и разобрать готовый скилл' }, tag: { uz: 'tahlil', ru: 'разбор' } }
+    { text: { uz: 'SKILL.md tuzilishi: frontmatter + body', ru: 'Устройство SKILL.md: frontmatter + body' }, tag: { uz: 'tuzilish', ru: 'структура' } },
+    { text: { uz: "Claude Skill'ni qanday tanlaydi va ochadi", ru: 'Как Claude выбирает и открывает Skill' }, tag: { uz: 'ishlash', ru: 'работа' } },
+    { text: { uz: "Tayyor Skill'ni tahlil qilish", ru: 'Разбор готового Skill' }, tag: { uz: 'tahlil', ru: 'разбор' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: "dars davomida — shu skillni o'qiymiz", ru: 'в течение урока — читаем именно этот скилл' })}</p>
+      <p className="flow-label">{tr({ uz: "dars davomida — shu Skill'ni o'qiymiz", ru: 'на протяжении урока — читаем этот Skill' })}</p>
       <SkillMd minH={0} />
     </Col>
   );
@@ -805,11 +804,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI'ga <span className="italic" style={{ color: T.accent }}>qo'llanma</span> beramiz: Claude Skill.</>, ru: <>Дадим ИИ <span className="italic" style={{ color: T.accent }}>руководство</span>: Claude Skill.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Skill — bu zamonaviy va juda foydali narsa. Siz AI-ishchingizga bir marta aniq <b style={{ color: T.ink }}>yozma yo'riqnoma</b> berasiz, u esa har safar shunga amal qiladi. Bugun tayyorini o'qib, qanday tuzilganini tahlil qilamiz.</>, ru: <>Skill — вещь современная и очень полезная. Вы один раз даёте своему ИИ-работнику точную <b style={{ color: T.ink }}>письменную инструкцию</b>, а он каждый раз ей следует. Сегодня прочитаем готовую и разберём, как она устроена.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI'ga <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> beramiz: Claude Skill.</>, ru: <>Дадим ИИ <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>: Claude Skill.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Skill — AI uchun <b style={{ color: T.ink }}>qayta ishlatiladigan yozma yo'riqnoma</b>. Bir xil ishni qayta-qayta qilayotgan bo'lsangiz, uni qanday bajarish kerakligini Skill qilib yozib qo'yasiz. Bugun tayyorini o'qib, qanday tuzilganini ko'ramiz.</>, ru: <>Skill — это <b style={{ color: T.ink }}>многоразовая письменная инструкция</b> для ИИ. Если вы снова и снова делаете одну и ту же работу, вы один раз записываете, как её выполнять, в виде Skill. Сегодня прочитаем готовый и посмотрим, как он устроен.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Показать 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Skillni ko'rish", ru: '↩ Показать скилл' })}</button>{StepsB}</div>}
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Skill'ni ko'rish", ru: '↩ Показать Skill' })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -822,25 +821,25 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Tushuncha · skill', ru: 'Понятие · skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Misolni ko'ring", ru: 'Посмотрите пример' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Tushuncha · Skill', ru: 'Понятие · Skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Misolni ko'ring", ru: 'Посмотрите пример' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Skill — AI uchun <span className="italic" style={{ color: T.accent }}>yozma yo'riqnoma</span>.</>, ru: <>Skill — <span className="italic" style={{ color: T.accent }}>письменная инструкция</span> для ИИ.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Yangi xodimni tasavvur qiling: unga «bizda ishlar shunday qilinadi» degan qo'llanma berasiz. Skill — aynan shu, lekin AI uchun. Bir marta yozasiz, qayta-qayta ishlatasiz. Tugmani bosing.", ru: 'Представьте нового сотрудника: вы даёте ему руководство «у нас дела делаются так». Skill — это то же самое, но для ИИ. Пишете один раз, используете снова и снова. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Yangi xodimni tasavvur qiling: unga «bizda bu ish shunday qilinadi» degan qo'llanma berasiz. Skill — xuddi shunday qo'llanma, faqat AI uchun. Tugmani bosing.", ru: 'Представьте нового сотрудника: вы даёте ему руководство «у нас эта работа делается так». Skill — точно такое же руководство, только для ИИ. Нажмите кнопку.' })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📋 Skill nima?', ru: '📋 Что такое Skill?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta papkadagi <span className="mono">SKILL.md</span> fayl — AI'ga muayyan vazifani sizning usulingizda qanday bajarishni o'rgatadigan yo'riqnoma (va kerak bo'lsa, qo'shimcha fayllar).</>, ru: <>Файл <span className="mono">SKILL.md</span> в одной папке — инструкция, которая учит ИИ выполнять конкретную задачу вашим способом (и при необходимости — дополнительные файлы).</> })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📋 Skill nima?', ru: '📋 Что такое Skill?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta aniq vazifani qanday bajarishni tushuntiradigan yozma yo'riqnoma. U papkada saqlanadi: asosiy fayl — <span className="mono">SKILL.md</span>; kerak bo'lsa, yonida qo'shimcha fayllar ham turadi (namunalar, skriptlar).</>, ru: <>Письменная инструкция, которая объясняет, как выполнить одну конкретную задачу. Она хранится в папке: главный файл — <span className="mono">SKILL.md</span>; при необходимости рядом лежат дополнительные файлы (образцы, скрипты).</> })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Hayotdan misol?', ru: 'Пример из жизни?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎵 <b>Musiqachiga:</b> nota varag'i — har safar bir xil kuy chiqadi</>, ru: <>🎵 <b>Музыканту:</b> нотный лист — каждый раз выходит одна и та же мелодия</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎵 <b>Musiqachiga:</b> nota — har ijroda kuy tanish chiqadi</>, ru: <>🎵 <b>Музыканту:</b> ноты — при каждом исполнении мелодия звучит узнаваемо</> })}</p></div>
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🧑‍💼 <b>Xodimga:</b> ish qo'llanmasi — «bizda shunday qilinadi»</>, ru: <>🧑‍💼 <b>Сотруднику:</b> рабочее руководство — «у нас делается так»</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🤖 <b>AI'ga:</b> Skill — vazifani sizning usulingizda bajarish yo'riqnomasi</>, ru: <>🤖 <b>ИИ:</b> Skill — инструкция, как выполнить задачу вашим способом</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🤖 <b>AI'ga:</b> Skill — vazifani siz xohlagandek bajarish yo'riqnomasi</>, ru: <>🤖 <b>ИИ:</b> Skill — инструкция, как выполнить задачу так, как хотите вы</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Farqi: prompt — bir martalik gap; Skill — saqlanadigan, qayta ishlatiladigan yo'riqnoma. Endi uning ichini ochamiz.", ru: 'Разница: prompt — одноразовая реплика; Skill — сохранённая инструкция для многократного использования. Теперь заглянем внутрь.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Farqi: oddiy so'rov (prompt) — bir martalik gap; Skill — saqlanadigan, qayta ishlatiladigan yo'riqnoma. Endi uning ichini ochamiz.", ru: 'Разница: обычный запрос (prompt) — разовая реплика; Skill — сохранённая инструкция, которую можно использовать снова и снова. Теперь заглянем внутрь.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -859,10 +858,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = SKILL_PARTS.find(p => p.id === active);
   return (
-    <Stage eyebrow={{ uz: 'Struktura · SKILL.md', ru: 'Структура · SKILL.md' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 qismni oching (${seen.size}/3)`, ru: `Откройте 3 части (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Tuzilish · SKILL.md', ru: 'Структура · SKILL.md' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uchalasini oching (${seen.size}/3)`, ru: `Откройте все три (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tayyor skillni <span className="italic" style={{ color: T.accent }}>o'qiymiz</span>: 3 qismi bor.</>, ru: <><span className="italic" style={{ color: T.accent }}>Читаем</span> готовый скилл: у него 3 части.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana mini-do'kon uchun haqiqiy skill. Ikki qismdan iborat: <b style={{ color: T.ink }}>frontmatter</b> (pasport) va <b style={{ color: T.ink }}>body</b> (yo'riqnoma). Har qismni bosib, vazifasini oching.</>, ru: <>Вот настоящий скилл для мини-магазина. Он состоит из двух частей: <b style={{ color: T.ink }}>frontmatter</b> (паспорт) и <b style={{ color: T.ink }}>body</b> (инструкция). Нажимайте на каждую часть и открывайте её роль.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SKILL.md'ning <span className="italic" style={{ color: T.accent }}>ikki asosiy qismi</span> bor: frontmatter va body.</>, ru: <>У SKILL.md <span className="italic" style={{ color: T.accent }}>две основные части</span>: frontmatter и body.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana mini-do'kon uchun haqiqiy Skill. Yuqorida — <b style={{ color: T.ink }}>frontmatter</b>, ya'ni Skill haqida qisqa ma'lumot. Pastda — <b style={{ color: T.ink }}>body</b>, ya'ni asosiy yo'riqnoma. Frontmatter ichidagi description qatori alohida muhim, shuning uchun uni ham alohida ko'ramiz. Har birini bosing.</>, ru: <>Вот настоящий Skill для мини-магазина. Вверху — <b style={{ color: T.ink }}>frontmatter</b>, то есть краткие сведения о Skill. Ниже — <b style={{ color: T.ink }}>body</b>, то есть основная инструкция. Строка description внутри frontmatter особенно важна, поэтому её тоже рассмотрим отдельно. Нажмите на каждую часть.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -875,7 +874,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)} <span className="mono" style={{ color: T.accent, fontSize: 11, marginLeft: 6 }}>{cur.tok}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.desc)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Oddiy matn fayl — lekin kuchli. Frontmatter Claude'ga «bu nima» deydi, body esa «qanday qilish»ni.", ru: 'Обычный текстовый файл — но мощный. Frontmatter говорит Claude «что это», а body — «как это делать».' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Oddiy matn fayl. Frontmatter Claude'ga «bu Skill nima va qachon kerak» deydi, body esa «ishni qanday bajarish»ni.", ru: 'Обычный текстовый файл. Frontmatter говорит Claude «что это за Skill и когда он нужен», а body — «как выполнять работу».' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -893,22 +892,22 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Frontmatter · description', ru: 'Frontmatter · description' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Nega muhim?', ru: 'Почему это важно?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>description</span> — skillning eng <span className="italic" style={{ color: T.accent }}>muhim</span> qatori.</>, ru: <><span className="mono" style={{ color: T.accent }}>description</span> — самая <span className="italic" style={{ color: T.accent }}>важная</span> строка скилла.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Claude'da o'nlab skill bo'lishi mumkin. U qaysi birini ishlatishni qayerdan biladi? Aynan <b style={{ color: T.ink }}>description</b>dan. Tugmani bosing.</>, ru: <>У Claude могут быть десятки скиллов. Откуда он знает, какой применить? Именно из <b style={{ color: T.ink }}>description</b>. Нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>description</span> — Claude'ga kerakli Skill'ni <span className="italic" style={{ color: T.accent }}>topishga</span> yordam beradigan qator.</>, ru: <><span className="mono" style={{ color: T.accent }}>description</span> — строка, которая помогает Claude <span className="italic" style={{ color: T.accent }}>найти</span> нужный Skill.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Claude'da o'nlab Skill bo'lishi mumkin. U qaysi birini ishlatishni qayerdan biladi? Asosan <b style={{ color: T.ink }}>description</b>'dan. Tugmani bosing.</>, ru: <>У Claude могут быть десятки Skills. Откуда он знает, какой применить? В основном из <b style={{ color: T.ink }}>description</b>. Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="prompt-card" style={{ borderLeftColor: T.accent }}><span className="prompt-who" style={{ color: T.accent }}>description</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsulotlari uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товаров мини-магазина. Используется, когда дано название товара.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Description nega muhim?', ru: 'Чем важен description?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega muhim?', ru: 'Чем важен description?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔍 <b>Qachon:</b> «mahsulot nomi berilganda» — Claude shunga qarab bu skillni tanlaydi.</>, ru: <>🔍 <b>Когда:</b> «когда дано название товара» — именно по этому Claude выбирает этот скилл.</> })}</p></div>
-                  <div className="agent-card"><span className="agent-lbl">{tr({ uz: '💡 PROGRESSIVE DISCLOSURE (bosqichma-bosqich ochilish)', ru: '💡 PROGRESSIVE DISCLOSURE (пошаговое раскрытие)' })}</span><p className="agent-msg">{tr({ uz: "Claude DOIM faqat skill nomi va description'ini ko'radi (arzon). To'liq body esa faqat vazifa mos kelganda yuklanadi. Shuning uchun description aniq bo'lishi shart.", ru: 'Claude ВСЕГДА видит только имя скилла и его description (это дёшево). А полный body загружается, только когда задача совпала. Поэтому description обязан быть точным.' })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔍 <b>Nima va qachon:</b> «qisqa sotuvchi tavsif yozish» — Skill nima qiladi; «mahsulot nomi berilganda» — qachon ishlatiladi.</>, ru: <>🔍 <b>Что и когда:</b> «писать короткое продающее описание» — что делает Skill; «когда дано название товара» — когда его применять.</> })}</p></div>
+                  <div className="agent-card"><span className="agent-lbl">{tr({ uz: '💡 Claude qanday tanlaydi', ru: '💡 Как Claude выбирает' })}</span><p className="agent-msg">{tr({ uz: "Claude oldindan faqat har bir Skill'ning nomi va description'ini ko'rib turadi. Vazifa shu description'ga mos deb topsa, Skill'ning to'liq matnini ochadi.", ru: 'Claude заранее видит только имя и description каждого Skill. Если он решит, что задача подходит под этот description, он открывает полный текст Skill.' })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Noaniq description → Claude skillni ishlatmaydi yoki noto'g'ri ishlatadi. Aniq description → to'g'ri vaqtda ishga tushadi.", ru: 'Размытый description → Claude не применит скилл или применит не там. Точный description → скилл сработает вовремя.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Noaniq description → Claude Skill'ni kerakli paytda ishlatmasligi yoki noo'rin ishlatishi mumkin. Aniq description → to'g'ri paytda ishlatilish ehtimoli oshadi. Skill'ning ishga tushishini inglizcha <b>trigger</b> deyishadi.</>, ru: <>Размытый description → Claude может не применить Skill в нужный момент или применить не к месту. Точный description → шанс, что Skill сработает вовремя, выше. Срабатывание Skill по-английски называют <b>trigger</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -926,8 +925,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: "Body · yo'riqnoma", ru: 'Body · инструкция' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qadamlarni o'qing", ru: 'Прочитайте шаги' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Body — AI bajaradigan <span className="italic" style={{ color: T.accent }}>aniq qadamlar</span>.</>, ru: <>Body — <span className="italic" style={{ color: T.accent }}>точные шаги</span>, которые выполняет ИИ.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Body — skillning asosiy qismi: aniq, qadam-baqadam ko'rsatma + misol. Qancha aniq bo'lsa — natija shuncha izchil chiqadi. Tugmani bosing.", ru: 'Body — основная часть скилла: точная пошаговая инструкция + пример. Чем точнее — тем стабильнее результат. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Body — AI bajaradigan <span className="italic" style={{ color: T.accent }}>aniq qadamlar</span> va misol.</>, ru: <>Body — <span className="italic" style={{ color: T.accent }}>точные шаги</span> и пример для ИИ.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Body — Skill'ning asosiy yo'riqnomasi: qadamma-qadam ko'rsatma va misol. Qadamlar qancha aniq bo'lsa, natija shuncha bir xil chiqadi. Tugmani bosing.", ru: 'Body — основная инструкция Skill: пошаговые указания и пример. Чем точнее шаги, тем более одинаковым получается результат. Нажмите кнопку.' })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -944,11 +943,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔢 <b>Raqamlangan qadamlar:</b> AI ularni aniq bajaradi — hech narsa tashlab ketmaydi.</>, ru: <>🔢 <b>Нумерованные шаги:</b> ИИ выполняет их точно — ничего не пропускает.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✨ <b>Misol:</b> body oxiridagi namuna — AI uchun eng kuchli ko'rsatma (taqlid qiladi).</>, ru: <>✨ <b>Пример:</b> образец в конце body — самая сильная подсказка для ИИ (он ей подражает).</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔢 <b>Raqamlangan qadamlar:</b> tartibni aniq ko'rsatadi — AI biror qadamni tashlab ketish ehtimoli kamayadi.</>, ru: <>🔢 <b>Нумерованные шаги:</b> чётко задают порядок — ИИ реже пропускает какой-то шаг.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✨ <b>Misol:</b> kutilgan natija qanday ko'rinishini ko'rsatadi — AI nimaga intilishni yaxshiroq tushunadi.</>, ru: <>✨ <b>Пример:</b> показывает, как выглядит ожидаемый результат — ИИ лучше понимает, к чему стремиться.</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Noaniq body («yaxshi tavsif yoz») → har xil natija. Aniq qadamlar + misol → izchil natija.", ru: 'Размытый body («напиши хорошее описание») → разный результат. Точные шаги + пример → стабильный результат.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Noaniq body («yaxshi tavsif yoz») → har xil natija. Aniq qadamlar + misol → natija bir xil uslubga yaqin.", ru: 'Размытый body («напиши хорошее описание») → разный результат. Точные шаги + пример → результат ближе к одному стилю.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -964,21 +963,21 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Farq · skill vs system', ru: 'Разница · skill vs system' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Farq · Skill va system prompt', ru: 'Разница · Skill и system prompt' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Skill — <span className="italic" style={{ color: T.accent }}>system prompt</span>'dan farqi?</>, ru: <>Чем Skill отличается от <span className="italic" style={{ color: T.accent }}>system prompt</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Modul 8'da system prompt'ni ko'rdik (botning doimiy shaxsi). Skill biroz boshqacha — kerak bo'lganda yuklanadigan maxsus yo'riqnoma. Tugmani bosing.", ru: 'В модуле 8 мы разобрали system prompt (постоянная личность бота). Skill немного другое — специальная инструкция, которая загружается при необходимости. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Skill <span className="italic" style={{ color: T.accent }}>system prompt</span>'dan nimasi bilan farq qiladi?</>, ru: <>Чем Skill отличается от <span className="italic" style={{ color: T.accent }}>system prompt</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bot darslarida system prompt'ni ko'rgansiz — botga har suhbatda beriladigan doimiy ko'rsatma. Skill boshqacha: u faqat kerakli vazifada ochiladi. Tugmani bosing.", ru: 'На уроках про ботов вы видели system prompt — постоянную инструкцию, которую бот получает в каждом разговоре. Skill устроен иначе: он открывается только в нужной задаче. Нажмите кнопку.' })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>system prompt</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Doimiy shaxs/ohang — har bir javobda yoqilgan turadi. «Sen samimiy yordamchisan.»', ru: 'Постоянная личность/тон — включена в каждом ответе. «Ты — доброжелательный помощник.»' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>system prompt</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har suhbatda doim yoqilgan ko'rsatma — AI qanday ohangda gapirishini belgilaydi. «Sen samimiy yordamchisan.»", ru: 'Инструкция, которая включена в каждом разговоре, — задаёт, каким тоном говорит ИИ. «Ты — дружелюбный помощник.»' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Skill-chi?', ru: 'А Skill?' })}</button>
           </Col>
           <Col>
             {show
-              ? <div className="agent-card fade-step" style={{ borderLeftColor: T.success }}><span className="agent-lbl" style={{ color: T.success }}>📋 SKILL</span><p className="agent-msg">{tr({ uz: "Aniq VAZIFAGA maxsus yo'riqnoma — faqat o'sha vazifa kelganda yuklanadi. Ko'p skill bo'lishi mumkin; har biri o'z ishi uchun.", ru: 'Специальная инструкция под конкретную ЗАДАЧУ — загружается, только когда эта задача пришла. Скиллов может быть много; каждый под своё дело.' })}</p></div>
+              ? <div className="agent-card fade-step" style={{ borderLeftColor: T.success }}><span className="agent-lbl" style={{ color: T.success }}>{tr({ uz: '📋 Skill', ru: '📋 Skill' })}</span><p className="agent-msg">{tr({ uz: "Bitta aniq vazifa uchun yo'riqnoma — faqat o'sha vazifa kelganda ochiladi. Skill'lar ko'p bo'lishi mumkin, har biri o'z ishi uchun.", ru: 'Инструкция для одной конкретной задачи — открывается, только когда приходит эта задача. Skills может быть много, у каждого своё дело.' })}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sodda: <b>system prompt — kim u (doimiy); skill — muayyan vazifani qanday qilish (kerakda).</b> Ikkalasi birga ishlaydi.</>, ru: <>Просто: <b>system prompt — кто он (постоянно); skill — как сделать конкретную задачу (по необходимости).</b> Работают вместе.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sodda: <b>system prompt — AI umuman qanday tutishini belgilaydi (doim); Skill — AI bitta ishni qanday bajarishini belgilaydi (kerak bo'lganda).</b> Ikkalasi birga ishlaydi.</>, ru: <>Просто: <b>system prompt задаёт, как ИИ ведёт себя в целом (всегда); Skill — как ИИ выполняет одну работу (когда нужно).</b> Они работают вместе.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -994,32 +993,32 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = loaded;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Animatsiya · yuklanish', ru: 'Анимация · загрузка' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Vazifani yuboring', ru: 'Отправьте задачу' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Tushuncha · Skill'ning ochilishi", ru: 'Понятие · открытие Skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Vazifani yuboring', ru: 'Отправьте задачу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Claude faqat <span className="italic" style={{ color: T.accent }}>kerakli</span> skillni ochadi.</>, ru: <>Claude открывает только <span className="italic" style={{ color: T.accent }}>нужный</span> скилл.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Claude'da uchta skill bor. U doim faqat ularning nomi va description'ini ko'radi (arzon). Vazifa kelganda — faqat mos skill to'liq <b style={{ color: T.ink }}>ochiladi</b>. Tugmani bosing.</>, ru: <>У Claude три скилла. Он всё время видит только их имена и description (это дёшево). Когда приходит задача — полностью <b style={{ color: T.ink }}>открывается</b> только подходящий скилл. Нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Claude faqat <span className="italic" style={{ color: T.accent }}>kerakli</span> Skill'ni ochadi.</>, ru: <>Claude открывает только <span className="italic" style={{ color: T.accent }}>нужный</span> Skill.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Claude'da uchta Skill bor. U oldindan faqat ularning nomi va description'ini ko'rib turadi. Vazifa kelganda — mosini to'liq <b style={{ color: T.ink }}>ochadi</b>. Tugmani bosing.</>, ru: <>У Claude три Skills. Заранее он видит только их имена и description. Когда приходит задача, он полностью <b style={{ color: T.ink }}>открывает</b> подходящий. Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📩 Vazifa: <b>«Charm hamyon uchun tavsif yoz»</b></>, ru: <>📩 Задача: <b>«Напиши описание для кожаного кошелька»</b></> })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={loaded} onClick={() => { setLoaded(true); setSc(n => n + 1); }}>{loaded ? tr({ uz: '✓ Skill yuklandi', ru: '✓ Скилл загружен' }) : tr({ uz: '▶ Vazifani yuborish', ru: '▶ Отправить задачу' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={loaded} onClick={() => { setLoaded(true); setSc(n => n + 1); }}>{loaded ? tr({ uz: '✓ Skill ochildi', ru: '✓ Skill открыт' }) : tr({ uz: '▶ Vazifani yuborish', ru: '▶ Отправить задачу' })}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Claude'dagi skilllar javoni", ru: 'Шкаф скиллов у Claude' })}</p>
+            <p className="flow-label">{tr({ uz: "Claude'dagi Skill'lar", ru: 'Skills у Claude' })}</p>
             <div className="skill-shelf">
               {SHELF.map(s => {
                 const open = loaded && s.match;
                 const dim = loaded && !s.match;
                 return (
                   <div key={s.id} className={`skill-card ${open ? 'open' : ''} ${dim ? 'dim' : ''}`}>
-                    <div className="sc-head"><span className="sc-name mono">{s.match && loaded ? '📂' : '📄'} {s.name}</span>{open && <span className="loop-badge">{tr({ uz: 'yuklandi ✓', ru: 'загружен ✓' })}</span>}</div>
+                    <div className="sc-head"><span className="sc-name mono">{s.match && loaded ? '📂' : '📄'} {s.name}</span>{open && <span className="loop-badge">{tr({ uz: 'ochildi ✓', ru: 'открыт ✓' })}</span>}{dim && <span className="small" style={{ color: T.ink3 }}>{tr({ uz: 'yopiq', ru: 'закрыт' })}</span>}</div>
                     <div className="sc-desc">{tr(s.d)}</div>
                     {s.match && <div className="sc-body">▸ {tr(s.body)}</div>}
                   </div>
                 );
               })}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Faqat <b>mahsulot-tavsifi</b> ochildi (description mos keldi). Qolganlari yopiq qoldi. Shuning uchun yuzlab skill bo'lsa ham — tez va arzon.</>, ru: <>Открылся только <b>mahsulot-tavsifi</b> (description совпал). Остальные остались закрытыми. Поэтому даже с сотнями скиллов — быстро и дёшево.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Faqat <b>mahsulot-tavsifi</b> ochildi — uning description'i vazifaga mos keldi. Qolganlari yopiq qoldi. Nega bu muhim? AI bir vaqtda cheklangan hajmdagi matnni o'qiy oladi — buni <b>kontekst oynasi</b> deyishadi. Keraksiz Skill'lar ochilmagani uchun bu joy muhim ishga qoladi.</>, ru: <>Открылся только <b>mahsulot-tavsifi</b> — его description подошёл к задаче. Остальные остались закрытыми. Почему это важно? ИИ может одновременно читать текст ограниченного объёма — это называют <b>контекстным окном</b>. Лишние Skills не открылись, поэтому это место остаётся для важной работы.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1038,10 +1037,10 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = ANALYZE.find(a => a.id === active);
   return (
-    <Stage eyebrow={{ uz: 'Hayotiy · skillni tahlil', ru: 'Жизненное · разбор скилла' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Tahlil qiling (${seen.size}/3)`, ru: `Разберите (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Tahlil · tayyor Skill", ru: 'Разбор · готовый Skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Tahlil qiling (${seen.size}/3)`, ru: `Разберите (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu skill <span className="italic" style={{ color: T.accent }}>yaxshimi</span>? O'zingiz tahlil qiling.</>, ru: <>Этот скилл <span className="italic" style={{ color: T.accent }}>хорош</span>? Разберите сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Yaxshi skillni yomonidan ajratish — muhim mahorat (keyingi darsda o'zingiz yozasiz). Mana mini-do'kon skilli. 3 mezon bo'yicha tekshiring.", ru: 'Отличать хороший скилл от плохого — важное умение (на следующем уроке вы напишете свой). Вот скилл мини-магазина. Проверьте его по 3 критериям.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu Skill <span className="italic" style={{ color: T.accent }}>yaxshimi</span>? O'zingiz tahlil qiling.</>, ru: <>Этот Skill <span className="italic" style={{ color: T.accent }}>хороший</span>? Разберите сами.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Yaxshi Skill'ni yomonidan ajratish — muhim mahorat: 7-darsda o'zingiz yozasiz. 3 mezon bo'yicha tekshiring.", ru: 'Отличать хороший Skill от плохого — важное умение: на 7-м уроке вы напишете свой. Проверьте его по 3 критериям.' })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1054,7 +1053,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.q)}</p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.a)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yaxshi skill = aniq description + aniq qadamlar + misol. Bu uchtasi bo'lsa — AI uni xatosiz bajaradi. Keyingi darsda o'zingiz shunday yozasiz.", ru: 'Хороший скилл = точный description + точные шаги + пример. Если есть все три — ИИ выполнит его без ошибок. На следующем уроке вы напишете такой сами.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ fontSize: '1.12em' }}>Yaxshi Skill = aniq description + aniq qadamlar + yaxshi misol.</b> Shu uchtasi bo'lsa, natija siz kutganga ancha yaqin chiqadi. 7-darsda o'zingiz shunday yozasiz.</>, ru: <><b style={{ fontSize: '1.12em' }}>Хороший Skill = точный description + точные шаги + хороший пример.</b> Если есть все три, результат будет намного ближе к ожидаемому. На 7-м уроке вы напишете такой сами.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1067,29 +1066,29 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
-    questionText="Skill (super-kuch kartasi) AI xulqini qanday o'zgartiradi?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Skill AI <span className="italic" style={{ color: T.accent }}>xulqini</span> qanday o'zgartiradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как Skill меняет <span className="italic" style={{ color: T.accent }}>поведение</span> ИИ?</h2></> }}
+    questionText="Skill Claude'ning ishiga qanday ta'sir qiladi?"
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Skill <span className="italic" style={{ color: T.accent }}>Claude'ning ishiga</span> qanday ta'sir qiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как Skill влияет на <span className="italic" style={{ color: T.accent }}>работу Claude</span>?</h2></> }}
     options={[
-      { uz: "AI'ni shunchaki tezroq ishlashga majbur qiladi", ru: 'Просто заставляет ИИ работать быстрее' },
-      { uz: 'AI modelini kuchliroq modelga almashtiradi', ru: 'Меняет модель ИИ на более мощную' },
-      { uz: "AI'ni internetga ulab, yangi ma'lumot beradi", ru: 'Подключает ИИ к интернету и даёт новые данные' },
-      { uz: 'Super-kuch kartasini beradi — AI izchil, maxsus harakat qiladi', ru: 'Даёт карту суперсилы — ИИ действует стабильно и по-особому' }
+      { uz: "Claude'ni shunchaki tezroq ishlashga majbur qiladi", ru: 'Просто заставляет Claude работать быстрее' },
+      { uz: 'Claude modelini boshqa, kuchliroq modelga almashtiradi', ru: 'Меняет модель Claude на другую, более мощную' },
+      { uz: "Claude'ni internetga ulab, yangi ma'lumot beradi", ru: 'Подключает Claude к интернету и даёт новые данные' },
+      { uz: 'Vazifani qanday bajarish kerakligini aniq ko\'rsatadi', ru: 'Точно показывает, как нужно выполнить задачу' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Skill — bu super-kuch kartasi: aniq vaziyatda aniq harakat yo'riqnomasi. Vazifa unga mos kelsa, Claude karta ko'rsatmalarini o'qiydi va aynan shu bo'yicha ishlaydi — natija izchil va sizning usulingizda chiqadi.", ru: 'Верно! Skill — это карта суперсилы: инструкция точного действия в точной ситуации. Если задача ей подходит, Claude читает указания карты и работает именно по ним — результат выходит стабильным и в вашем стиле.' }}
+    explainCorrect={{ uz: "To'g'ri! Skill modelni o'zgartirmaydi — u Claude'ga shu vazifani qanday bajarishni aniq ko'rsatadi. Shuning uchun takroriy vazifalarda natija bir xil uslubga yaqin chiqadi.", ru: 'Верно! Skill не меняет модель — он точно показывает Claude, как выполнить эту задачу. Поэтому в повторяющихся задачах результат получается близким к одному стилю.' }}
     explainWrong={{
-      0: { uz: 'Skill tezlik haqida emas — u xulqni (qanday bajarishni) aniqlashtiradi.', ru: 'Skill не про скорость — он уточняет поведение (как именно выполнять).' },
-      1: { uz: "Skill modelni almashtirmaydi — u o'sha qahramonga aniq super-kuch kartasini beradi.", ru: 'Skill не меняет модель — он даёт тому же герою точную карту суперсилы.' },
-      2: { uz: "Internet bilan bog'liq emas — Skill bu yozma yo'riqnoma (karta).", ru: 'С интернетом это не связано — Skill это письменная инструкция (карта).' },
-      default: { uz: "Skill AI'ga aniq yo'riqnoma — super-kuch kartasini — yuklaydi.", ru: 'Skill загружает ИИ точную инструкцию — карту суперсилы.' }
+      0: { uz: 'Skill tezlik haqida emas — u ishni qanday bajarishni aniqlashtiradi.', ru: 'Skill не про скорость — он уточняет, как выполнять работу.' },
+      1: { uz: "Skill modelni almashtirmaydi — o'sha Claude yo'riqnomaga qarab ishlaydi.", ru: 'Skill не меняет модель — тот же Claude работает по инструкции.' },
+      2: { uz: "Skill o'zi internetga ulamaydi — u yozma yo'riqnoma.", ru: 'Сам Skill к интернету не подключает — это письменная инструкция.' },
+      default: { uz: "Skill Claude'ga vazifani qanday bajarishni ko'rsatadi.", ru: 'Skill показывает Claude, как выполнить задачу.' }
     }} />
 );
 
-// ===== SCREEN 7 — MARKAZIY: KARTASIZ SINA → KARTANI JIHOZLA (challenge, ACH powerCard + bonus beforeAfter) =====
-// Tanlov `id` bo'yicha tekshiriladi (til-mustaqil); `label` — faqat ko'rinadigan matn
+// ===== SCREEN 7 — MARKAZIY: SKILL'SIZ SINA → CLAUDE O'RNIDA SKILL TANLA (challenge, ACH powerCard + bonus beforeAfter) =====
+// Tanlov `id` bo'yicha tekshiriladi (til-mustaqil); `name` — Skill nomi (KOD), `d` — tugma ostidagi description
 const CARD_OPTS = [
-  { id: 'desc', label: { uz: 'mahsulot-tavsifi kartasi', ru: 'карта mahsulot-tavsifi' }, ok: true },
-  { id: 'email', label: { uz: 'mijoz-xati kartasi', ru: 'карта mijoz-xati' }, ok: false },
-  { id: 'sql', label: { uz: 'hisobot-sql kartasi', ru: 'карта hisobot-sql' }, ok: false }
+  { id: 'desc', name: 'mahsulot-tavsifi', d: { uz: 'mahsulot uchun qisqa sotuvchi tavsif yozish', ru: 'писать короткое продающее описание для товара' }, ok: true },
+  { id: 'email', name: 'mijoz-xati', d: { uz: 'mijozga rasmiy xat yozish', ru: 'писать официальное письмо клиенту' }, ok: false },
+  { id: 'sql', name: 'hisobot-sql', d: { uz: 'sotuv hisoboti uchun SQL yozish', ru: 'писать SQL для отчёта о продажах' }, ok: false }
 ];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1106,25 +1105,25 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!ok && achMiss) achMiss.miss(screen);
     if (firstRef.current === null) firstRef.current = ok;
     setSc(n => n + 1);
-    onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "Qahramonga qaysi super-kuch kartasini jihozlaysiz?", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok, bonus: ok });
+    onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "Vazifaga mos Skill'ni description'ga qarab tanlang", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok, bonus: ok });
   };
   return (
-    <Stage eyebrow={{ uz: 'Markaziy · kartani jihozlash', ru: 'Главное · экипируем карту' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (tried ? { uz: "To'g'ri kartani jihozlang", ru: 'Экипируйте верную карту' } : { uz: 'Avval kartasiz sinang', ru: 'Сначала попробуйте без карты' })} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Markaziy · Skill'ni tanlash", ru: 'Главное · выбор Skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (tried ? { uz: "To'g'ri Skill'ni tanlang", ru: 'Выберите нужный Skill' } : { uz: "Avval Skill'siz sinang", ru: 'Сначала попробуйте без Skill' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qahramonni <span className="italic" style={{ color: T.accent }}>kartasiz</span> sinang, keyin kartani <span className="italic" style={{ color: T.accent }}>jihozlang</span>.</>, ru: <>Испытайте героя <span className="italic" style={{ color: T.accent }}>без карты</span>, а потом <span className="italic" style={{ color: T.accent }}>экипируйте</span> карту.</> })}</h2></div>
-        <Mentor>{tr({ uz: "AI — ko'p narsani biladigan qahramon, lekin kartasiz javobi «o'rtacha» chiqadi. Avval kartasiz sinab ko'ring, so'ng vazifaga MOS super-kuch kartasini jihozlang.", ru: 'ИИ — герой, который знает много, но без карты его ответ выходит «средним». Сначала попробуйте без карты, потом экипируйте ПОДХОДЯЩУЮ задаче карту суперсилы.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Avval <span className="italic" style={{ color: T.accent }}>Skill'siz</span> sinang, keyin Claude o'rnida to'g'ri <span className="italic" style={{ color: T.accent }}>Skill'ni</span> tanlang.</>, ru: <>Сначала попробуйте <span className="italic" style={{ color: T.accent }}>без Skill</span>, потом на месте Claude выберите нужный <span className="italic" style={{ color: T.accent }}>Skill</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Skill'siz Claude umumiy javob beradi — avval shuni ko'ring. Keyin Claude o'rnida bo'ling: uchta Skill'ning description'iga qarab, vazifaga mosini tanlang.", ru: 'Без Skill Claude даёт общий ответ — сначала посмотрите на него. Потом побудьте на месте Claude: глядя на description трёх Skills, выберите тот, что подходит задаче.' })}</Mentor>
         <div className="prompt-card" style={{ borderLeftColor: T.accent }}><span className="prompt-who" style={{ color: T.accent }}>{tr({ uz: 'vazifa', ru: 'задача' })}</span><p className="prompt-text">{tr({ uz: '«Charm hamyon uchun sotuvchi tavsif yoz»', ru: '«Напиши продающее описание для кожаного кошелька»' })}</p></div>
         <div className="split">
           <Col>
             <div className="sk-info" style={{ }}>
-              <p className="note-h" style={{ color: T.danger }}>{tr({ uz: "❌ Kartasiz — o'rtacha javob", ru: '❌ Без карты — средний ответ' })}</p>
-              {tried ? <p className="body fade-step" style={{ margin: 0, color: T.ink }}>{tr({ uz: '«Bu yuqori sifatli charm hamyon zamonaviy dizayni bilan ajralib turadi va uzoq muddat xizmat qiladi...» (uzun, quruq, narxsiz)', ru: '«Данный высококачественный кожаный кошелёк отличается современным дизайном и прослужит долгое время...» (длинно, сухо, без цены)' })}</p>
+              <p className="note-h" style={{ color: T.danger }}>{tr({ uz: "❌ Skill'siz — umumiy javob", ru: '❌ Без Skill — общий ответ' })}</p>
+              {tried ? <p className="body fade-step" style={{ margin: 0, color: T.ink }}>{tr({ uz: '«Bu yuqori sifatli charm hamyon zamonaviy dizayni bilan ajralib turadi va uzoq muddat xizmat qiladi...» (uzun, narxsiz)', ru: '«Этот высококачественный кожаный кошелёк отличается современным дизайном и прослужит долгое время...» (длинно, без цены)' })}</p>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Kartasiz sinadingiz', ru: '✓ Вы попробовали без карты' }) : tr({ uz: "▶ Kartasiz sinab ko'rish", ru: '▶ Попробовать без карты' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Sinadingiz', ru: '✓ Попробовали' }) : tr({ uz: "▶ Skill'siz sinab ko'rish", ru: '▶ Попробовать без Skill' })}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'vazifaga mos kartani jihozlang', ru: 'экипируйте карту, подходящую задаче' })}</p>
+            <p className="flow-label">{tr({ uz: "vazifaga mos Skill'ni tanlang", ru: 'выберите Skill, подходящий задаче' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {CARD_OPTS.map(o => {
                 const on = picked === o.id;
@@ -1132,14 +1131,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 if (solved && o.ok) cls += ' on';
                 return (
                   <button key={o.id} className={cls} disabled={!tried || solved} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}>
-                    <span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span>
+                    <span className="radio">{on && <span className="radio-dot" />}</span><span style={{ display: 'flex', flexDirection: 'column', gap: 2 }}><span className="mono" style={{ fontWeight: 700 }}>{o.name}</span><span className="small" style={{ color: T.ink2 }}>{tr(o.d)}</span></span>
                   </button>
                 );
               })}
             </div>
             {!solved && <AchRule screen={screen} />}
-            {picked && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu karta bu vazifaga mos emas — uning description'i boshqa ishga yonadi. Vazifa «mahsulot tavsifi» — mos kartani tanlang.", ru: 'Эта карта задаче не подходит — её description срабатывает на другое дело. Задача — «описание товара»: выберите подходящую карту.' })}</p></div>}
-            {solved && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Karta bilan — aniq, maxsus harakat', ru: '✅ С картой — точное, особое действие' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Yengil va pishiq charm hamyon 👜 Kundalik uchun ideal. Atigi 120 000 so'm — Savatga qo'shing!» Bir xil qahramon, bir xil vazifa — lekin karta natijani sizning standartingizga soldi.", ru: '«Лёгкий и прочный кожаный кошелёк 👜 Идеален на каждый день. Всего 120 000 сум — Добавьте в корзину!» Тот же герой, та же задача — но карта привела результат к вашему стандарту.' })}</p></div>}
+            {picked && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu Skill'ning description'i boshqa ishga mos. Vazifa — mahsulot tavsifi. Mos Skill'ni tanlang.", ru: 'description этого Skill подходит для другой работы. Задача — описание товара. Выберите подходящий Skill.' })}</p></div>}
+            {solved && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Skill bilan', ru: '✅ Со Skill' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Yengil va pishiq charm hamyon 👜 Kundalik uchun ideal. Atigi 120 000 so'm — Savatga qo'shing!» Bir xil AI, bir xil vazifa — lekin Skill natijani siz yozgan qoidalarga moslab berdi.", ru: '«Лёгкий и прочный кожаный кошелёк 👜 Идеален на каждый день. Всего 120 000 сум — Добавьте в корзину!» Тот же ИИ, та же задача — но Skill подогнал результат под правила, которые вы написали.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1151,48 +1150,48 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen8 = (props) => (
   <QuestionScreen {...props} idx={8} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
     questionText="SKILL.md'dagi description nima uchun kerak?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>SKILL.md'dagi <span className="mono" style={{ color: T.accent }}>description</span> nima uchun?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Зачем нужен <span className="mono" style={{ color: T.accent }}>description</span> в SKILL.md?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>SKILL.md'dagi <span className="mono" style={{ color: T.accent }}>description</span> nima uchun kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Зачем нужен <span className="mono" style={{ color: T.accent }}>description</span> в SKILL.md?</h2></> }}
     options={[
-      { uz: 'Claude shu kartani qachon ishlatishni biladi — vazifa mos kelsa yonadi', ru: 'Чтобы Claude знал, когда применять эту карту — она срабатывает при совпадении задачи' },
-      { uz: "Skillni chiroyli va bezakli ko'rsatish uchun", ru: 'Чтобы скилл выглядел красиво и нарядно' },
-      { uz: "Faqat odam o'qishi uchun — Claude uni umuman ko'rmaydi", ru: 'Только для чтения человеком — Claude его вообще не видит' },
-      { uz: 'AI modelini (kuchliroq/kuchsizroq) tanlash uchun', ru: 'Чтобы выбрать модель ИИ (помощнее/послабее)' }
+      { uz: "Claude Skill'ni qaysi vazifada ishlatishni bilishi uchun", ru: 'Чтобы Claude знал, в какой задаче применять Skill' },
+      { uz: "Skill faylini chiroyli va bezakli ko'rsatish uchun", ru: 'Чтобы файл Skill выглядел красиво и нарядно' },
+      { uz: "Faqat odam o'qishi uchun — Claude uni ko'rmaydi", ru: 'Только чтобы читал человек — Claude его не видит' },
+      { uz: 'Qaysi AI modeli ishlashini tanlab berish uchun', ru: 'Чтобы выбрать, какая модель ИИ будет работать' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! description — kartaning «qachon yonadi» maydoni. Claude DOIM uni ko'radi va vazifa unga mos kelsa, kartani ishga soladi. Noaniq description → kuch noto'g'ri paytda yonadi yoki umuman yonmaydi.", ru: 'Верно! description — это поле карты «когда срабатывает». Claude видит его ВСЕГДА и запускает карту, если задача совпала. Размытый description → сила сработает не вовремя или не сработает совсем.' }}
+    explainCorrect={{ uz: "To'g'ri! Claude har bir Skill'ning description'ini oldindan ko'rib turadi va vazifa unga mos kelsa, o'sha Skill'ni ochadi. Description noaniq bo'lsa, Skill kerakli paytda ishlamasligi yoki noo'rin ishlashi mumkin.", ru: 'Верно! Claude заранее видит description каждого Skill и, если задача ему подходит, открывает этот Skill. Если description размытый, Skill может не сработать в нужный момент или сработать не к месту.' }}
     explainWrong={{
-      1: { uz: 'description bezak emas — u Claude uchun «qachon ishlat» signali (trigger).', ru: 'description — не украшение, а сигнал для Claude «когда применять» (триггер).' },
-      2: { uz: "Aksincha — Claude description'ni doim o'qiydi; aynan shunga qarab kartani tanlaydi.", ru: 'Наоборот — Claude читает description всегда; именно по нему он выбирает карту.' },
-      3: { uz: 'description model tanlamaydi — u kuch qachon yonishini belgilaydi.', ru: 'description не выбирает модель — он задаёт, когда срабатывает сила.' },
-      default: { uz: 'description — Claude qachon kartani ishlatishini bildiradi.', ru: 'description сообщает Claude, когда применять карту.' }
+      1: { uz: "description bezak emas — Claude shunga qarab Skill'ni tanlaydi.", ru: 'description — не украшение: по нему Claude выбирает Skill.' },
+      2: { uz: "Aksincha — Claude description'ni oldindan ko'rib turadi.", ru: 'Наоборот — Claude заранее видит description.' },
+      3: { uz: 'description modelni tanlamaydi — u Skill qachon kerakligini aytadi.', ru: 'description не выбирает модель — он говорит, когда нужен Skill.' },
+      default: { uz: 'description — Skill qaysi vazifada kerakligini bildiradi.', ru: 'description сообщает, в какой задаче нужен Skill.' }
     }} />
 );
 
 // ===== SCREEN 10 — TEST 3 =====
 const Screen10 = (props) => (
   <QuestionScreen {...props} idx={10} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText="Skillning to'liq yo'riqnomasi (body) qachon yuklanadi?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kartaning to'liq <span className="italic" style={{ color: T.accent }}>kuchi (body)</span> qachon ochiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Когда открывается полная <span className="italic" style={{ color: T.accent }}>сила карты (body)</span>?</h2></> }}
+    questionText="Skill'ning to'liq matni (body) qachon o'qiladi?"
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Skill'ning <span className="italic" style={{ color: T.accent }}>to'liq matni (body)</span> qachon o'qiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Когда читается <span className="italic" style={{ color: T.accent }}>полный текст (body)</span> Skill?</h2></> }}
     options={[
-      { uz: "Har bir so'rovda, doim — hamma karta to'liq ochiq turadi", ru: 'На каждом запросе, всегда — все карты открыты целиком' },
-      { uz: 'Faqat tunda yoki maxsus vaqtda', ru: 'Только ночью или в особое время' },
-      { uz: "Vazifa uning description'iga mos kelganda — kuch faqat kerakli paytda yonadi", ru: 'Когда задача совпала с её description — сила срабатывает только в нужный момент' },
-      { uz: "Hech qachon — Claude faqat karta nomini ko'radi, ichini emas", ru: 'Никогда — Claude видит только имя карты, но не её содержимое' }
+      { uz: "Har bir so'rovda — hamma Skill doim to'liq ochiq", ru: 'На каждом запросе — все Skills всегда открыты целиком' },
+      { uz: 'Faqat kechasi yoki belgilangan vaqtda', ru: 'Только ночью или в назначенное время' },
+      { uz: "Claude vazifa shu Skill'ga mos deb topganda", ru: 'Когда Claude решит, что задача подходит этому Skill' },
+      { uz: "Hech qachon — Claude faqat Skill nomini ko'radi", ru: 'Никогда — Claude видит только имя Skill' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Bu — progressive disclosure. Claude doim faqat nom + description'ni ko'radi (arzon). To'liq body (kuch) esa faqat vazifa o'sha kartaga mos kelganda ochiladi. Shuning uchun yuzlab karta bo'lsa ham tizim tez ishlaydi.", ru: 'Верно! Это и есть progressive disclosure. Claude всё время видит только имя + description (дёшево). А полный body (сила) открывается, только когда задача совпала с этой картой. Поэтому даже с сотнями карт система работает быстро.' }}
+    explainCorrect={{ uz: "To'g'ri! Claude oldindan faqat nom va description'ni ko'radi. To'liq matnni esa vazifa shu Skill'ga mos deb topgandagina o'qiydi. Buni progressive disclosure (bosqichma-bosqich ochish) deyishadi.", ru: 'Верно! Заранее Claude видит только имя и description. А полный текст читает, только когда решит, что задача подходит этому Skill. Это называют progressive disclosure (поэтапное раскрытие).' }}
     explainWrong={{
-      0: { uz: "Har so'rovda barcha kartalarni to'liq ochish — bekorga sekin va qimmat. Faqat mos kelgani ochiladi.", ru: 'Открывать все карты целиком на каждом запросе — зря медленно и дорого. Открывается только подходящая.' },
-      1: { uz: "Vaqt bilan bog'liq emas — mos kelish (description) bilan bog'liq.", ru: 'Со временем это не связано — связано с совпадением (description).' },
-      3: { uz: "body ham o'qiladi — lekin faqat vazifa mos kelganda. Aks holda karta foydasiz bo'lardi.", ru: 'body тоже читается — но только при совпадении задачи. Иначе карта была бы бесполезной.' },
-      default: { uz: "body vazifa description'ga mos kelganda yuklanadi.", ru: 'body загружается, когда задача совпала с description.' }
+      0: { uz: "Hamma Skill'ni har so'rovda to'liq o'qish AI'ning ish joyini bekorga to'ldirardi. Faqat keraklisi ochiladi.", ru: 'Если читать все Skills целиком на каждом запросе, рабочее место ИИ заполнялось бы зря. Открывается только нужный.' },
+      1: { uz: "Vaqtga bog'liq emas — vazifa mos kelishiga bog'liq.", ru: 'Дело не во времени — дело в том, подходит ли задача.' },
+      3: { uz: "Body ham o'qiladi — lekin faqat kerak bo'lganda. Aks holda Skill foydasiz bo'lardi.", ru: 'Body тоже читается — но только когда нужно. Иначе Skill был бы бесполезен.' },
+      default: { uz: 'Body Claude vazifa mos deb topganda o\'qiladi.', ru: 'Body читается, когда Claude решит, что задача подходит.' }
     }} />
 );
 
-// ===== SCREEN 13 — BUILDER: RIGHT TRIGGER (challenge, ACH rightTrigger) =====
+// ===== SCREEN 13 — BUILDER: BU SKILL QAYSI VAZIFADA ISHGA TUSHADI (challenge, ACH rightTrigger) =====
 // Tanlov `id === 'b'` bo'yicha tekshiriladi (til-mustaqil); `label`/`why` — ko'rinadigan matn
 const TRIGGER_SITS = [
-  { id: 'a', label: { uz: '«Mijozga rasmiy uzr xati yoz»', ru: '«Напиши клиенту официальное письмо с извинениями»' }, ok: false, why: { uz: 'Bu — xat vazifasi; mahsulot-tavsifi kartasi bunga yonmaydi.', ru: 'Это задача про письмо; карта mahsulot-tavsifi на неё не сработает.' } },
+  { id: 'a', label: { uz: '«Mijozga rasmiy uzr xati yoz»', ru: '«Напиши клиенту официальное письмо с извинениями»' }, ok: false, why: { uz: 'Bu — xat vazifasi. description mos kelmaydi, shuning uchun bu Skill ochilmaydi.', ru: 'Это задача про письмо. description не подходит, поэтому этот Skill не открывается.' } },
   { id: 'b', label: { uz: '«Yangi krossovka uchun sotuvchi tavsif yoz»', ru: '«Напиши продающее описание для новых кроссовок»' }, ok: true },
-  { id: 'c', label: { uz: "«Sotuv hisobotini SQL'da chiqar»", ru: '«Выведи отчёт о продажах на SQL»' }, ok: false, why: { uz: 'Bu — hisobot/SQL vazifasi; boshqa karta kerak.', ru: 'Это задача про отчёт/SQL; нужна другая карта.' } }
+  { id: 'c', label: { uz: "«Sotuv hisobotini SQL'da chiqar»", ru: '«Выведи отчёт о продажах на SQL»' }, ok: false, why: { uz: 'Bu — hisobot vazifasi, unga boshqa Skill kerak. description mos kelmaydi.', ru: 'Это задача про отчёт, для неё нужен другой Skill. description не подходит.' } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1207,14 +1206,14 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const ok = id === 'b';
     if (!ok && achMiss) achMiss.miss(screen);
     if (firstRef.current === null) firstRef.current = ok;
-    onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "mahsulot-tavsifi kartasi qaysi vaziyatda yonadi?", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok });
+    onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "mahsulot-tavsifi Skill'i qaysi vazifada ishga tushadi?", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok });
   };
   return (
-    <Stage eyebrow={{ uz: "Amaliy · to'g'ri trigger", ru: 'Практика · верный триггер' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Kuch qaysi vaziyatda yonadi?', ru: 'В какой ситуации сработает сила?' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Amaliy · qaysi vazifada', ru: 'Практика · в какой задаче' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Mos vazifani tanlang', ru: 'Выберите подходящую задачу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kuch qaysi <span className="italic" style={{ color: T.accent }}>vaziyatda</span> yonadi?</>, ru: <>В какой <span className="italic" style={{ color: T.accent }}>ситуации</span> сработает сила?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Karta description'i «mahsulot tavsifi yozish, mahsulot nomi berilganda» deydi. Uch vazifadan qaysi biriga aynan shu karta yonishi kerak? description'ga qarab tanlang.", ru: 'В description карты написано: «писать описание товара, когда дано название товара». На какую из трёх задач должна сработать именно эта карта? Выбирайте, глядя на description.' })}</Mentor>
-        <div className="prompt-card"><span className="prompt-who">{tr({ uz: '🎴 karta: mahsulot-tavsifi · description', ru: '🎴 карта: mahsulot-tavsifi · description' })}</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsuloti uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товара мини-магазина. Используется, когда дано название товара.' })}</p></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu Skill qaysi <span className="italic" style={{ color: T.accent }}>vazifada</span> ishga tushadi?</>, ru: <>В какой <span className="italic" style={{ color: T.accent }}>задаче</span> срабатывает этот Skill?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Skill'ning description'i: «mahsulot uchun qisqa sotuvchi tavsif yozish, mahsulot nomi berilganda». Claude o'rnida bo'ling: uch vazifadan qaysi biri shu Skill'ni ochadi?", ru: 'description этого Skill: «писать короткое продающее описание для товара, когда дано название товара». Побудьте на месте Claude: какая из трёх задач откроет этот Skill?' })}</Mentor>
+        <div className="prompt-card"><span className="prompt-who">{tr({ uz: '📄 mahsulot-tavsifi · description', ru: '📄 mahsulot-tavsifi · description' })}</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsuloti uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товара мини-магазина. Используется, когда дано название товара.' })}</p></div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {TRIGGER_SITS.map(s => {
             let cls = 'pick-row';
@@ -1222,14 +1221,14 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             return (
               <button key={s.id} className={cls} disabled={solved} onClick={() => pick(s.id)}>
                 <span style={{ flex: 1 }}>{tr(s.label)}</span>
-                <span className="pick-plus">{solved && s.ok ? '⚡' : '+'}</span>
+                <span className="pick-plus">{solved && s.ok ? '✓' : '+'}</span>
               </button>
             );
           })}
         </div>
         {!solved && <AchRule screen={screen} />}
-        {cur && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)} {tr({ uz: "description mos kelmasa — karta yonmaydi.", ru: 'Если description не совпал — карта не сработает.' })}</p></div>}
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✅ To'g'ri! description «mahsulot tavsifi»ga mos vazifada karta yonadi. Aniq description = kuch aynan kerakli paytda ishga tushadi.", ru: '✅ Верно! Карта срабатывает на задаче, совпавшей с description «описание товара». Точный description = сила включается именно в нужный момент.' })}</p></div>}
+        {cur && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)}</p></div>}
+        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✅ To'g'ri! Vazifa description'ga mos — Claude shu Skill'ni ochadi. Aniq description Skill'ni kerakli paytda ishlatishga yordam beradi.", ru: '✅ Верно! Задача подходит под description — Claude откроет этот Skill. Точный description помогает применять Skill в нужный момент.' })}</p></div>}
       </div>
     </Stage>
   );
@@ -1238,24 +1237,24 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — TEST 4 =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} idx={14} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
-    questionText="Bir xil vazifani AI'ga qayta-qayta tushuntirayapsiz. Eng yaxshi yechim?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bir xil vazifani AI'ga <span className="italic" style={{ color: T.accent }}>qayta-qayta</span> tushuntirayapsiz. Eng yaxshi yechim?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Вы <span className="italic" style={{ color: T.accent }}>снова и снова</span> объясняете ИИ одну и ту же задачу. Лучшее решение?</h2></> }}
+    questionText="Bir xil vazifani AI'ga qayta-qayta tushuntiryapsiz. Eng yaxshi yechim qaysi?"
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bir xil vazifani AI'ga <span className="italic" style={{ color: T.accent }}>qayta-qayta</span> tushuntiryapsiz. Eng yaxshi yechim qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Вы <span className="italic" style={{ color: T.accent }}>снова и снова</span> объясняете ИИ одну и ту же задачу. Какое решение лучше всего?</h2></> }}
     options={[
-      { uz: "Har safar yana qo'lda, boshidan tushuntiraveraman", ru: 'Каждый раз снова объяснять вручную, с самого начала' },
+      { uz: "Har safar qo'lda, boshidan tushuntiraveraman", ru: 'Каждый раз объяснять вручную, с самого начала' },
       { uz: "AI'dan bu vazifada butunlay voz kechaman", ru: 'Совсем отказаться от ИИ в этой задаче' },
-      { uz: 'Kuchliroq (qimmatroq) AI modelini sotib olaman', ru: 'Купить более мощную (и дорогую) модель ИИ' },
-      { uz: 'Super-kuch kartasi (SKILL.md) yozaman — AI shunga amal qiladi', ru: 'Написать карту суперсилы (SKILL.md) — ИИ будет ей следовать' }
+      { uz: 'Kuchliroq, qimmatroq AI modelini olaman', ru: 'Взять более мощную и дорогую модель ИИ' },
+      { uz: "Yo'riqnomani bir marta yozib, saqlab qo'yaman", ru: 'Один раз написать инструкцию и сохранить её' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Takrorlanuvchi vazifa — Skill uchun mukammal nomzod. Yo'riqnomani bir marta kartaga yozasiz, keyin AI har safar shunga amal qiladi. Vaqt tejaladi va natija izchil bo'ladi.", ru: 'Верно! Повторяющаяся задача — идеальный кандидат для Skill. Инструкцию вы записываете в карту один раз, дальше ИИ каждый раз ей следует. Время экономится, результат становится стабильным.' }}
+    explainCorrect={{ uz: "To'g'ri! Takrorlanadigan vazifa — Skill uchun eng yaxshi nomzod. Yo'riqnomani bir marta SKILL.md'ga yozasiz, keyin Claude shu vazifada unga qarab ishlaydi. Vaqt tejaladi, natija bir xil uslubga yaqin chiqadi.", ru: 'Верно! Повторяющаяся задача — лучший кандидат для Skill. Вы один раз записываете инструкцию в SKILL.md, а дальше в этой задаче Claude работает по ней. Время экономится, результат получается близким к одному стилю.' }}
     explainWrong={{
-      0: { uz: "Qo'lda qayta-qayta tushuntirish — vaqt isrofi va natija har xil. Karta aynan shu muammoni yechadi.", ru: 'Объяснять вручную снова и снова — трата времени, и результат разный. Карта решает именно эту проблему.' },
-      1: { uz: 'Voz kechish — yechim emas. Karta bilan AI aynan sizga kerakli ishni qiladi.', ru: 'Отказ — не решение. С картой ИИ сделает именно то, что вам нужно.' },
-      2: { uz: 'Muammo model kuchida emas — sizga izchillik kerak. Buni karta beradi.', ru: 'Проблема не в мощности модели — вам нужна стабильность. Её даёт карта.' },
-      default: { uz: 'Takrorlanuvchi vazifaga — super-kuch kartasi (Skill) yozish.', ru: 'Для повторяющейся задачи — написать карту суперсилы (Skill).' }
+      0: { uz: "Qo'lda qayta-qayta tushuntirish — vaqt isrofi, natija ham har xil.", ru: 'Объяснять вручную снова и снова — трата времени, и результат каждый раз разный.' },
+      1: { uz: 'Voz kechish — yechim emas.', ru: 'Отказаться — это не решение.' },
+      2: { uz: "Muammo model kuchida emas — sizga bir xil uslub kerak. Buni saqlangan yo'riqnoma (Skill) beradi.", ru: 'Проблема не в мощности модели — вам нужен один стиль. Его даёт сохранённая инструкция (Skill).' },
+      default: { uz: 'Takrorlanadigan vazifaga — Skill yozish.', ru: 'Для повторяющейся задачи — написать Skill.' }
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: KARTA ISHLASH OQIMI (DragDropOrder, ACH cardMaster) =====
+// ===== SCREEN 15 — YAKUNIY: SKILL ISHLASH TARTIBI (DragDropOrder, ACH cardMaster) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
@@ -1269,7 +1268,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     fired.current = true;
     const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Skill ishlash oqimini to'g'ri tartibda yig'ing", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Skill qanday ishga tushishini to'g'ri tartibda yig'ing", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
   const onChange = (slots) => {
     if (fired.current) return;
@@ -1280,23 +1279,22 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     hadWrongRef.current = true; if (achMiss) achMiss.miss(screen); setWrong(true);
   };
   return (
-    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: karta qanday <span className="italic" style={{ color: T.accent }}>ishga tushishini</span> to'g'ri tartibda yig'ing.</>, ru: <>Последний шаг: соберите в верном порядке, как <span className="italic" style={{ color: T.accent }}>срабатывает</span> карта.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Vazifa kelganda karta qanday yonadi? Bo'laklarni sudrab to'g'ri tartibga joylang: vazifa keladi → description mos → karta yuklanadi → yo'riqnomaga amal → izchil natija.", ru: 'Как срабатывает карта, когда приходит задача? Перетащите кусочки в верном порядке: приходит задача → description совпал → карта загружается → действие по инструкции → стабильный результат.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: Skill qanday <span className="italic" style={{ color: T.accent }}>ishga tushishini</span> to'g'ri tartibda yig'ing.</>, ru: <>Последний шаг: соберите в верном порядке, как Skill <span className="italic" style={{ color: T.accent }}>срабатывает</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Vazifa kelganda Skill qanday ishga tushadi? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Как срабатывает Skill, когда приходит задача? Разложите кусочки в верном порядке.' })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
           hints={[
-            { uz: "birinchi nima bo'ladi", ru: 'что происходит первым' },
-            { uz: 'keyin nima tekshiriladi', ru: 'что проверяется потом' },
-            { uz: 'keyin nima ochiladi', ru: 'что открывается потом' },
-            { uz: 'keyin nima bajariladi', ru: 'что выполняется потом' },
-            { uz: 'eng oxiri natija', ru: 'в самом конце — результат' }
+            { uz: "bu yerga qo'ying", ru: 'положите сюда' },
+            { uz: "bu yerga qo'ying", ru: 'положите сюда' },
+            { uz: "bu yerga qo'ying", ru: 'положите сюда' },
+            { uz: "bu yerga qo'ying", ru: 'положите сюда' },
+            { uz: "bu yerga qo'ying", ru: 'положите сюда' }
           ]}
-          doneText={{ uz: "To'g'ri: Vazifa → description mos → Karta yuklanadi → Amal → Izchil natija.", ru: 'Верно: Задача → description совпал → Карта загружается → Действие → Стабильный результат.' }}
+          doneText={false}
           onSolved={onSolved} onChange={onChange} />
-        {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang.", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново.' })}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Vazifa → description mos → Karta yuklanadi → Amal → Izchil natija</b>. Mana Claude Skill ishlash mexanizmi.</>, ru: <>✓ Поток готов: <b>Задача → description совпал → Карта загружается → Действие → Стабильный результат</b>. Вот механизм работы Claude Skill.</> })}</p>
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib tayyor: <b>Vazifa → description mos → Skill ochiladi → Yo'riqnomaga amal → Natija</b>. Claude Skill'ni shu tartibda ishlatadi.</>, ru: <>✓ Порядок готов: <b>Задача → description подходит → Skill открывается → Работа по инструкции → Результат</b>. Именно в таком порядке Claude применяет Skill.</> })}</p>
           {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
@@ -1307,14 +1305,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  powerCard:    { icon: '🎴', name: 'Power Card',    desc: { uz: "Qahramonga to'g'ri kartani jihozladingiz", ru: "Вы экипировали герою верную карту суперсилы" } },
-  rightTrigger: { icon: '⚡', name: 'Right Trigger',  desc: { uz: "Kuch qaysi vaziyatda yonishini to'g'ri tanladingiz", ru: 'Вы верно выбрали ситуацию, в которой срабатывает сила' } },
-  beforeAfter:  { icon: '🔀', name: 'Before/After',  desc: { uz: "Kartasiz va karta bilan farqni ko'rdingiz", ru: "Вы увидели разницу без карты и с картой" } },
-  cardMaster:   { icon: '🏆', name: 'Card Master',   desc: { uz: "Skill ishlash oqimini to'g'ri tartibda yig'dingiz", ru: 'Вы собрали поток работы Skill в верном порядке' } },
+  powerCard:    { icon: '🎯', name: 'Right Skill',   desc: { uz: "Vazifaga mos Skill'ni description'dan topdingiz", ru: 'Вы нашли подходящий Skill по description' } },
+  rightTrigger: { icon: '⚡', name: 'Right Trigger',  desc: { uz: "Skill qaysi vazifada ishga tushishini to'g'ri tanladingiz", ru: 'Вы верно выбрали, в какой задаче срабатывает Skill' } },
+  beforeAfter:  { icon: '🔀', name: 'Before/After',  desc: { uz: "Skill'siz va Skill bilan farqni ko'rdingiz", ru: 'Вы увидели разницу без Skill и со Skill' } },
+  cardMaster:   { icon: '🏆', name: 'Skill Flow',    desc: { uz: "Skill ishlash tartibini to'g'ri yig'dingiz", ru: 'Вы верно собрали порядок работы Skill' } },
 };
-// Ekran id → nishon. ❗ FAQAT ma'noli, natijaga bog'liq ekranlar: s7 (kartani jihozlash — noto'g'ri karta tanlansa correct:false)
+// Ekran id → nishon. FAQAT ma'noli, natijaga bog'liq ekranlar: s7 (Skill tanlash — noto'g'ri Skill tanlansa correct:false)
 // · s13 (right trigger — noto'g'ri vaziyat tanlansa correct:false) · s15 (yakuniy oqim — DragDrop, xato tartib correct:false).
-// «Before/After» s7 ichida bonus shart (kartasiz vs karta) bilan alohida beriladi (root recordAnswer). Passiv/toggle ekranlarga BOG'LANMAYDI.
+// «Before/After» s7 ichida bonus shart (Skill'siz vs Skill bilan) alohida beriladi (root recordAnswer). Passiv/toggle ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s7: 'powerCard', s13: 'rightTrigger', s15: 'cardMaster' };
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
@@ -1391,25 +1389,25 @@ const Q_LABELS = {
   8: { uz: '2 — description', ru: '2 — description' },
   10: { uz: '3 — Progressive', ru: '3 — Progressive' },
   14: { uz: '4 — Takror vazifa', ru: '4 — повторяющаяся задача' },
-  15: { uz: '5 — Oqim tartibi', ru: '5 — порядок потока' }
+  15: { uz: '5 — Ishlash tartibi', ru: '5 — порядок работы' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (Skill atamalari)
 const QZ_BG_SHAPES = [
   { ch: 'SKILL.md',      l: 5,  t: 10, s: 30, d: 19, dl: 0 },
-  { ch: '🎴',            l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: '📋',            l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: 'description',   l: 8,  t: 72, s: 22, d: 27, dl: 0.8 },
   { ch: 'trigger',       l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
   { ch: 'name',          l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: 'body',          l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
   { ch: 'frontmatter',   l: 26, t: 34, s: 20, d: 20, dl: 1.9 },
-  { ch: 'kartasiz→karta', l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
+  { ch: "Skill'siz→Skill", l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
   { ch: '✗',             l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '✓',             l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'progressive',   l: 34, t: 62, s: 18, d: 29, dl: 3.4 },
   { ch: '⚡',            l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
   { ch: 'kontekst',      l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
-  { ch: 'izchillik',     l: 20, t: 16, s: 20, d: 18, dl: 2.9 },
+  { ch: 'uslub',         l: 20, t: 16, s: 20, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
@@ -1417,63 +1415,63 @@ const QUIZ_BANK = [
   { q: { uz: 'Claude Skill nima?', ru: 'Что такое Claude Skill?' }, opts: [
     { uz: 'Kuchliroq AI modelining nomi', ru: 'Название более мощной модели ИИ' },
     { uz: "Internetdan ma'lumot oladigan qidiruv", ru: 'Поиск, который берёт данные из интернета' },
-    { uz: "AI uchun yozma yo'riqnoma — super-kuch kartasi", ru: 'Письменная инструкция для ИИ — карта суперсилы' },
+    { uz: "AI uchun qayta ishlatiladigan yo'riqnoma", ru: 'Многоразовая инструкция для ИИ' },
     { uz: 'Dasturning ikonka (belgi) fayli', ru: 'Файл иконки (значка) программы' }], correct: 2 },
   { q: { uz: 'SKILL.md qaysi ikki qismdan iborat?', ru: 'Из каких двух частей состоит SKILL.md?' }, opts: [
-    { uz: 'frontmatter (name + description) va body', ru: 'frontmatter (name + description) и body' },
-    { uz: 'Rasm, ovoz va video fayllari', ru: 'Файлы картинок, звука и видео' },
+    { uz: 'Frontmatter va body', ru: 'frontmatter (name + description) и body' },
+    { uz: 'Rasm va ovoz fayllari', ru: 'Файлы картинок и звука' },
     { uz: 'Parol va foydalanuvchi nomi', ru: 'Пароль и имя пользователя' },
-    { uz: "Server va ma'lumotlar bazasi manzili", ru: 'Адрес сервера и базы данных' }], correct: 0 },
-  { q: { uz: "SKILL.md'dagi description nima uchun kerak?", ru: 'Зачем нужен description в SKILL.md?' }, opts: [
-    { uz: "Skillni chiroyli ko'rsatish uchun", ru: 'Чтобы скилл выглядел красиво' },
+    { uz: 'Server va baza manzili', ru: 'Адрес сервера и базы данных' }], correct: 0 },
+  { q: { uz: 'description nima uchun kerak?', ru: 'Зачем нужен description?' }, opts: [
+    { uz: "Skill'ni chiroyli ko'rsatish uchun", ru: 'Чтобы Skill выглядел красиво' },
     { uz: 'AI modelini almashtirish uchun', ru: 'Чтобы поменять модель ИИ' },
     { uz: "Faqat odam o'qishi uchun", ru: 'Только для чтения человеком' },
-    { uz: 'Karta (kuch) qachon yonishini bildirish uchun', ru: 'Чтобы сообщить, когда срабатывает карта (сила)' }], correct: 3 },
-  { q: { uz: "Skill body'sida odatda nima bo'ladi?", ru: 'Что обычно находится в body скилла?' }, opts: [
-    { uz: 'Faqat skill nomi', ru: 'Только имя скилла' },
-    { uz: 'Aniq qadamlar va bitta misol', ru: 'Точные шаги и один пример' },
+    { uz: 'Skill qachon kerakligini aytish uchun', ru: 'Чтобы сказать, когда нужен Skill' }], correct: 3 },
+  { q: { uz: "Skill body'sida odatda nima bo'ladi?", ru: 'Что обычно находится в body Skill?' }, opts: [
+    { uz: 'Faqat Skill nomi', ru: 'Только имя Skill' },
+    { uz: 'Aniq qadamlar va misol', ru: 'Точные шаги и пример' },
     { uz: 'Foydalanuvchi paroli', ru: 'Пароль пользователя' },
     { uz: 'AI modelining versiyasi', ru: 'Версия модели ИИ' }], correct: 1 },
   { q: { uz: 'Progressive disclosure nima?', ru: 'Что такое progressive disclosure?' }, opts: [
-    { uz: "Barcha skill body'lari doim ochiq turadi", ru: 'Все body скиллов всегда открыты' },
-    { uz: 'Skill faqat tunda ishlaydi', ru: 'Скилл работает только ночью' },
-    { uz: "Skill AI'ni tezlashtiradi", ru: 'Скилл ускоряет ИИ' },
-    { uz: "To'liq body faqat vazifa mos kelganda ochiladi", ru: 'Полный body открывается, только когда задача совпала' }], correct: 3 },
-  { q: { uz: "Claude har doim nimani ko'rib turadi?", ru: 'Что Claude видит всегда?' }, opts: [
-    { uz: "Skill nomi va description'ini", ru: 'Имя скилла и его description' },
-    { uz: "Butun body'ni har safar", ru: 'Весь body каждый раз' },
-    { uz: 'Foydalanuvchi tarixini', ru: 'Историю пользователя' },
-    { uz: 'Boshqa barcha fayllarni', ru: 'Все остальные файлы' }], correct: 0 },
+    { uz: "Hamma Skill doim to'liq ochiq turadi", ru: 'Все Skills всегда открыты целиком' },
+    { uz: 'Skill faqat kechasi ishlaydi', ru: 'Skill работает только ночью' },
+    { uz: "Skill AI'ni tezlashtiradi", ru: 'Skill ускоряет ИИ' },
+    { uz: "To'liq matn kerak bo'lganda ochiladi", ru: 'Полный текст открывается, когда нужно' }], correct: 3 },
+  { q: { uz: "Claude oldindan nimani ko'rib turadi?", ru: 'Что Claude видит заранее?' }, opts: [
+    { uz: "Skill'lar nomi va description'ini", ru: 'Имена и description всех Skills' },
+    { uz: "Har bir Skill'ning butun matnini", ru: 'Весь текст каждого Skill' },
+    { uz: 'Foydalanuvchining eski suhbatlarini', ru: 'Старые разговоры пользователя' },
+    { uz: 'Kompyuterdagi barcha fayllarni', ru: 'Все файлы на компьютере' }], correct: 0 },
   { q: { uz: "Skill oddiy so'rov (prompt)dan nimasi bilan farq qiladi?", ru: 'Чем Skill отличается от обычного запроса (prompt)?' }, opts: [
-    { uz: 'Skill faqat bir martalik gap', ru: 'Skill — это одноразовая реплика' },
+    { uz: 'Skill — bir martalik gap', ru: 'Skill — разовая реплика' },
     { uz: 'Skill saqlanadi va qayta ishlatiladi', ru: 'Skill сохраняется и используется повторно' },
     { uz: 'Skill modelni kuchaytiradi', ru: 'Skill усиливает модель' },
     { uz: 'Skill internetga ulaydi', ru: 'Skill подключает к интернету' }], correct: 1 },
-  { q: { uz: 'Yaxshi skillning belgisi qaysi?', ru: 'Какой признак у хорошего скилла?' }, opts: [
-    { uz: 'Uzun, chalkash va tushunarsiz matn', ru: 'Длинный, путаный и непонятный текст' },
-    { uz: "Faqat bitta so'zdan iborat bo'lishi", ru: 'Он состоит всего из одного слова' },
-    { uz: 'Aniq description + aniq qadamlar + misol', ru: 'Точный description + точные шаги + пример' },
-    { uz: 'Chiroyli rangli bezaklar va emoji', ru: 'Красивые цветные украшения и эмодзи' }], correct: 2 },
+  { q: { uz: "Yaxshi Skill'ning belgisi qaysi?", ru: 'Какой признак хорошего Skill?' }, opts: [
+    { uz: 'Uzun, chalkash matn', ru: 'Длинный, запутанный текст' },
+    { uz: "Faqat bitta so'z", ru: 'Всего одно слово' },
+    { uz: 'Aniq description, qadamlar va misol', ru: 'Точный description, шаги и пример' },
+    { uz: "Ko'p rangli bezaklar va emoji", ru: 'Много цветных украшений и эмодзи' }], correct: 2 },
   { q: { uz: 'Qanday vazifa Skill uchun eng mos?', ru: 'Какая задача лучше всего подходит для Skill?' }, opts: [
-    { uz: 'Takrorlanuvchi, bir xil bajariladigan vazifa', ru: 'Повторяющаяся задача, которая делается одинаково' },
+    { uz: 'Qayta-qayta bajariladigan vazifa', ru: 'Задача, которую выполняют снова и снова' },
     { uz: "Bir martagina bo'ladigan tasodifiy ish", ru: 'Случайное дело, которое бывает лишь однажды' },
     { uz: 'Faqat rasm chizish', ru: 'Только рисование картинок' },
     { uz: "Faqat o'yin o'ynash", ru: 'Только игра в игры' }], correct: 0 },
-  { q: { uz: "Skill AI natijasiga qanday ta'sir qiladi?", ru: 'Как Skill влияет на результат ИИ?' }, opts: [
+  { q: { uz: "Skill natijaga qanday ta'sir qiladi?", ru: 'Как Skill влияет на результат?' }, opts: [
     { uz: 'Natijani har safar tasodifiy qiladi', ru: 'Делает результат каждый раз случайным' },
     { uz: "Hech qanday ta'sir qilmaydi", ru: 'Никак не влияет' },
     { uz: "AI'ni sekinlashtiradi", ru: 'Замедляет ИИ' },
-    { uz: 'Natijani izchil va standartingizda qiladi', ru: 'Делает результат стабильным и по вашему стандарту' }], correct: 3 },
+    { uz: 'Natijani siz yozgan uslubga yaqinlashtiradi', ru: 'Приближает результат к стилю, который вы описали' }], correct: 3 },
   { q: { uz: 'System prompt va Skill farqi qaysi?', ru: 'В чём разница между system prompt и Skill?' }, opts: [
     { uz: 'Ikkalasi ham aynan bir xil narsa', ru: 'Это в точности одно и то же' },
-    { uz: 'System prompt faqat kechasi ishga tushadi', ru: 'System prompt запускается только ночью' },
-    { uz: "system prompt — doimiy shaxs; skill — kerakli yo'riqnoma", ru: 'system prompt — постоянная личность; skill — нужная инструкция' },
-    { uz: 'Skill — bu eng kuchliroq AI modelining nomi', ru: 'Skill — это название самой мощной модели ИИ' }], correct: 2 },
+    { uz: 'System prompt faqat kechasi ishlaydi', ru: 'System prompt работает только ночью' },
+    { uz: "System prompt — doim; Skill — kerak bo'lganda", ru: 'System prompt — всегда; Skill — когда нужно' },
+    { uz: 'Skill — eng kuchli AI modelining nomi', ru: 'Skill — название самой мощной модели ИИ' }], correct: 2 },
   { q: { uz: 'Noaniq description qanday oqibatga olib keladi?', ru: 'К чему приводит размытый description?' }, opts: [
-    { uz: 'Skill sezilarli darajada tezroq ishlaydi', ru: 'Скилл начинает работать заметно быстрее' },
-    { uz: "Karta noto'g'ri paytda yonadi yoki yonmaydi", ru: 'Карта срабатывает не вовремя или не срабатывает вовсе' },
+    { uz: 'Skill ancha tezroq ishlaydi', ru: 'Skill работает намного быстрее' },
+    { uz: 'Skill kerakli paytda ishlamasligi mumkin', ru: 'Skill может не сработать в нужный момент' },
     { uz: "AI modeli o'zi o'zgarib qoladi", ru: 'Модель ИИ сама собой меняется' },
-    { uz: 'Internet aloqasi butunlay uziladi', ru: 'Интернет-связь полностью обрывается' }], correct: 1 },
+    { uz: 'Internet aloqasi uziladi', ru: 'Пропадает связь с интернетом' }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1576,7 +1574,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (Skill): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['SKILL.md', '🎴', 'description', 'name', 'body', 'trigger', 'progressive', '⚡', '✓', 'kartasiz→karta'];
+    const TOK = ['SKILL.md', '📋', 'description', 'name', 'body', 'trigger', 'progressive', '⚡', '✓', "Skill'siz→Skill"];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2019,7 +2017,7 @@ const MentorPracticeStats = ({ live, screen }) => {
   );
 };
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place }) {
-  const _place = place || { uz: 'kompyuteringizda', ru: 'на своём компьютере' }; // string default render-vaqtida
+  const _place = place || { uz: "o'z kompyuteringizda", ru: 'на своём компьютере' }; // string default render-vaqtida
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const [checked, setChecked] = useState(() => new Set());
@@ -2038,7 +2036,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     <Stage eyebrow={eyebrow || { uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' }} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z {tr(_place)}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{tr(_place)}</b>. Выполняйте шаг за шагом и отмечайте их. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>{tr(_place)}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{tr(_place)}</b>. Выполняйте шаг за шагом и отмечайте каждый. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит за работой.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -2147,34 +2145,34 @@ function Flashcards({ cards }) {
 }
 
 
-// 🛠️ PRAKTIKA — o'quvchi o'z super-kuch kartasi (SKILL.md) rejasini yozadi (mentor-gate, kod kiritilmaydi)
+// PRAKTIKA — o'quvchi o'z SKILL.md rejasini yozadi (mentor-gate, kod kiritilmaydi)
 const ScreenSkillsPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · reja', ru: 'Практика · план' }} place={{ uz: 'kompyuteringizda', ru: 'на компьютере' }}
-    title={{ uz: "O'z super-kuch kartangizni rejalashtiring", ru: 'Спланируйте свою карту суперсилы' }}
-    task={{ uz: 'Kundalik takrorlanadigan bitta vazifangizni tanlang va unga super-kuch kartasi (SKILL.md) rejasini yozing. Hali dasturlamaysiz — faqat kartaning maydonlarini rejalashtirasiz.', ru: 'Выберите одну свою ежедневную повторяющуюся задачу и напишите для неё план карты суперсилы (SKILL.md). Программировать пока не нужно — вы только планируете поля карты.' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · reja', ru: 'Практика · план' }} place={{ uz: "qog'ozda yoki kompyuteringizda", ru: 'на бумаге или на компьютере' }}
+    title={{ uz: "O'z SKILL.md faylingiz rejasini tuzing", ru: 'Составьте план своего файла SKILL.md' }}
+    task={{ uz: 'Kundalik takrorlanadigan bitta vazifangizni tanlang va unga SKILL.md rejasini yozing. Hali faylni yaratmaysiz — faqat uning qismlarini rejalashtirasiz.', ru: 'Выберите одну задачу, которая повторяется у вас каждый день, и напишите для неё план SKILL.md. Сам файл пока не создаёте — только планируете его части.' }}
     checklist={[
       { uz: 'Takrorlanadigan bitta vazifani tanlang (masalan: qisqa mahsulot tavsifi yozish)', ru: 'Выберите одну повторяющуюся задачу (например: писать короткое описание товара)' },
-      { uz: 'Kartaga `name` bering — qisqa, aniq nom', ru: 'Дайте карте `name` — короткое, точное имя' },
-      { uz: '`description` yozing — karta NIMA qiladi va QACHON yonadi (eng muhim qator)', ru: 'Напишите `description` — ЧТО делает карта и КОГДА срабатывает (самая важная строка)' },
-      { uz: 'Body: 3-5 ta aniq qadam yozing (AI ketma-ket bajaradigan)', ru: 'Body: напишите 3–5 точных шагов (ИИ выполнит их по порядку)' },
-      { uz: "Oxiriga bitta tayyor MISOL qo'shing — AI shunga taqlid qiladi", ru: 'В конец добавьте один готовый ПРИМЕР — ИИ будет ему подражать' },
+      { uz: '`name` bering — kichik harflar va defis bilan (masalan: `mahsulot-tavsifi`)', ru: 'Дайте `name` — строчными буквами и через дефис (например: `mahsulot-tavsifi`)' },
+      { uz: '`description` yozing — Skill nima qiladi va qachon ishlatiladi', ru: 'Напишите `description` — что делает Skill и когда его применять' },
+      { uz: 'Body: 3–5 ta aniq qadam yozing', ru: 'Body: напишите 3–5 точных шагов' },
+      { uz: "Oxiriga bitta tayyor misol qo'shing — kutilgan natija qanday ko'rinishini ko'rsatsin", ru: 'В конце добавьте один готовый пример — пусть он показывает, как выглядит ожидаемый результат' },
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 savol (super-kuch kartasi tili)
+// FLASHCARD — 12 savol (MD v2 · 18-ekran jadvali)
 const SKILLS_FLASHCARDS = [
-  { front: { uz: "Claude Skill nima?", ru: 'Что такое Claude Skill?' }, back: { uz: "AI uchun yozma yo'riqnoma", ru: 'Письменная инструкция для ИИ' }, note: { uz: "AI'ga beriladigan super-kuch kartasi", ru: 'Карта суперсилы, которую дают ИИ' } },
-  { front: { uz: "Skill qaysi faylga yoziladi?", ru: 'В какой файл записывается скилл?' }, back: 'SKILL.md', note: { uz: "Oddiy matn fayli — lekin kuchli", ru: 'Обычный текстовый файл — но мощный' } },
-  { front: { uz: "SKILL.md qaysi ikki qismdan iborat?", ru: 'Из каких двух частей состоит SKILL.md?' }, back: { uz: "Frontmatter va body", ru: 'Frontmatter и body' }, note: { uz: "Frontmatter — pasport, body — yo'riqnoma", ru: 'Frontmatter — паспорт, body — инструкция' } },
-  { front: { uz: "Frontmatter faylning qayerida turadi?", ru: 'Где в файле находится frontmatter?' }, back: { uz: "Eng yuqorida, uchta chiziq orasida", ru: 'В самом верху, между тремя чёрточками' }, note: { uz: "Ichida name va description bo'ladi", ru: 'Внутри лежат name и description' } },
-  { front: { uz: "Claude har doim nimani ko'rib turadi?", ru: 'Что Claude видит всегда?' }, back: { uz: "Skill nomi va description", ru: 'Имя скилла и description' }, note: { uz: "Bu arzon: ikki qator, xolos", ru: 'Это дёшево: всего две строки' } },
-  { front: { uz: "Karta qachon yonishini qaysi qator aytadi?", ru: 'Какая строка говорит, когда сработает карта?' }, back: 'description', note: { uz: "Skillning eng muhim qatori", ru: 'Самая важная строка скилла' } },
-  { front: { uz: "Body ichida nima yozilgan bo'ladi?", ru: 'Что написано внутри body?' }, back: { uz: "Aniq qadamlar va bitta misol", ru: 'Точные шаги и один пример' }, note: { uz: "Misol — AI taqlid qiladigan namuna", ru: 'Пример — образец, которому подражает ИИ' } },
-  { front: { uz: "To'liq body qachon yuklanadi?", ru: 'Когда загружается полный body?' }, back: { uz: "Vazifa description'ga mos kelganda", ru: 'Когда задача совпала с description' }, note: { uz: "Qolgan kartalar yopiq qoladi", ru: 'Остальные карты остаются закрытыми' } },
-  { front: { uz: "Faqat kerakli skill ochilishi qanday ataladi?", ru: 'Как называется, когда открывается только нужный скилл?' }, back: 'Progressive disclosure', note: { uz: "Bosqichma-bosqich ochilish — tez va arzon", ru: 'Пошаговое раскрытие — быстро и дёшево' } },
-  { front: { uz: "Skill oddiy so'rovdan nimasi bilan farq qiladi?", ru: 'Чем скилл отличается от обычного запроса?' }, back: { uz: "Saqlanadi va qayta ishlatiladi", ru: 'Сохраняется и используется повторно' }, note: { uz: "So'rov — bir martalik gap", ru: 'Запрос — одноразовая реплика' } },
-  { front: { uz: "System prompt nima?", ru: 'Что такое system prompt?' }, back: { uz: "Botning doimiy shaxsi", ru: 'Постоянная личность бота' }, note: { uz: "Har javobda yoqiq turadi, skill esa kerak bo'lganda", ru: 'Включён в каждом ответе, а скилл — при необходимости' } },
-  { front: { uz: "Qanday vazifa Skill uchun eng mos?", ru: 'Какая задача лучше всего подходит для скилла?' }, back: { uz: "Takrorlanuvchi vazifa", ru: 'Повторяющаяся задача' }, note: { uz: "Bir marta yozasiz, har safar ishlatasiz", ru: 'Пишете один раз, используете каждый раз' } },
+  { front: { uz: "Claude Skill nima?", ru: 'Что такое Claude Skill?' }, back: { uz: "AI uchun qayta ishlatiladigan yozma yo'riqnoma", ru: 'Многоразовая письменная инструкция для ИИ' }, note: { uz: "Bitta aniq vazifani qanday bajarishni tushuntiradi", ru: 'Объясняет, как выполнить одну конкретную задачу' } },
+  { front: { uz: "Skill'ning asosiy fayli qanday nomlanadi?", ru: 'Как называется главный файл Skill?' }, back: 'SKILL.md', note: { uz: "Papkada turadi; yonida qo'shimcha fayllar bo'lishi mumkin", ru: 'Лежит в папке; рядом могут быть дополнительные файлы' } },
+  { front: { uz: "SKILL.md qaysi ikki qismdan iborat?", ru: 'Из каких двух частей состоит SKILL.md?' }, back: { uz: "Frontmatter va body", ru: 'Frontmatter и body' }, note: { uz: "Frontmatter — qisqa ma'lumot, body — yo'riqnoma", ru: 'Frontmatter — краткие сведения, body — инструкция' } },
+  { front: { uz: "Frontmatter faylning qayerida turadi?", ru: 'Где в файле находится frontmatter?' }, back: { uz: "Eng yuqorida, ikki --- chiziq orasida", ru: 'В самом верху, между двумя линиями ---' }, note: { uz: "Ichida name va description bo'ladi", ru: 'Внутри лежат name и description' } },
+  { front: { uz: "name qanday yoziladi?", ru: 'Как записывается name?' }, back: { uz: "Kichik harflar va defis bilan", ru: 'Строчными буквами и через дефис' }, note: { uz: "Masalan: mahsulot-tavsifi", ru: 'Например: mahsulot-tavsifi' } },
+  { front: { uz: "Claude oldindan nimani ko'rib turadi?", ru: 'Что Claude видит заранее?' }, back: { uz: "Har Skill'ning nomi va description'i", ru: 'Имя и description каждого Skill' }, note: { uz: "To'liq matnni kerak bo'lganda ochadi", ru: 'Полный текст открывает, когда нужно' } },
+  { front: { uz: "description'da nima yoziladi?", ru: 'Что пишут в description?' }, back: { uz: "Skill nima qiladi va qachon ishlatiladi", ru: 'Что делает Skill и когда его применять' }, note: { uz: "Claude Skill'ni shunga qarab tanlaydi", ru: 'По нему Claude выбирает Skill' } },
+  { front: { uz: "Body ichida nima bo'ladi?", ru: 'Что внутри body?' }, back: { uz: "Aniq qadamlar va misol", ru: 'Точные шаги и пример' }, note: { uz: "Misol kutilgan natijani ko'rsatadi", ru: 'Пример показывает ожидаемый результат' } },
+  { front: { uz: "To'liq body qachon o'qiladi?", ru: 'Когда читается полный body?' }, back: { uz: "Claude vazifa mos deb topganda", ru: 'Когда Claude решит, что задача подходит' }, note: { uz: "Qolgan Skill'lar yopiq qoladi", ru: 'Остальные Skills остаются закрытыми' } },
+  { front: { uz: "Faqat kerakli Skill'ning ochilishi qanday ataladi?", ru: 'Как называется открытие только нужного Skill?' }, back: 'Progressive disclosure', note: { uz: "Bosqichma-bosqich ochish — kontekst oynasi band bo'lmaydi", ru: 'Поэтапное раскрытие — контекстное окно не занято' } },
+  { front: { uz: "System prompt va Skill farqi?", ru: 'Чем отличаются system prompt и Skill?' }, back: { uz: "System prompt — doim; Skill — kerak bo'lganda", ru: 'System prompt — всегда; Skill — когда нужно' }, note: { uz: "System prompt umumiy ohangni, Skill bitta ishni belgilaydi", ru: 'System prompt задаёт общий тон, Skill — одну работу' } },
+  { front: { uz: "Qanday vazifa Skill uchun eng mos?", ru: 'Какая задача лучше всего подходит для Skill?' }, back: { uz: "Takrorlanadigan vazifa", ru: 'Повторяющаяся задача' }, note: { uz: "Bir marta yozasiz, ko'p marta ishlatasiz", ru: 'Пишете один раз, используете много раз' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2210,16 +2208,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: 'Skill — AI uchun yozma, qayta ishlatiladigan super-kuch kartasi (SKILL.md fayl)', ru: 'Skill — письменная многоразовая карта суперсилы для ИИ (файл SKILL.md)' },
+    { uz: "Skill — AI uchun qayta ishlatiladigan yozma yo'riqnoma (asosiy fayli — SKILL.md)", ru: 'Skill — многоразовая письменная инструкция для ИИ (главный файл — SKILL.md)' },
     { uz: 'Tuzilishi: frontmatter (name + description) + body (qadamlar + misol)', ru: 'Устройство: frontmatter (name + description) + body (шаги + пример)' },
-    { uz: "description — kuch qachon yonishini bildiradi (Claude doim ko'radi — eng muhim)", ru: 'description — сообщает, когда срабатывает сила (Claude видит его всегда — самое важное)' },
-    { uz: "Progressive disclosure: to'liq body faqat vazifa mos kelganda ochiladi", ru: 'Progressive disclosure: полный body открывается только при совпадении задачи' },
-    { uz: 'Yaxshi karta = aniq description + aniq qadamlar + misol → izchil natija', ru: 'Хорошая карта = точный description + точные шаги + пример → стабильный результат' }
+    { uz: "Claude oldindan faqat nom va description'ni ko'radi; to'liq matnni vazifa mos kelganda ochadi", ru: 'Claude заранее видит только имя и description; полный текст открывает, когда задача подходит' },
+    { uz: "description aniq bo'lsa, Skill kerakli paytda ishlaydi", ru: 'Если description точный, Skill срабатывает в нужный момент' },
+    { uz: 'Yaxshi Skill = aniq description + aniq qadamlar + yaxshi misol', ru: 'Хороший Skill = точный description + точные шаги + хороший пример' }
   ];
   const HOMEWORK = [
-    { b: { uz: "O'qing", ru: 'Прочитайте' }, t: { uz: "— internetdan yoki shu darsdan bitta SKILL.md ni o'qib chiqing", ru: '— прочитайте один SKILL.md из интернета или из этого урока' } },
-    { b: { uz: 'Tahlil', ru: 'Разбор' }, t: { uz: '— uning description aniqmi? qadamlari aniqmi? misoli bormi? — baholang', ru: '— точен ли его description? точны ли шаги? есть ли пример? — оцените' } },
-    { b: { uz: 'Rejalashtiring', ru: 'Спланируйте' }, t: { uz: "— o'z loyihangizda qaysi takrorlanuvchi vazifaga karta kerakligini yozing", ru: '— напишите, для какой повторяющейся задачи в вашем проекте нужна карта' } }
+    { b: { uz: "O'qing", ru: 'Прочитайте' }, t: { uz: "— shu darsdagi yoki internetdagi bitta SKILL.md'ni o'qing", ru: '— прочитайте один SKILL.md из этого урока или из интернета' } },
+    { b: { uz: 'Tahlil', ru: 'Разбор' }, t: { uz: '— description aniqmi? qadamlar aniqmi? misol bormi?', ru: '— точен ли description? точны ли шаги? есть ли пример?' } },
+    { b: { uz: 'Rejalashtiring', ru: 'Спланируйте' }, t: { uz: '— loyihangizda qaysi takrorlanadigan vazifaga Skill kerak?', ru: '— для какой повторяющейся задачи в вашем проекте нужен Skill?' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2227,7 +2225,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq <span className="italic" style={{ color: T.accent }}>super-kuch kartasini</span> bera olasiz.</>, ru: <>Теперь вы можете дать ИИ точную <span className="italic" style={{ color: T.accent }}>карту суперсилы</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq, <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> bera olasiz.</>, ru: <>Теперь вы можете дать ИИ точную <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2243,7 +2241,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — o'z Skill'ingizni yozasiz: struktura, test va kontekst-injiniring bilan yaxshilash.", ru: '🚀 Следующий урок — вы напишете свой Skill: структура, тест и улучшение через контекст-инжиниринг.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — «Ilova o'zi qaror qilsa, kimga tegadi?». Mini-do'koningizda ilova o'zi qilmaydigan ishlarni va ular kimga tegishini yozasiz.", ru: '🚀 Следующий урок — «Если приложение решает само, кого это касается?». В своём мини-магазине вы запишете, какие дела приложение не делает само и кого они касаются.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2334,7 +2332,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
-    if (_m && _m.id === 's7' && data && data.bonus) earn('beforeAfter'); // 🏅 bonus — kartasiz vs karta farqini ko'rib, to'g'ri kartani jihozladi
+    if (_m && _m.id === 's7' && data && data.bonus) earn('beforeAfter'); // bonus — Skill'siz vs Skill bilan farqni ko'rib, to'g'ri Skill'ni tanladi
     // Yakuniy debug-gate (s15) — XATO javob ham serverga ketadi (aks holda xato qilgan o'quvchi podiumda umuman ko'rinmaydi).
     if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, data.elapsedMs || 0);
   };
@@ -3147,7 +3145,8 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint, .itm-card.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* F-0929-27: keng ekranda uyalar chapda, hovuz o'ngda (3-dars naqshi) */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

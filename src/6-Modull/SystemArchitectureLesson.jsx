@@ -5,12 +5,11 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // 6-MODUL (Tizim arxitekturasi) · DARS 1 — «KOMPONENTLARDAN TIZIM» — PLATFORM STANDARD v18 (AUDIOSIZ)
 // Maqsad: o'quvchi real mahsulot — bu KOMPONENTLAR TIZIMI ekanini tushunadi: Frontend + Backend + Database + AI + Bot,
 //         va ular orasida ma'lumot qanday OQISHINI ko'radi. O'z mahsuloti arxitekturasini chizadi.
-// 🏙️ METAFORA — «MAHSULOT — BU KICHIK SHAHAR» (5 komponent = 5 idora):
-//   Tizim=SHAHAR · Frontend=PESHTOQ/QABULXONA · Backend=HOKIMLIK/BOSHQARUV MARKAZI · Database=DAVLAT ARXIVI/REYESTR ·
-//   AI=EKSPERT-BYURO · Bot=IKKINCHI DARVOZA (Telegram) · API/bog'lanish=YO'LLAR · request=ARIZANING idoradan idoraga SAYOHATI.
-// INTERAKTIV BEAT'lar: s2 5 binoni shahar xaritasiga joylash · s3 «Arizani yubor» (ma'lumot sayohati) ·
-//   s6 Arxiv=persistence · s9 binoni o'chir → «yangilashda yozuv yo'qoldi» · s10 ko'p darvoza (web/bot/mobil) ·
-//   s15 FINAL: ma'lumot oqimini to'g'ri tartibda yig'ish (DragDropOrder).
+// ASOSIY MODEL (F-0929 MD v2): Foydalanuvchi → Frontend → Backend → Database → ekranda natija. Texnik nom asosiy;
+//   o'xshatish faqat s2 kartalarida, bir marta («…ga o'xshatish mumkin»). Backend = Node.js (NestJS).
+// INTERAKTIV BEAT'lar: s2 5 qism (3 asosiy + 2 qo'shimcha) · s3 so'rov yo'li (request/response) ·
+//   s6 Database = doimiy xotira · s9 qismni o'chirish · s10 ko'p kirish yo'li (web/bot/mobil) ·
+//   s15 FINAL: ma'lumot yo'lini to'g'ri tartibda yig'ish (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -282,43 +281,43 @@ const INLINE_KEYS = { s4: 3, s8: 0, s11: 2, s14: 3, s15: 0 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "Arxiv — doimiy saqlash idorasi", ru: 'Архив — ведомство постоянного хранения' },
+    title: { uz: "Database — doimiy saqlash joyi", ru: 'Database — место постоянного хранения' },
     cards: [
-      { ic: "🗄️", h: { uz: "Arxiv eslaydi", ru: 'Архив помнит' }, body: { uz: <>Mahsulot, buyurtma va foydalanuvchilar <b>Davlat arxivida</b> (Database) doimiy saqlanadi.</>, ru: <>Товары, заказы и пользователи постоянно хранятся в <b>Государственном архиве</b> (Database).</> } },
-      { ic: "🖥️", h: { uz: "Peshtoq faqat ko'rsatadi", ru: 'Витрина только показывает' }, body: { uz: <>Frontend (peshtoq) faqat ko'rsatadi — sahifa yangilansa, ekrandagi ma'lumot yo'qoladi.</>, ru: <>Frontend (витрина) только показывает — если обновить страницу, данные с экрана исчезнут.</> } },
-      { ic: "⚙️", h: { uz: "Hokimlik tashiydi", ru: 'Мэрия переносит' }, body: { uz: <>Backend qaror qiladi va arxivga yozadi, lekin o'zi doimiy saqlamaydi.</>, ru: <>Backend принимает решения и пишет в архив, но сам постоянно ничего не хранит.</> }, ask: { uz: "Mahsulot va buyurtmalar aslida qayerda saqlanadi?", ru: 'Где на самом деле хранятся товары и заказы?' } },
+      { ic: "🗄️", h: { uz: "Database eslab qoladi", ru: 'Database помнит' }, body: { uz: <>Mahsulot, buyurtma va foydalanuvchilar <b>Database'da</b> doimiy saqlanadi.</>, ru: <>Товары, заказы и пользователи постоянно хранятся <b>в Database</b>.</> } },
+      { ic: "🖥️", h: { uz: "Frontend ko'rsatadi", ru: 'Frontend показывает' }, body: { uz: <>Sahifa yangilansa, faqat ekranda turgan ma'lumot yo'qoladi.</>, ru: <>Если обновить страницу, пропадут только данные, которые были на экране.</> } },
+      { ic: "⚙️", h: { uz: "Backend tashiydi", ru: 'Backend переносит' }, body: { uz: <>So'rovni tekshirib Database'ga yozadi, lekin o'zi doimiy saqlamaydi.</>, ru: <>Проверяет запрос и записывает данные в Database, но сам их постоянно не хранит.</> }, ask: { uz: "Mahsulot va buyurtmalar aslida qayerda saqlanadi?", ru: 'Где на самом деле хранятся товары и заказы?' } },
     ]
   },
   8: {
-    title: { uz: "Arizaning yo'li — bir tomonlama tartib", ru: 'Путь заявки — порядок в одну сторону' },
+    title: { uz: "So'rovning yo'li", ru: 'Путь запроса' },
     cards: [
-      { ic: "🖥️", h: { uz: "Ariza peshtoqdan boshlanadi", ru: 'Заявка начинается с витрины' }, body: { uz: <>Mijoz tugma bosadi — Frontend (peshtoq) arizani <b>Hokimlikka</b> jo'natadi.</>, ru: <>Клиент нажимает кнопку — Frontend (витрина) отправляет заявку в <b>Мэрию</b>.</> } },
-      { ic: "⚙️", h: { uz: "Hokimlik arxivga boradi", ru: 'Мэрия идёт в архив' }, body: { uz: <>Backend arizani qabul qiladi va <b>Arxivga</b> (Database) yozadi yoki o'qiydi.</>, ru: <>Backend принимает заявку и пишет в <b>Архив</b> (Database) или читает из него.</> } },
-      { ic: "↩️", h: { uz: "Javob teskari qaytadi", ru: 'Ответ возвращается обратно' }, body: { uz: <>Natija o'sha yo'l bilan orqaga — ekranga qaytadi. Peshtoq arxivga to'g'ridan bormaydi.</>, ru: <>Результат тем же путём возвращается на экран. Витрина не ходит в архив напрямую.</> }, ask: { uz: "«Savatga» bosilganda ariza qaysi yo'l bilan boradi?", ru: 'Каким путём идёт заявка при нажатии «В корзину»?' } },
+      { ic: "🖥️", h: { uz: "Frontend'dan boshlanadi", ru: 'Всё начинается с Frontend' }, body: { uz: <>Foydalanuvchi tugmani bosadi, Frontend <b>Backend'ga</b> so'rov yuboradi.</>, ru: <>Пользователь нажимает кнопку, Frontend отправляет запрос <b>в Backend</b>.</> } },
+      { ic: "⚙️", h: { uz: "Backend Database bilan ishlaydi", ru: 'Backend работает с Database' }, body: { uz: <>So'rovni qabul qiladi, <b>Database'ga</b> yozadi yoki o'qiydi.</>, ru: <>Принимает запрос, записывает данные <b>в Database</b> или читает их оттуда.</> } },
+      { ic: "↩️", h: { uz: "Javob orqaga qaytadi", ru: 'Ответ возвращается обратно' }, body: { uz: <>Natija o'sha yo'l bilan ekranga qaytadi; bizning tizimda Frontend Database'ga to'g'ridan bormaydi.</>, ru: <>Результат тем же путём возвращается на экран; в нашей системе Frontend не обращается к Database напрямую.</> }, ask: { uz: "«Savatga» bosilganda so'rov qaysi yo'l bilan boradi?", ru: 'Каким путём идёт запрос при нажатии «В корзину»?' } },
     ]
   },
   11: {
-    title: { uz: "Ko'p darvoza — bitta shahar", ru: 'Много ворот — один город' },
+    title: { uz: "Ko'p kirish yo'li — bitta tizim", ru: 'Много точек входа — одна система' },
     cards: [
-      { ic: "🚪", h: { uz: "Har darvoza — alohida kirish", ru: 'Каждые ворота — отдельный вход' }, body: { uz: <>Web sayt, Telegram bot va mobil ilova — <b>uch xil darvoza</b> (frontend).</>, ru: <>Сайт, Telegram-бот и мобильное приложение — <b>трое разных ворот</b> (frontend).</> } },
-      { ic: "🏛️", h: { uz: "Markaz bitta", ru: 'Центр один' }, body: { uz: <>Hamma darvoza <b>bitta Hokimlik va Arxivga</b> ulanadi — bitta tizim.</>, ru: <>Все ворота подключены к <b>одной Мэрии и одному Архиву</b> — это одна система.</> } },
-      { ic: "🔄", h: { uz: "Ma'lumot umumiy", ru: 'Данные общие' }, body: { uz: <>Bir darvozada berilgan buyurtma boshqasida ham ko'rinadi.</>, ru: <>Заказ, сделанный через одни ворота, виден и через другие.</> }, ask: { uz: "Web va bot bir xil buyurtmani qanday ko'radi?", ru: 'Как сайт и бот видят один и тот же заказ?' } },
+      { ic: "🚪", h: { uz: "Har biri alohida kirish", ru: 'Каждая — отдельный вход' }, body: { uz: <>Web sayt, Telegram bot, mobil ilova — <b>uch xil kirish yo'li</b>.</>, ru: <>Веб-сайт, Telegram-бот, мобильное приложение — <b>три разные точки входа</b>.</> } },
+      { ic: "⚙️", h: { uz: "Markaz bitta", ru: 'Центр один' }, body: { uz: <>Hammasi <b>bitta Backend va Database'ga</b> ulanadi.</>, ru: <>Все они подключены <b>к одному и тому же Backend и Database</b>.</> } },
+      { ic: "🔄", h: { uz: "Ma'lumot umumiy", ru: 'Данные общие' }, body: { uz: <>Bir joyda berilgan buyurtma boshqasida ham ko'rinadi.</>, ru: <>Заказ, сделанный в одном месте, виден и в другом.</> }, ask: { uz: "Web va bot bir xil buyurtmani qanday ko'radi?", ru: 'Как сайт и бот видят один и тот же заказ?' } },
     ]
   },
   14: {
-    title: { uz: "Yangi darvoza qo'shish — kam ish", ru: 'Добавить новые ворота — мало работы' },
+    title: { uz: "Yangi kirish yo'li — kam ish", ru: 'Новая точка входа — мало работы' },
     cards: [
-      { ic: "🏛️", h: { uz: "Markaz tayyor", ru: 'Центр уже готов' }, body: { uz: <>Backend va Arxiv har qanday darvoza bilan ishlaydi — ularni qayta qurish shart emas.</>, ru: <>Backend и Архив работают с любыми воротами — перестраивать их не нужно.</> } },
-      { ic: "📱", h: { uz: "Mobil — yana bir peshtoq", ru: 'Мобильное — ещё одна витрина' }, body: { uz: <>Mobil ilova shunchaki <b>yana bir frontend</b> (React Native), o'sha markazga ulanadi.</>, ru: <>Мобильное приложение — просто <b>ещё один frontend</b> (React Native), подключённый к тому же центру.</> } },
-      { ic: "🧭", h: { uz: "Arxitektura — vaqt tejaydi", ru: 'Архитектура экономит время' }, body: { uz: <>Tizimni tushunish ish hajmini keskin kamaytiradi.</>, ru: <>Понимание системы резко сокращает объём работы.</> }, ask: { uz: "Mavjud tizimga mobil ilovani qanday qo'shasiz?", ru: 'Как добавить мобильное приложение к существующей системе?' } },
+      { ic: "⚙️", h: { uz: "Backend tayyor", ru: 'Backend уже готов' }, body: { uz: <>Backend va Database har qanday kirish yo'li bilan ishlaydi.</>, ru: <>Backend и Database работают с любой точкой входа.</> } },
+      { ic: "📱", h: { uz: "Mobil — yana bir Frontend", ru: 'Мобильное — ещё один Frontend' }, body: { uz: <>Mobil ilova (React Native) <b>o'sha Backend'ga</b> ulanadi.</>, ru: <>Мобильное приложение (React Native) подключается <b>к тому же Backend</b>.</> } },
+      { ic: "🧭", h: { uz: "Arxitektura vaqt tejaydi", ru: 'Архитектура экономит время' }, body: { uz: <>Tizimni tushunsangiz, ish ancha kamayadi.</>, ru: <>Если понимаете систему, работы становится намного меньше.</> }, ask: { uz: "Mavjud tizimga mobil ilovani qanday qo'shasiz?", ru: 'Как добавить мобильное приложение к существующей системе?' } },
     ]
   },
   15: {
-    title: { uz: "Ma'lumot oqimi — tartib muhim", ru: 'Поток данных — порядок важен' },
+    title: { uz: "Ma'lumot yo'li — tartib muhim", ru: 'Путь данных — порядок важен' },
     cards: [
-      { ic: "🙋", h: { uz: "Avval — foydalanuvchi", ru: 'Сначала — пользователь' }, body: { uz: <>Oqim <b>foydalanuvchidan</b> boshlanadi — u tugmani bosadi.</>, ru: <>Поток начинается <b>с пользователя</b> — он нажимает кнопку.</> } },
-      { ic: "⚙️", h: { uz: "Keyin — markaz va arxiv", ru: 'Затем — центр и архив' }, body: { uz: <>So'rov peshtoqdan Hokimlikka, undan Arxivga boradi — <b>tartib bilan</b>.</>, ru: <>Запрос идёт от витрины в Мэрию, оттуда в Архив — <b>по порядку</b>.</> } },
-      { ic: "✨", h: { uz: "Eng oxiri — ekranda natija", ru: 'В самом конце — результат на экране' }, body: { uz: <>Javob faqat oxirida ekranga qaytadi.</>, ru: <>Ответ возвращается на экран только в конце.</> }, vis: <RcFlow items={[{ uz: 'Foydalanuvchi', ru: 'Пользователь' }, { uz: 'Peshtoq', ru: 'Витрина' }, { uz: 'Hokimlik', ru: 'Мэрия' }, { uz: 'Arxiv', ru: 'Архив' }, { uz: 'Natija', ru: 'Результат' }]} />, ask: { uz: "Nega ma'lumot to'g'ridan arxivga bormaydi?", ru: 'Почему данные не идут в архив напрямую?' } },
+      { ic: "🙋", h: { uz: "Avval foydalanuvchi", ru: 'Сначала — пользователь' }, body: { uz: <>U <b>tugmani bosadi</b>.</>, ru: <>Он <b>нажимает кнопку</b>.</> } },
+      { ic: "⚙️", h: { uz: "Keyin Backend va Database", ru: 'Затем — Backend и Database' }, body: { uz: <>So'rov Frontend'dan Backend'ga, undan Database'ga boradi.</>, ru: <>Запрос идёт из Frontend в Backend, а оттуда — в Database.</> } },
+      { ic: "✨", h: { uz: "Oxirida natija", ru: 'В конце — результат' }, body: { uz: <>Javob eng oxirida ekranga qaytadi.</>, ru: <>Ответ возвращается на экран в самом конце.</> }, vis: <RcFlow items={[{ uz: 'Foydalanuvchi', ru: 'Пользователь' }, { uz: 'Frontend', ru: 'Frontend' }, { uz: 'Backend', ru: 'Backend' }, { uz: 'Database', ru: 'Database' }, { uz: 'Natija', ru: 'Результат' }]} />, ask: { uz: "Nega bizning tizimda so'rov to'g'ridan Database'ga bormaydi?", ru: 'Почему в нашей системе запрос не идёт в Database напрямую?' } },
     ]
   }
 };
@@ -609,10 +608,10 @@ const CodeFile = ({ name, children, minH }) => (
   </div>
 );
 
-// ===== BRAUZER OYNA MOK (shahar peshtog'i — web sahifa) =====
-const ShopMock = ({ title = 'mini-shahar', children, minH }) => (
+// ===== BRAUZER OYNA MOK (onlayn xarid sayti — web sahifa) =====
+const ShopMock = ({ title = 'onlayn-xarid', children, minH }) => (
   <div className="shopwin">
-    <div className="shopwin-bar"><span className="sw-dots"><i /><i /><i /></span><span className="sw-url">mini-shahar.uz</span></div>
+    <div className="shopwin-bar"><span className="sw-dots"><i /><i /><i /></span><span className="sw-url">onlayn-xarid.uz</span></div>
     <div className="shopwin-body" style={{ minHeight: minH }}>{children}</div>
   </div>
 );
@@ -680,51 +679,50 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'положите сюда' })}</span>}
+            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: "bu yerga qo'ying", ru: 'положите сюда' })}</span>}
           </div>
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {doneText ? tr(doneText) : tr({ uz: "To'g'ri tartib!", ru: 'Правильный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново.' })}</div>}
     </div>
   );
 }
 
-// ===== TIZIM KOMPONENTLARI (SHAHAR IDORALARI) =====
+// ===== TIZIMNING 5 QISMI (core — asosiy uchlik; like — o'xshatish, faqat s2 kartasida bir marta) =====
 const COMPONENTS = [
-  { id: 'front', label: 'Frontend', tech: { uz: 'Peshtoq · React', ru: 'Витрина · React' }, color: T.blue, role: { uz: "Shahar PESHTOG'I / qabulxonasi — mijoz ko'radigan yuz. Sahifa, tugma, savat. Ma'lumotni ko'rsatadi, lekin o'zi saqlamaydi.", ru: 'ВИТРИНА города / приёмная — лицо, которое видит клиент. Страница, кнопка, корзина. Показывает данные, но сама их не хранит.' } },
-  { id: 'back', label: 'Backend', tech: { uz: 'Hokimlik · Node', ru: 'Мэрия · Node' }, color: T.accent, role: { uz: "HOKIMLIK / boshqaruv markazi. Arizalarni qabul qiladi, mantiqni bajaradi, arxiv bilan gaplashadi. Peshtoq ortidagi boshqaruvchi.", ru: 'МЭРИЯ / центр управления. Принимает заявки, выполняет логику, общается с архивом. Управляющий за витриной.' } },
-  { id: 'db', label: 'Database', tech: { uz: 'Arxiv · PostgreSQL', ru: 'Архив · PostgreSQL' }, color: T.success, role: { uz: "Davlat ARXIVI / reyestr. Mahsulot, buyurtma, foydalanuvchilar doimiy saqlanadi. Server o'chsa ham qoladi.", ru: 'Государственный АРХИВ / реестр. Товары, заказы и пользователи хранятся постоянно. Останутся, даже если сервер выключится.' } },
-  { id: 'ai', label: 'AI', tech: { uz: 'Ekspert-byuro · Claude', ru: 'Экспертное бюро · Claude' }, color: T.violet, role: { uz: "Aqlli EKSPERT-BYURO. Tavsiya beradi, savolga javob yozadi. Hokimlik uni chaqiradi.", ru: 'Умное ЭКСПЕРТНОЕ БЮРО. Даёт рекомендации, пишет ответы на вопросы. Мэрия вызывает его.' } },
-  { id: 'bot', label: 'Bot', tech: { uz: 'Ikkinchi darvoza · Telegram', ru: 'Вторые ворота · Telegram' }, color: T.amber, role: { uz: "Ikkinchi DARVOZA. Telegram orqali ariza. O'sha Hokimlik va Arxivga ulanadi.", ru: 'Вторые ВОРОТА. Заявка через Telegram. Подключаются к той же Мэрии и тому же Архиву.' } }
+  { id: 'front', label: 'Frontend', core: true, tech: { uz: 'React', ru: 'React' }, color: T.blue, role: { uz: "Foydalanuvchi ko'radigan qism: sahifa, tugmalar, savat. Ma'lumotni ko'rsatadi va foydalanuvchi bosgan tugmalarni qabul qiladi.", ru: 'Часть, которую видит пользователь: страница, кнопки, корзина. Показывает данные и принимает нажатия кнопок от пользователя.' }, like: { uz: "Uni do'konning peshtog'iga o'xshatish mumkin.", ru: 'Его можно сравнить с прилавком магазина.' } },
+  { id: 'back', label: 'Backend', core: true, tech: { uz: 'Node.js (NestJS)', ru: 'Node.js (NestJS)' }, color: T.accent, role: { uz: "Tizimning boshqaruv qismi. So'rovlarni qabul qiladi, qoidalar va hisob-kitoblarni bajaradi, Database bilan ishlaydi.", ru: 'Управляющая часть системы. Принимает запросы, выполняет правила и расчёты, работает с Database.' }, like: { uz: "Uni boshqaruv markaziga o'xshatish mumkin.", ru: 'Его можно сравнить с центром управления.' } },
+  { id: 'db', label: 'Database', core: true, tech: { uz: 'PostgreSQL', ru: 'PostgreSQL' }, color: T.success, role: { uz: "Ma'lumotni doimiy saqlaydigan joy: mahsulotlar, buyurtmalar, foydalanuvchilar. Sahifani yangilasangiz ham ma'lumot saqlanib qoladi.", ru: 'Место, где данные хранятся постоянно: товары, заказы, пользователи. Даже если обновить страницу, данные останутся.' }, like: { uz: "Uni arxivga o'xshatish mumkin.", ru: 'Её можно сравнить с архивом.' } },
+  { id: 'ai', label: 'AI', core: false, tech: { uz: 'Claude', ru: 'Claude' }, color: T.violet, role: { uz: "Tavsiya beradi, savollarga javob yozadi. Backend uni kerak bo'lganda chaqiradi.", ru: 'Даёт рекомендации, отвечает на вопросы. Backend вызывает его, когда нужно.' }, like: { uz: "Uni maslahatchiga o'xshatish mumkin.", ru: 'Его можно сравнить с консультантом.' } },
+  { id: 'bot', label: 'Bot', core: false, tech: { uz: 'Telegram', ru: 'Telegram' }, color: T.amber, role: { uz: "Tizimga yana bir kirish yo'li. Foydalanuvchi Telegram orqali buyurtma beradi, bot esa o'sha Backend va Database bilan ishlaydi.", ru: 'Ещё одна точка входа в систему. Пользователь оформляет заказ через Telegram, а бот работает с тем же Backend и Database.' } }
 ];
 
-// ===== MA'LUMOT OQIMI — ARIZANING SAYOHATI (s3 tracer + s15 final) =====
+// ===== SO'ROVNING YO'LI (s3 tracer + s15 final) =====
 const FLOW = [
-  { id: 'user', label: { uz: 'Foydalanuvchi', ru: 'Пользователь' }, d: { uz: "arizani beradi.", ru: 'подаёт заявку.' }, say: { uz: "Fuqaro «Savatga» tugmasini bosdi.", ru: 'Житель нажал кнопку «В корзину».' } },
-  { id: 'front', label: { uz: 'Peshtoq', ru: 'Витрина' }, d: { uz: "arizani Hokimlikka uzatadi.", ru: 'передаёт заявку в Мэрию.' }, say: { uz: "Peshtoq (Frontend) arizani Hokimlikka jo'natdi.", ru: 'Витрина (Frontend) отправила заявку в Мэрию.' } },
-  { id: 'back', label: { uz: 'Hokimlik', ru: 'Мэрия' }, d: { uz: "qabul qiladi, qaror qiladi.", ru: 'принимает и решает.' }, say: { uz: "Hokimlik (Backend) arizani qabul qildi va qaror qildi.", ru: 'Мэрия (Backend) приняла заявку и приняла решение.' } },
-  { id: 'db', label: { uz: 'Arxiv', ru: 'Архив' }, d: { uz: "yozadi yoki o'qiydi.", ru: 'пишет или читает.' }, say: { uz: "Arxiv (Database) buyurtmani yozdi (PostgreSQL).", ru: 'Архив (Database) записал заказ (PostgreSQL).' } },
-  { id: 'render', label: { uz: 'Ekranda natija', ru: 'Результат на экране' }, d: { uz: "javob qaytib ko'rinadi.", ru: 'ответ возвращается и виден.' }, say: { uz: "Javob Peshtoqqa qaytdi — ekran yangilandi ✅", ru: 'Ответ вернулся на Витрину — экран обновился ✅' } }
+  { id: 'user', label: { uz: 'Foydalanuvchi', ru: 'Пользователь' }, say: { uz: "Foydalanuvchi «Savatga» tugmasini bosdi.", ru: 'Пользователь нажал кнопку «В корзину».' } },
+  { id: 'front', label: { uz: 'Frontend', ru: 'Frontend' }, say: { uz: "Frontend Backend'ga so'rov (request) yubordi.", ru: 'Frontend отправил запрос (request) в Backend.' } },
+  { id: 'back', label: { uz: 'Backend', ru: 'Backend' }, say: { uz: "Backend so'rovni qabul qildi va tekshirdi.", ru: 'Backend принял и проверил запрос.' } },
+  { id: 'db', label: { uz: 'Database', ru: 'Database' }, say: { uz: "Database buyurtmani saqladi.", ru: 'Database сохранила заказ.' } },
+  { id: 'render', label: { uz: 'Ekranda natija', ru: 'Результат на экране' }, say: { uz: "Backend javob (response) qaytardi — ekran yangilandi ✅", ru: 'Backend вернул ответ (response) — экран обновился ✅' } }
 ];
 const FLOW_ORDER = FLOW.map(f => f.id);
 
-// ===== DARVOZALAR (s10) =====
+// ===== KIRISH YO'LLARI (s10) =====
 const CLIENTS = [
-  { id: 'web', label: { uz: 'Web sayt', ru: 'Веб-сайт' }, note: { uz: "Peshtoq (React) — brauzerda ochiladi.", ru: 'Витрина (React) — открывается в браузере.' } },
-  { id: 'bot', label: { uz: 'Telegram bot', ru: 'Telegram-бот' }, note: { uz: "Ikkinchi darvoza — chat orqali ariza beriladi.", ru: 'Вторые ворота — заявка подаётся через чат.' } },
-  { id: 'mobile', label: { uz: 'Mobil ilova', ru: 'Мобильное приложение' }, note: { uz: "React Native — telefonda. Buni keyingi modulda quramiz!", ru: 'React Native — на телефоне. Соберём его в следующем модуле!' } }
+  { id: 'web', label: { uz: 'Web sayt', ru: 'Веб-сайт' }, note: { uz: "Frontend (React), brauzerda ochiladi.", ru: 'Frontend (React), открывается в браузере.' } },
+  { id: 'bot', label: { uz: 'Telegram bot', ru: 'Telegram-бот' }, note: { uz: "Chat orqali buyurtma beriladi.", ru: 'Заказ оформляется через чат.' } },
+  { id: 'mobile', label: { uz: 'Mobil ilova', ru: 'Мобильное приложение' }, note: { uz: "React Native, telefonda ishlaydi.", ru: 'React Native, работает на телефоне.' } }
 ];
 
-// ===== BINONI O'CHIRISH (s9) =====
+// ===== QISMNI O'CHIRISH (s9) =====
 const BREAKS = [
-  { id: 'db', label: { uz: 'Arxiv', ru: 'Архив' }, effect: { uz: "Ma'lumot hech qayerda saqlanmaydi — sahifa yangilansa savat va buyurtmalar yo'qoladi (yozuv arxivga tushmagan).", ru: 'Данные нигде не хранятся — при обновлении страницы корзина и заказы исчезают (запись не попала в архив).' } },
-  { id: 'back', label: { uz: 'Hokimlik', ru: 'Мэрия' }, effect: { uz: "Peshtoq ma'lumot ololmaydi — hech narsa ishlamaydi. Boshqaruv markazi yo'q.", ru: 'Витрина не может получить данные — ничего не работает. Центра управления нет.' } },
-  { id: 'front', label: { uz: 'Peshtoq', ru: 'Витрина' }, effect: { uz: "Fuqaro hech narsa ko'rmaydi — kirish nuqtasi yo'q. Hokimlik ishlaydi, lekin darvoza yopiq.", ru: 'Житель ничего не видит — точки входа нет. Мэрия работает, но ворота закрыты.' } }
+  { id: 'db', label: { uz: 'Database', ru: 'Database' }, effect: { uz: "Ma'lumot hech qayerda saqlanmaydi: sahifa yangilansa, savat va buyurtmalar yo'qoladi.", ru: 'Данные нигде не хранятся: при обновлении страницы корзина и заказы пропадают.' } },
+  { id: 'back', label: { uz: 'Backend', ru: 'Backend' }, effect: { uz: "Frontend so'rov yuboradi, lekin javob kelmaydi. Sahifa ochiladi, ammo mahsulotlar yuklanmaydi va tugmalar ishlamaydi.", ru: 'Frontend отправляет запрос, но ответа нет. Страница открывается, но товары не загружаются и кнопки не работают.' } },
+  { id: 'front', label: { uz: 'Frontend', ru: 'Frontend' }, effect: { uz: "Foydalanuvchi hech narsa ko'rmaydi. Backend ishlab turibdi, lekin unga kirish yo'li yo'q.", ru: 'Пользователь ничего не видит. Backend работает, но к нему нет точки входа.' } }
 ];
 
 // ===== SCREEN 0 — HOOK =====
@@ -734,7 +732,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [sc, setSc] = useState(0);
   const OPTS = [
     { id: 'a', label: { uz: "Bitta narsa — shunchaki «sayt»", ru: 'Одна штука — просто «сайт»' } },
-    { id: 'b', label: { uz: "Bir nechta idora bir shahar bo'lib ishlaydi — tizim", ru: 'Несколько ведомств работают как один город — система' } },
+    { id: 'b', label: { uz: "Bir nechta qism birga ishlaydigan tizim", ru: 'Система, в которой вместе работают несколько частей' } },
     { id: 'c', label: { uz: "Faqat dizayn va rasmlar", ru: 'Только дизайн и картинки' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
@@ -742,20 +740,20 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Modul · kirish', ru: 'Модуль · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Bitta oddiy <span className="italic" style={{ color: T.accent }}>onlayn xarid sayti</span> ortida nechta «idora» ishlayapti?</>, ru: <>Сколько «ведомств» работает за одним обычным <span className="italic" style={{ color: T.accent }}>интернет-магазином</span>?</> })}</h1>
-        <Mentor>{tr({ uz: "Foydalanuvchi faqat chiroyli peshtoqni ko'radi. Lekin ortida butun bir shahar — bir nechta idora birga ishlaydi. Tugmani bosing — pardani ko'taramiz.", ru: 'Пользователь видит только красивую витрину. Но за ней целый город — несколько ведомств работают вместе. Нажмите кнопку — поднимем занавес.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Oddiy <span className="italic" style={{ color: T.accent }}>onlayn xarid sayti</span> ortida nechta qism ishlayapti?</>, ru: <>Сколько частей работает за обычным <span className="italic" style={{ color: T.accent }}>интернет-магазином</span>?</> })}</h1>
+        <Mentor>{tr({ uz: "Foydalanuvchi faqat sahifani ko'radi: mahsulotlar, narxlar, «Savatga» tugmasi. Lekin uning ortida bir nechta qism birga ishlaydi. Tugmani bosing — sahifa ortini ochamiz.", ru: 'Пользователь видит только страницу: товары, цены, кнопку «В корзину». Но за ней вместе работают несколько частей. Нажмите кнопку — заглянем за страницу.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <ShopMock minH={150}>
               <div className="sw-row"><b>{tr({ uz: '📱 Telefon', ru: '📱 Телефон' })}</b><span className="sw-price">2 500 000</span></div>
               <div className="sw-row"><b>{tr({ uz: '🎧 Quloqchin', ru: '🎧 Наушники' })}</b><span className="sw-price">300 000</span></div>
               <button className="sw-btn">{tr({ uz: 'Savatga', ru: 'В корзину' })}</button>
-              {tried && <div className="sw-reveal fade-step">{tr({ uz: '⬇️ ortida: 5 ta idora', ru: '⬇️ за ней: 5 ведомств' })}</div>}
+              {tried && <div className="sw-reveal fade-step">{tr({ uz: '⬇️ ortida: 5 ta qism', ru: '⬇️ за ней: 5 частей' })}</div>}
             </ShopMock>
             {tried && <div className="fade-step" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {COMPONENTS.map((c, i) => <span key={c.id} className="comp-pill r-in" style={{ animationDelay: `${i * 0.08}s`, color: c.color }}>{tr(c.label)}</span>)}
             </div>}
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Parda ko'tarildi", ru: '✓ Занавес поднят' }) : tr({ uz: "▶ Ortida nima bor?", ru: '▶ Что там за ней?' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Ochildi", ru: '✓ Открыто' }) : tr({ uz: "▶ Ortida nima bor?", ru: '▶ Что там за ней?' })}</button>
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sayt aslida nima?', ru: 'Что такое сайт на самом деле?' })}</p>
@@ -765,7 +763,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Har bir mahsulot — bu <b>idoralar shahri</b>: Peshtoq (Frontend), Hokimlik (Backend), Arxiv (Database), Ekspert-byuro (AI) va Ikkinchi darvoza (Bot). Bugun ularni va orasidagi yo'llarni ko'ramiz va chizamiz.</>, ru: <>Именно! Каждый продукт — это <b>город ведомств</b>: Витрина (Frontend), Мэрия (Backend), Архив (Database), Экспертное бюро (AI) и Вторые ворота (Bot). Сегодня рассмотрим их и дороги между ними — и нарисуем схему.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
+              ? tr({ uz: <><b>Aynan!</b> Sayt — bu tizim: Frontend, Backend, Database, AI va Bot birga ishlaydi. Bugun har birining vazifasini va ular qanday bog'lanishini ko'ramiz.</>, ru: <><b>Именно!</b> Сайт — это система: Frontend, Backend, Database, AI и Bot работают вместе. Сегодня разберём, что делает каждая часть и как они связаны.</> })
+              : tr({ uz: <><b>Qiziq fikr!</b> Ekranda haqiqatan bitta sahifa ko'rinadi. Lekin uning ortida 5 ta qism birga ishlaydi: Frontend, Backend, Database, AI va Bot. Bugun har birini ko'ramiz.</>, ru: <><b>Интересная мысль!</b> На экране действительно видна одна страница. Но за ней вместе работают 5 частей: Frontend, Backend, Database, AI и Bot. Сегодня рассмотрим каждую.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -776,20 +776,20 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "Shaharning 5 idorasi — har biri nima qiladi", ru: '5 ведомств города — чем занимается каждое' }, tag: { uz: 'idoralar', ru: 'ведомства' } },
-    { text: { uz: "Ariza qanday oqadi (Peshtoq→Hokimlik→Arxiv)", ru: 'Как течёт заявка (Витрина→Мэрия→Архив)' }, tag: { uz: 'oqim', ru: 'поток' } },
-    { text: { uz: "Ko'p darvoza, bitta shahar (web, bot, mobil)", ru: 'Много ворот, один город (веб, бот, мобильное)' }, tag: { uz: 'darvoza', ru: 'ворота' } },
-    { text: { uz: "O'z mahsulotingiz arxitekturasini chizish", ru: 'Нарисовать архитектуру своего продукта' }, tag: { uz: 'chizma', ru: 'схема' } }
+    { text: { uz: "Tizimning 5 qismi — har biri nima qiladi", ru: '5 частей системы — что делает каждая' }, tag: { uz: 'qismlar', ru: 'части' } },
+    { text: { uz: "So'rov qanday yuradi (Frontend → Backend → Database)", ru: 'Как идёт запрос (Frontend → Backend → Database)' }, tag: { uz: "yo'l", ru: 'путь' } },
+    { text: { uz: "Ko'p kirish yo'li, bitta tizim (web, bot, mobil)", ru: 'Много точек входа, одна система (веб, бот, мобильное)' }, tag: { uz: "kirish yo'llari", ru: 'точки входа' } },
+    { text: { uz: "O'z loyihangiz arxitekturasini chizish", ru: 'Нарисовать архитектуру своего проекта' }, tag: { uz: 'chizma', ru: 'схема' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: "dars oxirida — siz shu chizmani yig'asiz", ru: 'в конце урока вы соберёте эту схему' })}</p>
+      <p className="flow-label">{tr({ uz: "Dars oxirida shu chizmani o'zingiz yig'asiz", ru: 'В конце урока вы сами соберёте эту схему' })}</p>
       <div className="flow-row mini">
         {FLOW.map((f, i) => (<React.Fragment key={f.id}>{i > 0 && <span className="fl-track" />}<div className="fl-node done"><span className="fl-node-lbl">{tr(f.label)}</span></div></React.Fragment>))}
       </div>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu — har qanday real mahsulotning skeleti. Modul bo'ylab qurgan qismlaringiz shu shahar chizmasida birlashadi.", ru: 'Это скелет любого настоящего продукта. Части, собранные вами за модуль, соединятся в этой схеме города.' })}</p></div>
+      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Deyarli har bir real ilova shu tuzilmada ishlaydi. Oldingi modullarda qurgan qismlaringiz shu chizmada birlashadi.", ru: 'Почти каждое настоящее приложение устроено именно так. Части, которые вы строили в прошлых модулях, соединятся в этой схеме.' })}</p></div>
     </Col>
   );
   const StepsB = (
@@ -801,8 +801,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bo'laklarni <span className="italic" style={{ color: T.accent }}>yaxlit shahar</span> sifatida ko'ramiz.</>, ru: <>Посмотрим на части как на <span className="italic" style={{ color: T.accent }}>цельный город</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Modul bo'ylab har bir idorani alohida o'rgandingiz: React, Node, PostgreSQL, AI, bot. Bugun ularni <b style={{ color: T.ink }}>birga ulab</b>, bitta shahar sifatida ko'rasiz va chizasiz. Bu — arxitektura fikrlash.</>, ru: <>За модуль вы изучили каждое ведомство по отдельности: React, Node, PostgreSQL, AI, бот. Сегодня вы <b style={{ color: T.ink }}>соедините их вместе</b>, увидите как один город и нарисуете схему. Это и есть архитектурное мышление.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qismlarni <span className="italic" style={{ color: T.accent }}>bitta tizim</span> sifatida ko'ramiz.</>, ru: <>Посмотрим на части как на <span className="italic" style={{ color: T.accent }}>одну систему</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Oldingi modullarda har bir qismni alohida o'rgandingiz: React, Node.js, PostgreSQL, AI va bot. Bugun ularni <b style={{ color: T.ink }}>bir-biriga ulab</b>, bitta tizim sifatida ko'rasiz va chizasiz. Buni arxitektura deyishadi.</>, ru: <>В прошлых модулях вы изучали каждую часть отдельно: React, Node.js, PostgreSQL, AI и бота. Сегодня вы <b style={{ color: T.ink }}>соедините их между собой</b>, увидите как одну систему и нарисуете её схему. Это называют архитектурой.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
             : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Chizmani ko'rish", ru: '↩ Посмотреть схему' })}</button>{StepsB}</div>}
@@ -811,7 +811,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — 5 IDORA (binolarni tanish) =====
+// ===== SCREEN 2 — 5 QISM (3 asosiy + 2 qo'shimcha) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(COMPONENTS.map(c => c.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -821,20 +821,27 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = COMPONENTS.find(c => c.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · idoralar', ru: 'Понятие · ведомства' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: '5 idorani oching', ru: 'Откройте 5 ведомств' })} (${seen.size}/5)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · 5 qism', ru: 'Понятие · 5 частей' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: '5 qismni oching', ru: 'Откройте 5 частей' })} (${seen.size}/5)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mahsulot — bu <span className="italic" style={{ color: T.accent }}>shahardagi 5 idora</span> kabi.</>, ru: <>Продукт — это как <span className="italic" style={{ color: T.accent }}>5 ведомств в городе</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Kichik shaharni tasavvur qiling: peshtoq, hokimlik, arxiv, ekspert-byuro va ikkinchi darvoza. Mahsulot ham xuddi shunday — har idora o'z ishini qiladi. Har birini bosing.", ru: 'Представьте небольшой город: витрина, мэрия, архив, экспертное бюро и вторые ворота. Продукт устроен так же — каждое ведомство делает своё дело. Нажмите на каждое.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimda <span className="italic" style={{ color: T.accent }}>5 qism</span> bor: uchtasi asosiy, ikkitasi qo'shimcha.</>, ru: <>В системе <span className="italic" style={{ color: T.accent }}>5 частей</span>: три основные и две дополнительные.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Asosiy uchlik — Frontend, Backend va Database. AI va Bot ularga qo'shiladi. Esda qolishi oson bo'lsin deb har bir qismni bitta oddiy narsaga o'xshatamiz. Har birini bosing.", ru: 'Основная тройка — Frontend, Backend и Database. AI и Bot добавляются к ним. Чтобы было легче запомнить, сравним каждую часть с чем-то простым. Нажмите на каждую.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {COMPONENTS.map(c => <button key={c.id} className="gchip" onClick={() => tap(c.id)} style={seen.has(c.id) ? { boxShadow: `inset 0 0 0 1.5px ${c.color}`, color: c.color } : undefined}>{seen.has(c.id) ? '✓ ' : ''}{tr(c.label)}</button>)}
+            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[true, false].map(core => (
+                <div key={core ? 'core' : 'extra'} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <span className="mono" style={{ fontSize: 11, color: T.ink2, letterSpacing: '.04em' }}>{core ? tr({ uz: 'Asosiy', ru: 'Основные' }) : tr({ uz: "Qo'shimcha", ru: 'Дополнительные' })}</span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+                    {COMPONENTS.filter(c => c.core === core).map(c => <button key={c.id} className="gchip" onClick={() => tap(c.id)} style={seen.has(c.id) ? { boxShadow: `inset 0 0 0 1.5px ${c.color}`, color: c.color } : undefined}>{seen.has(c.id) ? '✓ ' : ''}{tr(c.label)}</button>)}
+                  </div>
+                </div>
+              ))}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>5 idora, bitta shahar. Hech biri yolg'iz ishlamaydi — ular <b>birga</b> mahsulotni tashkil qiladi. Endi ular qanday gaplashishini (yo'llarni) ko'ramiz.</>, ru: <>5 ведомств, один город. Ни одно не работает в одиночку — они <b>вместе</b> составляют продукт. Теперь посмотрим, как они общаются (дороги между ними).</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>5 qism — <b>bitta tizim</b>. Hech biri yolg'iz ishlamaydi. Endi ular bir-biri bilan qanday bog'lanishini ko'ramiz.</>, ru: <>5 частей — <b>одна система</b>. Ни одна не работает в одиночку. Теперь посмотрим, как они связаны друг с другом.</> })}</p></div>}
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active} style={{ }}><p className="note-h">{tr(cur.label)} <span className="mono" style={{ color: cur.color, fontSize: 11, marginLeft: 6 }}>{tr(cur.tech)}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.role)}</p></div>
+              ? <div className="sk-info fade-step" key={active} style={{ }}><p className="note-h">{tr(cur.label)} <span className="mono" style={{ color: cur.color, fontSize: 11, marginLeft: 6 }}>{tr(cur.tech)}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.role)}</p>{cur.like && <p className="body" style={{ margin: '6px 0 0', color: T.ink2, fontStyle: 'italic' }}>{tr(cur.like)}</p>}</div>
               : null}
           </Col>
         </div></Zoomable>
@@ -843,7 +850,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — ARIZANING SAYOHATI (signature animatsiya) =====
+// ===== SCREEN 3 — SO'ROVNING YO'LI (signature animatsiya) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? FLOW.length - 1 : 0);
   const [sc, setSc] = useState(0);
@@ -851,10 +858,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { setStep(n => Math.min(n + 1, FLOW.length - 1)); setSc(n => n + 1); };
   return (
-    <Stage eyebrow={tr({ uz: 'Animatsiya · arizaning sayohati', ru: 'Анимация · путешествие заявки' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Sayohatni kuzating', ru: 'Проследите путь' })} (${step + 1}/${FLOW.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Animatsiya · so'rovning yo'li", ru: 'Анимация · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Yo'lni kuzating", ru: 'Проследите путь' })} (${step + 1}/${FLOW.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tugma bosilganda ariza <span className="italic" style={{ color: T.accent }}>shu yo'l</span> bilan sayohat qiladi.</>, ru: <>При нажатии кнопки заявка путешествует <span className="italic" style={{ color: T.accent }}>этим путём</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Fuqaro «Savatga» tugmasini bosdi — keyin nima bo'ladi? Tugmani bosib, arizaning idoradan-idoraga sayohatini kuzating. Har idora o'z ishini qiladi.", ru: 'Житель нажал кнопку «В корзину» — что дальше? Нажимайте кнопку и следите за путешествием заявки от ведомства к ведомству. Каждое делает своё дело.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tugma bosilganda so'rov <span className="italic" style={{ color: T.accent }}>shu yo'l</span> bilan yuradi.</>, ru: <>При нажатии кнопки запрос идёт <span className="italic" style={{ color: T.accent }}>этим путём</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Foydalanuvchi «Savatga» tugmasini bosdi. Keyin nima bo'ladi? Tugmani bosib, so'rov bir qismdan ikkinchisiga qanday o'tishini kuzating.", ru: 'Пользователь нажал кнопку «В корзину». Что дальше? Нажимайте кнопку и следите, как запрос переходит от одной части к другой.' })}</Mentor>
         <div className="fade-up"><div className="flow-row">
           {FLOW.map((f, i) => (
             <React.Fragment key={f.id}>
@@ -865,12 +872,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div></div>
         <Zoomable><div className="split">
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Sayohat tugadi', ru: '✓ Путешествие завершено' }) : step === 0 ? tr({ uz: '▶ Arizani yuborish', ru: '▶ Отправить заявку' }) : tr({ uz: 'Keyingi idora →', ru: 'Следующее ведомство →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: "✓ Yo'l tugadi", ru: '✓ Путь пройден' }) : step === 0 ? tr({ uz: "▶ So'rovni yuborish", ru: '▶ Отправить запрос' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
             {FLOW[step] && <div className="sk-info fade-step" key={step}><p className="note-h">{tr(FLOW[step].label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(FLOW[step].say)}</p></div>}
           </Col>
           <Col>
             {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'liq sayohat: <b>Foydalanuvchi → Peshtoq → Hokimlik → Arxiv → ekran</b>. Har idora zanjirning bitta halqasi. Bittasi ishlamasa — zanjir uziladi.</>, ru: <>Полный путь: <b>Пользователь → Витрина → Мэрия → Архив → экран</b>. Каждое ведомство — звено цепи. Откажет одно — цепь рвётся.</> })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'liq yo'l: <b>Foydalanuvchi → Frontend → Backend → Database → ekran</b>. Har bir qism zanjirning bitta halqasi. Bittasi ishlamasa, zanjir uziladi.</>, ru: <>Полный путь: <b>Пользователь → Frontend → Backend → Database → экран</b>. Каждая часть — одно звено цепи. Если одна не работает, цепь рвётся.</> })}</p></div>
               : null}
           </Col>
         </div></Zoomable>
@@ -883,27 +890,27 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText="Mahsulotlar, buyurtmalar va foydalanuvchilar qayerda doimiy saqlanadi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mahsulot, buyurtma va foydalanuvchilar qayerda <span className="italic" style={{ color: T.accent }}>doimiy saqlanadi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Где <span className="italic" style={{ color: T.accent }}>постоянно хранятся</span> товары, заказы и пользователи?</h2></> })}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mahsulotlar, buyurtmalar va foydalanuvchilar qayerda <span className="italic" style={{ color: T.accent }}>doimiy saqlanadi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Где <span className="italic" style={{ color: T.accent }}>постоянно хранятся</span> товары, заказы и пользователи?</h2></> })}
     options={[
-      { uz: "Frontend (Peshtoq) — chunki mijoz uni ko'radi", ru: 'Frontend (Витрина) — ведь клиент видит именно её' },
-      { uz: "Backend (Hokimlik) — chunki u markaz", ru: 'Backend (Мэрия) — ведь это центр' },
-      { uz: "AI (Ekspert-byuro) — chunki u aqlli", ru: 'AI (Экспертное бюро) — ведь он умный' },
-      { uz: "Database (Arxiv) — chunki server o'chsa ham qoladi", ru: 'Database (Архив) — ведь данные остаются, даже если сервер выключат' }
+      { uz: "Frontend'da — foydalanuvchi ularni ko'radi", ru: 'В Frontend — их видит пользователь' },
+      { uz: "Backend'da — so'rovlar shu yerdan o'tadi", ru: 'В Backend — через него идут запросы' },
+      { uz: "AI'da — u hamma savolga javob beradi", ru: 'В AI — он отвечает на любой вопрос' },
+      { uz: "Database'da — sahifa yangilansa ham qoladi", ru: 'В Database — останутся и после обновления' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Doimiy ma'lumot Arxivda (Database, PostgreSQL) saqlanadi. Peshtoq faqat ko'rsatadi, Hokimlik qaror qiladi va arxivga yozadi, lekin saqlash — arxivning ishi.", ru: 'Верно! Постоянные данные хранятся в Архиве (Database, PostgreSQL). Витрина только показывает, Мэрия решает и пишет в архив, но хранение — работа архива.' }}
+    explainCorrect={{ uz: "To'g'ri! Doimiy ma'lumot Database'da (PostgreSQL) saqlanadi. Frontend ma'lumotni ko'rsatadi, Backend uni tekshirib Database'ga yozadi, saqlash esa Database'ning vazifasi.", ru: 'Верно! Постоянные данные хранятся в Database (PostgreSQL). Frontend показывает данные, Backend проверяет их и записывает в Database, а хранить их — задача Database.' }}
     explainWrong={{
-      0: { uz: "Peshtoq faqat ko'rsatadi — yangilansa hammasi yo'qoladi. Saqlash arxivning ishi.", ru: 'Витрина только показывает — после обновления всё исчезает. Хранение — работа архива.' },
-      1: { uz: "Hokimlik qaror qiladi va arxivga yozishni boshqaradi, lekin o'zi doimiy saqlamaydi — Arxiv saqlaydi.", ru: 'Мэрия решает и управляет записью в архив, но сама постоянно не хранит — хранит Архив.' },
-      2: { uz: "Ekspert-byuro maslahat beradi, ma'lumotni saqlamaydi. Doimiy saqlash — Arxivning ishi.", ru: 'Экспертное бюро даёт советы, но данные не хранит. Постоянное хранение — работа Архива.' },
-      default: { uz: "Doimiy ma'lumot Arxivda (Database, PostgreSQL).", ru: 'Постоянные данные — в Архиве (Database, PostgreSQL).' }
+      0: { uz: "Frontend ma'lumotni ko'rsatadi, lekin doimiy saqlamaydi: sahifa yangilansa, ekrandagi ma'lumot yo'qolishi mumkin.", ru: 'Frontend показывает данные, но постоянно их не хранит: после обновления страницы данные с экрана могут пропасть.' },
+      1: { uz: "Backend so'rovni tekshiradi va Database'ga yozadi, lekin ma'lumotni o'zi doimiy saqlamaydi.", ru: 'Backend проверяет запрос и записывает данные в Database, но сам постоянно их не хранит.' },
+      2: { uz: "AI maslahat beradi, lekin ma'lumotni saqlamaydi.", ru: 'AI даёт советы, но данные не хранит.' },
+      default: { uz: "Doimiy ma'lumot Database'da (PostgreSQL) saqlanadi.", ru: 'Постоянные данные хранятся в Database (PostgreSQL).' }
     }} />
 );
 
-// ===== SCREEN 5 — PESHTOQ vs HOKIMLIK =====
+// ===== SCREEN 5 — FRONTEND vs BACKEND =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = [
-    { id: 'front', label: { uz: 'Frontend (Peshtoq)', ru: 'Frontend (Витрина)' }, color: T.blue, does: { uz: "Ko'rsatadi: sahifa, tugma, savat. Fuqaro bilan to'g'ridan-to'g'ri gaplashadi.", ru: 'Показывает: страницу, кнопку, корзину. Общается с жителем напрямую.' }, not: { uz: "Ma'lumotni saqlamaydi, muhim qarorlarni qilmaydi.", ru: 'Не хранит данные и не принимает важных решений.' } },
-    { id: 'back', label: { uz: 'Backend (Hokimlik)', ru: 'Backend (Мэрия)' }, color: T.accent, does: { uz: "Qaror qiladi: narxni hisoblaydi, arizani tekshiradi, arxivga yozadi.", ru: 'Решает: считает цену, проверяет заявку, пишет в архив.' }, not: { uz: "Fuqaroga ko'rinmaydi — sahna ortida ishlaydi.", ru: 'Жителю не видна — работает за кулисами.' } }
+    { id: 'front', label: { uz: 'Frontend', ru: 'Frontend' }, color: T.blue, does: { uz: "Sahifa, tugma va savatni ko'rsatadi, foydalanuvchi bosgan tugmani qabul qiladi.", ru: 'Показывает страницу, кнопки и корзину, принимает нажатия пользователя.' }, not: { uz: "Muhim ma'lumotni doimiy saqlamaydi, narx va to'lov qoidalarini hal qilmaydi.", ru: 'Постоянно не хранит важные данные и не решает, по каким правилам считать цену и оплату.' } },
+    { id: 'back', label: { uz: 'Backend', ru: 'Backend' }, color: T.accent, does: { uz: "Narxni hisoblaydi, so'rovni tekshiradi, Database'ga yozadi.", ru: 'Считает цену, проверяет запрос, записывает в Database.' }, not: { uz: "Foydalanuvchiga ko'rinmaydi — orqa tomonda ishlaydi.", ru: 'Пользователю не виден — работает за кулисами.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(PARTS.map(p => p.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -913,16 +920,16 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = PARTS.find(p => p.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Chegara · peshtoq ↔ hokimlik', ru: 'Граница · витрина ↔ мэрия' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Ikkalasini oching', ru: 'Откройте оба' })} (${seen.size}/2)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Chegara · Frontend ↔ Backend', ru: 'Граница · Frontend ↔ Backend' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Ikkalasini oching', ru: 'Откройте оба' })} (${seen.size}/2)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Eng muhim chegara: <span className="italic" style={{ color: T.accent }}>peshtoq</span> va <span className="italic" style={{ color: T.accent }}>hokimlik</span>.</>, ru: <>Самая важная граница: <span className="italic" style={{ color: T.accent }}>витрина</span> и <span className="italic" style={{ color: T.accent }}>мэрия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Boshlovchilar ko'p adashadi: Peshtoq (Frontend) <b style={{ color: T.ink }}>ko'rsatadi</b>, Hokimlik (Backend) <b style={{ color: T.ink }}>qaror qiladi</b>. Peshtoq mahsulotni chiroyli qiladi; hokimlik hisoblaydi va arxivga yozadi. Har birini bosing.</>, ru: <>Новички часто путаются: Витрина (Frontend) <b style={{ color: T.ink }}>показывает</b>, Мэрия (Backend) <b style={{ color: T.ink }}>решает</b>. Витрина делает продукт красивым; мэрия считает и пишет в архив. Нажмите на каждое.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Eng muhim chegara: <span className="italic" style={{ color: T.accent }}>Frontend</span> va <span className="italic" style={{ color: T.accent }}>Backend</span>.</>, ru: <>Самая важная граница: <span className="italic" style={{ color: T.accent }}>Frontend</span> и <span className="italic" style={{ color: T.accent }}>Backend</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Boshida ko'pchilik shu ikkisini adashtiradi. Frontend foydalanuvchiga <b style={{ color: T.ink }}>ko'rsatadi</b>, Backend <b style={{ color: T.ink }}>qoidalarni bajaradi</b>. Har birini bosing.</>, ru: <>Вначале многие их путают. Frontend <b style={{ color: T.ink }}>показывает</b> пользователю, Backend <b style={{ color: T.ink }}>выполняет правила</b>. Нажмите на каждый.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {PARTS.map(p => <button key={p.id} className={`pick-row ${active === p.id ? 'sel' : ''} ${seen.has(p.id) ? 'done-row' : ''}`} onClick={() => tap(p.id)}><span style={{ flex: 1 }}>{tr(p.label)}</span><span className="pick-plus">{seen.has(p.id) ? '✓' : '▶'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qoida: ko'rinadigan narsa — Peshtoq (Frontend); qaror va saqlash — Hokimlik (Backend). Ular API (yo'llar) orqali gaplashadi.", ru: 'Правило: всё видимое — Витрина (Frontend); решения и хранение — Мэрия (Backend). Общаются они через API (дороги).' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: ko'rinadigan qism — Frontend; qoidalar, hisob-kitob va Database bilan ishlash — Backend. Ular <b>API</b> orqali bog'lanadi: API — Frontend so'rov yuboradigan va Backend javob qaytaradigan yo'l.</>, ru: <>Правило: видимая часть — Frontend; правила, расчёты и работа с Database — Backend. Они связаны через <b>API</b>: API — путь, по которому Frontend отправляет запрос, а Backend возвращает ответ.</> })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -938,36 +945,36 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 6 — ARXIV PERSISTENCE =====
+// ===== SCREEN 6 — DATABASE: DOIMIY XOTIRA =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [refreshed, setRefreshed] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = refreshed;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Idora · Arxiv', ru: 'Ведомство · Архив' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Sahifani yangilang", ru: 'Обновите страницу' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qism · Database', ru: 'Часть · Database' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Sahifani yangilang", ru: 'Обновите страницу' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Arxiv — shaharning <span className="italic" style={{ color: T.accent }}>xotirasi</span>. U bo'lmasa, hech narsa eslanmaydi.</>, ru: <>Архив — <span className="italic" style={{ color: T.accent }}>память</span> города. Без него ничего не запоминается.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Tasavvur qiling: yozuv arxivga tushmasa, sahifani yangilaganda yo'qoladi. Tugmani bosib, arxiv bor va yo'q holatni solishtiring.", ru: 'Представьте: если запись не попала в архив, при обновлении страницы она исчезнет. Нажмите кнопку и сравните: с архивом и без него.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Database — tizimning <span className="italic" style={{ color: T.accent }}>xotirasi</span>. Usiz hech narsa eslab qolinmaydi.</>, ru: <>Database — <span className="italic" style={{ color: T.accent }}>память</span> системы. Без неё ничего не запоминается.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Ma'lumot Database'ga yozilmasa, sahifani yangilaganingizda yo'qoladi. Tugmani bosib, ikki holatni solishtiring.", ru: 'Если данные не записаны в Database, при обновлении страницы они пропадут. Нажмите кнопку и сравните два случая.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className={`mem-box ${refreshed ? 'gone' : ''}`}>
-              <p className="note-h" style={{ color: refreshed ? T.danger : T.ink2 }}>{tr({ uz: '❌ Arxivsiz (faqat Peshtoq)', ru: '❌ Без Архива (только Витрина)' })}</p>
+              <p className="note-h" style={{ color: refreshed ? T.danger : T.ink2 }}>{tr({ uz: "❌ Database'siz (faqat Frontend)", ru: '❌ Без Database (только Frontend)' })}</p>
               {refreshed
-                ? <p className="body" style={{ margin: 0, color: T.danger }}>{tr({ uz: "💨 Savat bo'sh — yangilashda hammasi yo'qoldi!", ru: '💨 Корзина пуста — при обновлении всё исчезло!' })}</p>
-                : <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '🛒 Savat: Telefon, Quloqchin', ru: '🛒 Корзина: Телефон, Наушники' })}</p>}
+                ? <p className="body" style={{ margin: 0, color: T.danger }}>{tr({ uz: "Savat bo'sh — yangilaganda hammasi yo'qoldi!", ru: 'Корзина пуста — при обновлении всё пропало!' })}</p>
+                : <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Savat: Telefon, Quloqchin', ru: 'Корзина: Телефон, Наушники' })}</p>}
             </div>
             <div className="mem-box keep">
-              <p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Arxiv bilan (PostgreSQL)', ru: '✅ С Архивом (PostgreSQL)' })}</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '🛒 Savat: Telefon, Quloqchin — yangilashdan keyin ham joyida', ru: '🛒 Корзина: Телефон, Наушники — на месте и после обновления' })}</p>
+              <p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Database bilan (PostgreSQL)', ru: '✅ С Database (PostgreSQL)' })}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Savat: Telefon, Quloqchin — yangilangandan keyin ham joyida', ru: 'Корзина: Телефон, Наушники — на месте и после обновления' })}</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={refreshed} onClick={() => { setRefreshed(true); setSc(n => n + 1); }}>{refreshed ? tr({ uz: '✓ Yangilandi', ru: '✓ Обновлено' }) : tr({ uz: "🔄 Sahifani yangilash", ru: '🔄 Обновить страницу' })}</button>
           </Col>
           <Col>
             {refreshed
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Arxivga yozilgan ma'lumot qoladi, faqat ekrandagi (peshtoq) — yo'qoladi. Shuning uchun muhim narsa <b>doim arxivga</b> yoziladi.</>, ru: <>Видите? Записанное в архив остаётся, а то, что было только на экране (витрина), — исчезает. Поэтому важное <b>всегда пишут в архив</b>.</> })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Database'ga yozilgan ma'lumot qoladi, faqat ekranda turgani yo'qoladi. Shuning uchun muhim ma'lumot <b>doim Database'ga</b> yoziladi.</>, ru: <>Видите? Данные, записанные в Database, остаются, а пропадает только то, что было на экране. Поэтому важные данные <b>всегда записывают в Database</b>.</> })}</p></div>
               : null}
-            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Arxiv (Database) = doimiy reyestr. Peshtoq (Frontend) = vaqtinchalik ko'rinish. Hokimlik ikkisi orasida ma'lumotni tashiydi.", ru: 'Архив (Database) = постоянный реестр. Витрина (Frontend) = временное отображение. Мэрия переносит данные между ними.' })}</p></div>}
+            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Database — doimiy xotira. Frontend — vaqtinchalik ko'rinish. Backend ma'lumotni ular orasida tashiydi.", ru: 'Database — постоянная память. Frontend — временное отображение. Backend переносит данные между ними.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -975,11 +982,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — EKSPERT-BYURO + IKKINCHI DARVOZA =====
+// ===== SCREEN 7 — AI + BOT (qo'shimcha qismlar) =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const EXTRA = [
-    { id: 'ai', label: { uz: 'AI (Ekspert-byuro)', ru: 'AI (Экспертное бюро)' }, color: T.violet, desc: { uz: "Aqlli maslahatchi: «Telefonga g'ilof ham olasizmi?», qidiruvga javob. Hokimlik AI'ni chaqiradi.", ru: 'Умный советчик: «Возьмёте чехол к телефону?», ответы на поиск. Мэрия вызывает AI.' } },
-    { id: 'bot', label: { uz: 'Bot (Ikkinchi darvoza)', ru: 'Бот (Вторые ворота)' }, color: T.amber, desc: { uz: "Qo'shimcha darvoza: fuqaro Telegram'da ham ariza beradi. Bot o'sha Hokimlik va Arxivga ulanadi.", ru: 'Дополнительные ворота: житель может подать заявку и в Telegram. Бот подключён к той же Мэрии и тому же Архиву.' } }
+    { id: 'ai', label: { uz: 'AI', ru: 'AI' }, color: T.violet, desc: { uz: "Maslahat beradi: «Telefonga g'ilof ham olasizmi?», qidiruvdagi savolga javob yozadi. Backend AI'ni kerak bo'lganda chaqiradi.", ru: 'Даёт советы: «Возьмёте к телефону ещё и чехол?», отвечает на вопросы в поиске. Backend вызывает AI, когда нужно.' } },
+    { id: 'bot', label: { uz: 'Bot', ru: 'Bot' }, color: T.amber, desc: { uz: "Yana bir kirish yo'li: foydalanuvchi Telegram orqali ham buyurtma beradi. Bot o'sha Backend va Database bilan ishlaydi.", ru: 'Ещё одна точка входа: пользователь может оформить заказ и через Telegram. Бот работает с тем же Backend и Database.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(EXTRA.map(e => e.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -989,16 +996,16 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = EXTRA.find(e => e.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Idora · Ekspert-byuro + Darvoza', ru: 'Ведомство · Экспертное бюро + Ворота' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Ikkalasini oching', ru: 'Откройте оба' })} (${seen.size}/2)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Qo'shimcha qismlar · AI va Bot", ru: 'Дополнительные части · AI и Bot' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Ikkalasini oching', ru: 'Откройте оба' })} (${seen.size}/2)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ekspert-byuro va ikkinchi darvoza — <span className="italic" style={{ color: T.accent }}>shaharga ulanadigan</span> qo'shimcha idoralar.</>, ru: <>Экспертное бюро и вторые ворота — дополнительные ведомства, <span className="italic" style={{ color: T.accent }}>подключаемые к городу</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Asosiy uchlik (Peshtoq+Hokimlik+Arxiv) ustiga AI va Bot qo'shiladi. Muhimi: ikkalasi ham <b style={{ color: T.ink }}>o'sha Hokimlikka</b> ulanadi — alohida shahar emas. Har birini bosing.</>, ru: <>К основной тройке (Витрина+Мэрия+Архив) добавляются AI и Бот. Важно: оба подключаются <b style={{ color: T.ink }}>к той же Мэрии</b> — это не отдельный город. Нажмите на каждое.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI va Bot — <span className="italic" style={{ color: T.accent }}>tizimga qo'shiladigan</span> qismlar.</>, ru: <>AI и Bot — части, <span className="italic" style={{ color: T.accent }}>которые добавляются к системе</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Asosiy uchlik (Frontend, Backend, Database) ustiga AI va Bot qo'shiladi. Muhimi: ikkalasi ham <b style={{ color: T.ink }}>o'sha Backend'ga</b> ulanadi — alohida tizim qurilmaydi. Har birini bosing.</>, ru: <>К основной тройке (Frontend, Backend, Database) добавляются AI и Bot. Главное: оба подключаются <b style={{ color: T.ink }}>к тому же Backend</b> — отдельную систему не строят. Нажмите на каждую.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {EXTRA.map(e => <button key={e.id} className={`pick-row ${active === e.id ? 'sel' : ''} ${seen.has(e.id) ? 'done-row' : ''}`} onClick={() => tap(e.id)}><span style={{ flex: 1 }}>{tr(e.label)}</span><span className="pick-plus">{seen.has(e.id) ? '✓' : '▶'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI va Bot — «qo'shimcha». Ularsiz ham shahar ishlaydi; ular tajribani boyitadi. Ikkalasi ham markaziy Hokimlikka ulanadi.", ru: 'AI и Бот — «дополнения». Город работает и без них; они обогащают опыт. Оба подключаются к центральной Мэрии.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI va Bot — qo'shimcha qismlar. Ularsiz ham tizim ishlaydi, ular esa uni qulayroq qiladi. Ikkalasi ham bitta Backend'ga ulanadi.", ru: 'AI и Bot — дополнительные части. Система работает и без них, а с ними ею удобнее пользоваться. Оба подключаются к одному Backend.' })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -1014,24 +1021,24 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — TEST 2 (INLINE_KEYS.s8 = 0) =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
-    questionText="Mijoz web-saytda «Savatga» bosdi. Ariza qaysi yo'l bilan boradi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mijoz «Savatga» bosdi. Ariza qaysi <span className="italic" style={{ color: T.accent }}>yo'l</span> bilan boradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Клиент нажал «В корзину». Каким <span className="italic" style={{ color: T.accent }}>путём</span> пойдёт заявка?</h2></> })}
+    questionText="Foydalanuvchi «Savatga» bosdi. So'rov qaysi yo'l bilan boradi?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Foydalanuvchi «Savatga» bosdi. So'rov qaysi <span className="italic" style={{ color: T.accent }}>yo'l</span> bilan boradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Пользователь нажал «В корзину». Каким <span className="italic" style={{ color: T.accent }}>путём</span> пойдёт запрос?</h2></> })}
     options={[
-      { uz: "Peshtoq → Hokimlik → Arxiv, javob orqaga qaytadi", ru: 'Витрина → Мэрия → Архив, ответ возвращается обратно' },
-      { uz: "To'g'ridan-to'g'ri Arxivga, Hokimliksiz", ru: 'Напрямую в Архив, без Мэрии' },
-      { uz: "Faqat Peshtoq ichida qoladi, chiqmaydi", ru: 'Остаётся внутри Витрины и никуда не уходит' },
-      { uz: "Arxiv → Hokimlik → Peshtoq (teskari)", ru: 'Архив → Мэрия → Витрина (в обратную сторону)' }
+      { uz: "Frontend → Backend → Database, javob orqaga qaytadi", ru: 'Frontend → Backend → Database, ответ возвращается обратно' },
+      { uz: "Frontend → Database, Backend'ni chetlab o'tadi", ru: 'Frontend → Database, в обход Backend' },
+      { uz: "Frontend ichida qoladi, hech qayerga chiqmaydi", ru: 'Остаётся внутри Frontend и никуда не уходит' },
+      { uz: "Database → Backend → Frontend, teskari yo'nalishda", ru: 'Database → Backend → Frontend, в обратную сторону' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Ariza fuqarodan Peshtoq orqali Hokimlikka, undan Arxivga boradi; natija esa teskari yo'l bilan ekranga qaytadi. Peshtoq arxivga to'g'ridan ulanmaydi — har doim Hokimlik orqali.", ru: 'Верно! Заявка идёт от жителя через Витрину в Мэрию, оттуда в Архив; результат тем же путём возвращается на экран. Витрина не подключается к архиву напрямую — всегда через Мэрию.' }}
+    explainCorrect={{ uz: "To'g'ri! So'rov Frontend'dan Backend'ga, undan Database'ga boradi; javob esa shu yo'l bilan ekranga qaytadi. Bizning tizimda Frontend Database bilan to'g'ridan ishlamaydi — hamma so'rov Backend orqali o'tadi.", ru: 'Верно! Запрос идёт из Frontend в Backend, а оттуда в Database; ответ тем же путём возвращается на экран. В нашей системе Frontend не работает с Database напрямую — все запросы проходят через Backend.' }}
     explainWrong={{
-      1: { uz: "Peshtoq xavfsizlik uchun arxivga to'g'ridan ulanmaydi — har doim Hokimlik orqali o'tadi.", ru: 'Ради безопасности Витрина не ходит в архив напрямую — всегда через Мэрию.' },
-      2: { uz: "Agar Peshtoq ichida qolsa, hech narsa saqlanmaydi. Ariza Hokimlik va Arxivga borishi kerak.", ru: 'Если заявка останется внутри Витрины, ничего не сохранится. Она должна дойти до Мэрии и Архива.' },
-      3: { uz: "Yo'nalish teskari: avval Peshtoq ariza yuboradi, keyin Hokimlik va Arxiv. Javob esa orqaga qaytadi.", ru: 'Направление обратное: сначала Витрина отправляет заявку, затем Мэрия и Архив. А ответ возвращается назад.' },
-      default: { uz: "Peshtoq → Hokimlik → Arxiv, javob orqaga qaytadi.", ru: 'Витрина → Мэрия → Архив, ответ возвращается обратно.' }
+      1: { uz: "Bizning tizimda Frontend Database'ga to'g'ridan ulanmaydi: so'rovni Backend tekshiradi, parol va qoidalar ham Backend'da turadi.", ru: 'В нашей системе Frontend не подключается к Database напрямую: запрос проверяет Backend, и пароли с правилами тоже находятся в Backend.' },
+      2: { uz: "So'rov Frontend ichida qolsa, hech narsa saqlanmaydi. U Backend va Database'ga borishi kerak.", ru: 'Если запрос останется внутри Frontend, ничего не сохранится. Он должен дойти до Backend и Database.' },
+      3: { uz: "Yo'nalish teskari: avval Frontend so'rov yuboradi, keyin Backend va Database ishlaydi. Javob esa orqaga qaytadi.", ru: 'Направление обратное: сначала Frontend отправляет запрос, потом работают Backend и Database. А ответ возвращается назад.' },
+      default: { uz: "Frontend → Backend → Database, javob orqaga qaytadi.", ru: 'Frontend → Backend → Database, ответ возвращается обратно.' }
     }} />
 );
 
-// ===== SCREEN 9 — BINONI O'CHIRISH (ArchBreaker) =====
+// ===== SCREEN 9 — QISMNI O'CHIRISH (ArchBreaker) =====
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(BREAKS.map(b => b.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1041,19 +1048,19 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = BREAKS.find(b => b.id === active);
   return (
-    <Stage eyebrow={tr({ uz: "Tajriba · binoni o'chir", ru: 'Эксперимент · выключите здание' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "3 binoni sinab ko'ring", ru: 'Попробуйте 3 здания' })} (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tajriba · qismni o'chiring", ru: 'Эксперимент · отключите часть' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "3 qismni sinab ko'ring", ru: 'Проверьте 3 части' })} (${seen.size}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta binoni <span className="italic" style={{ color: T.accent }}>o'chirsangiz</span> — nima buziladi?</>, ru: <>Что сломается, если <span className="italic" style={{ color: T.accent }}>выключить</span> одно здание?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Har idora nega kerakligini bilishning eng yaxshi yo'li — uni olib tashlab ko'rish. Har bir binoni bosing va shahar qanday «to'xtashini» ko'ring.", ru: 'Лучший способ понять, зачем нужно каждое ведомство, — убрать его и посмотреть. Нажмите на каждое здание и увидите, как город «встаёт».' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta qismni <span className="italic" style={{ color: T.accent }}>o'chirsangiz</span>, nima buziladi?</>, ru: <>Что сломается, если <span className="italic" style={{ color: T.accent }}>отключить</span> одну часть?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Har bir qism nega kerakligini bilishning eng yaxshi yo'li — uni o'chirib ko'rish. Har birini bosing va tizim qanday to'xtashini ko'ring.", ru: 'Лучший способ понять, зачем нужна каждая часть, — отключить её. Нажмите на каждую и посмотрите, как система останавливается.' })}</Mentor>
         <div className="fade-up"><div className="flow-row mini">
           {COMPONENTS.slice(0, 3).map((c, i) => (<React.Fragment key={c.id}>{i > 0 && <span className="fl-track" />}<div className={`fl-node ${active === c.id ? 'broken' : 'done'}`}><span className="fl-node-ico">{active === c.id ? '❌' : ''}</span><span className="fl-node-lbl">{tr(c.label)}</span></div></React.Fragment>))}
         </div></div>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {BREAKS.map(b => <button key={b.id} className="gchip" onClick={() => tap(b.id)} style={seen.has(b.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.danger}`, color: T.danger } : undefined}>{seen.has(b.id) ? '✗ ' : ''}{tr({ uz: <>{tr(b.label)} o'chir</>, ru: <>Выключить: {tr(b.label)}</> })}</button>)}
+              {BREAKS.map(b => <button key={b.id} className="gchip" onClick={() => tap(b.id)} style={seen.has(b.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.danger}`, color: T.danger } : undefined}>{seen.has(b.id) ? '✗ ' : ''}{tr({ uz: <>{tr(b.label)}'ni o'chirish</>, ru: <>Отключить {tr(b.label)}</> })}</button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har bir asosiy idora kerak: Peshtoq ko'rsatadi, Hokimlik boshqaradi, Arxiv eslaydi. Bittasi yo'qolsa — shahar ishlamaydi.", ru: 'Каждое основное ведомство нужно: Витрина показывает, Мэрия управляет, Архив помнит. Пропадёт одно — город не работает.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Uchala asosiy qism ham kerak: Frontend ko'rsatadi, Backend boshqaradi, Database eslab qoladi. Bittasi yo'qolsa, tizim ishlamaydi.", ru: 'Нужны все три основные части: Frontend показывает, Backend управляет, Database помнит. Если пропадёт одна, система не работает.' })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -1066,7 +1073,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — KO'P DARVOZA, BITTA SHAHAR =====
+// ===== SCREEN 10 — KO'P KIRISH YO'LI, BITTA TIZIM =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(CLIENTS.map(c => c.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1076,16 +1083,16 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = CLIENTS.find(c => c.id === active);
   return (
-    <Stage eyebrow={tr({ uz: "Shahar · ko'p darvoza", ru: 'Город · много ворот' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: '3 darvozani oching', ru: 'Откройте 3 ворот' })} (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tizim · ko'p kirish yo'li", ru: 'Система · много точек входа' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "3 kirish yo'lini oching", ru: 'Откройте 3 точки входа' })} (${seen.size}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta hokimlik + arxiv, lekin <span className="italic" style={{ color: T.accent }}>ko'p darvoza</span>.</>, ru: <>Одна мэрия + архив, но <span className="italic" style={{ color: T.accent }}>много ворот</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu juda muhim g'oya: fuqaro shaharga turli darvozalardan kirishi mumkin — web, bot yoki mobil ilova. Lekin hammasi <b style={{ color: T.ink }}>bitta Hokimlik va Arxivga</b> ulanadi. Har darvozani bosing.</>, ru: <>Очень важная мысль: житель может войти в город через разные ворота — сайт, бот или мобильное приложение. Но все они подключены <b style={{ color: T.ink }}>к одной Мэрии и одному Архиву</b>. Нажмите на каждые ворота.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta Backend va Database — kirish yo'llari esa <span className="italic" style={{ color: T.accent }}>ko'p</span>.</>, ru: <>Один Backend и Database — а точек входа <span className="italic" style={{ color: T.accent }}>много</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bu juda muhim g'oya: foydalanuvchi tizimga turli yo'llar bilan kirishi mumkin — web sayt, bot yoki mobil ilova orqali. Lekin hammasi <b style={{ color: T.ink }}>bitta Backend va Database'ga</b> ulanadi. Har birini bosing.</>, ru: <>Это очень важная идея: пользователь может войти в систему разными путями — через веб-сайт, бота или мобильное приложение. Но все они подключены <b style={{ color: T.ink }}>к одному Backend и Database</b>. Нажмите на каждую.</> })}</Mentor>
         <div className="fade-up"><div className="clients-map">
           <div className="cm-clients">
             {CLIENTS.map(c => <div key={c.id} className={`cm-client ${seen.has(c.id) ? 'on' : ''} ${active === c.id ? 'sel' : ''}`}><span></span><span className="cm-lbl">{tr(c.label)}</span></div>)}
           </div>
           <span className="cm-arrow">→</span>
-          <div className="cm-core"><div className="cm-core-node">⚙️<span>{tr({ uz: 'Hokimlik', ru: 'Мэрия' })}</span></div><div className="cm-core-node">🗄️<span>{tr({ uz: 'Arxiv', ru: 'Архив' })}</span></div></div>
+          <div className="cm-core"><div className="cm-core-node">⚙️<span>{tr({ uz: 'Backend', ru: 'Backend' })}</span></div><div className="cm-core-node">🗄️<span>{tr({ uz: 'Database', ru: 'Database' })}</span></div></div>
         </div></div>
         <Zoomable><div className="split">
           <Col>
@@ -1097,7 +1104,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.note)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hokimlik va arxivni bir marta qurasiz; keyin har xil darvoza (web, bot, mobil) ulayversiz. Mobil ilovani keyingi modulda qo'shamiz!", ru: 'Мэрию и архив вы строите один раз; потом подключаете какие угодно ворота (сайт, бот, мобильное). Мобильное приложение добавим в следующем модуле!' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Backend va Database'ni bir marta qurasiz, keyin ularga turli kirish yo'llarini ulaysiz. Mobil ilovani shu modulning 9–11-darslarida quramiz.", ru: 'Backend и Database вы строите один раз, а потом подключаете к ним разные точки входа. Мобильное приложение мы соберём на 9–11-м уроках этого модуля.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1108,32 +1115,32 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — TEST 3 (INLINE_KEYS.s11 = 2) =====
 const Screen11 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
-    questionText="Web-sayt va Telegram bot bir xil buyurtmalarni ko'rishi uchun nima qilinadi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Web-sayt va bot <span className="italic" style={{ color: T.accent }}>bir xil</span> buyurtmalarni ko'rishi uchun nima qilinadi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что нужно сделать, чтобы сайт и бот видели <span className="italic" style={{ color: T.accent }}>одни и те же</span> заказы?</h2></> })}
+    questionText="Web sayt va bot bir xil buyurtmalarni ko'rishi uchun nima qilinadi?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Web sayt va bot <span className="italic" style={{ color: T.accent }}>bir xil</span> buyurtmalarni ko'rishi uchun nima qilinadi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что нужно сделать, чтобы веб-сайт и бот видели <span className="italic" style={{ color: T.accent }}>одни и те же</span> заказы?</h2></> })}
     options={[
-      { uz: "Har biriga alohida arxiv quriladi", ru: 'Для каждого построить отдельный архив' },
-      { uz: "Ma'lumot har biriga qo'lda nusxalanadi", ru: 'Копировать данные в каждый вручную' },
-      { uz: "Ikkalasi bitta Hokimlik va Arxivga ulanadi", ru: 'Подключить оба к одной Мэрии и одному Архиву' },
-      { uz: "Buni qilib bo'lmaydi — ular alohida", ru: 'Это невозможно — они существуют отдельно' }
+      { uz: "Har biri uchun alohida Database quriladi", ru: 'Для каждого строится отдельная Database' },
+      { uz: "Ma'lumot har biriga qo'lda ko'chiriladi", ru: 'Данные копируют в каждый вручную' },
+      { uz: "Ikkalasi bitta Backend va Database'ga ulanadi", ru: 'Оба подключаются к одному Backend и Database' },
+      { uz: "Buning iloji yo'q — ular alohida ishlaydi", ru: 'Это невозможно — они работают отдельно' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Web va bot — ikki xil darvoza (frontend), lekin ikkalasi bitta Hokimlik va Arxivga ulanadi. Shuning uchun bir joyda berilgan buyurtma boshqasida ham ko'rinadi. Mobil ilova ham xuddi shunday ulanadi.", ru: 'Верно! Сайт и бот — двое разных ворот (frontend), но оба подключены к одной Мэрии и одному Архиву. Поэтому заказ, сделанный в одном месте, виден и в другом. Мобильное приложение подключается точно так же.' }}
+    explainCorrect={{ uz: "To'g'ri! Web va bot — ikki xil kirish yo'li, lekin ikkalasi bitta Backend va Database'ga ulanadi. Shuning uchun bir joyda berilgan buyurtma boshqasida ham ko'rinadi. Mobil ilova ham xuddi shunday ulanadi.", ru: 'Верно! Веб-сайт и бот — две разные точки входа, но оба подключены к одному Backend и Database. Поэтому заказ, сделанный в одном месте, виден и в другом. Мобильное приложение подключается точно так же.' }}
     explainWrong={{
-      0: { uz: "Alohida arxiv bo'lsa, ma'lumot bo'linib ketadi. To'g'risi — bitta umumiy Hokimlik+Arxiv.", ru: 'С отдельным архивом данные разойдутся. Правильно — одна общая Мэрия+Архив.' },
-      1: { uz: "Qo'lda nusxalash xato va imkonsiz. Bitta umumiy arxivga ulansa, avtomatik bir xil bo'ladi.", ru: 'Ручное копирование ошибочно и нереально. При подключении к одному общему архиву всё совпадает автоматически.' },
-      3: { uz: "Aksincha — bu juda oson: bitta Hokimlik+Arxivga ikkala darvozani ulaysiz.", ru: 'Наоборот — это очень просто: подключаете к одной Мэрии+Архиву и сайт, и бот.' },
-      default: { uz: "Bitta Hokimlik+Arxivga ulanadi — bitta shahar, ko'p darvoza.", ru: 'Подключаются к одной Мэрии+Архиву — один город, много ворот.' }
+      0: { uz: "Alohida Database bo'lsa, ma'lumot bo'linib ketadi. To'g'risi — bitta umumiy Backend va Database.", ru: 'С отдельной Database данные разделятся. Правильно — один общий Backend и Database.' },
+      1: { uz: "Qo'lda ko'chirish sekin va xatoga olib keladi. Bitta umumiy Database'ga ulansa, ma'lumot o'zi bir xil bo'ladi.", ru: 'Ручное копирование медленное и ведёт к ошибкам. Если подключиться к одной общей Database, данные совпадут сами.' },
+      3: { uz: "Aksincha, bu oson: ikkala kirish yo'lini bitta Backend'ga ulaysiz.", ru: 'Наоборот, это просто: обе точки входа вы подключаете к одному Backend.' },
+      default: { uz: "Bitta Backend va Database — ko'p kirish yo'li.", ru: 'Один Backend и Database — много точек входа.' }
     }} />
 );
 
 // ===== SCREEN 12 — CASE: to'liq buyurtma =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
-    { txt: { uz: "Web mijoz «Telefon»ni savatga qo'shdi → Peshtoq arizani Hokimlikka yubordi.", ru: 'Клиент на сайте добавил «Телефон» в корзину → Витрина отправила заявку в Мэрию.' } },
-    { txt: { uz: "Hokimlik arizani qabul qildi va Arxivga buyurtmani yozdi 🗄️✅", ru: 'Мэрия приняла заявку и записала заказ в Архив 🗄️✅' } },
-    { txt: { uz: "Boshqa mijoz Telegram DARVOZA orqali «Telefon buyuraman» dedi.", ru: 'Другой клиент через Telegram-ВОРОТА написал «Закажу телефон».' } },
-    { txt: { uz: "Bot ham O'SHA Hokimlikka ulandi → O'SHA Arxivga yozildi 🗄️✅", ru: 'Бот подключился к ТОЙ ЖЕ Мэрии → запись ушла в ТОТ ЖЕ Архив 🗄️✅' } },
-    { txt: { uz: "Ekspert-byuro (AI) ikkala mijozga ham «G'ilof ham olasizmi?» deb tavsiya berdi.", ru: 'Экспертное бюро (AI) обоим клиентам подсказало: «Возьмёте ещё и чехол?»' } },
-    { txt: { uz: "Bitta shahar, ikki darvoza — barchasi bitta Hokimlik+Arxivda birlashdi.", ru: 'Один город, двое ворот — всё сошлось в одной Мэрии+Архиве.' } }
+    { txt: { uz: "Birinchi foydalanuvchi saytda «Telefon»ni savatga qo'shdi → Frontend Backend'ga so'rov yubordi.", ru: 'Первый пользователь на сайте добавил «Телефон» в корзину → Frontend отправил запрос в Backend.' } },
+    { txt: { uz: "Backend so'rovni qabul qildi va buyurtmani Database'ga yozdi.", ru: 'Backend принял запрос и записал заказ в Database.' }, done: true },
+    { txt: { uz: "Ikkinchi foydalanuvchi Telegram botga «Telefon buyuraman» deb yozdi.", ru: 'Второй пользователь написал Telegram-боту: «Закажу телефон».' } },
+    { txt: { uz: "Bot ham o'sha Backend'ga ulandi → buyurtma o'sha Database'ga yozildi.", ru: 'Бот тоже подключился к тому же Backend → заказ записан в ту же Database.' }, done: true },
+    { txt: { uz: "AI ikkala foydalanuvchiga ham «G'ilof ham olasizmi?» deb tavsiya berdi.", ru: 'AI посоветовал обоим пользователям: «Возьмёте ещё и чехол?»' } },
+    { txt: { uz: "Ikki kirish yo'li, bitta tizim — hamma buyurtma bitta Backend va Database'da.", ru: 'Две точки входа, одна система — все заказы в одном Backend и Database.' } }
   ];
   const [shown, setShown] = useState(storedAnswer ? STEPS.length : 0);
   const [sc, setSc] = useState(0);
@@ -1141,29 +1148,29 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { if (!done) { setShown(n => n + 1); setSc(n => n + 1); } };
   return (
-    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq shahar", ru: 'Из жизни · весь город' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Shaharni kuzating', ru: 'Следите за городом' })} (${shown}/${STEPS.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq tizim", ru: 'Из жизни · вся система' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Tizimni kuzating', ru: 'Следите за системой' })} (${shown}/${STEPS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta buyurtma — <span className="italic" style={{ color: T.accent }}>butun shahar</span> birga ishlaydi.</>, ru: <>Один заказ — <span className="italic" style={{ color: T.accent }}>весь город</span> работает вместе.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana hammasi birga: web va bot orqali kelgan arizalar bitta arxivda uchrashadi, ekspert-byuro tavsiya beradi. Tugmani bosib, shaharning ishlashini bosqichma-bosqich kuzating.", ru: 'Вот всё вместе: заявки с сайта и из бота встречаются в одном архиве, экспертное бюро даёт рекомендации. Нажимайте кнопку и шаг за шагом следите за работой города.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta buyurtma — <span className="italic" style={{ color: T.accent }}>butun tizim</span> birga ishlaydi.</>, ru: <>Один заказ — <span className="italic" style={{ color: T.accent }}>вся система</span> работает вместе.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Mana hammasi birga: web va bot orqali kelgan buyurtmalar bitta Database'ga yoziladi, AI esa tavsiya beradi. Tugmani bosib, tizim qanday ishlashini qadam-baqadam kuzating.", ru: 'Вот всё вместе: заказы с сайта и из бота записываются в одну Database, а AI даёт рекомендации. Нажимайте кнопку и шаг за шагом следите, как работает система.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {STEPS.slice(0, shown).map((s, i) => (
-                <div key={i} className={`agent-step fade-step ${s.ico === '✅' ? 'done' : ''}`}>
+                <div key={i} className={`agent-step fade-step ${s.done ? 'done' : ''}`}>
                   <span className="as-phase">{tr({ uz: 'qadam', ru: 'шаг' })} {i + 1}</span>
                   <span className="as-txt">{tr(s.txt)}</span>
                 </div>
               ))}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Shahar ishladi', ru: '✓ Город отработал' }) : shown === 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Начать заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Tizim ishladi', ru: '✓ Система отработала' }) : shown === 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Начать заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🗺️ Shahar xaritasi', ru: '🗺️ Карта города' })}</p><div className="clients-map" style={{ marginTop: 8 }}>
+            <div className="sk-info"><p className="note-h">{tr({ uz: 'Tizim xaritasi', ru: 'Карта системы' })}</p><div className="clients-map" style={{ marginTop: 8 }}>
               <div className="cm-clients"><div className="cm-client on"><span>🖥️</span><span className="cm-lbl">{tr({ uz: 'Web', ru: 'Сайт' })}</span></div><div className="cm-client on"><span>🤖</span><span className="cm-lbl">{tr({ uz: 'Bot', ru: 'Бот' })}</span></div></div>
               <span className="cm-arrow">→</span>
-              <div className="cm-core"><div className="cm-core-node">⚙️<span>{tr({ uz: 'Hokimlik', ru: 'Мэрия' })}</span></div><div className="cm-core-node">🗄️<span>{tr({ uz: 'Arxiv', ru: 'Архив' })}</span></div></div>
+              <div className="cm-core"><div className="cm-core-node">⚙️<span>{tr({ uz: 'Backend', ru: 'Backend' })}</span></div><div className="cm-core-node">🗄️<span>{tr({ uz: 'Database', ru: 'Database' })}</span></div></div>
             </div></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ikki mijoz, ikki darvoza, bitta arxiv. Mana shuni siz yakuniy loyihada (capstone) to'liq quramiz.", ru: 'Два клиента, двое ворот, один архив. Именно это вы полностью соберёте в итоговом проекте (capstone).' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ikki foydalanuvchi, ikki kirish yo'li, bitta Database. Shu tizimni 13-darsda — «Loyiha kuni»da to'liq qurasiz.", ru: 'Два пользователя, две точки входа, одна Database. Такую систему вы целиком соберёте на 13-м уроке — «День проекта».' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1171,40 +1178,40 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 13 — SHAHAR CHIZMASINI CHIZISH =====
+// ===== SCREEN 13 — TIZIM CHIZMASINI CHIZISH =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Amalda · chizma', ru: 'На практике · схема' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Nega chizamiz?", ru: 'Зачем рисовать?' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amalda · chizma', ru: 'На практике · схема' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Nega chizma muhim?", ru: 'Зачем рисовать?' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kod yozishdan oldin — shahar chizmasini <span className="italic" style={{ color: T.accent }}>chizing</span>.</>, ru: <>Прежде чем писать код — <span className="italic" style={{ color: T.accent }}>нарисуйте</span> схему города.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Tajribali dasturchi avval qog'ozda yoki AI bilan tizim chizmasini chizadi: qaysi idoralar, qanday yo'llar bilan ulanadi. Bu — bosh me'mor ishi. Tugmani bosing.", ru: 'Опытный разработчик сначала рисует схему системы на бумаге или вместе с AI: какие ведомства и какими дорогами соединены. Это работа главного архитектора. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kod yozishdan oldin tizim chizmasini <span className="italic" style={{ color: T.accent }}>chizing</span>.</>, ru: <>Прежде чем писать код, <span className="italic" style={{ color: T.accent }}>нарисуйте</span> схему системы.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Tajribali dasturchi avval qog'ozda yoki AI bilan tizim chizmasini chizadi: qaysi qismlar bor va ular qanday bog'lanadi. Mana shu chizma arxitektura deyiladi. Tugmani bosing.", ru: 'Опытный разработчик сначала рисует схему системы на бумаге или вместе с AI: какие в ней есть части и как они связаны. Именно такую схему называют архитектурой. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="arxitektura.txt" minH={120}>
-              <Cm>{tr({ uz: '// mini-shahar tizimi', ru: '// система мини-города' })}</Cm>{'\n'}
+              <Cm>{tr({ uz: '// onlayn xarid sayti tizimi', ru: '// система интернет-магазина' })}</Cm>{'\n'}
               {tr({ uz: 'Foydalanuvchi', ru: 'Пользователь' })}{'\n'}
               {'   ↓'}{'\n'}
-              <At>{tr({ uz: 'Peshtoq', ru: 'Витрина' })}</At>{' (Frontend · React)'}{'\n'}
-              {tr({ uz: '   ↓ ↑  yo\'l (API)', ru: '   ↓ ↑  дорога (API)' })}{'\n'}
-              <Kw>{tr({ uz: 'Hokimlik', ru: 'Мэрия' })}</Kw>{' (Backend · Nest) ── '}<St>{tr({ uz: 'Ekspert-byuro', ru: 'Экспертное бюро' })}</St>{'\n'}
+              <At>{tr({ uz: 'Frontend', ru: 'Frontend' })}</At>{tr({ uz: ' (React)', ru: ' (React)' })}{'\n'}
+              {tr({ uz: '   ↓ ↑  API (so\'rov / javob)', ru: '   ↓ ↑  API (запрос / ответ)' })}{'\n'}
+              <Kw>{tr({ uz: 'Backend', ru: 'Backend' })}</Kw>{tr({ uz: ' (Node.js · NestJS) ── ', ru: ' (Node.js · NestJS) ── ' })}<St>{tr({ uz: 'AI', ru: 'AI' })}</St>{'\n'}
               {'   ↓ ↑'}{'\n'}
-              <At>{tr({ uz: 'Arxiv', ru: 'Архив' })}</At>{' (Database · PostgreSQL)'}
+              <At>{tr({ uz: 'Database', ru: 'Database' })}</At>{tr({ uz: ' (PostgreSQL)', ru: ' (PostgreSQL)' })}
             </CodeFile>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: "Nega chizma muhim?", ru: 'Почему схема важна?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗺️ <b>Aniqlik:</b> qaysi idora nima qilishini oldindan bilasiz</>, ru: <>🗺️ <b>Ясность:</b> заранее знаете, кто из ведомств что делает</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🤝 <b>Muloqot:</b> jamoaga/AI'ga tizimni tushuntira olasiz</>, ru: <>🤝 <b>Общение:</b> сможете объяснить систему команде или AI</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🐞 <b>Xato:</b> muammo qaysi idorada — tezroq topasiz</>, ru: <>🐞 <b>Ошибка:</b> быстрее найдёте, в каком ведомстве проблема</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗺️ <b>Aniqlik:</b> qaysi qism nima qilishini oldindan bilasiz</>, ru: <>🗺️ <b>Ясность:</b> заранее знаете, какая часть что делает</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🤝 <b>Muloqot:</b> jamoaga yoki AI'ga tizimni tushuntira olasiz</>, ru: <>🤝 <b>Общение:</b> сможете объяснить систему команде или AI</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🐞 <b>Xato:</b> muammo qaysi qismda ekanini tezroq topasiz</>, ru: <>🐞 <b>Ошибка:</b> быстрее найдёте, в какой части проблема</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 KEYINGI DARS', ru: '📍 СЛЕДУЮЩИЙ УРОК' })}</span><p className="agent-msg">{tr({ uz: <>Bu chizmaning «nomi» bor — <b>arxitektura patterni</b> (MVC, mikroservis). Keyingi darsda o'shani o'rganamiz.</>, ru: <>У этой схемы есть «название» — <b>архитектурный паттерн</b> (MVC, микросервис). Его и изучим на следующем уроке.</> })}</p></div>}
+            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 3-DARSDA', ru: '📍 НА 3-М УРОКЕ' })}</span><p className="agent-msg">{tr({ uz: <>Tizimni tuzishning sinab ko'rilgan usullari bor — ularni <b>arxitektura patternlari</b> deyishadi (masalan, MVC va mikroservis). 3-darsda shularni o'rganamiz.</>, ru: <>У построения систем есть проверенные способы — их называют <b>архитектурными паттернами</b> (например, MVC и микросервисы). Их мы изучим на 3-м уроке.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1215,24 +1222,24 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — TEST 4 (mobil ko'prik, INLINE_KEYS.s14 = 3) =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
-    questionText="Mavjud web-shahringizga mobil ilova qo'shmoqchisiz. Eng kam ish bilan qanday qilasiz?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Web-shahringizga <span className="italic" style={{ color: T.accent }}>mobil ilova</span> qo'shmoqchisiz. Eng kam ish bilan qanday?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Хотите добавить к своему веб-городу <span className="italic" style={{ color: T.accent }}>мобильное приложение</span>. Как сделать это с наименьшими усилиями?</h2></> })}
+    questionText="Web tizimingizga mobil ilova qo'shmoqchisiz. Eng kam ish bilan qanday qilasiz?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Web tizimingizga <span className="italic" style={{ color: T.accent }}>mobil ilova</span> qo'shmoqchisiz. Eng kam ish bilan qanday qilasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Хотите добавить к своей веб-системе <span className="italic" style={{ color: T.accent }}>мобильное приложение</span>. Как сделать это с наименьшими усилиями?</h2></> })}
     options={[
-      { uz: "Hammasini noldan: yangi Peshtoq, Hokimlik va Arxiv", ru: 'Всё с нуля: новая Витрина, Мэрия и Архив' },
-      { uz: "Mobil uchun alohida arxiv quraman", ru: 'Построю для мобильного отдельный архив' },
-      { uz: "Buni qilib bo'lmaydi — mobil butunlay boshqa", ru: 'Это невозможно — мобильное совсем другое' },
-      { uz: "Faqat yangi mobil Peshtoq yozib, mavjud markazga ulayman", ru: 'Напишу только новую мобильную Витрину и подключу её к существующему центру' }
+      { uz: "Hammasini noldan: yangi Frontend, Backend, Database", ru: 'Всё с нуля: новые Frontend, Backend, Database' },
+      { uz: "Mobil ilova uchun alohida Database quraman", ru: 'Построю для мобильного отдельную Database' },
+      { uz: "Iloji yo'q — mobil ilova butunlay boshqa narsa", ru: 'Невозможно — мобильное приложение совсем другое' },
+      { uz: "Mobil Frontend yozib, bor Backend'ga ulayman", ru: 'Напишу мобильный Frontend и подключу к готовому Backend' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Hokimlik va Arxiv tayyor — ular har qanday darvoza bilan ishlaydi. Mobil ilova faqat yana bir Peshtoq (React Native), o'sha Hokimlikka ulanadi. Shuning uchun arxitekturani tushunish ish hajmini keskin kamaytiradi.", ru: 'Верно! Мэрия и Архив уже готовы — они работают с любыми воротами. Мобильное приложение — просто ещё одна Витрина (React Native), подключённая к той же Мэрии. Поэтому понимание архитектуры резко сокращает объём работы.' }}
+    explainCorrect={{ uz: "To'g'ri! Backend va Database tayyor — ular har qanday kirish yo'li bilan ishlaydi. Mobil ilova — yana bir Frontend (React Native), u o'sha Backend'ga ulanadi. Arxitekturani tushunsangiz, ish ancha kamayadi.", ru: 'Верно! Backend и Database уже готовы — они работают с любой точкой входа. Мобильное приложение — ещё один Frontend (React Native), и он подключается к тому же Backend. Если понимаете архитектуру, работы становится намного меньше.' }}
     explainWrong={{
-      0: { uz: "Hokimlik va Arxivni qayta yozish keraksiz — ular tayyor. Faqat yangi Peshtoq qo'shasiz.", ru: 'Переписывать Мэрию и Архив не нужно — они готовы. Добавляете только новую Витрину.' },
-      1: { uz: "Alohida arxiv ma'lumotni bo'lib yuboradi. Mobil o'sha umumiy arxivga ulanishi kerak.", ru: 'Отдельный архив разделит данные. Мобильное должно подключаться к тому же общему архиву.' },
-      2: { uz: "Aksincha — mobil ham shunchaki yana bir Peshtoq (frontend). Keyingi modulda aynan shuni qilamiz.", ru: 'Наоборот — мобильное тоже просто ещё одна Витрина (frontend). Именно этим займёмся в следующем модуле.' },
-      default: { uz: "Faqat yangi Peshtoq yozib, mavjud Hokimlik+Arxivga ulaysiz.", ru: 'Пишете только новую Витрину и подключаете её к существующей Мэрии+Архиву.' }
+      0: { uz: "Backend va Database'ni qayta yozish shart emas — ular tayyor. Faqat yangi Frontend qo'shasiz.", ru: 'Переписывать Backend и Database не нужно — они уже готовы. Вы добавляете только новый Frontend.' },
+      1: { uz: "Alohida Database ma'lumotni bo'lib yuboradi. Mobil ilova o'sha umumiy Database bilan ishlashi kerak.", ru: 'Отдельная Database разделит данные. Мобильное приложение должно работать с той же общей Database.' },
+      2: { uz: "Aksincha — mobil ilova ham yana bir Frontend. Shu modulning 9–11-darslarida aynan shuni qilamiz.", ru: 'Наоборот — мобильное приложение тоже ещё один Frontend. Именно этим мы займёмся на 9–11-м уроках этого модуля.' },
+      default: { uz: "Yangi Frontend yozib, mavjud Backend va Database'ga ulaysiz.", ru: 'Пишете новый Frontend и подключаете его к существующим Backend и Database.' }
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: ma'lumot oqimini to'g'ri tartibda yig'ish (DragDropOrder) =====
+// ===== SCREEN 15 — YAKUNIY: ma'lumot yo'lini to'g'ri tartibda yig'ish (DragDropOrder) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
@@ -1241,35 +1248,38 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // label — {uz,ru} obyekt (shablon-stringga obyekt qo'shilsa «[object Object]» chiqardi)
   const items = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
   const hints = [
-    { uz: "arizani beradi", ru: 'подаёт заявку' },
-    { uz: "mijozga ko'rsatadi", ru: 'показывает клиенту' },
-    { uz: "qaror qiladi", ru: 'принимает решение' },
+    { uz: "tugmani bosadi", ru: 'нажимает кнопку' },
+    { uz: "ko'rsatadi va so'rov yuboradi", ru: 'показывает и отправляет запрос' },
+    { uz: "tekshiradi va hisoblaydi", ru: 'проверяет и считает' },
     { uz: "doimiy saqlaydi", ru: 'хранит постоянно' },
-    { uz: "ekranga qaytadi", ru: 'возвращается на экран' }
+    { uz: "javob ekranga qaytadi", ru: 'ответ возвращается на экран' }
   ];
   const firedRef = useRef(!!storedAnswer);
   const [done, setDone] = useState(!!storedAnswer);
+  const [recapOpen, setRecapOpen] = useState(false);
   const solve = () => {
     if (firedRef.current) return;
     firedRef.current = true;
     setDone(true);
     const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Ma'lumot oqimini to'g'ri tartibda joylang", options: FLOW.map(f => ou(f.label)), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Ma'lumot yo'lini to'g'ri tartibda yig'ing", options: FLOW.map(f => ou(f.label)), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Oqimni yig'ing", ru: 'Соберите поток' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Yo'lni yig'ing", ru: 'Соберите путь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: ma'lumot oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите поток данных <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Fuqaro tugma bosganda ma'lumot qayerdan-qayerga boradi? Tartibni eslang: foydalanuvchi → peshtoq → hokimlik → arxiv → ekranda natija. Bo'laklarni to'g'ri slotlarga joylang.", ru: 'Куда и откуда идут данные, когда житель нажимает кнопку? Вспомните порядок: пользователь → витрина → мэрия → архив → результат на экране. Разложите блоки по правильным местам.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: ma'lumot yo'lini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите путь данных <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Foydalanuvchi tugmani bosganda ma'lumot qayerdan qayerga boradi? Bo'laklarni to'g'ri joyiga qo'ying.", ru: 'Куда идут данные, когда пользователь нажимает кнопку? Разложите блоки по правильным местам.' })}</Mentor>
         <Zoomable>
           <DragDropOrder onWrong={onWrong}
             items={items}
             hints={hints}
             onSolved={solve}
-            doneText={{ uz: "To'g'ri oqim: Foydalanuvchi → Peshtoq → Hokimlik → Arxiv → ekranda natija!", ru: 'Верный поток: Пользователь → Витрина → Мэрия → Архив → результат на экране!' }}
           />
         </Zoomable>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Foydalanuvchi → Peshtoq → Hokimlik → Arxiv → ekran</b>. Mana real mahsulotning ma'lumot yo'li.</>, ru: <>✓ Поток готов: <b>Пользователь → Витрина → Мэрия → Архив → экран</b>. Вот путь данных в настоящем продукте.</> })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Yo'l tayyor: <b>Foydalanuvchi → Frontend → Backend → Database → ekran</b>. Real ilovada ma'lumot shu yo'l bilan yuradi.</>, ru: <>✓ Путь готов: <b>Пользователь → Frontend → Backend → Database → экран</b>. В настоящем приложении данные идут именно так.</> })}</p>
+          {wrongEverRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
+        </div>}
+        {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
     </Stage>
   );
@@ -1277,10 +1287,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  cityBuilder:  { icon: '🏗️', name: 'City Builder',  desc: { uz: "Arxiv — shahar xotirasi ekanini topdingiz", ru: "Вы поняли: Архив — постоянная память города" } },
-  requestRoute: { icon: '🛣️', name: 'Request Route', desc: { uz: "Arizaning idoradan idoraga to'g'ri yo'lini bildingiz", ru: 'Вы знаете верный путь заявки от ведомства к ведомству' } },
-  cityOnline:   { icon: '🌐', name: 'Shahar Online',  desc: { uz: "Ko'p darvoza, bitta shahar — g'oyani tushundingiz", ru: "Много ворот, один город — вы усвоили идею" } },
-  powerGrid:    { icon: '⚡', name: 'Power Grid',     desc: { uz: "Markazga yangi darvoza (mobil) qo'shdingiz", ru: "Вы добавили новые ворота (мобильное) к центру" } },
+  cityBuilder:  { icon: '🗄️', name: 'Data Keeper',   desc: { uz: "Database doimiy xotira ekanini topdingiz", ru: 'Вы поняли, что Database — постоянная память' } },
+  requestRoute: { icon: '🛣️', name: 'Request Route', desc: { uz: "So'rovning to'g'ri yo'lini bildingiz", ru: 'Вы знаете верный путь запроса' } },
+  cityOnline:   { icon: '🌐', name: 'One Backend',    desc: { uz: "Ko'p kirish yo'li, bitta tizim — g'oyani tushundingiz", ru: 'Много точек входа, одна система — вы поняли идею' } },
+  powerGrid:    { icon: '📱', name: 'New Door',       desc: { uz: "Tizimga yangi kirish yo'li (mobil) qo'shdingiz", ru: 'Вы добавили к системе новую точку входа (мобильное)' } },
 };
 // Ekran id → nishon. ❗ FAQAT SCORED test ekranlariga (correct=to'g'ri javob): s4 · s8 · s11 · s14.
 // Exploration/toggle ekranlarga BOG'LANMAYDI (ular har bosishda correct:true beradi — nishon tekin bo'lib qolardi).
@@ -1342,11 +1352,11 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 11, 14, 15)
 const Q_LABELS = {
-  4: { uz: '1 — Arxiv', ru: '1 — Архив' },
-  8: { uz: "2 — Ariza yo'li", ru: '2 — Путь заявки' },
-  11: { uz: "3 — Ko'p darvoza", ru: '3 — Много ворот' },
+  4: { uz: '1 — Database', ru: '1 — Database' },
+  8: { uz: "2 — So'rov yo'li", ru: '2 — Путь запроса' },
+  11: { uz: "3 — Ko'p kirish yo'li", ru: '3 — Много точек входа' },
   14: { uz: "4 — Mobil qo'shish", ru: '4 — Добавить мобильное' },
-  15: { uz: '5 — Oqim tartibi', ru: '5 — Порядок потока' }
+  15: { uz: "5 — Yo'l tartibi", ru: '5 — Порядок пути' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (arxitektura atamalari)
@@ -1369,18 +1379,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mahsulot, buyurtma va foydalanuvchilar qayerda doimiy saqlanadi?", ru: 'Где постоянно хранятся товары, заказы и пользователи?' }, opts: [{ uz: "Arxivda (Database)", ru: 'В Архиве (Database)' }, { uz: "Peshtoqda (Frontend)", ru: 'На Витрине (Frontend)' }, { uz: "Hokimlikda (Backend)", ru: 'В Мэрии (Backend)' }, { uz: "Ekspert-byuroda (AI)", ru: 'В Экспертном бюро (AI)' }], correct: 0 },
-  { q: { uz: "Peshtoq (Frontend) asosan nima qiladi?", ru: 'Чем в основном занимается Витрина (Frontend)?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Muhim qarorlarni qiladi", ru: 'Принимает важные решения' }, { uz: "Mijozga ma'lumotni ko'rsatadi", ru: 'Показывает данные клиенту' }, { uz: "Arxivga to'g'ridan yozadi", ru: 'Пишет прямо в Архив' }], correct: 2 },
-  { q: { uz: "«Savatga» bosilganda ariza qaysi yo'l bilan boradi?", ru: 'Каким путём идёт заявка при нажатии «В корзину»?' }, opts: [{ uz: "To'g'ridan-to'g'ri Arxivga, Hokimliksiz", ru: 'Прямо в Архив, без Мэрии' }, { uz: "Faqat Peshtoq ichida qoladi", ru: 'Остаётся только внутри Витрины' }, { uz: "Peshtoq → Hokimlik → Arxiv, javob orqaga", ru: 'Витрина → Мэрия → Архив, ответ обратно' }, { uz: "Arxiv → Hokimlik → Peshtoq", ru: 'Архив → Мэрия → Витрина' }], correct: 2 },
-  { q: { uz: "Nega Peshtoq (Frontend) Arxivga to'g'ridan ulanmaydi?", ru: 'Почему Витрина (Frontend) не подключается к Архиву напрямую?' }, opts: [{ uz: "Chunki Arxiv juda sekin ishlaydi", ru: 'Потому что Архив работает очень медленно' }, { uz: "Xavfsizlik uchun — Hokimlik orqali o'tadi", ru: 'Ради безопасности — путь идёт через Мэрию' }, { uz: "Chunki ular boshqa tilda yozilgan", ru: 'Потому что они написаны на разных языках' }, { uz: "Buni umuman qilib bo'lmaydi, imkonsiz", ru: 'Так вообще нельзя, это невозможно' }], correct: 1 },
-  { q: { uz: "Hokimlik (Backend) asosiy vazifasi nima?", ru: 'В чём главная задача Мэрии (Backend)?' }, opts: [{ uz: "Faqat rasm va dizayn chizadi", ru: 'Только рисует картинки и дизайн' }, { uz: "Foydalanuvchiga to'g'ridan ko'rinadi", ru: 'Видна пользователю напрямую' }, { uz: "Faqat matnni tarjima qiladi", ru: 'Только переводит текст' }, { uz: "Qaror qiladi va arxivga yozadi", ru: 'Принимает решения и пишет в архив' }], correct: 3 },
-  { q: { uz: "Web-sayt va Telegram bot bir xil buyurtmalarni qanday ko'radi?", ru: 'Как сайт и Telegram-бот видят одни и те же заказы?' }, opts: [{ uz: "Bitta Hokimlik va Arxivga ulanadi", ru: 'Подключены к одной Мэрии и одному Архиву' }, { uz: "Har biriga alohida arxiv quriladi", ru: 'Для каждого строится отдельный архив' }, { uz: "Ma'lumot qo'lda nusxalanadi", ru: 'Данные копируются вручную' }, { uz: "Buni umuman qilib bo'lmaydi", ru: 'Так вообще нельзя' }], correct: 0 },
-  { q: { uz: "«Ko'p darvoza, bitta shahar» nimani anglatadi?", ru: 'Что означает «много ворот, один город»?' }, opts: [{ uz: "Har darvozaga alohida shahar kerak", ru: 'Каждым воротам нужен свой город' }, { uz: "Bitta darvoza hamma uchun yetarli", ru: 'Одних ворот хватит всем' }, { uz: "Faqat web darvoza bo'lishi mumkin", ru: 'Ворота могут быть только веб' }, { uz: "Web, bot, mobil — bitta markaz", ru: 'Сайт, бот, мобильное — один центр' }], correct: 3 },
-  { q: { uz: "Arxiv (Database) o'chirilsa nima bo'ladi?", ru: 'Что будет, если выключить Архив (Database)?' }, opts: [{ uz: "Aslida hech narsa o'zgarmaydi", ru: 'На самом деле ничего не изменится' }, { uz: "Ma'lumot saqlanmaydi, yo'qoladi", ru: 'Данные не сохраняются и пропадают' }, { uz: "Faqat sahifa ranglari o'chadi", ru: 'Погаснут только цвета страницы' }, { uz: "Tizim aksincha tezroq ishlaydi", ru: 'Система, наоборот, станет быстрее' }], correct: 1 },
-  { q: { uz: "Mavjud tizimga mobil ilova qo'shishning eng oson yo'li?", ru: 'Самый простой способ добавить мобильное приложение к готовой системе?' }, opts: [{ uz: "Hammasini noldan qayta yozish", ru: 'Переписать всё с нуля' }, { uz: "Yangi Peshtoq yozib, markazga ulash", ru: 'Написать новую Витрину и подключить к центру' }, { uz: "Mobil uchun alohida arxiv qurish", ru: 'Построить для мобильного отдельный архив' }, { uz: "Buni umuman qilib bo'lmaydi", ru: 'Так вообще нельзя' }], correct: 1 },
-  { q: { uz: "AI (Ekspert-byuro) tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI (Экспертное бюро) в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorlarni yakka o'zi qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Maslahat va tavsiya beradi", ru: 'Даёт советы и рекомендации' }, { uz: "Foydalanuvchi bilan to'g'ridan gaplashadi", ru: 'Общается с пользователем напрямую' }], correct: 2 },
-  { q: { uz: "Ma'lumot oqimi qaysi tartibda kechadi?", ru: 'В каком порядке идёт поток данных?' }, opts: [{ uz: "Arxiv → Hokimlik → Peshtoq → ekran → foydalanuvchi", ru: 'Архив → Мэрия → Витрина → экран → пользователь' }, { uz: "Hokimlik → Arxiv → Peshtoq → foydalanuvchi → ekran", ru: 'Мэрия → Архив → Витрина → пользователь → экран' }, { uz: "Peshtoq → Arxiv → Hokimlik → foydalanuvchi → ekran", ru: 'Витрина → Архив → Мэрия → пользователь → экран' }, { uz: "Foydalanuvchi → Peshtoq → Hokimlik → Arxiv → ekran", ru: 'Пользователь → Витрина → Мэрия → Архив → экран' }], correct: 3 },
-  { q: { uz: "Kod yozishdan oldin arxitekturani chizish nega foydali?", ru: 'Чем полезно нарисовать архитектуру до написания кода?' }, opts: [{ uz: "Qaysi idora nima qilishini aniqlaydi", ru: 'Проясняет, какое ведомство что делает' }, { uz: "Kodni o'zi avtomatik yozib beradi", ru: 'Само автоматически напишет код' }, { uz: "Serverni ancha tezlashtiradi", ru: 'Заметно ускорит сервер' }, { uz: "Dizaynni chiroyli qiladi", ru: 'Сделает дизайн красивее' }], correct: 0 },
+  { q: { uz: "Mahsulot, buyurtma va foydalanuvchilar qayerda doimiy saqlanadi?", ru: 'Где постоянно хранятся товары, заказы и пользователи?' }, opts: [{ uz: "Database'da", ru: 'В Database' }, { uz: "Frontend'da", ru: 'В Frontend' }, { uz: "Backend'da", ru: 'В Backend' }, { uz: "AI'da", ru: 'В AI' }], correct: 0 },
+  { q: { uz: "Frontend asosan nima qiladi?", ru: 'Чем в основном занимается Frontend?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Narx va to'lovni hisoblaydi", ru: 'Считает цену и оплату' }, { uz: "Foydalanuvchiga ma'lumotni ko'rsatadi", ru: 'Показывает данные пользователю' }, { uz: "Database'ga to'g'ridan yozadi", ru: 'Пишет прямо в Database' }], correct: 2 },
+  { q: { uz: "«Savatga» bosilganda so'rov qaysi yo'l bilan boradi?", ru: 'Каким путём идёт запрос при нажатии «В корзину»?' }, opts: [{ uz: "Frontend → Database, Backend'siz", ru: 'Frontend → Database, без Backend' }, { uz: "Frontend ichida qoladi", ru: 'Остаётся внутри Frontend' }, { uz: "Frontend → Backend → Database, javob orqaga", ru: 'Frontend → Backend → Database, ответ обратно' }, { uz: "Database → Backend → Frontend", ru: 'Database → Backend → Frontend' }], correct: 2 },
+  { q: { uz: "Bizning tizimda Frontend nega Database'ga to'g'ridan ulanmaydi?", ru: 'Почему в нашей системе Frontend не подключается к Database напрямую?' }, opts: [{ uz: "Database juda sekin ishlaydi", ru: 'Database работает слишком медленно' }, { uz: "Xavfsizlik uchun: Backend orqali o'tadi", ru: 'Ради безопасности: путь идёт через Backend' }, { uz: "Ular boshqa tilda yozilgan", ru: 'Они написаны на разных языках' }, { uz: "Buni texnik jihatdan qilib bo'lmaydi", ru: 'Технически так сделать нельзя' }], correct: 1 },
+  { q: { uz: "Backend'ning asosiy vazifasi nima?", ru: 'В чём главная задача Backend?' }, opts: [{ uz: "Sahifa dizaynini chizadi", ru: 'Рисует дизайн страницы' }, { uz: "Foydalanuvchiga to'g'ridan ko'rinadi", ru: 'Видна пользователю напрямую' }, { uz: "Faqat matnni tarjima qiladi", ru: 'Только переводит текст' }, { uz: "Qoidalarni bajaradi, Database'ga yozadi", ru: 'Выполняет правила, пишет в Database' }], correct: 3 },
+  { q: { uz: "Web sayt va Telegram bot bir xil buyurtmalarni qanday ko'radi?", ru: 'Как веб-сайт и Telegram-бот видят одни и те же заказы?' }, opts: [{ uz: "Bitta Backend va Database'ga ulanadi", ru: 'Подключены к одному Backend и Database' }, { uz: "Har biriga alohida Database quriladi", ru: 'Для каждого строят отдельную Database' }, { uz: "Ma'lumot qo'lda ko'chiriladi", ru: 'Данные копируют вручную' }, { uz: "Buning umuman iloji yo'q", ru: 'Это вообще невозможно' }], correct: 0 },
+  { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nimani anglatadi?", ru: 'Что означает «много точек входа, одна система»?' }, opts: [{ uz: "Har kirish yo'liga alohida tizim kerak", ru: 'Каждой точке входа нужна своя система' }, { uz: "Bitta kirish yo'li hamma uchun yetadi", ru: 'Одной точки входа хватит всем' }, { uz: "Faqat web sayt bo'lishi mumkin", ru: 'Может быть только веб-сайт' }, { uz: "Web, bot va mobil bitta Backend'ga ulanadi", ru: 'Веб, бот и мобильное подключены к одному Backend' }], correct: 3 },
+  { q: { uz: "Database o'chirilsa nima bo'ladi?", ru: 'Что будет, если отключить Database?' }, opts: [{ uz: "Hech narsa o'zgarmaydi", ru: 'Ничего не изменится' }, { uz: "Ma'lumot saqlanmaydi, yo'qoladi", ru: 'Данные не сохраняются и пропадают' }, { uz: "Faqat sahifa ranglari o'chadi", ru: 'Погаснут только цвета страницы' }, { uz: "Tizim tezroq ishlay boshlaydi", ru: 'Система начнёт работать быстрее' }], correct: 1 },
+  { q: { uz: "Mavjud tizimga mobil ilova qo'shishning eng oson yo'li?", ru: 'Самый простой способ добавить мобильное приложение к готовой системе?' }, opts: [{ uz: "Hammasini noldan qayta yozish", ru: 'Переписать всё с нуля' }, { uz: "Yangi Frontend yozib, Backend'ga ulash", ru: 'Написать новый Frontend и подключить к Backend' }, { uz: "Mobil uchun alohida Database qurish", ru: 'Построить для мобильного отдельную Database' }, { uz: "Buning umuman iloji yo'q", ru: 'Это вообще невозможно' }], correct: 1 },
+  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorlarni yolg'iz qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Maslahat va tavsiya beradi", ru: 'Даёт советы и рекомендации' }, { uz: "Sahifani foydalanuvchiga ko'rsatadi", ru: 'Показывает страницу пользователю' }], correct: 2 },
+  { q: { uz: "Ma'lumot qaysi tartibda yuradi?", ru: 'В каком порядке идут данные?' }, opts: [{ uz: "Database → Backend → Frontend → ekran → foydalanuvchi", ru: 'Database → Backend → Frontend → экран → пользователь' }, { uz: "Backend → Database → Frontend → foydalanuvchi → ekran", ru: 'Backend → Database → Frontend → пользователь → экран' }, { uz: "Frontend → Database → Backend → foydalanuvchi → ekran", ru: 'Frontend → Database → Backend → пользователь → экран' }, { uz: "Foydalanuvchi → Frontend → Backend → Database → ekran", ru: 'Пользователь → Frontend → Backend → Database → экран' }], correct: 3 },
+  { q: { uz: "Kod yozishdan oldin arxitekturani chizish nega foydali?", ru: 'Чем полезно нарисовать архитектуру до написания кода?' }, opts: [{ uz: "Qaysi qism nima qilishini aniqlaydi", ru: 'Проясняет, какая часть что делает' }, { uz: "Kodni o'zi avtomatik yozib beradi", ru: 'Само автоматически напишет код' }, { uz: "Serverni ancha tezlashtiradi", ru: 'Заметно ускорит сервер' }, { uz: "Sahifa dizaynini chiroyli qiladi", ru: 'Делает дизайн страницы красивее' }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2055,20 +2065,20 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🃏 FLASHCARD KARTALARI — arxitektura atamalari (shahar tili)
+// 🃏 FLASHCARD KARTALARI — arxitektura atamalari (texnik nom + qisqa izoh)
 const ARCH_FLASHCARDS = [
-  { front: { uz: "Foydalanuvchi ko'radigan qism qanday ataladi?", ru: 'Как называется часть, которую видит пользователь?' }, back: 'Frontend', note: { uz: "Peshtoq — sahifa, tugmalar, rasmlar", ru: 'Витрина — страница, кнопки, картинки' } },
-  { front: { uz: "Qaror qiladigan va mantiqni bajaradigan qism qaysi?", ru: 'Какая часть принимает решения и выполняет логику?' }, back: 'Backend', note: { uz: "Hokimlik — arizani qabul qiladi va bajaradi", ru: 'Мэрия — принимает заявку и выполняет её' } },
-  { front: { uz: "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?", ru: 'Где постоянно хранятся товары и заказы?' }, back: 'Database', note: { uz: "Arxiv — sahifa yangilansa ham yo'qolmaydi", ru: 'Архив — данные не пропадут даже после обновления страницы' } },
-  { front: { uz: "Idoralar bir-biri bilan qaysi yo'l orqali gaplashadi?", ru: 'По какой дороге ведомства общаются друг с другом?' }, back: 'API', note: { uz: "Shahar yo'llari — qismlarni bir-biriga bog'laydi", ru: 'Городские дороги — связывают части друг с другом' } },
-  { front: { uz: "Tugma bosilganda jo'natiladigan xabar nima deyiladi?", ru: 'Как называется сообщение, которое уходит при нажатии кнопки?' }, back: 'Request', note: { uz: "Ariza — Peshtoqdan Hokimlikka boradi", ru: 'Заявка — идёт от Витрины в Мэрию' } },
-  { front: { uz: "Arizaga qaytadigan javob nima deyiladi?", ru: 'Как называется ответ, который возвращается на заявку?' }, back: 'Response', note: { uz: "Javob o'sha yo'l bilan ekranga qaytadi", ru: 'Ответ возвращается на экран тем же путём' } },
-  { front: { uz: "«Savatga» bosilganda ariza qaysi yo'l bilan boradi?", ru: 'Каким путём идёт заявка при нажатии «В корзину»?' }, back: { uz: "Peshtoq, Hokimlik, Arxiv", ru: 'Витрина, Мэрия, Архив' }, note: { uz: "Javob keyin o'sha yo'l bilan orqaga qaytadi", ru: 'Потом ответ тем же путём возвращается назад' } },
-  { front: { uz: "Nega Peshtoq Arxivga to'g'ridan ulanmaydi?", ru: 'Почему Витрина не подключается к Архиву напрямую?' }, back: { uz: "Xavfsizlik uchun", ru: 'Ради безопасности' }, note: { uz: "Yo'l doim Hokimlik orqali o'tadi", ru: 'Путь всегда проходит через Мэрию' } },
-  { front: { uz: "AI (Ekspert-byuro) tizimda nima qiladi?", ru: 'Что делает AI (Экспертное бюро) в системе?' }, back: { uz: "Maslahat beradi", ru: 'Даёт советы' }, note: { uz: "Qarorni baribir Hokimlik qabul qiladi", ru: 'Решение всё равно принимает Мэрия' } },
-  { front: { uz: "Web sayt va Telegram bot bitta tizim bo'la oladimi?", ru: 'Могут ли сайт и Telegram-бот быть одной системой?' }, back: { uz: "Ha, bo'ladi", ru: 'Да, могут' }, note: { uz: "Ko'p darvoza — bitta Hokimlik va bitta Arxiv", ru: 'Много ворот — одна Мэрия и один Архив' } },
-  { front: { uz: "Tayyor tizimga mobil ilova qanday qo'shiladi?", ru: 'Как к готовой системе добавляют мобильное приложение?' }, back: { uz: "Yangi frontend yozib", ru: 'Написав новый frontend' }, note: { uz: "Markazni qaytadan qurish shart emas", ru: 'Перестраивать центр не нужно' } },
-  { front: { uz: "Ma'lumot oqimi kimdan boshlanadi?", ru: 'С кого начинается поток данных?' }, back: { uz: "Foydalanuvchidan", ru: 'С пользователя' }, note: { uz: "U tugmani bosadi, so'ng so'rov yo'lga chiqadi", ru: 'Он нажимает кнопку, и запрос отправляется в путь' } },
+  { front: { uz: "Foydalanuvchi ko'radigan qism qanday ataladi?", ru: 'Как называется часть, которую видит пользователь?' }, back: 'Frontend', note: { uz: "Sahifa, tugmalar, rasmlar", ru: 'Страница, кнопки, картинки' } },
+  { front: { uz: "So'rovni qabul qilib, qoidalarni bajaradigan qism qaysi?", ru: 'Какая часть принимает запросы и выполняет правила?' }, back: 'Backend', note: { uz: "So'rovni tekshiradi, hisoblaydi, Database'ga yozadi", ru: 'Проверяет запрос, считает, пишет в Database' } },
+  { front: { uz: "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?", ru: 'Где постоянно хранятся товары и заказы?' }, back: 'Database', note: { uz: "Sahifa yangilansa ham yo'qolmaydi", ru: 'Не пропадает даже после обновления страницы' } },
+  { front: { uz: "Frontend va Backend qaysi yo'l orqali gaplashadi?", ru: 'По какому пути общаются Frontend и Backend?' }, back: 'API', note: { uz: "So'rov boradi, javob qaytadi", ru: 'Запрос уходит, ответ возвращается' } },
+  { front: { uz: "Tugma bosilganda Backend'ga yuboriladigan xabar nima deyiladi?", ru: 'Как называется сообщение, которое уходит в Backend при нажатии кнопки?' }, back: { uz: "So'rov (request)", ru: 'Запрос (request)' }, note: { uz: "Frontend'dan Backend'ga boradi", ru: 'Идёт из Frontend в Backend' } },
+  { front: { uz: "Backend so'rovga qaytaradigan natija nima deyiladi?", ru: 'Как называется результат, который Backend возвращает на запрос?' }, back: { uz: "Javob (response)", ru: 'Ответ (response)' }, note: { uz: "O'sha yo'l bilan ekranga qaytadi", ru: 'Возвращается на экран тем же путём' } },
+  { front: { uz: "«Savatga» bosilganda so'rov qaysi yo'l bilan boradi?", ru: 'Каким путём идёт запрос при нажатии «В корзину»?' }, back: { uz: "Frontend → Backend → Database", ru: 'Frontend → Backend → Database' }, note: { uz: "Javob keyin orqaga qaytadi", ru: 'Потом ответ возвращается обратно' } },
+  { front: { uz: "Bizning tizimda Frontend nega Database'ga to'g'ridan ulanmaydi?", ru: 'Почему в нашей системе Frontend не подключается к Database напрямую?' }, back: { uz: "Xavfsizlik uchun", ru: 'Ради безопасности' }, note: { uz: "Parol va qoidalar Backend'da turadi", ru: 'Пароли и правила находятся в Backend' } },
+  { front: { uz: "AI tizimda nima qiladi?", ru: 'Что делает AI в системе?' }, back: { uz: "Maslahat beradi", ru: 'Даёт советы' }, note: { uz: "Uni Backend chaqiradi", ru: 'Его вызывает Backend' } },
+  { front: { uz: "Web sayt va Telegram bot bitta tizim bo'la oladimi?", ru: 'Могут ли сайт и Telegram-бот быть одной системой?' }, back: { uz: "Ha", ru: 'Да' }, note: { uz: "Ikkalasi bitta Backend va Database'ga ulanadi", ru: 'Оба подключены к одному Backend и Database' } },
+  { front: { uz: "Tayyor tizimga mobil ilova qanday qo'shiladi?", ru: 'Как к готовой системе добавляют мобильное приложение?' }, back: { uz: "Yangi Frontend yozib", ru: 'Написав новый Frontend' }, note: { uz: "Backend'ni qaytadan qurish shart emas", ru: 'Перестраивать Backend не нужно' } },
+  { front: { uz: "Ma'lumot yo'li kimdan boshlanadi?", ru: 'С кого начинается путь данных?' }, back: { uz: "Foydalanuvchidan", ru: 'С пользователя' }, note: { uz: "U tugmani bosadi, keyin so'rov yo'lga chiqadi", ru: 'Он нажимает кнопку, и запрос отправляется в путь' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2104,16 +2114,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "Real mahsulot — bu idoralar shahri (komponentlar tizimi), bitta narsa emas", ru: 'Настоящий продукт — это город ведомств (система компонентов), а не одна штука' },
-    { uz: "5 idora: Peshtoq (Frontend), Hokimlik (Backend), Arxiv (Database), Ekspert-byuro (AI), Ikkinchi darvoza (Bot)", ru: '5 ведомств: Витрина (Frontend), Мэрия (Backend), Архив (Database), Экспертное бюро (AI), Вторые ворота (Bot)' },
-    { uz: "Ma'lumot oqimi: Foydalanuvchi → Peshtoq → Hokimlik → Arxiv → ekran", ru: 'Поток данных: Пользователь → Витрина → Мэрия → Архив → экран' },
-    { uz: "Bitta Hokimlik+Arxiv, ko'p darvoza (web, bot, mobil) — bitta shahar", ru: 'Одна Мэрия+Архив, много ворот (сайт, бот, мобильное) — один город' },
-    { uz: "Kod yozishdan oldin arxitekturani (shahar chizmasini) chizish — bosh me'mor ishi", ru: 'Нарисовать архитектуру (схему города) до написания кода — работа главного архитектора' }
+    { uz: "Real ilova — bir nechta qism birga ishlaydigan tizim", ru: 'Настоящее приложение — система, в которой вместе работают несколько частей' },
+    { uz: "5 qism: Frontend, Backend, Database — asosiy; AI va Bot — qo'shimcha", ru: '5 частей: Frontend, Backend, Database — основные; AI и Bot — дополнительные' },
+    { uz: "Ma'lumot yo'li: Foydalanuvchi → Frontend → Backend → Database → ekran", ru: 'Путь данных: Пользователь → Frontend → Backend → Database → экран' },
+    { uz: "Bitta Backend va Database, ko'p kirish yo'li (web, bot, mobil)", ru: 'Один Backend и Database, много точек входа (веб, бот, мобильное)' },
+    { uz: "Kod yozishdan oldin tizim chizmasini (arxitekturani) chizish kerak", ru: 'Прежде чем писать код, нужно нарисовать схему системы (архитектуру)' }
   ];
   const HOMEWORK = [
-    { b: { uz: "Chizing", ru: 'Нарисуйте' }, t: { uz: "— o'z loyihangiz arxitekturasini chizing: qaysi 5 idora bor?", ru: '— архитектуру своего проекта: какие в нём 5 ведомств?' } },
-    { b: { uz: 'Oqim', ru: 'Поток' }, t: { uz: "— bitta amal (masalan «buyurtma berish») uchun ariza yo'lini chizib chiqing", ru: '— нарисуйте путь заявки для одного действия (например «сделать заказ»)' } },
-    { b: { uz: 'Darvoza', ru: 'Ворота' }, t: { uz: "— loyihangizga qaysi darvozalar kerak: web? bot? mobil?", ru: '— какие ворота нужны вашему проекту: сайт? бот? мобильное?' } }
+    { b: { uz: "Chizing", ru: 'Нарисуйте' }, t: { uz: "— o'z loyihangiz arxitekturasini chizing: unda qaysi qismlar bor?", ru: '— нарисуйте архитектуру своего проекта: какие в нём есть части?' } },
+    { b: { uz: "Yo'l", ru: 'Путь' }, t: { uz: "— bitta amal uchun (masalan, «buyurtma berish») so'rov yo'lini chizib chiqing", ru: '— нарисуйте путь запроса для одного действия (например, «оформить заказ»)' } },
+    { b: { uz: "Kirish yo'llari", ru: 'Точки входа' }, t: { uz: "— loyihangizga qaysilari kerak: web, bot, mobil?", ru: '— какие из них нужны вашему проекту: веб, бот, мобильное?' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2121,7 +2131,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Tizimni ko'ra boshladingiz", ru: 'Вы начали видеть систему' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi mahsulot siz uchun <span className="italic" style={{ color: T.accent }}>bitta sayt emas</span> — yaxlit shahar.</>, ru: <>Теперь продукт для вас <span className="italic" style={{ color: T.accent }}>не просто сайт</span> — а целый город.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Tizimni ko'ra boshladingiz", ru: 'Вы начали видеть систему' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi sayt siz uchun <span className="italic" style={{ color: T.accent }}>bitta sahifa emas</span> — yaxlit tizim.</>, ru: <>Теперь сайт для вас <span className="italic" style={{ color: T.accent }}>не просто одна страница</span> — а целая система.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь наставника' }) : undefined} />
         </div>
@@ -2137,7 +2147,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Arxitektura patternlari: MVC va mikroservis, chizmangizning «nomi».", ru: '🚀 Следующий урок — Архитектурные паттерны: MVC и микросервисы, «название» вашей схемы.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — <b>Bitta gapni uch kishi bir xil tushunadimi?</b> Kod yozishdan oldin g'oyani bitta varaqqa yozishni o'rganamiz.</>, ru: <>🚀 Следующий урок — <b>Поймут ли одну фразу трое одинаково?</b> Научимся записывать идею на одном листе, прежде чем писать код.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -3086,7 +3096,7 @@ export default function SystemArchitectureLesson({ lang: langProp, onFinished, l
         .editor-body { background: ${CODE.bg}; padding: 12px 14px; }
         .editor-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.75; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
 
-        /* BRAUZER OYNA (peshtoq) */
+        /* BRAUZER OYNA (onlayn xarid sayti) */
         .shopwin { border-radius: 14px; overflow: hidden; box-shadow: 0 12px 30px -8px rgba(${T.shadowBase},0.3); border: 1px solid rgba(167,166,162,0.22); }
         .shopwin-bar { background: #E8E4DC; padding: 8px 12px; display: flex; align-items: center; gap: 9px; }
         .sw-dots { display: flex; gap: 5px; } .sw-dots i { width: 9px; height: 9px; border-radius: 50%; } .sw-dots i:first-child { background: #ff5f57; } .sw-dots i:nth-child(2) { background: #febc2e; } .sw-dots i:nth-child(3) { background: #28c840; }
@@ -3138,7 +3148,7 @@ export default function SystemArchitectureLesson({ lang: langProp, onFinished, l
         .agent-msg { font-family: 'Manrope'; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; margin: 0; line-height: 1.55; }
         .agent-msg b { color: ${T.ink}; }
 
-        /* ===== AGENT STEP (case: to'liq shahar) ===== */
+        /* ===== AGENT STEP (case: to'liq tizim) ===== */
         .agent-step { display: flex; flex-direction: column; gap: 4px; background: ${T.paper}; border-radius: 10px; padding: 10px 13px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); }
         .agent-step.done { background: ${T.successSoft}; }
         .as-phase { font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; color: ${T.blue}; letter-spacing: 0.04em; }
@@ -3157,7 +3167,7 @@ export default function SystemArchitectureLesson({ lang: langProp, onFinished, l
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title={tr({ uz: 'Shahar arxitekturasi darsi', ru: 'Урок: архитектура города' })} />
+            <LiveGate live={live} title={tr({ uz: 'Tizim arxitekturasi darsi', ru: 'Урок об архитектуре системы' })} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />

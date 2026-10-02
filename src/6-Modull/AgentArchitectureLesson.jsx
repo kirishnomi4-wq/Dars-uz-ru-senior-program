@@ -3,16 +3,14 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // 6-MODUL (Tizimni yaxlit yig'amiz) · DARS 4 — «AI-AGENT NIMA» — PLATFORM STANDARD v18 (AUDIOSIZ)
-// Maqsad: o'quvchi AI-agentni TIZIM DARAJASIDA tushunadi: oddiy AI ↔ agent farqi, qaror sikli
-//         (kuzat→xulosa→harakat), toollar orqali tizimga ulanish, qachon agent kerak, vakolat chegarasi.
-// 🏙️ METAFORA — «SHAHAR + DETEKTIV» (bu dars uchun yagona lug'at):
-//   Oddiy AI = MA'LUMOT BYUROSI (call-markaz): bir savol → bir javob, shaharga chiqmaydi.
-//   AI-agent = DETEKTIV: avtonom, shahar bo'ylab yuradi, ko'p qadam qo'yadi, ishni bajaradi.
-//   qaror sikli (perceive→decide→act) = KUZAT → XULOSA → HARAKAT (maqsadga yetguncha aylanadi).
-//   Tools = RUXSATNOMA (kirish huquqi): idoraga kirib amal qilish (arxiv=DB, ekspert=API, aloqa=xabar).
-//   Guardrails = VAKOLAT CHEGARASI (order/warrant): agent nima qila olmasligini belgilaydi.
+// Maqsad: o'quvchi AI-agentni TIZIM DARAJASIDA tushunadi: oddiy AI ↔ agent farqi, agent sikli
+//         (Idrok → Qaror → Amal — 5-Modul BotAiAgentLesson bilan bir xil nom), tool (asbob) orqali tizimga ulanish,
+//         qachon agent foydali, vakolat chegarasi (guardrail).
+// MISOL-IP (MD-birinchi, F-0929): dars bo'yi MINI-DO'KON (1–3-darslardagi loyiha). Eski metafora olib tashlangan;
+//   o'xshatishlar — faqat s2 (bir marta) va s6 (bir marta), MD'dagidek. Manba: feedback/F-0929-QA-6modul/04-AgentArchitecture-v2.md
+//   Tool = agent chaqira oladigan funksiya: baza (PostgreSQL so'rovi), tashqi xizmat (API), xabar (Telegram).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
-// Ko'prik: keyingi dars — Claude Skills (AI/agent xulqini shakllantirish).
+// Ko'prik: keyingi dars — Claude Skills (AI va agentga yozma yo'riqnoma).
 // ============================================================
 
 const T = {
@@ -68,7 +66,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'agent-arch-06-04-v18', lessonTitle: { uz: 'AI-agent nima — detektiv metaforasi', ru: 'Что такое AI-агент' } };
+const LESSON_META = { lessonId: 'agent-arch-06-04-v18', lessonTitle: { uz: 'AI-agent nima', ru: 'Что такое AI-агент' } };
 // 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → case → debug → yakuniy → praktika → podium → flashcard → summary
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -275,43 +273,43 @@ const INLINE_KEYS = { s4: 1, s8: 2, s11: 0, s14: 3, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "Byuro javob beradi, detektiv ishni bajaradi", ru: 'Бюро отвечает, детектив делает дело' },
+    title: { uz: "Oddiy AI javob beradi, agent ish bajaradi", ru: 'Обычный ИИ отвечает, агент выполняет работу' },
     cards: [
-      { ic: "💬", h: { uz: "Ma'lumot byurosi", ru: 'Справочное бюро' }, body: { uz: <>Oddiy AI — <b>ma'lumot byurosi</b>: bitta savolga bitta javob beradi va to'xtaydi.</>, ru: <>Обычный ИИ — <b>справочное бюро</b>: на один вопрос даёт один ответ и останавливается.</> } },
-      { ic: "🕵️", h: { uz: "Detektiv", ru: 'Детектив' }, body: { uz: <>Agent — <b>detektiv</b>: maqsad oladi, shahar bo'ylab yurib, o'zi ko'p qadam qo'yadi.</>, ru: <>Агент — <b>детектив</b>: получает цель, ходит по городу и сам делает много шагов.</> } },
-      { ic: "🎯", h: { uz: "Farq — amal", ru: 'Разница — действие' }, body: { uz: <>Byuro faqat gapiradi; detektiv esa <b>tizimga ta'sir o'tkazadi</b> — ishni bajaradi.</>, ru: <>Бюро только говорит; детектив же <b>влияет на систему</b> — доводит дело до конца.</> }, ask: { uz: "Byuro va detektiv o'rtasidagi asosiy farq nima?", ru: 'В чём главная разница между бюро и детективом?' } },
+      { ic: "💬", h: { uz: "Oddiy AI", ru: 'Обычный ИИ' }, body: { uz: <>Oddiy AI — savolga <b>javob beradi</b> va to'xtaydi.</>, ru: <>Обычный ИИ <b>отвечает</b> на вопрос и останавливается.</> } },
+      { ic: "🤖", h: { uz: "AI-agent", ru: 'AI-агент' }, body: { uz: <>Agent — <b>maqsad oladi</b> va tool'lar bilan bir necha qadam bajaradi.</>, ru: <>Агент <b>получает цель</b> и с помощью инструментов делает несколько шагов.</> } },
+      { ic: "🎯", h: { uz: "Farq — amal", ru: 'Разница — действие' }, body: { uz: <>Agent tizimdagi ma'lumotni <b>tool orqali o'zgartira oladi</b>.</>, ru: <>Агент <b>может изменять данные</b> в системе через инструменты.</> }, ask: { uz: "Oddiy AI va agentning asosiy farqi nima?", ru: 'В чём главное отличие обычного ИИ от агента?' } },
     ]
   },
   8: {
-    title: { uz: "Ruxsatnoma — detektivning qo'li", ru: 'Пропуск — рука детектива' },
+    title: { uz: "Tool — agentning asbobi", ru: 'Tool — инструмент агента' },
     cards: [
-      { ic: "🗝️", h: { uz: "Ruxsatnoma nima?", ru: 'Что такое пропуск?' }, body: { uz: <>Detektiv idoraga <b>ruxsatnoma</b> bilan kiradi — bu sizning tizim funksiyangiz (tool).</>, ru: <>Детектив входит в ведомство по <b>пропуску</b> — это функция вашей системы (tool).</> } },
-      { ic: "📁", h: { uz: "Idoralar", ru: 'Ведомства' }, body: { uz: <>Arxiv (DB), ekspert (API), aloqa (xabar) — har biriga alohida ruxsatnoma.</>, ru: <>Архив (БД), эксперт (API), связь (сообщение) — на каждое свой пропуск.</> } },
-      { ic: "⚡", h: { uz: "Amal ruxsatnoma orqali", ru: 'Действие — только через пропуск' }, body: { uz: <>Agent faqat siz bergan <b>ruxsatnomalar</b> orqali amal qiladi — boshqasini qila olmaydi.</>, ru: <>Агент действует только через выданные вами <b>пропуска</b> — другого он не может.</> }, ask: { uz: "Detektiv shaharga qanday amal qiladi?", ru: 'Как детектив действует в городе?' } },
+      { ic: "🧰", h: { uz: "Tool nima?", ru: 'Что такое tool?' }, body: { uz: <>Tool — <b>siz yozgan funksiya</b>.</>, ru: <>Tool — <b>функция, которую написали вы</b>.</> } },
+      { ic: "🗄️", h: { uz: "Uch xil tool", ru: 'Три вида инструментов' }, body: { uz: <>Baza, API, xabar — har biri alohida tool.</>, ru: <>База, API, сообщение — каждый из них отдельный инструмент.</> } },
+      { ic: "⚡", h: { uz: "Amal tool orqali", ru: 'Действие — через инструмент' }, body: { uz: <>Agent faqat <b>siz bergan tool'lar</b> orqali amal qiladi.</>, ru: <>Агент действует только через <b>выданные вами инструменты</b>.</> }, ask: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' } },
     ]
   },
   11: {
-    title: { uz: "Qachon byuro, qachon detektiv", ru: 'Когда бюро, а когда детектив' },
+    title: { uz: "Qachon oddiy AI, qachon agent", ru: 'Когда обычный ИИ, а когда агент' },
     cards: [
-      { ic: "1️⃣", h: { uz: "Bir qadamli ish", ru: 'Задача в один шаг' }, body: { uz: <>Aniq, bir martalik vazifa (tarjima, manzil) — <b>byuro</b> yetadi.</>, ru: <>Чёткая разовая задача (перевод, адрес) — хватит <b>бюро</b>.</> } },
-      { ic: "🔁", h: { uz: "Ko'p qadamli maqsad", ru: 'Многошаговая цель' }, body: { uz: <>Ko'p qadamli, tizim bilan ishlaydigan maqsad — <b>detektiv</b> kerak.</>, ru: <>Многошаговая цель, где нужно работать с системой — нужен <b>детектив</b>.</> } },
-      { ic: "⚖️", h: { uz: "To'g'ri vosita", ru: 'Правильный инструмент' }, body: { uz: <>Oddiy ishga detektiv chaqirish — <b>ortiqcha murakkablik</b>.</>, ru: <>Звать детектива на простое дело — <b>лишняя сложность</b>.</> }, ask: { uz: "Nega har ishga agent kerak emas?", ru: 'Почему агент нужен не в каждой задаче?' } },
+      { ic: "1️⃣", h: { uz: "Bir martalik ish", ru: 'Разовая задача' }, body: { uz: <>Aniq, bir martalik ish (tarjima, matn) — <b>oddiy AI</b> yetadi.</>, ru: <>Для чёткой разовой задачи (перевод, текст) хватит <b>обычного ИИ</b>.</> } },
+      { ic: "🔁", h: { uz: "Bir necha qadam", ru: 'Несколько шагов' }, body: { uz: <>Bir necha qadam va asbob kerak bo'lsa — <b>agent</b> foydali bo'lishi mumkin.</>, ru: <>Если нужны несколько шагов и инструменты, может пригодиться <b>агент</b>.</> } },
+      { ic: "⚖️", h: { uz: "To'g'ri tanlov", ru: 'Правильный выбор' }, body: { uz: <>Oddiy ishga agent — <b>ortiqcha murakkablik</b>.</>, ru: <>Агент для простой задачи — <b>лишняя сложность</b>.</> }, ask: { uz: "Nega har ishga agent kerak emas?", ru: 'Почему агент нужен не в каждой задаче?' } },
     ]
   },
   14: {
-    title: { uz: "Detektiv — backend komponenti", ru: 'Детектив — компонент бэкенда' },
+    title: { uz: "Agent — backend qismi", ru: 'Агент — часть бэкенда' },
     cards: [
-      { ic: "🏢", h: { uz: "Backendda turadi", ru: 'Живёт в бэкенде' }, body: { uz: <>Detektiv-agent — <b>backend ichidagi</b> aqlli komponent, mustaqil dastur emas.</>, ru: <>Детектив-агент — умный компонент <b>внутри бэкенда</b>, а не отдельная программа.</> } },
-      { ic: "🗝️", h: { uz: "Ruxsatnomalar bilan", ru: 'Через пропуска' }, body: { uz: <>U ruxsatnomalar (DB/API/xabar) orqali tizimning boshqa qismlariga ta'sir qiladi.</>, ru: <>Он влияет на другие части системы через пропуска (БД/API/сообщение).</> } },
-      { ic: "🙈", h: { uz: "Fuqaroga ko'rinmaydi", ru: 'Горожанин его не видит' }, body: { uz: <>Agent sahna ortida ishlaydi — frontend faqat natijani ko'rsatadi.</>, ru: <>Агент работает за кулисами — фронтенд показывает только результат.</> }, ask: { uz: "Agent arxitekturada qayerda yashaydi?", ru: 'Где агент живёт в архитектуре?' } },
+      { ic: "🏢", h: { uz: "Backend ichida", ru: 'Внутри бэкенда' }, body: { uz: <>Bizning tizimda agent <b>backend ichida</b> ishlaydi.</>, ru: <>В нашей системе агент работает <b>внутри бэкенда</b>.</> } },
+      { ic: "🧰", h: { uz: "Tool'lar orqali", ru: 'Через инструменты' }, body: { uz: <>U tool'lar (baza, API, xabar) orqali boshqa qismlarga ta'sir qiladi.</>, ru: <>Через инструменты (база, API, сообщение) он влияет на другие части.</> } },
+      { ic: "🙈", h: { uz: "Foydalanuvchi ko'rmaydi", ru: 'Пользователь не видит' }, body: { uz: <>Foydalanuvchi uni ko'rmaydi — frontend faqat natijani ko'rsatadi.</>, ru: <>Пользователь его не видит — фронтенд показывает только результат.</> }, ask: { uz: "Agent tizimning qaysi qismida ishlaydi?", ru: 'В какой части системы работает агент?' } },
     ]
   },
   15: {
-    title: { uz: "Detektiv oqimi — tartib muhim", ru: 'Поток детектива — порядок важен' },
+    title: { uz: "Agent sikli — tartib muhim", ru: 'Цикл агента — порядок важен' },
     cards: [
-      { ic: "🎯", h: { uz: "Avval — vazifa", ru: 'Сначала — задача' }, body: { uz: <>Hammasi <b>vazifadan</b> boshlanadi: agentga maqsad beriladi.</>, ru: <>Всё начинается с <b>задачи</b>: агенту дают цель.</> } },
-      { ic: "👁️", h: { uz: "Kuzat → xulosa → harakat", ru: 'Наблюдай → вывод → действие' }, body: { uz: <>Agent kuzatadi, xulosa qiladi (qaysi ruxsatnoma?), so'ng <b>harakat</b> qiladi.</>, ru: <>Агент наблюдает, делает вывод (какой пропуск?), затем <b>действует</b>.</> } },
-      { ic: "🔁", h: { uz: "Natijani ko'r → qayta", ru: 'Смотри результат → снова' }, body: { uz: <>Amaldan keyin natijani ko'radi — maqsad tugamasa qayta kuzatadi.</>, ru: <>После действия смотрит результат — если цель не достигнута, наблюдает снова.</> }, vis: <RcFlow items={[{ uz: 'Vazifa', ru: 'Задача' }, { uz: 'Kuzat', ru: 'Наблюдай' }, { uz: 'Xulosa', ru: 'Вывод' }, { uz: 'Harakat', ru: 'Действие' }, { uz: 'Natija', ru: 'Результат' }]} />, ask: { uz: "Nega agent aylanada ishlaydi?", ru: 'Почему агент работает по кругу?' } },
+      { ic: "🎯", h: { uz: "Avval — maqsad", ru: 'Сначала — цель' }, body: { uz: <>Avval agentga <b>maqsad</b> beriladi.</>, ru: <>Сначала агенту дают <b>цель</b>.</> } },
+      { ic: "👁️", h: { uz: "Idrok → qaror → amal", ru: 'Восприятие → решение → действие' }, body: { uz: <>Vaziyatni ko'radi, keyingi qadamni tanlaydi, so'ng <b>asbobni ishlatadi</b>.</>, ru: <>Видит ситуацию, выбирает следующий шаг, затем <b>использует инструмент</b>.</> } },
+      { ic: "🔁", h: { uz: "Natijani tekshir → qayta", ru: 'Проверь результат → заново' }, body: { uz: <>Natijani tekshiradi — maqsad bajarilmagan bo'lsa, qaytadan.</>, ru: <>Проверяет результат — если цель не достигнута, всё заново.</> }, vis: <RcFlow items={[{ uz: 'Maqsad', ru: 'Цель' }, { uz: 'Idrok', ru: 'Восприятие' }, { uz: 'Qaror', ru: 'Решение' }, { uz: 'Amal', ru: 'Действие' }, { uz: 'Natijani tekshir', ru: 'Проверь результат' }]} />, ask: { uz: "Nega agent sikl bo'ylab ishlaydi?", ru: 'Почему агент работает по циклу?' } },
     ]
   }
 };
@@ -645,71 +643,87 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr(doneText || { uz: "To'g'ri tartib!", ru: 'Порядок верный!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново.' })}</div>}
     </div>
   );
 }
 
-// ============================================================ MAVZU MA'LUMOTLARI (SHAHAR + DETEKTIV)
+// ============================================================ MAVZU MA'LUMOTLARI (MINI-DO'KON + AGENT)
 
-// ===== BYURO vs DETEKTIV (s2) =====
+// ===== ODDIY AI vs AGENT (s2) =====
 const VS_ROWS = [
-  { id: 'what', k: { uz: 'Nima u?', ru: 'Что это?' }, ai: { uz: "ma'lumot byurosi — savol berasiz, javob oladi", ru: 'справочное бюро — вы задаёте вопрос, получаете ответ' }, agent: { uz: "detektiv — maqsad berasiz, o'zi ishlaydi", ru: 'детектив — вы даёте цель, он работает сам' } },
-  { id: 'steps', k: { uz: 'Necha qadam?', ru: 'Сколько шагов?' }, ai: { uz: 'bir martalik (savol → javob)', ru: 'один раз (вопрос → ответ)' }, agent: { uz: "ko'p qadam — maqsadga yetguncha yuradi", ru: 'много шагов — идёт, пока не достигнет цели' } },
-  { id: 'system', k: { uz: 'Shahar bilan?', ru: 'А что с городом?' }, ai: { uz: "shaharga chiqmaydi — faqat gapiradi", ru: 'в город не выходит — только говорит' }, agent: { uz: 'ruxsatnomalar orqali idoralarga kiradi (arxiv, ekspert, aloqa)', ru: 'по пропускам входит в ведомства (архив, эксперт, связь)' } },
-  { id: 'use', k: { uz: 'Qachon?', ru: 'Когда?' }, ai: { uz: 'oddiy, bir martalik ish (tarjima, manzil)', ru: 'простое разовое дело (перевод, адрес)' }, agent: { uz: "ko'p qadamli maqsad (ishni boshdan-oxir hal qil)", ru: 'многошаговая цель (решить дело от начала до конца)' } }
+  { id: 'what', k: { uz: 'Nima beriladi?', ru: 'Что ему дают?' }, ai: { uz: 'savol', ru: 'вопрос' }, agent: { uz: 'maqsad', ru: 'цель' } },
+  { id: 'steps', k: { uz: 'Necha qadam?', ru: 'Сколько шагов?' }, ai: { uz: 'odatda bitta javob', ru: 'обычно один ответ' }, agent: { uz: 'maqsadga yetguncha bir necha qadam', ru: 'несколько шагов, пока не достигнет цели' } },
+  { id: 'system', k: { uz: 'Tizim bilan?', ru: 'Работа с системой?' }, ai: { uz: 'javob matnini beradi', ru: 'даёт текст ответа' }, agent: { uz: "tool'lar orqali baza, xabar va boshqa xizmatlar bilan ishlaydi", ru: 'через инструменты работает с базой, сообщениями и другими сервисами' } },
+  { id: 'use', k: { uz: 'Qachon?', ru: 'Когда?' }, ai: { uz: 'aniq, bir martalik ish (tarjima, matn yozish)', ru: 'чёткая разовая задача (перевод, написать текст)' }, agent: { uz: "bir necha qadam va asbob kerak bo'lgan ish", ru: 'задача, где нужны несколько шагов и инструменты' } }
 ];
 
-// ===== RUXSATNOMALAR (s7) — detektiv tizimga ulanadi =====
+// ===== TOOL'LAR (s7) — agent tizim qismlariga ulanadi =====
 const TOOLS = [
-  { id: 'arxiv', label: { uz: 'Arxiv', ru: 'Архив' }, desc: { uz: "Detektiv arxivga kirib eski yozuvlarni o'qiydi — bu sizning ma'lumot bazasi (DB) so'rovingiz (tool).", ru: 'Детектив заходит в архив и читает старые записи — это ваш запрос к базе данных (DB) (tool).' } },
-  { id: 'ekspert', label: { uz: 'Ekspert', ru: 'Эксперт' }, desc: { uz: "Detektiv laboratoriyaga dalilni topshirib tahlil so'raydi — bu tashqi xizmat/API chaqiruvi (tool).", ru: 'Детектив сдаёт улику в лабораторию и просит анализ — это вызов внешнего сервиса/API (tool).' } },
-  { id: 'aloqa', label: { uz: 'Aloqa', ru: 'Связь' }, desc: { uz: "Detektiv shtabga xabar yuboradi — bu xabar yuborish funksiyasi (tool).", ru: 'Детектив отправляет сообщение в штаб — это функция отправки сообщения (tool).' } }
+  { id: 'baza', label: { uz: 'Baza', ru: 'База' }, desc: { uz: "Agent mahsulot va buyurtmalarni o'qiydi, kerak bo'lsa yozadi. Bu ma'lumotlar bazasiga (PostgreSQL) so'rov.", ru: 'Агент читает товары и заказы, а если нужно — записывает. Это запрос к базе данных (PostgreSQL).' } },
+  { id: 'api', label: { uz: 'Tashqi xizmat', ru: 'Внешний сервис' }, desc: { uz: <>Agent kuryer xizmatidan yetkazish vaqtini so'raydi. Bu API chaqiruvi. <i>API — boshqa xizmat bilan ma'lumot almashish yo'li.</i></>, ru: <>Агент спрашивает у курьерской службы время доставки. Это вызов API. <i>API — способ обмениваться данными с другим сервисом.</i></> } },
+  { id: 'xabar', label: { uz: 'Xabar', ru: 'Сообщение' }, desc: { uz: "Agent mijozga Telegram orqali xabar yuboradi. Bu xabar yuboradigan funksiya.", ru: 'Агент отправляет клиенту сообщение в Telegram. Это функция, которая отправляет сообщения.' } }
 ];
 
-// ===== DETEKTIV DVIGATELI (s5) =====
+// ===== TOOL QANDAY ISHLAYDI (s6) — kim tanlaydi, kim bajaradi =====
+const TOOL_FLOW = [
+  { h: { uz: 'AI modeli tanlaydi:', ru: 'Модель ИИ выбирает:' }, body: { uz: "«Buyurtma holatini bilish uchun baza tool'ini chaqiraman.»", ru: '«Чтобы узнать статус заказа, вызову инструмент базы.»' } },
+  { h: { uz: 'Backend bajaradi:', ru: 'Бэкенд выполняет:' }, body: { uz: 'sizning kodingiz shu funksiyani ishga tushiradi va bazadan javob oladi.', ru: 'ваш код запускает эту функцию и получает ответ из базы.' } },
+  { h: { uz: 'Natija qaytadi:', ru: 'Результат возвращается:' }, body: { uz: "javob AI'ga qaytadi — u keyingi qadamni tanlaydi.", ru: 'ответ возвращается к ИИ — он выбирает следующий шаг.' } }
+];
+
+// ===== AGENT SIKLI (s5) — Idrok → Qaror → Amal (5-Modul BotAiAgentLesson bilan bir xil nom) =====
 const ENGINE = [
-  { id: 'perceive', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
-  { id: 'decide', label: { uz: 'Xulosa', ru: 'Вывод' } },
-  { id: 'act', label: { uz: 'Harakat', ru: 'Действие' } }
+  { id: 'perceive', label: { uz: 'Idrok', ru: 'Восприятие' } },
+  { id: 'decide', label: { uz: 'Qaror', ru: 'Решение' } },
+  { id: 'act', label: { uz: 'Amal', ru: 'Действие' } }
 ];
 
-// ===== TASK DECIDER (s10) =====
+// ===== ODDIY AI YOKI AGENT (s10) =====
 const TASKS = [
-  { id: 't1', task: { uz: "Bitta manzilni xaritada ko'rsat", ru: 'Покажи один адрес на карте' }, ans: 'ai' },
-  { id: 't2', task: { uz: "Yo'qolgan odamni top: guvohlarni so'ra, arxivni tekshir, joylarni aylanib chiq", ru: 'Найди пропавшего человека: опроси свидетелей, проверь архив, обойди места' }, ans: 'agent' },
-  { id: 't3', task: { uz: "Bugungi ob-havoni bir jumlada ayt", ru: 'Скажи одним предложением, какая сегодня погода' }, ans: 'ai' },
-  { id: 't4', task: { uz: "Fuqaro shikoyatini boshidan oxirigacha hal qil: tekshir, idoralarga murojaat qil, javob yetkaz", ru: 'Реши жалобу горожанина от начала до конца: проверь, обратись в ведомства, донеси ответ' }, ans: 'agent' }
+  { id: 't1', task: { uz: 'Mahsulot tavsifini ruschaga tarjima qil', ru: 'Переведи описание товара на русский' }, ans: 'ai' },
+  { id: 't2', task: { uz: 'Kelmay qolgan buyurtmani tekshir, kuryerga yoz va mijozga javob ber', ru: 'Проверь заказ, который не приехал, напиши курьеру и ответь клиенту' }, ans: 'agent' },
+  { id: 't3', task: { uz: 'Yangi mahsulot uchun 3 ta nom taklif qil', ru: 'Предложи 3 названия для нового товара' }, ans: 'ai' },
+  { id: 't4', task: { uz: "Mijoz shikoyatini oxirigacha hal qil: buyurtmani top, pul qaytarishni so'ra, mijozga xabar yubor", ru: 'Реши жалобу клиента до конца: найди заказ, запроси возврат денег, отправь клиенту сообщение' }, ans: 'agent' }
 ];
 
-// ===== CASE (s12) — shahar detektiv sikli =====
-// ⚠️ `ico` — til-mustaqil kalit: quyida faza-yorlig'i va «ruxsatnoma soni» AYNAN shu emoji bo'yicha hisoblanadi.
+// ===== CASE (s12) — mini-do'kon: agent sikli =====
+// ⚠️ Faza va tool — ALOHIDA maydonlar (phase, tool). Yorliq, «done» sinfi va «Ishlatilgan tool'lar» hisoblagichi
+//    FAQAT shu maydonlardan olinadi — matndagi belgiga bog'lanmaydi (e4d4ced emoji-codemodi ico belgisini o'chirib,
+//    har qadamni «tayyor» qilib, hisoblagichni «hali yo'q»da qotirgan edi — F-0929 MD-birinchi).
+const CASE_PHASE = {
+  goal: { uz: 'maqsad', ru: 'цель' },
+  perceive: { uz: 'idrok', ru: 'восприятие' },
+  decide: { uz: 'qaror', ru: 'решение' },
+  act: { uz: 'amal', ru: 'действие' },
+  done: { uz: 'tayyor', ru: 'готово' }
+};
 const CASE_STEPS = [
-  { txt: { uz: "Vazifa: «Yo'qolgan yukni top va egasiga qaytar.»", ru: 'Задача: «Найди пропавший груз и верни владельцу.»' } },
-  { txt: { uz: "Kuzat: detektiv arxivga kirib so'nggi yozuvlarni o'qidi (ruxsatnoma: arxiv).", ru: 'Наблюдение: детектив зашёл в архив и прочитал последние записи (пропуск: архив).' } },
-  { txt: { uz: "Xulosa: yuk B-manzilda — o'sha yerni tekshirish kerak.", ru: 'Вывод: груз по адресу B — надо проверить это место.' } },
-  { txt: { uz: "Harakat: B-manzilga bordi, yukni topdi ✅ (ruxsatnoma orqali amal).", ru: 'Действие: доехал до адреса B, нашёл груз ✅ (действие по пропуску).' } },
-  { txt: { uz: "Xulosa: endi egasiga xabar berish kerak.", ru: 'Вывод: теперь надо сообщить владельцу.' } },
-  { txt: { uz: "Harakat: aloqa idorasidan egasiga xabar yubordi 📨✅.", ru: 'Действие: через ведомство связи отправил владельцу сообщение 📨✅.' } },
-  { txt: { uz: "Vazifa bajarildi. Detektiv 2 ta ruxsatnomani ishlatib, ishni o'zi hal qildi.", ru: 'Задача выполнена. Детектив использовал 2 пропуска и решил дело сам.' } }
+  { phase: 'goal', txt: { uz: "Mijoz: «Buyurtmam 2 kundan beri kelmadi.» Agent maqsadi: sababini topib, mijozga javob berish.", ru: 'Клиент: «Мой заказ не приходит уже 2 дня.» Цель агента: найти причину и ответить клиенту.' } },
+  { phase: 'perceive', tool: { uz: 'baza', ru: 'база' }, txt: { uz: "Agent bazadan buyurtma holatini o'qidi (tool: baza) — «kuryerga berilgan».", ru: 'Агент прочитал в базе статус заказа (инструмент: база) — «передан курьеру».' } },
+  { phase: 'decide', txt: { uz: "Kuryer xizmatidan so'rash kerak: buyurtma qayerda?", ru: 'Нужно спросить у курьерской службы: где заказ?' } },
+  { phase: 'act', tool: { uz: 'API', ru: 'API' }, txt: { uz: "Agent kuryer xizmatiga so'rov yubordi (tool: API) — «ertaga 12:00 gacha yetkaziladi».", ru: 'Агент отправил запрос в курьерскую службу (инструмент: API) — «доставят завтра до 12:00».' } },
+  { phase: 'decide', txt: { uz: 'Endi mijozga aniq javob berish kerak.', ru: 'Теперь нужно дать клиенту точный ответ.' } },
+  { phase: 'act', tool: { uz: 'xabar', ru: 'сообщение' }, txt: { uz: "Agent mijozga Telegram'da xabar yubordi (tool: xabar) 📨", ru: 'Агент отправил клиенту сообщение в Telegram (инструмент: сообщение) 📨' } },
+  { phase: 'done', txt: { uz: 'Maqsad bajarildi. Agent 3 ta tool ishlatdi: baza, API va xabar.', ru: 'Цель достигнута. Агент использовал 3 инструмента: базу, API и сообщение.' } }
 ];
 
-// ===== DETEKTIV OQIMI (final s15) =====
+// ===== AGENT SIKLI — yakuniy yig'ish (final s15) =====
 const FLOW = [
-  { id: 'goal', label: { uz: 'Vazifa', ru: 'Задача' } },
-  { id: 'perceive', label: { uz: 'Kuzat', ru: 'Наблюдай' } },
-  { id: 'decide', label: { uz: 'Xulosa', ru: 'Вывод' } },
-  { id: 'act', label: { uz: 'Harakat', ru: 'Действие' } },
-  { id: 'loop', label: { uz: "Natijani ko'r", ru: 'Смотри результат' } }
+  { id: 'goal', label: { uz: 'Maqsad', ru: 'Цель' } },
+  { id: 'perceive', label: { uz: 'Idrok', ru: 'Восприятие' } },
+  { id: 'decide', label: { uz: 'Qaror', ru: 'Решение' } },
+  { id: 'act', label: { uz: 'Amal', ru: 'Действие' } },
+  { id: 'loop', label: { uz: 'Natijani tekshir', ru: 'Проверь результат' } }
 ];
 // ⚠️ label — {uz,ru} obyekt: shablon-stringlar HAR TIL uchun alohida yig'iladi (modul-darajada tr() TAQIQ).
 const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
 const FLOW_ORDER = FLOW.map(f => f.id);
-const FLOW_HINTS = FLOW.map(f => ({ uz: `${f.label.uz} bosqichi`, ru: `Этап «${f.label.ru}»` }));
+// Bo'sh joy belgisi — faqat raqam: bosqich nomi yozilsa javob ochiq turadi (F-0929 MD-birinchi).
+const FLOW_HINTS = FLOW.map(() => ({ uz: "bu yerga qo'ying", ru: 'положите сюда' }));
 
 // ===== SCREEN 0 — HOOK =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
@@ -717,27 +731,27 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
   const OPTS = [
-    { id: 'a', label: { uz: "Detektiv chiroyliroq gapiradi", ru: 'Детектив говорит красивее' } },
-    { id: 'b', label: { uz: "Detektiv o'zi qadamlar qo'yib, shahar idoralari bilan ishlab, ishni bajardi", ru: 'Детектив сам сделал шаги, поработал с городскими ведомствами и довёл дело до конца' } },
-    { id: 'c', label: { uz: "Hech farqi yo'q — ikkalasi bir xil", ru: 'Разницы нет — оба одинаковы' } }
+    { id: 'a', label: { uz: 'Agent chiroyliroq va batafsilroq gapirdi', ru: 'Агент говорил красивее и подробнее' } },
+    { id: 'b', label: { uz: 'Agent asboblar bilan bir necha qadam bajardi', ru: 'Агент выполнил несколько шагов с помощью инструментов' } },
+    { id: 'c', label: { uz: "Farqi yo'q — ikkalasi bir xil ishladi", ru: 'Разницы нет — оба сработали одинаково' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Shaharga kirdingiz. Bitta iltimos: «do'stimga sovg'a top, 200 minggacha, tez yetkazilsin». Ikki xil <span className="italic" style={{ color: T.accent }}>xizmat</span>.</>, ru: <>Вы приехали в город. Одна просьба: «найди подарок другу, до 200 тысяч, доставить быстро». Две разные <span className="italic" style={{ color: T.accent }}>службы</span>.</> })}</h1>
-        <Mentor>{tr({ uz: "O'tgan darslarda AI maslahatchisini ko'rdik. Endi savol: AI tizimda qanday turlarda bo'ladi? Tugmani bosing — bir iltimosga ma'lumot byurosi va detektiv qanday javob berishini solishtiring.", ru: 'На прошлых уроках мы посмотрели ИИ-советчика. Теперь вопрос: в каком виде ИИ живёт в системе? Нажмите кнопку — сравните, как на одну просьбу отвечают справочное бюро и детектив.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningizga mijoz yozdi: «Do'stimga 200 ming so'mgacha sovg'a kerak, bugun yetib borsin». <span className="italic" style={{ color: T.accent }}>Ikki xil AI</span> qanday javob beradi?</>, ru: <>В ваш мини-магазин написал клиент: «Нужен подарок другу до 200 тысяч сумов, пусть доставят сегодня». Как ответят <span className="italic" style={{ color: T.accent }}>два разных ИИ</span>?</> })}</h1>
+        <Mentor>{tr({ uz: "Bot darslarida botingizga AI-agent qo'shgansiz. Endi agentga butun tizim nuqtai nazaridan qaraymiz. Avval eslaylik: agent oddiy AI'dan nimasi bilan farq qiladi? Tugmani bosing — bitta iltimosga ikki xil AI qanday javob berishini solishtiring.", ru: 'На уроках про ботов вы добавляли к своему боту AI-агента. Теперь посмотрим на агента с точки зрения всей системы. Сначала вспомним: чем агент отличается от обычного ИИ? Нажмите кнопку и сравните, как два разных ИИ отвечают на одну и ту же просьбу.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="sk-info" style={{ }}>
-              <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: "💬 Ma'lumot byurosi (faqat javob)", ru: '💬 Справочное бюро (только ответ)' })}</p>
-              {tried ? <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Mana mos variantlar: quloqchin (180k), powerbank (150k). O'zingiz tanlab buyurtma bering.»", ru: '«Вот подходящие варианты: наушники (180 тыс.), повербанк (150 тыс.). Выберите и закажите сами.»' })}</p>
+              <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Oddiy AI (chat)', ru: '💬 Обычный ИИ (чат)' })}</p>
+              {tried ? <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Quloqchin yoki powerbank sovg'a qilishingiz mumkin. Do'kondan o'zingiz tanlab, buyurtma bering.»", ru: '«Можно подарить наушники или повербанк. Выберите в магазине сами и оформите заказ.»' })}</p>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
             <div className="agent-card">
-              <span className="agent-lbl">{tr({ uz: '🕵️ Detektiv-agent (ishni bajaradi)', ru: '🕵️ Детектив-агент (делает дело)' })}</span>
-              {tried ? <p className="agent-msg">{tr({ uz: "«Topdim ✓ band qildim ✓ tez yetkazishni rasmiylashtirdim ✓ — 35 daqiqada yetkaziladi.»", ru: '«Нашёл ✓ забронировал ✓ оформил быструю доставку ✓ — привезут за 35 минут.»' })}</p>
+              <span className="agent-lbl">{tr({ uz: '🤖 AI-agent', ru: '🤖 AI-агент' })}</span>
+              {tried ? <p className="agent-msg">{tr({ uz: "«Do'kon bazasidan 200 ming so'mgacha mahsulotlarni topdim ✓ Quloqchin omborda bor — band qildim ✓ Kuryer xizmatidan bugungi yetkazishni so'radim ✓ — 18:00 gacha yetib boradi.»", ru: '«Нашёл в базе магазина товары до 200 тысяч сумов ✓ Наушники есть на складе — забронировал ✓ Запросил у курьерской службы доставку на сегодня ✓ — привезут до 18:00.»' })}</p>
                 : <p className="agent-msg" style={{ color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
             <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Solishtirildi', ru: '✓ Сравнили' }) : tr({ uz: "▶ Ikki javobni ko'rish", ru: '▶ Посмотреть два ответа' })}</button>
@@ -750,7 +764,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Ma'lumot byurosi — <b>maslahatchi</b> (faqat javob). <b>Detektiv-agent</b> — tizimning aqlli <b>komponenti</b>: o'zi qadamlar qo'yib, ruxsatnomalar (arxiv, aloqa) orqali ishni bajaradi. Bugun agentning arxitekturadagi o'rnini ko'ramiz.</>, ru: <>Именно! Справочное бюро — <b>советчик</b> (только ответ). <b>Детектив-агент</b> — умный <b>компонент</b> системы: сам делает шаги и по пропускам (архив, связь) доводит дело до конца. Сегодня разберём место агента в архитектуре.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked !== 'b' ? tr({ uz: <><b>Qiziq fikr!</b> Lekin gap chiroyli so'zda emas. Ikkinchi AI javob berish bilan qolmadi: do'kon asboblari yordamida mahsulotni topdi, band qildi va yetkazishni so'radi. Bunday AI'ni agent deyishadi.</>, ru: <><b>Интересная мысль!</b> Но дело не в красивых словах. Второй ИИ не ограничился ответом: с помощью инструментов магазина он нашёл товар, забронировал его и запросил доставку. Такой ИИ называют агентом.</> }) : tr({ uz: <><b>Aynan!</b> Oddiy AI savolga javob berdi. AI-agent esa maqsadni oldi va do'kon asboblari — baza, band qilish, kuryer xizmati — yordamida bir necha qadamni bajardi. Bugun agent qanday ishlashini va tizimda qayerda turishini ko'ramiz.</>, ru: <><b>Именно!</b> Обычный ИИ ответил на вопрос. А AI-агент получил цель и с помощью инструментов магазина — базы, бронирования, курьерской службы — выполнил несколько шагов. Сегодня разберём, как работает агент и где он стоит в системе.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -761,22 +775,21 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "Ma'lumot byurosi vs detektiv — tizim nuqtai nazaridan", ru: 'Справочное бюро vs детектив — со стороны системы' }, tag: { uz: 'farq', ru: 'разница' } },
-    { text: { uz: "Detektiv dvigateli: kuzat → xulosa → harakat", ru: 'Двигатель детектива: наблюдай → вывод → действие' }, tag: { uz: 'sikl', ru: 'цикл' } },
-    { text: { uz: "Ruxsatnomalar — detektivni tizimga ulaydi (arxiv/ekspert/aloqa)", ru: 'Пропуска — подключают детектива к системе (архив/эксперт/связь)' }, tag: { uz: 'ulanish', ru: 'связь' } },
-    { text: { uz: "Qachon detektiv, qachon byuro; vakolat chegarasi", ru: 'Когда детектив, когда бюро; рамки полномочий' }, tag: { uz: 'qaror', ru: 'решение' } }
+    { text: { uz: 'Oddiy AI va agent — farqi nimada', ru: 'Обычный ИИ и агент — в чём разница' }, tag: { uz: 'farq', ru: 'разница' } },
+    { text: { uz: 'Agent sikli: idrok → qaror → amal', ru: 'Цикл агента: восприятие → решение → действие' }, tag: { uz: 'sikl', ru: 'цикл' } },
+    { text: { uz: 'Tool — agent ishlata oladigan asbob', ru: 'Tool — инструмент, которым может пользоваться агент' }, tag: { uz: 'asbob', ru: 'инструмент' } },
+    { text: { uz: 'Qachon agent kerak va vakolat chegarasi', ru: 'Когда нужен агент и рамки полномочий' }, tag: { uz: 'qaror', ru: 'решение' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'dars oxirida — detektivni arxitekturada joylaysiz', ru: 'к концу урока вы разместите детектива в архитектуре' })}</p>
       <div className="clients-map">
-        <div className="cm-clients"><div className="cm-client on"><span>📁</span><span className="cm-lbl">{tr({ uz: 'Arxiv', ru: 'Архив' })}</span></div><div className="cm-client on"><span>🔬</span><span className="cm-lbl">{tr({ uz: 'Ekspert', ru: 'Эксперт' })}</span></div><div className="cm-client on"><span>📡</span><span className="cm-lbl">{tr({ uz: 'Aloqa', ru: 'Связь' })}</span></div></div>
+        <div className="cm-clients"><div className="cm-client on"><span>🗄️</span><span className="cm-lbl">{tr({ uz: 'Baza', ru: 'База' })}</span></div><div className="cm-client on"><span>📡</span><span className="cm-lbl">{tr({ uz: 'Tashqi xizmat (API)', ru: 'Внешний сервис (API)' })}</span></div><div className="cm-client on"><span>💬</span><span className="cm-lbl">{tr({ uz: 'Xabar', ru: 'Сообщение' })}</span></div></div>
         <span className="cm-arrow">←</span>
-        <div className="cm-core"><div className="cm-core-node">🕵️<span>{tr({ uz: 'Detektiv', ru: 'Детектив' })}</span></div></div>
+        <div className="cm-core"><div className="cm-core-node">🤖<span>{tr({ uz: 'Agent', ru: 'Агент' })}</span></div></div>
       </div>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv-agent — backend ichidagi aqlli komponent. Ruxsatnomalar orqali tizimning boshqa qismlariga «qo'l» cho'zadi.", ru: 'Детектив-агент — умный компонент внутри бэкенда. По пропускам он «протягивает руку» к другим частям системы.' })}</p></div>
+      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Bizning tizimda agent backend ichida ishlaydi va siz bergan asboblar (tool) orqali tizimning boshqa qismlari bilan ishlaydi.', ru: 'В нашей системе агент работает внутри бэкенда и взаимодействует с другими частями системы через выданные вами инструменты (tool).' })}</p></div>
     </Col>
   );
   const StepsB = (
@@ -788,8 +801,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Detektiv-agent — tizimning <span className="italic" style={{ color: T.accent }}>aqlli komponenti</span>.</>, ru: <>Детектив-агент — <span className="italic" style={{ color: T.accent }}>умный компонент</span> системы.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Avvalgi darslarda AI'ni <b style={{ color: T.ink }}>ko'rdingiz</b>. Bugun boshqa savol — arxitektura savoli: agent tizimda <b style={{ color: T.ink }}>qayerda turadi</b>, oddiy AI'dan farqi nima va <b style={{ color: T.ink }}>qachon</b> uni tanlaysiz.</>, ru: <>На прошлых уроках вы <b style={{ color: T.ink }}>увидели</b> ИИ. Сегодня другой вопрос — архитектурный: <b style={{ color: T.ink }}>где</b> агент стоит в системе, чем отличается от обычного ИИ и <b style={{ color: T.ink }}>когда</b> вы его выбираете.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI-agent — <span className="italic" style={{ color: T.accent }}>maqsad sari</span> qadam tashlaydigan AI.</>, ru: <>AI-агент — ИИ, который делает шаги <span className="italic" style={{ color: T.accent }}>к цели</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bugun uchta savolga javob topamiz: agent oddiy AI'dan nimasi bilan farq qiladi, u tizimda qayerda turadi va qachon uni tanlash kerak.", ru: 'Сегодня найдём ответы на три вопроса: чем агент отличается от обычного ИИ, где он стоит в системе и когда его стоит выбирать.' })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
             : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
@@ -798,7 +811,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — BYURO vs DETEKTIV =====
+// ===== SCREEN 2 — ODDIY AI vs AGENT =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(VS_ROWS.map(r => r.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -808,25 +821,26 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = VS_ROWS.find(r => r.id === active);
   return (
-    <Stage eyebrow={{ uz: 'Tushuncha · farq', ru: 'Понятие · разница' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 farqni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 отличия (${seen.size}/4)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Tushuncha · farq', ru: 'Понятие · разница' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 jihatni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 отличия (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Ma'lumot byurosi</span> — gapiradi. <span className="italic" style={{ color: T.accent }}>Detektiv</span> — bajaradi.</>, ru: <><span className="italic" style={{ color: T.accent }}>Справочное бюро</span> — говорит. <span className="italic" style={{ color: T.accent }}>Детектив</span> — делает.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Ma'lumot byurosi — call-markaz kabi: savol berasiz, javob oladi, tamom. Detektiv — tergovchi kabi: maqsad berasiz, u o'zi qadamlar qo'yib bajaradi. Har jihatni bosing.", ru: 'Справочное бюро — как колл-центр: задали вопрос, получили ответ, всё. Детектив — как следователь: даёте цель, он сам делает шаги и выполняет. Нажмите на каждый пункт.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oddiy AI savolga javob beradi. Agent <span className="italic" style={{ color: T.accent }}>maqsad sari</span> qadam tashlaydi.</>, ru: <>Обычный ИИ отвечает на вопрос. Агент делает шаги <span className="italic" style={{ color: T.accent }}>к цели</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Oddiy AI'ga savol berasiz — u javob beradi. Agentga maqsad berasiz — u keyingi qadamni o'zi tanlaydi va siz bergan asboblardan foydalanadi. Agentni detektivga o'xshatish mumkin: maqsad oladi, dalil yig'adi, keyingi qadamni tanlaydi. Har jihatni bosing.", ru: 'Обычному ИИ вы задаёте вопрос — он отвечает. Агенту вы даёте цель — он сам выбирает следующий шаг и пользуется выданными вами инструментами. Агента можно сравнить с детективом: получает цель, собирает улики, выбирает следующий шаг. Нажмите на каждый пункт.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {VS_ROWS.map(r => <button key={r.id} className="gchip" onClick={() => tap(r.id)} style={seen.has(r.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(r.id) ? '✓ ' : ''}{tr(r.k)}</button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir jumla: <b>byuro gapiradi (bir marta), detektiv ishni qiladi (sikl + ruxsatnomalar).</b> Ikkalasi ham foydali — har biri o'z o'rnida.</>, ru: <>Одной фразой: <b>бюро говорит (один раз), детектив делает дело (цикл + пропуска).</b> Полезны оба — каждый на своём месте.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir jumla: <b>oddiy AI javob beradi, agent asboblar bilan qadamma-qadam ish bajaradi.</b> Ikkalasi ham foydali — har biri o'z o'rnida.</>, ru: <>Одной фразой: <b>обычный ИИ отвечает, агент шаг за шагом выполняет работу с помощью инструментов.</b> Полезны оба — каждый на своём месте.</> })}</p></div>}
           </Col>
           <Col>
             {cur
               ? <div className="fade-step" key={active} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <p className="flow-label">{tr(cur.k)}</p>
-                  <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: "💬 Ma'lumot byurosi", ru: '💬 Справочное бюро' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.ai)}</p></div>
-                  <div className="agent-card"><span className="agent-lbl">{tr({ uz: '🕵️ Detektiv', ru: '🕵️ Детектив' })}</span><p className="agent-msg">{tr(cur.agent)}</p></div>
+                  <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Oddiy AI', ru: '💬 Обычный ИИ' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.ai)}</p></div>
+                  <div className="agent-card"><span className="agent-lbl">{tr({ uz: '🤖 Agent', ru: '🤖 Агент' })}</span><p className="agent-msg">{tr(cur.agent)}</p></div>
                 </div>
               : null}
+            {done && <p className="small fade-step" style={{ margin: 0, color: T.ink3 }}>{tr({ uz: "Eslatma: bugungi ba'zi chat-AI'lar ham asboblardan foydalana oladi. Agentning asosiy belgisi — maqsad sari bir necha qadamni o'zi tanlashi.", ru: 'Замечание: некоторые современные чат-ИИ тоже умеют пользоваться инструментами. Главный признак агента — он сам выбирает несколько шагов к цели.' })}</p>}
           </Col>
         </div></Zoomable>
       </div>
@@ -841,36 +855,36 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = run;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const AG = [
-    { txt: { uz: "Arxivni tekshirdi — mos yozuv bormi?", ru: 'Проверил архив — есть ли подходящая запись?' } },
-    { txt: { uz: "Kerakli idoraga bordi va band qildi", ru: 'Дошёл до нужного ведомства и забронировал' } },
-    { txt: { uz: "Aloqa idorasidan tez yetkazishni rasmiylashtirdi", ru: 'Через ведомство связи оформил быструю доставку' } },
+    { txt: { uz: "Bazadan 200 ming so'mgacha mahsulotlarni qidirdi", ru: 'Искал в базе товары до 200 тысяч сумов' } },
+    { txt: { uz: 'Quloqchinni band qildi (bazaga yozdi)', ru: 'Забронировал наушники (записал в базу)' } },
+    { txt: { uz: "Kuryer xizmatidan (API) bugungi yetkazishni so'radi", ru: 'Запросил у курьерской службы (API) доставку на сегодня' } },
     { txt: { uz: "Maqsad bajarildi", ru: 'Цель достигнута' } }
   ];
   return (
     <Stage eyebrow={{ uz: "Animatsiya · bir vazifa, ikki yo'l", ru: 'Анимация · одна задача, два пути' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta vazifa — byuro <span className="italic" style={{ color: T.accent }}>1 qadam</span>, detektiv <span className="italic" style={{ color: T.accent }}>ko'p qadam</span>.</>, ru: <>Одна задача — бюро <span className="italic" style={{ color: T.accent }}>1 шаг</span>, детектив <span className="italic" style={{ color: T.accent }}>много шагов</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana vizual farq: byuro bitta javob qaytaradi va to'xtaydi. Detektiv esa sikl bo'ylab bir nechta amal qiladi — shahar idoralari orqali ishga ta'sir o'tkazadi. Tugmani bosing.", ru: 'Вот разница наглядно: бюро возвращает один ответ и останавливается. Детектив же по циклу делает несколько действий — влияет на дело через городские ведомства. Нажмите кнопку.' })}</Mentor>
-        <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={run} onClick={() => { setRun(true); setSc(n => n + 1); }}>{run ? tr({ uz: "✓ Ko'rsatildi", ru: '✓ Показано' }) : tr({ uz: "▶ Ikki yondashuvni ishga tushir", ru: '▶ Запустить оба подхода' })}</button>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta vazifa — oddiy AI <span className="italic" style={{ color: T.accent }}>bitta javob</span>, agent <span className="italic" style={{ color: T.accent }}>bir necha qadam</span>.</>, ru: <>Одна задача — у обычного ИИ <span className="italic" style={{ color: T.accent }}>один ответ</span>, у агента <span className="italic" style={{ color: T.accent }}>несколько шагов</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Oddiy AI bitta javob qaytaradi va to'xtaydi. Agent esa sikl bo'ylab bir nechta amal bajaradi — har amalda bitta asbobni ishlatadi. Tugmani bosing.", ru: 'Обычный ИИ возвращает один ответ и останавливается. А агент по циклу выполняет несколько действий — в каждом действии использует один инструмент. Нажмите кнопку.' })}</Mentor>
+        <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={run} onClick={() => { setRun(true); setSc(n => n + 1); }}>{run ? tr({ uz: "✓ Ko'rsatildi", ru: '✓ Показано' }) : tr({ uz: "▶ Ikki yondashuvni ishga tushiring", ru: '▶ Запустите оба подхода' })}</button>
         <Zoomable><div className="split">
           <Col>
             <div className="sk-info" style={{ }}>
-              <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Byuro — bir qadam', ru: '💬 Бюро — один шаг' })}</p>
-              {run ? <div className="fade-step"><p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{tr({ uz: '«Mana variantlar: …» → tugadi.', ru: '«Вот варианты: …» → всё.' })}</p><span className="loop-badge" style={{ background: T.bg, color: T.ink2 }}>{tr({ uz: '1 qadam · faqat matn', ru: '1 шаг · только текст' })}</span></div>
+              <p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Oddiy AI — bitta javob', ru: '💬 Обычный ИИ — один ответ' })}</p>
+              {run ? <div className="fade-step"><p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{tr({ uz: '«Quloqchin yoki powerbank olishingiz mumkin.» → tugadi.', ru: '«Можно взять наушники или повербанк.» → конец.' })}</p><span className="loop-badge" style={{ background: T.bg, color: T.ink2 }}>{tr({ uz: '1 javob · faqat matn', ru: '1 ответ · только текст' })}</span></div>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: 'Tugmani bosing →', ru: 'Нажмите кнопку →' })}</p>}
             </div>
           </Col>
           <Col>
-            <p className="flow-label" style={{ color: T.accent }}>{tr({ uz: '🕵️ Detektiv — sikl + ruxsatnomalar', ru: '🕵️ Детектив — цикл + пропуска' })} {run && <span className="loop-badge">↻ loop</span>}</p>
+            <p className="flow-label" style={{ color: T.accent }}>{tr({ uz: '🤖 Agent — sikl + asboblar', ru: '🤖 Агент — цикл + инструменты' })} {run && <span className="loop-badge">{tr({ uz: '↻ sikl', ru: '↻ цикл' })}</span>}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {run && AG.map((s, i) => (
-                <div key={i} className={`agent-step fade-step ${s.ico === '✅' ? 'done' : ''}`} style={{ animationDelay: `${i * 0.45}s` }}>
-                  <span className="as-phase">{i < AG.length - 1 ? tr({ uz: `amal ${i + 1}`, ru: `действие ${i + 1}` }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
+                <div key={i} className={`agent-step fade-step ${i === AG.length - 1 ? 'done' : ''}`} style={{ animationDelay: `${i * 0.45}s` }}>
+                  <span className="as-phase">{i < AG.length - 1 ? tr({ uz: `${i + 1}-amal`, ru: `действие ${i + 1}` }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
                   <span className="as-txt">{tr(s.txt)}</span>
                 </div>
               ))}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv 3 ta amal qildi va tizimga ta'sir o'tkazdi. Byuro esa faqat gapirdi. Mana arxitektura farqi.", ru: 'Детектив сделал 3 действия и повлиял на систему. А бюро только поговорило. Вот она, архитектурная разница.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent 3 ta amal bajardi va tizimdagi ma'lumotni o'zgartirdi. Oddiy AI esa javob matnini berdi. Farq shu.", ru: 'Агент выполнил 3 действия и изменил данные в системе. А обычный ИИ выдал текст ответа. Вот и вся разница.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -880,28 +894,28 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' }}
-    questionText="Ma'lumot byurosi (agent emas) so'rovga javoban nima qiladi?"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
+    questionText="Oddiy AI (chat) savolga javoban odatda nima qiladi?"
     question={{
-      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ma'lumot byurosi (agent emas) so'rovga javoban nima <span className="italic" style={{ color: T.accent }}>qiladi</span>?</h2></>,
-      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что <span className="italic" style={{ color: T.accent }}>делает</span> справочное бюро (не агент) в ответ на запрос?</h2></>
+      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Oddiy AI (chat) savolga javoban odatda nima <span className="italic" style={{ color: T.accent }}>qiladi</span>?</h2></>,
+      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что, как правило, <span className="italic" style={{ color: T.accent }}>делает</span> обычный ИИ (чат) в ответ на вопрос?</h2></>
     }}
     options={[
-      { uz: "Shahar bo'ylab yurib, idoralarga kirib ishni bajaradi", ru: 'Ходит по городу, заходит в ведомства и делает дело' },
-      { uz: "Bitta javob beradi va to'xtaydi — o'zi bormaydi", ru: 'Даёт один ответ и останавливается — сам никуда не идёт' },
-      { uz: "Arxivga to'g'ridan-to'g'ri yangi yozuv qo'shib qo'yadi", ru: 'Напрямую добавляет новую запись в архив' },
-      { uz: "Hech narsa — u faqat detektiv ichida ishlay oladi", ru: 'Ничего — он работает только внутри детектива' }
+      { uz: 'Bir necha asbobni ishlatib, ishni oxirigacha bajaradi', ru: 'Использует несколько инструментов и доводит работу до конца' },
+      { uz: "Javob matnini beradi va to'xtaydi", ru: 'Даёт текст ответа и останавливается' },
+      { uz: "Do'kon bazasiga o'zi yangi buyurtma yozadi", ru: 'Сам записывает новый заказ в базу магазина' },
+      { uz: 'Hech narsa — u faqat agent ichida ishlaydi', ru: 'Ничего — он работает только внутри агента' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Ma'lumot byurosi — funksiya kabi: savolga javob beradi va to'xtaydi. Tizimga (arxiv/idora) o'zi ta'sir qilmaydi. Ko'p qadamli, tizim bilan ishlaydigan vazifa uchun detektiv-agent kerak.", ru: 'Верно! Справочное бюро — как функция: отвечает на вопрос и останавливается. На систему (архив/ведомство) само оно не влияет. Для многошаговой задачи, где надо работать с системой, нужен детектив-агент.' }}
+    explainCorrect={{ uz: "To'g'ri! Oddiy AI savolga javob beradi va to'xtaydi — tizimdagi ma'lumotni o'zi o'zgartirmaydi. Bir necha qadam va asbob kerak bo'lgan ish uchun agent foydali bo'lishi mumkin.", ru: 'Верно! Обычный ИИ отвечает на вопрос и останавливается — сам он данные в системе не меняет. Для задачи, где нужны несколько шагов и инструменты, может пригодиться агент.' }}
     explainWrong={{
-      0: { uz: "Yurib, idoralarga kirib ish bajarish — bu detektiv (agent) ishi. Byuro faqat javob beradi.", ru: 'Ходить, заходить в ведомства и делать дело — это работа детектива (агента). Бюро только отвечает.' },
-      2: { uz: "Byuro o'zi arxivga yozmaydi — u faqat ma'lumot aytadi. Yozish ruxsatnoma orqali agent ishi.", ru: 'Бюро само в архив не пишет — оно только сообщает информацию. Запись — это работа агента по пропуску.' },
-      3: { uz: "Byuro mustaqil ishlatiladi — detektiv shart emas. U bitta javob qaytaradi.", ru: 'Бюро используется самостоятельно — детектив не обязателен. Оно возвращает один ответ.' },
-      default: { uz: "Byuro bitta javob beradi va to'xtaydi.", ru: 'Бюро даёт один ответ и останавливается.' }
+      0: { uz: 'Asboblarni ishlatib, ishni oxirigacha bajarish — agentning ishi.', ru: 'Использовать инструменты и доводить работу до конца — это работа агента.' },
+      2: { uz: 'Bazaga yozish uchun tool kerak — bu agentning ishi.', ru: 'Чтобы записать в базу, нужен инструмент — это работа агента.' },
+      3: { uz: 'Oddiy AI alohida ishlaydi — agent shart emas.', ru: 'Обычный ИИ работает сам по себе — агент для этого не нужен.' },
+      default: { uz: "Oddiy AI javob beradi va to'xtaydi.", ru: 'Обычный ИИ отвечает и останавливается.' }
     }} />
 );
 
-// ===== SCREEN 5 — DETEKTIV DVIGATELI =====
+// ===== SCREEN 5 — AGENT SIKLI =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? ENGINE.length : 0);
   const [sc, setSc] = useState(0);
@@ -909,15 +923,15 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   const NOTES = [
-    { uz: "Kuzat: detektiv joyni kuzatadi, dalil yig'adi (arxiv, guvoh).", ru: 'Наблюдай: детектив осматривает место, собирает улики (архив, свидетель).' },
-    { uz: "Xulosa: dalillardan keyingi qadamni tanlaydi (qaysi ruxsatnoma?).", ru: 'Вывод: по уликам выбирает следующий шаг (какой пропуск?).' },
-    { uz: "Harakat: ruxsatnoma orqali idoraga borib amal qiladi — tizimga ta'sir o'tadi.", ru: 'Действие: по пропуску идёт в ведомство и действует — система меняется.' }
+    { uz: <><b>Idrok:</b> agent vaziyatni ko'radi — masalan, bazadan mahsulotlar ro'yxatini o'qiydi.</>, ru: <><b>Восприятие:</b> агент видит ситуацию — например, читает из базы список товаров.</> },
+    { uz: <><b>Qaror:</b> keyingi qadamni tanlaydi (qaror) — qaysi asbobni ishlatish kerak?</>, ru: <><b>Решение:</b> выбирает следующий шаг — какой инструмент использовать?</> },
+    { uz: <><b>Amal:</b> tanlagan asbobini ishlatadi — masalan, mahsulotni band qiladi.</>, ru: <><b>Действие:</b> использует выбранный инструмент — например, бронирует товар.</> }
   ];
   return (
-    <Stage eyebrow={{ uz: 'Ichki dvigatel', ru: 'Внутренний двигатель' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Dvigatelni ko'ring (${step}/${ENGINE.length})`, ru: `Посмотрите двигатель (${step}/${ENGINE.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ichki sikl', ru: 'Внутренний цикл' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni ko'ring (${step}/${ENGINE.length})`, ru: `Посмотрите цикл (${step}/${ENGINE.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Detektivning ichida <span className="italic" style={{ color: T.accent }}>dvigatel</span>: kuzat → xulosa → harakat.</>, ru: <>Внутри детектива — <span className="italic" style={{ color: T.accent }}>двигатель</span>: наблюдай → вывод → действие.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Detektivni «aqlli» qiladigan ichki dvigatel shu. U maqsadga yetguncha aylanadi: kuzatadi, xulosa qiladi, harakat qiladi — yana kuzatadi. Tugmani bosib bosqichlarni yoqing.", ru: 'Именно этот внутренний двигатель делает детектива «умным». Он крутится, пока цель не достигнута: наблюдает, делает вывод, действует — и снова наблюдает. Нажимайте кнопку и включайте этапы.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentning ichida <span className="italic" style={{ color: T.accent }}>sikl</span> bor: idrok → qaror → amal.</>, ru: <>Внутри агента есть <span className="italic" style={{ color: T.accent }}>цикл</span>: восприятие → решение → действие.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agentga bir necha qadam bajarish imkonini beradigan narsa — shu sikl. U maqsadga yetguncha aylanadi: vaziyatni ko'radi (idrok), keyingi qadamni tanlaydi (qaror), asbobni ishlatadi (amal) — va natijani yana ko'radi. Tugmani bosib, bosqichlarni yoqing.", ru: 'Выполнять несколько шагов агенту позволяет именно этот цикл. Он крутится, пока цель не достигнута: агент видит ситуацию (восприятие), выбирает следующий шаг (решение), использует инструмент (действие) — и снова смотрит на результат. Нажимайте кнопку и включайте этапы.' })}</Mentor>
         <div className="fade-up"><div className="flow-row" style={{ justifyContent: 'center' }}>
           {ENGINE.map((p, i) => (
             <React.Fragment key={p.id}>
@@ -929,12 +943,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div></div>
         <Zoomable><div className="split">
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Tugadi', ru: '✓ Готово' }) : step === 0 ? tr({ uz: '▶ Dvigatelni yoqish', ru: '▶ Завести двигатель' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Tugadi', ru: '✓ Готово' }) : step === 0 ? tr({ uz: '▶ Siklni boshlash', ru: '▶ Запустить цикл' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
             {step > 0 && <div className="sk-info fade-step" key={step}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(NOTES[step - 1])}</p></div>}
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega sikl?', ru: '🔁 Почему цикл?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har harakatdan keyin detektiv natijani ko'radi va keyingi qadamni tanlaydi — maqsad bajarilguncha. Mana shu sikl agentni avtonom qiladi.", ru: 'После каждого действия детектив смотрит результат и выбирает следующий шаг — пока цель не выполнена. Именно этот цикл делает агента самостоятельным.' })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu dvigatel — detektiv komponentining ichida. Tashqaridan siz unga maqsad va ruxsatnomalar berasiz, qolganini o'zi qiladi.", ru: 'Этот двигатель — внутри компонента-детектива. Снаружи вы даёте ему цель и пропуска, остальное он делает сам.' })}</p></div>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega sikl?', ru: '🔁 Почему цикл?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har amaldan keyin agent natijani ko'radi va keyingi qadamni tanlaydi — maqsad bajarilguncha. Shu sikl tufayli agent bir nechta qadamni ketma-ket bajara oladi.", ru: 'После каждого действия агент смотрит на результат и выбирает следующий шаг — пока цель не достигнута. Благодаря этому циклу агент может выполнять несколько шагов подряд.' })}</p></div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Siz agentga maqsad, asboblar va chegara berasiz. Agent shu doirada keyingi qadamni tanlaydi.', ru: 'Вы даёте агенту цель, инструменты и рамки. В этих рамках агент сам выбирает следующий шаг.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -942,29 +956,29 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 6 — RUXSATNOMA NIMA =====
+// ===== SCREEN 6 — TOOL NIMA =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Ulanish · ruxsatnomalar', ru: 'Подключение · пропуска' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ruxsatnoma nima?", ru: 'Что такое пропуск?' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ulanish · tool', ru: 'Подключение · tool' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Tool nima?', ru: 'Что такое tool?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Detektiv shaharga <span className="italic" style={{ color: T.accent }}>ruxsatnomalar</span> orqali ta'sir qiladi.</>, ru: <>Детектив влияет на город через <span className="italic" style={{ color: T.accent }}>пропуска</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Detektivning «qo'llari» — bu ruxsatnomalar (toollar). Va eng muhimi: <b style={{ color: T.ink }}>ruxsatnomalar — bu sizning tizimingizning qismlari</b>: arxiv so'rovi (DB), ekspert chaqiruvi (API), aloqa xabari (bot). Tugmani bosing.</>, ru: <>«Руки» детектива — это пропуска (tools). И самое главное: <b style={{ color: T.ink }}>пропуска — это части вашей системы</b>: запрос к архиву (DB), вызов эксперта (API), сообщение через связь (бот). Нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tool — agent ishlata oladigan <span className="italic" style={{ color: T.accent }}>asbob</span>.</>, ru: <>Tool — <span className="italic" style={{ color: T.accent }}>инструмент</span>, которым может пользоваться агент.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agent tizim bilan faqat tool'lar orqali ishlaydi. Tool — siz yozgan oddiy funksiya: masalan, bazadan o'qish yoki xabar yuborish. Toolni ruxsatnomaga o'xshatish mumkin: agent faqat ruxsat berilgan ishni qila oladi. Tugmani bosing.", ru: 'Агент работает с системой только через инструменты. Tool — обычная функция, которую написали вы: например, чтение из базы или отправка сообщения. Инструмент можно сравнить с пропуском: агент может делать только то, на что у него есть разрешение. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🗝️ Ruxsatnoma nima?', ru: '🗝️ Что такое пропуск?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ruxsatnoma (tool) — detektiv chaqira oladigan funksiya. U orqali agent tizimning boshqa komponentlariga (idoralarga) ta'sir qiladi.", ru: 'Пропуск (tool) — функция, которую детектив может вызвать. Через него агент влияет на другие компоненты системы (ведомства).' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "Ruxsatnomalar tizimga qanday ulanadi?", ru: 'Как пропуска подключаются к системе?' })}</button>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧰 Tool nima?', ru: '🧰 Что такое tool?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tool (o'zbekcha «asbob») — agent chaqira oladigan funksiya.", ru: 'Tool (по-русски «инструмент») — функция, которую агент может вызвать.' })}</p></div>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Tool qanday ishlaydi?', ru: 'Как работает tool?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {TOOLS.map(t => <div key={t.id} className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}><b>{tr({ uz: <>{tr(t.label)} ruxsatnomasi:</>, ru: <>Пропуск «{tr(t.label)}»:</> })}</b> {tr(t.desc)}</p></div>)}
+                  {TOOL_FLOW.map((t, i) => <div key={i} className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}><b>{i + 1}. {tr(t.h)}</b> {tr(t.body)}</p></div>)}
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Demak detektiv yangi tizim emas — u mavjud idoralaringizni (arxiv/ekspert/aloqa) ruxsatnoma orqali ishlatadi. U — aqlli muvofiqlashtiruvchi.", ru: 'Значит детектив — не новая система: он через пропуска пользуется вашими уже существующими ведомствами (архив/эксперт/связь). Он — умный координатор.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Demak agent yangi tizim emas — u tizimingizdagi mavjud qismlarni tool'lar orqali ishlatadi. Agentga qaysi tool'larni bersangiz, u faqat o'shalardan foydalana oladi.", ru: 'Значит, агент — не новая система: он пользуется уже существующими частями вашей системы через инструменты. Какие инструменты вы дадите агенту, только ими он и сможет пользоваться.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -972,7 +986,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — DETEKTIV TIZIMDA (map) =====
+// ===== SCREEN 7 — AGENT TIZIMDA (map) =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(TOOLS.map(t => t.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -982,12 +996,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = TOOLS.find(t => t.id === active);
   return (
-    <Stage eyebrow={{ uz: "Arxitektura · agent o'rni", ru: 'Архитектура · место агента' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 ruxsatnomani oching (${seen.size}/3)`, ru: `Откройте 3 пропуска (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Arxitektura · agent o'rni", ru: 'Архитектура · место агента' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 ta tool'ni oching (${seen.size}/3)`, ru: `Откройте 3 инструмента (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Detektiv — markazda, <span className="italic" style={{ color: T.accent }}>qo'llari</span> shahar idoralariga cho'ziladi.</>, ru: <>Детектив — в центре, его <span className="italic" style={{ color: T.accent }}>руки</span> тянутся к городским ведомствам.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana detektivning arxitekturadagi o'rni: u backend ichida turadi va har ruxsatnoma orqali tizimning bir qismiga (idoraga) ulanadi. Har ruxsatnomani bosib, detektiv u bilan nima qilishini ko'ring.", ru: 'Вот место детектива в архитектуре: он стоит внутри бэкенда и каждым пропуском подключается к части системы (ведомству). Нажмите на каждый пропуск и посмотрите, что детектив с ним делает.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent backend ichida — <span className="italic" style={{ color: T.accent }}>tool'lari</span> tizim qismlariga ulanadi.</>, ru: <>Агент — внутри бэкенда, его <span className="italic" style={{ color: T.accent }}>инструменты</span> подключаются к частям системы.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bizning tizimda agent backend ichida ishlaydi va har bir tool orqali tizimning bitta qismiga ulanadi. Har bir tool'ni bosib, agent u bilan nima qilishini ko'ring.", ru: 'В нашей системе агент работает внутри бэкенда и через каждый инструмент подключается к одной части системы. Нажмите на каждый инструмент и посмотрите, что агент с ним делает.' })}</Mentor>
         <div className="fade-up"><div className="clients-map">
-          <div className="cm-core"><div className="cm-core-node" style={{ background: T.accent }}>🕵️<span>{tr({ uz: 'Detektiv', ru: 'Детектив' })}</span></div></div>
+          <div className="cm-core"><div className="cm-core-node" style={{ background: T.accent }}>🤖<span>{tr({ uz: 'Agent', ru: 'Агент' })}</span></div></div>
           <span className="cm-arrow">→</span>
           <div className="cm-clients">
             {TOOLS.map(t => <div key={t.id} className={`cm-client ${seen.has(t.id) ? 'on' : ''} ${active === t.id ? 'sel' : ''}`}><span></span><span className="cm-lbl">{tr(t.label)}</span></div>)}
@@ -1001,9 +1015,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr({ uz: <>{tr(cur.label)} ruxsatnomasi</>, ru: <>Пропуск «{tr(cur.label)}»</> })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              ? <div className="sk-info fade-step" key={active}><p className="note-h">{tr({ uz: <>{tr(cur.label)} tool'i</>, ru: <>Инструмент «{tr(cur.label)}»</> })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv — bitta komponent, lekin uchta ruxsatnoma orqali butun tizim bilan ishlaydi. Qancha ruxsatnoma bersangiz — shuncha ish qila oladi (ehtiyot bo'lib).", ru: 'Детектив — один компонент, но через три пропуска работает со всей системой. Сколько пропусков дадите — столько он и сможет сделать (будьте осторожны).' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent — bitta qism, lekin uchta tool orqali butun tizim bilan ishlaydi. Qancha ko'p tool bersangiz, shuncha ko'p ish qila oladi — shuning uchun tool'larni ehtiyot bo'lib berasiz.", ru: 'Агент — одна часть, но через три инструмента он работает со всей системой. Чем больше инструментов вы дадите, тем больше он сможет сделать — поэтому выдавайте инструменты осторожно.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1013,48 +1027,48 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — TEST 2 =====
 const Screen8 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' }}
-    questionText="Detektiv-agent shaharga qanday ta'sir qiladi (amal qiladi)?"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
+    questionText="Agent tizimdagi ma'lumotni qanday o'zgartiradi?"
     question={{
-      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Detektiv-agent shaharga qanday <span className="italic" style={{ color: T.accent }}>ta'sir</span> qiladi?</h2></>,
-      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как детектив-агент <span className="italic" style={{ color: T.accent }}>влияет</span> на город?</h2></>
+      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Agent tizimdagi ma'lumotni qanday <span className="italic" style={{ color: T.accent }}>o'zgartiradi</span>?</h2></>,
+      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как агент <span className="italic" style={{ color: T.accent }}>изменяет</span> данные в системе?</h2></>
     }}
     options={[
-      { uz: "O'z-o'zidan, hech qanday ruxsatnomasiz", ru: 'Сам собой, вообще без пропусков' },
-      { uz: "Faqat gapirib — boshqa hech narsa qilmasdan", ru: 'Только разговором — больше ничего не делая' },
-      { uz: "Ruxsatnomalar orqali — arxiv, ekspert va aloqaga", ru: 'Через пропуска — к архиву, эксперту и связи' },
-      { uz: "To'g'ridan-to'g'ri fuqaroning uyiga kirib olib", ru: 'Напрямую заходя в дом горожанина' }
+      { uz: "O'z-o'zidan, hech qanday tool'siz", ru: 'Сам собой, без всяких инструментов' },
+      { uz: 'Faqat javob matni yozib, boshqa ish qilmay', ru: 'Только пишет текст ответа и больше ничего не делает' },
+      { uz: "Siz bergan tool'lar orqali: baza, API, xabar", ru: 'Через выданные вами инструменты: база, API, сообщение' },
+      { uz: "Foydalanuvchi ekranini o'zi chizib qo'yib", ru: 'Сам рисует экран пользователя' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Detektivning amallari — ruxsatnomalar orqali. Ruxsatnomalar esa sizning tizimingizning qismlari: arxiv so'rovi (DB), ekspert chaqiruvi (API), aloqa xabari (bot). Agent ularni qaysi tartibda ishlatishni o'zi tanlaydi.", ru: 'Верно! Действия детектива идут через пропуска. А пропуска — это части вашей системы: запрос к архиву (DB), вызов эксперта (API), сообщение через связь (бот). В каком порядке их применять, агент выбирает сам.' }}
+    explainCorrect={{ uz: "To'g'ri! Agentning amallari — tool'lar orqali. Tool'lar esa siz yozgan funksiyalar: bazaga so'rov, API chaqiruvi, xabar yuborish. Agent faqat qaysi birini, qaysi tartibda ishlatishni tanlaydi.", ru: 'Верно! Действия агента идут через инструменты. А инструменты — это функции, которые написали вы: запрос к базе, вызов API, отправка сообщения. Агент только выбирает, какой из них и в каком порядке использовать.' }}
     explainWrong={{
-      0: { uz: "Ruxsatnomalar — siz yozgan oddiy funksiyalar. Agent faqat qaysi birini ishlatishni tanlaydi.", ru: 'Пропуска — это обычные функции, которые написали вы. Агент лишь выбирает, какую применить.' },
-      1: { uz: "Faqat gapirish — bu ma'lumot byurosi. Detektiv ruxsatnomalar orqali real amal qiladi.", ru: 'Только говорить — это справочное бюро. Детектив через пропуска совершает реальные действия.' },
-      3: { uz: "Detektiv ekranni yoki uyni o'zi o'zgartirmaydi — u ruxsatnomalar (arxiv/ekspert/aloqa) orqali tizimga ta'sir qiladi.", ru: 'Детектив сам не меняет ни экран, ни дом — он влияет на систему через пропуска (архив/эксперт/связь).' },
-      default: { uz: "Detektiv ruxsatnomalar orqali (arxiv/ekspert/aloqa) amal qiladi.", ru: 'Детектив действует через пропуска (архив/эксперт/связь).' }
+      0: { uz: "Tool'lar — siz yozgan oddiy funksiyalar. Agent ularsiz tizimga ta'sir qila olmaydi.", ru: 'Инструменты — обычные функции, которые написали вы. Без них агент не может влиять на систему.' },
+      1: { uz: "Faqat javob yozish — bu oddiy AI. Agent tool'lar orqali amal qiladi.", ru: 'Только писать ответы — это обычный ИИ. Агент действует через инструменты.' },
+      3: { uz: "Agent ekranni o'zi chizmaydi — u tool'lar orqali ishlaydi, natijani esa frontend ko'rsatadi.", ru: 'Агент сам не рисует экран — он работает через инструменты, а результат показывает фронтенд.' },
+      default: { uz: "Agent siz bergan tool'lar orqali amal qiladi.", ru: 'Агент действует через выданные вами инструменты.' }
     }} />
 );
 
-// ===== SCREEN 9 — QACHON DETEKTIV =====
+// ===== SCREEN 9 — QACHON AGENT =====
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Qaror · qachon detektiv', ru: 'Решение · когда детектив' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qoidani ko'ring", ru: 'Посмотрите правило' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Qaror · qachon agent', ru: 'Решение · когда агент' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qoidani ko'ring", ru: 'Посмотрите правило' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qachon detektiv, qachon <span className="italic" style={{ color: T.accent }}>byuro</span>?</>, ru: <>Когда детектив, а когда <span className="italic" style={{ color: T.accent }}>бюро</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Detektiv kuchli, lekin har joyga kerak emas. Oddiy ish uchun ma'lumot byurosi yetadi — detektiv ortiqcha murakkablik. Tugmani bosib, qoidani ko'ring.", ru: 'Детектив силён, но нужен не везде. Для простого дела хватит справочного бюро — детектив тут лишняя сложность. Нажмите кнопку и посмотрите правило.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qachon oddiy AI yetadi, qachon <span className="italic" style={{ color: T.accent }}>agent</span> foydali?</>, ru: <>Когда хватит обычного ИИ, а когда полезен <span className="italic" style={{ color: T.accent }}>агент</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agent kuchli, lekin har joyga kerak emas. Oddiy ish uchun oddiy AI yetadi — agent ortiqcha murakkablik qo'shadi. Tugmani bosib, qoidani ko'ring.", ru: 'Агент силён, но нужен не везде. Для простой задачи хватит обычного ИИ — агент добавит лишнюю сложность. Нажмите кнопку и посмотрите правило.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Byuro yetadi — qachon?', ru: '💬 Когда хватит бюро?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bir martalik, aniq ish: tarjima, matn yozish, manzil, savolga javob. Tizim bilan ko'p qadamli ishlash shart emas.", ru: 'Разовое, чёткое дело: перевод, написать текст, адрес, ответ на вопрос. Многошаговая работа с системой не нужна.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "Detektiv qachon kerak?", ru: 'Когда нужен детектив?' })}</button>
+            <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '💬 Oddiy AI yetadi — qachon?', ru: '💬 Когда хватит обычного ИИ?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Aniq, bir martalik ish: tarjima, matn yozish, g'oya taklif qilish, savolga javob. Tizim bilan bir necha qadam ishlash shart emas.", ru: 'Чёткая разовая задача: перевод, написать текст, предложить идею, ответить на вопрос. Работать с системой в несколько шагов не нужно.' })}</p></div>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Agent qachon foydali?', ru: 'Когда полезен агент?' })}</button>
           </Col>
           <Col>
             {show
-              ? <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '🕵️ DETEKTIV — QACHON', ru: '🕵️ ДЕТЕКТИВ — КОГДА' })}</span><p className="agent-msg">{tr({ uz: "Ko'p qadamli, maqsadga yo'naltirilgan, tizim bilan ishlaydigan vazifa: shikoyatni to'liq hal qil, ma'lumot yig'ib qaror qil, o'zi bir necha amal bajar.", ru: 'Многошаговая задача с целью и работой по системе: полностью решить жалобу, собрать данные и принять решение, самому выполнить несколько действий.' })}</p></div>
+              ? <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '🤖 Agent — qachon?', ru: '🤖 Агент — когда?' })}</span><p className="agent-msg">{tr({ uz: "Bir necha qadam va asbob kerak bo'lgan ish: buyurtma muammosini hal qilish, ma'lumot yig'ib qaror qilish, bir nechta xizmat bilan ishlash.", ru: 'Задача, где нужны несколько шагов и инструменты: решить проблему с заказом, собрать данные и принять решение, поработать с несколькими сервисами.' })}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: <b>bir qadam → byuro; ko'p qadamli maqsad → detektiv.</b> Keraksiz joyda detektiv chaqirish — ortiqcha murakkablashtirish.</>, ru: <>Правило: <b>один шаг → бюро; многошаговая цель → детектив.</b> Звать детектива без нужды — переусложнение.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: <b>aniq va oddiy vazifa → oddiy AI yetishi mumkin; bir necha qadam va asbob kerak bo'lsa → agent foydali bo'lishi mumkin.</b> Keraksiz joyda agent ishlatish — ortiqcha murakkablik.</>, ru: <>Правило: <b>чёткая и простая задача → может хватить обычного ИИ; нужны несколько шагов и инструменты → может пригодиться агент.</b> Агент там, где он не нужен, — лишняя сложность.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1062,7 +1076,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — TASK DECIDER =====
+// ===== SCREEN 10 — ODDIY AI YOKI AGENT =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [idx, setIdx] = useState(storedAnswer ? TASKS.length : 0);
   const [wrong, setWrong] = useState(null);
@@ -1076,23 +1090,22 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { setWrong(ans); setTimeout(() => setWrong(w => (w === ans ? null : w)), 450); }
   };
   return (
-    <Stage eyebrow={{ uz: 'Mashq · qaysi birini', ru: 'Практика · кого выбрать' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Tanlang (${idx}/${TASKS.length})`, ru: `Выберите (${idx}/${TASKS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Mashq · qaysi biri', ru: 'Упражнение · что выбрать' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Tanlang (${idx}/${TASKS.length})`, ru: `Выберите (${idx}/${TASKS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har vazifaga: <span className="italic" style={{ color: T.accent }}>byuro</span> yoki <span className="italic" style={{ color: T.accent }}>detektiv</span>?</>, ru: <>На каждую задачу: <span className="italic" style={{ color: T.accent }}>бюро</span> или <span className="italic" style={{ color: T.accent }}>детектив</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Endi o'zingiz qaror qiling. Har vazifani o'qing: u bir martalik ishmi (byuro) yoki ko'p qadamli, tizim bilan ishlaydigan maqsadmi (detektiv)?", ru: 'Теперь решайте сами. Читайте каждую задачу: это разовое дело (бюро) или многошаговая цель с работой по системе (детектив)?' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har vazifaga: <span className="italic" style={{ color: T.accent }}>oddiy AI</span> yoki <span className="italic" style={{ color: T.accent }}>agent</span>?</>, ru: <>Для каждой задачи: <span className="italic" style={{ color: T.accent }}>обычный ИИ</span> или <span className="italic" style={{ color: T.accent }}>агент</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Endi o'zingiz qaror qiling. Har vazifani o'qing: bitta javob yetadimi yoki bir necha qadam va asbob kerakmi?", ru: 'Теперь решайте сами. Прочитайте каждую задачу: хватит одного ответа или нужны несколько шагов и инструменты?' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             {cur
-              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Vazifa', ru: '🧩 Задача' })} {idx + 1}/{TASKS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.task)}</p></div>
-              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hammasi to'g'ri! Endi vazifaga qarab to'g'ri vositani tanlay olasiz — bu arxitektorning muhim qarori.", ru: 'Всё верно! Теперь вы умеете подбирать инструмент под задачу — это важное решение архитектора.' })}</p></div>}
+              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Vazifa', ru: 'Задача' })} {idx + 1}/{TASKS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.task)}</p></div>
+              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hammasi to'g'ri! Endi vazifaga qarab oddiy AI yoki agentni to'g'ri tanlay olasiz.", ru: 'Всё верно! Теперь вы умеете правильно выбирать между обычным ИИ и агентом под задачу.' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'qaysi birini chaqirasiz?', ru: 'кого позовёте?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <button className={`pick-row ${wrong === 'ai' ? 'shake' : ''}`} disabled={done} onClick={() => choose('ai')}><span style={{ marginRight: 6 }}>💬</span><span style={{ flex: 1 }}>{tr({ uz: <>Ma'lumot byurosi <span style={{ color: T.ink3, fontWeight: 500 }}>· bir martalik</span></>, ru: <>Справочное бюро <span style={{ color: T.ink3, fontWeight: 500 }}>· разово</span></> })}</span><span className="pick-plus">+</span></button>
-              <button className={`pick-row ${wrong === 'agent' ? 'shake' : ''}`} disabled={done} onClick={() => choose('agent')}><span style={{ marginRight: 6 }}>🕵️</span><span style={{ flex: 1 }}>{tr({ uz: <>Detektiv <span style={{ color: T.ink3, fontWeight: 500 }}>· ko'p qadamli maqsad</span></>, ru: <>Детектив <span style={{ color: T.ink3, fontWeight: 500 }}>· многошаговая цель</span></> })}</span><span className="pick-plus">+</span></button>
+              <button className={`pick-row ${wrong === 'ai' ? 'shake' : ''}`} disabled={done} onClick={() => choose('ai')}><span style={{ marginRight: 6 }}>💬</span><span style={{ flex: 1 }}>{tr({ uz: <>Oddiy AI <span style={{ color: T.ink3, fontWeight: 500 }}>· bitta javob</span></>, ru: <>Обычный ИИ <span style={{ color: T.ink3, fontWeight: 500 }}>· один ответ</span></> })}</span><span className="pick-plus">+</span></button>
+              <button className={`pick-row ${wrong === 'agent' ? 'shake' : ''}`} disabled={done} onClick={() => choose('agent')}><span style={{ marginRight: 6 }}>🤖</span><span style={{ flex: 1 }}>{tr({ uz: <>Agent <span style={{ color: T.ink3, fontWeight: 500 }}>· bir necha qadam</span></>, ru: <>Агент <span style={{ color: T.ink3, fontWeight: 500 }}>· несколько шагов</span></> })}</span><span className="pick-plus">+</span></button>
             </div>
-            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaytadan o'ylang: bu bir martalik ishmi yoki ko'p qadamli maqsadmi?", ru: 'Подумайте ещё раз: это разовое дело или многошаговая цель?' })}</p></div>}
+            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaytadan o'ylang: bu bitta javobli ishmi yoki bir necha qadam va asbob kerakmi?", ru: 'Подумайте ещё раз: здесь хватит одного ответа или нужны несколько шагов и инструменты?' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1102,55 +1115,55 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — TEST 3 =====
 const Screen11 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' }}
-    questionText="Bitta manzilni xaritada ko'rsatish kerak. Byuro yoki detektiv?"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
+    questionText="Mahsulot tavsifini ruschaga tarjima qilish kerak. Oddiy AI yetadimi yoki agent kerakmi?"
     question={{
-      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bitta manzilni xaritada <span className="italic" style={{ color: T.accent }}>ko'rsatish</span> kerak. Byuro yoki detektiv?</h2></>,
-      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Нужно <span className="italic" style={{ color: T.accent }}>показать</span> один адрес на карте. Бюро или детектив?</h2></>
+      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mahsulot tavsifini ruschaga <span className="italic" style={{ color: T.accent }}>tarjima</span> qilish kerak. Oddiy AI yetadimi yoki agent kerakmi?</h2></>,
+      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Нужно <span className="italic" style={{ color: T.accent }}>перевести</span> описание товара на русский. Хватит обычного ИИ или нужен агент?</h2></>
     }}
     options={[
-      { uz: "Ma'lumot byurosi — bir martalik, aniq ish", ru: 'Справочное бюро — разовое, чёткое дело' },
-      { uz: "Detektiv — u har doim byurodan yaxshiroq ishlaydi", ru: 'Детектив — он всегда работает лучше бюро' },
-      { uz: "Ikkalasini birga chaqirib, javobni solishtirish", ru: 'Позвать обоих сразу и сравнить ответы' },
-      { uz: "Hech qaysi — bu ular bajaradigan ish emas", ru: 'Никто — это не их задача' }
+      { uz: 'Oddiy AI — bu bir martalik, aniq ish', ru: 'Обычный ИИ — это разовая, чёткая задача' },
+      { uz: "Agent — u har doim oddiy AI'dan yaxshiroq", ru: 'Агент — он всегда лучше обычного ИИ' },
+      { uz: 'Ikkalasini birga ishlatib, solishtirish kerak', ru: 'Нужно запустить оба и сравнить' },
+      { uz: 'Hech qaysi — bu AI qiladigan ish emas', ru: 'Никто — это не задача для ИИ' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Manzil ko'rsatish — bitta qadamli, aniq vazifa. Ma'lumot byurosi yetarli. Bunga detektiv chaqirish — keraksiz murakkablik. To'g'ri vositani tanlash muhim.", ru: 'Верно! Показать адрес — задача в один шаг и чёткая. Справочного бюро достаточно. Звать сюда детектива — лишняя сложность. Важно выбрать правильный инструмент.' }}
+    explainCorrect={{ uz: "To'g'ri! Tarjima — bitta qadamli, aniq vazifa. Oddiy AI yetadi. Bunga agent ishlatish — keraksiz murakkablik.", ru: 'Верно! Перевод — чёткая задача в один шаг. Хватит обычного ИИ. Звать сюда агента — лишняя сложность.' }}
     explainWrong={{
-      1: { uz: "Detektiv har doim yaxshi emas — bir qadamli ish uchun u ortiqcha. Manzilga byuro yetadi.", ru: 'Детектив не всегда лучше — для дела в один шаг он избыточен. Для адреса хватит бюро.' },
-      2: { uz: "Ikkalasini birga — keraksiz. Sodda ishni sodda vosita bilan qiling.", ru: 'Обоих сразу — незачем. Простое дело делайте простым инструментом.' },
-      3: { uz: "Bu aniq byuro ishi — bir martalik javob. Detektiv shart emas.", ru: 'Это как раз работа бюро — разовый ответ. Детектив не нужен.' },
-      default: { uz: "Bir martalik ishga ma'lumot byurosi yetadi.", ru: 'Для разового дела достаточно справочного бюро.' }
+      1: { uz: 'Agent har doim yaxshi emas — bir qadamli ish uchun u ortiqcha.', ru: 'Агент не всегда лучше — для задачи в один шаг он лишний.' },
+      2: { uz: 'Ikkalasini birga — keraksiz. Sodda ishni sodda asbob bilan qiling.', ru: 'Оба сразу — незачем. Простую задачу решайте простым инструментом.' },
+      3: { uz: "Aksincha — tarjima oddiy AI'ning odatiy ishi.", ru: 'Наоборот — перевод как раз типичная задача для обычного ИИ.' },
+      default: { uz: 'Bir martalik ishga oddiy AI yetadi.', ru: 'Для разовой задачи хватит обычного ИИ.' }
     }} />
 );
 
-// ===== SCREEN 12 — CASE: shahar detektiv sikli =====
+// ===== SCREEN 12 — CASE: agent mini-do'konda (phase/tool maydonlari bilan) =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shown, setShown] = useState(storedAnswer ? CASE_STEPS.length : 0);
   const [sc, setSc] = useState(0);
   const done = shown >= CASE_STEPS.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => { if (!done) { setShown(n => n + 1); setSc(n => n + 1); } };
-  const usedTools = CASE_STEPS.slice(0, shown).filter(s => s.ico === '🚶').length;
+  const usedTools = CASE_STEPS.slice(0, shown).filter(s => !!s.tool);
   return (
-    <Stage eyebrow={{ uz: 'Hayotiy · shahar detektivi', ru: 'Из жизни · городской детектив' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Detektivni kuzating (${shown}/${CASE_STEPS.length})`, ru: `Понаблюдайте за детективом (${shown}/${CASE_STEPS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Hayotiy · agent ishda', ru: 'Из жизни · агент в работе' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Qadamlarni ko'ring (${shown}/${CASE_STEPS.length})`, ru: `Посмотрите шаги (${shown}/${CASE_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Shahar detektivi — vazifadan <span className="italic" style={{ color: T.accent }}>natijagacha</span> o'zi.</>, ru: <>Городской детектив — от задачи <span className="italic" style={{ color: T.accent }}>до результата</span> сам.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana detektiv arxitekturada ish boshida: bitta vazifa oladi va ruxsatnomalar orqali shahar idoralarini boshqarib, ishni bajaradi. Tugmani bosib, qadamlarni kuzating.", ru: 'Вот детектив в архитектуре за работой: получает одну задачу и через пропуска управляет городскими ведомствами, доводя дело до конца. Нажимайте кнопку и следите за шагами.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent ishda — maqsaddan <span className="italic" style={{ color: T.accent }}>natijagacha</span>.</>, ru: <>Агент в работе — от цели <span className="italic" style={{ color: T.accent }}>до результата</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Mana agent mini-do'konda: mijoz yozdi, agent maqsadni oldi va tool'lar yordamida qadamma-qadam ishladi. Tugmani bosib, qadamlarni kuzating.", ru: 'Вот агент в мини-магазине: клиент написал, агент получил цель и шаг за шагом поработал с помощью инструментов. Нажимайте кнопку и следите за шагами.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {CASE_STEPS.slice(0, shown).map((s, i) => (
-                <div key={i} className={`agent-step fade-step ${s.ico === '✅' ? 'done' : ''}`}>
-                  <span className="as-phase">{s.ico === '🎯' ? tr({ uz: 'vazifa', ru: 'задача' }) : s.ico === '👁️' ? tr({ uz: 'kuzat', ru: 'наблюдай' }) : s.ico === '🧠' ? tr({ uz: 'xulosa', ru: 'вывод' }) : s.ico === '🚶' ? tr({ uz: 'harakat (ruxsatnoma)', ru: 'действие (пропуск)' }) : tr({ uz: 'tayyor', ru: 'готово' })}</span>
+                <div key={i} className={`agent-step fade-step ${s.phase === 'done' ? 'done' : ''}`}>
+                  <span className="as-phase">{tr(CASE_PHASE[s.phase])}</span>
                   <span className="as-txt">{tr(s.txt)}</span>
                 </div>
               ))}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Vazifaga yetildi', ru: '✓ Цель достигнута' }) : shown === 0 ? tr({ uz: '▶ Detektivga vazifa berish', ru: '▶ Дать детективу задачу' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Maqsad bajarildi', ru: '✓ Цель достигнута' }) : shown === 0 ? tr({ uz: '▶ Agentga vazifa berish', ru: '▶ Дать агенту задачу' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🗝️ Ishlatilgan ruxsatnomalar', ru: '🗝️ Использованные пропуска' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{usedTools === 0 ? tr({ uz: "hali yo'q", ru: 'пока нет' }) : tr({ uz: `${usedTools} ta ruxsatnoma ishlatildi (arxiv, aloqa) — har biri tizimga ta'sir qildi.`, ru: `Использовано пропусков: ${usedTools} (архив, связь) — каждый повлиял на систему.` })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Siz faqat vazifa berdingiz. Detektiv kuzat→xulosa→harakat sikli bilan ruxsatnomalarni ishlatib, ishni bajardi. Mana detektivning arxitekturadagi kuchi.", ru: 'Вы только дали задачу. Детектив по циклу наблюдай→вывод→действие использовал пропуска и довёл дело до конца. Вот в чём сила детектива в архитектуре.' })}</p></div>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: "🧰 Ishlatilgan tool'lar", ru: '🧰 Использованные инструменты' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{usedTools.length === 0 ? tr({ uz: "hali yo'q", ru: 'пока нет' }) : tr({ uz: `${usedTools.length} ta tool ishlatildi (${usedTools.map(s => s.tool.uz).join(', ')})`, ru: `Использовано инструментов: ${usedTools.length} (${usedTools.map(s => s.tool.ru).join(', ')})` })}</p></div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Siz faqat maqsad berdingiz. Agent idrok → qaror → amal sikli bilan tool'larni ishlatib, ishni bajardi.", ru: 'Вы дали только цель. Агент по циклу восприятие → решение → действие использовал инструменты и выполнил работу.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1158,30 +1171,30 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 13 — VAKOLAT CHEGARASI (ko'prik) =====
+// ===== SCREEN 13 — VAKOLAT CHEGARASI =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Ehtiyot · vakolat chegarasi', ru: 'Осторожно · рамки полномочий' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Nega chegara?", ru: 'Зачем рамки?' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ehtiyot · vakolat chegarasi', ru: 'Осторожно · рамки полномочий' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Qanday chegara?', ru: 'Зачем рамки?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Detektiv <span className="italic" style={{ color: T.accent }}>amal qiladi</span> — demak vakolat chegarasi kerak.</>, ru: <>Детектив <span className="italic" style={{ color: T.accent }}>действует</span> — значит нужны рамки полномочий.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Byuro faqat gapirgani uchun xavfsiz. Detektiv esa real amal qiladi (arxivga yozadi, pul, xabar) — shuning uchun unga vakolat chegarasi (order) beriladi. Tugmani bosing.", ru: 'Бюро безопасно, потому что только говорит. А детектив совершает реальные действия (пишет в архив, деньги, сообщения) — поэтому ему выдают рамки полномочий (ордер). Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent <span className="italic" style={{ color: T.accent }}>amal qiladi</span> — demak unga vakolat chegarasi kerak.</>, ru: <>Агент <span className="italic" style={{ color: T.accent }}>действует</span> — значит, ему нужны рамки полномочий.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Oddiy AI faqat javob yozadi. Agent esa real amal qiladi: bazaga yozadi, pulni qaytaradi, xabar yuboradi. Shuning uchun unga vakolat chegarasi beriladi — nima qilish mumkin, nima mumkin emasligi. Tugmani bosing.", ru: 'Обычный ИИ только пишет ответ. А агент совершает реальные действия: записывает в базу, возвращает деньги, отправляет сообщения. Поэтому ему задают рамки полномочий — что можно делать, а что нельзя. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🕵️ Detektiv backend ichida', ru: '🕵️ Детектив внутри бэкенда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Arxitekturada detektiv — backend komponenti. U faqat siz bergan ruxsatnomalarga ega; bermagan ishingizni qila olmaydi.", ru: 'В архитектуре детектив — компонент бэкенда. У него есть только выданные вами пропуска; то, чего вы не дали, он сделать не может.' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🤖 Agent backend ichida', ru: '🤖 Агент внутри бэкенда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "U faqat siz bergan tool'larga ega; bermagan ishingizni qila olmaydi.", ru: 'У него есть только выданные вами инструменты; то, что вы не дали, он сделать не может.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: "Qanday chegara?", ru: 'Какие рамки?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🧾 <b>Cheklangan ruxsatnomalar:</b> faqat kerakli ruxsatnomalarni bering (o'chirish/to'lovni — yo'q).</>, ru: <>🧾 <b>Ограниченные пропуска:</b> выдавайте только нужные пропуска (удаление/оплату — нет).</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✋ <b>Tasdiq:</b> xavfli amaldan oldin odam tasdig'ini so'rasin (order kerak).</>, ru: <>✋ <b>Подтверждение:</b> перед опасным действием пусть спросит разрешение человека (нужен ордер).</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🧾 <b>Cheklangan tool'lar:</b> faqat kerakli tool'larni bering (masalan, buyurtmani o'chirish tool'ini bermang).</>, ru: <>🧾 <b>Ограниченные инструменты:</b> давайте только нужные инструменты (например, не давайте инструмент удаления заказа).</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✋ <b>Tasdiq:</b> xavfli amaldan oldin (masalan, pul qaytarish) odamdan tasdiq so'ralsin.</>, ru: <>✋ <b>Подтверждение:</b> перед опасным действием (например, возвратом денег) пусть спрашивает подтверждение у человека.</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 KEYINGI DARS', ru: '📍 СЛЕДУЮЩИЙ УРОК' })}</span><p className="agent-msg">{tr({ uz: <>Agent va AI xulqini qanday <b>aniq shakllantirish</b> mumkin? Buni <b>Claude Skills</b> bilan qilamiz — keyingi darsda.</>, ru: <>Как <b>чётко задать</b> поведение агента и ИИ? Сделаем это через <b>Claude Skills</b> — на следующем уроке.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Vakolat chegarasini inglizcha <b>guardrail</b> deyishadi — keyingi darslarda shu so'zni uchratasiz.</>, ru: <>Рамки полномочий по-английски называют <b>guardrail</b> — это слово вы встретите на следующих уроках.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1191,28 +1204,28 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — TEST 4 =====
 const Screen14 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' }}
-    questionText="Detektiv-agent arxitekturada qayerda yashaydi va nima bilan amal qiladi?"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
+    questionText="Bizning tizimda agent qaysi qismda ishlaydi va nima orqali amal qiladi?"
     question={{
-      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Detektiv-agent arxitekturada <span className="italic" style={{ color: T.accent }}>qayerda</span> yashaydi va nima bilan amal qiladi?</h2></>,
-      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Где</span> детектив-агент живёт в архитектуре и чем он действует?</h2></>
+      uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bizning tizimda agent <span className="italic" style={{ color: T.accent }}>qaysi qismda</span> ishlaydi va nima orqali amal qiladi?</h2></>,
+      ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>В <span className="italic" style={{ color: T.accent }}>какой части</span> нашей системы работает агент и через что он действует?</h2></>
     }}
     options={[
-      { uz: "Frontendda — chunki uni har bir fuqaro ko'radi", ru: 'На фронтенде — ведь его видит каждый горожанин' },
-      { uz: "Arxiv (baza) ichida — chunki hujjatlar bilan ishlaydi", ru: 'Внутри архива (базы) — ведь он работает с документами' },
-      { uz: "Tizimdan tashqarida — butunlay mustaqil dastur", ru: 'Вне системы — полностью самостоятельная программа' },
-      { uz: "Backend ichidagi komponent — ruxsatnomalar orqali ta'sir qiladi", ru: 'Компонент внутри бэкенда — влияет через пропуска' }
+      { uz: "Frontendda — chunki foydalanuvchi uni ko'radi", ru: 'На фронтенде — ведь пользователь его видит' },
+      { uz: "Baza ichida — chunki ma'lumot bilan ishlaydi", ru: 'Внутри базы — ведь он работает с данными' },
+      { uz: "Tizimdan tashqarida — alohida, bog'lanmagan dastur", ru: 'Вне системы — отдельная, ни с чем не связанная программа' },
+      { uz: "Backend ichida — siz bergan tool'lar orqali", ru: 'Внутри бэкенда — через выданные вами инструменты' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Detektiv-agent — backend ichidagi aqlli komponent. U mustaqil dastur emas; tizimning bir qismi va faqat siz bergan ruxsatnomalar (arxiv/ekspert/aloqa) orqali boshqa komponentlarga ta'sir qiladi.", ru: 'Верно! Детектив-агент — умный компонент внутри бэкенда. Это не отдельная программа: он часть системы и влияет на другие компоненты только через выданные вами пропуска (архив/эксперт/связь).' }}
+    explainCorrect={{ uz: "To'g'ri! Bizning tizimda agent backend ichida ishlaydi. U tizimning bir qismi va faqat siz bergan tool'lar (baza, API, xabar) orqali boshqa qismlarga ta'sir qiladi.", ru: 'Верно! В нашей системе агент работает внутри бэкенда. Он — часть системы и влияет на другие части только через выданные вами инструменты (база, API, сообщение).' }}
     explainWrong={{
-      0: { uz: "Detektiv fuqaroga ko'rinmaydi — u sahna ortida (backend) ishlaydi. Frontend faqat natijani ko'rsatadi.", ru: 'Горожанин детектива не видит — он работает за кулисами (бэкенд). Фронтенд показывает только результат.' },
-      1: { uz: "Detektiv arxiv (baza) ichida emas — u backendda turadi va arxivni ruxsatnoma sifatida ishlatadi.", ru: 'Детектив не внутри архива (базы) — он стоит в бэкенде и использует архив как пропуск.' },
-      2: { uz: "Detektiv tizimdan tashqarida emas — u tizimning komponenti, ruxsatnomalar orqali ulangan.", ru: 'Детектив не вне системы — он её компонент, подключённый через пропуска.' },
-      default: { uz: "Detektiv — backend komponenti, ruxsatnomalar orqali amal qiladi.", ru: 'Детектив — компонент бэкенда, действует через пропуска.' }
+      0: { uz: "Foydalanuvchi agentni ko'rmaydi — u orqa tomonda (backend) ishlaydi. Frontend faqat natijani ko'rsatadi.", ru: 'Пользователь агента не видит — он работает на обратной стороне (бэкенд). Фронтенд показывает только результат.' },
+      1: { uz: 'Agent baza ichida emas — u backendda turadi va bazani tool orqali ishlatadi.', ru: 'Агент не внутри базы — он находится в бэкенде и пользуется базой через инструмент.' },
+      2: { uz: "Agent tizim bilan bog'langan — u tool'lar orqali ulanadi.", ru: 'Агент связан с системой — он подключается через инструменты.' },
+      default: { uz: "Agent backend ichida, tool'lar orqali amal qiladi.", ru: 'Агент внутри бэкенда, действует через инструменты.' }
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: detektiv oqimi (DragDropOrder) =====
+// ===== SCREEN 15 — YAKUNIY: agent sikli (DragDropOrder) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
@@ -1224,21 +1237,20 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (fired.current) return;
     fired.current = true; setSolved(true);
     const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Detektiv ish oqimini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1, elapsedMs: 0 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Agent sikli bosqichlarini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1, elapsedMs: 0 });
   };
   return (
-    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Siklni yig'ing", ru: 'Соберите цикл' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: detektiv ish oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите рабочий поток детектива <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Detektiv vazifani qanday bajaradi? Eslang: vazifa → tizimdan o'qiydi (kuzat) → ruxsatnoma tanlaydi (xulosa) → idoraga boradi (harakat) → natijani ko'rib qaytadi. Bo'laklarni to'g'ri tartibda joylang.", ru: 'Как детектив выполняет задачу? Вспомните: задача → читает из системы (наблюдай) → выбирает пропуск (вывод) → идёт в ведомство (действие) → смотрит результат и возвращается. Разложите блоки в правильном порядке.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: agent sikli bosqichlarini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите этапы цикла агента <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Agent vazifani qanday bajaradi? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Как агент выполняет задачу? Разложите блоки в правильном порядке.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "detektiv oqimi (siz yig'yapsiz)", ru: 'поток детектива (собираете вы)' })}</p>
-            <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={handleSolved} doneText={{ uz: "Oqim tayyor — detektiv dvigateli!", ru: 'Поток готов — двигатель детектива!' }} />
+            <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={handleSolved} doneText={{ uz: 'Sikl tayyor!', ru: 'Цикл готов!' }} />
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega tartib muhim?', ru: '🔁 Почему важен порядок?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv avval kuzatmasa — xulosa qila olmaydi; xulosasiz — harakat qilolmaydi. Har qadam oldingisiga tayanadi, so'ng aylana qaytadan boshlanadi.", ru: 'Если детектив сначала не понаблюдает — не сделает вывод; без вывода — не сможет действовать. Каждый шаг опирается на предыдущий, а затем круг начинается заново.' })}</p></div>
-            {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Vazifa → Kuzat → Xulosa → Harakat → Natijani ko'r</b> (maqsadga yetguncha qayta aylanadi). Mana detektivning ishlash dvigateli.</>, ru: <>✓ Поток готов: <b>Задача → Наблюдай → Вывод → Действие → Смотри результат</b> (крутится, пока цель не достигнута). Вот он, рабочий двигатель детектива.</> })}</p></div>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega tartib muhim?', ru: '🔁 Почему важен порядок?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Agent avval vaziyatni ko'rmasa (idrok), qaror qila olmaydi; qarorsiz amal qila olmaydi. Amaldan keyin natijani tekshiradi va maqsad bajarilmagan bo'lsa, sikl qaytadan boshlanadi.", ru: 'Если агент сначала не увидит ситуацию (восприятие), он не сможет принять решение; без решения — не сможет действовать. После действия он проверяет результат, и если цель не достигнута, цикл начинается заново.' })}</p></div>
+            {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Maqsad → Idrok → Qaror → Amal → Natijani tekshir</b> (maqsadga yetguncha qaytadan aylanadi).</>, ru: <>✓ <b>Цель → Восприятие → Решение → Действие → Проверь результат</b> (крутится заново, пока цель не достигнута).</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1248,10 +1260,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  theAgent:    { icon: '🕵️', name: 'The Agent',    desc: { uz: "Ma'lumot byurosi ↔ detektiv farqini ajratdingiz", ru: "Вы различили справочное бюро ↔ детектива" } },
-  accessPass:  { icon: '🗝️', name: 'Access Pass',  desc: { uz: "Detektiv ruxsatnomalar bilan ishlashini bildingiz", ru: "Вы узнали: детектив работает по пропускам" } },
-  withWarrant: { icon: '📜', name: 'With a Warrant', desc: { uz: "Detektivning vakolat chegarasini tushundingiz", ru: "Вы поняли рамки полномочий детектива" } },
-  missionLoop: { icon: '🔁', name: 'Mission Loop', desc: { uz: "Detektiv ish oqimini to'g'ri tartibda yig'dingiz", ru: 'Вы собрали рабочий поток детектива в правильном порядке' } },
+  theAgent:    { icon: '💬', name: 'Chat vs Agent', desc: { uz: 'Oddiy AI va agent farqini ajratdingiz', ru: 'Вы отличили обычный ИИ от агента' } },
+  accessPass:  { icon: '🧰', name: 'Tool User', desc: { uz: "Agent tool'lar orqali ishlashini bildingiz", ru: 'Вы узнали, что агент работает через инструменты' } },
+  withWarrant: { icon: '📍', name: 'Right Place', desc: { uz: 'Agent tizimning qaysi qismida ishlashini bildingiz', ru: 'Вы узнали, в какой части системы работает агент' } },
+  missionLoop: { icon: '🔁', name: 'Agent Loop', desc: { uz: "Agent siklini to'g'ri tartibda yig'dingiz", ru: 'Вы собрали цикл агента в правильном порядке' } },
 };
 // Ekran id → nishon. ❗ FAQAT SCORED ekranlarga: s4/s8/s14 (jonlida 1-urinish qotadi, xato bo'lsa nishon YO'Q),
 // s15 (yakuniy DragDrop — noto'g'ri tartibda solve bo'lmaydi). Exploration/toggle ekranlarga BOG'LANMAYDI (tekin nishon bo'lardi).
@@ -1311,45 +1323,45 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 11, 14, 15)
 const Q_LABELS = {
-  4: { uz: '1 — Byuro/Detektiv', ru: '1 — Бюро/Детектив' },
-  8: { uz: '2 — Ruxsatnoma', ru: '2 — Пропуск' },
+  4: { uz: '1 — Oddiy AI/Agent', ru: '1 — Обычный ИИ/Агент' },
+  8: { uz: '2 — Tool', ru: '2 — Tool' },
   11: { uz: '3 — Qachon', ru: '3 — Когда' },
   14: { uz: '4 — Joylashuv', ru: '4 — Расположение' },
-  15: { uz: '5 — Oqim', ru: '5 — Поток' }
+  15: { uz: '5 — Sikl', ru: '5 — Цикл' }
 };
 const QUIZ_MS = 15000;
-// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (detektiv/agent atamalari)
+// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (agent atamalari)
 const QZ_BG_SHAPES = [
   { ch: 'agent',        l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '🕵️',           l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: '🤖',           l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: 'perceive',     l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'decide',       l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: 'act',          l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: 'tool',         l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
-  { ch: 'ruxsatnoma',   l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
-  { ch: 'kuzat→harakat',l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
-  { ch: '🗝️',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
+  { ch: 'asbob',        l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
+  { ch: 'idrok→amal',   l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
+  { ch: '🧰',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '🔁',           l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'goal',         l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: '📁',           l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
-  { ch: 'warrant',      l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
+  { ch: '🗄️',           l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
+  { ch: 'guardrail',    l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
   { ch: 'backend',      l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3).
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Oddiy AI (ma'lumot byurosi) va agent (detektiv) o'rtasidagi asosiy farq nima?", ru: 'В чём главная разница между обычным ИИ (справочное бюро) и агентом (детектив)?' }, opts: [{ uz: "Byuro javob berib to'xtaydi; detektiv o'zi ko'p qadam qo'yadi", ru: 'Бюро отвечает и останавливается; детектив сам делает много шагов' }, { uz: "Detektiv ancha chiroyliroq va odob bilan gapiradi", ru: 'Детектив говорит гораздо красивее и вежливее' }, { uz: "Byuro har doim detektivdan ancha tezroq ishlaydi", ru: 'Бюро всегда работает намного быстрее детектива' }, { uz: "Ular o'rtasida umuman hech qanday farq yo'q", ru: 'Между ними вообще нет никакой разницы' }], correct: 0 },
-  { q: { uz: "Agentning qaror sikli qanday nomlanadi?", ru: 'Как называется цикл принятия решений у агента?' }, opts: [{ uz: "Kirish → ishlov → chiqish", ru: 'Ввод → обработка → вывод' }, { uz: "Boshlash → kutish → tugatish", ru: 'Старт → ожидание → финиш' }, { uz: "Kuzat → xulosa → harakat", ru: 'Наблюдай → вывод → действие' }, { uz: "Savol → o'ylash → javob", ru: 'Вопрос → размышление → ответ' }], correct: 2 },
-  { q: { uz: "«Tool» (ruxsatnoma) — detektiv tilida nima?", ru: '«Tool» (пропуск) — что это на языке детектива?' }, opts: [{ uz: "Detektivning shahardagi laqabi", ru: 'Прозвище детектива в городе' }, { uz: "Idoraga kirib amal qilish huquqi", ru: 'Право войти в ведомство и совершить действие' }, { uz: "Shahar ko'chalari xaritasi", ru: 'Карта городских улиц' }, { uz: "Byuroning telefon raqami", ru: 'Номер телефона бюро' }], correct: 1 },
-  { q: { uz: "Detektiv arxivga kirib yozuvlarni o'qishi — bu qaysi tool?", ru: 'Детектив заходит в архив и читает записи — какой это tool?' }, opts: [{ uz: "Ma'lumot bazasi (DB) so'rovi", ru: 'Запрос к базе данных (DB)' }, { uz: "Foydalanuvchining kirish paroli", ru: 'Пароль пользователя для входа' }, { uz: "Ekran rasmini olish", ru: 'Снимок экрана' }, { uz: "Video faylni ijro etish", ru: 'Воспроизведение видеофайла' }], correct: 0 },
-  { q: { uz: "Bir martalik, aniq ish (masalan tarjima) uchun nima yetadi?", ru: 'Что достаточно для разового чёткого дела (например, перевода)?' }, opts: [{ uz: "Bunga ham albatta agent kerak", ru: 'Сюда тоже обязательно нужен агент' }, { uz: "Hech qaysi biri to'g'ri emas", ru: 'Ни один вариант не подходит' }, { uz: "Ikkalasini birga chaqirish", ru: 'Позвать обоих сразу' }, { uz: "Ma'lumot byurosi (oddiy AI) yetadi", ru: 'Хватит справочного бюро (обычного ИИ)' }], correct: 3 },
-  { q: { uz: "Ko'p qadamli, tizim bilan ishlaydigan maqsad uchun nima kerak?", ru: 'Что нужно для многошаговой цели с работой по системе?' }, opts: [{ uz: "Bir javoblik ma'lumot byurosi", ru: 'Справочное бюро с одним ответом' }, { uz: "Oddiy chiziqli skript", ru: 'Обычный линейный скрипт' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд-часть' }, { uz: "Detektiv-agent (avtonom)", ru: 'Детектив-агент (самостоятельный)' }], correct: 3 },
-  { q: { uz: "Detektiv-agent arxitekturada qayerda turadi?", ru: 'Где детектив-агент стоит в архитектуре?' }, opts: [{ uz: "Frontendda, fuqaro ko'radigan joyda", ru: 'На фронтенде, там где его видит горожанин' }, { uz: "Backend ichidagi komponent", ru: 'Компонент внутри бэкенда' }, { uz: "Baza (arxiv) ichida", ru: 'Внутри базы (архива)' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
-  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kodsiz", ru: 'Сам собой, вообще без кода' }, { uz: "Ruxsatnomalar (tool) orqali: DB/API", ru: 'Через пропуска (tool): DB/API' }, { uz: "Faqat gapirib, amalsiz holda", ru: 'Только разговором, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
-  { q: { uz: "Nega agentga vakolat chegarasi (guardrail) kerak?", ru: 'Зачем агенту рамки полномочий (guardrail)?' }, opts: [{ uz: "U real amal qiladi — xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "Chunki u juda sekin ishlaydi va kuttiradi", ru: 'Потому что он работает очень медленно и заставляет ждать' }, { uz: "Chunki u juda ko'p xotira egallaydi", ru: 'Потому что он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такие рамки не нужны' }], correct: 0 },
-  { q: { uz: "Agentni «avtonom» qiladigan narsa nima?", ru: 'Что делает агента «самостоятельным»?' }, opts: [{ uz: "Juda katta xotira hajmi", ru: 'Очень большой объём памяти' }, { uz: "Chiroyli va zamonaviy interfeys", ru: 'Красивый и современный интерфейс' }, { uz: "Maqsadga yetguncha aylanadigan sikl", ru: 'Цикл, который крутится до достижения цели' }, { uz: "Juda tez internet aloqasi", ru: 'Очень быстрый интернет' }], correct: 2 },
-  { q: { uz: "Har vazifaga agent chaqirish nima deb ataladi?", ru: 'Как называется вызов агента под каждую задачу?' }, opts: [{ uz: "Bu eng to'g'ri yechim hisoblanadi", ru: 'Это считается самым правильным решением' }, { uz: "Resurslarni to'g'ri tejash usuli", ru: 'Способ грамотно экономить ресурсы' }, { uz: "Tizimni optimallashtirish usuli", ru: 'Способ оптимизировать систему' }, { uz: "Ortiqcha murakkablashtirish (keraksiz murakkablik)", ru: 'Переусложнение (лишняя сложность)' }], correct: 3 },
-  { q: { uz: "Detektiv ish oqimining to'g'ri tartibi qanday?", ru: 'Каков правильный порядок рабочего потока детектива?' }, opts: [{ uz: "Harakat → kuzat → xulosa → vazifa → natija", ru: 'Действие → наблюдай → вывод → задача → результат' }, { uz: "Xulosa → harakat → natija → kuzat → vazifa", ru: 'Вывод → действие → результат → наблюдай → задача' }, { uz: "Vazifa → kuzat → xulosa → harakat → natija", ru: 'Задача → наблюдай → вывод → действие → результат' }, { uz: "Natija → vazifa → harakat → xulosa → kuzat", ru: 'Результат → задача → действие → вывод → наблюдай' }], correct: 2 },
+  { q: { uz: "Oddiy AI va agent o'rtasidagi asosiy farq nima?", ru: 'В чём главное отличие обычного ИИ от агента?' }, opts: [{ uz: "Oddiy AI javob beradi; agent qadamlar bilan ishlaydi", ru: 'Обычный ИИ отвечает; агент работает шагами' }, { uz: "Agent chiroyliroq va odob bilan gapiradi", ru: 'Агент говорит красивее и вежливее' }, { uz: "Oddiy AI har doim agentdan tezroq ishlaydi", ru: 'Обычный ИИ всегда работает быстрее агента' }, { uz: "Ular o'rtasida hech qanday farq yo'q", ru: 'Между ними нет никакой разницы' }], correct: 0 },
+  { q: { uz: "Agent sikli qanday nomlanadi?", ru: 'Как называется цикл агента?' }, opts: [{ uz: "Kirish → ishlov → chiqish", ru: 'Ввод → обработка → вывод' }, { uz: "Boshlash → kutish → tugatish", ru: 'Старт → ожидание → финиш' }, { uz: "Idrok → qaror → amal", ru: 'Восприятие → решение → действие' }, { uz: "Savol → javob → to'xtash", ru: 'Вопрос → ответ → остановка' }], correct: 2 },
+  { q: { uz: "Tool nima?", ru: 'Что такое tool?' }, opts: [{ uz: "Agentning dasturdagi laqabi", ru: 'Прозвище агента в программе' }, { uz: "Agent chaqira oladigan funksiya", ru: 'Функция, которую может вызвать агент' }, { uz: "Do'kondagi mahsulotlar xaritasi", ru: 'Карта товаров в магазине' }, { uz: "AI'ning telefon raqami", ru: 'Номер телефона ИИ' }], correct: 1 },
+  { q: { uz: "Agent bazadan buyurtmalarni o'qishi — bu qaysi tool?", ru: 'Агент читает заказы из базы — какой это инструмент?' }, opts: [{ uz: "Ma'lumotlar bazasiga so'rov", ru: 'Запрос к базе данных' }, { uz: "Foydalanuvchining kirish paroli", ru: 'Пароль пользователя для входа' }, { uz: "Ekran rasmini olish", ru: 'Снимок экрана' }, { uz: "Video faylni ijro etish", ru: 'Воспроизведение видеофайла' }], correct: 0 },
+  { q: { uz: "Bir martalik, aniq ish (masalan, tarjima) uchun nima yetadi?", ru: 'Чего хватит для разовой, чёткой задачи (например, перевода)?' }, opts: [{ uz: "Bunga ham albatta agent kerak", ru: 'Сюда тоже обязательно нужен агент' }, { uz: "Hech qaysi biri to'g'ri emas", ru: 'Ни один вариант не подходит' }, { uz: "AI va agentni birga ishlatish", ru: 'Запустить ИИ и агента вместе' }, { uz: "Oddiy AI yetadi", ru: 'Хватит обычного ИИ' }], correct: 3 },
+  { q: { uz: "Bir necha qadam va asbob kerak bo'lgan ish uchun nima foydali?", ru: 'Что полезно для задачи, где нужны несколько шагов и инструменты?' }, opts: [{ uz: "Bitta javobli oddiy AI", ru: 'Обычный ИИ с одним ответом' }, { uz: "Oddiy chiziqli skript", ru: 'Обычный линейный скрипт' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд-часть' }, { uz: "AI-agent", ru: 'AI-агент' }], correct: 3 },
+  { q: { uz: "Bizning tizimda agent qayerda ishlaydi?", ru: 'Где работает агент в нашей системе?' }, opts: [{ uz: "Frontendda, foydalanuvchi ko'radigan joyda", ru: 'На фронтенде, там, где его видит пользователь' }, { uz: "Backend ichida", ru: 'Внутри бэкенда' }, { uz: "Baza ichida", ru: 'Внутри базы' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
+  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kod va API'siz", ru: 'Сам собой, без всякого кода и API' }, { uz: "Tool'lar orqali: baza, API, xabar", ru: 'Через инструменты: база, API, сообщение' }, { uz: "Faqat javob yozib, amalsiz", ru: 'Только пишет ответы, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
+  { q: { uz: "Nega agentga vakolat chegarasi kerak?", ru: 'Зачем агенту рамки полномочий?' }, opts: [{ uz: "U real amal qiladi, xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "U juda sekin ishlaydi va kuttiradi", ru: 'Он работает очень медленно и заставляет ждать' }, { uz: "U juda ko'p xotira egallaydi", ru: 'Он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такие рамки не нужны' }], correct: 0 },
+  { q: { uz: "Agentga bir necha qadamni ketma-ket bajarish imkonini nima beradi?", ru: 'Что позволяет агенту выполнять несколько шагов подряд?' }, opts: [{ uz: "Juda katta xotira hajmi", ru: 'Очень большой объём памяти' }, { uz: "Chiroyli va zamonaviy interfeys", ru: 'Красивый и современный интерфейс' }, { uz: "Maqsadga yetguncha aylanadigan sikl", ru: 'Цикл, который крутится до достижения цели' }, { uz: "Juda tez internet aloqasi", ru: 'Очень быстрый интернет' }], correct: 2 },
+  { q: { uz: "Har bir vazifaga agent ishlatish nima deyiladi?", ru: 'Как называется использование агента для каждой задачи?' }, opts: [{ uz: "Bu doim eng to'g'ri yechim", ru: 'Это всегда самое правильное решение' }, { uz: "Vaqtni to'g'ri tejash usuli", ru: 'Способ правильно экономить время' }, { uz: "Tizimni tezlashtirish usuli", ru: 'Способ ускорить систему' }, { uz: "Ortiqcha murakkablik", ru: 'Переусложнение (лишняя сложность)' }], correct: 3 },
+  { q: { uz: "Agent siklining to'g'ri tartibi qanday?", ru: 'Каков правильный порядок цикла агента?' }, opts: [{ uz: "Amal → idrok → qaror → maqsad → natija", ru: 'Действие → восприятие → решение → цель → результат' }, { uz: "Qaror → amal → natija → idrok → maqsad", ru: 'Решение → действие → результат → восприятие → цель' }, { uz: "Maqsad → idrok → qaror → amal → natija", ru: 'Цель → восприятие → решение → действие → результат' }, { uz: "Natija → maqsad → amal → qaror → idrok", ru: 'Результат → цель → действие → решение → восприятие' }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1447,7 +1459,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['agent', '🕵️', 'tool', 'kuzat→harakat', 'perceive', 'decide', 'act', '🗝️', '🔁', 'warrant'];
+    const TOK = ['agent', '🤖', 'tool', 'idrok→amal', 'perceive', 'decide', 'act', '🧰', '🔁', 'guardrail'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2010,34 +2022,34 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🛠️ PRAKTIKA — o'quvchi daftarda detektiv-agentni loyihalaydi (kod kiritilmaydi, mentor-gate)
+// 🛠️ PRAKTIKA — o'quvchi o'z loyihasi uchun AI-agentni rejalashtiradi (kod kiritilmaydi, mentor-gate)
 const ScreenAgentPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · dizayn', ru: 'Практика · проектирование' }} place={{ uz: 'loyihangizda', ru: 'в своём проекте' }}
-    title={{ uz: "Loyihangizga detektiv-agent loyihalang", ru: 'Спроектируйте детектива-агента для своего проекта' }}
-    task={{ uz: "Kelajakdagi loyihangizni o'ylang. Unda qaysi vazifa ko'p qadamli — biror maqsadni o'zi boshdan-oxir hal qilishi kerak? O'sha — detektiv-agentga nomzod. Uni tanlab, qaysi ruxsatnomalar (idoralar) kerakligini va vakolat chegarasini yozing.", ru: 'Подумайте о своём будущем проекте. Какая задача в нём многошаговая — где цель надо довести от начала до конца? Вот она и есть кандидат на детектива-агента. Выберите её и запишите, какие пропуска (ведомства) нужны и каковы рамки полномочий.' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · reja', ru: 'Практика · план' }} place={{ uz: 'loyihangizda', ru: 'в своём проекте' }}
+    title={{ uz: 'Loyihangiz uchun AI-agentni rejalashtiring', ru: 'Спланируйте AI-агента для своего проекта' }}
+    task={{ uz: "Loyihangizni o'ylang. Unda qaysi vazifa bir necha qadam va asbob talab qiladi? O'sha — agentga nomzod. Uni tanlab, qaysi tool'lar kerakligini va vakolat chegarasini yozing.", ru: 'Подумайте о своём проекте. Какая задача в нём требует нескольких шагов и инструментов? Она и есть кандидат для агента. Выберите её и запишите, какие инструменты нужны и каковы рамки полномочий.' }}
     checklist={[
-      { uz: "Loyihangizdagi ko'p qadamli bitta vazifani tanlang (masalan: shikoyatni boshdan-oxir hal qilish)", ru: 'Выберите в проекте одну многошаговую задачу (например: решить жалобу от начала до конца)' },
-      { uz: "Bu vazifani detektiv-agentga bering — maqsadni bir jumlada yozing", ru: 'Отдайте эту задачу детективу-агенту — запишите цель одним предложением' },
-      { uz: "Agentga qaysi 2-3 ruxsatnoma kerak: arxiv (DB)? ekspert (API)? aloqa (xabar)?", ru: 'Какие 2–3 пропуска нужны агенту: архив (DB)? эксперт (API)? связь (сообщение)?' },
-      { uz: "Har ruxsatnoma uchun bir qatorda yozing: agent u bilan nima qiladi", ru: 'Про каждый пропуск напишите одной строкой: что агент с ним делает' },
-      { uz: "Vakolat chegarasini belgilang: agent NIMA qila OLMASLIGI kerak (xavfli amal)?", ru: 'Задайте рамки полномочий: ЧЕГО агент делать НЕ должен (опасное действие)?' },
+      { uz: 'Bir necha qadamli bitta vazifani tanlang (masalan: kelmay qolgan buyurtmani hal qilish)', ru: 'Выберите одну задачу из нескольких шагов (например: разобраться с заказом, который не приехал)' },
+      { uz: 'Agent maqsadini bir jumlada yozing', ru: 'Запишите цель агента одним предложением' },
+      { uz: 'Agentga qaysi 2–3 tool kerak: baza? tashqi xizmat (API)? xabar?', ru: 'Какие 2–3 инструмента нужны агенту: база? внешний сервис (API)? сообщение?' },
+      { uz: 'Har tool uchun bir qatorda yozing: agent u bilan nima qiladi', ru: 'Для каждого инструмента напишите одной строкой: что агент с ним делает' },
+      { uz: "Vakolat chegarasini belgilang: agent nima qila olmasligi kerak va qaysi amalga odam tasdig'i kerak?", ru: 'Задайте рамки полномочий: чего агент делать не должен и для какого действия нужно подтверждение человека?' },
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 atama (detektiv/agent tili)
+// 🃏 FLASHCARD KARTALARI — 12 atama (agent tili, MD-birinchi F-0929)
 const AGENT_FLASHCARDS = [
-  { front: { uz: "Maqsad berilsa, o'zi ko'p qadam qo'yadigan dastur qanday ataladi?", ru: 'Как называется программа, которая по одной цели сама делает много шагов?' }, back: { uz: 'AI-agent', ru: 'AI-агент' }, note: { uz: "Detektiv — ishni oxirigacha olib boradi", ru: 'Детектив — доводит дело до конца' } },
-  { front: { uz: "Oddiy AI bir savoldan keyin nima qiladi?", ru: 'Что делает обычный ИИ после одного вопроса?' }, back: { uz: "Javob berib to'xtaydi", ru: 'Отвечает и останавливается' }, note: { uz: "Ma'lumot byurosi — faqat gapiradi, amal qilmaydi", ru: 'Справочное бюро — только говорит, но не действует' } },
-  { front: { uz: "Agentning qaror sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл решений агента?' }, back: { uz: "Kuzat, xulosa, harakat", ru: 'Наблюдай, вывод, действие' }, note: { uz: "Har harakatdan keyin natijani ko'radi", ru: 'После каждого действия смотрит результат' } },
-  { front: { uz: "Agent chaqira oladigan funksiya nima deyiladi?", ru: 'Как называется функция, которую агент может вызвать?' }, back: 'Tool', note: { uz: "Ruxsatnoma — idoraga kirib amal qilish huquqi", ru: 'Пропуск — право войти в ведомство и действовать' } },
-  { front: { uz: "Agent eski yozuvlarni o'qishi uchun qaysi tool kerak?", ru: 'Какой tool нужен агенту, чтобы читать старые записи?' }, back: { uz: "Bazaga so'rov", ru: 'Запрос к базе' }, note: { uz: "Arxiv idorasi — bu database tool", ru: 'Ведомство архива — это database tool' } },
-  { front: { uz: "Agent tashqi xizmatdan tahlil so'rasa, bu qaysi tool?", ru: 'Если агент просит анализ у внешнего сервиса — какой это tool?' }, back: 'API tool', note: { uz: "Ekspert idorasi — javobni qaytaradi", ru: 'Ведомство эксперта — возвращает ответ' } },
-  { front: { uz: "Agent maqsadga yetmasa nima qiladi?", ru: 'Что делает агент, если цель ещё не достигнута?' }, back: { uz: "Siklni qaytadan boshlaydi", ru: 'Начинает цикл заново' }, note: { uz: "Aylana maqsad bajarilguncha davom etadi", ru: 'Круг продолжается, пока цель не выполнена' } },
-  { front: { uz: "Agent nimalarni qila olishini kim belgilaydi?", ru: 'Кто определяет, что агенту можно делать?' }, back: { uz: "Siz — vakolat chegarasi bilan", ru: 'Вы — рамками полномочий' }, note: { uz: "Guardrail xavfli amallarni cheklaydi", ru: 'Guardrail ограничивает опасные действия' } },
-  { front: { uz: "Agent tizimga qanday ta'sir o'tkazadi?", ru: 'Как агент влияет на систему?' }, back: { uz: "Faqat tool orqali", ru: 'Только через tool' }, note: { uz: "Siz bermagan amalni qila olmaydi", ru: 'Действие, которое вы не выдали, он сделать не может' } },
-  { front: { uz: "Agent arxitekturaning qaysi qismida yashaydi?", ru: 'В какой части архитектуры живёт агент?' }, back: 'Backend', note: { uz: "Sahna ortida — fuqaro uni ko'rmaydi", ru: 'За кулисами — горожанин его не видит' } },
-  { front: { uz: "Oddiy tarjima ishiga agent kerakmi?", ru: 'Нужен ли агент для простого перевода?' }, back: { uz: "Yo'q, byuro yetadi", ru: 'Нет, хватит бюро' }, note: { uz: "Bu bir qadamli aniq vazifa", ru: 'Это чёткая задача в один шаг' } },
-  { front: { uz: "Oddiy ishga agent qo'yish qanday xato deyiladi?", ru: 'Как называется ошибка, когда агента ставят на простое дело?' }, back: { uz: "Ortiqcha murakkablik", ru: 'Лишняя сложность' }, note: { uz: "Bir qadamli ishga byuro yetardi", ru: 'Для дела в один шаг хватило бы бюро' } },
+  { front: { uz: "Maqsad berilsa, bir necha qadamni tanlab bajaradigan AI qanday ataladi?", ru: 'Как называется ИИ, который по заданной цели сам выбирает и выполняет несколько шагов?' }, back: { uz: 'AI-agent', ru: 'AI-агент' }, note: { uz: "Siz bergan tool'lar va chegara doirasida ishlaydi", ru: 'Работает в рамках выданных вами инструментов и ограничений' } },
+  { front: { uz: "Oddiy AI savolga javoban odatda nima qiladi?", ru: 'Что, как правило, делает обычный ИИ в ответ на вопрос?' }, back: { uz: "Javob beradi va to'xtaydi", ru: 'Отвечает и останавливается' }, note: { uz: "Tizimdagi ma'lumotni o'zi o'zgartirmaydi", ru: 'Сам не меняет данные в системе' } },
+  { front: { uz: "Agent sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл агента?' }, back: { uz: "Idrok, qaror, amal", ru: 'Восприятие, решение, действие' }, note: { uz: "Har amaldan keyin natijani tekshiradi", ru: 'После каждого действия проверяет результат' } },
+  { front: { uz: "Agent chaqira oladigan funksiya nima deyiladi?", ru: 'Как называется функция, которую агент может вызвать?' }, back: { uz: 'Tool (asbob)', ru: 'Tool (инструмент)' }, note: { uz: "Siz yozgan oddiy funksiya", ru: 'Обычная функция, которую написали вы' } },
+  { front: { uz: "Qaysi tool'ni chaqirishni kim tanlaydi?", ru: 'Кто выбирает, какой инструмент вызвать?' }, back: { uz: 'AI modeli', ru: 'Модель ИИ' }, note: { uz: "Tool'ni esa backend kodi bajaradi", ru: 'А выполняет инструмент код бэкенда' } },
+  { front: { uz: "Agent buyurtma holatini o'qishi uchun qaysi tool kerak?", ru: 'Какой инструмент нужен агенту, чтобы прочитать статус заказа?' }, back: { uz: "Baza tool'i", ru: 'Инструмент базы' }, note: { uz: "Ma'lumotlar bazasiga so'rov", ru: 'Запрос к базе данных' } },
+  { front: { uz: "Agent kuryer xizmatidan ma'lumot so'rasa, bu qaysi tool?", ru: 'Агент запрашивает данные у курьерской службы — какой это инструмент?' }, back: { uz: "API tool'i", ru: 'Инструмент API' }, note: { uz: "API — boshqa xizmat bilan ma'lumot almashish yo'li", ru: 'API — способ обмениваться данными с другим сервисом' } },
+  { front: { uz: "Agent maqsadga yetmasa nima qiladi?", ru: 'Что делает агент, если цель ещё не достигнута?' }, back: { uz: "Siklni qaytadan boshlaydi", ru: 'Начинает цикл заново' }, note: { uz: "Maqsad bajarilguncha davom etadi", ru: 'Продолжает, пока цель не достигнута' } },
+  { front: { uz: "Agent nima qila olishini kim belgilaydi?", ru: 'Кто определяет, что может делать агент?' }, back: { uz: "Siz — vakolat chegarasi bilan", ru: 'Вы — рамками полномочий' }, note: { uz: "Inglizcha: guardrail", ru: 'По-английски: guardrail' } },
+  { front: { uz: "Xavfli amaldan oldin (masalan, pul qaytarish) nima kerak?", ru: 'Что нужно перед опасным действием (например, возвратом денег)?' }, back: { uz: "Odamning tasdig'i", ru: 'Подтверждение человека' }, note: { uz: "Agent buni o'zi hal qilmaydi", ru: 'Агент не решает это сам' } },
+  { front: { uz: "Bizning tizimda agent qaysi qismda ishlaydi?", ru: 'В какой части нашей системы работает агент?' }, back: { uz: "Backend'da", ru: 'В бэкенде' }, note: { uz: "Foydalanuvchi uni ko'rmaydi", ru: 'Пользователь его не видит' } },
+  { front: { uz: "Oddiy tarjima ishiga agent kerakmi?", ru: 'Нужен ли агент для простого перевода?' }, back: { uz: "Yo'q, oddiy AI yetadi", ru: 'Нет, хватит обычного ИИ' }, note: { uz: "Keraksiz agent — ortiqcha murakkablik", ru: 'Лишний агент — лишняя сложность' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2073,16 +2085,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "Oddiy AI — ma'lumot byurosi (bir javob); agent — detektiv (maqsad sari sikl)", ru: 'Обычный ИИ — справочное бюро (один ответ); агент — детектив (цикл к цели)' },
-    { uz: "Detektiv dvigateli: kuzat → xulosa → harakat (maqsadga yetguncha)", ru: 'Двигатель детектива: наблюдай → вывод → действие (пока цель не достигнута)' },
-    { uz: "Ruxsatnomalar (tool) agentni tizimga ulaydi: arxiv (DB), ekspert (API), aloqa (xabar)", ru: 'Пропуска (tool) подключают агента к системе: архив (DB), эксперт (API), связь (сообщение)' },
-    { uz: "Arxitekturada detektiv — backend komponenti, ruxsatnomalar orqali amal qiladi", ru: 'В архитектуре детектив — компонент бэкенда, действует через пропуска' },
-    { uz: "Bir qadamli ish → byuro; ko'p qadamli maqsad → detektiv; xavfli amalga vakolat chegarasi", ru: 'Дело в один шаг → бюро; многошаговая цель → детектив; на опасное действие — рамки полномочий' }
+    { uz: 'Oddiy AI savolga javob beradi; agent maqsad sari bir necha qadamni tanlab bajaradi', ru: 'Обычный ИИ отвечает на вопрос; агент сам выбирает и выполняет несколько шагов к цели' },
+    { uz: 'Agent sikli: idrok → qaror → amal (maqsadga yetguncha)', ru: 'Цикл агента: восприятие → решение → действие (пока цель не достигнута)' },
+    { uz: 'Tool — agent ishlata oladigan funksiya: baza, API, xabar', ru: 'Tool — функция, которой может пользоваться агент: база, API, сообщение' },
+    { uz: "Bizning tizimda agent backend ichida, siz bergan tool'lar orqali ishlaydi", ru: 'В нашей системе агент работает внутри бэкенда через выданные вами инструменты' },
+    { uz: "Oddiy ishga oddiy AI yetadi; xavfli amalga — vakolat chegarasi va odam tasdig'i", ru: 'Для простой задачи хватит обычного ИИ; для опасного действия — рамки полномочий и подтверждение человека' }
   ];
   const HOMEWORK = [
-    { b: { uz: "Toping", ru: 'Найдите' }, t: { uz: "— loyihangizda qaysi vazifa ko'p qadamli? O'sha — detektiv-agentga nomzod", ru: '— какая задача в вашем проекте многошаговая? Она и есть кандидат на детектива-агента' } },
-    { b: { uz: 'Ruxsatnomalar', ru: 'Пропуска' }, t: { uz: "— o'sha agent qaysi idoralarga kiradi: arxiv (DB)? ekspert (API)? aloqa?", ru: '— в какие ведомства войдёт этот агент: архив (DB)? эксперт (API)? связь?' } },
-    { b: { uz: "Chegara", ru: 'Рамки' }, t: { uz: "— agent NIMA qila olmasligi kerak? Vakolat chegarasini yozing", ru: '— ЧЕГО агент делать не должен? Запишите рамки полномочий' } }
+    { b: { uz: "Toping", ru: 'Найдите' }, t: { uz: "— loyihangizda qaysi vazifa bir necha qadamli? O'sha — agentga nomzod", ru: '— какая задача в вашем проекте состоит из нескольких шагов? Она и есть кандидат для агента' } },
+    { b: { uz: "Tool'lar", ru: 'Инструменты' }, t: { uz: "— agentga qaysi tool'lar kerak: baza? API? xabar?", ru: '— какие инструменты нужны агенту: база? API? сообщение?' } },
+    { b: { uz: "Chegara", ru: 'Рамки' }, t: { uz: '— agent nima qila olmasligi kerak? Vakolat chegarasini yozing', ru: '— чего агент делать не должен? Запишите рамки полномочий' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2090,7 +2102,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Agentning o'rnini tushundingiz", ru: 'Вы поняли место агента' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Detektiv-agent — tizimning <span className="italic" style={{ color: T.accent }}>aqlli komponenti</span>.</>, ru: <>Детектив-агент — <span className="italic" style={{ color: T.accent }}>умный компонент</span> системы.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Agentning o'rnini tushundingiz", ru: 'Вы поняли место агента' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>AI-agent — maqsad sari qadam tashlaydigan <span className="italic" style={{ color: T.accent }}>tizim qismi</span>.</>, ru: <>AI-агент — <span className="italic" style={{ color: T.accent }}>часть системы</span>, которая шаг за шагом идёт к цели.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2106,7 +2118,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — Claude Skills: AI va agent xulqini aniq shakllantirish.', ru: '🚀 Следующий урок — Claude Skills: как чётко задать поведение ИИ и агента.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Claude Skills: AI va agentga yozma yo'riqnoma berib, uning ishini aniq shakllantirish.", ru: '🚀 Следующий урок — Claude Skills: даём ИИ и агенту письменную инструкцию, чтобы точно задать их работу.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2384,7 +2396,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
-        /* === AGENT / BYURO KARTA === */
+        /* === AGENT KARTA === */
         .agent-card { background: ${T.blueSoft}; border-radius: 10px; padding: 13px 16px; }
         .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 5px; letter-spacing: 0.04em; }
         .agent-msg { font-family: 'Manrope'; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; margin: 0; line-height: 1.55; }

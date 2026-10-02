@@ -3,10 +3,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // 6-MODUL (Tizimni yaxlit yig'ish) · DARS 3 — ARXITEKTURA PATTERNLARI (MVC, MONOLIT↔MIKROSERVIS) — PLATFORM STANDARD v18 (AUDIOSIZ)
-// Maqsad: o'quvchi tizimni TASHKIL QILISH andozalarini nomlaydi: MVC (Model-View-Controller) va monolit↔mikroservis.
-// 🏙️ METAFORA — «SHAHAR»: shaharni rejalashtiramiz. MVC = bitta idoraning ichki tartibi:
-//   View=PESHTOQ (mijoz ko'radi) · Controller=DISPETCHER/bosh kotib (markaz, hammasini yo'naltiradi) · Model=ARXIV (saqlaydi).
-//   Monolit=«hammasi-bitta-binoda» mahkama · Mikroservis=ixtisoslashgan idoralar mahallasi (yo'llar bilan) · Scaling=band idoraga FILIAL.
+// Maqsad: o'quvchi tizimni TARTIBLASH usullarini nomlaydi: MVC (Model-View-Controller) va monolit↔mikroservis.
+// O'XSHATISH — faqat 3-ekranda, bir marta: 4a-Moduldagi oshxona (ofitsiant=Controller · oshpaz va retseptlar=Model ·
+//   ombor=baza · zal va menyu=View). Baza (PostgreSQL) — Model emas: baza saqlaydi, Model u bilan ishlaydi.
+//   MVC — ilova ichidagi tartib; monolit/mikroservis — tizim nechta ilovaga bo'lingani (ikki xil savol). Manba: F-0929-QA-6modul/03-ArchPatterns-v2.md
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -162,10 +162,10 @@ const Zoomable = ({ children }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat MA'NOLI ekranlar (SCORED test / challenge) =====
 const ACHIEVEMENTS = {
-  cityPlanner:        { icon: '🗺️', name: 'City Planner',        desc: { uz: "Peshtoq, Dispetcher, Arxiv rollarini joyladingiz", ru: "Вы распределили роли: Витрина, Диспетчер, Архив" } },
-  oneTowerVsDistrict: { icon: '🏙️', name: 'One Tower vs District', desc: { uz: "Monolit va mikroservisni ajratdingiz", ru: "Вы разделили монолит и микросервисы" } },
-  splitBlock:         { icon: '🧩', name: 'Split the Block',       desc: { uz: "Katta yukda binoni bo'lish kerakligini bildingiz", ru: "Вы поняли: при большой нагрузке здание делят" } },
-  trafficRoute:       { icon: '🛣️', name: 'Traffic Route',         desc: { uz: "Oqimni tizdingiz: Peshtoq → Dispetcher → Arxiv", ru: "Собрали поток: Витрина → Диспетчер → Архив" } },
+  cityPlanner:        { icon: '🧩', name: 'Role Mapper',  desc: { uz: "Kod bo'laklarini View, Controller va Model'ga to'g'ri joyladingiz", ru: 'Вы правильно распределили фрагменты кода по View, Controller и Model' } },
+  oneTowerVsDistrict: { icon: '📏', name: 'Right Size',   desc: { uz: "Monolit va mikroservisni tavsifdan ajratdingiz", ru: 'Вы отличили монолит от микросервисов по описанию' } },
+  splitBlock:         { icon: '✂️', name: 'Split Smart',  desc: { uz: "Qachon xizmatlarga bo'lish foydali ekanini bildingiz", ru: 'Вы поняли, когда систему полезно делить на сервисы' } },
+  trafficRoute:       { icon: '🔁', name: 'Request Flow', desc: { uz: "MVC'da so'rov yo'lini to'g'ri tizdingiz", ru: 'Вы правильно выстроили путь запроса в MVC' } }
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s6 (rollarni joylash challenge) · s12 (tasniflash challenge)
 // · s14 (SCORED test — mikroservis) · s15 (yakuniy DragDrop oqim). Toggle/reveal ekranlarga BOG'LANMAYDI.
@@ -184,7 +184,7 @@ const AchRule = ({ screen, once }) => {
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
     ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
-    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+    : tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: 'Справитесь с первой попытки — значок ваш.' })}</p>;
 };
 
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
@@ -201,7 +201,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
-  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -209,7 +209,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          <div className="ach-pop-h">Badges — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{a.name}</span></div>
           ); })}
@@ -353,43 +353,43 @@ const INLINE_KEYS = { s4: 3, s8: 1, s11: 0, s14: 2, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "View — Peshtoq (ko'rinish)", ru: 'View — Витрина (представление)' },
+    title: { uz: "View — ko'rinish", ru: 'View — представление' },
     cards: [
-      { ic: "🖥️", h: { uz: "View — mijoz ko'radigan qism", ru: 'View — то, что видит клиент' }, body: { uz: <>View — bu <b>Peshtoq</b>: sahifa, tugmalar, rasmlar. Frontend.</>, ru: <>View — это <b>Витрина</b>: страница, кнопки, картинки. Фронтенд.</> } },
-      { ic: "👁️", h: { uz: "Faqat ko'rsatadi", ru: 'Только показывает' }, body: { uz: <>View <b>qaror qilmaydi</b> — u faqat natijani chiroyli ko'rsatadi.</>, ru: <>View <b>не принимает решений</b> — он только красиво показывает результат.</> } },
-      { ic: "🎯", h: { uz: "V = View", ru: 'V = View' }, body: { uz: <>MVC'ning V harfi — Peshtoq, ya'ni ko'rinish qatlami.</>, ru: <>Буква V в MVC — это Витрина, то есть слой представления.</> }, ask: { uz: "Foydalanuvchi ko'radigan qism qaysi rol?", ru: 'Какая роль отвечает за то, что видит пользователь?' } },
+      { ic: "🖥️", h: { uz: "Foydalanuvchi ko'radigan qism", ru: 'Часть, которую видит пользователь' }, body: { uz: <>Sahifa, tugmalar, rasmlar.</>, ru: <>Страница, кнопки, картинки.</> } },
+      { ic: "👁️", h: { uz: "Ko'rsatadi", ru: 'Показывает' }, body: { uz: <>Qoidalar <b>boshqa qismda</b>.</>, ru: <>Правила — <b>в другой части</b>.</> } },
+      { ic: "🎯", h: { uz: "V = View", ru: 'V = View' }, body: { uz: <>MVC'ning V harfi.</>, ru: <>Буква V в MVC.</> }, ask: { uz: "Foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть видит пользователь?' } },
     ]
   },
   8: {
-    title: { uz: "Model — Arxiv (ma'lumot)", ru: 'Model — Архив (данные)' },
+    title: { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' },
     cards: [
-      { ic: "🗄️", h: { uz: "Model — ma'lumot arxivi", ru: 'Model — архив данных' }, body: { uz: <>Model — bu <b>Arxiv</b>: ma'lumot qayerda saqlanadi va qanday qoidalar bilan ishlanadi.</>, ru: <>Model — это <b>Архив</b>: где хранятся данные и по каким правилам с ними работают.</> } },
-      { ic: "💾", h: { uz: "Baza = Model", ru: 'База = Model' }, body: { uz: <>PostgreSQL kabi baza — aynan <b>M (Model)</b> qismi.</>, ru: <>База вроде PostgreSQL — это как раз часть <b>M (Model)</b>.</> } },
-      { ic: "🚫", h: { uz: "Ko'rsatmaydi — saqlaydi", ru: 'Не показывает — хранит' }, body: { uz: <>Model ma'lumotni ko'rsatmaydi (bu View ishi) — u saqlaydi va beradi.</>, ru: <>Model не показывает данные (это дело View) — он их хранит и отдаёт.</> }, ask: { uz: "Ma'lumotlar bazasi qaysi MVC roli?", ru: 'База данных — это какая роль в MVC?' } },
+      { ic: "🗄️", h: { uz: "Ma'lumot va qoidalar", ru: 'Данные и правила' }, body: { uz: <><b>Model</b> ma'lumot qanday bo'lishini va u bilan qanday ishlashni belgilaydi.</>, ru: <><b>Model</b> определяет, какими должны быть данные и как с ними работать.</> } },
+      { ic: "💾", h: { uz: "Baza — Model emas", ru: 'База — это не Model' }, body: { uz: <>PostgreSQL <b>saqlaydi</b>, Model u bilan ishlaydi.</>, ru: <>PostgreSQL <b>хранит</b>, а Model с ней работает.</> } },
+      { ic: "⚙️", h: { uz: "Backend'da turgan kod doim Controller emas", ru: 'Код в бэкенде — не всегда Controller' }, body: { uz: <>Qoidalar <b>Model</b>'da.</>, ru: <>Правила — в <b>Model</b>.</> }, ask: { uz: "«Narx manfiy bo'lmasin» qoidasi qaysi qismda turadi?", ru: 'В какой части находится правило «цена не может быть отрицательной»?' } },
     ]
   },
   11: {
-    title: { uz: "Kichik loyiha — monolit", ru: 'Маленький проект — монолит' },
+    title: { uz: "Kichik loyiha — ko'pincha monolit", ru: 'Маленький проект — чаще монолит' },
     cards: [
-      { ic: "🏢", h: { uz: "Soddadan boshlang", ru: 'Начинайте с простого' }, body: { uz: <>Kichik loyihaga <b>monolit</b> — sodda, tez va arzon.</>, ru: <>Для маленького проекта <b>монолит</b> — просто, быстро и дёшево.</> } },
-      { ic: "⚖️", h: { uz: "Ortiqcha murakkablashtirmang", ru: 'Не усложняйте лишний раз' }, body: { uz: <>Mikroservis kichik loyihaga <b>ortiqcha murakkablik</b> qo'shadi.</>, ru: <>Микросервисы добавляют маленькому проекту <b>лишнюю сложность</b>.</> } },
-      { ic: "📈", h: { uz: "Keyin bo'lasiz", ru: 'Разделите потом' }, body: { uz: <>Kerak bo'lganda monolitni keyinchalik bo'lish mumkin.</>, ru: <>Когда понадобится, монолит можно разделить позже.</> }, ask: { uz: "Kichik jamoa, yangi loyiha — qaysi pattern?", ru: 'Маленькая команда, новый проект — какой паттерн?' } },
+      { ic: "🏢", h: { uz: "Soddadan boshlang", ru: 'Начинайте с простого' }, body: { uz: <>Kichik loyiha uchun <b>monolit</b> sodda, tez va arzon.</>, ru: <>Для маленького проекта <b>монолит</b> — просто, быстро и дёшево.</> } },
+      { ic: "⚖️", h: { uz: "Ortiqcha murakkablashtirmang", ru: 'Не усложняйте лишний раз' }, body: { uz: <>Mikroservis kichik loyihaga <b>murakkablik</b> qo'shadi.</>, ru: <>Микросервисы добавляют маленькому проекту <b>сложность</b>.</> } },
+      { ic: "📈", h: { uz: "Keyin bo'lasiz", ru: 'Разделите потом' }, body: { uz: <>Kerak bo'lsa, monolitni keyinroq bo'lish mumkin.</>, ru: <>Если понадобится, монолит можно разделить позже.</> }, ask: { uz: "Kichik jamoa, yangi loyiha — nima qulay?", ru: 'Маленькая команда, новый проект — что удобнее?' } },
     ]
   },
   14: {
-    title: { uz: "Katta yuk — mikroservis", ru: 'Большая нагрузка — микросервисы' },
+    title: { uz: "Mikroservis qachon foydali", ru: 'Когда полезны микросервисы' },
     cards: [
-      { ic: "🧩", h: { uz: "Mustaqil xizmatlar", ru: 'Самостоятельные сервисы' }, body: { uz: <>Katta ko'lamda har qism <b>alohida miqyoslanadi</b> — mikroservis.</>, ru: <>При большом масштабе каждая часть <b>масштабируется отдельно</b> — это микросервисы.</> } },
-      { ic: "🛣️", h: { uz: "Idoralar mahallasi", ru: 'Квартал ведомств' }, body: { uz: <>Har idora mustaqil ishlaydi, alohida deploy bo'ladi.</>, ru: <>Каждое ведомство работает само по себе и деплоится отдельно.</> } },
-      { ic: "💥", h: { uz: "Xato tarqalmaydi", ru: 'Ошибка не расползается' }, body: { uz: <>Bitta xato faqat <b>o'z xizmatini</b> to'xtatadi, butun tizimni emas.</>, ru: <>Одна ошибка останавливает <b>только свой сервис</b>, а не всю систему.</> }, ask: { uz: "Million foydalanuvchi, alohida miqyoslash — qaysi pattern?", ru: 'Миллион пользователей, раздельное масштабирование — какой паттерн?' } },
+      { ic: "👥", h: { uz: "Jamoa ko'p", ru: 'Много команд' }, body: { uz: <>Har jamoa o'z xizmatini <b>alohida yangilaydi</b>.</>, ru: <>Каждая команда <b>обновляет свой сервис отдельно</b>.</> } },
+      { ic: "📈", h: { uz: "Yuk bir qismda", ru: 'Нагрузка на одну часть' }, body: { uz: <>O'sha xizmatni alohida kuchaytirasiz — <b>miqyoslash</b>.</>, ru: <>Этот сервис вы усиливаете отдельно — это <b>масштабирование</b>.</> } },
+      { ic: "💥", h: { uz: "Xato kamroq tarqaladi", ru: 'Ошибка меньше расползается' }, body: { uz: <>Bitta xizmatdagi muammo <b>butun tizimga kamroq</b> ta'sir qiladi.</>, ru: <>Проблема в одном сервисе <b>меньше влияет на всю систему</b>.</> }, ask: { uz: "Qaysi holatlarda tizimni xizmatlarga bo'lish foydali bo'lishi mumkin?", ru: 'В каких случаях систему может быть полезно разделить на сервисы?' } },
     ]
   },
   15: {
-    title: { uz: "MVC oqimi — tartib muhim", ru: 'Поток MVC — порядок важен' },
+    title: { uz: "MVC'da so'rov yo'li", ru: 'Путь запроса в MVC' },
     cards: [
-      { ic: "🙋", h: { uz: "So'rov — Dispetcherga", ru: 'Запрос — к Диспетчеру' }, body: { uz: <>So'rov <b>Controller</b>ga (Dispetcher) keladi — u markaz.</>, ru: <>Запрос приходит к <b>Controller</b> (Диспетчеру) — он центр.</> } },
-      { ic: "🗄️", h: { uz: "Dispetcher — Arxivdan", ru: 'Диспетчер — из Архива' }, body: { uz: <>Controller <b>Model</b>dan (Arxiv) ma'lumot oladi.</>, ru: <>Controller берёт данные из <b>Model</b> (Архива).</> } },
-      { ic: "🖥️", h: { uz: "Peshtoqda ko'rsatadi", ru: 'Показывает на Витрине' }, body: { uz: <>Natija <b>View</b>da (Peshtoq) foydalanuvchiga ko'rinadi.</>, ru: <>Результат пользователь видит во <b>View</b> (на Витрине).</> }, vis: { uz: <RcFlow items={['🙋 So\'rov', '🎮 Controller', '🗄️ Model', '🖥️ View', '✨ Javob']} />, ru: <RcFlow items={['🙋 Запрос', '🎮 Controller', '🗄️ Model', '🖥️ View', '✨ Ответ']} /> }, ask: { uz: "Nega so'rov to'g'ridan Model'ga bormaydi?", ru: 'Почему запрос не идёт напрямую в Model?' } },
+      { ic: "🎮", h: { uz: "So'rov — Controller'ga", ru: 'Запрос — к Controller' }, body: { uz: <>So'rovni <b>Controller</b> qabul qiladi.</>, ru: <>Запрос принимает <b>Controller</b>.</> } },
+      { ic: "🗄️", h: { uz: "Controller — Model'dan", ru: 'Controller — данные из Model' }, body: { uz: <>Controller <b>Model</b>'dan ma'lumot oladi.</>, ru: <>Controller получает данные от <b>Model</b>.</> } },
+      { ic: "🖥️", h: { uz: "Natija — View'da", ru: 'Результат — во View' }, body: { uz: <>Natija <b>View</b>'da ko'rinadi.</>, ru: <>Результат виден во <b>View</b>.</> }, vis: { uz: <RcFlow items={["So'rov", 'Controller', 'Model', 'View', 'Javob']} />, ru: <RcFlow items={['Запрос', 'Controller', 'Model', 'View', 'Ответ']} /> }, ask: { uz: "Nega bu tuzilmada View ma'lumotni Model'dan o'zi olmaydi?", ru: 'Почему в этой структуре View не берёт данные из Model сам?' } },
     ]
   }
 };
@@ -509,7 +509,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Быстрое повторение' })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.`, ru: `Ответивших мало (${answered}) — по проценту трудно судить. Оцените сами.` })}</p>}
@@ -620,7 +620,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Быстрое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -632,26 +632,26 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
 
 // ===== MVC ROLLARI (s3) =====
 const MVC = [
-  { id: 'view', label: 'View', sub: { uz: "Ko'rinish", ru: 'Представление' }, color: T.blue, rest: { uz: "Peshtoq (mijoz ko'radi)", ru: 'Витрина (её видит клиент)' }, role: { uz: "Mijoz ko'radigan qism — sahifa, tugmalar, rasmlar. Frontend (React). Faqat ko'rsatadi, qaror qilmaydi.", ru: 'То, что видит клиент — страница, кнопки, картинки. Фронтенд (React). Только показывает, решений не принимает.' } },
-  { id: 'controller', label: 'Controller', sub: { uz: 'Boshqaruvchi', ru: 'Управляющий' }, color: T.accent, rest: { uz: "Dispetcher (markazda yo'naltiradi)", ru: 'Диспетчер (в центре, всё направляет)' }, role: { uz: "So'rovni qabul qiladi, nima qilishni hal qiladi, Model va Viewni bog'laydi. Backend mantiqi — markaz.", ru: 'Принимает запрос, решает, что делать, связывает Model и View. Логика бэкенда — центр.' } },
-  { id: 'model', label: 'Model', sub: { uz: "Ma'lumot", ru: 'Данные' }, color: T.success, rest: { uz: "Arxiv (saqlaydi)", ru: 'Архив (хранит)' }, role: { uz: "Ma'lumot va qoidalar — DB, biznes-mantiq. Saqlaydi va beradi (Database).", ru: 'Данные и правила — БД, бизнес-логика. Хранит и отдаёт (Database).' } }
+  { id: 'view', label: 'View', sub: { uz: "ko'rinish", ru: 'Представление' }, color: T.blue, rest: { uz: "mijoz ko'radigan zal va menyu", ru: 'зал и меню, которые видит клиент' }, role: { uz: "Foydalanuvchi ko'radigan qism: sahifa, tugmalar, rasmlar. Ma'lumotni ko'rsatadi. Bizning loyihada bu vazifani asosan React bajaradi.", ru: 'Часть, которую видит пользователь: страница, кнопки, картинки. Показывает данные. В нашем проекте эту работу в основном выполняет React.' } },
+  { id: 'controller', label: 'Controller', sub: { uz: "yo'naltiruvchi", ru: 'направляющий' }, color: T.accent, rest: { uz: 'ofitsiant', ru: 'официант' }, role: { uz: "So'rovni qabul qiladi va ishni yo'naltiradi: Model'dan ma'lumot so'raydi, natijani View'ga beradi. Nest'dagi controllerlar aynan shu ishni qiladi.", ru: 'Принимает запрос и направляет работу: запрашивает данные у Model, передаёт результат во View. Контроллеры в Nest делают именно это.' } },
+  { id: 'model', label: 'Model', sub: { uz: "ma'lumot va qoidalar", ru: 'данные и правила' }, color: T.success, rest: { uz: 'oshpaz va retseptlar', ru: 'повар и рецепты' }, role: { uz: "Ma'lumot qanday bo'lishini va u bilan qanday ishlashni belgilaydi: masalan, mahsulotda nomi va narxi bo'lishi, narx manfiy bo'lmasligi.", ru: 'Определяет, какими должны быть данные и как с ними работать: например, что у товара есть название и цена, а цена не может быть отрицательной.' } }
 ];
 
 // ===== MAP TO MVC (s6) =====
 const MVC_ROLES = [{ id: 'view', label: 'View' }, { id: 'controller', label: 'Controller' }, { id: 'model', label: 'Model' }];
 const MAP_ITEMS = [
-  { id: 'front', comp: { uz: "🖥️ Frontend (React) — mijoz ko'radigan sahifa", ru: '🖥️ Frontend (React) — страница, которую видит клиент' }, role: 'view' },
-  { id: 'back', comp: { uz: "⚙️ Backend (Nest) — so'rovni boshqaradi", ru: '⚙️ Backend (Nest) — управляет запросом' }, role: 'controller' },
-  { id: 'db', comp: { uz: "🗄️ PostgreSQL — ma'lumot saqlanadi", ru: '🗄️ PostgreSQL — здесь хранятся данные' }, role: 'model' }
+  { id: 'front', comp: { uz: "Mahsulotlar ro'yxatini chiqaradigan React sahifa", ru: 'React-страница, которая выводит список товаров' }, role: 'view' },
+  { id: 'back', comp: { uz: "Nest'dagi controller — `/products` so'rovini qabul qiladigan kod", ru: 'Контроллер в Nest — код, который принимает запрос `/products`' }, role: 'controller' },
+  { id: 'db', comp: { uz: "Mahsulotda nomi va narxi bo'lishini belgilaydigan va uni bazadan o'qiydigan kod", ru: 'Код, который задаёт, что у товара есть название и цена, и читает товар из базы' }, role: 'model' }
 ];
 
 // ===== MVC HUB ANIMATSIYA (s5) =====
 const HUB_STEPS = [
-  { active: 'controller', conn: null, txt: { uz: "So'rov keldi → Controller qabul qildi. U — markaz.", ru: 'Пришёл запрос → Controller его принял. Он — центр.' } },
-  { active: 'model', conn: 'cm', txt: { uz: "Controller Model'dan ma'lumot so'radi (bazaga murojaat).", ru: 'Controller запросил данные у Model (обращение к базе).' } },
-  { active: 'controller', conn: 'cm', txt: { uz: "Model ma'lumotni qaytardi → Controller qabul qildi.", ru: 'Model вернул данные → Controller их принял.' } },
-  { active: 'view', conn: 'cv', txt: { uz: "Controller View'ga «buni ko'rsat» dedi.", ru: 'Controller сказал View: «покажи вот это».' } },
-  { active: 'view', conn: null, txt: { uz: "View foydalanuvchiga chiroyli natijani ko'rsatdi ✨", ru: 'View показал пользователю красивый результат ✨' } }
+  { active: 'controller', conn: null, txt: { uz: "Foydalanuvchi «Mahsulotlar» tugmasini bosdi → so'rovni Controller qabul qildi.", ru: 'Пользователь нажал кнопку «Товары» → запрос принял Controller.' } },
+  { active: 'model', conn: 'cm', txt: { uz: "Controller Model'dan mahsulotlar ro'yxatini so'radi.", ru: 'Controller запросил у Model список товаров.' } },
+  { active: 'controller', conn: 'cm', txt: { uz: "Model ro'yxatni bazadan (PostgreSQL) olib, Controller'ga qaytardi.", ru: 'Model взял список из базы (PostgreSQL) и передал его обратно в Controller.' } },
+  { active: 'view', conn: 'cv', txt: { uz: "Controller natijani View'ga berdi: «buni ko'rsat».", ru: 'Controller передал результат во View: «покажи это».' } },
+  { active: 'view', conn: null, txt: { uz: "View foydalanuvchiga mahsulotlar ro'yxatini ko'rsatdi.", ru: 'View показал пользователю список товаров.' } }
 ];
 
 // ===== MONOLIT / MIKROSERVIS (s9, s10) =====
@@ -664,17 +664,17 @@ const MICRO_SERVICES = [
 
 // ===== PATTERN MATCHER (s12) =====
 const SYSTEMS = [
-  { id: 'a', desc: { uz: "Kichik mini-do'kon: React frontend + bitta Nest backend + bitta baza, hammasi bitta loyihada.", ru: 'Маленький мини-магазин: React-фронтенд + один Nest-бэкенд + одна база, всё в одном проекте.' }, ans: 'mono' },
-  { id: 'b', desc: { uz: "Ulkan marketplace: to'lov, qidiruv, yetkazib berish — har biri alohida, mustaqil xizmat.", ru: 'Огромный маркетплейс: оплата, поиск, доставка — каждый отдельный, самостоятельный сервис.' }, ans: 'micro' },
-  { id: 'c', desc: { uz: "Yangi startap MVP: tezda bitta ishlaydigan ilova kerak, jamoa kichik.", ru: 'MVP нового стартапа: нужно быстро одно работающее приложение, команда маленькая.' }, ans: 'mono' }
+  { id: 'a', desc: { uz: "Kichik mini-do'kon: React sahifalar, bitta Nest backend va bitta baza.", ru: 'Маленький мини-магазин: React-страницы, один Nest-бэкенд и одна база.' }, ans: 'mono' },
+  { id: 'b', desc: { uz: "Katta onlayn bozor: to'lov, qidiruv, yetkazib berish — har biri alohida xizmat, har biriga alohida jamoa qaraydi.", ru: 'Большой маркетплейс: оплата, поиск, доставка — каждый отдельный сервис, и за каждым смотрит своя команда.' }, ans: 'micro' },
+  { id: 'c', desc: { uz: "Yangi loyihaning birinchi sodda varianti (MVP — ishlaydigan eng sodda birinchi versiya): tezda bitta ilova kerak, jamoa 2 kishi.", ru: 'Первая простая версия нового проекта (MVP — самая простая первая версия, которая уже работает): быстро нужно одно приложение, в команде 2 человека.' }, ans: 'mono' }
 ];
 
 // ===== MVC OQIMI (final s15) =====
 const FLOW = [
   { id: 'req', label: { uz: "So'rov", ru: 'Запрос' }, d: { uz: "foydalanuvchi so'rov yuboradi.", ru: 'пользователь отправляет запрос.' } },
-  { id: 'controller', label: { uz: 'Controller', ru: 'Controller' }, d: { uz: "qabul qiladi, boshqaradi.", ru: 'принимает и управляет.' } },
-  { id: 'model', label: { uz: 'Model', ru: 'Model' }, d: { uz: "ma'lumotni oladi (DB).", ru: 'достаёт данные (БД).' } },
-  { id: 'view', label: { uz: 'View', ru: 'View' }, d: { uz: "natijani chiroyli ko'rsatadi.", ru: 'красиво показывает результат.' } },
+  { id: 'controller', label: { uz: 'Controller', ru: 'Controller' }, d: { uz: "qabul qiladi va yo'naltiradi.", ru: 'принимает и направляет.' } },
+  { id: 'model', label: { uz: 'Model', ru: 'Model' }, d: { uz: "ma'lumot va qoidalar bilan ishlaydi.", ru: 'работает с данными и правилами.' } },
+  { id: 'view', label: { uz: 'View', ru: 'View' }, d: { uz: "natijani ko'rsatadi.", ru: 'показывает результат.' } },
   { id: 'done', label: { uz: 'Foydalanuvchiga', ru: 'Пользователю' }, d: { uz: "javob ekranda ko'rinadi.", ru: 'ответ виден на экране.' } }
 ];
 const FLOW_ORDER = FLOW.map(f => f.id);
@@ -686,7 +686,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [sc, setSc] = useState(0);
   const OPTS = [
     { id: 'a', label: { uz: "Tartibsizda — fayl ko'p bo'lsa, kuchli loyiha", ru: 'В беспорядочном — чем больше файлов, тем мощнее проект' } },
-    { id: 'b', label: { uz: "Tartibli (pattern)da — har narsa o'z joyida, darrov topadi", ru: 'В упорядоченном (по паттерну) — всё на своём месте, находишь сразу' } },
+    { id: 'b', label: { uz: "Tartiblida — har narsa o'z joyida, darrov topiladi", ru: 'В упорядоченном — всё на своём месте, нужное находится сразу' } },
     { id: 'c', label: { uz: "Farqi yo'q — ikkalasi bir xil", ru: 'Разницы нет — оба одинаковы' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
@@ -695,7 +695,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Loyiha o'sdi — <span className="italic" style={{ color: T.accent }}>100 ta fayl</span>. Yangi dasturchi qayerdan boshlaydi?</>, ru: <>Проект вырос — <span className="italic" style={{ color: T.accent }}>100 файлов</span>. С чего начнёт новый разработчик?</> })}</h1>
-        <Mentor>{tr({ uz: "Komponentlar bor (o'tgan darsda ko'rdik), lekin ular qanday tartiblanadi? Tugmani bosing — ikki xil loyiha tuzilishini solishtiring.", ru: 'Компоненты у нас есть (видели на прошлом уроке), но как их упорядочить? Нажмите кнопку — сравните две структуры проекта.' })}</Mentor>
+        <Mentor>{tr({ uz: "1-darsda tizimning qismlarini ko'rdik. Lekin har bir qismning ichida ham kod ko'payib boradi. Tugmani bosing — ikki xil loyiha tuzilishini solishtiring.", ru: 'На 1-м уроке мы видели части системы. Но и внутри каждой части кода становится всё больше. Нажмите кнопку — сравните две структуры проекта.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             {!tried
@@ -704,9 +704,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   <CodeFile name={tr({ uz: '❌ tartibsiz/', ru: '❌ беспорядок/' })} minH={0}>
                     {'index.js'}{'\n'}{'kod2.js'}{'\n'}{'stuff.js'}{'\n'}{tr({ uz: 'final_ROST.js', ru: 'final_TOCHNO.js' })}{'\n'}{tr({ uz: 'yana_bir.js …', ru: 'eshe_odin.js …' })}
                   </CodeFile>
-                  <CodeFile name={tr({ uz: '✅ tartibli/ (pattern)', ru: '✅ порядок/ (паттерн)' })} minH={0}>
+                  <CodeFile name={tr({ uz: '✅ tartibli/', ru: '✅ порядок/' })} minH={0}>
                     {'views/'}{'      '}<Cm>{tr({ uz: "// ko'rinish", ru: '// представление' })}</Cm>{'\n'}
-                    {'controllers/'}{' '}<Cm>{tr({ uz: '// mantiq', ru: '// логика' })}</Cm>{'\n'}
+                    {'controllers/'}{' '}<Cm>{tr({ uz: "// yo'naltirish", ru: '// направление запросов' })}</Cm>{'\n'}
                     {'models/'}{'     '}<Cm>{tr({ uz: "// ma'lumot", ru: '// данные' })}</Cm>
                   </CodeFile>
                 </div>}
@@ -720,7 +720,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! <b>Pattern</b> — kodni tashkil qilishning sinab ko'rilgan andozasi. Har narsa o'z joyida. Bugun eng mashhur pattern — <b>MVC</b> va tizim ko'lamlari (monolit/mikroservis) bilan tanishamiz.</>, ru: <>Точно! <b>Паттерн</b> — это проверенный образец того, как организовать код. Всё на своём месте. Сегодня познакомимся с самым известным паттерном — <b>MVC</b> — и с масштабами системы (монолит/микросервисы).</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? tr({ uz: <><b>Aynan!</b> Tartibli loyihada har bir fayl o'z vazifasi bo'yicha joylashgan. Bunday tartibning sinab ko'rilgan usullari bor — ularni <b>pattern</b> deyishadi. Bugun eng mashhurlaridan biri — <b>MVC</b>, keyin tizimni bo'lish usullari — <b>monolit</b> va <b>mikroservis</b> bilan tanishamiz.</>, ru: <><b>Именно!</b> В упорядоченном проекте каждый файл лежит по своей задаче. У такого порядка есть проверенные способы — их называют <b>паттернами</b>. Сегодня познакомимся с одним из самых известных — <b>MVC</b>, а потом со способами делить систему — <b>монолитом</b> и <b>микросервисами</b>.</> }) : tr({ uz: <><b>Qiziq fikr!</b> Lekin 100 ta fayl orasidan keraklisini tartibsiz loyihada topish ancha qiyin. Tartibli loyihada har bir fayl o'z vazifasi bo'yicha joylashgan. Bunday tartibning sinab ko'rilgan usullari bor — ularni <b>pattern</b> deyishadi.</>, ru: <><b>Интересная мысль!</b> Но в беспорядочном проекте найти нужный файл среди 100 гораздо труднее. В упорядоченном проекте каждый файл лежит по своей задаче. У такого порядка есть проверенные способы — их называют <b>паттернами</b>.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -731,18 +731,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: 'MVC — 3 rol: Model, View, Controller', ru: 'MVC — 3 роли: Model, View, Controller' }, tag: { uz: 'mvc', ru: 'mvc' } },
-    { text: { uz: "Sizning mini-do'koningiz allaqachon MVC", ru: 'Ваш мини-магазин уже устроен по MVC' }, tag: { uz: 'moslash', ru: 'сопоставление' } },
-    { text: { uz: 'Monolit vs mikroservis — qachon qaysi', ru: 'Монолит vs микросервисы — когда что' }, tag: { uz: "ko'lam", ru: 'масштаб' } },
-    { text: { uz: "Tizimni pattern bilan ta'riflash", ru: 'Описать систему через паттерн' }, tag: { uz: 'til', ru: 'язык' } }
+    { text: { uz: 'MVC — 3 qism: Model, View, Controller', ru: 'MVC — 3 части: Model, View, Controller' }, tag: { uz: 'mvc', ru: 'mvc' } },
+    { text: { uz: "Mini-do'koningizning kodi qaysi qismga tushadi", ru: 'В какую часть попадает код вашего мини-магазина' }, tag: { uz: 'moslash', ru: 'сопоставление' } },
+    { text: { uz: 'Monolit va mikroservis — qachon qaysi biri qulay', ru: 'Монолит и микросервисы — когда что удобнее' }, tag: { uz: "tizimni bo'lish", ru: 'разделение системы' } },
+    { text: { uz: "Tizimni bir jumlada ta'riflash", ru: 'Описать систему одной фразой' }, tag: { uz: 'bir jumla', ru: 'одна фраза' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
       <p className="flow-label">{tr({ uz: 'dars oxirida — siz shuni ayta olasiz', ru: 'к концу урока вы сможете сказать так' })}</p>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>«Mening loyiham — <b>MVC monolit</b>: React (View), Nest (Controller), PostgreSQL (Model).» — bir jumla, hamma tushunadi.</>, ru: <>«Мой проект — <b>MVC-монолит</b>: React (View), Nest (Controller), PostgreSQL (Model).» — одна фраза, и всем понятно.</> })}</p></div>
-      <div className="frame"><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Pattern = tizimingizning «nomi». 100 faylni tushuntirish o'rniga — bitta tanish so'z.", ru: 'Паттерн = «имя» вашей системы. Вместо объяснения ста файлов — одно знакомое слово.' })}</p></div>
+      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>«Mening loyiham — <b>bitta ilova (monolit)</b>, ichi <b>MVC</b> bo'yicha tuzilgan.» — bir jumla, boshqa dasturchi darrov tushunadi.</>, ru: <>«Мой проект — <b>одно приложение (монолит)</b>, внутри устроено по <b>MVC</b>.» — одна фраза, и другой разработчик сразу поймёт.</> })}</p></div>
     </Col>
   );
   const StepsB = (
@@ -754,8 +753,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimga <span className="italic" style={{ color: T.accent }}>nom</span> beramiz: arxitektura patterni.</>, ru: <>Дадим системе <span className="italic" style={{ color: T.accent }}>имя</span>: паттерн архитектуры.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'tgan darsda komponentlarni ko'rdingiz. Bugun ularni tashkil qilishning <b style={{ color: T.ink }}>tayyor andoza</b>larini o'rganamiz. Yaxshi xabar: siz allaqachon pattern bo'yicha qurgansiz — faqat uning nomini bilmagansiz.</>, ru: <>На прошлом уроке вы разобрали компоненты. Сегодня изучим <b style={{ color: T.ink }}>готовые образцы</b> того, как их организовать. Хорошая новость: вы уже строили по паттерну — просто не знали его названия.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodni tartiblashning tanilgan usuli — <span className="italic" style={{ color: T.accent }}>arxitektura patterni</span>.</>, ru: <>Известный способ упорядочить код — <span className="italic" style={{ color: T.accent }}>паттерн архитектуры</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>1-darsda tizimning qismlarini ko'rdingiz. Bugun ularni tartibli tuzishning <b style={{ color: T.ink }}>sinab ko'rilgan usullari</b>ni o'rganamiz. Yaxshi xabar: Nest darslarida Controller yozganingizda, siz shu usullardan birini allaqachon ishlatgansiz.</>, ru: <>На 1-м уроке вы видели части системы. Сегодня изучим <b style={{ color: T.ink }}>проверенные способы</b> выстроить их по порядку. Хорошая новость: когда вы писали Controller на уроках по Nest, вы уже использовали один из этих способов.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
             : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
@@ -773,22 +772,22 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · pattern', ru: 'Понятие · паттерн' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Misolni ko'ring", ru: 'Посмотрите пример' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pattern — <span className="italic" style={{ color: T.accent }}>sinab ko'rilgan andoza</span>.</>, ru: <>Паттерн — <span className="italic" style={{ color: T.accent }}>проверенный образец</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Pattern — bu ko'p marta sinab ko'rilgan, ishlaydigan tashkil qilish usuli. Uni o'zingiz ixtiro qilmaysiz — tayyorini olasiz. Tugmani bosing.", ru: 'Паттерн — это много раз проверенный, рабочий способ организации. Его не нужно изобретать самому — берёте готовый. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pattern — ko'p uchraydigan muammoning <span className="italic" style={{ color: T.accent }}>sinab ko'rilgan yechim usuli</span>.</>, ru: <>Паттерн — <span className="italic" style={{ color: T.accent }}>проверенный способ решения</span> частой задачи.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Ko'p dasturchilar bir xil muammoga duch keladi. Ular yillar davomida sinab ko'rgan yechim usullariga nom berishgan — pattern shu. Tugmani bosing.", ru: 'Многие разработчики сталкиваются с одной и той же задачей. Способам решения, которые проверялись годами, дали имена — это и есть паттерн. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Pattern nima?', ru: '🧩 Что такое паттерн?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tez-tez uchraydigan muammoga tayyor, sinab ko'rilgan yechim andozasi. «Bu vaziyatda odamlar shunday qiladi» degan kelishuv.", ru: 'Готовый, проверенный образец решения для часто встречающейся задачи. Договорённость вида «в такой ситуации делают вот так».' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Pattern nima?', ru: '🧩 Что такое паттерн?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tez-tez uchraydigan muammoni hal qilishning sinab ko'rilgan usuli. U tayyor kod emas: usulni bilasiz, kodni esa o'z loyihangizga moslab yozasiz.", ru: 'Проверенный способ решить часто встречающуюся задачу. Это не готовый код: вы знаете способ, а код пишете под свой проект.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Hayotdan misol?', ru: 'Пример из жизни?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗺️ <b>Shaharsozlikda:</b> tayyor mahalla rejasi — har mahallani noldan chizmaysiz</>, ru: <>🗺️ <b>В градостроительстве:</b> готовый план квартала — не чертите каждый квартал с нуля</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🏠 <b>Qurilishda:</b> tayyor chizma — har uyni qaytadan loyihalamaysiz</>, ru: <>🏠 <b>В строительстве:</b> готовый чертёж — не проектируете каждый дом заново</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>💻 <b>Kodda:</b> MVC — kodni qanday bo'lish bo'yicha tayyor andoza</>, ru: <>💻 <b>В коде:</b> MVC — готовый образец того, как разделить код</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Futbolda:</b> 4-4-2 sxemasi — tanilgan usul, lekin har jamoa uni o'z o'yinchilariga moslaydi</>, ru: <><b>В футболе:</b> схема 4-4-2 — известный способ, но каждая команда подстраивает его под своих игроков</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Qurilishda:</b> sinalgan uy rejasi — har uyni noldan chizmaysiz, o'lchamini esa o'zingiz tanlaysiz</>, ru: <><b>В строительстве:</b> проверенный план дома — не чертите каждый дом с нуля, а размеры выбираете сами</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Kodda:</b> MVC — kodni vazifasi bo'yicha 3 qismga ajratish usuli</>, ru: <><b>В коде:</b> MVC — способ разделить код на 3 части по задачам</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Pattern = umumiy til. «MVC» desangiz — dunyodagi har bir dasturchi nimani nazarda tutganingizni tushunadi.", ru: 'Паттерн = общий язык. Скажете «MVC» — и любой разработчик в мире поймёт, что вы имеете в виду.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Pattern — umumiy til ham. «MVC» desangiz, boshqa dasturchilar kodingiz qanday tuzilganini tez tushunadi.", ru: 'Паттерн — ещё и общий язык. Скажете «MVC» — и другие разработчики быстро поймут, как устроен ваш код.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -806,22 +805,23 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = MVC.find(m => m.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Pattern · MVC', ru: 'Паттерн · MVC' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `3 rolni oching (${seen.size}/3)`, ru: `Откройте 3 роли (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Pattern · MVC', ru: 'Паттерн · MVC' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `3 qismni oching (${seen.size}/3)`, ru: `Откройте 3 части (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>MVC</span> — bitta idoraning 3 roli.</>, ru: <><span className="italic" style={{ color: T.accent }}>MVC</span> — 3 роли одного ведомства.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>MVC = Model, View, Controller. Bitta idorani tasavvur qiling: <b style={{ color: T.ink }}>View</b> — Peshtoq, <b style={{ color: T.ink }}>Controller</b> — Dispetcher (markaz), <b style={{ color: T.ink }}>Model</b> — Arxiv. Har rolni bosing.</>, ru: <>MVC = Model, View, Controller. Представьте одно ведомство: <b style={{ color: T.ink }}>View</b> — Витрина, <b style={{ color: T.ink }}>Controller</b> — Диспетчер (центр), <b style={{ color: T.ink }}>Model</b> — Архив. Нажмите на каждую роль.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>MVC</span> — kodni vazifasi bo'yicha 3 qismga ajratish usuli.</>, ru: <><span className="italic" style={{ color: T.accent }}>MVC</span> — способ разделить код на 3 части по задачам.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>MVC — Model, View, Controller. Nest darslaridagi <b style={{ color: T.ink }}>oshxona</b>ni eslang: ofitsiant buyurtmani oladi, oshpaz retsept bo'yicha tayyorlaydi, oziq-ovqat omborda saqlanadi. MVC ham xuddi shunday bo'lingan. Har bir qismni bosing.</>, ru: <>MVC — Model, View, Controller. Вспомните <b style={{ color: T.ink }}>кухню</b> с уроков по Nest: официант принимает заказ, повар готовит по рецепту, продукты хранятся на складе. MVC разделён точно так же. Нажмите на каждую часть.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {MVC.map(m => <button key={m.id} className={`pick-row ${active === m.id ? 'sel' : ''} ${seen.has(m.id) ? 'done-row' : ''}`} onClick={() => tap(m.id)}><span style={{ flex: 1 }}>{m.label} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(m.sub)}</span></span><span className="pick-plus">{seen.has(m.id) ? '✓' : '▶'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Uch rol bir-birini to'ldiradi: View ko'rsatadi, Controller boshqaradi, Model saqlaydi. Bu — eng mashhur arxitektura patterni.", ru: 'Три роли дополняют друг друга: View показывает, Controller управляет, Model хранит. Это самый известный паттерн архитектуры.' })}</p></div>}
+            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗄️ <b>Baza (PostgreSQL) — Model emas.</b> Baza ma'lumotni saqlaydi, Model esa u bilan ishlaydi. <i>Oshxonada: ombor.</i></>, ru: <>🗄️ <b>База (PostgreSQL) — это не Model.</b> База хранит данные, а Model с ними работает. <i>На кухне: склад.</i></> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "View ko'rsatadi, Controller yo'naltiradi, Model ma'lumot va qoidalar bilan ishlaydi. Baza esa ma'lumotni saqlaydi.", ru: 'View показывает, Controller направляет, Model работает с данными и правилами. А база хранит данные.' })}</p></div>}
           </Col>
           <Col>
             {cur
               ? <div className="fade-step" key={active} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <div className="sk-info" style={{ }}><p className="note-h">{cur.label} <span style={{ color: cur.color, fontWeight: 700, fontSize: 12, marginLeft: 6 }}>{tr(cur.sub)}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.role)}</p></div>
-                  <div className="frame" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '🏙️ Idorada:', ru: '🏙️ В ведомстве:' })} <b>{tr(cur.rest)}</b></p></div>
+                  <div className="frame" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Oshxonada:', ru: 'На кухне:' })} <b>{tr(cur.rest)}</b></p></div>
                 </div>
               : null}
           </Col>
@@ -833,20 +833,20 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
-    questionText={{ uz: "MVC'da foydalanuvchi ko'radigan qism (sahifa, tugmalar) qaysi rol?", ru: 'Какая роль в MVC отвечает за то, что видит пользователь (страница, кнопки)?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>MVC'da foydalanuvchi <span className="italic" style={{ color: T.accent }}>ko'radigan</span> qism qaysi rol?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая роль в MVC — это то, что пользователь <span className="italic" style={{ color: T.accent }}>видит</span>?</h2></> }}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
+    questionText={{ uz: "MVC'da foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть MVC видит пользователь?' }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>MVC'da foydalanuvchi <span className="italic" style={{ color: T.accent }}>ko'radigan</span> qism qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какую часть MVC пользователь <span className="italic" style={{ color: T.accent }}>видит</span>?</h2></> }}
     options={[
-      { uz: "Controller — so'rovni boshqaradi", ru: 'Controller — управляет запросом' },
-      { uz: "Model — ma'lumotni saqlaydi", ru: 'Model — хранит данные' },
-      { uz: "Hech qaysi — MVC'ga kirmaydi", ru: 'Никакая — в MVC этого нет' },
-      { uz: "View — ko'rinish qatlami (frontend)", ru: 'View — слой представления (фронтенд)' }
+      { uz: "Controller — so'rovni yo'naltiradi", ru: 'Controller — направляет запрос' },
+      { uz: "Model — ma'lumot bilan ishlaydi", ru: 'Model — работает с данными' },
+      { uz: "Hech qaysi — bu MVC'ga kirmaydi", ru: 'Никакую — этого нет в MVC' },
+      { uz: "View — sahifa va tugmalar", ru: 'View — страница и кнопки' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! View — bu ko'rinish: mijoz ko'radigan sahifa, tugmalar, rasmlar (frontend). Idorada — Peshtoq. U faqat ko'rsatadi.", ru: 'Верно! View — это представление: страница, кнопки, картинки, которые видит клиент (фронтенд). В ведомстве — Витрина. Он только показывает.' }}
+    explainCorrect={{ uz: "To'g'ri! View — foydalanuvchi ko'radigan qism: sahifa, tugmalar, rasmlar. U ma'lumotni ko'rsatadi, qoidalar esa boshqa qismda.", ru: 'Верно! View — часть, которую видит пользователь: страница, кнопки, картинки. Он показывает данные, а правила — в другой части.' }}
     explainWrong={{
-      0: { uz: "Controller boshqaradi (Dispetcher), lekin mijozga ko'rinmaydi. Ko'rinadigan qism — View.", ru: 'Controller управляет (Диспетчер), но клиенту он не виден. Видимая часть — View.' },
-      1: { uz: "Model — ma'lumot (Arxiv). Ko'rinadigan qism emas. Bu — View.", ru: 'Model — это данные (Архив), а не видимая часть. Видимая — View.' },
-      2: { uz: "Aksincha — ko'rinadigan qism aynan MVC'ning V (View) qismi.", ru: 'Наоборот — видимая часть это и есть буква V (View) в MVC.' },
+      0: { uz: "Controller so'rovni yo'naltiradi, lekin foydalanuvchiga ko'rinmaydi. Ko'rinadigan qism — View.", ru: 'Controller направляет запрос, но пользователю он не виден. Видимая часть — View.' },
+      1: { uz: "Model ma'lumot va qoidalar bilan ishlaydi, u ko'rinmaydi. Ko'rinadigan qism — View.", ru: 'Model работает с данными и правилами, его не видно. Видимая часть — View.' },
+      2: { uz: "Aksincha — ko'rinadigan qism aynan MVC'ning V harfi, View.", ru: 'Наоборот — видимая часть — это как раз буква V в MVC, View.' },
       default: { uz: "Ko'rinadigan qism — View.", ru: 'Видимая часть — View.' }
     }} />
 );
@@ -861,25 +861,25 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = HUB_STEPS[step];
   const boxCls = (id) => `mvc-box ${id} ${cur.active === id ? 'on' : ''}`;
   return (
-    <Stage eyebrow={tr({ uz: 'Animatsiya · MVC oqimi', ru: 'Анимация · поток MVC' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Oqimni kuzating (${step + 1}/${HUB_STEPS.length})`, ru: `Проследите поток (${step + 1}/${HUB_STEPS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Animatsiya · so'rov yo'li", ru: 'Анимация · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? NEXT_DEFAULT : { uz: `So'rov yo'lini kuzating (${step + 1}/${HUB_STEPS.length})`, ru: `Проследите путь запроса (${step + 1}/${HUB_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Controller</span> — markazda turadi va hammasini bog'laydi.</>, ru: <><span className="italic" style={{ color: T.accent }}>Controller</span> — стоит в центре и связывает всё.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>MVC'da so'rov to'g'ridan-to'g'ri Model'ga bormaydi — har doim <b style={{ color: T.ink }}>Controller orqali</b> o'tadi. Tugmani bosib, so'rov rollar orasida qanday harakatlanishini kuzating.</>, ru: <>В MVC запрос не идёт напрямую в Model — он всегда проходит <b style={{ color: T.ink }}>через Controller</b>. Нажмите кнопку и проследите, как запрос движется между ролями.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>So'rovni avval <span className="italic" style={{ color: T.accent }}>Controller</span> qabul qiladi.</>, ru: <>Запрос сначала принимает <span className="italic" style={{ color: T.accent }}>Controller</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Biz o'rganayotgan MVC tuzilmasida so'rovni avval <b style={{ color: T.ink }}>Controller</b> qabul qiladi va ishni yo'naltiradi. Tugmani bosib, so'rov qismlar orasida qanday yurishini kuzating.</>, ru: <>В структуре MVC, которую мы изучаем, запрос сначала принимает <b style={{ color: T.ink }}>Controller</b> и направляет работу. Нажмите кнопку и проследите, как запрос движется между частями.</> })}</Mentor>
         <div className="fade-up"><div className="mvc-hub">
           <div className={boxCls('view')}><span style={{ fontSize: 18 }}>🖥️</span> View <span className="mvc-tag">{tr({ uz: "ko'rinish", ru: 'представление' })}</span></div>
           <div className={`mvc-conn ${cur.conn === 'cv' ? 'on' : ''}`} />
-          <div className={boxCls('controller')}><span style={{ fontSize: 18 }}>🎮</span> Controller <span className="mvc-tag">{tr({ uz: 'markaz', ru: 'центр' })}</span></div>
+          <div className={boxCls('controller')}><span style={{ fontSize: 18 }}>🎮</span> Controller <span className="mvc-tag">{tr({ uz: "yo'naltiruvchi", ru: 'направляющий' })}</span></div>
           <div className={`mvc-conn ${cur.conn === 'cm' ? 'on' : ''}`} />
           <div className={boxCls('model')}><span style={{ fontSize: 18 }}>🗄️</span> Model <span className="mvc-tag">{tr({ uz: "ma'lumot", ru: 'данные' })}</span></div>
         </div></div>
         <Zoomable><div className="split">
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Oqim tugadi', ru: '✓ Поток завершён' }) : step === 0 ? tr({ uz: "▶ So'rovni yuborish", ru: '▶ Отправить запрос' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : step === 0 ? tr({ uz: "▶ So'rovni yuborish", ru: '▶ Отправить запрос' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
             <div className="sk-info fade-step" key={step}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.txt)}</p></div>
           </Col>
           <Col>
             {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rdingizmi? View ↔ Controller ↔ Model. Controller — vositachi: View hech qachon to'g'ridan Model bilan gaplashmaydi. Shuning uchun kod tartibli.", ru: 'Увидели? View ↔ Controller ↔ Model. Controller — посредник: View никогда не общается с Model напрямую. Поэтому код остаётся упорядоченным.' })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'rdingizmi? So'rov Controller → Model → View yo'li bilan yurdi. Bu tuzilmada View ma'lumotni Model'dan o'zi olmaydi — Controller orqali oladi. Shuning uchun har bir ish o'z joyida qoladi.", ru: 'Увидели? Запрос прошёл путь Controller → Model → View. В этой структуре View не берёт данные из Model сам — он получает их через Controller. Поэтому каждая задача остаётся на своём месте.' })}</p></div>
               : null}
           </Col>
         </div></Zoomable>
@@ -903,18 +903,18 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { if (achMiss) achMiss.miss(screen); setWrong(roleId); setTimeout(() => setWrong(w => (w === roleId ? null : w)), 450); }
   };
   return (
-    <Stage eyebrow={tr({ uz: "Moslash · sizning do'kon", ru: 'Сопоставление · ваш магазин' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Moslang (${idx}/${MAP_ITEMS.length})`, ru: `Сопоставьте (${idx}/${MAP_ITEMS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Moslash · mini-do'kon", ru: 'Сопоставление · мини-магазин' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Moslang (${idx}/${MAP_ITEMS.length})`, ru: `Сопоставьте (${idx}/${MAP_ITEMS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sizning mini-do'koningiz <span className="italic" style={{ color: T.accent }}>allaqachon MVC</span>!</>, ru: <>Ваш мини-магазин <span className="italic" style={{ color: T.accent }}>уже устроен по MVC</span>!</> })}</h2></div>
-        <Mentor>{tr({ uz: "O'tgan darsdagi komponentlaringiz aynan MVC rollariga to'g'ri keladi. Har bir komponentni mos rolga joylang — o'zingiz ko'rasiz.", ru: 'Ваши компоненты с прошлого урока точно ложатся на роли MVC. Поставьте каждый компонент к своей роли — и убедитесь сами.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningizning kodi <span className="italic" style={{ color: T.accent }}>qaysi qismga</span> tushadi?</>, ru: <>В <span className="italic" style={{ color: T.accent }}>какую часть</span> попадает код вашего мини-магазина?</> })}</h2></div>
+        <Mentor>{tr({ uz: "MVC — texnologiyalar emas, kodning vazifalari. Shuning uchun React, Nest yoki PostgreSQL'ni emas, kod bo'laklarini joylaymiz. Har bir bo'lakni mos qismga joylang.", ru: 'MVC — это не технологии, а задачи кода. Поэтому мы раскладываем не React, Nest или PostgreSQL, а фрагменты кода. Положите каждый фрагмент в подходящую часть.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             {cur
-              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Komponent', ru: '🧩 Компонент' })} {idx + 1}/{MAP_ITEMS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.comp)}</p></div>
-              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi to'g'ri! Frontend = View, Backend = Controller, Database = Model. Sizning do'koningiz — <b>MVC ilova</b>. Nomini endi bilasiz!</>, ru: <>Всё верно! Frontend = View, Backend = Controller, Database = Model. Ваш магазин — <b>MVC-приложение</b>. Теперь вы знаете его имя!</> })}</p></div>}
+              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: "Kod bo'lagi", ru: 'Фрагмент кода' })} {idx + 1}/{MAP_ITEMS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(cur.comp))}</p></div>
+              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi to'g'ri! Sahifa — <b>View</b>, so'rovni qabul qiladigan kod — <b>Controller</b>, ma'lumot va qoidalar bilan ishlaydigan kod — <b>Model</b>. PostgreSQL esa ma'lumotni saqlaydi, Model u bilan ishlaydi. Mini-do'koningiz MVC bo'yicha tuzilgan!</>, ru: <>Всё верно! Страница — <b>View</b>, код, который принимает запрос, — <b>Controller</b>, код, который работает с данными и правилами, — <b>Model</b>. А PostgreSQL хранит данные, Model с ними работает. Ваш мини-магазин устроен по MVC!</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'qaysi MVC roli?', ru: 'какая роль MVC?' })}</p>
+            <p className="flow-label">{tr({ uz: 'qaysi MVC qismi?', ru: 'какая часть MVC?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {MVC_ROLES.map(r => (
                 <button key={r.id} className={`pick-row ${wrong === r.id ? 'shake' : ''}`} disabled={done} onClick={() => choose(r.id)}>
@@ -923,7 +923,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ))}
             </div>
             {!done && <AchRule screen={screen} />}
-            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu rol mos emas — komponent nima qilishini o'ylang va qayta tanlang.", ru: 'Эта роль не подходит — подумайте, что делает компонент, и выберите заново.' })}</p></div>}
+            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu qism mos emas — kod bo'lagi nima ish qilishini o'ylang va qayta tanlang.", ru: 'Эта часть не подходит — подумайте, что делает фрагмент кода, и выберите заново.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -934,10 +934,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 7 — PATTERN NEGA YORDAM BERADI =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const BEN = [
-    { id: 'order', label: { uz: 'Tartib', ru: 'Порядок' }, desc: { uz: "Har narsa o'z joyida — qaysi kod qayerda ekanini bilasiz.", ru: 'Всё на своём месте — вы знаете, какой код где лежит.' } },
-    { id: 'team', label: { uz: 'Jamoa', ru: 'Команда' }, desc: { uz: "Bir kishi Viewda, boshqasi Modelda ishlaydi — bir-biriga xalaqit bermaydi.", ru: 'Один работает во View, другой в Model — и они друг другу не мешают.' } },
-    { id: 'ai', label: { uz: 'AI tushunadi', ru: 'ИИ понимает' }, desc: { uz: "AI'ga «MVC bo'yicha controller yoz» desangiz — darrov to'g'ri joyga yozadi.", ru: 'Скажете ИИ «напиши контроллер по MVC» — и он сразу напишет в нужное место.' } },
-    { id: 'bug', label: { uz: 'Bug topish', ru: 'Поиск багов' }, desc: { uz: "Ma'lumot xato — Modelga qara. Ko'rinish buzuq — Viewga. Tez topasiz.", ru: 'Данные неверные — смотрите в Model. Вид сломан — во View. Находите быстро.' } }
+    { id: 'order', label: { uz: 'Tartib', ru: 'Порядок' }, desc: { uz: "Har bir kod o'z joyida: qaysi kod qayerda ekanini bilasiz.", ru: 'Каждый код на своём месте: вы знаете, какой код где лежит.' } },
+    { id: 'team', label: { uz: 'Jamoa', ru: 'Команда' }, desc: { uz: "Bir kishi View'da, boshqasi Model'da ishlaydi — bir-biriga kam xalaqit beradi.", ru: 'Один работает во View, другой — в Model, и они меньше мешают друг другу.' } },
+    { id: 'ai', label: { uz: 'AI bilan ishlash', ru: 'Работа с ИИ' }, desc: { uz: "Pattern nomini aytsangiz, AI'ga loyihangiz qanday tuzilganini tushuntirish osonroq bo'ladi.", ru: 'Если назвать паттерн, ИИ проще объяснить, как устроен ваш проект.' } },
+    { id: 'bug', label: { uz: 'Xatoni topish', ru: 'Поиск ошибки' }, desc: { uz: "Ma'lumot xato bo'lsa — avval Model'ga qaraysiz. Sahifa buzuq bo'lsa — View'ga. Xatoni tezroq topasiz.", ru: 'Данные неверные — сначала смотрите в Model. Страница сломана — во View. Так ошибку найдёте быстрее.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(BEN.map(b => b.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -949,14 +949,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Foyda · nega pattern', ru: 'Польза · зачем паттерн' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `4 foydani ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 плюса (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega <span className="italic" style={{ color: T.accent }}>pattern</span> bo'yicha qurish foydali?</>, ru: <>Чем полезно строить <span className="italic" style={{ color: T.accent }}>по паттерну</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Pattern shunchaki «chiroyli» emas — u amaliy foyda beradi. Har foydani bosing.", ru: 'Паттерн — это не просто «красиво», от него есть практическая польза. Нажмите на каждый плюс.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pattern bo'yicha qurish <span className="italic" style={{ color: T.accent }}>nega foydali</span>?</>, ru: <>Почему строить по паттерну <span className="italic" style={{ color: T.accent }}>полезно</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Pattern shunchaki «chiroyli tartib» emas — u amaliy foyda beradi. Har foydani bosing.", ru: 'Паттерн — это не просто «красивый порядок», от него есть практическая польза. Нажмите на каждый пункт.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {BEN.map(b => <button key={b.id} className="gchip" onClick={() => tap(b.id)} style={seen.has(b.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(b.id) ? '✓ ' : ''}{tr(b.label)}</button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Pattern — tartib, jamoaviy ish, AI bilan muloqot va tez bug topish demak. Shuning uchun haqiqiy loyihalar doim pattern bo'yicha quriladi.", ru: 'Паттерн — это порядок, командная работа, общий язык с ИИ и быстрый поиск багов. Поэтому настоящие проекты всегда строят по паттерну.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Pattern — tartib, jamoaviy ish, AI bilan oson muloqot va xatoni tez topish. Shuning uchun katta loyihalarda kodni tartibli tuzish uchun patternlardan foydalaniladi.", ru: 'Паттерн — это порядок, командная работа, лёгкое общение с ИИ и быстрый поиск ошибок. Поэтому в больших проектах код упорядочивают с помощью паттернов.' })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -971,21 +971,21 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — TEST 2 =====
 const Screen8 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
-    questionText={{ uz: "PostgreSQL bazasi MVC patternida qaysi rolga to'g'ri keladi?", ru: 'Какой роли в паттерне MVC соответствует база PostgreSQL?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="mono" style={{ color: T.accent }}>PostgreSQL</span> bazasi MVC'da qaysi <span className="italic" style={{ color: T.accent }}>rol</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>База <span className="mono" style={{ color: T.accent }}>PostgreSQL</span> — какая <span className="italic" style={{ color: T.accent }}>роль</span> в MVC?</h2></> }}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
+    questionText={{ uz: "Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni bazaga yozadigan kod — MVC'ning qaysi qismi?", ru: 'Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в базу, — какая часть MVC?' }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni bazaga yozadigan kod — MVC'ning <span className="italic" style={{ color: T.accent }}>qaysi qismi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в базу, — <span className="italic" style={{ color: T.accent }}>какая часть</span> MVC?</h2></> }}
     options={[
-      { uz: "View — chunki ma'lumotni ko'rsatadi", ru: 'View — ведь она показывает данные' },
+      { uz: "View — chunki natija sahifada ko'rinadi", ru: 'View — ведь результат виден на странице' },
       { uz: "Model — ma'lumot va uning qoidalari", ru: 'Model — данные и их правила' },
-      { uz: 'Controller — boshqaruvchi mantiq', ru: 'Controller — управляющая логика' },
-      { uz: "Hech qaysi — baza MVC'dan tashqarida", ru: 'Никакая — база вне MVC' }
+      { uz: "Controller — chunki kod backend'da turibdi", ru: 'Controller — ведь код находится в бэкенде' },
+      { uz: "Hech qaysi — bu kod MVC'dan tashqarida", ru: 'Никакая — этот код вне MVC' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Database — bu Model: ma'lumot qayerda saqlanadi va qanday qoidalar bilan ishlanadi. Idorada — Arxiv. View ko'rsatadi, Controller boshqaradi, Model saqlaydi.", ru: 'Верно! Database — это Model: где хранятся данные и по каким правилам с ними работают. В ведомстве — Архив. View показывает, Controller управляет, Model хранит.' }}
+    explainCorrect={{ uz: "To'g'ri! Ma'lumot qanday bo'lishi va qanday qoidalar bilan ishlanishi — Model'ning vazifasi. Controller so'rovni qabul qilib, shu kodni chaqiradi. Ma'lumotni esa baza (PostgreSQL) saqlaydi.", ru: 'Верно! Какими должны быть данные и по каким правилам с ними работать — задача Model. Controller принимает запрос и вызывает этот код. А хранит данные база (PostgreSQL).' }}
     explainWrong={{
-      0: { uz: "Baza ma'lumotni ko'rsatmaydi — saqlaydi. Ko'rsatish View ishi. Baza = Model.", ru: 'База данные не показывает — она их хранит. Показывать — дело View. База = Model.' },
-      2: { uz: "Controller boshqaruvchi mantiq (Dispetcher). Baza esa ma'lumot arxivi — Model.", ru: 'Controller — это управляющая логика (Диспетчер). А база — архив данных, то есть Model.' },
-      3: { uz: "Aksincha — baza aynan MVC'ning M (Model) qismi.", ru: 'Наоборот — база это и есть буква M (Model) в MVC.' },
-      default: { uz: 'Database = Model.', ru: 'Database = Model.' }
+      0: { uz: "Natija sahifada ko'rinadi, lekin qoidani View tekshirmaydi — u faqat ko'rsatadi.", ru: 'Результат виден на странице, но правило View не проверяет — он только показывает.' },
+      2: { uz: "Kod backend'da turgani uni Controller qilmaydi: Controller so'rovni qabul qilib yo'naltiradi, qoidalar esa Model'da.", ru: 'То, что код в бэкенде, не делает его Controller: Controller принимает и направляет запрос, а правила — в Model.' },
+      3: { uz: "Aksincha — ma'lumot va qoidalar aynan MVC'ning M harfi, Model.", ru: 'Наоборот — данные и правила это и есть буква M в MVC, Model.' },
+      default: { uz: "Ma'lumot va qoidalar — Model.", ru: 'Данные и правила — Model.' }
     }} />
 );
 
@@ -996,21 +996,21 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "Ko'lam · monolit", ru: 'Масштаб · монолит' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Plus/minusni ko'ring", ru: 'Посмотрите плюсы/минусы' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tizimni bo'lish · monolit", ru: 'Разделение системы · монолит' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Plus/minusni ko'ring", ru: 'Посмотрите плюсы/минусы' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Monolit</span> — hammasi bitta katta ilovada.</>, ru: <><span className="italic" style={{ color: T.accent }}>Монолит</span> — всё в одном большом приложении.</> })}</h2></div>
-        <Mentor>{tr({ uz: "MVC — kodni ICHKARIDA tashkil qiladi. Monolit/mikroservis esa tizimning KO'LAMI haqida. Monolit — hamma bo'lim bitta binoda joylashgan katta idora. Tugmani bosing.", ru: 'MVC организует код ВНУТРИ. А монолит/микросервисы — это про МАСШТАБ системы. Монолит — большое ведомство, где все отделы сидят в одном здании. Нажмите кнопку.' })}</Mentor>
-        <div className="fade-up"><div className="mono-wrap"><div className="mono-block">{tr({ uz: "🏢 mini-do'kon", ru: '🏢 мини-магазин' })}<br /><span style={{ fontWeight: 500, fontSize: 12, opacity: 0.85 }}>{tr({ uz: 'Frontend + Backend + Baza — hammasi bitta loyihada', ru: 'Frontend + Backend + База — всё в одном проекте' })}</span></div></div></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Monolit</span> — hamma asosiy qism bitta ilovada.</>, ru: <><span className="italic" style={{ color: T.accent }}>Монолит</span> — все основные части в одном приложении.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Diqqat, bu boshqa savol. MVC — bitta ilova ichidagi kod qanday tartiblanishi haqida. Monolit va mikroservis esa butun tizim nechta alohida ilovaga bo'linishi haqida. Tugmani bosing.", ru: 'Внимание, это другой вопрос. MVC — о том, как упорядочен код внутри одного приложения. А монолит и микросервисы — о том, на сколько отдельных приложений разделена вся система. Нажмите кнопку.' })}</Mentor>
+        <div className="fade-up"><div className="mono-wrap"><div className="mono-block">{tr({ uz: "🏢 mini-do'kon", ru: '🏢 мини-магазин' })}<br /><span style={{ fontWeight: 500, fontSize: 12, opacity: 0.85 }}>{tr({ uz: "mahsulotlar, savat, to'lov, foydalanuvchilar — hammasi bitta backend ilovasida", ru: 'товары, корзина, оплата, пользователи — всё в одном бэкенд-приложении' })}</span></div></div></div>
         <Zoomable><div className="split">
           <Col>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Plus va minusi?', ru: 'Плюсы и минусы?' })}</button>
-            {show && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Aksariyat loyihalar monolitdan boshlanadi — bu normal va to'g'ri.", ru: 'Большинство проектов начинается с монолита — это нормально и правильно.' })}</p></div>}
+            {show && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'p loyihalar monolitdan boshlanadi — bu normal va to'g'ri.", ru: 'Большинство проектов начинается с монолита — это нормально и правильно.' })}</p></div>}
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="frame-success" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ <b>Plus:</b> sodda, tez boshlanadi, bitta joyda deploy, oson tushuniladi.</>, ru: <>✅ <b>Плюс:</b> просто, быстро стартует, деплой в одном месте, легко понять.</> })}</p></div>
-                  <div className="frame-warn"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Minus:</b> juda kattalashsa og'irlashadi; bitta xato butun tizimni to'xtatishi mumkin.</>, ru: <>⚠️ <b>Минус:</b> сильно разрастётся — станет тяжёлым; одна ошибка может остановить всю систему.</> })}</p></div>
+                  <div className="frame-success" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ <b>Plus:</b> sodda, tez boshlanadi, bitta joyga joylashtiriladi, tushunish oson. <i>(Joylashtirish, inglizcha deploy — ilovani internetda ishlaydigan qilib serverga qo'yish.)</i></>, ru: <>✅ <b>Плюс:</b> просто, быстро стартует, развёртывается в одном месте, легко понять. <i>(Развёртывание, по-английски deploy — поставить приложение на сервер, чтобы оно работало в интернете.)</i></> })}</p></div>
+                  <div className="frame-warn"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Minus:</b> ilova juda kattalashsa, uni o'zgartirish og'irlashadi; bitta qismdagi jiddiy xato butun ilovani to'xtatib qo'yishi mumkin.</>, ru: <>⚠️ <b>Минус:</b> если приложение сильно разрастётся, менять его станет тяжело; серьёзная ошибка в одной части может остановить всё приложение.</> })}</p></div>
                 </div>
               : null}
           </Col>
@@ -1027,25 +1027,25 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = split;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "Ko'lam · mikroservis", ru: 'Масштаб · микросервисы' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Monolitni bo'ling", ru: 'Разделите монолит' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tizimni bo'lish · mikroservis", ru: 'Разделение системы · микросервисы' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Monolitni bo'ling", ru: 'Разделите монолит' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Mikroservis</span> — ko'p mustaqil kichik xizmat.</>, ru: <><span className="italic" style={{ color: T.accent }}>Микросервисы</span> — много самостоятельных маленьких сервисов.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Tizim juda kattalashganda, uni mustaqil bo'laklarga ajratamiz — har biri o'z ishini qiladi (idoralar mahallasi kabi). Tugmani bosib, monolit qanday bo'linishini ko'ring.", ru: 'Когда система сильно разрастается, мы делим её на самостоятельные части — каждая делает своё дело (как квартал ведомств). Нажмите кнопку и посмотрите, как монолит делится.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Mikroservis</span> — tizim bir nechta alohida xizmatga bo'lingan.</>, ru: <><span className="italic" style={{ color: T.accent }}>Микросервисы</span> — система разделена на несколько отдельных сервисов.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Tizim va jamoa kattalashganda, ayrim qismlarni alohida xizmatga ajratish foydali bo'lishi mumkin. Har bir xizmat o'z ishini qiladi. Tugmani bosib, monolit qanday bo'linishini ko'ring.", ru: 'Когда система и команда растут, отдельные части бывает полезно вынести в отдельные сервисы. Каждый сервис делает своё дело. Нажмите кнопку и посмотрите, как делится монолит.' })}</Mentor>
         <div className="fade-up"><div className="mono-wrap">
           {!split
             ? <div className="mono-block big">{tr({ uz: '🏢 Bitta katta ilova', ru: '🏢 Одно большое приложение' })}<br /><span style={{ fontWeight: 500, fontSize: 12, opacity: 0.85 }}>{tr({ uz: 'hammasi birga', ru: 'всё вместе' })}</span></div>
-            : <div className="micro-row">{MICRO_SERVICES.map((s, i) => <div key={s.id} className="micro-svc" style={{ borderTopColor: s.color, animationDelay: `${i * 0.1}s` }}>{tr(s.label)}<span className="micro-tag">{tr({ uz: 'mustaqil', ru: 'сам по себе' })}</span></div>)}</div>}
+            : <div className="micro-row">{MICRO_SERVICES.map((s, i) => <div key={s.id} className="micro-svc" style={{ borderTopColor: s.color, animationDelay: `${i * 0.1}s` }}>{tr(s.label)}<span className="micro-tag">{tr({ uz: 'alohida', ru: 'отдельно' })}</span></div>)}</div>}
         </div></div>
         <Zoomable><div className="split">
           <Col>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={split} onClick={() => { setSplit(true); setSc(n => n + 1); }}>{split ? tr({ uz: "✓ Bo'lindi", ru: '✓ Разделено' }) : tr({ uz: "✂️ Mikroservislarga bo'lish", ru: '✂️ Разделить на микросервисы' })}</button>
-            {split && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Har xizmat alohida ishlaydi, alohida deploy bo\'ladi, alohida jamoa qaraydi.', ru: 'Каждый сервис работает отдельно, деплоится отдельно, за ним смотрит отдельная команда.' })}</p></div>}
+            {split && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har xizmat alohida ishlaydi, alohida joylashtiriladi, ko'pincha unga alohida jamoa qaraydi.", ru: 'Каждый сервис работает отдельно, развёртывается отдельно, и часто за ним смотрит своя команда.' })}</p></div>}
           </Col>
           <Col>
             {split
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="frame-success" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ <b>Plus:</b> mustaqil miqyoslash; bitta xato faqat o'z xizmatini to'xtatadi; katta jamolar alohida ishlaydi.</>, ru: <>✅ <b>Плюс:</b> независимое масштабирование; одна ошибка останавливает только свой сервис; большие команды работают порознь.</> })}</p></div>
-                  <div className="frame-warn"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Minus:</b> murakkab; ko'p harakatlanuvchi qism; kichik loyihaga ortiqcha.</>, ru: <>⚠️ <b>Минус:</b> сложно; много подвижных частей; для маленького проекта это перебор.</> })}</p></div>
+                  <div className="frame-success" style={{ padding: '10px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✅ <b>Plus:</b> yuk ko'p tushgan xizmatni alohida kuchaytirish mumkin — buni <b>miqyoslash</b> (scaling) deyishadi; bitta xizmatdagi xato butun tizimga kamroq ta'sir qiladi; katta jamoalar bir-biriga xalaqit bermay ishlaydi.</>, ru: <>✅ <b>Плюс:</b> сервис с большой нагрузкой можно усилить отдельно — это называют <b>масштабированием</b> (scaling); ошибка в одном сервисе меньше влияет на всю систему; большие команды работают, не мешая друг другу.</> })}</p></div>
+                  <div className="frame-warn"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Minus:</b> murakkab — xizmatlar bir-biri bilan tarmoq orqali gaplashadi, ularni kuzatish va sozlash qiyinlashadi; kichik loyiha uchun ortiqcha.</>, ru: <>⚠️ <b>Минус:</b> сложно — сервисы общаются друг с другом по сети, следить за ними и настраивать их труднее; для маленького проекта это лишнее.</> })}</p></div>
                 </div>
               : null}
           </Col>
@@ -1057,21 +1057,21 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — TEST 3 (global) =====
 const Screen11 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
-    questionText={{ uz: 'Yangi, kichik loyiha boshlayapsiz, jamoa kichik. Monolit yoki mikroservis?', ru: 'Вы начинаете новый небольшой проект, команда маленькая. Монолит или микросервисы?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yangi, <span className="italic" style={{ color: T.accent }}>kichik</span> loyiha, kichik jamoa. Monolit yoki mikroservis?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Новый, <span className="italic" style={{ color: T.accent }}>небольшой</span> проект, маленькая команда. Монолит или микросервисы?</h2></> }}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
+    questionText={{ uz: "Yangi, kichik loyiha, jamoada 2 kishi. Qaysi biri qulayroq?", ru: 'Новый небольшой проект, в команде 2 человека. Что удобнее?' }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yangi, <span className="italic" style={{ color: T.accent }}>kichik</span> loyiha, jamoada 2 kishi. Qaysi biri qulayroq?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Новый, <span className="italic" style={{ color: T.accent }}>небольшой</span> проект, в команде 2 человека. Что удобнее?</h2></> }}
     options={[
-      { uz: "Monolit — sodda va tez; keyin bo'lish mumkin", ru: 'Монолит — просто и быстро; разделить можно потом' },
-      { uz: 'Mikroservis — zamonaviyroq va har doim yaxshiroq', ru: 'Микросервисы — современнее и всегда лучше' },
+      { uz: "Monolit — sodda, keyin bo'lish ham mumkin", ru: 'Монолит — просто, а разделить можно и потом' },
+      { uz: 'Mikroservis — zamonaviy, shuning uchun doim yaxshi', ru: 'Микросервисы — это современно, значит, всегда лучше' },
       { uz: 'Ikkalasini birga — har ehtimolga qarshi ishonch', ru: 'Оба сразу — на всякий случай, для надёжности' },
-      { uz: "Farqi yo'q — tasodifiy tanlasa ham bo'ladi", ru: 'Разницы нет — можно выбрать наугад' }
+      { uz: "Farqi yo'q — xohlaganini tanlasa bo'ladi", ru: 'Разницы нет — можно выбрать любой' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Kichik loyihaga monolit — sodda, tez va arzon. Mikroservis murakkablik qo'shadi, u faqat tizim juda kattalashganda kerak. «Ortiqcha murakkablashtirmang» — dasturchilar qoidasi.", ru: 'Верно! Для маленького проекта монолит — просто, быстро и дёшево. Микросервисы добавляют сложности и нужны только когда система сильно вырастет. «Не усложняйте лишний раз» — правило разработчиков.' }}
+    explainCorrect={{ uz: "To'g'ri! Kichik loyiha va kichik jamoa uchun monolit ko'pincha eng qulay: sodda, tez va arzon. Mikroservis murakkablik qo'shadi — u tizim va jamoa kattalashganda foydali bo'lishi mumkin. «Ortiqcha murakkablashtirmang» — dasturchilarning mashhur qoidasi.", ru: 'Верно! Для маленького проекта и маленькой команды монолит чаще всего самый удобный: просто, быстро и дёшево. Микросервисы добавляют сложности — они могут пригодиться, когда вырастут система и команда. «Не усложняйте без нужды» — известное правило разработчиков.' }}
     explainWrong={{
-      1: { uz: "Mikroservis har doim yaxshi emas — u kichik loyihaga ortiqcha murakkablik. Avval monolit.", ru: 'Микросервисы хороши не всегда — для маленького проекта это лишняя сложность. Сначала монолит.' },
-      2: { uz: "Ikkalasini birga qilish — eng murakkab va keraksiz yo'l. Soddadan boshlang.", ru: 'Делать оба сразу — самый сложный и ненужный путь. Начинайте с простого.' },
-      3: { uz: "Farqi bor: kichik loyihaga monolit aniq to'g'ri tanlov. Soddalik g'olib.", ru: 'Разница есть: для маленького проекта монолит — однозначно верный выбор. Побеждает простота.' },
-      default: { uz: 'Kichik loyihaga monolit — soddadan boshlang.', ru: 'Для маленького проекта — монолит. Начинайте с простого.' }
+      1: { uz: "Mikroservis doim yaxshi emas — kichik loyiha uchun u ortiqcha murakkablik.", ru: 'Микросервисы хороши не всегда — для маленького проекта это лишняя сложность.' },
+      2: { uz: "Ikkalasini birga qilish — eng murakkab yo'l. Soddadan boshlang.", ru: 'Делать оба сразу — самый сложный путь. Начните с простого.' },
+      3: { uz: "Farqi bor: kichik loyihada monolit ancha qulay.", ru: 'Разница есть: для маленького проекта монолит гораздо удобнее.' },
+      default: { uz: "Kichik loyiha — ko'pincha monolit. Soddadan boshlang.", ru: 'Маленький проект — чаще монолит. Начните с простого.' }
     }} />
 );
 
@@ -1090,24 +1090,24 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { if (achMiss) achMiss.miss(screen); setWrong(true); setTimeout(() => setWrong(false), 450); }
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Hayotiy · pattern topish', ru: 'Из жизни · определить паттерн' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Tasniflang (${idx}/${SYSTEMS.length})`, ru: `Определите (${idx}/${SYSTEMS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hayotiy · tizimni ajrating', ru: 'Из жизни · определите тип системы' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Ajrating (${idx}/${SYSTEMS.length})`, ru: `Определите (${idx}/${SYSTEMS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimni tasvirga qarab <span className="italic" style={{ color: T.accent }}>tasniflang</span>.</>, ru: <>По описанию <span className="italic" style={{ color: T.accent }}>определите</span> тип системы.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana arxitektorning ishi: tizim tasvirini o'qib, qaysi pattern ekanini aytish. Har tizimni o'qing va monolit yoki mikroservis ekanini tanlang.", ru: 'Вот работа архитектора: прочитать описание системы и назвать её паттерн. Прочитайте каждую систему и выберите — монолит или микросервисы.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizim tavsifini o'qing: <span className="italic" style={{ color: T.accent }}>monolitmi yoki mikroservismi</span>?</>, ru: <>Прочитайте описание системы: <span className="italic" style={{ color: T.accent }}>монолит или микросервисы</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Arxitektor tizim tavsifini o'qib, u qanday tuzilganini aytadi. Har bir tizimni o'qing va tanlang.", ru: 'Архитектор читает описание системы и говорит, как она устроена. Прочитайте описание каждой системы и выберите.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             {cur
-              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧩 Tizim', ru: '🧩 Система' })} {idx + 1}/{SYSTEMS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
-              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Barchasi to'g'ri! Endi tizim tasvirini o'qib, uning patternini ayta olasiz — bu arxitektor mahorati.", ru: 'Всё верно! Теперь по описанию системы вы можете назвать её паттерн — это и есть мастерство архитектора.' })}</p></div>}
+              ? <div className="frame" key={cur.id} style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Tizim', ru: 'Система' })} {idx + 1}/{SYSTEMS.length}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Barchasi to'g'ri! Endi tizim tavsifini o'qib, u qanday tuzilganini ayta olasiz.", ru: 'Всё верно! Теперь по описанию системы вы можете сказать, как она устроена.' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'qaysi pattern?', ru: 'какой паттерн?' })}</p>
+            <p className="flow-label">{tr({ uz: 'qaysi usul?', ru: 'какой способ?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('mono')}><span style={{ marginRight: 6 }}>🏢</span><span style={{ flex: 1 }}>{tr({ uz: 'Monolit', ru: 'Монолит' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: '· bitta katta ilova', ru: '· одно большое приложение' })}</span></span><span className="pick-plus">+</span></button>
-              <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('micro')}><span style={{ marginRight: 6 }}>🧩</span><span style={{ flex: 1 }}>{tr({ uz: 'Mikroservis', ru: 'Микросервисы' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: "· ko'p mustaqil xizmat", ru: '· много самостоятельных сервисов' })}</span></span><span className="pick-plus">+</span></button>
+              <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('mono')}><span style={{ marginRight: 6 }}>🏢</span><span style={{ flex: 1 }}>{tr({ uz: 'Monolit', ru: 'Монолит' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: '· bitta ilova', ru: '· одно приложение' })}</span></span><span className="pick-plus">+</span></button>
+              <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('micro')}><span style={{ marginRight: 6 }}>🧩</span><span style={{ flex: 1 }}>{tr({ uz: 'Mikroservis', ru: 'Микросервисы' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: '· alohida xizmatlar', ru: '· отдельные сервисы' })}</span></span><span className="pick-plus">+</span></button>
             </div>
             {!done && <AchRule screen={screen} />}
-            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaytadan o'ylang: bitta loyihami yoki ko'p mustaqil xizmatmi?", ru: 'Подумайте ещё раз: это один проект или много самостоятельных сервисов?' })}</p></div>}
+            {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaytadan o'ylang: hammasi bitta ilovadami yoki alohida xizmatlarga bo'linganmi?", ru: 'Подумайте ещё раз: всё в одном приложении или разделено на отдельные сервисы?' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1122,24 +1122,24 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Mahorat · til', ru: 'Мастерство · язык' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Bir jumlada', ru: 'Одной фразой' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimingizni <span className="italic" style={{ color: T.accent }}>bir jumlada</span> ta'riflang.</>, ru: <>Опишите свою систему <span className="italic" style={{ color: T.accent }}>одной фразой</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Pattern — umumiy til. Tizimingizni 100 fayl orqali emas, bir nechta tanish so'z bilan tushuntirasiz. Tugmani bosing.", ru: 'Паттерн — общий язык. Свою систему вы объясняете не через 100 файлов, а несколькими знакомыми словами. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Pattern nomlari — dasturchilarning umumiy tili. Tizimingizni 100 ta fayl orqali emas, bir nechta tanish so'z bilan tushuntirasiz. Tugmani bosing.", ru: 'Названия паттернов — общий язык разработчиков. Свою систему вы объясняете не через 100 файлов, а несколькими знакомыми словами. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🙈 Patternsiz', ru: '🙈 Без паттерна' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bu yerda fayl bor, u boshqasini chaqiradi, keyin bazaga... » — uzoq, chalkash.", ru: '«Тут есть файл, он вызывает другой, потом в базу…» — долго и путано.' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🙈 Patternsiz', ru: '🙈 Без паттерна' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bu yerda fayl bor, u boshqasini chaqiradi, keyin bazaga…» — uzoq, chalkash.", ru: '«Тут есть файл, он вызывает другой, потом в базу…» — долго и путано.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Pattern bilan-chi?', ru: 'А с паттерном?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="agent-card fade-step" style={{ borderLeftColor: T.success }}>
-                  <span className="agent-lbl" style={{ color: T.success }}>{tr({ uz: '🎯 PATTERN BILAN', ru: '🎯 С ПАТТЕРНОМ' })}</span>
-                  <p className="agent-msg" style={{ fontFamily: "'JetBrains Mono'", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12, marginBottom: 8 }}>{tr({ uz: '«MVC monolit: React (View), Nest (Controller), PostgreSQL (Model).»', ru: '«MVC-монолит: React (View), Nest (Controller), PostgreSQL (Model).»' })}</p>
-                  <p className="agent-msg">{tr({ uz: '→ Bir jumla. Har bir dasturchi va AI darrov tushunadi. Mana arxitektura tili.', ru: '→ Одна фраза. Любой разработчик и ИИ поймут сразу. Вот он, язык архитектуры.' })}</p>
+                  <span className="agent-lbl" style={{ color: T.success }}>{tr({ uz: '🎯 Pattern bilan', ru: '🎯 С паттерном' })}</span>
+                  <p className="agent-msg" style={{ fontFamily: "'JetBrains Mono'", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12, marginBottom: 8 }}>{tr({ uz: "«Mini-do'kon — monolit. Ichi MVC bo'yicha: View — React sahifalari, Controller — Nest controllerlari, Model — ma'lumot va qoidalar kodi. Ma'lumot PostgreSQL'da saqlanadi.»", ru: '«Мини-магазин — монолит. Внутри по MVC: View — React-страницы, Controller — контроллеры Nest, Model — код данных и правил. Данные хранятся в PostgreSQL.»' })}</p>
+                  <p className="agent-msg">{tr({ uz: '→ Qisqa va aniq. Boshqa dasturchi ham, AI ham tizimni tezroq tushunadi.', ru: '→ Коротко и точно. И другой разработчик, и ИИ поймут систему быстрее.' })}</p>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yangi loyiha boshlashdan oldin AI'ga «MVC monolit qur» desangiz — u to'g'ri tuzilishni darrov yaratadi.", ru: 'Перед стартом нового проекта скажите ИИ «построй MVC-монолит» — и он сразу создаст правильную структуру.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yangi loyihani AI bilan boshlaganda ham shu jumladan boshlang — AI'ga loyiha tuzilishini tushuntirish osonroq bo'ladi. AI yozgan kodni esa baribir o'zingiz tekshirasiz.", ru: 'Когда начинаете новый проект с ИИ, тоже начните с этой фразы — так ИИ проще объяснить структуру проекта. А код, который написал ИИ, всё равно проверяете вы сами.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1149,25 +1149,25 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — TEST 4 (global) =====
 const Screen14 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
-    questionText={{ uz: "Million foydalanuvchili tizim; to'lov va qidiruv alohida miqyoslanishi kerak. Qaysi pattern?", ru: 'Система на миллион пользователей; оплату и поиск нужно масштабировать отдельно. Какой паттерн?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Million foydalanuvchi; har qism <span className="italic" style={{ color: T.accent }}>alohida miqyoslanishi</span> kerak. Qaysi pattern?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Миллион пользователей; каждая часть должна <span className="italic" style={{ color: T.accent }}>масштабироваться отдельно</span>. Какой паттерн?</h2></> }}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
+    questionText={{ uz: "Katta onlayn do'kon: 5 ta jamoa ishlaydi, bayramlarda to'lov qismiga yuk bir necha barobar oshadi. Qaysi usul mosroq bo'lishi mumkin?", ru: 'Большой интернет-магазин: работают 5 команд, в праздники нагрузка на оплату вырастает в несколько раз. Какой способ может подойти лучше?' }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Katta onlayn do'kon: 5 ta jamoa ishlaydi, bayramlarda <span className="italic" style={{ color: T.accent }}>to'lov qismiga yuk</span> bir necha barobar oshadi. Qaysi usul mosroq bo'lishi mumkin?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Большой интернет-магазин: работают 5 команд, в праздники <span className="italic" style={{ color: T.accent }}>нагрузка на оплату</span> вырастает в несколько раз. Какой способ может подойти лучше?</h2></> }}
     options={[
-      { uz: "Monolit — bunday ko'lamda ham eng yaxshi", ru: 'Монолит — и при таком масштабе он лучший' },
-      { uz: 'Hech qanday pattern bu yerda kerak emas', ru: 'Здесь никакой паттерн не нужен' },
-      { uz: 'Mikroservis — har xizmat alohida miqyoslanadi', ru: 'Микросервисы — каждый сервис масштабируется отдельно' },
-      { uz: "MVC yetarli — ko'lam bu yerda muhim emas", ru: 'Хватит MVC — масштаб здесь не важен' }
+      { uz: 'Monolit — hammasi bitta ilovada qolsin', ru: 'Монолит — пусть всё остаётся в одном приложении' },
+      { uz: 'Hech qanday usul kerak emas — shunday qolsin', ru: 'Никакой способ не нужен — пусть остаётся как есть' },
+      { uz: "Mikroservis — to'lovni alohida xizmat qilish", ru: 'Микросервисы — сделать оплату отдельным сервисом' },
+      { uz: 'Faqat MVC — ichki tartib hammasini hal qiladi', ru: 'Только MVC — внутренний порядок решит всё' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Katta ko'lamda, har qism alohida yuklanganda mikroservis kerak: to'lov xizmatini alohida kuchaytirasiz, qidiruvni alohida. Mustaqillik — mikroservisning asosiy kuchi.", ru: 'Верно! При большом масштабе, когда каждая часть нагружена по-своему, нужны микросервисы: сервис оплаты усиливаете отдельно, поиск — отдельно. Самостоятельность — главная сила микросервисов.' }}
+    explainCorrect={{ uz: "To'g'ri! Bu holatda mikroservis mos bo'lishi mumkin: to'lov xizmatini alohida kuchaytirasiz, har jamoa o'z xizmatini alohida yangilaydi. Bunday qaror faqat foydalanuvchilar soniga qarab emas — jamoa, yuk va o'zgarishlarga qarab qilinadi.", ru: 'Верно! Здесь могут подойти микросервисы: сервис оплаты вы усиливаете отдельно, а каждая команда обновляет свой сервис отдельно. Такое решение принимают, глядя не только на число пользователей, но и на команды, нагрузку и изменения.' }}
     explainWrong={{
-      0: { uz: "Monolit kichikda yaxshi, lekin million foydalanuvchi va mustaqil miqyoslashda u og'irlashadi. Bu yerda mikroservis.", ru: 'Монолит хорош на малом, но при миллионе пользователей и раздельном масштабировании он становится тяжёлым. Здесь — микросервисы.' },
-      1: { uz: "Aksincha — bunday katta tizimda pattern juda muhim. Mikroservis kerak.", ru: 'Наоборот — в такой большой системе паттерн очень важен. Нужны микросервисы.' },
-      3: { uz: "MVC kodni ichkarida tashkil qiladi, lekin ko'lam (miqyoslash) masalasini hal qilmaydi. Bu yerda mikroservis.", ru: 'MVC организует код внутри, но вопрос масштаба он не решает. Здесь — микросервисы.' },
-      default: { uz: 'Katta, mustaqil miqyoslash — mikroservis.', ru: 'Большой масштаб и независимое масштабирование — микросервисы.' }
+      0: { uz: "Monolit ham ishlashi mumkin, lekin 5 jamoa bitta ilovada bir-biriga xalaqit beradi, to'lovni esa alohida kuchaytirib bo'lmaydi.", ru: 'Монолит тоже может работать, но 5 команд в одном приложении будут мешать друг другу, а оплату отдельно не усилить.' },
+      1: { uz: "Aksincha — katta tizimda tuzilish juda muhim.", ru: 'Наоборот — в большой системе устройство очень важно.' },
+      3: { uz: "MVC — bitta ilovaning ichki tartibi. Tizimni qismlarga bo'lish esa boshqa savol.", ru: 'MVC — внутренний порядок одного приложения. А разделение системы на части — другой вопрос.' },
+      default: { uz: "Jamoa ko'p, yuk bir qismda — mikroservis mos kelishi mumkin.", ru: 'Команд много, нагрузка на одну часть — могут подойти микросервисы.' }
     }} />
 );
 
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, quiet }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -1234,11 +1234,11 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
+        {pool.length === 0 && !solved && !quiet && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
-      {solved && <div className="dd-done">✓ {tr(doneText || { uz: "To'g'ri tartib!", ru: 'Порядок верный!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {solved && !quiet && <div className="dd-done">✓ {tr(doneText || { uz: "To'g'ri tartib!", ru: 'Порядок верный!' })}</div>}
+      {wrong && !solved && !quiet && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
     </div>
   );
 }
@@ -1258,7 +1258,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     fired.current = true;
     const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "MVC so'rov oqimini to'g'ri tartibda joylang", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "MVC'da so'rov yo'lini to'g'ri tartibda yig'ing", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
   const onChange = (slots) => {
     if (fired.current) return;
@@ -1268,25 +1268,25 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!solved) { hadWrongRef.current = true; if (achMiss) achMiss.miss(screen); setWrong(true); } else setWrong(false);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Yo'lni yig'ing", ru: 'Соберите путь' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: MVC so'rov oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите поток запроса MVC <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bo'laklarni sudrab to'g'ri tartibga joylang. Eslang: so'rov <b style={{ color: T.ink }}>Dispetcher (Controller)</b> orqali o'tadi — to'g'ridan-to'g'ri Arxivga bormaydi.</>, ru: <>Перетащите блоки в правильном порядке. Помните: запрос идёт через <b style={{ color: T.ink }}>Диспетчера (Controller)</b> — напрямую в Архив он не попадает.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: MVC'da so'rov yo'lini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите путь запроса в MVC <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga joylang.", ru: 'Перетащите блоки и расставьте их в правильном порядке.' })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
           hints={[
             { uz: 'birinchi nima keladi', ru: 'что идёт первым' },
-            { uz: 'keyin kim qabul qiladi', ru: 'кто это принимает' },
-            { uz: "keyin qayerdan ma'lumot", ru: 'откуда берутся данные' },
-            { uz: "keyin qayerda ko'rsatiladi", ru: 'где это показывается' },
-            { uz: 'eng oxiri nima', ru: 'что в самом конце' }
+            { uz: 'kim qabul qiladi', ru: 'кто это принимает' },
+            { uz: "ma'lumot qayerdan olinadi", ru: 'откуда берутся данные' },
+            { uz: "qayerda ko'rsatiladi", ru: 'где это показывается' },
+            { uz: 'oxiri kimga yetadi', ru: 'до кого доходит в конце' }
           ]}
-          doneText={{ uz: "To'g'ri: So'rov → Controller → Model → View → Foydalanuvchiga.", ru: 'Верно: Запрос → Controller → Model → View → Пользователю.' }}
+          quiet
           onSolved={onSolved}
           onChange={onChange} />
-        {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang. So'rov avval Controller'ga boradi.", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново. Запрос сначала идёт к Controller.' })}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>So'rov → Controller → Model → View → Foydalanuvchiga</b>. Mana MVC patternining ishlash tartibi.</>, ru: <>✓ Поток готов: <b>Запрос → Controller → Model → View → Пользователю</b>. Вот так работает паттерн MVC.</> })}</p>
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Быстрое повторение — взглянуть на тему ещё раз' })}</button>}
+        {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang. Maslahat: so'rovni birinchi bo'lib kim qabul qiladi?", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и расставьте заново. Подсказка: кто первым принимает запрос?' })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Yo'l tayyor: <b>So'rov → Controller → Model → View → Foydalanuvchiga</b>. MVC shu tartibda ishlaydi.</>, ru: <>✓ Путь готов: <b>Запрос → Controller → Model → View → Пользователю</b>. MVC работает именно в таком порядке.</> })}</p>
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
@@ -1359,7 +1359,7 @@ const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (arxitektura atamalari)
 const QZ_BG_SHAPES = [
   { ch: 'MVC',         l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '🏙️',          l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: '⚙️',          l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: 'Controller',  l: 8,  t: 72, s: 24, d: 27, dl: 0.8 },
   { ch: { uz: 'monolit', ru: 'монолит' },     l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: 'Model',       l: 45, t: 86, s: 26, d: 25, dl: 1.1 },
@@ -1369,25 +1369,25 @@ const QZ_BG_SHAPES = [
   { ch: '🧩',           l: 91, t: 42, s: 28, d: 24, dl: 1.3 },
   { ch: '🏢',           l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
   { ch: 'scaling',     l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: { uz: 'Dispetcher', ru: 'Диспетчер' },  l: 2,  t: 30, s: 20, d: 28, dl: 3.1 },
-  { ch: { uz: 'filial', ru: 'филиал' },      l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
-  { ch: { uz: 'Arxiv', ru: 'Архив' },       l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: { uz: 'baza', ru: 'база' },  l: 2,  t: 30, s: 20, d: 28, dl: 3.1 },
+  { ch: { uz: 'xizmat', ru: 'сервис' },      l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
+  { ch: 'PostgreSQL',       l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG taqsimlangan.
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "MVC'da foydalanuvchi ko'radigan qism (Peshtoq) qaysi rol?", ru: 'Какая роль в MVC — то, что видит пользователь (Витрина)?' }, opts: [{ uz: "View — ko'rinish qatlami", ru: 'View — слой представления' }, { uz: 'Controller — boshqaruv qatlami', ru: 'Controller — слой управления' }, { uz: "Model — ma'lumot qatlami", ru: 'Model — слой данных' }, { uz: 'Hech qaysi rol mos emas', ru: 'Ни одна роль не подходит' }], correct: 0 },
-  { q: { uz: "Ma'lumotlar bazasi (Arxiv) MVC'da qaysi rol?", ru: 'База данных (Архив) — какая роль в MVC?' }, opts: [{ uz: "View — ma'lumotni ko'rsatadi", ru: 'View — показывает данные' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — so'rovni boshqaradi", ru: 'Controller — управляет запросом' }, { uz: "Pattern'dan butunlay tashqarida", ru: 'Полностью вне паттерна' }], correct: 1 },
-  { q: { uz: "So'rovni qabul qilib, Model va Viewni bog'laydigan markaz qaysi?", ru: 'Какой центр принимает запрос и связывает Model и View?' }, opts: [{ uz: "View — Peshtoq (ko'rinish)", ru: 'View — Витрина (представление)' }, { uz: "Model — Arxiv (ma'lumot)", ru: 'Model — Архив (данные)' }, { uz: 'Controller — Dispetcher (markaz)', ru: 'Controller — Диспетчер (центр)' }, { uz: 'Baza — PostgreSQL (saqlash)', ru: 'База — PostgreSQL (хранение)' }], correct: 2 },
-  { q: { uz: "«Hammasi bitta binoda» — bu qaysi pattern?", ru: '«Всё в одном здании» — какой это паттерн?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'Serverless', ru: 'Serverless' }, { uz: 'Peer-to-peer', ru: 'Peer-to-peer' }, { uz: 'Monolit', ru: 'Монолит' }], correct: 3 },
-  { q: { uz: "Ko'p mustaqil, alohida deploy bo'ladigan kichik xizmatlar — bu?", ru: 'Много самостоятельных, отдельно деплоящихся маленьких сервисов — это?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'Monolit', ru: 'Монолит' }, { uz: 'MVC', ru: 'MVC' }, { uz: 'Frontend', ru: 'Frontend' }], correct: 0 },
-  { q: { uz: "Kichik yangi loyiha, jamoa kichik. Qaysi pattern to'g'ri?", ru: 'Новый небольшой проект, команда маленькая. Какой паттерн верен?' }, opts: [{ uz: 'Mikroservis — zamonaviyroq', ru: 'Микросервисы — современнее' }, { uz: 'Monolit — soddadan boshlang', ru: 'Монолит — начните с простого' }, { uz: 'Ikkalasini birga ishlatish', ru: 'Использовать оба сразу' }, { uz: 'Hech qaysi pattern kerak emas', ru: 'Никакой паттерн не нужен' }], correct: 1 },
-  { q: { uz: "MVC'da so'rov avval qayerga boradi?", ru: 'Куда в MVC запрос попадает сначала?' }, opts: [{ uz: "To'g'ridan Model'ga", ru: 'Сразу в Model' }, { uz: "To'g'ridan View'ga", ru: 'Сразу во View' }, { uz: "Controller'ga (markaz)", ru: 'В Controller (центр)' }, { uz: "To'g'ridan bazaga", ru: 'Сразу в базу' }], correct: 2 },
-  { q: { uz: "Band idoraga (xizmatga) qo'shimcha nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление ещё одной копии загруженному ведомству (сервису)?' }, opts: [{ uz: 'Refactoring (qayta yozish)', ru: 'Refactoring (переписывание)' }, { uz: 'Deploy (joylashtirish)', ru: 'Deploy (развёртывание)' }, { uz: 'Debugging (xato tuzatish)', ru: 'Debugging (исправление ошибок)' }, { uz: 'Scaling (miqyoslash)', ru: 'Scaling (масштабирование)' }], correct: 3 },
-  { q: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, opts: [{ uz: "Sinab ko'rilgan tayyor kod andozasi", ru: 'Проверенный готовый образец кода' }, { uz: 'Yangi bir dasturlash tili nomi', ru: 'Название нового языка программирования' }, { uz: "Ma'lumotlar bazasining bir turi", ru: 'Разновидность базы данных' }, { uz: 'Serverning operatsion tizimi turi', ru: 'Тип операционной системы сервера' }], correct: 0 },
-  { q: { uz: "Frontend (React) MVC'da qaysi rolga to'g'ri keladi?", ru: 'Какой роли в MVC соответствует Frontend (React)?' }, opts: [{ uz: 'Controller', ru: 'Controller' }, { uz: 'View', ru: 'View' }, { uz: 'Model', ru: 'Model' }, { uz: 'Baza', ru: 'База' }], correct: 1 },
-  { q: { uz: 'Mikroservisning asosiy kuchi nimada?', ru: 'В чём главная сила микросервисов?' }, opts: [{ uz: 'Soddalik va arzonlik', ru: 'Простота и дешевизна' }, { uz: 'Hammasi bitta katta faylda', ru: 'Всё в одном большом файле' }, { uz: 'Mustaqil miqyoslash imkoni', ru: 'Возможность независимого масштабирования' }, { uz: 'Kod yozish shart emasligi', ru: 'Что код писать не нужно' }], correct: 2 },
-  { q: { uz: "Backend (Nest) MVC'da qaysi rol?", ru: 'Backend (Nest) — какая роль в MVC?' }, opts: [{ uz: "View — Peshtoq (ko'rinish)", ru: 'View — Витрина (представление)' }, { uz: "Model — Arxiv (ma'lumot)", ru: 'Model — Архив (данные)' }, { uz: "Ma'lumotlar bazasi", ru: 'База данных' }, { uz: 'Controller — Dispetcher', ru: 'Controller — Диспетчер' }], correct: 3 },
+  { q: { uz: "MVC'da foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть MVC видит пользователь?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — слой данных' }, { uz: 'Hech qaysi qism mos emas', ru: 'Ни одна часть не подходит' }], correct: 0 },
+  { q: { uz: "Ma'lumot va uning qoidalari bilan MVC'ning qaysi qismi ishlaydi?", ru: 'Какая часть MVC работает с данными и их правилами?' }, opts: [{ uz: "View — ma'lumotni ko'rsatadi", ru: 'View — показывает данные' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — so'rovni yo'naltiradi", ru: 'Controller — направляет запрос' }, { uz: "MVC'dan butunlay tashqarida", ru: 'Полностью вне MVC' }], correct: 1 },
+  { q: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism qaysi?", ru: 'Какая часть принимает запрос и направляет работу?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: 'Baza — PostgreSQL', ru: 'База — PostgreSQL' }], correct: 2 },
+  { q: { uz: "«Hamma asosiy qism bitta ilovada» — bu qaysi usul?", ru: '«Все основные части в одном приложении» — какой это способ?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'MVC', ru: 'Serverless' }, { uz: 'Frontend', ru: 'Peer-to-peer' }, { uz: 'Monolit', ru: 'Монолит' }], correct: 3 },
+  { q: { uz: 'Alohida ishlaydigan va alohida joylashtiriladigan bir nechta xizmat — bu?', ru: 'Несколько сервисов, которые работают и развёртываются отдельно, — это?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'Monolit', ru: 'Монолит' }, { uz: 'MVC', ru: 'MVC' }, { uz: 'Frontend', ru: 'Frontend' }], correct: 0 },
+  { q: { uz: "Kichik yangi loyiha, jamoa kichik. Ko'pincha nima qulay?", ru: 'Новый небольшой проект, команда маленькая. Что чаще удобнее?' }, opts: [{ uz: 'Mikroservis — zamonaviyroq', ru: 'Микросервисы — современнее' }, { uz: 'Monolit — soddadan boshlang', ru: 'Монолит — начните с простого' }, { uz: 'Ikkalasini birga ishlatish', ru: 'Использовать оба сразу' }, { uz: 'Hech qaysi usul kerak emas', ru: 'Никакой способ не нужен' }], correct: 1 },
+  { q: { uz: "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, opts: [{ uz: 'Model', ru: 'Сразу в Model' }, { uz: 'View', ru: 'Сразу во View' }, { uz: 'Controller', ru: 'В Controller (центр)' }, { uz: "Ma'lumotlar bazasi", ru: 'Сразу в базу' }], correct: 2 },
+  { q: { uz: "Yuk ko'p tushgan xizmatga yana bir nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление ещё одной копии сервису с большой нагрузкой?' }, opts: [{ uz: 'Qayta yozish', ru: 'Переписывание' }, { uz: 'Joylashtirish (deploy)', ru: 'Развёртывание (deploy)' }, { uz: 'Xatoni tuzatish', ru: 'Исправление ошибки' }, { uz: 'Miqyoslash (scaling)', ru: 'Масштабирование (scaling)' }], correct: 3 },
+  { q: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, opts: [{ uz: "Muammoning sinab ko'rilgan yechim usuli", ru: 'Проверенный способ решения задачи' }, { uz: 'Yangi bir dasturlash tili nomi', ru: 'Название нового языка программирования' }, { uz: "Ma'lumotlar bazasining bir turi", ru: 'Разновидность базы данных' }, { uz: "Tayyor ko'chirib olinadigan kod", ru: 'Готовый код, который можно скопировать' }], correct: 0 },
+  { q: { uz: 'PostgreSQL MVC tuzilmasida nima qiladi?', ru: 'Что делает PostgreSQL в структуре MVC?' }, opts: [{ uz: "Controller'ning o'zi — so'rovni boshqaradi", ru: 'Это сам Controller — управляет запросом' }, { uz: "Ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'Хранит данные — Model с ними работает' }, { uz: "View'ning o'zi — sahifani ko'rsatadi", ru: 'Это сам View — показывает страницу' }, { uz: "Model'ning o'zi — boshqa narsa kerak emas", ru: 'Это сам Model — больше ничего не нужно' }], correct: 1 },
+  { q: { uz: 'Mikroservisning asosiy foydasi nimada?', ru: 'В чём главная польза микросервисов?' }, opts: [{ uz: 'Soddalik va arzonlik', ru: 'Простота и дешевизна' }, { uz: 'Hammasi bitta katta faylda', ru: 'Всё в одном большом файле' }, { uz: 'Qismlarni alohida kuchaytirish', ru: 'Усиливать части по отдельности' }, { uz: 'Kod yozish shart emasligi', ru: 'Что код писать не нужно' }], correct: 2 },
+  { q: { uz: "Nest'dagi controller MVC'da qaysi qism?", ru: 'Контроллер в Nest — какая это часть MVC?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Baza — ma'lumot saqlash", ru: 'База — хранение данных' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1491,7 +1491,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (arxitektura): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['MVC', '🏙️', 'Model', 'View', 'Controller', 'monolit', 'mikroservis', '🧩', 'scaling', 'Arxiv'];
+    const TOK = ['MVC', '⚙️', 'Model', 'View', 'Controller', 'monolit', 'mikroservis', '🧩', 'scaling', 'PostgreSQL'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2067,29 +2067,29 @@ function Flashcards({ cards }) {
 const ScreenCityPractice = (props) => (
   <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · Loyiha', ru: 'Практика · Проект' }} place={{ uz: 'AI yordamchida', ru: 'с ИИ-помощником' }}
     title={{ uz: "O'z tizimingizni pattern bilan ta'riflang", ru: 'Опишите свою систему через паттерн' }}
-    task={{ uz: "O'z loyihangizni (yoki o'tgan darsdagi mini-do'konni) arxitektura tili bilan bir jumlada ta'riflang. Hali kod yozmaysiz — faqat rejalashtirasiz.", ru: 'Опишите свой проект (или мини-магазин с прошлого урока) одной фразой на языке архитектуры. Код пока не пишете — только планируете.' }}
+    task={{ uz: <>O'z loyihangizni (yoki mini-do'konni) arxitektura tili bilan bir jumlada ta'riflang. Hali kod yozmaysiz — faqat rejalashtirasiz.<br /><br />💡 <b>Esda tuting:</b> bu yerda <b>ikki xil savol</b> bor. MVC — ilova ichidagi tartib. Monolit yoki mikroservis — tizim nechta ilovaga bo'lingani.</>, ru: <>Опишите свой проект (или мини-магазин) одной фразой на языке архитектуры. Код пока не пишете — только планируете.<br /><br />💡 <b>Запомните:</b> здесь <b>два разных вопроса</b>. MVC — порядок внутри приложения. Монолит или микросервисы — на сколько приложений разделена система.</> }}
     checklist={[
-      { uz: 'Loyihangizni bir jumlada nomlang: `MVC monolit` (yoki mikroservis)', ru: 'Назовите проект одной фразой: `MVC-монолит` (или микросервисы)' },
-      { uz: "Komponentlarni ajrating: qaysi qism `View` (Peshtoq), qaysi `Controller` (Dispetcher), qaysi `Model` (Arxiv)", ru: 'Разложите компоненты: какая часть `View` (Витрина), какая `Controller` (Диспетчер), какая `Model` (Архив)' },
-      { uz: "Qaror qiling: loyihangizga `monolit` yetadimi yoki `mikroservis` kerakmi — va nega?", ru: 'Решите: вашему проекту хватит `монолита` или нужны `микросервисы` — и почему?' },
-      { uz: "Bir band javob yozing: «Mening tizimim — ... chunki ...»", ru: 'Напишите ответ одним абзацем: «Моя система — … потому что …»' },
+      { uz: "1-savol: tizim qanday bo'lingan — bitta ilova (`monolit`) yoki alohida xizmatlar (`mikroservis`)?", ru: '1-й вопрос: как разделена система — одно приложение (`монолит`) или отдельные сервисы (`микросервисы`)?' },
+      { uz: "2-savol: ilova ichi qanday tartiblangan — qaysi kod `View`, qaysi `Controller`, qaysi `Model`?", ru: '2-й вопрос: как устроено приложение внутри — какой код `View`, какой `Controller`, какой `Model`?' },
+      { uz: "Nega shu tanlov: loyihangizga monolit yetadimi yoki mikroservis kerakmi?", ru: 'Почему такой выбор: вашему проекту хватит монолита или нужны микросервисы?' },
+      { uz: "Bir band javob yozing: «Mening tizimim — …, chunki …»", ru: 'Напишите ответ одним абзацем: «Моя система — …, потому что …»' },
     ]} />
 );
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (arxitektura tili)
 const CITY_FLASHCARDS = [
-  { front: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, back: { uz: 'Tayyor andoza', ru: 'Готовый образец' }, note: { uz: "Ko'p marta sinab ko'rilgan kod tartibi", ru: 'Многократно проверенный порядок кода' } },
-  { front: { uz: "MVC qaysi uchta so'zdan tuzilgan?", ru: 'Из каких трёх слов состоит MVC?' }, back: 'Model, View, Controller', note: { uz: 'Uchta rol: Arxiv, Peshtoq, Dispetcher', ru: 'Три роли: Архив, Витрина, Диспетчер' } },
-  { front: { uz: "Foydalanuvchi ko'radigan qism qaysi MVC roli?", ru: 'Какая роль MVC отвечает за то, что видит пользователь?' }, back: 'View', note: { uz: 'Peshtoq — sahifa, tugmalar, rasmlar', ru: 'Витрина — страница, кнопки, картинки' } },
-  { front: { uz: "So'rovni qabul qilib yo'naltiradigan rol qaysi?", ru: 'Какая роль принимает запрос и направляет его?' }, back: 'Controller', note: { uz: 'Dispetcher — markazda turadi', ru: 'Диспетчер — стоит в центре' } },
-  { front: { uz: "Ma'lumot va qoidalar qaysi rolda saqlanadi?", ru: 'В какой роли хранятся данные и правила?' }, back: 'Model', note: { uz: 'Arxiv — masalan PostgreSQL bazasi', ru: 'Архив — например база PostgreSQL' } },
-  { front: { uz: "MVC'da so'rov avval qayerga boradi?", ru: 'Куда в MVC запрос попадает сначала?' }, back: { uz: "Controller'ga", ru: 'В Controller' }, note: { uz: "Keyin Modeldan ma'lumot olib, Viewda ko'rsatadi", ru: 'Потом берёт данные из Model и показывает во View' } },
-  { front: { uz: 'View qaror qiladimi?', ru: 'Принимает ли View решения?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "U faqat tayyor natijani ko'rsatadi", ru: 'Он только показывает готовый результат' } },
-  { front: { uz: 'Hammasi bitta binodagi ilova qanday ataladi?', ru: 'Как называется приложение, где всё в одном здании?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: 'Bitta katta ilova — sodda, tez va arzon', ru: 'Одно большое приложение — просто, быстро и дёшево' } },
-  { front: { uz: "Ko'p mustaqil kichik xizmatdan tuzilgan tizim qanday ataladi?", ru: 'Как называется система из многих самостоятельных маленьких сервисов?' }, back: { uz: 'Mikroservis', ru: 'Микросервисы' }, note: { uz: 'Har xizmat alohida ishlaydi va alohida joylashtiriladi', ru: 'Каждый сервис работает и деплоится отдельно' } },
-  { front: { uz: "Yangi kichik loyihaga qaysi pattern to'g'ri keladi?", ru: 'Какой паттерн подходит новому небольшому проекту?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: "Soddadan boshlang — keyin bo'lish mumkin", ru: 'Начните с простого — разделить можно потом' } },
-  { front: { uz: "Band xizmatga qo'shimcha nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление загруженному сервису ещё одной копии?' }, back: 'Scaling', note: { uz: "Miqyoslash — filial ochishga o'xshaydi", ru: 'Масштабирование — похоже на открытие филиала' } },
-  { front: { uz: "Mikroservisda bitta xizmat xato bersa nima bo'ladi?", ru: 'Что будет, если в микросервисах один сервис даст ошибку?' }, back: { uz: "Faqat o'sha xizmat to'xtaydi", ru: 'Остановится только этот сервис' }, note: { uz: 'Qolgan xizmatlar ishlashda davom etadi', ru: 'Остальные сервисы продолжают работать' } },
+  { front: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, back: { uz: "Sinab ko'rilgan yechim usuli", ru: 'Проверенный способ решения' }, note: { uz: "Ko'p uchraydigan muammo uchun; tayyor kod emas", ru: 'Для частой задачи; не готовый код' } },
+  { front: { uz: "MVC qaysi uchta so'zdan tuzilgan?", ru: 'Из каких трёх слов состоит MVC?' }, back: 'Model, View, Controller', note: { uz: "Kodni vazifasi bo'yicha 3 qismga ajratish", ru: 'Разделить код на 3 части по задачам' } },
+  { front: { uz: "Foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть видит пользователь?' }, back: 'View', note: { uz: 'Sahifa, tugmalar, rasmlar', ru: 'Страница, кнопки, картинки' } },
+  { front: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism?", ru: 'Какая часть принимает запрос и направляет работу?' }, back: 'Controller', note: { uz: "Nest'dagi controllerlar shu ishni qiladi", ru: 'Контроллеры в Nest делают именно это' } },
+  { front: { uz: "Ma'lumot va qoidalar bilan qaysi qism ishlaydi?", ru: 'Какая часть работает с данными и правилами?' }, back: 'Model', note: { uz: "Ma'lumotni esa baza saqlaydi", ru: 'А хранит данные база' } },
+  { front: { uz: "PostgreSQL — Model'ning o'zimi?", ru: 'PostgreSQL — это сам Model?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'Baza saqlaydi, Model u bilan ishlaydi', ru: 'База хранит, Model с ней работает' } },
+  { front: { uz: "MVC'da so'rovni birinchi kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, back: { uz: 'Controller', ru: 'В Controller' }, note: { uz: "Keyin Model'dan ma'lumot olib, View'ga beradi", ru: 'Потом берёт данные из Model и передаёт во View' } },
+  { front: { uz: 'MVC va monolit/mikroservis — bitta savolmi?', ru: 'MVC и монолит/микросервисы — это один вопрос?' }, back: { uz: "Yo'q, ikki xil", ru: 'Нет, два разных' }, note: { uz: "MVC — ilova ichi; monolit/mikroservis — tizim qanday bo'lingani", ru: 'MVC — внутри приложения; монолит/микросервисы — как разделена система' } },
+  { front: { uz: "Hamma asosiy qism bitta ilovada — bu nima?", ru: 'Все основные части в одном приложении — что это?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: 'Sodda, tez boshlanadi', ru: 'Просто, быстро стартует' } },
+  { front: { uz: 'Bir nechta alohida xizmatdan tuzilgan tizim?', ru: 'Система из нескольких отдельных сервисов?' }, back: { uz: 'Mikroservis', ru: 'Микросервисы' }, note: { uz: 'Har xizmat alohida ishlaydi va joylashtiriladi', ru: 'Каждый сервис работает и развёртывается отдельно' } },
+  { front: { uz: "Yangi kichik loyiha uchun ko'pincha nima qulay?", ru: 'Что чаще удобнее для нового небольшого проекта?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: "Soddadan boshlang — kerak bo'lsa keyin bo'linadi", ru: 'Начните с простого — если понадобится, разделите потом' } },
+  { front: { uz: "Yuk ko'payganda xizmat imkoniyatini oshirish nima deyiladi?", ru: 'Как называется увеличение возможностей сервиса, когда растёт нагрузка?' }, back: { uz: 'Miqyoslash (scaling)', ru: 'Масштабирование (scaling)' }, note: { uz: "Masalan, band xizmatga yana bir nusxa qo'shish", ru: 'Например, добавить ещё одну копию загруженному сервису' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2125,16 +2125,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "Pattern — kodni tashkil qilishning sinab ko'rilgan andozasi", ru: 'Паттерн — проверенный образец организации кода' },
-    { uz: 'MVC: Model (Arxiv) + View (Peshtoq) + Controller (Dispetcher, markaz)', ru: 'MVC: Model (Архив) + View (Витрина) + Controller (Диспетчер, центр)' },
-    { uz: 'Sizning tizimingiz: Front=View, Back=Controller, DB=Model', ru: 'Ваша система: Front=View, Back=Controller, DB=Model' },
-    { uz: "Monolit — bitta katta ilova (soddadan boshlang); mikroservis — ko'p mustaqil xizmat (katta ko'lam)", ru: 'Монолит — одно большое приложение (начните с простого); микросервисы — много самостоятельных сервисов (большой масштаб)' },
-    { uz: "So'rov oqimi: So'rov → Controller → Model → View → Foydalanuvchiga", ru: 'Поток запроса: Запрос → Controller → Model → View → Пользователю' }
+    { uz: "Pattern — ko'p uchraydigan muammoning sinab ko'rilgan yechim usuli", ru: 'Паттерн — проверенный способ решения частой задачи' },
+    { uz: "MVC: View — ko'rsatadi, Controller — yo'naltiradi, Model — ma'lumot va qoidalar bilan ishlaydi", ru: 'MVC: View — показывает, Controller — направляет, Model — работает с данными и правилами' },
+    { uz: "Baza (PostgreSQL) ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'База (PostgreSQL) хранит данные — Model с ними работает' },
+    { uz: "MVC — ilova ichi; monolit yoki mikroservis — tizim qanday bo'lingani", ru: 'MVC — внутри приложения; монолит или микросервисы — как разделена система' },
+    { uz: "Kichik loyiha — ko'pincha monolit; tizim va jamoa kattalashsa, ayrim qismlar alohida xizmatga ajratiladi", ru: 'Маленький проект — чаще монолит; когда система и команда растут, отдельные части выносят в отдельные сервисы' }
   ];
   const HOMEWORK = [
-    { b: { uz: "Ta'riflang", ru: 'Опишите' }, t: { uz: "— o'z loyihangizni bir jumlada: qaysi pattern (MVC?), monolitmi yoki mikroservis?", ru: '— свой проект одной фразой: какой паттерн (MVC?), монолит или микросервисы?' } },
-    { b: { uz: 'Moslang', ru: 'Сопоставьте' }, t: { uz: '— komponentlaringizni Model / View / Controller rollariga ajrating', ru: '— разложите свои компоненты по ролям Model / View / Controller' } },
-    { b: { uz: 'Qaror', ru: 'Решите' }, t: { uz: '— loyihangizga monolit yetadimi yoki mikroservis kerakmi? Nega?', ru: '— вашему проекту хватит монолита или нужны микросервисы? Почему?' } }
+    { b: { uz: "Ta'riflang", ru: 'Опишите' }, t: { uz: "— loyihangiz monolitmi yoki mikroservismi? Ichi MVC bo'yicha qanday tartiblangan?", ru: '— ваш проект монолит или микросервисы? Как он устроен внутри по MVC?' } },
+    { b: { uz: 'Moslang', ru: 'Сопоставьте' }, t: { uz: "— kod bo'laklaringizni View / Controller / Model'ga ajrating", ru: '— разложите свои фрагменты кода по View / Controller / Model' } },
+    { b: { uz: 'Qaror', ru: 'Решите' }, t: { uz: '— loyihangizga monolit yetadimi? Nega?', ru: '— хватит ли вашему проекту монолита? Почему?' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2158,7 +2158,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — AI-agent: u ham tizimning bir komponenti. Arxitekturada qayerda turadi?', ru: '🚀 Следующий урок — ИИ-агент: он тоже компонент системы. Где он стоит в архитектуре?' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — AI-agent: u ham tizimning bir qismi. Arxitekturada qayerda turadi?', ru: '🚀 Следующий урок — ИИ-агент: он тоже часть системы. Где он стоит в архитектуре?' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

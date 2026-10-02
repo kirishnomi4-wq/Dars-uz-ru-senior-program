@@ -4,12 +4,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // 6-MODUL (Tizim arxitekturasi) · P2 (LOYIHA KUNI) — PRAKTIKA: MOBIL ILOVA — PLATFORM STANDARD v18 (AUDIOSIZ)
 // G'oya: web-do'konning MOBIL versiyasini qurish (React Native) — O'SHA backendga ulanadi (bitta tizim).
-//        Loyiha kuni: T6/T7 da sintaksisni o'rgandingiz — bugun QURASIZ, telefonda TEST qilasiz, Expo Go bilan DEPLOY qilasiz.
-// 🎭 METAFORA — «GASTROL / PREMYERA KUNI»: butun web-shouni mobil-sahnaga chiqarish.
-//   port = web bo'lakni native sahnaga ko'chirish · repetitsiya = telefonda test (bug→tuzat) · premyera = Expo Go deploy (do'st telefonida ochiladi).
-//   «O'sha backend — yangi eshik» = o'sha orqa sahna, yangi sahna eshigi.
-// INTERAKTIV BEAT'lar: s2 «o'sha backend — yangi eshik» · s3 4 ekran = 4 sahna · s5-6 port + ritm ·
-//   s11 bug→tuzat = repetitsiya · s13 Expo Go QR → premyera · FINAL: 4 sahnani to'g'ri tartibda yig'ish (DragDropOrder).
+//        Loyiha kuni: 9 va 10-darslarda sintaksisni o'rgandingiz — bugun qurasiz, telefonda sinaysiz, Expo Go bilan ulashasiz.
+// MATN-MANBA: feedback/F-0929-QA-6modul/11-MobileAppPractice-v2.md (MD-birinchi, 2026-09-29) — metafora yo'q.
+// INTERAKTIV BEAT'lar: s2 tayyor backend — yangi kirish yo'li · s3 4 ekran (Ro'yxat/Tafsilot/Savat/Buyurtma) · s5-6 ritm + quruvchi ·
+//   s11 xato → tuzatish · s13 Expo Go QR → ulashish (App Store emas) · FINAL: 4 ekranni xarid oqimi tartibida yig'ish (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -71,7 +69,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 const LESSON_META = { lessonId: 'mobile-practice-06-11-v18', lessonTitle: { uz: 'Praktika: mobil ilova (mini-do\'kon)', ru: 'Практика: мобильное приложение' } };
-// 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → case(premyera) → rule → final(DragDrop) → podium → flashcard → summary
+// 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → case(ulashish) → rule → final(DragDrop) → podium → flashcard → summary
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
@@ -109,35 +107,35 @@ const INLINE_KEYS = { s4: 0, s5b: 2, s9: 1, s12: 3, s15: 0 };
 // 📖 RECAPS — har SCORED MC test uchun 3 karta (kalit = ekran INDEKSI: 4, 6, 10, 13). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: { uz: "O'sha backend — bitta tizim", ru: 'Тот же бэкенд — одна система' },
+    title: { uz: "Tayyor backend — bitta tizim", ru: 'Готовый бэкенд — одна система' },
     cards: [
-      { ic: "🔌", h: { uz: "Mobil noldan qurmaydi", ru: 'Мобильное не строит с нуля' }, body: { uz: <>Mobil ilova yangi server yozmaydi — <b>o'sha Node.js + PostgreSQL</b> backendga ulanadi.</>, ru: <>Мобильное приложение не пишет новый сервер — оно подключается к <b>тому же Node.js + PostgreSQL</b> бэкенду.</> } },
-      { ic: "📥", h: { uz: "Mahsulot fetch bilan keladi", ru: 'Товары приходят через fetch' }, body: { uz: <>Ilova mahsulotlarni <b>GET /products</b> orqali backenddan oladi, ichiga qo'lda yozmaydi.</>, ru: <>Приложение берёт товары с бэкенда через <b>GET /products</b>, а не вписывает их внутрь вручную.</> } },
-      { ic: "🚪", h: { uz: "Ko'p eshik, bitta tizim", ru: 'Много дверей, одна система' }, body: { uz: <>Web, bot, mobil — hammasi o'sha bazadan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной и той же базой.</> }, ask: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' } },
+      { ic: "🔌", h: { uz: "Yangi server yo'q", ru: 'Нового сервера нет' }, body: { uz: <>Mobil ilova yangi server yozmaydi — backend darslaridagi <b>Node.js + PostgreSQL</b>'ga ulanadi.</>, ru: <>Мобильное приложение не пишет новый сервер — оно подключается к <b>Node.js + PostgreSQL</b> с уроков по бэкенду.</> } },
+      { ic: "📥", h: { uz: "Mahsulot fetch bilan keladi", ru: 'Товары приходят через fetch' }, body: { uz: <>Mahsulotlar <b>GET /products</b> orqali keladi, qo'lda yozilmaydi.</>, ru: <>Товары приходят через <b>GET /products</b>, их не вписывают вручную.</> } },
+      { ic: "🔗", h: { uz: "Bitta baza", ru: 'Одна база' }, body: { uz: <>Web, bot, mobil — bitta bazadan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной базой.</> }, ask: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' } },
     ]
   },
   6: {
-    title: { uz: "Direktor va ishchi", ru: 'Режиссёр и исполнитель' },
+    title: { uz: "Sizning vazifangiz", ru: 'Ваша задача' },
     cards: [
-      { ic: "🎬", h: { uz: "Siz — direktor", ru: 'Вы — режиссёр' }, body: { uz: <>Siz aniq buyurasiz, <b>AI kod yozadi</b>, siz uni o'qib tushunasiz.</>, ru: <>Вы даёте точную команду, <b>ИИ пишет код</b>, а вы читаете и понимаете его.</> } },
-      { ic: "📱", h: { uz: "Telefonda test", ru: 'Проверка на телефоне' }, body: { uz: <>«Ishladi» degani — Expo Go'da <b>o'z ko'zingiz</b> bilan ko'rdingiz, degani.</>, ru: <>«Заработало» значит, что вы увидели это в Expo Go <b>своими глазами</b>.</> } },
-      { ic: "🔁", h: { uz: "Sikl takrorlanadi", ru: 'Цикл повторяется' }, body: { uz: <>Prompt → kod → telefonda test → tuzat.</>, ru: <>Промпт → код → проверка на телефоне → правка.</> }, ask: { uz: "Loyiha kunida sizning rolingiz nima?", ru: 'Какая у вас роль в день проекта?' } },
+      { ic: "📝", h: { uz: "Aniq topshiriq", ru: 'Точное задание' }, body: { uz: <>Aniq topshiriq berasiz — <b>AI kod taklif qiladi</b>.</>, ru: <>Вы даёте точное задание — <b>ИИ предлагает код</b>.</> } },
+      { ic: "🔍", h: { uz: "Kodni o'qiysiz", ru: 'Вы читаете код' }, body: { uz: <>Kodni <b>o'qib tushunasiz</b> va loyihaga qo'shasiz.</>, ru: <>Вы <b>читаете и понимаете</b> код и добавляете его в проект.</> } },
+      { ic: "🔁", h: { uz: "Telefonda sinaysiz", ru: 'Проверяете на телефоне' }, body: { uz: <>Telefonda sinaysiz — sikl: topshiriq → kod → sinov → tuzatish.</>, ru: <>Проверяете на телефоне — цикл: задание → код → проверка → исправление.</> }, ask: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: 'Какая у вас задача в день проекта?' } },
     ]
   },
   10: {
-    title: { uz: "Buyurtma — o'sha pipeline", ru: 'Заказ — тот же конвейер' },
+    title: { uz: "Buyurtma — o'sha oqim", ru: 'Заказ — тот же путь' },
     cards: [
-      { ic: "🟢", h: { uz: "POST /orders", ru: 'POST /orders' }, body: { uz: <>«Buyurtma qil» bosilganda mobil ilova <b>o'sha backendga</b> POST /orders yuboradi.</>, ru: <>При нажатии «Заказать» мобильное приложение шлёт POST /orders <b>на тот же бэкенд</b>.</> } },
+      { ic: "🟢", h: { uz: "POST /orders", ru: 'POST /orders' }, body: { uz: <>«Buyurtma qil» bosilganda mobil ilova backend'ga <b>POST /orders</b> yuboradi.</>, ru: <>При нажатии «Заказать» мобильное приложение отправляет на бэкенд <b>POST /orders</b>.</> } },
       { ic: "🐘", h: { uz: "Baza saqlaydi", ru: 'База сохраняет' }, body: { uz: <>Buyurtma <b>PostgreSQL</b>'ga yoziladi — web bilan bir xil.</>, ru: <>Заказ записывается в <b>PostgreSQL</b> — так же, как из веба.</> } },
-      { ic: "✈️", h: { uz: "Bot xabar beradi", ru: 'Бот сообщает' }, body: { uz: <>Telegram bot adminni xabardor qiladi.</>, ru: <>Telegram-бот сообщает администратору.</> }, ask: { uz: "Mobil «Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном?' } },
+      { ic: "✈️", h: { uz: "Bot xabar beradi", ru: 'Бот сообщает' }, body: { uz: <>Telegram bot adminni xabardor qiladi.</>, ru: <>Telegram-бот сообщает администратору.</> }, ask: { uz: "«Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном?' } },
     ]
   },
   13: {
-    title: { uz: "Telefonda test = repetitsiya", ru: 'Проверка на телефоне = репетиция' },
+    title: { uz: "Sinov — kod va telefon", ru: 'Проверка — код и телефон' },
     cards: [
-      { ic: "📱", h: { uz: "Haqiqiy qurilma", ru: 'Настоящее устройство' }, body: { uz: <>Expo Go bilan <b>real telefonda</b> ochib, har ekran va oqimni bosib sinaymiz.</>, ru: <>Открываем через Expo Go <b>на реальном телефоне</b> и прощёлкиваем каждый экран и весь путь.</> } },
-      { ic: "🐞", h: { uz: "Real bug'lar", ru: 'Настоящие баги' }, body: { uz: <>Emulyator emas — real qurilma rost bug'larni ko'rsatadi (badge, tugma joyi, sekinlik).</>, ru: <>Не эмулятор — именно реальное устройство показывает настоящие баги (счётчик, место кнопки, тормоза).</> } },
-      { ic: "🔧", h: { uz: "Aniq tuzatish", ru: 'Точечная правка' }, body: { uz: <>Bug topilsa — aniq tuzatish prompti, butun ilovani qayta yozmaysiz.</>, ru: <>Нашли баг — точный промпт на правку, всё приложение переписывать не нужно.</> }, ask: { uz: "Mobil ilovani qanday to'g'ri test qilamiz?", ru: 'Как правильно тестировать мобильное приложение?' } },
+      { ic: "👀", h: { uz: "Avval kod", ru: 'Сначала код' }, body: { uz: <>Avval <b>kodni o'qiysiz</b>.</>, ru: <>Сначала вы <b>читаете код</b>.</> } },
+      { ic: "📱", h: { uz: "Keyin telefon", ru: 'Потом телефон' }, body: { uz: <>Keyin Expo Go bilan <b>telefonda</b> har ekran va oqimni bosib sinaysiz.</>, ru: <>Потом через Expo Go проходите <b>на телефоне</b> каждый экран и весь путь.</> } },
+      { ic: "🔧", h: { uz: "Aniq tuzatish", ru: 'Точечная правка' }, body: { uz: <>Xato topilsa — aniq tuzatish topshirig'i, butun ilova qayta yozilmaydi.</>, ru: <>Нашли ошибку — точное задание на исправление, всё приложение не переписывают.</> }, ask: { uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' } },
     ]
   } };
 // ===== IKONKALAR =====
@@ -167,10 +165,10 @@ const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + tr({ 
 
 // Mobil ilova quruvchi qadamlari (s6)
 const BUILD_STEPS = [
-  { id: 'list', label: { uz: 'List ekran', ru: 'Экран List' }, prompt: { uz: 'Mahsulotlarni o\'sha backenddan fetch qilib FlatList\'da ko\'rsat', ru: 'Забери товары с того же бэкенда через fetch и покажи их во FlatList' }, code: 'fetch(API + "/products") → <FlatList data={products} />' },
-  { id: 'detail', label: { uz: 'Detail + navigatsiya', ru: 'Detail + навигация' }, prompt: { uz: 'Mahsulot bosilganda Detail ekranga o\'t (Stack Navigator)', ru: 'По нажатию на товар переходи на экран Detail (Stack Navigator)' }, code: 'navigation.navigate("Detail", { id })' },
-  { id: 'cart', label: { uz: 'Savat', ru: 'Корзина' }, prompt: { uz: 'Savatga qo\'shish tugmasi + yuqorida savat soni (badge)', ru: 'Кнопка «в корзину» + счётчик корзины сверху (badge)' }, code: 'setCart([...cart, product]) · badge = cart.length' },
-  { id: 'checkout', label: { uz: 'Checkout', ru: 'Checkout' }, prompt: { uz: 'Buyurtma qil tugmasi → o\'sha backendga POST /orders', ru: 'Кнопка «Заказать» → POST /orders на тот же бэкенд' }, code: 'fetch(API + "/orders", { method: "POST", body })' }
+  { id: 'list', label: { uz: "Ro'yxat ekrani", ru: 'Экран Список' }, prompt: { uz: "Mahsulotlarni backend'dan fetch qilib FlatList'da ko'rsat", ru: 'Получи товары с бэкенда через fetch и покажи их во FlatList' }, code: 'fetch(BACKEND + "/products") → <FlatList data={products} />' },
+  { id: 'detail', label: { uz: 'Tafsilot + navigatsiya', ru: 'Детали + навигация' }, prompt: { uz: "Mahsulot bosilganda Tafsilot ekraniga o't", ru: 'По нажатию на товар переходи на экран Детали' }, code: 'navigation.navigate("Detail", { id })' },
+  { id: 'cart', label: { uz: 'Savat', ru: 'Корзина' }, prompt: { uz: "Savatga qo'shish tugmasi + yuqorida savat soni belgisi", ru: 'Кнопка добавления в корзину + счётчик корзины сверху' }, code: 'setCart([...cart, product]) · soni = cart.length' },
+  { id: 'checkout', label: { uz: 'Buyurtma', ru: 'Заказ' }, prompt: { uz: "Buyurtma qil tugmasi → backend'ga POST /orders", ru: 'Кнопка заказа → POST /orders на бэкенд' }, code: 'fetch(BACKEND + "/orders", { method: "POST", body })' }
 ];
 
 // Checkout oqimi (s8)
@@ -184,18 +182,18 @@ const CHECKOUT_FLOW = [
 
 // Telefonda test → bug → tuzatish (s11)
 const BUG_STEPS = [
-  { k: 'test', tag: { uz: '1 · TELEFONDA TEST', ru: '1 · ПРОВЕРКА НА ТЕЛЕФОНЕ' }, color: T.honey, text: { uz: 'Expo Go\'da savatga 2 mahsulot qo\'shasiz... lekin yuqoridagi badge hali «1» ko\'rsatyapti! 🐞', ru: 'В Expo Go вы кладёте в корзину 2 товара… а счётчик сверху всё ещё показывает «1»! 🐞' }, note: { uz: 'Haqiqiy telefonda sinab ko\'rmasangiz, bu bug\'ni ko\'rmaysiz.', ru: 'Не проверите на настоящем телефоне — этот баг не увидите.' } },
-  { k: 'why', tag: { uz: '2 · SABAB', ru: '2 · ПРИЧИНА' }, color: T.accent, text: { uz: 'Savat soni (state) to\'g\'ri yangilanmayapti — kod eski qiymatdan foydalanyapti.', ru: 'Счётчик корзины (state) обновляется неверно — код берёт старое значение.' }, note: { uz: 'Avval kodni o\'qib, sabab qayerda — tushunasiz.', ru: 'Сначала читаете код и понимаете, где причина.' } },
-  { k: 'prompt', tag: { uz: '3 · TUZATISH PROMPTI', ru: '3 · ПРОМПТ НА ПРАВКУ' }, color: T.grape, text: { uz: '«Savatga qo\'shganda badge\'ni cart.length bilan bog\'la, har qo\'shilganda yangilansin.»', ru: '«Свяжи счётчик с cart.length: при каждом добавлении в корзину он должен обновляться.»' }, note: { uz: 'Aniq tuzatish — butun ilovani qayta yozdirmaysiz.', ru: 'Точечная правка — всё приложение переписывать не заставляете.' } },
-  { k: 'done', tag: { uz: '4 · QAYTA TEST', ru: '4 · ПОВТОРНАЯ ПРОВЕРКА' }, color: T.success, text: { uz: '✅ Endi badge «2» ko\'rsatadi. Savat to\'g\'ri ishlaydi!', ru: '✅ Теперь счётчик показывает «2». Корзина работает верно!' }, note: { uz: 'Sikl: test → bug → tuzat → qayta test. Dovodka shu.', ru: 'Цикл: проверка → баг → правка → снова проверка. Это и есть доводка.' } }
+  { k: 'test', tag: { uz: '1 · TELEFONDA SINOV', ru: '1 · ПРОВЕРКА НА ТЕЛЕФОНЕ' }, color: T.honey, text: { uz: "Savatga 2 mahsulot qo'shasiz… lekin yuqoridagi savat soni hali «1» ko'rsatyapti! 🐞", ru: 'Вы добавляете в корзину 2 товара… а счётчик корзины сверху всё ещё показывает «1»! 🐞' }, note: { uz: "Sinab ko'rmasangiz, bu xatoni ko'rmaysiz.", ru: 'Не проверите — эту ошибку не увидите.' } },
+  { k: 'why', tag: { uz: '2 · SABAB', ru: '2 · ПРИЧИНА' }, color: T.accent, text: { uz: "Savat soni (holat) to'g'ri yangilanmayapti — kod eski qiymatdan foydalanyapti.", ru: 'Счётчик корзины (состояние) обновляется неверно — код берёт старое значение.' }, note: { uz: "Avval kodni o'qib, sabab qayerda ekanini tushunasiz.", ru: 'Сначала читаете код и понимаете, где причина.' } },
+  { k: 'prompt', tag: { uz: "3 · TUZATISH TOPSHIRIG'I", ru: '3 · ЗАДАНИЕ НА ИСПРАВЛЕНИЕ' }, color: T.grape, text: { uz: "«Savat soni belgisini cart.length bilan bog'la — har qo'shilganda yangilansin.»", ru: '«Свяжи счётчик корзины с cart.length — пусть обновляется при каждом добавлении.»' }, note: { uz: 'Aniq tuzatish — butun ilovani qayta yozdirmaysiz.', ru: 'Точечная правка — всё приложение переписывать не заставляете.' } },
+  { k: 'done', tag: { uz: '4 · QAYTA SINOV', ru: '4 · ПОВТОРНАЯ ПРОВЕРКА' }, color: T.success, text: { uz: "✅ Endi «2» ko'rsatadi.", ru: '✅ Теперь показывает «2».' }, note: { uz: 'Sikl: sinov → xato → tuzatish → qayta sinov.', ru: 'Цикл: проверка → ошибка → исправление → повторная проверка.' } }
 ];
 
 // To'liq hikoya (s13 takeaway)
 const CASE_AC = [
-  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: 'List → Detail → Savat → Checkout — har birini prompt bilan qurdi', ru: 'List → Detail → Корзина → Checkout — каждый экран собрал промптом' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
-  { tag: { uz: 'SAYQALLADI', ru: 'ОТПОЛИРОВАЛ' }, color: T.honey, text: { uz: 'StyleSheet bilan ranglar, bo\'shliq, tartib qo\'shdi', ru: 'Через StyleSheet добавил цвета, отступы, порядок' }, why: { uz: '«Ishlaydi» yetarli emas — mijoz ko\'radigan narsa chiroyli bo\'lsin.', ru: '«Работает» — мало: то, что видит клиент, должно быть красивым.' } },
-  { tag: { uz: 'TESTLADI', ru: 'ПРОТЕСТИРОВАЛ' }, color: T.blue, text: { uz: 'Expo Go\'da haqiqiy telefonda xarid qilib ko\'rdi, bug topdi', ru: 'В Expo Go на реальном телефоне сделал покупку и нашёл баг' }, why: { uz: 'Telefonda sinab, savat bug\'ini tutdi va tuzatdi.', ru: 'Проверил на телефоне, поймал баг корзины и починил его.' } },
-  { tag: { uz: 'DEPLOY', ru: 'ДЕПЛОЙ' }, color: T.success, text: { uz: 'Expo Go QR bilan ulashdi — do\'sti telefonida ishladi', ru: 'Поделился QR из Expo Go — у друга на телефоне заработало' }, why: { uz: 'Tayyor ilova boshqalarning qo\'lida. Bitta backend, ko\'p telefon.', ru: 'Готовое приложение уже в руках у других. Один бэкенд — много телефонов.' } }
+  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: "Ro'yxat → Tafsilot → Savat → Buyurtma, har birini AI yordamida", ru: 'Список → Детали → Корзина → Заказ, каждый — с помощью ИИ' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
+  { tag: { uz: 'SAYQALLADI', ru: 'ОТПОЛИРОВАЛ' }, color: T.honey, text: { uz: 'StyleSheet bilan', ru: 'Через StyleSheet' }, why: { uz: '«Ishlaydi» yetarli emas — mijoz ko\'radigan narsa chiroyli bo\'lsin.', ru: '«Работает» — мало: то, что видит клиент, должно быть красивым.' } },
+  { tag: { uz: 'SINADI', ru: 'ПРОВЕРИЛ' }, color: T.blue, text: { uz: "Expo Go'da telefonda xarid qilib ko'rdi, xato topib tuzatdi", ru: 'В Expo Go на телефоне сделал покупку, нашёл ошибку и исправил её' }, why: { uz: 'Telefonda sinab, savat bug\'ini tutdi va tuzatdi.', ru: 'Проверил на телефоне, поймал баг корзины и починил его.' } },
+  { tag: { uz: 'ULASHDI', ru: 'ПОДЕЛИЛСЯ' }, color: T.success, text: { uz: "Expo Go QR bilan, do'sti telefonida ochildi", ru: 'По QR в Expo Go — открылось на телефоне друга' }, why: { uz: 'Tayyor ilova boshqalarning qo\'lida. Bitta backend, ko\'p telefon.', ru: 'Готовое приложение уже в руках у других. Один бэкенд — много телефонов.' } }
 ];
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
@@ -268,6 +266,7 @@ const MentorCollapseScroll = ({ targetRef }) => {
   }, [ctx.collapsed, ctx.enabled, targetRef]);
   return null;
 };
+// ===== Badge hisoblagichi (AchCounter, umumiy karkas) =====
 function AchCounter() {
   const earned = useContext(AchCtx);
   const gate = useContext(LiveGateCtx);
@@ -374,6 +373,7 @@ const RECAP_MIN_ANSWERS = 3;
 const RcFlow = ({ items, sep = '→' }) => (
   <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
+// ===== RecapOverlay — qayta tushuntirish oynasi (umumiy karkas) =====
 function RecapOverlay({ screenIdx, onClose }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
@@ -415,6 +415,7 @@ function RecapOverlay({ screenIdx, onClose }) {
 }
 // MENTOR (proyektor): jonli test statistikasi — «Natijani ochish»gacha ✅/❌ soni yashirin (Kahoot-reveal).
 // Sanoq FAQAT bitta manbadan: picked === correctIdx (server-kalit bilan mos).
+// ===== MentorTestStats — jonli test statistikasi (umumiy karkas) =====
 function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onReveal, onOpenRecap }) {
   const [data, setData] = useState({ players: null, rows: [] });
   useEffect(() => {
@@ -712,11 +713,10 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на элемент, чтобы вернуть его, и расставьте заново.' })}</div>}
     </div>
   );
 }
@@ -726,8 +726,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
     { id: 'a', label: { uz: 'Hech narsa — sayt brauzerda ham ochiladi', ru: 'Ничего — сайт и в браузере откроется' } },
-    { id: 'b', label: { uz: 'Mobil ilova — telefon ekraniga moslangan, qulay, App Store/Expo orqali', ru: 'Мобильное приложение — под экран телефона, удобное, через App Store/Expo' } },
-    { id: 'c', label: { uz: 'Saytni kattalashtirish', ru: 'Просто увеличить сайт' } }
+    { id: 'b', label: { uz: 'Mobil ilova — telefon ekraniga moslangan', ru: 'Мобильное приложение — под экран телефона' } },
+    { id: 'c', label: { uz: "Saytni telefonda kattaroq ko'rsatish", ru: 'Показать сайт на телефоне крупнее' } }
   ];
   const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
   const isWeb = v === 'web';
@@ -735,7 +735,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={{ uz: 'Kirish', ru: 'Введение' }} screen={screen} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Do'koningiz web'da bor. Lekin mijozlar <span className="italic" style={{ color: T.accent }}>telefonda</span>. Ularga nima beramiz?</>, ru: <>Ваш магазин есть в вебе. Но клиенты — <span className="italic" style={{ color: T.accent }}>в телефоне</span>. Что мы им дадим?</> })}</h1>
-        <Mentor>{tr({ uz: "Web do'kon (o'tgan darsda qurgan) tayyor. Endi o'sha do'konning MOBIL ilovasini quramiz. Ikki holatni bosib solishtiring.", ru: 'Веб-магазин (собранный на прошлом уроке) готов. Теперь построим МОБИЛЬНОЕ приложение того же магазина. Нажмите и сравните два варианта.' })}</Mentor>
+        <Mentor>{tr({ uz: "React va backend darslarida web do'kon qurgansiz. Endi o'sha do'konning mobil ilovasini quramiz. Ikki holatni bosib solishtiring.", ru: 'На уроках React и бэкенда вы собрали веб-магазин. Теперь построим мобильное приложение этого магазина. Нажмите и сравните два варианта.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -762,11 +762,15 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Mijozga nima kerak?', ru: 'Что нужно клиенту?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Qaysi variantni tanlaysiz?', ru: 'Какой вариант выберете?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri — telefon ekraniga moslangan <b>mobil ilova</b> kerak. Bugun mini-do'konning mobil versiyasini <b>quramiz</b>, <b>telefonda testlaymiz</b> va <b>Expo Go bilan ulashamiz</b>. Va yana o'sha falsafa: siz — direktor.</>, ru: <>Верно — нужно <b>мобильное приложение</b> под экран телефона. Сегодня мы <b>соберём</b> мобильную версию мини-магазина, <b>протестируем её на телефоне</b> и <b>поделимся через Expo Go</b>. И снова та же философия: вы — режиссёр.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
+              ? tr({ uz: <><b>Aynan!</b> Bugun mini-do'konning mobil ilovasini quramiz, telefonda sinaymiz va Expo Go bilan ulashamiz.</>, ru: <><b>Именно!</b> Сегодня соберём мобильное приложение мини-магазина, проверим его на телефоне и поделимся им через Expo Go.</> })
+              : picked === 'a'
+                ? tr({ uz: <><b>Qiziq fikr!</b> Sayt ishlaydi, lekin telefonda qulaylikni alohida tekshirish kerak: matn mayda, tugmalar noqulay. Bugun telefon uchun alohida ilova quramiz.</>, ru: <><b>Интересная мысль!</b> Сайт работает, но удобство на телефоне нужно проверять отдельно: текст мелкий, кнопки неудобные. Сегодня соберём отдельное приложение для телефона.</> })
+                : tr({ uz: <><b>Qiziq fikr!</b> Bu vaqtinchalik yechim: harflar kattalashadi, lekin tugmalar va oqim baribir telefon uchun mo'ljallanmagan. Bugun mobil ilovani alohida quramiz.</>, ru: <><b>Интересная мысль!</b> Это временное решение: буквы станут крупнее, но кнопки и весь путь покупки всё равно не рассчитаны на телефон. Сегодня соберём мобильное приложение отдельно.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -777,11 +781,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS_R = [
-    { text: { uz: 'O\'sha backendga ulanish (yangi backend qurmaymiz)', ru: 'Подключиться к тому же бэкенду (новый не строим)' }, tag: '' },
-    { text: { uz: 'List + Detail ekranlar (mahsulotlar, fetch)', ru: 'Экраны List + Detail (товары, fetch)' }, tag: '' },
-    { text: { uz: 'Savat + jami narx (state, reduce)', ru: 'Корзина + итоговая сумма (state, reduce)' }, tag: '' },
-    { text: { uz: 'Checkout → buyurtma backendga', ru: 'Checkout → заказ уходит на бэкенд' }, tag: '' },
-    { text: { uz: 'Telefonda test + sayqal + Expo Go deploy', ru: 'Тест на телефоне + полировка + деплой через Expo Go' }, tag: 'deploy' }
+    { text: { uz: "Tayyor backend'ga ulanish (yangi backend qurilmaydi)", ru: 'Подключиться к готовому бэкенду (новый бэкенд не строим)' }, tag: '' },
+    { text: { uz: "Ro'yxat va Tafsilot ekranlari (mahsulotlar, fetch)", ru: 'Экраны Список и Детали (товары, fetch)' }, tag: '' },
+    { text: { uz: 'Savat va jami narx (holat, reduce)', ru: 'Корзина и итоговая цена (состояние, reduce)' }, tag: '' },
+    { text: { uz: "Buyurtma → backend'ga", ru: 'Заказ → на бэкенд' }, tag: '' },
+    { text: { uz: 'Telefonda sinash, sayqal, Expo Go bilan ulashish', ru: 'Проверить на телефоне, отполировать, поделиться через Expo Go' }, tag: '' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -790,9 +794,9 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">{tr({ uz: 'Bugungi maqsad', ru: 'Цель на сегодня' })}</p>
       <div className="fade-up frame" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', alignItems: 'center', gap: 14 }}>
         <IcoChip size={50} color={T.grape} soft={T.grapeSoft}>{Ico.phone(26)}</IcoChip>
-        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: "mini-do'kon → mobil ilova", ru: 'мини-магазин → мобильное приложение' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Qurib, telefonda testlab, Expo Go bilan ulashamiz.', ru: 'Соберём, протестируем на телефоне и поделимся через Expo Go.' })}</p></div>
+        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: "mini-do'kon → mobil ilova", ru: 'мини-магазин → мобильное приложение' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Quramiz, telefonda sinaymiz, Expo Go bilan ulashamiz.', ru: 'Соберём, проверим на телефоне, поделимся через Expo Go.' })}</p></div>
       </div>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ Sintaksisni T6/T7 da o'rgandingiz — bugun QURASIZ", ru: '→ Синтаксис вы выучили на T6/T7 — сегодня СТРОИТЕ' })}</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ 9 va 10-darslarda sintaksisni o'rgandingiz — bugun qurasiz", ru: '→ Синтаксис вы выучили на 9-м и 10-м уроках — сегодня строите' })}</p>
     </Col>
   );
   const StepsBlock = (<Col><p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p><ol className="roadmap">{STEPS_R.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol></Col>);
@@ -800,7 +804,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Loyiha kuni: mobil ilovani quramiz va ulashamiz', ru: 'День проекта: собираем мобильное приложение и делимся им' })}</span></h2></div>
-        <Mentor>{tr({ uz: <>Bugun yangi sintaksis emas — <b style={{ color: T.ink }}>amaliyot</b>. Siz direktor sifatida AI'ga buyurib, mobil ilovani qadam-qadam yig'asiz, telefonda testlaysiz.</>, ru: <>Сегодня не новый синтаксис, а <b style={{ color: T.ink }}>практика</b>. Как режиссёр вы даёте команды ИИ, шаг за шагом собираете мобильное приложение и проверяете его на телефоне.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bugun yangi sintaksis yo'q — <b style={{ color: T.ink }}>amaliyot</b>. AI yordamida mobil ilovani qadam-qadam yig'asiz, kodni tekshirasiz va telefonda sinaysiz.</>, ru: <>Сегодня нового синтаксиса нет — <b style={{ color: T.ink }}>практика</b>. С помощью ИИ вы шаг за шагом соберёте мобильное приложение, проверите код и попробуете всё на телефоне.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Maqsadni ko'rish", ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
@@ -818,10 +822,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'mobil', label: { uz: 'Mobil ilova', ru: 'Мобильное приложение' }, on: connected, isNew: true }
   ];
   return (
-    <Stage eyebrow={{ uz: 'Bitta tizim', ru: 'Одна система' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Mobil eshikni ulang', ru: 'Подключите мобильную дверь' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Bitta tizim', ru: 'Одна система' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Mobil ilovani ulang', ru: 'Подключите мобильное приложение' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'sha backend — <span className="italic" style={{ color: T.accent }}>yangi eshik</span></>, ru: <>Тот же бэкенд — <span className="italic" style={{ color: T.accent }}>новая дверь</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mobil ilova noldan backend qurmaydi! U o'tgan darsda qurgan O'SHA Node.js + PostgreSQL'ga ulanadi. Mobil — bitta tizimning yana bir «eshigi». Mobil eshikni ulang.", ru: 'Мобильное приложение не строит бэкенд с нуля! Оно подключается к ТОМУ ЖЕ Node.js + PostgreSQL, что вы собрали на прошлом уроке. Мобильное — ещё одна «дверь» одной системы. Подключите мобильную дверь.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tayyor backend — <span className="italic" style={{ color: T.accent }}>yangi kirish yo'li</span></>, ru: <>Готовый бэкенд — <span className="italic" style={{ color: T.accent }}>новая точка входа</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Mobil ilova uchun yangi backend qurmaymiz. U backend darslarida qurgan o'sha Node.js + PostgreSQL serverga ulanadi. Mobil — bitta tizimning yana bir kirish yo'li. Uni ulang.", ru: 'Для мобильного приложения новый бэкенд не строим. Оно подключается к тому же серверу Node.js + PostgreSQL, который вы собрали на уроках по бэкенду. Мобильное приложение — ещё одна точка входа в одну систему. Подключите его.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -847,7 +851,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p style={{ fontFamily: "'Manrope'", fontWeight: 800, fontSize: 15, color: '#fff', margin: '6px 0 2px' }}>{tr({ uz: 'Bitta backend', ru: 'Один бэкенд' })}</p>
               <p style={{ fontFamily: G, fontSize: 12, color: '#9FB4D8', margin: 0, textAlign: 'center' }}>Node.js + PostgreSQL<br />(GET /products · POST /orders)</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana o'sha g'oya: <b>ko'p eshik — bitta tizim</b>. Web, bot, mobil — uchchalasi o'sha bazadagi o'sha mahsulot va buyurtmalardan foydalanadi.</>, ru: <>Вот та самая мысль: <b>много дверей — одна система</b>. Веб, бот, мобильное — все трое работают с теми же товарами и заказами из той же базы.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya: <b>ko'p kirish yo'li — bitta tizim</b>. Web, bot, mobil — uchalasi bitta bazadagi mahsulot va buyurtmalardan foydalanadi.</>, ru: <>Идея с 1-го урока: <b>много точек входа — одна система</b>. Веб, бот, мобильное — все три пользуются товарами и заказами из одной базы.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -858,10 +862,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 3 — ILOVA XARITASI (telefon preview) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TABS = [
-    { id: 'list', label: { uz: 'List', ru: 'List' } },
-    { id: 'detail', label: { uz: 'Detail', ru: 'Detail' } },
-    { id: 'cart', label: { uz: 'Savat', ru: 'Корзина' } },
-    { id: 'checkout', label: { uz: 'Checkout', ru: 'Checkout' } }
+    { id: 'list', label: { uz: "Ro'yxat (List)", ru: 'Список (List)' } },
+    { id: 'detail', label: { uz: 'Tafsilot (Detail)', ru: 'Детали (Detail)' } },
+    { id: 'cart', label: { uz: 'Savat (Cart)', ru: 'Корзина (Cart)' } },
+    { id: 'checkout', label: { uz: 'Buyurtma (Checkout)', ru: 'Заказ (Checkout)' } }
   ];
   const [tab, setTab] = useState('list');
   const [seen, setSeen] = useState(storedAnswer ? new Set(TABS.map(t => t.id)) : new Set(['list']));
@@ -879,14 +883,14 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Ilova xaritasi', ru: 'Карта приложения' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ekranlarni ko'ring (${seen.size}/${TABS.length})`, ru: `Посмотрите экраны (${seen.size}/${TABS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilova — <span className="italic" style={{ color: T.accent }}>4 ekran</span></>, ru: <>Приложение — <span className="italic" style={{ color: T.accent }}>4 экрана</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana qurmoqchi bo'lgan ilovamiz. 4 ekranni bosib, telefonda ko'ring: mahsulotlar → detal → savat → buyurtma.", ru: 'Вот приложение, которое мы собираемся построить. Нажмите на 4 экрана и посмотрите их в телефоне: товары → детали → корзина → заказ.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mana bugun quradigan ilovamiz. Har ekranning o'zbekcha nomi va kodda ishlatiladigan nomi bor. 4 ekranni bosib, telefonda ko'ring.", ru: 'Вот приложение, которое мы сегодня построим. У каждого экрана есть русское название и название, которое используется в коде. Нажмите на 4 экрана и посмотрите их в телефоне.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {TABS.map(t => (<button key={t.id} className={`chip ${tab === t.id ? 'chip-on' : ''}`} onClick={() => go(t.id)}>{seen.has(t.id) && tab !== t.id ? '✓ ' : ''}{tr(t.label)}</button>))}
             </div>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Bularning hammasi o'sha backenddan ma'lumot oladi — yangi server kerak emas.", ru: 'Все они берут данные с того же бэкенда — новый сервер не нужен.' })}</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '4 ekran tayyor reja. Endi ularni AI bilan birma-bir quramiz.', ru: '4 экрана — готовый план. Теперь соберём их с ИИ один за другим.' })}</p></div>}
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Bularning hammasi tayyor backend'dan ma'lumot oladi.", ru: 'Все они берут данные с готового бэкенда.' })}</p>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '4 ekran — tayyor reja. Endi ularni AI yordamida birma-bir quramiz.', ru: '4 экрана — готовый план. Теперь соберём их с помощью ИИ один за другим.' })}</p></div>}
           </Col>
           <Col>
             <div key={tab} className="demo-swap" style={{ display: 'flex', justifyContent: 'center' }}>{renderPhone()}</div>
@@ -900,24 +904,24 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
-    questionText={{ uz: "Mobil ilova mahsulot ma'lumotini qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }}
+    questionText={{ uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova mahsulotlarni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт товары?</h2></> })}
-    options={[{ uz: "O'sha mavjud backenddan — GET /products bilan", ru: 'С того же существующего бэкенда — через GET /products' }, { uz: 'Yangi backend yozamiz, faqat mobil uchun', ru: 'Напишем новый бэкенд, только для мобильного' }, { uz: 'Mahsulotlarni ilova ichiga qo\'lda yozamiz', ru: 'Впишем товары внутрь приложения вручную' }, { uz: 'Hech qayerdan — mobil ilovada baza bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения базы не бывает' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Mobil ilova o'sha Node.js + PostgreSQL backendga ulanadi (GET /products). Web, bot, mobil — bitta tizimning eshiklari, hammasi o'sha bazadan.", ru: 'Верно! Мобильное приложение подключается к тому же бэкенду Node.js + PostgreSQL (GET /products). Веб, бот, мобильное — двери одной системы, и все берут данные из одной базы.' }}
-    explainWrong={{ 0: { uz: 'Yangi backend shart emas — o\'sha bittasi hamma eshikka xizmat qiladi.', ru: 'Новый бэкенд не нужен — один и тот же обслуживает все двери.' }, 2: { uz: 'Qo\'lda yozsangiz — yangilanmaydi. Backenddan fetch qiling.', ru: 'Впишете вручную — данные не будут обновляться. Берите их с бэкенда через fetch.' }, 3: { uz: 'Ma\'lumot backendda — ilova undan fetch qiladi.', ru: 'Данные лежат на бэкенде — приложение забирает их оттуда.' }, default: { uz: 'O\'sha backend, GET /products — bitta tizim.', ru: 'Тот же бэкенд, GET /products — одна система.' } }} />
+    options={[{ uz: "Tayyor backend'dan — `GET /products` bilan", ru: 'С готового бэкенда — через `GET /products`' }, { uz: "Faqat mobil uchun yozilgan yangi backend'dan", ru: 'С нового бэкенда, написанного только для мобильного' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: 'Hech qayerdan — mobil ilovada baza bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения базы не бывает' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend darslaridagi Node.js + PostgreSQL serverga ulanadi (`GET /products`). Web, bot, mobil — bitta tizimning kirish yo'llari.", ru: 'Верно! Мобильное приложение подключается к серверу Node.js + PostgreSQL с уроков по бэкенду (`GET /products`). Веб, бот, мобильное — входы в одну систему.' }}
+    explainWrong={{ 1: { uz: "Yangi backend shart emas — bittasi hamma kirish yo'liga xizmat qiladi.", ru: 'Новый бэкенд не нужен — один обслуживает все точки входа.' }, 2: { uz: "Qo'lda yozsangiz — yangilanmaydi. Backend'dan fetch qiling.", ru: 'Впишете вручную — данные не будут обновляться. Получайте их с бэкенда через fetch.' }, 3: { uz: "Ma'lumot backend'da — ilova undan fetch qiladi.", ru: 'Данные лежат на бэкенде — приложение получает их через fetch.' }, default: { uz: 'Tayyor backend, `GET /products` — bitta tizim.', ru: 'Готовый бэкенд, `GET /products` — одна система.' } }} />
 );
 
 // ===== SCREEN 5 — VIBECODING LOYIHA KUNI RITMI =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const FLOW = [{ uz: 'Reja', ru: 'План' }, { uz: 'Prompt', ru: 'Промпт' }, { uz: 'AI kod', ru: 'Код от ИИ' }, { uz: 'Telefonda test', ru: 'Тест на телефоне' }, { uz: 'Tuzat', ru: 'Правка' }];
+  const FLOW = [{ uz: 'Reja', ru: 'План' }, { uz: 'Topshiriq (prompt)', ru: 'Задание (промпт)' }, { uz: 'AI kod', ru: 'Код от ИИ' }, { uz: 'Telefonda sinov', ru: 'Проверка на телефоне' }, { uz: 'Tuzatish', ru: 'Исправление' }];
   const [step, setStep] = useState(storedAnswer ? FLOW.length : 0);
   const done = step >= FLOW.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
     <Stage eyebrow={{ uz: 'Loyiha kuni ritmi', ru: 'Ритм дня проекта' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni oching (${step}/${FLOW.length})`, ru: `Раскройте цикл (${step}/${FLOW.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ritm: <span className="italic" style={{ color: T.accent }}>prompt → kod → telefonda test → tuzat</span></>, ru: <>Ритм: <span className="italic" style={{ color: T.accent }}>промпт → код → тест на телефоне → правка</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Loyiha kunida har qadam shu siklda quriladi. Yangi narsa — <b>telefonda</b> ko'rib test qilish. Bosib oching.</>, ru: <>В день проекта каждый шаг строится по этому циклу. Новое здесь — проверять <b>на телефоне</b>. Нажимайте и раскрывайте.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ritm: <span className="italic" style={{ color: T.accent }}>topshiriq → kod → telefonda sinov → tuzatish</span></>, ru: <>Ритм: <span className="italic" style={{ color: T.accent }}>задание → код → проверка на телефоне → исправление</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Loyiha kunida har qadam shu siklda quriladi. Yangi narsa — <b>telefonda</b> ko'rib sinash. Bosib oching.</>, ru: <>В день проекта каждый шаг строится по этому циклу. Новое здесь — проверять <b>на телефоне</b>. Нажмите и откройте.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, alignItems: 'center' }}>
@@ -927,8 +931,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="frame" style={{ padding: 'clamp(16px,2.5vw,22px)' }}>
-              <p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Direktor / ishchi', ru: 'Режиссёр / исполнитель' })}</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz aniq buyurasiz, <b>AI kod yozadi</b>, siz uni o'qiysiz va <b>Expo Go'da telefonda</b> sinab ko'rasiz. Bug bo'lsa — aniq tuzatish prompti.</>, ru: <>Вы даёте точную команду, <b>ИИ пишет код</b>, вы его читаете и проверяете <b>на телефоне через Expo Go</b>. Если баг — точный промпт на правку.</> })}</p>
+              <p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Siz va AI', ru: 'Вы и ИИ' })}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz aniq topshiriq berasiz, <b>AI kod taklif qiladi</b>, siz kodni o'qib loyihaga qo'shasiz va <b>Expo Go'da telefonda</b> sinaysiz. Xato bo'lsa — aniq tuzatish topshirig'i. Buni direktor ishiga o'xshatish mumkin: nima qurilishini siz belgilaysiz, natijani siz tekshirasiz.</>, ru: <>Вы даёте точное задание, <b>ИИ предлагает код</b>, вы читаете его, добавляете в проект и проверяете <b>на телефоне в Expo Go</b>. Если есть ошибка — точное задание на исправление. Это можно сравнить с работой директора: что строить, решаете вы, и результат проверяете тоже вы.</> })}</p>
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Ishladi» degani — telefonda o'z ko'zingiz bilan ko'rdingiz, degani. Endi quramiz.", ru: '«Заработало» значит, что вы увидели это на телефоне своими глазами. Теперь строим.' })}</p></div>}
           </Col>
@@ -940,12 +944,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
-    questionText={{ uz: "Loyiha kunida sizning (direktor) rolingiz nima?", ru: 'Какая у вас (режиссёра) роль в день проекта?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Loyiha kunida sizning <span className="italic" style={{ color: T.accent }}>rolingiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая у вас <span className="italic" style={{ color: T.accent }}>роль</span> в день проекта?</h2></> })}
-    options={[{ uz: 'AI bergan kodni o\'qimasdan ishlatish', ru: 'Использовать код от ИИ, не читая его' }, { uz: 'Hamma kodni o\'zingiz qo\'lda yozish', ru: 'Писать весь код самому вручную' }, { uz: "Aniq buyurib, kodni o'qib, telefonda sinash", ru: 'Давать точную команду, читать код и проверять на телефоне' }, { uz: 'Faqat dizayn va ranglarni tanlash', ru: 'Выбирать только дизайн и цвета' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Siz direktorsiz: aniq buyurasiz, AI kodini o'qib tushunasiz va Expo Go'da telefonda sinab ko'rasiz. Test qilmaguningizcha «ishladi» deyolmaysiz.", ru: 'Верно! Вы режиссёр: даёте точную команду, читаете и понимаете код от ИИ и проверяете его на телефоне в Expo Go. Пока не протестировали — сказать «работает» нельзя.' }}
-    explainWrong={{ 0: { uz: 'O\'qimasdan ishlatish — bug\'larni ko\'rmaysiz.', ru: 'Использовать не читая — багов вы так не увидите.' }, 2: { uz: 'Hammasini qo\'lda emas — AI yozadi, siz boshqarasiz.', ru: 'Не всё вручную — код пишет ИИ, а вы им управляете.' }, 3: { uz: 'Dizayn ham muhim, lekin asosiy — buyuring, o\'qing, telefonda testlang.', ru: 'Дизайн тоже важен, но главное — команда, чтение кода и тест на телефоне.' }, default: { uz: 'Buyuring, kodni o\'qing, telefonda testlang.', ru: 'Командуйте, читайте код, тестируйте на телефоне.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
+    questionText={{ uz: "Loyiha kunida sizning vazifangiz nima?", ru: 'Какая у вас задача в день проекта?' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Loyiha kunida sizning <span className="italic" style={{ color: T.accent }}>vazifangiz</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая у вас <span className="italic" style={{ color: T.accent }}>задача</span> в день проекта?</h2></> })}
+    options={[{ uz: 'AI bergan kodni o\'qimasdan ishlatish', ru: 'Использовать код от ИИ, не читая его' }, { uz: 'Hamma kodni o\'zingiz qo\'lda yozish', ru: 'Писать весь код самому вручную' }, { uz: "Aniq topshiriq berish, kodni o'qish va telefonda sinash", ru: 'Давать точное задание, читать код и проверять на телефоне' }, { uz: 'Faqat dizayn va ranglarni tanlash', ru: 'Выбирать только дизайн и цвета' }]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! Siz aniq topshiriq berasiz, AI kodini o'qib tushunasiz va Expo Go'da telefonda sinaysiz. Sinamaguningizcha «ishladi» deyolmaysiz.", ru: 'Верно! Вы даёте точное задание, читаете и понимаете код от ИИ и проверяете его на телефоне в Expo Go. Пока не проверили — сказать «работает» нельзя.' }}
+    explainWrong={{ 0: { uz: "O'qimasdan ishlatish — xatolarni ko'rmaysiz.", ru: 'Используете, не читая, — ошибок не увидите.' }, 1: { uz: "Hammasini qo'lda yozish shart emas — AI taklif qiladi, siz tekshirasiz.", ru: 'Писать всё вручную не нужно — ИИ предлагает, вы проверяете.' }, 3: { uz: "Dizayn ham muhim, lekin asosiysi — topshiriq, o'qish, sinash.", ru: 'Дизайн тоже важен, но главное — задание, чтение кода, проверка.' }, default: { uz: "Topshiriq bering, kodni o'qing, telefonda sinang.", ru: 'Давайте задание, читайте код, проверяйте на телефоне.' } }} />
 );
 
 // ===== SCREEN 6 — MOBIL ILOVA QURUVCHI (SIGNATURE 1) =====
@@ -964,10 +968,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = active ? BUILD_STEPS.find(s => s.id === active) : null;
   const has = (id) => built.has(id);
   return (
-    <Stage eyebrow={{ uz: 'Mobil ilova quruvchi · jonli', ru: 'Сборщик мобильного приложения · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ilovani quring (${built.size}/${BUILD_STEPS.length})`, ru: `Соберите приложение (${built.size}/${BUILD_STEPS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ilova quruvchi · jonli', ru: 'Сборка приложения · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ilovani quring (${built.size}/${BUILD_STEPS.length})`, ru: `Соберите приложение (${built.size}/${BUILD_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilovani <span className="italic" style={{ color: T.accent }}>prompt bilan yig'ing</span></>, ru: <>Соберите приложение <span className="italic" style={{ color: T.accent }}>промптами</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Har qism uchun AI'ga prompt yuborasiz — kod paydo bo'ladi va telefonda o'sha qism ko'rinadi. 4 qadamni quring, keyin «Xarid qil»!", ru: 'На каждую часть вы шлёте ИИ промпт — появляется код, и эта часть возникает в телефоне. Соберите 4 шага, а потом жмите «Купить»!' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilovani <span className="italic" style={{ color: T.accent }}>AI yordamida yig'ing</span></>, ru: <>Соберите приложение <span className="italic" style={{ color: T.accent }}>с помощью ИИ</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Har qism uchun AI'ga aniq topshiriq berasiz. AI kod taklif qiladi — siz uni loyihaga qo'shib, telefonda tekshirasiz. Bu ekranda 4 qadamni bosib, har biri qanday qurilishini ko'ring, keyin «Xarid qil»!", ru: 'На каждую часть вы даёте ИИ точное задание. ИИ предлагает код — вы добавляете его в проект и проверяете на телефоне. Нажмите на 4 шага на этом экране, посмотрите, как строится каждый, а потом — «Купить»!' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -981,7 +985,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron={has('detail')} onAdd={has('cart') ? () => {} : undefined} />)}</div>
                   )
                 ) : (
-                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />List ekranni qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран List →</> })}</RnEmpty>
+                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />Ro'yxat ekranini qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран Список →</> })}</RnEmpty>
                 )}
                 {has('checkout') && !ran && <button className="rn-cta">{tr({ uz: 'Buyurtma qil', ru: 'Заказать' })}</button>}
               </Phone>
@@ -994,13 +998,13 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button key={s.id} onClick={() => add(s.id)} className={`plink ${on ? 'plink-on' : ''}`}>
                   <span className="plink-box">{on ? Ico.check(13) : Ico.bolt(13)}</span>
                   <span style={{ flex: 1, textAlign: 'left' }}><span className="plink-label">{tr(s.label)}</span></span>
-                  <span className="plink-act">{on ? tr({ uz: "qo'shildi", ru: 'добавлено' }) : tr({ uz: 'prompt yubor', ru: 'отправить промпт' })}</span>
+                  <span className="plink-act">{on ? tr({ uz: "qo'shildi", ru: 'добавлено' }) : tr({ uz: 'topshiriq bering', ru: 'дать задание' })}</span>
                 </button>
               ); })}
             </div>
-            {cur && !ran && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{tr(cur.label)} — {tr({ uz: 'promptingiz', ru: 'ваш промпт' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>«{tr(cur.prompt)}»</p><div className="codepill">{cur.code}</div></div>)}
-            {!cur && !ran && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Qadamni bosing — promptni va AI yozgan kodni ko'rasiz, telefonda qism paydo bo'ladi.", ru: 'Нажмите на шаг — увидите промпт и код от ИИ, а в телефоне появится эта часть.' })}</p></div>}
-            {ran && <div className="takeaway fade-step"><div className="ta-bulb" style={{ fontSize: 30 }}>📱</div><p className="ta-h">{tr({ uz: 'Ilova ishladi!', ru: 'Приложение заработало!' })}</p><p className="ta-sub">{tr({ uz: "List → savat → buyurtma → o'sha backend. To'liq mobil ilova tayyor.", ru: 'List → корзина → заказ → тот же бэкенд. Полное мобильное приложение готово.' })}</p></div>}
+            {cur && !ran && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{tr(cur.label)} — {tr({ uz: "topshirig'ingiz", ru: 'ваше задание' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>«{tr(cur.prompt)}»</p><div className="codepill">{cur.code}</div></div>)}
+            {!cur && !ran && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Qadamni bosing — topshiriqni va AI taklif qilgan kodni ko'rasiz.", ru: 'Нажмите на шаг — увидите задание и код, который предложил ИИ.' })}</p></div>}
+            {ran && <div className="takeaway fade-step"><div className="ta-bulb" style={{ fontSize: 30 }}>📱</div><p className="ta-h">{tr({ uz: 'Asosiy oqim ishladi!', ru: 'Основной путь заработал!' })}</p><p className="ta-sub">{tr({ uz: "Ro'yxat → savat → buyurtma → backend. Real loyihada har qadamdan keyin kodni o'qib, telefonda sinab borasiz.", ru: 'Список → корзина → заказ → бэкенд. В реальном проекте после каждого шага вы читаете код и проверяете его на телефоне.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1021,7 +1025,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Savat + jami', ru: 'Корзина + итог' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Savatga 2 ta qo'shing (${cart.length}/2)`, ru: `Положите 2 товара в корзину (${cart.length}/2)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Savat va <span className="italic" style={{ color: T.accent }}>jami narx</span></>, ru: <>Корзина и <span className="italic" style={{ color: T.accent }}>итоговая сумма</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>«+» bosib mahsulot qo'shing — yuqoridagi savat soni (badge) sakraydi, jami narx <b>reduce</b> bilan o'zi hisoblanadi (Modul 2 dagi callback!).</>, ru: <>Нажимайте «+» и добавляйте товары — счётчик корзины сверху подпрыгивает, а итоговая сумма считается сама через <b>reduce</b> (тот самый колбэк из Модуля 2!).</> })}</Mentor>
+        <Mentor>{tr({ uz: <>«+» bosib mahsulot qo'shing — yuqoridagi savat soni belgisi (inglizcha <i>badge</i>) o'zgaradi, jami narx <b>reduce</b> bilan hisoblanadi. <span className="mono">reduce</span>ni JavaScript darslarida (funksiyalar) ko'rgansiz.</>, ru: <>Нажимайте «+» и добавляйте товары — счётчик корзины сверху (по-английски <i>badge</i>) меняется, а итоговая цена считается через <b>reduce</b>. <span className="mono">reduce</span> вы видели на уроках JavaScript (функции).</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -1036,9 +1040,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="frame" style={{ padding: 'clamp(14px,2.2vw,20px)' }}>
               <p className="flow-label" style={{ marginBottom: 8 }}>{tr({ uz: 'Jami narx — reduce bilan', ru: 'Итоговая сумма — через reduce' })}</p>
               <div className="codepill">const jami = cart.reduce(<br />&nbsp;&nbsp;(sum, p) =&gt; sum + p.price, 0<br />);</div>
-              <p className="body" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: <>Har mahsulot narxini qo'shib boradi. Savatda <b>{cart.length}</b> ta · jami <b style={{ color: T.accent }}>{fmt(total)}</b>.</>, ru: <>Он складывает цену каждого товара. В корзине <b>{cart.length}</b> шт. · итого <b style={{ color: T.accent }}>{fmt(total)}</b>.</> })}</p>
+              <p className="body" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: <><span className="mono">cart.length</span> — savatdagi mahsulotlar <b>soni</b>; <span className="mono">reduce</span> — ularning <b>narxlarini</b> yig'adi. Ikkalasi alohida narsa: savatda <b>{cart.length}</b> ta · jami <b style={{ color: T.accent }}>{fmt(total)}</b>.</>, ru: <><span className="mono">cart.length</span> — <b>количество</b> товаров в корзине; <span className="mono">reduce</span> — складывает их <b>цены</b>. Это разные вещи: в корзине <b>{cart.length}</b> шт. · итого <b style={{ color: T.accent }}>{fmt(total)}</b>.</> })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Badge = <span className="mono">cart.length</span>, jami = <span className="mono">reduce</span>. State o'zgarsa — ekran o'zi yangilanadi. React shu.</>, ru: <>Счётчик = <span className="mono">cart.length</span>, итог = <span className="mono">reduce</span>. Меняется state — экран обновляется сам. В этом и есть React.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Savat — holat (state). Holat o'zgarsa, ekran o'zi yangilanadi — React'dagi kabi.</>, ru: <>Корзина — это состояние (state). Меняется состояние — экран обновляется сам, как в React.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1052,10 +1056,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = step >= CHECKOUT_FLOW.length - 1;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Checkout → backend', ru: 'Checkout → бэкенд' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Oqimni kuzating (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})`, ru: `Проследите путь (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Buyurtma → backend', ru: 'Заказ → бэкенд' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Oqimni kuzating (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})`, ru: `Проследите путь (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Buyurtma qil» — <span className="italic" style={{ color: T.accent }}>o'sha tizimga tushadi</span></>, ru: <>«Заказать» — <span className="italic" style={{ color: T.accent }}>попадает в ту же систему</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mobil buyurtma ham o'tgan darsdagi pipeline'ga ulanadi: backend → baza saqlaydi → bot adminga xabar beradi. Bosib, oqimni kuzating.", ru: 'Мобильный заказ тоже подключается к конвейеру с прошлого урока: бэкенд → база сохраняет → бот сообщает администратору. Нажимайте и проследите путь.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mobil buyurtma ham 8-darsdagi buyurtma oqimiga qo'shiladi: backend → baza saqlaydi → bot adminga xabar beradi. Bosib, oqimni kuzating.", ru: 'Мобильный заказ тоже попадает в путь заказа с 8-го урока: бэкенд → база сохраняет → бот сообщает администратору. Нажимайте и следите за путём.' })}</Mentor>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 600, width: '100%', margin: '0 auto' }}>
           {CHECKOUT_FLOW.map((s, i) => { const on = step >= i; return (
             <React.Fragment key={i}>
@@ -1067,7 +1071,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           ); })}
         </div>
         {!done && <button className="btn" onClick={() => setStep(n => Math.min(n + 1, CHECKOUT_FLOW.length - 1))} style={{ alignSelf: 'center' }}>{step < 0 ? tr({ uz: '▶ Buyurtma qil', ru: '▶ Заказать' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
-        {done && <div className="frame-success fade-step" style={{ maxWidth: 600, width: '100%', margin: '0 auto' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Telefondan kelgan buyurtma ham bazaga tushdi va bot xabar berdi — xuddi web'dagidek. <b>Bitta tizim, ko'p eshik.</b></>, ru: <>Заказ с телефона тоже попал в базу, и бот отправил сообщение — точно как из веба. <b>Одна система, много дверей.</b></> })}</p></div>}
+        {done && <div className="frame-success fade-step" style={{ maxWidth: 600, width: '100%', margin: '0 auto' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Telefondan kelgan buyurtma ham bazaga tushdi va bot xabar berdi — xuddi web'dagidek.</>, ru: <>Заказ с телефона тоже попал в базу, и бот отправил сообщение — точно как из веба.</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1075,11 +1079,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
     questionText={{ uz: "Mobil ilovada «Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном приложении?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil «Buyurtma qil» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт при нажатии «Заказать» в мобильном?</h2></> })}
-    options={[{ uz: 'Faqat telefon ichida saqlanadi, hech qayerga bormaydi', ru: 'Сохранится только внутри телефона и никуда не уйдёт' }, { uz: "O'sha backendga POST /orders ketadi → baza saqlaydi → bot xabar beradi", ru: 'На тот же бэкенд уйдёт POST /orders → база сохранит → бот сообщит' }, { uz: 'Yangi mobil backend ishga tushadi', ru: 'Запустится новый мобильный бэкенд' }, { uz: 'Hech narsa — mobil ilova buyurtma qabul qilolmaydi', ru: 'Ничего — мобильное приложение не может принимать заказы' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Mobil ilova o'sha backendga POST /orders yuboradi. Buyurtma PostgreSQL'ga saqlanadi va Telegram bot adminni xabardor qiladi — web bilan bir xil pipeline.", ru: 'Верно! Мобильное приложение шлёт POST /orders на тот же бэкенд. Заказ сохраняется в PostgreSQL, а Telegram-бот сообщает администратору — конвейер тот же, что и в вебе.' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovada «Buyurtma qil» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт, если в мобильном приложении нажать «Заказать»?</h2></> })}
+    options={[{ uz: 'Buyurtma faqat telefon ichida saqlanadi', ru: 'Заказ сохраняется только внутри телефона' }, { uz: "Backend'ga `POST /orders` so'rovi ketadi", ru: 'На бэкенд уходит запрос `POST /orders`' }, { uz: 'Faqat mobil uchun yangi backend ishga tushadi', ru: 'Запускается новый бэкенд только для мобильного' }, { uz: 'Hech narsa — mobil ilova buyurtma qabul qilolmaydi', ru: 'Ничего — мобильное приложение не может принимать заказы' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend'ga `POST /orders` yuboradi. Buyurtma PostgreSQL'ga saqlanadi, Telegram bot adminni xabardor qiladi — web bilan bir xil oqim.", ru: 'Верно! Мобильное приложение отправляет на бэкенд `POST /orders`. Заказ сохраняется в PostgreSQL, Telegram-бот сообщает администратору — тот же путь, что и в вебе.' }}
     explainWrong={{ 0: { uz: 'Telefonda qolmaydi — backendga yuboriladi, aks holda admin ko\'rmaydi.', ru: 'В телефоне он не остаётся — уходит на бэкенд, иначе администратор его не увидит.' }, 2: { uz: 'Yangi backend yo\'q — o\'sha bitta backend.', ru: 'Никакого нового бэкенда — тот же самый, один.' }, 3: { uz: 'Qabul qiladi — POST /orders orqali.', ru: 'Ещё как принимает — через POST /orders.' }, default: { uz: 'POST /orders → baza + bot. Bitta tizim.', ru: 'POST /orders → база + бот. Одна система.' } }} />
 );
 
@@ -1092,10 +1096,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const isRaw = v === 'raw';
   return (
-    <Stage eyebrow={{ uz: 'Dovodka · sayqal', ru: 'Доводка · полировка' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба варианта' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Sayqal', ru: 'Полировка' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба варианта' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Ishlaydi» yetarli emas — <span className="italic" style={{ color: T.accent }}>sayqallang</span></>, ru: <>«Работает» — мало, нужно <span className="italic" style={{ color: T.accent }}>отполировать</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Ilova ishlasa ham, mijoz uni ko'radi. StyleSheet bilan rang, bo'shliq, tartib qo'shamiz. Ikki holatni solishtiring.", ru: 'Приложение работает — но клиент ещё и смотрит на него. Через StyleSheet добавим цвета, отступы и порядок. Сравните два варианта.' })}</Mentor>
+        <Mentor>{tr({ uz: "Ilova ishlashi — birinchi qadam. Endi uni chiroyli va qulay qilamiz: StyleSheet bilan rang, bo'shliq, tartib. Ikki holatni solishtiring.", ru: 'Работающее приложение — это первый шаг. Теперь сделаем его красивым и удобным: цвета, отступы и порядок через StyleSheet. Сравните два варианта.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -1114,7 +1118,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {isRaw
               ? <div className="frame-warn fade-step" key="r"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: "Chala ko'rinish", ru: 'Сырой вид' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Rang yo\'q, bo\'shliq yo\'q, tugmalar quruq. Ishlaydi — lekin mijoz ishonmaydi.', ru: 'Ни цвета, ни отступов, кнопки сухие. Работает — но клиент не доверится.' })}</p></div>
               : <div className="frame-success fade-step" key="s"><p className="note-h" style={{ color: T.success }}>{tr({ uz: 'Sayqallangan', ru: 'Отполированное' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "StyleSheet: ranglar, yumshoq burchaklar, bo'shliq, soyalar. O'sha ilova — lekin haqiqiy ilovadek.", ru: 'StyleSheet: цвета, мягкие углы, отступы, тени. То же приложение — но выглядит как настоящее.' })}</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Dovodka = sayqal. «Ishlaydi»dan keyin «chiroyli va qulay»ni qo'shing — bu ham direktor ishi.", ru: 'Доводка = полировка. После «работает» добавьте «красиво и удобно» — это тоже работа режиссёра.' })}</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Ishlaydi»dan keyin «chiroyli va qulay» keladi — bu ham sizning ishingiz.", ru: 'После «работает» идёт «красиво и удобно» — это тоже ваша работа.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1133,10 +1137,10 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]);
   const cur = BUG_STEPS[step] || BUG_STEPS[0];
   return (
-    <Stage eyebrow={{ uz: 'Telefonda test · bug', ru: 'Тест на телефоне · баг' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni kuzating (${step + 1}/${BUG_STEPS.length})`, ru: `Проследите цикл (${step + 1}/${BUG_STEPS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Telefonda sinov · xato', ru: 'Проверка на телефоне · ошибка' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni kuzating (${step + 1}/${BUG_STEPS.length})`, ru: `Проследите цикл (${step + 1}/${BUG_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telefonda test: <span className="italic" style={{ color: T.accent }}>bug topiladi → tuzatiladi</span></>, ru: <>Тест на телефоне: <span className="italic" style={{ color: T.accent }}>баг находится → чинится</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Expo Go'da haqiqiy telefonda sinab ko'rasiz — va bug chiqadi! Bosib, tuzatish siklini ko'ring.", ru: 'Проверяете на настоящем телефоне через Expo Go — и вылезает баг! Нажимайте и посмотрите цикл починки.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telefonda sinov: <span className="italic" style={{ color: T.accent }}>xato topiladi → tuzatiladi</span></>, ru: <>Проверка на телефоне: <span className="italic" style={{ color: T.accent }}>ошибка найдена → исправлена</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Expo Go'da telefonda sinab ko'rasiz — va xato chiqadi! Bosib, tuzatish siklini ko'ring.", ru: 'Вы проверяете приложение на телефоне в Expo Go — и появляется ошибка! Нажимайте и посмотрите цикл исправления.' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -1151,7 +1155,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: '12px 0 10px', lineHeight: 1.5 }}>{tr(cur.text)}</p>
               <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(cur.note)}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana dovodka: telefonda test → bug → aniq tuzatish → qayta test. Emulyator emas — <b>haqiqiy qurilma</b> rost bug'larni ko'rsatadi.</>, ru: <>Вот она, доводка: тест на телефоне → баг → точная правка → повторный тест. Не эмулятор, а <b>настоящее устройство</b> показывает реальные баги.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sinov shu: telefonda sinash → xato → aniq tuzatish → qayta sinash. Emulyator ham foydali, lekin <b>haqiqiy telefonda</b> sinash qurilmaga xos muammolarni (sekinlik, tugma joyi) ko'rsatishi mumkin — shuning uchun real qurilmada ham sinab ko'ring.</>, ru: <>Проверка выглядит так: проверяем на телефоне → ошибка → точное исправление → проверяем снова. Эмулятор тоже полезен, но <b>настоящий телефон</b> может показать проблемы самого устройства (тормоза, место кнопки) — поэтому проверяйте и на реальном устройстве.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1161,12 +1165,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText={{ uz: "Mobil ilovani qanday to'g'ri test qilamiz?", ru: 'Как правильно тестировать мобильное приложение?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>test</span> qilamiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>тестировать</span> мобильное приложение?</h2></> })}
-    options={[{ uz: 'Test qilmaymiz — AI to\'g\'ri yozib beradi', ru: 'Не тестируем — ИИ напишет правильно' }, { uz: 'Faqat ranglar to\'g\'ri chiqqanini tekshirib', ru: 'Проверив только, верно ли вышли цвета' }, { uz: 'Faqat kompyuterda kodga qarab, ochmasdan', ru: 'Только глядя в код на компьютере, не открывая приложение' }, { uz: "Expo Go bilan haqiqiy telefonda, oqimni bosib ko'rib", ru: 'На настоящем телефоне через Expo Go, прощёлкав весь путь' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Expo Go bilan haqiqiy telefonda ochib, har ekran va oqimni (List → savat → buyurtma) bosib sinaymiz. Real qurilma — real bug'lar (sekinlik, badge, tugma joyi).", ru: 'Верно! Открываем на настоящем телефоне через Expo Go и прощёлкиваем каждый экран и весь путь (List → корзина → заказ). Реальное устройство — реальные баги (тормоза, счётчик, место кнопки).' }}
-    explainWrong={{ 0: { uz: 'AI xato qiladi — telefonda test shart.', ru: 'ИИ ошибается — тест на телефоне обязателен.' }, 2: { uz: 'Kod to\'g\'ri ko\'rinishi mumkin, lekin telefonda boshqacha ishlaydi.', ru: 'Код может выглядеть верным, но на телефоне поведёт себя иначе.' }, 3: { uz: 'Rang — bir qismi xolos. Butun oqimni sinang.', ru: 'Цвета — лишь часть дела. Проверяйте весь путь.' }, default: { uz: 'Expo Go, haqiqiy telefon, butun oqim.', ru: 'Expo Go, настоящий телефон, весь путь целиком.' } }} />
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
+    questionText={{ uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>sinaymiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как мы <span className="italic" style={{ color: T.accent }}>проверяем</span> мобильное приложение?</h2></> })}
+    options={[{ uz: "Sinamaymiz — AI to'g'ri yozib beradi", ru: 'Не проверяем — ИИ напишет правильно' }, { uz: 'Faqat ranglar to\'g\'ri chiqqanini tekshirib', ru: 'Проверив только, верно ли вышли цвета' }, { uz: 'Faqat kompyuterda kodga qarab, ochmasdan', ru: 'Только глядя в код на компьютере, не открывая приложение' }, { uz: "Kodni tekshirib, telefonda oqimni bosib ko'rib", ru: 'Проверив код и пройдя весь путь на телефоне' }]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (ro'yxat → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tugma joyi) shunda ko'rinadi.", ru: 'Верно! Сначала вы читаете код, потом через Expo Go проходите на телефоне каждый экран и весь путь (список → корзина → заказ). Именно так видны некоторые ошибки на устройстве (тормоза, место кнопки).' }}
+    explainWrong={{ 0: { uz: 'AI xato qiladi — sinov shart.', ru: 'ИИ ошибается — проверка обязательна.' }, 1: { uz: 'Rang — bir qismi xolos. Butun oqimni sinang.', ru: 'Цвета — лишь часть дела. Проверяйте весь путь.' }, 2: { uz: "Kod to'g'ri ko'rinishi mumkin, lekin telefonda boshqacha ishlaydi.", ru: 'Код может выглядеть верным, но на телефоне поведёт себя иначе.' }, default: { uz: "Kodni o'qing, telefonda butun oqimni sinang.", ru: 'Читайте код и проверяйте весь путь на телефоне.' } }} />
 );
 
 // ===== SCREEN 13 — EXPO GO DEPLOY (SIGNATURE 2) + NAMUNA =====
@@ -1182,10 +1186,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Phone wake={wake}><AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>
   );
   return (
-    <Stage eyebrow={{ uz: 'Expo Go · deploy', ru: 'Expo Go · деплой' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Endi navbat sizga →', ru: 'Теперь ваша очередь →' } : { uz: 'Ulashing', ru: 'Поделитесь' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Expo Go · ulashish', ru: 'Expo Go · поделиться' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Endi navbat sizga →', ru: 'Теперь ваша очередь →' } : { uz: 'Ulashing', ru: 'Поделитесь' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Expo Go deploy: <span className="italic" style={{ color: T.accent }}>QR → do'st telefonida</span></>, ru: <>Деплой через Expo Go: <span className="italic" style={{ color: T.accent }}>QR → на телефоне друга</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Ilova tayyor — endi ulashamiz. «Chiqar» bosing → QR paydo bo'ladi → do'stingiz skanlaydi → uning telefonida ishlaydi!", ru: 'Приложение готово — теперь поделимся им. Нажмите «Выпустить» → появится QR → друг его сканирует → приложение работает у него на телефоне!' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Expo Go bilan ilovani ulashing: <span className="italic" style={{ color: T.accent }}>QR → do'st telefonida</span></>, ru: <>Поделитесь приложением через Expo Go: <span className="italic" style={{ color: T.accent }}>QR → на телефоне друга</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Ilovaning asosiy oqimi tayyor — endi uni boshqa telefonda ochib ko'ramiz. «Ulash» bosing → QR paydo bo'ladi → do'stingiz Expo Go bilan skanerlaydi → uning telefonida ochiladi.", ru: 'Основной путь приложения готов — теперь откроем его на другом телефоне. Нажмите «Поделиться» → появится QR → друг сканирует его в Expo Go → приложение открывается у него на телефоне.' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split split-wide" ref={workRef}>{/* §34: ikki telefon + QR bir qatorda sig'sin */}
           <Col>
@@ -1201,18 +1205,18 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div style={{ textAlign: 'center' }}><MiniApp wake /><p className="small" style={{ color: T.success, margin: '6px 0 0', fontWeight: 700 }}>{tr({ uz: "Do'st telefoni ✓", ru: 'Телефон друга ✓' })}</p></div>
               )}
             </div>
-            {phase === 0 && <button className="btn" onClick={() => setPhase(1)} style={{ alignSelf: 'center' }}>{tr({ uz: "📤 Expo Go'da chiqar", ru: '📤 Выпустить в Expo Go' })}</button>}
-            {phase === 1 && <button className="btn" onClick={() => setPhase(2)} style={{ alignSelf: 'center' }}>{tr({ uz: "📲 Do'st QR'ni skanlaydi", ru: '📲 Друг сканирует QR' })}</button>}
+            {phase === 0 && <button className="btn" onClick={() => setPhase(1)} style={{ alignSelf: 'center' }}>{tr({ uz: "📤 Expo Go'da ulash", ru: '📤 Поделиться в Expo Go' })}</button>}
+            {phase === 1 && <button className="btn" onClick={() => setPhase(2)} style={{ alignSelf: 'center' }}>{tr({ uz: "📲 Do'st QR'ni skanerlaydi", ru: '📲 Друг сканирует QR' })}</button>}
           </Col>
           <Col>
-            {!done && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Expo Go — telefonga o'rnatiladigan ilova. QR'ni skanlasangiz, sizning ilovangiz darrov ishga tushadi (App Store kerak emas).", ru: 'Expo Go — приложение, которое ставится на телефон. Сканируете QR — и ваше приложение сразу запускается (App Store не нужен).' })}</p></div>}
+            {!done && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Bu — ilovani sinash va ulashish usuli, <b>App Store yoki Play Market'ga joylash emas</b>. Do'stingiz telefonida Expo Go o'rnatilgan bo'lishi kerak (va odatda ikkalangiz bitta Wi-Fi'da bo'lasiz). Do'konga chiqarish — alohida bosqich, keyin.</>, ru: <>Это способ проверить приложение и поделиться им, <b>а не выложить его в App Store или Play Market</b>. На телефоне друга должен быть установлен Expo Go (и обычно вы оба подключены к одной Wi-Fi-сети). Выпуск в магазин — отдельный этап, позже.</> })}</p></div>}
             {done && (
               <>
                 <div className="checklist feat-pop">
                   <div className="cl-head"><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span><span className="cl-title">{tr({ uz: "Bir o'quvchining yo'li", ru: 'Путь одного ученика' })}</span></div>
                   {CASE_AC.map((c, i) => (<div key={i} className="crit crit-pass"><span className="crit-box">{Ico.check(13)}</span><span className="crit-text"><span className="mono" style={{ fontSize: 9, fontWeight: 800, color: c.color, marginRight: 6 }}>{tr(c.tag)}</span>{tr(c.text)}</span></div>))}
                 </div>
-                <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bitta backend, ko'p telefon. Tayyor ilova boshqalar qo'lida ishlayapti. Endi o'z rejangizni yozing.", ru: 'Один бэкенд, много телефонов. Готовое приложение уже работает в руках у других. Теперь напишите свой план.' })}</p></div>
+                <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bitta backend, ko'p telefon. Endi o'z rejangizni yozing.", ru: 'Один бэкенд, много телефонов. Теперь напишите свой план.' })}</p></div>
               </>
             )}
           </Col>
@@ -1226,29 +1230,29 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={{ uz: 'Qoida', ru: 'Правило' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Yakuniy ishga →', ru: 'К итоговому заданию →' }} onClick={onNext} /></>}>
     <div className="screen">
-      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mobil loyiha: <span className="italic" style={{ color: T.accent }}>quring · testlang · sayqallang · deploy</span></>, ru: <>Мобильный проект: <span className="italic" style={{ color: T.accent }}>соберите · протестируйте · отполируйте · задеплойте</span></> })}</h2></div>
-      <Mentor>{tr({ uz: "Yodda tuting: o'sha backendga ulaning, telefonda sinab ko'ring, sayqallang, Expo Go bilan ulashing.", ru: 'Запомните: подключайтесь к тому же бэкенду, проверяйте на телефоне, полируйте и делитесь через Expo Go.' })}</Mentor>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mobil loyiha: <span className="italic" style={{ color: T.accent }}>quring · sinang · sayqallang · ulashing</span></>, ru: <>Мобильный проект: <span className="italic" style={{ color: T.accent }}>соберите · проверьте · отполируйте · поделитесь</span></> })}</h2></div>
+      <Mentor>{tr({ uz: "Yodda tuting: tayyor backend'ga ulaning, telefonda sinab ko'ring, sayqallang, Expo Go bilan ulashing.", ru: 'Запомните: подключайтесь к готовому бэкенду, проверяйте на телефоне, полируйте и делитесь через Expo Go.' })}</Mentor>
       <Zoomable><div className="split">
         <Col>
           <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
-            <span style={{ fontSize: 40 }}>🎬</span>
-            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>{tr({ uz: 'Siz — direktor', ru: 'Вы — режиссёр' })}</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>{tr({ uz: 'AI kod yozadi, siz telefonda test qilib, ilovani yetkazasiz.', ru: 'ИИ пишет код, а вы тестируете на телефоне и доводите приложение до людей.' })}</p></div>
+            <IcoChip size={50}>{Ico.target(26)}</IcoChip>
+            <div><p className="note-h" style={{ color: T.accent, margin: 0 }}>{tr({ uz: 'Asosiy qoida', ru: 'Главное правило' })}</p><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: '4px 0 0', color: T.ink, fontSize: 'clamp(16px,2.1vw,19px)', lineHeight: 1.4 }}>{tr({ uz: 'AI kod yozishda yordam beradi. Siz vazifani belgilaysiz, kodni tekshirasiz va natijani sinaysiz.', ru: 'ИИ помогает писать код. Вы ставите задачу, проверяете код и испытываете результат.' })}</p></div>
           </div>
         </Col>
         <Col>
           <p className="flow-label">{tr({ uz: '4 narsani unutmang', ru: 'Не забудьте про 4 вещи' })}</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.link(18), c: T.grape, t: { uz: 'O\'SHA BACKEND — yangi server qurmaysiz', ru: 'ТОТ ЖЕ БЭКЕНД — новый сервер не строите' } }, { ic: Ico.phone(18), c: T.blue, t: { uz: 'TELEFONDA TEST — Expo Go, haqiqiy qurilma', ru: 'ТЕСТ НА ТЕЛЕФОНЕ — Expo Go, настоящее устройство' } }, { ic: Ico.sparkle(18), c: T.honey, t: { uz: 'SAYQALLANG — StyleSheet bilan chiroyli qiling', ru: 'ОТПОЛИРУЙТЕ — сделайте красиво через StyleSheet' } }, { ic: Ico.send(18), c: T.success, t: { uz: 'DEPLOY — Expo Go QR bilan ulash', ru: 'ДЕПЛОЙ — поделиться через QR в Expo Go' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.link(18), c: T.grape, t: { uz: 'TAYYOR BACKEND — yangi server qurmaysiz', ru: 'ГОТОВЫЙ БЭКЕНД — новый сервер не строите' } }, { ic: Ico.phone(18), c: T.blue, t: { uz: 'TELEFONDA SINOV — Expo Go bilan', ru: 'ПРОВЕРКА НА ТЕЛЕФОНЕ — через Expo Go' } }, { ic: Ico.sparkle(18), c: T.honey, t: { uz: 'SAYQALLANG — StyleSheet bilan', ru: 'ОТПОЛИРУЙТЕ — через StyleSheet' } }, { ic: Ico.send(18), c: T.success, t: { uz: 'ULASHING — Expo Go QR bilan', ru: 'ПОДЕЛИТЕСЬ — по QR в Expo Go' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
     </div>
   </Stage>
 );
-// ===== SCREEN FINAL — 4 SAHNANI TO'G'RI TARTIBDA YIG'ISH (port oqimi · DragDropOrder) =====
+// ===== SCREEN FINAL — 4 EKRANNI XARID OQIMI TARTIBIDA YIG'ISH (DragDropOrder) =====
 const FINAL_SCENES = [
-  { id: 'katalog',  label: { uz: 'Katalog (List)', ru: 'Каталог (List)' } },
-  { id: 'detail',   label: { uz: 'Detal (Detail)', ru: 'Детали (Detail)' } },
+  { id: 'katalog',  label: { uz: "Ro'yxat (List)", ru: 'Список (List)' } },
+  { id: 'detail',   label: { uz: 'Tafsilot (Detail)', ru: 'Детали (Detail)' } },
   { id: 'savat',    label: { uz: 'Savat (Cart)', ru: 'Корзина (Cart)' } },
   { id: 'buyurtma', label: { uz: 'Buyurtma (Checkout)', ru: 'Заказ (Checkout)' } },
 ];
@@ -1258,7 +1262,7 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const wrongEverRef = useRef(false);
   const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const items = FINAL_SCENES;
-  const hints = [{ uz: "mahsulotlar ro'yxati", ru: 'список товаров' }, { uz: "bitta mahsulot sahifasi", ru: 'страница одного товара' }, { uz: "tanlangan mahsulotlar", ru: 'выбранные товары' }, { uz: "buyurtmani yakunlash", ru: 'завершение заказа' }];
+  const hints = FINAL_SCENES.map(() => ({ uz: "bu yerga qo'ying", ru: 'положите сюда' }));
   const firedRef = useRef(!!storedAnswer);
   const [done, setDone] = useState(!!storedAnswer);
   const solve = () => {
@@ -1266,27 +1270,26 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     firedRef.current = true;
     setDone(true);
     const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilova 4 sahnasini to'g'ri tartibda yig'ing", options: FINAL_SCENES.map(f => ou(f.label)), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilovaning 4 ekranini xarid oqimi tartibida yig'ing", options: FINAL_SCENES.map(f => ou(f.label)), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
-    <Stage eyebrow={{ uz: "Yakuniy · sahnalarni yig'ing", ru: 'Итог · соберите сцены' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Sahnalarni yig'ing", ru: 'Соберите сцены' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Yakuniy · xarid oqimi', ru: 'Итог · путь покупки' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ekranlarni yig'ing", ru: 'Соберите экраны' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: mobil ilova <span className="italic" style={{ color: T.accent }}>4 sahnasini to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>4 сцены мобильного приложения в верном порядке</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Web-shouni mobil sahnaga port qildingiz. Endi 4 sahnani xarid oqimi tartibida joylang: mahsulotlar ro'yxati → mahsulot sahifasi → savat → buyurtma.", ru: 'Вы перенесли веб-шоу на мобильную сцену. Теперь разложите 4 сцены по порядку покупки: список товаров → страница товара → корзина → заказ.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: mobil ilovaning <span className="italic" style={{ color: T.accent }}>4 ekranini xarid oqimi tartibida</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>4 экрана мобильного приложения в порядке пути покупки</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Mijoz ilovada xarid qiladi. 4 ekranni u bosib o'tadigan tartibda joylang.", ru: 'Клиент делает покупку в приложении. Расставьте 4 экрана в том порядке, в котором он их проходит.' })}</Mentor>
         <Zoomable>
-          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: "To'g'ri oqim: Katalog → Detal → Savat → Buyurtma!", ru: 'Верный путь: Каталог → Детали → Корзина → Заказ!' }} />
+          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: <>Xarid oqimi tayyor: <b>Ro'yxat → Tafsilot → Savat → Buyurtma</b>. Mini-do'konning asosiy oqimi shu.</>, ru: <>Путь покупки готов: <b>Список → Детали → Корзина → Заказ</b>. Это и есть основной путь мини-магазина.</> }} />
         </Zoomable>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Sahnalar tayyor: <b>Katalog → Detal → Savat → Buyurtma</b>. Bitta backend, 4 sahna — mobil ilova to'liq yig'ildi.</>, ru: <>✓ Сцены готовы: <b>Каталог → Детали → Корзина → Заказ</b>. Один бэкенд, 4 сцены — мобильное приложение собрано целиком.</> })}</p></div>}
       </div>
     </Stage>
   );
 };
-// ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) · GASTROL metaforasi =====
+// ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  onTour:         { icon: '🎭', name: 'On Tour',         desc: { uz: "Web bo'lakni mobil sahnaga ko'chirdingiz", ru: "Вы перенесли веб-часть на мобильную сцену" } },
-  dressRehearsal: { icon: '🎬', name: 'Dress Rehearsal', desc: { uz: "Aniq buyurib, kodni o'qishni bildingiz", ru: "Вы поняли: точная команда, чтение кода" } },
-  finalPolish:    { icon: '✨', name: 'Final Polish',     desc: { uz: "Buyurtma o'sha pipeline'ga tushishini bildingiz", ru: "Вы поняли: заказ идёт по тому же конвейеру" } },
-  premiereNight:  { icon: '🎉', name: 'Premiere Night',  desc: { uz: "Ilovani Expo Go bilan telefonda sinadingiz", ru: "Вы протестировали приложение через Expo Go" } } };
+  onTour:         { icon: '🔌', name: 'API Connected',   desc: { uz: "Mobil ilova tayyor backend'ga ulanishini bildingiz", ru: 'Вы узнали, что мобильное приложение подключается к готовому бэкенду' } },
+  dressRehearsal: { icon: '🧑‍💻', name: 'Project Builder', desc: { uz: "Topshiriq berib, kodni o'qib sinashni bildingiz", ru: 'Вы научились давать задание, читать код и проверять' } },
+  finalPolish:    { icon: '🧾', name: 'Checkout Done',   desc: { uz: "Buyurtma backend'ga POST /orders bilan ketishini bildingiz", ru: 'Вы узнали, что заказ уходит на бэкенд через POST /orders' } },
+  premiereNight:  { icon: '📱', name: 'Mobile Test',     desc: { uz: "Ilovani kod va telefonda sinashni bildingiz", ru: 'Вы научились проверять приложение в коде и на телефоне' } } };
 // Ekran id → nishon. ❗ FAQAT SCORED test ekranlariga (correct=to'g'ri javob): s4 · s5b · s9 · s12.
 // Exploration/toggle ekranlarga BOG'LANMAYDI (ular har bosishda correct:true beradi — nishon tekin bo'lib qolardi).
 const ACH_TRIGGERS = { s4: 'onTour', s5b: 'dressRehearsal', s9: 'finalPolish', s12: 'premiereNight' };
@@ -1345,10 +1348,10 @@ const Confetti = () => {
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 6, 10, 13, 16)
 const Q_LABELS = {
   4: { uz: '1 — Manba', ru: '1 — Источник' },
-  6: { uz: '2 — Direktor', ru: '2 — Режиссёр' },
+  6: { uz: '2 — Sizning vazifangiz', ru: '2 — Ваша задача' },
   10: { uz: '3 — Buyurtma', ru: '3 — Заказ' },
-  13: { uz: '4 — Test', ru: '4 — Тест' },
-  16: { uz: '5 — Sahnalar', ru: '5 — Сцены' }
+  13: { uz: '4 — Sinov', ru: '4 — Проверка' },
+  16: { uz: '5 — Xarid oqimi', ru: '5 — Путь покупки' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (mobil/RN atamalari)
@@ -1365,24 +1368,24 @@ const QZ_BG_SHAPES = [
   { ch: '✅',          l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'fetch',       l: 34, t: 62, s: 22, d: 29, dl: 3.4 },
   { ch: '🔌',          l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
-  { ch: 'deploy',      l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
-  { ch: 'badge',       l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: 'StyleSheet',  l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
+  { ch: 'cart.length', l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mobil ilova mahsulot ma'lumotini qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }, opts: [{ uz: "O'sha backenddan (GET /products)", ru: 'С того же бэкенда (GET /products)' }, { uz: "Ilova ichiga qo'lda yozamiz", ru: 'Впишем вручную внутрь приложения' }, { uz: "Yangi mobil server yozamiz", ru: 'Напишем новый мобильный сервер' }, { uz: "Hech qayerdan olmaydi", ru: 'Ниоткуда не берёт' }], correct: 0 },
-  { q: { uz: "Loyiha kunida sizning (direktor) rolingiz nima?", ru: 'Какая у вас (режиссёра) роль в день проекта?' }, opts: [{ uz: "Kodni o'qimasdan shundoq ishlatish", ru: 'Просто использовать код, не читая его' }, { uz: "Buyurish, kodni o'qish, telefonda testlash", ru: 'Командовать, читать код, тестировать на телефоне' }, { uz: "Hamma kodni o'zingiz qo'lda yozish", ru: 'Писать весь код самому вручную' }, { uz: "Faqat ranglar va dizaynni tanlash", ru: 'Выбирать только цвета и дизайн' }], correct: 1 },
-  { q: { uz: "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent ishlatiladi?", ru: 'Каким компонентом в React Native показывают список?' }, opts: ["<div>", "<table>", "<FlatList>", "<marquee>"], correct: 2 },
-  { q: { uz: "«Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать»?' }, opts: [{ uz: "Faqat telefonda saqlanadi", ru: 'Сохраняется только в телефоне' }, { uz: "Umuman hech narsa bo'lmaydi", ru: 'Вообще ничего не происходит' }, { uz: "Yangi mobil backend ishga tushadi", ru: 'Запускается новый мобильный бэкенд' }, { uz: "O'sha backendga POST /orders → baza → bot", ru: 'POST /orders на тот же бэкенд → база → бот' }], correct: 3 },
-  { q: { uz: "Yuqoridagi savat soni (badge) nima bilan bog'lanadi?", ru: 'С чем связан счётчик корзины наверху?' }, opts: [{ uz: "Backend fayl nomi bilan", ru: 'С именем файла на бэкенде' }, { uz: "cart.length (state) bilan", ru: 'С cart.length (state)' }, { uz: "Rasm o'lchami bilan", ru: 'С размером картинки' }, { uz: "Sahifa sarlavhasi bilan", ru: 'С заголовком страницы' }], correct: 1 },
-  { q: { uz: "Jami narxni hisoblash uchun qaysi metod eng qulay?", ru: 'Каким методом удобнее всего посчитать итоговую сумму?' }, opts: ["reduce", "map", "filter", "sort"], correct: 0 },
-  { q: { uz: "Expo Go asosan nima uchun kerak?", ru: 'Для чего в основном нужен Expo Go?' }, opts: [{ uz: "Kodni boshqa tilga tarjima qilish uchun", ru: 'Чтобы перевести код на другой язык' }, { uz: "Yangi backend qurish uchun", ru: 'Чтобы построить новый бэкенд' }, { uz: "Ilovaga rasm chizish uchun", ru: 'Чтобы рисовать картинки для приложения' }, { uz: "Ilovani telefonda sinab, QR bilan ulash uchun", ru: 'Чтобы проверить приложение на телефоне и поделиться по QR' }], correct: 3 },
-  { q: { uz: "Mobil ilovani qanday to'g'ri test qilamiz?", ru: 'Как правильно тестировать мобильное приложение?' }, opts: [{ uz: "Umuman test qilmaymiz", ru: 'Вообще не тестируем' }, { uz: "Faqat kompyuterda kodga qarab", ru: 'Только глядя в код на компьютере' }, { uz: "Expo Go bilan haqiqiy telefonda", ru: 'На настоящем телефоне через Expo Go' }, { uz: "Faqat ranglarni tekshirib", ru: 'Проверив только цвета' }], correct: 2 },
+  { q: { uz: "Mobil ilova mahsulot ma'lumotini qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }, opts: [{ uz: "Tayyor backend'dan (`GET /products`)", ru: 'С готового бэкенда (`GET /products`)' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: "Faqat mobil uchun yozilgan yangi API serverdan", ru: 'С нового API-сервера только для мобильного' }, { uz: "Hech qayerdan — baza bo'lmaydi", ru: 'Ниоткуда — базы нет' }], correct: 0 },
+  { q: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: 'Какая у вас задача в день проекта?' }, opts: [{ uz: "Kodni o'qimasdan shundoq ishlatish", ru: 'Просто использовать код, не читая его' }, { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, { uz: "Hamma kodni o'zingiz qo'lda yozish", ru: 'Писать весь код самому вручную' }, { uz: "Faqat ranglar va dizaynni tanlash", ru: 'Выбирать только цвета и дизайн' }], correct: 1 },
+  { q: { uz: "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?", ru: 'Каким компонентом в React Native показывают список?' }, opts: ["<div>", "<table>", "<FlatList>", "<ScrollView>"], correct: 2 },
+  { q: { uz: "«Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать»?' }, opts: [{ uz: "Buyurtma faqat telefonda saqlanadi", ru: 'Заказ сохраняется только в телефоне' }, { uz: "Umuman hech narsa bo'lmaydi", ru: 'Вообще ничего не происходит' }, { uz: "Yangi mobil API ishga tushadi", ru: 'Запускается новый мобильный API' }, { uz: "Backend'ga `POST /orders` ketadi", ru: 'На бэкенд уходит `POST /orders`' }], correct: 3 },
+  { q: { uz: "Yuqoridagi savat soni belgisi nima bilan bog'lanadi?", ru: 'С чем связан счётчик корзины сверху?' }, opts: [{ uz: "Backend fayl nomi bilan", ru: 'С именем файла на бэкенде' }, { uz: "`cart.length` (holat) bilan", ru: 'С `cart.length` (состояние)' }, { uz: "Rasm o'lchami (`width`) bilan", ru: 'С размером картинки (`width`)' }, { uz: "Sahifa sarlavhasi bilan", ru: 'С заголовком страницы' }], correct: 1 },
+  { q: { uz: "Jami narxni hisoblash uchun qaysi usul qulay?", ru: 'Каким методом удобно посчитать итоговую цену?' }, opts: ["reduce", "map", "filter", "sort"], correct: 0 },
+  { q: { uz: "Expo Go asosan nima uchun kerak?", ru: 'Для чего в основном нужен Expo Go?' }, opts: [{ uz: "Kodni boshqa tilga tarjima qilish uchun", ru: 'Чтобы перевести код на другой язык' }, { uz: "Yangi backend qurish uchun", ru: 'Чтобы построить новый бэкенд' }, { uz: "Ilovaga rasm chizish uchun", ru: 'Чтобы рисовать картинки для приложения' }, { uz: "Ilovani telefonda sinash va ulashish uchun", ru: 'Чтобы проверить приложение на телефоне и поделиться им' }], correct: 3 },
+  { q: { uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }, opts: [{ uz: "Umuman sinamaymiz", ru: 'Вообще не проверяем' }, { uz: "Faqat kompyuterda kodga qarab", ru: 'Только глядя в код на компьютере' }, { uz: "Kodni o'qib, telefonda oqimni bosib", ru: 'Прочитав код и пройдя путь на телефоне' }, { uz: "Faqat ranglarni tekshirib", ru: 'Проверив только цвета' }], correct: 2 },
   { q: { uz: "Web, bot va mobil bir xil buyurtmalarni qanday ko'radi?", ru: 'Как веб, бот и мобильное видят одни и те же заказы?' }, opts: [{ uz: "Bitta backend va bazaga ulanadi", ru: 'Подключаются к одному бэкенду и одной базе' }, { uz: "Har biriga alohida baza quriladi", ru: 'Для каждого строят отдельную базу' }, { uz: "Ma'lumot qo'lda nusxalanadi", ru: 'Данные копируют вручную' }, { uz: "Buni umuman qilib bo'lmaydi", ru: 'Так вообще сделать нельзя' }], correct: 0 },
-  { q: { uz: "Ilova «ishlaydi» bo'lgandan keyin yana nima kerak?", ru: 'Что нужно ещё после того, как приложение «работает»?' }, opts: [{ uz: "Boshqa hech narsa kerak emas", ru: 'Больше ничего не нужно' }, { uz: "Backendni butunlay o'chirish", ru: 'Полностью выключить бэкенд' }, { uz: "Hamma kodni boshidan qayta yozish", ru: 'Переписать весь код с нуля' }, { uz: "Sayqal — StyleSheet bilan chiroyli qilish", ru: 'Полировка — сделать красиво через StyleSheet' }], correct: 3 },
-  { q: { uz: "Detail ekranga o'tish uchun nima ishlatiladi?", ru: 'Чем выполняют переход на экран Detail?' }, opts: ["reduce", "fetch", "navigation.navigate", "StyleSheet.create"], correct: 2 },
-  { q: { uz: "Telefonda test nega emulyatordan ko'ra yaxshiroq?", ru: 'Почему тест на телефоне лучше эмулятора?' }, opts: [{ uz: "Kodni ancha tezroq yuklaydi", ru: 'Он гораздо быстрее грузит код' }, { uz: "Real qurilma rost bug'larni ko'rsatadi", ru: 'Реальное устройство показывает настоящие баги' }, { uz: "Kod yozish umuman kerak emas", ru: 'Код тогда вообще писать не нужно' }, { uz: "Ulanish uchun internet kerak emas", ru: 'Для подключения не нужен интернет' }], correct: 1 },
+  { q: { uz: "Ilova «ishlaydi» bo'lgandan keyin yana nima kerak?", ru: 'Что нужно ещё после того, как приложение «работает»?' }, opts: [{ uz: "Boshqa hech narsa kerak emas", ru: 'Больше ничего не нужно' }, { uz: "Backend'ni o'chirish — API endi kerak emas", ru: 'Выключить бэкенд — API больше не нужен' }, { uz: "Hamma kodni boshidan qayta yozish", ru: 'Переписать весь код с нуля' }, { uz: "Sayqal — StyleSheet bilan", ru: 'Полировка — через StyleSheet' }], correct: 3 },
+  { q: { uz: "Tafsilot ekraniga o'tish uchun nima ishlatiladi?", ru: 'Что используют для перехода на экран Детали?' }, opts: ["reduce", "fetch", "navigation.navigate", "StyleSheet.create"], correct: 2 },
+  { q: { uz: "Nega telefonda ham sinash kerak?", ru: 'Зачем проверять ещё и на телефоне?' }, opts: [{ uz: "Kodni ancha tezroq yuklaydi", ru: 'Он гораздо быстрее грузит код' }, { uz: "Qurilmaga xos xatolar ko'rinadi", ru: 'Видны ошибки конкретного устройства' }, { uz: "Kod yozish umuman kerak emas", ru: 'Код тогда вообще писать не нужно' }, { uz: "Ulanish uchun internet kerak emas", ru: 'Для подключения не нужен интернет' }], correct: 1 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -1484,7 +1487,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (mobil ilova): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['FlatList', '📱', 'Expo Go', 'fetch', 'state', 'reduce', 'POST /orders', '🛒', 'navigate', 'deploy'];
+    const TOK = ['FlatList', '📱', 'Expo Go', 'fetch', 'state', 'reduce', 'POST /orders', '🛒', 'navigate', 'QR'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -1960,18 +1963,18 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — mobil ilova atamalari
 const MOBILE_FLASHCARDS = [
-  { front: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' }, back: { uz: "O'sha backenddan", ru: 'С того же бэкенда' }, note: { uz: "GET /products so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /products, а не вручную' } },
-  { front: { uz: "Loyiha kunida sizning rolingiz qanday?", ru: 'Какая у вас роль в день проекта?' }, back: { uz: 'Direktor', ru: 'Режиссёр' }, note: { uz: "Siz aniq buyurasiz, AI kod yozadi, siz o'qib tushunasiz", ru: 'Вы даёте точную команду, ИИ пишет код, вы его читаете' } },
-  { front: { uz: "Kod haqiqatan ishlaganini qanday bilasiz?", ru: 'Как вы узнаете, что код и правда работает?' }, back: { uz: "Telefonda ko'rsangiz", ru: 'Увидев на телефоне' }, note: { uz: "Expo Go'da o'z ko'zingiz bilan sinaysiz", ru: 'Проверяете своими глазами в Expo Go' } },
-  { front: { uz: "Savatga solingan mahsulotlar qayerda turadi?", ru: 'Где лежат товары, положенные в корзину?' }, back: 'state', note: { uz: "state o'zgarsa, ekran o'zi yangilanadi", ru: 'Меняется state — экран обновляется сам' } },
-  { front: { uz: "Savatdagi jami narxni qaysi usul hisoblaydi?", ru: 'Каким методом считается итоговая сумма корзины?' }, back: 'reduce', note: { uz: "Ro'yxatdagi barcha narxni bitta songa yig'adi", ru: 'Складывает все цены списка в одно число' } },
-  { front: { uz: "Bir ekrandan ikkinchisiga nima yordamida o'tiladi?", ru: 'С помощью чего переходят с одного экрана на другой?' }, back: 'navigation', note: { uz: "Ekranlarni Stack Navigator boshqaradi", ru: 'Экранами управляет Stack Navigator' } },
-  { front: { uz: "Buyurtma backendga qaysi so'rov bilan yuboriladi?", ru: 'Каким запросом заказ уходит на бэкенд?' }, back: 'POST /orders', note: { uz: "Buyurtma bazaga yoziladi, bot adminni ogohlantiradi", ru: 'Заказ пишется в базу, бот предупреждает админа' } },
-  { front: { uz: "Ilovaga rang, bo'shliq va tartib nima orqali beriladi?", ru: 'Через что приложению задаются цвет, отступы и порядок?' }, back: 'StyleSheet', note: { uz: "Ilova shu bosqichda sayqallanadi", ru: 'На этом шаге приложение полируется' } },
-  { front: { uz: "Savat ustidagi kichik son (badge) qayerdan olinadi?", ru: 'Откуда берётся маленькое число над корзиной (badge)?' }, back: 'cart.length', note: { uz: "Savatdagi mahsulotlar sonini ko'rsatadi", ru: 'Показывает количество товаров в корзине' } },
-  { front: { uz: "Bug topilsa butun ilovani qayta yozasizmi?", ru: 'Переписываете ли вы всё приложение, если нашли баг?' }, back: { uz: "Yo'q, aniq tuzatiladi", ru: 'Нет, чинится точечно' }, note: { uz: "Faqat buzilgan joyga aniq prompt beriladi", ru: 'Точный промпт даётся только на сломанное место' } },
-  { front: { uz: "Tayyor ilovani do'stingiz telefonida qanday ochasiz?", ru: 'Как открыть готовое приложение на телефоне друга?' }, back: { uz: 'Expo Go QR bilan', ru: 'По QR в Expo Go' }, note: { uz: "App Store'ga qo'yish shart emas", ru: 'Выкладывать в App Store не обязательно' } },
-  { front: { uz: "Nega ilovani emulyator emas, real telefonda sinaymiz?", ru: 'Почему проверяем на реальном телефоне, а не в эмуляторе?' }, back: { uz: 'Rost bug chiqadi', ru: 'Вылезают настоящие баги' }, note: { uz: "Tugma joyi, sekinlik, badge xatosi shunda ko'rinadi", ru: 'Место кнопки, тормоза, ошибка badge видны именно там' } },
+  { front: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' }, back: { uz: "Tayyor backend'dan", ru: 'С готового бэкенда' }, note: { uz: "GET /products so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /products, а не вручную' } },
+  { front: { uz: "Loyiha kunida sizning vazifangiz?", ru: 'Ваша задача в день проекта?' }, back: { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, note: { uz: "AI kod taklif qiladi — siz tekshirasiz", ru: 'ИИ предлагает код — вы проверяете' } },
+  { front: { uz: "Kod haqiqatan ishlaganini qanday bilasiz?", ru: 'Как вы узнаете, что код и правда работает?' }, back: { uz: "Telefonda sinab ko'rsangiz", ru: 'Проверив на телефоне' }, note: { uz: "Expo Go'da oqimni o'zingiz bosib ko'rasiz", ru: 'Вы сами проходите путь в Expo Go' } },
+  { front: { uz: "Savatdagi mahsulotlar qayerda turadi?", ru: 'Где хранятся товары из корзины?' }, back: { uz: 'Holatda (state)', ru: 'В состоянии (state)' }, note: { uz: "Holat o'zgarsa, ekran o'zi yangilanadi", ru: 'Когда состояние меняется, экран обновляется сам' } },
+  { front: { uz: "Savatdagi jami narxni qaysi usul hisoblaydi?", ru: 'Каким методом считается итоговая сумма корзины?' }, back: 'reduce', note: { uz: "Narxlarni bitta songa yig'adi", ru: 'Складывает цены в одно число' } },
+  { front: { uz: "Savatdagi mahsulotlar sonini nima beradi?", ru: 'Откуда берётся количество товаров в корзине?' }, back: 'cart.length', note: { uz: "Yuqoridagi savat soni belgisi shundan olinadi", ru: 'Из него берётся счётчик корзины сверху' } },
+  { front: { uz: "Bir ekrandan ikkinchisiga nima yordamida o'tiladi?", ru: 'С помощью чего переходят с одного экрана на другой?' }, back: 'navigation.navigate', note: { uz: "Ekranlarni Stack Navigator boshqaradi", ru: 'Экранами управляет Stack Navigator' } },
+  { front: { uz: "Buyurtma backend'ga qaysi so'rov bilan yuboriladi?", ru: 'Каким запросом заказ отправляется на бэкенд?' }, back: 'POST /orders', note: { uz: "Bazaga yoziladi, bot adminga xabar beradi", ru: 'Записывается в базу, бот сообщает администратору' } },
+  { front: { uz: "Ilovaga rang, bo'shliq va tartib nima orqali beriladi?", ru: 'Через что приложению задаются цвет, отступы и порядок?' }, back: 'StyleSheet', note: { uz: "Sayqal bosqichi", ru: 'Этап полировки' } },
+  { front: { uz: "Xato topilsa butun ilovani qayta yozasizmi?", ru: 'Нашли ошибку — переписываете всё приложение?' }, back: { uz: "Yo'q — aniq joyi tuzatiladi", ru: 'Нет — исправляют конкретное место' }, note: { uz: "Faqat buzilgan joyga aniq topshiriq", ru: 'Точное задание только на сломанное место' } },
+  { front: { uz: "Tayyor ilovani do'stingiz telefonida qanday ochasiz?", ru: 'Как открыть готовое приложение на телефоне друга?' }, back: { uz: 'Expo Go va QR bilan', ru: 'Через Expo Go и QR' }, note: { uz: "Bu ulashish usuli, App Store'ga joylash emas", ru: 'Это способ поделиться, а не выкладка в App Store' } },
+  { front: { uz: "Nega telefonda ham sinash kerak?", ru: 'Зачем проверять ещё и на телефоне?' }, back: { uz: "Qurilmaga xos xatolar ko'rinadi", ru: 'Видны ошибки конкретного устройства' }, note: { uz: "Sekinlik, tugma joyi; emulyator ham foydali", ru: 'Тормоза, место кнопки; эмулятор тоже полезен' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2006,15 +2009,15 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "Mobil ilova o'sha backendga ulanadi (bitta tizim, ko'p eshik) — yangi server qurmaysiz", ru: 'Мобильное приложение подключается к тому же бэкенду (одна система, много дверей) — новый сервер не строите' },
-    { uz: "List → Detail → Savat → Checkout — har sahna prompt bilan port qilinadi", ru: 'List → Detail → Корзина → Checkout — каждая сцена переносится промптом' },
-    { uz: "Savat = state, jami = reduce; state o'zgarsa ekran o'zi yangilanadi", ru: 'Корзина = state, итог = reduce; меняется state — экран обновляется сам' },
-    { uz: "Telefonda test (Expo Go) bug'ni tutadi → aniq tuzatish prompti bilan tuzatiladi", ru: 'Тест на телефоне (Expo Go) ловит баг → он чинится точным промптом на правку' },
-    { uz: "Deploy = Expo Go QR → do'st telefonida ochiladi (App Store kerak emas)", ru: 'Деплой = QR в Expo Go → открывается на телефоне друга (App Store не нужен)' }
+    { uz: "Mobil ilova tayyor backend'ga ulanadi — bitta tizim, ko'p kirish yo'li", ru: 'Мобильное приложение подключается к готовому бэкенду — одна система, много точек входа' },
+    { uz: "Ro'yxat → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz", ru: 'Список → Детали → Корзина → Заказ — каждый экран строится с помощью ИИ, а вы проверяете' },
+    { uz: "Savat — holat (state), jami — reduce; holat o'zgarsa ekran yangilanadi", ru: 'Корзина — состояние (state), итог — reduce; меняется состояние — экран обновляется' },
+    { uz: "Telefonda sinov xatoni topadi → aniq tuzatish topshirig'i bilan tuzatiladi", ru: 'Проверка на телефоне находит ошибку → её исправляют точным заданием на исправление' },
+    { uz: "Expo Go va QR — ilovani boshqa telefonda ochib ko'rish (App Store'ga joylash emas)", ru: 'Expo Go и QR — открыть приложение на другом телефоне (это не выкладка в App Store)' }
   ];
   const HOMEWORK = [
-    { b: { uz: "Quring", ru: 'Соберите' }, t: { uz: "— o'z mobil ilovangizni boshlang, o'sha backendga ulang", ru: '— начните своё мобильное приложение и подключите его к тому же бэкенду' } },
-    { b: { uz: 'Testlang', ru: 'Протестируйте' }, t: { uz: "— Expo Go'da telefonda har ekranni bosib sinang", ru: '— прощёлкайте каждый экран на телефоне в Expo Go' } },
+    { b: { uz: "Quring", ru: 'Соберите' }, t: { uz: "— ustoz bergan tayyor loyihada o'z mobil ilovangizni davom ettiring; backend darslaridagi serveringizga ulang", ru: '— продолжайте своё мобильное приложение в готовом проекте от преподавателя; подключите его к своему серверу с уроков по бэкенду' } },
+    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: "— Expo Go'da telefonda har ekranni bosib ko'ring", ru: '— пройдите каждый экран на телефоне в Expo Go' } },
     { b: { uz: 'Ulashing', ru: 'Поделитесь' }, t: { uz: "— sayqallab, QR bilan do'stingizga bering, fikr oling", ru: '— отполируйте, передайте другу по QR и соберите отзывы' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -2023,7 +2026,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Premyera bo'ldi", ru: 'Премьера состоялась' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Mobil ilovangiz <span className="italic" style={{ color: T.accent }}>gastrolga chiqdi</span>.</>, ru: <>Ваше мобильное приложение <span className="italic" style={{ color: T.accent }}>отправилось на гастроли</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Mobil ilova tayyor', ru: 'Мобильное приложение готово' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Mini-do'kon mobil ilovangizning <span className="italic" style={{ color: T.accent }}>asosiy oqimi ishladi</span>.</>, ru: <>У мобильного приложения вашего мини-магазина <span className="italic" style={{ color: T.accent }}>заработал основной путь</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2039,7 +2042,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — To'liq tizim (capstone): web + mobil + bot + backend + baza bitta tizimga.", ru: '🚀 Следующий урок — Полная система (capstone): веб + мобильное + бот + бэкенд + база в одну систему.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — PM: <b>Bugun qaysi ish boshlanadi?</b> Loyihangizdagi ishlarni uch ufqqa ajratamiz: hozir, uch oydan keyin, olti oydan keyin.</>, ru: <>🚀 Следующий урок — PM: <b>Какую задачу начинаем сегодня?</b> Разделим задачи вашего проекта на три горизонта: сейчас, через три месяца, через шесть месяцев.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2862,6 +2865,8 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         .option-wait { animation: opt-wait-breathe 2s ease-in-out infinite; }
         @keyframes opt-wait-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
         @media (prefers-reduced-motion: reduce) { .option-wait { animation: none !important; } }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* F-0929-27: kataklar chapda, bo'laklar o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

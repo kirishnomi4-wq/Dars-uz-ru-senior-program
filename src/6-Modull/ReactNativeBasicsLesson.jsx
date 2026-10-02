@@ -4,15 +4,12 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // 6-MODUL (React Native) · DARS 9 — «RN — ASOSLAR (View · Text · StyleSheet · Expo)» — PLATFORM STANDARD v18 (AUDIOSIZ)
 // Maqsad: o'quvchi React Native nima, React'dan farqi (View/Text/StyleSheet) va Expo bilan telefonda ko'rishni tushunadi.
-//         "React bilasiz → mobil yasaysiz" — deyarli o'sha bilim, faqat sahna komponentlari o'zgaradi.
-// 🎭 METAFORA — «GASTROL» (web shousini telefon sahnasiga olib chiqamiz):
-//   React bilim = ssenariy + aktyorlar (o'zgarmaydi) · RN = gastrol jamoasi (shouni yangi sahnaga moslaydi) ·
-//   View = real yog'och sahna-karkas (vs div = bo'yalgan fon-parda) · Text = aktyor replikasi (vs p) ·
-//   StyleSheet = kostyum + yorug'lik varag'i · Expo = ko'chma sahna to'plami (gastrol furgoni) · QR = chipta.
-//   web = shisha ortidagi proyeksiya (sovuq/xira) · mobil = cho'ntakdagi TIRIK sahna (yorqin/real, native).
-// INTERAKTIV BEAT'lar: s2-3 (RN nima / farq=shisha↔tirik) · s5-6 (View/Text/StyleSheet sudrab) ·
-//   s7 (birinchi ekran yonadi — telefon-mockup = sahna reflektorlari) · s9 (Expo QR = chipta) ·
-//   s15 FINAL: gastrol oqimini to'g'ri tartibda yig'ish (DragDropOrder).
+//         "React bilasiz → mobil yasaysiz" — React bilimi o'sha, faqat ekran elementlari (View/Text) boshqacha.
+// MATN MANBASI (MD-birinchi, 2026-09-29): feedback/F-0929-QA-6modul/09-ReactNativeBasics-v2.md.
+//   Metafora faqat s2 da bir marta (aktyor boshqa sahnaga chiqadi); qolgan joylarda oddiy nomlar.
+// INTERAKTIV BEAT'lar: s2-3 (RN nima / web va mobil juftliklari) · s5-6 (View/Text/StyleSheet) ·
+//   s7 (birinchi ekran telefonda paydo bo'ladi) · s10 (Expo Go QR) ·
+//   s15 FINAL: bugungi mashq tartibini yig'ish (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -287,41 +284,41 @@ const RECAPS = {
   4: {
     title: { uz: "React Native — React bilan mobil", ru: 'React Native — мобильное на React' },
     cards: [
-      { ic: "🎭", h: { uz: "Bir xil ssenariy", ru: 'Тот же сценарий' }, body: { uz: <>React bilimingiz (komponent, props, state) — o'sha <b>ssenariy</b>, o'zgarmaydi.</>, ru: <>Ваши знания React (компонент, props, state) — тот же <b>сценарий</b>, он не меняется.</> } },
-      { ic: "📱", h: { uz: "Yangi sahna — telefon", ru: 'Новая сцена — телефон' }, body: { uz: <>RN o'sha shouni <b>haqiqiy mobil ilova</b> (iOS + Android) sahnasiga chiqaradi.</>, ru: <>RN выводит то же шоу на сцену <b>настоящего мобильного приложения</b> (iOS + Android).</> } },
-      { ic: "🚚", h: { uz: "Gastrol jamoasi", ru: 'Гастрольная команда' }, body: { uz: <>RN — web shousini yangi sahnaga moslaydigan gastrol jamoasi.</>, ru: <>RN — гастрольная команда, которая приспосабливает веб-шоу к новой сцене.</> }, ask: { uz: "React Native nima uchun ishlatiladi?", ru: 'Для чего используют React Native?' } },
+      { ic: "⚛️", h: { uz: "React bilimi o'sha", ru: 'Знания React — те же' }, body: { uz: <>React bilimingiz (komponent, props, state) <b>o'sha</b>.</>, ru: <>Ваши знания React (компонент, props, state) — <b>те же</b>.</> } },
+      { ic: "📱", h: { uz: "Haqiqiy mobil ilova", ru: 'Настоящее мобильное приложение' }, body: { uz: <>React Native <b>haqiqiy mobil ilova</b> yasaydi (iOS va Android).</>, ru: <>React Native делает <b>настоящее мобильное приложение</b> (iOS и Android).</> } },
+      { ic: "🌐", h: { uz: "Web va mobil", ru: 'Веб и мобильное' }, body: { uz: <>Web uchun — oddiy React, mobil uchun — React Native.</>, ru: <>Для веба — обычный React, для мобильного — React Native.</> }, ask: { uz: "React Native nima uchun ishlatiladi?", ru: 'Для чего используют React Native?' } },
     ]
   },
   8: {
-    title: { uz: "Text — aktyor replikasi qoidasi", ru: 'Text — правило актёрской реплики' },
+    title: { uz: "Matn — faqat Text ichida", ru: 'Текст — только внутри Text' },
     cards: [
-      { ic: "🗣️", h: { uz: "Har matn — Text ichida", ru: 'Любой текст — внутри Text' }, body: { uz: <>RN'da <b>har qanday matn</b> albatta <span className="mono">{'<Text>'}</span> ichida bo'lishi shart.</>, ru: <>В RN <b>любой текст</b> обязательно должен находиться внутри <span className="mono">{'<Text>'}</span>.</> } },
-      { ic: "🪵", h: { uz: "View — sahna-karkas", ru: 'View — каркас сцены' }, body: { uz: <>View — quti/karkas; unga to'g'ridan matn yozsangiz — ilova <b>xato</b> beradi.</>, ru: <>View — коробка/каркас; если написать текст прямо в него — приложение выдаст <b>ошибку</b>.</> } },
-      { ic: "🎬", h: { uz: "div→View, p→Text", ru: 'div→View, p→Text' }, body: { uz: <>Web'dagi div → View, p → Text. Bu — RN'ning eng muhim qoidasi.</>, ru: <>Веб-овский div → View, p → Text. Это главное правило RN.</> }, ask: { uz: "React Native'da matn qayerga yoziladi?", ru: 'Куда в React Native пишется текст?' } },
+      { ic: "🔤", h: { uz: "Har matn — Text ichida", ru: 'Любой текст — внутри Text' }, body: { uz: <>React Native'da <b>har qanday matn</b> <span className="mono">{'<Text>'}</span> ichida bo'lishi shart.</>, ru: <>В React Native <b>любой текст</b> обязательно должен быть внутри <span className="mono">{'<Text>'}</span>.</> } },
+      { ic: "📦", h: { uz: "View — quti", ru: 'View — коробка' }, body: { uz: <>View — quti; unga to'g'ridan matn yozsangiz, ilova <b>xato</b> beradi.</>, ru: <>View — коробка; если написать в неё текст напрямую, приложение выдаст <b>ошибку</b>.</> } },
+      { ic: "🔁", h: { uz: "div → View, p → Text", ru: 'div → View, p → Text' }, body: { uz: <>Web'dagi <span className="mono">div</span> → <span className="mono">View</span>, <span className="mono">p</span> → <span className="mono">Text</span>.</>, ru: <>В вебе <span className="mono">div</span> → <span className="mono">View</span>, <span className="mono">p</span> → <span className="mono">Text</span>.</> }, ask: { uz: "React Native'da matn qayerga yoziladi?", ru: 'Куда в React Native пишется текст?' } },
     ]
   },
   11: {
-    title: { uz: "Expo Go — chipta bilan sahnaga", ru: 'Expo Go — на сцену по билету' },
+    title: { uz: "Expo Go — telefonda ko'rish", ru: 'Expo Go — смотрим на телефоне' },
     cards: [
-      { ic: "🎟️", h: { uz: "QR — chipta", ru: 'QR — билет' }, body: { uz: <>Expo Go'da <b>QR kodni skanerlab</b>, ilovangizni o'z telefoningizga chiqarasiz.</>, ru: <>В Expo Go вы <b>сканируете QR-код</b> и выводите приложение на свой телефон.</> } },
-      { ic: "🚚", h: { uz: "Gastrol furgoni", ru: 'Гастрольный фургон' }, body: { uz: <>Expo murakkab o'rnatishni o'zi bajaradi — siz faqat kod yozasiz.</>, ru: <>Expo сам берёт на себя сложную установку — вы только пишете код.</> } },
-      { ic: "⚡", h: { uz: "Jonli yangilanish", ru: 'Живое обновление' }, body: { uz: <>Kodni o'zgartirsangiz, o'zgarish telefonga darrov yetib boradi.</>, ru: <>Измените код — изменение сразу долетит до телефона.</> }, ask: { uz: "Expo Go ilovasi nima qiladi?", ru: 'Что делает приложение Expo Go?' } },
+      { ic: "📷", h: { uz: "QR kod", ru: 'QR-код' }, body: { uz: <>Expo Go'da <b>QR kodni skanerlab</b>, loyihani telefonda ochasiz.</>, ru: <>В Expo Go вы <b>сканируете QR-код</b> и открываете проект на телефоне.</> } },
+      { ic: "📶", h: { uz: "Bitta Wi-Fi", ru: 'Одна Wi-Fi-сеть' }, body: { uz: <>Odatda telefon va kompyuter <b>bitta Wi-Fi tarmog'ida</b> bo'lishi kerak.</>, ru: <>Обычно телефон и компьютер должны быть <b>в одной Wi-Fi-сети</b>.</> } },
+      { ic: "⚡", h: { uz: "Tez yangilanish", ru: 'Быстрое обновление' }, body: { uz: <>Kodni o'zgartirib saqlasangiz, telefonda ham yangilanadi.</>, ru: <>Измените код и сохраните — на телефоне тоже обновится.</> }, ask: { uz: "Expo Go nima qiladi?", ru: 'Что делает Expo Go?' } },
     ]
   },
   14: {
-    title: { uz: "React ssenariysi — o'sha ishlaydi", ru: 'Сценарий React — работает тот же' },
+    title: { uz: "React bilimi — o'sha", ru: 'Знания React — те же' },
     cards: [
-      { ic: "🧩", h: { uz: "Komponent + props + state", ru: 'Компонент + props + state' }, body: { uz: <>RN'da ham <b>o'sha React</b> — funksiya-komponent, props, useState/useEffect.</>, ru: <>В RN тоже <b>тот самый React</b> — функция-компонент, props, useState/useEffect.</> } },
-      { ic: "🎭", h: { uz: "Faqat sahna komponentlari yangi", ru: 'Новые — только компоненты сцены' }, body: { uz: <>Qo'shimcha — bir nechta mobil komponent (View/Text/StyleSheet) va Expo.</>, ru: <>Дополнительно — несколько мобильных компонентов (View/Text/StyleSheet) и Expo.</> } },
-      { ic: "📱", h: { uz: "Bitta kod — ikki platforma", ru: 'Один код — две платформы' }, body: { uz: <>Shuning uchun React bilsangiz, mobilga o'tish oson.</>, ru: <>Поэтому, если вы знаете React, переход на мобильное — лёгкий.</> }, ask: { uz: "Mobil uchun asosan nimani qo'shimcha o'rganasiz?", ru: 'Что в основном нужно доучить для мобильного?' } },
+      { ic: "🧩", h: { uz: "Komponent, props, state", ru: 'Компонент + props + state' }, body: { uz: <>Komponent, props, state — <b>xuddi React'dagidek</b>.</>, ru: <>Компонент, props, state — <b>точно как в React</b>.</> } },
+      { ic: "➕", h: { uz: "Qo'shimcha — bir nechtasi", ru: 'Дополнительно — совсем немного' }, body: { uz: <>Qo'shimcha — View, Text, StyleSheet va Expo.</>, ru: <>Дополнительно — View, Text, StyleSheet и Expo.</> } },
+      { ic: "🚀", h: { uz: "Mobilga o'tish oson", ru: 'Перейти на мобильное легко' }, body: { uz: <>Shuning uchun React bilsangiz, mobilga o'tish oson.</>, ru: <>Поэтому, если вы знаете React, переход на мобильное — лёгкий.</> }, ask: { uz: "Mobil uchun asosan nimani qo'shimcha o'rganasiz?", ru: 'Что в основном нужно доучить для мобильного?' } },
     ]
   },
   15: {
-    title: { uz: "Gastrol oqimi — tartib muhim", ru: 'Гастрольный поток — важен порядок' },
+    title: { uz: "Bugungi mashq tartibi", ru: 'Порядок сегодняшнего упражнения' },
     cards: [
-      { ic: "🚚", h: { uz: "Avval — Expo loyiha", ru: 'Сначала — проект Expo' }, body: { uz: <>Birinchi qadam — <b>Expo bilan loyiha</b> yaratish (gastrol furgoni tayyorlanadi).</>, ru: <>Первый шаг — создать <b>проект на Expo</b> (готовится гастрольный фургон).</> } },
-      { ic: "🪵", h: { uz: "Keyin — View/Text va bezak", ru: 'Затем — View/Text и оформление' }, body: { uz: <>Ekran kodini yozib, <b>StyleSheet bilan bezaysiz</b> — sahnani tiklaysiz.</>, ru: <>Пишете код экрана и <b>оформляете через StyleSheet</b> — возводите сцену.</> } },
-      { ic: "🎟️", h: { uz: "Eng oxiri — QR va telefon", ru: 'В самом конце — QR и телефон' }, body: { uz: <>QR skanerlanib, ilova telefonda jonli chiqadi.</>, ru: <>QR сканируется, и приложение оживает на телефоне.</> }, vis: <RcFlow items={[{ uz: 'Expo', ru: 'Expo' }, { uz: 'View/Text', ru: 'View/Text' }, { uz: 'StyleSheet', ru: 'StyleSheet' }, { uz: 'QR skan', ru: 'QR-скан' }, { uz: 'Telefonda', ru: 'На телефоне' }]} />, ask: { uz: "Nega Expo loyiha eng birinchi qadam?", ru: 'Почему проект Expo — самый первый шаг?' } },
+      { ic: "🧰", h: { uz: "Avval — Expo loyiha", ru: 'Сначала — проект Expo' }, body: { uz: <>Avval <b>Expo bilan loyiha</b> yaratiladi.</>, ru: <>Сначала создаётся <b>проект на Expo</b>.</> } },
+      { ic: "🎨", h: { uz: "Keyin — View/Text va StyleSheet", ru: 'Затем — View/Text и StyleSheet' }, body: { uz: <>Keyin View va Text bilan ekran yoziladi va <b>StyleSheet bilan bezaladi</b>.</>, ru: <>Потом из View и Text пишется экран, и он <b>оформляется через StyleSheet</b>.</> } },
+      { ic: "📱", h: { uz: "Oxirida — QR va telefon", ru: 'В конце — QR и телефон' }, body: { uz: <>Oxirida QR skanerlanib, ilova telefonda ochiladi.</>, ru: <>В конце сканируется QR-код, и приложение открывается на телефоне.</> }, vis: <RcFlow items={[{ uz: 'Expo', ru: 'Expo' }, { uz: 'View/Text', ru: 'View/Text' }, { uz: 'StyleSheet', ru: 'StyleSheet' }, { uz: 'QR skan', ru: 'QR-скан' }, { uz: 'Telefonda', ru: 'На телефоне' }]} />, ask: { uz: "Nega Expo loyiha birinchi qadam?", ru: 'Почему проект Expo — первый шаг?' } },
     ]
   }
 };
@@ -610,7 +607,7 @@ const CodeFile = ({ name, children, minH }) => (
   </div>
 );
 
-// ===== 📱 TELEFON SAHNASI (gastrol reflektorlari) =====
+// ===== 📱 TELEFON (ekran ko'rinishi) =====
 const Phone = ({ children, label, lit = true }) => (
   <div className="phone-wrap">
     <div className="phone">
@@ -621,7 +618,7 @@ const Phone = ({ children, label, lit = true }) => (
   </div>
 );
 
-// ===== 🎟️ QR (Expo Go chiptasi) =====
+// ===== QR (Expo Go) =====
 const QR_PAT = [1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1];
 const QrBox = ({ scanning }) => (
   <div className={`qr ${scanning ? 'qr-scan' : ''}`}>{QR_PAT.map((v, i) => <i key={i} className={v ? '' : 'off'} />)}</div>
@@ -695,21 +692,20 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на кусочек, верните его и разложите заново' })}</span>}
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и расставьте заново.' })}</div>}
     </div>
   );
 }
 
-// ===== MAVZU MA'LUMOTLARI (GASTROL) =====
-// React (web) → RN (mobil) tarjima — s3
+// ===== MAVZU MA'LUMOTLARI =====
+// React (web) → RN (mobil) mos komponentlar — s3
 const MAP = [
-  { id: 'view', web: '<div>', rn: '<View>', desc: { uz: "Sahna-karkas. Web'dagi div (bo'yalgan fon-parda) o'rniga RN'da View — real yog'och sahna: qutilar, bo'limlar.", ru: 'Каркас сцены. Вместо веб-овского div (нарисованный задник) в RN — View, настоящая деревянная сцена: коробки, блоки.' } },
-  { id: 'text', web: '<p> / <span>', rn: '<Text>', desc: { uz: "Aktyor replikasi. RN'da HAR QANDAY matn <Text> ichida bo'lishi SHART — bu eng muhim qoida.", ru: 'Реплика актёра. В RN ЛЮБОЙ текст ОБЯЗАН быть внутри <Text> — это главное правило.' } },
-  { id: 'style', web: 'CSS / className', rn: 'StyleSheet / style', desc: { uz: "Kostyum + yorug'lik varag'i. Alohida CSS fayl emas — JS obyekt: StyleSheet.create({...}).", ru: 'Лист костюмов и света. Не отдельный CSS-файл, а JS-объект: StyleSheet.create({...}).' } }
+  { id: 'view', web: '<div>', rn: '<View>', desc: { uz: "Quti: ichiga boshqa elementlar joylanadi (bo'limlar, qatorlar).", ru: 'Коробка: внутрь кладутся другие элементы (разделы, строки).' } },
+  { id: 'text', web: '<p> / <span>', rn: '<Text>', desc: { uz: <>Matn. React Native'da <b>har qanday matn</b> <span className="mono">{'<Text>'}</span> ichida bo'lishi shart — bu eng muhim qoida.</>, ru: <>Текст. В React Native <b>любой текст</b> обязательно должен быть внутри <span className="mono">{'<Text>'}</span> — это самое важное правило.</> } },
+  { id: 'style', web: 'CSS / className', rn: 'StyleSheet / style', desc: { uz: "Alohida CSS fayl emas, JS obyekt: StyleSheet.create({...}).", ru: 'Не отдельный CSS-файл, а JS-объект: StyleSheet.create({...}).' } }
 ];
 // CASE ekran qatorlari — s12 (kod ichidagi ko'rinadigan kontent matni tarjima qilinadi; `cls` — kalit, tegilmaydi)
 const CASE_LINES = [
@@ -718,22 +714,22 @@ const CASE_LINES = [
   { code: { uz: '<Text style={s.price}>2 500 000 so\'m</Text>', ru: '<Text style={s.price}>2 500 000 сум</Text>' }, cls: 'price', txt: { uz: '2 500 000 so\'m', ru: '2 500 000 сум' } },
   { code: { uz: '<Pressable style={s.btn}><Text>Sotib olish</Text></Pressable>', ru: '<Pressable style={s.btn}><Text>Купить</Text></Pressable>' }, cls: 'btn', txt: { uz: 'Sotib olish', ru: 'Купить' } }
 ];
-// Sahnani yig'ish — s7
+// Birinchi ekranni yig'ish — s7
 const BUILD = [
-  { id: 'view', label: { uz: 'View — sahna-karkas', ru: 'View — каркас сцены' } },
-  { id: 'title', label: { uz: 'Text (sarlavha-replika)', ru: 'Text (реплика-заголовок)' } },
-  { id: 'prod', label: { uz: 'Text (mahsulot-replika)', ru: 'Text (реплика-товар)' } }
+  { id: 'view', label: { uz: 'View — quti', ru: 'View — коробка' } },
+  { id: 'title', label: { uz: 'Text — sarlavha', ru: 'Text — заголовок' } },
+  { id: 'prod', label: { uz: 'Text — mahsulot', ru: 'Text — товар' } }
 ];
-// Gastrol oqimi (final s15 — DragDropOrder)
+// Bugungi mashq tartibi (final s15 — DragDropOrder)
 const FLOW = [
-  { id: 'expo', label: { uz: 'Expo loyiha', ru: 'Проект Expo' }, d: { uz: "gastrol furgonini tayyorla.", ru: 'подготовь гастрольный фургон.' } },
-  { id: 'screen', label: { uz: 'View/Text', ru: 'View/Text' }, d: { uz: "sahna ekranini yoz.", ru: 'напиши экран сцены.' } },
-  { id: 'style', label: { uz: 'StyleSheet', ru: 'StyleSheet' }, d: { uz: "kostyum va yorug'lik ber.", ru: 'дай костюм и свет.' } },
-  { id: 'qr', label: { uz: 'QR skan', ru: 'QR-скан' }, d: { uz: "chiptani skanerla.", ru: 'отсканируй билет.' } },
-  { id: 'phone', label: { uz: 'Telefonda', ru: 'На телефоне' }, d: { uz: "tirik sahnada namoyish.", ru: 'показ на живой сцене.' } }
+  { id: 'expo', label: { uz: 'Expo loyiha', ru: 'Проект Expo' } },
+  { id: 'screen', label: { uz: 'View/Text', ru: 'View/Text' } },
+  { id: 'style', label: { uz: 'StyleSheet', ru: 'StyleSheet' } },
+  { id: 'qr', label: { uz: 'QR skan', ru: 'QR-скан' } },
+  { id: 'phone', label: { uz: 'Telefonda', ru: 'На телефоне' } }
 ];
 const FLOW_ITEMS = FLOW.map(f => ({ id: f.id, label: { uz: `${f.label.uz}`, ru: `${f.label.ru}` } }));
-const FLOW_HINTS = FLOW.map(f => ({ uz: `${f.label.uz} — ${f.d.uz}`, ru: `${f.label.ru} — ${f.d.ru}` }));
+const FLOW_HINTS = FLOW.map(() => ({ uz: "bu yerga qo'ying", ru: 'положите сюда' }));
 
 // ===== SCREEN 0 — HOOK =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
@@ -741,35 +737,39 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
   const OPTS = [
-    { id: 'a', label: { uz: "Yo'q — mobil butunlay boshqa sahna, noldan o'rganaman", ru: 'Нет — мобильное это совсем другая сцена, буду учить с нуля' } },
-    { id: 'b', label: { uz: "Ha — React bilaman; React Native bilan deyarli o'sha bilim bilan sahnaga chiqaman", ru: 'Да — я знаю React; с React Native выйду на сцену почти с теми же знаниями' } },
-    { id: 'c', label: { uz: "Iloji yo'q — mobil ilova juda qiyin", ru: 'Никак — мобильное приложение слишком сложно' } }
+    { id: 'a', label: { uz: "Hammasini noldan o'rganaman — mobil butunlay boshqa", ru: 'Выучу всё с нуля — мобильное совсем другое' } },
+    { id: 'b', label: { uz: "React bilimim bilan React Native'da yozaman", ru: 'Напишу на React Native со своими знаниями React' } },
+    { id: 'c', label: { uz: "Iloji yo'q — mobil ilova men uchun juda qiyin", ru: 'Никак — мобильное приложение для меня слишком сложное' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Web shouingiz tayyor. Mijoz uni <span className="italic" style={{ color: T.accent }}>telefon sahnasida</span> istaydi. Gastrolga chiqa olasizmi?</>, ru: <>Ваше веб-шоу готово. Заказчик хочет его <span className="italic" style={{ color: T.accent }}>на сцене телефона</span>. Сможете поехать на гастроли?</> })}</h1>
-        <Mentor>{tr({ uz: "Modul 3'da React o'rgandingiz — bu sizning ssenariyingiz. Endi savol: telefon sahnasi uchun hammasini noldan o'rganasizmi? Tugmani bosing — javobni ko'ring.", ru: 'В модуле 3 вы выучили React — это ваш сценарий. Вопрос: для сцены телефона придётся учить всё заново? Нажмите кнопку — увидите ответ.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningiz saytda ishlayapti. Mijozlar uni <span className="italic" style={{ color: T.accent }}>telefonda ilova qilib</span> ko'rmoqchi. Qila olasizmi?</>, ru: <>Ваш мини-магазин работает на сайте. Клиенты хотят видеть его <span className="italic" style={{ color: T.accent }}>как приложение на телефоне</span>. Справитесь?</> })}</h1>
+        <Mentor>{tr({ uz: "React darslarida web ilova yozishni o'rgandingiz. Endi savol: telefon ilovasi uchun hammasini noldan o'rganish kerakmi? Tugmani bosing — javobni ko'ring.", ru: 'На уроках React вы научились писать веб-приложения. Теперь вопрос: чтобы сделать приложение для телефона, придётся учить всё с нуля? Нажмите кнопку — увидите ответ.' })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <Phone label={tried ? { uz: 'React Native bilan — sahnaga chiqdi!', ru: 'С React Native — вышло на сцену!' } : { uz: 'telefon sahnasi (qorong\'u)', ru: 'сцена телефона (темно)' }} lit={tried}>
+            <Phone label={tried ? { uz: 'React Native bilan — ilova ochildi!', ru: 'С React Native — приложение открылось!' } : { uz: 'telefon (o\'chiq)', ru: 'телефон (выключен)' }} lit={tried}>
               {tried
                 ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
                 : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>?</p>}
             </Phone>
-            <button className="btn-soft" style={{ alignSelf: 'center' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "▶ Sahna reflektorlarini yoqing", ru: '▶ Включите прожекторы сцены' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'center' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "▶ Ilovani telefonda ochish", ru: '▶ Открыть приложение на телефоне' })}</button>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Mobil sahna uchun nima qilasiz?', ru: 'Что вы сделаете для мобильной сцены?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Telefon ilovasi uchun nima qilasiz?', ru: 'Как вы сделаете приложение для телефона?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! <b>React Native</b> — React bilimingiz bilan haqiqiy telefon ilovasini yasash. Deyarli o'sha ssenariy, faqat sahna komponentlari o'zgaradi (div→View, p→Text). Bugun birinchi ekranni telefon sahnasiga chiqaramiz!</>, ru: <>Именно! <b>React Native</b> — это создание настоящего приложения для телефона на ваших знаниях React. Сценарий почти тот же, меняются только компоненты сцены (div→View, p→Text). Сегодня выведем первый экран на сцену телефона!</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr(picked === 'b'
+              ? { uz: <><b>Aynan!</b> <b>React Native</b> — React bilimingiz bilan haqiqiy telefon ilovasini yasash usuli. Komponent, props, state — o'sha. Faqat ekrandagi elementlar boshqacha nomlanadi: <span className="mono">div</span> o'rniga <span className="mono">View</span>, <span className="mono">p</span> o'rniga <span className="mono">Text</span>. Bugun birinchi ekranni telefonda ochamiz!</>, ru: <><b>Именно!</b> <b>React Native</b> — способ сделать настоящее приложение для телефона с вашими знаниями React. Компонент, props, state — те же. Только элементы на экране называются по-другому: вместо <span className="mono">div</span> — <span className="mono">View</span>, вместо <span className="mono">p</span> — <span className="mono">Text</span>. Сегодня откроем первый экран на телефоне!</> }
+              : picked === 'a'
+                ? { uz: <><b>Qiziq fikr!</b> Lekin yaxshi yangilik bor: hammasini noldan o'rganmaysiz. React bilimingizning katta qismi React Native'da ham ishlaydi.</>, ru: <><b>Интересная мысль!</b> Но есть хорошая новость: учить всё с нуля не придётся. Большая часть ваших знаний React работает и в React Native.</> }
+                : { uz: <><b>Qiziq fikr!</b> Aslida bu o'ylaganingizdek qiyin emas: React bilimingizning katta qismi React Native'da ham ishlaydi. Bugun buni o'zingiz ko'rasiz.</>, ru: <><b>Интересная мысль!</b> На самом деле это не так сложно, как кажется: большая часть ваших знаний React работает и в React Native. Сегодня вы убедитесь в этом сами.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -780,16 +780,16 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "React Native nima — React bilan mobil sahna", ru: 'Что такое React Native — мобильная сцена на React' }, tag: 'rn' },
-    { text: { uz: "Farqi: shisha ortida (web) ↔ tirik sahna (mobil)", ru: 'Разница: за стеклом (веб) ↔ живая сцена (мобильное)' }, tag: { uz: 'farq', ru: 'разница' } },
-    { text: { uz: "Expo bilan telefonda ko'rish (QR = chipta)", ru: 'Посмотреть на телефоне через Expo (QR = билет)' }, tag: 'expo' },
-    { text: { uz: "Birinchi ekranni sahnaga yig'ish", ru: 'Собрать первый экран на сцене' }, tag: { uz: 'ekran', ru: 'экран' } }
+    { text: { uz: "React Native nima — React bilan mobil ilova", ru: 'Что такое React Native — мобильное приложение на React' }, tag: 'rn' },
+    { text: { uz: "Web va mobil: qaysi komponent nimaga mos", ru: 'Веб и мобильное: какой компонент чему соответствует' }, tag: { uz: 'farq', ru: 'разница' } },
+    { text: { uz: "Expo va Expo Go bilan telefonda ko'rish", ru: 'Смотрим на телефоне через Expo и Expo Go' }, tag: 'expo' },
+    { text: { uz: "Birinchi ekranni yig'ish", ru: 'Собираем первый экран' }, tag: { uz: 'ekran', ru: 'экран' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'dars oxirida — birinchi ekraningiz telefon sahnasida', ru: 'в конце урока — ваш первый экран на сцене телефона' })}</p>
+      <p className="flow-label">{tr({ uz: 'dars oxirida — birinchi ekraningiz telefonda', ru: 'в конце урока — ваш первый экран на телефоне' })}</p>
       <Phone label={{ uz: "mini-do'kon (RN)", ru: 'мини-магазин (RN)' }}><div className="rn-view on"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div></Phone>
     </Col>
   );
@@ -802,8 +802,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начнём →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React bilimingizni <span className="italic" style={{ color: T.accent }}>telefon sahnasiga</span> olib chiqamiz.</>, ru: <>Выведем ваши знания React <span className="italic" style={{ color: T.accent }}>на сцену телефона</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yaxshi xabar: mobil ilova — bu butunlay yangi dunyo emas. <b style={{ color: T.ink }}>React tafakkuringiz</b> — o'sha ssenariy — qoladi; faqat bir nechta yangi sahna komponenti va Expo vositasini o'rganasiz.</>, ru: <>Хорошая новость: мобильное приложение — не совсем новый мир. <b style={{ color: T.ink }}>Ваше мышление на React</b> — тот же сценарий — остаётся; выучите лишь несколько новых компонентов сцены и инструмент Expo.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React bilimingizni <span className="italic" style={{ color: T.accent }}>telefonga</span> olib chiqamiz.</>, ru: <>Переносим ваши знания React <span className="italic" style={{ color: T.accent }}>на телефон</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yaxshi xabar: mobil ilova — butunlay yangi dunyo emas. <b style={{ color: T.ink }}>React bilimingiz</b> qoladi; bir nechta yangi komponent va Expo vositasini o'rganasiz.</>, ru: <>Хорошая новость: мобильное приложение — не совсем новый мир. <b style={{ color: T.ink }}>Ваши знания React</b> остаются; вы выучите несколько новых компонентов и инструмент Expo.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: '4 qadamni ko\'rish', ru: 'Посмотреть 4 шага' })}</button></div>
             : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Natijani ko\'rish', ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
@@ -819,24 +819,22 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · RN', ru: 'Понятие · RN' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Metaforani ko'ring", ru: 'Посмотрите метафору' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · RN', ru: 'Понятие · RN' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tugmani bosing", ru: 'Нажмите кнопку' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React Native — <span className="italic" style={{ color: T.accent }}>React bilan</span> haqiqiy mobil ilova.</>, ru: <>React Native — настоящее мобильное приложение <span className="italic" style={{ color: T.accent }}>на React</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>React Native — bu React bilimi bilan iOS va Android uchun <b style={{ color: T.ink }}>haqiqiy</b> (web-sayt emas) ilova yasash. Bitta ssenariy — ikki sahna. Tugmani bosing.</>, ru: <>React Native — это создание <b style={{ color: T.ink }}>настоящего</b> приложения (не веб-сайта) для iOS и Android на знаниях React. Один сценарий — две сцены. Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>React Native — React bilimi bilan iOS va Android uchun <b style={{ color: T.ink }}>haqiqiy</b> mobil ilova yasash usuli (web-sayt emas). Tugmani bosing.</>, ru: <>React Native — способ сделать <b style={{ color: T.ink }}>настоящее</b> мобильное приложение для iOS и Android со знаниями React (не веб-сайт). Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📱 React Native nima?', ru: '📱 Что такое React Native?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>React'ning «gastrol jamoasi». Siz React komponentlari yozasiz, ular telefonda <b>haqiqiy mobil ilova</b> bo'lib ishlaydi (iOS + Android).</>, ru: <>«Гастрольная команда» React. Вы пишете компоненты React, а на телефоне они работают как <b>настоящее мобильное приложение</b> (iOS + Android).</> })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Metafora?", ru: 'Метафора?' })}</button>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📱 React Native nima?', ru: '📱 Что такое React Native?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz React komponentlarini yozasiz, ular telefonda <b>haqiqiy mobil ilova</b> bo'lib ishlaydi. Ilovaning ko'p qismini bitta kod bazasida yozib, iOS va Android uchun chiqarish mumkin; platformaga xos joylar ham bo'ladi.</>, ru: <>Вы пишете компоненты React, а на телефоне они работают как <b>настоящее мобильное приложение</b>. Большую часть приложения можно написать в одной кодовой базе и выпустить для iOS и Android; части под конкретную платформу тоже бывают.</> })}</p></div>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Qanday tasavvur qilish mumkin?", ru: 'Как это можно представить?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎭 <b>Bir xil ssenariy:</b> React bilimingiz o'sha — aktyorlar va matn o'zgarmaydi.</>, ru: <>🎭 <b>Тот же сценарий:</b> ваши знания React те же — актёры и текст не меняются.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📱 <b>Yangi sahna:</b> mobil — komponentlar biroz boshqacha (View, Text).</>, ru: <>📱 <b>Новая сцена:</b> мобильное — компоненты немного другие (View, Text).</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎬 <b>Natija:</b> bitta ssenariy, App Store va Play Market'da namoyish.</>, ru: <>🎬 <b>Результат:</b> один сценарий, показ в App Store и Play Market.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎭 Buni boshqa sahnaga chiqqan aktyorga o'xshatish mumkin: roli o'sha (<b>React bilimingiz</b>), faqat sahna boshqa (<b>telefon</b>) — shuning uchun bir nechta yangi komponentni o'rganasiz (View, Text).</>, ru: <>🎭 Это можно сравнить с актёром, который вышел на другую сцену: роль та же (<b>ваши знания React</b>), только сцена другая (<b>телефон</b>) — поэтому вы выучите несколько новых компонентов (View, Text).</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "RN — web-sayt emas. U haqiqiy mobil ilova — telefon kamerasi, bildirishnomalar va h.k. bilan ishlay oladi.", ru: 'RN — не веб-сайт. Это настоящее мобильное приложение — оно умеет работать с камерой телефона, уведомлениями и т. д.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "React Native web-sayt emas — u haqiqiy mobil ilova: telefonning kamerasi, bildirishnomalari kabi imkoniyatlari bilan ishlay oladi.", ru: 'React Native — не веб-сайт, а настоящее мобильное приложение: оно умеет работать с такими возможностями телефона, как камера и уведомления.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -844,25 +842,25 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — SHISHA ORTIDA ↔ TIRIK SAHNA (tarjima + toggle) =====
+// ===== SCREEN 3 — WEB VA MOBIL: MOS KOMPONENTLAR (juftliklar + almashtirish) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set(MAP.map(m => m.id)) : new Set());
   const [active, setActive] = useState(null);
-  const [live, setLive] = useState(false); // false = shisha (web), true = tirik (mobil)
+  const [live, setLive] = useState(false); // false = web ko'rinishi, true = mobil ko'rinishi
   const [sc, setSc] = useState(0);
   const done = seen.size >= MAP.length;
   const tap = (id) => { setActive(id); setSeen(prev => new Set(prev).add(id)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = MAP.find(m => m.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Farq · shisha ↔ tirik', ru: 'Разница · стекло ↔ живое' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 farqni oching (${seen.size}/3)`, ru: `Откройте 3 различия (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Farq · web va mobil', ru: 'Разница · веб и мобильное' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 juftlikni oching (${seen.size}/3)`, ru: `Откройте 3 пары (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Web = <span className="italic" style={{ color: T.blue }}>shisha ortida</span>, mobil = <span className="italic" style={{ color: T.accent }}>tirik sahna</span>.</>, ru: <>Веб = <span className="italic" style={{ color: T.blue }}>за стеклом</span>, мобильное = <span className="italic" style={{ color: T.accent }}>живая сцена</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Ssenariy o'sha (komponent, JSX, props) — faqat sahna komponentlari o'zgaradi. Har tarjimani bosib farqni ko'ring, so'ng «shisha ↔ tirik» tugmasi bilan ikkalasini his qiling.", ru: 'Сценарий тот же (компонент, JSX, props) — меняются только компоненты сцены. Нажмите на каждый перевод и посмотрите разницу, затем кнопкой «стекло ↔ живое» почувствуйте оба варианта.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React o'sha — faqat <span className="italic" style={{ color: T.accent }}>ekran elementlari</span> boshqacha.</>, ru: <>React тот же — меняются только <span className="italic" style={{ color: T.accent }}>элементы экрана</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "React'da fikrlash usuli o'zgarmaydi: komponent, JSX, props. Lekin mobil ekran uchun HTML elementlari o'rniga React Native komponentlari ishlatiladi. Har juftlikni bosib, farqini ko'ring.", ru: 'Способ мышления в React не меняется: компонент, JSX, props. Но для мобильного экрана вместо HTML-элементов используются компоненты React Native. Нажмите на каждую пару и посмотрите разницу.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="trans-row"><CodeFile name={{ uz: 'React (web)', ru: 'React (веб)' }} minH={0}><Kw>{'<div '}</Kw><At>className</At>{'='}<St>"box"</St><Kw>{'>'}</Kw>{'\n'}{'  '}<Kw>{'<p>'}</Kw>{tr({ uz: 'Salom', ru: 'Привет' })}<Kw>{'</p>'}</Kw>{'\n'}<Kw>{'</div>'}</Kw></CodeFile></div>
-            <div style={{ textAlign: 'center', color: T.accent, fontWeight: 700 }}>{tr({ uz: '↓ tarjima ↓', ru: '↓ перевод ↓' })}</div>
+            <div style={{ textAlign: 'center', color: T.accent, fontWeight: 700 }}>{tr({ uz: '↓', ru: '↓' })}</div>
             <div className="trans-row"><CodeFile name={{ uz: 'React Native (mobil)', ru: 'React Native (мобильное)' }} minH={0}><Kw>{'<View '}</Kw><At>style</At>{'={s.box}'}<Kw>{'>'}</Kw>{'\n'}{'  '}<Kw>{'<Text>'}</Kw>{tr({ uz: 'Salom', ru: 'Привет' })}<Kw>{'</Text>'}</Kw>{'\n'}<Kw>{'</View>'}</Kw></CodeFile></div>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {MAP.map(m => <button key={m.id} className="gchip" onClick={() => tap(m.id)} style={seen.has(m.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(m.id) ? '✓ ' : ''}{m.web}→{m.rn}</button>)}
@@ -870,15 +868,15 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="ph-sm">
-              <Phone label={live ? { uz: '📱 Tirik sahna (mobil) — native', ru: '📱 Живая сцена (мобильное) — native' } : { uz: '🪟 Shisha ortida (web) — proyeksiya', ru: '🪟 За стеклом (веб) — проекция' }} lit={live}>
+              <Phone label={live ? { uz: "Mobil ko'rinishi", ru: 'Мобильная версия' } : { uz: "Web ko'rinishi", ru: 'Веб-версия' }}>
                 <div className={`rn-view ${live ? 'on' : ''}`}><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
               </Phone>
-            <button className="btn-soft" onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: '🪟 Shisha ortida (web) ko\'rish', ru: '🪟 Посмотреть за стеклом (веб)' }) : tr({ uz: '📱 Tirik sahnaga (mobil) o\'tish', ru: '📱 Перейти на живую сцену (мобильное)' })}</button>
+            <button className="btn-soft" onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: "🌐 Web ko'rinishi", ru: '🌐 Веб-версия' }) : tr({ uz: "📱 Mobil ko'rinishi", ru: '📱 Мобильная версия' })}</button>
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{cur.web} → {cur.rn}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.desc)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ssenariy bir xil! div→View, p→Text, CSS→StyleSheet. Web — shisha ortidagi xira proyeksiya; mobil — cho'ntakdagi tirik, native sahna.", ru: 'Сценарий тот же! div→View, p→Text, CSS→StyleSheet. Веб — тусклая проекция за стеклом; мобильное — живая, native-сцена в кармане.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "React bilimingiz o'sha — faqat ekran elementlari boshqacha nomlanadi va ishlaydi.", ru: 'Ваши знания React те же — только элементы экрана называются и работают по-другому.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -892,17 +890,17 @@ const Screen4 = (props) => (
     questionText="React Native nima uchun ishlatiladi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React Native nima uchun <span className="italic" style={{ color: T.accent }}>ishlatiladi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Для чего <span className="italic" style={{ color: T.accent }}>используют</span> React Native?</h2></> })}
     options={[
-      { uz: "Tayyor web-saytlarni brauzerda tezroq ishlatish uchun", ru: 'Чтобы готовые веб-сайты быстрее работали в браузере' },
-      { uz: "Ma'lumotlar bazasini serverda boshqarish va saqlash uchun", ru: 'Чтобы управлять базой данных на сервере и хранить её' },
+      { uz: "Tayyor web-saytni brauzerda tezroq ochish uchun", ru: 'Чтобы готовый веб-сайт быстрее открывался в браузере' },
+      { uz: "Ma'lumotlar bazasini serverda boshqarish uchun", ru: 'Чтобы управлять базой данных на сервере и хранить её' },
       { uz: "Faqat mobil o'yinlar va ko'ngilochar ilovalar uchun", ru: 'Только для мобильных игр и развлекательных приложений' },
-      { uz: "React bilimi bilan haqiqiy mobil ilova (iOS + Android) yasash uchun", ru: 'Чтобы на знаниях React создать настоящее мобильное приложение (iOS + Android)' }
+      { uz: "React bilimi bilan mobil ilova yasash uchun", ru: 'Чтобы делать мобильные приложения со знаниями React' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! React Native — React bilimingiz bilan iOS va Android uchun haqiqiy mobil ilova yasash imkonini beradi. Bitta ssenariy — ikki sahna.", ru: 'Верно! React Native позволяет на ваших знаниях React создать настоящее мобильное приложение для iOS и Android. Один сценарий — две сцены.' }}
+    explainCorrect={{ uz: "To'g'ri! React Native React bilimingiz bilan iOS va Android uchun haqiqiy mobil ilova yasash imkonini beradi.", ru: 'Верно! React Native позволяет с вашими знаниями React сделать настоящее мобильное приложение для iOS и Android.' }}
     explainWrong={{
-      0: { uz: "RN web emas — u haqiqiy mobil ilova yasaydi. Web uchun oddiy React ishlatiladi.", ru: 'RN — не веб: он делает настоящее мобильное приложение. Для веба используют обычный React.' },
-      1: { uz: "Bu — baza vazifasi (PostgreSQL). RN — mobil ilova interfeysi uchun.", ru: 'Это задача базы данных (PostgreSQL). RN — для интерфейса мобильного приложения.' },
-      2: { uz: "Faqat o'yin emas — har qanday mobil ilova (do'kon, chat, bank va h.k.).", ru: 'Не только игры — любое мобильное приложение (магазин, чат, банк и т. д.).' },
-      default: { uz: "RN — React bilan haqiqiy mobil ilova yasash uchun.", ru: 'RN — чтобы на React создавать настоящее мобильное приложение.' }
+      0: { uz: "React Native web uchun emas — u mobil ilova yasaydi. Web uchun oddiy React ishlatiladi.", ru: 'React Native — не для веба: он делает мобильные приложения. Для веба используют обычный React.' },
+      1: { uz: "Bu — baza vazifasi (PostgreSQL). React Native — mobil ilova interfeysi uchun.", ru: 'Это задача базы данных (PostgreSQL). React Native — для интерфейса мобильного приложения.' },
+      2: { uz: "Faqat o'yin emas — har qanday mobil ilova: do'kon, chat, bank ilovasi.", ru: 'Не только игры — любое мобильное приложение: магазин, чат, банковское приложение.' },
+      default: { uz: "React Native — React bilan mobil ilova yasash uchun.", ru: 'React Native — чтобы делать мобильные приложения на React.' }
     }} />
 );
 
@@ -915,8 +913,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Komponent · View/Text', ru: 'Компонент · View/Text' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qoidani ko'ring", ru: 'Посмотрите правило' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>2 asosiy sahna qismi: <span className="italic" style={{ color: T.accent }}>View</span> va <span className="italic" style={{ color: T.accent }}>Text</span>.</>, ru: <>2 главные части сцены: <span className="italic" style={{ color: T.accent }}>View</span> и <span className="italic" style={{ color: T.accent }}>Text</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>RN'da deyarli hamma narsa shu ikkitadan quriladi. <b style={{ color: T.ink }}>View</b> — sahna-karkas (div kabi), <b style={{ color: T.ink }}>Text</b> — aktyor replikasi. Muhim qoida bor — tugmani bosing.</>, ru: <>В RN почти всё строится из этих двух. <b style={{ color: T.ink }}>View</b> — каркас сцены (как div), <b style={{ color: T.ink }}>Text</b> — реплика актёра. Есть важное правило — нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshlash uchun eng muhim ikki komponent: <span className="italic" style={{ color: T.accent }}>View</span> va <span className="italic" style={{ color: T.accent }}>Text</span>.</>, ru: <>Для начала — два самых важных компонента: <span className="italic" style={{ color: T.accent }}>View</span> и <span className="italic" style={{ color: T.accent }}>Text</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Boshlanishida sizga eng ko'p kerak bo'ladigani — shu ikkitasi. <b style={{ color: T.ink }}>View</b> — quti (web'dagi <span className="mono">div</span> kabi), <b style={{ color: T.ink }}>Text</b> — matn. Muhim qoida bor — tugmani bosing.</>, ru: <>Поначалу вам чаще всего понадобятся именно эти два. <b style={{ color: T.ink }}>View</b> — коробка (как <span className="mono">div</span> в вебе), <b style={{ color: T.ink }}>Text</b> — текст. Есть важное правило — нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="App.js" minH={110}>
@@ -929,9 +927,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {show
-              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Eng muhim qoida:</b> RN'da har qanday matn <b>albatta</b> <span className="mono">{'<Text>'}</span> ichida bo'lishi kerak. View ichiga to'g'ridan matn yozsangiz — xato beradi.</>, ru: <>⚠️ <b>Самое важное правило:</b> в RN любой текст <b>обязательно</b> должен быть внутри <span className="mono">{'<Text>'}</span>. Напишете текст прямо во View — будет ошибка.</> })}</p></div>
+              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ <b>Eng muhim qoida:</b> React Native'da har qanday matn <b>albatta</b> <span className="mono">{'<Text>'}</span> ichida bo'lishi kerak. View ichiga to'g'ridan matn yozsangiz, ilova xato beradi.</>, ru: <>⚠️ <b>Самое важное правило:</b> в React Native любой текст <b>обязательно</b> должен быть внутри <span className="mono">{'<Text>'}</span>. Если написать текст прямо во View, приложение выдаст ошибку.</> })}</p></div>
               : null}
-            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "View = sahna-karkas (qatorlar, qutilar). Text = ko'rinadigan har bir replika. Boshqa komponentlar (Image, Button) ham bor, lekin shu ikkitasi asos.", ru: 'View = каркас сцены (ряды, коробки). Text = каждая видимая реплика. Есть и другие компоненты (Image, Button), но эти два — основа.' })}</p></div>}
+            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>View — quti (qatorlar, bo'limlar). Text — ekrandagi har bir matn. Boshqa komponentlar ham bor (masalan, rasm uchun <span className="mono">Image</span>), ularni keyin ko'ramiz.</>, ru: <>View — коробка (строки, разделы). Text — каждый текст на экране. Есть и другие компоненты (например, <span className="mono">Image</span> для картинок) — их посмотрим позже.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -948,8 +946,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Bezash · StyleSheet', ru: 'Оформление · StyleSheet' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kostyum + yorug'lik — <span className="mono" style={{ color: T.accent }}>StyleSheet</span> (CSS fayl emas).</>, ru: <>Костюм + свет — <span className="mono" style={{ color: T.accent }}>StyleSheet</span> (не CSS-файл).</> })}</h2></div>
-        <Mentor>{tr({ uz: "RN'da alohida CSS fayl yo'q. Stillar — sahnaning kostyum va yorug'lik varag'i — JS obyekt sifatida yoziladi; nomlar deyarli o'sha (padding, color, fontSize). Tugmani bosing.", ru: 'В RN нет отдельного CSS-файла. Стили — лист костюмов и света сцены — пишутся как JS-объект; названия почти те же (padding, color, fontSize). Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Stillar — <span className="mono" style={{ color: T.accent }}>StyleSheet</span>'da (CSS fayl emas).</>, ru: <>Стили — в <span className="mono" style={{ color: T.accent }}>StyleSheet</span> (не CSS-файл).</> })}</h2></div>
+        <Mentor>{tr({ uz: "React Native'da alohida CSS fayl yo'q. Stillar JS obyekt sifatida yoziladi; nomlari deyarli o'sha (padding, color, fontSize). Tugmani bosing.", ru: 'В React Native нет отдельного CSS-файла. Стили пишутся как JS-объект; названия почти те же (padding, color, fontSize). Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="styles" minH={120}>
@@ -964,11 +962,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📦 <b>JS obyekt:</b> CSS fayl emas — <span className="mono">StyleSheet.create({'{...}'})</span>.</>, ru: <>📦 <b>JS-объект:</b> не CSS-файл — <span className="mono">StyleSheet.create({'{...}'})</span>.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔤 <b>camelCase:</b> <span className="mono">background-color</span> → <span className="mono">backgroundColor</span>.</>, ru: <>🔤 <b>camelCase:</b> <span className="mono">background-color</span> → <span className="mono">backgroundColor</span>.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📐 <b>flex default:</b> RN'da hamma narsa flex — sahnaga joylash oson.</>, ru: <>📐 <b>flex по умолчанию:</b> в RN всё на flex — расставлять по сцене легко.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🔤 <b>camelCase:</b> ikki so'zli nomlar qo'shib yoziladi, ikkinchisi bosh harf bilan: <span className="mono">background-color</span> → <span className="mono">backgroundColor</span>.</>, ru: <>🔤 <b>camelCase:</b> названия из двух слов пишутся слитно, второе — с большой буквы: <span className="mono">background-color</span> → <span className="mono">backgroundColor</span>.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📐 <b>Flexbox:</b> React Native'da elementlar doim Flexbox bilan joylashadi. Farqi: standart yo'nalish — yuqoridan pastga (web'da — chapdan o'ngga).</>, ru: <>📐 <b>Flexbox:</b> в React Native элементы всегда располагаются через Flexbox. Отличие: направление по умолчанию — сверху вниз (в вебе — слева направо).</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "CSS bilimingiz deyarli o'sha — faqat camelCase va JS obyekt. Qiyin emas.", ru: 'Ваши знания CSS почти те же — только camelCase и JS-объект. Это не сложно.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "CSS bilimingiz deyarli o'sha — faqat JS obyekt va camelCase.", ru: 'Ваши знания CSS почти те же — только JS-объект и camelCase.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -976,7 +974,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — SAHNANI YIG'ISH (phone reflektorlari yonadi) =====
+// ===== SCREEN 7 — BIRINCHI EKRANNI YIG'ISH (telefonda paydo bo'ladi) =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [added, setAdded] = useState(storedAnswer ? new Set(BUILD.map(b => b.id)) : new Set());
   const [sc, setSc] = useState(0);
@@ -984,10 +982,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const add = (id) => { setAdded(prev => new Set(prev).add(id)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Sahna · yig\'ish', ru: 'Сцена · сборка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Sahnani yig'ing (${added.size}/3)`, ru: `Соберите сцену (${added.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Ekran · yig'ish", ru: 'Экран · сборка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ekranni yig'ing (${added.size}/3)`, ru: `Соберите экран (${added.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi ekraningizni <span className="italic" style={{ color: T.accent }}>sahnaga teraning</span> — telefonda reflektorlar yonadi.</>, ru: <><span className="italic" style={{ color: T.accent }}>Соберите на сцене</span> свой первый экран — на телефоне зажгутся прожекторы.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Har sahna bo'lagini qo'shing va o'ng tomonda telefon sahnasida jonli paydo bo'lishini kuzating. View-karkasni va ikkita Text-replikani teraning.", ru: 'Добавляйте по одной части сцены и следите справа, как она вживую появляется на сцене телефона. Соберите каркас View и две реплики Text.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi ekraningizni yig'ing — <span className="italic" style={{ color: T.accent }}>telefonda paydo bo'ladi</span>.</>, ru: <>Соберите свой первый экран — <span className="italic" style={{ color: T.accent }}>он появится на телефоне</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Har bir qismni qo'shing va o'ng tomonda telefonda qanday paydo bo'lishini kuzating. Bitta View va ikkita Text qo'shing.", ru: 'Добавляйте каждую часть и смотрите справа, как она появляется на телефоне. Добавьте один View и два Text.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -1001,16 +999,16 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </CodeFile>
           </Col>
           <Col>
-            <Phone label={{ uz: 'tirik sahna', ru: 'живая сцена' }} lit={added.size > 0}>
+            <Phone lit={added.size > 0}>
               {added.size === 0
-                ? <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: 'qorong\'u sahna', ru: 'тёмная сцена' })}</p>
+                ? <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: "bo'sh ekran", ru: 'пустой экран' })}</p>
                 : <div className={`rn-view ${added.has('view') ? 'on' : ''}`}>
                     {added.has('title') && <div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div>}
                     {added.has('prod') && <div className="rn-text">{tr({ uz: '📱 Telefon', ru: '📱 Телефон' })}</div>}
-                    {!added.has('title') && !added.has('prod') && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'View-karkas terildi — endi Text-replika qo\'shing', ru: 'Каркас View собран — теперь добавьте реплику Text' })}</p>}
+                    {!added.has('title') && !added.has('prod') && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "View qo'shildi — endi Text qo'shing", ru: 'View добавлен — теперь добавьте Text' })}</p>}
                   </div>}
             </Phone>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana — birinchi mobil sahnangiz! View-karkas ichida Text-replikalar. Aynan React kabi, faqat View/Text bilan.", ru: 'Вот она — ваша первая мобильная сцена! Внутри каркаса View — реплики Text. Точно как в React, только с View/Text.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana — birinchi mobil ekraningiz! View ichida ikkita Text. Xuddi React'dagidek, faqat View va Text bilan.", ru: 'Вот он — ваш первый мобильный экран! Внутри View — два Text. Точно как в React, только с View и Text.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1021,20 +1019,20 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — TEST 2 =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
-    questionText="React Native'da matn (harflar) qayerga yoziladi?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>RN'da matn (harflar) <span className="italic" style={{ color: T.accent }}>qayerga</span> yoziladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Куда</span> в RN пишется текст (буквы)?</h2></> })}
+    questionText="React Native'da matn qayerga yoziladi?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React Native'da matn <span className="italic" style={{ color: T.accent }}>qayerga</span> yoziladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Куда</span> пишется текст в React Native?</h2></> })}
     options={[
-      { uz: "To'g'ridan-to'g'ri <View> ichiga", ru: 'Прямо внутрь <View>' },
-      { uz: "<Text> komponenti ichiga — har doim", ru: 'Внутрь компонента <Text> — всегда' },
-      { uz: "<div> ichiga", ru: 'Внутрь <div>' },
-      { uz: "<p> ichiga", ru: 'Внутрь <p>' }
+      { uz: "To'g'ridan-to'g'ri `<View>` ichiga", ru: 'Прямо внутрь `<View>`' },
+      { uz: "Har doim `<Text>` ichiga", ru: 'Всегда внутрь `<Text>`' },
+      { uz: "Web'dagidek `<div>` ichiga", ru: 'Внутрь `<div>`, как в вебе' },
+      { uz: "Web'dagidek `<p>` ichiga", ru: 'Внутрь `<p>`, как в вебе' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! RN'da har qanday matn albatta <Text> ichida bo'lishi shart. View-karkas ichiga to'g'ridan matn yozsangiz, ilova xato beradi. Bu — RN'ning eng muhim qoidasi.", ru: 'Верно! В RN любой текст обязан быть внутри <Text>. Если написать текст прямо в каркас View, приложение выдаст ошибку. Это главное правило RN.' }}
+    explainCorrect={{ uz: "To'g'ri! React Native'da har qanday matn albatta `<Text>` ichida bo'lishi shart. View ichiga to'g'ridan matn yozsangiz, ilova xato beradi.", ru: 'Верно! В React Native любой текст обязательно должен быть внутри `<Text>`. Если написать текст прямо во View, приложение выдаст ошибку.' }}
     explainWrong={{
-      0: { uz: "View — sahna-karkas, u to'g'ridan matnni ko'tarmaydi. Matn <Text> ichida bo'lishi kerak.", ru: 'View — каркас сцены, он не выдерживает текст напрямую. Текст должен быть внутри <Text>.' },
-      2: { uz: "<div> — bu web (React). RN'da matn <Text> ichida bo'ladi.", ru: '<div> — это веб (React). В RN текст находится внутри <Text>.' },
-      3: { uz: "<p> — bu ham web. RN'da uning o'rnida <Text> ishlatiladi.", ru: '<p> — тоже веб. В RN вместо него используют <Text>.' },
-      default: { uz: "RN'da matn <Text> ichida bo'ladi.", ru: 'В RN текст находится внутри <Text>.' }
+      0: { uz: "View — quti, u to'g'ridan matnni ko'rsatmaydi. Matn `<Text>` ichida bo'lishi kerak.", ru: 'View — коробка, напрямую текст она не показывает. Текст должен быть внутри `<Text>`.' },
+      2: { uz: "`<div>` — bu web. React Native'da matn `<Text>` ichida bo'ladi.", ru: '`<div>` — это веб. В React Native текст находится внутри `<Text>`.' },
+      3: { uz: "`<p>` — bu ham web. React Native'da uning o'rnida `<Text>` ishlatiladi.", ru: '`<p>` — тоже веб. В React Native вместо него используют `<Text>`.' },
+      default: { uz: "React Native'da matn `<Text>` ichida bo'ladi.", ru: 'В React Native текст находится внутри `<Text>`.' }
     }} />
 );
 
@@ -1047,22 +1045,22 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Vosita · Expo', ru: 'Инструмент · Expo' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Nega qulay?", ru: 'Чем это удобно?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Expo</span> — gastrol furgoni (RN'ni osonlashtiruvchi vosita).</>, ru: <><span className="italic" style={{ color: T.accent }}>Expo</span> — гастрольный фургон (инструмент, который упрощает RN).</> })}</h2></div>
-        <Mentor>{tr({ uz: "RN'ni «yalang'och» o'rnatish murakkab (Xcode, Android Studio…). Expo — ko'chma sahna to'plami — bularning hammasini o'zi qiladi; siz faqat kod yozasiz. Tugmani bosing.", ru: 'Ставить RN «голыми руками» сложно (Xcode, Android Studio…). Expo — набор переносной сцены — берёт всё это на себя; вы только пишете код. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Expo</span> — React Native bilan ishlashni osonlashtiradigan vosita.</>, ru: <><span className="italic" style={{ color: T.accent }}>Expo</span> — инструмент, который упрощает работу с React Native.</> })}</h2></div>
+        <Mentor>{tr({ uz: "React Native'ni Expo'siz o'rnatish murakkabroq: Xcode yoki Android Studio kabi katta dasturlar kerak bo'ladi. Expo loyihani yaratish, ishga tushirish va telefonda sinashni osonlashtiradi. Tugmani bosing.", ru: 'Установить React Native без Expo сложнее: нужны большие программы вроде Xcode или Android Studio. Expo упрощает создание проекта, его запуск и проверку на телефоне. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🚚 Expo nima?', ru: '🚚 Что такое Expo?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "RN loyihasini yaratish, ishga tushirish va telefonda ko'rishni juda osonlashtiruvchi tayyor to'plam. Yangi boshlovchilar uchun ideal.", ru: 'Готовый набор, который сильно упрощает создание проекта RN, его запуск и просмотр на телефоне. Идеален для начинающих.' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧰 Expo nima?', ru: '🧰 Что такое Expo?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "React Native loyihasini yaratish, ishga tushirish va telefonda ko'rishni osonlashtiradigan tayyor to'plam. Boshlovchilar uchun qulay.", ru: 'Готовый набор, который упрощает создание проекта React Native, его запуск и просмотр на телефоне. Удобно для начинающих.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Nega Expo qulay?", ru: 'Чем удобен Expo?' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚡ <b>Tez start:</b> bitta buyruq bilan loyiha tayyor.</>, ru: <>⚡ <b>Быстрый старт:</b> одна команда — и проект готов.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🛠 <b>Murakkab sozlash yo'q:</b> Xcode/Android Studio shart emas.</>, ru: <>🛠 <b>Без сложной настройки:</b> Xcode/Android Studio не нужны.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎟️ <b>Expo Go:</b> ilovani o'z telefoningizda darrov ko'rasiz — chipta bilan (keyingi ekran).</>, ru: <>🎟️ <b>Expo Go:</b> сразу видите приложение на своём телефоне — по билету (следующий экран).</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚡ <b>Tez boshlash:</b> bitta buyruq bilan loyiha tayyor bo'ladi.</>, ru: <>⚡ <b>Быстрый старт:</b> одна команда — и проект готов.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🛠 <b>Bugun murakkab sozlash kerak emas:</b> bugungi mashq uchun Xcode yoki Android Studio shart emas.</>, ru: <>🛠 <b>Сегодня сложная настройка не нужна:</b> для сегодняшнего упражнения Xcode или Android Studio не понадобятся.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📱 <b>Expo Go:</b> ilovani o'z telefoningizda ko'rasiz (keyingi ekran).</>, ru: <>📱 <b>Expo Go:</b> вы увидите приложение на своём телефоне (следующий экран).</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Expo = mobil sahnaning «oson rejimi». Aynan u tufayli bugun darrov natija ko'rasiz.", ru: 'Expo = «лёгкий режим» мобильной сцены. Именно благодаря ему вы сегодня сразу увидите результат.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Expo tufayli bugun murakkab sozlashlarsiz natija ko'rasiz.", ru: 'Благодаря Expo вы сегодня увидите результат без сложной настройки.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1070,30 +1068,30 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — EXPO GO QR (chipta) =====
+// ===== SCREEN 10 — EXPO GO va QR KOD =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [scanned, setScanned] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = scanned;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Sahna · Expo Go', ru: 'Сцена · Expo Go' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Chiptani skanerlang", ru: 'Отсканируйте билет' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Telefonda · Expo Go', ru: 'На телефоне · Expo Go' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "QR kodni skanerlang", ru: 'Отсканируйте QR-код' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>QR = chipta. Skanerlang — ilova <span className="italic" style={{ color: T.accent }}>telefon sahnangizda</span>.</>, ru: <>QR = билет. Сканируйте — и приложение <span className="italic" style={{ color: T.accent }}>на сцене вашего телефона</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Expo Go ilovasini telefoningizga o'rnatasiz, kompyuterdagi QR-chiptani skanerlaysiz — va ilovangiz darrov telefon sahnasida ochiladi. Tugmani bosib ko'ring!", ru: 'Ставите на телефон приложение Expo Go, сканируете QR-билет с компьютера — и ваше приложение сразу открывается на сцене телефона. Попробуйте нажать кнопку!' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>QR kodni skanerlang — ilova <span className="italic" style={{ color: T.accent }}>telefoningizda ochiladi</span>.</>, ru: <>Отсканируйте QR-код — приложение <span className="italic" style={{ color: T.accent }}>откроется на вашем телефоне</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Telefoningizga Expo Go ilovasini o'rnatasiz va kompyuterdagi QR kodni u bilan skanerlaysiz — loyihangiz telefoningizda ochiladi. <b style={{ color: T.ink }}>Muhim shart:</b> odatda telefon va kompyuter bitta Wi-Fi tarmog'ida bo'lishi kerak. Tugmani bosib ko'ring!</>, ru: <>Вы устанавливаете на телефон приложение Expo Go и сканируете им QR-код с компьютера — ваш проект открывается на телефоне. <b style={{ color: T.ink }}>Важное условие:</b> обычно телефон и компьютер должны быть в одной Wi-Fi-сети. Попробуйте нажать кнопку!</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'kompyuterdagi QR-chipta', ru: 'QR-билет на компьютере' })}</p>
+            <p className="flow-label">{tr({ uz: 'kompyuterdagi QR kod', ru: 'QR-код на компьютере' })}</p>
             <QrBox scanning={!scanned} />
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={scanned} onClick={() => { setScanned(true); setSc(n => n + 1); }}>{scanned ? tr({ uz: '✓ Skanerlandi', ru: '✓ Отсканировано' }) : tr({ uz: "🎟️ Chiptani skanerlash", ru: '🎟️ Отсканировать билет' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={scanned} onClick={() => { setScanned(true); setSc(n => n + 1); }}>{scanned ? tr({ uz: '✓ Skanerlandi', ru: '✓ Отсканировано' }) : tr({ uz: "📷 QR kodni skanerlash", ru: '📷 Отсканировать QR-код' })}</button>
           </Col>
           <Col>
-            <Phone label={scanned ? { uz: '🟢 ulandi — sahna tirik', ru: '🟢 подключено — сцена живая' } : { uz: 'Expo Go (kutyapti)', ru: 'Expo Go (ожидает)' }} lit={scanned}>
+            <Phone label={scanned ? { uz: '🟢 ulandi', ru: '🟢 подключено' } : { uz: 'Expo Go (kutyapti)', ru: 'Expo Go (ожидает)' }} lit={scanned}>
               {scanned
                 ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
-                : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: 'chiptani kuting…', ru: 'ждём билет…' })}</p>}
+                : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: 'QR kodni kuting…', ru: 'Ждём QR-код…' })}</p>}
             </Phone>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana natija! Kodni o'zgartirsangiz, Expo o'zgarishni telefon sahnasiga darrov yuboradi. Hech qanday murakkab o'rnatish yo'q.", ru: 'Вот результат! Измените код — Expo сразу отправит изменение на сцену телефона. Никакой сложной установки.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana natija! Kodni o'zgartirib saqlasangiz, Expo o'zgarishni telefonga tez yuboradi.", ru: 'Вот результат! Измените код и сохраните — Expo быстро отправит изменение на телефон.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1104,24 +1102,24 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — TEST 3 =====
 const Screen11 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText="Expo Go ilovasi nima qiladi?"
+    questionText="Expo Go nima qiladi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="mono" style={{ color: T.accent }}>Expo Go</span> nima qiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что делает <span className="mono" style={{ color: T.accent }}>Expo Go</span>?</h2></> })}
     options={[
-      { uz: "QR-chiptani skanerlab, ilovani telefonda darrov ochadi", ru: 'Сканирует QR-билет и сразу открывает приложение на телефоне' },
+      { uz: "QR kod orqali loyihani telefonda ochadi", ru: 'Открывает проект на телефоне через QR-код' },
       { uz: "Sizning o'rningizga kodni o'zi yozib beradi", ru: 'Сам пишет код вместо вас' },
       { uz: "Ilova ma'lumotlarini bazada saqlab boradi", ru: 'Сохраняет данные приложения в базе' },
       { uz: "Faqat oddiy web-saytni brauzerda ochadi", ru: 'Открывает в браузере лишь обычный веб-сайт' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Expo Go — telefoningizdagi ilova. QR-chiptani skanerlaysiz va loyihangiz darrov telefon sahnasida ochiladi. Kodni o'zgartirsangiz — telefonda ham yangilanadi. Murakkab o'rnatishsiz.", ru: 'Верно! Expo Go — приложение на вашем телефоне. Сканируете QR-билет, и проект сразу открывается на сцене телефона. Измените код — на телефоне тоже обновится. Без сложной установки.' }}
+    explainCorrect={{ uz: "To'g'ri! Expo Go — telefoningizdagi ilova. QR kodni skanerlaysiz va loyihangiz telefonda ochiladi. Kodni o'zgartirsangiz — telefonda ham yangilanadi.", ru: 'Верно! Expo Go — приложение на вашем телефоне. Вы сканируете QR-код, и ваш проект открывается на телефоне. Измените код — на телефоне тоже обновится.' }}
     explainWrong={{
       1: { uz: "Kodni siz (yoki AI) yozasiz — Expo Go uni telefonda ko'rsatadi.", ru: 'Код пишете вы (или ИИ) — Expo Go показывает его на телефоне.' },
       2: { uz: "Saqlash — bazaning ishi. Expo Go ilovani telefonda ishga tushiradi.", ru: 'Хранение — работа базы. Expo Go запускает приложение на телефоне.' },
       3: { uz: "Web emas — Expo Go haqiqiy mobil ilovani telefoningizda ochadi.", ru: 'Не веб — Expo Go открывает на вашем телефоне настоящее мобильное приложение.' },
-      default: { uz: "Expo Go QR (chipta) orqali ilovani telefonda ko'rsatadi.", ru: 'Expo Go по QR (билету) показывает приложение на телефоне.' }
+      default: { uz: "Expo Go QR kod orqali ilovani telefonda ko'rsatadi.", ru: 'Expo Go показывает приложение на телефоне через QR-код.' }
     }} />
 );
 
-// ===== SCREEN 12 — CASE: to'liq sahna =====
+// ===== SCREEN 12 — CASE: to'liq ekran =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shown, setShown] = useState(storedAnswer ? CASE_LINES.length : 0);
   const [sc, setSc] = useState(0);
@@ -1129,10 +1127,10 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { if (!done) { setShown(n => n + 1); setSc(n => n + 1); } };
   return (
-    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq sahna", ru: 'Из жизни · полная сцена' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Sahnani quring (${shown}/${CASE_LINES.length})`, ru: `Постройте сцену (${shown}/${CASE_LINES.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq ekran", ru: 'Из жизни · полный экран' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ekranni quring (${shown}/${CASE_LINES.length})`, ru: `Постройте экран (${shown}/${CASE_LINES.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>mini-do'kon mobil — <span className="italic" style={{ color: T.accent }}>to'liq birinchi ekran</span>.</>, ru: <>мини-магазин мобильный — <span className="italic" style={{ color: T.accent }}>полный первый экран</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Endi to'liqroq sahna quramiz: sarlavha, mahsulot, narx va tugma. Har qatorni qo'shing va telefon sahnasida jonlanishini kuzating.", ru: 'Теперь построим сцену подробнее: заголовок, товар, цена и кнопка. Добавляйте по строке и смотрите, как она оживает на сцене телефона.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mini-do'kon mobil ilovasining <span className="italic" style={{ color: T.accent }}>birinchi ekrani</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Первый экран</span> мобильного приложения мини-магазина.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi to'liqroq ekran quramiz: sarlavha, mahsulot, narx va tugma. Har qatorni qo'shing va telefonda paydo bo'lishini kuzating. Tugma uchun yangi komponent ishlatamiz: <b style={{ color: T.ink }}>Pressable</b> — bosish mumkin bo'lgan element.</>, ru: <>Теперь построим экран полнее: заголовок, товар, цена и кнопка. Добавляйте по строке и смотрите, как она появляется на телефоне. Для кнопки возьмём новый компонент: <b style={{ color: T.ink }}>Pressable</b> — элемент, на который можно нажать.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="ShopScreen.js" minH={130}>
@@ -1140,7 +1138,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {CASE_LINES.slice(0, shown).map((l, i) => <span key={i}>{'  ' + tr(l.code)}{'\n'}</span>)}
               <Kw>{'</View>'}</Kw>
             </CodeFile>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Sahna tayyor', ru: '✓ Сцена готова' }) : shown === 0 ? tr({ uz: '▶ Qurishni boshlash', ru: '▶ Начать сборку' }) : tr({ uz: 'Keyingi qator →', ru: 'Следующая строка →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Ekran tayyor', ru: '✓ Экран готов' }) : shown === 0 ? tr({ uz: '▶ Qurishni boshlash', ru: '▶ Начать сборку' }) : tr({ uz: 'Keyingi qator →', ru: 'Следующая строка →' })}</button>
           </Col>
           <Col>
             <Phone label={{ uz: "mini-do'kon mobil", ru: 'мини-магазин мобильный' }}>
@@ -1150,7 +1148,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   : CASE_LINES.slice(0, shown).map((l, i) => <div key={i} className={`rn-text ${l.cls}`}>{tr(l.txt)}</div>)}
               </div>
             </Phone>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq sahna! View-karkas ichida Text-replikalar va Pressable (tugma). Aynan React mantiqida — faqat mobil komponentlar bilan.", ru: 'Полная сцена! Внутри каркаса View — реплики Text и Pressable (кнопка). Ровно по логике React — только с мобильными компонентами.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq ekran! View ichida Text'lar va Pressable (bosiladigan tugma). Xuddi React mantiqida — faqat mobil komponentlar bilan.", ru: 'Полный экран! Внутри View — Text и Pressable (кнопка, на которую можно нажать). Точно по логике React — только с мобильными компонентами.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1158,12 +1156,12 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 13 — BIR XIL REACT SSENARIY =====
+// ===== SCREEN 13 — O'SHA REACT =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const SAME = [
-    { id: 'comp', label: { uz: 'Komponentlar', ru: 'Компоненты' }, desc: { uz: "Funksiya-komponentlar, JSX — aynan web React kabi.", ru: 'Функции-компоненты, JSX — точно как в вебовском React.' } },
+    { id: 'comp', label: { uz: 'Komponentlar', ru: 'Компоненты' }, desc: { uz: "Funksiya-komponentlar va JSX — xuddi web React'dagidek.", ru: 'Функции-компоненты и JSX — точно как в веб-React.' } },
     { id: 'props', label: 'Props', desc: { uz: "Komponentga ma'lumot uzatish — o'sha props.", ru: 'Передача данных в компонент — те же props.' } },
-    { id: 'state', label: 'useState', desc: { uz: "Holat va qayta render — bir xil hooklar (useState, useEffect).", ru: 'Состояние и перерисовка — те же хуки (useState, useEffect).' } }
+    { id: 'state', label: 'State (useState)', desc: { uz: "Holat o'zgarsa, ekran yangilanadi — o'sha useState.", ru: 'Изменилось состояние — экран обновляется. Тот же useState.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(SAME.map(s => s.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1173,16 +1171,15 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = SAME.find(s => s.id === active);
   return (
-    <Stage eyebrow={tr({ uz: "Tinchlantiruvchi · o'sha React", ru: 'Успокаивающее · тот же React' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 narsani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 пункта (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tanish · o'sha React", ru: 'Знакомое · тот же React' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 narsani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 пункта (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Eng yaxshi xabar: <span className="italic" style={{ color: T.accent }}>React ssenariyingiz</span> o'sha — o'zgarmaydi.</>, ru: <>Лучшая новость: <span className="italic" style={{ color: T.accent }}>ваш сценарий React</span> тот же — он не меняется.</> })}</h2></div>
-        <Mentor>{tr({ uz: "View/Text va Expo'ni o'rgandingiz. Qolgan hammasi — Modul 3'dagi React. Har birini bosib, ishonch hosil qiling.", ru: 'Вы выучили View/Text и Expo. Всё остальное — React из модуля 3. Нажмите на каждый пункт и убедитесь сами.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Eng yaxshi xabar: <span className="italic" style={{ color: T.accent }}>React bilimingiz</span> o'sha.</>, ru: <>Лучшая новость: <span className="italic" style={{ color: T.accent }}>ваши знания React</span> — те же.</> })}</h2></div>
+        <Mentor>{tr({ uz: "View, Text va Expo'ni o'rgandingiz. Qolgan hammasi — React darslarida o'rganganingiz. Har birini bosib, ishonch hosil qiling.", ru: 'Вы выучили View, Text и Expo. Всё остальное — то, что вы прошли на уроках React. Нажмите на каждый пункт и убедитесь сами.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {SAME.map(s => <button key={s.id} className="gchip" onClick={() => tap(s.id)} style={seen.has(s.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(s.id) ? '✓ ' : ''}{tr(s.label)}</button>)}
             </div>
-            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 KEYINGI DARS', ru: '📍 СЛЕДУЮЩИЙ УРОК' })}</span><p className="agent-msg">{tr({ uz: <>Birinchi ekran tayyor. Keyingi darsda ko'p ekranli ilova quramiz: <b>navigatsiya</b> (Stack Navigator), <b>API'dan ma'lumot</b> va <b>AsyncStorage</b>.</>, ru: <>Первый экран готов. На следующем уроке соберём приложение из нескольких экранов: <b>навигация</b> (Stack Navigator), <b>данные из API</b> и <b>AsyncStorage</b>.</> })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -1198,24 +1195,24 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — TEST 4 =====
 const Screen14 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' }}
-    questionText="Web React'ni bilasiz. Mobil (RN) uchun asosan nimani qo'shimcha o'rganasiz?"
+    questionText="Web React'ni bilasiz. Mobil uchun asosan nimani qo'shimcha o'rganasiz?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Web React'ni bilasiz. Mobil uchun asosan <span className="italic" style={{ color: T.accent }}>nimani</span> qo'shimcha o'rganasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Вы знаете веб-React. <span className="italic" style={{ color: T.accent }}>Что</span> в основном придётся доучить для мобильного?</h2></> })}
     options={[
-      { uz: "Hammasini noldan, chunki React bu yerda umuman yordam bermaydi", ru: 'Всё с нуля, потому что React здесь совсем не помогает' },
-      { uz: "Boshqa dasturlash tili (masalan Java yoki Swift)", ru: 'Другой язык программирования (например Java или Swift)' },
-      { uz: "Asosan yangi sahna komponentlari (View/Text) va Expo — React tafakkur o'sha", ru: 'В основном новые компоненты сцены (View/Text) и Expo — мышление React то же' },
-      { uz: "Hech narsa — RN va web bir xil kodni ishlatadi", ru: 'Ничего — RN и веб используют один и тот же код' }
+      { uz: "Hammasini noldan — React bu yerda yordam bermaydi", ru: 'Всё с нуля — React здесь не поможет' },
+      { uz: "Boshqa dasturlash tilini (masalan, Java yoki Swift)", ru: 'Другой язык программирования (например, Java или Swift)' },
+      { uz: "Yangi komponentlarni (View, Text) va Expo'ni", ru: 'Новые компоненты (View, Text) и Expo' },
+      { uz: "Hech narsani — web va mobil kodi aynan bir xil", ru: 'Ничего — код для веба и мобильного один и тот же' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! React bilimingiz (komponent, props, state, JSX) to'liq ishlaydi. Qo'shimcha — bir nechta sahna komponenti (View/Text/StyleSheet) va Expo. Shuning uchun React bilsangiz, mobilga o'tish oson.", ru: 'Верно! Ваши знания React (компонент, props, state, JSX) работают полностью. Дополнительно — несколько компонентов сцены (View/Text/StyleSheet) и Expo. Поэтому, зная React, перейти на мобильное легко.' }}
+    explainCorrect={{ uz: "To'g'ri! React bilimingiz (komponent, props, state, JSX) ishlayveradi. Qo'shimcha — bir nechta yangi komponent (View, Text, StyleSheet) va Expo.", ru: 'Верно! Ваши знания React (компонент, props, state, JSX) продолжают работать. Дополнительно — несколько новых компонентов (View, Text, StyleSheet) и Expo.' }}
     explainWrong={{
-      0: { uz: "Aksincha — React bilimingizning katta qismi ishlaydi. Faqat sahna komponentlari o'zgaradi.", ru: 'Наоборот — большая часть ваших знаний React работает. Меняются только компоненты сцены.' },
-      1: { uz: "Boshqa til shart emas — RN ham JavaScript/React. O'rganganingiz asqotadi.", ru: 'Другой язык не нужен — RN это тоже JavaScript/React. Выученное пригодится.' },
-      3: { uz: "Butunlay bir xil emas — View/Text va Expo bor. Lekin tafakkur o'sha.", ru: 'Не полностью одинаково — есть View/Text и Expo. Но мышление то же.' },
-      default: { uz: "Asosan View/Text va Expo — React tafakkur o'sha.", ru: 'В основном View/Text и Expo — мышление React то же.' }
+      0: { uz: "Aksincha — React bilimingizning katta qismi ishlaydi.", ru: 'Наоборот — большая часть ваших знаний React работает.' },
+      1: { uz: "Boshqa til shart emas — React Native ham JavaScript va React.", ru: 'Другой язык не нужен — React Native это тоже JavaScript и React.' },
+      3: { uz: "Aynan bir xil emas — View, Text va Expo bor. Lekin React bilimingiz o'sha.", ru: 'Не совсем одинаково — есть View, Text и Expo. Но ваши знания React те же.' },
+      default: { uz: "Asosan View, Text va Expo.", ru: 'В основном View, Text и Expo.' }
     }} />
 );
 
-// ===== SCREEN 15 — YAKUNIY: gastrol oqimini tartibda yig'ish (DragDropOrder) =====
+// ===== SCREEN 15 — YAKUNIY: bugungi mashq tartibini yig'ish (DragDropOrder) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
   const achMiss = useContext(AchMissCtx);
@@ -1227,17 +1224,15 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (fired.current) return;
     fired.current = true; setSolved(true);
     const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Birinchi RN ilova (gastrol) oqimini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Bugungi mashqimiz tartibini yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Расставьте по порядку' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: gastrol qadamlarini <span className="italic" style={{ color: T.accent }}>tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите гастрольные шаги <span className="italic" style={{ color: T.accent }}>по порядку</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Bo'sh loyihadan telefondagi tirik sahnagacha yo'l: Expo loyiha → View/Text bilan ekran → StyleSheet bilan bezab → QR-chipta skan → telefonda jonli. Bo'laklarni to'g'ri tartibda sudrab joylang.", ru: 'Путь от пустого проекта до живой сцены на телефоне: проект Expo → экран на View/Text → оформление через StyleSheet → скан QR-билета → живьём на телефоне. Перетащите блоки в правильном порядке.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: bugungi mashqimiz <span className="italic" style={{ color: T.accent }}>tartibini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>порядок</span> нашего сегодняшнего упражнения.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Bo'sh loyihadan telefondagi ilovagacha bugun qanday yo'l bosamiz? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Какой путь мы сегодня пройдём от пустого проекта до приложения на телефоне? Расставьте блоки в правильном порядке.' })}</Mentor>
         <Zoomable>
-          <p className="flow-label" style={{ marginBottom: 8 }}>{tr({ uz: 'Gastrol oqimi — bo\'laklarni sudrab tartibga soling', ru: 'Гастрольный поток — перетащите блоки по порядку' })}</p>
-          <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={onSolved} doneText={{ uz: "Gastrol oqimi to'g'ri yig'ildi!", ru: 'Гастрольный поток собран верно!' }} />
-          {solved && <div className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Expo → View/Text → StyleSheet → QR skan → Telefonda</b>. Mana birinchi mobil ilovangiz — gastrol — yo'li.</>, ru: <>✓ Поток готов: <b>Expo → View/Text → StyleSheet → QR-скан → На телефоне</b>. Вот он, путь вашего первого мобильного приложения — гастролей.</> })}</p></div>}
+          <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={onSolved} doneText={{ uz: <>Tartib tayyor: <b>Expo → View/Text → StyleSheet → QR skan → Telefonda</b>. Bugungi mashqimiz shu tartibda.</>, ru: <>Порядок готов: <b>Expo → View/Text → StyleSheet → QR-скан → На телефоне</b>. Сегодняшнее упражнение идёт именно в таком порядке.</> }} />
         </Zoomable>
       </div>
     </Stage>
@@ -1246,10 +1241,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  stageDebut:    { icon: '🎭', name: 'Stage Debut',    desc: { uz: "React Native — mobil sahna ekanini topdingiz", ru: "Поняли: React Native — мобильная сцена" } },
-  nativeStage:   { icon: '🪵', name: 'Native Stage',   desc: { uz: "Text — aktyor replikasi qoidasini topdingiz", ru: "Нашли правило: Text — реплика актёра" } },
-  ticketScanned: { icon: '🎟️', name: 'Ticket Scanned', desc: { uz: "Expo Go — QR-chipta bilan sahnaga chiqdingiz", ru: "Разобрались: Expo Go выводит на сцену по QR" } },
-  curtainUp:     { icon: '🎬', name: 'Curtain Up',     desc: { uz: "React ssenariysi o'sha ishlashini tasdiqladingiz", ru: "Подтвердили: сценарий React работает тот же" } },
+  stageDebut:    { icon: '📱', name: 'RN Start',      desc: { uz: "React Native nima uchun kerakligini topdingiz", ru: 'Выяснили, зачем нужен React Native' } },
+  nativeStage:   { icon: '🔤', name: 'Text Rule',     desc: { uz: "Matn faqat <Text> ichida bo'lish qoidasini topdingiz", ru: 'Нашли правило: текст — только внутри <Text>' } },
+  ticketScanned: { icon: '📷', name: 'Expo Go Ready', desc: { uz: "Expo Go loyihani telefonda qanday ochishini bildingiz", ru: 'Узнали, как Expo Go открывает проект на телефоне' } },
+  curtainUp:     { icon: '⚛️', name: 'Same React',    desc: { uz: "React bilimingiz mobilda ham ishlashini tasdiqladingiz", ru: 'Убедились, что ваши знания React работают и в мобильном' } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: SCORED testlar (s4/s8/s11/s14) — `correct`=1-urinish to'g'riligi,
 // ya'ni xato bossa nishon TEKIN berilmaydi. Exploration/toggle ekranlarga BOG'LANMAYDI.
@@ -1315,41 +1310,41 @@ const Q_LABELS = {
   8: { uz: '2 — Text qoidasi', ru: '2 — правило Text' },
   11: { uz: '3 — Expo Go', ru: '3 — Expo Go' },
   14: { uz: '4 — React o\'sha', ru: '4 — React тот же' },
-  15: { uz: '5 — Gastrol oqimi', ru: '5 — гастрольный поток' }
+  15: { uz: '5 — Mashq tartibi', ru: '5 — Порядок упражнения' }
 };
 const QUIZ_MS = 15000;
-// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (RN / GASTROL atamalari)
+// Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (RN atamalari)
 const QZ_BG_SHAPES = [
   { ch: '<View>',      l: 5,  t: 10, s: 32, d: 19, dl: 0 },
-  { ch: '🎭',           l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
+  { ch: '⚛️',           l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: '<Text>',      l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'StyleSheet',  l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: 'Expo',        l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: 'useState',    l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
   { ch: 'iOS+Android', l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
   { ch: 'div→View',    l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
-  { ch: '🎟️',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
+  { ch: 'Pressable',   l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '📱',           l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'flex',        l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: '🪵',           l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
+  { ch: 'Image',       l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
   { ch: 'native',      l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
   { ch: 'props',       l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "React Native nima?", ru: 'Что такое React Native?' }, opts: [{ uz: "React bilimi bilan haqiqiy mobil ilova (iOS+Android) yasash", ru: 'Создание настоящего мобильного приложения (iOS+Android) на знаниях React' }, { uz: "Faqat web-saytlarni chiroyli bezash uchun kutubxona", ru: 'Библиотека только для красивого оформления веб-сайтов' }, { uz: "Ma'lumotlar bazasini boshqaruvchi server tizimi", ru: 'Серверная система для управления базой данных' }, { uz: "Rasmlarni tahrirlash dasturi", ru: 'Программа для редактирования картинок' }], correct: 0 },
-  { q: { uz: "Web'dagi <div> React Native'da nimaga aylanadi?", ru: 'Во что превращается веб-овский <div> в React Native?' }, opts: ["<p>", "<View>", { uz: "<div> — o'zgarmaydi", ru: '<div> — не меняется' }, "<span>"], correct: 1 },
-  { q: { uz: "Web'dagi <p> React Native'da nimaga aylanadi?", ru: 'Во что превращается веб-овский <p> в React Native?' }, opts: ["<View>", "<div>", "<Text>", "<label>"], correct: 2 },
-  { q: { uz: "RN'da har qanday matn qayerda bo'lishi shart?", ru: 'Где обязан находиться любой текст в RN?' }, opts: [{ uz: "<View> ichida to'g'ridan", ru: 'Прямо внутри <View>' }, { uz: "<div> ichida", ru: 'Внутри <div>' }, { uz: "<p> ichida", ru: 'Внутри <p>' }, { uz: "<Text> ichida", ru: 'Внутри <Text>' }], correct: 3 },
-  { q: { uz: "StyleSheet nima?", ru: 'Что такое StyleSheet?' }, opts: [{ uz: "Stillar yoziladigan JS obyekt (CSS fayl emas)", ru: 'JS-объект, в котором пишут стили (не CSS-файл)' }, { uz: "Loyihaga ulanadigan alohida .css fayl", ru: 'Отдельный .css файл, подключаемый к проекту' }, { uz: "Ma'lumotlarni saqlaydigan jadval turi", ru: 'Тип таблицы для хранения данных' }, { uz: "Rasmlar uchun maxsus fayl formati", ru: 'Особый формат файла для картинок' }], correct: 0 },
-  { q: { uz: "CSS'dagi background-color RN StyleSheet'da qanday yoziladi?", ru: 'Как пишется CSS-овский background-color в StyleSheet RN?' }, opts: [{ uz: "background-color — o'zgarmaydi", ru: 'background-color — не меняется' }, { uz: "backgroundColor (camelCase)", ru: 'backgroundColor (camelCase)' }, "bg_color", "colorBackground"], correct: 1 },
-  { q: { uz: "Expo nima uchun kerak?", ru: 'Для чего нужен Expo?' }, opts: [{ uz: "Ma'lumotlar bazasini serverda boshqarish uchun", ru: 'Чтобы управлять базой данных на сервере' }, { uz: "Tayyor web-saytni internetga joylashtirish uchun", ru: 'Чтобы выложить готовый веб-сайт в интернет' }, { uz: "RN loyihasini oson yaratish va telefonda ko'rish uchun", ru: 'Чтобы легко создать проект RN и посмотреть его на телефоне' }, { uz: "Rasm va grafiklarni chizish uchun", ru: 'Чтобы рисовать картинки и графику' }], correct: 2 },
-  { q: { uz: "Expo Go ilovasi QR kod bilan nima qiladi?", ru: 'Что делает приложение Expo Go с QR-кодом?' }, opts: [{ uz: "Sizning o'rningizga kodni o'zi yozib beradi", ru: 'Само пишет код вместо вас' }, { uz: "Ilova ma'lumotlarini bazada saqlaydi", ru: 'Сохраняет данные приложения в базе' }, { uz: "Faqat oddiy web-saytni brauzerda ochadi", ru: 'Открывает в браузере лишь обычный веб-сайт' }, { uz: "Ilovangizni telefoningizda darrov ko'rsatadi", ru: 'Сразу показывает ваше приложение на телефоне' }], correct: 3 },
-  { q: { uz: "RN ilova qaysi platformalarda ishlaydi?", ru: 'На каких платформах работает приложение на RN?' }, opts: [{ uz: "iOS va Android — bitta kod bilan", ru: 'iOS и Android — одним кодом' }, { uz: "Faqat Apple iOS telefonlarida", ru: 'Только на телефонах Apple iOS' }, { uz: "Faqat kompyuter brauzerida", ru: 'Только в браузере компьютера' }, { uz: "Faqat Windows kompyuterlarida", ru: 'Только на компьютерах с Windows' }], correct: 0 },
-  { q: { uz: "React'dan RN'ga o'tganda nima O'ZGARMAYDI?", ru: 'Что НЕ меняется при переходе с React на RN?' }, opts: [{ uz: "Sahna komponentlari (div, p, span)", ru: 'Компоненты сцены (div, p, span)' }, { uz: "Komponent, props, state — React tafakkur", ru: 'Компонент, props, state — мышление React' }, { uz: "Alohida CSS faylning ishlatilishi", ru: 'Использование отдельного CSS-файла' }, { uz: "HTML teglari va tugmalari", ru: 'HTML-теги и кнопки' }], correct: 1 },
+  { q: { uz: "React Native nima?", ru: 'Что такое React Native?' }, opts: [{ uz: "React bilimi bilan mobil ilova yasash usuli", ru: 'Способ делать мобильные приложения со знаниями React' }, { uz: "Web-saytlarni chiroyli bezash kutubxonasi", ru: 'Библиотека для красивого оформления веб-сайтов' }, { uz: "Ma'lumotlar bazasini boshqaruvchi server", ru: 'Сервер, который управляет базой данных' }, { uz: "Rasmlarni tahrirlaydigan dastur", ru: 'Программа для редактирования картинок' }], correct: 0 },
+  { q: { uz: "Web'dagi `<div>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<div>` из веба?' }, opts: ["<p>", "<View>", { uz: "<div> — o'zgarmaydi", ru: '<div> — не меняется' }, "<span>"], correct: 1 },
+  { q: { uz: "Web'dagi `<p>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<p>` из веба?' }, opts: ["<View>", "<div>", "<Text>", "<label>"], correct: 2 },
+  { q: { uz: "React Native'da har qanday matn qayerda bo'lishi shart?", ru: 'Где в React Native обязательно должен быть любой текст?' }, opts: [{ uz: "`<View>` ichida to'g'ridan", ru: 'Прямо внутри `<View>`' }, { uz: "`<div>` ichida", ru: 'Внутри `<div>`' }, { uz: "`<p>` ichida", ru: 'Внутри `<p>`' }, { uz: "`<Text>` ichida", ru: 'Внутри `<Text>`' }], correct: 3 },
+  { q: { uz: "StyleSheet nima?", ru: 'Что такое StyleSheet?' }, opts: [{ uz: "Stillar yoziladigan JS obyekt", ru: 'JS-объект, в котором пишут стили' }, { uz: "Loyihaga ulanadigan .css fayl", ru: '.css-файл, подключаемый к проекту' }, { uz: "Ma'lumot saqlaydigan jadval", ru: 'Таблица для хранения данных' }, { uz: "Rasmlar uchun fayl formati", ru: 'Формат файла для картинок' }], correct: 0 },
+  { q: { uz: "CSS'dagi background-color StyleSheet'da qanday yoziladi?", ru: 'Как в StyleSheet пишется background-color из CSS?' }, opts: [{ uz: "background-color — o'zgarmaydi", ru: 'background-color — не меняется' }, { uz: "backgroundColor", ru: 'backgroundColor' }, "bg_color", "colorBackground"], correct: 1 },
+  { q: { uz: "Expo nima uchun kerak?", ru: 'Для чего нужен Expo?' }, opts: [{ uz: "Bazani serverda boshqarish uchun", ru: 'Чтобы управлять базой данных на сервере' }, { uz: "Tayyor saytni internetga joylash uchun", ru: 'Чтобы выложить готовый сайт в интернет' }, { uz: "Loyihani oson yaratib, telefonda ko'rish uchun", ru: 'Чтобы легко создать проект и посмотреть его на телефоне' }, { uz: "Rasm va grafik chizish uchun", ru: 'Чтобы рисовать картинки и графику' }], correct: 2 },
+  { q: { uz: "Expo Go ilovasi QR kod bilan nima qiladi?", ru: 'Что делает приложение Expo Go с QR-кодом?' }, opts: [{ uz: "Kodni sizning o'rningizga yozadi", ru: 'Пишет код вместо вас' }, { uz: "Ilova ma'lumotini bazada saqlaydi", ru: 'Сохраняет данные приложения в базе' }, { uz: "Web-saytni brauzerda ochadi", ru: 'Открывает веб-сайт в браузере' }, { uz: "Loyihangizni telefonda ochadi", ru: 'Открывает ваш проект на телефоне' }], correct: 3 },
+  { q: { uz: "React Native ilova qaysi platformalarda ishlaydi?", ru: 'На каких платформах работает приложение на React Native?' }, opts: [{ uz: "iOS va Android'da", ru: 'На iOS и Android' }, { uz: "Faqat Apple iOS'da", ru: 'Только на Apple iOS' }, { uz: "Faqat kompyuter brauzerida", ru: 'Только в браузере компьютера' }, { uz: "Faqat Windows kompyuterlarida", ru: 'Только на компьютерах с Windows' }], correct: 0 },
+  { q: { uz: "React'dan React Native'ga o'tganda nima O'ZGARMAYDI?", ru: 'Что НЕ меняется при переходе с React на React Native?' }, opts: [{ uz: "Ekran elementlari (div, p, span)", ru: 'Элементы экрана (div, p, span)' }, { uz: "Komponent, props va state", ru: 'Компонент, props и state' }, { uz: "Alohida CSS fayl ishlatilishi", ru: 'Использование отдельного CSS-файла' }, { uz: "HTML teglari va tugmalari", ru: 'HTML-теги и кнопки' }], correct: 1 },
   { q: { uz: "React Native — bu web-saytmi?", ru: 'React Native — это веб-сайт?' }, opts: [{ uz: "Ha, u oddiy web-sayt", ru: 'Да, это обычный веб-сайт' }, { uz: "Ha, faqat brauzerda ishlaydi", ru: 'Да, работает только в браузере' }, { uz: "Yo'q — u haqiqiy mobil ilova", ru: 'Нет — это настоящее мобильное приложение' }, { uz: "Yo'q — u faqat rasm", ru: 'Нет — это просто картинка' }], correct: 2 },
-  { q: { uz: "Birinchi RN ilova (gastrol) qadamlarining to'g'ri tartibi?", ru: 'Верный порядок шагов первого приложения на RN (гастролей)?' }, opts: [{ uz: "QR skan → Telefonda → Expo loyiha → View/Text → StyleSheet", ru: 'QR-скан → На телефоне → Проект Expo → View/Text → StyleSheet' }, { uz: "Telefonda → StyleSheet → QR skan → View/Text → Expo loyiha", ru: 'На телефоне → StyleSheet → QR-скан → View/Text → Проект Expo' }, { uz: "StyleSheet → View/Text → Expo loyiha → Telefonda → QR skan", ru: 'StyleSheet → View/Text → Проект Expo → На телефоне → QR-скан' }, { uz: "Expo loyiha → View/Text → StyleSheet → QR skan → Telefonda", ru: 'Проект Expo → View/Text → StyleSheet → QR-скан → На телефоне' }], correct: 3 },
+  { q: { uz: "Bugungi mashqning to'g'ri tartibi?", ru: 'Верный порядок сегодняшнего упражнения?' }, opts: [{ uz: "QR skan → Telefonda → Expo loyiha → View/Text → StyleSheet", ru: 'QR-скан → На телефоне → Проект Expo → View/Text → StyleSheet' }, { uz: "Telefonda → StyleSheet → QR skan → View/Text → Expo loyiha", ru: 'На телефоне → StyleSheet → QR-скан → View/Text → Проект Expo' }, { uz: "StyleSheet → View/Text → Expo loyiha → Telefonda → QR skan", ru: 'StyleSheet → View/Text → Проект Expo → На телефоне → QR-скан' }, { uz: "Expo loyiha → View/Text → StyleSheet → QR skan → Telefonda", ru: 'Проект Expo → View/Text → StyleSheet → QR-скан → На телефоне' }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1451,8 +1446,8 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    // Arena tokenlari — SHU darsning mavzusidan (RN / GASTROL): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['<View>', '🎭', '<Text>', 'div→View', 'StyleSheet', 'Expo', '🎟️', 'iOS', '📱', 'native'];
+    // Arena tokenlari — SHU darsning mavzusidan (RN): dekorativ suzuvchi kod-bo'laklari
+    const TOK = ['<View>', '⚛️', '<Text>', 'div→View', 'StyleSheet', 'Expo', 'Pressable', 'iOS', '📱', 'native'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2023,34 +2018,35 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🛠️ PRAKTIKA — o'quvchi VS Code'da (yoki Expo Snack'da) birinchi sahnani yozadi (mentor-gate, kod kiritilmaydi)
+// 🛠️ PRAKTIKA — o'quvchi Expo Snack'da (asosiy yo'l; VS Code — uyda qo'shimcha) birinchi ekranni yozadi (mentor-gate, kod kiritilmaydi)
 const ScreenRnPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · VS Code / Expo Snack', ru: 'Практика · VS Code / Expo Snack' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
-    title={{ uz: "Birinchi mobil sahnangizni yozing", ru: 'Напишите свою первую мобильную сцену' }}
-    task={{ uz: "Bitta <View> va ichida 2 ta <Text> bo'lgan birinchi ekranni o'zingiz yozing. Kod kiritilmaydi — o'zingizda bajarib, «Bajardim» bosasiz; mentor kuzatadi.", ru: 'Напишите сами первый экран: один <View>, а внутри — два <Text>. Код сюда не вводится: выполняете у себя и нажимаете «Выполнил»; наставник наблюдает.' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · Expo Snack', ru: 'Практика · Expo Snack' }} place={{ uz: 'kompyuteringizda', ru: 'на своём компьютере' }}
+    title={{ uz: "Birinchi mobil ekraningizni yozing", ru: 'Напишите свой первый мобильный экран' }}
+    task={{ uz: "Bitta <View> va ichida 2 ta <Text> bo'lgan birinchi ekranni o'zingiz yozing. O'zingizda bajarib, «Bajardim» tugmasini bosasiz; mentor kuzatadi.", ru: 'Напишите сами первый экран: один <View>, а внутри — 2 <Text>. Выполните у себя и нажмите «Выполнил»; ментор наблюдает.' }}
     checklist={[
-      { uz: "`snack.expo.dev` (yoki VS Code) ni oching va bo'sh loyiha yarating", ru: 'Откройте `snack.expo.dev` (или VS Code) и создайте пустой проект' },
+      { uz: "`snack.expo.dev` ni oching — bu brauzerda React Native kodini yozib, natijasini darrov ko'radigan sayt", ru: 'Откройте `snack.expo.dev` — это сайт, где можно писать код React Native прямо в браузере и сразу видеть результат' },
       { uz: "`import { View, Text } from 'react-native'` ni yozing", ru: "Напишите `import { View, Text } from 'react-native'`" },
-      { uz: "Bitta `<View>` sahna-karkasini qo'shing", ru: 'Добавьте один каркас сцены `<View>`' },
-      { uz: "View ichiga 2 ta `<Text>` replika yozing (masalan sarlavha va mahsulot)", ru: 'Внутрь View впишите 2 реплики `<Text>` (например заголовок и товар)' },
-      { uz: "Natijani o'ng tomondagi telefon oynasida (yoki Expo Go'da) ko'ring — sahna yondimi?", ru: 'Посмотрите результат в окне телефона справа (или в Expo Go) — сцена зажглась?' },
+      { uz: "Bitta `<View>` qo'shing", ru: 'Добавьте один `<View>`' },
+      { uz: "View ichiga 2 ta `<Text>` yozing (masalan, sarlavha va mahsulot)", ru: 'Внутрь View напишите 2 `<Text>` (например, заголовок и товар)' },
+      { uz: "Natijani o'ng tomondagi telefon oynasida yoki Expo Go'da (QR orqali) ko'ring", ru: 'Посмотрите результат в окне телефона справа или в Expo Go (через QR)' },
+      { uz: "⭐ Uyda xohlasangiz: xuddi shu ekranni VS Code'da Expo loyihasi sifatida yarating", ru: '⭐ Дома по желанию: создайте этот же экран в VS Code как проект Expo' },
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 atama (RN / GASTROL tili)
+// 🃏 FLASHCARD KARTALARI — 12 atama
 const RN_FLASHCARDS = [
-  { front: { uz: "React bilimingiz bilan haqiqiy mobil ilova yasaydigan vosita qanday nomlanadi?", ru: 'Как называется инструмент, который делает настоящее мобильное приложение на ваших знаниях React?' }, back: 'React Native', note: { uz: "Bitta kod bilan telefon ilovasi yoziladi", ru: 'Одним кодом пишется приложение для телефона' } },
-  { front: { uz: "Web'dagi div o'rniga React Native'da qaysi komponent yoziladi?", ru: 'Какой компонент в React Native пишется вместо веб-овского div?' }, back: '<View>', note: { uz: "View — quti: ichiga boshqa qismlar joylashadi", ru: 'View — коробка: внутрь кладутся другие части' } },
-  { front: { uz: "Web'dagi p o'rniga React Native'da qaysi komponent yoziladi?", ru: 'Какой компонент в React Native пишется вместо веб-овского p?' }, back: '<Text>', note: { uz: "Text — ekrandagi matn bo'lagi", ru: 'Text — кусочек текста на экране' } },
-  { front: { uz: "React Native'da matnni qayerga yozish shart?", ru: 'Куда обязательно писать текст в React Native?' }, back: { uz: 'Text ichiga', ru: 'Внутрь Text' }, note: { uz: "To'g'ridan View ichiga yozsangiz, ilova xato beradi", ru: 'Если написать прямо внутрь View, приложение выдаст ошибку' } },
-  { front: { uz: "React Native'da stillar qayerda yoziladi?", ru: 'Где в React Native пишутся стили?' }, back: 'StyleSheet', note: { uz: "Alohida CSS fayl emas, JS obyekt ichida", ru: 'Не в отдельном CSS-файле, а внутри JS-объекта' } },
-  { front: { uz: "CSS'dagi background-color React Native'da qanday yoziladi?", ru: 'Как в React Native пишется CSS-овский background-color?' }, back: 'backgroundColor', note: { uz: "Ikki so'z qo'shiladi, ikkinchisi bosh harf bilan (camelCase)", ru: 'Два слова сливаются, второе с большой буквы (camelCase)' } },
-  { front: { uz: "Mobil loyihani tez boshlashga yordam beradigan to'plam qanday nomlanadi?", ru: 'Как называется набор, который помогает быстро начать мобильный проект?' }, back: 'Expo', note: { uz: "Murakkab o'rnatishni o'zi bajaradi, siz kod yozasiz", ru: 'Сложную установку берёт на себя, вы только пишете код' } },
-  { front: { uz: "Ilovani o'z telefoningizda ko'rish uchun qaysi ilova kerak?", ru: 'Какое приложение нужно, чтобы увидеть свою программу на телефоне?' }, back: 'Expo Go', note: { uz: "QR kodni skanerlaysiz va ilova telefonda ochiladi", ru: 'Сканируете QR-код, и приложение открывается на телефоне' } },
-  { front: { uz: "Bitta React Native kodi qaysi ikki turdagi telefonda ishlaydi?", ru: 'На телефонах каких двух видов работает один и тот же код React Native?' }, back: 'iOS + Android', note: { uz: "Ikki marta alohida yozish kerak emas", ru: 'Писать два раза отдельно не нужно' } },
-  { front: { uz: "React Native'da ham web'dagidek ishlaydigan uchta asosiy tushuncha qaysi?", ru: 'Какие три главных понятия в React Native работают так же, как в вебе?' }, back: { uz: 'Komponent, props, state', ru: 'Компонент, props, state' }, note: { uz: "React bilimingiz shundoq ishlayveradi", ru: 'Ваши знания React работают как есть' } },
-  { front: { uz: "React Native'da JSX yozilishi o'zgaradimi?", ru: 'Меняется ли в React Native способ записи JSX?' }, back: { uz: "Yo'q, o'sha-o'sha", ru: 'Нет, тот же самый' }, note: { uz: "Faqat teg nomlari boshqacha: View, Text", ru: 'Другие только названия тегов: View, Text' } },
-  { front: { uz: "Kodni o'zgartirsangiz telefondagi ilova nima qiladi?", ru: 'Что делает приложение на телефоне, когда вы меняете код?' }, back: { uz: 'Darrov yangilanadi', ru: 'Сразу обновляется' }, note: { uz: "Expo o'zgarishni telefonga o'zi yetkazadi", ru: 'Expo сам доставляет изменение на телефон' } },
+  { front: { uz: "React bilimingiz bilan mobil ilova yasash usuli qanday nomlanadi?", ru: 'Как называется способ делать мобильные приложения с вашими знаниями React?' }, back: 'React Native', note: { uz: "Ko'p qismi bitta kod bazasida — iOS va Android uchun", ru: 'Большая часть — в одной кодовой базе, для iOS и Android' } },
+  { front: { uz: "Web'dagi div o'rniga React Native'da qaysi komponent yoziladi?", ru: 'Какой компонент в React Native пишется вместо веб-овского div?' }, back: 'View', note: { uz: "Quti: ichiga boshqa elementlar joylanadi", ru: 'Коробка: внутрь кладутся другие элементы' } },
+  { front: { uz: "Web'dagi p o'rniga qaysi komponent yoziladi?", ru: 'Какой компонент пишется вместо p из веба?' }, back: 'Text', note: { uz: "Ekrandagi matn", ru: 'Текст на экране' } },
+  { front: { uz: "React Native'da matnni qayerga yozish shart?", ru: 'Куда обязательно писать текст в React Native?' }, back: { uz: 'Text ichiga', ru: 'Внутрь Text' }, note: { uz: "View ichiga to'g'ridan yozsangiz, ilova xato beradi", ru: 'Если написать прямо внутрь View, приложение выдаст ошибку' } },
+  { front: { uz: "React Native'da stillar qayerda yoziladi?", ru: 'Где в React Native пишутся стили?' }, back: 'StyleSheet', note: { uz: "Alohida CSS fayl emas, JS obyekt", ru: 'Не отдельный CSS-файл, а JS-объект' } },
+  { front: { uz: "CSS'dagi background-color React Native'da qanday yoziladi?", ru: 'Как в React Native пишется CSS-овский background-color?' }, back: 'backgroundColor', note: { uz: "camelCase: ikkinchi so'z bosh harf bilan", ru: 'camelCase: второе слово — с большой буквы' } },
+  { front: { uz: "React Native'da elementlar standart holatda qaysi yo'nalishda joylashadi?", ru: 'В каком направлении по умолчанию располагаются элементы в React Native?' }, back: { uz: 'Yuqoridan pastga', ru: 'Сверху вниз' }, note: { uz: "Web'da — chapdan o'ngga", ru: 'В вебе — слева направо' } },
+  { front: { uz: "Mobil loyihani tez boshlashga yordam beradigan vosita?", ru: 'Инструмент, который помогает быстро начать мобильный проект?' }, back: 'Expo', note: { uz: "Yaratish, ishga tushirish va sinashni osonlashtiradi", ru: 'Упрощает создание, запуск и проверку проекта' } },
+  { front: { uz: "Ilovani o'z telefoningizda ko'rish uchun qaysi ilova kerak?", ru: 'Какое приложение нужно, чтобы увидеть свою программу на телефоне?' }, back: 'Expo Go', note: { uz: "QR kodni skanerlaysiz", ru: 'Сканируете QR-код' } },
+  { front: { uz: "Expo Go ishlashi uchun odatda qanday shart kerak?", ru: 'Какое условие обычно нужно, чтобы Expo Go заработал?' }, back: { uz: "Telefon va kompyuter bitta Wi-Fi'da", ru: 'Телефон и компьютер в одной Wi-Fi-сети' }, note: { uz: "Aks holda ilova ochilmasligi mumkin", ru: 'Иначе приложение может не открыться' } },
+  { front: { uz: "Bosiladigan tugma uchun qaysi komponent ishlatiladi?", ru: 'Какой компонент используют для нажимаемой кнопки?' }, back: 'Pressable', note: { uz: "Ichiga Text qo'yiladi", ru: 'Внутрь кладётся Text' } },
+  { front: { uz: "React Native'da ham o'zgarmaydigan uchta tushuncha?", ru: 'Три понятия, которые не меняются и в React Native?' }, back: { uz: 'Komponent, props, state', ru: 'Компонент, props, state' }, note: { uz: "React bilimingiz shundoq ishlayveradi", ru: 'Ваши знания React работают как есть' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2086,16 +2082,16 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: "React Native — React bilimi bilan haqiqiy mobil ilova (iOS + Android)", ru: 'React Native — настоящее мобильное приложение (iOS + Android) на знаниях React' },
-    { uz: "Web → mobil: <div>→<View>, <p>→<Text>, CSS→StyleSheet", ru: 'Веб → мобильное: <div>→<View>, <p>→<Text>, CSS→StyleSheet' },
-    { uz: "Eng muhim qoida: har qanday matn <Text> ichida bo'ladi", ru: 'Самое важное правило: любой текст находится внутри <Text>' },
-    { uz: "Expo + Expo Go — QR-chiptani skanerlab, ilovani telefonda darrov ko'rasiz", ru: 'Expo + Expo Go — сканируете QR-билет и сразу видите приложение на телефоне' },
-    { uz: "React tafakkur (komponent, props, state) — o'sha ssenariy ishlaydi", ru: 'Мышление React (компонент, props, state) — работает тот же сценарий' }
+    { uz: "React Native — React bilimi bilan mobil ilova (iOS va Android)", ru: 'React Native — мобильное приложение (iOS и Android) со знаниями React' },
+    { uz: "Web → mobil: `div` → `View`, `p` → `Text`, CSS → `StyleSheet`", ru: 'Веб → мобильное: `div` → `View`, `p` → `Text`, CSS → `StyleSheet`' },
+    { uz: "Eng muhim qoida: har qanday matn `<Text>` ichida bo'ladi", ru: 'Самое важное правило: любой текст находится внутри `<Text>`' },
+    { uz: "Expo va Expo Go — QR kodni skanerlab, ilovani telefonda ko'rasiz", ru: 'Expo и Expo Go — сканируете QR-код и видите приложение на телефоне' },
+    { uz: "React bilimingiz (komponent, props, state) — o'sha", ru: 'Ваши знания React (компонент, props, state) — те же' }
   ];
   const HOMEWORK = [
-    { b: { uz: "Tarjima", ru: 'Перевод' }, t: { uz: "— web React komponentingizni qog'ozda RN'ga aylantiring (div→View, p→Text)", ru: '— переведите на бумаге свой веб-компонент React в RN (div→View, p→Text)' } },
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: "— bitta View + 2 Text bo'lgan birinchi ekran kodini yozing", ru: '— код первого экрана: один View + 2 Text' } },
-    { b: { uz: "O'ylang", ru: 'Подумайте' }, t: { uz: "— mini-do'kon mobil ilovasida yana qanday sahnalar (ekranlar) bo'ladi?", ru: '— какие ещё сцены (экраны) будут в мобильном мини-магазине?' } }
+    { b: { uz: "Moslang", ru: 'Сопоставьте' }, t: { uz: "— web React komponentingizni qog'ozda React Native'ga o'tkazing (`div` → `View`, `p` → `Text`)", ru: '— перенесите на бумаге свой веб-компонент React на React Native (`div` → `View`, `p` → `Text`)' } },
+    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: "— bitta View va 2 ta Text bo'lgan birinchi ekran kodini yozing", ru: '— напишите код первого экрана: один View и 2 Text' } },
+    { b: { uz: "O'ylang", ru: 'Подумайте' }, t: { uz: "— mini-do'kon mobil ilovasida yana qanday ekranlar bo'ladi?", ru: '— какие ещё экраны будут в мобильном приложении мини-магазина?' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2103,12 +2099,12 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi mobil sahna tayyor', ru: 'Первая мобильная сцена готова' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>React bilimingiz endi <span className="italic" style={{ color: T.accent }}>telefon sahnasida</span>.</>, ru: <>Ваши знания React теперь <span className="italic" style={{ color: T.accent }}>на сцене телефона</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi mobil ekran tayyor', ru: 'Первый мобильный экран готов' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>React bilimingiz endi <span className="italic" style={{ color: T.accent }}>telefonda ham</span> ishlaydi.</>, ru: <>Ваши знания React теперь работают <span className="italic" style={{ color: T.accent }}>и на телефоне</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{fmtCode(tr(r))}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
             <span className="hw-sky" aria-hidden="true">
@@ -2119,7 +2115,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — RN'da ko'p ekranli ilova: navigatsiya (Stack Navigator), API'dan ma'lumot va AsyncStorage.", ru: '🚀 Следующий урок — приложение из нескольких экранов на RN: навигация (Stack Navigator), данные из API и AsyncStorage.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{fmtCode(tr(h.t))}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — React Native'da ko'p ekranli ilova: ekranlar orasida o'tish (navigatsiya) va API'dan ma'lumot olish.", ru: '🚀 Следующий урок — приложение из нескольких экранов на React Native: переходы между экранами (навигация) и получение данных из API.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2897,13 +2893,13 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .agent-msg { font-family: 'Manrope'; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; margin: 0; line-height: 1.55; }
         .agent-msg b { color: ${T.ink}; }
 
-        /* ===== 📱 TELEFON SAHNASI (gastrol reflektorlari) ===== */
+        /* ===== 📱 TELEFON (ekran ko'rinishi) ===== */
         .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
         .phone { width: clamp(150px,42vw,196px); background: #16202E; border-radius: 28px; padding: 12px 9px 16px; box-shadow: 0 16px 38px -8px rgba(${T.shadowBase},0.42), inset 0 0 0 2px #2b3a4f; }
         .phone-notch { width: 52px; height: 5px; background: #3a4660; border-radius: 99px; margin: 2px auto 9px; }
         .phone-screen { background: ${T.bg}; border-radius: 17px; min-height: 178px; padding: 13px 11px; display: flex; flex-direction: column; gap: 8px; transition: opacity 0.35s; }
         .phone-label { text-align: center; color: ${T.ink2}; font-family: 'Manrope'; font-weight: 600; font-size: 11px; margin-top: 9px; }
-        /* F-0916-01 Q6 (s3 «shisha ↔ tirik»): telefon maketi ~70% — ikki ustun ham to'la edi, xulosa 120px pastda; faqat shu ekran (ph-sm) */
+        /* F-0916-01 Q6 (s3 «web va mobil»): telefon maketi ~70% — ikki ustun ham to'la edi, xulosa 120px pastda; faqat shu ekran (ph-sm) */
         .ph-sm .phone { width: clamp(118px,30vw,140px); border-radius: 22px; padding: 9px 7px 11px; }
         .ph-sm .phone-notch { margin: 1px auto 6px; }
         .ph-sm .phone-screen { min-height: 122px; padding: 9px 8px; gap: 6px; border-radius: 13px; }
@@ -2918,7 +2914,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .rn-text.price { color: ${T.accent}; font-weight: 700; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 12.5px; }
         .rn-text.btn { background: ${T.accent}; color: #fff; text-align: center; padding: 9px; border-radius: 9px; font-weight: 700; }
 
-        /* ===== 🎟️ QR (Expo Go chiptasi) ===== */
+        /* ===== QR (Expo Go) ===== */
         .qr { width: clamp(96px,26vw,118px); aspect-ratio: 1; border-radius: 12px; background: #fff; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.25); display: grid; grid-template-columns: repeat(5,1fr); grid-template-rows: repeat(5,1fr); gap: 3px; padding: 11px; }
         .qr i { background: ${T.ink}; border-radius: 2px; } .qr i.off { background: transparent; }
         @keyframes qr-pulse { 0%,100% { box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.25); } 50% { box-shadow: 0 6px 20px -2px rgba(255,79,40,0.4); } }
