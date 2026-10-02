@@ -25,3 +25,16 @@ Fidbek (F-ID) → tashxis + tuzatish (rozilik) → **sinf-supurish** (hamma quri
 1. Nimadan boshlaymiz — A: avval mexanizm, keyin fidbek (taklif) · B: fidbek darhol, mexanizm yonida.
 2. Reestr qayerda — A: yangi `QOIDALAR.md` (taklif) · B: DARS_ETALON ichida bo'lim.
 3. Umumiy qonunlarga kim yozadi — A: bitta asosiy seans, qolganlari nomzod beradi (taklif) · B: hozirgidek, faqat nomzod.
+
+## Qaror (02.10.2026 02:18 `date`, F-1002-50) — 1A · 2A · 3A
+Foydalanuvchi: «Mexanizm — qarorlarim (1–3): 1) A — avval mexanizm, keyin fidbek 2) A — yangi fayl QOIDALAR.md 3) A — bitta asosiy seans».
+Qurish — yangi seansda; o'sha seans umumiy qonun fayllariga yozadigan yagona (asosiy) seans.
+
+## Qurish tartibi — yangi asosiy seans (har bosqich oxirida foydalanuvchi ko'rigi)
+0. **Toza boshlanish.** Boshqa seanslar yopiq. Ularning commit qilinmagan ishi alohida commit qilinadi (buyruq bilan), aks holda yangi o'zgarish eskisiga aralashadi. 02.10 holati: umumiy qonun/jarayon fayllari 29.09 09:27 dan (11 fayl, +114 qator: retsept F, `gates` ga tell/emoji, til-lint qoidalari) · 6-Modul (14 fayl) · 1–4-Modul va kompilyator (~70 fayl) — hammasi uncommitted.
+1. **`QOIDALAR.md`** — 8 manbadan yig'iladi; har qator `ID · qoida (bir gap) · qamrov · tekshiruv · manba F-ID`. Takrorlar birlashadi, bir-biriga zid qoidalar alohida ro'yxat (foydalanuvchi hal qiladi). «Tekshiruv» ustuni bo'sh qolmaydi: skript nomi yoki «karta».
+2. **Skriptlar.** Avval borini o'lchash: `lint:layout`, `tools/page-audit.mjs`, `lint:dizayn`, `lint:tell` 5-Modulning 12 darsida yurgiziladi. Har yangi yoki kengaytirilgan detektor ikki sinovdan o'tadi: git tarixidagi xatoli versiyada xatoni topadi, tuzatilgan versiyada jim turadi. Shu isbotsiz detektor `gates` ga kirmaydi.
+3. **Qurish kartasi** — reestrning «karta» qatorlari, bir sahifa; `QURUVCHI_SHABLON` qoidalarni qayta yozmaydi, kartaga havola qiladi.
+4. **Retsept B ga sinf-supurish** (CLAUDE.md — rozilik bilan): tuzatilgan har xato hamma qurilgan darslarda qidiriladi; jurnalga natija yoziladi, topilmasa ham («qidirildi: N dars, 0»).
+5. **Konveyer umumiy joyga** — shablonlar va `vositalar/` shu papkadan PIPELINE yoniga / `.claude/agents/` ga; modul yopish darvozasi bitta buyruq (gates + telefon + koddan yakuniy MD).
+6. **Sinov:** yangi darvozalar 5- va 6-Modulning hamma darsida yurgiziladi → topilmalar ro'yxati. Shundan keyin fidbek davri boshlanadi.
