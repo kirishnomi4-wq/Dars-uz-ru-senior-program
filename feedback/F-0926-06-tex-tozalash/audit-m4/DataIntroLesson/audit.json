@@ -1,0 +1,574 @@
+{
+ "file": "src/4-Modull/DataIntroLesson.jsx",
+ "lessonId": "data-intro-04-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 23,
+     "left": "bp-window",
+     "right": "bp-window",
+     "hs": [
+      134,
+      157
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FAQAT XOTIRADA (RAM)",
+     "box": "bp-window",
+     "gap": 7
+    },
+    {
+     "pos": "tagida",
+     "t": "yoniq",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "MA'LUMOTLAR BAZASI",
+     "box": "bp-window",
+     "gap": 7
+    },
+    {
+     "pos": "tagida",
+     "t": "saqlanmoqda",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tagida",
+     "t": "FAQAT XOTIRADA (RAM) server xotirasi Bo'm-bo'sh — hammasi o'chdi! 😱 o'chdi → yo'qoldi MA'",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "o'chdi → yo'qoldi",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ baza saqlab qoldi",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, POSTLAR QAYERDA YASHAYDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Ko'rdingizmi? Server o'chdi, lekin postlar saqlanib qoldi. Chunki ular ma'lumotlar bazasid",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "FAQAT XOTIRADA (RAM) server xotirasi 🏔️ Tog' sayohati 🎨 Yangi rasm 🍜 Tushlik yoniq MA'L",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Ishonasizmi — dars oxirida haqiqiy ilovaning ma'lumot xaritasini — sxemasini — o'zingiz chizasiz. Sxema ikki n",
+     "b": "DARS OXIRIDA — SIZ CHIZADIGAN SXEMA",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "Ishonasizmi — dars oxirida haqiqiy ilovaning ma'lumot xaritasini — sxemasini — o'zingiz chizasiz. Sxema ikki n",
+     "b": "→ shu chiziqni dars oxirida o'zingiz ulab chizasiz",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZ CHIZADIGAN SXEMA",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ shu chiziqni dars oxirida o'zingiz ulab chizasiz",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Kompyuter oddiy jumlani tushunadimi?",
+     "b": "Mana Ali haqida oddiy jumla — biz odamlar uni bemalol o'qiymiz. Lekin kompyuter uchun bu shunchaki harflar: \"s",
+     "am": false,
+     "bm": true
+    },
+    {
+     "score": 0.75,
+     "a": "{ \"username\": \"ali_dev\", \"rasm\": \"🏔️\", \"sarlavha\": \"Tog' sayohati\" }",
+     "b": "Bir xil ma'no — endi tartibli! Har bo'lakka nom (kalit) va qiymat berildi: username, rasm, sarlavha. Endi komp",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 56,
+     "left": "frame-dash",
+     "right": "json-view",
+     "hs": [
+      96,
+      153
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "① ODAM YOZGANDA — ODDIY JUMLA",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Kompyuter bu yerdan \"sarlavha\"ni ajrata olmaydi — hammasi aralash.",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Kompyuter bu yerdan \"sarlavha\"ni ajrata olmaydi — hammasi aralash.",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "② KOMPYUTER UCHUN — TARTIBLI MA'LUMOT",
+     "box": "fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "{ \"username\": \"ali_dev\", \"rasm\": \"🏔️\", \"sarlavha\": \"Tog' sayohati\" }",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BITTA POST — JSON KO'RINISHIDA",
+     "box": "json-view",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QISMLAR 0 / 3 topildi",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.79,
+     "a": "Bitta post — bitta JSON edi. Endi tasavvur qiling, postlar minglab. Ularni jadvalga joylaymiz — xuddi Excel ja",
+     "b": "Jadval = qatorlar (postlar) × ustunlar (kalitlar). Ustun yoki qatorni bosib ajratib ko'ring.",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Bitta post — bitta JSON edi. Endi tasavvur qiling, postlar minglab. Ularni jadvalga joylaymiz — xuddi Excel ja",
+     "b": "POSTS JADVALI — HAR POST BITTA QATOR",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POSTS JADVALI — HAR POST BITTA QATOR",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "○ ustun bosildi ○ qator bosildi",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "USERS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Sarg'ish ustunlar — bog'lovchi ustunlar (keyingi qadamda)",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "POSTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "COMMENTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s6b",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "users PK id ◎ posts PK id ◎ comments PK id ◎",
+     "box": "cdrag-pool fade-up delay-1",
+     "gap": 14
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "POSTS JADVALI — POSTNI BOSING",
+     "b": "posts jadvalidan bir postni bosing",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POSTS JADVALI — POSTNI BOSING",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "USERS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "USERS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 20
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOG'LANISH KO'RINISHI",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "rel-btn on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "26k",
+     "txt": "comments.user_id → users Har izoh — bitta muallifg"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOG'LANISHLAR — BOSIB KO'RING",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SXEMA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Musiqa ilovasi yasamoqchiman\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — JADVALLAR SXEMASI",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "comments jadvaliga qaysi ustunlar kerak?",
+     "b": "Endi o'zingiz qaror qiling! comments (izohlar) jadvalini quryapmiz. Pastdagi ustunlardan shu jadvalga mosini t",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 20,
+     "left": "pick-row  ",
+     "right": "tcard ",
+     "hs": [
+      42,
+      62
+     ]
+    },
+    {
+     "diff": 53,
+     "left": "pick-row on ",
+     "right": "tcard ",
+     "hs": [
+      67,
+      120
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "USTUNLARNI TANLANG",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "COMMENTS JADVALI — NATIJA",
+     "box": "tcard ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 12,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s15b",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

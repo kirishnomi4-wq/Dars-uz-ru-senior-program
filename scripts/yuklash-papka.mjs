@@ -9,7 +9,9 @@
 //    yuklash-<sana>/README.md                    (yuklash yo'riqnomasi + CRM modul-mosligi)
 //  shaklida joylaydi. Manba fayllarga TEGMAYDI; `lms/` papkasi ham o'zgarmaydi.
 //
-//  Ishlatish: node scripts/yuklash-papka.mjs [--out yuklash-2026-09-21] [--moduls 1,2,3,4,4a,4b,4c]
+//  Ishlatish: node scripts/yuklash-papka.mjs [--out yuklash-2026-09-21] [--moduls 1,2,3,4,4a,4b,4c] [--skip m2-16,m3-17] [--suffix v2]
+//  --suffix: fayl nomiga qo'shimcha (`03-Htmllesson1-v2.jsx`) — LMS ro'yxatida eski/yangi fayl ko'z bilan ajralsin (F-1001-91, Q9)
+//  --skip: registrda bor, lekin hali tayyor emas dars kalitlari — paketga kirmaydi, ROYXAT'da «yuklanmaydi» qatori qoladi (F-0929-93)
 // ============================================================
 import { readFileSync, writeFileSync, mkdirSync, rmSync, mkdtempSync, copyFileSync, existsSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -30,6 +32,9 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const OUT = opt('--out', `yuklash-${new Date().toISOString().slice(0, 10)}`);
 const MODS = opt('--moduls', '1,2,3,4,4a,4b,4c').split(',');
+const SKIP = opt('--skip', '').split(',').filter(Boolean);
+const SUFFIX = opt('--suffix', '');
+const withSfx = (name) => SUFFIX ? name.replace(/\.jsx$/, `-${SUFFIX}.jsx`) : name;
 
 // CRM'dagi bo'lim nomi (bizdagi modul → CRM): 2026-09 holati
 const CRM = { '1': 'M1 (ildiz)', '2': 'M2 (ildiz)', '3': '4-M', '4': '5-M', '4a': '6-M', '4b': '6-M', '4c': '6-M', '5': '7-M', '6': '8-M' };
@@ -43,16 +48,19 @@ const modules = [...app.matchAll(/\{\s*id: '([^']+)', slug: '[^']*', title: '((?
     .map(([, key, n, type, t, comp]) => ({ key, n: Number(n), type, title: t.replace(/\\'/g, "'"), src: comp && imports[comp] })),
 }));
 
-const jobs = [];
+const jobs = [], skipped = [];
 for (const m of modules.filter((x) => MODS.includes(x.id))) {
   for (const l of m.lessons) {
     if (!l.src) continue;                                    // Demo Day / rezerv — fayl yo'q
+    if (SKIP.includes(l.key)) { skipped.push({ mod: m.id, ...l }); continue; }
     jobs.push({ mod: m.id, modTitle: m.title, ...l, hw: null });
     const hw = l.src.replace(/\.jsx$/, '.homework.jsx');     // uyga-vazifa paketi (bo'lsa)
     if (existsSync(hw)) jobs[jobs.length - 1].hw = hw;
   }
 }
-console.log(`Registr: ${jobs.length} dars · uyga-vazifa ${jobs.filter((j) => j.hw).length}`);
+console.log(`Registr: ${jobs.length} dars · uyga-vazifa ${jobs.filter((j) => j.hw).length}${skipped.length ? ` · chiqarildi ${skipped.map((x) => x.key).join(', ')}` : ''}`);
+const unknown = SKIP.filter((k) => !skipped.some((x) => x.key === k));
+if (unknown.length) { console.error(`✗ --skip: registrda yo'q kalit — ${unknown.join(', ')}`); process.exit(1); }
 
 // ── Yig'ish (prod manzili) ─────────────────────────────────────────────────
 const TMP = mkdtempSync(join(tmpdir(), 'yuklash-'));
@@ -78,11 +86,16 @@ for (const m of modules.filter((x) => MODS.includes(x.id))) {
   mkdirSync(dir, { recursive: true });
   const rows = [`# ${m.id}-Modul — ${m.title}`, '', `CRM'da: **${CRM[m.id] || '?'}** bo'limi · ${mine.length} dars`, '',
     '| ☐ | № | Tur | Nom — uz (LMS materiali) | Nom — ru | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|---|---|'];
+  const rowsOf = [];
+  for (const x of skipped.filter((y) => y.mod === m.id)) {
+    rowsOf.push([x.n, `| — | ${String(x.n).padStart(2, '0')} | ${x.type} | ~~${x.title}~~ — **bu safar yuklanmaydi** (tayyor emas) | — | — | — | — |`]);
+  }
   for (const j of mine) {
     const b = built.get(basename(j.src));
     if (!b) { console.log(`✗ yig'ilmagan: ${j.src}`); continue; }
+    while (rowsOf.length && rowsOf[0][0] < j.n) rows.push(rowsOf.shift()[1]);
     const nn = String(j.n).padStart(2, '0');
-    const out = join(dir, `${nn}-${basename(j.src)}`);
+    const out = join(dir, withSfx(`${nn}-${basename(j.src)}`));
     copyFileSync(b, out); total++;
     const lid = lessonId(out);
     const nomi = (CAT.get(lid) || {}).title_uz || j.title;
@@ -91,12 +104,13 @@ for (const m of modules.filter((x) => MODS.includes(x.id))) {
     if (j.hw) {
       const hb = built.get(basename(j.hw));
       if (hb) {
-        const ho = join(dir, `${nn}-${basename(j.hw, '.jsx')}.jsx`.replace('.homework', '-uyga-vazifa'));
+        const ho = join(dir, withSfx(`${nn}-${basename(j.hw, '.jsx')}.jsx`.replace('.homework', '-uyga-vazifa')));
         copyFileSync(hb, ho); total++;
         rows.push(`| ☐ | ${nn}. | Uyga vazifa | **${nomi} — uyga vazifa** | ${nomiRu === '—' ? '—' : nomiRu + ' — домашнее задание'} | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
       }
     }
   }
+  rows.push(...rowsOf.map((r) => r[1]));
   writeFileSync(join(dir, 'ROYXAT.md'), rows.join('\n') + '\n');
   rootRows.push(`| ${m.id}-Modul | ${m.title} | ${CRM[m.id] || '?'} | ${mine.length} |`);
 }
@@ -112,12 +126,14 @@ writeFileSync(join(OUT, 'README.md'), [
   '2. Fayl nomidagi **NN** — kursdagi tartib raqami (dars ketma-ketligi shunga qarab qo\'yiladi).',
   '   Material nomini `ROYXAT.md` dagi **«Dars ichidagi nom»** ustunidan oling — o\'quvchi darsda aynan shuni ko\'radi.',
   '3. `NN-…-uyga-vazifa.jsx` — o\'sha darsning uyga vazifasi (alohida material).',
+  ...(SUFFIX ? [`5. Fayl nomidagi **-${SUFFIX}** — shu yuklash belgisi: LMS ro\'yxatida \`-${SUFFIX}\` siz qator qolmasa, hammasi almashtirilgan.`] : []),
   '4. Har modulning `ROYXAT.md` faylida uz/ru sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.',
   '   Birinchi ustundagi ☐ — yuklaganingizni belgilab borish uchun.', '',
   '## Muhim', '',
   '- `lesson_id` serverdagi katalog bilan bir xil bo\'lishi shart — u fayl ichida, o\'zgartirilmaydi.',
   '- Dars tugaganda natija avtomat CRM\'ga ketadi; uyga vazifa topshirilganda ham (21.09 dan).',
   '- Bir o\'quvchi bir darsdan bitta natija oladi (takror o\'tish tanga bermaydi).',
+  ...(skipped.length ? ['', '## Bu safar yuklanmaydi', '', ...skipped.map((x) => `- ${x.mod}-Modul · ${String(x.n).padStart(2, '0')} · ${x.title} — tayyor emas; shu raqam bo\'sh qoladi`)] : []),
 ].join('\n') + '\n');
 
 rmSync(TMP, { recursive: true, force: true });

@@ -1,0 +1,800 @@
+[
+ {
+  "file": "yuklash-2026-10-01/1-Modul/01-InternetLesson-v2.jsx",
+  "lessonId": "internet-01-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/02-PmLesson1-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/02-PmLesson1-v2.jsx",
+  "lessonId": "pm-m1d2-v1",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/03-Htmllesson1-v2.jsx",
+  "lessonId": "html-01-v17",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/04-Htmllesson2-v2.jsx",
+  "lessonId": "html-02-v16",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/05-HtmlTakrorlashLesson-v2.jsx",
+  "lessonId": "html-takrorlash-01-05-v2",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/06-PmLesson2-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/06-PmLesson2-v2.jsx",
+  "lessonId": "pm-m1d6-v1",
+  "screens": 17,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/07-CssLesson1-v2.jsx",
+  "lessonId": "css-01-v17",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/08-CssLesson2-v2.jsx",
+  "lessonId": "css-02-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/09-HtmlPractice-v2.jsx",
+  "lessonId": "html-practice-portfolio-v2",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/10-VsCodeLesson-v2.jsx",
+  "lessonId": "vscode-start-01-v1",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/11-CssPractice-v2.jsx",
+  "lessonId": "css-practice-portfolio-v3",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/12-GitLesson-v2.jsx",
+  "lessonId": "git-github-v19",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/13-DeployLesson-v2.jsx",
+  "lessonId": "netlify-deploy-v19",
+  "screens": 17,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/14-PmLesson3-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/14-PmLesson3-v2.jsx",
+  "lessonId": "pm-pitch-03-v19",
+  "screens": 17,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/01-JsIntroLesson-v2.jsx",
+  "lessonId": "js-intro-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/02-PmLesson4-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/02-PmLesson4-v2.jsx",
+  "lessonId": "pm-m2d2-v1",
+  "screens": 17,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/04-JsVarsLesson-v2.jsx",
+  "lessonId": "js-vars-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/05-JsConditionsLesson-v2.jsx",
+  "lessonId": "js-cond-01-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/06-JsLoopsLesson-v2.jsx",
+  "lessonId": "js-loops-01-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/07-JsFunctionsLesson-v2.jsx",
+  "lessonId": "js-functions-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/08-PmLesson5-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/08-PmLesson5-v2.jsx",
+  "lessonId": "pm-m2d7-v1",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/09-PracticeLesson1-v2.jsx",
+  "lessonId": "practice-01-jonlantirish-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/10-PracticeLesson2-v2.jsx",
+  "lessonId": "practice-02-ai-promo-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/11-PeanStackLesson-v2.jsx",
+  "lessonId": "pean-stack-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/12-PracticeLesson3-v2.jsx",
+  "lessonId": "practice-03-decompose-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/13-PracticeLesson4-v2.jsx",
+  "lessonId": "practice-04-mvp-deploy-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/14-PmLesson6-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/14-PmLesson6-v2.jsx",
+  "lessonId": "pm-m2d13-v1",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/01-ReactIntroLesson-v2.jsx",
+  "lessonId": "react-intro-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/02-PmUserStoryLesson-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/02-PmUserStoryLesson-v2.jsx",
+  "lessonId": "pm-m3d2-v3",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/04-ReactFirstComponentLesson-v2.jsx",
+  "lessonId": "react-first-component-02-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/05-ReactStateEffectLesson-v2.jsx",
+  "lessonId": "react-state-effect-03-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/06-PmLesson8-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/06-PmLesson8-v2.jsx",
+  "lessonId": "pm-m3d5-v1",
+  "screens": 17,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/07-ReactPropsReuseLesson-v2.jsx",
+  "lessonId": "react-props-reuse-04-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/08-ReactCrudPracticeLesson-v2.jsx",
+  "lessonId": "react-crud-practice-p1-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/09-ReactApiGetLesson-v2.jsx",
+  "lessonId": "react-api-get-05-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/10-ReactApiPostLesson-v2.jsx",
+  "lessonId": "react-api-post-06-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/11-PmLesson9-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/11-PmLesson9-v2.jsx",
+  "lessonId": "pm-m3d10-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/12-ReactRouterPracticeLesson-v2.jsx",
+  "lessonId": "react-router-practice-p2-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/13-ReactProjectDayLesson-v2.jsx",
+  "lessonId": "react-project-day-p3-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/14-ReactBuildSiteLesson-v2.jsx",
+  "lessonId": "react-build-site-final-p4-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/15-PmLesson10-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/15-PmLesson10-v2.jsx",
+  "lessonId": "pm-m3d14-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/01-DataIntroLesson-v2.jsx",
+  "lessonId": "data-intro-04-01-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/02-PmLesson11-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/02-PmLesson11-v2.jsx",
+  "lessonId": "pm-m4d2-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/03-DbSqlNosqlLesson-v2.jsx",
+  "lessonId": "db-sql-nosql-04-02-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/04-NodeServerLesson-v2.jsx",
+  "lessonId": "node-server-04-03-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/05-RoutingLesson-v2.jsx",
+  "lessonId": "nest-routing-04-04-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/06-PostgresCrudLesson-v2.jsx",
+  "lessonId": "pg-crud-04-05-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/07-PmLesson12-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/07-PmLesson12-v2.jsx",
+  "lessonId": "pm-m4d7-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/08-BackendCrudPracticeLesson-v2.jsx",
+  "lessonId": "backend-crud-practice-p1-v18",
+  "screens": 19,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/09-ApiPostmanLesson-v2.jsx",
+  "lessonId": "api-postman-04-06-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/10-FullstackConnectPracticeLesson-v2.jsx",
+  "lessonId": "fullstack-connect-practice-p2-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/11-AuthEnvLesson-v2.jsx",
+  "lessonId": "auth-env-04-07-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/12-PmLesson13-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/12-PmLesson13-v2.jsx",
+  "lessonId": "pm-m4d12-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/13-FullstackProjectDayLesson-v2.jsx",
+  "lessonId": "fullstack-projectday-p3-v18",
+  "screens": 25,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/14-FullstackFeedbackLesson-v2.jsx",
+  "lessonId": "fullstack-feedback-p4-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/15-PmLesson14-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/15-PmLesson14-v2.jsx",
+  "lessonId": "pm-m4d15-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/01-NestArchAliveLesson-v2.jsx",
+  "lessonId": "nest-arch-alive-4a-01-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/02-PmLesson15-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/02-PmLesson15-v2.jsx",
+  "lessonId": "pm-m4a2-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/03-NestArchResourceLesson-v2.jsx",
+  "lessonId": "nest-arch-resource-4a-02-v18",
+  "screens": 22,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/04-NestArchPracticeLesson-v2.jsx",
+  "lessonId": "nest-arch-practice-4a-03-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4b-Modul/01-JestUnitTestLesson-v2.jsx",
+  "lessonId": "jest-unit-04b-01-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4b-Modul/02-PmLesson16-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4b-Modul/02-PmLesson16-v2.jsx",
+  "lessonId": "pm-m4b2-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4b-Modul/03-EdgeCasesTestLesson-v2.jsx",
+  "lessonId": "edge-cases-04b-02-v18",
+  "screens": 21,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/01-CiCdIntroLesson-v2.jsx",
+  "lessonId": "cicd-intro-4c-01-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/02-PmLesson17-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/02-PmLesson17-v2.jsx",
+  "lessonId": "pm-m4c2-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/03-GithubActionsLesson-v2.jsx",
+  "lessonId": "github-actions-4c-02-v18",
+  "screens": 23,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/04-FullPipelineProjectLesson-v2.jsx",
+  "lessonId": "cicd-full-pipeline-4c-03-v18",
+  "screens": 18,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/05-AiPipelineProjectLesson-v2.jsx",
+  "lessonId": "cicd-ai-pipeline-4c-05-v18",
+  "screens": 20,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/06-PmLesson18-uyga-vazifa-v2.jsx",
+  "lessonId": "",
+  "screens": 0,
+  "errors": [
+   {
+    "s": 0,
+    "msgs": [
+     "lesson-root chizilmadi"
+    ],
+    "trail": [
+     "1 1-bosqich",
+     "2 2-bosqich",
+     "3 3-bosqich",
+     "4 4-bosqich",
+     "Natija · 0/4",
+     "Tugatish →"
+    ]
+   }
+  ]
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/06-PmLesson18-v2.jsx",
+  "lessonId": "pm-m4c6-v1",
+  "screens": 16,
+  "errors": []
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/07-FullProPipelineLesson-v2.jsx",
+  "lessonId": "full-pro-pipeline-4c-04-v18",
+  "screens": 20,
+  "errors": []
+ }
+]

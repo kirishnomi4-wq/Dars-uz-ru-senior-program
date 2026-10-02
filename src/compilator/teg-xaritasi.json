@@ -1,0 +1,985 @@
+{
+ "_izoh": "F-1001-91 · Kompilyator maslahat-xaritasi. YAGONA MANBA: TAG_MENU/ATTR_MENU/CSS/JS ro'yxatlari shu fayldan avto-yasaladi (gen-teg-royxat.mjs), darvoza (lint-teg-royxat.mjs) shu fayl bilan tekshiradi. Qo'lda tasdiqlangan: 2026-10-01 (TEG_XARITASI.md). 'dars' = App.jsx kaliti; 'ekran' = dalil; 'matn' = ichida oddiy matn yoziladi (`<`siz ro'yxat jim turadi). Massiv tartibi = ro'yxatdagi ko'rinish tartibi (qobiq teglari html/head/title/body h-teglardan keyin — `<h` → h1 birinchi).",
+ "tartib": [
+  "m1-01",
+  "m1-02",
+  "m1-03",
+  "m1-04",
+  "m1-14",
+  "m1-05",
+  "m1-06",
+  "m1-07",
+  "m1-08",
+  "m1-15",
+  "m1-10",
+  "m1-09",
+  "m1-11",
+  "m1-12",
+  "m1-13",
+  "m2-01",
+  "m2-02",
+  "m2-03",
+  "m2-04",
+  "m2-05",
+  "m2-06",
+  "m2-07",
+  "m2-08",
+  "m2-09",
+  "m2-10",
+  "m2-11",
+  "m2-12",
+  "m2-13",
+  "m2-14",
+  "m2-15",
+  "m2-16",
+  "m3-*",
+  "m4-*",
+  "m4a-*",
+  "m4b-*",
+  "m4c-*"
+ ],
+ "bosqich": {
+  "_izoh": "Qaysi darsdan qaysi imkoniyat ochiladi (Q5). Dars kompilyatorga `stage` bermasa — hammasi ochiq (2-Moduldan boshlab).",
+  "emmet": "m1-15",
+  "class_id_qisqartma": "m1-06",
+  "css_maslahat": "m1-06",
+  "js_maslahat": "m2-02"
+ },
+ "html": {
+  "teglar": [
+   {
+    "t": "h1",
+    "dars": "m1-03",
+    "ekran": "s6–s8",
+    "matn": true,
+    "d": {
+     "uz": "eng katta sarlavha",
+     "ru": "самый большой заголовок"
+    }
+   },
+   {
+    "t": "h2",
+    "dars": "m1-03",
+    "ekran": "s8 Sarlavhalar",
+    "matn": true,
+    "d": {
+     "uz": "bo'lim sarlavhasi",
+     "ru": "заголовок раздела"
+    }
+   },
+   {
+    "t": "h3",
+    "dars": "m1-03",
+    "ekran": "s8 Sarlavhalar",
+    "matn": true,
+    "d": {
+     "uz": "kichik sarlavha",
+     "ru": "малый заголовок"
+    }
+   },
+   {
+    "t": "h4",
+    "dars": "m1-03",
+    "ekran": "s8 Sarlavhalar",
+    "matn": true,
+    "d": {
+     "uz": "4-daraja sarlavha",
+     "ru": "заголовок 4-го уровня"
+    }
+   },
+   {
+    "t": "h5",
+    "dars": "m1-03",
+    "ekran": "s8 Sarlavhalar",
+    "matn": true,
+    "d": {
+     "uz": "5-daraja sarlavha",
+     "ru": "заголовок 5-го уровня"
+    }
+   },
+   {
+    "t": "h6",
+    "dars": "m1-03",
+    "ekran": "s8 Sarlavhalar",
+    "matn": true,
+    "d": {
+     "uz": "eng kichik sarlavha",
+     "ru": "самый маленький заголовок"
+    }
+   },
+   {
+    "t": "p",
+    "dars": "m1-03",
+    "ekran": "s9 Matn",
+    "matn": true,
+    "d": {
+     "uz": "matn xatboshisi",
+     "ru": "абзац текста"
+    }
+   },
+   {
+    "t": "strong",
+    "dars": "m1-03",
+    "ekran": "s9 Matn",
+    "matn": true,
+    "d": {
+     "uz": "qalin matn",
+     "ru": "жирный текст"
+    }
+   },
+   {
+    "t": "em",
+    "dars": "m1-03",
+    "ekran": "s9 Matn",
+    "matn": true,
+    "d": {
+     "uz": "qiya matn",
+     "ru": "наклонный текст"
+    }
+   },
+   {
+    "t": "ul",
+    "dars": "m1-03",
+    "ekran": "s10 Ro'yxatlar",
+    "d": {
+     "uz": "ro'yxat",
+     "ru": "список"
+    }
+   },
+   {
+    "t": "ol",
+    "dars": "m1-03",
+    "ekran": "s10 Ro'yxatlar",
+    "d": {
+     "uz": "raqamli ro'yxat",
+     "ru": "нумерованный список"
+    }
+   },
+   {
+    "t": "li",
+    "dars": "m1-03",
+    "ekran": "s10 Ro'yxatlar",
+    "matn": true,
+    "d": {
+     "uz": "ro'yxat bandi",
+     "ru": "пункт списка"
+    }
+   },
+   {
+    "t": "a",
+    "dars": "m1-03",
+    "ekran": "s12 Havolalar",
+    "matn": true,
+    "d": {
+     "uz": "havola",
+     "ru": "ссылка"
+    }
+   },
+   {
+    "t": "html",
+    "dars": "m1-03",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "butun sahifa",
+     "ru": "вся страница"
+    }
+   },
+   {
+    "t": "head",
+    "dars": "m1-03",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "sahifa sozlamalari (ko'rinmaydi)",
+     "ru": "настройки страницы (не видно)"
+    }
+   },
+   {
+    "t": "title",
+    "dars": "m1-03",
+    "ekran": "s5 Struktura",
+    "matn": true,
+    "d": {
+     "uz": "varaq nomi",
+     "ru": "название вкладки"
+    }
+   },
+   {
+    "t": "body",
+    "dars": "m1-03",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "sahifa tanasi (ko'rinadi)",
+     "ru": "тело страницы (видно)"
+    }
+   },
+   {
+    "t": "img",
+    "dars": "m1-04",
+    "ekran": "s2 Rasm",
+    "void": true,
+    "d": {
+     "uz": "rasm",
+     "ru": "картинка"
+    }
+   },
+   {
+    "t": "header",
+    "dars": "m1-04",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "sahifa boshi",
+     "ru": "шапка страницы"
+    }
+   },
+   {
+    "t": "main",
+    "dars": "m1-04",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "asosiy qism",
+     "ru": "основная часть"
+    }
+   },
+   {
+    "t": "footer",
+    "dars": "m1-04",
+    "ekran": "s5 Struktura",
+    "d": {
+     "uz": "sahifa pasti",
+     "ru": "подвал страницы"
+    }
+   },
+   {
+    "t": "div",
+    "dars": "m1-04",
+    "ekran": "s6 div — guruhlash",
+    "d": {
+     "uz": "oddiy quti",
+     "ru": "обычный блок"
+    }
+   },
+   {
+    "t": "form",
+    "dars": "m1-04",
+    "ekran": "s7 Forma",
+    "d": {
+     "uz": "forma",
+     "ru": "форма"
+    }
+   },
+   {
+    "t": "input",
+    "dars": "m1-04",
+    "ekran": "s7 Forma",
+    "void": true,
+    "d": {
+     "uz": "yozish maydoni",
+     "ru": "поле ввода"
+    }
+   },
+   {
+    "t": "label",
+    "dars": "m1-04",
+    "ekran": "s7 Forma",
+    "matn": true,
+    "d": {
+     "uz": "maydon yozuvi",
+     "ru": "подпись поля"
+    }
+   },
+   {
+    "t": "button",
+    "dars": "m1-04",
+    "ekran": "s7 Forma",
+    "matn": true,
+    "d": {
+     "uz": "tugma",
+     "ru": "кнопка"
+    }
+   },
+   {
+    "t": "style",
+    "dars": "m1-06",
+    "ekran": "s3b CSS qayerda yashaydi",
+    "d": {
+     "uz": "CSS shu yerda",
+     "ru": "CSS здесь"
+    }
+   },
+   {
+    "t": "link",
+    "dars": "m1-06",
+    "ekran": "s3b CSS qayerda yashaydi · s7b Google Fonts",
+    "void": true,
+    "d": {
+     "uz": "CSS faylini ulash",
+     "ru": "подключить CSS"
+    }
+   },
+   {
+    "t": "nav",
+    "dars": "m1-08",
+    "ekran": "s5 Build · Navigatsiya",
+    "d": {
+     "uz": "menyu",
+     "ru": "меню"
+    }
+   },
+   {
+    "t": "section",
+    "dars": "m1-08",
+    "ekran": "s7 Build · Men haqimda",
+    "d": {
+     "uz": "bo'lim",
+     "ru": "раздел"
+    }
+   },
+   {
+    "t": "span",
+    "dars": "m2-08",
+    "ekran": "PracticeLesson1 TASK_TOGGLE (<span id=\"son\">)",
+    "matn": true,
+    "d": {
+     "uz": "matn ichidagi bo'lak",
+     "ru": "кусочек внутри текста"
+    }
+   }
+  ],
+  "orgatilmaydi": [
+   "textarea",
+   "select",
+   "option",
+   "table",
+   "tr",
+   "td",
+   "th",
+   "article",
+   "aside",
+   "fieldset",
+   "meta",
+   "hr",
+   "iframe",
+   "video",
+   "audio",
+   "code",
+   "pre",
+   "small",
+   "b",
+   "i",
+   "u",
+   "br",
+   "script (JS darslarida script.js alohida fayl; <script> tegi faqat VsCode testida)"
+  ],
+  "atributlar": [
+   {
+    "tag": "a",
+    "a": "href",
+    "dars": "m1-03",
+    "ekran": "s12",
+    "d": {
+     "uz": "qayerga olib boradi",
+     "ru": "куда ведёт"
+    }
+   },
+   {
+    "tag": "img",
+    "a": "src",
+    "dars": "m1-04",
+    "ekran": "s2",
+    "d": {
+     "uz": "rasm manzili",
+     "ru": "адрес картинки"
+    }
+   },
+   {
+    "tag": "img",
+    "a": "alt",
+    "dars": "m1-04",
+    "ekran": "s3",
+    "d": {
+     "uz": "rasm o'rnidagi matn",
+     "ru": "текст вместо картинки"
+    }
+   },
+   {
+    "tag": "input",
+    "a": "type",
+    "dars": "m1-04",
+    "ekran": "s8 input turlari",
+    "d": {
+     "uz": "maydon turi",
+     "ru": "тип поля"
+    },
+    "qiymatlar": [
+     "text",
+     "email",
+     "password",
+     "number"
+    ]
+   },
+   {
+    "tag": "input",
+    "a": "placeholder",
+    "dars": "m1-04",
+    "ekran": "s8 / s13",
+    "d": {
+     "uz": "xira maslahat",
+     "ru": "подсказка"
+    }
+   },
+   {
+    "tag": "input",
+    "a": "value",
+    "dars": "m1-04",
+    "ekran": "s13 Amaliyot",
+    "d": {
+     "uz": "boshlang'ich qiymat",
+     "ru": "начальное значение"
+    }
+   },
+   {
+    "tag": "*",
+    "a": "class",
+    "dars": "m1-06",
+    "ekran": "s3 Sintaksis (selektor)",
+    "d": {
+     "uz": "CSS uchun nom",
+     "ru": "имя для CSS"
+    }
+   },
+   {
+    "tag": "*",
+    "a": "style",
+    "dars": "m1-06",
+    "ekran": "s3b (inline CSS)",
+    "d": {
+     "uz": "CSS shu yerning o'zida",
+     "ru": "CSS прямо здесь"
+    }
+   },
+   {
+    "tag": "link",
+    "a": "rel",
+    "dars": "m1-06",
+    "ekran": "s3b / s7b",
+    "d": {
+     "uz": "ulash turi",
+     "ru": "тип связи"
+    },
+    "qiymatlar": [
+     "stylesheet"
+    ]
+   },
+   {
+    "tag": "link",
+    "a": "href",
+    "dars": "m1-06",
+    "ekran": "s3b / s7b",
+    "d": {
+     "uz": "fayl manzili",
+     "ru": "адрес файла"
+    }
+   },
+   {
+    "tag": "*",
+    "a": "id",
+    "dars": "m1-08",
+    "ekran": "s7 / s11 (section id)",
+    "d": {
+     "uz": "yagona nom",
+     "ru": "уникальное имя"
+    }
+   },
+   {
+    "tag": "html",
+    "a": "lang",
+    "dars": "m1-15",
+    "ekran": "Emmet shabloni",
+    "d": {
+     "uz": "sahifa tili",
+     "ru": "язык страницы"
+    }
+   }
+  ]
+ },
+ "css": {
+  "xossalar": [
+   {
+    "p": "color",
+    "dars": "m1-06",
+    "ekran": "s3 Sintaksis",
+    "d": {
+     "uz": "matn rangi",
+     "ru": "цвет текста"
+    },
+    "qiymatlar": [
+     "red",
+     "blue",
+     "green",
+     "white",
+     "black",
+     "#…"
+    ]
+   },
+   {
+    "p": "background-color",
+    "dars": "m1-06",
+    "ekran": "TASK_COLOR",
+    "d": {
+     "uz": "fon rangi",
+     "ru": "цвет фона"
+    },
+    "qiymatlar": [
+     "#…",
+     "white",
+     "black"
+    ]
+   },
+   {
+    "p": "font-size",
+    "dars": "m1-06",
+    "ekran": "TASK_TEXT",
+    "d": {
+     "uz": "shrift kattaligi",
+     "ru": "размер шрифта"
+    },
+    "qiymatlar": [
+     "16px",
+     "24px",
+     "32px"
+    ]
+   },
+   {
+    "p": "text-align",
+    "dars": "m1-06",
+    "ekran": "TASK_TEXT",
+    "d": {
+     "uz": "matn tekislash",
+     "ru": "выравнивание текста"
+    },
+    "qiymatlar": [
+     "center",
+     "left",
+     "right"
+    ]
+   },
+   {
+    "p": "font-family",
+    "dars": "m1-06",
+    "ekran": "s7b Google Fonts",
+    "d": {
+     "uz": "shrift",
+     "ru": "шрифт"
+    },
+    "qiymatlar": [
+     "Arial",
+     "Georgia",
+     "sans-serif"
+    ]
+   },
+   {
+    "p": "margin",
+    "dars": "m1-06",
+    "ekran": "TASK_BOX",
+    "d": {
+     "uz": "tashqi bo'shliq",
+     "ru": "внешний отступ"
+    },
+    "qiymatlar": [
+     "0",
+     "8px",
+     "16px",
+     "auto"
+    ]
+   },
+   {
+    "p": "padding",
+    "dars": "m1-06",
+    "ekran": "TASK_BOX",
+    "d": {
+     "uz": "ichki bo'shliq",
+     "ru": "внутренний отступ"
+    },
+    "qiymatlar": [
+     "8px",
+     "16px",
+     "24px"
+    ]
+   },
+   {
+    "p": "display",
+    "dars": "m1-07",
+    "ekran": "s3b Qoida ustaxonasi",
+    "d": {
+     "uz": "ko'rinish turi",
+     "ru": "тип отображения"
+    },
+    "qiymatlar": [
+     "flex",
+     "block",
+     "none"
+    ]
+   },
+   {
+    "p": "gap",
+    "dars": "m1-07",
+    "ekran": "TASK_FLEX",
+    "d": {
+     "uz": "elementlar orasi",
+     "ru": "промежуток"
+    },
+    "qiymatlar": [
+     "8px",
+     "16px",
+     "24px"
+    ]
+   },
+   {
+    "p": "justify-content",
+    "dars": "m1-07",
+    "ekran": "TASK_CENTER",
+    "d": {
+     "uz": "gorizontal joylash",
+     "ru": "по горизонтали"
+    },
+    "qiymatlar": [
+     "center",
+     "space-between",
+     "flex-start",
+     "flex-end"
+    ]
+   },
+   {
+    "p": "align-items",
+    "dars": "m1-07",
+    "ekran": "TASK_CENTER",
+    "d": {
+     "uz": "vertikal joylash",
+     "ru": "по вертикали"
+    },
+    "qiymatlar": [
+     "center",
+     "flex-start",
+     "flex-end"
+    ]
+   },
+   {
+    "p": "flex-direction",
+    "dars": "m1-07",
+    "ekran": "TASK_COLUMN",
+    "d": {
+     "uz": "yo'nalish",
+     "ru": "направление"
+    },
+    "qiymatlar": [
+     "row",
+     "column"
+    ]
+   },
+   {
+    "p": "height",
+    "dars": "m1-07",
+    "ekran": "TASK_CENTER",
+    "d": {
+     "uz": "balandlik",
+     "ru": "высота"
+    },
+    "qiymatlar": [
+     "100px",
+     "200px",
+     "100vh"
+    ]
+   },
+   {
+    "p": "width",
+    "dars": "m1-15",
+    "ekran": "6-qadam Card CSS",
+    "d": {
+     "uz": "kenglik",
+     "ru": "ширина"
+    },
+    "qiymatlar": [
+     "100px",
+     "300px",
+     "100%"
+    ]
+   },
+   {
+    "p": "background",
+    "dars": "m1-15",
+    "ekran": "6-qadam Card CSS",
+    "d": {
+     "uz": "fon",
+     "ru": "фон"
+    },
+    "qiymatlar": [
+     "#…",
+     "white"
+    ]
+   },
+   {
+    "p": "border-radius",
+    "dars": "m1-15",
+    "ekran": "6-qadam Card CSS",
+    "d": {
+     "uz": "burchak yumaloqligi",
+     "ru": "скругление углов"
+    },
+    "qiymatlar": [
+     "8px",
+     "12px",
+     "50%"
+    ]
+   },
+   {
+    "p": "box-shadow",
+    "dars": "m1-15",
+    "ekran": "6-qadam Card CSS",
+    "d": {
+     "uz": "soya",
+     "ru": "тень"
+    },
+    "qiymatlar": [
+     "0 4px 12px rgba(0,0,0,.15)"
+    ]
+   }
+  ],
+  "selektorlar": [
+   {
+    "s": "element",
+    "dars": "m1-06",
+    "ekran": "s3 Sintaksis"
+   },
+   {
+    "s": ".class",
+    "dars": "m1-06",
+    "ekran": "s3 Sintaksis (class=\"row\" → .row)"
+   }
+  ],
+  "orgatilmaydi": [
+   "border",
+   "#id selektori",
+   "@media",
+   "position",
+   "grid"
+  ]
+ },
+ "js": {
+  "_izoh": "Faqat Tab tanlaydi (Q11). ≥2 harf. Satr/izoh ichida jim.",
+  "kalit_sozlar": [
+   {
+    "k": "let",
+    "dars": "m2-02",
+    "ekran": "JsVars s1/s5",
+    "d": {
+     "uz": "o'zgaruvchi (o'zgaradi)",
+     "ru": "переменная (меняется)"
+    }
+   },
+   {
+    "k": "const",
+    "dars": "m2-02",
+    "ekran": "JsVars s6",
+    "d": {
+     "uz": "o'zgarmas",
+     "ru": "константа"
+    }
+   },
+   {
+    "k": "if",
+    "dars": "m2-04",
+    "ekran": "JsConditions s2",
+    "d": {
+     "uz": "shart",
+     "ru": "условие"
+    }
+   },
+   {
+    "k": "else",
+    "dars": "m2-04",
+    "ekran": "JsConditions s5",
+    "d": {
+     "uz": "aks holda",
+     "ru": "иначе"
+    }
+   },
+   {
+    "k": "else if",
+    "dars": "m2-04",
+    "ekran": "TASK_RADAR_LEVELS",
+    "d": {
+     "uz": "yana bir shart",
+     "ru": "ещё одно условие"
+    }
+   },
+   {
+    "k": "true",
+    "dars": "m2-04",
+    "ekran": "JsConditions s3",
+    "d": {
+     "uz": "rost",
+     "ru": "истина"
+    }
+   },
+   {
+    "k": "false",
+    "dars": "m2-04",
+    "ekran": "JsConditions s3",
+    "d": {
+     "uz": "yolg'on",
+     "ru": "ложь"
+    }
+   },
+   {
+    "k": "for",
+    "dars": "m2-05",
+    "ekran": "JsLoops s3",
+    "d": {
+     "uz": "sikl (sanab)",
+     "ru": "цикл (со счётчиком)"
+    }
+   },
+   {
+    "k": "while",
+    "dars": "m2-05",
+    "ekran": "JsLoops s6",
+    "d": {
+     "uz": "sikl (shart bo'lguncha)",
+     "ru": "цикл (пока условие)"
+    }
+   },
+   {
+    "k": "function",
+    "dars": "m2-06",
+    "ekran": "JsFunctions s4",
+    "d": {
+     "uz": "funksiya",
+     "ru": "функция"
+    }
+   },
+   {
+    "k": "return",
+    "dars": "m2-06",
+    "ekran": "JsFunctions s1/s3",
+    "d": {
+     "uz": "javob qaytarish",
+     "ru": "вернуть значение"
+    }
+   },
+   {
+    "k": "=>",
+    "dars": "m2-08",
+    "ekran": "PracticeLesson1 (tugma.onclick = () => {)",
+    "d": {
+     "uz": "qisqa funksiya",
+     "ru": "стрелочная функция"
+    }
+   }
+  ],
+  "api": [
+   {
+    "k": "console.log",
+    "dars": "m2-02",
+    "ekran": "JsVars TASK_BALL",
+    "d": {
+     "uz": "konsolga chiqarish",
+     "ru": "вывести в консоль"
+    },
+    "qolip": "console.log()"
+   },
+   {
+    "k": "prompt",
+    "dars": "m2-04",
+    "ekran": "JsConditions s14",
+    "d": {
+     "uz": "foydalanuvchidan so'rash",
+     "ru": "спросить у пользователя"
+    },
+    "qolip": "prompt(\"\")"
+   },
+   {
+    "k": ".length",
+    "dars": "m2-05",
+    "ekran": "JsLoops s8 Massiv",
+    "d": {
+     "uz": "nechta element",
+     "ru": "сколько элементов"
+    }
+   },
+   {
+    "k": "onclick",
+    "dars": "m2-08",
+    "ekran": "PracticeLesson1 kod qutisi (tugma.onclick = () => {)",
+    "d": {
+     "uz": "bosilganda",
+     "ru": "при нажатии"
+    },
+    "qolip": ".onclick = () => {\n  \n}"
+   },
+   {
+    "k": "oninput",
+    "dars": "m2-08",
+    "ekran": "PracticeLesson1 kod qutisi",
+    "d": {
+     "uz": "yozilganda",
+     "ru": "при вводе"
+    },
+    "qolip": ".oninput = () => {\n  \n}"
+   }
+  ],
+  "qisqartmalar": [
+   {
+    "q": "log",
+    "dars": "m2-02",
+    "natija": "console.log();"
+   },
+   {
+    "q": "if",
+    "dars": "m2-04",
+    "natija": "if () {\n  \n}"
+   },
+   {
+    "q": "else",
+    "dars": "m2-04",
+    "natija": "else {\n  \n}"
+   },
+   {
+    "q": "for",
+    "dars": "m2-05",
+    "natija": "for (let i = 0; i < 5; i++) {\n  \n}"
+   },
+   {
+    "q": "while",
+    "dars": "m2-05",
+    "natija": "while () {\n  \n}"
+   },
+   {
+    "q": "fn",
+    "dars": "m2-06",
+    "natija": "function nom() {\n  \n}"
+   }
+  ],
+  "orgatilmaydi_hozircha": [
+   "map",
+   "filter",
+   "forEach",
+   "fetch",
+   "async/await",
+   "try/catch",
+   "class",
+   "this",
+   "JSON",
+   "setTimeout",
+   "Math.random",
+   "alert",
+   "Number()",
+   ".push()",
+   "typeof",
+   "document.querySelector",
+   "addEventListener",
+   "textContent",
+   "classList (PracticeLesson1 kod qutisida yo'q — o'quvchi tugma.onclick yozadi)"
+  ]
+ },
+ "_tekshiruv_1_6": "2026-10-01: 1–4c kompilyator topshiriqlari so'ragan teglar (TASK_*/KOD_TASK, HW dan tashqari) xaritada o'sha darsgacha bor — 5/5 ✓ (Html1, Html2, Takrorlash, HtmlPractice, VsCode)."
+}

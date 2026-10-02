@@ -222,24 +222,24 @@ const RECAPS = {
   4: {
     title: { uz: "Front va back — 2 dastur, fetch bilan gaplashadi", ru: "Фронт и бэк — 2 программы, общаются через fetch" },
     cards: [
-      { ic: "🔌", h: { uz: "Ikki alohida dastur", ru: "Две отдельные программы" }, body: { uz: <>Front (<span className="mono">:5173</span>) — vitrina, back (<span className="mono">:3000</span>) — ombor. Bu ikki <b>alohida</b> dastur, bir vaqtda ishlaydi.</>, ru: <>Фронт (<span className="mono">:5173</span>) — витрина, бэк (<span className="mono">:3000</span>) — склад. Это две <b>отдельные</b> программы, работают одновременно.</> } },
+      { ic: "🔌", h: { uz: "Ikki alohida dastur", ru: "Две отдельные программы" }, body: { uz: <>Front (<span className="mono">:5173</span>) — vitrina, back (<span className="mono">:3000</span>) — ombor: ikki <b>alohida</b> dastur.</>, ru: <>Фронт (<span className="mono">:5173</span>) — витрина, бэк (<span className="mono">:3000</span>) — склад: две <b>отдельные</b> программы.</> } },
       { ic: "📡", h: { uz: "fetch — HTTP so'rov", ru: "fetch — HTTP-запрос" }, body: { uz: <>Ular orasidagi ko'prik — <b>fetch</b>: front so'rov yuboradi, back <span className="mono">JSON</span> bilan javob beradi.</>, ru: <>Мост между ними — <b>fetch</b>: фронт отправляет запрос, бэк отвечает <span className="mono">JSON</span>.</> } },
-      { ic: "🔗", h: { uz: "Bir fayl emas — so'rov", ru: "Не один файл — запрос" }, body: { uz: <>Ular bitta faylda emas. Bog'lanish faqat HTTP so'rov (fetch) orqali bo'ladi.</>, ru: <>Они не в одном файле. Связь — только через HTTP-запрос (fetch).</> }, ask: { uz: "Front backdan ma'lumotni qanday oladi?", ru: "Как фронт получает данные от бэка?" } },
+      { ic: "🔗", h: { uz: "Bir fayl emas — so'rov", ru: "Не один файл — запрос" }, body: { uz: <>Ular bitta faylda emas — bog'lanish faqat HTTP so'rov (<b>fetch</b>) orqali.</>, ru: <>Они не в одном файле — связь только через HTTP-запрос (<b>fetch</b>).</> }, ask: { uz: "Front backdan ma'lumotni qanday oladi?", ru: "Как фронт получает данные от бэка?" } },
     ]
   },
   7: {
     title: { uz: "useEffect + fetch + useState", ru: "useEffect + fetch + useState" },
     cards: [
-      { ic: "⏱️", h: { uz: "useEffect([]) — bir marta", ru: "useEffect([]) — один раз" }, body: { uz: <><span className="mono">useEffect(..., [])</span> sahifa <b>ochilganda bir marta</b> ishlaydi — aynan shunda mashinalar yuklanadi.</>, ru: <><span className="mono">useEffect(..., [])</span> срабатывает <b>один раз при открытии</b> страницы — именно тогда загружаются машины.</> } },
+      { ic: "⏱️", h: { uz: "useEffect([]) — bir marta", ru: "useEffect([]) — один раз" }, body: { uz: <><span className="mono">useEffect(..., [])</span> sahifa <b>ochilganda bir marta</b> ishlaydi va mashinalarni yuklaydi.</>, ru: <><span className="mono">useEffect(..., [])</span> срабатывает <b>один раз при открытии</b> страницы и загружает машины.</> } },
       { ic: "📥", h: { uz: "fetch → json → setCars", ru: "fetch → json → setCars" }, body: { uz: <>Serverdan olamiz (<span className="mono">fetch</span>), o'qiymiz (<span className="mono">res.json()</span>), saqlaymiz (<span className="mono">setCars</span>).</>, ru: <>Получаем с сервера (<span className="mono">fetch</span>), читаем (<span className="mono">res.json()</span>), сохраняем (<span className="mono">setCars</span>).</> } },
-      { ic: "🔁", h: { uz: "const cars o'rniga", ru: "Вместо const cars" }, body: { uz: <>Qattiq <span className="mono">const cars</span> o'rniga endi ma'lumot serverdan keladi — baza yangilansa, sayt ham yangilanadi.</>, ru: <>Вместо жёсткого <span className="mono">const cars</span> данные теперь приходят с сервера — обновилась база, обновился и сайт.</> }, ask: { uz: "fetch qachon ishga tushadi?", ru: "Когда срабатывает fetch?" } },
+      { ic: "🔁", h: { uz: "const cars o'rniga", ru: "Вместо const cars" }, body: { uz: <>Qattiq <span className="mono">const cars</span> o'rniga endi ma'lumot <b>serverdan</b> keladi.</>, ru: <>Вместо жёсткого <span className="mono">const cars</span> данные теперь приходят <b>с сервера</b>.</> }, ask: { uz: "fetch qachon ishga tushadi?", ru: "Когда срабатывает fetch?" } },
     ]
   },
   9: {
     title: { uz: "Ikkalasi ham ishlashi shart", ru: "Работать должны оба" },
     cards: [
-      { ic: "💻", h: { uz: "Front — so'rov yuboradi", ru: "Фронт — отправляет запрос" }, body: { uz: <>Front so'rov yuboradigan tomon. U bo'lmasa — hech kim serverdan so'ramaydi.</>, ru: <>Фронт — сторона, которая отправляет запрос. Без него никто не спросит сервер.</> } },
-      { ic: "🟢", h: { uz: "Back — javob beradi", ru: "Бэк — отвечает" }, body: { uz: <>Back so'rovga javob beradigan tomon. U o'chiq bo'lsa — front javob ololmaydi.</>, ru: <>Бэк — сторона, которая отвечает на запрос. Если он выключен — фронт не получит ответ.</> } },
+      { ic: "💻", h: { uz: "Front — so'rov yuboradi", ru: "Фронт — отправляет запрос" }, body: { uz: <>Front — <b>so'rov yuboradigan</b> tomon, usiz serverdan hech kim so'ramaydi.</>, ru: <>Фронт — сторона, которая <b>отправляет запрос</b>: без него сервер никто не спросит.</> } },
+      { ic: "🟢", h: { uz: "Back — javob beradi", ru: "Бэк — отвечает" }, body: { uz: <>Back — <b>javob beradigan</b> tomon, u o'chiq bo'lsa front javob ololmaydi.</>, ru: <>Бэк — сторона, которая <b>отвечает</b>: если он выключен, фронт не получит ответ.</> } },
       { ic: "⚖️", h: { uz: "Biri o'chsa — ulanish yo'q", ru: "Один выключен — связи нет" }, body: { uz: <>Ma'lumot olish uchun <b>ikkalasi</b> ham bir vaqtda ishlab turishi kerak.</>, ru: <>Чтобы получить данные, <b>обе</b> программы должны работать одновременно.</> }, ask: { uz: "Faqat front ishlasa yetadimi?", ru: "Хватит ли, если работает только фронт?" } },
     ]
   },
@@ -247,12 +247,12 @@ const RECAPS = {
     title: { uz: "Ulangandan keyin — serverdan", ru: "После подключения — с сервера" },
     cards: [
       { ic: "🗄️", h: { uz: "Ma'lumot bazadan", ru: "Данные из базы" }, body: { uz: <>Endi katalog har ochilganda serverga so'raydi, server bazadan beradi.</>, ru: <>Теперь каталог при каждом открытии спрашивает сервер, а сервер берёт из базы.</> } },
-      { ic: "🔄", h: { uz: "Jonli ulanish", ru: "Живая связь" }, body: { uz: <>Baza yangilansa — sayt ham yangilanadi. Bu qattiq <span className="mono">const cars</span> emas, <b>jonli</b> ma'lumot.</>, ru: <>Обновилась база — обновился и сайт. Это не жёсткий <span className="mono">const cars</span>, а <b>живые</b> данные.</> } },
+      { ic: "🔄", h: { uz: "Jonli ulanish", ru: "Живая связь" }, body: { uz: <>Baza yangilansa, sayt ham yangilanadi — bu <b>jonli</b> ma'lumot.</>, ru: <>Обновилась база — обновился и сайт: это <b>живые</b> данные.</> } },
       { ic: "🚗", h: { uz: "Spark paydo bo'ldi", ru: "Появился Spark" }, body: { uz: <>Shuning uchun P1'da qo'shilgan Spark endi saytda ham ko'rinadi.</>, ru: <>Поэтому Spark, добавленный в П1, теперь виден и на сайте.</> }, ask: { uz: "Katalog mashinalarni qayerdan oladi?", ru: "Откуда каталог берёт машины?" } },
     ]
   }
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -270,7 +270,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -279,13 +279,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Далее →' })}</button>}
       </div>
     </div>
@@ -364,7 +364,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
           </div>
         );
       })()}
@@ -445,7 +445,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -453,8 +453,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -464,11 +465,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -901,12 +902,12 @@ const Screen4 = (props) => (
     questionText={{ uz: "Sayt (front) va server (back) o'zaro qanday gaplashadi?", ru: 'Как сайт (фронт) и сервер (бэк) общаются между собой?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Front va back o'zaro <span className="italic" style={{ color: T.accent }}>qanday</span> gaplashadi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как фронт и бэк <span className="italic" style={{ color: T.accent }}>общаются</span> между собой?</h2></> })}
     options={[{ uz: "Bir xil fayl ichida — to'g'ridan-to'g'ri", ru: 'Внутри одного файла — напрямую' }, { uz: 'Hech qanday — har biri alohida ishlaydi', ru: 'Никак — каждый работает сам по себе' }, { uz: "fetch — HTTP so'rov orqali", ru: 'fetch — через HTTP-запрос' }, { uz: 'Faqat CSS fayli orqali', ru: 'Только через CSS-файл' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Front fetch bilan serverga HTTP so'rov yuboradi, server JSON bilan javob qaytaradi. Ular alohida dasturlar — faqat shu yo'l bilan gaplashadi.", ru: 'Верно! Фронт через fetch отправляет серверу HTTP-запрос, сервер возвращает ответ в JSON. Это отдельные программы — общаются только так.' }}
+    explainCorrect={{ uz: "Ular alohida dasturlar, faqat HTTP so'rov bilan bog'lanadi.", ru: 'Это отдельные программы — они связаны только HTTP-запросом.' }}
     explainWrong={{
-      0: { uz: "Yo'q — ular ikki alohida dastur, bir fayl emas. Bog'lanish faqat HTTP so'rov (fetch) orqali.", ru: 'Нет — это две отдельные программы, не один файл. Связь — только через HTTP-запрос (fetch).' },
-      1: { uz: "Aslida ular gaplashishi kerak — fetch orqali. Aks holda sayt ma'lumot ololmaydi.", ru: 'На самом деле им нужно общаться — через fetch. Иначе сайт не получит данные.' },
-      3: { uz: "CSS bezak uchun. Ma'lumot olish uchun fetch (HTTP so'rov).", ru: 'CSS — для оформления. Данные получают через fetch (HTTP-запрос).' },
-      default: { uz: "Front ↔ back = fetch (HTTP so'rov).", ru: 'Фронт ↔ бэк = fetch (HTTP-запрос).' }
+      0: { uz: "Front va back — ikki alohida dastur, bitta fayl emas.", ru: 'Фронт и бэк — две отдельные программы, а не один файл.' },
+      1: { uz: "Gaplashmasa, sayt serverdan ma'lumot ololmaydi.", ru: 'Без общения сайт не получит данные с сервера.' },
+      3: { uz: "CSS faqat bezaydi, ma'lumot tashimaydi.", ru: 'CSS только оформляет, данные он не передаёт.' },
+      default: { uz: "Vitrina ombordan tovarni qanday so'rashini eslang.", ru: 'Вспомните, как витрина просит товар со склада.' }
     }} />
 );
 
@@ -1001,12 +1002,12 @@ const Screen7 = (props) => (
     questionText={{ uz: 'fetch qachon ishga tushishi kerak?', ru: 'Когда должен срабатывать fetch?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>fetch <span className="italic" style={{ color: T.accent }}>qachon</span> ishga tushsin?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Когда</span> должен срабатывать fetch?</h2></> })}
     options={[{ uz: 'Har soniyada uzluksiz qayta-qayta', ru: 'Каждую секунду, снова и снова' }, { uz: 'Sahifa ochilganda bir marta — useEffect ichida', ru: 'Один раз при открытии страницы — внутри useEffect' }, { uz: 'Foydalanuvchi biror tugma bosmaguncha hech qachon', ru: 'Никогда, пока пользователь не нажмёт кнопку' }, { uz: "CSS fayli yuklanib bo'lganda", ru: 'Когда загрузится CSS-файл' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! useEffect(..., []) sahifa ochilganda bir marta ishlaydi — aynan shunda mashinalarni yuklab olamiz.", ru: 'Верно! useEffect(..., []) срабатывает один раз при открытии страницы — именно тогда и загружаем машины.' }}
+    explainCorrect={{ uz: "`[]` bilan `useEffect` faqat sahifa ochilganda ishlaydi.", ru: 'С `[]` `useEffect` срабатывает только при открытии страницы.' }}
     explainWrong={{
-      0: { uz: "Yo'q — har soniyada so'rov yuborish serverni ortiqcha yuklaydi. Bir marta yetadi: useEffect.", ru: 'Нет — запрос каждую секунду перегрузит сервер. Одного раза достаточно: useEffect.' },
-      2: { uz: "Katalog ochilishi bilan mashinalar ko'rinishi kerak, tugma kutmasdan. Shuning uchun useEffect.", ru: 'Машины должны появиться сразу при открытии каталога, без ожидания кнопки. Поэтому useEffect.' },
-      3: { uz: "CSS bezak. Ma'lumot yuklash useEffect ichidagi fetch bilan.", ru: 'CSS — оформление. Данные загружает fetch внутри useEffect.' },
-      default: { uz: 'Sahifa ochilganda bir marta = useEffect(..., []).', ru: 'Один раз при открытии страницы = useEffect(..., []).' }
+      0: { uz: "Har soniyada so'rov serverni ortiqcha yuklaydi.", ru: 'Запрос каждую секунду перегрузит сервер.' },
+      2: { uz: "Mashinalar tugma kutmasdan, darrov ko'rinishi kerak.", ru: 'Машины должны появиться сразу, без ожидания кнопки.' },
+      3: { uz: "CSS faqat bezak — ma'lumot yuklashga aloqasi yo'q.", ru: 'CSS — только оформление, к загрузке данных он не относится.' },
+      default: { uz: 'Mashinalar qachon kerak, necha so\'rov yetadi — o\'ylang.', ru: 'Подумайте, когда нужны машины и сколько запросов хватит.' }
     }} />
 );
 
@@ -1064,12 +1065,12 @@ const Screen9 = (props) => (
     questionText={{ uz: "Sayt serverdan ma'lumot olishi uchun nima shart?", ru: 'Что нужно, чтобы сайт получил данные с сервера?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Sayt serverdan ma'lumot olishi uchun <span className="italic" style={{ color: T.accent }}>nima shart</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что нужно</span>, чтобы сайт получил данные с сервера?</h2></> })}
     options={[{ uz: 'Faqat front ishlab tursa ham kifoya qiladi', ru: 'Достаточно, чтобы работал только фронт' }, { uz: "Faqat back ishlab tursa ham yetarli bo'ladi", ru: 'Хватит и того, что работает только бэк' }, { uz: "Internet aloqasi butunlay o'chiq bo'lishi kerak", ru: 'Интернет должен быть полностью выключен' }, { uz: 'Front va back — ikkalasi ham ishlab turishi kerak', ru: 'Фронт и бэк — работать должны оба' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Front so'rov yuboradi, back javob beradi — ikkalasi bir vaqtda ishlashi kerak. Biri o'chsa, ulanish bo'lmaydi.", ru: 'Верно! Фронт отправляет запрос, бэк отвечает — работать должны оба одновременно. Выключится один — связи не будет.' }}
+    explainCorrect={{ uz: "Front so'raydi, back javob beradi — biri o'chsa, aloqa yo'q.", ru: 'Фронт спрашивает, бэк отвечает — выключится один, связи не будет.' }}
     explainWrong={{
-      0: { uz: "Faqat front bo'lsa — so'rovga javob beradigan server yo'q. Back ham kerak.", ru: 'Если только фронт — некому отвечать на запрос. Нужен и бэк.' },
-      1: { uz: "Faqat back bo'lsa — so'rov yuboradigan sayt yo'q. Front ham kerak.", ru: 'Если только бэк — некому отправлять запрос. Нужен и фронт.' },
-      2: { uz: 'Aksincha — gaplashish uchun ulanish kerak. Ikkala dastur ham ishlab turishi shart.', ru: 'Наоборот — для общения нужна связь. Обе программы должны работать.' },
-      default: { uz: 'Ikkalasi (front + back) bir vaqtda ishlashi kerak.', ru: 'Оба (фронт + бэк) должны работать одновременно.' }
+      0: { uz: "Faqat front bo'lsa, so'rovga javob beradigan yo'q.", ru: 'Если работает только фронт — отвечать на запрос некому.' },
+      1: { uz: "Faqat back bo'lsa, so'rov yuboradigan yo'q.", ru: 'Если работает только бэк — отправлять запрос некому.' },
+      2: { uz: 'Aloqa o\'chiq bo\'lsa, so\'rov hech qayerga bormaydi.', ru: 'Без связи запрос никуда не уйдёт.' },
+      default: { uz: 'Kim so\'raydi, kim javob beradi — ikkalasini o\'ylang.', ru: 'Подумайте, кто спрашивает и кто отвечает.' }
     }} />
 );
 
@@ -1284,12 +1285,12 @@ const Screen14 = (props) => (
     questionText={{ uz: 'Ulangandan keyin katalog mashinalarni qayerdan oladi?', ru: 'После подключения — откуда каталог берёт машины?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Endi katalog ma'lumotni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> каталог теперь берёт данные?</h2></> })}
     options={[{ uz: 'Serverdan — fetch(GET /api/cars) orqali bazadan', ru: 'С сервера — из базы через fetch(GET /api/cars)' }, { uz: "Kodga qo'lda yozilgan const cars massivi ichidan", ru: 'Из массива const cars, вручную записанного в код' }, { uz: 'CSS faylidan — uslublar bilan birga', ru: 'Из CSS-файла — вместе со стилями' }, { uz: "Hech qayerdan — katalog bo'sh qoladi", ru: 'Ниоткуда — каталог остаётся пустым' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Endi katalog har ochilganda serverdan so'raydi, server bazadan beradi. Baza yangilansa — sayt ham yangilanadi.", ru: 'Верно! Теперь каталог при каждом открытии спрашивает сервер, а сервер берёт из базы. Обновилась база — обновился и сайт.' }}
+    explainCorrect={{ uz: "Katalog har ochilganda serverdan so'raydi, server — bazadan.", ru: 'Каталог при каждом открытии спрашивает сервер, а тот — базу.' }}
     explainWrong={{
-      1: { uz: "Eski usul edi — endi const cars o'rniga fetch ishlatdik. Ma'lumot serverdan keladi.", ru: 'Это был старый способ — вместо const cars мы использовали fetch. Данные приходят с сервера.' },
-      2: { uz: "CSS faqat bezak. Ma'lumot — serverdan, fetch orqali.", ru: 'CSS — только оформление. Данные — с сервера, через fetch.' },
-      3: { uz: "Bo'sh emas — fetch serverdan to'ldiradi. Ma'lumot bazadan keladi.", ru: 'Не пустой — fetch заполняет его с сервера. Данные приходят из базы.' },
-      default: { uz: 'Serverdan — fetch(GET /api/cars).', ru: 'С сервера — fetch(GET /api/cars).' }
+      1: { uz: "`const cars` — eski usul, u bazadan yangilanmaydi.", ru: '`const cars` — старый способ, он не обновляется из базы.' },
+      2: { uz: "CSS faqat bezak, ichida mashinalar yo'q.", ru: 'CSS — только оформление, машин в нём нет.' },
+      3: { uz: "Katalog bo'sh qolmaydi — ulangandan keyin to'ladi.", ru: 'Каталог не пустой — после подключения он заполняется.' },
+      default: { uz: 'Ulangandan keyin katalog kimga so\'rov yuboradi — o\'ylang.', ru: 'Подумайте, кому каталог отправляет запрос после подключения.' }
     }} />
 );
 

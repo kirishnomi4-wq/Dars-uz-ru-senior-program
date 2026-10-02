@@ -310,20 +310,20 @@ const RECAPS = {
       {
         ic: "🔋",
         h: { uz: "if — shart rost bo'lsagina", ru: 'if — только если условие истинно' },
-        body: { uz: <>Telefon zaryad <b>20% dan kam</b> bo'lsa ogohlantiradi. if ham shunday: shart <b>rost (true)</b> bo'lsa — ichidagi kod ishlaydi, yolg'on bo'lsa — o'tkazib yuboriladi.</>, ru: <>Телефон предупреждает, когда заряд <b>меньше 20%</b>. if работает так же: если условие <b>истинно (true)</b> — код внутри работает, если ложно — пропускается.</> },
+        body: { uz: <>Shart rost (<b>true</b>) bo'lsa — <b>if</b> ichidagi kod ishlaydi, yolg'on bo'lsa — o'tkaziladi.</>, ru: <>Если условие истинно (<b>true</b>) — код внутри <b>if</b> работает, если ложно — пропускается.</> },
         vis: <RcFlow items={[{ uz: 'Shart', ru: 'Условие' }, { uz: 'rost (true)?', ru: 'истина (true)?' }, { uz: 'kod ishlaydi', ru: 'код работает' }]} />,
         ask: { uz: "Zaryad 50% bo'lsa, telefon ogohlantiradimi?", ru: 'Если заряд 50%, телефон предупредит?' }
       },
       {
         ic: "🔒",
         h: { uz: "PIN-kod to'g'ri bo'lsagina ochiladi", ru: 'Открывается, только если PIN-код верный' },
-        body: { uz: <>Telefon PIN-kodni tekshiradi: <b>to'g'ri</b> bo'lsa — ochiladi (rost), noto'g'ri bo'lsa — qulf turadi. if ham <b>faqat shart bajarilsa</b> ichidagi kodni ishga tushiradi.</>, ru: <>Телефон проверяет PIN-код: <b>верный</b> — открывается (истина), неверный — остаётся заблокированным. if тоже запускает код внутри, <b>только если условие выполнено</b>.</> },
+        body: { uz: <>PIN-kod to'g'ri bo'lsa, telefon ochiladi — <b>if</b> ham faqat shart bajarilsa ishlaydi.</>, ru: <>Верный PIN-код открывает телефон — и <b>if</b> тоже работает, только если условие выполнено.</> },
         vis: <RcFlow items={[{ uz: 'PIN-kod 1234', ru: 'PIN-код 1234' }, { uz: "to'g'ri → true", ru: 'верный → true' }, { uz: 'ochiladi', ru: 'открывается' }]} />
       },
       {
         ic: "🙅",
         h: { uz: '"Doim" ham, "hech qachon" ham emas', ru: 'Не «всегда» и не «никогда»' },
-        body: { uz: <>if har safar ishlab ketmaydi va butunlay o'chib qolmaydi — u <b>shartga qarab</b> qaror qiladi. Shart rost bo'lgan safar ishlaydi, yolg'on bo'lganda esa o'tkazib yuboradi.</>, ru: <>if не срабатывает каждый раз и не выключается насовсем — он решает <b>по условию</b>. Когда условие истинно — работает, когда ложно — пропускает.</> }
+        body: { uz: <><b>if</b> har safar ham ishlamaydi, o'chib ham qolmaydi — u <b>shartga qarab</b> qaror qiladi.</>, ru: <><b>if</b> не срабатывает каждый раз и не выключается насовсем — он решает <b>по условию</b>.</> }
       }
     ]
   },
@@ -335,20 +335,20 @@ const RECAPS = {
       {
         ic: "🔀",
         h: { uz: 'else — "aks holda" yo\'li', ru: 'else — путь «иначе»' },
-        body: { uz: <>if va else — bu <b>yo'l ayrilishi</b>. Shart rost bo'lsa — <b>if</b> yo'lidan yurasiz. Rost bo'lmasa (false) — <b>else</b> yo'lidan yurasiz. Ikkalasi bir vaqtda emas.</>, ru: <>if и else — это <b>развилка дорог</b>. Если условие истинно — вы идёте по пути <b>if</b>. Если нет (false) — по пути <b>else</b>. Никогда по обоим сразу.</> },
+        body: { uz: <>Shart rost bo'lsa — if yo'lidan, false bo'lsa — <b>else</b> yo'lidan yurasiz.</>, ru: <>Условие истинно — идёте по пути if, false — по пути <b>else</b>.</> },
         vis: <RcFlow items={[{ uz: 'Shart false', ru: 'Условие false' }, { uz: "if o'tkaziladi", ru: 'if пропускается' }, { uz: 'else ishlaydi', ru: 'работает else' }]} />,
         ask: { uz: 'Test topshirmadingizmi? Unda "aks holda" nima bo\'ladi?', ru: 'Не сдали тест? Тогда что случится «иначе»?' }
       },
       {
         ic: "☔",
         h: { uz: 'Kundalik misol', ru: 'Пример из жизни' },
-        body: { uz: <>«Agar <b>yomg'ir yog'sa</b> — soyabon ol, <b>aks holda</b> — quyoshoynak ol.» Yomg'ir yo'q (shart false) bo'lsa, birinchi buyruq tashlanadi va <b>else</b>dagi «quyoshoynak ol» bajariladi.</>, ru: <>«Если <b>идёт дождь</b> — возьми зонт, <b>иначе</b> — возьми солнечные очки.» Если дождя нет (условие false), первая команда отбрасывается и выполняется «возьми очки» из <b>else</b>.</> },
+        body: { uz: <>Yomg'ir yo'q (shart false) bo'lsa, <b>else</b>dagi «quyoshoynak ol» bajariladi.</>, ru: <>Если дождя нет (условие false), выполняется «возьми очки» из <b>else</b>.</> },
         vis: <RcFlow items={[{ uz: "yomg'ir yo'q = false", ru: 'дождя нет = false' }, 'else', { uz: 'quyoshoynak', ru: 'очки' }]} />
       },
       {
         ic: "🎯",
         h: { uz: 'Doim bittasi ishlaydi', ru: 'Всегда работает один' },
-        body: { uz: <>if/else da <b>har doim aniq bitta</b> blok ishlaydi — yo if, yo else. Shart false bo'lganda if bloki chetlab o'tiladi va <b>else bloki</b> bajariladi.</>, ru: <>В if/else <b>всегда работает ровно один</b> блок — либо if, либо else. Когда условие false, блок if обходится и выполняется <b>блок else</b>.</> }
+        body: { uz: <>if/else da har doim aniq <b>bitta blok</b> ishlaydi — yo if, yo else.</>, ru: <>В if/else всегда работает ровно <b>один блок</b> — либо if, либо else.</> }
       }
     ]
   },
@@ -360,20 +360,20 @@ const RECAPS = {
       {
         ic: "⚖️",
         h: { uz: '== — bu "tengmi?" savoli', ru: '== — это вопрос «равно ли?»' },
-        body: { uz: <>Ikki teng belgi <b>==</b> ikki qiymatni solishtiradi va <b>«tengmi?»</b> deb so'raydi. Javob rost yoki yolg'on bo'ladi. Masalan <b>pin == 1234</b> — kiritilgan PIN-kod aynan 1234mi?</>, ru: <>Два знака равно <b>==</b> сравнивают два значения и спрашивают: <b>«равны ли?»</b>. Ответ — истина или ложь. Например <b>pin == 1234</b> — введённый PIN-код ровно 1234?</> },
+        body: { uz: <><b>==</b> ikki qiymatni solishtiradi va <b>«tengmi?»</b> deb so'raydi.</>, ru: <><b>==</b> сравнивает два значения и спрашивает: <b>«равны ли?»</b>.</> },
         vis: <RcFlow items={["pin", "==", "1234 ?"]} />,
         ask: { uz: "7 == 7 — bu rostmi yoki yolg'onmi?", ru: '7 == 7 — это истина или ложь?' }
       },
       {
         ic: "📥",
         h: { uz: '= esa qiymat BERADI', ru: 'А = ДАЁТ значение' },
-        body: { uz: <>Bitta teng <b>=</b> — bu tekshirish emas, <b>qutiga qiymat solish</b>: <b>score = 100</b> degani «score qutisiga 100 ni joyla». Tekshirmoqchi bo'lsangiz — <b>==</b> yozing.</>, ru: <>Один знак <b>=</b> — это не проверка, а <b>укладка значения в коробку</b>: <b>score = 100</b> значит «положи 100 в коробку score». Хотите проверить — пишите <b>==</b>.</> },
+        body: { uz: <>Bitta <b>=</b> tekshirmaydi, qutiga qiymat soladi: score = 100.</>, ru: <>Один знак <b>=</b> не проверяет, а кладёт значение в коробку: score = 100.</> },
         vis: <RcFlow items={[{ uz: '= beradi', ru: '= даёт' }, { uz: '== tekshiradi', ru: '== проверяет' }]} sep="·" />
       },
       {
         ic: "🧩",
         h: { uz: 'Boshqa belgilar boshqa ish', ru: 'Другие знаки — другая работа' },
-        body: { uz: <>+ belgisi <b>qo'shadi</b>, &lt; esa <b>kichikligini</b> tekshiradi. Shartda «tengmi?» deb so'ramoqchi bo'lsangiz — <b>==</b> yozing.</>, ru: <>Знак + <b>складывает</b>, а &lt; проверяет «<b>меньше</b>». Хотите спросить в условии «равно ли?» — пишите <b>==</b>.</> }
+        body: { uz: <>+ qo'shadi, &lt; kichikligini tekshiradi — «tengmi?» deb faqat <b>==</b> so'raydi.</>, ru: <>+ складывает, &lt; проверяет «меньше» — «равно ли?» спрашивает только <b>==</b>.</> }
       }
     ]
   }
@@ -381,7 +381,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -399,7 +399,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -408,13 +408,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -497,7 +497,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед тем как продолжить, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -506,7 +506,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -639,7 +639,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -647,8 +647,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -660,11 +661,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -948,8 +949,8 @@ const Screen4 = (props) => (
     questionText="if blokining ichidagi kod qachon ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>if blokining ichidagi kod <span className="italic" style={{ color: T.accent }}>qachon</span> ishlaydi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Когда</span> работает код внутри блока if?</> })}</h2></>}
     options={[{ uz: 'Doim, har safar', ru: 'Всегда, каждый раз' }, { uz: 'Hech qachon', ru: 'Никогда' }, { uz: "Shart yolg'on (`false`) bo'lganda", ru: 'Когда условие ложно (`false`)' }, { uz: "Shart rost (`true`) bo'lganda", ru: 'Когда условие истинно (`true`)' }]} correctIdx={3}
-    explainCorrect={{ uz: "`if` ichidagi kod faqat shart `true` bo'lganda ishlaydi. `false` bo'lsa — o'tkazib yuboriladi.", ru: 'Код внутри `if` работает, только когда условие `true`. Если `false` — он пропускается.' }}
-    explainWrong={{ 0: { uz: "Yo'q — doim emas. Faqat shart `true` bo'lganda ishlaydi.", ru: 'Нет — не всегда. Только когда условие `true`.' }, 1: { uz: "Yo'q — shart `true` bo'lsa ishlaydi.", ru: 'Нет — он работает, когда условие `true`.' }, 2: { uz: "Aksincha — `false` bo'lsa o'tkazib yuboriladi. `true` bo'lsa ishlaydi.", ru: 'Наоборот — при `false` он пропускается. Работает при `true`.' }, default: { uz: "`if` ichidagi kod shart `true` bo'lganda ishlaydi.", ru: 'Код внутри `if` работает, когда условие `true`.' } }} />
+    explainCorrect={{ uz: "`if` shartga qarab ishlaydi: `false` bo'lsa, kod o'tkaziladi.", ru: '`if` смотрит на условие: при `false` код пропускается.' }}
+    explainWrong={{ 0: { uz: "`if` har safar ishlamaydi — u avval shartni tekshiradi.", ru: '`if` срабатывает не каждый раз — сначала он проверяет условие.' }, 1: { uz: "`if` o'chib qolmaydi — u shartga qarab qaror qiladi.", ru: '`if` не выключается насовсем — он решает по условию.' }, 2: { uz: "`false` bo'lganda `if` ichidagi kod o'tkazib yuboriladi.", ru: 'При `false` код внутри `if` как раз пропускается.' }, default: { uz: "PIN-kod misolini eslang: telefon qachon ochiladi?", ru: 'Вспомните пример с PIN-кодом: когда телефон открывается?' } }} />
 );
 
 // ===== SCREEN 5 — else · ID-karta misoli (F-0914-01) =====
@@ -1003,12 +1004,12 @@ const Screen5b = (props) => (
     questionText="Shart false (yolg'on) bo'lsa, qaysi blok ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shart <span className="italic" style={{ color: T.accent }}>false</span> bo'lsa, qaysi blok ishlaydi?</>, ru: <>Если условие <span className="italic" style={{ color: T.accent }}>false</span>, какой блок работает?</> })}</h2></>}
     options={[{ uz: '`if` bloki', ru: 'Блок `if`' }, { uz: '`else` bloki', ru: 'Блок `else`' }, { uz: 'Ikkalasi', ru: 'Оба' }, { uz: 'Hech biri', ru: 'Ни один' }]} correctIdx={1}
-    explainCorrect={{ uz: "Shart `false` bo'lsa, `if` bloki o'tkazib yuboriladi va `else` bloki ishlaydi.", ru: 'Если условие `false`, блок `if` пропускается и работает блок `else`.' }}
+    explainCorrect={{ uz: "Shart `false` bo'lsa, `if` o'tkazib yuboriladi va `else` ishlaydi.", ru: 'При `false` блок `if` пропускается, и работает `else`.' }}
     explainWrong={{
-      0: { uz: "Yo'q — `if` bloki shart `true` bo'lganda ishlaydi. `false` bo'lsa — `else`.", ru: 'Нет — блок `if` работает при условии `true`. Если `false` — `else`.' },
-      2: { uz: "Yo'q — har doim faqat bittasi ishlaydi, ikkalasi emas.", ru: 'Нет — всегда работает только один, а не оба.' },
-      3: { uz: "Yo'q — `else` aynan shu holat uchun: `false` bo'lsa `else` ishlaydi.", ru: 'Нет — `else` именно для этого случая: при `false` работает `else`.' },
-      default: { uz: "`false` bo'lsa — `else` bloki ishlaydi.", ru: 'Если `false` — работает блок `else`.' }
+      0: { uz: "`if` bloki shart `false` bo'lganda o'tkazib yuboriladi.", ru: 'При `false` блок `if` пропускается.' },
+      2: { uz: "`if`/`else` da ikkalasi birga ishlamaydi — faqat bittasi.", ru: 'В `if`/`else` оба блока вместе не работают — только один.' },
+      3: { uz: "`if`/`else` da doim bitta blok albatta ishlaydi.", ru: 'В `if`/`else` один блок работает всегда.' },
+      default: { uz: "Yomg'ir yo'q bo'lsa, qaysi buyruq bajarilardi?", ru: 'Если дождя нет, какая команда выполнится?' }
     }} />
 );
 
@@ -1150,10 +1151,10 @@ const Screen9 = (props) => (
     options={['`==`', '`=`', '`+`', '`<`']} correctIdx={0}
     explainCorrect={{ uz: "`==` ikki qiymatni taqqoslab, `true` yoki `false` qaytaradi.", ru: '`==` сравнивает два значения и возвращает `true` или `false`.' }}
     explainWrong={{
-      1: { uz: "`=` qiymatni qutiga soladi, tekshirmaydi. Tenglikni `==` tekshiradi.", ru: '`=` кладёт значение в коробку, а не проверяет. Равенство проверяет `==`.' },
-      2: { uz: "`+` qo'shish amali, taqqoslash emas. Tenglik — `==`.", ru: '`+` — сложение, а не сравнение. Равенство — `==`.' },
-      3: { uz: '`<` kichikligini tekshiradi, tenglikni emas. Tenglik — `==`.', ru: '`<` проверяет «меньше», а не равенство. Равенство — `==`.' },
-      default: { uz: 'Tenglikni `==` tekshiradi.', ru: 'Равенство проверяет `==`.' }
+      1: { uz: "`=` qiymatni qutiga soladi, hech narsani tekshirmaydi.", ru: '`=` кладёт значение в коробку и ничего не проверяет.' },
+      2: { uz: "`+` qo'shish amali, u taqqoslamaydi.", ru: '`+` — это сложение, он не сравнивает.' },
+      3: { uz: '`<` kichikligini tekshiradi, tenglikni emas.', ru: '`<` проверяет «меньше», а не равенство.' },
+      default: { uz: 'Qaysi belgi «tengmi?» deb so\'raydi — shuni eslang.', ru: 'Вспомните, какой знак спрашивает «равны ли?».' }
     }} />
 );
 

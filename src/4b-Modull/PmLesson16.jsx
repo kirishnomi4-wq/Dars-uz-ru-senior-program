@@ -266,38 +266,38 @@ const RECAPS = {
   3: {
     title: { uz: 'Sifat — ilova aytganini qiladi', ru: 'Качество — приложение делает то, что обещало' },
     cards: [
-      { ic: '✅', h: { uz: 'Sifat nima', ru: 'Что такое качество' }, body: { uz: <>Ilova <b>har safar aytganini qilsa</b> — buni sifat deyiladi. Bosgan tugmangiz nima va'da qilsa, o'shani qiladi.</>, ru: <>Если приложение <b>каждый раз делает то, что обещало</b>, — это и есть качество. Кнопка делает ровно то, что обещает.</> } },
-      { ic: '😒', h: { uz: 'Yoqmagan narsa nosozlik emas', ru: 'То, что не понравилось, — не поломка' }, body: { uz: <>Skuter uzoqda turgani yoki narx kecha arzonroq bo'lgani — <b>ilova aytganini qilgan</b>. Bu yoqmagan narsa, nosozlik emas.</>, ru: <>Самокат стоит далеко или вчера цена была ниже — <b>приложение сделало то, что обещало</b>. Это не понравилось, но это не поломка.</> } },
-      { ic: '⚠️', h: { uz: 'Nosozlik qachon boshlanadi', ru: 'Когда начинается поломка' }, body: { uz: <>Ilova aytganini <b>qilmasa</b> — bu xato; bunday xatoni nosozlik deyiladi.</>, ru: <>Если приложение <b>не делает</b> обещанного — это ошибка; такую ошибку называют поломкой.</> }, ask: { uz: "Bugun ilovada nimadir aytganini qilmadimi — nima bosdingiz, nima bo'lmadi?", ru: 'Сегодня приложение чего-то не сделало? Что нажали и что не произошло?' } }
+      { ic: '✅', h: { uz: 'Sifat nima', ru: 'Что такое качество' }, body: { uz: <>Ilova har safar <b>aytganini qilsa</b> — buni sifat deyiladi.</>, ru: <>Если приложение каждый раз <b>делает обещанное</b> — это и есть качество.</> } },
+      { ic: '😒', h: { uz: 'Yoqmagan narsa nosozlik emas', ru: 'То, что не понравилось, — не поломка' }, body: { uz: <>Skuter uzoqda yoki narx qimmat bo'lsa — bu <b>yoqmagan narsa</b>, nosozlik emas.</>, ru: <>Самокат далеко или цена выросла — это <b>не нравится</b>, но это не поломка.</> } },
+      { ic: '⚠️', h: { uz: 'Nosozlik qachon boshlanadi', ru: 'Когда начинается поломка' }, body: { uz: <>Ilova aytganini qilmasa — bu <b>nosozlik</b>.</>, ru: <>Если приложение не делает обещанного — это <b>поломка</b>.</> }, ask: { uz: "Bugun ilovada nimadir aytganini qilmadimi — nima bosdingiz, nima bo'lmadi?", ru: 'Сегодня приложение чего-то не сделало? Что нажали и что не произошло?' } }
     ]
   },
   5: {
     title: { uz: 'Kech topilgan nosozlik qimmat', ru: 'Поздно найденная поломка дороже' },
     cards: [
-      { ic: '⚖️', h: { uz: 'Darsning qoidasi', ru: 'Правило урока' }, body: { uz: <>Nosozlik qancha <b>kech topilsa</b>, shuncha qimmatga tushadi. Bitta nosozlik — uch joyda uch xil narx.</>, ru: <>Чем <b>позже найдена</b> поломка, тем дороже она обходится. Одна поломка — три места, три цены.</> } },
-      { ic: '🧑‍💻', h: { uz: "Narx nimada o'lchanadi", ru: 'В чём измеряется цена' }, body: { uz: <>Kod yozilayotganda tutilsa — bir necha <b>daqiqa</b>. Odamlar qo'lida chiqsa — <b>ketgan odamlar</b>.</>, ru: <>Поймали при написании кода — несколько <b>минут</b>. Вылезло у людей в руках — <b>ушедшие пользователи</b>.</> } },
-      { ic: '📦', h: { uz: "O'rtadagi nuqta", ru: 'Точка посередине' }, body: { uz: <>Chiqarishdan oldin tutilgan nosozlik bir kunga tushadi: chiqarish suriladi, lekin <b>odam ko'rmaydi</b>.</>, ru: <>Поломка, пойманная перед выпуском, стоит один день: выпуск сдвинут, но <b>люди её не видят</b>.</> }, ask: { uz: "Ilova odamlarga yetguncha uch nuqtadan o'tadi — qaysi nuqtada tutish arzonroq?", ru: 'Пока приложение доходит до людей, оно проходит три точки — в какой ловить дешевле?' } }
+      { ic: '⚖️', h: { uz: 'Darsning qoidasi', ru: 'Правило урока' }, body: { uz: <>Nosozlik qancha <b>kech</b> topilsa, shuncha qimmatga tushadi.</>, ru: <>Чем <b>позже</b> найдена поломка, тем дороже она обходится.</> } },
+      { ic: '🧑‍💻', h: { uz: "Narx nimada o'lchanadi", ru: 'В чём измеряется цена' }, body: { uz: <>Kod yozilayotganda tutilsa — bir necha daqiqa, odamlar qo'lida chiqsa — <b>ketgan odamlar</b>.</>, ru: <>Поймали при написании кода — несколько минут, у людей в руках — <b>ушедшие пользователи</b>.</> } },
+      { ic: '📦', h: { uz: "O'rtadagi nuqta", ru: 'Точка посередине' }, body: { uz: <>Chiqarishdan oldin tutilgan nosozlik <b>bir kun</b>ga tushadi, lekin odam uni ko'rmaydi.</>, ru: <>Поломка, пойманная перед выпуском, стоит <b>один день</b>, но люди её не видят.</> }, ask: { uz: "Ilova odamlarga yetguncha uch nuqtadan o'tadi — qaysi nuqtada tutish arzonroq?", ru: 'Пока приложение доходит до людей, оно проходит три точки — в какой ловить дешевле?' } }
     ]
   },
   7: {
     title: { uz: 'Cyberpunk misolida', ru: 'На примере Cyberpunk' },
     cards: [
-      { ic: '🎮', h: { uz: 'Nosozliklar qayerda chiqdi', ru: 'Где вылезли поломки' }, body: { uz: <>2020-yilda chiqqan o'yin nosozliklari <b>sotib olgan o'yinchilar qo'lida</b> chiqdi — yo'lning oxirgi nuqtasi.</>, ru: <>Поломки игры, вышедшей в 2020 году, вылезли <b>в руках у купивших игроков</b> — последняя точка пути.</> } },
-      { ic: '💸', h: { uz: "Narxi qanday bo'ldi", ru: 'Во что это обошлось' }, body: { uz: <>Odamlar pulini qaytarishni so'radi, Sony esa o'yinni do'kondan <b>qariyb yarim yilga</b> olib tashladi.</>, ru: <>Люди потребовали вернуть деньги, а Sony убрала игру из магазина <b>почти на полгода</b>.</> } },
-      { ic: '⚖️', h: { uz: 'Tarozining oxirgi nuqtasi', ru: 'Последняя точка весов' }, body: { uz: <>Oldin tutilganda buning hech biri bo'lmasdi — <b>o'sha nosozlik</b>, boshqa narx.</>, ru: <>Поймали бы раньше — ничего этого не было бы: <b>та же поломка</b>, другая цена.</> }, ask: { uz: "Bu nosozliklar qachon tutilsa, do'kondan olib tashlash umuman bo'lmasdi?", ru: 'Когда надо было поймать эти поломки, чтобы игру вообще не убрали из магазина?' } }
+      { ic: '🎮', h: { uz: 'Nosozliklar qayerda chiqdi', ru: 'Где вылезли поломки' }, body: { uz: <>2020-yilgi o'yin nosozliklari <b>o'yinchilar qo'lida</b> chiqdi — yo'lning oxirgi nuqtasida.</>, ru: <>Поломки игры 2020 года вылезли <b>в руках у игроков</b> — в последней точке пути.</> } },
+      { ic: '💸', h: { uz: "Narxi qanday bo'ldi", ru: 'Во что это обошлось' }, body: { uz: <>Pul qaytarish so'raldi, Sony esa o'yinni do'kondan <b>qariyb yarim yilga</b> olib tashladi.</>, ru: <>Люди потребовали вернуть деньги, а Sony убрала игру из магазина почти на <b>полгода</b>.</> } },
+      { ic: '⚖️', h: { uz: 'Tarozining oxirgi nuqtasi', ru: 'Последняя точка весов' }, body: { uz: <>Oldin tutilganda buning hech biri bo'lmasdi — o'sha nosozlik, <b>boshqa narx</b>.</>, ru: <>Поймали бы раньше — ничего этого не было бы: та же поломка, <b>другая цена</b>.</> }, ask: { uz: "Bu nosozliklar qachon tutilsa, do'kondan olib tashlash umuman bo'lmasdi?", ru: 'Когда надо было поймать эти поломки, чтобы игру вообще не убрали из магазина?' } }
     ]
   },
   11: {
     title: { uz: "Navbat: birinchi — hammada to'xtatadigani", ru: 'Очередь: первой — та, что останавливает всех' },
     cards: [
-      { ic: '❓', h: { uz: 'Har kartaga ikki savol', ru: 'К каждой карточке два вопроса' }, body: { uz: <>Bu <b>kimda</b> bo'ladi — hammadami yoki ba'zilardami? Va <b>nima bo'ladi</b> — ish to'xtaydimi yoki noqulay, lekin ishlaydimi?</>, ru: <>У <b>кого</b> это происходит — у всех или у некоторых? И <b>что</b> происходит — работа останавливается или неудобно, но работает?</> } },
-      { ic: '🗂', h: { uz: 'Javon hukmdan chiqadi', ru: 'Полка выходит из приговора' }, body: { uz: <>Ikkalasi ham og'ir — <b>Hozir</b>. Bittasi og'ir — <b>Bugun</b>. Ikkalasi ham yengil — <b>Keyin</b>.</>, ru: <>Оба ответа тяжёлые — <b>Сейчас</b>. Один тяжёлый — <b>Сегодня</b>. Оба лёгкие — <b>Потом</b>.</> } },
-      { ic: '🔴', h: { uz: 'Birinchi nima tuzatiladi', ru: 'Что чинят первым' }, body: { uz: <>Birinchi — <b>hammada ishni to'xtatadigani</b>: eng ko'p odamni eng qattiq to'xtatadi.</>, ru: <>Первой — та, что <b>останавливает работу у всех</b>: больше всего людей и жёстче всего.</> }, ask: { uz: "Ikki karta bitta javonga tushsa, qaysi biri oldin tuzatiladi deb o'ylaysiz?", ru: 'Если две карточки попали на одну полку, какую, по-вашему, чинят первой?' } }
+      { ic: '❓', h: { uz: 'Har kartaga ikki savol', ru: 'К каждой карточке два вопроса' }, body: { uz: <>Har kartaga ikki savol: <b>kimda</b> bo'ladi va ish <b>to'xtaydimi</b>?</>, ru: <>Каждой карточке два вопроса: <b>у кого</b> это и <b>останавливается</b> ли работа?</> } },
+      { ic: '🗂', h: { uz: 'Javon hukmdan chiqadi', ru: 'Полка выходит из приговора' }, body: { uz: <>Ikkalasi og'ir — <b>Hozir</b>, bittasi og'ir — Bugun, ikkalasi yengil — Keyin.</>, ru: <>Оба тяжёлые — <b>Сейчас</b>, один тяжёлый — Сегодня, оба лёгкие — Потом.</> } },
+      { ic: '🔴', h: { uz: 'Birinchi nima tuzatiladi', ru: 'Что чинят первым' }, body: { uz: <>Birinchi <b>hammada ishni to'xtatadigan</b> nosozlik tuzatiladi.</>, ru: <>Первой чинят поломку, которая <b>останавливает работу у всех</b>.</> }, ask: { uz: "Ikki karta bitta javonga tushsa, qaysi biri oldin tuzatiladi deb o'ylaysiz?", ru: 'Если две карточки попали на одну полку, какую, по-вашему, чинят первой?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -315,7 +315,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -323,13 +323,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -408,7 +408,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -489,7 +489,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -497,8 +497,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -509,7 +510,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -816,11 +817,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: 'Uch holatdan qaysi biri nosozlik', ru: 'Какой из трёх случаев — поломка' })}
     options={[tr({ uz: "Ilova har ochilganda reklama ko'rsatadi", ru: 'Приложение при каждом открытии показывает рекламу' }), tr({ uz: "Ilova naqd pulni olmaydi — faqat karta", ru: 'Приложение не принимает наличные — только карту' }), tr({ uz: 'QR skanerlandi, skuter qulfi ochilmadi', ru: 'QR отсканирован, а замок самоката не открылся' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Ilova aytganini qilmadi; qolgan ikkitasi yoqmagan narsa, ilova ularda aytganini qilgan.", ru: 'Приложение не сделало обещанного; остальные два случая просто не понравились, там приложение обещанное выполнило.' })}
+    explainCorrect={tr({ uz: "Ilova qulfni ochishni va'da qilgan, lekin bajarmadi.", ru: 'Приложение обещало открыть замок — и не выполнило обещание.' })}
     explainWrong={{
-      0: tr({ uz: 'Reklama jahlni chiqaradi, lekin ilova shunday tuzilgan — aytganini qilgan; bu yoqmagan narsa.', ru: 'Реклама раздражает, но приложение так и устроено — обещанное выполнено; это просто не нравится.' }),
-      1: tr({ uz: "Ilova naqd pulni hech qachon va'da qilmagan — aytganini qilgan; bu yoqmagan narsa.", ru: 'Приложение никогда не обещало наличные — обещанное выполнено; это просто не нравится.' }),
-      default: tr({ uz: 'Nosozlik — ilova aytganini qilmagan holat: qulf ochilishi kerak edi, ochilmadi.', ru: 'Поломка — это когда приложение не сделало обещанного: замок должен был открыться и не открылся.' })
+      0: tr({ uz: 'Reklama jahlni chiqaradi, lekin ilova aytganini qilyapti.', ru: 'Реклама раздражает, но приложение делает то, что обещало.' }),
+      1: tr({ uz: "Ilova naqd pulni va'da qilmagan — bu shunchaki yoqmaydi.", ru: 'Наличные приложение не обещало — это просто не нравится.' }),
+      default: tr({ uz: 'Nosozlik — ilova va\'da qilganini qilmagan holat.', ru: 'Поломка — когда приложение не сделало обещанного.' })
     }}
   />
 );
@@ -974,11 +975,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: "Kod yozilayotganda tutilgan nosozlikdan keyin ilovaga nima bo'ladi", ru: 'Что будет с приложением после поломки, пойманной при написании кода' })}
     options={[tr({ uz: "Hech kim sezmaydi — o'sha kuni tuzatiladi", ru: 'Никто не заметит — починят в тот же день' }), tr({ uz: 'Sharhlarda odamlar shikoyat yoza boshlaydi', ru: 'В отзывах люди начнут жаловаться' }), tr({ uz: 'Chiqarish bir necha kunga surilib ketadi', ru: 'Выпуск сдвинется на несколько дней' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Kod yozilayotganda tutilgan nosozlik eng arzon: odamga yetmaydi, chiqarishni ham surmaydi.", ru: 'Поломка, пойманная при написании кода, самая дешёвая: до людей не доходит и выпуск не сдвигает.' })}
+    explainCorrect={tr({ uz: "Kod yozilayotganda tutilgan nosozlik eng arzon tushadi.", ru: 'Поломка, пойманная при написании кода, — самая дешёвая.' })}
     explainWrong={{
-      1: tr({ uz: "Sharhlar — nosozlik odamlar qo'lida chiqqanda boshlanadi. Bu yerda u dasturchi stolida tutildi.", ru: 'Отзывы начинаются, когда поломка вылезает в руках у людей. Здесь её поймали ещё на столе у программиста.' }),
-      2: tr({ uz: "Chiqarish surilishi — nosozlik chiqarishdan oldin tutilganda bo'ladi. Bu yerda u undan ham oldin tutildi.", ru: 'Выпуск сдвигается, когда поломку ловят перед выпуском. Здесь её поймали ещё раньше.' }),
-      default: tr({ uz: 'Kod yozilayotganda tutilgan nosozlik odamga yetmaydi va chiqarishni surmaydi.', ru: 'Поломка, пойманная при написании кода, до людей не доходит и выпуск не сдвигает.' })
+      1: tr({ uz: "Sharhlar nosozlik odamlar qo'liga yetganda boshlanadi.", ru: 'Отзывы появляются, когда поломка доходит до людей.' }),
+      2: tr({ uz: "Chiqarish nosozlik chiqarish oldidan tutilganda suriladi.", ru: 'Выпуск сдвигается, когда поломку ловят прямо перед ним.' }),
+      default: tr({ uz: 'Nosozlik qaysi bosqichda tutilganiga qarang.', ru: 'Посмотрите, на каком этапе поймали поломку.' })
     }}
   />
 );
@@ -1083,10 +1084,10 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Cyberpunk nosozliklari qachon tutilsa eng arzon', ru: 'Когда поломки Cyberpunk дешевле всего поймать' })}
     options={[tr({ uz: "Sony o'yinni do'kondan olib tashlagan kuni", ru: 'В день, когда Sony убрала игру из магазина' }), tr({ uz: "O'yin sotuvga chiqarilishidan oldin", ru: 'До того как игра поступила в продажу' }), tr({ uz: 'Birinchi sharhlar chiqqanidan bir kun oldin', ru: 'За день до первых отзывов' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "O'yinchilar qo'lida chiqqan nosozlik pul qaytarish va yarim yillik yo'qlikka aylandi; oldin tutilsa, buning hech biri bo'lmasdi.", ru: 'Поломка, вылезшая в руках у игроков, обернулась возвратами и полугодом отсутствия в магазине; поймали бы раньше — ничего этого не было бы.' })}
+    explainCorrect={tr({ uz: "Oldin tutilsa, pul qaytarish ham, yo'qlik ham bo'lmasdi.", ru: 'Поймали бы раньше — не было бы ни возвратов, ни ухода из магазина.' })}
     explainWrong={{
-      0: tr({ uz: "O'sha kuni nosozliklar allaqachon o'yinchilar qo'lida edi — narx to'lanib bo'lgan.", ru: 'В тот день поломки уже были в руках у игроков — цена уже заплачена.' }),
-      2: tr({ uz: "Birinchi sharhlargacha ham o'yin sotuvda edi — nosozliklar odamlar qo'lida chiqib bo'lgan.", ru: 'До первых отзывов игра уже была в продаже — поломки уже вылезли в руках у людей.' }),
+      0: tr({ uz: "O'sha kuni nosozliklar allaqachon o'yinchilar qo'lida edi.", ru: 'В тот день поломки уже были в руках у игроков.' }),
+      2: tr({ uz: "Sharhlardan oldin ham o'yin sotuvda — odamlar qo'lida edi.", ru: 'До первых отзывов игра уже продавалась — она была у людей.' }),
       default: 'Eng arzoni — o\'yin sotuvga chiqarilishidan oldin: hech kimning qo\'liga yetmaydi.'
     }}
   />
@@ -1786,11 +1787,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Uch nosozlikdan qaysi biri birinchi tuzatiladi', ru: 'Какую из трёх поломок чинят первой' })}
     options={[tr({ uz: 'Hammada: ilova ochilganda oq ekran chiqadi', ru: 'У всех: при открытии приложения белый экран' }), tr({ uz: "Hammada: safar cheki mayda, o'qish qiyin", ru: 'У всех: чек поездки мелкий, читать трудно' }), tr({ uz: "Ba'zilarda: eski telefonda xarita sekin ochiladi", ru: 'У некоторых: на старом телефоне карта открывается медленно' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Hammada bo'ladi va ilova umuman ochilmaydi: ikkalasi ham og'ir.", ru: 'Это у всех, и приложение вообще не открывается: оба ответа тяжёлые.' })}
+    explainCorrect={tr({ uz: "Hammada bo'ladi va ilova umuman ochilmaydi — ikkalasi og'ir.", ru: 'Это у всех, и приложение не открывается — оба ответа тяжёлые.' })}
     explainWrong={{
-      1: tr({ uz: "Chek mayda bo'lsa noqulay, lekin safar ham, ijara ham bo'laveradi — bittasi og'ir.", ru: 'Мелкий чек неудобен, но и поездка, и аренда состоятся — тяжёлый только один ответ.' }),
-      2: tr({ uz: 'Sekin ochilsa charchatadi, lekin faqat eski telefonlarda va xarita baribir ochiladi.', ru: 'Медленное открытие утомляет, но только на старых телефонах, и карта всё равно открывается.' }),
-      default: tr({ uz: "Birinchi — hammada bo'ladigan va ishni to'xtatadigan nosozlik.", ru: 'Первой — та поломка, что бывает у всех и останавливает работу.' })
+      1: tr({ uz: "Mayda chek noqulay, lekin safar baribir bo'ladi.", ru: 'Мелкий чек неудобен, но поездка всё равно состоится.' }),
+      2: tr({ uz: 'Faqat eski telefonda sekin, xarita baribir ochiladi.', ru: 'Медленно — только на старых телефонах, и карта всё же открывается.' }),
+      default: tr({ uz: "Har kartaga ikki savol bering: kimda bo'ladi, nima bo'ladi?", ru: 'Задайте каждой карточке два вопроса: у кого и что происходит?' })
     }}
   />
 );

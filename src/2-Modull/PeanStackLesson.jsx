@@ -235,20 +235,20 @@ const RECAPS = {
       {
         ic: "🍽️",
         h: { uz: "Sayt — bu restoran", ru: 'Сайт — это ресторан' },
-        body: { uz: <>Restoranda <b>zal</b> bor: mijoz o'tiradigan, menyu ko'radigan, ovqat keladigan joy. Saytda ham xuddi shunday ko'rinadigan qism bor — bu <b>frontend</b>.</>, ru: <>В ресторане есть <b>зал</b>: там гость сидит, смотрит меню, туда приносят еду. У сайта тоже есть такая видимая часть — это <b>frontend</b>.</> },
+        body: { uz: <>Restoranda mijoz ko'radigan zal bor, saytda esa bunday qism <b>frontend</b> deyiladi.</>, ru: <>Как у ресторана есть зал для гостей, у сайта есть видимая часть — <b>frontend</b>.</> },
         vis: <RcFlow items={[{ uz: 'mijoz', ru: 'гость' }, { uz: "zal (ko'rinadi)", ru: 'зал (видно)' }, { uz: 'oshxona (yashirin)', ru: 'кухня (скрыта)' }]} />
       },
       {
         ic: "👀",
         h: { uz: "Frontend — siz ko'rgan hamma narsa", ru: 'Frontend — всё, что Вы видите' },
-        body: { uz: <>Tugmalar, rasmlar, matn, ranglar — brauzerda <b>ko'rgan va bosgan</b> hamma narsa frontend. Uni ko'pincha <b>React</b> yasaydi.</>, ru: <>Кнопки, картинки, текст, цвета — всё, что Вы <b>видите и нажимаете</b> в браузере, — это frontend. Чаще всего его собирает <b>React</b>.</> },
+        body: { uz: <>Brauzerda ko'rgan va bosgan hamma narsangiz — tugma, rasm, matn — <b>frontend</b>.</>, ru: <>Всё, что Вы видите и нажимаете в браузере, — кнопки, картинки, текст — это <b>frontend</b>.</> },
         vis: <RcFlow items={[{ uz: 'tugma', ru: 'кнопка' }, { uz: 'rasm', ru: 'картинка' }, { uz: 'matn', ru: 'текст' }, { uz: 'rang', ru: 'цвет' }]} sep="·" />,
         ask: { uz: "Hozir ekranda ko'rib turgan qaysi narsalar frontendga tegishli?", ru: 'Что из того, что сейчас на экране, относится к frontend?' }
       },
       {
         ic: "🔒",
         h: { uz: "Backend — ko'rinmaydigan qism", ru: 'Backend — невидимая часть' },
-        body: { uz: <>Frontendning teskarisi <b>backend</b>: server va baza — restoranning <b>oshxonasi</b> kabi yashirin ishlaydi. Mijoz uni ko'rmaydi, lekin ovqat o'sha yerda tayyorlanadi.</>, ru: <>Противоположность frontend — это <b>backend</b>: сервер и база данных работают скрыто, как <b>кухня</b> ресторана. Гость её не видит, но еда готовится именно там.</> },
+        body: { uz: <><b>Backend</b> — server va baza, ular restoran oshxonasi kabi yashirin ishlaydi.</>, ru: <><b>Backend</b> — сервер и база, они работают скрыто, как кухня ресторана.</> },
       },
     ]
   },
@@ -260,20 +260,20 @@ const RECAPS = {
       {
         ic: "🌐",
         h: { uz: 'Ilgari JavaScript faqat brauzerda edi', ru: 'Раньше JavaScript жил только в браузере' },
-        body: { uz: <>Avval JavaScript faqat <b>brauzer ichida</b>, ya'ni zalda ishlardi. Oshxonaga (serverga) kira olmasdi.</>, ru: <>Раньше JavaScript работал только <b>внутри браузера</b>, то есть в зале. На кухню (сервер) ему вход был закрыт.</> },
+        body: { uz: <>Avval JavaScript faqat brauzerda (zalda) ishlardi, oshxonaga kira olmasdi.</>, ru: <>Раньше JavaScript работал только в браузере (в зале), на кухню ему вход был закрыт.</> },
         vis: <RcFlow items={['JavaScript', { uz: 'faqat brauzer', ru: 'только браузер' }]} />
       },
       {
         ic: "👨‍🍳",
         h: { uz: 'Node.js — JS ni oshxonaga olib kirdi', ru: 'Node.js привёл JS на кухню' },
-        body: { uz: <>Node.js — bu <b>JavaScriptni serverda</b> ishlatadigan vosita. Endi bir tilda ham zal (frontend), ham <b>oshxona (server)</b> yozish mumkin.</>, ru: <>Node.js — это инструмент, который запускает <b>JavaScript на сервере</b>. Теперь на одном языке можно писать и зал (frontend), и <b>кухню (сервер)</b>.</> },
+        body: { uz: <><b>Node.js</b> JavaScript'ni serverda ishlatadi, endi zal ham, oshxona ham bir tilda.</>, ru: <><b>Node.js</b> запускает JavaScript на сервере — теперь зал и кухню пишут на одном языке.</> },
         vis: <RcFlow items={['JavaScript', 'Node.js', { uz: 'serverda ishlaydi', ru: 'работает на сервере' }]} />,
         ask: { uz: "Bir xil tilda ham zal, ham oshxona yozish nega qulay?", ru: 'Почему удобно писать и зал, и кухню на одном языке?' }
       },
       {
         ic: "❌",
         h: { uz: 'Node.js nima QILMAYDI', ru: 'Чего Node.js НЕ делает' },
-        body: { uz: <>U sahifani bezamaydi (bu CSS ishi), rasm tahrirlamaydi, internet tezligini oshirmaydi. Uning yagona vazifasi — <b>JS ni serverda ishga tushirish</b>.</>, ru: <>Он не украшает страницу (это работа CSS), не редактирует картинки, не ускоряет интернет. Его единственная задача — <b>запускать JS на сервере</b>.</> },
+        body: { uz: <>Node.js sahifani bezamaydi, rasm tahrirlamaydi — u faqat <b>JS'ni serverda</b> ishlatadi.</>, ru: <>Node.js не украшает страницу и не редактирует картинки — он только запускает <b>JS на сервере</b>.</> },
       },
     ]
   },
@@ -285,20 +285,20 @@ const RECAPS = {
       {
         ic: "🏪",
         h: { uz: 'Baza — restoranning ombori', ru: 'База данных — склад ресторана' },
-        body: { uz: <>Restoranda mahsulotlar <b>omborda</b> turadi — svet o'chsa ham yo'qolmaydi. Saytda ma'lumotlar shunday doimiy joyda — <b>bazada</b> saqlanadi. Bu vazifani ko'pincha <b>PostgreSQL</b> bajaradi.</>, ru: <>В ресторане продукты лежат <b>на складе</b> — даже если выключат свет, они не исчезнут. На сайте данные хранятся в таком же постоянном месте — <b>в базе данных</b>. Обычно эту работу выполняет <b>PostgreSQL</b>.</> },
+        body: { uz: <>Mahsulotlar omborda turgandek, ma'lumotlar doimiy joyda — <b>bazada</b> saqlanadi.</>, ru: <>Как продукты лежат на складе, так данные хранятся в постоянном месте — в <b>базе</b>.</> },
         vis: <RcFlow items={['like', { uz: 'izoh', ru: 'комментарий' }, { uz: 'ombor (PostgreSQL)', ru: 'склад (PostgreSQL)' }]} />
       },
       {
         ic: "💾",
         h: { uz: "Doimiy — ya'ni yo'qolmaydi", ru: 'Постоянно — значит не исчезнет' },
-        body: { uz: <>Like bossangiz, izoh yozsangiz — ular <b>bazaga yoziladi</b>. Sahifani yangilasangiz ham, ertaga qaytib kelsangiz ham <b>joyida turadi</b>.</>, ru: <>Поставили лайк, написали комментарий — они <b>записываются в базу</b>. Обновите страницу, вернитесь завтра — всё <b>останется на месте</b>.</> },
+        body: { uz: <>Like va izohlar bazaga yoziladi, sahifani yangilasangiz ham <b>joyida</b> turadi.</>, ru: <>Лайки и комментарии записываются в базу и остаются <b>на месте</b> даже после обновления.</> },
         vis: <RcFlow items={[{ uz: 'yozdim', ru: 'написал' }, { uz: 'bazaga saqlandi', ru: 'сохранилось в базе' }, { uz: 'yangiladim', ru: 'обновил' }, { uz: 'hali ham bor', ru: 'всё на месте' }]} />,
         ask: { uz: "Nega like brauzer xotirasiga emas, bazaga saqlanishi kerak?", ru: 'Почему лайк должен храниться в базе, а не в памяти браузера?' }
       },
       {
         ic: "🚫",
         h: { uz: 'Brauzer xotirasi doimiy emas', ru: 'Память браузера — не навсегда' },
-        body: { uz: <>Agar ma'lumot faqat <b>brauzerda</b> yoki ekranda tursa, sahifa yangilanishi bilan <b>yo'qoladi</b>. Shuning uchun muhim narsalar CSS faylida emas, bazada saqlanadi.</>, ru: <>Если данные живут только <b>в браузере</b> или на экране, при обновлении страницы они <b>пропадают</b>. Поэтому важные вещи хранятся не в CSS-файле, а в базе данных.</> },
+        body: { uz: <>Faqat brauzerda turgan ma'lumot sahifa yangilanishi bilan <b>yo'qoladi</b>.</>, ru: <>Данные, которые живут только в браузере, <b>пропадают</b> при обновлении страницы.</> },
       },
     ]
   },
@@ -310,20 +310,20 @@ const RECAPS = {
       {
         ic: "🙋",
         h: { uz: 'React — mijoz buyurtma beradi', ru: 'React — гость делает заказ' },
-        body: { uz: <>Tugmani bosganingizda <b>React (zal)</b> so'rovni boshlaydi — xuddi mijoz ofitsiantga «menga shuni keltiring» deganidek.</>, ru: <>Когда Вы нажимаете кнопку, <b>React (зал)</b> отправляет запрос — как гость говорит официанту: «принесите мне вот это».</> },
+        body: { uz: <>Tugmani bossangiz, <b>React</b> so'rovni boshlaydi — mijoz buyurtma bergandek.</>, ru: <>Вы нажимаете кнопку — <b>React</b> отправляет запрос, как гость делает заказ официанту.</> },
         vis: <RcFlow items={[{ uz: 'tugma bosildi', ru: 'нажата кнопка' }, { uz: "React so'rov yubordi", ru: 'React отправил запрос' }]} />
       },
       {
         ic: "🧑‍🍳",
         h: { uz: "Express — ofitsiant so'rovni oshxonaga eltadi", ru: 'Express — официант несёт запрос на кухню' },
-        body: { uz: <>So'rov <b>Express (ofitsiant)</b> ga boradi. U qaysi so'rov qayerga borishini biladi va uni to'g'ri joyga — <b>bazaga</b> yo'naltiradi.</>, ru: <>Запрос попадает к <b>Express (официанту)</b>. Он знает, какой запрос куда идёт, и направляет его в нужное место — <b>в базу данных</b>.</> },
+        body: { uz: <><b>Express</b> so'rovni qabul qilib, uni to'g'ri joyga — bazaga yo'naltiradi.</>, ru: <><b>Express</b> принимает запрос и направляет его в нужное место — в базу.</> },
         vis: <RcFlow items={["React", "Express", "PostgreSQL"]} />,
         ask: { uz: "Nega so'rov to'g'ridan-to'g'ri bazaga emas, avval Express orqali boradi?", ru: 'Почему запрос идёт не напрямую в базу, а сначала через Express?' }
       },
       {
         ic: "📦",
         h: { uz: 'PostgreSQL javob qaytaradi', ru: 'PostgreSQL возвращает ответ' },
-        body: { uz: <>Baza kerakli ma'lumotni topib <b>orqaga qaytaradi</b>: PostgreSQL → Express → React. Shuning uchun to'g'ri yo'l <b>React → Express → PostgreSQL</b>, teskarisi emas.</>, ru: <>База находит нужные данные и <b>возвращает их обратно</b>: PostgreSQL → Express → React. Поэтому правильный путь — <b>React → Express → PostgreSQL</b>, а не наоборот.</> },
+        body: { uz: <>Baza ma'lumotni topib, uni o'sha yo'ldan <b>orqaga</b> qaytaradi: PostgreSQL → Express → React.</>, ru: <>База находит данные и возвращает их <b>обратно</b> тем же путём: PostgreSQL → Express → React.</> },
         vis: <RcFlow items={['PostgreSQL', 'Express', { uz: "React (ekranda ko'rinadi)", ru: 'React (видно на экране)' }]} />
       },
     ]
@@ -332,7 +332,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -350,7 +350,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -359,13 +359,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Далее →' })}</button>}
       </div>
     </div>
@@ -449,7 +449,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -458,7 +458,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответов мало ({answered}) — делать вывод по процентам сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -588,7 +588,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`✓ ${tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
               : waiting
@@ -596,8 +596,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(isMentorLive
               ? explainCorrect
               : waiting
@@ -609,11 +610,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1152,12 +1153,12 @@ const Screen4 = (props) => (
     questionText="Saytning foydalanuvchi ko'radigan va bosadigan qismi nima deb ataladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Saytning foydalanuvchi <span className="italic" style={{ color: T.accent }}>ko'radigan</span> qismi nima deb ataladi?</>, ru: <>Как называется часть сайта, которую пользователь <span className="italic" style={{ color: T.accent }}>видит</span>?</> })}</h2></>}
     options={['Backend', 'Frontend', tr({ uz: 'Baza (database)', ru: 'База (database)' }), tr({ uz: 'Server', ru: 'Сервер' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Frontend — ekrandagi hamma narsa: tugmalar, ranglar, kartochkalar. Restorandagi zal kabi.", ru: 'Верно! Frontend — всё, что на экране: кнопки, цвета, карточки. Как зал в ресторане.' })}
+    explainCorrect={tr({ uz: "Frontend — ekrandagi hamma narsa, restorandagi zal kabi.", ru: 'Frontend — всё, что на экране, как зал в ресторане.' })}
     explainWrong={{
-      0: tr({ uz: "Backend — aksincha, ko'rinmas qism (oshxona). Ko'rinadigan qism — frontend.", ru: 'Backend — наоборот, невидимая часть (кухня). Видимая часть — frontend.' }),
-      2: tr({ uz: "Baza ma'lumotni saqlaydi, u ham ko'rinmas qismda. Ko'rinadigani — frontend.", ru: 'База хранит данные, она тоже в невидимой части. Видимая часть — frontend.' }),
-      3: tr({ uz: "Server — backend ishlaydigan kompyuter. Foydalanuvchi ko'radigani — frontend.", ru: 'Сервер — компьютер, где работает backend. Пользователь видит frontend.' }),
-      default: tr({ uz: "Ko'rinadigan qism — frontend.", ru: 'Видимая часть — frontend.' })
+      0: tr({ uz: "Backend — ko'rinmas qism, restoranning oshxonasi.", ru: 'Backend — невидимая часть, кухня ресторана.' }),
+      2: tr({ uz: "Baza ma'lumot saqlaydi va ko'rinmas qismda turadi.", ru: 'База хранит данные и находится в невидимой части.' }),
+      3: tr({ uz: "Server — backend ishlaydigan kompyuter, u ko'rinmaydi.", ru: 'Сервер — компьютер, где работает backend, его не видно.' }),
+      default: tr({ uz: "Restoran zalini eslang: mijoz nimani ko'radi?", ru: 'Вспомните зал ресторана: что видит гость?' })
     }} />
 );
 
@@ -1221,12 +1222,12 @@ const Screen5b = (props) => (
     questionText="Node.js nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.success }}>Node.js</span> nima qiladi?</>, ru: <>Что делает <span className="italic" style={{ color: T.success }}>Node.js</span>?</> })}</h2></>}
     options={[tr({ uz: 'Sahifani bezaydi (`CSS` kabi)', ru: 'Украшает страницу (как `CSS`)' }), tr({ uz: "`JavaScript`'ni serverda ishlatadi", ru: 'Запускает `JavaScript` на сервере' }), tr({ uz: 'Rasmlarni tahrirlab beradi', ru: 'Редактирует картинки' }), tr({ uz: 'Internet tezligini oshiradi', ru: 'Ускоряет интернет' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Node.js — dvigatel: JS kodini brauzersiz, serverda ishlatadi. Backend shu dvigatel ustida quriladi.", ru: 'Верно! Node.js — двигатель: запускает JS-код без браузера, на сервере. Backend строится на этом двигателе.' })}
+    explainCorrect={tr({ uz: "Node.js — dvigatel: JS endi brauzersiz, serverda ishlaydi.", ru: 'Node.js — двигатель: JS работает без браузера, на сервере.' })}
     explainWrong={{
-      0: tr({ uz: "Bezash — CSS'ning ishi, frontendda. Node.js esa JS'ni serverda ishlatadi.", ru: 'Украшать — работа CSS, на frontend. А Node.js запускает JS на сервере.' }),
-      2: tr({ uz: "Yo'q, Node.js rasm bilan ishlamaydi — u JS'ni serverda ishlatadigan dvigatel.", ru: 'Нет, Node.js не работает с картинками — это двигатель, запускающий JS на сервере.' }),
-      3: tr({ uz: "Tezlikka aloqasi yo'q — Node.js JS'ni serverda ishlatadi.", ru: 'К скорости он отношения не имеет — Node.js запускает JS на сервере.' }),
-      default: tr({ uz: "Node.js — JS'ni serverda ishlatadigan dvigatel.", ru: 'Node.js — двигатель, запускающий JS на сервере.' })
+      0: tr({ uz: "Bezash — CSS'ning ishi, Node.js bu bilan shug'ullanmaydi.", ru: 'Украшать — работа CSS, Node.js этим не занимается.' }),
+      2: tr({ uz: "Node.js rasmlarni tahrirlamaydi — u bunday vosita emas.", ru: 'Node.js не редактирует картинки — он не для этого.' }),
+      3: tr({ uz: "Node.js internet tezligiga ta'sir qilmaydi.", ru: 'Node.js не влияет на скорость интернета.' }),
+      default: tr({ uz: "Node.js JavaScript'ni qayerga olib kirganini eslang.", ru: 'Вспомните, куда Node.js привёл JavaScript.' })
     }} />
 );
 
@@ -1416,12 +1417,12 @@ const Screen9 = (props) => (
     questionText="Like, izoh va boshqa ma'lumotlar doimiy qayerda saqlanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Like va izohlar <span className="italic" style={{ color: T.accent }}>doimiy</span> qayerda saqlanadi?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>постоянно</span> хранятся лайки и комментарии?</> })}</h2></>}
     options={[tr({ uz: 'Brauzerda', ru: 'В браузере' }), tr({ uz: 'Telefon ekranida', ru: 'На экране телефона' }), tr({ uz: '`PostgreSQL` bazasida', ru: 'В базе `PostgreSQL`' }), tr({ uz: '`CSS` faylida', ru: 'В файле `CSS`' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Baza (PostgreSQL) — doimiy ombor: server o'chib-yonsa ham ma'lumot joyida qoladi.", ru: 'Верно! База (PostgreSQL) — постоянный склад: даже после перезапуска сервера данные остаются на месте.' })}
+    explainCorrect={tr({ uz: "Baza — doimiy ombor: server o'chsa ham ma'lumot qoladi.", ru: 'База — постоянный склад: данные остаются даже после перезапуска.' })}
     explainWrong={{
-      0: tr({ uz: "Brauzer sahifa yangilanganda unutadi — hook'da ko'rdik! Doimiy joy — baza.", ru: 'Браузер забывает всё при обновлении страницы — мы это видели! Постоянное место — база.' }),
-      1: tr({ uz: "Ekran faqat ko'rsatadi, saqlamaydi. Doimiy joy — PostgreSQL bazasi.", ru: 'Экран только показывает, но не хранит. Постоянное место — база PostgreSQL.' }),
-      3: tr({ uz: "CSS — bezak tili, ma'lumot saqlamaydi. Doimiy joy — baza.", ru: 'CSS — язык оформления, данные он не хранит. Постоянное место — база.' }),
-      default: tr({ uz: "Doimiy saqlash — PostgreSQL bazasining ishi.", ru: 'Постоянное хранение — работа базы PostgreSQL.' })
+      0: tr({ uz: "Brauzer sahifa yangilanganda hammasini unutadi.", ru: 'Браузер всё забывает при обновлении страницы.' }),
+      1: tr({ uz: "Ekran faqat ko'rsatadi, hech narsani saqlamaydi.", ru: 'Экран только показывает, но ничего не хранит.' }),
+      3: tr({ uz: "CSS — bezak tili, u ma'lumot saqlamaydi.", ru: 'CSS — язык оформления, данные он не хранит.' }),
+      default: tr({ uz: "Restoranda mahsulotlar qayerda turishini eslang.", ru: 'Вспомните, где в ресторане хранятся продукты.' })
     }} />
 );
 
@@ -1546,12 +1547,12 @@ const Screen12 = (props) => (
     questionText="Buyurtma tugmasi bosilganda so'rov qaysi yo'l bilan boradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Tugma bosilganda so'rov qaysi <span className="italic" style={{ color: T.accent }}>yo'l</span> bilan boradi?</>, ru: <>Каким <span className="italic" style={{ color: T.accent }}>путём</span> идёт запрос после нажатия кнопки?</> })}</h2></>}
     options={['`PostgreSQL` → `React` → `Express`', '`React` → `Express` → `PostgreSQL`', '`Express` → `React` → `PostgreSQL`', '`React` → `PostgreSQL` → `Express`']} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Avval ko'rinish (React), so'rov ofitsiantga (Express), u esa omborga (PostgreSQL). Javob xuddi shu yo'ldan qaytadi.", ru: 'Верно! Сначала вид (React), запрос идёт к официанту (Express), а он — на склад (PostgreSQL). Ответ возвращается тем же путём.' })}
+    explainCorrect={tr({ uz: "So'rov zaldan ofitsiantga, undan esa omborga boradi.", ru: 'Запрос идёт из зала к официанту, а от него — на склад.' })}
     explainWrong={{
-      0: tr({ uz: "Baza o'zi boshlamaydi — sayohat foydalanuvchidan, ya'ni React'dan boshlanadi.", ru: 'База сама ничего не начинает — путешествие стартует от пользователя, то есть от React.' }),
-      2: tr({ uz: "Express so'rovni qabul qiladi, lekin sayohat React'dan (tugmadan) boshlanadi.", ru: 'Express принимает запрос, но путешествие начинается с React (с кнопки).' }),
-      3: tr({ uz: "React bazaga to'g'ridan-to'g'ri bormaydi — avval Express qabul qilib yo'naltiradi.", ru: 'React не идёт в базу напрямую — сначала запрос принимает и направляет Express.' }),
-      default: tr({ uz: "Yo'l: React → Express → PostgreSQL.", ru: 'Путь: React → Express → PostgreSQL.' })
+      0: tr({ uz: "Baza o'zi boshlamaydi — so'rov foydalanuvchidan chiqadi.", ru: 'База сама ничего не начинает — запрос идёт от пользователя.' }),
+      2: tr({ uz: "Ofitsiant o'zi buyurtma bermaydi — avval mijoz so'raydi.", ru: 'Официант сам не делает заказ — сначала просит гость.' }),
+      3: tr({ uz: "React bazaga to'g'ridan-to'g'ri bormaydi.", ru: 'React не ходит в базу напрямую.' }),
+      default: tr({ uz: "Restoranni eslang: buyurtma kimdan kimga boradi?", ru: 'Вспомните ресторан: от кого к кому идёт заказ?' })
     }} />
 );
 

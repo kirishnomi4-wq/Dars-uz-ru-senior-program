@@ -1,0 +1,4 @@
+TUGADI 01.10 18:24 · yuklash-tekshir 176/176 md5 88/88 katalog 70/70 · click-walk uz 1365 ekran xato 0 (18 hw soxta) · ru 1365 ekran xato 0 · collide3 75 · hc-avto-sinov 149/149
+
+22:07 — HAR DARS kompilyator sinovi (foydalanuvchi talabi): 1) paket faylining ICHIDAGI kompilyator (HC_SRC) 26/26 × 149 holat ✓, pageerror 0 (paket-hc-149.txt); 2) haqiqiy dars ekranida LMS CSS bilan yozish (hc-dars-ekran.mjs) uz 26/26 ✓ (381 holat) · ru 26/26 ✓ (381 holat) — dars-hc/
+22:24 — JS darslari skrinshoti (13) qo'shildi; pageerror «le is not defined» = jonli-ko'rish, kompilyator emas. 39 skrinshot.

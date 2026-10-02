@@ -1,0 +1,401 @@
+{
+ "file": "src/2-Modull/PeanStackLesson.jsx",
+ "lessonId": "pean-stack-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AVVAL CHAP TOMONDA TAJRIBA QILING",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, NEGA IZOHLAR YO'QOLDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan shunday! Saytingiz izohni eslab qolishni bilmaydi — unga ko'rinmas jamoa kerak: serv",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "4 TA TEXNOLOGIYA → BITTA YAXLIT SAYT",
+     "box": "assemble",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "↓ BIRLASHIB — BITTA SAYT",
+     "box": "asm-site",
+     "gap": 11
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 12,
+     "left": "rest-card ",
+     "right": "frame-dash",
+     "hs": [
+      72,
+      60
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA — EKRANDA",
+     "box": "bw",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "server terminali $ node salom.js › Salom, dunyo! Node.js — JS endi serverda! Brauzersiz, o",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Siz → Express → Oshxona → Tayyor! GET /lagmon Lag'mon tayyor!",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Siz → Express → Oshxona → Tayyor! GET /choy Choy tayyor!",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "JADVAL: BUYURTMALAR",
+     "box": "dbt fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 Siz like tugmasini bosdingiz React 2 React serverga so'rov yubordi React 3 Express so'ro",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 16,
+     "left": "task-card demo-swap",
+     "right": "jr-step",
+     "hs": [
+      56,
+      40
+     ]
+    },
+    {
+     "diff": 16,
+     "left": "task-card demo-swap",
+     "right": "jr-step on el-in",
+     "hs": [
+      56,
+      40
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "VAZIFA 1 / 3",
+     "box": "task-card demo-swap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TAQSIMOT",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "VAZIFA 2 / 3",
+     "box": "task-card demo-swap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "VAZIFA 3 / 3",
+     "box": "task-card demo-swap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "1 Tugma ko'rinishi React 2 /profil so'rovi Express 3 …",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "1 Tugma ko'rinishi React 2 /profil so'rovi Express 3 Ro'yxatni eslab qolish PostgreSQL",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2 — VAZIFALARGA BIRIKTIRING",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "btn fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.75,
+     "a": "AI jamoani tushuntirdi — lekin bitta rol adashgan?",
+     "b": "AI'dan PERN jamoasini tushuntirishni so'radik. U deyarli to'g'ri yozdi, lekin bitta a'zoning roli adashib ketd",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Buyurtma tugmasi bosildi! Endi butun yo'lni o'zingiz yig'ing: 5 qadamni to'g'ri tartibda joylang — sudrab yoki",
+     "b": "QADAMLAR — TO'G'RI TARTIBDA JOYLANG",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "sflash",
+   "type": "review",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

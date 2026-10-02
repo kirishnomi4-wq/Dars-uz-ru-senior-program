@@ -219,38 +219,38 @@ const RECAPS = {
   4: {
     title: { uz: "useState — komponentning xotira qutisi", ru: 'useState — коробка памяти компонента' },
     cards: [
-      { ic: "📦", h: { uz: "useState — xotira ochadi", ru: 'useState — открывает память' }, body: { uz: <>State — komponentning <b>o'z ichki xotirasi</b>. GameCard'dagi 👍 like soni xuddi shu xotirada saqlanadi. <span className="mono">useState</span> aynan shu <b>xotira qutisini</b> ochadi — o'zgarsa, ekran ham yangilanadi.</>, ru: <>State — <b>собственная внутренняя память</b> компонента. Число 👍 лайков в GameCard хранится именно в ней. <span className="mono">useState</span> открывает эту <b>коробку памяти</b> — изменилась она, обновился и экран.</> } },
-      { ic: "✌️", h: { uz: "Juftlik qaytaradi", ru: 'Возвращает пару' }, body: { uz: <><span className="mono">useState(0)</span> bitta narsa emas, <b>juftlik</b> qaytaradi: <span className="mono">[likes, setLikes]</span>. Birinchisi — joriy qiymat (likes), ikkinchisi — uni yangilovchi funksiya (setLikes).</>, ru: <><span className="mono">useState(0)</span> возвращает не одну вещь, а <b>пару</b>: <span className="mono">[likes, setLikes]</span>. Первое — текущее значение (likes), второе — функция для его обновления (setLikes).</> } },
-      { ic: "🔢", h: { uz: "0 — boshlang'ich qiymat", ru: '0 — начальное значение' }, body: { uz: <><span className="mono">useState(0)</span> ichidagi <b>0</b> — bu boshlang'ich qiymat, ya'ni kartochka birinchi chiqqandagi like soni. Xohlasangiz 10 yozasiz — o'shanda 10 dan boshlanadi.</>, ru: <><b>0</b> внутри <span className="mono">useState(0)</span> — это начальное значение, то есть число лайков при первом появлении карточки. Хотите — напишите 10, и счёт начнётся с 10.</> }, ask: { uz: "GameCard birinchi chiqqanda like soni nechchi bo'ladi?", ru: 'Сколько лайков будет у GameCard при первом появлении?' } },
+      { ic: "📦", h: { uz: "useState — xotira ochadi", ru: 'useState — открывает память' }, body: { uz: <><span className="mono">useState</span> komponentga <b>ichki xotira</b> ochadi — u o'zgarsa, ekran ham yangilanadi.</>, ru: <><span className="mono">useState</span> открывает компоненту <b>внутреннюю память</b> — меняется она, обновляется и экран.</> } },
+      { ic: "✌️", h: { uz: "Juftlik qaytaradi", ru: 'Возвращает пару' }, body: { uz: <><span className="mono">useState(0)</span> <b>juftlik</b> qaytaradi: <span className="mono">[likes, setLikes]</span> — qiymat va uni yangilovchi funksiya.</>, ru: <><span className="mono">useState(0)</span> возвращает <b>пару</b>: <span className="mono">[likes, setLikes]</span> — значение и функцию для его обновления.</> } },
+      { ic: "🔢", h: { uz: "0 — boshlang'ich qiymat", ru: '0 — начальное значение' }, body: { uz: <><span className="mono">useState(0)</span> ichidagi <b>0</b> — kartochka birinchi chiqqandagi like soni.</>, ru: <><b>0</b> в <span className="mono">useState(0)</span> — число лайков при первом появлении карточки.</> }, ask: { uz: "GameCard birinchi chiqqanda like soni nechchi bo'ladi?", ru: 'Сколько лайков будет у GameCard при первом появлении?' } },
     ]
   },
   6: {
     title: { uz: "setLikes — ekranni uyg'otadi", ru: 'setLikes — будит экран' },
     cards: [
-      { ic: "⚡", h: { uz: "Faqat set… ekranga yetadi", ru: 'Только set… доходит до экрана' }, body: { uz: <>Like mashinasini eslang: ✏️ oddiy o'zgartirish xotirani oshirdi, lekin <b>ekran qotib qoldi</b>. Faqat <span className="mono">setLikes</span> React'ni uyg'otadi — o'shanda son ekranga chiqadi.</>, ru: <>Вспомните машину лайков: ✏️ обычное изменение увеличило память, но <b>экран застыл</b>. Только <span className="mono">setLikes</span> будит React — и тогда число появляется на экране.</> } },
-      { ic: "🔄", h: { uz: "set → qayta chizish", ru: 'set → перерисовка' }, body: { uz: <><span className="mono">setLikes(likes + 1)</span> ikki ishni birga qiladi: xotirani oshiradi <b>va</b> React'ga "qayta chiz" deydi. React kartochkani yangi son bilan qaytadan chizadi (render).</>, ru: <><span className="mono">setLikes(likes + 1)</span> делает два дела сразу: увеличивает память <b>и</b> говорит React «перерисуй». React заново рисует карточку с новым числом (render).</> } },
-      { ic: "🔒", h: { uz: "To'g'ridan-to'g'ri o'zgartirish ishlamaydi", ru: 'Прямое изменение не работает' }, body: { uz: <><span className="mono">likes = likes + 1</span> deb yozsangiz — xotira o'sadi, lekin React sezmaydi, ekran qotadi. Shuning uchun <b>doim set… funksiyasidan</b> foydalaniladi.</>, ru: <>Если написать <span className="mono">likes = likes + 1</span> — память растёт, но React этого не замечает, экран застывает. Поэтому <b>всегда используют функцию set…</b></> }, ask: { uz: "Nega ✏️ tugma xotirani o'zgartirsa ham ekranga yetmadi?", ru: 'Почему кнопка ✏️ изменила память, но не дошла до экрана?' } },
+      { ic: "⚡", h: { uz: "Faqat set… ekranga yetadi", ru: 'Только set… доходит до экрана' }, body: { uz: <>Oddiy o'zgartirishda <b>ekran qotadi</b>, faqat <span className="mono">setLikes</span> React'ni uyg'otadi.</>, ru: <>При обычном изменении <b>экран застывает</b>, и только <span className="mono">setLikes</span> будит React.</> } },
+      { ic: "🔄", h: { uz: "set → qayta chizish", ru: 'set → перерисовка' }, body: { uz: <><span className="mono">setLikes(likes + 1)</span> xotirani oshiradi <b>va</b> React'ga kartochkani qayta chizishni aytadi.</>, ru: <><span className="mono">setLikes(likes + 1)</span> увеличивает память <b>и</b> велит React перерисовать карточку.</> } },
+      { ic: "🔒", h: { uz: "To'g'ridan-to'g'ri o'zgartirish ishlamaydi", ru: 'Прямое изменение не работает' }, body: { uz: <><span className="mono">likes = likes + 1</span> yozuvini React sezmaydi, shuning uchun <b>doim set… funksiyasi</b> ishlatiladi.</>, ru: <>Изменение <span className="mono">likes = likes + 1</span> React не замечает, поэтому <b>всегда нужна функция set…</b></> }, ask: { uz: "Nega ✏️ tugma xotirani o'zgartirsa ham ekranga yetmadi?", ru: 'Почему кнопка ✏️ изменила память, но не дошла до экрана?' } },
     ]
   },
   11: {
     title: { uz: "useEffect — qo'shimcha ish bajaruvchi", ru: 'useEffect — исполнитель побочных дел' },
     cards: [
-      { ic: "🚪", h: { uz: "[] = faqat bir marta", ru: '[] = только один раз' }, body: { uz: <>Bo'sh <span className="mono">[]</span> massiv — "kuzatadigan narsa yo'q" degani. Shuning uchun effect <b>faqat bir marta</b>, kartochka ekranga birinchi chiqqanda (Mount) ishlaydi.</>, ru: <>Пустой массив <span className="mono">[]</span> означает «следить не за чем». Поэтому эффект срабатывает <b>только один раз</b> — когда карточка впервые появляется на экране (Mount).</> } },
-      { ic: "👀", h: { uz: "[likes] = kuzatuv", ru: '[likes] = наблюдение' }, body: { uz: <><span className="mono">[likes]</span> yozsangiz, effect <b>likes'ni kuzatadi</b>: u o'zgargan sari qayta ishlaydi. Masalan, like soni brauzer tab sarlavhasiga chiqib turadi.</>, ru: <>Если написать <span className="mono">[likes]</span>, эффект <b>следит за likes</b>: он срабатывает при каждом его изменении. Например, число лайков показывается в заголовке вкладки браузера.</> } },
-      { ic: "🧹", h: { uz: "return — tozalash", ru: 'return — уборка' }, body: { uz: <>Effect ichidagi <span className="mono">return () =&gt; {'{}'}</span> — tozalash uchun. Komponent sahifadan olib tashlanganda (unmount) ishlaydi va ortidan qolgan ishlarni yig'ishtiradi.</>, ru: <><span className="mono">return () =&gt; {'{}'}</span> внутри эффекта — для уборки. Он срабатывает, когда компонент убирают со страницы (unmount), и подчищает оставшиеся дела.</> }, ask: { uz: "[] va [likes] o'rtasidagi farq nimada?", ru: 'В чём разница между [] и [likes]?' } },
+      { ic: "🚪", h: { uz: "[] = faqat bir marta", ru: '[] = только один раз' }, body: { uz: <>Bo'sh <span className="mono">[]</span> — kuzatadigan narsa yo'q, shuning uchun effect <b>faqat bir marta</b> ishlaydi.</>, ru: <>Пустой <span className="mono">[]</span> — следить не за чем, поэтому эффект срабатывает <b>только один раз</b>.</> } },
+      { ic: "👀", h: { uz: "[likes] = kuzatuv", ru: '[likes] = наблюдение' }, body: { uz: <><span className="mono">[likes]</span> yozilsa, effect <b>likes'ni kuzatadi</b> va u har o'zgarganda qayta ishlaydi.</>, ru: <>С <span className="mono">[likes]</span> эффект <b>следит за likes</b> и срабатывает при каждом его изменении.</> } },
+      { ic: "🧹", h: { uz: "return — tozalash", ru: 'return — уборка' }, body: { uz: <>Effect ichidagi <span className="mono">return</span> <b>tozalash</b> uchun: komponent ketganda qolgan ishlarni yig'ishtiradi.</>, ru: <><span className="mono">return</span> внутри эффекта — для <b>уборки</b>: когда компонент уходит, он подчищает оставшиеся дела.</> }, ask: { uz: "[] va [likes] o'rtasidagi farq nimada?", ru: 'В чём разница между [] и [likes]?' } },
     ]
   },
   15: {
     title: { uz: "State va props — ichkaridan va tashqaridan", ru: 'State и props — изнутри и снаружи' },
     cards: [
-      { ic: "🏠", h: { uz: "State — o'z ichki xotirasi", ru: 'State — собственная память' }, body: { uz: <>State — komponentning <b>o'z ichki xotirasi</b> (masalan likes). Uni komponentning o'zi <span className="mono">setLikes</span> bilan o'zgartiradi — tashqaridan hech kim tegmaydi.</>, ru: <>State — <b>собственная внутренняя память</b> компонента (например, likes). Компонент сам меняет её через <span className="mono">setLikes</span> — снаружи её никто не трогает.</> } },
-      { ic: "📩", h: { uz: "Props — tashqaridan keladi", ru: 'Props — приходит снаружи' }, body: { uz: <>Props — <b>tashqaridan uzatiladigan ma'lumot</b>: <span className="mono">&lt;GameCard name="Blox Fruits" /&gt;</span>. Komponent uni faqat o'qiydi, o'zi o'zgartira olmaydi.</>, ru: <>Props — <b>данные, переданные снаружи</b>: <span className="mono">&lt;GameCard name="Blox Fruits" /&gt;</span>. Компонент их только читает и сам изменить не может.</> } },
-      { ic: "🔀", h: { uz: "Farqi — manbada", ru: 'Разница — в источнике' }, body: { uz: <>Ikkalasi bir narsa emas. <b>State ichkaridan</b> (komponentning o'zi boshqaradi), <b>props tashqaridan</b> (berib yuboriladi). Ikkovi ham son, matn yoki true/false bo'la oladi.</>, ru: <>Это не одно и то же. <b>State — изнутри</b> (им управляет сам компонент), <b>props — снаружи</b> (их передают). И то и другое может быть числом, текстом или true/false.</> }, ask: { uz: "GameCard'dagi like soni — state'mi yoki props'mi?", ru: 'Число лайков в GameCard — это state или props?' } },
+      { ic: "🏠", h: { uz: "State — o'z ichki xotirasi", ru: 'State — собственная память' }, body: { uz: <>State — komponentning <b>o'z ichki xotirasi</b>, uni faqat o'zi <span className="mono">setLikes</span> bilan o'zgartiradi.</>, ru: <>State — <b>собственная память</b> компонента, и меняет её только он сам через <span className="mono">setLikes</span>.</> } },
+      { ic: "📩", h: { uz: "Props — tashqaridan keladi", ru: 'Props — приходит снаружи' }, body: { uz: <>Props <span className="mono">&lt;GameCard name="Blox Fruits" /&gt;</span> kabi <b>tashqaridan keladi</b> va faqat o'qiladi.</>, ru: <>Props <b>приходят снаружи</b>, как в <span className="mono">&lt;GameCard name="Blox Fruits" /&gt;</span>, и только читаются.</> } },
+      { ic: "🔀", h: { uz: "Farqi — manbada", ru: 'Разница — в источнике' }, body: { uz: <>Farq manbada: <b>state ichkaridan</b>, <b>props tashqaridan</b> keladi.</>, ru: <>Разница в источнике: <b>state — изнутри</b>, <b>props — снаружи</b>.</> }, ask: { uz: "GameCard'dagi like soni — state'mi yoki props'mi?", ru: 'Число лайков в GameCard — это state или props?' } },
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -268,7 +268,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -277,13 +277,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -447,7 +447,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -455,8 +455,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -468,11 +469,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -809,12 +810,12 @@ const Screen4 = (props) => (
     questionText="useState(0) nima beradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>useState(0)</span> nima beradi?</>, ru: <>Что даёт <span className="mono" style={{ color: T.accent }}>useState(0)</span>?</> })}</h2></>}
     options={[tr({ uz: "Faqat boshlang'ich 0 sonini", ru: 'Только начальное число 0' }), tr({ uz: "Juftlik: qiymat va yangilovchi funksiya", ru: 'Пару: значение и функцию-обновитель' }), tr({ uz: 'Butunlay yangi komponent', ru: 'Совершенно новый компонент' }), tr({ uz: 'CSS uslublar klassini', ru: 'Класс CSS-стилей' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! useState juftlik qaytaradi: [likes, setLikes] — joriy qiymat va uni yangilovchi funksiya. 0 esa — boshlang'ich qiymat.", ru: 'Верно! useState возвращает пару: [likes, setLikes] — текущее значение и функцию для его обновления. А 0 — начальное значение.' })}
+    explainCorrect={tr({ uz: "`useState` ikki narsa beradi: `likes` va `setLikes`.", ru: '`useState` даёт две вещи: `likes` и `setLikes`.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — 0 faqat boshlang'ich qiymat. useState juftlik beradi: qiymat va yangilovchi funksiya.", ru: 'Нет — 0 это лишь начальное значение. useState даёт пару: значение и функцию-обновитель.' }),
-      2: tr({ uz: "Yo'q — komponent yaratmaydi. useState komponent ICHIDA xotira yaratadi.", ru: 'Нет — компонент он не создаёт. useState создаёт память ВНУТРИ компонента.' }),
-      3: tr({ uz: "Yo'q — CSS'ga aloqasi yo'q. useState — xotira: [qiymat, yangilovchi].", ru: 'Нет — к CSS он не относится. useState — память: [значение, обновитель].' }),
-      default: tr({ uz: "useState — juftlik: [joriy qiymat, yangilovchi funksiya].", ru: 'useState — пара: [текущее значение, функция-обновитель].' })
+      0: tr({ uz: "0 — faqat boshlang'ich qiymat, `useState` ko'proq beradi.", ru: '0 — лишь начальное значение, а `useState` даёт больше.' }),
+      2: tr({ uz: "`useState` komponent yaratmaydi — u komponent ichida ishlaydi.", ru: '`useState` не создаёт компонент — он работает внутри него.' }),
+      3: tr({ uz: "`useState` ko'rinish bilan emas, xotira bilan ishlaydi.", ru: '`useState` работает не со стилями, а с памятью.' }),
+      default: tr({ uz: "`useState(0)` chap tomonida nechta nom turganiga qarang.", ru: 'Посмотрите, сколько имён стоит слева от `useState(0)`.' })
     }} />
 );
 
@@ -912,12 +913,12 @@ const Screen5b = (props) => (
     questionText="Ekranda yangi qiymat ko'rinishi uchun nima qilamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Ekranda yangi qiymat ko'rinishi uchun <span className="italic" style={{ color: T.accent }}>nima qilamiz</span>?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что мы делаем</span>, чтобы новое значение появилось на экране?</> })}</h2></>}
     options={[tr({ uz: "likes = likes + 1 deb to'g'ridan-to'g'ri yozamiz", ru: 'Пишем напрямую: likes = likes + 1' }), tr({ uz: 'Sahifani F5 tugmasi bilan yangilaymiz', ru: 'Обновляем страницу клавишей F5' }), tr({ uz: 'setLikes(likes + 1) chaqiramiz', ru: 'Вызываем setLikes(likes + 1)' }), tr({ uz: "Brauzerni butunlay qayta o'rnatamiz", ru: 'Полностью переустанавливаем браузер' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Faqat setLikes orqali — shunda React xotirani yangilaydi VA komponentni qayta chizadi. To'g'ridan-to'g'ri o'zgartirish 1-versiyadagi 'qotib qolgan' tugma edi.", ru: 'Верно! Только через setLikes — тогда React обновляет память И перерисовывает компонент. Прямое изменение — это та самая «застывшая» кнопка из 1-й версии.' })}
+    explainCorrect={tr({ uz: "Faqat `setLikes` React'ga ekranni qayta chizishni aytadi.", ru: 'Только `setLikes` велит React перерисовать экран.' })}
     explainWrong={{
-      0: tr({ uz: "Esingizdami 1-versiya? Xotirada o'sdi, ekran qotib qoldi. To'g'ridan-to'g'ri o'zgartirishni React sezmaydi.", ru: 'Помните 1-ю версию? В памяти выросло, экран застыл. Прямое изменение React не замечает.' }),
-      1: tr({ uz: "F5 butun sahifani qayta yuklaydi — eski saytlar usuli. React'da setLikes yetadi: faqat kerakli joy yangilanadi.", ru: 'F5 перезагружает всю страницу — так делали старые сайты. В React достаточно setLikes: обновится только нужное место.' }),
-      3: tr({ uz: "Yo'q — brauzerda muammo yo'q. setLikes chaqirilsa hammasi ishlaydi.", ru: 'Нет — с браузером всё в порядке. Вызовите setLikes — и всё заработает.' }),
-      default: tr({ uz: "Faqat setLikes(yangi qiymat) — React qayta chizishni o'zi bajaradi.", ru: 'Только setLikes(новое значение) — перерисовку React выполнит сам.' })
+      0: tr({ uz: "Xotira o'sadi, lekin React buni sezmaydi — ekran qotadi.", ru: 'Память вырастет, но React этого не заметит — экран застынет.' }),
+      1: tr({ uz: "F5 sahifani qayta yuklaydi — like soni 0 ga qaytadi.", ru: 'F5 перезагрузит страницу — лайки снова станут 0.' }),
+      3: tr({ uz: "Brauzerda muammo yo'q — gap React'ga xabar berishda.", ru: 'С браузером всё в порядке — дело в том, как сообщить React.' }),
+      default: tr({ uz: "React o'zgarishni faqat maxsus funksiya orqali sezadi.", ru: 'React замечает изменение только через особую функцию.' })
     }} />
 );
 
@@ -1047,12 +1048,12 @@ const Screen9 = (props) => (
     questionText="useEffect(() => {…}, []) — bo'sh massiv bilan qachon ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>useEffect(…, [])</span> qachon ishlaydi?</>, ru: <>Когда срабатывает <span className="mono" style={{ color: T.accent }}>useEffect(…, [])</span>?</> })}</h2></>}
     options={[tr({ uz: 'Har safar 👍 bosilganda', ru: 'При каждом нажатии 👍' }), tr({ uz: 'Hech qachon ishlamaydi', ru: 'Никогда не срабатывает' }), tr({ uz: "Komponent ekranga chiqqanda bir marta", ru: 'Один раз, когда компонент появляется на экране' }), tr({ uz: "Faqat komponent o'chirilganda", ru: 'Только когда компонент удаляется' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! [] bo'sh massiv = kuzatadigan hech narsa yo'q — effect faqat komponent ekranga chiqqanda (Mount) bir marta ishlaydi.", ru: 'Верно! Пустой массив [] = следить не за чем — эффект срабатывает только один раз, при появлении компонента на экране (Mount).' })}
+    explainCorrect={tr({ uz: "Bo'sh `[]` — kuzatadigan narsa yo'q, shuning uchun bir marta.", ru: 'Пустой `[]` — следить не за чем, поэтому один раз.' })}
     explainWrong={{
-      0: tr({ uz: "Bu [likes] bo'lganda shunday bo'lardi. [] bo'sh — faqat ekranga chiqqanda bir marta.", ru: 'Так было бы с [likes]. Пустой [] — только один раз при появлении на экране.' }),
-      1: tr({ uz: "Ishlaydi — lekin faqat bir marta, komponent ekranga birinchi chiqqanda.", ru: 'Срабатывает — но только один раз, когда компонент впервые появляется на экране.' }),
-      3: tr({ uz: "Yo'q — ekrandan ketish Unmount. [] bilan effect ekranga chiqqanda (Mount) ishlaydi.", ru: 'Нет — уход с экрана это Unmount. С [] эффект срабатывает при появлении на экране (Mount).' }),
-      default: tr({ uz: "[] = faqat birinchi chizilganda, bir marta.", ru: '[] = только при первой отрисовке, один раз.' })
+      0: tr({ uz: "Har bosishda ishlashi uchun `[likes]` yozilgan bo'lardi.", ru: 'Чтобы срабатывать при каждом нажатии, нужен был бы `[likes]`.' }),
+      1: tr({ uz: "Bo'sh `[]` effectni o'chirmaydi — u baribir ishlaydi.", ru: 'Пустой `[]` не выключает эффект — он всё равно срабатывает.' }),
+      3: tr({ uz: "O'chganda `return` ichidagi tozalash ishlaydi, effect emas.", ru: 'При удалении срабатывает уборка из `return`, а не сам эффект.' }),
+      default: tr({ uz: "`[]` ichida kuzatadigan narsa bormi — shuni o'ylang.", ru: 'Подумайте: есть ли внутри `[]` за чем следить?' })
     }} />
 );
 
@@ -1197,12 +1198,12 @@ const Screen12 = (props) => (
     questionText="State props'dan nimasi bilan farq qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>State</span> props'dan nimasi bilan farq qiladi?</>, ru: <>Чем <span className="italic" style={{ color: T.accent }}>state</span> отличается от props?</> })}</h2></>}
     options={[tr({ uz: "Farqi yo'q — ikkalasi bir narsa", ru: 'Ничем — это одно и то же' }), tr({ uz: "State — o'z xotirasi; props — tashqaridan keladi", ru: 'State — своя память; props приходит снаружи' }), tr({ uz: 'State faqat sonlarni saqlay oladi', ru: 'State может хранить только числа' }), tr({ uz: 'Props ancha tezroq ishlaydi', ru: 'Props работает гораздо быстрее' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Props — tashqaridan keladigan ma'lumot (<GameCard name='…' />), state — komponentning ichki xotirasi (likes), uni komponent o'zi setLikes bilan o'zgartiradi.", ru: 'Верно! Props — данные, приходящие снаружи (<GameCard name=\'…\' />), state — внутренняя память компонента (likes), которую он сам меняет через setLikes.' })}
+    explainCorrect={tr({ uz: "Farq manbada: props tashqaridan, state komponent ichidan.", ru: 'Разница в источнике: props — снаружи, state — изнутри компонента.' })}
     explainWrong={{
-      0: tr({ uz: "Farqi katta: props tashqaridan KELADI, state esa komponentning O'Z ichki xotirasi.", ru: 'Разница большая: props ПРИХОДИТ снаружи, а state — СОБСТВЕННАЯ внутренняя память компонента.' }),
-      2: tr({ uz: "Yo'q — state istalgan narsani saqlaydi: son, matn, true/false (starred esingizdami?).", ru: 'Нет — state хранит что угодно: число, текст, true/false (помните starred?).' }),
-      3: tr({ uz: "Yo'q — tezlik bir xil. Farq manbada: props tashqaridan, state ichkaridan.", ru: 'Нет — скорость одинаковая. Разница в источнике: props снаружи, state изнутри.' }),
-      default: tr({ uz: "State — ichki xotira (o'zi o'zgartiradi), props — tashqaridan kelgan ma'lumot.", ru: 'State — внутренняя память (меняет сам), props — данные, переданные снаружи.' })
+      0: tr({ uz: "Ular bir narsa emas — ikkovi turli joydan keladi.", ru: 'Это не одно и то же — они приходят из разных мест.' }),
+      2: tr({ uz: "State matn va true/false ham saqlaydi — `starred`ni eslang.", ru: 'State хранит и текст, и true/false — вспомните `starred`.' }),
+      3: tr({ uz: "Tezlik bir xil — farq boshqa narsada.", ru: 'Скорость одинаковая — разница в другом.' }),
+      default: tr({ uz: "Qaysi ma'lumotni komponent o'zi o'zgartiradi — o'ylang.", ru: 'Подумайте, какие данные компонент меняет сам.' })
     }} />
 );
 

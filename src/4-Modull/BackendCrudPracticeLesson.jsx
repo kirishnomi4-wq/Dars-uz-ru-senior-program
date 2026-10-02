@@ -245,38 +245,38 @@ const RECAPS = {
   4: {
     title: { uz: "ME'MOR — jadval sxemasi", ru: "АРХИТЕКТОР — схема таблицы" },
     cards: [
-      { ic: "🗄️", h: { uz: "Jadval — garaj daftari", ru: "Таблица — журнал гаража" }, body: { uz: <>Baza <b>jadval</b>lardan iborat. <span className="mono">cars</span> jadvali — mashinalar ro'yxati yoziladigan daftar. Har qatori — bitta mashina.</>, ru: <>База состоит из <b>таблиц</b>. Таблица <span className="mono">cars</span> — журнал, куда записывают список машин. Каждая строка — одна машина.</> }, vis: <RcFlow items={[{ uz: "cars jadvali", ru: "таблица cars" }, { uz: "qator = mashina", ru: "строка = машина" }]} sep="·" /> },
-      { ic: "📊", h: { uz: "Ustun — bitta narsa", ru: "Столбец — одна вещь" }, body: { uz: <>Har <b>ustun</b> mashinaning bitta xususiyatini saqlaydi: <span className="mono">nom</span>, <span className="mono">narx</span>, <span className="mono">yil</span>, <span className="mono">bandmi</span>. Ustun turi bor: matn, son yoki ha/yo'q.</>, ru: <>Каждый <b>столбец</b> хранит одно свойство машины: <span className="mono">nom</span>, <span className="mono">narx</span>, <span className="mono">yil</span>, <span className="mono">bandmi</span>. У столбца есть тип: текст, число или да/нет.</> } },
-      { ic: "🔑", h: { uz: "id — takrorlanmas nomer", ru: "id — неповторимый номер" }, body: { uz: <><span className="mono">id SERIAL PRIMARY KEY</span> — har mashinaga <b>takrorlanmas raqam</b> beradi va avtomatik o'stiradi (1, 2, 3…). Shuning uchun ikki mashina bir xil id'ga ega bo'lmaydi.</>, ru: <><span className="mono">id SERIAL PRIMARY KEY</span> даёт каждой машине <b>уникальный номер</b> и автоматически увеличивает его (1, 2, 3…). Поэтому у двух машин не бывает одинакового id.</> }, ask: { uz: "Nega har mashinaga takrorlanmas id kerak?", ru: "Зачем каждой машине уникальный id?" } },
+      { ic: "🗄️", h: { uz: "Jadval — garaj daftari", ru: "Таблица — журнал гаража" }, body: { uz: <><span className="mono">cars</span> <b>jadvali</b> — mashinalar ro'yxati, har qatori — bitta mashina.</>, ru: <>Таблица <span className="mono">cars</span> — <b>список машин</b>, каждая строка — одна машина.</> }, vis: <RcFlow items={[{ uz: "cars jadvali", ru: "таблица cars" }, { uz: "qator = mashina", ru: "строка = машина" }]} sep="·" /> },
+      { ic: "📊", h: { uz: "Ustun — bitta narsa", ru: "Столбец — одна вещь" }, body: { uz: <>Har <b>ustun</b> mashinaning bitta xususiyatini saqlaydi: <span className="mono">nom</span>, <span className="mono">narx</span>, <span className="mono">yil</span>, <span className="mono">bandmi</span>.</>, ru: <>Каждый <b>столбец</b> хранит одно свойство машины: <span className="mono">nom</span>, <span className="mono">narx</span>, <span className="mono">yil</span>, <span className="mono">bandmi</span>.</> } },
+      { ic: "🔑", h: { uz: "id — takrorlanmas nomer", ru: "id — неповторимый номер" }, body: { uz: <><span className="mono">id SERIAL PRIMARY KEY</span> har mashinaga <b>takrorlanmas raqam</b> beradi (1, 2, 3…).</>, ru: <><span className="mono">id SERIAL PRIMARY KEY</span> даёт каждой машине <b>уникальный номер</b> (1, 2, 3…).</> }, ask: { uz: "Nega har mashinaga takrorlanmas id kerak?", ru: "Зачем каждой машине уникальный id?" } },
     ]
   },
   6: {
     title: { uz: "O'qish — GET → SELECT", ru: "Чтение — GET → SELECT" },
     cards: [
-      { ic: "📖", h: { uz: "O'qish = ro'yxatni so'rash", ru: "Чтение = запросить список" }, body: { uz: <>Front bazadan hech narsa o'zgartirmaydi — u faqat <b>ro'yxatni so'raydi</b>. Bunday so'rov <span className="mono">GET</span> deyiladi, bazadan olib beradigan SQL esa <span className="mono">SELECT</span>. Ikkalasi ham bitta ishni bildiradi: <b>bor narsani olib ber</b>.</>, ru: <>Фронт ничего не меняет в базе — он просто <b>запрашивает список</b>. Такой запрос называется <span className="mono">GET</span>, а SQL, который достаёт данные из базы, — <span className="mono">SELECT</span>. Оба означают одно: <b>отдай то, что есть</b>.</> }, vis: <RcFlow items={["GET", "SELECT"]} sep="=" /> },
-      { ic: "🧭", h: { uz: "Endpoint — method + manzil", ru: "Endpoint — метод + адрес" }, body: { uz: <><span className="mono">app.get('/api/cars', ...)</span> — bu bitta <b>endpoint</b>: <span className="mono">GET</span> — qanday so'rov, <span className="mono">/api/cars</span> — qaysi manzil. Shu manzilga GET kelsa, server aynan shu kodni ishga tushiradi.</>, ru: <><span className="mono">app.get('/api/cars', ...)</span> — это один <b>endpoint</b>: <span className="mono">GET</span> — какой запрос, <span className="mono">/api/cars</span> — какой адрес. Когда на этот адрес приходит GET, сервер запускает именно этот код.</> }, vis: <RcFlow items={["GET", "/api/cars", "SELECT * FROM cars"]} /> },
-      { ic: "📦", h: { uz: "res.json — javobni orqaga qaytarish", ru: "res.json — вернуть ответ обратно" }, body: { uz: <>So'rov ko'prikdan o'tadi: <span className="mono">pool.query('SELECT * FROM cars')</span> bazadan qatorlarni oladi, <span className="mono">res.json(...)</span> esa ularni frontga JSON qilib qaytaradi. Front ro'yxatni ekranda ko'rsatadi.</>, ru: <>Запрос идёт по мосту: <span className="mono">pool.query('SELECT * FROM cars')</span> берёт строки из базы, а <span className="mono">res.json(...)</span> возвращает их фронту в виде JSON. Фронт показывает список на экране.</> }, ask: { uz: "Barcha mashinalarni o'qish uchun qaysi method va qaysi SQL kerak?", ru: "Какой метод и какой SQL нужны, чтобы прочитать все машины?" } },
+      { ic: "📖", h: { uz: "O'qish = ro'yxatni so'rash", ru: "Чтение = запросить список" }, body: { uz: <>Front faqat <b>ro'yxatni so'raydi</b>: so'rov — <span className="mono">GET</span>, bazadagi SQL — <span className="mono">SELECT</span>.</>, ru: <>Фронт только <b>запрашивает список</b>: запрос — <span className="mono">GET</span>, SQL в базе — <span className="mono">SELECT</span>.</> }, vis: <RcFlow items={["GET", "SELECT"]} sep="=" /> },
+      { ic: "🧭", h: { uz: "Endpoint — method + manzil", ru: "Endpoint — метод + адрес" }, body: { uz: <><span className="mono">app.get('/api/cars', ...)</span> — bitta <b>endpoint</b>: method va manzil birga.</>, ru: <><span className="mono">app.get('/api/cars', ...)</span> — один <b>endpoint</b>: method и адрес вместе.</> }, vis: <RcFlow items={["GET", "/api/cars", "SELECT * FROM cars"]} /> },
+      { ic: "📦", h: { uz: "res.json — javobni orqaga qaytarish", ru: "res.json — вернуть ответ обратно" }, body: { uz: <><span className="mono">pool.query</span> bazadan qatorlarni oladi, <span className="mono">res.json(...)</span> esa ularni frontga qaytaradi.</>, ru: <><span className="mono">pool.query</span> берёт строки из базы, а <span className="mono">res.json(...)</span> возвращает их фронту.</> }, ask: { uz: "Barcha mashinalarni o'qish uchun qaysi method va qaysi SQL kerak?", ru: "Какой метод и какой SQL нужны, чтобы прочитать все машины?" } },
     ]
   },
   9: {
     title: "CRUD ↔ HTTP ↔ SQL — 4=4=4",
     cards: [
-      { ic: "🔤", h: { uz: "CRUD — 4 amal", ru: "CRUD — 4 действия" }, body: { uz: <>Deyarli har ilova 4 amal bajaradi: <b>C</b>reate (qo'shish), <b>R</b>ead (o'qish), <b>U</b>pdate (o'zgartirish), <b>D</b>elete (o'chirish).</>, ru: <>Почти каждое приложение делает 4 действия: <b>C</b>reate (добавить), <b>R</b>ead (прочитать), <b>U</b>pdate (изменить), <b>D</b>elete (удалить).</> }, vis: <RcFlow items={["Create", "Read", "Update", "Delete"]} sep="·" /> },
-      { ic: "🔗", h: { uz: "Har amalning juftligi bor", ru: "У каждого действия есть пара" }, body: { uz: <>Qo'shish = <span className="mono">POST → INSERT</span>. O'qish = <span className="mono">GET → SELECT</span>. O'zgartirish = <span className="mono">PUT → UPDATE</span>. O'chirish = <span className="mono">DELETE → DELETE</span>.</>, ru: <>Добавить = <span className="mono">POST → INSERT</span>. Прочитать = <span className="mono">GET → SELECT</span>. Изменить = <span className="mono">PUT → UPDATE</span>. Удалить = <span className="mono">DELETE → DELETE</span>.</> }, vis: <RcFlow items={["POST", "INSERT"]} /> },
-      { ic: "📞", h: { uz: "Telefon kontaktlari misolida", ru: "На примере контактов в телефоне" }, body: { uz: <>Yangi kontakt <b>qo'shasiz</b> (Create), ro'yxatga <b>qaraysiz</b> (Read), raqamni <b>o'zgartirasiz</b> (Update), keraksizini <b>o'chirasiz</b> (Delete). Backend ham xuddi shunday.</>, ru: <>Вы <b>добавляете</b> новый контакт (Create), <b>смотрите</b> список (Read), <b>меняете</b> номер (Update), <b>удаляете</b> ненужный (Delete). Бэкенд работает так же.</> }, ask: { uz: "Bazaga yangi mashina qo'shish — qaysi method va SQL?", ru: "Добавить в базу новую машину — какой метод и SQL?" } },
+      { ic: "🔤", h: { uz: "CRUD — 4 amal", ru: "CRUD — 4 действия" }, body: { uz: <>Har ilova 4 amal qiladi: qo'shish, o'qish, o'zgartirish, o'chirish — <b>CRUD</b>.</>, ru: <>Почти каждое приложение делает 4 действия: добавить, прочитать, изменить, удалить — <b>CRUD</b>.</> }, vis: <RcFlow items={["Create", "Read", "Update", "Delete"]} sep="·" /> },
+      { ic: "🔗", h: { uz: "Har amalning juftligi bor", ru: "У каждого действия есть пара" }, body: { uz: <>Har method — o'z SQL jufti: <span className="mono">POST → INSERT</span>, <span className="mono">GET → SELECT</span>, <span className="mono">PUT → UPDATE</span>, <span className="mono">DELETE → DELETE</span>.</>, ru: <>У каждого метода своя пара в SQL: <span className="mono">POST → INSERT</span>, <span className="mono">GET → SELECT</span>, <span className="mono">PUT → UPDATE</span>, <span className="mono">DELETE → DELETE</span>.</> }, vis: <RcFlow items={["POST", "INSERT"]} /> },
+      { ic: "📞", h: { uz: "Telefon kontaktlari misolida", ru: "На примере контактов в телефоне" }, body: { uz: <>Kontaktni qo'shasiz, ko'rasiz, o'zgartirasiz va o'chirasiz — <b>backend ham xuddi shunday</b>.</>, ru: <>Контакт вы добавляете, смотрите, меняете и удаляете — <b>бэкенд работает так же</b>.</> }, ask: { uz: "Bazaga yangi mashina qo'shish — qaysi method va SQL?", ru: "Добавить в базу новую машину — какой метод и SQL?" } },
     ]
   },
   13: {
     title: { uz: "Ko'prik va xavfsizlik", ru: "Мост и безопасность" },
     cards: [
-      { ic: "🌉", h: { uz: "pool.query — ko'prik", ru: "pool.query — мост" }, body: { uz: <><span className="mono">pool</span> — Express server bilan PostgreSQL orasidagi ko'prik. <span className="mono">pool.query('...')</span> SQL'ni bazaga olib boradi va javobni qaytaradi. U bo'lmasa server baza bilan gaplasha olmaydi.</>, ru: <><span className="mono">pool</span> — мост между сервером Express и PostgreSQL. <span className="mono">pool.query('...')</span> доставляет SQL в базу и возвращает ответ. Без него сервер не может говорить с базой.</> }, vis: <RcFlow items={["Express", "pool.query", "PostgreSQL"]} /> },
-      { ic: "🛡️", h: { uz: "$1, $2 — xavfsiz o'rin", ru: "$1, $2 — безопасное место" }, body: { uz: <>Qiymatlarni SQL'ga to'g'ridan-to'g'ri yopishtirmaymiz — <span className="mono">$1, $2</span> qo'yamiz, qiymatlar massivda beriladi. Shunda foydalanuvchi matni <b>kod bo'lib qolmaydi</b>, faqat oddiy qiymat.</>, ru: <>Мы не вклеиваем значения прямо в SQL — ставим <span className="mono">$1, $2</span>, а значения передаём массивом. Тогда текст пользователя <b>не становится кодом</b>, а остаётся просто значением.</> } },
-      { ic: "🎯", h: ":id + WHERE id=$1", body: { uz: <>Manzildagi <span className="mono">:id</span> — o'zgaruvchi (<span className="mono">req.params.id</span>). <span className="mono">WHERE id = $1</span> bazada aynan o'sha qatorni topadi — qolganlariga tegmaydi.</>, ru: <><span className="mono">:id</span> в адресе — переменная (<span className="mono">req.params.id</span>). <span className="mono">WHERE id = $1</span> находит в базе именно ту строку — остальные не трогает.</> }, ask: { uz: "Express ichida bazaga SQL yuborish uchun nima ishlatiladi?", ru: "Что используется в Express, чтобы отправить SQL в базу?" } },
+      { ic: "🌉", h: { uz: "pool.query — ko'prik", ru: "pool.query — мост" }, body: { uz: <><span className="mono">pool.query('...')</span> — server bilan baza orasidagi <b>ko'prik</b>, SQL'ni bazaga olib boradi.</>, ru: <><span className="mono">pool.query('...')</span> — <b>мост</b> между сервером и базой, он доставляет SQL в базу.</> }, vis: <RcFlow items={["Express", "pool.query", "PostgreSQL"]} /> },
+      { ic: "🛡️", h: { uz: "$1, $2 — xavfsiz o'rin", ru: "$1, $2 — безопасное место" }, body: { uz: <>Qiymatni SQL'ga yopishtirmay, <span className="mono">$1, $2</span> qo'yamiz — foydalanuvchi matni <b>kod bo'lib qolmaydi</b>.</>, ru: <>Вместо вклеивания значений ставим <span className="mono">$1, $2</span> — текст пользователя <b>не станет кодом</b>.</> } },
+      { ic: "🎯", h: ":id + WHERE id=$1", body: { uz: <><span className="mono">WHERE id = $1</span> manzildagi <span className="mono">:id</span> bo'yicha aynan o'sha qatorni topadi.</>, ru: <><span className="mono">WHERE id = $1</span> по <span className="mono">:id</span> из адреса находит именно ту строку.</> }, ask: { uz: "Express ichida bazaga SQL yuborish uchun nima ishlatiladi?", ru: "Что используется в Express, чтобы отправить SQL в базу?" } },
     ]
   },
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -294,7 +294,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -303,13 +303,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Далее →' })}</button>}
       </div>
     </div>
@@ -388,7 +388,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> правильно — эта тема осталась классу непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> правильно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -474,7 +474,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -482,8 +482,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Правильно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -493,11 +494,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -952,12 +953,12 @@ const Screen4 = (props) => (
     questionText="Har mashinaning takrorlanmas raqami uchun qaysi ustun to'g'ri?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Har mashinaning <span className="italic" style={{ color: T.accent }}>takrorlanmas raqami</span> uchun qaysi ustun?</>, ru: <>Какой столбец нужен для <span className="italic" style={{ color: T.accent }}>уникального номера</span> каждой машины?</> })}</h2></>}
     options={['nom TEXT', 'id SERIAL PRIMARY KEY', 'narx INTEGER NOT NULL', 'bandmi BOOLEAN']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! PRIMARY KEY har qatorni yagona qiladi, SERIAL esa raqamni avtomatik o'stiradi (1, 2, 3…). Shuning uchun har mashinaning o'z id'si bo'ladi.", ru: 'Верно! PRIMARY KEY делает каждую строку уникальной, а SERIAL автоматически увеличивает номер (1, 2, 3…). Поэтому у каждой машины свой id.' }}
+    explainCorrect={{ uz: "`PRIMARY KEY` takrorlanmaydi, `SERIAL` raqamni o'zi oshiradi.", ru: '`PRIMARY KEY` не повторяется, а `SERIAL` сам увеличивает номер.' }}
     explainWrong={{
-      0: { uz: "nom — bu mashina nomi (matn), takrorlanishi mumkin. Yagona raqam uchun id SERIAL PRIMARY KEY.", ru: 'nom — это название машины (текст), оно может повторяться. Для уникального номера — id SERIAL PRIMARY KEY.' },
-      2: { uz: "narx — ijara narxi (son), bir xil bo'lishi mumkin. Takrorlanmas raqam — id SERIAL PRIMARY KEY.", ru: 'narx — цена аренды (число), может совпадать. Уникальный номер — id SERIAL PRIMARY KEY.' },
-      3: { uz: "bandmi — ha/yo'q qiymati. Takrorlanmas raqam emas. To'g'risi — id SERIAL PRIMARY KEY.", ru: 'bandmi — значение да/нет. Это не уникальный номер. Правильно — id SERIAL PRIMARY KEY.' },
-      default: { uz: "Takrorlanmas raqam = id SERIAL PRIMARY KEY.", ru: 'Уникальный номер = id SERIAL PRIMARY KEY.' }
+      0: { uz: "`nom` — matn, u takrorlanishi mumkin.", ru: '`nom` — это текст, названия могут повторяться.' },
+      2: { uz: "`narx` — son, ikki mashinada bir xil bo'lishi mumkin.", ru: '`narx` — число, у двух машин цена может совпасть.' },
+      3: { uz: "`bandmi` faqat ha/yo'q saqlaydi — raqam emas.", ru: '`bandmi` хранит только да/нет — это не номер.' },
+      default: { uz: "Qaysi ustun mashinaga takrorlanmas raqam beradi — qarang.", ru: 'Посмотрите, какой столбец даёт каждой машине уникальный номер.' }
     }} />
 );
 
@@ -1033,12 +1034,12 @@ const Screen5b = (props) => (
     questionText="Barcha mashinalarni frontga qaytaradigan to'g'ri juftlik qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Barcha mashinalarni <span className="italic" style={{ color: T.accent }}>qaytarish</span> uchun qaysi juftlik?</>, ru: <>Какая пара нужна, чтобы <span className="italic" style={{ color: T.accent }}>вернуть</span> все машины?</> })}</h2></>}
     options={['POST /api/cars → INSERT INTO cars', 'DELETE /api/cars → SELECT * FROM cars', 'GET /api/cars → DELETE FROM cars', 'GET /api/cars → SELECT * FROM cars']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! GET = o'qish, SELECT = bazadan olish. Ikkalasi 'ma'lumot olish' degani — shuning uchun juftlik mos.", ru: "Верно! GET = чтение, SELECT = взять из базы. Оба означают 'получить данные' — поэтому пара подходит." }}
+    explainCorrect={{ uz: "GET va SELECT — ikkalasi ham ma'lumot olish.", ru: "GET и SELECT — оба означают получение данных." }}
     explainWrong={{
-      0: { uz: "POST/INSERT — bu yangi qo'shish, o'qish emas. O'qish uchun GET → SELECT.", ru: 'POST/INSERT — это добавление нового, а не чтение. Для чтения GET → SELECT.' },
-      1: { uz: "DELETE method o'chirish uchun. O'qish uchun GET → SELECT * FROM cars.", ru: 'Метод DELETE — для удаления. Для чтения GET → SELECT * FROM cars.' },
-      2: { uz: "GET o'qish uchun, lekin DELETE o'chiradi — mos emas. To'g'risi GET → SELECT.", ru: 'GET — для чтения, но DELETE удаляет — пара не совпадает. Правильно GET → SELECT.' },
-      default: { uz: "O'qish = GET → SELECT * FROM cars.", ru: 'Чтение = GET → SELECT * FROM cars.' }
+      0: { uz: "POST va INSERT — yangi qo'shish, bizga esa o'qish kerak.", ru: 'POST и INSERT — это добавление, а нам нужно чтение.' },
+      1: { uz: "DELETE method o'chirish uchun — SELECT bilan juft bo'lmaydi.", ru: 'Метод DELETE — для удаления, с SELECT он в пару не встаёт.' },
+      2: { uz: "GET o'qiydi, DELETE esa o'chiradi — juftlik mos emas.", ru: 'GET читает, а DELETE удаляет — пара не совпадает.' },
+      default: { uz: "Ikkala tomoni «ma'lumot olish» bo'lgan juftlikni qidiring.", ru: 'Ищите пару, где обе стороны означают «получить данные».' }
     }} />
 );
 
@@ -1158,12 +1159,12 @@ const Screen8 = (props) => (
     questionText="Bazaga yangi mashina qo'shish uchun qaysi method va SQL?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bazaga <span className="italic" style={{ color: T.accent }}>yangi mashina qo'shish</span> uchun?</>, ru: <>Что нужно, чтобы <span className="italic" style={{ color: T.accent }}>добавить в базу новую машину</span>?</> })}</h2></>}
     options={['GET → SELECT', 'PUT → UPDATE', 'POST → INSERT', 'DELETE → DELETE']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! POST = yaratish, INSERT = bazaga yangi qator yozish. Yangi mashina qo'shish — aynan shu.", ru: 'Верно! POST = создать, INSERT = записать в базу новую строку. Добавить новую машину — именно это.' }}
+    explainCorrect={{ uz: "POST ham, INSERT ham yangi narsa qo'shadi — juftlik mos.", ru: 'И POST, и INSERT добавляют новое — пара совпадает.' }}
     explainWrong={{
-      0: { uz: "GET → SELECT — bu o'qish (mavjudini ko'rsatish), yangi qo'shish emas. Qo'shish: POST → INSERT.", ru: 'GET → SELECT — это чтение (показать существующее), а не добавление. Добавление: POST → INSERT.' },
-      1: { uz: "PUT → UPDATE — bu mavjud mashinani o'zgartirish, yangi qo'shish emas. To'g'risi: POST → INSERT.", ru: 'PUT → UPDATE — это изменение существующей машины, а не добавление новой. Правильно: POST → INSERT.' },
-      3: { uz: "DELETE — o'chirish. Qo'shish uchun POST → INSERT.", ru: 'DELETE — удаление. Для добавления POST → INSERT.' },
-      default: { uz: "Yangi qo'shish = POST → INSERT.", ru: 'Добавить новое = POST → INSERT.' }
+      0: { uz: "GET → SELECT faqat o'qiydi, yangi mashina qo'shmaydi.", ru: 'GET → SELECT только читает, новую машину не добавляет.' },
+      1: { uz: "PUT → UPDATE bor mashinani o'zgartiradi, yangi qo'shmaydi.", ru: 'PUT → UPDATE меняет существующую машину, а не добавляет новую.' },
+      3: { uz: "DELETE → DELETE mashinani o'chiradi, qo'shmaydi.", ru: 'DELETE → DELETE удаляет машину, а не добавляет.' },
+      default: { uz: "Qaysi juftlikda ikkala tomon ham «yangi qo'shish» — qarang.", ru: 'Посмотрите, в какой паре обе стороны означают «добавить новое».' }
     }} />
 );
 
@@ -1336,12 +1337,12 @@ const Screen12 = (props) => (
     questionText="Express ichida PostgreSQL'ga SQL yuborish uchun nima ishlatiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Express ichida bazaga <span className="italic" style={{ color: T.accent }}>SQL yuborish</span> uchun?</>, ru: <>Что нужно в Express, чтобы <span className="italic" style={{ color: T.accent }}>отправить SQL</span> в базу?</> })}</h2></>}
     options={["pool.query('...')", 'res.send(...)', 'app.listen(3000, callback)', 'console.log(...)']} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! pool.query('...') — server bilan baza orasidagi ko'prik. SQL'ni PostgreSQL'ga olib boradi va natijani qaytaradi.", ru: "Верно! pool.query('...') — мост между сервером и базой. Доставляет SQL в PostgreSQL и возвращает результат." }}
+    explainCorrect={{ uz: "`pool.query` — server bilan baza orasidagi ko'prik.", ru: "`pool.query` — мост между сервером и базой." }}
     explainWrong={{
-      1: { uz: "res.send — frontga javob qaytaradi, bazaga emas. Bazaga SQL: pool.query('...').", ru: "res.send — возвращает ответ фронту, а не базе. SQL в базу: pool.query('...')." },
-      2: { uz: "app.listen — serverni yoqadi (portni tinglaydi). Bazaga so'rov: pool.query('...').", ru: "app.listen — включает сервер (слушает порт). Запрос в базу: pool.query('...')." },
-      3: { uz: "console.log — terminalga yozadi. Bazaga SQL yuborish: pool.query('...').", ru: "console.log — пишет в терминал. Отправка SQL в базу: pool.query('...')." },
-      default: { uz: "Bazaga SQL = pool.query('...').", ru: "SQL в базу = pool.query('...')." }
+      1: { uz: "`res.send` javobni frontga qaytaradi, bazaga emas.", ru: "`res.send` возвращает ответ фронту, а не базе." },
+      2: { uz: "`app.listen` serverni yoqadi, bazaga so'rov yubormaydi.", ru: "`app.listen` включает сервер, но запрос в базу не отправляет." },
+      3: { uz: "`console.log` faqat terminalga yozadi, bazaga emas.", ru: "`console.log` только пишет в терминал, а не в базу." },
+      default: { uz: "Server bilan baza orasidagi ko'prikni eslang.", ru: "Вспомните мост между сервером и базой." }
     }} />
 );
 

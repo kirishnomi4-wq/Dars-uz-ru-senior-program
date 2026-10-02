@@ -411,7 +411,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`${tr({ uz: '✓ To\'g\'ri javob', ru: '✓ Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`)
               : waiting
@@ -419,8 +419,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: 'To\'g\'ri javob', ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Правильно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -432,11 +433,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi (yoki mustaqil o'quvchi) mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Краткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -530,7 +531,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась классу непонятной. Перед продолжением стоит кратко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании кратко повторите перед продолжением.</> })}</p>
@@ -539,7 +540,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Спокойно продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту сложно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -943,8 +944,8 @@ const Screen4 = (props) => (
     questionText="Internetdagi saytlarni ochib beradigan dastur qanday nomlanadi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Internetdagi saytlarni ochib, ekranga chiqaradigan dastur qanday nomlanadi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как называется программа, которая открывает сайты из интернета и выводит их на экран?</h2></> }}
     options={[{ uz: 'Server', ru: 'Сервер' }, { uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Domen', ru: 'Домен' }, { uz: 'DNS', ru: 'DNS' }]} correctIdx={1}
-    explainCorrect={{ uz: "Zo'r! Brauzer (Chrome, Safari, Firefox, Edge) — saytlarni ochib beruvchi dastur. U saytni topadi va ekranga chizib beradi.", ru: 'Отлично! Браузер (Chrome, Safari, Firefox, Edge) — программа, которая открывает сайты. Он находит сайт и рисует его на экране.' }}
-    explainWrong={{ 0: { uz: 'Server — saytlar saqlanadigan kompyuter. Uni ochib ko\'rsatadigan — brauzer.', ru: 'Сервер — компьютер, где хранятся сайты. Открывает и показывает — браузер.' }, 2: { uz: 'Domen — saytning manzili (youtube.com), dastur emas.', ru: 'Домен — адрес сайта (youtube.com), а не программа.' }, 3: { uz: 'DNS — manzilni IP raqamiga aylantiradi. Saytni ko\'rsatadigan — brauzer.', ru: 'DNS превращает адрес в IP-номер. Показывает сайт — браузер.' }, default: { uz: 'Saytlarni ochib beradigan dastur — brauzer.', ru: 'Программа, открывающая сайты, — браузер.' } }} />
+    explainCorrect={{ uz: "Brauzer — saytni topib, ekranga chizib beradigan dastur.", ru: 'Браузер — программа, которая находит сайт и рисует его на экране.' }}
+    explainWrong={{ 0: { uz: 'Server — saytlar saqlanadigan kompyuter, dastur emas.', ru: 'Сервер — компьютер, где хранятся сайты, а не программа.' }, 2: { uz: 'Domen — saytning manzili (youtube.com), dastur emas.', ru: 'Домен — адрес сайта (youtube.com), а не программа.' }, 3: { uz: 'DNS faqat manzilni IP raqamga aylantiradi, saytni ochmaydi.', ru: 'DNS только превращает адрес в IP-номер, сайт он не открывает.' }, default: { uz: 'Saytni ochib, ekranga chiqaradigan dasturni eslang.', ru: 'Вспомните программу, которая открывает сайт на экране.' } }} />
 );
 
 // ===== SCREEN 5 — DOMEN =====
@@ -996,8 +997,8 @@ const Screen5b = (props) => (
     questionText="youtube.com, coddycamp.uz — bunday sayt manzili nima deb ataladi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, coddycamp.uz — bunday sayt manzili nima deb ataladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, coddycamp.uz — как называется такой адрес сайта?</h2></> }}
     options={[{ uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Parol', ru: 'Пароль' }, { uz: 'Domen', ru: 'Домен' }, { uz: 'Server', ru: 'Сервер' }]} correctIdx={2}
-    explainCorrect={{ uz: "Aniq topdingiz! Domen — saytning odam oson eslab qoladigan manzili (youtube.com).", ru: 'Точно! Домен — легко запоминаемый человеком адрес сайта (youtube.com).' }}
-    explainWrong={{ 0: { uz: 'Brauzer — saytni ochadigan dastur, manzil emas.', ru: 'Браузер — программа, открывающая сайт, а не адрес.' }, 1: { uz: 'Parol — maxfiy so\'z. Sayt manzili — domen.', ru: 'Пароль — секретное слово. Адрес сайта — домен.' }, 3: { uz: 'Server — sayt saqlanadigan kompyuter. Uning manzili (nomi) — domen.', ru: 'Сервер — компьютер, где хранится сайт. Его адрес (имя) — домен.' }, default: { uz: 'Sayt manzili — domen deb ataladi.', ru: 'Адрес сайта называется доменом.' } }} />
+    explainCorrect={{ uz: "Domen — odam oson eslab qoladigan sayt manzili.", ru: 'Домен — адрес сайта, который человеку легко запомнить.' }}
+    explainWrong={{ 0: { uz: 'Brauzer — saytni ochadigan dastur, manzil emas.', ru: 'Браузер — программа, открывающая сайт, а не адрес.' }, 1: { uz: 'Parol — maxfiy so\'z, u sayt manzili emas.', ru: 'Пароль — секретное слово, а не адрес сайта.' }, 3: { uz: 'Server — sayt saqlanadigan kompyuter, manzil emas.', ru: 'Сервер — компьютер, где хранится сайт, а не адрес.' }, default: { uz: 'Brauzerning yuqori qatoriga nima yozilishini eslang.', ru: 'Вспомните, что пишут в верхней строке браузера.' } }} />
 );
 // ===== SCREEN 6 — IP MANZIL =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1177,8 +1178,8 @@ const Screen9 = (props) => (
     questionText="Domen nomini IP raqamiga kim aylantiradi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Domen nomini (youtube.com) kompyuter tushunadigan <span className="italic" style={{ color: T.accent }}>IP raqamiga</span> kim aylantiradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Кто превращает доменное имя (youtube.com) в понятный компьютеру <span className="italic" style={{ color: T.accent }}>IP-номер</span>?</h2></> }}
     options={[{ uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Domen', ru: 'Домен' }, { uz: 'Server', ru: 'Сервер' }, { uz: 'DNS', ru: 'DNS' }]} correctIdx={3}
-    explainCorrect={{ uz: "Barakalla! DNS — internetning telefon kitobi: domen nomini IP raqamiga aylantiradi.", ru: 'Молодец! DNS — телефонная книга интернета: превращает доменное имя в IP-номер.' }}
-    explainWrong={{ 0: { uz: 'Brauzer DNS\'dan so\'raydi, lekin aylantirishni DNS bajaradi.', ru: 'Браузер спрашивает у DNS, но превращает именно DNS.' }, 1: { uz: 'Domen — bu nomning o\'zi. Uni IP\'ga aylantiradigan — DNS.', ru: 'Домен — это само имя. Превращает его в IP — DNS.' }, 2: { uz: 'Server — sayt saqlanadigan kompyuter. Nomni IP\'ga aylantiradigan — DNS.', ru: 'Сервер — компьютер, где хранится сайт. Имя в IP превращает DNS.' }, default: { uz: 'Domen → IP aylantirishni DNS bajaradi.', ru: 'Превращение домен → IP выполняет DNS.' } }} />
+    explainCorrect={{ uz: "DNS — telefon kitobi: domen nomini IP raqamga aylantiradi.", ru: 'DNS — телефонная книга: превращает доменное имя в IP-номер.' }}
+    explainWrong={{ 0: { uz: 'Brauzer faqat so\'raydi, nomni raqamga o\'zi aylantirmaydi.', ru: 'Браузер только спрашивает, имя в число он сам не превращает.' }, 1: { uz: 'Domen — nomning o\'zi, u o\'zini raqamga aylantirmaydi.', ru: 'Домен — это само имя, себя в число он не превращает.' }, 2: { uz: 'Server saytni saqlaydi, nomni raqamga aylantirmaydi.', ru: 'Сервер хранит сайт, а имя в число не превращает.' }, default: { uz: 'Telefon kitobi misolini eslang.', ru: 'Вспомните пример с телефонной книгой.' } }} />
 );
 
 // ===== SCREEN 10 — SO'ROV YO'LI (oldinga oqadigan ma'lumot konveyeri) =====
@@ -1416,8 +1417,8 @@ const Screen12 = (props) => (
     questionText="Server brauzerga aniq nima qaytaradi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Server brauzerga aniq <span className="italic" style={{ color: T.accent }}>nima</span> qaytaradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что именно сервер возвращает <span className="italic" style={{ color: T.accent }}>браузеру</span>?</h2></> }}
     options={[{ uz: 'Saytning domen nomi', ru: 'Доменное имя сайта' }, { uz: 'Sahifa kodi (HTML)', ru: 'Код страницы (HTML)' }, { uz: 'DNS server manzili', ru: 'Адрес DNS-сервера' }, { uz: 'Boshqa brauzer dasturi', ru: 'Другую программу-браузер' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'ppa-to'g'ri! Server sahifa kodini — HTML'ni qaytaradi. Brauzer uni o'qib, chiroyli sahifaga aylantiradi.", ru: 'В точку! Сервер возвращает код страницы — HTML. Браузер читает его и превращает в красивую страницу.' }}
-    explainWrong={{ 0: { uz: 'Domen nomini siz yozasiz, server emas. Server HTML kodini qaytaradi.', ru: 'Доменное имя пишете вы, а не сервер. Сервер возвращает HTML-код.' }, 2: { uz: 'DNS manzilini DNS beradi. Server esa sahifa kodini (HTML) qaytaradi.', ru: 'Адрес даёт DNS. А сервер возвращает код страницы (HTML).' }, 3: { uz: 'Brauzer sizda allaqachon bor. Server HTML kodini jo\'natadi.', ru: 'Браузер у вас уже есть. Сервер отправляет HTML-код.' }, default: { uz: 'Server HTML — sahifa kodini qaytaradi.', ru: 'Сервер возвращает HTML — код страницы.' } }} />
+    explainCorrect={{ uz: "Server kod qaytaradi, sahifani esa brauzer chizadi.", ru: 'Сервер возвращает код, а страницу рисует браузер.' }}
+    explainWrong={{ 0: { uz: 'Domen nomini server emas, siz yozasiz.', ru: 'Доменное имя пишете вы, а не сервер.' }, 2: { uz: 'IP manzilni DNS beradi, server boshqa narsa qaytaradi.', ru: 'Адрес выдаёт DNS, а сервер возвращает другое.' }, 3: { uz: 'Brauzer sizda allaqachon bor, server uni jo\'natmaydi.', ru: 'Браузер у вас уже есть, сервер его не присылает.' }, default: { uz: 'Brauzer nimani o\'qib sahifaga aylantirishini eslang.', ru: 'Вспомните, что браузер читает и превращает в страницу.' } }} />
 );
 
 // ===== SCREEN 13 — SIMULATOR (o'zingiz so'rov yuboring — 2-page kabi aylanma sayohat) =====
@@ -1533,15 +1534,15 @@ const RECAPS = {
   4: {
     title: { uz: 'Internet va Brauzer', ru: 'Интернет и браузер' }, cards: [
       { ic: '🕸️', h: { uz: 'Internet — kompyuterlarni bog\'lovchi tarmoq', ru: 'Интернет — сеть, связывающая компьютеры' },
-        body: { uz: <>Butun dunyodagi <b>millionlab kompyuterlar</b> simlar va antennalar orqali bir-biriga ulangan — mana shu internet. Siz ochgan video ham, yuborgan xabar ham ana shu «yo'llar» orqali yuradi.</>, ru: <>По всему миру <b>миллионы компьютеров</b> соединены проводами и антеннами — это и есть интернет. И видео, что вы открыли, и сообщение, что отправили, идут по этим «дорогам».</> },
+        body: { uz: <>Millionlab kompyuterlar simlar va antennalar orqali ulangan — mana shu <b>internet</b>.</>, ru: <>Миллионы компьютеров соединены проводами и антеннами — это и есть <b>интернет</b>.</> },
         vis: { uz: <RcFlow items={['📱 Telefon', '💻 Noutbuk', '📺 TV', '🖥️ Server']} sep="·" />, ru: <RcFlow items={['📱 Телефон', '💻 Ноутбук', '📺 ТВ', '🖥️ Сервер']} sep="·" /> },
         ask: { uz: "Uyingizda yana qaysi qurilmalar internetga ulangan?", ru: 'Какие ещё устройства у вас дома подключены к интернету?' } },
       { ic: '📲', h: { uz: 'Brauzer — saytlarni ochuvchi dastur', ru: 'Браузер — программа, открывающая сайты' },
-        body: { uz: <>O'yin o'ynash uchun o'yin-dastur kerak, rasm chizish uchun — chizish dasturi. Saytlarni ochish uchun ham maxsus <b>dastur</b> kerak — bu <b>brauzer</b>. Chrome, Safari, Firefox, Edge — nomi har xil, ishi bitta.</>, ru: <>Чтобы играть, нужна игра-программа, чтобы рисовать — программа для рисования. Чтобы открывать сайты, тоже нужна особая <b>программа</b> — это <b>браузер</b>. Chrome, Safari, Firefox, Edge — названия разные, дело одно.</> },
+        body: { uz: <>Saytlarni ochadigan dastur — <b>brauzer</b>: Chrome, Safari, Firefox, Edge.</>, ru: <>Программа, которая открывает сайты, — <b>браузер</b>: Chrome, Safari, Firefox, Edge.</> },
         vis: <div className="rc-flow">{[['chrome', 'Chrome'], ['safari', 'Safari'], ['firefox', 'Firefox'], ['edge', 'Edge']].map(([k, l]) => <span key={k} className="rc-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><BrowserLogo k={k} size={26} />{l}</span>)}</div>,
         ask: { uz: "O'zingiz qaysi brauzerni ishlatasiz?", ru: 'А каким браузером пользуетесь вы?' } },
       { ic: '🎨', h: { uz: 'Brauzer 3 ta ish qiladi', ru: 'Браузер делает 3 вещи' },
-        body: { uz: <>Siz faqat manzil yozasiz — qolganini brauzer o'zi qiladi: saytni internetdan <b>topadi</b>, <b>olib keladi</b> va ekranga <b>chizib beradi</b>.</>, ru: <>Вы только вводите адрес — остальное браузер делает сам: <b>находит</b> сайт в интернете, <b>приносит</b> его и <b>рисует</b> на экране.</> },
+        body: { uz: <>Siz faqat manzil yozasiz, brauzer saytni <b>topadi</b>, olib keladi va ekranga chizadi.</>, ru: <>Вы только вводите адрес, а браузер <b>находит</b> сайт, приносит его и рисует на экране.</> },
         vis: { uz: <RcFlow items={['⌨️ Manzil yozasiz', '📦 Saytni olib keladi', '🎨 Ekranga chizadi']} />, ru: <RcFlow items={['⌨️ Вводите адрес', '📦 Приносит сайт', '🎨 Рисует на экране']} /> } },
     ]
   },
@@ -1549,14 +1550,14 @@ const RECAPS = {
   6: {
     title: { uz: 'Domen — sayt manzili', ru: 'Домен — адрес сайта' }, cards: [
       { ic: '🏠', h: { uz: 'Domen — saytning manzili', ru: 'Домен — адрес сайта' },
-        body: { uz: <>Do'stingiznikiga borish uchun uy manzilini bilishingiz kerak. Saytga kirish uchun ham manzil kerak — brauzerning yuqori qatoriga yoziladigan bu manzil <b>domen</b> deyiladi: <b className="mono">youtube.com</b>, <b className="mono">coddycamp.uz</b>.</>, ru: <>Чтобы прийти к другу, нужно знать адрес дома. Чтобы зайти на сайт, тоже нужен адрес — тот, что пишут в верхней строке браузера, называется <b>домен</b>: <b className="mono">youtube.com</b>, <b className="mono">coddycamp.uz</b>.</> },
+        body: { uz: <>Brauzerning yuqori qatoriga yoziladigan sayt manzili — <b>domen</b> (<b className="mono">youtube.com</b>).</>, ru: <>Адрес сайта в верхней строке браузера — это <b>домен</b> (<b className="mono">youtube.com</b>).</> },
         vis: { uz: <RcFlow items={['🏠 Uy manzili → uyga borasiz', '🌐 Domen → saytga borasiz']} />, ru: <RcFlow items={['🏠 Адрес дома → приходите домой', '🌐 Домен → заходите на сайт']} /> },
         ask: { uz: "Sevimli saytingizning domeni nima?", ru: 'Какой домен у вашего любимого сайта?' } },
       { ic: '🧩', h: { uz: 'Domen ikki qismdan iborat', ru: 'Домен состоит из двух частей' },
-        body: { uz: <>Nuqtadan oldin — <b>nom</b> (saytning ismi), nuqtadan keyin — <b>zona</b> (turi): <b className="mono">.uz</b> — O'zbekiston, <b className="mono">.com</b> — umumiy, <b className="mono">.org</b> — tashkilotlar.</>, ru: <>До точки — <b>имя</b> (название сайта), после точки — <b>зона</b> (тип): <b className="mono">.uz</b> — Узбекистан, <b className="mono">.com</b> — общая, <b className="mono">.org</b> — организации.</> },
+        body: { uz: <>Nuqtadan oldin — <b>nom</b>, nuqtadan keyin — <b>zona</b>: <b className="mono">.uz</b>, <b className="mono">.com</b>, <b className="mono">.org</b>.</>, ru: <>До точки — <b>имя</b>, после точки — <b>зона</b>: <b className="mono">.uz</b>, <b className="mono">.com</b>, <b className="mono">.org</b>.</> },
         vis: { uz: <RcFlow items={['youtube — nom', '.com — zona']} sep="+" />, ru: <RcFlow items={['youtube — имя', '.com — зона']} sep="+" /> } },
       { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не перепутайте!' },
-        body: { uz: <>Domen — <b>dastur emas</b> (dastur — brauzer), <b>kompyuter ham emas</b> (u — server). Domen — faqat <b>manzil</b>, xolos. Bitta harf xato yozilsa — sayt topilmaydi!</>, ru: <>Домен — <b>не программа</b> (программа — браузер) и <b>не компьютер</b> (это сервер). Домен — просто <b>адрес</b>, и всё. Ошибётесь в одной букве — сайт не найдётся!</> },
+        body: { uz: <>Domen dastur ham, kompyuter ham emas — u faqat <b>manzil</b>.</>, ru: <>Домен — не программа и не компьютер, а просто <b>адрес</b>.</> },
         ask: { uz: "«youtub.com» yozsak nima bo'ladi? (bir harf kam!)", ru: 'Что будет, если набрать «youtub.com»? (одной буквы не хватает!)' } },
     ]
   },
@@ -1564,14 +1565,14 @@ const RECAPS = {
   10: {
     title: { uz: 'IP manzil va DNS', ru: 'IP-адрес и DNS' }, cards: [
       { ic: '🔢', h: { uz: 'Kompyuter faqat raqamni tushunadi', ru: 'Компьютер понимает только числа' },
-        body: { uz: <>Biz saytni <b>nomi</b> bilan eslaymiz, kompyuter esa <b>raqami</b> bilan topadi. Internetdagi har bir kompyuterning o'z raqamli manzili bor — bu <b>IP manzil</b>.</>, ru: <>Мы запоминаем сайт по <b>имени</b>, а компьютер находит его по <b>числу</b>. У каждого компьютера в интернете есть свой числовой адрес — это <b>IP-адрес</b>.</> },
+        body: { uz: <>Biz saytni nomi bilan eslaymiz, kompyuter esa raqami — <b>IP manzil</b> bilan topadi.</>, ru: <>Мы помним сайт по имени, а компьютер находит его по числу — <b>IP-адресу</b>.</> },
         vis: <RcFlow items={['🌐 youtube.com', '🔢 142.250.190.78']} /> },
       { ic: '📖', h: { uz: 'DNS — internetning telefon kitobi', ru: 'DNS — телефонная книга интернета' },
-        body: { uz: <>Telefonda «Aziza» deb qidirasiz — raqamini telefon o'zi topadi, to'g'rimi? Internetda ham xuddi shunday: siz <b>domen</b> yozasiz, <b>DNS</b> uning <b>IP raqamini</b> bir zumda topib beradi.</>, ru: <>В телефоне вы ищете «Азиза» — номер телефон находит сам, верно? В интернете так же: вы вводите <b>домен</b>, а <b>DNS</b> мгновенно находит его <b>IP-номер</b>.</> },
+        body: { uz: <>Siz domen yozasiz, <b>DNS</b> esa telefon kitobi kabi uning IP raqamini topadi.</>, ru: <>Вы вводите домен, а <b>DNS</b>, как телефонная книга, находит его IP-номер.</> },
         vis: <RcFlow items={['📇 «Aziza»', '📞 +998 90 123-45-67']} />,
         ask: { uz: "youtube.com yozsak, DNS bizga aniq nima qaytaradi?", ru: 'Если набрать youtube.com, что именно вернёт нам DNS?' } },
       { ic: '⚡', h: { uz: 'Uchalasini eslab qoling', ru: 'Запомните все три' },
-        body: { uz: <><b>Domen</b> — nom, odam uchun. <b>IP</b> — raqam, kompyuter uchun. <b>DNS</b> — nomdan raqamni topib beruvchi xizmat.</>, ru: <><b>Домен</b> — имя, для человека. <b>IP</b> — число, для компьютера. <b>DNS</b> — служба, которая по имени находит число.</> },
+        body: { uz: <>Domen — odam uchun nom, IP — kompyuter uchun raqam, <b>DNS</b> nomdan raqamni topadi.</>, ru: <>Домен — имя для человека, IP — число для компьютера, а <b>DNS</b> по имени находит число.</> },
         vis: { uz: <RcFlow items={['🌐 Domen', '📖 DNS', '🔢 IP']} />, ru: <RcFlow items={['🌐 Домен', '📖 DNS', '🔢 IP']} /> } },
     ]
   },
@@ -1579,14 +1580,14 @@ const RECAPS = {
   13: {
     title: { uz: 'Server va HTML', ru: 'Сервер и HTML' }, cards: [
       { ic: '🖥️', h: { uz: 'Sayt serverda yashaydi', ru: 'Сайт живёт на сервере' },
-        body: { uz: <>Server — saytlarni saqlaydigan, <b>doim yoniq</b> turadigan kuchli kompyuter. Siz so'rov yuborasiz — u saytni qaytaradi. Kechasi soat 3 da ham sayt ochiladi, chunki server hech qachon uxlamaydi!</>, ru: <>Сервер — мощный компьютер, который хранит сайты и <b>всегда включён</b>. Вы отправляете запрос — он возвращает сайт. Сайт откроется даже в 3 часа ночи, потому что сервер никогда не спит!</> },
+        body: { uz: <><b>Server</b> — saytlarni saqlaydigan, doim yoniq turadigan kuchli kompyuter.</>, ru: <><b>Сервер</b> — мощный компьютер, который хранит сайты и всегда включён.</> },
         vis: { uz: <RcFlow items={["📨 Siz so'rov yubordingiz", '🖥️ Server javob qaytardi']} />, ru: <RcFlow items={['📨 Вы отправили запрос', '🖥️ Сервер вернул ответ']} /> },
         ask: { uz: "Nega server hech qachon o'chmasligi kerak?", ru: 'Почему сервер никогда не должен выключаться?' } },
       { ic: '📄', h: { uz: 'Server chiroyli sahifa EMAS — kod qaytaradi', ru: 'Сервер отдаёт не красивую страницу, а КОД' },
-        body: { uz: <>Serverdan keladigan narsa — <b>HTML kod</b>, oddiy matn. Tayyor rasm ham, chiroyli sahifa ham emas! Keyingi darsda xuddi shunday kodni <b>o'zingiz yozasiz</b>.</>, ru: <>С сервера приходит <b>HTML-код</b>, обычный текст. Ни готовой картинки, ни красивой страницы! На следующем уроке такой же код вы <b>напишете сами</b>.</> },
+        body: { uz: <>Serverdan tayyor sahifa emas, <b>HTML kod</b> — oddiy matn keladi.</>, ru: <>С сервера приходит не готовая страница, а <b>HTML-код</b> — обычный текст.</> },
         vis: <div className="rc-code mono"><Tg>{'<h1>'}</Tg>▶️ YouTube<Tg>{'</h1>'}</Tg></div> },
       { ic: '🎨', h: { uz: 'Chiroyli qiladigan — brauzer', ru: 'Красивым делает — браузер' },
-        body: { uz: <>HTML kod — retsept, brauzer — oshpaz: kodni <b>satrma-satr o'qib</b>, undan ekranda chiroyli sahifa «pishiradi».</>, ru: <>HTML-код — рецепт, браузер — повар: <b>читает код строка за строкой</b> и «готовит» из него красивую страницу на экране.</> },
+        body: { uz: <>HTML kod — retsept, <b>brauzer</b> — oshpaz: kodni o'qib, sahifa «pishiradi».</>, ru: <>HTML-код — рецепт, <b>браузер</b> — повар: читает код и «готовит» страницу.</> },
         vis: { uz: <RcFlow items={['📄 HTML kod', "🌐 Brauzer o'qiydi", '🖼️ Chiroyli sahifa']} />, ru: <RcFlow items={['📄 HTML-код', '🌐 Браузер читает', '🖼️ Красивая страница']} /> } },
     ]
   },
@@ -1594,13 +1595,13 @@ const RECAPS = {
   18: {
     title: { uz: "So'rovning to'liq yo'li", ru: 'Полный путь запроса' }, cards: [
       { ic: '🗺️', h: { uz: '4 qadam — doim shu tartibda', ru: '4 шага — всегда в этом порядке' },
-        body: { uz: <>Enter bosilgach: <b>brauzer</b> ishni boshlaydi → <b>DNS</b> IP raqamni topadi → <b>server</b> HTML kodni beradi → <b>ekranda</b> sahifa chiziladi.</>, ru: <>После нажатия Enter: <b>браузер</b> начинает работу → <b>DNS</b> находит IP-номер → <b>сервер</b> отдаёт HTML-код → на <b>экране</b> рисуется страница.</> },
+        body: { uz: <>Brauzer boshlaydi → DNS IP topadi → server HTML beradi → ekranda sahifa chiziladi.</>, ru: <>Браузер начинает → DNS находит IP → сервер отдаёт HTML → на экране рисуется страница.</> },
         vis: { uz: <RcFlow items={['🌐 Brauzer', '📖 DNS', '🖥️ Server', '🖼️ Ekran']} />, ru: <RcFlow items={['🌐 Браузер', '📖 DNS', '🖥️ Сервер', '🖼️ Экран']} /> } },
       { ic: '🤔', h: { uz: 'Nega aynan shu tartib?', ru: 'Почему именно такой порядок?' },
-        body: { uz: <>Manzilni bilmasdan borib bo'lmaydi! Avval DNS'dan <b>IP olinadi</b>, keyin o'sha manzildagi serverga boriladi. Pochtachi ham avval konvertdagi manzilni o'qiydi, keyin xatni tashiydi.</>, ru: <>Не зная адреса, не дойти! Сначала у DNS <b>берётся IP</b>, затем идут на сервер по этому адресу. Почтальон тоже сначала читает адрес на конверте, а потом несёт письмо.</> },
+        body: { uz: <>Manzilni bilmasdan borib bo'lmaydi, shuning uchun avval <b>DNS</b>'dan IP olinadi.</>, ru: <>Не зная адреса, не дойти, поэтому сначала у <b>DNS</b> берут IP.</> },
         ask: { uz: "Brauzer DNS'siz to'g'ri serverni topa oladimi? Nega?", ru: 'Сможет ли браузер без DNS найти нужный сервер? Почему?' } },
       { ic: '⏱️', h: { uz: 'Va bularning bari — 1 soniyada', ru: 'И всё это — за 1 секунду' },
-        body: { uz: <>Bu yo'lning hammasi ko'z ochib yumguncha bosib o'tiladi. Har safar sayt ochganingizda — YouTube'mi, o'yinmi, Telegram'mi — aynan shu yo'l takrorlanadi.</>, ru: <>Весь этот путь проходится в мгновение ока. Каждый раз, когда вы открываете сайт — YouTube, игру или Telegram — повторяется ровно этот путь.</> },
+        body: { uz: <>Har safar sayt ochganingizda shu yo'l <b>bir zumda</b> bosib o'tiladi.</>, ru: <>Каждый раз, когда вы открываете сайт, этот путь проходится <b>за мгновение</b>.</> },
         vis: { uz: <RcFlow items={['⌨️ Enter', '⏱️ ≈ 1 soniya', '✅ Sayt ochildi']} />, ru: <RcFlow items={['⌨️ Enter', '⏱️ ≈ 1 секунда', '✅ Сайт открылся']} /> } },
     ]
   },
@@ -1608,7 +1609,7 @@ const RECAPS = {
 
 // Overlay — QuizArena kabi ekran USTIDA ochiladi, ekran indekslariga tegmaydi.
 // Slayd-slayd o'tiladi (mentor og'zaki tushuntirib boradi), oxirgi kartada yopiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -1626,7 +1627,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснение заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -1635,13 +1636,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -1975,8 +1976,8 @@ const Screen15 = (props) => (
     questionText="youtube.com yozganda so'rov qaysi tartibda boradi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Butun yo'lni eslang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>youtube.com yozib Enter bossangiz, so'rov <span className="italic" style={{ color: T.accent }}>qaysi tartibda</span> boradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Вспомните весь путь</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Когда вы вводите youtube.com и жмёте Enter, в <span className="italic" style={{ color: T.accent }}>каком порядке</span> идёт запрос?</h2></> }}
     options={[{ uz: 'Server → DNS → Brauzer → Ekran', ru: 'Сервер → DNS → Браузер → Экран' }, { uz: 'DNS → Brauzer → Server → Ekran', ru: 'DNS → Браузер → Сервер → Экран' }, { uz: 'Brauzer → DNS → Server → Ekran', ru: 'Браузер → DNS → Сервер → Экран' }, { uz: 'Brauzer → Server → DNS → Ekran', ru: 'Браузер → Сервер → DNS → Экран' }]} correctIdx={2}
-    explainCorrect={{ uz: "Ajoyib, butun yo'lni esladingiz! Brauzer avval DNS'dan IP oladi, keyin serverga so'rov yuboradi, server sahifani qaytaradi, brauzer esa ekranga chizadi.", ru: 'Отлично, вы вспомнили весь путь! Браузер сначала берёт IP у DNS, затем отправляет запрос серверу, сервер возвращает страницу, а браузер рисует её на экране.' }}
-    explainWrong={{ 0: { uz: "Server birinchi emas — avval brauzer so'rovni boshlaydi.", ru: 'Сервер не первый — сначала запрос начинает браузер.' }, 1: { uz: "DNS birinchi emas — avval brauzer DNS'ga murojaat qiladi.", ru: 'DNS не первый — сначала браузер обращается к DNS.' }, 3: { uz: "DNS server'dan oldin keladi — avval IP topiladi, keyin server'ga boriladi.", ru: 'DNS идёт раньше сервера — сначала находят IP, потом идут на сервер.' }, default: { uz: "To'g'ri yo'l: Brauzer → DNS → Server → Ekran.", ru: 'Верный путь: Браузер → DNS → Сервер → Экран.' } }} />
+    explainCorrect={{ uz: "Serverga borish uchun avval DNS'dan IP olinadi.", ru: 'Чтобы пойти на сервер, сначала берут IP у DNS.' }}
+    explainWrong={{ 0: { uz: "Server so'rov kelmaguncha hech narsa yubormaydi.", ru: 'Сервер ничего не отправляет, пока не придёт запрос.' }, 1: { uz: "DNS o'zi ishga tushmaydi, unga avval murojaat qilinadi.", ru: 'DNS сам не начинает, к нему сначала обращаются.' }, 3: { uz: "Serverga borish uchun avval uning IP raqami kerak.", ru: 'Чтобы пойти на сервер, сначала нужен его IP-номер.' }, default: { uz: "Manzilsiz borib bo'lmaydi — qadamlar tartibini o'ylang.", ru: 'Без адреса не дойти — подумайте о порядке шагов.' } }} />
 );
 
 // ===== SCREEN 15b — PODIUM / STATISTIKA (Kahoot uslubi) =====

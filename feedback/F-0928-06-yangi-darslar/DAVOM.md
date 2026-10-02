@@ -43,7 +43,7 @@ Javobdan keyingi tartib (PM_PIPELINE.md):
 - Yangi vosita **`scripts/ekran-belgi.mjs`** — EKRAN ≤400 o'lchovi: `CHROME=/usr/bin/google-chrome CLICK='sel1,sel2' node scripts/ekran-belgi.mjs <fayl> <ekran>` (SHOW=1 matnni chiqaradi). P0 kalibrovka: s1 492, s15 423.
 - Zaxira: `arxiv/f0928-06-oldin/` (eski PmJtbd, PmMetrics, PmLesson28, App.jsx, M5DemoApp, PmLesson8, PmLesson21 + MD5.txt).
 
-## 5. UNCOMMITTED (12:25 holat, shu seansniki)
+## 5. COMMIT b255464 push ✓ (12:3x) — quyidagilar kirdi (eski ro'yxat, ma'lumot uchun)
 Tahrirlangan: src/App.jsx · src/m5-demo/M5DemoApp.jsx · src/pm/PmJtbdLesson.jsx · src/pm/PmMetricsLesson.jsx · src/3-Modull/PmLesson8.jsx ·
 src/5-Modull/PmLesson19/20/21.jsx (setLiveLang + 21 ko'prik — endi PARALLEL seans hududi) · PM_PIPELINE_STATE.md · KATTA_TOZALASH.md · feedback/lms-sinov-2026-09-16/onfinished-sweep.*
 Yangi: src/2-Modull/PmMuammoIzlash.jsx · scripts/ekran-belgi.mjs · pm-senariylar/{M2-D3-MuammoIzlash,M3-D3-JTBD,M5-D11-Metrika}.md · feedback/F-0928-06-yangi-darslar/ · arxiv/f0928-06-oldin/

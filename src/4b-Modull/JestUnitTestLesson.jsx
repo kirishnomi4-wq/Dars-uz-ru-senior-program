@@ -228,17 +228,17 @@ const RECAPS = {
   4: {
     title: { uz: 'Unit-test — funksiya-mashinani sinash', ru: 'Юнит-тест — испытание функции-машины' },
     cards: [
-      { ic: '⚙️', h: { uz: 'Funksiya = mashina', ru: 'Функция = машина' }, body: { uz: <>Funksiyaga <b>kirish</b> berasiz (price, quantity) — u <b>chiqish</b> qaytaradi (summa).</>, ru: <>Вы даёте функции <b>вход</b> (price, quantity) — она возвращает <b>выход</b> (сумму).</> } },
+      { ic: '⚙️', h: { uz: 'Funksiya = mashina', ru: 'Функция = машина' }, body: { uz: <>Funksiyaga <b>kirish</b> berasiz (price, quantity) — u chiqish qaytaradi (summa).</>, ru: <>Вы даёте функции <b>вход</b> (price, quantity) — она возвращает выход (сумму).</> } },
       { ic: '🤖', h: { uz: 'Jestbot tekshiradi', ru: 'Джестбот проверяет' }, body: { uz: <>Unit-test — mashinani sinovchi robot: ma'lum kirishga <b>kutilgan chiqish</b> keladimi?</>, ru: <>Юнит-тест — робот-испытатель машины: придёт ли на известный вход <b>ожидаемый выход</b>?</> } },
-      { ic: '🔁', h: { uz: "Har o'zgarishda", ru: 'При каждом изменении' }, body: { uz: <>Bir marta yozasiz — robot uni <b>har o'zgarishda</b> qayta ishlatadi.</>, ru: <>Вы пишете тест один раз — робот прогоняет его <b>при каждом изменении</b> кода.</> }, ask: { uz: 'Unit-test nimani tekshiradi?', ru: 'Что проверяет юнит-тест?' } }
+      { ic: '🔁', h: { uz: "Har o'zgarishda", ru: 'При каждом изменении' }, body: { uz: <>Bir marta yozasiz — robot uni <b>har o'zgarishda</b> qayta ishlatadi.</>, ru: <>Вы пишете тест один раз — робот прогоняет его при <b>каждом изменении</b> кода.</> }, ask: { uz: 'Unit-test nimani tekshiradi?', ru: 'Что проверяет юнит-тест?' } }
     ]
   },
   8: {
     title: { uz: 'expect(...).toBe(...) — etalon kartochkasi', ru: 'expect(...).toBe(...) — карточка-эталон' },
     cards: [
-      { ic: '🎯', h: { uz: 'Etalon kartochkasi', ru: 'Карточка-эталон' }, body: { uz: <><span className="mono">expect(natija).toBe(kutilgan)</span> — robotga <b>kutilgan qiymatni</b> berasiz.</>, ru: <><span className="mono">expect(результат).toBe(ожидаемое)</span> — вы даёте роботу <b>ожидаемое значение</b>.</> } },
+      { ic: '🎯', h: { uz: 'Etalon kartochkasi', ru: 'Карточка-эталон' }, body: { uz: <><span className="mono">expect(natija).toBe(kutilgan)</span> — robotga <b>kutilgan qiymat</b>ni berasiz.</>, ru: <><span className="mono">expect(результат).toBe(ожидаемое)</span> — вы даёте роботу <b>ожидаемое значение</b>.</> } },
       { ic: '🚫', h: { uz: 'console.log test emas', ru: 'console.log — не тест' }, body: { uz: <><span className="mono">console.log</span> faqat ekranga chiqaradi — hech narsani <b>tekshirmaydi</b>.</>, ru: <><span className="mono">console.log</span> только выводит на экран — ничего <b>не проверяет</b>.</> } },
-      { ic: '💡', h: { uz: "Jestbot o'zi bilmaydi", ru: 'Джестбот сам не знает' }, body: { uz: <>Robot to'g'ri javobni <b>bilmaydi</b> — u faqat sizning etaloningiz bilan solishtiradi.</>, ru: <>Робот <b>не знает</b> правильный ответ — он лишь сверяет с вашим эталоном.</> }, ask: { uz: 'Natija 15000 ekanini qanday tekshiramiz?', ru: 'Как проверить, что результат равен 15000?' } }
+      { ic: '💡', h: { uz: "Jestbot o'zi bilmaydi", ru: 'Джестбот сам не знает' }, body: { uz: <>Robot to'g'ri javobni bilmaydi — u faqat sizning <b>etaloningiz</b> bilan solishtiradi.</>, ru: <>Робот не знает правильный ответ — он лишь сверяет с вашим <b>эталоном</b>.</> }, ask: { uz: 'Natija 15000 ekanini qanday tekshiramiz?', ru: 'Как проверить, что результат равен 15000?' } }
     ]
   },
   11: {
@@ -246,29 +246,29 @@ const RECAPS = {
     cards: [
       { ic: '📁', h: { uz: 'describe = papka', ru: 'describe = папка' }, body: { uz: <><span className="mono">describe</span> bitta mashinaning barcha sinovlarini <b>bitta guruhga</b> yig'adi.</>, ru: <><span className="mono">describe</span> собирает все испытания одной машины <b>в одну группу</b>.</> } },
       { ic: '📝', h: { uz: 'it = sinov varaqasi', ru: 'it = бланк испытания' }, body: { uz: <>Har <span className="mono">it</span> — bitta sinov: <b>bitta xatti-harakat</b> tekshiriladi.</>, ru: <>Каждый <span className="mono">it</span> — одно испытание: проверяется <b>одно поведение</b>.</> } },
-      { ic: '🗂️', h: { uz: 'Tartib', ru: 'Порядок' }, body: { uz: <>Bitta <span className="mono">describe</span> ichida nechta <span className="mono">it</span> bo'lsa ham — hammasi bir guruh.</>, ru: <>Сколько бы <span className="mono">it</span> ни было внутри одного <span className="mono">describe</span> — все они одна группа.</> }, ask: { uz: 'describe nima uchun kerak?', ru: 'Зачем нужен describe?' } }
+      { ic: '🗂️', h: { uz: 'Tartib', ru: 'Порядок' }, body: { uz: <>Bitta <span className="mono">describe</span> ichida nechta <span className="mono">it</span> bo'lsa ham — hammasi <b>bir guruh</b>.</>, ru: <>Сколько бы <span className="mono">it</span> ни было внутри одного <span className="mono">describe</span> — все они <b>одна группа</b>.</> }, ask: { uz: 'describe nima uchun kerak?', ru: 'Зачем нужен describe?' } }
     ]
   },
   14: {
     title: { uz: 'FAIL — Expected va Received', ru: 'FAIL — Expected и Received' },
     cards: [
-      { ic: '🚨', h: { uz: 'Qizil lampa', ru: 'Красная лампа' }, body: { uz: <>Natija etalondan farq qilsa — Jestbot <b>FAIL</b> beradi va to'xtaydi.</>, ru: <>Если результат отличается от эталона — Джестбот выдаёт <b>FAIL</b> и останавливается.</> } },
+      { ic: '🚨', h: { uz: 'Qizil lampa', ru: 'Красная лампа' }, body: { uz: <>Natija etalondan farq qilsa — Jestbot <b>FAIL</b> beradi va to'xtaydi.</>, ru: <>Если результат отличается от эталона, Джестбот выдаёт <b>FAIL</b> и останавливается.</> } },
       { ic: '📇', h: { uz: 'Ikki kartochka', ru: 'Две карточки' }, body: { uz: <><b>Expected</b> — siz kutgan qiymat; <b>Received</b> — mashina qaytargani.</>, ru: <><b>Expected</b> — то, что ждали вы; <b>Received</b> — то, что вернула машина.</> } },
-      { ic: '🔧', h: { uz: 'Xato sizgacha yetadi', ru: 'Ошибка доходит до вас' }, body: { uz: <>Xato <b>mijozgacha emas</b>, sizgacha yetib keladi — mana testning foydasi.</>, ru: <>Ошибка доходит <b>до вас, а не до клиента</b> — в этом и польза теста.</> }, ask: { uz: "Expected 20000, Received 10002 — nima bo'ldi?", ru: 'Expected 20000, Received 10002 — что случилось?' } }
+      { ic: '🔧', h: { uz: 'Xato sizgacha yetadi', ru: 'Ошибка доходит до вас' }, body: { uz: <>Xato mijozgacha emas, <b>sizgacha</b> yetib keladi — mana testning foydasi.</>, ru: <>Ошибка доходит до <b>вас</b>, а не до клиента — в этом и польза теста.</> }, ask: { uz: "Expected 20000, Received 10002 — nima bo'ldi?", ru: 'Expected 20000, Received 10002 — что случилось?' } }
     ]
   },
   16: {
     title: { uz: 'Etalon kartochkasi — siz yozasiz', ru: 'Карточку-эталон заполняете вы' },
     cards: [
-      { ic: '🎯', h: { uz: 'Jestbot bilmaydi — siz hisoblaysiz', ru: 'Джестбот не знает — считаете вы' }, body: { uz: <>Robot javobni <b>bilmaydi</b>. Etalon kartochkasiga qiymatni <b>siz hisoblab</b> yozasiz.</>, ru: <>Робот ответа <b>не знает</b>. Значение в карточку-эталон <b>считаете и вписываете вы</b>.</> } },
-      { ic: '🧮', h: { uz: 'Mashina qanday hisoblaydi', ru: 'Как считает машина' }, body: { uz: <>5000 so'm × 3 dona = <b>15000</b>. Mashina <span className="mono">price * quantity</span> qiladi — xuddi shunday ko'paytiring.</>, ru: <>5000 сумов × 3 штуки = <b>15000</b>. Машина делает <span className="mono">price * quantity</span> — умножайте точно так же.</> } },
-      { ic: '🚨', h: { uz: "Noto'g'ri etalon = noto'g'ri test", ru: 'Неверный эталон = неверный тест' }, body: { uz: <>Kod to'g'ri bo'lsa ham, etalon <b>xato</b> yozilsa — Jestbot baribir qizil beradi.</>, ru: <>Даже если код верный, но эталон записан <b>с ошибкой</b> — Джестбот всё равно даст красный.</> }, ask: { uz: "Nega noto'g'ri etalon bilan to'g'ri kod ham qizil chiqadi?", ru: 'Почему с неверным эталоном даже верный код даёт красный?' } }
+      { ic: '🎯', h: { uz: 'Jestbot bilmaydi — siz hisoblaysiz', ru: 'Джестбот не знает — считаете вы' }, body: { uz: <>Robot javobni bilmaydi — etalon qiymatni <b>siz hisoblab</b> yozasiz.</>, ru: <>Робот ответа не знает — значение эталона <b>считаете вы</b>.</> } },
+      { ic: '🧮', h: { uz: 'Mashina qanday hisoblaydi', ru: 'Как считает машина' }, body: { uz: <>Mashina <span className="mono">price * quantity</span> qiladi: 5000 so'm × 3 dona = <b>15000</b>.</>, ru: <>Машина делает <span className="mono">price * quantity</span>: 5000 сумов × 3 штуки = <b>15000</b>.</> } },
+      { ic: '🚨', h: { uz: "Noto'g'ri etalon = noto'g'ri test", ru: 'Неверный эталон = неверный тест' }, body: { uz: <>Kod to'g'ri bo'lsa ham, etalon xato yozilsa — Jestbot baribir <b>qizil</b> beradi.</>, ru: <>Даже при верном коде ошибка в эталоне — и Джестбот всё равно даст <b>красный</b>.</> }, ask: { uz: "Nega noto'g'ri etalon bilan to'g'ri kod ham qizil chiqadi?", ru: 'Почему с неверным эталоном даже верный код даёт красный?' } }
     ]
   }
 };
 
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -286,7 +286,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Разбор ещё раз' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -295,13 +295,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol', ru: 'Вопрос классу' })}: {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol', ru: 'Вопрос классу' })}: {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — едем дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -466,7 +466,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -474,8 +474,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -487,11 +488,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -964,12 +965,12 @@ const Screen4 = (props) => (
     questionText="Unit-test nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Unit-test <span className="italic" style={{ color: T.accent }}>nima</span> qiladi?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>делает</span> юнит-тест?</> })}</h2></>}
     options={[{ uz: "Saytning tashqi ko'rinishini va dizaynini chiroyli qiladi", ru: 'Делает внешний вид и дизайн сайта красивыми' }, { uz: "Foydalanuvchi kiritgan ma'lumotni bazaga saqlab qo'yadi", ru: 'Сохраняет введённые пользователем данные в базу' }, { uz: 'Funksiyaga kirish berib, natijani avtomatik tekshiradi', ru: 'Даёт функции вход и автоматически проверяет результат' }, { uz: 'Loyiha serverini ishga tushirib, ulanishni ochadi', ru: 'Запускает сервер проекта и открывает соединение' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Unit-test bitta funksiyani sinaydi: ma'lum kirishga kutilgan chiqishni beryaptimi? Va buni har safar avtomatik tekshiradi.", ru: 'Верно! Юнит-тест испытывает одну функцию: даёт известный вход и смотрит, придёт ли ожидаемый выход. И проверяет это автоматически каждый раз.' }}
+    explainCorrect={{ uz: "Test — sinovchi robot: kutilgan natijani o'zi tekshiradi.", ru: 'Тест — робот-испытатель: сам смотрит, пришёл ли ожидаемый результат.' }}
     explainWrong={{
-      0: { uz: "Dizayn — CSS ishi. Test esa kod to'g'ri ishlashini tekshiradi.", ru: 'Дизайн — работа CSS. А тест проверяет, что код работает правильно.' },
-      1: { uz: "Bazaga yozish — service ishi. Test funksiya natijasini tekshiradi.", ru: 'Запись в базу — работа сервиса. Тест проверяет результат функции.' },
-      3: { uz: "Ishga tushirish — main.ts. Test kod to'g'riligini tekshiradi.", ru: 'Запуск — это main.ts. Тест проверяет правильность кода.' },
-      default: { uz: 'Unit-test = funksiya kirish→chiqishini avtomatik tekshiradi.', ru: 'Юнит-тест = автоматически проверяет вход→выход функции.' }
+      0: { uz: "Dizayn — CSS ishi, test esa ko'rinishga tegmaydi.", ru: 'Дизайн — работа CSS, тест внешний вид не трогает.' },
+      1: { uz: "Bazaga yozish — service ishi, test hech narsa saqlamaydi.", ru: 'Запись в базу — работа сервиса, тест ничего не сохраняет.' },
+      3: { uz: "Serverni main.ts ishga tushiradi, test emas.", ru: 'Сервер запускает main.ts, а не тест.' },
+      default: { uz: 'Sinovchi robot funksiya bilan nima qiladi — eslang.', ru: 'Вспомните, что робот-испытатель делает с функцией.' }
     }} />
 );
 
@@ -1104,12 +1105,12 @@ const Screen8 = (props) => (
     questionText="orderTotal(5000, 3) natijasi 15000 ekanini qanday tekshiramiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Natija 15000 ekanini <span className="italic" style={{ color: T.accent }}>qanday</span> tekshiramiz?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>проверить</span>, что результат равен 15000?</> })}</h2></>}
     options={[{ uz: 'console.log(orderTotal(5000, 3)) — faqat konsolga chiqaradi', ru: 'console.log(orderTotal(5000, 3)) — только выведет в консоль' }, { uz: 'expect(orderTotal(5000, 3)).toBe(15000) — solishtiradi', ru: 'expect(orderTotal(5000, 3)).toBe(15000) — сравнит' }, { uz: 'orderTotal(5000, 3) === 15000 — bu shunchaki taqqoslash amali', ru: 'orderTotal(5000, 3) === 15000 — это просто операция сравнения' }, { uz: 'return orderTotal(5000, 3) — natijani qaytaradi, tekshirmaydi', ru: 'return orderTotal(5000, 3) — вернёт результат, но не проверит' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! expect(...).toBe(15000) — Jest natijani kutilgan qiymat bilan solishtiradi va PASS/FAIL beradi.", ru: 'Верно! expect(...).toBe(15000) — Jest сравнит результат с ожидаемым значением и выдаст PASS/FAIL.' }}
+    explainCorrect={{ uz: "Jest faqat expect orqali PASS yoki FAIL bera oladi.", ru: 'PASS или FAIL Jest даёт только через expect.' }}
     explainWrong={{
-      0: { uz: 'console.log faqat chiqaradi, tekshirmaydi — PASS/FAIL bermaydi.', ru: 'console.log только выводит, не проверяет — PASS/FAIL не даст.' },
-      2: { uz: "Bu shunchaki true/false beradi, lekin Jest'ga hisobot bermaydi. expect kerak.", ru: 'Это просто даст true/false, но Jest отчёта не получит. Нужен expect.' },
-      3: { uz: 'return natijani qaytaradi, lekin tekshirmaydi. Tasdiq uchun expect(...).toBe(...).', ru: 'return вернёт результат, но не проверит. Для утверждения — expect(...).toBe(...).' },
-      default: { uz: "To'g'risi — expect(...).toBe(...).", ru: 'Правильный вариант — expect(...).toBe(...).' }
+      0: { uz: 'console.log faqat chiqaradi — PASS/FAIL bermaydi.', ru: 'console.log только выводит — PASS/FAIL не даст.' },
+      2: { uz: "=== faqat true/false beradi, Jest'ga hisobot bormaydi.", ru: '=== даст лишь true/false, отчёт в Jest не попадёт.' },
+      3: { uz: 'return natijani qaytaradi, lekin uni hech kim tekshirmaydi.', ru: 'return вернёт результат, но никто его не проверит.' },
+      default: { uz: "Jest'ga PASS/FAIL beradigan qator qaysi — eslang.", ru: 'Вспомните, какая строка даёт Jest PASS/FAIL.' }
     }} />
 );
 
@@ -1299,12 +1300,12 @@ const Screen11 = (props) => (
     questionText="describe nima uchun ishlatiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>describe</span> nima uchun <span className="italic" style={{ color: T.accent }}>kerak</span>?</>, ru: <>Зачем <span className="italic" style={{ color: T.accent }}>нужен</span> <span className="mono" style={{ color: T.accent }}>describe</span>?</> })}</h2></>}
     options={[{ uz: 'Test ichida funksiyani chaqirib, ishga tushiradi', ru: 'Вызывает и запускает функцию внутри теста' }, { uz: 'Natijani kutilgan qiymat bilan solishtiradi', ru: 'Сравнивает результат с ожидаемым значением' }, { uz: "Jest asbobini loyihaga o'rnatib sozlaydi", ru: 'Устанавливает и настраивает Jest в проекте' }, { uz: "Bog'liq barcha testlarni bitta guruhga yig'adi", ru: 'Собирает все связанные тесты в одну группу' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! describe('orderTotal', ...) ichidagi barcha it() testlarini bitta guruhga yig'adi — tartibli va o'qish oson.", ru: "Верно! describe('orderTotal', ...) собирает все тесты it() в одну группу — аккуратно и легко читать." }}
+    explainCorrect={{ uz: "describe — papka: bitta funksiyaning testlari bir joyda.", ru: "describe — папка: тесты одной функции лежат в одном месте." }}
     explainWrong={{
-      0: { uz: 'Funksiyani it ichida siz chaqirasiz. describe — guruhlash uchun.', ru: 'Функцию вы вызываете внутри it. describe — для группировки.' },
-      1: { uz: 'Tekshirish — expect ishi. describe testlarni guruhlaydi.', ru: 'Проверка — работа expect. describe группирует тесты.' },
-      2: { uz: "O'rnatish — npm install. describe testlarni guruhlaydi.", ru: 'Установка — это npm install. describe группирует тесты.' },
-      default: { uz: "describe = bog'liq testlarni guruhlaydi.", ru: 'describe = группирует связанные тесты.' }
+      0: { uz: 'Funksiyani it ichida siz chaqirasiz, describe emas.', ru: 'Функцию вызываете вы внутри it, а не describe.' },
+      1: { uz: 'Solishtirish — expect ishi, describe emas.', ru: 'Сравнение — работа expect, а не describe.' },
+      2: { uz: "Jest'ni npm install o'rnatadi, describe emas.", ru: 'Jest ставит npm install, а не describe.' },
+      default: { uz: "describe — robot papkasi: papka nima qiladi?", ru: 'describe — папка робота: что делает папка?' }
     }} />
 );
 
@@ -1402,12 +1403,12 @@ const Screen14 = (props) => (
     questionText="expect 20000 kutgan, funksiya 10002 qaytardi. Jest nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Natija kutilgandan farq qilsa, Jest <span className="italic" style={{ color: T.accent }}>nima</span> qiladi?</>, ru: <>Если результат отличается от ожидаемого — <span className="italic" style={{ color: T.accent }}>что</span> сделает Jest?</> })}</h2></>}
     options={[{ uz: "Qizil FAIL beradi, farqni aniq ko'rsatadi", ru: 'Выдаст красный FAIL и точно покажет разницу' }, { uz: 'Hech narsa qilmaydi, sukut saqlab jim turaveradi', ru: 'Ничего не сделает — будет молчать' }, { uz: "Kodni avtomatik ravishda o'zi tuzatib beradi", ru: 'Сам автоматически исправит код' }, { uz: "Xato chiqqan funksiyani darhol o'chirib tashlaydi", ru: 'Сразу удалит функцию с ошибкой' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Jest FAIL beradi va 'Expected: 20000, Received: 10002' deb ko'rsatadi — xatoni qayerdaligini darhol bilasiz.", ru: 'Верно! Jest выдаст FAIL и покажет «Expected: 20000, Received: 10002» — вы сразу поймёте, где ошибка.' }}
+    explainCorrect={{ uz: "Expected va Received yonma-yon — xato darrov ko'rinadi.", ru: 'Expected и Received рядом — ошибку видно сразу.' }}
     explainWrong={{
-      1: { uz: "Jim turmaydi — aynan farqni ko'rsatib, FAIL beradi. Shuning uchun foydali.", ru: 'Молчать не будет — покажет разницу и выдаст FAIL. Тем и полезен.' },
-      2: { uz: "Jest kodni tuzatmaydi — u faqat xatoni ko'rsatadi, tuzatish sizning ishingiz.", ru: 'Jest код не исправляет — он только показывает ошибку, чинить её — ваша работа.' },
-      3: { uz: "Funksiyani o'chirmaydi — faqat test FAIL bo'ladi va sababini ko'rsatadi.", ru: 'Функцию он не удалит — просто тест упадёт с FAIL и покажет причину.' },
-      default: { uz: "Farq bo'lsa — Jest qizil FAIL beradi.", ru: 'Есть разница — Jest даёт красный FAIL.' }
+      1: { uz: "Jim turmaydi — farq bo'lsa, Jest albatta xabar beradi.", ru: 'Молчать не будет — при разнице Jest обязательно сообщит.' },
+      2: { uz: "Jest kodni tuzatmaydi — tuzatish sizning ishingiz.", ru: 'Jest код не чинит — это ваша работа.' },
+      3: { uz: "Jest funksiyani o'chirmaydi — kodga umuman tegmaydi.", ru: 'Jest не удаляет функцию — он код вообще не трогает.' },
+      default: { uz: "Natija etalondan farq qilsa, Jest nima ko'rsatadi?", ru: 'Что покажет Jest, если результат отличается от эталона?' }
     }} />
 );
 
@@ -1525,7 +1526,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {picked !== null && !showAnswer && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(CARD_WHY[picked] ?? CARD_WHY.default)}</p></div>}
             {showAnswer && <div className={wrongLocked ? 'frame-warn fade-step' : 'frame-success fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{wrongLocked ? tr({ uz: <>To'g'ri etalon — <b className="mono">15000</b> (5000 × 3). Robot etalonga ishonadi, shuning uchun u aniq bo'lishi kerak.</>, ru: <>Верный эталон — <b className="mono">15000</b> (5000 × 3). Робот верит эталону, поэтому эталон должен быть точным.</> }) : tr({ uz: <>Etalon kartochkasi to'g'ri: <b className="mono">15000</b>. Jestbot endi mashinani shu qiymat bilan solishtiradi.</>, ru: <>Карточка-эталон верна: <b className="mono">15000</b>. Теперь Джестбот сверяет машину с этим значением.</> })}</p></div>}
             {hasRecap && !isMentorLive && showAnswer && firstCorrectRef.current === false && (
-              <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+              <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
             )}
           </Col>
           <Col>

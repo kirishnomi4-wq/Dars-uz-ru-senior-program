@@ -1,0 +1,429 @@
+{
+ "file": "src/3-Modull/ReactApiGetLesson.jsx",
+ "lessonId": "react-api-get-05-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "TELEFON robo-games 🐾 Adopt Me! 👍 92% PLANSHET robo-games 🐾 Adopt Me! 👍 92% NOUTBUK rob",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TELEFON",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "PLANSHET",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "NOUTBUK",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, BUNI QANDAY UDDALASHDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📡 robo-api.example serverdan 3 qurilmaga bir vaqtda yuborildi",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! O'sha markazning nomi — server. Qurilmalar undan so'rab oladi — bugun sizning katal",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 23,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING NATIJANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ kartochkalar endi serverdan yuklanadi",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "APP.JSX — SIZNING KODINGIZ",
+     "box": "code-box",
+     "gap": 7
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — SERVER",
+     "box": "code-box",
+     "gap": 7
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "🔒 MATN (string) ❌ map() hali ishlamaydi",
+     "b": "Javob hali MATN — map() ishlamaydi. Avval .json() qiling.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "stepbtn",
+     "bg": "rgb(253, 118, 87)",
+     "area": "15k",
+     "txt": "2 · 🔄 .json() — tarjima qilish"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SERVER JAVOBI",
+     "box": "json-stage",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "SERVER JAVOBI",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "EKRANDA — MAP() NATIJASI",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "↑ Bu hali matn. 2-tugmani bosing — massivga aylansin.",
+     "box": "json-stage",
+     "gap": 20
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "stepbtn",
+     "bg": "rgb(224, 62, 27)",
+     "area": "15k",
+     "txt": "1 · Shunchaki kutish ✓"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-GAMES",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-GAMES — YUKLANMOQDA…",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Sahifa ochildi — games hali bo'sh [ ] 2 useEffect fetch'ni yubordi — so'rov yo'lda 3 Jav",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE/GAMES",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE/TOP",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE/NEW",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "stepbtn mono",
+     "bg": "rgb(255, 79, 40)",
+     "area": "14k",
+     "txt": "fetch('…/games') ✓"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KONSOL",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-GAMES",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi siz so'rov usulini bilasiz — agent kodini tekshira olasiz: manzil to'g'rimi, .json() bormi, javob state'g",
+     "b": "Buyruq bering va rejani tasdiqlang…",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "\"Saytga TOP o'yinlar bo'limini qo'sh\"",
+     "b": "\"Yangi o'yinlar bo'limini qo'sh\"",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Yuklanayotganda skeleton ko'rsat\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-GAMES",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL VA SAYT",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

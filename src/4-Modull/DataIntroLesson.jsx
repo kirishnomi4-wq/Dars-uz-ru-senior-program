@@ -244,8 +244,8 @@ const RECAPS = {
   4: {
     title: { uz: "JSON — tartibli kalit: qiymat", ru: 'JSON — упорядоченные ключ: значение' },
     cards: [
-      { ic: "🗂️", h: { uz: "Tartibli kalit: qiymat", ru: 'Упорядоченные ключ: значение' }, body: { uz: <>Ma'lumot — <b>tartibli</b> kalit: qiymat juftliklari. Har bo'lakning nomi (<b>kalit</b>) va qiymati bor.</>, ru: <>Данные — это <b>упорядоченные</b> пары ключ: значение. У каждого кусочка есть имя (<b>ключ</b>) и значение.</> } },
-      { ic: "📦", h: { uz: "JSON = bitta narsa", ru: 'JSON = одна вещь' }, body: { uz: <>JSON <span className="mono">{'{ }'}</span> qavslar ichida bitta narsani yozadi — bitta post yoki bitta foydalanuvchi.</>, ru: <>JSON записывает одну вещь внутри скобок <span className="mono">{'{ }'}</span> — один пост или одного пользователя.</> } },
+      { ic: "🗂️", h: { uz: "Tartibli kalit: qiymat", ru: 'Упорядоченные ключ: значение' }, body: { uz: <>Ma'lumot — <b>kalit: qiymat</b> juftliklari, har bo'lakning nomi va qiymati bor.</>, ru: <>Данные — это пары <b>ключ: значение</b>, у каждого кусочка есть имя и значение.</> } },
+      { ic: "📦", h: { uz: "JSON = bitta narsa", ru: 'JSON = одна вещь' }, body: { uz: <>JSON <span className="mono">{'{ }'}</span> qavslar ichida <b>bitta narsani</b> yozadi: bitta post yoki bitta foydalanuvchi.</>, ru: <>JSON записывает в скобках <span className="mono">{'{ }'}</span> <b>одну вещь</b>: один пост или одного пользователя.</> } },
       { ic: "✏️", h: { uz: "Qo'shtirnoq = matn", ru: 'Кавычки = текст' }, body: { uz: <>Matn qiymatlar <b>qo'shtirnoq</b> ichida yoziladi: <span className="mono">"Tog' sayohati"</span>.</>, ru: <>Текстовые значения пишутся в <b>кавычках</b>: <span className="mono">"Поход в горы"</span>.</> }, ask: { uz: "Bitta post nechta kalitdan iborat?", ru: 'Из скольких ключей состоит один пост?' } },
     ]
   },
@@ -253,29 +253,29 @@ const RECAPS = {
     title: { uz: "Jadval — qator \u00d7 ustun", ru: 'Таблица — строка \u00d7 столбец' },
     cards: [
       { ic: "\ud83d\udcca", h: { uz: "Qator \u00d7 ustun", ru: 'Строка \u00d7 столбец' }, body: { uz: <>Jadval — <b>qatorlar</b> (yozuvlar) va <b>ustunlar</b> (maydonlar) to'ri.</>, ru: <>Таблица — сетка из <b>строк</b> (записей) и <b>столбцов</b> (полей).</> } },
-      { ic: "\u27a1\ufe0f", h: { uz: "Qator = bitta yozuv", ru: 'Строка = одна запись' }, body: { uz: <>Bitta <b>qator</b> — bitta to'liq post (bitta yozuv), xuddi bitta JSON kabi.</>, ru: <>Одна <b>строка</b> — один целый пост (одна запись), прямо как один JSON.</> } },
-      { ic: "\ud83d\udd3d", h: { uz: "Ustun = bitta maydon", ru: 'Столбец = одно поле' }, body: { uz: <>Bitta <b>ustun</b> — barcha yozuvlarning bitta maydoni (masalan hamma sarlavhalar).</>, ru: <>Один <b>столбец</b> — одно поле всех записей (например, все заголовки).</> }, ask: { uz: "3 ta post = jadvalda nechta qator?", ru: '3 поста = сколько строк в таблице?' } },
+      { ic: "\u27a1\ufe0f", h: { uz: "Qator = bitta yozuv", ru: 'Строка = одна запись' }, body: { uz: <>Bitta qator — <b>bitta to'liq post</b>, xuddi bitta JSON kabi.</>, ru: <>Одна строка — <b>один целый пост</b>, прямо как один JSON.</> } },
+      { ic: "\ud83d\udd3d", h: { uz: "Ustun = bitta maydon", ru: 'Столбец = одно поле' }, body: { uz: <>Bitta ustun — barcha yozuvlarning <b>bitta maydoni</b>, masalan hamma sarlavhalar.</>, ru: <>Один столбец — <b>одно поле</b> всех записей, например все заголовки.</> }, ask: { uz: "3 ta post = jadvalda nechta qator?", ru: '3 поста = сколько строк в таблице?' } },
     ]
   },
   11: {
     title: { uz: "Bog'lanish — id va _id", ru: 'Связь — id и _id' },
     cards: [
-      { ic: "\u25ce", h: { uz: "id = rozetka (PK)", ru: 'id = розетка (PK)' }, body: { uz: <>Har jadvalda <b>id</b> — yozuvning yagona raqami, ulanish uchun <b>rozetka</b>.</>, ru: <>В каждой таблице <b>id</b> — уникальный номер записи, <b>розетка</b> для подключения.</> } },
-      { ic: "\u2301", h: { uz: "_id = vilka (FK)", ru: '_id = вилка (FK)' }, body: { uz: <>Boshqa jadvalga ishora qiluvchi <b>_id</b> ustun — <b>vilka</b> (foreign key), masalan <span className="mono">user_id</span>.</>, ru: <>Столбец <b>_id</b>, указывающий на другую таблицу, — <b>вилка</b> (foreign key), например <span className="mono">user_id</span>.</> } },
+      { ic: "\u25ce", h: { uz: "id = rozetka (PK)", ru: 'id = розетка (PK)' }, body: { uz: <>Har jadvalda <b>id</b> — yozuvning yagona raqami, ulanish uchun rozetka.</>, ru: <>В каждой таблице <b>id</b> — уникальный номер записи, розетка для подключения.</> } },
+      { ic: "\u2301", h: { uz: "_id = vilka (FK)", ru: '_id = вилка (FK)' }, body: { uz: <>Boshqa jadvalga ishora qiluvchi <b>_id</b> ustun — vilka, masalan <span className="mono">user_id</span>.</>, ru: <>Столбец <b>_id</b>, указывающий на другую таблицу, — вилка, например <span className="mono">user_id</span>.</> } },
       { ic: "\ud83e\udded", h: { uz: "Nom qayerga ulanishini aytadi", ru: 'Имя говорит, куда подключаться' }, body: { uz: <><span className="mono">user_id</span> nomi o'zi aytadi: u <span className="mono">users.id</span> ga ulanadi.</>, ru: <>Имя <span className="mono">user_id</span> говорит само: он подключается к <span className="mono">users.id</span>.</> }, ask: { uz: "user_id qaysi jadvalga ulanadi?", ru: 'К какой таблице подключается user_id?' } },
     ]
   },
   14: {
     title: { uz: "Sxema — bog'lanishlar xaritasi", ru: 'Схема — карта связей' },
     cards: [
-      { ic: "\ud83d\uddfa\ufe0f", h: { uz: "Jadvallar + bog'lanishlar", ru: 'Таблицы + связи' }, body: { uz: <><b>Sxema</b> — barcha jadvallar va ular orasidagi bog'lanishlar xaritasi.</>, ru: <><b>Схема</b> — карта всех таблиц и связей между ними.</> } },
-      { ic: "\ud83d\udd17", h: { uz: "Bitta \u2192 ko'p", ru: 'Один \u2192 много' }, body: { uz: <>Ko'p bog'lanish <b>bitta \u2192 ko'p</b> turida: bitta foydalanuvchi \u2192 ko'p post.</>, ru: <>Большинство связей — вида <b>один \u2192 много</b>: один пользователь \u2192 много постов.</> } },
-      { ic: "\ud83d\udd0e", h: { uz: "Xato ulanishni nomdan top", ru: 'Ошибку в связи ищи по имени' }, body: { uz: <>Noto'g'ri bog'lanishni <b>ustun nomidan</b> topasiz: <span className="mono">post_id</span> \u2192 <span className="mono">posts</span>, users emas.</>, ru: <>Неверную связь вы найдёте <b>по имени столбца</b>: <span className="mono">post_id</span> \u2192 <span className="mono">posts</span>, а не users.</> }, ask: { uz: "comments.post_id \u2192 users.id \u2014 to'g'rimi?", ru: 'comments.post_id \u2192 users.id \u2014 верно ли это?' } },
+      { ic: "\ud83d\uddfa\ufe0f", h: { uz: "Jadvallar + bog'lanishlar", ru: 'Таблицы + связи' }, body: { uz: <>Sxema — barcha jadvallar va ular orasidagi <b>bog'lanishlar xaritasi</b>.</>, ru: <>Схема — <b>карта</b> всех таблиц и связей между ними.</> } },
+      { ic: "\ud83d\udd17", h: { uz: "Bitta \u2192 ko'p", ru: 'Один \u2192 много' }, body: { uz: <>Ko'p bog'lanish <b>bitta → ko'p</b> turida: bitta foydalanuvchi → ko'p post.</>, ru: <>Большинство связей — вида <b>один → много</b>: один пользователь → много постов.</> } },
+      { ic: "\ud83d\udd0e", h: { uz: "Xato ulanishni nomdan top", ru: 'Ошибку в связи ищи по имени' }, body: { uz: <>Noto'g'ri bog'lanishni <b>ustun nomidan</b> topasiz: <span className="mono">post_id</span> → <span className="mono">posts</span>, users emas.</>, ru: <>Неверную связь вы найдёте <b>по имени столбца</b>: <span className="mono">post_id</span> → <span className="mono">posts</span>, а не users.</> }, ask: { uz: "comments.post_id \u2192 users.id \u2014 to'g'rimi?", ru: 'comments.post_id \u2192 users.id \u2014 верно ли это?' } },
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -293,7 +293,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -302,13 +302,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -473,7 +473,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -481,8 +481,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -494,11 +495,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -857,12 +858,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: "Qaysi biri to'g'ri tartibli ma'lumot (JSON)?", ru: 'Что из этого — упорядоченные данные (JSON)?' })}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Qaysi biri <span className="italic" style={{ color: T.accent }}>tartibli ma'lumot</span> (JSON)?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что из этого — <span className="italic" style={{ color: T.accent }}>упорядоченные данные</span> (JSON)?</h2></> })}
     options={tr({ uz: ['{ "username": "ali_dev", "sarlavha": "Tog\' sayohati" }', '{ username = ali_dev, sarlavha = Tog\' sayohati, likes = 5 }', '{ ali_dev, tog rasm, Tog\' sayohati }', '"username: ali_dev, sarlavha: Tog\' sayohati"'], ru: ['{ "username": "ali_dev", "sarlavha": "Поход в горы" }', '{ username = ali_dev, sarlavha = Поход в горы, likes = 5 }', '{ ali_dev, фото гор, Поход в горы }', '"username: ali_dev, sarlavha: Поход в горы"'] })} correctIdx={0}
-    explainCorrect={tr({ uz: "Har bo'lakka kalit va qiymat berilgan, { } qavslar ichida, qo'shtirnoqlar bilan. Kompyuter har bir qiymatni nomi bo'yicha topa oladi.", ru: 'У каждого кусочка есть ключ и значение, всё в скобках { } и с кавычками. Компьютер найдёт любое значение по его имени.' })}
+    explainCorrect={tr({ uz: "Har qiymatning kaliti bor, kompyuter uni nomidan topadi.", ru: 'У каждого значения есть ключ — компьютер найдёт его по имени.' })}
     explainWrong={{
-      1: tr({ uz: "Yaqin: qavslar bor, lekin kalitlar qo'shtirnoqsiz va : o'rniga = ishlatilgan. JSON'da kalit: qiymat va qo'shtirnoq kerak.", ru: 'Близко: скобки есть, но ключи без кавычек, а вместо : стоит =. В JSON нужны ключ: значение и кавычки.' }),
-      2: tr({ uz: "Qavs ichida shunchaki ro'yxat — kalitlar yo'q. JSON'da har qiymatning nomi (kaliti) bo'lishi shart.", ru: 'В скобках просто список — ключей нет. В JSON у каждого значения обязано быть имя (ключ).' }),
-      3: tr({ uz: "Bu bitta katta matn — hammasi bitta qo'shtirnoq ichida. JSON'da har juftlik alohida: { \"kalit\": \"qiymat\" }.", ru: 'Это один большой текст — всё в одних кавычках. В JSON каждая пара пишется отдельно: { "ключ": "значение" }.' }),
-      default: tr({ uz: "JSON — { \"kalit\": \"qiymat\" } ko'rinishidagi tartibli ma'lumot.", ru: 'JSON — упорядоченные данные вида { "ключ": "значение" }.' })
+      1: tr({ uz: "Kalitlar qo'shtirnoqsiz, : o'rniga esa = turibdi.", ru: 'Ключи без кавычек, а вместо : стоит =.' }),
+      2: tr({ uz: "Bu shunchaki ro'yxat — qiymatlarning nomi (kaliti) yo'q.", ru: 'Это просто список — у значений нет имён (ключей).' }),
+      3: tr({ uz: "Hammasi bitta qo'shtirnoq ichida — bu bitta uzun matn.", ru: 'Всё в одних кавычках — это один длинный текст.' }),
+      default: tr({ uz: "Kalit, qiymat va qo'shtirnoqlarga birma-bir qarang.", ru: 'Проверьте по очереди ключи, значения и кавычки.' })
     }} />
 );
 
@@ -921,12 +922,12 @@ const Screen5b = (props) => (
     questionText={tr({ uz: 'Jadvalda bitta QATOR (row) nimani anglatadi?', ru: 'Что означает одна СТРОКА (row) в таблице?' })}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Jadvaldagi bitta <span className="italic" style={{ color: T.accent }}>qator</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что такое одна <span className="italic" style={{ color: T.accent }}>строка</span> таблицы?</h2></> })}
     options={[tr({ uz: 'Bitta ustunning nomi', ru: 'Название одного столбца' }), tr({ uz: "Butun jadvalning o'zi", ru: 'Вся таблица целиком' }), tr({ uz: "Bitta to'liq yozuv (post)", ru: 'Одна целая запись (пост)' }), tr({ uz: 'Faqat ustun nomlari qatori', ru: 'Только строка с названиями столбцов' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "Qator bitta postning hamma ma'lumotini yonma-yon saqlaydi. Ustunlar esa shu yozuvning maydonlari (kalitlari).", ru: 'Строка хранит все данные одного поста рядом. А столбцы — поля (ключи) этой записи.' })}
+    explainCorrect={tr({ uz: "Qator bitta postning hamma ma'lumotini yonma-yon saqlaydi.", ru: 'Строка хранит все данные одного поста рядом.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — ustun bu vertikal maydon (masalan, hamma sarlavhalar). Qator esa gorizontal: bitta to'liq post.", ru: 'Нет — столбец это вертикальное поле (например, все заголовки). А строка горизонтальна: один целый пост.' }),
-      1: tr({ uz: "Yo'q — butun jadval ko'p qatordan iborat. Bitta qator — bitta yozuv.", ru: 'Нет — вся таблица состоит из многих строк. Одна строка — одна запись.' }),
-      3: tr({ uz: "Sarlavha — ustun nomlari. Ma'lumot qatorlari esa har biri bitta postdir.", ru: 'Заголовок — это имена столбцов. А каждая строка данных — один пост.' }),
-      default: tr({ uz: "Qator = bitta to'liq yozuv (bitta post).", ru: 'Строка = одна целая запись (один пост).' })
+      0: tr({ uz: "Ustun — vertikal maydon, qator esa gorizontal.", ru: 'Столбец — вертикальное поле, а строка идёт горизонтально.' }),
+      1: tr({ uz: "Butun jadval ko'p qatordan iborat, bitta qatordan emas.", ru: 'Вся таблица состоит из многих строк, а не из одной.' }),
+      3: tr({ uz: "Ustun nomlari — sarlavha qatori, ma'lumot qatori emas.", ru: 'Имена столбцов — это строка заголовков, а не строка данных.' }),
+      default: tr({ uz: "Jadvalda bitta post qanday joylashganiga qarang.", ru: 'Посмотрите, как в таблице расположен один пост.' })
     }} />
 );
 
@@ -1144,12 +1145,12 @@ const Screen9 = (props) => (
     questionText={tr({ uz: "users va posts orasidagi bog'lanish qanday?", ru: 'Как связаны users и posts?' })}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="mono" style={{ color: T.accent }}>users</span> va <span className="mono" style={{ color: T.accent }}>posts</span> qanday bog'langan?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как связаны <span className="mono" style={{ color: T.accent }}>users</span> и <span className="mono" style={{ color: T.accent }}>posts</span>?</h2></> })}
     options={[tr({ uz: 'Bitta foydalanuvchi — bitta post', ru: 'Один пользователь — один пост' }), tr({ uz: "Bitta foydalanuvchi — ko'p post (bitta → ko'p)", ru: 'Один пользователь — много постов (один → много)' }), tr({ uz: "Bog'lanish yo'q", ru: 'Связи нет' }), tr({ uz: 'Har bir post — barcha foydalanuvchilarga tegishli', ru: 'Каждый пост принадлежит всем пользователям' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Har postda bitta user_id bor — egasi bitta. Egasi esa ko'p post joylay oladi (one-to-many).", ru: 'В каждом посте один user_id — владелец один. А владелец может выложить много постов (one-to-many).' })}
+    explainCorrect={tr({ uz: "Har postning egasi bitta, egasi esa ko'p post joylay oladi.", ru: 'У каждого поста один владелец, а владелец может выложить много постов.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — bitta foydalanuvchi bir nechta post joylay oladi (ali_dev'da 2 ta bor edi).", ru: 'Нет — один пользователь может выложить несколько постов (у ali_dev их было 2).' }),
+      0: tr({ uz: "ali_dev 2 ta post joylagan edi — jadvalni eslang.", ru: 'У ali_dev было 2 поста — вспомните таблицу.' }),
       2: tr({ uz: "Bog'lanish bor — uni posts.user_id ustuni hosil qiladi.", ru: 'Связь есть — её создаёт столбец posts.user_id.' }),
-      3: tr({ uz: "Yo'q — har post faqat bitta egaga tegishli (uning user_id'si bitta).", ru: 'Нет — каждый пост принадлежит только одному владельцу (его user_id один).' }),
-      default: tr({ uz: "users → posts: bitta foydalanuvchi, ko'p post.", ru: 'users → posts: один пользователь — много постов.' })
+      3: tr({ uz: "Har postda faqat bitta user_id turadi — egasi bitta.", ru: 'В каждом посте стоит только один user_id — владелец один.' }),
+      default: tr({ uz: "Bitta foydalanuvchi nechta post joylay olishini o'ylang.", ru: 'Подумайте, сколько постов может выложить один пользователь.' })
     }} />
 );
 
@@ -1276,12 +1277,12 @@ const Screen12 = (props) => (
     questionText={tr({ uz: 'comments jadvalidagi post_id ustuni nima uchun kerak?', ru: 'Зачем нужен столбец post_id в таблице comments?' })}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="mono" style={{ color: T.accent }}>comments.post_id</span> nima uchun kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Зачем нужен <span className="mono" style={{ color: T.accent }}>comments.post_id</span>?</h2></> })}
     options={[tr({ uz: 'Izohning rangini saqlash uchun', ru: 'Чтобы хранить цвет комментария' }), tr({ uz: "Izohni butunlay o'chirish uchun", ru: 'Чтобы полностью удалить комментарий' }), tr({ uz: 'Hech narsa uchun — shunchaki ortiqcha', ru: 'Ни для чего — просто лишний' }), tr({ uz: "Izohni to'g'ri postga bog'lash uchun", ru: 'Чтобы привязать комментарий к нужному посту' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "post_id — bog'lovchi ustun (foreign key). U izohni posts jadvalidagi aniq bir postga ulaydi: 'bu izoh id=10 postga yozilgan'.", ru: 'post_id — связующий столбец (foreign key). Он подключает комментарий к конкретному посту в таблице posts: «этот комментарий написан к посту id=10».' })}
+    explainCorrect={tr({ uz: "post_id — vilka: izohni posts jadvalidagi postga ulaydi.", ru: 'post_id — вилка: подключает комментарий к посту из таблицы posts.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — rangga aloqasi yo'q. post_id izohni qaysi postga tegishli ekanini ko'rsatadi.", ru: 'Нет — к цвету он не относится. post_id показывает, к какому посту относится комментарий.' }),
-      1: tr({ uz: "Yo'q — o'chirishga aloqasi yo'q. Bu bog'lovchi: izoh ↔ post.", ru: 'Нет — к удалению он не относится. Это связующий: комментарий ↔ пост.' }),
-      2: tr({ uz: "Aksincha, eng muhim ustun! Usiz izoh qaysi postga yozilganini bilib bo'lmaydi.", ru: 'Наоборот, это важнейший столбец! Без него не узнать, к какому посту написан комментарий.' }),
-      default: tr({ uz: "post_id — izohni postga ulovchi bog'lovchi (foreign key).", ru: 'post_id — связующий (foreign key), подключающий комментарий к посту.' })
+      0: tr({ uz: "Rangga aloqasi yo'q — post_id ichida postning raqami turadi.", ru: 'К цвету он не относится — в post_id лежит номер поста.' }),
+      1: tr({ uz: "Ustun hech narsani o'chirmaydi — u faqat raqam saqlaydi.", ru: 'Столбец ничего не удаляет — он только хранит номер.' }),
+      2: tr({ uz: "Ortiqcha emas — ustun nomidagi post so'ziga qarang.", ru: 'Не лишний — посмотрите на слово post в имени столбца.' }),
+      default: tr({ uz: "Ustun nomi qaysi jadvalga ulanishini aytadi — shuni o'ylang.", ru: 'Имя столбца говорит, к какой таблице он подключён — подумайте.' })
     }} />
 );
 

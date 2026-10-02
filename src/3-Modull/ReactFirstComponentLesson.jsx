@@ -224,39 +224,39 @@ const RECAPS = {
   5: {
     title: { uz: "npm run dev — loyihani ishga tushiradi", ru: 'npm run dev — запускает проект' },
     cards: [
-      { ic: "🚀", h: { uz: "npm run dev — loyihani ishga tushiradi", ru: 'npm run dev — запускает проект' }, body: { uz: <>Loyihani yozib qo'yishning o'zi kam — uni <b>ishga tushirish</b> kerak. <span className="mono">npm run dev</span> buyrug'i loyihangizni yoqadi va manzil beradi: <span className="mono">localhost:5173</span>. Shundan keyingina saytni brauzerda ko'rasiz.</>, ru: <>Написать проект мало — его нужно <b>запустить</b>. Команда <span className="mono">npm run dev</span> включает ваш проект и даёт адрес: <span className="mono">localhost:5173</span>. Только после этого вы увидите сайт в браузере.</> }, vis: <RcFlow items={["npm run dev", "localhost:5173", { uz: "brauzerda ochiladi", ru: 'откроется в браузере' }]} /> },
-      { ic: "💻", h: { uz: "localhost — faqat sizning kompyuteringizda", ru: 'localhost — только на вашем компьютере' }, body: { uz: <><span className="mono">localhost:5173</span> — internetdagi sayt EMAS. Bu <b>o'z kompyuteringizdagi</b> manzil: faqat siz ko'rasiz. Xuddi Roblox Studio'da hali e'lon qilinmagan o'yiningizday — tayyor, lekin dunyo hali ko'rmaydi.</>, ru: <><span className="mono">localhost:5173</span> — это НЕ сайт в интернете. Это адрес <b>на вашем компьютере</b>: видите его только вы. Как ваша ещё не опубликованная игра в Roblox Studio — готова, но мир её пока не видит.</> } },
-      { ic: "🔌", h: { uz: "Uch buyruq — loyiha tayyor", ru: 'Три команды — и проект готов' }, body: { uz: <>Tartibni yodda tuting: <span className="mono">npm create vite@latest</span> loyihaning <b>tayyor tuzilishini</b> (papka va fayllar) yaratadi, <span className="mono">npm install</span> kutubxonalarni yuklaydi, <span className="mono">npm run dev</span> esa ishga tushiradi.</>, ru: <>Запомните порядок: <span className="mono">npm create vite@latest</span> создаёт <b>готовую структуру</b> проекта (папки и файлы), <span className="mono">npm install</span> скачивает библиотеки, а <span className="mono">npm run dev</span> запускает проект.</> }, ask: { uz: "npm run dev bosgach, sayt qaysi manzilda ochiladi?", ru: 'По какому адресу откроется сайт после npm run dev?' } },
+      { ic: "🚀", h: { uz: "npm run dev — loyihani ishga tushiradi", ru: 'npm run dev — запускает проект' }, body: { uz: <><span className="mono">npm run dev</span> loyihangizni <b>ishga tushiradi</b> va manzil beradi: <span className="mono">localhost:5173</span>.</>, ru: <><span className="mono">npm run dev</span> <b>запускает</b> ваш проект и даёт адрес: <span className="mono">localhost:5173</span>.</> }, vis: <RcFlow items={["npm run dev", "localhost:5173", { uz: "brauzerda ochiladi", ru: 'откроется в браузере' }]} /> },
+      { ic: "💻", h: { uz: "localhost — faqat sizning kompyuteringizda", ru: 'localhost — только на вашем компьютере' }, body: { uz: <><span className="mono">localhost:5173</span> — internetdagi sayt emas, uni <b>faqat siz</b> ko'rasiz.</>, ru: <><span className="mono">localhost:5173</span> — не сайт в интернете, его видите <b>только вы</b>.</> } },
+      { ic: "🔌", h: { uz: "Uch buyruq — loyiha tayyor", ru: 'Три команды — и проект готов' }, body: { uz: <>Tartib: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</>, ru: <>Порядок: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</> }, ask: { uz: "npm run dev bosgach, sayt qaysi manzilda ochiladi?", ru: 'По какому адресу откроется сайт после npm run dev?' } },
     ]
   },
   7: {
     title: { uz: "JSX — JS ichidagi HTML, className bilan", ru: 'JSX — HTML внутри JS, с className' },
     cards: [
-      { ic: "🔤", h: { uz: "className — class emas", ru: 'className, а не class' }, body: { uz: <>JSX — JavaScript ichida yozilgan HTML. Muhim farqi: HTML'dagi <span className="mono">class</span> bu yerda <span className="mono">className</span> deb yoziladi. Sababi — <span className="mono">class</span> so'zi <b>JavaScript'da band</b>, JSX esa JavaScript ichida yashaydi.</>, ru: <>JSX — это HTML, написанный внутри JavaScript. Важное отличие: <span className="mono">class</span> из HTML здесь пишется как <span className="mono">className</span>. Причина — слово <span className="mono">class</span> <b>занято в JavaScript</b>, а JSX живёт внутри JavaScript.</> }, vis: <RcFlow items={["HTML: class", "JSX: className"]} /> },
-      { ic: "🧩", h: { uz: "JSX'ning 3 qoidasi", ru: '3 правила JSX' }, body: { uz: <>JSX HTML'ga o'xshaydi, lekin 3 farqi bor: <b>{'{ }'} ichida JavaScript</b> ishlaydi, <b>className</b> yoziladi (class emas), va komponent <b>bitta tashqi teg</b> qaytaradi. Shu uchtasi bilan deyarli hamma JSX o'qiladi.</>, ru: <>JSX похож на HTML, но есть 3 отличия: <b>внутри {'{ }'} работает JavaScript</b>, пишется <b>className</b> (а не class), и компонент возвращает <b>один внешний тег</b>. С этими тремя правилами читается почти весь JSX.</> } },
-      { ic: "⚠️", h: { uz: "class yozsangiz nima bo'ladi?", ru: 'Что будет, если написать class?' }, body: { uz: <>JSX'da <span className="mono">class</span> yozsangiz, React <b>ogohlantirish</b> beradi — to'g'risi <span className="mono">className</span>. Bu chiroy uchun emas, JavaScript qoidasi uchun: band so'zni teg atributi qilib bo'lmaydi.</>, ru: <>Если написать в JSX <span className="mono">class</span>, React выдаст <b>предупреждение</b> — правильно <span className="mono">className</span>. Это не ради красоты, а правило JavaScript: занятое слово нельзя сделать атрибутом тега.</> }, ask: { uz: "Nega JSX'da class emas, className yoziladi?", ru: 'Почему в JSX пишут className, а не class?' } },
+      { ic: "🔤", h: { uz: "className — class emas", ru: 'className, а не class' }, body: { uz: <>JSX'da HTML'dagi <span className="mono">class</span> o'rniga <span className="mono">className</span> yoziladi, chunki <span className="mono">class</span> <b>JS'da band</b>.</>, ru: <>В JSX вместо <span className="mono">class</span> из HTML пишут <span className="mono">className</span>, потому что <span className="mono">class</span> <b>занят в JS</b>.</> }, vis: <RcFlow items={["HTML: class", "JSX: className"]} /> },
+      { ic: "🧩", h: { uz: "JSX'ning 3 qoidasi", ru: '3 правила JSX' }, body: { uz: <>JSX'ning <b>3 qoidasi</b>: jingalak qavsda JavaScript, className va bitta tashqi teg.</>, ru: <><b>3 правила</b> JSX: в фигурных скобках — JavaScript, className и один внешний тег.</> } },
+      { ic: "⚠️", h: { uz: "class yozsangiz nima bo'ladi?", ru: 'Что будет, если написать class?' }, body: { uz: <>JSX'da <span className="mono">class</span> yozsangiz, React <b>ogohlantirish</b> beradi, chunki bu JavaScript qoidasi.</>, ru: <>Если написать в JSX <span className="mono">class</span>, React выдаст <b>предупреждение</b> — это правило JavaScript.</> }, ask: { uz: "Nega JSX'da class emas, className yoziladi?", ru: 'Почему в JSX пишут className, а не class?' } },
     ]
   },
   12: {
     title: { uz: "Props — komponentga uzatiladigan ma'lumot", ru: 'Props — данные, которые передают компоненту' },
     cards: [
-      { ic: "📦", h: { uz: "Props — komponentga ma'lumot", ru: 'Props — данные для компонента' }, body: { uz: <>Bitta <span className="mono">GameCard</span> komponenti bor, lekin kartochkalar har xil: Adopt Me!, Blox Fruits… Buni <b>props</b> hal qiladi — komponentga tashqaridan uzatiladigan <b>ma'lumot</b>: <span className="mono">{'<GameCard name="Blox Fruits" />'}</span>.</>, ru: <>Компонент <span className="mono">GameCard</span> один, а карточки разные: Adopt Me!, Blox Fruits… Это решают <b>props</b> — <b>данные</b>, которые передаются компоненту снаружи: <span className="mono">{'<GameCard name="Blox Fruits" />'}</span>.</> }, vis: <RcFlow items={['name="Blox Fruits"', "props", { uz: "kartochkada chiqadi", ru: 'появится на карточке' }]} /> },
-      { ic: "♻️", h: { uz: "Komponent bitta, ma'lumot har xil", ru: 'Компонент один, данные разные' }, body: { uz: <>Props'ning kuchi shu: komponent kodini <b>bir marta</b> yozasiz, keyin har chaqiruvga <b>boshqa ma'lumot</b> berasiz. Adopt Me!, Blox Fruits, Brookhaven — hammasi bir komponent, faqat props har xil.</>, ru: <>В этом сила props: код компонента вы пишете <b>один раз</b>, а потом каждому вызову даёте <b>разные данные</b>. Adopt Me!, Blox Fruits, Brookhaven — это один компонент, разные только props.</> } },
-      { ic: "🎁", h: { uz: "Props — rang ham, sozlama ham emas", ru: 'Props — не цвет и не настройка' }, body: { uz: <>Props — komponentning rangi yoki tezlashtiruvchi sozlamasi emas. U — komponentga <b>uzatiladigan ma'lumot</b>: nom, rasm, son… Xuddi Bloxy-Press mashinasiga tashlangan <b>nom-kapsula</b>day: kapsula har xil — kartochka har xil chiqadi.</>, ru: <>Props — это не цвет компонента и не настройка-ускоритель. Это <b>данные, которые передают компоненту</b>: имя, картинка, число… Как <b>капсула-имя</b>, брошенная в машину Bloxy-Press: капсулы разные — и карточки выходят разные.</> }, ask: { uz: "GameCard'ga name'dan boshqa yana qanday props uzatish mumkin?", ru: 'Какие ещё props, кроме name, можно передать в GameCard?' } },
+      { ic: "📦", h: { uz: "Props — komponentga ma'lumot", ru: 'Props — данные для компонента' }, body: { uz: <><span className="mono">GameCard</span> bitta, kartochkalar esa har xil — buni <b>props</b> hal qiladi.</>, ru: <><span className="mono">GameCard</span> один, а карточки разные — это решают <b>props</b>.</> }, vis: <RcFlow items={['name="Blox Fruits"', "props", { uz: "kartochkada chiqadi", ru: 'появится на карточке' }]} /> },
+      { ic: "♻️", h: { uz: "Komponent bitta, ma'lumot har xil", ru: 'Компонент один, данные разные' }, body: { uz: <>Komponent kodini <b>bir marta</b> yozasiz, har chaqiruvga esa boshqa props berasiz.</>, ru: <>Код компонента пишут <b>один раз</b>, а каждому вызову дают другие props.</> } },
+      { ic: "🎁", h: { uz: "Props — rang ham, sozlama ham emas", ru: 'Props — не цвет и не настройка' }, body: { uz: <>Props — rang yoki sozlama emas, komponentga beriladigan <b>ma'lumot</b>: nom, rasm, son.</>, ru: <>Props — не цвет и не настройка, а <b>данные</b> для компонента: имя, картинка, число.</> }, ask: { uz: "GameCard'ga name'dan boshqa yana qanday props uzatish mumkin?", ru: 'Какие ещё props, кроме name, можно передать в GameCard?' } },
     ]
   },
   15: {
     title: { uz: "Komponent nomi — Katta harf bilan", ru: 'Имя компонента — с Заглавной буквы' },
     cards: [
-      { ic: "🔠", h: { uz: "Katta harf — React uchun belgi", ru: 'Заглавная буква — знак для React' }, body: { uz: <>Komponent nomi doim <b>Katta harf</b> bilan boshlanadi: <span className="mono">GameCard</span>. React shundan biladi: bu <b>komponent</b>, oddiy teg emas. <span className="mono">{'<gamecard />'}</span> deb yozsangiz — React uni oddiy HTML teg deb o'ylaydi.</>, ru: <>Имя компонента всегда начинается с <b>Заглавной буквы</b>: <span className="mono">GameCard</span>. По ней React понимает: это <b>компонент</b>, а не обычный тег. Напишете <span className="mono">{'<gamecard />'}</span> — React примет его за обычный HTML-тег.</> }, vis: <RcFlow items={[{ uz: "<GameCard/> — komponent", ru: '<GameCard/> — компонент' }, { uz: "<gamecard/> — HTML teg", ru: '<gamecard/> — HTML-тег' }]} /> },
-      { ic: "🏭", h: { uz: "Komponent = Katta harfli funksiya + JSX", ru: 'Компонент = функция с Заглавной буквы + JSX' }, body: { uz: <>Komponent — oddiy <b>JavaScript funksiyasi</b>, faqat 2 farqi bor: nomi <b>Katta harf</b> bilan boshlanadi va <b>JSX qaytaradi</b> (ekranda nima ko'rinishini). Butun formula shu.</>, ru: <>Компонент — обычная <b>функция JavaScript</b>, только с 2 отличиями: имя начинается с <b>Заглавной буквы</b>, и она <b>возвращает JSX</b> (то, что будет видно на экране). Вот и вся формула.</> } },
-      { ic: "🔎", h: { uz: "kichik harf — jimgina xato", ru: 'строчная буква — тихая ошибка' }, body: { uz: <>Agar <span className="mono">gamecard</span> deb yozsangiz, React xato bermaydi — shunchaki komponentingizni <b>topa olmaydi</b> va ekranda hech narsa chiqmaydi. Shuning uchun Katta harf muhim.</>, ru: <>Если написать <span className="mono">gamecard</span>, React не выдаст ошибку — он просто <b>не найдёт</b> ваш компонент, и на экране ничего не появится. Поэтому Заглавная буква так важна.</> }, ask: { uz: "<GameCard /> va <gamecard /> — React ularni qanday farqlaydi?", ru: 'Как React различает <GameCard /> и <gamecard />?' } },
+      { ic: "🔠", h: { uz: "Katta harf — React uchun belgi", ru: 'Заглавная буква — знак для React' }, body: { uz: <>React <b>Katta harfdan</b> biladi: <span className="mono">GameCard</span> — komponent, oddiy teg emas.</>, ru: <>React понимает по <b>Заглавной букве</b>: <span className="mono">GameCard</span> — компонент, а не обычный тег.</> }, vis: <RcFlow items={[{ uz: "<GameCard/> — komponent", ru: '<GameCard/> — компонент' }, { uz: "<gamecard/> — HTML teg", ru: '<gamecard/> — HTML-тег' }]} /> },
+      { ic: "🏭", h: { uz: "Komponent = Katta harfli funksiya + JSX", ru: 'Компонент = функция с Заглавной буквы + JSX' }, body: { uz: <>Komponent — nomi Katta harfli va <b>JSX qaytaradigan</b> oddiy funksiya.</>, ru: <>Компонент — обычная функция с именем с Заглавной буквы, которая <b>возвращает JSX</b>.</> } },
+      { ic: "🔎", h: { uz: "kichik harf — jimgina xato", ru: 'строчная буква — тихая ошибка' }, body: { uz: <><span className="mono">gamecard</span> deb yozsangiz, React xato bermaydi, lekin ekranda <b>hech narsa</b> chiqmaydi.</>, ru: <>Если написать <span className="mono">gamecard</span>, React не выдаст ошибку, но на экране <b>ничего</b> не появится.</> }, ask: { uz: "<GameCard /> va <gamecard /> — React ularni qanday farqlaydi?", ru: 'Как React различает <GameCard /> и <gamecard />?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -274,7 +274,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем ещё раз' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -283,13 +283,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -367,7 +367,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только у <b>{pct}%</b> — класс не понял эту тему. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -376,7 +376,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -469,7 +469,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -477,8 +477,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -490,11 +491,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -979,12 +980,12 @@ const Screen4 = (props) => (
     questionText="npm run dev buyrug'i nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>npm run dev</span> buyrug'i nima qiladi?</>, ru: <>Что делает команда <span className="mono" style={{ color: T.accent }}>npm run dev</span>?</> })}</h2></>}
     options={[tr({ uz: "Saytni internetga chiqarib e'lon qiladi", ru: 'Публикует сайт в интернете' }), tr({ uz: "Loyihani kompyuteringizda ishga tushiradi", ru: 'Запускает проект на вашем компьютере' }), tr({ uz: 'Koddagi xatolarni avtomatik tuzatadi', ru: 'Автоматически исправляет ошибки в коде' }), tr({ uz: "React'ni loyihadan o'chirib tashlaydi", ru: 'Удаляет React из проекта' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! npm run dev loyihani localhost:5173 manzilida ishga tushiradi — faqat sizning kompyuteringizda. Internetga chiqarish — boshqa jarayon (deploy, esingizdami?).", ru: 'Верно! npm run dev запускает проект по адресу localhost:5173 — только на вашем компьютере. Публикация в интернете — отдельный процесс (deploy, помните?).' })}
+    explainCorrect={tr({ uz: "`npm run dev` loyihani localhost:5173 manzilida yoqadi.", ru: '`npm run dev` запускает проект по адресу localhost:5173.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — internetga chiqarish deploy deyiladi (Git darsida ko'rganmiz). dev — faqat kompyuteringizda ishga tushiradi.", ru: 'Нет — публикация в интернете называется deploy (видели на уроке про Git). dev запускает проект только на вашем компьютере.' }),
-      2: tr({ uz: "Yo'q — xatolarni tuzatish dasturchining (ya'ni sizning) ishingiz. dev faqat loyihani ishga tushiradi.", ru: 'Нет — исправлять ошибки — работа программиста (то есть ваша). dev только запускает проект.' }),
-      3: tr({ uz: "Aksincha! dev loyihani ishga tushiradi — React ishlay boshlaydi.", ru: 'Наоборот! dev запускает проект — React начинает работать.' }),
-      default: tr({ uz: "npm run dev — loyihani localhost'da ishga tushiradi.", ru: 'npm run dev — запускает проект на localhost.' })
+      0: tr({ uz: "Internetga chiqarish — bu deploy, `dev` emas.", ru: 'Публикация в интернете — это deploy, а не `dev`.' }),
+      2: tr({ uz: "Xatolarni tuzatish — dasturchining, ya'ni sizning ishingiz.", ru: 'Исправлять ошибки — работа программиста, то есть ваша.' }),
+      3: tr({ uz: "Bu buyruq loyihadan hech narsani o'chirmaydi.", ru: 'Эта команда ничего не удаляет из проекта.' }),
+      default: tr({ uz: "Buyruqdan keyin brauzerda qaysi manzil ochilganini eslang.", ru: 'Вспомните, какой адрес открылся в браузере после команды.' })
     }} />
 );
 
@@ -1069,12 +1070,12 @@ const Screen5b = (props) => (
     questionText="JSX'da nima uchun class o'rniga className yoziladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>JSX'da nima uchun <span className="mono" style={{ color: T.accent }}>className</span> yoziladi?</>, ru: <>Почему в JSX пишется <span className="mono" style={{ color: T.accent }}>className</span>?</> })}</h2></>}
     options={[tr({ uz: "Chunki class so'zi JavaScript'da band", ru: 'Потому что слово class занято в JavaScript' }), tr({ uz: 'Chunki className chiroyliroq eshitiladi', ru: 'Потому что className звучит красивее' }), tr({ uz: "Chunki HTML'da class degan so'z yo'q", ru: 'Потому что в HTML нет слова class' }), tr({ uz: "Farqi yo'q — ikkalasi ham ishlayveradi", ru: 'Разницы нет — работают оба' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! JSX — JavaScript ichida, class esa JS'ning band so'zi. Shuning uchun React className'ni tanlagan.", ru: 'Верно! JSX живёт внутри JavaScript, а class — занятое слово JS. Поэтому React выбрал className.' })}
+    explainCorrect={tr({ uz: "JSX JavaScript ichida yashaydi, `class` esa JS'da band so'z.", ru: 'JSX живёт внутри JavaScript, а `class` — занятое слово JS.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — gap chiroyda emas. class so'zi JavaScript'da band, JSX esa JS ichida yashaydi.", ru: 'Нет — дело не в красоте. Слово class занято в JavaScript, а JSX живёт внутри JS.' }),
-      2: tr({ uz: "Aksincha — HTML'da aynan class ishlatiladi. JSX JavaScript ichida bo'lgani uchun className kerak.", ru: 'Наоборот — в HTML используется именно class. className нужен потому, что JSX находится внутри JavaScript.' }),
-      3: tr({ uz: "Farqi bor: JSX'da class yozsangiz, React ogohlantirish beradi — to'g'risi className.", ru: 'Разница есть: напишете class в JSX — React выдаст предупреждение, правильно className.' }),
-      default: tr({ uz: "class — JavaScript'ning band so'zi, shuning uchun JSX'da className.", ru: 'class — занятое слово JavaScript, поэтому в JSX пишут className.' })
+      1: tr({ uz: "Gap chiroyda emas — bu JavaScript qoidasi bilan bog'liq.", ru: 'Дело не в красоте — это связано с правилом JavaScript.' }),
+      2: tr({ uz: "Aksincha — HTML'da aynan `class` ishlatiladi.", ru: 'Наоборот — в HTML используется именно `class`.' }),
+      3: tr({ uz: "Farqi bor — JSX'da `class` yozsangiz, React ogohlantiradi.", ru: 'Разница есть — на `class` в JSX React выдаст предупреждение.' }),
+      default: tr({ uz: "JSX qaysi til ichida yashashini eslang.", ru: 'Вспомните, внутри какого языка живёт JSX.' })
     }} />
 );
 
@@ -1220,12 +1221,12 @@ const Screen9 = (props) => (
     questionText="Props nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Props</span> nima?</>, ru: <>Что такое <span className="italic" style={{ color: T.accent }}>props</span>?</> })}</h2></>}
     options={[tr({ uz: "Komponentga uzatiladigan ma'lumot", ru: 'Данные, которые передают компоненту' }), tr({ uz: "Komponentning tashqi rangi", ru: 'Внешний цвет компонента' }), tr({ uz: "React'ni tezlashtiruvchi sozlama", ru: 'Настройка, ускоряющая React' }), tr({ uz: "Brauzerga qo'shiladigan qo'shimcha dastur", ru: 'Дополнение для браузера' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Props — komponentga uzatiladigan ma'lumot: <GameCard name='Blox Fruits' />. Komponent bitta, ma'lumot har xil.", ru: "Верно! Props — данные, которые передают компоненту: <GameCard name='Blox Fruits' />. Компонент один, данные разные." })}
+    explainCorrect={tr({ uz: "Props bilan bitta komponent har xil ma'lumot ko'rsatadi.", ru: "С props один компонент показывает разные данные." })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — rang emas. Props orqali istalgan ma'lumot uzatiladi: nom, rasm, son…", ru: 'Нет — не цвет. Через props передают любые данные: имя, картинку, число…' }),
-      2: tr({ uz: "Yo'q — tezlikka aloqasi yo'q. Props — komponentga ma'lumot uzatish usuli.", ru: 'Нет — к скорости это не относится. Props — способ передать компоненту данные.' }),
-      3: tr({ uz: "Yo'q — brauzerga aloqasi yo'q. Props — <GameCard name='…' /> dagi name kabi ma'lumot.", ru: "Нет — браузер тут ни при чём. Props — данные вроде name в <GameCard name='…' />." }),
-      default: tr({ uz: "Props — komponentga tashqaridan uzatiladigan ma'lumot.", ru: 'Props — данные, которые передают компоненту снаружи.' })
+      1: tr({ uz: "Props rang emas — kartochkalarda nom ham, rasm ham o'zgardi.", ru: 'Props — не цвет: в карточках менялись и имя, и картинка.' }),
+      2: tr({ uz: "Props tezlikka aloqador emas.", ru: 'Props не связаны со скоростью.' }),
+      3: tr({ uz: "Props brauzerga hech narsa qo'shmaydi.", ru: "Props ничего не добавляют в браузер." }),
+      default: tr({ uz: "`<GameCard name='…' />` dagi `name` nima ekanini o'ylang.", ru: 'Подумайте, что такое `name` в `<GameCard name=\'…\' />`.' })
     }} />
 );
 
@@ -1352,12 +1353,12 @@ const Screen12 = (props) => (
     questionText="Nima uchun komponent nomi Katta harf bilan boshlanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nima uchun komponent nomi <span className="italic" style={{ color: T.accent }}>Katta harf</span> bilan boshlanadi?</>, ru: <>Почему имя компонента начинается с <span className="italic" style={{ color: T.accent }}>Заглавной буквы</span>?</> })}</h2></>}
     options={[tr({ uz: "Shunchaki chiroyliroq ko'rinishi uchun", ru: 'Просто чтобы выглядело красивее' }), tr({ uz: "React katta harfdan komponentligini biladi", ru: 'По заглавной букве React понимает, что это компонент' }), tr({ uz: 'Katta harf yozilgan kodni tezlashtiradi', ru: 'Заглавная буква ускоряет код' }), tr({ uz: "Klaviaturada shunday yozish qulayroq", ru: 'Так удобнее печатать на клавиатуре' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! <gamecard /> deb yozsangiz, React uni oddiy HTML teg deb o'ylaydi va komponentingizni topa olmaydi. <GameCard /> — Katta harf — komponent!", ru: 'Верно! Напишете <gamecard /> — React примет его за обычный HTML-тег и не найдёт ваш компонент. <GameCard /> — Заглавная буква — компонент!' })}
+    explainCorrect={tr({ uz: "Katta harf React'ga «bu komponent, oddiy teg emas» deydi.", ru: 'Заглавная буква говорит React: «это компонент, а не обычный тег».' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — bu chiroy uchun emas, qoida: React katta harfdan komponentligini ajratadi.", ru: 'Нет — это не ради красоты, а правило: по заглавной букве React отличает компонент.' }),
-      2: tr({ uz: "Yo'q — tezlikka aloqasi yo'q. Katta harf — React uchun 'bu komponent' degan belgi.", ru: 'Нет — к скорости это не относится. Заглавная буква — знак для React: «это компонент».' }),
-      3: tr({ uz: "Yo'q — qulaylik emas, qoida: kichik harfli teg HTML deb qabul qilinadi.", ru: 'Нет — не удобство, а правило: тег со строчной буквы считается HTML.' }),
-      default: tr({ uz: "Katta harf — React uchun komponent belgisi; kichik harf — oddiy HTML teg.", ru: 'Заглавная буква — знак компонента для React; строчная — обычный HTML-тег.' })
+      0: tr({ uz: "Bu chiroy uchun emas — bu React qoidasi.", ru: 'Это не ради красоты — это правило React.' }),
+      2: tr({ uz: "Katta harf kod tezligiga ta'sir qilmaydi.", ru: 'Заглавная буква не влияет на скорость кода.' }),
+      3: tr({ uz: "Qulaylik emas — kichik harfli teg HTML deb qabul qilinadi.", ru: 'Не удобство — тег со строчной буквы считается HTML.' }),
+      default: tr({ uz: "`<gamecard />` deb yozsangiz nima bo'lishini eslang.", ru: 'Вспомните, что будет, если написать `<gamecard />`.' })
     }} />
 );
 
@@ -1428,10 +1429,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -2931,7 +2932,7 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }

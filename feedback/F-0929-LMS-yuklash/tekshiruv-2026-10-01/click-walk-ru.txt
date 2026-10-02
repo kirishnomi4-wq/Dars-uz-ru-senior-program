@@ -1,0 +1,26 @@
+XATO  06-PmLesson18-uyga-vazifa-v2.jsx  (0 ekran)  → s0:lesson-root chizilmadi
+ ok   05-AiPipelineProjectLesson-v2.jsx  (20 ekran)
+ ok   06-PmLesson18-v2.jsx  (16 ekran)
+XATO  02-PmLesson11-uyga-vazifa-v2.jsx  (0 ekran)  → s0:lesson-root chizilmadi
+ ok   07-FullProPipelineLesson-v2.jsx  (20 ekran)
+ ok   01-DataIntroLesson-v2.jsx  (23 ekran)
+ ok   02-PmLesson11-v2.jsx  (16 ekran)
+ ok   03-DbSqlNosqlLesson-v2.jsx  (21 ekran)
+ ok   04-NodeServerLesson-v2.jsx  (21 ekran)
+XATO  07-PmLesson12-uyga-vazifa-v2.jsx  (0 ekran)  → s0:lesson-root chizilmadi
+ ok   05-RoutingLesson-v2.jsx  (21 ekran)
+ ok   06-PostgresCrudLesson-v2.jsx  (21 ekran)
+ ok   07-PmLesson12-v2.jsx  (16 ekran)
+ ok   08-BackendCrudPracticeLesson-v2.jsx  (19 ekran)
+ ok   09-ApiPostmanLesson-v2.jsx  (21 ekran)
+ ok   10-FullstackConnectPracticeLesson-v2.jsx  (20 ekran)
+XATO  12-PmLesson13-uyga-vazifa-v2.jsx  (0 ekran)  → s0:lesson-root chizilmadi
+ ok   11-AuthEnvLesson-v2.jsx  (21 ekran)
+ ok   12-PmLesson13-v2.jsx  (16 ekran)
+XATO  15-PmLesson14-uyga-vazifa-v2.jsx  (0 ekran)  → s0:lesson-root chizilmadi
+ ok   14-FullstackFeedbackLesson-v2.jsx  (21 ekran)
+ ok   13-FullstackProjectDayLesson-v2.jsx  (25 ekran)
+ ok   15-PmLesson14-v2.jsx  (16 ekran)
+
+JAMI 88 fayl · xatoli 18
+CW-RU TUGADI

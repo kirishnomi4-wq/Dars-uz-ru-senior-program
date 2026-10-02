@@ -314,13 +314,13 @@ const RECAPS = {
   4: {
     title: { uz: 'Rang: color va background-color', ru: 'Цвет: color и background-color' }, cards: [
       { ic: '🎨', h: { uz: 'color — harflar rangi', ru: 'color — цвет букв' },
-        body: { uz: <><b className="mono">color</b> matnning o'zini — <b>harflar rangini</b> — o'zgartiradi. Masalan sarlavhani to'q sariq qilish uchun aynan shu ishlatiladi.</>, ru: <><b className="mono">color</b> меняет сам текст — <b>цвет букв</b>. Например, именно им заголовок делают оранжевым.</> },
+        body: { uz: <><b className="mono">color</b> matnning o'zini — <b>harflar rangini</b> — o'zgartiradi.</>, ru: <><b className="mono">color</b> меняет сам текст — <b>цвет букв</b>.</> },
         vis: <RcFlow items={['h1', 'color: #FF4F28', { uz: "to'q sariq harflar", ru: 'оранжевые буквы' }]} /> },
       { ic: '🖌️', h: { uz: 'background-color — orqa fon', ru: 'background-color — задний фон' },
-        body: { uz: <><b className="mono">background-color</b> esa elementning <b>orqa fonini</b> bo'yaydi — harflarni emas. Ikkisi butunlay boshqa-boshqa.</>, ru: <><b className="mono">background-color</b> красит <b>задний фон</b> элемента — не буквы. Это две совершенно разные вещи.</> },
+        body: { uz: <><b className="mono">background-color</b> harflarni emas, elementning <b>orqa fonini</b> bo'yaydi.</>, ru: <><b className="mono">background-color</b> красит <b>задний фон</b> элемента, а не буквы.</> },
         vis: <RcFlow items={[{ uz: 'color — harflar', ru: 'color — буквы' }, { uz: 'background-color — fon', ru: 'background-color — фон' }]} sep="·" /> },
       { ic: '⚠️', h: { uz: 'Ikkisini chalkashtirmang', ru: 'Не путайте их' },
-        body: { uz: <><b className="mono">font-size</b> — kattalik, <b className="mono">text-align</b> — joylashuv. Rang bilan ularning aloqasi yo'q: harflar rangi faqat <b className="mono">color</b>.</>, ru: <><b className="mono">font-size</b> — размер, <b className="mono">text-align</b> — расположение. К цвету они не относятся: цвет букв — только <b className="mono">color</b>.</> },
+        body: { uz: <><b className="mono">font-size</b> va <b className="mono">text-align</b> rangga tegmaydi: harflar rangi faqat <b className="mono">color</b>.</>, ru: <><b className="mono">font-size</b> и <b className="mono">text-align</b> цвет не меняют: цвет букв — только <b className="mono">color</b>.</> },
         vis: <RcFlow items={[{ uz: 'rang', ru: 'цвет' }, 'color']} sep="·" />,
         ask: { uz: "Sarlavha harflarini ko'k qilish uchun qaysi xususiyat kerak?", ru: 'Какое свойство нужно, чтобы сделать буквы заголовка синими?' } },
     ]
@@ -329,13 +329,13 @@ const RECAPS = {
   6: {
     title: { uz: 'Matn joylashuvi: text-align', ru: 'Расположение текста: text-align' }, cards: [
       { ic: '🎯', h: { uz: 'text-align — matnni joylaydi', ru: 'text-align — располагает текст' },
-        body: { uz: <><b className="mono">text-align</b> matnni qator ichida joylashtiradi: <b className="mono">center</b> — markaz, <b className="mono">left</b> — chap, <b className="mono">right</b> — o'ng.</>, ru: <><b className="mono">text-align</b> располагает текст внутри строки: <b className="mono">center</b> — центр, <b className="mono">left</b> — слева, <b className="mono">right</b> — справа.</> },
+        body: { uz: <><b className="mono">text-align</b> matnni qatorda joylaydi: <b className="mono">center</b> — markaz, <b className="mono">left</b> — chap, <b className="mono">right</b> — o'ng.</>, ru: <><b className="mono">text-align</b> располагает текст в строке: <b className="mono">center</b> — центр, <b className="mono">left</b> — слева, <b className="mono">right</b> — справа.</> },
         vis: <RcFlow items={['left', 'center', 'right']} sep="·" /> },
       { ic: '📐', h: { uz: "markazga qo'yish", ru: 'поставить по центру' },
-        body: { uz: <><b className="mono">text-align: center</b> — sarlavha yoki matnni <b>o'rtaga</b> suradi. Portfolioda ism va kasbni markazlashda shu ishlatiladi.</>, ru: <><b className="mono">text-align: center</b> — сдвигает заголовок или текст <b>в середину</b>. В портфолио так центрируют имя и профессию.</> },
+        body: { uz: <><b className="mono">text-align: center</b> ismingiz va orzu-kasbni <b>o'rtaga</b> suradi.</>, ru: <><b className="mono">text-align: center</b> сдвигает имя и профессию мечты <b>в середину</b>.</> },
         vis: <RcFlow items={['text-align: center', { uz: 'markazda matn', ru: 'текст по центру' }]} /> },
       { ic: '🚫', h: { uz: "bo'shliq emas, joylashuv", ru: 'не отступ, а расположение' },
-        body: { uz: <><b className="mono">margin</b>/<b className="mono">padding</b> — bo'shliq, <b className="mono">color</b> — rang. Matn joylashuvi esa faqat <b className="mono">text-align</b>.</>, ru: <><b className="mono">margin</b>/<b className="mono">padding</b> — отступы, <b className="mono">color</b> — цвет. А расположение текста — только <b className="mono">text-align</b>.</> },
+        body: { uz: <><b className="mono">margin</b>/<b className="mono">padding</b> — bo'shliq, <b className="mono">color</b> — rang, joylashuv esa faqat <b className="mono">text-align</b>.</>, ru: <><b className="mono">margin</b>/<b className="mono">padding</b> — отступы, <b className="mono">color</b> — цвет, а расположение — только <b className="mono">text-align</b>.</> },
         vis: <RcFlow items={[{ uz: 'joylashuv', ru: 'расположение' }, 'text-align']} sep="·" />,
         ask: { uz: "Ismni sahifa markaziga qo'yish uchun qaysi xususiyat kerak?", ru: 'Какое свойство нужно, чтобы поставить имя по центру страницы?' } },
     ]
@@ -344,13 +344,13 @@ const RECAPS = {
   8: {
     title: { uz: 'Flex: elementlarni qatorga tizish', ru: 'Flex: выстроить элементы в ряд' }, cards: [
       { ic: '📚', h: { uz: 'display: flex — bir qatorga', ru: 'display: flex — в один ряд' },
-        body: { uz: <>Idishga <b className="mono">display: flex</b> bersangiz, ichidagi elementlar o'zi <b>yonma-yon</b>, bir qatorga tiziladi. Menyu havolalari shunday tizilib ketadi.</>, ru: <>Дайте контейнеру <b className="mono">display: flex</b> — и элементы внутри сами встанут <b>рядом</b>, в один ряд. Так выстраиваются ссылки меню.</> },
+        body: { uz: <>Idishga <b className="mono">display: flex</b> bersangiz, ichidagi elementlar <b>yonma-yon</b> tiziladi.</>, ru: <>Дайте контейнеру <b className="mono">display: flex</b> — и элементы внутри встанут <b>рядом</b>.</> },
         vis: <RcFlow items={['📦 nav', 'display: flex', { uz: 'havolalar yonma-yon', ru: 'ссылки рядом' }]} /> },
       { ic: '↔️', h: { uz: 'gap — oralarini ochadi', ru: 'gap — раздвигает их' },
-        body: { uz: <><b className="mono">gap</b> flex elementlar <b>orasidagi bo'shliqni</b> beradi — havolalar bir-biriga yopishib qolmaydi.</>, ru: <><b className="mono">gap</b> задаёт <b>расстояние между</b> flex-элементами — ссылки не слипаются друг с другом.</> },
+        body: { uz: <><b className="mono">gap</b> flex elementlar <b>orasini ochadi</b>, havolalar yopishib qolmaydi.</>, ru: <><b className="mono">gap</b> <b>раздвигает</b> flex-элементы, и ссылки не слипаются.</> },
         vis: <RcFlow items={['A', 'gap', 'B']} sep="·" /> },
       { ic: '☝️', h: { uz: 'block aksincha tizadi', ru: 'block делает наоборот' },
-        body: { uz: <><b className="mono">display: block</b> — aksincha, har elementni <b>alohida qatorga</b> qo'yadi. Yonma-yon qatorga tizish — faqat <b className="mono">flex</b>.</>, ru: <><b className="mono">display: block</b> — наоборот, ставит каждый элемент <b>на отдельную строку</b>. Выстроить в ряд — только <b className="mono">flex</b>.</> },
+        body: { uz: <><b className="mono">display: block</b> aksincha, har elementni <b>alohida qatorga</b> qo'yadi.</>, ru: <><b className="mono">display: block</b>, наоборот, ставит каждый элемент <b>на отдельную строку</b>.</> },
         vis: <RcFlow items={[{ uz: 'block — ustma-ust', ru: 'block — друг под другом' }, { uz: 'flex — yonma-yon', ru: 'flex — рядом' }]} sep="·" />,
         ask: { uz: "Menyu havolalarini yonma-yon bir qatorga qo'yish uchun qaysi qoida?", ru: 'Какое правило ставит ссылки меню рядом, в один ряд?' } },
     ]
@@ -359,13 +359,13 @@ const RECAPS = {
   11: {
     title: { uz: "Bo'shliq: padding va margin", ru: 'Отступы: padding и margin' }, cards: [
       { ic: '📥', h: { uz: "padding — ichki bo'shliq", ru: 'padding — внутренний отступ' },
-        body: { uz: <><b className="mono">padding</b> — kontent bilan element cheti orasidagi <b>ichki bo'shliq</b>. Tugma ichini kengaytirish uchun shu ishlatiladi.</>, ru: <><b className="mono">padding</b> — <b>внутренний отступ</b> между контентом и краем элемента. Им расширяют кнопку изнутри.</> },
+        body: { uz: <><b className="mono">padding</b> — kontent bilan element cheti orasidagi <b>ichki bo'shliq</b>.</>, ru: <><b className="mono">padding</b> — <b>внутренний отступ</b> между контентом и краем элемента.</> },
         vis: <RcFlow items={[{ uz: 'chet', ru: 'край' }, 'padding', { uz: 'kontent', ru: 'контент' }]} /> },
       { ic: '📤', h: { uz: "margin — tashqi bo'shliq", ru: 'margin — внешний отступ' },
-        body: { uz: <><b className="mono">margin</b> esa <b>tashqi bo'shliq</b> — elementlar orasidagi masofa. Ichi emas, tashqarisi.</>, ru: <>А <b className="mono">margin</b> — <b>внешний отступ</b>, расстояние между элементами. Не внутри, а снаружи.</> },
+        body: { uz: <><b className="mono">margin</b> — <b>tashqi bo'shliq</b>, ya'ni elementlar orasidagi masofa.</>, ru: <><b className="mono">margin</b> — <b>внешний отступ</b>, то есть расстояние между элементами.</> },
         vis: <RcFlow items={[{ uz: 'element', ru: 'элемент' }, 'margin', { uz: 'element', ru: 'элемент' }]} sep="·" /> },
       { ic: '🧩', h: { uz: 'ichki-tashqini ajrating', ru: 'различайте внутри и снаружи' },
-        body: { uz: <>Ichkarisi — <b className="mono">padding</b>, tashqarisi — <b className="mono">margin</b>. <b className="mono">gap</b> esa flex elementlar oralig'i uchun.</>, ru: <>Внутри — <b className="mono">padding</b>, снаружи — <b className="mono">margin</b>. А <b className="mono">gap</b> — для промежутков между flex-элементами.</> },
+        body: { uz: <>Ichkarisi — <b className="mono">padding</b>, tashqarisi — <b className="mono">margin</b>, flex oralig'i — <b className="mono">gap</b>.</>, ru: <>Внутри — <b className="mono">padding</b>, снаружи — <b className="mono">margin</b>, между flex-элементами — <b className="mono">gap</b>.</> },
         vis: <RcFlow items={[{ uz: 'ichki — padding', ru: 'внутри — padding' }, { uz: 'tashqi — margin', ru: 'снаружи — margin' }]} sep="·" />,
         ask: { uz: "Tugma ichini kengaytirib bo'shliq berish uchun qaysi xususiyat?", ru: 'Каким свойством расширить кнопку изнутри, добавив отступ?' } },
     ]
@@ -374,20 +374,20 @@ const RECAPS = {
   14: {
     title: { uz: 'Flex markaz: justify-content', ru: 'Центр во flex: justify-content' }, cards: [
       { ic: '➡️', h: { uz: "justify-content — qator bo'ylab", ru: 'justify-content — вдоль ряда' },
-        body: { uz: <><b className="mono">justify-content</b> flex elementlarni <b>asosiy o'q</b> (gorizontal) bo'ylab joylaydi: <b className="mono">center</b> — markaz, <b className="mono">space-between</b> — chetdan chetga.</>, ru: <><b className="mono">justify-content</b> располагает flex-элементы вдоль <b>главной оси</b> (по горизонтали): <b className="mono">center</b> — центр, <b className="mono">space-between</b> — от края до края.</> },
+        body: { uz: <><b className="mono">justify-content</b> flex elementlarni <b>asosiy o'q</b> (gorizontal) bo'ylab joylaydi.</>, ru: <><b className="mono">justify-content</b> располагает flex-элементы вдоль <b>главной оси</b> (по горизонтали).</> },
         vis: <RcFlow items={['flex-start', 'center', 'space-between']} sep="·" /> },
       { ic: '🎯', h: { uz: "center — o'rtaga suradi", ru: 'center — сдвигает в середину' },
-        body: { uz: <><b className="mono">justify-content: center</b> — havolalarni qator <b>o'rtasiga</b> to'playdi. Markazlashgan menyu shunday yasaladi.</>, ru: <><b className="mono">justify-content: center</b> — собирает ссылки <b>в середине</b> ряда. Так делают центрированное меню.</> },
+        body: { uz: <><b className="mono">justify-content: center</b> havolalarni qator <b>o'rtasiga</b> to'playdi.</>, ru: <><b className="mono">justify-content: center</b> собирает ссылки <b>в середине</b> ряда.</> },
         vis: <RcFlow items={['justify-content: center', { uz: 'markazda havolalar', ru: 'ссылки по центру' }]} /> },
       { ic: '⬇️', h: { uz: "align-items — boshqa o'q", ru: 'align-items — другая ось' },
-        body: { uz: <><b className="mono">align-items</b> — <b>vertikal</b> yo'nalish uchun. Gorizontal markaz esa har doim <b className="mono">justify-content</b>.</>, ru: <><b className="mono">align-items</b> — для <b>поперечной</b> (вертикальной) оси. А горизонтальный центр — всегда <b className="mono">justify-content</b>.</> },
+        body: { uz: <><b className="mono">align-items</b> — <b>vertikal</b> o'q uchun, gorizontal markaz esa <b className="mono">justify-content</b>.</>, ru: <><b className="mono">align-items</b> — для <b>вертикальной</b> оси, а центр по горизонтали — <b className="mono">justify-content</b>.</> },
         vis: <RcFlow items={[{ uz: 'justify — gorizontal', ru: 'justify — горизонталь' }, { uz: 'align — vertikal', ru: 'align — вертикаль' }]} sep="·" />,
         ask: { uz: "Menyu havolalarini gorizontal markazga qaysi xususiyat qo'yadi?", ru: 'Какое свойство ставит ссылки меню в горизонтальный центр?' } },
     ]
   },
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -405,7 +405,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Объясняем ещё раз' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -414,13 +414,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol', ru: 'Вопрос классу' })}: {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol', ru: 'Вопрос классу' })}: {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -498,7 +498,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась непонятой классом. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -507,7 +507,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту трудно судить. Оцените сами.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -596,7 +596,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` })
               : waiting
@@ -604,8 +604,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` })
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -616,11 +617,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           </p>
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi. Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1015,8 +1016,8 @@ const Screen4 = (props) => (
     questionText="Matn (harflar) rangini qaysi xususiyat beradi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Matnning o'zini — <span className="italic" style={{ color: T.accent }}>harflar rangini</span> — o'zgartiradigan xususiyat qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое свойство меняет сам текст — <span className="italic" style={{ color: T.accent }}>цвет букв</span>?</h2></> })}
     options={['color', 'background-color', 'font-size', 'text-align']} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! `color` — matn (harflar) rangi. `background-color` esa orqa fon rangi — ikkisini chalkashtirmang.", ru: 'Верно! `color` — цвет текста (букв). А `background-color` — цвет заднего фона, не путайте их.' }}
-    explainWrong={{ 1: { uz: "`background-color` — orqa fon rangi. Harflar rangi esa — `color`.", ru: '`background-color` — цвет заднего фона. А цвет букв — `color`.' }, 2: { uz: "`font-size` — shrift kattaligi, rang emas. Matn rangi — `color`.", ru: '`font-size` — размер шрифта, не цвет. Цвет текста — `color`.' }, 3: { uz: "`text-align` — matn joylashuvi (chap/markaz). Rang — `color`.", ru: '`text-align` — расположение текста (слева/центр). Цвет — `color`.' }, default: { uz: "Harflar rangi — `color`.", ru: 'Цвет букв — `color`.' } }} />
+    explainCorrect={{ uz: "`color` harflarni bo'yaydi, fonni esa `background-color`.", ru: '`color` красит буквы, а фон — `background-color`.' }}
+    explainWrong={{ 1: { uz: "`background-color` orqa fonni bo'yaydi, harflarni emas.", ru: '`background-color` красит задний фон, а не буквы.' }, 2: { uz: "`font-size` — shrift kattaligi, u rangni o'zgartirmaydi.", ru: '`font-size` — размер шрифта, цвет он не меняет.' }, 3: { uz: "`text-align` matnni joylaydi, rangiga tegmaydi.", ru: '`text-align` располагает текст, а цвет не трогает.' }, default: { uz: "Harflarning o'zini bo'yaydigan xossani eslang.", ru: 'Вспомните свойство, которое красит сами буквы.' } }} />
 );
 
 // ===== SCREEN 5 — BUILD: SARLAVHALAR (color + text-align) =====
@@ -1058,8 +1059,8 @@ const Screen6 = (props) => (
     questionText="Matn joylashuvini qaysi xususiyat boshqaradi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Matnni <span className="italic" style={{ color: T.accent }}>markazga</span> (yoki chapga/o'ngga) joylashtiradigan xususiyat qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое свойство располагает текст <span className="italic" style={{ color: T.accent }}>по центру</span> (или слева/справа)?</h2></> })}
     options={['margin', 'padding', 'color', 'text-align']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `text-align` matnni qator ichida joylashtiradi: `center` (markaz), `left` (chap), `right` (o'ng).", ru: 'Верно! `text-align` располагает текст внутри строки: `center` (центр), `left` (слева), `right` (справа).' }}
-    explainWrong={{ 0: { uz: "`margin` — tashqi bo'shliq, matn joylashuvi emas. Joylashuv — `text-align`.", ru: '`margin` — внешний отступ, не расположение текста. Расположение — `text-align`.' }, 1: { uz: "`padding` — ichki bo'shliq. Matn joylashuvi — `text-align`.", ru: '`padding` — внутренний отступ. Расположение текста — `text-align`.' }, 2: { uz: "`color` — rang. Joylashuv — `text-align`.", ru: '`color` — цвет. Расположение — `text-align`.' }, default: { uz: "Matn joylashuvi — `text-align`.", ru: 'Расположение текста — `text-align`.' } }} />
+    explainCorrect={{ uz: "`text-align` matnni qator ichida joylaydi: chap, markaz, o'ng.", ru: '`text-align` располагает текст в строке: слева, по центру, справа.' }}
+    explainWrong={{ 0: { uz: "`margin` — tashqi bo'shliq, matnni joylamaydi.", ru: '`margin` — внешний отступ, текст он не располагает.' }, 1: { uz: "`padding` — ichki bo'shliq, matnni joylamaydi.", ru: '`padding` — внутренний отступ, текст он не располагает.' }, 2: { uz: "`color` faqat rang beradi, matnni surmaydi.", ru: '`color` только задаёт цвет, текст не двигает.' }, default: { uz: "Matnni chapga yoki o'rtaga suradigan xossani eslang.", ru: 'Вспомните свойство, которое двигает текст влево или в центр.' } }} />
 );
 
 // ===== SCREEN 7 — BUILD: MENYU (display: flex + gap + justify-content) =====
@@ -1101,8 +1102,8 @@ const Screen8 = (props) => (
     questionText="Elementlarni bir qatorga tizadigan qoida?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Menyu havolalarini <span className="italic" style={{ color: T.accent }}>yonma-yon</span>, bir qatorga tizadigan qoida qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое правило выстраивает ссылки меню <span className="italic" style={{ color: T.accent }}>рядом</span>, в один ряд?</h2></> })}
     options={['display: block', 'text-align: center', 'display: flex', 'font-size: 20px']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! `display: flex` — idishni `flex` qiladi va ichki elementlarini bir qatorga tizadi. `gap` esa oralarini ochadi.", ru: 'Верно! `display: flex` — делает контейнер `flex` и выстраивает его элементы в один ряд. А `gap` раздвигает их.' }}
-    explainWrong={{ 0: { uz: "`display: block` — aksincha, har birini alohida qatorga qo'yadi. Bir qatorga — `display: flex`.", ru: '`display: block` — наоборот, ставит каждый на отдельную строку. В один ряд — `display: flex`.' }, 1: { uz: "`text-align: center` — matnni markazlaydi, qatorga tizmaydi. Tizish — `display: flex`.", ru: '`text-align: center` — центрирует текст, но не выстраивает в ряд. Выстраивает — `display: flex`.' }, 3: { uz: "`font-size` — shrift kattaligi, joylashuv emas. Qator — `display: flex`.", ru: '`font-size` — размер шрифта, не расположение. Ряд — `display: flex`.' }, default: { uz: "Bir qatorga tizish — `display: flex`.", ru: 'Выстроить в один ряд — `display: flex`.' } }} />
+    explainCorrect={{ uz: "`display: flex` ichki elementlarni bir qatorga tizadi.", ru: '`display: flex` выстраивает элементы внутри в один ряд.' }}
+    explainWrong={{ 0: { uz: "`display: block` har elementni alohida qatorga qo'yadi.", ru: '`display: block` ставит каждый элемент на отдельную строку.' }, 1: { uz: "`text-align: center` matnni markazlaydi, qatorga tizmaydi.", ru: '`text-align: center` центрирует текст, но в ряд не выстраивает.' }, 3: { uz: "`font-size` shriftni kattalashtiradi, joylashuvga tegmaydi.", ru: '`font-size` меняет размер шрифта, а не расположение.' }, default: { uz: "Idishdagi elementlarni yonma-yon qo'yadigan xossani eslang.", ru: 'Вспомните свойство, которое ставит элементы рядом.' } }} />
 );
 
 // ===== SCREEN 9 — BUILD: MEN HAQIMDA (padding + markaz, dasturchi avatar) =====
@@ -1176,8 +1177,8 @@ const Screen11 = (props) => (
     questionText="Element ichidagi bo'shliq qaysi xususiyat?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kontent bilan element cheti orasidagi <span className="italic" style={{ color: T.accent }}>ichki bo'shliq</span> qaysi xususiyat?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое свойство задаёт <span className="italic" style={{ color: T.accent }}>внутренний отступ</span> между контентом и краем элемента?</h2></> })}
     options={['margin', 'padding', 'gap', 'text-align']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! `padding` — ichki bo'shliq (kontent bilan chet orasida). `margin` esa tashqi bo'shliq (elementlar orasida).", ru: 'Верно! `padding` — внутренний отступ (между контентом и краем). А `margin` — внешний (между элементами).' }}
-    explainWrong={{ 0: { uz: "`margin` — bu tashqi bo'shliq (elementlar orasida). Ichkisi — `padding`.", ru: '`margin` — это внешний отступ (между элементами). Внутренний — `padding`.' }, 2: { uz: "`gap` — flex elementlar orasidagi oraliq. Ichki bo'shliq — `padding`.", ru: '`gap` — промежуток между flex-элементами. Внутренний отступ — `padding`.' }, 3: { uz: "`text-align` — matn joylashuvi. Ichki bo'shliq — `padding`.", ru: '`text-align` — расположение текста. Внутренний отступ — `padding`.' }, default: { uz: "Ichki bo'shliq — `padding`.", ru: 'Внутренний отступ — `padding`.' } }} />
+    explainCorrect={{ uz: "`padding` — ichki bo'shliq: kontent bilan chet orasida.", ru: '`padding` — внутренний отступ между контентом и краем.' }}
+    explainWrong={{ 0: { uz: "`margin` — tashqi bo'shliq, u elementlar orasida bo'ladi.", ru: '`margin` — внешний отступ, он между элементами.' }, 2: { uz: "`gap` flex elementlar orasini ochadi, ichini emas.", ru: '`gap` раздвигает flex-элементы, а не даёт отступ внутри.' }, 3: { uz: "`text-align` matnni joylaydi, bo'shliq bermaydi.", ru: '`text-align` располагает текст, отступа он не даёт.' }, default: { uz: "Element ichini kengaytiradigan xossani eslang.", ru: 'Вспомните свойство, которое расширяет элемент изнутри.' } }} />
 );
 
 // ===== SCREEN 12 — BUILD: ALOQA TUGMASI (color — oq matn) =====
@@ -1254,8 +1255,8 @@ const Screen14 = (props) => (
     questionText="Flex elementlarni gorizontal markazga joylash?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Menyudagi (flex) havolalarni qator bo'ylab <span className="italic" style={{ color: T.accent }}>gorizontal markazga</span> joylash uchun qaysi xususiyat?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какое свойство ставит ссылки меню (flex) в <span className="italic" style={{ color: T.accent }}>горизонтальный центр</span> вдоль ряда?</h2></> })}
     options={['align-items: center', 'text-align: center', 'gap: 10px', 'justify-content: center']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `justify-content: center` — flex elementlarni asosiy o'q (gorizontal) bo'ylab markazga joylaydi.", ru: 'Верно! `justify-content: center` — располагает flex-элементы по центру главной (горизонтальной) оси.' }}
-    explainWrong={{ 0: { uz: "`align-items` — vertikal tekislaydi. Gorizontal markaz — `justify-content`.", ru: '`align-items` — выравнивает по поперечной (вертикальной) оси. Горизонтальный центр — `justify-content`.' }, 1: { uz: "`text-align` matn uchun. Flex elementlar uchun — `justify-content`.", ru: '`text-align` — для текста. Для flex-элементов — `justify-content`.' }, 2: { uz: "`gap` — faqat oraliq beradi, markazlamaydi. Markaz — `justify-content: center`.", ru: '`gap` — только даёт промежуток, не центрирует. Центр — `justify-content: center`.' }, default: { uz: "Flex gorizontal markaz — `justify-content: center`.", ru: 'Горизонтальный центр во flex — `justify-content: center`.' } }} />
+    explainCorrect={{ uz: "`justify-content` elementlarni gorizontal o'q bo'ylab suradi.", ru: '`justify-content` двигает flex-элементы вдоль горизонтальной оси.' }}
+    explainWrong={{ 0: { uz: "`align-items` vertikal o'q bo'ylab tekislaydi.", ru: '`align-items` выравнивает по вертикальной оси.' }, 1: { uz: "`text-align` matn uchun, flex elementlarni surmaydi.", ru: '`text-align` — для текста, flex-элементы он не двигает.' }, 2: { uz: "`gap` faqat oraliq beradi, markazlamaydi.", ru: '`gap` только даёт промежуток, а не центрирует.' }, default: { uz: "Gorizontal o'q bo'ylab ishlaydigan flex xossasini eslang.", ru: 'Вспомните свойство flex для горизонтальной оси.' } }} />
 );
 
 // ===== SCREEN 15 — YIG'ISH (to'liq portfolio) =====
@@ -2121,7 +2122,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-10" lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -3339,7 +3340,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
       {/* Lokal praktika overlay (LMS compilatorining o'rnini bosadi). */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
+          <HtmlCompiler stage="m1-10" lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
         </div>
       )}
       {/* Jonli darsda mentor praktika paneli — o'quvchilar yozadi, mentor doskada ko'rsatadi */}

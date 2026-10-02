@@ -261,13 +261,13 @@ const RECAPS = {
     cards: [
       { ic: "🔍", h: { uz: "Qaysi nuqtada to'xtadi", ru: 'Где лента остановилась' }, body: { uz: <>Jurnal eng tepada <b>qaysi nuqtada</b> qizil chiroq yonganini ko'rsatadi.</>, ru: <>Журнал в самом верху показывает, <b>на какой точке</b> загорелся красный свет.</> } },
       { ic: "📄", h: { uz: "Qaysi fayl va qator", ru: 'Какой файл и строка' }, body: { uz: <>Fayl nomi va qator raqami — xatoni tez topish uchun eng muhim ikki dalil.</>, ru: <>Имя файла и номер строки — две главные улики для быстрого поиска ошибки.</> } },
-      { ic: "🎯", h: { uz: "Kutilgan va kelgan qiymat", ru: 'Ожидалось и получено' }, body: { uz: <>"Kutildi… keldi…" qatorlari — test nimani kutgani va aslida nima chiqqanini ko'rsatadi.</>, ru: <>Строки «ожидалось… получено…» показывают, чего ждал тест и что вышло на самом деле.</> }, ask: { uz: "Jurnaldagi qaysi qatorlar eng muhim dalil?", ru: 'Какие строки журнала — самые важные улики?' } },
+      { ic: "🎯", h: { uz: "Kutilgan va kelgan qiymat", ru: 'Ожидалось и получено' }, body: { uz: <>«Kutildi… keldi…» qatorlari test nima kutgani va nima chiqqanini ko'rsatadi.</>, ru: <>Строки «ожидалось… получено…» показывают, чего ждал тест и что вышло.</> }, ask: { uz: "Jurnaldagi qaysi qatorlar eng muhim dalil?", ru: 'Какие строки журнала — самые важные улики?' } },
     ]
   },
   8: {
     title: { uz: "Yordamchining taklifi — tekshirish shart", ru: 'Предложение Помощника нужно проверять' },
     cards: [
-      { ic: "✍️", h: { uz: "Taklif — bu taxmin", ru: 'Предложение — это гипотеза' }, body: { uz: <>Yordamchi bergan javob <b>tayyor haqiqat emas</b> — tekshirilishi kerak bo'lgan taxmin.</>, ru: <>Ответ Помощника — <b>не готовая истина</b>, а догадка, которую нужно проверить.</> } },
+      { ic: "✍️", h: { uz: "Taklif — bu taxmin", ru: 'Предложение — это гипотеза' }, body: { uz: <>Yordamchi javobi <b>tayyor haqiqat emas</b>, balki tekshiriladigan taxmin.</>, ru: <>Ответ Помощника — <b>не готовая истина</b>, а догадка для проверки.</> } },
       { ic: "🔍", h: { uz: "Jurnal bilan solishtiring", ru: 'Сравните с журналом' }, body: { uz: <>Taklifni jurnaldagi haqiqiy sabab bilan solishtiring — mos keladimi?</>, ru: <>Сравните предложение с настоящей причиной из журнала — сходится ли?</> } },
       { ic: "🚫", h: { uz: "Ko'r-ko'rona qabul qilmang", ru: 'Не принимайте вслепую' }, body: { uz: <>Tekshirmasdan qabul qilsangiz, noto'g'ri tuzatish productionga chiqishi mumkin.</>, ru: <>Если принять без проверки, неверное исправление может уехать в production.</> }, ask: { uz: "Nega taklifni darhol qabul qilib bo'lmaydi?", ru: 'Почему нельзя принимать предложение сразу?' } },
     ]
@@ -283,7 +283,7 @@ const RECAPS = {
   14: {
     title: { uz: "Aniqlashtiruvchi so'rov (follow-up)", ru: 'Уточняющий запрос (follow-up)' },
     cards: [
-      { ic: "🔁", h: { uz: "Birinchi taklif yetarli bo'lmasa", ru: 'Если первое предложение не помогло' }, body: { uz: <>Yangi, aniqroq dalil bilan qayta so'raysiz — bu <b>aniqlashtiruvchi so'rov</b> (follow-up).</>, ru: <>Вы спрашиваете снова — с новой, более точной уликой. Это <b>follow-up</b>.</> } },
+      { ic: "🔁", h: { uz: "Birinchi taklif yetarli bo'lmasa", ru: 'Если первое предложение не помогло' }, body: { uz: <>Yangi, aniqroq dalil bilan qayta so'rash — <b>aniqlashtiruvchi so'rov</b> (follow-up).</>, ru: <>Спросить снова с более точной уликой — это <b>follow-up</b>.</> } },
       { ic: "🎯", h: { uz: "Aniqlik qo'shing", ru: 'Добавьте точности' }, body: { uz: <>Yangi jurnal qatori yoki xato xabarini qo'shib so'rasangiz, javob aniqroq bo'ladi.</>, ru: <>Приложите новую строку журнала или текст ошибки — ответ станет точнее.</> } },
       { ic: "♻️", h: { uz: "Qayta tekshirasiz", ru: 'Снова проверяете' }, body: { uz: <>Yangi taklifni ham xuddi birinchisi kabi jurnal bilan solishtirasiz.</>, ru: <>Новое предложение сверяете с журналом так же, как первое.</> }, ask: { uz: "Follow-up so'rov qachon kerak bo'ladi?", ru: 'Когда нужен уточняющий запрос?' } },
     ]
@@ -298,7 +298,7 @@ const RECAPS = {
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -316,7 +316,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -325,13 +325,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -408,7 +408,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только у <b>{pct}%</b> — класс не понял тему. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -500,7 +500,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -508,8 +508,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -519,11 +520,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -943,12 +944,12 @@ const Screen4 = (props) => (
     questionText="Yordamchiga yaxshi so'rov qanday bo'lishi kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yordamchiga <span className="italic" style={{ color: T.accent }}>yaxshi so'rov</span> qanday bo'ladi?</>, ru: <>Каким должен быть <span className="italic" style={{ color: T.accent }}>хороший запрос</span> Помощнику?</> })}</h2></>}
     options={[{ uz: "Jurnaldagi aniq qator, kutilgan va kelgan qiymatni ko'rsatish", ru: 'Показать точную строку журнала, ожидаемое и полученное значение' }, { uz: "Hech narsa yozmasdan, yordamchining o'zi sababini avvaldan bilib olishiga umid qilish", ru: 'Ничего не писать и надеяться, что Помощник сам угадает причину' }, { uz: 'Faqat "ishlamayapti" deb yozish', ru: 'Написать только «не работает»' }, { uz: "Butun loyihani nusxalab yuborish", ru: 'Отправить копию всего проекта' }]} correctIdx={0}
-    explainCorrect={{ uz: "Shunda yordamchi taxmin qilmaydi — aniq joyni ko'rib, aniq javob beradi.", ru: 'Тогда Помощник не гадает — видит точное место и отвечает точно.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
+    explainCorrect={{ uz: "Aniq joyni ko'rgan yordamchi taxmin qilmaydi.", ru: 'Видя точное место, Помощник не гадает.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
     explainWrong={{
-      2: { uz: '"Ishlamayapti" — juda umumiy, yordamchi hech narsa deya olmaydi.', ru: '«Не работает» — слишком общо, Помощник ничего не сможет сказать.' },
-      1: { uz: "Yordamchi o'zi bilmaydi — jurnal va aniq dalilni siz ko'rsatishingiz kerak.", ru: 'Сам Помощник не знает — журнал и точные улики должны показать вы.' },
-      3: { uz: "Butun loyihani yuborish shart emas — bitta aniq qator yetarli.", ru: 'Отправлять весь проект не нужно — достаточно одной точной строки.' },
-      default: { uz: "Yaxshi so'rov: fayl + qator + kutilgan/kelgan qiymat.", ru: 'Хороший запрос: файл + строка + ожидалось/получено.' }
+      2: { uz: '«Ishlamayapti» juda umumiy — yordamchi qayerdan qidirsin?', ru: '«Не работает» — слишком общо: где Помощнику искать?' },
+      1: { uz: "Yordamchi jurnalingizni ko'rmaydi — dalilni siz berasiz.", ru: 'Помощник не видит ваш журнал — улики даёте вы.' },
+      3: { uz: "Butun loyihada yordamchi kerakli joyni yo'qotib qo'yadi.", ru: 'В целом проекте Помощник потеряет нужное место.' },
+      default: { uz: "Yordamchiga qaysi dalil eng aniq yordam berishini o'ylang.", ru: 'Подумайте, какая улика поможет Помощнику точнее всего.' }
     }} />
 );
 
@@ -1078,12 +1079,12 @@ const Screen8 = (props) => (
     questionText="Yordamchi tuzatish taklif qilganda, siz birinchi nima qilishingiz kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yordamchi taklif berdi. <span className="italic" style={{ color: T.accent }}>Birinchi</span> nima qilasiz?</>, ru: <>Помощник дал предложение. Что вы сделаете <span className="italic" style={{ color: T.accent }}>первым делом</span>?</> })}</h2></>}
     options={[{ uz: "Loyihani boshidan qayta yozaman", ru: 'Перепишу проект с нуля' }, { uz: "Darhol qabul qilib, hech narsani tekshirmasdan push tugmasini bosib yuboraman", ru: 'Сразу приму и нажму push, ничего не проверяя' }, { uz: "Yordamchining taklifini butunlay e'tiborsiz qoldiraman", ru: 'Полностью проигнорирую предложение Помощника' }, { uz: "Taklifni jurnaldagi haqiqiy sabab bilan solishtirib tekshiraman", ru: 'Сверю предложение с настоящей причиной из журнала' }]} correctIdx={3}
-    explainCorrect={{ uz: "Yordamchi adashishi mumkin — shuning uchun avval tekshirasiz, keyin qabul qilasiz.", ru: 'Помощник может ошибиться — поэтому сначала проверяете, потом принимаете.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
+    explainCorrect={{ uz: "Yordamchi adashishi mumkin, shuning uchun avval tekshiruv.", ru: 'Помощник может ошибиться — поэтому сначала проверка.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
     explainWrong={{
-      0: { uz: "Loyihani qayta yozish shart emas — bitta joyni tekshirib tuzatasiz.", ru: 'Переписывать проект не нужно — достаточно проверить и починить одно место.' },
-      1: { uz: "Darhol qabul qilish xavfli — yordamchi noto'g'ri taklif qilgan bo'lishi mumkin.", ru: 'Принимать сразу опасно — Помощник мог предложить неверное.' },
-      2: { uz: "Taklifni butunlay e'tiborsiz qoldirish shart emas — u foydali boshlang'ich nuqta.", ru: 'Полностью игнорировать не стоит — это полезная отправная точка.' },
-      default: { uz: "Birinchi qadam — taklifni jurnal bilan solishtirib tekshirish.", ru: 'Первый шаг — сверить предложение с журналом.' }
+      0: { uz: "Butun loyihani qayta yozish shart emas — muammo bitta joyda.", ru: 'Переписывать весь проект не нужно — проблема в одном месте.' },
+      1: { uz: "Tekshirmasdan qabul qilish xavfli — yordamchi ham adashadi.", ru: 'Принимать без проверки опасно — Помощник тоже ошибается.' },
+      2: { uz: "Taklifni tashlash shart emas — u foydali boshlanish.", ru: 'Выбрасывать предложение не нужно — это полезное начало.' },
+      default: { uz: "Taklif bilan birinchi nima qilishni o'ylang.", ru: 'Подумайте, что первым делом сделать с предложением.' }
     }} />
 );
 
@@ -1202,12 +1203,12 @@ const Screen10 = (props) => (
     questionText="Yordamchi sababni noto'g'ri aytsa, siz buni qanday bilib olasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yordamchi sababni <span className="italic" style={{ color: T.accent }}>noto'g'ri</span> aytsa — buni qanday bilasiz?</>, ru: <>Помощник поставил <span className="italic" style={{ color: T.accent }}>неверный</span> диагноз — как вы это поймёте?</> })}</h2></>}
     options={[{ uz: "Yordamchi hech qachon adashmaydi deb hisoblab, hech qanday tekshiruv o'tkazmayman", ru: 'Решу, что Помощник никогда не ошибается, и ничего не буду проверять' }, { uz: "Taklifni jurnaldagi haqiqiy sabab bilan solishtirib ko'raman", ru: 'Сверю предложение с настоящей причиной из журнала' }, { uz: "Kod yozishni butunlay to'xtataman", ru: 'Совсем перестану писать код' }, { uz: "Yordamchining aytganini darhol qabul qilib push qilaman", ru: 'Сразу приму слова Помощника и сделаю push' }]} correctIdx={1}
-    explainCorrect={{ uz: "Jurnal — haqiqiy dalil: taklif unga mos kelmasa, yordamchi adashgan.", ru: 'Журнал — настоящая улика: если предложение с ним не сходится, Помощник ошибся.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
+    explainCorrect={{ uz: "Jurnal — haqiqiy dalil, taklif unga mos kelishi kerak.", ru: 'Журнал — настоящая улика, предложение должно с ним сходиться.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
     explainWrong={{
-      0: { uz: "Yordamchi ham adashishi mumkin — u AI, hakam emas.", ru: 'Помощник тоже ошибается — он AI, а не судья.' },
-      3: { uz: "Darhol qabul qilish xavfli — tekshirmasangiz xato productionga chiqadi.", ru: 'Принимать сразу опасно — без проверки ошибка уедет в production.' },
-      2: { uz: "Kod yozishni to'xtatish shart emas — faqat taklifni tekshirasiz.", ru: 'Бросать код не нужно — достаточно проверить предложение.' },
-      default: { uz: "Taklifni jurnal bilan solishtirib tekshirasiz.", ru: 'Сверьте предложение с журналом.' }
+      0: { uz: "Yordamchi ham adashadi — u AI, hakam emas.", ru: 'Помощник тоже ошибается — он AI, а не судья.' },
+      3: { uz: "Tekshirmasdan push qilsangiz, xato productionga chiqadi.", ru: 'Без проверки после push ошибка уедет в production.' },
+      2: { uz: "Kod yozishni to'xtatish shart emas — gap bitta taklifda.", ru: 'Бросать код не нужно — речь об одном предложении.' },
+      default: { uz: "Taklifni nima bilan solishtirish mumkinligini o'ylang.", ru: 'Подумайте, с чем можно сверить предложение.' }
     }} />
 );
 
@@ -1378,12 +1379,12 @@ const Screen14 = (props) => (
     questionText="Yordamchining birinchi taklifi noto'g'ri chiqdi. Nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Birinchi taklif <span className="italic" style={{ color: T.accent }}>noto'g'ri</span> chiqdi. Nima qilasiz?</>, ru: <>Первое предложение оказалось <span className="italic" style={{ color: T.accent }}>неверным</span>. Что дальше?</> })}</h2></>}
     options={[{ uz: "Yordamchidan umuman voz kechib, hamma narsani qo'lda qilaman", ru: 'Совсем откажусь от Помощника и всё сделаю вручную' }, { uz: "Noto'g'ri taklifni baribir tekshirmasdan qo'llab, darhol qayta push qilib yuboraman", ru: 'Всё равно применю неверное предложение без проверки и сразу сделаю push' }, { uz: "Jurnaldan yangi aniq dalil bilan qayta so'rayman (follow-up) va yana tekshiraman", ru: 'Спрошу снова с новой точной уликой из журнала (follow-up) и опять проверю' }, { uz: "Loyihani noldan qayta yarataman", ru: 'Создам проект заново с нуля' }]} correctIdx={2}
-    explainCorrect={{ uz: "Yordamchi tez — unga faqat aniqroq dalil kerak. Yangi taklifni ham albatta tekshirasiz.", ru: 'Помощник быстрый — ему просто нужна улика поточнее. И новое предложение тоже обязательно проверяете.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
+    explainCorrect={{ uz: "Aniqroq dalil — aniqroq javob, lekin uni ham tekshirasiz.", ru: 'Точнее улика — точнее ответ, но и его вы проверяете.' }} /* F-0926-06 (159/11): «To'g'ri!» boshi va variant takrori olindi */
     explainWrong={{
-      0: { uz: "Yordamchidan butunlay voz kechish shart emas — u tez, faqat aniqroq so'rov kerak.", ru: 'Отказываться от Помощника не нужно — он быстрый, просто нужен запрос поточнее.' },
-      1: { uz: "Noto'g'ri taklifni qo'llash xavfli — xato yana chiqadi.", ru: 'Применять неверное предложение опасно — ошибка вылезет снова.' },
-      3: { uz: "Loyihani qayta yaratish shart emas — faqat aniqroq so'rov bering.", ru: 'Пересоздавать проект не нужно — просто уточните запрос.' },
-      default: { uz: "Yangi dalil bilan aniqlashtiruvchi so'rov bering va qayta tekshiring.", ru: 'Дайте follow-up с новой уликой и проверьте снова.' }
+      0: { uz: "Yordamchidan voz kechish shart emas — u tez ishlaydi.", ru: 'Отказываться от Помощника не нужно — он работает быстро.' },
+      1: { uz: "Bu taklifni qo'llasangiz, xato yana chiqadi.", ru: 'Примените неверное предложение — ошибка вылезет снова.' },
+      3: { uz: "Loyihani noldan qurish shart emas — muammo bitta joyda.", ru: 'Пересоздавать проект не нужно — проблема в одном месте.' },
+      default: { uz: "Yordamchiga yana nimani ko'rsatish mumkinligini o'ylang.", ru: 'Подумайте, что ещё можно показать Помощнику.' }
     }} />
 );
 
@@ -1440,7 +1441,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {consequence === 'push-early' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Tekshirmasdan push qildingiz!', ru: 'Вы сделали push без проверки!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yordamchining noto'g'ri taklifi to'g'ridan-to'g'ri productionga chiqdi. Tartibni to'g'rilang.", ru: 'Неверное предложение Помощника уехало прямо в production. Исправьте порядок.' })}</p><PhoneMock state="broken" /></div>}
         {/* F-0926-06 (159/7): «Tartib xato» bir marta — DragDropOrder ichida (dd-wrong) */}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yordamchi har doim tez yordam beradi — lekin tekshirish va yakuniy qaror doim sizniki.</>, ru: <>Помощник всегда помогает быстро — но проверка и финальное решение всегда ваши.</> }) /* F-0926-06 (I3): tartib bir marta — dd-done yozuvida */}</p><PhoneMock state="new" />
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>}
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>

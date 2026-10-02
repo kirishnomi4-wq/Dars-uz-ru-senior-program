@@ -1,0 +1,459 @@
+{
+ "file": "src/2-Modull/PracticeLesson4.jsx",
+ "lessonId": "practice-04-mvp-deploy-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "3-DARSDAGI KATALOG (ASOSIY QISM)",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1-marta bosildi — hech narsa bo'lmadi. Savat yo'q.",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "2-marta bosildi — hech narsa bo'lmadi. Savat yo'q.",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BU DO'KONDA NIMA YETISHMAYAPTI?",
+     "box": "DIV",
+     "gap": 9
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri! Mahsulotni ko'rsatish — bu boshlanish. Haqiqiy do'kon uchun savat va jami narx ke",
+     "box": "DIV",
+     "gap": 0
+    },
+    {
+     "pos": "tagida",
+     "t": "3-marta bosildi — hech narsa bo'lmadi. Savat yo'q.",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 72,
+     "left": "browser ",
+     "right": "frame",
+     "hs": [
+      219,
+      147
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON — SINAB KO'RING",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SAVATINGIZ",
+     "box": "frame",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON (MAHSULOT QO'SHING)",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Haqiqiy yig'indi: 35 000 so'm — lekin do'konda boshqa son ko'rinyapti…",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Haqiqiy yig'indi: 47 000 so'm — lekin do'konda boshqa son ko'rinyapti…",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Haqiqiy yig'indi: 52 000 so'm — lekin do'konda boshqa son ko'rinyapti…",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Haqiqiy yig'indi: 142 000 so'm — lekin do'konda boshqa son ko'rinyapti…",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Bugni AI'ga aniq tushuntiramiz",
+     "b": "Bugni tuzatish uchun AI'ga aniq aytish kerak: nima noto'g'ri va qanday bo'lishi kerak. \"Tuzat\" — kam; \"jami ik",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA QANDAY AYTAMIZ?",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "DO'KON (SAVATDA 2 TA RUCHKA)",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Hozircha jami narx ikki barobar (xato). Aniq buyruq tanlang — tuzatamiz.",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Do'konni qanday yanada qulay qilamiz?",
+     "b": "Asosiy ish tugadi. Endi do'konni yanada qulay va chiroyli qiladigan kichik yaxshilanishlar qo'shamiz — bu \"oxi",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "✓ Buyurtmadan keyin \"Rahmat!\""
+    },
+    {
+     "cls": "fade-step",
+     "bg": "rgb(31, 122, 77)",
+     "area": "16k",
+     "txt": "Buyurtma berish"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTNI INTERNETGA CHIQARISH",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TAYYOR DO'KON",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNING YUTUQLARINGIZ",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 35,
+     "left": "BUTTON",
+     "right": "sk-info fade-step",
+     "hs": [
+      56,
+      91
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Boshlanish 1 ta tugma 1 2 3 4 Natija chiqarilgan ilova",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Boshlanish 1 ta tugma ✓ 2 3 4 Natija chiqarilgan ilova",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Boshlanish 1 ta tugma ✓ ✓ 3 4 Natija chiqarilgan ilova",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Boshlanish 1 ta tugma ✓ ✓ ✓ 4 Natija chiqarilgan ilova",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Boshlanish 1 ta tugma ✓ ✓ ✓ ✓ Natija chiqarilgan ilova",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Rejani yozasiz 2 Agent reja + quradi 3 Brauzerda tekshirasiz 4 Kerak bo'lsa qayta so'ray",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "JONLI NATIJA — QADAM SARI",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "1 Rejani yozasiz Antigravity'ga oddiy tilda nima kerakligini aytasiz. 2 Agent reja + qurad",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

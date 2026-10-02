@@ -300,7 +300,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -308,8 +308,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -319,11 +320,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -549,45 +550,45 @@ const RECAPS = {
   4: {
     title: { uz: "Qurish yo'li: bo'laklash + aniq prompt", ru: 'Путь сборки: декомпозиция + точный промпт' },
     cards: [
-      { ic: "🧩", h: { uz: "Sayt = bloklar yig'indisi", ru: 'Сайт = сумма блоков' }, body: { uz: <>Katta sayt qo'rqinchli emas — u <b>kichik bloklarning</b> yig'indisi. Avval sahifalar (Router), keyin har sahifa bo'limlar (komponentlar). Har blokni alohida quramiz.</>, ru: <>Большой сайт не страшен — это сумма <b>маленьких блоков</b>. Сначала страницы (Router), потом каждая страница — на секции (компоненты). Каждый блок строим отдельно.</> }, vis: <RcFlow items={[{ uz: 'Sahifalar', ru: 'Страницы' }, { uz: "Bo'limlar", ru: 'Секции' }, { uz: 'Har blok alohida', ru: 'Каждый блок отдельно' }]} /> },
-      { ic: "🪜", h: { uz: "Avval bo'laklash, keyin aniq prompt", ru: 'Сначала декомпозиция, потом точный промпт' }, body: { uz: <>Tartib muhim: <b>avval bo'laklaysiz</b> (nima bo'limlar bor?), <b>keyin</b> har bo'lakka aniq prompt yozasiz. Noldan hammasini birdan so'ramaysiz.</>, ru: <>Порядок важен: <b>сначала разбиваете</b> (какие есть секции?), <b>потом</b> пишете точный промпт для каждой. Не просите всё сразу с нуля.</> } },
-      { ic: "🤖", h: { uz: "AI so'zma-so'z ishlaydi", ru: 'ИИ понимает буквально' }, body: { uz: <>AI fikringizni o'qiy olmaydi — u <b>so'zma-so'z</b> bajaradi. Noaniq buyruq → chala natija. Aniq bo'laklab so'rasangiz — aynan kerakligini quradi.</>, ru: <>ИИ не читает мысли — он выполняет <b>буквально</b>. Расплывчатая команда → сырой результат. Попросите точно и по блокам — построит именно то, что нужно.</> }, ask: { uz: "Yoqtirgan saytingizni qanday bo'laklaysiz?", ru: 'Как бы вы разбили на блоки любимый сайт?' } },
+      { ic: "🧩", h: { uz: "Sayt = bloklar yig'indisi", ru: 'Сайт = сумма блоков' }, body: { uz: <>Katta sayt — <b>kichik bloklar</b> yig'indisi: sahifalar, ular ichida bo'limlar.</>, ru: <>Большой сайт — это сумма <b>маленьких блоков</b>: страницы, а в них секции.</> }, vis: <RcFlow items={[{ uz: 'Sahifalar', ru: 'Страницы' }, { uz: "Bo'limlar", ru: 'Секции' }, { uz: 'Har blok alohida', ru: 'Каждый блок отдельно' }]} /> },
+      { ic: "🪜", h: { uz: "Avval bo'laklash, keyin aniq prompt", ru: 'Сначала декомпозиция, потом точный промпт' }, body: { uz: <>Avval <b>bo'laklaysiz</b>, keyin har bo'lakka aniq prompt yozasiz.</>, ru: <>Сначала <b>разбиваете</b>, потом пишете точный промпт для каждого блока.</> } },
+      { ic: "🤖", h: { uz: "AI so'zma-so'z ishlaydi", ru: 'ИИ понимает буквально' }, body: { uz: <>AI fikringizni o'qimaydi, <b>so'zma-so'z</b> bajaradi — shuning uchun aniq so'rang.</>, ru: <>ИИ не читает мысли, а выполняет <b>буквально</b> — поэтому просите точно.</> }, ask: { uz: "Yoqtirgan saytingizni qanday bo'laklaysiz?", ru: 'Как бы вы разбили на блоки любимый сайт?' } },
     ]
   },
   6: {
     title: { uz: "Takror → komponent + props + map", ru: 'Повтор → компонент + props + map' },
     cards: [
-      { ic: "♻️", h: { uz: "Takror = bitta komponent belgisi", ru: 'Повтор = признак одного компонента' }, body: { uz: <>Gridda bir xil kartalar takrorlansa — bu <b>bitta komponent</b> kerakligining belgisi. 12 marta ko'chirmaysiz, bitta <span className="mono">{'<TaomCard />'}</span> yozasiz.</>, ru: <>Если в сетке повторяются одинаковые карточки — это признак, что нужен <b>один компонент</b>. Не копируете 12 раз, а пишете один <span className="mono">{'<TaomCard />'}</span>.</> }, vis: <RcFlow items={[{ uz: 'Takror', ru: 'Повтор' }, { uz: 'Bitta komponent', ru: 'Один компонент' }, { uz: 'props + map', ru: 'props + map' }]} /> },
-      { ic: "🏷️", h: { uz: "Farq faqat ma'lumotda = props", ru: 'Разница только в данных = props' }, body: { uz: <>Kartalar tashqi ko'rinishi bir xil, faqat <b>ma'lumoti</b> (nom, narx, rasm) har xil. Bu farqni <b>props</b> orqali uzatamiz.</>, ru: <>Карточки выглядят одинаково, различаются только <b>данные</b> (название, цена, картинка). Эту разницу передаём через <b>props</b>.</> } },
-      { ic: "🔁", h: { uz: "map: 1 kod → N karta", ru: 'map: 1 код → N карточек' }, body: { uz: <><span className="mono">{'taomlar.map(t => <TaomCard taom={t} />)'}</span> — bitta kod ro'yxatdagi har element uchun bitta karta chizadi.</>, ru: <><span className="mono">{'taomlar.map(t => <TaomCard taom={t} />)'}</span> — один код рисует по карточке для каждого элемента списка.</> }, ask: { uz: "Kod ko'chirish nega yomon?", ru: 'Почему копировать код — плохо?' } },
+      { ic: "♻️", h: { uz: "Takror = bitta komponent belgisi", ru: 'Повтор = признак одного компонента' }, body: { uz: <>Bir xil kartalar takrorlansa — <b>bitta komponent</b> kerak: bitta <span className="mono">{'<TaomCard />'}</span> yozasiz.</>, ru: <>Повторяются одинаковые карточки — нужен <b>один компонент</b>: пишете один <span className="mono">{'<TaomCard />'}</span>.</> }, vis: <RcFlow items={[{ uz: 'Takror', ru: 'Повтор' }, { uz: 'Bitta komponent', ru: 'Один компонент' }, { uz: 'props + map', ru: 'props + map' }]} /> },
+      { ic: "🏷️", h: { uz: "Farq faqat ma'lumotda = props", ru: 'Разница только в данных = props' }, body: { uz: <>Kartalar faqat <b>ma'lumoti</b> bilan farq qiladi, bu farqni props orqali uzatamiz.</>, ru: <>Карточки отличаются только <b>данными</b>, и эту разницу передаём через props.</> } },
+      { ic: "🔁", h: { uz: "map: 1 kod → N karta", ru: 'map: 1 код → N карточек' }, body: { uz: <><span className="mono">{'taomlar.map(t => <TaomCard taom={t} />)'}</span> — har element uchun karta chizadi.</>, ru: <><span className="mono">{'taomlar.map(t => <TaomCard taom={t} />)'}</span> — рисует карточку для каждого элемента.</> }, ask: { uz: "Kod ko'chirish nega yomon?", ru: 'Почему копировать код — плохо?' } },
     ]
   },
   10: {
     title: { uz: "Aniq prompt: Qaysi + Nima + Manba", ru: 'Точный промпт: Какие + Что + Источник' },
     cards: [
-      { ic: "🎯", h: { uz: "Formula: Qaysi + Nima + Manba", ru: 'Формула: Какие + Что + Источник' }, body: { uz: <>Aniq prompt = <b>qaysi bo'limlar</b> + <b>har bo'lim nima ko'rsatadi</b> + <b>ma'lumot/uslub qayerdan</b>. Uch aniqlik — AI taxmin qilmaydi.</>, ru: <>Точный промпт = <b>какие секции</b> + <b>что показывает каждая</b> + <b>откуда данные/стиль</b>. Три уточнения — и ИИ не гадает.</> }, vis: <RcFlow items={[{ uz: "Qaysi bo'lim", ru: 'Какие секции' }, { uz: "Nima ko'rsatadi", ru: 'Что показывает' }, { uz: "Ma'lumot manbai", ru: 'Источник данных' }]} /> },
-      { ic: "🌫️", h: { uz: "Noaniq → taxmin → chala", ru: 'Расплывчато → догадки → сыро' }, body: { uz: <>«Chiroyli sayt qur» — noaniq. AI <b>taxmin qiladi</b> va chalkash, generik natija beradi. Aniqlik kamaysa — sifat ham kamayadi.</>, ru: <>«Построй красивый сайт» — расплывчато. ИИ <b>гадает</b> и выдаёт сумбурный, шаблонный результат. Меньше точности — меньше качества.</> } },
-      { ic: "✅", h: { uz: "Aniq → aynan kerakligi", ru: 'Точно → именно то, что нужно' }, body: { uz: <>Bo'limlar va mazmun aniq sanalganda AI <b>aynan siz istagan narsani</b> quradi. Aniqlik — eng kuchli prompt-mahorati.</>, ru: <>Когда секции и содержание перечислены точно, ИИ строит <b>именно то, что вы хотели</b>. Точность — сильнейший навык промптинга.</> }, ask: { uz: "«Bosh sahifa qur»ni qanday aniqlashtirasiz?", ru: 'Как вы уточните запрос «построй главную страницу»?' } },
+      { ic: "🎯", h: { uz: "Formula: Qaysi + Nima + Manba", ru: 'Формула: Какие + Что + Источник' }, body: { uz: <>Aniq prompt: <b>qaysi bo'limlar</b>, har biri nima ko'rsatadi va ma'lumot qayerdan.</>, ru: <>Точный промпт: <b>какие секции</b>, что показывает каждая и откуда данные.</> }, vis: <RcFlow items={[{ uz: "Qaysi bo'lim", ru: 'Какие секции' }, { uz: "Nima ko'rsatadi", ru: 'Что показывает' }, { uz: "Ma'lumot manbai", ru: 'Источник данных' }]} /> },
+      { ic: "🌫️", h: { uz: "Noaniq → taxmin → chala", ru: 'Расплывчато → догадки → сыро' }, body: { uz: <>Noaniq buyruqdan AI <b>taxmin qilib</b> chalkash natija beradi.</>, ru: <>На расплывчатую команду ИИ <b>гадает</b> и выдаёт сумбурный результат.</> } },
+      { ic: "✅", h: { uz: "Aniq → aynan kerakligi", ru: 'Точно → именно то, что нужно' }, body: { uz: <>Bo'limlar aniq sanalsa, AI <b>aynan siz istagan</b> narsani quradi.</>, ru: <>Когда секции перечислены точно, ИИ строит <b>именно то, что вы хотели</b>.</> }, ask: { uz: "«Bosh sahifa qur»ni qanday aniqlashtirasiz?", ru: 'Как вы уточните запрос «построй главную страницу»?' } },
     ]
   },
   13: {
     title: { uz: "Monolit → bo'laklar", ru: 'Монолит → блоки' },
     cards: [
-      { ic: "🗿", h: { uz: "Monolit — azob", ru: 'Монолит — мучение' }, body: { uz: <>AI hamma kodni bitta ulkan komponentga yozsa — bu <b>monolit</b>. O'zgartirish, qayta ishlatish, tushunish qiyin. Kichik xato butun blokni buzadi.</>, ru: <>Если ИИ пишет весь код в один огромный компонент — это <b>монолит</b>. Его трудно менять, переиспользовать и понимать. Маленькая ошибка ломает весь блок.</> }, vis: <RcFlow items={[{ uz: 'Ulkan blok', ru: 'Огромный блок' }, { uz: "Bo'laklaymiz", ru: 'Разбиваем' }, { uz: 'Kichik mustaqil', ru: 'Маленькие, независимые' }]} /> },
-      { ic: "✂️", h: { uz: "O'chirmaymiz — bo'laklaymiz", ru: 'Не удаляем — разбиваем' }, body: { uz: <>Yechim — o'chirish emas: monolitni <b>kichik komponentlarga bo'lishni</b> so'raysiz. Navbar, Hero, TaomList, Footer — har biri alohida.</>, ru: <>Решение — не удалять: попросите <b>разбить монолит на маленькие компоненты</b>. Navbar, Hero, TaomList, Footer — каждый отдельно.</> } },
-      { ic: "🧱", h: { uz: "Har bo'lak mustaqil", ru: 'Каждый блок независим' }, body: { uz: <>Bo'laklangach har komponent alohida ishlaydi va qayta ishlatiladi. Tuzatish oson, kod tartibli.</>, ru: <>После разбиения каждый компонент работает сам по себе и переиспользуется. Чинить легко, код аккуратный.</> }, ask: { uz: "Monolitning qaysi qismini birinchi ajratasiz?", ru: 'Какую часть монолита вы выделите первой?' } },
+      { ic: "🗿", h: { uz: "Monolit — azob", ru: 'Монолит — мучение' }, body: { uz: <>Hamma kod bitta ulkan komponentda bo'lsa — bu <b>monolit</b>, uni o'zgartirish qiyin.</>, ru: <>Весь код в одном огромном компоненте — это <b>монолит</b>, его трудно менять.</> }, vis: <RcFlow items={[{ uz: 'Ulkan blok', ru: 'Огромный блок' }, { uz: "Bo'laklaymiz", ru: 'Разбиваем' }, { uz: 'Kichik mustaqil', ru: 'Маленькие, независимые' }]} /> },
+      { ic: "✂️", h: { uz: "O'chirmaymiz — bo'laklaymiz", ru: 'Не удаляем — разбиваем' }, body: { uz: <>Monolitni o'chirmaysiz, AI'dan uni <b>kichik komponentlarga</b> bo'lishni so'raysiz.</>, ru: <>Монолит не удаляете, а просите ИИ разбить его на <b>маленькие компоненты</b>.</> } },
+      { ic: "🧱", h: { uz: "Har bo'lak mustaqil", ru: 'Каждый блок независим' }, body: { uz: <>Bo'laklangach har komponent <b>alohida ishlaydi</b>, uni tuzatish oson.</>, ru: <>После разбиения каждый компонент <b>работает сам по себе</b>, и чинить его легко.</> }, ask: { uz: "Monolitning qaysi qismini birinchi ajratasiz?", ru: 'Какую часть монолита вы выделите первой?' } },
     ]
   },
   15: {
     title: { uz: "Komponentni e'lon qilish", ru: 'Объявление компонента' },
     cards: [
-      { ic: "⚛️", h: { uz: "function + Katta harf + (props) + {", ru: 'function + Заглавная буква + (props) + {' }, body: { uz: <>Komponent e'loni: <span className="mono">{'function TaomCard(props) {'}</span> — <b>function</b>, <b>Katta harf</b> nom, <b>(props)</b>, ochuvchi <b>{'{'}</b>.</>, ru: <>Объявление компонента: <span className="mono">{'function TaomCard(props) {'}</span> — <b>function</b>, имя с <b>Заглавной буквы</b>, <b>(props)</b>, открывающая <b>{'{'}</b>.</> }, vis: <RcFlow items={[{ uz: 'function', ru: 'function' }, { uz: 'Katta harf', ru: 'Заглавная буква' }, { uz: '(props)', ru: '(props)' }]} /> },
-      { ic: "🔠", h: { uz: "Nom katta harf bilan", ru: 'Имя с заглавной буквы' }, body: { uz: <>React komponentni <b>katta harf</b>dan taniydi: <span className="mono">TaomCard</span> — komponent, <span className="mono">taomCard</span> — oddiy funksiya.</>, ru: <>React узнаёт компонент по <b>заглавной букве</b>: <span className="mono">TaomCard</span> — компонент, <span className="mono">taomCard</span> — обычная функция.</> } },
-      { ic: "🎁", h: { uz: "Bitta karta → map bilan istalgancha", ru: 'Одна карточка → сколько угодно через map' }, body: { uz: <>Bitta <span className="mono">{'<TaomCard />'}</span> yozib, <span className="mono">map</span> bilan istalgancha karta chizasiz — bo'laklashning asosi shu.</>, ru: <>Пишете один <span className="mono">{'<TaomCard />'}</span> и через <span className="mono">map</span> рисуете сколько угодно карточек — в этом сердце декомпозиции.</> }, ask: { uz: "O'z saytingizdagi kartani qanday nomlaysiz?", ru: 'Как вы назовёте карточку на своём сайте?' } },
+      { ic: "⚛️", h: { uz: "function + Katta harf + (props) + {", ru: 'function + Заглавная буква + (props) + {' }, body: { uz: <><span className="mono">{'function TaomCard(props) {'}</span> — katta harfli nom va ochuvchi <b>{'{'}</b>.</>, ru: <><span className="mono">{'function TaomCard(props) {'}</span> — имя с заглавной буквы и открывающая <b>{'{'}</b>.</> }, vis: <RcFlow items={[{ uz: 'function', ru: 'function' }, { uz: 'Katta harf', ru: 'Заглавная буква' }, { uz: '(props)', ru: '(props)' }]} /> },
+      { ic: "🔠", h: { uz: "Nom katta harf bilan", ru: 'Имя с заглавной буквы' }, body: { uz: <>React komponentni <b>katta harf</b>dan taniydi: <span className="mono">TaomCard</span> — komponent, <span className="mono">taomCard</span> — funksiya.</>, ru: <>React узнаёт компонент по <b>заглавной букве</b>: <span className="mono">TaomCard</span> — компонент, <span className="mono">taomCard</span> — функция.</> } },
+      { ic: "🎁", h: { uz: "Bitta karta → map bilan istalgancha", ru: 'Одна карточка → сколько угодно через map' }, body: { uz: <>Bitta <span className="mono">{'<TaomCard />'}</span> yozib, <span className="mono">map</span> bilan istalgancha karta chizasiz.</>, ru: <>Пишете один <span className="mono">{'<TaomCard />'}</span> и через <span className="mono">map</span> рисуете сколько угодно карточек.</> }, ask: { uz: "O'z saytingizdagi kartani qanday nomlaysiz?", ru: 'Как вы назовёте карточку на своём сайте?' } },
     ]
   },
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -605,7 +606,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -614,13 +615,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -698,7 +699,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>
@@ -707,7 +708,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — делать выводы по процентам трудно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -1829,12 +1830,12 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Katta saytni AI bilan <span className="italic" style={{ color: T.accent }}>qanday</span> quramiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> мы строим большой сайт с ИИ?</> })}</h2></>}
     options={[tr({ uz: "Bitta jumlada \"hammasini qur\" deyman", ru: 'Скажу одной фразой «построй всё»' }), tr({ uz: "Bo'limlarga bo'lib, har biriga aniq prompt yozaman", ru: 'Разобью на секции и напишу точный промпт для каждой' }), tr({ uz: "Hamma kodni o'zim qo'lda yozaman", ru: 'Напишу весь код вручную' }), tr({ uz: 'Avval eng chiroyli rangni tanlayman', ru: 'Сначала выберу самый красивый цвет' })]} correctIdx={1}
     audioText="Katta saytni AI bilan qanday quramiz? To'g'ri javobni tanlang."
-    explainCorrect={tr({ uz: "Avval bo'laklash (sahifalar + bo'limlar), keyin har bo'lakka aniq prompt. AI shunda taxmin qilmaydi — aynan kerakligini quradi.", ru: 'Сначала декомпозиция (страницы + секции), потом точный промпт для каждого блока. Тогда ИИ не гадает — строит именно то, что нужно.' })}
+    explainCorrect={tr({ uz: "Kichik bo'lakni AI taxminsiz, aynan kerakligicha quradi.", ru: 'Небольшой блок ИИ строит без догадок — именно так, как нужно.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — \"hammasini qur\" juda noaniq. AI taxmin qiladi va chalkash natija beradi. Bo'laklab, aniq so'rang.", ru: 'Нет — «построй всё» слишком расплывчато. ИИ будет гадать и выдаст сумбурный результат. Разбейте и попросите точно.' }),
-      2: tr({ uz: "Hammasini qo'lda yozish — sekin. AI tez yozadi; sizning ishingiz — bo'laklash, aniq prompt, tekshirish.", ru: 'Писать всё вручную — медленно. ИИ пишет быстро; ваша работа — декомпозиция, точный промпт, проверка.' }),
-      3: tr({ uz: "Rang — bezak. Avval struktura: sahifalar va bo'limlarga bo'lish kerak.", ru: 'Цвет — украшение. Сначала структура: нужно разбить на страницы и секции.' }),
-      default: tr({ uz: "To'g'ri yo'l: bo'laklash + har bo'lakka aniq prompt.", ru: 'Правильный путь: декомпозиция + точный промпт для каждого блока.' })
+      0: tr({ uz: "«Hammasini qur» juda noaniq — AI taxmin qiladi.", ru: '«Построй всё» слишком расплывчато — ИИ будет гадать.' }),
+      2: tr({ uz: "Hammasini qo'lda yozish sekin — kodni AI tez yozadi.", ru: 'Писать всё вручную медленно — код быстро пишет ИИ.' }),
+      3: tr({ uz: "Rang — bezak, u saytning tuzilishini bermaydi.", ru: 'Цвет — украшение, структуру сайта он не задаёт.' }),
+      default: tr({ uz: "Katta ishni AI'ga qanday berish osonroq — o'ylang.", ru: 'Подумайте, как проще отдать ИИ большую работу.' })
     }} />
 );
 
@@ -1888,12 +1889,12 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bir xil karta <span className="italic" style={{ color: T.accent }}>12 marta takrorlansa</span>?</>, ru: <>Если карточка <span className="italic" style={{ color: T.accent }}>повторяется 12 раз</span>?</> })}</h2></>}
     options={[tr({ uz: "12 marta bir xil kod ko'chiraman", ru: 'Скопирую один и тот же код 12 раз' }), tr({ uz: '12 ta alohida fayl yarataman', ru: 'Создам 12 отдельных файлов' }), tr({ uz: 'Hech narsa — takror normal', ru: 'Ничего — повтор это нормально' }), tr({ uz: 'Bitta komponent yasab, props + map bilan chizaman', ru: 'Сделаю один компонент и нарисую через props + map' })]} correctIdx={3}
     audioText="Bir xil karta 12 marta takrorlansa nima qilasiz? To'g'ri javobni tanlang."
-    explainCorrect={tr({ uz: "Takror = bitta komponent + props. map ro'yxatdagi har element uchun chizadi: {taomlar.map(t => <TaomCard taom={t} />)}. Bitta kod — 12 ta karta.", ru: 'Повтор = один компонент + props. map рисует по элементу списка: {taomlar.map(t => <TaomCard taom={t} />)}. Один код — 12 карточек.' })}
+    explainCorrect={tr({ uz: "Takror kartalar — bitta komponent, farqi props bilan keladi.", ru: 'Повторяющиеся карточки — один компонент, а разница приходит через props.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — ko'chirish yomon: narxni o'zgartirsangiz 12 joyni tuzatasiz. Bitta komponent + props.", ru: 'Нет — копировать плохо: поменяете цену — придётся чинить 12 мест. Один компонент + props.' }),
-      1: tr({ uz: "Yo'q — 12 ta fayl shart emas. Bitta komponent yetadi.", ru: 'Нет — 12 файлов не нужно. Хватит одного компонента.' }),
-      2: tr({ uz: 'Takror — belgi: bu yerda komponent kerak. Bitta yasab, props bilan ishlating.', ru: 'Повтор — сигнал: здесь нужен компонент. Сделайте один и используйте с props.' }),
-      default: tr({ uz: 'Takror → bitta komponent + props + map.', ru: 'Повтор → один компонент + props + map.' })
+      0: tr({ uz: "Ko'chirilgan kodda narx o'zgarsa, 12 joyni tuzatasiz.", ru: 'Если в копиях поменяется цена — придётся чинить 12 мест.' }),
+      1: tr({ uz: "12 ta fayl — o'sha takror, faqat 12 joyga tarqalgan.", ru: '12 файлов — тот же повтор, только разбросанный по 12 местам.' }),
+      2: tr({ uz: 'Takror normal emas — u kodni o\'zgartirishni qiyinlashtiradi.', ru: 'Повтор — не норма: из-за него код трудно менять.' }),
+      default: tr({ uz: 'Bir xil kartalarni bitta kod bilan qanday chizish mumkin?', ru: 'Как нарисовать одинаковые карточки одним кодом?' })
     }} />
 );
 
@@ -2050,12 +2051,12 @@ const Screen9 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Qaysi <span className="italic" style={{ color: T.accent }}>prompt</span> eng yaxshi natija beradi?</>, ru: <>Какой <span className="italic" style={{ color: T.accent }}>промпт</span> даст лучший результат?</> })}</h2></>}
     options={[tr({ uz: "\"Bosh sahifa: Hero (aksiya), Kategoriyalar, 8 ta TaomCard'li grid (nom+narx+Savatga), Footer\"", ru: '«Главная: Hero (акция), Категории, сетка из 8 TaomCard (название+цена+В корзину), Footer»' }), tr({ uz: "\"Chiroyli ovqat sayti qur\"", ru: '«Построй красивый сайт с едой»' }), tr({ uz: "\"Sayt qur\"", ru: '«Построй сайт»' }), tr({ uz: "\"Menga kod yoz\"", ru: '«Напиши мне код»' })]} correctIdx={0}
     audioText="Qaysi prompt AI'ga eng yaxshi natija beradi? To'g'ri javobni tanlang."
-    explainCorrect={tr({ uz: "Aniq prompt = qaysi bo'limlar + har bo'lim nima ko'rsatadi. AI taxmin qilmaydi — aynan shuni quradi.", ru: 'Точный промпт = какие секции + что показывает каждая. ИИ не гадает — строит именно это.' })}
+    explainCorrect={tr({ uz: "Bo'limlar va mazmun sanalgan — AI taxmin qilmaydi.", ru: 'Секции и содержание перечислены — ИИ не гадает.' })}
     explainWrong={{
-      1: tr({ uz: "\"Chiroyli\" — noaniq. Qaysi bo'limlar? Nima ko'rsatadi? AI taxmin qiladi. Aniq ayting.", ru: '«Красивый» — расплывчато. Какие секции? Что показывают? ИИ будет гадать. Скажите точно.' }),
-      2: tr({ uz: "Juda umumiy — AI nima qurishni bilmaydi. Bo'limlar va mazmunni sanang.", ru: 'Слишком общо — ИИ не знает, что строить. Перечислите секции и содержание.' }),
-      3: tr({ uz: "Qanday kod? Nima haqida? AI uchun aniq bo'lim va mazmun kerak.", ru: 'Какой код? О чём? ИИ нужны точные секции и содержание.' }),
-      default: tr({ uz: "Eng yaxshi prompt: bo'limlar + har bo'lim mazmuni aniq sanalgan.", ru: 'Лучший промпт: точно перечислены секции и содержание каждой.' })
+      1: tr({ uz: "«Chiroyli» noaniq — qaysi bo'limlar, nima ko'rsatadi?", ru: '«Красивый» — расплывчато: какие секции, что в них?' }),
+      2: tr({ uz: "Juda umumiy — AI nima qurishni bilmaydi.", ru: 'Слишком общо — ИИ не знает, что строить.' }),
+      3: tr({ uz: "Qanday kod, nima haqida — AI buni bilmaydi.", ru: 'Какой код, о чём — ИИ этого не знает.' }),
+      default: tr({ uz: "Qaysi promptda bo'limlar aniq sanalganini qidiring.", ru: 'Найдите промпт, где секции перечислены точно.' })
     }} />
 );
 
@@ -2173,12 +2174,12 @@ const Screen12 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI hamma kodni <span className="italic" style={{ color: T.accent }}>bitta ulkan komponentga</span> yozdi — nima qilasiz?</>, ru: <>ИИ написал весь код в <span className="italic" style={{ color: T.accent }}>один огромный компонент</span> — что делаете?</> })}</h2></>}
     options={[tr({ uz: 'Shundayligicha qoldiraman — ishlayapti', ru: 'Оставлю как есть — работает же' }), tr({ uz: "Hammasini o'chiraman", ru: 'Удалю всё' }), tr({ uz: "Bo'limlarga ajratishni so'rayman (Navbar, Hero, Footer...)", ru: 'Попрошу разбить на секции (Navbar, Hero, Footer...)' }), tr({ uz: "Yana ko'proq kod qo'shaman", ru: 'Добавлю ещё больше кода' })]} correctIdx={2}
     audioText="AI hamma kodni bitta ulkan komponentga yozdi — nima qilasiz? To'g'ri javobni tanlang."
-    explainCorrect={tr({ uz: "Bitta ulkan komponent (monolit) — yomon: o'zgartirish, qayta ishlatish qiyin. AI'dan uni kichik komponentlarga bo'lishni so'raysiz — har biri alohida, oson.", ru: 'Один огромный компонент (монолит) — плохо: трудно менять и переиспользовать. Попросите ИИ разбить его на маленькие компоненты — каждый отдельно, легко.' })}
+    explainCorrect={tr({ uz: "Monolitni o'zgartirish qiyin, kichik komponentni esa oson.", ru: 'Монолит трудно менять, а маленькие компоненты — легко.' })}
     explainWrong={{
-      0: tr({ uz: "Ishlasa ham — monolitni keyin o'zgartirish azob. Bo'laklashni so'rang.", ru: 'Пусть работает — но менять монолит потом мучение. Попросите разбить.' }),
-      1: tr({ uz: "Yo'q — o'chirmaymiz, bo'laklaymiz: bitta katta → bir nechta kichik komponent.", ru: 'Нет — не удаляем, а разбиваем: один большой → несколько маленьких компонентов.' }),
-      3: tr({ uz: "Aksincha — kod ko'paymaydi, lekin tartibli bo'laklarga ajraladi.", ru: 'Наоборот — кода больше не станет, но он разложится на аккуратные блоки.' }),
-      default: tr({ uz: "Monolitni kichik komponentlarga bo'lishni so'rash — to'g'ri yo'l.", ru: 'Попросить разбить монолит на маленькие компоненты — правильный путь.' })
+      0: tr({ uz: "Ishlasa ham, monolitni keyin o'zgartirish azob.", ru: 'Пусть работает, но менять монолит потом — мучение.' }),
+      1: tr({ uz: "O'chirsangiz, ishlayotgan kod ham yo'qoladi.", ru: 'Если удалить, пропадёт и работающий код.' }),
+      3: tr({ uz: "Ko'proq kod monolitni yanada kattalashtiradi.", ru: 'Больше кода — монолит станет ещё больше.' }),
+      default: tr({ uz: "Ulkan komponent bilan ishlashni qanday yengillatish mumkin?", ru: 'Как упростить работу с огромным компонентом?' })
     }} />
 );
 

@@ -1,0 +1,474 @@
+{
+ "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+ "lessonId": "react-router-practice-p2-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ESKI USUL — HAR BOSISHDA QAYTA YUKLANADI",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "INSTAGRAM VA ROBLOX SAHIFALAR ORASIDA BIR ZUMDA O'TADI. NEGA?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Sezdingizmi? Butun ekran oq bo'lib, qaytadan yuklandi — sekin va silliq emas.",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! React Router butun sahifani emas, faqat kerakli qismini almashtiradi — shuning uchu",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 3,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING ROBO-WORLD XARITANGIZ",
+     "box": "warp warp-preview",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ 3 zona — bitta ilovada",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Ilovani qurishdan oldin bitta ro'yxat kerak: qaysi manzil (URL) qaysi sahifani ochadi. Har manzil katagiga to'",
+     "b": "HAR MANZILGA TO'G'RI SAHIFANI JOYLANG",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Tartib xato — bo'lakni bosib qaytaring va qayta joylang",
+     "b": "⚠️ Tartib xato — qayta joylang.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "○ Chiqish eshigi (<a href>) — butun olam qorayadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "✓ Chiqish eshigi (<a href>) — butun olam qorayadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Butun olam qaytadan yuklanmoqda…",
+     "b": "Ko'rdingizmi? <a> — butun olam qorayib qaytadan yuklandi (sekin). <Link> — HUD joyida, faqat markaz almashdi (",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.82,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "○ Warp-portal (<Link to>) — HUD joyida, silliq ○ Chiqish eshigi (<a href>) — butun olam qorayadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.82,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "✓ Warp-portal (<Link to>) — HUD joyida, silliq ○ Chiqish eshigi (<a href>) — butun olam qorayadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.82,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "✓ Warp-portal (<Link to>) — HUD joyida, silliq ✓ Chiqish eshigi (<a href>) — butun olam qorayadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "○ Warp-portal (<Link to>) — HUD joyida, silliq",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Mana ROBO-WORLD — top-down olam. Tepadagi HUD-ramka (koordinata-panel) — bu URL. Warp-portal (<Link to>) bosil",
+     "b": "✓ Warp-portal (<Link to>) — HUD joyida, silliq",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-WORLD — WARP XARITASI",
+     "box": "warp ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "○ Warp-portal (<Link to>) — HUD joyida, silliq ○ Chiqish eshigi (<a href>) — butun olam qo",
+     "box": "hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ Warp-portal (<Link to>) — HUD joyida, silliq ○ Chiqish eshigi (<a href>) — butun olam qo",
+     "box": "hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ Warp-portal (<Link to>) — HUD joyida, silliq ✓ Chiqish eshigi (<a href>) — butun olam qo",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 64,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOSH SAHIFA — KARTOCHKANI BOSING",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "O'YIN SAHIFASI",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ZIYORAT QILINGAN SAHIFALAR",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ 🏠 Bosh / ✓ 🎮 O'yin /game/:id ✓ ➕ Qo'shish /add",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Siz qaysi manzil qaysi sahifani ochishini bilasiz, demak agent kodini tekshira olasiz: route'lar to'g'rimi, <L",
+     "b": "Buyruq bering va rejani tasdiqlang…",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"O'yin kartochkasi bosilganda o'sha o'yin sahifasi"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — ROBO-GAMES.UZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 63,
+     "left": "bp-window",
+     "right": "code-box fade-up delay-1",
+     "hs": [
+      249,
+      186
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QO'SHISH SAHIFASI (/ADD)",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KOD VA KONSOL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Quruvchi sifatida sinab ko'ring. Bitta yangi sahifa tanlang — u ro'yxatga (yangi <Route>) va menyuga (yangi <L",
+     "b": "ILOVA — MENYUDAN YANGI SAHIFANI OCHING",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ILOVA",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ILOVA — MENYUDAN YANGI SAHIFANI OCHING",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s13",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI Menyu havolalarini yozdim:",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Xato bor qatorni toping va bosing",
+     "box": "dbg-code",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s14",
+   "type": "test",
+   "inp": [
+    {
+     "label": "3 <Route path=\"/game/:id\" element={<GamePage />} />",
+     "ph": "<Route path=\"/add\" element={<AddPage />} />",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 <Route 2 path=\"/add\" 3 element={<AddPage />}",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — ROBO-GAMES.UZ",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

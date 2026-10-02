@@ -210,8 +210,8 @@ const RECAPS = {
   4: {
     title: "Login → token",
     cards: [
-      { ic: "🎫", h: { uz: "Login → bilaguzuk", ru: "Логин → браслет" }, body: { uz: <>Email va parol to'g'ri bo'lsa, server <b>token (bilaguzuk)</b> beradi. Endi parol emas — shu token ishlatiladi.</>, ru: <>Если email и пароль верны, сервер выдаёт <b>токен (браслет)</b>. Дальше работает не пароль, а этот токен.</> } },
-      { ic: "🔁", h: { uz: "Parol bir marta", ru: "Пароль — один раз" }, body: { uz: <>Parolni har safar yubormaysiz. Bir marta login → token → keyingi so'rovlar shu token bilan.</>, ru: <>Вы не отправляете пароль каждый раз. Один раз логин → токен → следующие запросы с этим токеном.</> } },
+      { ic: "🎫", h: { uz: "Login → bilaguzuk", ru: "Логин → браслет" }, body: { uz: <>Email va parol to'g'ri bo'lsa, server <b>token (bilaguzuk)</b> beradi.</>, ru: <>Если email и пароль верны, сервер выдаёт <b>токен (браслет)</b>.</> } },
+      { ic: "🔁", h: { uz: "Parol bir marta", ru: "Пароль — один раз" }, body: { uz: <>Parol bir marta yuboriladi, keyingi so'rovlar esa <b>token</b> bilan ketadi.</>, ru: <>Пароль отправляется один раз, а дальше запросы идут с <b>токеном</b>.</> } },
       { ic: "✍️", h: { uz: "jwt.sign yasaydi", ru: "jwt.sign создаёт" }, body: { uz: <>Server <span className="mono">jwt.sign</span> bilan tokenni <b>userId + SECRET</b>dan yasaydi.</>, ru: <>Сервер создаёт токен через <span className="mono">jwt.sign</span> из <b>userId + SECRET</b>.</> }, ask: { uz: "Login muvaffaqiyatli — server nima qaytaradi?", ru: "Логин успешен — что возвращает сервер?" } },
     ]
   },
@@ -220,7 +220,7 @@ const RECAPS = {
     cards: [
       { ic: "🧩", h: "header.payload.signature", body: { uz: <>JWT uch qism: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — nuqta bilan ajratilgan.</>, ru: <>JWT — три части: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — разделены точками.</> } },
       { ic: "👁️", h: { uz: "Payload o'qiladi", ru: "Payload читается" }, body: { uz: <>Payload ichida userId turadi — o'qiladi, lekin <b>o'zgartirib bo'lmaydi</b>.</>, ru: <>Внутри payload лежит userId — он читается, но <b>изменить его нельзя</b>.</> } },
-      { ic: "🔏", h: { uz: "Signature to'sadi", ru: "Signature защищает" }, body: { uz: <>Imzo maxfiy kalit (<span className="mono">JWT_SECRET</span>) bilan yasaladi. Tokenni o'zgartirsangiz — imzo buziladi, server rad etadi.</>, ru: <>Подпись делается секретным ключом (<span className="mono">JWT_SECRET</span>). Измените токен — подпись сломается, сервер откажет.</> }, ask: { uz: "Nega soxta token yasab bo'lmaydi?", ru: "Почему нельзя сделать поддельный токен?" } },
+      { ic: "🔏", h: { uz: "Signature to'sadi", ru: "Signature защищает" }, body: { uz: <>Imzo <span className="mono">JWT_SECRET</span> kaliti bilan yasaladi, token o'zgarsa — server rad etadi.</>, ru: <>Подпись делается ключом <span className="mono">JWT_SECRET</span>, и изменённый токен сервер отклонит.</> }, ask: { uz: "Nega soxta token yasab bo'lmaydi?", ru: "Почему нельзя сделать поддельный токен?" } },
     ]
   },
   10: {
@@ -228,20 +228,20 @@ const RECAPS = {
     cards: [
       { ic: "🎟️", h: { uz: "Bearer bilan yuborish", ru: "Отправка с Bearer" }, body: { uz: <>Har so'rovda token <span className="mono">Authorization: Bearer &lt;token&gt;</span> sarlavhasida ketadi.</>, ru: <>В каждом запросе токен едет в заголовке <span className="mono">Authorization: Bearer &lt;token&gt;</span>.</> } },
       { ic: "🛡️", h: { uz: "Guard tekshiradi", ru: "Guard проверяет" }, body: { uz: <>Himoyalangan route oldida qo'riqchi <span className="mono">jwt.verify(token, SECRET)</span> bilan imzoni tekshiradi.</>, ru: <>Перед защищённым route охранник проверяет подпись через <span className="mono">jwt.verify(token, SECRET)</span>.</> } },
-      { ic: "⛔", h: { uz: "Tokensiz → 401", ru: "Без токена → 401" }, body: { uz: <>Token yo'q yoki soxta bo'lsa — <b>401 Unauthorized</b>. Kira olmaysiz.</>, ru: <>Токена нет или он поддельный — <b>401 Unauthorized</b>. Вход закрыт.</> }, ask: { uz: "Tokensiz himoyalangan route — qaysi status?", ru: "Защищённый route без токена — какой статус?" } },
+      { ic: "⛔", h: { uz: "Tokensiz → 401", ru: "Без токена → 401" }, body: { uz: <>Token yo'q yoki soxta bo'lsa, javob <b>401 Unauthorized</b> — kira olmaysiz.</>, ru: <>Нет токена или он поддельный — <b>401 Unauthorized</b>, вход закрыт.</> }, ask: { uz: "Tokensiz himoyalangan route — qaysi status?", ru: "Защищённый route без токена — какой статус?" } },
     ]
   },
   13: {
     title: { uz: "Maxfiy kalit · .env · process.env", ru: "Секретный ключ · .env · process.env" },
     cards: [
-      { ic: "🔑", h: { uz: "JWT_SECRET — imzo muhri", ru: "JWT_SECRET — печать подписи" }, body: { uz: <>Butun himoya <b>maxfiy kalit</b>ga bog'liq. U kodda ochiq tursa va GitHub'ga ketsa — hamma soxta bilaguzuk (token) yasay oladi.</>, ru: <>Вся защита держится на <b>секретном ключе</b>. Если он открыт в коде и попадёт на GitHub — каждый сможет делать поддельные браслеты (токены).</> } },
-      { ic: "🗄️", h: { uz: ".env — yashirin tortma", ru: ".env — потайной ящик" }, body: { uz: <>Maxfiy kalitlar <span className="mono">.env</span> faylida. Kod ularni <span className="mono">process.env</span> orqali o'qiydi.</>, ru: <>Секретные ключи — в файле <span className="mono">.env</span>. Код читает их через <span className="mono">process.env</span>.</> } },
+      { ic: "🔑", h: { uz: "JWT_SECRET — imzo muhri", ru: "JWT_SECRET — печать подписи" }, body: { uz: <>Butun himoya <b>maxfiy kalit</b>ga bog'liq: u GitHub'ga ketsa, hamma soxta token yasaydi.</>, ru: <>Вся защита держится на <b>секретном ключе</b>: попадёт на GitHub — любой сделает поддельный токен.</> } },
+      { ic: "🗄️", h: { uz: ".env — yashirin tortma", ru: ".env — потайной ящик" }, body: { uz: <>Maxfiy kalitlar <span className="mono">.env</span> faylida, kod ularni <span className="mono">process.env</span> orqali o'qiydi.</>, ru: <>Секретные ключи лежат в <span className="mono">.env</span>, а код читает их через <span className="mono">process.env</span>.</> } },
       { ic: "🙈", h: { uz: ".gitignore saqlaydi", ru: ".gitignore бережёт" }, body: { uz: <><span className="mono">.gitignore</span>'ga <span className="mono">.env</span> qo'shiladi — u GitHub'ga hech qachon ketmaydi.</>, ru: <>В <span className="mono">.gitignore</span> добавляется <span className="mono">.env</span> — он никогда не попадёт на GitHub.</> }, ask: { uz: "Maxfiy kalitlarni qayerda saqlaymiz?", ru: "Где мы храним секретные ключи?" } },
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -259,7 +259,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснение заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -268,13 +268,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карта ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -352,7 +352,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — судить по процентам сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить заново' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
           </div>
         );
       })()}
@@ -433,7 +433,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -441,8 +441,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -452,11 +453,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -829,12 +830,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: "Login muvaffaqiyatli bo'lsa, server nima qaytaradi?", ru: 'Если логин успешен, что возвращает сервер?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Email va parol to'g'ri bo'lsa, server sizga <span className="italic" style={{ color: T.accent }}>nima beradi?</span></>, ru: <>Если email и пароль верны, что сервер вам <span className="italic" style={{ color: T.accent }}>выдаёт?</span></> })}</h2></>}
     options={[tr({ uz: "Token (bilaguzuk) beradi — keyingi so'rovlar uchun", ru: 'Выдаёт токен (браслет) — для следующих запросов' }), tr({ uz: "Parolni qaytadan so'rab, kirishni butunlay bekor qiladi", ru: 'Снова спрашивает пароль и полностью отменяет вход' }), tr({ uz: "Hech narsa bermaydi — parolni har safar so'rayveradi", ru: 'Ничего не выдаёт — каждый раз спрашивает пароль' }), tr({ uz: "Butun ma'lumotlar bazasini yuklab yuboradi", ru: 'Отправляет всю базу данных' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "Login muvaffaqiyatli bo'lsa, server JWT token (bilaguzuk) beradi. Endi har so'rovda shu tokenni ko'rsatasiz — parol kerak emas.", ru: 'При успешном логине сервер выдаёт JWT-токен (браслет). Теперь в каждом запросе вы показываете этот токен — пароль не нужен.' })}
+    explainCorrect={tr({ uz: "Token — bilaguzuk: keyingi so'rovlarda parol kerak emas.", ru: 'Токен — это браслет: в следующих запросах пароль не нужен.' })}
     explainWrong={{
-      1: tr({ uz: "Parolni har safar so'ramaydi — bir marta login qilasiz, token olasiz.", ru: 'Пароль не спрашивается каждый раз — вы входите один раз и получаете токен.' }),
-      2: tr({ uz: "Aksincha — token beradi, shu bilan kim ekanligingizni isbotlaysiz.", ru: 'Наоборот — сервер выдаёт токен, им вы доказываете, кто вы.' }),
-      3: tr({ uz: "Yo'q — faqat token (bilaguzuk) qaytaradi, butun baza emas.", ru: 'Нет — возвращается только токен (браслет), а не вся база.' }),
-      default: tr({ uz: "Login → token (bilaguzuk).", ru: 'Логин → токен (браслет).' })
+      1: tr({ uz: "Login muvaffaqiyatli — kirish bekor bo'lmaydi, ochiladi.", ru: 'Логин успешен — вход не отменяется, а открывается.' }),
+      2: tr({ uz: "Server parolni har safar so'ramaydi — bir marta yetadi.", ru: 'Сервер не спрашивает пароль каждый раз — хватает одного раза.' }),
+      3: tr({ uz: "Butun baza hech kimga berilmaydi — bu juda xavfli.", ru: 'Всю базу никому не отдают — это слишком опасно.' }),
+      default: tr({ uz: "Keyingi so'rovlarda parol o'rniga nima ko'rsatiladi?", ru: 'Что показывают в следующих запросах вместо пароля?' })
     }} />
 );
 
@@ -889,12 +890,12 @@ const Screen5b = (props) => (
     questionText={tr({ uz: "Nega birov soxta token yasab, o'zini boshqa odam qilib ko'rsata olmaydi?", ru: 'Почему нельзя сделать поддельный токен и выдать себя за другого?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Tokenni o'zgartirsa, server buni <span className="italic" style={{ color: T.accent }}>qanday sezadi?</span></>, ru: <>Если токен изменить, как сервер это <span className="italic" style={{ color: T.accent }}>заметит?</span></> })}</h2></>}
     options={[tr({ uz: "Token juda uzun — uni to'liq ko'chirib yozib bo'lmaydi", ru: 'Токен слишком длинный — его не переписать целиком' }), tr({ uz: "Imzo (signature) maxfiy kalit bilan yasaladi — kalitsiz to'g'ri imzo chiqmaydi", ru: 'Подпись (signature) делается секретным ключом — без ключа верная подпись не получится' }), tr({ uz: "Token ko'rinmaydi — uni umuman hech kim o'qiy olmaydi", ru: 'Токен невидим — его вообще никто не может прочитать' }), tr({ uz: "Server har bir berilgan tokenni bazasida eslab qolib, kelgan so'rov bilan solishtiradi", ru: 'Сервер запоминает каждый выданный токен в базе и сверяет с запросом' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Kalit (JWT_SECRET) faqat serverda. Tokenni o'zgartirsangiz — imzo mos kelmaydi, server rad etadi (401).", ru: 'Ключ (JWT_SECRET) есть только на сервере. Измените токен — подпись не совпадёт, сервер откажет (401).' })}
+    explainCorrect={tr({ uz: "Kalit faqat serverda — usiz to'g'ri imzo yasab bo'lmaydi.", ru: 'Ключ есть только на сервере — без него верную подпись не сделать.' })}
     explainWrong={{
-      0: tr({ uz: "Uzunlik emas — gap imzoda. Imzo kalitsiz to'g'ri chiqmaydi.", ru: 'Дело не в длине, а в подписи. Без ключа верную подпись не сделать.' }),
-      2: tr({ uz: "Token ko'rinadi (payload o'qiladi), lekin imzo tufayli o'zgartirib bo'lmaydi.", ru: 'Токен виден (payload читается), но из-за подписи его нельзя изменить.' }),
-      3: tr({ uz: "Server odatda tokenni eslab qolmaydi — u imzoni tekshiradi.", ru: 'Обычно сервер токены не запоминает — он проверяет подпись.' }),
-      default: tr({ uz: "Imzo (signature) + maxfiy kalit = soxta token mumkin emas.", ru: 'Подпись (signature) + секретный ключ = поддельный токен невозможен.' })
+      0: tr({ uz: "Uzunlik himoya qilmaydi — uzun matnni ham nusxalash oson.", ru: 'Длина не защищает — длинный текст тоже легко скопировать.' }),
+      2: tr({ uz: "Token ko'rinadi — payload'ni istalgan kishi o'qiy oladi.", ru: 'Токен виден — payload может прочитать любой.' }),
+      3: tr({ uz: "Server tokenlarni eslab qolmaydi — tekshiruv boshqacha.", ru: 'Сервер не хранит список токенов — проверка устроена иначе.' }),
+      default: tr({ uz: "Tokenning uchinchi qismi nima uchun kerak?", ru: 'Зачем нужна третья часть токена?' })
     }} />
 );
 
@@ -1092,12 +1093,12 @@ const Screen9 = (props) => (
     questionText={tr({ uz: "Himoyalangan route'ga tokensiz so'rov yuborilsa, server qaysi status qaytaradi?", ru: 'Если отправить запрос на защищённый route без токена, какой статус вернёт сервер?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bilaguzuksiz himoyalangan eshikka kelsangiz, qo'riqchi <span className="italic" style={{ color: T.accent }}>nima deydi?</span></>, ru: <>Если прийти к защищённой двери без браслета, что скажет <span className="italic" style={{ color: T.accent }}>охранник?</span></> })}</h2></>}
     options={[tr({ uz: "200 OK — hammasi joyida, bemalol kiravering", ru: '200 OK — всё в порядке, спокойно заходите' }), tr({ uz: "404 Not Found — bunday manzil serverda umuman topilmadi", ru: '404 Not Found — такого адреса на сервере вообще нет' }), tr({ uz: "201 Created — mahsulot muvaffaqiyatli qo'shildi", ru: '201 Created — товар успешно добавлен' }), tr({ uz: "401 Unauthorized — token yo'q, kira olmaysiz", ru: '401 Unauthorized — токена нет, вход закрыт' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "Token bo'lmasa (yoki soxta bo'lsa) → 401 Unauthorized. Qo'riqchi sizni kiritmaydi.", ru: 'Нет токена (или он поддельный) → 401 Unauthorized. Охранник вас не впустит.' })}
+    explainCorrect={tr({ uz: "Token yo'q — qo'riqchi kiritmaydi, javob 401.", ru: 'Нет токена — охранник не впускает, ответ 401.' })}
     explainWrong={{
-      0: tr({ uz: "200 — hammasi joyida degani. Tokensiz kira olmaysiz.", ru: '200 значит «всё в порядке». Без токена не войти.' }),
-      1: tr({ uz: "404 — manzil topilmadi degani. Bu yerda manzil bor, lekin token yo'q → 401.", ru: '404 значит «адрес не найден». Здесь адрес есть, но нет токена → 401.' }),
-      2: tr({ uz: "201 — yangi narsa yaratildi. Lekin avval kirish kerak (token).", ru: '201 — создано что-то новое. Но сначала нужно войти (токен).' }),
-      default: tr({ uz: "Tokensiz → 401 Unauthorized.", ru: 'Без токена → 401 Unauthorized.' })
+      0: tr({ uz: "200 — hammasi joyida degani, tokensiz esa eshik yopiq.", ru: '200 значит «всё в порядке», а без токена дверь закрыта.' }),
+      1: tr({ uz: "404 — manzil yo'q degani, bu manzil esa bor.", ru: '404 значит «адреса нет», а этот адрес существует.' }),
+      2: tr({ uz: "201 — «yaratildi» degani, tokensiz hech narsa qo'shilmaydi.", ru: '201 значит «создано», а без токена ничего не добавить.' }),
+      default: tr({ uz: "Qo'riqchi tokensiz odamga qaysi javobni qaytaradi?", ru: 'Какой ответ охранник даёт тому, у кого нет токена?' })
     }} />
 );
 
@@ -1201,12 +1202,12 @@ const Screen12 = (props) => (
     questionText={tr({ uz: "Maxfiy kalitlarni (JWT_SECRET) qayerda saqlash to'g'ri?", ru: 'Где правильно хранить секретные ключи (JWT_SECRET)?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>JWT_SECRET kabi maxfiy kalitlarni <span className="italic" style={{ color: T.accent }}>qayerga yozamiz?</span></>, ru: <>Секретные ключи вроде JWT_SECRET — <span className="italic" style={{ color: T.accent }}>куда их писать?</span></> })}</h2></>}
     options={[tr({ uz: "To'g'ridan-to'g'ri kod ichiga yozamiz — bu eng qulay va ishonchli usul", ru: 'Прямо в код — это самый удобный и надёжный способ' }), tr({ uz: "Saytning HTML sahifasiga — brauzer uni o'zi yashirib beradi", ru: 'В HTML-страницу сайта — браузер сам её спрячет' }), tr({ uz: ".env fayliga — kod uni process.env orqali o'qiydi, GitHub'ga ketmaydi", ru: 'В файл .env — код читает его через process.env, на GitHub он не попадает' }), tr({ uz: "Hech qayerda saqlamaymiz — kalitsiz ham ishlayveradi", ru: 'Нигде не хранить — и без ключа всё будет работать' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "Maxfiy kalitlar .env faylida saqlanadi. Kod ularni process.env orqali o'qiydi, .gitignore esa .env'ni GitHub'dan saqlaydi.", ru: 'Секретные ключи хранятся в файле .env. Код читает их через process.env, а .gitignore бережёт .env от GitHub.' })}
+    explainCorrect={tr({ uz: ".env GitHub'ga ketmaydi, kod uni process.env bilan o'qiydi.", ru: 'Файл .env не уходит на GitHub, код читает его через process.env.' })}
     explainWrong={{
-      0: tr({ uz: "Kod ichida bo'lsa — GitHub'ga ketadi va hamma ko'radi. Xavfli!", ru: 'В коде — значит попадёт на GitHub, и увидят все. Опасно!' }),
-      1: tr({ uz: "HTML — bu eng ochiq joy, brauzerda hamma ko'radi. Eng xavflisi.", ru: 'HTML — самое открытое место, в браузере видно всем. Самый опасный вариант.' }),
-      3: tr({ uz: "Kalit kerak (imzo uchun), faqat uni xavfsiz — .env'da saqlaymiz.", ru: 'Ключ нужен (для подписи), просто храним его безопасно — в .env.' }),
-      default: tr({ uz: "Maxfiy kalitlar → .env (process.env + .gitignore).", ru: 'Секретные ключи → .env (process.env + .gitignore).' })
+      0: tr({ uz: "Kod GitHub'ga ketadi — kalitni hamma ko'rib qoladi.", ru: 'Код уходит на GitHub — ключ увидят все.' }),
+      1: tr({ uz: "HTML brauzerda hammaga ochiq — kalit yashirinmaydi.", ru: 'HTML открыт в браузере всем — ключ там не спрятать.' }),
+      3: tr({ uz: "Kalitsiz imzo yasalmaydi — demak, uni saqlash kerak.", ru: 'Без ключа подпись не сделать — значит, его нужно хранить.' }),
+      default: tr({ uz: "Kalit qayerda tursa, GitHub'ga ketmaydi?", ru: 'Где должен лежать ключ, чтобы не попасть на GitHub?' })
     }} />
 );
 

@@ -1,0 +1,442 @@
+{
+ "file": "src/4-Modull/AuthEnvLesson.jsx",
+ "lessonId": "auth-env-04-07-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUNING OLDINI QANDAY OLAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Begona o'chiryapti…",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Dars oxirida siz saytga login qo'sha olasiz va maxfiy kalitlarni .env'ga yashira olasiz — GitHub'da hech kim k",
+     "b": "DARS OXIRIDA — SIZ LOGIN QO'SHASIZ VA KALITNI YASHIRASIZ",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZ LOGIN QO'SHASIZ VA KALITNI YASHIRASIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "authstep on seen ",
+     "bg": "rgb(255, 79, 40)",
+     "area": "21k",
+     "txt": "3. Zonalarga kirish ✓"
+    }
+   ],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SERVER KODI (LOGIN)",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 24,
+     "left": "tokencard ",
+     "right": "sk-info fade-step",
+     "hs": [
+      54,
+      78
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 69,
+     "left": "postman fade-up",
+     "right": "guarddoor ",
+     "hs": [
+      201,
+      132
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Siz — qo'riqchi (guard), ya'ni jwt.verify. Navbatda bilaguzuklar keladi: haqiqiy, soxta, muddati o'tgan... Har",
+     "b": "QO'RIQCHI KODI — QAYSI QATOR ISHLADI?",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 2 3 4 5 ✓ 0/5",
+     "box": "gq-card gq-bad judged gq-out",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "gq-card  ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QO'RIQCHI KODI — QAYSI QATOR ISHLADI?",
+     "box": "code-box clickable",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Har hukm — koddagi bir qatorning ishlashi: token yo'q → 401; imzo soxta/eskirgan → jwt.ver",
+     "box": "code-box clickable",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "gq-card gq-bad judged gq-out",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 42,
+     "left": "code-box",
+     "right": "frame-dash",
+     "hs": [
+      68,
+      110
+     ]
+    },
+    {
+     "diff": 62,
+     "left": "code-box",
+     "right": "ghub danger fade-step",
+     "hs": [
+      68,
+      130
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SERVER.JS",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "GITHUB.COM/SIZ/ZAKAZ-SHOP",
+     "box": "ghub danger fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": ".ENV (YASHIRIN)",
+     "box": "code-box envfile  tap-hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SERVER.JS",
+     "box": "code-box envfile  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "SERVER.JS",
+     "box": "code-box envfile  tap-hint",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "📝 Login 🏭 Server 🎫 Token 📨 So'rov 🛡️ Guard ✅ Ruxsat",
+     "box": "jnote",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "📝 Login 🏭 Server 🎫 Token 📨 So'rov 🛡️ Guard ✅ Ruxsat",
+     "box": "mentor fade-up  ",
+     "gap": 18
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 2 3",
+     "box": "postman fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Tokensiz so'rov yuboryapsiz. Qo'riqchi qanday javob qaytaradi?",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "hint",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-success fade-step",
+     "gap": 11
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ 2 3",
+     "box": "postman fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "1-QADAM · POST /API/PRODUCTS — BILAGUZUKSIZ",
+     "box": "frame-success fade-step",
+     "gap": 21
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": ".ENV FAYLIGA YOZING",
+     "ph": "KALIT=qiymat",
+     "gap": 20
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": ".ENV FAYLIGA YOZING",
+     "box": "envinput-wrap",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": ".ENV FAYLIGA YOZING",
+     "box": "vsc fade-up delay-1",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "1 JWT_SECRET=... 2 kod process.env'ga o'tdi",
+     "box": "ghub danger",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

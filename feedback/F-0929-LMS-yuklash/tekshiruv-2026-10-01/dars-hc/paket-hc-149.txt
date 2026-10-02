@@ -1,0 +1,27 @@
+02-PmLesson1-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+04-Htmllesson2-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+03-Htmllesson1-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+06-PmLesson2-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+05-HtmlTakrorlashLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+07-CssLesson1-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+10-VsCodeLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+08-CssLesson2-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+09-HtmlPractice-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+14-PmLesson3-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+02-PmLesson4-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+11-CssPractice-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+04-JsVarsLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+06-JsLoopsLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+05-JsConditionsLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+09-PracticeLesson1-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+08-PmLesson5-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+07-JsFunctionsLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+14-PmLesson6-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+11-PeanStackLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+02-PmUserStoryLesson-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+02-PmLesson11-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+11-PmLesson9-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+12-PmLesson13-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+02-PmLesson17-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+02-PmLesson15-v2 AVTO-HOLATLAR: 149 ✓ · 0 ❌ (jami 149) pageerror: 0 
+TUGADI

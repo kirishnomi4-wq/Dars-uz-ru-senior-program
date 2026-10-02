@@ -1,0 +1,553 @@
+{
+ "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+ "lessonId": "fullstack-projectday-p3-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QOROVULNING DAFTARI",
+     "box": "fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QOROVULGA ENG KO'P NIMA YORDAM BERADI?",
+     "box": "fade-up delay-3",
+     "gap": 19
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING QOROVUL PANELINGIZ",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ bo'sh 🟩 / band 🟥 · bir bosishda kirish-chiqish · tushum hisoblanadi",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 7,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Kam matn, tez harakat ✓",
+     "b": "Kam matn, tez harakat — Ortiqcha yozuv yo'q. Bir bosishda kirish, bir bosishda chiqish.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QOROVUL UCHUN 3 QOIDA (UX — QULAY KO'RINISH)",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SHU QOIDALAR BILAN — QOROVUL PANELI",
+     "box": "guard",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "JOYLAR — USTUNLAR",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TAYYOR SXEMA — SQL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 8,
+     "left": "vcard tap-hint",
+     "right": "rel-box",
+     "hs": [
+      46,
+      38
+     ]
+    },
+    {
+     "diff": 8,
+     "left": "vcard ",
+     "right": "rel-box",
+     "hs": [
+      46,
+      38
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — USTUNLAR",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "joylar id raqam bandmi joy_id ► joylar.id sessiyalar joy_id ↗ mashina tolov",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID = ?",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID = 1",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID = 2",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID = 3",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID = 4",
+     "box": "db",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "await pool.query(...); // joylar bandmi=true",
+     "b": "res.json({status:'kirdi'}); }); app.put('/api/sessiyalar/:id', async (req,res)=>{ await pool.query(...); // ch",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 31,
+     "left": "prompt-box fade-up delay-1",
+     "right": "sk-info",
+     "hs": [
+      44,
+      75
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA PROMPT — BACKEND",
+     "box": "prompt-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BU BACKEND NIMA QILISHI KERAK",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ANIQLASHTIRUVCHI PROMPT (FOLLOW-UP)",
+     "box": "prompt-box fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "ANIQLASHTIRUVCHI PROMPT (FOLLOW-UP)",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 74,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "JOYLAR — PANELDA NATIJA",
+     "box": "guard",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s9b",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA PROMPT — FRONTEND",
+     "box": "prompt-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FRONT NIMANI QURADI",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — QOROVUL PANELI",
+     "box": "guard",
+     "gap": 16
+    }
+   ],
+   "scroll": 3,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s11",
+   "type": "case",
+   "inp": [
+    {
+     "label": "Mashina davlat raqamini yozing:",
+     "ph": "01 A 123 BC",
+     "gap": 9
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 121,
+     "left": "frame fade-step",
+     "right": "guard",
+     "hs": [
+      175,
+      296
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QOROVUL PANELI",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "AMAL PANELI",
+     "box": "frame fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "○ Kirish (POST) ○ Chiqish (PUT)",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Qorovul kunlik tarixni ko'rmoqchi: kim, qaysi joy, qancha. Lekin sessiyalarda faqat joy_id bor (mas. 2) — joy ",
+     "b": "\"joy_id: 2\" — qaysi joy? Qorovul tushunmaydi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SESSIYALAR — JOY_ID RAQAM",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "\"joy_id: 2\" — qaysi joy? Qorovul tushunmaydi.",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "JOIN NATIJASI — O'QILADI",
+     "box": "sk-swapin",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "A1 — kiruvchi mashina",
+     "ph": "01 A 123 BC",
+     "gap": 0
+    },
+    {
+     "label": "A3 — kiruvchi mashina",
+     "ph": "01 A 123 BC",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 138,
+     "left": "frame fade-step",
+     "right": "guard",
+     "hs": [
+      145,
+      283
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QOROVUL PANELI",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "AMAL",
+     "box": "frame fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "TARIX (JOIN BILAN)",
+     "box": "frame fade-step",
+     "gap": 20
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 19,
+   "id": "s15",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 40,
+     "left": "step-card",
+     "right": "frame-success",
+     "hs": [
+      48,
+      88
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "LOYIHA QISMLARI",
+     "box": "roadmap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YODDA TUTING",
+     "box": "frame-success",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 20,
+   "id": "s16",
+   "type": "test",
+   "inp": [
+    {
+     "label": "3 JOIN joylar",
+     "ph": "jadval.ustun = jadval.ustun",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 sessiyalar.joy_id 2 joylar.id",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

@@ -263,37 +263,37 @@ const RECAPS = {
   3: {
     title: { uz: "O'lchagich — chiqqandan keyin", ru: 'Измеритель — после выпуска' },
     cards: [
-      { ic: '📏', h: { uz: "O'lchagich nima", ru: 'Что такое измеритель' }, body: { uz: <>Sayt chiqqandan keyin uni <b>to'xtovsiz o'lchab turadigan asbob</b> — o'lchagich. Uchta o'lchagich bor: sayt ochiladimi · javob necha soniyada keladi · 100 kirishdan nechtasi xato.</>, ru: <>Прибор, который <b>непрерывно измеряет</b> сайт после выпуска, — это измеритель. Их три: открывается ли сайт · за сколько секунд приходит ответ · сколько из 100 заходов с ошибкой.</> } },
-      { ic: '✈️', h: { uz: 'Ikki xil tekshiruv', ru: 'Две разные проверки' }, body: { uz: <>Chiqarishgacha kodni <b>lenta</b> tekshiradi. Chiqqandan keyin sayt odamlar qo'lida — uni endi o'lchagich o'lchaydi.</>, ru: <>До выпуска код проверяет <b>конвейер</b>. После выпуска сайт в руках у людей — и теперь его измеряет измеритель.</> } },
-      { ic: '🙋', h: { uz: "O'lchagich bo'lmasa", ru: 'Если измерителя нет' }, body: { uz: <>Sayt ochilmay qolsa, buni birinchi bo'lib <b>kirgan odam</b> ko'radi — dasturchi emas.</>, ru: <>Если сайт перестанет открываться, первым это увидит <b>зашедший человек</b> — не программист.</> }, ask: { uz: 'Sayt kechasi ochilmay qolsa, buni ertalab kim bilib qoladi?', ru: 'Если сайт перестанет открываться ночью, кто узнает об этом утром?' } }
+      { ic: '📏', h: { uz: "O'lchagich nima", ru: 'Что такое измеритель' }, body: { uz: <>Sayt chiqqandan keyin uni <b>to'xtovsiz o'lchab turadigan asbob</b> — o'lchagich.</>, ru: <>Прибор, который <b>непрерывно измеряет</b> сайт после выпуска, — это измеритель.</> } },
+      { ic: '✈️', h: { uz: 'Ikki xil tekshiruv', ru: 'Две разные проверки' }, body: { uz: <>Chiqarishgacha kodni <b>lenta</b>, chiqqandan keyin saytni o'lchagich tekshiradi.</>, ru: <>До выпуска код проверяет <b>конвейер</b>, после выпуска сайт измеряет измеритель.</> } },
+      { ic: '🙋', h: { uz: "O'lchagich bo'lmasa", ru: 'Если измерителя нет' }, body: { uz: <>Sayt ochilmay qolsa, buni birinchi bo'lib <b>kirgan odam</b> ko'radi — dasturchi emas.</>, ru: <>Если сайт перестанет открываться, первым это увидит <b>зашедший человек</b>, а не программист.</> }, ask: { uz: 'Sayt kechasi ochilmay qolsa, buni ertalab kim bilib qoladi?', ru: 'Если сайт перестанет открываться ночью, кто узнает об этом утром?' } }
     ]
   },
   5: {
     title: { uz: 'Odam sezgan signal — chin', ru: 'Сигнал, который заметил человек, — настоящий' },
     cards: [
-      { ic: '📣', h: { uz: 'Signal nima', ru: 'Что такое сигнал' }, body: { uz: <>O'lchagich chegaradan o'tganda keladigan xabar — <b>signal</b>. Chegara — siz qo'ygan son.</>, ru: <>Сообщение, которое приходит, когда измеритель перешёл границу, — это <b>сигнал</b>. Граница — число, которое ставите вы.</> } },
-      { ic: '👤', h: { uz: 'Chin va quruq', ru: 'Настоящий и пустой' }, body: { uz: <>Odam sezgan signal — <b>chin</b>; hech kim sezmagan signal — <b>quruq</b>. Farqni raqam emas, odam hal qiladi.</>, ru: <>Сигнал, который заметил человек, — <b>настоящий</b>; который не заметил никто — <b>пустой</b>. Разницу решает не число, а человек.</> } },
-      { ic: '⏱', h: { uz: 'Kutish qachon seziladi', ru: 'Когда ожидание заметно' }, body: { uz: <>Bir zumlik sekinlashuvni hech kim sezmaydi. Uzoq kutgan odam esa sahifani <b>yopib ketadi</b>.</>, ru: <>Мгновенного замедления никто не заметит. А тот, кто ждал долго, просто <b>закроет страницу</b>.</> }, ask: { uz: 'Sahifa 8 soniyada ochilsa, siz kutib turasizmi?', ru: 'Если страница открывается за 8 секунд, вы будете ждать?' } }
+      { ic: '📣', h: { uz: 'Signal nima', ru: 'Что такое сигнал' }, body: { uz: <>O'lchagich siz qo'ygan chegaradan o'tganda keladigan xabar — <b>signal</b>.</>, ru: <>Сообщение, которое приходит, когда измеритель перешёл вашу границу, — это <b>сигнал</b>.</> } },
+      { ic: '👤', h: { uz: 'Chin va quruq', ru: 'Настоящий и пустой' }, body: { uz: <>Odam sezgan signal — <b>chin</b>, hech kim sezmagani — <b>quruq</b>.</>, ru: <>Сигнал, который заметил человек, — <b>настоящий</b>, а незамеченный — <b>пустой</b>.</> } },
+      { ic: '⏱', h: { uz: 'Kutish qachon seziladi', ru: 'Когда ожидание заметно' }, body: { uz: <>Bir zumlik sekinlashuvni hech kim sezmaydi, uzoq kutgan odam esa sahifani <b>yopib ketadi</b>.</>, ru: <>Мгновенного замедления никто не заметит, а тот, кто ждал долго, <b>закроет страницу</b>.</> }, ask: { uz: 'Sahifa 8 soniyada ochilsa, siz kutib turasizmi?', ru: 'Если страница открывается за 8 секунд, вы будете ждать?' } }
     ]
   },
   7: {
     title: { uz: "Brauzer o'zi o'lchaydi", ru: 'Браузер измеряет сам' },
     cards: [
-      { ic: '🖥', h: { uz: "Har qator — bitta so'rov", ru: 'Каждая строка — один запрос' }, body: { uz: <>Network'da har qatorda ikki ustun turadi: <b>Status</b> — holat va <b>Time</b> — vaqt (ms).</>, ru: <>В Network в каждой строке два столбца: <b>Status</b> — состояние и <b>Time</b> — время (мс).</> } },
-      { ic: '🔎', h: { uz: 'Xatoni holat aytadi', ru: 'Об ошибке говорит состояние' }, body: { uz: <><b>404</b> — bunday sahifa yo'q. Sekinlik esa xato emas: u vaqt ustunida ko'rinadi.</>, ru: <><b>404</b> — такой страницы нет. А медленность — не ошибка: она видна в столбце времени.</> } },
-      { ic: '🕒', h: { uz: 'Faqat siz qaraganda', ru: 'Только когда смотрите вы' }, body: { uz: <>Brauzer bu raqamlarni o'zi yozadi, lekin faqat <b>sizning ekraningizda</b>. O'lchagich shu ishni sizsiz qiladi.</>, ru: <>Браузер пишет эти числа сам, но только <b>на вашем экране</b>. Измеритель делает ту же работу без вас.</> }, ask: { uz: "Oxirgi marta saytingizni qachon ochib ko'rgandingiz?", ru: 'Когда вы в последний раз открывали свой сайт?' } }
+      { ic: '🖥', h: { uz: "Har qator — bitta so'rov", ru: 'Каждая строка — один запрос' }, body: { uz: <>Network'da har qatorda ikki ustun bor: <b>Status</b> — holat va <b>Time</b> — vaqt (ms).</>, ru: <>В Network в каждой строке два столбца: <b>Status</b> — состояние и <b>Time</b> — время (мс).</> } },
+      { ic: '🔎', h: { uz: 'Xatoni holat aytadi', ru: 'Об ошибке говорит состояние' }, body: { uz: <><b>404</b> — bunday sahifa yo'q; sekinlik esa xato emas, u vaqt ustunida ko'rinadi.</>, ru: <><b>404</b> — такой страницы нет; а медленность — не ошибка, она видна в столбце времени.</> } },
+      { ic: '🕒', h: { uz: 'Faqat siz qaraganda', ru: 'Только когда смотрите вы' }, body: { uz: <>Brauzer bu raqamlarni faqat <b>sizning ekraningizda</b> yozadi, o'lchagich esa sizsiz ishlaydi.</>, ru: <>Браузер пишет эти числа только <b>на вашем экране</b>, а измеритель работает без вас.</> }, ask: { uz: "Oxirgi marta saytingizni qachon ochib ko'rgandingiz?", ru: 'Когда вы в последний раз открывали свой сайт?' } }
     ]
   },
   11: {
     title: { uz: 'Chegara — odam seza boshlaydigan joy', ru: 'Граница — там, где человек начинает замечать' },
     cards: [
-      { ic: '⬇️', h: { uz: 'Past chegara', ru: 'Низкая граница' }, body: { uz: <>Chegara pastroq bo'lsa, har mayda sakrash xabar beradi — <b>quruq signallar ko'payadi</b>.</>, ru: <>Если граница ниже, сообщение приходит на каждый мелкий скачок — <b>пустых сигналов становится больше</b>.</> } },
-      { ic: '⬆️', h: { uz: 'Baland chegara', ru: 'Высокая граница' }, body: { uz: <>Chegara balandroq bo'lsa, xabar kelguncha <b>odam sizdan oldin sezadi</b>.</>, ru: <>Если граница выше, то пока придёт сообщение, <b>человек заметит раньше вас</b>.</> } },
-      { ic: '🎯', h: { uz: "Chegara qayerga qo'yiladi", ru: 'Куда ставят границу' }, body: { uz: <>Chegara odam <b>seza boshlaydigan</b> joyga qo'yiladi — shuning uchun uni siz tanlaysiz.</>, ru: <>Границу ставят туда, где человек <b>начинает замечать</b>, — поэтому выбираете её вы.</> }, ask: { uz: "Javob vaqtiga qanday chegara qo'ygan bo'lardingiz?", ru: 'Какую границу вы поставили бы для времени ответа?' } }
+      { ic: '⬇️', h: { uz: 'Past chegara', ru: 'Низкая граница' }, body: { uz: <>Chegara past bo'lsa, har mayda sakrash xabar beradi va <b>quruq signallar ko'payadi</b>.</>, ru: <>Если граница низкая, каждый мелкий скачок шлёт сообщение и <b>пустых сигналов больше</b>.</> } },
+      { ic: '⬆️', h: { uz: 'Baland chegara', ru: 'Высокая граница' }, body: { uz: <>Chegara baland bo'lsa, xabar kelguncha <b>odam sizdan oldin sezadi</b>.</>, ru: <>Если граница высокая, человек заметит сбой <b>раньше, чем придёт сообщение</b>.</> } },
+      { ic: '🎯', h: { uz: "Chegara qayerga qo'yiladi", ru: 'Куда ставят границу' }, body: { uz: <>Chegara odam <b>seza boshlaydigan</b> joyga qo'yiladi — uni siz tanlaysiz.</>, ru: <>Границу ставят туда, где человек <b>начинает замечать</b>, — выбираете её вы.</> }, ask: { uz: "Javob vaqtiga qanday chegara qo'ygan bo'lardingiz?", ru: 'Какую границу вы поставили бы для времени ответа?' } }
     ]
   }
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -311,7 +311,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -319,13 +319,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -404,7 +404,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -485,7 +485,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -493,8 +493,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -505,7 +506,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -831,11 +832,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "O'lchagichsiz sayt ochilmay qolganini kim bildi", ru: 'Кто узнал без измерителя, что сайт не открывался' })}
     options={[tr({ uz: 'Ertalab saytga kirgan dasturchi', ru: 'Программист, зашедший на сайт утром' }), tr({ uz: "O'sha paytda saytga kirgan odamlar", ru: 'Люди, заходившие на сайт в тот момент' }), tr({ uz: 'Kodni chiqarishdan oldin tekshirgan lenta', ru: 'Конвейер, проверявший код перед выпуском' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "O'lchagich bo'lmasa, sayt ochilmay qolganini birinchi bo'lib kirgan odam ko'radi, dasturchi emas.", ru: 'Без измерителя первым увидит, что сайт не открывается, зашедший человек, а не программист.' })}
+    explainCorrect={tr({ uz: "O'lchagichsiz buni birinchi bo'lib kirgan odam ko'radi.", ru: 'Без измерителя первым это увидит зашедший человек.' })}
     explainWrong={{
-      0: tr({ uz: "Dasturchi ertalab kirganda sayt allaqachon ishlayapti — u kechasi nima bo'lganini ko'rmaydi.", ru: 'Когда программист заходит утром, сайт уже работает — что было ночью, он не увидит.' }),
-      2: tr({ uz: 'Lenta kodni chiqarishdan oldin tekshiradi; sayt chiqqandan keyin u qaramaydi.', ru: 'Конвейер проверяет код перед выпуском; после выпуска он на сайт не смотрит.' }),
-      default: tr({ uz: "Sayt ochilmay qolganini o'sha payt kirgan odamlar ko'radi.", ru: 'Что сайт не открывается, видят люди, зашедшие в тот момент.' })
+      0: tr({ uz: "Ertalab kirgan dasturchi kechasi nima bo'lganini ko'rmaydi.", ru: 'Утром сайт уже работает — ночного сбоя программист не увидит.' }),
+      2: tr({ uz: 'Lenta kodni chiqarishgacha tekshiradi, keyin qaramaydi.', ru: 'Конвейер проверяет код до выпуска, а после — не смотрит.' }),
+      default: tr({ uz: "Sayt ochilmay qolgan payt u yerda kim bo'lganini o'ylang.", ru: 'Подумайте, кто был на сайте в тот момент, когда он не открылся.' })
     }}
   />
 );
@@ -1063,11 +1064,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: 'Sahifa 8 soniyada ochilganda kirgan odam nima qildi', ru: 'Что сделал зашедший человек, когда страница открывалась за 8 секунд' })}
     options={[tr({ uz: 'Kutib turolmadi — sahifani yopib ketdi', ru: 'Не стал ждать — закрыл страницу и ушёл' }), tr({ uz: "Hech narsa sezmadi — sahifani odatdagidek o'qidi", ru: 'Ничего не заметил — читал страницу как обычно' }), tr({ uz: "Xato yozuvini ko'rdi — sahifani qayta yukladi", ru: 'Увидел надпись об ошибке — перезагрузил страницу' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "3 soniyadan uzoq kutish odamga seziladi: bu chin signal.", ru: 'Ожидание дольше 3 секунд человек замечает: это настоящий сигнал.' })}
+    explainCorrect={tr({ uz: "3 soniyadan uzoq kutishni odam sezadi — bu chin signal.", ru: 'Ожидание дольше 3 секунд человек замечает — это настоящий сигнал.' })}
     explainWrong={{
-      1: tr({ uz: '8 soniya odatdagi emas: bir zumlik sakrashni odam sezmaydi, sakkiz soniyalik kutishni sezadi.', ru: '8 секунд — это не «как обычно»: мгновенный скачок человек не замечает, а восьмисекундное ожидание замечает.' }),
-      2: tr({ uz: '8 soniyada sahifa baribir keladi — xato yozuvi chiqmaydi, odam shunchaki kutadi.', ru: 'За 8 секунд страница всё же приходит — надписи об ошибке нет, человек просто ждёт.' }),
-      default: tr({ uz: '8 soniyalik kutishni odam sezadi va sahifani yopib ketadi.', ru: 'Восьмисекундное ожидание человек замечает и закрывает страницу.' })
+      1: tr({ uz: '8 soniya bir zumlik sakrash emas — odam buni sezadi.', ru: '8 секунд — не мгновенный скачок, такое человек замечает.' }),
+      2: tr({ uz: 'Sahifa 8 soniyada baribir keladi — xato yozuvi chiqmaydi.', ru: 'За 8 секунд страница всё же приходит — надписи об ошибке нет.' }),
+      default: tr({ uz: '8 soniya kutgan odam nima qilishini o\'ylang.', ru: 'Подумайте, что сделает человек, прождав 8 секунд.' })
     }}
   />
 );
@@ -1174,11 +1175,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Ikki qatorning qaysi birida xato bor', ru: 'В какой из двух строк ошибка' })}
     options={[tr({ uz: '200 turgan qatorda — u sekinroq keldi', ru: 'В строке с 200 — она пришла медленнее' }), tr({ uz: 'Ikkalasida ham — vaqtlari har xil', ru: 'В обеих — у них разное время' }), tr({ uz: '404 turgan qatorda — sahifa topilmadi', ru: 'В строке с 404 — страница не найдена' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Xatoni holat raqami aytadi, vaqt emas: 404 — so'ralgan sahifa yo'q.", ru: 'Об ошибке говорит число состояния, а не время: 404 — запрошенной страницы нет.' })}
+    explainCorrect={tr({ uz: "Xatoni vaqt emas, holat raqami aytadi: 404 — sahifa yo'q.", ru: 'Об ошибке говорит не время, а число состояния: 404 — страницы нет.' })}
     explainWrong={{
-      0: tr({ uz: "Sekinlik va xato — ikki alohida o'lchagich; 420 ms esa uzoq kutish ham emas.", ru: 'Медленность и ошибка — два разных измерителя; а 420 мс — это даже не долгое ожидание.' }),
-      1: tr({ uz: 'Vaqtlarning har xilligi xato emas — xatoni holat raqami aytadi.', ru: 'Разное время — это не ошибка; об ошибке говорит число состояния.' }),
-      default: tr({ uz: "Xatoni holat raqami aytadi: 404 — so'ralgan sahifa yo'q.", ru: 'Об ошибке говорит число состояния: 404 — запрошенной страницы нет.' })
+      0: tr({ uz: "Sekinlik xato emas, 420 ms esa uzoq kutish ham emas.", ru: 'Медленность — не ошибка, а 420 мс — даже не долгое ожидание.' }),
+      1: tr({ uz: 'Vaqtlar har xil bo\'lishi xato emas — boshqa ustunga qarang.', ru: 'Разное время — не ошибка: посмотрите на другой столбец.' }),
+      default: tr({ uz: "Xatoni qaysi ustun aytishini eslang: Status yoki Time.", ru: 'Вспомните, какой столбец говорит об ошибке: Status или Time.' })
     }}
   />
 );
@@ -1828,11 +1829,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: "0,5 soniya chegarada kun bo'yi kelgan xabarlar qanday bo'ladi", ru: 'Какими будут сообщения за день при границе 0,5 секунды' })}
     options={[tr({ uz: 'Kam va aniq — har biri odam sezgan payt', ru: 'Мало и точно — каждое в момент, который заметил человек' }), tr({ uz: "Ko'p — ko'pini hech kim sezmaydi", ru: 'Много — большинство из них никто не заметит' }), tr({ uz: 'Umuman kelmaydi — chegara juda baland', ru: 'Не придут вовсе — граница слишком высокая' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Chegara odam sezadigan joydan pastda: hech kim sezmagan sakrashlar ham signal beradi. Bunday signal — quruq.", ru: 'Граница ниже того, что замечает человек: сигнал дают и те скачки, которых никто не заметил. Такой сигнал — пустой.' })}
+    explainCorrect={tr({ uz: "Chegara juda past: odam sezmagan sakrash ham signal beradi.", ru: 'Граница слишком низкая: сигнал дают даже незаметные скачки.' })}
     explainWrong={{
-      0: tr({ uz: '0,5 soniya — sahifaning odatdagi vaqti ichida (0,3–0,6 s): xabar tinmay keladi.', ru: '0,5 секунды — это внутри обычного времени страницы (0,3–0,6 с): сообщения будут идти без остановки.' }),
-      2: tr({ uz: "0,5 soniya baland emas, past chegara — xabar kamaymaydi, aksincha ko'payadi.", ru: '0,5 секунды — не высокая, а низкая граница: сообщений станет не меньше, а больше.' }),
-      default: tr({ uz: "Past chegarada xabar ko'p keladi va ko'pini hech kim sezmaydi.", ru: 'При низкой границе сообщений приходит много, и большинство из них никто не замечает.' })
+      0: tr({ uz: '0,5 soniya — odatdagi vaqt ichida, xabar tinmay keladi.', ru: '0,5 секунды — внутри обычного времени, сообщения идут без остановки.' }),
+      2: tr({ uz: "0,5 soniya baland emas, past chegara.", ru: '0,5 секунды — не высокая граница, а низкая.' }),
+      default: tr({ uz: "Odatdagi vaqt 0,3–0,6 s — chegarani shunga solishtiring.", ru: 'Обычное время 0,3–0,6 с — сравните с ним границу.' })
     }}
   />
 );

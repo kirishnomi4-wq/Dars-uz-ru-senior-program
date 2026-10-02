@@ -380,32 +380,32 @@ const RECAPS = {
   3: {
     title: { uz: 'Yechim qayerdan boshlanadi', ru: 'С чего начинается решение' },
     cards: [
-      { ic: '🎯', h: { uz: 'Avval savol, keyin ish', ru: 'Сначала вопрос, потом работа' }, body: { uz: 'Har yechim bitta savoldan boshlanadi: bu kimning qaysi muammosini yo\'qotadi? Javob topilmasa, yechim ro\'yxatga kirmaydi.', ru: 'Каждое решение начинается с одного вопроса: чью и какую проблему оно убирает? Если ответа нет — решение в список не попадает.' }, vis: { uz: <RcFlow items={['Yechim', 'qaysi muammo?', "ro'yxatga kiradi"]} />, ru: <RcFlow items={['Решение', 'какая проблема?', 'попадает в список']} /> }, ask: { uz: 'Fon musiqasi kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему убирает фоновая музыка?' } },
+      { ic: '🎯', h: { uz: 'Avval savol, keyin ish', ru: 'Сначала вопрос, потом работа' }, body: { uz: 'Har yechim savoldan boshlanadi: bu kimning qaysi muammosini yo\'qotadi?', ru: 'Каждое решение начинается с вопроса: чью и какую проблему оно убирает?' }, vis: { uz: <RcFlow items={['Yechim', 'qaysi muammo?', "ro'yxatga kiradi"]} />, ru: <RcFlow items={['Решение', 'какая проблема?', 'попадает в список']} /> }, ask: { uz: 'Fon musiqasi kimning qaysi muammosini yo\'qotadi?', ru: 'Чью и какую проблему убирает фоновая музыка?' } },
     ],
   },
   5: {
     title: { uz: 'Egasiz yechim', ru: 'Решение без хозяина' },
     cards: [
-      { ic: '❓', h: { uz: 'Nega bir kartaga joy topilmadi', ru: 'Почему одной карточке не нашлось места' }, body: { uz: 'Sudrash mashqida uch muammoga uch javob topildi. To\'rtinchi kartaga muammo topilmadi — shuning uchun u joysiz qoldi.', ru: 'В упражнении с перетаскиванием у трёх проблем нашлись три ответа. Для четвёртой карточки проблемы не нашлось — поэтому она осталась без места.' }, ask: { uz: 'To\'rtinchi kartani qanday o\'zgartirsak, unga ham muammo topiladi?', ru: 'Как изменить четвёртую карточку, чтобы и ей нашлась проблема?' } },
+      { ic: '❓', h: { uz: 'Nega bir kartaga joy topilmadi', ru: 'Почему одной карточке не нашлось места' }, body: { uz: 'To\'rtinchi kartaga muammo topilmadi — shuning uchun u joysiz qoldi.', ru: 'Для четвёртой карточки не нашлось проблемы — поэтому она осталась без места.' }, ask: { uz: 'To\'rtinchi kartani qanday o\'zgartirsak, unga ham muammo topiladi?', ru: 'Как изменить четвёртую карточку, чтобы и ей нашлась проблема?' } },
     ],
   },
   9: {
     title: { uz: 'Muammo va yechim qanday yoziladi', ru: 'Как пишется проблема и решение' },
     cards: [
-      { ic: '↔️', h: { uz: 'Chap tomon va o\'ng tomon', ru: 'Левая сторона и правая' }, body: { uz: 'Chapda — odamning muammosi, o\'ngda — sayt nima qilishi. O\'ng tomon harakat bilan yoziladi va chap tomonni to\'g\'ridan-to\'g\'ri yo\'qotadi.', ru: 'Слева — проблема человека, справа — что делает сайт. Правая сторона пишется действием и напрямую убирает левую.' }, vis: { uz: <RcFlow items={['Muammo', 'yechim', 'harakat bilan']} />, ru: <RcFlow items={['Проблема', 'решение', 'через действие']} /> } },
+      { ic: '↔️', h: { uz: 'Chap tomon va o\'ng tomon', ru: 'Левая сторона и правая' }, body: { uz: 'Chapda — odamning muammosi, o\'ngda — uni yo\'qotadigan sayt harakati.', ru: 'Слева — проблема человека, справа — действие сайта, которое её убирает.' }, vis: { uz: <RcFlow items={['Muammo', 'yechim', 'harakat bilan']} />, ru: <RcFlow items={['Проблема', 'решение', 'через действие']} /> } },
     ],
   },
   12: {
     title: { uz: 'Yangi so\'rov kelganda', ru: 'Когда приходит новая просьба' },
     cards: [
-      { ic: '🙋', h: { uz: 'So\'rov hali yechim emas', ru: 'Просьба — ещё не решение' }, body: { uz: 'So\'rov hali yechim emas. Avval u qaysi muammoga javob berishi so\'raladi, keyin ro\'yxatga kiritiladi.', ru: 'Просьба — ещё не решение. Сначала спрашивают, на какую проблему оно отвечает, и только потом вносят в список.' }, ask: { uz: 'Kinoteatr egasi yangi narsa so\'rasa, birinchi savolingiz qanday bo\'ladi?', ru: 'Если владелец кинотеатра просит что-то новое — каким будет ваш первый вопрос?' } },
+      { ic: '🙋', h: { uz: 'So\'rov hali yechim emas', ru: 'Просьба — ещё не решение' }, body: { uz: 'So\'rov ro\'yxatga kirishidan oldin u qaysi muammoga javob berishi so\'raladi.', ru: 'Прежде чем внести просьбу в список, спрашивают, на какую проблему она отвечает.' }, ask: { uz: 'Kinoteatr egasi yangi narsa so\'rasa, birinchi savolingiz qanday bo\'ladi?', ru: 'Если владелец кинотеатра просит что-то новое — каким будет ваш первый вопрос?' } },
     ],
   },
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -423,7 +423,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -432,13 +432,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — идём дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -518,7 +518,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -527,7 +527,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс тему освоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:`, ru: `Ответивших мало (${answered}) — по проценту выводы делать сложно. Оцените сами:` })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -688,7 +688,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)}` })
               : waiting
@@ -696,8 +696,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${uzOf(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${(options[correctIdx] && options[correctIdx].ru) || uzOf(options[correctIdx])}` })
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? tr(explainCorrect)
               : waiting
@@ -710,7 +711,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -965,12 +966,12 @@ const Screen3 = (props) => (
       { uz: 'Boshqa saytlarda bunday yechim bormi?', ru: 'Есть ли такое решение на других сайтах?' }
     ]}
     correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Har yechim bitta muammoning javobi bo'ladi. Javobi topilmasa, yechim ro'yxatdan chiqadi.", ru: 'Верно! Каждое решение — ответ на одну проблему. Если ответа нет, решение выпадает из списка.' }}
+    explainCorrect={{ uz: "Har yechim bitta muammoning javobi bo'lishi kerak.", ru: 'Каждое решение должно отвечать на одну проблему.' }}
     explainWrong={{
-      0: { uz: 'Vaqtni hisoblash — kerakli ish, lekin u KEYIN keladi. Avval bu yechim umuman kerakmi degan savolga javob topiladi.', ru: 'Считать сроки нужно, но это идёт ПОТОМ. Сначала находят ответ на вопрос, нужно ли это решение вообще.' },
-      1: { uz: 'Joylashuvni o\'ylash to\'g\'ri — lekin kerak bo\'lmagan narsaning joyi ham kerak bo\'lmaydi.', ru: 'Думать о расположении правильно — но у ненужной вещи и место окажется ненужным.' },
-      3: { uz: 'Boshqalarga qarash foydali — lekin ularning muammosi sizning mijozingiznikidan boshqa bo\'lishi mumkin.', ru: 'Смотреть на других полезно — но их проблемы могут отличаться от проблем вашего клиента.' },
-      default: { uz: 'Yana bir bor o\'ylab ko\'ring: yechim qaysi savoldan boshlanadi?', ru: 'Подумайте ещё раз: с какого вопроса начинается решение?' }
+      0: { uz: 'Necha kun olishini keyin o\'ylaymiz — avval u kerakmi?', ru: 'Сроки считают потом — сначала: нужно ли это вообще?' },
+      1: { uz: 'Kerak bo\'lmagan narsaning joyi ham kerak bo\'lmaydi.', ru: 'У ненужной вещи и место окажется ненужным.' },
+      3: { uz: 'Boshqa saytlarning mijozi va muammosi boshqacha bo\'ladi.', ru: 'У других сайтов могут быть другие клиенты и другие проблемы.' },
+      default: { uz: 'Yechim qaysi savoldan boshlanishini eslang.', ru: 'Вспомните, с какого вопроса начинается решение.' }
     }}
   />
 );
@@ -1066,12 +1067,12 @@ const Screen5 = (props) => (
       { uz: 'Uni telefonda ko\'rish noqulay', ru: 'Её неудобно смотреть на телефоне' }
     ]}
     correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Uch muammoning har biriga o'z javobi bor edi, bu kartaga esa muammo topilmadi.", ru: 'Верно! У каждой из трёх проблем был свой ответ, а для этой карточки проблемы не нашлось.' }}
+    explainCorrect={{ uz: "Uch muammoning javobi bor edi, bu kartaga muammo topilmadi.", ru: 'У трёх проблем был ответ, а для этой карточки проблемы не нашлось.' }}
     explainWrong={{
-      0: { uz: 'Qiyinlik haqiqatan hisobga olinadi — lekin bu karta qiyinligi uchun emas, egasi topilmagani uchun qoldi.', ru: 'Сложность действительно учитывают — но эта карточка осталась не из-за сложности, а потому что не нашлось хозяина.' },
-      2: { uz: 'Takrorlanish o\'ziga qarab e\'tirozga sabab emas: takrorlangan yechim ham muammoni yo\'qotsa, qoladi.', ru: 'Повторение само по себе не повод для возражения: повторяющееся решение остаётся, если убирает проблему.' },
-      3: { uz: 'Telefonda qanday ko\'rinishi muhim savol — lekin karta telefon uchun emas, egasizligi uchun joysiz qoldi.', ru: 'Как это выглядит на телефоне — важный вопрос, но карточка осталась без места не из-за телефона, а из-за отсутствия хозяина.' },
-      default: { uz: 'Eslang: karta nima uchun hech qaysi qatorga tushmadi?', ru: 'Вспомните: почему карточка не подошла ни к одной строке?' }
+      0: { uz: 'Qiyin yechim ham ro\'yxatga kiradi, agar u kerak bo\'lsa.', ru: 'Сложное решение тоже попадает в список, если оно нужно.' },
+      2: { uz: 'Boshqa saytlarda borligi kartani ro\'yxatdan chiqarmaydi.', ru: 'То, что такое есть у других, не убирает карточку из списка.' },
+      3: { uz: 'Telefonda qanday ko\'rinishi kartani joysiz qoldirmagan.', ru: 'Карточка осталась без места не из-за вида на телефоне.' },
+      default: { uz: 'Eslang: karta nega hech qaysi qatorga tushmadi?', ru: 'Вспомните: почему карточка не подошла ни к одной строке?' }
     }}
   />
 );
@@ -1356,12 +1357,12 @@ const Screen9 = (props) => (
       { uz: 'Film qiziqmi bilmaydi — film haqida ko\'proq ma\'lumot beriladi', ru: 'Не знает, интересен ли фильм — даётся больше информации о фильме' }
     ]}
     correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! O'ng tomon sayt nima qilishini aytadi va chap tomondagi muammoni to'g'ridan-to'g'ri yo'qotadi.", ru: 'Верно! Правая сторона говорит, что делает сайт, и напрямую убирает проблему слева.' }}
+    explainCorrect={{ uz: "O'ng tomon sayt nima qilishini aytadi va muammoni yo'qotadi.", ru: 'Справа сказано, что делает сайт, и это убирает проблему.' }}
     explainWrong={{
-      0: { uz: 'Muammo aniq yozilgan, bu yaxshi. Lekin o\'ng tomon sayt nima QILISHINI aytmaydi: chiroylilik bo\'sh joylarni ko\'rsatmaydi.', ru: 'Проблема записана конкретно — это хорошо. Но правая сторона не говорит, что сайт ДЕЛАЕТ: красота не показывает свободные места.' },
-      2: { uz: 'Muammo hayotdan olingan, to\'g\'ri. Lekin saytning tez ochilishi chiptani qayerdan olishni aytmaydi — javob boshqa narsaga tegib ketgan.', ru: 'Проблема взята из жизни, верно. Но быстрая загрузка сайта не говорит, где взять билет — ответ попал не туда.' },
-      3: { uz: 'Yo\'nalish to\'g\'ri tanlangan. Lekin «ko\'proq ma\'lumot» aniq emas: odam saytga kirib nimani ko\'rishi yozilmagan.', ru: 'Направление выбрано верно. Но «больше информации» неконкретно: не написано, что человек увидит, зайдя на сайт.' },
-      default: { uz: 'O\'ng tomonga qarang: u sayt nima qilishini harakat bilan aytyaptimi?', ru: 'Посмотрите на правую сторону: говорит ли она действием, что делает сайт?' }
+      0: { uz: 'Chiroylilik bo\'sh joylarni ko\'rsatmaydi — muammo qoladi.', ru: 'Красота не показывает свободные места — проблема остаётся.' },
+      2: { uz: 'Tez ochilish chiptani qayerdan olishni aytmaydi.', ru: 'Быстрая загрузка не говорит, где взять билет.' },
+      3: { uz: '«Ko\'proq ma\'lumot» aniq emas: odam nimani ko\'rishi noma\'lum.', ru: '«Больше информации» — неконкретно: не сказано, что увидит человек.' },
+      default: { uz: 'O\'ng tomon sayt nima qilishini harakat bilan aytyaptimi?', ru: 'Говорит ли правая сторона действием, что делает сайт?' }
     }}
   />
 );
@@ -1624,11 +1625,11 @@ const Screen12 = (props) => (
       { uz: 'Boshqa kinoteatr saytlarida o\'yin bor-yo\'qligini tekshiraman', ru: 'Проверю, есть ли игра на других сайтах кинотеатров' }
     ]}
     correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Har yechim shu savoldan boshlanadi. Javob topilsa — o'yin ro'yxatga kiradi, topilmasa — keraksizlarga.", ru: 'Верно! Каждое решение начинается с этого вопроса. Ответ найдётся — игра попадёт в список, нет — в ненужные.' }}
+    explainCorrect={{ uz: "Har yechim shu savoldan boshlanadi — egasining so'rovi ham.", ru: 'С этого вопроса начинается каждое решение — даже просьба хозяина.' }}
     explainWrong={{
-      1: { uz: 'Egasining so\'zini eshitish shart, bu to\'g\'ri. Lekin so\'rov hali yechim emas: u qaysi muammoga javob berishi hali noma\'lum.', ru: 'Выслушать хозяина обязательно, это верно. Но просьба — ещё не решение: пока неизвестно, на какую проблему оно отвечает.' },
-      2: { uz: 'Ishni tartibga solish kerak, bu rost. Lekin kechiktirish savolga javob bermaydi — o\'yin keyin ham egasiz qoladi.', ru: 'Наводить порядок в работе нужно, это правда. Но отсрочка не отвечает на вопрос — игра и потом останется без хозяина.' },
-      3: { uz: 'Boshqalarni ko\'rish foydali odat. Lekin ularda borligi sizning mijozingizga kerakligini isbotlamaydi.', ru: 'Смотреть на других — полезная привычка. Но то, что игра есть у них, не доказывает, что она нужна вашему клиенту.' },
+      1: { uz: 'So\'rov hali yechim emas — u nimaga kerakligi noma\'lum.', ru: 'Просьба — ещё не решение: пока неясно, зачем она нужна.' },
+      2: { uz: 'Kechiktirish savolga javob bermaydi, o\'yin shunchaki kutadi.', ru: 'Отсрочка не отвечает на вопрос — игра просто ждёт.' },
+      3: { uz: 'Boshqalarda borligi mijozingizga kerakligini isbotlamaydi.', ru: 'То, что игра есть у других, не доказывает, что она нужна вашему клиенту.' },
       default: { uz: 'Har yechim qaysi savoldan boshlanishini eslang.', ru: 'Вспомните, с какого вопроса начинается каждое решение.' }
     }}
   />

@@ -1,0 +1,377 @@
+{
+ "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+ "lessonId": "db-sql-nosql-04-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Jadval — har qator bir xil",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, QAYSI BIRI TO'G'RI SAQLASH USULI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Dars oxirida loyihangiz uchun qaysi ma'lumotlar bazasi mosligini o'zingiz aniqlay olasiz. SQL ham, NoSQL ham y",
+     "b": "DARS OXIRIDA — SIZ ISHLATADIGAN QAROR KO'RSATKICHI",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZ ISHLATADIGAN QAROR KO'RSATKICHI",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ 4 ta savolga javob berasiz — qaysi baza mosligini bilib olasiz",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Ma'lumotlar bazalari ikki turga bo'linadi",
+     "b": "Dunyodagi barcha bazalar ikki katta turga bo'linadi: SQL (jadvalli — relyatsion) va NoSQL (hujjatli). Har turd",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "JADVAL KO'RINISHI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "HUJJAT KO'RINISHI",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Mana bitta post haqidagi ma'lumotlar. SQL jadvalining ustunlari oldindan belgilangan — har karta o'z ustuniga ",
+     "b": "{ } hujjat — yangi maydon qo'shish osonroq",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.77,
+     "a": "Mana bitta post haqidagi ma'lumotlar. SQL jadvalining ustunlari oldindan belgilangan — har karta o'z ustuniga ",
+     "b": "NoSQL MongoDB { } hujjat — yangi maydon qo'shish osonroq",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Mana bitta post haqidagi ma'lumotlar. SQL jadvalining ustunlari oldindan belgilangan — har karta o'z ustuniga ",
+     "b": "SQL PostgreSQL ustunlari oldindan belgilangan",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "posts jadvalidagi user_id ustunini bosing",
+     "box": "sql-box",
+     "gap": 14
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.75,
+     "a": "Do'konda bitta telefon qoldi. Ali va Vali aynan bir lahzada \"Sotib olish\" bosdi. Agar baza buni tekshirmasa — ",
+     "b": "🛒 Ali va Vali bir vaqtda «Sotib olish» bosdi",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA — SQL NAZORATI",
+     "box": "fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "oqim ketyapti…",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KO'RSATKICH — JAVOBLARGA QARAB SILJIYDI",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Nega bizning loyihalarga aynan PostgreSQL?",
+     "b": "SQL turiga ko'p baza kiradi — nega aynan PostgreSQL? Chunki u bizning loyihalarga (Instagram, do'kon, planner)",
+     "am": false,
+     "bm": true
+    },
+    {
+     "score": 0.77,
+     "a": "SQL turiga ko'p baza kiradi — nega aynan PostgreSQL? Chunki u bizning loyihalarga (Instagram, do'kon, planner)",
+     "b": "SQL PostgreSQL bog'langan + ishonchli + JSON ham — bizga mos",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "SQL turiga ko'p baza kiradi — nega aynan PostgreSQL? Chunki u bizning loyihalarga (Instagram, do'kon, planner)",
+     "b": "bog'langan + ishonchli + JSON ham — bizga mos",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TAQQOSLASH",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SQL PostgreSQL bog'langan + ishonchli + JSON ham — bizga mos NoSQL MongoDB katta va oddiy ",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Blog platformasi yasamoqchiman\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. TAKLIF NATIJASI",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

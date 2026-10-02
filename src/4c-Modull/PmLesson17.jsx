@@ -271,38 +271,38 @@ const RECAPS = {
   3: {
     title: { uz: "Reliz — bo'lak odamlar qo'liga tekkan payt", ru: 'Релиз — момент, когда кусочек попал в руки людям' },
     cards: [
-      { ic: '🌐', h: { uz: 'Reliz nima', ru: 'Что такое релиз' }, body: { uz: <>Tayyor bo'lakni <b>odamlar ishlatadigan joyga chiqarish</b> — reliz deyiladi. Reliz katta ham, kichkina ham bo'ladi.</>, ru: <>Вывести готовый кусочек <b>туда, где им пользуются люди</b>, — это и есть релиз. Релиз бывает и большим, и совсем маленьким.</> } },
-      { ic: '💻', h: { uz: 'Kompyuterda ishlagani yetmaydi', ru: 'Мало, что работает на компьютере' }, body: { uz: <>Kod o'z kompyuterida ishlayotgani hali reliz emas: odamlar unga tegmaguncha hech narsa o'zgarmaydi.</>, ru: <>Код работает на своём компьютере — это ещё не релиз: пока люди к нему не прикоснулись, ничего не изменилось.</> } },
+      { ic: '🌐', h: { uz: 'Reliz nima', ru: 'Что такое релиз' }, body: { uz: <>Tayyor bo'lakni <b>odamlar ishlatadigan joyga chiqarish</b> — reliz deyiladi.</>, ru: <>Вывести готовый кусочек <b>туда, где им пользуются люди</b>, — это и есть релиз.</> } },
+      { ic: '💻', h: { uz: 'Kompyuterda ishlagani yetmaydi', ru: 'Мало, что работает на компьютере' }, body: { uz: <>Kod o'z kompyuteringizda ishlayotgani hali reliz emas.</>, ru: <>Код, который работает на вашем компьютере, — ещё не релиз.</> } },
       { ic: '🔎', h: { uz: 'Bitta savol yetadi', ru: 'Хватает одного вопроса' }, body: { uz: <>Har bo'lakka bitta savol bering: buni hozir odamlar ishlata oladimi?</>, ru: <>Задайте каждому кусочку один вопрос: могут ли люди пользоваться этим прямо сейчас?</> }, ask: { uz: "Sinfdoshingiz tugma yozdi — faqat o'z kompyuterida. Bu reliz bo'ldimi?", ru: 'Одноклассник написал кнопку — только у себя на компьютере. Это релиз?' } }
     ]
   },
   5: {
     title: { uz: "Kim tez-tez chiqarsa, o'sha oldin biladi", ru: 'Кто выпускает чаще, тот узнаёт раньше' },
     cards: [
-      { ic: '🏁', h: { uz: 'Poygada nima chiqdi', ru: 'Что показала гонка' }, body: { uz: <>6 haftada «Har hafta kichik» sayti odamlardan <b>6 marta</b> bilib oldi, «Bir marta katta» sayti — <b>1 marta</b>.</>, ru: <>За 6 недель сайт «каждую неделю по чуть-чуть» узнал от людей <b>6 раз</b>, а сайт «один раз, но большой» — <b>1 раз</b>.</> } },
-      { ic: '📅', h: { uz: 'Birinchi hafta yetadi', ru: 'Хватает первой недели' }, body: { uz: <>Birinchi bo'lak chiqib, odamlar ishlatgan haftadayoq nima kerakligi ko'rinadi — reja yozish yoki kompyuterda sinash buni aytmaydi.</>, ru: <>Уже на той неделе, когда первый кусочек вышел и люди им попользовались, видно, что нужно — ни план, ни проверка на своём компьютере этого не скажут.</> } },
-      { ic: '⚖️', h: { uz: "Ikki yo'l", ru: 'Два пути' }, body: { uz: <>Ikkala yo'l ham saytga olib keladi; farq — kim odamlarga nima kerakligini oldin bilganida.</>, ru: <>Оба пути приводят к сайту; разница в том, кто раньше узнал, что нужно людям.</> }, ask: { uz: "Uchta bo'lak yasamoqchisiz. Odamlarga nima kerakligini eng erta qachon bilasiz?", ru: 'Вы собираетесь сделать три кусочка. Когда раньше всего узнаете, что нужно людям?' } }
+      { ic: '🏁', h: { uz: 'Poygada nima chiqdi', ru: 'Что показала гонка' }, body: { uz: <>6 haftada «Har hafta kichik» sayti <b>6 marta</b> bilib oldi, «Bir marta katta» — <b>1 marta</b>.</>, ru: <>За 6 недель сайт «каждую неделю по чуть-чуть» узнал <b>6 раз</b>, а «один раз, но большой» — <b>1 раз</b>.</> } },
+      { ic: '📅', h: { uz: 'Birinchi hafta yetadi', ru: 'Хватает первой недели' }, body: { uz: <>Birinchi bo'lakni odamlar ishlatgan haftadayoq nima kerakligi ko'rinadi.</>, ru: <>Уже в ту неделю, когда люди попользовались первым кусочком, видно, что нужно.</> } },
+      { ic: '⚖️', h: { uz: "Ikki yo'l", ru: 'Два пути' }, body: { uz: <>Ikkala yo'l ham saytga olib keladi, farq — kim oldin bilib oladi.</>, ru: <>Оба пути ведут к сайту, разница — кто раньше узнает, что нужно людям.</> }, ask: { uz: "Uchta bo'lak yasamoqchisiz. Odamlarga nima kerakligini eng erta qachon bilasiz?", ru: 'Вы собираетесь сделать три кусочка. Когда раньше всего узнаете, что нужно людям?' } }
     ]
   },
   7: {
     title: { uz: 'Telegram deyarli har oy chiqaradi', ru: 'Telegram выпускает почти каждый месяц' },
     cards: [
-      { ic: '📦', h: { uz: 'Telegram misolida', ru: 'На примере Telegram' }, body: { uz: <>Telegram katta yangilanishlarni <b>deyarli har oy</b> chiqarib keladi — yillar davomida, to'xtamasdan.</>, ru: <>Telegram выпускает большие обновления <b>почти каждый месяц</b> — годами, без остановки.</> } },
-      { ic: '⚡', h: { uz: 'Boshqalar qachon yetdi', ru: 'Когда догнали остальные' }, body: { uz: <>Reaksiya, stiker, kanalni Telegram <b>raqiblaridan yillar oldin</b> chiqargan; boshqa yozishuv ilovalarida ular bir necha yil keyin paydo bo'ldi.</>, ru: <>Реакции, стикеры, каналы Telegram выпустил <b>на годы раньше конкурентов</b>; в других мессенджерах они появились через несколько лет.</> } },
-      { ic: '🧭', h: { uz: 'Nimasi bilan ajralib turadi', ru: 'Чем он выделяется' }, body: { uz: <>Telegramdan oyiga 1 milliard odam foydalanadi (2025-yil mart). Tez chiqarish — uning o'ziga xos belgisi bo'lib qoldi.</>, ru: <>Telegram пользуется 1 миллиард человек в месяц (март 2025). Быстрый выпуск стал его отличительным признаком.</> }, ask: { uz: "Reaksiya, stiker, kanal boshqa yozishuv ilovalarida qachon paydo bo'ldi?", ru: 'Когда реакции, стикеры и каналы появились в других мессенджерах?' } }
+      { ic: '📦', h: { uz: 'Telegram misolida', ru: 'На примере Telegram' }, body: { uz: <>Telegram katta yangilanishlarni yillar davomida <b>deyarli har oy</b> chiqaradi.</>, ru: <>Telegram годами выпускает большие обновления <b>почти каждый месяц</b>.</> } },
+      { ic: '⚡', h: { uz: 'Boshqalar qachon yetdi', ru: 'Когда догнали остальные' }, body: { uz: <>Reaksiya, stiker, kanalni Telegram <b>raqiblaridan yillar oldin</b> chiqargan.</>, ru: <>Реакции, стикеры и каналы Telegram выпустил <b>на годы раньше конкурентов</b>.</> } },
+      { ic: '🧭', h: { uz: 'Nimasi bilan ajralib turadi', ru: 'Чем он выделяется' }, body: { uz: <>Oyiga 1 milliard odamli Telegram (2025) tez chiqarishi bilan ajralib turadi.</>, ru: <>Telegram с миллиардом пользователей в месяц (2025) выделяется быстрым выпуском.</> }, ask: { uz: "Reaksiya, stiker, kanal boshqa yozishuv ilovalarida qachon paydo bo'ldi?", ru: 'Когда реакции, стикеры и каналы появились в других мессенджерах?' } }
     ]
   },
   11: {
     title: { uz: "Haftalik bo'lak: sig'adi va ishlaydi", ru: 'Недельный кусочек: помещается и работает' },
     cards: [
-      { ic: '⏱', h: { uz: 'Birinchi chiroq', ru: 'Первая лампочка' }, body: { uz: <>Bo'lak <b>haftaga sig'adi</b>: unga ketadigan kunlar besh ish kunidan oshmaydi — bir haftada bir nechta ish bo'lsa, kunlari qo'shib hisoblanadi.</>, ru: <>Кусочек <b>помещается в неделю</b>: дней на него уходит не больше пяти рабочих — если за неделю несколько задач, дни складываются.</> } },
+      { ic: '⏱', h: { uz: 'Birinchi chiroq', ru: 'Первая лампочка' }, body: { uz: <>Bo'lak <b>haftaga sig'adi</b>: unga besh ish kunidan ko'p ketmaydi.</>, ru: <>Кусочек <b>помещается в неделю</b>: на него уходит не больше пяти рабочих дней.</> } },
       { ic: '👤', h: { uz: 'Ikkinchi chiroq', ru: 'Вторая лампочка' }, body: { uz: <>Bo'lakni <b>odam ishlata oladi</b>: bossa — nimadir bo'ladi, javob qaytadi.</>, ru: <>Кусочком <b>может пользоваться человек</b>: нажал — что-то произошло, пришёл ответ.</> } },
       { ic: '❓', h: { uz: "O'zingizni tekshiring", ru: 'Проверьте себя' }, body: { uz: <>Yozgan bo'laklaringizga qarang: har biri shu ikki chiroqdan o'tadimi?</>, ru: <>Посмотрите на свои кусочки: каждый ли проходит эти две лампочки?</> }, ask: { uz: 'Uch haftalik katta ishni qanday chiqarasiz?', ru: 'Как вы выпустите большую задачу на три недели?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -320,7 +320,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -328,13 +328,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -413,7 +413,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -494,7 +494,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -502,8 +502,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -514,7 +515,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -824,11 +825,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Faqat o'z kompyuterida ishlagan tugma reliz bo'ldimi", ru: 'Считается ли релизом кнопка, работающая только на своём компьютере' })}
     options={[tr({ uz: "Ha — kod tayyor bo'ldi, demak reliz", ru: 'Да — код готов, значит релиз' }), tr({ uz: "Yo'q — odamlar hali ishlata olmaydi", ru: 'Нет — люди пока не могут этим пользоваться' }), tr({ uz: "Yo'q — odamlarga bu o'zgarish kichkina", ru: 'Нет — для людей это слишком маленькое изменение' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Reliz kod yozilgan kun emas, odamlar ishlata boshlagan kun.", ru: 'Релиз это не день, когда написан код, а день, когда люди начали им пользоваться.' })}
+    explainCorrect={tr({ uz: "Reliz — odamlar ishlata boshlagan kun, kod yozilgani emas.", ru: 'Релиз — день, когда люди начали пользоваться, а не когда написан код.' })}
     explainWrong={{
-      0: tr({ uz: "Kod tayyor bo'lgani yetmaydi: bo'lak odamlar ishlatadigan joyga chiqmaguncha reliz bo'lmaydi.", ru: 'Готового кода мало: пока кусочек не выведен туда, где им пользуются люди, релиза нет.' }),
-      2: tr({ uz: "Reliz kichkina ham bo'ladi — gap o'lchamda emas, odamlar ishlata oladimi-yo'qmi shunda.", ru: 'Релиз бывает и маленьким — дело не в размере, а в том, могут ли люди этим пользоваться.' }),
-      default: tr({ uz: "Reliz — bo'lak odamlar qo'liga tekkan payt.", ru: 'Релиз — момент, когда кусочек попал в руки людям.' })
+      0: tr({ uz: "Tayyor kod hali reliz emas — uni hozir kim ishlatyapti?", ru: 'Готовый код — ещё не релиз: кто им сейчас пользуется?' }),
+      2: tr({ uz: "Reliz kichkina ham bo'ladi — gap o'lchamda emas.", ru: 'Релиз бывает и маленьким — дело не в размере.' }),
+      default: tr({ uz: "Reliz nima ekanini eslang: gap kodda emas, odamlarda.", ru: 'Вспомните, что такое релиз: дело не в коде, а в людях.' })
     }}
   />
 );
@@ -971,11 +972,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: 'Odamlarga nima kerakligini eng erta qachon bilasiz', ru: 'Когда раньше всего узнаете, что нужно людям' })}
     options={[tr({ uz: "Birinchi bo'lakni odamlar ishlatgan kuni", ru: 'В день, когда люди воспользовались первым кусочком' }), tr({ uz: "Uchala bo'lakni rejaga yozib chiqqan kuni", ru: 'В день, когда все три кусочка записаны в план' }), tr({ uz: "Kod o'z kompyuteringizda ishlab turgan kuni", ru: 'В день, когда код работает на вашем компьютере' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Birinchi bo'lak chiqqan zahoti odamlar nima qilishi ko'rinadi; kim tez-tez chiqarsa, o'sha oldin biladi.", ru: 'Как только вышел первый кусочек, видно, что делают люди; кто выпускает чаще, тот узнаёт раньше.' })}
+    explainCorrect={tr({ uz: "Odamlar bo'lakni ishlatgach, nima kerakligi ko'rinadi.", ru: 'Когда люди попользовались кусочком, видно, что им нужно.' })}
     explainWrong={{
-      1: tr({ uz: "Rejaga yozilgani hech narsa o'rgatmaydi — odamlar unga hali tegmagan.", ru: 'Запись в плане ничему не учит — люди к этому ещё не прикоснулись.' }),
-      2: tr({ uz: "O'z kompyuteringizda ishlab turgani hali reliz emas: odamlar unga tegmagan, demak bilib ham olmaysiz.", ru: 'Работает на вашем компьютере — это ещё не релиз: люди к этому не прикоснулись, значит и узнать ничего не получится.' }),
-      default: tr({ uz: "Birinchi bo'lak chiqib, odamlar ishlatgan haftadayoq nima kerakligi ko'rinadi.", ru: 'Уже на той неделе, когда первый кусочек вышел и им воспользовались, видно, что нужно.' })
+      1: tr({ uz: "Reja hech narsa o'rgatmaydi — odamlar unga hali tegmagan.", ru: 'План ничему не учит — люди к нему ещё не прикоснулись.' }),
+      2: tr({ uz: "Kompyuteringizdagi kodga odamlar tegmaydi — bilib olmaysiz.", ru: 'Кода на вашем компьютере люди не касаются — вы ничего не узнаете.' }),
+      default: tr({ uz: "O'ylang: odamlar nima qilishini qachon ko'rasiz?", ru: 'Подумайте: когда вы увидите, что делают люди?' })
     }}
   />
 );
@@ -1137,11 +1138,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: "Reaksiya, stiker, kanal boshqa yozishuv ilovalarida qachon paydo bo'ldi", ru: 'Когда реакции, стикеры и каналы появились в других мессенджерах' })}
     options={[tr({ uz: 'Telegramdan bir necha yil oldin', ru: 'На несколько лет раньше Telegram' }), tr({ uz: 'Telegramdan bir necha yil keyin', ru: 'На несколько лет позже Telegram' }), tr({ uz: 'Telegram bilan bir kunda, birga', ru: 'В один день с Telegram, вместе' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Telegram bu uch bo'lakni raqiblaridan yillar oldin chiqargan. Tez chiqarish uni poygada oldinga olib chiqdi.", ru: 'Telegram выпустил эти три кусочка на годы раньше конкурентов. Быстрый выпуск вывел его вперёд в гонке.' })}
+    explainCorrect={tr({ uz: "Telegram bu bo'laklarni raqiblaridan yillar oldin chiqargan.", ru: 'Telegram выпустил эти кусочки на годы раньше конкурентов.' })}
     explainWrong={{
-      0: tr({ uz: "Teskarisi bo'lgan: bu uch bo'lakni Telegram raqiblaridan yillar oldin chiqargan.", ru: 'Было наоборот: эти три кусочка Telegram выпустил на годы раньше конкурентов.' }),
-      2: tr({ uz: "Bir kunda emas — avval Telegramda chiqdi, boshqalarida bir necha yil keyin.", ru: 'Не в один день — сначала вышло в Telegram, у остальных через несколько лет.' }),
-      default: tr({ uz: "Boshqa yozishuv ilovalarida bu bo'laklar bir necha yil keyin paydo bo'ldi.", ru: 'В других мессенджерах эти кусочки появились через несколько лет.' })
+      0: tr({ uz: "Teskarisi bo'lgan: bu poygada Telegram oldinda edi.", ru: 'Было наоборот: в этой гонке Telegram шёл впереди.' }),
+      2: tr({ uz: "Bir kunda chiqmagan — poygada kimdir oldinda edi.", ru: 'Не в один день — в этой гонке кто-то был впереди.' }),
+      default: tr({ uz: "Telegram bu bo'laklarni qachon chiqarganini eslang.", ru: 'Вспомните, когда Telegram выпустил эти кусочки.' })
     }}
   />
 );
@@ -1790,11 +1791,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Uch haftalik katta ishni qanday chiqarasiz', ru: 'Как выпустить большую задачу на три недели' })}
     options={[tr({ uz: 'Uch hafta yasab, odamlarga hammasini birdan', ru: 'Делать три недели и отдать людям всё разом' }), tr({ uz: "Har hafta odam ishlata oladigan bo'lakni", ru: 'Каждую неделю — кусочек, которым человек может пользоваться' }), tr({ uz: "Birinchi haftada eng katta bo'lakni chiqarib", ru: 'Выпустить на первой неделе самый большой кусочек' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Shunda siz odamlardan uch marta bilib olasiz, bir marta emas.", ru: 'Так вы узнаёте от людей три раза, а не один.' })}
+    explainCorrect={tr({ uz: "Har hafta chiqarsangiz, odamlardan uch marta bilib olasiz.", ru: 'Выпуская каждую неделю, вы узнаёте от людей три раза, а не один.' })}
     explainWrong={{
-      0: tr({ uz: "Uch hafta kutsangiz, odamlar nima qilishini faqat oxirida ko'rasiz.", ru: 'Если ждать три недели, вы увидите, что делают люди, только в самом конце.' }),
-      2: tr({ uz: "Eng katta bo'lak haftaga sig'maydi — darvozaning birinchi chirog'i uni o'tkazmaydi.", ru: 'Самый большой кусочек в неделю не помещается — первая лампочка ворот его не пропустит.' }),
-      default: tr({ uz: "Har hafta odam ishlata oladigan bitta bo'lak chiqadi.", ru: 'Каждую неделю выходит один кусочек, которым человек может пользоваться.' })
+      0: tr({ uz: "Uch hafta kutsangiz, odamlardan bir marta bilib olasiz.", ru: 'Если ждать три недели, вы узнаете от людей только один раз.' }),
+      2: tr({ uz: "Katta bo'lak haftaga sig'maydi — birinchi chiroq yonmaydi.", ru: 'Самый большой кусочек не влезает в неделю — первая лампочка не пропустит.' }),
+      default: tr({ uz: "Bo'lak ikki chiroqdan o'tishi kerak — ularni eslang.", ru: 'Кусочек должен пройти обе лампочки — вспомните их.' })
     }}
   />
 );

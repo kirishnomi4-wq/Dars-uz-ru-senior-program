@@ -1,0 +1,457 @@
+{
+ "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+ "lessonId": "backend-crud-practice-p1-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "520 000 so'm/kun 2023",
+     "b": "610 000 so'm/kun 2023",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HAQIQIY AVTOIJARA ILOVASIGA FAQAT KO'RSATISH YETARLI EMAS. YANA NIMA KERAK?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Tugma bor — lekin hech narsa o'zgarmadi. Ro'yxat kod ichida qotib qolgan, orqada server yo",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aslida ko'rsatishning o'zi yetmaydi — mashina qo'shilsa, o'chirilsa, saqlanib qolishi kera",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Bu yo'lda siz uchta rolni o'ynaysiz. ME'MOR — me'mor binoni chizganidek, siz ma'lumot sxemasini chizasiz. REJI",
+     "b": "01 Sxemani siz chizasiz ME'MOR — loyihachi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Bu yo'lda siz uchta rolni o'ynaysiz. ME'MOR — me'mor binoni chizganidek, siz ma'lumot sxemasini chizasiz. REJI",
+     "b": "Sxemani siz chizasiz ME'MOR — loyihachi",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ○ 🔍 NAZORATCHI sinov ○",
+     "box": "mentor fade-up  ",
+     "gap": 20
+    },
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING BACKEND'INGIZ",
+     "box": "pm",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ mashinalar endi bazadan keladi — qo'shish · o'qish · o'zgartirish · o'chirish",
+     "box": "pm",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ● 🎬 REJISSYOR prompt ○ 🔍 NAZORATCHI sinov ○",
+     "box": "mentor fade-up  ",
+     "gap": 12
+    },
+    {
+     "pos": "tepada",
+     "t": "CARS JADVALI — USTUNLAR",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TAYYOR SXEMA — SQL TILIDA",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 13,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "SQL darsida so'rovlarni yozdingiz — lekin ularni kim yuboradi? Express server, pg kutubxonasi orqali. pool — s",
+     "b": "// so'rov — ko'prik orqali bazaga:",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.75,
+     "a": "AI'ga qaysi buyruq to'g'ri kod yozdiradi?",
+     "b": "Rejissyor aktyorga aniq ko'rsatma beradi: qayerda turishini, qaysi gapni aytishini. AI'ga ham xuddi shunday an",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 45,
+     "left": "hook-option",
+     "right": "pm pm-s5",
+     "hs": [
+      54,
+      99
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ● 🔍 NAZORATCHI sinov ○",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "UCH PROMPT — BIRINI TANLANG",
+     "box": "prompts fade-up delay-1 is-done",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "prompts fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — POSTMAN BILAN SINAB KO'RING",
+     "box": "pm pm-s5",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "prompts fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ✓ 🔍 NAZORATCHI sinov ○",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 19,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 72,
+     "left": "pm",
+     "right": "db",
+     "hs": [
+      191,
+      263
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POSTMAN — POST SO'ROVI",
+     "box": "pm",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "POSTGRESQL — CARS JADVALI",
+     "box": "db",
+     "gap": 16
+    }
+   ],
+   "scroll": 22,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POSTGRESQL — CARS JADVALI",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "○ PUT — yangiladim ○ DELETE — o'chirdim",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ PUT — yangiladim ○ DELETE — o'chirdim",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ PUT — yangiladim ✓ DELETE — o'chirdim",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ PUT — yangiladim ✓ DELETE — o'chirdim",
+     "box": "db",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ○ 🔍 NAZORATCHI sinov ●",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "POSTGRESQL — CARS JADVALI",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Ma'lumot serverning xotirasida emas — PostgreSQL'da diskda yotibdi.",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ○ 🔍 NAZORATCHI sinov ✓",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 25,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SERVER JAVOBI",
+     "box": "pm",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SO'ROV YUBORISH",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Front → Express → pool.query → PostgreSQL → javob",
+     "box": "db",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROL PASPORTI 🏗️ ME'MOR sxema ○ 🎬 REJISSYOR prompt ○ 🔍 NAZORATCHI sinov ○",
+     "box": "mentor fade-up  ",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "CRUD ↔ HTTP ↔ SQL",
+     "box": "db",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "UCH ROL — HAR SAFAR SHUNDAY",
+     "box": "roadmap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🏗️ 01 ME'MOR sxemani siz loyihalaysiz 🎬 02 REJISSYOR AI'ga aniq prompt 🔍 03 NAZORATCHI ",
+     "box": "frame-success",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

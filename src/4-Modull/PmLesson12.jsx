@@ -269,38 +269,38 @@ const RECAPS = {
   3: {
     title: { uz: "Ma'lumotni zarar yopadi", ru: 'Данные закрывает вред' },
     cards: [
-      { ic: '👁', h: { uz: 'Ikki xil ma\'lumot', ru: 'Два вида данных' }, body: { uz: <>Ochiq ma'lumotni begona odam ko'rsa ham <b>hech kim zarar ko'rmaydi</b>. Yopiq ma'lumotni ko'rsa — <b>egasi zarar ko'radi</b>.</>, ru: <>Если открытые данные увидит чужой — <b>никому не будет вреда</b>. Если увидит закрытые — <b>пострадает их владелец</b>.</> } },
-      { ic: '⚖️', h: { uz: 'Mezon nega aynan zarar', ru: 'Почему мерило — именно вред' }, body: { uz: <>Ma'lumotning turi hech narsani hal qilmaydi: bir xil raqam bir joyda ochiq, boshqa joyda yopiq bo'ladi. Qaror <b>zararga</b> qarab chiqadi.</>, ru: <>Тип данных ничего не решает: одно и то же число в одном месте открыто, в другом — закрыто. Решение принимают по <b>вреду</b>.</> } },
-      { ic: '🙋', h: { uz: 'Savolni odam bilan bering', ru: 'Задавайте вопрос через человека' }, body: { uz: <>Har qatorga bitta savol: buni begona odam ko'rsa, <b>kim zarar ko'radi?</b> Javob topilmasa — qator ochiq bo'lishi mumkin.</>, ru: <>К каждой строке один вопрос: если это увидит чужой, <b>кто пострадает?</b> Если ответа нет — строка может остаться открытой.</> }, ask: { uz: "Baho — ochiq ma'lumotmi yoki yopiqmi? Nega?", ru: 'Оценка — открытые данные или закрытые? Почему?' } }
+      { ic: '👁', h: { uz: 'Ikki xil ma\'lumot', ru: 'Два вида данных' }, body: { uz: <>Ochiq ma'lumotni begona ko'rsa <b>zarar yo'q</b>, yopiqni ko'rsa — <b>egasi zarar ko'radi</b>.</>, ru: <>Если чужой увидит открытые данные — <b>вреда нет</b>, если закрытые — <b>пострадает владелец</b>.</> } },
+      { ic: '⚖️', h: { uz: 'Mezon nega aynan zarar', ru: 'Почему мерило — именно вред' }, body: { uz: <>Turi emas, <b>zarar</b> hal qiladi: bir xil raqam bir joyda ochiq, boshqa joyda yopiq.</>, ru: <>Решает не тип, а <b>вред</b>: одно и то же число где-то открыто, а где-то закрыто.</> } },
+      { ic: '🙋', h: { uz: 'Savolni odam bilan bering', ru: 'Задавайте вопрос через человека' }, body: { uz: <>Har qatorga bitta savol: buni begona odam ko'rsa, <b>kim zarar ko'radi?</b></>, ru: <>К каждой строке один вопрос: если это увидит чужой, <b>кто пострадает?</b></> }, ask: { uz: "Baho — ochiq ma'lumotmi yoki yopiqmi? Nega?", ru: 'Оценка — открытые данные или закрытые? Почему?' } }
     ]
   },
   5: {
     title: { uz: 'Ochiq qolish ham qaror', ru: 'Оставить открытым — тоже решение' },
     cards: [
-      { ic: '🔒', h: { uz: 'Hammasini yopib bo\'lmaydi', ru: 'Закрыть всё нельзя' }, body: { uz: <>Sahifadagi hamma qator yopilsa, ochgan odam <b>hech narsa ko'rmaydi</b> — ilovadan foyda qolmaydi.</>, ru: <>Если закрыть все строки на странице, открывший её <b>ничего не увидит</b> — от приложения не останется пользы.</> } },
-      { ic: '🏫', h: { uz: 'Ilova nimasiz ishlamaydi', ru: 'Без чего приложение не работает' }, body: { uz: <>Jurnal ilovasi ism va sinfsiz ishlay olmaydi: kimning sahifasi ekani <b>shu ikki qatordan</b> ko'rinadi.</>, ru: <>Приложение-журнал не может работать без имени и класса: чья это страница, видно <b>по этим двум строкам</b>.</> } },
-      { ic: '👁', h: { uz: 'Ochiq qator ham tanlangan', ru: 'Открытая строка тоже выбрана' }, body: { uz: <>Ochiq qolgan qator tasodifan qolmaydi: uni ko'rgan odam <b>hech kimga zarar bermaydi</b> — shuning uchun qoldiriladi.</>, ru: <>Открытая строка остаётся не случайно: тот, кто её увидит, <b>никому не навредит</b> — поэтому её и оставляют.</> }, ask: { uz: "Sahifadagi hamma qatorni yopsak, ilovadan nima foyda qoladi?", ru: 'Если закрыть все строки на странице, какая польза останется от приложения?' } }
+      { ic: '🔒', h: { uz: 'Hammasini yopib bo\'lmaydi', ru: 'Закрыть всё нельзя' }, body: { uz: <>Hamma qator yopilsa, ochgan odam <b>hech narsa ko'rmaydi</b> — ilovadan foyda qolmaydi.</>, ru: <>Если закрыть все строки, открывший <b>ничего не увидит</b> — от приложения не останется пользы.</> } },
+      { ic: '🏫', h: { uz: 'Ilova nimasiz ishlamaydi', ru: 'Без чего приложение не работает' }, body: { uz: <>Sahifa kimniki ekani <b>ism va sinfdan</b> ko'rinadi — busiz jurnal ishlamaydi.</>, ru: <>Чья это страница, видно <b>по имени и классу</b> — без них журнал не работает.</> } },
+      { ic: '👁', h: { uz: 'Ochiq qator ham tanlangan', ru: 'Открытая строка тоже выбрана' }, body: { uz: <>Ochiq qator tasodifan qolmaydi: uni ko'rgan odam <b>hech kimga zarar bermaydi</b>.</>, ru: <>Открытая строка остаётся не случайно: тот, кто её увидит, <b>никому не навредит</b>.</> }, ask: { uz: "Sahifadagi hamma qatorni yopsak, ilovadan nima foyda qoladi?", ru: 'Если закрыть все строки на странице, какая польза останется от приложения?' } }
     ]
   },
   7: {
     title: { uz: "Oldindan o'qiladigan ro'yxat", ru: 'Список, который читают заранее' },
     cards: [
-      { ic: '📱', h: { uz: 'Ro\'yxat ilova sahifasida turadi', ru: 'Список стоит на странице приложения' }, body: { uz: <>Ilovalar do'konida har ilovaning o'z sahifasi bor. O'sha sahifada <b>«bu ilova qanday ma'lumot yig'adi»</b> ro'yxati turadi.</>, ru: <>В магазине приложений у каждого приложения есть своя страница. На ней стоит список <b>«какие данные собирает это приложение»</b>.</> } },
-      { ic: '⏱', h: { uz: 'Odam qaror qiladigan lahza', ru: 'Момент, когда человек решает' }, body: { uz: <>Ro'yxatni <b>yuklashdan oldin</b> o'qish mumkin — ya'ni odam nimaga rozi bo'layotganini oldindan biladi.</>, ru: <>Список можно прочитать <b>до установки</b> — то есть человек заранее знает, на что соглашается.</> } },
-      { ic: '🤝', h: { uz: 'Ishonch shu yerda boshlanadi', ru: 'Доверие начинается здесь' }, body: { uz: <>Ilova nimani yig'ishini yashirmasa, odam qolgan gapiga ham <b>ishonadi</b>. O'qish yoki o'qimaslik — odamning o'zida.</>, ru: <>Если приложение не скрывает, что собирает, человек <b>верит</b> и остальным его словам. Читать или нет — решает сам человек.</> }, ask: { uz: "Oxirgi yuklagan ilova nimalarni yig'ishini bilasizmi?", ru: 'Вы знаете, что собирает последнее установленное вами приложение?' } }
+      { ic: '📱', h: { uz: 'Ro\'yxat ilova sahifasida turadi', ru: 'Список стоит на странице приложения' }, body: { uz: <>Ilovalar do'konidagi har sahifada <b>«bu ilova qanday ma'lumot yig'adi»</b> ro'yxati turadi.</>, ru: <>На странице каждого приложения в магазине есть список <b>«какие данные собирает это приложение»</b>.</> } },
+      { ic: '⏱', h: { uz: 'Odam qaror qiladigan lahza', ru: 'Момент, когда человек решает' }, body: { uz: <>Ro'yxatni <b>yuklashdan oldin</b> o'qib, odam nimaga rozi bo'layotganini biladi.</>, ru: <>Прочитав список <b>до установки</b>, человек заранее знает, на что соглашается.</> } },
+      { ic: '🤝', h: { uz: 'Ishonch shu yerda boshlanadi', ru: 'Доверие начинается здесь' }, body: { uz: <>Ilova nimani yig'ishini yashirmasa, odam qolgan gapiga ham <b>ishonadi</b>.</>, ru: <>Если приложение не скрывает, что собирает, человек <b>верит</b> и остальным его словам.</> }, ask: { uz: "Oxirgi yuklagan ilova nimalarni yig'ishini bilasizmi?", ru: 'Вы знаете, что собирает последнее установленное вами приложение?' } }
     ]
   },
   11: {
     title: { uz: 'Parol qayerda turadi', ru: 'Где хранится пароль' },
     cards: [
-      { ic: '🔑', h: { uz: 'Parol faqat egasida', ru: 'Пароль — только у владельца' }, body: { uz: <>Parolni bilgan odam <b>sizning nomingizdan</b> ilovaga kiradi. Shuning uchun u boshqa hech qayerda turmaydi.</>, ru: <>Тот, кто знает пароль, войдёт в приложение <b>от вашего имени</b>. Поэтому больше он нигде не хранится.</> } },
-      { ic: '✉️', h: { uz: 'Xabar ko\'p odamdan o\'tadi', ru: 'Сообщение проходит через многих' }, body: { uz: <>Ota-onaga ketgan xabarni yo'lda telefon ham, boshqa odam ham ochishi mumkin. Xabarga yozilgan parolni <b>xabarni ko'rgan har kim</b> o'qiydi.</>, ru: <>Сообщение родителям по пути может открыть и телефон, и другой человек. Пароль, записанный в сообщении, прочитает <b>каждый, кто его увидит</b>.</> } },
+      { ic: '🔑', h: { uz: 'Parol faqat egasida', ru: 'Пароль — только у владельца' }, body: { uz: <>Parolni bilgan odam <b>sizning nomingizdan</b> kiradi, shuning uchun u faqat egasida turadi.</>, ru: <>Кто знает пароль, войдёт <b>от вашего имени</b> — поэтому он хранится только у владельца.</> } },
+      { ic: '✉️', h: { uz: 'Xabar ko\'p odamdan o\'tadi', ru: 'Сообщение проходит через многих' }, body: { uz: <>Xabarga yozilgan parolni <b>xabarni ko'rgan har kim</b> o'qiydi.</>, ru: <>Пароль в сообщении прочитает <b>каждый, кто его увидит</b>.</> } },
       { ic: '🧾', h: { uz: 'Yuborilmagani sizib ketmaydi', ru: 'Что не отправлено — не утечёт' }, body: { uz: <>Eng ishonchli qator — <b>umuman yuborilmagan</b> qator: yuborilmagan ma'lumot sizib ham ketmaydi.</>, ru: <>Самая надёжная строка — та, которую <b>вообще не отправили</b>: неотправленные данные не могут утечь.</> }, ask: { uz: "Parol xabarga yozilmasa, ota-onangiz baholarni qanday ko'radi?", ru: 'Если пароль не писать в сообщении, как родители увидят оценки?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -318,7 +318,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -326,13 +326,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -411,7 +411,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -492,7 +492,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -500,8 +500,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -512,7 +513,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -849,9 +850,9 @@ const Screen3 = (props) => (
     correctIdx={1}
     explainCorrect={tr({ uz: "Ma'lumotni zarar yopadi, turi emas.", ru: 'Данные закрывает вред, а не их тип.' })}
     explainWrong={{
-      0: tr({ uz: "Ma'lumotga ketgan vaqt hech narsani hal qilmaydi: qaror zararga qarab chiqadi.", ru: 'Время, ушедшее на данные, ничего не решает: решение принимают по вреду.' }),
-      2: tr({ uz: "Ma'lumotni kam odam ochgani ham mezon emas: qaror zararga qarab chiqadi.", ru: 'То, что данные открывают редко, — тоже не мерило: решение принимают по вреду.' }),
-      default: tr({ uz: "Mezon bitta: begona odam ko'rsa, egasi zarar ko'radimi?", ru: 'Мерило одно: если увидит чужой, пострадает ли владелец?' })
+      0: tr({ uz: "Ma'lumotga ketgan vaqt uni yopish-yopmaslikni hal qilmaydi.", ru: 'Время, потраченное на данные, не решает, закрывать ли их.' }),
+      2: tr({ uz: "Nechta odam ochishi ma'lumotni yopiq qilmaydi.", ru: 'Сколько людей открывают данные — не делает их закрытыми.' }),
+      default: tr({ uz: "Bu ma'lumotni begona odam ko'rsa, nima bo'ladi — o'ylang.", ru: 'Подумайте, что будет, если эти данные увидит чужой.' })
     }}
   />
 );
@@ -966,11 +967,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: 'Ism va sinf nega ochiq qoladi', ru: 'Почему имя и класс остаются открытыми' })}
     options={[tr({ uz: 'Ular baho va paroldan kamroq joy oladi', ru: 'Они занимают меньше места, чем оценки и пароль' }), tr({ uz: 'Ularni ko\'rgan odam hech kimga zarar bermaydi', ru: 'Тот, кто их увидит, никому не навредит' }), tr({ uz: 'Ular yopilsa, ilova sekin ishlab qoladi', ru: 'Если их закрыть, приложение станет медленным' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Ochiq qator ham qaror: hamma qatorni yopsangiz, ilovadan foyda qolmaydi.", ru: 'Открытая строка тоже решение: если закрыть все строки, от приложения не останется пользы.' })}
+    explainCorrect={tr({ uz: "Zarar bo'lmasa yopish shart emas — ochiq qator ham qaror.", ru: 'Где нет вреда, закрывать не нужно — открытая строка тоже решение.' })}
     explainWrong={{
-      0: tr({ uz: "Qator qancha joy olishi hech narsani hal qilmaydi — qaror zararga qarab chiqadi.", ru: 'Сколько места занимает строка, ничего не решает — решение принимают по вреду.' }),
-      2: tr({ uz: "Ilovaning tezligi bilan bog'liq emas — qaror zararga qarab chiqadi.", ru: 'Со скоростью приложения это не связано — решение принимают по вреду.' }),
-      default: tr({ uz: "Ism va sinf ochiq qoladi, chunki ularni ko'rgan odam hech kimga zarar bermaydi.", ru: 'Имя и класс остаются открытыми, потому что тот, кто их увидит, никому не навредит.' })
+      0: tr({ uz: "Qator qancha joy olishi uni ochiq qoldirmaydi.", ru: 'Сколько места занимает строка — не причина оставлять её открытой.' }),
+      2: tr({ uz: "Tezlik sabab emas: bu qatorni ko'rgan odam nima qila oladi?", ru: 'Скорость ни при чём: что может сделать тот, кто увидит эти строки?' }),
+      default: tr({ uz: "Ism va sinfni begona ko'rsa, kimdir zarar ko'radimi?", ru: 'Если имя и класс увидит чужой — кто-нибудь пострадает?' })
     }}
   />
 );
@@ -1088,9 +1089,9 @@ const Screen7 = (props) => (
     correctIdx={0}
     explainCorrect={tr({ uz: "Ro'yxat ilova sahifasida, yuklashdan oldin turadi.", ru: 'Список стоит на странице приложения, ещё до установки.' })}
     explainWrong={{
-      1: tr({ uz: "Bir oy kutish shart emas: ro'yxat ilova sahifasida yuklashdan oldin ham turadi.", ru: 'Месяц ждать не нужно: список стоит на странице приложения ещё до установки.' }),
-      2: tr({ uz: "Bundan ancha oldin o'qish mumkin: ro'yxat ilova sahifasida yuklashdan oldin turadi.", ru: 'Прочитать можно гораздо раньше: список стоит на странице приложения до установки.' }),
-      default: tr({ uz: "Ro'yxat ilova sahifasida turadi — uni yuklashdan oldin ham o'qish mumkin.", ru: 'Список стоит на странице приложения — его можно прочитать ещё до установки.' })
+      1: tr({ uz: "Bir oy kutish shart emas — ro'yxat ancha erta ochiq.", ru: 'Ждать месяц не нужно — список можно прочитать гораздо раньше.' }),
+      2: tr({ uz: "Tarqalib ketgach o'qish kech — ro'yxat oldinroq ochiq.", ru: 'После утечки читать уже поздно — список доступен раньше.' }),
+      default: tr({ uz: "Ro'yxat qayerda turishini eslang — ilova sahifasida.", ru: 'Вспомните, где стоит список, — на странице приложения.' })
     }}
   />
 );
@@ -1679,9 +1680,9 @@ const ScreenFinalTest = (props) => (
     correctIdx={1}
     explainCorrect={tr({ uz: "Xabarga yozilgan parolni xabarni ko'rgan har kim o'qiydi.", ru: 'Пароль, записанный в сообщении, прочитает каждый, кто увидит сообщение.' })}
     explainWrong={{
-      0: tr({ uz: "Parol aynan egasida turadi — u yerdan olib tashlanmaydi.", ru: 'Пароль как раз и хранится у владельца — оттуда его не убирают.' }),
-      2: tr({ uz: "Kirish maydoni parol uchun qilingan — u yerdan olib tashlanmaydi.", ru: 'Поле входа сделано для пароля — оттуда его не убирают.' }),
-      default: tr({ uz: "Parol ota-onaga ketadigan xabardan olib tashlanadi: xabarni ko'rgan har kim uni o'qiydi.", ru: 'Пароль убирают из сообщения родителям: его прочитает каждый, кто увидит сообщение.' })
+      0: tr({ uz: "Parol aynan egasida turishi kerak — u yerdan olinmaydi.", ru: 'У владельца пароль и должен храниться — оттуда его не убирают.' }),
+      2: tr({ uz: "Kirish maydoni parol uchun qilingan — undan olinmaydi.", ru: 'Поле входа сделано для пароля — оттуда его не убирают.' }),
+      default: tr({ uz: "Parolni qayerda begona odam ko'rib qolishi mumkin — o'ylang.", ru: 'Подумайте, где пароль может увидеть чужой человек.' })
     }}
   />
 );

@@ -1,0 +1,347 @@
+{
+ "out": [
+  {
+   "name": "1  < belgisi",
+   "seq": "<",
+   "items": [
+    "<h1>",
+    "<h2>",
+    "<h3>",
+    "<p>",
+    "<a>",
+    "<img>",
+    "<ul>",
+    "<ol>",
+    "<li>",
+    "<header>",
+    "<nav>",
+    "<section>",
+    "<footer>",
+    "<div>",
+    "<span>",
+    "<strong>",
+    "<em>",
+    "<br>",
+    "<button>"
+   ],
+   "value": "<"
+  },
+  {
+   "name": "2  <h",
+   "seq": "<h",
+   "items": [
+    "<h1>",
+    "<h2>",
+    "<h3>",
+    "<header>"
+   ],
+   "value": "<h"
+  },
+  {
+   "name": "3  <f (form/footer?)",
+   "seq": "<f",
+   "items": [
+    "<footer>"
+   ],
+   "value": "<f"
+  },
+  {
+   "name": "4  <fo",
+   "seq": "<fo",
+   "items": [
+    "<footer>"
+   ],
+   "value": "<fo"
+  },
+  {
+   "name": "5  <form",
+   "seq": "<form",
+   "items": null,
+   "value": "<form"
+  },
+  {
+   "name": "6  <in (input)",
+   "seq": "<in",
+   "items": null,
+   "value": "<in"
+  },
+  {
+   "name": "7  <la (label)",
+   "seq": "<la",
+   "items": null,
+   "value": "<la"
+  },
+  {
+   "name": "8  <ma (main)",
+   "seq": "<ma",
+   "items": null,
+   "value": "<ma"
+  },
+  {
+   "name": "9  <te (textarea)",
+   "seq": "<te",
+   "items": null,
+   "value": "<te"
+  },
+  {
+   "name": "10 <se (section/select)",
+   "seq": "<se",
+   "items": [
+    "<section>"
+   ],
+   "value": "<se"
+  },
+  {
+   "name": "11 <op (option)",
+   "seq": "<op",
+   "items": null,
+   "value": "<op"
+  },
+  {
+   "name": "12 <bu (button)",
+   "seq": "<bu",
+   "items": [
+    "<button>"
+   ],
+   "value": "<bu"
+  },
+  {
+   "name": "13 <h4",
+   "seq": "<h4",
+   "items": null,
+   "value": "<h4"
+  },
+  {
+   "name": "14 <ti (title)",
+   "seq": "<ti",
+   "items": null,
+   "value": "<ti"
+  },
+  {
+   "name": "15 <sc (script)",
+   "seq": "<sc",
+   "items": null,
+   "value": "<sc"
+  },
+  {
+   "name": "16 <st (style/strong)",
+   "seq": "<st",
+   "items": [
+    "<strong>"
+   ],
+   "value": "<st"
+  },
+  {
+   "name": "17 <li (li/link)",
+   "seq": "<li",
+   "items": [
+    "<li>"
+   ],
+   "value": "<li"
+  },
+  {
+   "name": "18 <ta (table)",
+   "seq": "<ta",
+   "items": null,
+   "value": "<ta"
+  },
+  {
+   "name": "19 <H (katta harf)",
+   "seq": "<H",
+   "items": [
+    "<h1>",
+    "<h2>",
+    "<h3>",
+    "<header>"
+   ],
+   "value": "<H"
+  },
+  {
+   "name": "20 yolg'iz so'z: h1",
+   "seq": "h1",
+   "items": [
+    "<h1>"
+   ],
+   "value": "h1"
+  },
+  {
+   "name": "21 yolg'iz so'z h1 + Tab",
+   "seq": "h1{Tab}",
+   "items": null,
+   "value": "<h1></h1>"
+  },
+  {
+   "name": "22 yolg'iz so'z form + Tab",
+   "seq": "form{Tab}",
+   "items": null,
+   "value": "form  "
+  },
+  {
+   "name": "23 yolg'iz so'z input + Tab",
+   "seq": "input{Tab}",
+   "items": null,
+   "value": "input  "
+  },
+  {
+   "name": "24 <div> dan keyin (juft qatorda) h1",
+   "seq": "<div>h1",
+   "items": null,
+   "value": "<div>h1</div>"
+  },
+  {
+   "name": "25 <div> dan keyin h1 + Tab",
+   "seq": "<div>h1{Tab}",
+   "items": null,
+   "value": "<div>h1  </div>"
+  },
+  {
+   "name": "26 <form> ichida (juft qatorda) input",
+   "seq": "<form>input",
+   "items": null,
+   "value": "<form>input</form>"
+  },
+  {
+   "name": "27 <div>+Enter, keyin h1 + Tab",
+   "seq": "<div>{Enter}h1{Tab}",
+   "items": null,
+   "value": "<div>\n  <h1></h1>\n</div>"
+  },
+  {
+   "name": "28 <p> ichida <a",
+   "seq": "<p><a",
+   "items": [
+    "<a>"
+   ],
+   "value": "<p><a</p>"
+  },
+  {
+   "name": "29 <form + bo'shliq (atribut)",
+   "seq": "<form ",
+   "items": [
+    "class",
+    "id"
+   ],
+   "value": "<form "
+  },
+  {
+   "name": "30 <input + bo'shliq",
+   "seq": "<input ",
+   "items": [
+    "type",
+    "placeholder",
+    "class",
+    "id"
+   ],
+   "value": "<input "
+  },
+  {
+   "name": "31 <label + bo'shliq",
+   "seq": "<label ",
+   "items": [
+    "class",
+    "id"
+   ],
+   "value": "<label "
+  },
+  {
+   "name": "32 <button + bo'shliq",
+   "seq": "<button ",
+   "items": [
+    "class",
+    "id"
+   ],
+   "value": "<button "
+  },
+  {
+   "name": "33 <a + bo'shliq",
+   "seq": "<a ",
+   "items": [
+    "href",
+    "class",
+    "id"
+   ],
+   "value": "<a "
+  },
+  {
+   "name": "34 Emmet ! + Tab",
+   "seq": "!{Tab}",
+   "items": null,
+   "value": "!  "
+  },
+  {
+   "name": "35 Emmet ul>li*3 + Tab",
+   "seq": "ul>li*3{Tab}",
+   "items": null,
+   "value": "ul>li*3  "
+  },
+  {
+   "name": "36 Emmet div.card + Tab",
+   "seq": "div.card{Tab}",
+   "items": null,
+   "value": "div.card  "
+  },
+  {
+   "name": "37 <h1> yozilganda avto-yopish",
+   "seq": "<h1>",
+   "items": null,
+   "value": "<h1></h1>"
+  },
+  {
+   "name": "38 <input> (void)",
+   "seq": "<input>",
+   "items": null,
+   "value": "<input>"
+  },
+  {
+   "name": "39 Esc, keyin yana harf",
+   "seq": "<h{Esc}",
+   "items": null,
+   "value": "<h"
+  },
+  {
+   "name": "40 Esc, keyin harf qo'shildi",
+   "seq": "<h{Esc}e",
+   "items": [
+    "<header>"
+   ],
+   "value": "<he"
+  },
+  {
+   "name": "41 tanlash: <h + Enter",
+   "seq": "<h{Enter}",
+   "items": null,
+   "value": "<h1></h1>"
+  },
+  {
+   "name": "42 tanlash: <a + Enter",
+   "seq": "<a{Enter}",
+   "items": null,
+   "value": "<a href=\"\"></a>"
+  },
+  {
+   "name": "43 tanlash: <img + Enter",
+   "seq": "<im{Enter}",
+   "items": null,
+   "value": "<img src=\"\" alt=\"\">"
+  },
+  {
+   "name": "44 CSS: co",
+   "seq": "co",
+   "items": null,
+   "value": "co"
+  },
+  {
+   "name": "45 CSS: h1 { co",
+   "seq": "h1 {{Enter}co",
+   "items": null,
+   "value": "h1 {\n  co\n}"
+  },
+  {
+   "name": "46 CSS: dis",
+   "seq": "h1 {{Enter}dis",
+   "items": null,
+   "value": "h1 {\n  dis\n}"
+  }
+ ],
+ "errs": []
+}

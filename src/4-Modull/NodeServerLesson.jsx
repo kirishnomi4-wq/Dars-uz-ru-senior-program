@@ -244,23 +244,23 @@ const RECAPS = {
   4: {
     title: { uz: "Node.js — JavaScript endi serverda ham", ru: 'Node.js — JavaScript теперь и на сервере' },
     cards: [
-      { ic: "🌍", h: { uz: "JS faqat brauzerda emas", ru: 'JS не только в браузере' }, body: { uz: <>Ilgari JavaScript faqat brauzer ichida ishlardi. <b>Node.js</b> uni brauzerdan tashqarida — <b>serverda</b> ham ishlatadi.</>, ru: <>Раньше JavaScript работал только внутри браузера. <b>Node.js</b> запускает его и вне браузера — <b>на сервере</b>.</> } },
-      { ic: "🖥️", h: { uz: "node bilan yuriladi", ru: 'Запускается через node' }, body: { uz: <>Terminalga <span className="mono">node server.js</span> deysiz — JS kodi kompyuterda (serverda) ishlaydi, brauzersiz.</>, ru: <>Пишете в терминале <span className="mono">node server.js</span> — JS-код работает на компьютере (сервере), без браузера.</> } },
-      { ic: "🔗", h: { uz: "Bir til, ikki dunyo", ru: 'Один язык, два мира' }, body: { uz: <>Siz bilgan JavaScript endi <b>frontend ham, backend ham</b> uchun yaraydi — bitta til, ikki dunyo.</>, ru: <>Знакомый Вам JavaScript теперь годится <b>и для фронтенда, и для бэкенда</b> — один язык, два мира.</> }, ask: { uz: "Server dasturini qaysi tilda yozamiz?", ru: 'На каком языке пишем программу-сервер?' } },
+      { ic: "🌍", h: { uz: "JS faqat brauzerda emas", ru: 'JS не только в браузере' }, body: { uz: <><b>Node.js</b> JavaScript'ni brauzerdan tashqarida — <b>serverda</b> ham ishlatadi.</>, ru: <><b>Node.js</b> запускает JavaScript и вне браузера — <b>на сервере</b>.</> } },
+      { ic: "🖥️", h: { uz: "node bilan yuriladi", ru: 'Запускается через node' }, body: { uz: <>Terminalga <span className="mono">node server.js</span> deysiz — JS kodi brauzersiz ishlaydi.</>, ru: <>Пишете в терминале <span className="mono">node server.js</span> — JS-код работает без браузера.</> } },
+      { ic: "🔗", h: { uz: "Bir til, ikki dunyo", ru: 'Один язык, два мира' }, body: { uz: <>Siz bilgan JavaScript endi <b>frontend ham, backend ham</b> uchun yaraydi.</>, ru: <>Знакомый Вам JavaScript теперь годится <b>и для фронтенда, и для бэкенда</b>.</> }, ask: { uz: "Server dasturini qaysi tilda yozamiz?", ru: 'На каком языке пишем программу-сервер?' } },
     ]
   },
   6: {
     title: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' },
     cards: [
-      { ic: "🛒", h: { uz: "Asboblar do'koni", ru: 'Магазин инструментов' }, body: { uz: <><b>npm</b> — millionlab tayyor paketlar do'koni. Har narsani noldan yozish shart emas.</>, ru: <><b>npm</b> — магазин с миллионами готовых пакетов. Не нужно писать всё с нуля.</> } },
+      { ic: "🛒", h: { uz: "Asboblar do'koni", ru: 'Магазин инструментов' }, body: { uz: <><b>npm</b> — millionlab tayyor paketlar do'koni, hammasini noldan yozish shart emas.</>, ru: <><b>npm</b> — магазин миллионов готовых пакетов, писать всё с нуля не нужно.</> } },
       { ic: "⬇️", h: "npm install express", body: { uz: <>Bitta buyruq — <span className="mono">npm install express</span> — kerakli paketni loyihangizga qo'shadi.</>, ru: <>Одна команда — <span className="mono">npm install express</span> — добавляет нужный пакет в Ваш проект.</> } },
-      { ic: "📄", h: { uz: "package.json'ga yoziladi", ru: 'Записывается в package.json' }, body: { uz: <>O'rnatilgan har paket <span className="mono">package.json</span> ro'yxatiga yoziladi — nima ishlatganingiz ko'rinib turadi.</>, ru: <>Каждый установленный пакет записывается в список <span className="mono">package.json</span> — видно, чем Вы пользуетесь.</> }, ask: { uz: "express'ni qaysi buyruq bilan o'rnatamiz?", ru: 'Какой командой устанавливаем express?' } },
+      { ic: "📄", h: { uz: "package.json'ga yoziladi", ru: 'Записывается в package.json' }, body: { uz: <>O'rnatilgan har paket <span className="mono">package.json</span> ro'yxatiga yoziladi.</>, ru: <>Каждый установленный пакет записывается в список <span className="mono">package.json</span>.</> }, ask: { uz: "express'ni qaysi buyruq bilan o'rnatamiz?", ru: 'Какой командой устанавливаем express?' } },
     ]
   },
   10: {
     title: { uz: "Endpoint — serverning eshigi", ru: 'Endpoint — дверь сервера' },
     cards: [
-      { ic: "🚪", h: { uz: "Aniq manzil / eshik", ru: 'Точный адрес / дверь' }, body: { uz: <><b>Endpoint</b> — serverning aniq manzili: <span className="mono">/salom</span>. Har eshik bitta ishni qiladi.</>, ru: <><b>Endpoint</b> — точный адрес сервера: <span className="mono">/salom</span>. Каждая дверь делает одно дело.</> } },
+      { ic: "🚪", h: { uz: "Aniq manzil / eshik", ru: 'Точный адрес / дверь' }, body: { uz: <><b>Endpoint</b> — serverning aniq manzili (<span className="mono">/salom</span>), har eshik bitta ishni qiladi.</>, ru: <><b>Endpoint</b> — точный адрес сервера (<span className="mono">/salom</span>), каждая дверь делает одно дело.</> } },
       { ic: "📥", h: { uz: "app.get bilan ochiladi", ru: 'Открывается через app.get' }, body: { uz: <>Kodda har eshik <span className="mono">app.get('/salom', ...)</span> bilan ochiladi va javob beradi.</>, ru: <>В коде каждая дверь открывается через <span className="mono">app.get('/salom', ...)</span> и отвечает.</> } },
       { ic: "🛎️", h: { uz: "Front shu manzilga so'raydi", ru: 'Фронт спрашивает этот адрес' }, body: { uz: <>Frontend aynan shu manzilga <span className="mono">fetch</span> qiladi — eshik ochiq bo'lsa, javob keladi.</>, ru: <>Фронтенд делает <span className="mono">fetch</span> именно на этот адрес — если дверь открыта, придёт ответ.</> }, ask: { uz: "Frontend serverning qayeriga so'rov yuboradi?", ru: 'Куда именно фронтенд шлёт запрос на сервере?' } },
     ]
@@ -268,14 +268,14 @@ const RECAPS = {
   13: {
     title: { uz: "app.listen — OCHIQ tablosi", ru: 'app.listen — табло ОТКРЫТО' },
     cards: [
-      { ic: "🟢", h: { uz: "OCHIQ tablosini yoqadi", ru: 'Включает табло ОТКРЫТО' }, body: { uz: <><span className="mono">app.listen(3000)</span> — do'kon eshigidagi <b>OCHIQ</b> tablosi: server yonadi va portda so'rov kutadi.</>, ru: <><span className="mono">app.listen(3000)</span> — табло <b>ОТКРЫТО</b> на двери магазина: сервер загорается и ждёт запросы на порту.</> } },
-      { ic: "⚠️", h: { uz: "Busiz ishlamaydi", ru: 'Без него не работает' }, body: { uz: <>Eng muhim qator — <b>u yo'q bo'lsa</b> server umuman yoqilmaydi, do'kon yopiq qoladi.</>, ru: <>Самая важная строка — <b>если её нет</b>, сервер вообще не включится, магазин останется закрытым.</> } },
-      { ic: "🛑", h: { uz: "Yo'q bo'lsa ECONNREFUSED", ru: 'Нет строки — ECONNREFUSED' }, body: { uz: <>app.listen bo'lmasa, brauzer <span className="mono">ECONNREFUSED</span> — "ulanib bo'lmadi" deydi.</>, ru: <>Если нет app.listen, браузер говорит <span className="mono">ECONNREFUSED</span> — «не удалось подключиться».</> }, ask: { uz: "Serverni qaysi qator yoqadi?", ru: 'Какая строка включает сервер?' } },
+      { ic: "🟢", h: { uz: "OCHIQ tablosini yoqadi", ru: 'Включает табло ОТКРЫТО' }, body: { uz: <><span className="mono">app.listen(3000)</span> — <b>OCHIQ</b> tablosi: server yonadi va portda so'rov kutadi.</>, ru: <><span className="mono">app.listen(3000)</span> — табло <b>ОТКРЫТО</b>: сервер загорается и ждёт запросы на порту.</> } },
+      { ic: "⚠️", h: { uz: "Busiz ishlamaydi", ru: 'Без него не работает' }, body: { uz: <>Bu qator <b>yo'q bo'lsa</b>, server yoqilmaydi — do'kon yopiq qoladi.</>, ru: <><b>Без этой строки</b> сервер не включится — магазин останется закрытым.</> } },
+      { ic: "🛑", h: { uz: "Yo'q bo'lsa ECONNREFUSED", ru: 'Нет строки — ECONNREFUSED' }, body: { uz: <>app.listen bo'lmasa, brauzer <span className="mono">ECONNREFUSED</span> — «ulanib bo'lmadi» deydi.</>, ru: <>Если нет app.listen, браузер пишет <span className="mono">ECONNREFUSED</span> — «не удалось подключиться».</> }, ask: { uz: "Serverni qaysi qator yoqadi?", ru: 'Какая строка включает сервер?' } },
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -293,7 +293,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -302,13 +302,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карта' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -473,7 +473,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -481,8 +481,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -494,11 +495,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -794,12 +795,12 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>Node.js</span> nima imkon beradi?</>, ru: <>Что даёт <span className="mono" style={{ color: T.accent }}>Node.js</span>?</> })}</h2></>}
     audioText="Node.js nima imkon beradi? JavaScript endi qayerda ishlaydi deb o'ylaysiz? To'g'ri javobni tanlang."
     options={[tr({ uz: "JavaScript'ni brauzerdan tashqarida, serverda ishlatish", ru: 'Запускать JavaScript вне браузера — на сервере' }), tr({ uz: "Faqat HTML sahifalarni chiroyli qilib yozish uchun kerak", ru: 'Нужен только чтобы красиво писать HTML-страницы' }), tr({ uz: "Internet tezligini oshirib, barcha saytlarni tezlatadi", ru: 'Ускоряет интернет и все сайты сразу' }), tr({ uz: "Rasm va videolarni tahrirlash imkonini beradi", ru: 'Позволяет редактировать фото и видео' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Node.js JavaScript'ni brauzerdan tashqarida — serverda/kompyuterda ishlatish imkonini beradi. Shuning uchun backend ham JS'da yoziladi.", ru: 'Верно! Node.js позволяет запускать JavaScript вне браузера — на сервере/компьютере. Поэтому бэкенд тоже пишут на JS.' })}
+    explainCorrect={tr({ uz: "Node.js JavaScript'ni brauzersiz — serverda ishga tushiradi.", ru: 'Node.js запускает JavaScript без браузера — на сервере.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — Node JS uchun. HTML alohida narsa.", ru: 'Нет — Node для JS. HTML — отдельная история.' }),
-      2: tr({ uz: "Yo'q — Node internetni tezlatmaydi; u JS'ni serverda ishlatadi.", ru: 'Нет — Node не ускоряет интернет; он запускает JS на сервере.' }),
-      3: tr({ uz: "Yo'q — bu boshqa dasturlar ishi. Node — JS'ni serverda ishlatadi.", ru: 'Нет — это дело других программ. Node запускает JS на сервере.' }),
-      default: tr({ uz: "Node.js — JS'ni serverda ishlatish imkoni.", ru: 'Node.js — возможность запускать JS на сервере.' })
+      1: tr({ uz: "Node HTML sahifani bezamaydi — u JS kod bilan ishlaydi.", ru: 'Node не украшает HTML-страницы — он работает с JS-кодом.' }),
+      2: tr({ uz: "Node internet tezligiga tegmaydi — u kod bilan ishlaydi.", ru: 'Node не влияет на скорость интернета — он работает с кодом.' }),
+      3: tr({ uz: "Rasm va videoni boshqa dasturlar tahrirlaydi, Node emas.", ru: 'Фото и видео редактируют другие программы, а не Node.' }),
+      default: tr({ uz: "JavaScript endi qayerda ishlay oladi — shuni o'ylang.", ru: 'Подумайте, где теперь может работать JavaScript.' })
     }} />
 );
 
@@ -848,12 +849,12 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>npm</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>npm</span>?</> })}</h2></>}
     audioText="npm nima qiladi? Asboblar do'konini eslang. To'g'ri javobni tanlang."
     options={[tr({ uz: "Ishlab turgan serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает работающий сервер' }), tr({ uz: "Tayyor asboblarni (paketlarni) o'rnatadi, masalan express", ru: 'Устанавливает готовые инструменты (пакеты), например express' }), tr({ uz: "Yozib qo'ygan barcha kodingizni o'chirib tashlaydi", ru: 'Удаляет весь написанный Вами код' }), tr({ uz: "Kompyuterni internetga ulab, aloqa o'rnatadi", ru: 'Подключает компьютер к интернету' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! npm (Node Package Manager) — tayyor paketlarni o'rnatadigan vosita. npm install express bilan Express'ni o'rnatdik.", ru: 'Верно! npm (Node Package Manager) — инструмент, который устанавливает готовые пакеты. Командой npm install express мы установили Express.' })}
+    explainCorrect={tr({ uz: "npm — tayyor paketlarni o'rnatadigan vosita.", ru: 'npm — инструмент, который устанавливает готовые пакеты.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — npm serverni o'chirmaydi. U tayyor paketlarni o'rnatadi.", ru: 'Нет — npm не выключает сервер. Он устанавливает готовые пакеты.' }),
-      2: tr({ uz: "Aksincha — npm kod qo'shadi (paket o'rnatadi), o'chirmaydi.", ru: 'Наоборот — npm добавляет код (устанавливает пакеты), а не удаляет.' }),
-      3: tr({ uz: "Yo'q — npm paketlarni o'rnatadi (tayyor paketlar to'plami).", ru: 'Нет — npm устанавливает пакеты (набор готовых пакетов).' }),
-      default: tr({ uz: "npm — tayyor paketlarni o'rnatuvchi.", ru: 'npm — установщик готовых пакетов.' })
+      0: tr({ uz: "npm o'chirish buyrug'i emas — uni loyiha boshida ishlatamiz.", ru: 'npm — не команда выключения, им пользуются в начале проекта.' }),
+      2: tr({ uz: "npm kodni o'chirmaydi — aksincha, loyihaga nimadir qo'shadi.", ru: 'npm не удаляет код — наоборот, что-то добавляет в проект.' }),
+      3: tr({ uz: "Internetga ulanish — Wi-Fi ishi, npm bunga aralashmaydi.", ru: 'Подключение к интернету — дело Wi-Fi, npm тут ни при чём.' }),
+      default: tr({ uz: "`npm install express` buyrug'i nima qilganini eslang.", ru: 'Вспомните, что сделала команда `npm install express`.' })
     }} />
 );
 
@@ -984,12 +985,12 @@ const Screen9 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>Endpoint</span> nima?</>, ru: <>Что такое <span className="mono" style={{ color: T.accent }}>endpoint</span>?</> })}</h2></>}
     audioText="Endpoint aslida nima? Xuddi do'kondagi alohida eshik kabi. To'g'ri javobni tanlang."
     options={[tr({ uz: "Serverni butunlay o'chirib-yoquvchi maxsus qizil tugma", ru: 'Особая красная кнопка включения-выключения сервера' }), tr({ uz: "Barcha ma'lumotlarni saqlab turadigan katta ombor baza", ru: 'Большая база-склад, где хранятся все данные' }), tr({ uz: "Serverning aniq manzili (eshik) — bir so'rovga javob beradi", ru: 'Точный адрес сервера (дверь) — отвечает на один запрос' }), tr({ uz: "Brauzerning bir turi yoki eng so'nggi yangi versiyasi", ru: 'Вид браузера или его самая новая версия' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Endpoint — serverning aniq manzili (masalan /salom), u bitta so'rovga javob beradi. Frontend shu manzilga fetch qiladi.", ru: 'Верно! Endpoint — точный адрес сервера (например /salom), он отвечает на один запрос. Фронтенд делает fetch на этот адрес.' })}
+    explainCorrect={tr({ uz: "Endpoint — server eshigi: bitta so'rovga javob beradi.", ru: 'Endpoint — дверь сервера: отвечает на один запрос.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — endpoint manzil (eshik), o'chirish tugmasi emas.", ru: 'Нет — endpoint это адрес (дверь), а не кнопка выключения.' }),
-      1: tr({ uz: "Yo'q — baza alohida narsa. Endpoint — serverga kirish manzili.", ru: 'Нет — база это отдельная вещь. Endpoint — адрес входа на сервер.' }),
-      3: tr({ uz: "Yo'q — brauzer turi emas. Endpoint = server manzili (/salom).", ru: 'Нет — это не вид браузера. Endpoint = адрес сервера (/salom).' }),
-      default: tr({ uz: "Endpoint — serverning manzili (eshigi), bitta so'rovga javob beradi.", ru: 'Endpoint — адрес (дверь) сервера, отвечает на один запрос.' })
+      0: tr({ uz: "Endpoint tugma emas — u serverni o'chirib-yoqmaydi.", ru: 'Endpoint — не кнопка, он не выключает и не включает сервер.' }),
+      1: tr({ uz: "Ma'lumot bazada saqlanadi — endpoint esa ombor emas.", ru: 'Данные хранятся в базе, а endpoint — не склад.' }),
+      3: tr({ uz: "Endpoint brauzerga emas, serverga tegishli.", ru: 'Endpoint относится не к браузеру, а к серверу.' }),
+      default: tr({ uz: "Frontend `fetch` qilganda qayerga murojaat qiladi — o'ylang.", ru: 'Подумайте, куда обращается фронтенд, когда делает `fetch`.' })
     }} />
 );
 
@@ -1094,12 +1095,12 @@ const Screen12 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>app.listen(3000)</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>app.listen(3000)</span>?</> })}</h2></>}
     audioText="app.listen(3000) — do'kondagi OCHIQ tablosini yoqadigan qator. Nima qiladi deb o'ylaysiz? To'g'ri javobni tanlang."
     options={[tr({ uz: "Ishlab turgan serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает работающий сервер' }), tr({ uz: "Yangi endpoint (eshik) yaratib, unga javob beradi", ru: 'Создаёт новый endpoint (дверь) и отвечает на него' }), tr({ uz: "Saqlangan barcha ma'lumotni o'chirib tashlaydi", ru: 'Удаляет все сохранённые данные' }), tr({ uz: "Serverni yoqadi va 3000-portda so'rov kuta boshlaydi", ru: 'Включает сервер, и тот ждёт запросы на порту 3000' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! app.listen(3000) serverni ishga tushiradi va 3000-portda so'rovlarni kuta boshlaydi. Busiz server umuman ishlamaydi.", ru: 'Верно! app.listen(3000) запускает сервер, и тот начинает ждать запросы на порту 3000. Без этого сервер вообще не работает.' })}
+    explainCorrect={tr({ uz: "`listen` — OCHIQ tablosi: busiz server so'rov kutmaydi.", ru: '`listen` — табло ОТКРЫТО: без него сервер не ждёт запросов.' })}
     explainWrong={{
-      0: tr({ uz: "Aksincha — listen serverni YOQADI, o'chirmaydi.", ru: 'Наоборот — listen ВКЛЮЧАЕТ сервер, а не выключает.' }),
-      1: tr({ uz: "Yo'q — endpoint app.get bilan yaratiladi. listen — serverni yoqadi.", ru: 'Нет — endpoint создаётся через app.get. listen — включает сервер.' }),
-      2: tr({ uz: "Yo'q — listen ma'lumotga tegmaydi, u serverni ishga tushiradi.", ru: 'Нет — listen не трогает данные, он запускает сервер.' }),
-      default: tr({ uz: "app.listen — serverni yoqadi va port kuta boshlaydi.", ru: 'app.listen — включает сервер и начинает слушать порт.' })
+      0: tr({ uz: "`listen` serverni o'chirmaydi — aksincha, ishga tushiradi.", ru: '`listen` не выключает сервер — наоборот, запускает его.' }),
+      1: tr({ uz: "Yangi eshik `app.get` bilan ochiladi, `listen` bilan emas.", ru: 'Новая дверь открывается через `app.get`, а не через `listen`.' }),
+      2: tr({ uz: "`listen` ma'lumotga tegmaydi — u bazaga ish qilmaydi.", ru: '`listen` не трогает данные — с базой он не работает.' }),
+      default: tr({ uz: "Do'kon eshigidagi OCHIQ tablosini eslang.", ru: 'Вспомните табло ОТКРЫТО на двери магазина.' })
     }} />
 );
 

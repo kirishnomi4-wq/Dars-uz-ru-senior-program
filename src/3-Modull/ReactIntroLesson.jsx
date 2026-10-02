@@ -218,39 +218,39 @@ const RECAPS = {
   4: {
     title: { uz: "React — interfeys quruvchi kutubxona", ru: 'React — библиотека для интерфейсов' },
     cards: [
-      { ic: "🧰", h: { uz: "React — tayyor asboblar to'plami", ru: 'React — набор готовых инструментов' }, body: { uz: <>React — yangi til EMAS. U — siz o'rgangan <b>JavaScript'da yozilgan kutubxona</b>. Kutubxona degani — <b>tayyor asboblar to'plami</b>: sahifaning ko'rinadigan qismini (tugma, menyu, kartochka) tez qurish uchun. Har safar noldan yozmaysiz — tayyorini olasiz.</>, ru: <>React — НЕ новый язык. Это <b>библиотека, написанная на JavaScript</b>, который вы уже знаете. Библиотека — это <b>набор готовых инструментов</b>: чтобы быстро строить видимую часть страницы (кнопки, меню, карточки). Не пишете каждый раз с нуля — берёте готовое.</> }, vis: { uz: <RcFlow items={["JavaScript", "React kutubxonasi", "Interfeys tez quriladi"]} />, ru: <RcFlow items={["JavaScript", "Библиотека React", "Интерфейс строится быстро"]} /> } },
-      { ic: "🚫", h: { uz: "Til ham, brauzer ham, tizim ham emas", ru: 'Не язык, не браузер и не система' }, body: { uz: <>React — yangi dasturlash tili emas (u JavaScript'ning o'zida yozilgan). Brauzer emas (brauzer — Chrome, Safari). Operatsion tizim emas (u — Windows, Android). React faqat <b>bitta ish</b> qiladi: interfeys quradi.</>, ru: <>React — не новый язык программирования (он написан на самом JavaScript). Не браузер (браузер — это Chrome, Safari). Не операционная система (это Windows, Android). React делает <b>одно дело</b>: строит интерфейс.</> } },
-      { ic: "🏭", h: { uz: "Kim yaratgan", ru: 'Кто создал' }, body: { uz: <>React'ni <b>Facebook 2013-yilda</b> yaratgan. Bugun Instagram, WhatsApp kabi minglab ilovalar shu kutubxonada ishlaydi. Ya'ni siz mashhur, ishonchli asbob bilan tanishyapsiz.</>, ru: <>React создал <b>Facebook в 2013 году</b>. Сегодня тысячи приложений вроде Instagram и WhatsApp работают на этой библиотеке. То есть вы знакомитесь с известным, надёжным инструментом.</> }, ask: { uz: "React qaysi tanish tilning o'zida yozilgan?", ru: 'На каком знакомом вам языке написан React?' } },
+      { ic: "🧰", h: { uz: "React — tayyor asboblar to'plami", ru: 'React — набор готовых инструментов' }, body: { uz: <>React — JavaScript'da yozilgan <b>tayyor asboblar</b> to'plami, sahifani tez qurish uchun.</>, ru: <>React — набор <b>готовых инструментов</b> на JavaScript, чтобы быстро строить страницу.</> }, vis: { uz: <RcFlow items={["JavaScript", "React kutubxonasi", "Interfeys tez quriladi"]} />, ru: <RcFlow items={["JavaScript", "Библиотека React", "Интерфейс строится быстро"]} /> } },
+      { ic: "🚫", h: { uz: "Til ham, brauzer ham, tizim ham emas", ru: 'Не язык, не браузер и не система' }, body: { uz: <>React til ham, brauzer ham, tizim ham emas — u faqat <b>interfeys quradi</b>.</>, ru: <>React — не язык, не браузер и не система: он только <b>строит интерфейс</b>.</> } },
+      { ic: "🏭", h: { uz: "Kim yaratgan", ru: 'Кто создал' }, body: { uz: <>React'ni <b>Facebook</b> 2013-yilda yaratgan, bugun Instagram ham shu kutubxonada ishlaydi.</>, ru: <>React создал <b>Facebook</b> в 2013 году, сегодня на нём работает даже Instagram.</> }, ask: { uz: "React qaysi tanish tilning o'zida yozilgan?", ru: 'На каком знакомом вам языке написан React?' } },
     ]
   },
   6: {
     title: { uz: "Komponent — qayta ishlatiladigan blok", ru: 'Компонент — переиспользуемый блок' },
     cards: [
-      { ic: "🧱", h: { uz: "Komponent — sahifaning bloki", ru: 'Компонент — блок страницы' }, body: { uz: <>Minecraft'da butun dunyo <b>alohida bloklardan</b> quriladi. React'da sahifa ham xuddi shunday — <b>komponent</b> degan bloklardan yig'iladi. Menyu, qidiruv katagi, kartochka, tugma — har biri mustaqil blok.</>, ru: <>В Minecraft весь мир строится из <b>отдельных блоков</b>. В React страница точно так же — собирается из блоков под названием <b>компоненты</b>. Меню, строка поиска, карточка, кнопка — каждый из них самостоятельный блок.</> }, vis: { uz: <RcFlow items={["Navbar", "SearchBar", "SkinCard", "LikeButton"]} />, ru: <RcFlow items={["Navbar", "SearchBar", "SkinCard", "LikeButton"]} /> } },
-      { ic: "♻️", h: { uz: "Bir marta yoz, ko'p marta ishlat", ru: 'Напиши один раз — используй много' }, body: { uz: <>Komponentning eng katta foydasi: uni <b>bir marta yozasiz</b>, keyin <b>xohlagancha qayta ishlatasiz</b>. Sahifada 10 ta bir xil kartochka bo'lsa ham, kod bitta bo'lib qoladi. Xuddi Minecraft'da bitta blokni qayta-qayta qo'yganday.</>, ru: <>Главная польза компонента: вы <b>пишете его один раз</b>, а потом <b>переиспользуете сколько хотите</b>. Даже если на странице 10 одинаковых карточек, код остаётся один. Как в Minecraft, где один и тот же блок ставится снова и снова.</> } },
-      { ic: "🎁", h: { uz: "Blok ichida blok", ru: 'Блок внутри блока' }, body: { uz: <>Komponent — sozlama, rasm turi yoki tezlik emas. U — sahifaning mustaqil <b>bo'lagi</b>. Blok ichida yana blok yashashi mumkin: kartochka ichida like tugmasi turadi.</>, ru: <>Компонент — не настройка, не формат картинки и не скорость. Это самостоятельная <b>часть</b> страницы. Внутри блока может жить другой блок: внутри карточки находится кнопка лайка.</> }, ask: { uz: "Yoqtirgan saytingizni bloklarga bo'lsangiz, qanday bo'laklarni ko'rasiz?", ru: 'Если разбить ваш любимый сайт на блоки — какие части вы увидите?' } },
+      { ic: "🧱", h: { uz: "Komponent — sahifaning bloki", ru: 'Компонент — блок страницы' }, body: { uz: <>Minecraft dunyosi kabi, React sahifasi ham <b>komponent</b> degan bloklardan yig'iladi.</>, ru: <>Как мир Minecraft, страница в React собирается из блоков — <b>компонентов</b>.</> }, vis: { uz: <RcFlow items={["Navbar", "SearchBar", "SkinCard", "LikeButton"]} />, ru: <RcFlow items={["Navbar", "SearchBar", "SkinCard", "LikeButton"]} /> } },
+      { ic: "♻️", h: { uz: "Bir marta yoz, ko'p marta ishlat", ru: 'Напиши один раз — используй много' }, body: { uz: <>Komponentni <b>bir marta</b> yozasiz, keyin xohlagancha qayta ishlatasiz.</>, ru: <>Компонент пишут <b>один раз</b>, а потом используют сколько угодно.</> } },
+      { ic: "🎁", h: { uz: "Blok ichida blok", ru: 'Блок внутри блока' }, body: { uz: <>Blok ichida yana <b>blok</b> yashaydi: kartochka ichida like tugmasi turadi.</>, ru: <>Внутри блока живёт другой <b>блок</b>: в карточке находится кнопка лайка.</> }, ask: { uz: "Yoqtirgan saytingizni bloklarga bo'lsangiz, qanday bo'laklarni ko'rasiz?", ru: 'Если разбить ваш любимый сайт на блоки — какие части вы увидите?' } },
     ]
   },
   10: {
     title: { uz: "Virtual DOM — xotiradagi nusxa", ru: 'Virtual DOM — копия в памяти' },
     cards: [
-      { ic: "📝", h: { uz: "Virtual DOM — yengil nusxa", ru: 'Virtual DOM — лёгкая копия' }, body: { uz: <>React xotirasida sahifaning yengil nusxasini saqlaydi — bu <b>Virtual DOM</b> deyiladi. O'zgarish bo'lganda React yangi nusxa yaratadi, eskisi bilan solishtiradi va <b>faqat o'zgargan joyni</b> haqiqiy sahifada yangilaydi.</>, ru: <>React хранит в памяти лёгкую копию страницы — она <b>называется Virtual DOM</b>. При изменении React создаёт новую копию, сравнивает со старой и обновляет на настоящей странице <b>только изменившееся место</b>.</> }, vis: { uz: <RcFlow items={["Yangi nusxa", "Eski bilan solishtir", "Faqat o'zgargan joyni yangila"]} />, ru: <RcFlow items={["Новая копия", "Сравни со старой", "Обнови только изменившееся"]} /> } },
-      { ic: "⚡", h: { uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' }, body: { uz: <>Eski usulda like bosilsa <b>butun sahifa</b> qaytadan yuklanardi — sekin, miltillaydi. Virtual DOM aynan shundan qutqaradi: butun sahifani emas, <b>faqat o'zgargan bitta joyni</b> yangilaydi. Shuning uchun React ilovalar tez ishlaydi.</>, ru: <>Раньше при нажатии лайка <b>вся страница</b> перезагружалась — медленно, с миганием. Virtual DOM спасает именно от этого: обновляет не всю страницу, а <b>только одно изменившееся место</b>. Поэтому React-приложения работают быстро.</> } },
-      { ic: "🙈", h: { uz: "U ko'rinmaydi", ru: 'Его не видно' }, body: { uz: <>Virtual DOM internetni tezlashtirmaydi va kodni o'zi yozib bermaydi. U — xotirada turadigan <b>ko'rinmas nusxa</b>: solishtiradi, farqni topadi, faqat kerakli joyni yangilaydi.</>, ru: <>Virtual DOM не ускоряет интернет и не пишет код за вас. Это <b>невидимая копия</b> в памяти: сравнивает, находит разницу и обновляет только нужное место.</> }, ask: { uz: "Nega butun sahifani qayta chizishdan ko'ra, faqat farqni yangilash tezroq?", ru: 'Почему обновить только разницу быстрее, чем перерисовать всю страницу?' } },
+      { ic: "📝", h: { uz: "Virtual DOM — yengil nusxa", ru: 'Virtual DOM — лёгкая копия' }, body: { uz: <><b>Virtual DOM</b> — sahifaning xotiradagi yengil nusxasi, React uni eskisi bilan solishtiradi.</>, ru: <><b>Virtual DOM</b> — лёгкая копия страницы в памяти, React сравнивает её со старой.</> }, vis: { uz: <RcFlow items={["Yangi nusxa", "Eski bilan solishtir", "Faqat o'zgargan joyni yangila"]} />, ru: <RcFlow items={["Новая копия", "Сравни со старой", "Обнови только изменившееся"]} /> } },
+      { ic: "⚡", h: { uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' }, body: { uz: <>Like bosilganda butun sahifa emas, faqat <b>o'zgargan joy</b> yangilanadi.</>, ru: <>При нажатии лайка обновляется не вся страница, а только <b>изменившееся место</b>.</> } },
+      { ic: "🙈", h: { uz: "U ko'rinmaydi", ru: 'Его не видно' }, body: { uz: <>Virtual DOM — <b>ko'rinmas</b> nusxa, u internetni tezlashtirmaydi va kod yozmaydi.</>, ru: <>Virtual DOM — <b>невидимая</b> копия: интернет он не ускоряет и код не пишет.</> }, ask: { uz: "Nega butun sahifani qayta chizishdan ko'ra, faqat farqni yangilash tezroq?", ru: 'Почему обновить только разницу быстрее, чем перерисовать всю страницу?' } },
     ]
   },
   13: {
     title: { uz: "React Native — bir bilim, ikki platforma", ru: 'React Native — одно знание, две платформы' },
     cards: [
-      { ic: "📱", h: { uz: "Sayt ham, telefon ilovasi ham", ru: 'И сайт, и мобильное приложение' }, body: { uz: <>React'ni o'rgansangiz, faqat sayt emas — <b>haqiqiy telefon ilovalarini</b> ham yasay olasiz. Buning nomi <b>React Native</b>. Bir marta React o'rganasiz — brauzerda ham, telefonda ham ishlaydi.</>, ru: <>Выучив React, вы сможете делать не только сайты, но и <b>настоящие мобильные приложения</b>. Это называется <b>React Native</b>. Один раз учите React — работает и в браузере, и на телефоне.</> }, vis: { uz: <RcFlow items={["Bitta React bilimi", "Brauzerda sayt", "Telefonda ilova"]} />, ru: <RcFlow items={["Одно знание React", "Сайт в браузере", "Приложение на телефоне"]} /> } },
-      { ic: "🌍", h: { uz: "Kod bitta, dunyo ikkita", ru: 'Код один, мира два' }, body: { uz: <>Xuddi bitta tilni bilib ikki mamlakatda gaplashganday: <b>aynan o'sha komponent kodi</b> brauzerda sayt bo'ladi, telefonda ilova bo'ladi. Ikki marta o'rganish shart emas — bilim bitta.</>, ru: <>Как знать один язык и говорить на нём в двух странах: <b>тот же самый код компонента</b> в браузере становится сайтом, а на телефоне — приложением. Учиться дважды не нужно — знание одно.</> } },
-      { ic: "⭐", h: { uz: "Mashhur ilovalar shu yo'lda", ru: 'Известные приложения идут этим путём' }, body: { uz: <>React Native — o'yin, bezash yoki internetga ulanish emas. U — React bilimi bilan <b>iOS va Android ilovalari</b> qurish. Instagram, Discord, Shopify aynan shu yo'ldan foydalanadi.</>, ru: <>React Native — не игра, не украшение и не подключение к интернету. Это создание <b>приложений для iOS и Android</b> со знанием React. Instagram, Discord, Shopify используют именно этот путь.</> }, ask: { uz: "Telefoningizdagi qaysi ilovalar React Native'da qurilgan bo'lishi mumkin?", ru: 'Какие приложения на вашем телефоне могут быть сделаны на React Native?' } },
+      { ic: "📱", h: { uz: "Sayt ham, telefon ilovasi ham", ru: 'И сайт, и мобильное приложение' }, body: { uz: <>React'ni bilsangiz, <b>React Native</b> bilan telefon ilovalarini ham yasay olasiz.</>, ru: <>Зная React, с <b>React Native</b> можно делать и мобильные приложения.</> }, vis: { uz: <RcFlow items={["Bitta React bilimi", "Brauzerda sayt", "Telefonda ilova"]} />, ru: <RcFlow items={["Одно знание React", "Сайт в браузере", "Приложение на телефоне"]} /> } },
+      { ic: "🌍", h: { uz: "Kod bitta, dunyo ikkita", ru: 'Код один, мира два' }, body: { uz: <>O'sha komponent kodi brauzerda sayt, telefonda esa <b>ilova</b> bo'ladi.</>, ru: <>Тот же код компонента в браузере становится сайтом, а на телефоне — <b>приложением</b>.</> } },
+      { ic: "⭐", h: { uz: "Mashhur ilovalar shu yo'lda", ru: 'Известные приложения идут этим путём' }, body: { uz: <><b>Instagram</b>, Discord va Shopify ham React Native'dan foydalanadi.</>, ru: <><b>Instagram</b>, Discord и Shopify тоже используют React Native.</> }, ask: { uz: "Telefoningizdagi qaysi ilovalar React Native'da qurilgan bo'lishi mumkin?", ru: 'Какие приложения на вашем телефоне могут быть сделаны на React Native?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -268,7 +268,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -277,13 +277,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -361,7 +361,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась для класса непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -370,7 +370,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту сложно делать вывод. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -463,7 +463,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -471,8 +471,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -484,11 +485,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -764,10 +765,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? tr(fixed) : tr(l.text)}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -1078,12 +1079,12 @@ const Screen4 = (props) => (
     questionText="React aslida nima?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что же такое <span className="italic" style={{ color: T.accent }}>React</span> на самом деле?</h2></> })}
     options={[tr({ uz: 'Yangi dasturlash tili', ru: 'Новый язык программирования' }), tr({ uz: 'JavaScript kutubxonasi', ru: 'Библиотека JavaScript' }), tr({ uz: 'Brauzer dasturining nomi', ru: 'Название браузера' }), tr({ uz: 'Operatsion tizim turi', ru: 'Вид операционной системы' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "React — JavaScript'da yozilgan kutubxona: sahifa interfeysini qurish uchun tayyor asboblar to'plami.", ru: 'React — библиотека, написанная на JavaScript: набор готовых инструментов для построения интерфейса страницы.' })}
+    explainCorrect={tr({ uz: "React — interfeys qurish uchun tayyor asboblar to'plami.", ru: 'React — набор готовых инструментов для построения интерфейса.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — React yangi til emas. U siz o'rgangan JavaScript'ning o'zida yozilgan kutubxona.", ru: 'Нет — React не новый язык. Это библиотека, написанная на самом JavaScript, который вы уже знаете.' }),
-      2: tr({ uz: "Brauzer — Chrome, Safari kabi dastur. React esa kutubxona — kod uchun asboblar to'plami.", ru: 'Браузер — это программа вроде Chrome или Safari. А React — библиотека, набор инструментов для кода.' }),
-      3: tr({ uz: "Operatsion tizim — Windows, Android. React — interfeys qurish kutubxonasi.", ru: 'Операционная система — это Windows, Android. React — библиотека для построения интерфейсов.' }),
-      default: tr({ uz: "React — interfeys qurish uchun JavaScript kutubxonasi.", ru: 'React — библиотека JavaScript для построения интерфейсов.' })
+      0: tr({ uz: "React yangi til emas — u JavaScript'ning o'zida yozilgan.", ru: 'React — не новый язык: он написан на самом JavaScript.' }),
+      2: tr({ uz: "Brauzer — Chrome, Safari kabi dastur, React unday emas.", ru: 'Браузер — это программа вроде Chrome или Safari, React — не такая.' }),
+      3: tr({ uz: "Operatsion tizim — Windows, Android; React unday emas.", ru: 'Операционная система — это Windows, Android; React не из их числа.' }),
+      default: tr({ uz: "React nimada yozilgani va nima uchun kerakligini eslang.", ru: 'Вспомните, на чём написан React и для чего он нужен.' })
     }} />
 );
 
@@ -1166,12 +1167,12 @@ const Screen5b = (props) => (
     questionText="Komponent nima?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Komponent</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что такое <span className="italic" style={{ color: T.accent }}>компонент</span>?</h2></> })}
     options={[tr({ uz: 'Brauzerning ichki sozlamasi', ru: 'Внутренняя настройка браузера' }), tr({ uz: 'Internetni tezlashtiradigan dastur', ru: 'Программа, ускоряющая интернет' }), tr({ uz: "Sahifaning qayta ishlatiladigan bo'lagi", ru: 'Переиспользуемая часть страницы' }), tr({ uz: 'Rasm va video fayllari turi', ru: 'Тип файлов картинок и видео' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "Komponent — sahifaning mustaqil bo'lagi: bir marta yoziladi, istalgancha qayta ishlatiladi.", ru: 'Компонент — самостоятельная часть страницы: пишется один раз, переиспользуется сколько угодно.' })}
+    explainCorrect={tr({ uz: "Komponent bir marta yoziladi, istalgancha qayta ishlatiladi.", ru: 'Компонент пишут один раз, а используют сколько угодно.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — sozlama emas. Komponent — sahifaning qayta ishlatiladigan bo'lagi.", ru: 'Нет — не настройка. Компонент — переиспользуемая часть страницы.' }),
-      1: tr({ uz: "Yo'q — tezlikka aloqasi yo'q. Komponent — sahifaning qayta ishlatiladigan bloki.", ru: 'Нет — к скорости это не относится. Компонент — переиспользуемый блок страницы.' }),
-      3: tr({ uz: "Yo'q — rasm emas. Komponent — interfeys bo'lagi: kartochka, tugma, menyu.", ru: 'Нет — не картинка. Компонент — часть интерфейса: карточка, кнопка, меню.' }),
-      default: tr({ uz: "Komponent — qayta ishlatiladigan interfeys bo'lagi.", ru: 'Компонент — переиспользуемая часть интерфейса.' })
+      0: tr({ uz: "Komponent brauzer sozlamasi emas — u sahifada ko'rinadi.", ru: 'Компонент — не настройка браузера: его видно на странице.' }),
+      1: tr({ uz: "Komponent internet tezligiga aloqador emas.", ru: 'Компонент не связан со скоростью интернета.' }),
+      3: tr({ uz: "Komponent fayl turi emas — u kartochka, tugma, menyu kabi.", ru: 'Компонент — не тип файла, а что-то вроде карточки, кнопки, меню.' }),
+      default: tr({ uz: "Minecraft bloklarini eslang: sahifa nimalardan yig'iladi?", ru: 'Вспомните блоки Minecraft: из чего собирается страница?' })
     }} />
 );
 
@@ -1390,12 +1391,12 @@ const Screen9 = (props) => (
     questionText="Virtual DOM nima qiladi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Virtual DOM</span> nima qiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что делает <span className="italic" style={{ color: T.accent }}>Virtual DOM</span>?</h2></> })}
     options={[tr({ uz: "Sahifani har safar to'liq qayta yuklaydi", ru: 'Каждый раз полностью перезагружает страницу' }), tr({ uz: 'Internet ulanishini tezlashtiradi', ru: 'Ускоряет интернет-соединение' }), tr({ uz: "Kodni avtomatik o'zi yozib beradi", ru: 'Автоматически пишет код за вас' }), tr({ uz: "Farqni topib, faqat o'zgargan joyni yangilaydi", ru: 'Находит разницу и обновляет только изменившееся место' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "Virtual DOM — xotiradagi nusxa: React eski va yangi nusxani solishtiradi va faqat o'zgargan joyni yangilaydi.", ru: 'Virtual DOM — копия в памяти: React сравнивает старую и новую копии и обновляет только изменившееся место.' })}
+    explainCorrect={tr({ uz: "Virtual DOM nusxalarni solishtiradi, faqat farq yangilanadi.", ru: 'Virtual DOM сравнивает копии, и обновляется только разница.' })}
     explainWrong={{
-      0: tr({ uz: "Aksincha! To'liq qayta yuklash — eski usul. Virtual DOM aynan shundan qutqaradi.", ru: 'Наоборот! Полная перезагрузка — это старый способ. Virtual DOM спасает именно от этого.' }),
-      1: tr({ uz: "Yo'q — internet tezligiga aloqasi yo'q. Gap sahifani aqlli yangilashda.", ru: 'Нет — к скорости интернета это не относится. Речь об умном обновлении страницы.' }),
-      2: tr({ uz: "Yo'q — kod yozib bermaydi. U o'zgarishlarni topib, faqat kerakli joyni yangilaydi.", ru: 'Нет — код он не пишет. Он находит изменения и обновляет только нужное место.' }),
-      default: tr({ uz: "Virtual DOM solishtiradi va faqat farqni yangilaydi.", ru: 'Virtual DOM сравнивает и обновляет только разницу.' })
+      0: tr({ uz: "Aksincha — to'liq qayta yuklash eski va sekin usul.", ru: 'Наоборот — полная перезагрузка — старый и медленный способ.' }),
+      1: tr({ uz: "Virtual DOM internet tezligiga aloqador emas.", ru: 'Virtual DOM не связан со скоростью интернета.' }),
+      2: tr({ uz: "Virtual DOM kod yozmaydi — kodni siz yozasiz.", ru: 'Virtual DOM не пишет код — код пишете вы.' }),
+      default: tr({ uz: "Like bosilganda sahifaning qaysi qismi o'zgarishini o'ylang.", ru: 'Подумайте, какая часть страницы меняется при нажатии лайка.' })
     }} />
 );
 
@@ -1584,12 +1585,12 @@ const Screen12 = (props) => (
     questionText="React Native nima imkon beradi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>React Native</span> nima imkon beradi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что даёт <span className="italic" style={{ color: T.accent }}>React Native</span>?</h2></> })}
     options={[tr({ uz: "Faqat kompyuter o'yinlarini yasash", ru: 'Делать только компьютерные игры' }), tr({ uz: 'React bilimi bilan telefon ilovasi yasash', ru: 'Делать мобильные приложения со знанием React' }), tr({ uz: 'Saytlarni rang bilan bezash', ru: 'Украшать сайты цветом' }), tr({ uz: 'Internetga simsiz ulanish', ru: 'Беспроводное подключение к интернету' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "React Native — o'sha React bilimi bilan iOS va Android ilovalari yasash imkonini beradi. Instagram va Discord shu yo'ldan foydalanadi.", ru: 'React Native позволяет с тем же знанием React делать приложения для iOS и Android. Instagram и Discord используют этот путь.' })}
+    explainCorrect={tr({ uz: "Bitta bilim, ikki platforma: sayt ham, telefon ilovasi ham.", ru: 'Одно знание — две платформы: и сайт, и мобильное приложение.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — o'yin emas. React Native telefon ilovalari yasaydi: Instagram, Discord kabi.", ru: 'Нет — не игры. React Native делает мобильные приложения: как Instagram, Discord.' }),
-      2: tr({ uz: "Bezash — CSS'ning ishi. React Native — telefon ilovalarini qurish vositasi.", ru: 'Украшение — работа CSS. React Native — инструмент для создания мобильных приложений.' }),
-      3: tr({ uz: "Yo'q — internetga ulanish emas. Bu React bilan telefon ilovalari qurish.", ru: 'Нет — не подключение к интернету. Это создание мобильных приложений с React.' }),
-      default: tr({ uz: "React Native — React bilimi bilan telefon ilovalari yasash.", ru: 'React Native — создание мобильных приложений со знанием React.' })
+      0: tr({ uz: "React Native o'yin yasash vositasi emas.", ru: 'React Native — не инструмент для игр.' }),
+      2: tr({ uz: "Bezash — CSS'ning ishi, React Native'niki emas.", ru: 'Украшение — работа CSS, а не React Native.' }),
+      3: tr({ uz: "React Native internetga ulanishga aloqador emas.", ru: 'React Native не связан с подключением к интернету.' }),
+      default: tr({ uz: "Instagram va Discord qayerda ishlashini eslang.", ru: 'Вспомните, где работают Instagram и Discord.' })
     }} />
 );
 
@@ -1708,7 +1709,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Tayyor — mana komponentlar:', ru: 'Готово — вот компоненты:' }) /* F-0926-06 (159/1): mentor gapini takrorlamaydi */}</span></div>
             <DebugChallenge
               lines={LINES}
-              fixed={tr({ uz: "<SkinKartasi />  <Savat />   // ikki alohida blok", ru: '<КарточкаСкина />  <Корзина />   // два отдельных блока' })}
+              fixed={tr({ uz: "<SkinKartasi />  <Savat />   // ikki blok", ru: '<КарточкаСкина />  <Корзина />   // два блока' })}
               explain={tr({ uz: "«ButunSahifa» — hammasi bitta ulkan monolitda edi. Endi har bo'lak alohida, qayta ishlatiladigan komponent.", ru: '«ВсяСтраница» — всё было в одном огромном монолите. Теперь каждая часть — отдельный, переиспользуемый компонент.' })}
               onSolved={solve}
               onWrong={() => { if (achMiss) achMiss.miss(screen); }}
@@ -3149,7 +3150,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }

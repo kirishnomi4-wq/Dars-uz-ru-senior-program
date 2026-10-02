@@ -1,0 +1,420 @@
+{
+ "file": "src/4-Modull/ApiPostmanLesson.jsx",
+ "lessonId": "api-postman-04-06-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Sayt 📨 Server",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Sayt 📨 Server",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA SAYT MA'LUMOTNI QANDAY OLADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZ POSTMAN'DA SO'ROV YUBORASIZ",
+     "box": "postman fade-up ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ method tanlaysiz, Send bosasiz, javobni ko'rasiz",
+     "box": "postman fade-up ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 84,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Yo'q. Sayt va server — ikki alohida dastur. Ular orasida API turadi: bu til va qoidalar to'plami. Xuddi pochta",
+     "b": "Sayt → API → Server. To'g'ridan-to'g'ri emas — qoida bilan.",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Yo'q. Sayt va server — ikki alohida dastur. Ular orasida API turadi: bu til va qoidalar to'plami. Xuddi pochta",
+     "b": "API = ikki dastur gaplashadigan til",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Siz so'rov (request) yuborasiz, server javob (response) qaytaradi. So'rov = METHOD + URL (+ ba'zan BODY). Javo",
+     "b": "← Bo'lakni konvertga sudrang (yoki bosib tanlang)",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Bo'laklar 0/5",
+     "box": "env-pool",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "env-pool",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SO'ROV KONVERTI (SIZ → SERVER)",
+     "box": "envcard req env-zone  ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "JAVOB KONVERTI (SERVER → SIZ)",
+     "box": "envcard res env-zone  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "JAVOB KONVERTI (SERVER → SIZ)",
+     "box": "envcard req env-zone  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 129,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "GET = SELECT (o'qish)",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 146,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "POST = \"mana yangi narsa, qo'shib qo'y\". So'rov ichida (BODY) yangi mahsulot ma'lumoti ketadi. Server uni baza",
+     "b": "Server 201 Created qaytardi va yangi mahsulotni id: 4 bilan saqladi. POST — yangi ma'lumot qo'shadi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POST = INSERT (qo'shish)",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON SAYTI — /API/PRODUCTS",
+     "box": "shopmock col",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Klaviatura 120 000 so'm Sichqoncha 75 000 so'm Quloqchin 95 000 so'm",
+     "box": "hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Klaviatura 120 00099 000 so'm Sichqoncha 75 000 so'm Quloqchin 95 000 so'm",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DO'KON SAYTI — /API/PRODUCTS",
+     "box": "shopmock col",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Klaviatura 120 000 so'm Sichqoncha 75 000 so'm Quloqchin 95 000 so'm",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🖥️ Sayt 📮 API 🗄️ Nest server 💾 Baza 📨",
+     "box": "jnote",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "🖥️ Sayt 📮 API 🗄️ Nest server 💾 Baza 📨",
+     "box": "mentor fade-up  ",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "📨",
+     "box": "jnode ",
+     "gap": 4
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 2 3",
+     "box": "postman fade-up ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "VAZIFA: 1. GET — RO'YXATNI KO'R",
+     "box": "frame-success fade-step",
+     "gap": 19
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ 2 3",
+     "box": "postman fade-up ",
+     "gap": 16
+    }
+   ],
+   "scroll": 250,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "AI siz uchun GET so'rov yozdi, lekin server 404 Not Found qaytardi — \"bunday manzil yo'q\". Status kodi sizga m",
+     "b": "Qaysi qatorda xato bor? Bosing.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "JAVOB",
+     "box": "pm-resp",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Method tanlandi 2 Send bosildi 3 201 Created",
+     "box": "hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ Method tanlandi 2 Send bosildi 3 201 Created",
+     "box": "hint",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

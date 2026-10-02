@@ -1,0 +1,549 @@
+{
+ "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+ "lessonId": "react-state-effect-03-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1-VERSIYA",
+     "box": "rocard el-in",
+     "gap": 7
+    },
+    {
+     "pos": "tagida",
+     "t": "bosib ko'ring ↑",
+     "box": "rocard el-in",
+     "gap": 7
+    },
+    {
+     "pos": "tepada",
+     "t": "2-VERSIYA",
+     "box": "rocard el-in",
+     "gap": 4
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, CHAPDAGISIGA NIMA BO'LDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "xotirada: likes = 1",
+     "box": "rocard el-in",
+     "gap": 7
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ ekran darhol yangilandi!",
+     "box": "rocard el-in",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING NATIJANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ mana shu qatorni dars oxirida to'liq o'zingiz yozasiz",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KONSOL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "EKRANDA — 👍 NI BOSING",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📦 Xotira (let likes) 0 teng emas 🖥 Ekranda 0 🔒",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📦 Xotira (let likes) 1 teng emas 🖥 Ekranda 0 🔒",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📦 Xotira (let likes) 2 teng emas 🖥 Ekranda 0 🔒",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 Xotira (let likes) 3 teng emas 🖥 Ekranda 0 🔒",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📦 Xotira (let likes) 3 teng emas 🖥 Ekranda 0 🔒",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 Xotira (let likes) 4 teng emas 🖥 Ekranda 0 🔒",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📦 Xotira (let likes) 4 teng emas 🖥 Ekranda 0 🔒",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "👆 Yuqoridagi rangli qismlardan birini bosing",
+     "box": "hint fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Yuqoridagi rangli qismlardan birini bosing",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QISMLAR 0 / 3 topildi",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "behuda ✏️ bosishlar: 1 — ekranga yetmadi",
+     "box": "lm-levers fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "○ likes: 0 ○ starred: false",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "👍 LIKE VA ⭐ YULDUZNI BOSING",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "○ likes: 0 ✓ starred: true",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ likes: 1 ✓ starred: true",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ likes: 2 ✓ starred: true",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ likes: 3 ✓ starred: true",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "\"Salom! Men ekranga chiqdim\"",
+     "b": "✓ Salom! Men ekranga chiqdim",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Mumkin! Buning uchun useEffect bor. Komponentning ekranga birinchi chiqishi dasturchilar tilida ekranga chiqis",
+     "b": "Sahifa bo'sh — kartochka hali qo'shilmagan…",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KONSOL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Like soni tab sarlavhasiga chiqsinmi?",
+     "b": "Eng kuchli juftlik! [] o'rniga [likes] yozsak, effect likes'ni kuzatadi: u o'zgargan sari qayta ishlaydi. Miso",
+     "am": false,
+     "bm": true
+    },
+    {
+     "score": 0.9,
+     "a": "Eng kuchli juftlik! [] o'rniga [likes] yozsak, effect likes'ni kuzatadi: u o'zgargan sari qayta ishlaydi. Miso",
+     "b": "// likes o'zgarsa — qayta ishla",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "⚛ (0) robo-games",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "⚛ (1) robo-games ← useEffect yangiladi",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "⚛ (2) robo-games ← useEffect yangiladi",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "⚛ (3) robo-games ← useEffect yangiladi",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "⚛ (4) robo-games ← useEffect yangiladi",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Xuddi Roblox o'yinchisi kabi: serverga kirdi (Mount), o'ynayapti (Update — har state o'zgarishida), chiqib ket",
+     "b": "1 Mount ekranga chiqish — serverga kirdi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Xuddi Roblox o'yinchisi kabi: serverga kirdi (Mount), o'ynayapti (Update — har state o'zgarishida), chiqib ket",
+     "b": "Mount ekranga chiqish — serverga kirdi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Xuddi Roblox o'yinchisi kabi: serverga kirdi (Mount), o'ynayapti (Update — har state o'zgarishida), chiqib ket",
+     "b": "✓ Mount ekranga chiqish — serverga kirdi",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KONSOL",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SERVER (SAHIFA)",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"sevimlilar tugmasini qo'shib ber\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — BOSIB SINAB KO'RING",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz sinaysiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HISOBLAGICHINGIZ — BOSIB SINANG",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": "1 function GameCard() {",
+     "ph": "const [likes, setLikes] = useState(0)",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 [likes, setLikes] juftlik 2 = useState(…) 3 boshlang'ich (0)",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — BOSIB SINANG",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

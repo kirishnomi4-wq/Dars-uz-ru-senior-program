@@ -236,20 +236,20 @@ const RECAPS = {
       {
         ic: "📋",
         h: { uz: "Funksiya — nomlangan ish tartibi", ru: 'Функция — именованный порядок действий' },
-        body: { uz: <>Funksiya — bir marta yozib qo'yilgan, nom berilgan <b>ish tartibi</b>. Yozib qo'yilgani bilan u o'zi ishlamaydi: kimdir uni <b>nomi bilan chaqirishi</b> kerak.</>, ru: <>Функция — записанный один раз, названный по имени <b>порядок действий</b>. Сама по себе она не работает: кто-то должен <b>вызвать её по имени</b>.</> },
+        body: { uz: <>Funksiya — nom berilgan <b>ish tartibi</b>, uni chaqirmaguncha o'zi ishlamaydi.</>, ru: <>Функция — названный <b>порядок действий</b>, и сама она не работает, пока её не вызовут.</> },
         vis: { uz: <RcFlow items={["tartibni yozdim", "nomi bor", "hali chaqirilmadi"]} />, ru: <RcFlow items={['порядок записан', 'имя есть', 'ещё не вызвана'] } /> },
         ask: { uz: "Yozib qo'yilgan tartib o'zi ishga tushadimi? Nima yetishmayapti?", ru: 'Запишете порядок — он сам заработает? Чего не хватает?' }
       },
       {
         ic: "▶️",
         h: { uz: "Qavs () — «ishga tushir» tugmasi", ru: 'Скобки () — кнопка «запустить»' },
-        body: { uz: <>Funksiya nomidan keyin <b>qavs qo'ysang</b> — masalan zarar() — ichidagi kod endi ishga tushadi. Qavs = «boshla» tugmasini bosgandek. Qavssiz yozsang, u shunchaki nom bo'lib turadi, hech nima bo'lmaydi.</>, ru: <>Если после имени функции <b>поставить скобки</b> — например zarar() — код внутри неё запустится. Скобки = как нажать кнопку «старт». Без скобок это просто имя — ничего не произойдёт.</> },
+        body: { uz: <>Nomdan keyin qavs qo'yilsa — <b>zarar()</b> — ichidagi kod ishga tushadi.</>, ru: <>Если поставить скобки после имени — <b>zarar()</b>, — код внутри запустится.</> },
         vis: { uz: <RcFlow items={["zarar", "()", "ichidagi kod ishlaydi"]} />, ru: <RcFlow items={['zarar', '()', 'код внутри работает']} /> }
       },
       {
         ic: "🔁",
         h: { uz: "Shuning uchun qulay", ru: 'Вот почему это удобно' },
-        body: { uz: <>Bir marta yozasiz, keyin nomini chaqirib <b>istagancha marta</b> ishlatasiz. Har safar kodni qaytadan yozib o'tirmaysiz — faqat zarar() deb chaqirasiz.</>, ru: <>Пишете один раз, а потом вызываете по имени <b>сколько угодно раз</b>. Не нужно каждый раз переписывать код — просто вызываете zarar().</> },
+        body: { uz: <>Bir marta yozasiz, keyin <b>nomini chaqirib</b> istagancha ishlatasiz.</>, ru: <>Пишете один раз, а потом <b>вызываете по имени</b> сколько угодно.</> },
       },
     ]
   },
@@ -261,20 +261,20 @@ const RECAPS = {
       {
         ic: "🥤",
         h: { uz: "return — mashinadan chiqadigan natija", ru: 'return — результат на выходе машины' },
-        body: { uz: <>Funksiyani <b>sharbat mashinasi</b> deb tasavvur qiling: ichiga meva solasiz, u ishlaydi va tashqariga <b>sharbat chiqaradi</b>. Mana shu tashqariga chiqadigan natija — return.</>, ru: <>Представьте функцию как <b>соковыжималку</b>: кладёте внутрь фрукты, она работает и наружу <b>выдаёт сок</b>. Вот этот результат на выходе и есть return.</> },
+        body: { uz: <>Sharbat mashinasidan chiqadigan sharbat kabi, funksiya natijasi — <b>return</b>.</>, ru: <>Как сок из соковыжималки, результат на выходе функции — это <b>return</b>.</> },
         vis: { uz: <RcFlow items={["meva kiradi", "mashina ishlaydi", "sharbat chiqadi"]} />, ru: <RcFlow items={['фрукты входят', 'машина работает', 'сок выходит']} /> }
       },
       {
         ic: "🔢",
         h: { uz: "zarar(3) qanday hisoblanadi", ru: 'Как считается zarar(3)' },
-        body: { uz: <>Kod return kuch * 3 edi. kuch o'rniga <b>3</b> qo'yiladi: 3 * 3. Natija <b>9</b> bo'ladi va funksiya aynan shu 9 ni qaytaradi.</>, ru: <>Код был return kuch * 3. Вместо kuch подставляется <b>3</b>: 3 * 3. Получается <b>9</b> — именно эту девятку функция и возвращает.</> },
+        body: { uz: <>return kuch * 3 da kuch o'rniga 3 qo'yiladi va funksiya <b>9</b> ni qaytaradi.</>, ru: <>В return kuch * 3 вместо kuch подставляется 3, и функция возвращает <b>9</b>.</> },
         vis: <RcFlow items={["kuch = 3", "3 * 3", "9"]} />,
         ask: { uz: "Agar zarar(5) desak, mashina qanday sonni qaytaradi?", ru: 'А если написать zarar(5) — какое число вернёт машина?' }
       },
       {
         ic: "📤",
         h: { uz: "Qaytaradi — ekranga chiqarmaydi", ru: 'Возвращает — а не печатает на экран' },
-        body: { uz: <>return natijani <b>tashqariga uzatadi</b>, keyin uni saqlash yoki qo'shib ishlatish mumkin. Bu ekranga yozib beruvchi console.log emas — u boshqa ish qiladi.</>, ru: <>return <b>передаёт результат наружу</b> — потом его можно сохранить или использовать в вычислениях. Это не console.log, который печатает на экран, — у него другая работа.</> },
+        body: { uz: <><b>return</b> natijani tashqariga uzatadi, console.log kabi ekranga yozmaydi.</>, ru: <><b>return</b> передаёт результат наружу, а не печатает его на экран, как console.log.</> },
       },
     ]
   },
@@ -286,19 +286,19 @@ const RECAPS = {
       {
         ic: "📥",
         h: { uz: "Parametr — funksiyaga beriladigan narsa", ru: 'Параметр — то, что передают функции' },
-        body: { uz: <>Parametrlar — funksiya <b>ichiga solinadigan qutichalar</b>. zarar(kuch, bonus) da ikkita quti bor: kuch va bonus. Chaqirganda ularga qiymat solasiz.</>, ru: <>Параметры — это <b>коробочки внутри функции</b>. У zarar(a, b) их две: a и b. При вызове вы кладёте в них значения.</> },
+        body: { uz: <>Parametrlar — funksiya ichidagi <b>qutichalar</b>, chaqirganda ularga qiymat solasiz.</>, ru: <>Параметры — это <b>коробочки</b> внутри функции: при вызове вы кладёте в них значения.</> },
         vis: <RcFlow items={["zarar(10, 3)", "kuch = 10", "bonus = 3"]} />
       },
       {
         ic: "🔢",
         h: { uz: "zarar(10, 3) qanday ishlaydi", ru: 'Как работает zarar(10, 3)' },
-        body: { uz: <>a ga <b>10</b>, b ga <b>3</b> tushadi. Kod return a - b, ya'ni 10 - 3. Natija <b>7</b> qaytadi.</>, ru: <>В a попадает <b>10</b>, в b — <b>3</b>. Код return a - b, то есть 10 - 3. Возвращается <b>7</b>.</> },
+        body: { uz: <>a ga 10, b ga 3 tushadi va return a - b <b>7</b> ni qaytaradi.</>, ru: <>В a попадает 10, в b — 3, и return a - b возвращает <b>7</b>.</> },
         vis: <RcFlow items={["10 - 3", "7"]} sep="→" />
       },
       {
         ic: "↔️",
         h: { uz: "Tartib muhim", ru: 'Порядок важен' },
-        body: { uz: <>Birinchi son kuch ga, ikkinchisi bonus ga tushadi. Agar <b>o'rnini almashtirsangiz</b> — zarar(3, 10) — natija boshqacha (3 * 3 + 10 = 19) bo'ladi. Shuning uchun tartibga e'tibor bering.</>, ru: <>Первое число попадает в kuch, второе — в bonus. Если <b>поменять их местами</b> — zarar(3, 10) — результат будет другим (3 * 3 + 10 = 19). Так что следите за порядком.</> },
+        body: { uz: <>Birinchi son kuch ga, ikkinchisi bonus ga tushadi — <b>tartib</b> natijani o'zgartiradi.</>, ru: <>Первое число попадает в kuch, второе — в bonus: <b>порядок</b> меняет результат.</> },
         ask: { uz: "zarar(3, 10) desak, natija qancha chiqadi va nega boshqacha?", ru: 'А если zarar(3, 10) — что получится и почему иначе?' }
       },
     ]
@@ -311,19 +311,19 @@ const RECAPS = {
       {
         ic: "📦",
         h: { uz: "let x = ... — natijani qutiga solish", ru: 'let x = ... — результат в коробку' },
-        body: { uz: <>Funksiya biror natija <b>qaytaradi</b>, biz esa uni x nomli <b>qutiga solib qo'yamiz</b>. let x = salom("Olim") — bu «salom ni ishlat, chiqqan natijani x ga saqla» degani.</>, ru: <>Функция <b>возвращает</b> результат, а мы <b>кладём его в коробку</b> по имени x. let x = salom("Olim") значит: «запусти salom, а то, что получится, сохрани в x».</> },
+        body: { uz: <>let x = salom("Olim") — funksiya natijasini <b>x qutisiga</b> saqlaydi.</>, ru: <>let x = salom("Olim") сохраняет результат функции в <b>коробку x</b>.</> },
         vis: { uz: <RcFlow items={["salom('Olim')", "natija chiqadi", "x ga saqlanadi"]} />, ru: <RcFlow items={["salom('Olim')", 'выходит результат', 'сохраняется в x']} /> }
       },
       {
         ic: "🔗",
         h: { uz: "«Salom, » + ism qanday birlashadi", ru: 'Как склеивается «Salom, » + ism' },
-        body: { uz: <>Ichida return "Salom, " + ism bor. ism o'rniga <b>"Olim"</b> qo'yiladi, ikki matn <b>yopishtiriladi</b>: "Salom, " + "Olim" = "Salom, Olim".</>, ru: <>Внутри есть return "Salom, " + ism. Вместо ism подставляется <b>"Olim"</b>, и два текста <b>склеиваются</b>: "Salom, " + "Olim" = "Salom, Olim".</> },
+        body: { uz: <>ism o'rniga "Olim" qo'yiladi va ikki matn <b>yopishtiriladi</b>: "Salom, Olim".</>, ru: <>Вместо ism подставляется "Olim", и два текста <b>склеиваются</b>: "Salom, Olim".</> },
         vis: <RcFlow items={["'Salom, '", "'Olim'", "'Salom, Olim'"]} sep="+" />
       },
       {
         ic: "🎯",
         h: { uz: "Demak x ichida nima bor", ru: 'Так что же лежит в x' },
-        body: { uz: <>x ichida na "salom", na "ism" degan so'z bor — balki funksiya <b>chindan qaytargan natija</b>: "Salom, Olim". x endi shu tayyor matnni saqlab turadi.</>, ru: <>В x нет ни слова "salom", ни слова "ism" — там <b>настоящий результат</b>, который вернула функция: "Salom, Olim". Теперь x хранит этот готовый текст.</> },
+        body: { uz: <>x ichida funksiya chindan qaytargan <b>tayyor matn</b> turadi: "Salom, Olim".</>, ru: <>В x лежит <b>готовый текст</b>, который вернула функция: "Salom, Olim".</> },
         ask: { uz: "Agar salom('Laylo') desak, x ichida qanday matn saqlanardi?", ru: "А если вызвать salom('Laylo') — какой текст окажется в x?" }
       },
     ]
@@ -332,7 +332,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -350,7 +350,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -359,13 +359,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -450,7 +450,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — классу эта тема пока непонятна. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -459,7 +459,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответов мало ({answered}) — делать выводы по проценту трудно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -591,7 +591,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`✓ ${tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
               : waiting
@@ -599,8 +599,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(isMentorLive
               ? explainCorrect
               : waiting
@@ -612,11 +613,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1156,12 +1157,12 @@ const Screen4 = (props) => (
     questionText="zarar() deb yozsak nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar()</span> deb yozsak nima bo'ladi?</>, ru: <>Что произойдёт, если написать <span className="mono" style={{ color: T.accent }}>zarar()</span>?</> })}</h2></>}
     options={[tr({ uz: "Hech narsa — u shunchaki nom bo'lib turadi", ru: 'Ничего — это просто имя, оно так и останется' }), tr({ uz: 'Funksiya ichidagi kod ishga tushadi (chaqiriladi)', ru: 'Код внутри функции запустится (вызов)' }), tr({ uz: "Funksiya butunlay o'chib, yo'qoladi", ru: 'Функция полностью сотрётся и исчезнет' }), tr({ uz: 'Noldan yangi funksiya yaratiladi', ru: 'С нуля создастся новая функция' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Nomdan keyingi `()` — bu chaqirish (call). Funksiya ichida yozilgan kod aynan shu paytda ishga tushadi.", ru: 'Верно! `()` после имени — это вызов (call). Код, записанный внутри функции, запускается именно в этот момент.' })}
+    explainCorrect={tr({ uz: "Nomdan keyingi `()` — chaqirish, u kodni ishga tushiradi.", ru: '`()` после имени — это вызов, он запускает код функции.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — `()` qo'shilsa, bu chaqirish bo'ladi: funksiya ichidagi kod ishlaydi.", ru: 'Нет — если добавить `()`, это вызов: код внутри функции сработает.' }),
-      2: tr({ uz: "Yo'q — chaqirish funksiyani o'chirmaydi. Aksincha, uni ishga tushiradi va keyin yana chaqirsa bo'ladi.", ru: 'Нет — вызов не удаляет функцию. Наоборот, он её запускает, и потом можно вызвать снова.' }),
-      3: tr({ uz: "Yo'q — funksiya `function` bilan bir marta yaratiladi. `zarar()` esa borini chaqiradi.", ru: 'Нет — функция создаётся один раз через `function`. А `zarar()` вызывает уже существующую.' }),
-      default: tr({ uz: '`zarar()` — funksiyani chaqiradi: ichidagi kod ishga tushadi.', ru: '`zarar()` — вызывает функцию: код внутри запускается.' })
+      0: tr({ uz: "Qavs qo'yilgan — endi bu shunchaki nom emas.", ru: 'Скобки поставлены — это уже не просто имя.' }),
+      2: tr({ uz: "Funksiya o'chmaydi — uni keyin yana chaqirsa bo'ladi.", ru: 'Функция не исчезает — её можно вызвать снова.' }),
+      3: tr({ uz: "Funksiya `function` bilan bir marta yaratiladi, `()` bilan emas.", ru: 'Функция создаётся один раз через `function`, а не через `()`.' }),
+      default: tr({ uz: 'Qavs `()` — «boshla» tugmasi, deganimizni eslang.', ru: 'Вспомните: скобки `()` — как кнопка «старт».' })
     }} />
 );
 
@@ -1211,11 +1212,11 @@ const Screen5b = (props) => (
     questionText="function zarar(kuch) { return kuch * 3 }. zarar(3) nimani qaytaradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Funksiyani o'qing", ru: 'Прочитайте функцию' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>zarar</FN>(kuch) {'{'} <KW>return</KW> kuch * <NUM>3</NUM> {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>zarar(3)</span>?</> })}</h2></>}
     options={['6', '9', '3', '33']} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! 3 qiymati `kuch` parametriga tushadi, funksiya `kuch * 3` = 3 * 3 = 9 ni qaytaradi.", ru: 'Верно! Значение 3 попадает в параметр `kuch`, функция возвращает `kuch * 3` = 3 * 3 = 9.' })}
+    explainCorrect={tr({ uz: "3 qiymati `kuch` ga tushadi: `kuch * 3` = 3 * 3.", ru: 'Значение 3 попадает в `kuch`: `kuch * 3` = 3 * 3.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — 6 bu 3 + 3 bo'lardi. Bizda esa `kuch * 3` (ko'paytirish): 3 * 3 = 9.", ru: 'Нет — 6 было бы при 3 + 3. А у нас `kuch * 3` (умножение): 3 * 3 = 9.' }),
-      2: tr({ uz: "Yo'q — 3 bu shunchaki `kuch` ning o'zi. Funksiya `kuch * 3` qaytaradi: 9.", ru: 'Нет — 3 это просто само `kuch`. Функция возвращает `kuch * 3`: 9.' }),
-      3: tr({ uz: "Yo'q — 33 bu matn ulanishi. Bizda son ko'paytiriladi: 3 * 3 = 9.", ru: 'Нет — 33 это склейка текста. А у нас числа умножаются: 3 * 3 = 9.' }),
+      0: tr({ uz: "6 — bu 3 + 3, bizda esa `*` ko'paytirish.", ru: '6 — это 3 + 3, а у нас `*` — умножение.' }),
+      2: tr({ uz: "3 — `kuch` ning o'zi, funksiya esa u bilan hisob qiladi.", ru: '3 — это само `kuch`, а функция с ним ещё считает.' }),
+      3: tr({ uz: "33 — matnlar ulanishi, bizda esa sonlar ko'paytiriladi.", ru: '33 — это склейка текста, а у нас умножаются числа.' }),
       default: '`kuch = 3` → `kuch * 3` = 9.'
     }} />
 );
@@ -1368,11 +1369,11 @@ const Screen9 = (props) => (
     questionText="function zarar(kuch, bonus) { return kuch * 3 + bonus }. zarar(10, 3) nimani qaytaradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>zarar</FN>(kuch, bonus) {'{'} <KW>return</KW> kuch * <NUM>3</NUM> + bonus {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'zarar(10, 3) nimani qaytaradi?', ru: 'Что вернёт zarar(10, 3)?' })}</h2></>}
     options={['30', '33', '19', '103']} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Tartib bo'yicha `kuch = 10`, `bonus = 3`. Funksiya `10 * 3 + 3` = 33 ni qaytaradi.", ru: 'Верно! По порядку `kuch = 10`, `bonus = 3`. Функция возвращает `10 * 3 + 3` = 33.' })}
+    explainCorrect={tr({ uz: "Tartib bo'yicha `kuch` = 10, `bonus` = 3: 10 * 3 + 3.", ru: 'По порядку `kuch` = 10, `bonus` = 3: 10 * 3 + 3.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — 30 bu faqat `kuch * 3`. Bonus ham qo'shiladi: 30 + 3 = 33.", ru: 'Нет — 30 это только `kuch * 3`. Бонус тоже прибавляется: 30 + 3 = 33.' }),
-      2: tr({ uz: "Yo'q — bu qiymatlar almashib ketgani: 3 * 3 + 10 = 19. Tartib muhim: `kuch` birinchi = 10.", ru: 'Нет — здесь значения переставлены: 3 * 3 + 10 = 19. Порядок важен: `kuch` первое = 10.' }),
-      3: tr({ uz: "Yo'q — 103 bu matn ulanishi. Bizda sonlar hisoblanadi: 10 * 3 + 3 = 33.", ru: 'Нет — 103 это склейка текста. А у нас считаются числа: 10 * 3 + 3 = 33.' }),
+      0: tr({ uz: "30 — faqat `kuch * 3`, `bonus` ham qo'shiladi.", ru: '30 — это только `kuch * 3`, а ещё прибавляется `bonus`.' }),
+      2: tr({ uz: "Qiymatlar o'rni almashgan: birinchi son `kuch` ga tushadi.", ru: 'Значения перепутаны: первое число попадает в `kuch`.' }),
+      3: tr({ uz: "103 — matn ulanishi, bizda esa sonlar ustida hisob-kitob.", ru: '103 — это склейка текста, а у нас вычисления с числами.' }),
       default: '`kuch = 10`, `bonus = 3` → 10 * 3 + 3 = 33.'
     }} />
 );
@@ -1501,12 +1502,12 @@ const Screen12 = (props) => (
     questionText="function salom(ism) { return 'Salom, ' + ism }. let x = salom('Olim'). x da nima saqlanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>salom</FN>(ism) {'{'} <KW>return</KW> <STR>"Salom, "</STR> + ism {'}'}</div><div style={{ marginTop: 4 }}><KW>let</KW> x = <FN>salom</FN>(<STR>"Olim"</STR>)</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>x</span> o'zgaruvchisida nima saqlanadi?</>, ru: <>Что сохранится в переменной <span className="mono" style={{ color: T.accent }}>x</span>?</> })}</h2></>}
     options={['`"salom"`', '`"ism"`', '`"Salom, Olim"`', '`undefined`']} correctIdx={2}
-    explainCorrect={tr({ uz: `To'g'ri! "Olim" \`ism\` parametriga tushadi, funksiya \`"Salom, " + ism\` = "Salom, Olim" ni qaytaradi. \`return\` qiymati \`x\` ga saqlanadi.`, ru: 'Верно! "Olim" попадает в параметр `ism`, функция возвращает `"Salom, " + ism` = "Salom, Olim". Значение `return` сохраняется в `x`.' })}
+    explainCorrect={tr({ uz: `"Olim" \`ism\` ga tushadi va "Salom, " ga yopishtiriladi.`, ru: '"Olim" попадает в `ism` и приклеивается к "Salom, ".' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — funksiya nomi «salom», lekin u matn qaytarmaydi. Qaytadigan qiymat «Salom, Olim».", ru: 'Нет — «salom» это имя функции, но возвращает она не его. Возвращаемое значение — «Salom, Olim».' }),
-      1: tr({ uz: "Yo'q — «ism» bu parametr nomi. Uning qiymati «Olim», natija esa «Salom, Olim».", ru: 'Нет — «ism» это имя параметра. Его значение «Olim», а результат — «Salom, Olim».' }),
-      3: tr({ uz: "Yo'q — `return` bor, demak `undefined` emas. Funksiya «Salom, Olim» ni qaytaradi.", ru: 'Нет — `return` есть, значит не `undefined`. Функция возвращает «Salom, Olim».' }),
-      default: tr({ uz: '`return` «Salom, Olim» ni qaytaradi → `x` = «Salom, Olim».', ru: '`return` возвращает «Salom, Olim» → `x` = «Salom, Olim».' })
+      0: tr({ uz: "«salom» — funksiya nomi, funksiya uni qaytarmaydi.", ru: '«salom» — это имя функции, его функция не возвращает.' }),
+      1: tr({ uz: "«ism» — parametr nomi, qaytadigan qiymat emas.", ru: '«ism» — имя параметра, а не возвращаемое значение.' }),
+      3: tr({ uz: "Funksiyada `return` bor — demak u `undefined` qaytarmaydi.", ru: 'В функции есть `return` — значит, она не вернёт `undefined`.' }),
+      default: tr({ uz: '`return` qatoriga qarang: u nimani qaytaradi?', ru: 'Посмотрите на строку с `return`: что она возвращает?' })
     }} />
 );
 

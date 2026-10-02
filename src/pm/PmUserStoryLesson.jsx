@@ -296,30 +296,30 @@ const RECAPS = {
   4: {
     title: { uz: "Hikoyada NATIJA shart", ru: 'В истории РЕЗУЛЬТАТ обязателен' },
     cards: [
-      { ic: "🎯", h: { uz: "NATIJA — real foyda", ru: 'РЕЗУЛЬТАТ — реальная польза' }, body: { uz: <>Har User Story oxirida <b>[NATIJA]</b> bo'ladi: foydalanuvchi oladigan real foyda, tugma nomi emas.</>, ru: <>В конце каждой User Story стоит <b>[РЕЗУЛЬТАТ]</b>: реальная польза для пользователя, а не название кнопки.</> } },
-      { ic: "🙋", h: { uz: "KIM aniq bo'lsin", ru: 'КТО должен быть конкретным' }, body: { uz: <>«foydalanuvchi» — aniq emas, juda umumiy so'z. <b>Aniq turi</b> aytilsin: yangi mehmon, qaytgan mijoz, mentor.</>, ru: <>«пользователь» — это неконкретно, слишком общее слово. Назовите <b>конкретный тип</b>: новый гость, вернувшийся клиент, ментор.</> } },
-      { ic: "🧩", h: { uz: "Uch bo'lak to'liq", ru: 'Все три части на месте' }, body: { uz: <>Hikoyada uch bo'lak — <b>KIM + NIMA + NATIJA</b> — bittasi ham tushib qolmasin, tushsa hikoya to'liq bo'lmay qoladi.</>, ru: <>В истории три части — <b>КТО + ЧТО + РЕЗУЛЬТАТ</b> — ни одна не должна выпадать, иначе история остаётся неполной.</> }, ask: { uz: "«qizil tugma xohlayman» — bu hikoyada NATIJA bormi?", ru: '«хочу красную кнопку» — есть ли в этой истории РЕЗУЛЬТАТ?' } },
+      { ic: "🎯", h: { uz: "NATIJA — real foyda", ru: 'РЕЗУЛЬТАТ — реальная польза' }, body: { uz: <>Har User Story oxirida <b>[NATIJA]</b> turadi: real foyda, tugma nomi emas.</>, ru: <>В конце каждой User Story стоит <b>[РЕЗУЛЬТАТ]</b>: реальная польза, а не название кнопки.</> } },
+      { ic: "🙋", h: { uz: "KIM aniq bo'lsin", ru: 'КТО должен быть конкретным' }, body: { uz: <>«Foydalanuvchi» juda umumiy — <b>aniq turini</b> ayting: yangi mehmon, qaytgan mijoz.</>, ru: <>«Пользователь» — слишком общо: назовите <b>конкретный тип</b> — новый гость, вернувшийся клиент.</> } },
+      { ic: "🧩", h: { uz: "Uch bo'lak to'liq", ru: 'Все три части на месте' }, body: { uz: <>Hikoyada <b>KIM + NIMA + NATIJA</b> bo'ladi, bittasi tushsa, u to'liq bo'lmaydi.</>, ru: <>В истории есть <b>КТО + ЧТО + РЕЗУЛЬТАТ</b>, и без любой из частей она неполная.</> }, ask: { uz: "«qizil tugma xohlayman» — bu hikoyada NATIJA bormi?", ru: '«хочу красную кнопку» — есть ли в этой истории РЕЗУЛЬТАТ?' } },
     ]
   },
   6: {
     title: { uz: "NATIJA harakatni takrorlamasin", ru: 'РЕЗУЛЬТАТ не повторяет действие' },
     cards: [
-      { ic: "🔁", h: { uz: "Takror = foyda yo'q", ru: 'Повтор = пользы не видно' }, body: { uz: <>«saytga kirishni xohlayman, saytga kirish uchun» — <b>NATIJA harakatni takrorlaydi</b>, foyda ko'rinmaydi.</>, ru: <>«хочу войти на сайт, чтобы войти на сайт» — <b>РЕЗУЛЬТАТ повторяет действие</b>, пользы не видно.</> } },
-      { ic: "💡", h: { uz: "Nima o'zgaradi?", ru: 'Что изменится?' }, body: { uz: <>To'g'ri NATIJA: harakatdan keyin foydalanuvchi <b>hayotida nima o'zgaradi</b> — masalan «buyurtmamni tez topish uchun».</>, ru: <>Верный РЕЗУЛЬТАТ: что <b>изменится в жизни пользователя</b> после действия — например «чтобы быстро найти свой заказ».</> } },
-      { ic: "✅", h: { uz: "Tekshiruv savoli", ru: 'Проверочный вопрос' }, body: { uz: <>NATIJA'ni tekshiring: u <b>NIMA'ni takrorlamayaptimi</b>? Bir xil bo'lsa — hikoya to'liq emas.</>, ru: <>Проверьте РЕЗУЛЬТАТ: не повторяет ли он <b>ЧТО</b>? Если это одно и то же — история неполная.</> }, ask: { uz: "«...kirish uchun» qismini qanday tuzatamiz?", ru: 'Как исправить кусок «...чтобы войти»?' } },
+      { ic: "🔁", h: { uz: "Takror = foyda yo'q", ru: 'Повтор = пользы не видно' }, body: { uz: <>«Saytga kirish uchun» harakatni <b>takrorlaydi</b>, shuning uchun foyda ko'rinmaydi.</>, ru: <>«Чтобы войти на сайт» <b>повторяет</b> действие, поэтому пользы не видно.</> } },
+      { ic: "💡", h: { uz: "Nima o'zgaradi?", ru: 'Что изменится?' }, body: { uz: <>To'g'ri NATIJA — harakatdan keyin foydalanuvchi hayotida <b>nima o'zgarishi</b>.</>, ru: <>Верный РЕЗУЛЬТАТ — это то, <b>что изменится</b> в жизни пользователя после действия.</> } },
+      { ic: "✅", h: { uz: "Tekshiruv savoli", ru: 'Проверочный вопрос' }, body: { uz: <>NATIJA NIMA'ni <b>takrorlasa</b>, hikoya hali to'liq emas.</>, ru: <>Если РЕЗУЛЬТАТ <b>повторяет</b> ЧТО, история ещё неполная.</> }, ask: { uz: "«...kirish uchun» qismini qanday tuzatamiz?", ru: 'Как исправить кусок «...чтобы войти»?' } },
     ]
   },
   9: {
     title: { uz: "Hikoya — imkoniyat-so'rovi emas", ru: 'История — это не заявка на возможность' },
     cards: [
-      { ic: "🚫", h: "Feature request", body: { uz: <>«Saytda dark mode bo'lsin» — bu <b>imkoniyat-so'rovi</b> (feature request), User Story emas.</>, ru: <>«Пусть на сайте будет тёмная тема» — это <b>заявка на возможность</b> (feature request), а не User Story.</> } },
-      { ic: "❓", h: { uz: "KIM va NATIJA yo'q", ru: 'Нет КТО и РЕЗУЛЬТАТА' }, body: { uz: <>Unda <b>kim</b> va <b>nima uchun</b> yo'q — shuning uchun u hali hikoya emas.</>, ru: <>В ней нет <b>кто</b> и <b>зачем</b> — поэтому это ещё не история.</> } },
-      { ic: "🔧", h: { uz: "Hikoyaga aylantiring", ru: 'Превратите в историю' }, body: { uz: <>Uni to'g'rilash: «Men <b>kechqurun o'qiydigan o'quvchi</b> sifatida, <b>qorong'i rejim</b>ni xohlayman, <b>ko'zim charchamasligi</b> uchun».</>, ru: <>Как поправить: «Я как <b>ученик, который читает вечером</b>, хочу <b>тёмную тему</b>, чтобы <b>глаза не уставали</b>».</> }, ask: { uz: "Bu gapga qaysi 2 bo'lak yetishmayapti?", ru: 'Каких двух частей не хватает этой фразе?' } },
+      { ic: "🚫", h: "Feature request", body: { uz: <>«Saytda dark mode bo'lsin» — <b>imkoniyat-so'rovi</b>, User Story emas.</>, ru: <>«Пусть на сайте будет тёмная тема» — это <b>заявка на возможность</b>, а не User Story.</> } },
+      { ic: "❓", h: { uz: "KIM va NATIJA yo'q", ru: 'Нет КТО и РЕЗУЛЬТАТА' }, body: { uz: <>Unda <b>kim</b> va <b>nima uchun</b> yo'q, shuning uchun u hali hikoya emas.</>, ru: <>В ней нет <b>кто</b> и <b>зачем</b>, поэтому это ещё не история.</> } },
+      { ic: "🔧", h: { uz: "Hikoyaga aylantiring", ru: 'Превратите в историю' }, body: { uz: <>Masalan: «Men o'quvchi sifatida, qorong'i rejimni xohlayman, ko'zim charchamasligi uchun».</>, ru: <>Например: «Я как ученик хочу тёмную тему, чтобы глаза не уставали».</> }, ask: { uz: "Bu gapga qaysi 2 bo'lak yetishmayapti?", ru: 'Каких двух частей не хватает этой фразе?' } },
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -337,7 +337,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -346,13 +346,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -431,7 +431,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirishni ochish</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Eslatmani ochish', ru: '📖 Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -518,7 +518,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -526,8 +526,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -538,7 +539,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1655,8 +1656,8 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Hikoya 1: qizil tugma', ru: 'История 1: красная кнопка' })}
     options={[tr({ uz: "KIM bo'lagi — foydalanuvchi turi", ru: 'Часть КТО — тип пользователя' }), tr({ uz: "NIMA bo'lagi — harakat", ru: 'Часть ЧТО — действие' }), tr({ uz: "NATIJA bo'lagi — real foyda", ru: 'Часть РЕЗУЛЬТАТ — реальная польза' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "NATIJA umuman yo'q: «qizil tugma» harakat, lekin foydalanuvchi undan qanday foyda olishi aytilmagan. Yana bir kamchilik: KIM ham aniq emas («foydalanuvchi» — qaysi turi?).", ru: 'РЕЗУЛЬТАТА нет совсем: «красная кнопка» — это действие, но не сказано, какую пользу пользователь из него получит. Есть и второй недостаток: КТО тоже неконкретен («пользователь» — какой именно?).' })}
-    explainWrong={{ 0: tr({ uz: "KIM bor — «foydalanuvchi» (aniq bo'lmasa ham yozilgan). Yetishmayotgani — NATIJA: harakatdan keyin nima foyda?", ru: 'КТО есть — «пользователь» (пусть и неконкретно, но написан). Не хватает РЕЗУЛЬТАТА: какая польза после действия?' }), 1: tr({ uz: "NIMA bor — «qizil tugma xohlayman». Yetishmayotgani — NATIJA: undan keyin nima foyda?", ru: 'ЧТО есть — «хочу красную кнопку». Не хватает РЕЗУЛЬТАТА: какая от этого польза?' }), default: tr({ uz: "NATIJA (real foyda) yetishmaydi — oxirgi variantni tanlang.", ru: 'Не хватает РЕЗУЛЬТАТА (реальной пользы) — выберите последний вариант.' }) }}
+    explainCorrect={tr({ uz: "Tugmadan foydalanuvchi qanday foyda olishi aytilmagan.", ru: 'Не сказано, какую пользу пользователь получит от кнопки.' })}
+    explainWrong={{ 0: tr({ uz: "KIM bor — gapda «foydalanuvchi» deb yozilgan.", ru: 'КТО есть — во фразе написано «пользователь».' }), 1: tr({ uz: "NIMA bor — «qizil tugma xohlayman» deb yozilgan.", ru: 'ЧТО есть — написано «хочу красную кнопку».' }), default: tr({ uz: "Uch bo'lakni gapdan birma-bir qidirib ko'ring.", ru: 'Поищите во фразе все три части по очереди.' }) }}
   />
 );
 const Screen8 = (props) => (
@@ -1667,8 +1668,8 @@ const Screen8 = (props) => (
     questionText={tr({ uz: 'Hikoya 2: saytga kirish', ru: 'История 2: вход на сайт' })}
     options={[tr({ uz: 'Men mehmon sifatida', ru: 'Я как гость' }), tr({ uz: 'saytga kirishni xohlayman', ru: 'хочу войти на сайт' }), tr({ uz: 'saytga kirish uchun', ru: 'чтобы войти на сайт' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "«Saytga kirish uchun» harakatning takrori, foyda aytilmagan. To'g'ri varianti, masalan: «buyurtmamni tez topish uchun».", ru: '«Чтобы войти на сайт» повторяет действие, польза не названа. Правильно было бы, например: «чтобы быстро найти свой заказ».' })}
-    explainWrong={{ 0: tr({ uz: "KIM aniq («mehmon») — bu joyi to'g'ri. Xato NATIJA'da: u harakatni takrorlaydi. Oxirgi variantni tanlang.", ru: 'КТО конкретен («гость») — здесь всё верно. Ошибка в РЕЗУЛЬТАТЕ: он повторяет действие. Выберите последний вариант.' }), 1: tr({ uz: "NIMA to'g'ri yozilgan. Muammo — NATIJA harakatni takrorlaydi. Oxirgi variantni tanlang.", ru: 'ЧТО написано верно. Проблема в том, что РЕЗУЛЬТАТ повторяет действие. Выберите последний вариант.' }), default: tr({ uz: "NATIJA harakatni takrorlaydi (foyda yo'q) — oxirgi variantni tanlang.", ru: 'РЕЗУЛЬТАТ повторяет действие (пользы нет) — выберите последний вариант.' }) }}
+    explainCorrect={tr({ uz: "NATIJA harakatni takrorlaydi — foyda aytilmagan.", ru: 'РЕЗУЛЬТАТ повторяет действие — польза не названа.' })}
+    explainWrong={{ 0: tr({ uz: "KIM aniq — «mehmon», u hech narsani takrorlamaydi.", ru: 'КТО конкретен — «гость», он ничего не повторяет.' }), 1: tr({ uz: "NIMA gapda birinchi marta aytilgan — u takror emas.", ru: 'ЧТО названо впервые — это не повтор.' }), default: tr({ uz: "Qaysi so'zlar gapda ikki marta uchrashini qidiring.", ru: 'Поищите, какие слова встречаются во фразе дважды.' }) }}
   />
 );
 const Screen9 = (props) => (
@@ -1679,8 +1680,8 @@ const Screen9 = (props) => (
     questionText={tr({ uz: 'Dark mode gapi: baho', ru: 'Фраза про dark mode: оценка' })}
     options={[tr({ uz: "Tayyor User Story — o'zgartirish shart emas", ru: 'Готовая User Story — менять не нужно' }), tr({ uz: 'Imkoniyat-so\'rovi (feature request) — hali hikoya emas', ru: 'Заявка на возможность (feature request) — ещё не история' }), tr({ uz: "JTBD misoli — milkshake'dagi kabi «natija»", ru: 'Пример JTBD — «результат», как в истории с коктейлем' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Bu hali hikoya emas, shunchaki so'rov: unda KIM ham, NATIJA ham yo'q, faqat NIMA aytilgan.", ru: 'Это ещё не история, а просто просьба: в ней нет ни КТО, ни РЕЗУЛЬТАТА, названо только ЧТО.' })}
-    explainWrong={{ 0: tr({ uz: "Hali tayyor emas: gapda KIM ham, NATIJA ham yo'q — faqat NIMA kerakligi aytilgan. Bunday gapni imkoniyat-so'rovi deymiz.", ru: 'Ещё не готова: во фразе нет ни КТО, ни РЕЗУЛЬТАТА — сказано только, ЧТО нужно. Такую фразу называют заявкой на возможность.' }), 2: tr({ uz: "JTBD — odam mahsulotdan kutadigan foydali natija haqidagi g'oya. Bu gap esa oddiy so'rov: unda na KIM bor, na NATIJA.", ru: 'JTBD — это идея о полезном результате, которого человек ждёт от продукта. А здесь обычная просьба: ни КТО, ни РЕЗУЛЬТАТА.' }), default: tr({ uz: "Bu — imkoniyat-so'rovi: faqat NIMA kerakligi aytilgan, KIM ham, NATIJA ham yo'q. Hali hikoya emas.", ru: 'Это заявка на возможность: сказано только ЧТО нужно, нет ни КТО, ни РЕЗУЛЬТАТА. Ещё не история.' }) }}
+    explainCorrect={tr({ uz: "Unda faqat NIMA bor — KIM ham, NATIJA ham yo'q.", ru: 'В ней только ЧТО — нет ни КТО, ни РЕЗУЛЬТАТА.' })}
+    explainWrong={{ 0: tr({ uz: "Tayyor hikoyada KIM va NATIJA bo'ladi — bu gapda ular yo'q.", ru: 'В готовой истории есть КТО и РЕЗУЛЬТАТ — здесь их нет.' }), 2: tr({ uz: "JTBD — odam kutadigan natija haqida, bu gap esa unday emas.", ru: 'JTBD — о результате, которого ждёт человек, а эта фраза не о нём.' }), default: tr({ uz: "Gapda KIM, NIMA va NATIJA'dan qaysilari borligini sanang.", ru: 'Посчитайте, какие из КТО, ЧТО и РЕЗУЛЬТАТА есть во фразе.' }) }}
   />
 );
 

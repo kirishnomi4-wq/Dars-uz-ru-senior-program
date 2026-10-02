@@ -1,0 +1,397 @@
+<title>LMS buglari 29.09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustunli hisobot (max 880px) — avval topilmalar, keyin qaror-savollari, oxirida nusxalash paneli */
+:root {
+  --bg: #F3F4F7; --paper: #FFFFFF; --ink: #1B1F2A; --ink2: #4A5163; --ink3: #7A8194; --line: #DCDFE7;
+  --accent: #E8472A; --accent-soft: #FDE9E4; --ok: #178A5A; --ok-soft: #E2F4EB; --warn: #B36B00; --warn-soft: #FFF2DB;
+  --code-bg: #1C2333; --code-fg: #E6E9F2;
+  --f-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.6; padding-inline: 16px; padding-block: 28px 64px; }
+.wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 21px; font-weight: 800; }
+h3 { font-size: 16.5px; font-weight: 700; }
+p { margin: 0; }
+code, .mono { font-family: var(--f-mono); font-size: 0.9em; }
+code { background: var(--accent-soft); color: var(--accent); padding: 1px 6px; border-radius: 5px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); }
+.lead { color: var(--ink2); max-width: 65ch; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.bugs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.bug .tag { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; }
+.tag.red { background: var(--accent-soft); color: var(--accent); }
+.tag.green { background: var(--ok-soft); color: var(--ok); }
+.bug .where { font-size: 13px; color: var(--ink3); }
+.bug dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; font-size: 14px; }
+.bug dt { color: var(--ink3); }
+.bug dd { margin: 0; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; max-width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; background: var(--paper); }
+figcaption { font-size: 13px; color: var(--ink2); }
+figcaption b.bad { color: var(--accent); }
+figcaption b.good { color: var(--ok); }
+.facts { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--ink2); }
+.facts b { color: var(--ink); }
+.note { background: var(--warn-soft); border-radius: 12px; padding: 12px 16px; color: var(--ink); font-size: 14.5px; }
+.note b { color: var(--warn); }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 560px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink3); font-weight: 700; }
+tr:last-child td { border-bottom: none; }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink2); }
+.pill { font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.seen { background: var(--accent-soft); color: var(--accent); }
+.pill.new { background: var(--warn-soft); color: var(--warn); }
+.pill.proved { background: var(--ok-soft); color: var(--ok); }
+.q { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.q-head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.q-id { font-family: var(--f-mono); font-weight: 600; color: var(--accent); }
+.q-why { color: var(--ink2); font-size: 14.5px; max-width: 70ch; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 16px; cursor: pointer; transition: border-color .15s, background .15s; }
+.opt:hover { border-color: var(--ink3); }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt input { margin-top: 5px; accent-color: var(--accent); width: 17px; height: 17px; }
+.opt input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.opt-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.opt-title { font-weight: 700; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.rec { font-size: 11.5px; font-weight: 800; letter-spacing: 0.04em; background: var(--ok); color: var(--paper); padding: 2px 8px; border-radius: 99px; }
+.pm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; font-size: 14px; color: var(--ink2); }
+.pm span::before { font-weight: 800; margin-right: 6px; }
+.pm .plus::before { content: "+"; color: var(--ok); }
+.pm .minus::before { content: "−"; color: var(--accent); }
+.opt figure { max-width: 520px; }
+textarea { width: 100%; min-height: 64px; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 14.5px; background: var(--bg); color: var(--ink); resize: vertical; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.copy { position: sticky; bottom: 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px -18px rgba(0,0,0,.45); }
+.copy pre { margin: 0; font-family: var(--f-mono); font-size: 13px; background: var(--code-bg); color: var(--code-fg); padding: 10px 12px; border-radius: 10px; white-space: pre-wrap; word-break: break-word; max-height: 180px; overflow: auto; }
+.copy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+button.btn { font: inherit; font-weight: 800; border: none; background: var(--accent); color: #fff; padding: 11px 20px; border-radius: 11px; cursor: pointer; }
+button.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.status { font-size: 14px; color: var(--ok); font-weight: 700; }
+@media (max-width: 720px) {
+  .bugs, .pair, .pm { grid-template-columns: minmax(0, 1fr); }
+  .q { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="eyebrow">LMS · 1–4c modullar · 29.09.2026</span>
+  <h1>Uchta bug, ikkita sabab</h1>
+  <p class="lead">Hammasi LMS'dagi faylning o'zida (25.09 paketi, md5 bilan tekshirilgan) brauzerda qayta chiqarildi. Tuzatish-variantlari vaqtinchalik nusxada suratga olindi.</p>
+</header>
+
+<section>
+  <h2>Holat (javoblaringizdan keyin)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Savol</th><th>Javob</th><th>Holat</th></tr></thead>
+    <tbody>
+      <tr><td>S1 · <span class="mono">fixed</span> sinfi</td><td>A</td><td><span class="pill proved">bajarildi</span> 15 fayl, 16 className + 21 CSS joy. 16 ta joyning hammasi LMS CSS bilan brauzerda tekshirildi (13 tasi bosib, 3 tasi CSS darajasida): qator joyida, qo'shnisi ustiga tushmaydi</td></tr>
+      <tr><td>S2 · belgi</td><td>faqat ✓</td><td><span class="pill proved">bajarildi</span> 11 fayl: «tuzatildi» so'zi olindi, ✓ qoldi. Bitta istisno: S7</td></tr>
+      <tr><td>Darvozalar</td><td></td><td><span class="pill proved">7/7</span> esbuild · undef · jsx · keys · dark · til · prompt. Parallel seans qo'shgan <span class="mono">tell</span>/<span class="mono">emoji</span> yiqiladi, lekin HEAD bilan aynan bir xil (77/77, 39/39): oldindan bor qarz, bu tahrirdan emas</td></tr>
+      <tr><td>S3 · paket</td><td>A</td><td><span class="pill new">S6 ni kutyapti</span> yangi darslar kirsa-kirmasa tartib raqamlari o'zgaradi</td></tr>
+      <tr><td>S4 · 2 yangi dars</td><td>A</td><td><span class="pill seen">to'xtatildi</span> yangi topilma, pastda S6</td></tr>
+      <tr><td>S5 · darvozalar</td><td>A</td><td>paketdan keyin: yangi skriptlar alohida faylda, <span class="mono">gates.mjs</span> ga ulash parallel seanslar tugagach</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Yangi savollar</h2>
+
+  <div class="q" data-q="S6">
+    <div class="q-head"><span class="q-id">S6</span><h3>2 ta yangi dars hali tayyor emas. Bugun yuklaymizmi?</h3></div>
+    <p class="q-why">S4 da «A» ni tanlagan edingiz, lekin sahifada buni aytmagan edim. «Muammoni qanday topamiz» (2-Modul) va «Bitta natija, uch xil sabab» (3-Modul) 28.09 dan beri <b>GATE 2 javobini kutib turibdi</b>, undan keyin RU tarjima va GATE 3 bor. Ikkalasi ham ruscha tayyor emas: RU rejimda brauzerda yurilganda <b>Muammo'da 101, JTBD'da 98 ta o'zbekcha so'z</b> chiqdi (JTBD'da 540 ta matndan 413 tasi ruschasiz). Tayyor ikki tilli dars (PmLesson4) esa toza.</p>
+    <div class="pair">
+      <figure><img src="img/s6-jtbd-ru.jpg" alt="JTBD darsi rus rejimida: sarlavha, mentor gapi va kartalar o'zbekcha"><figcaption><b class="bad">JTBD · RU rejim</b> · faqat «Назад» ruscha</figcaption></figure>
+      <figure><img src="img/s6-muammo-ru.jpg" alt="Muammo darsi rus rejimida: sarlavha va mentor gapi o'zbekcha"><figcaption><b class="bad">Muammo · RU rejim</b> · sarlavha, mentor, maydon o'zbekcha</figcaption></figure>
+    </div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S6" value="A" id="s6a"><div class="opt-body">
+        <span class="opt-title">A · Bugun yuklanmaydi: 88 ta mavjud material yangilanadi, 2 yangi dars GATE 2 → RU → GATE 3 dan keyin <span class="rec">TAVSIYA</span></span>
+        <div class="pm"><span class="plus">LMS'ga faqat tugallangan dars chiqadi</span><span class="minus">fayl nomlarida 2- va 3-Modulda 03 raqami bo'sh qoladi, keyin to'ladi</span><span class="plus">bugun katalog va server ishi kerak emas</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S6" value="B" id="s6b"><div class="opt-body">
+        <span class="opt-title">B · O'zbekcha holida bugun yuklanadi (katalog + server bilan)</span>
+        <div class="pm"><span class="plus">dastur bugunoq to'liq</span><span class="minus">ruscha guruh o'quvchilari o'zbekcha matn ko'radi</span><span class="minus">GATE 2/3 dan o'tmagan dars o'quvchiga chiqadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S6" value="C" id="s6c"><div class="opt-body">
+        <span class="opt-title">C · Avval GATE 2 va RU tarjima, keyin bugun yuklanadi</span>
+        <div class="pm"><span class="plus">to'liq va tugallangan</span><span class="minus">bir necha soatlik ish, bugun kechga ulgurmasligi mumkin</span><span class="minus">GATE 2 javobingiz kerak (53 surat)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S6" value="Boshqa" id="s6d"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S6" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S7">
+    <div class="q-head"><span class="q-id">S7</span><h3>React darsida ✓ baribir ko'rinmaydi. Izohni qisqartiramizmi?</h3></div>
+    <p class="q-why">3-Modul «React nima va nima uchun?», 16-ekran. Tuzatilgan qatorning o'zi uzun (<span class="mono">&lt;SkinKartasi /&gt;  &lt;Savat /&gt;   // ikki alohida blok</span>), shuning uchun kod qutisi 472 px, ichidagisi 504 px bo'lib qoladi. Natijada qutida gorizontal aylantirgich chiqadi va ✓ ko'rinmaydi. Bu LMS'dan qat'i nazar shunday. Ruschasi (<span class="mono">// два отдельных блока</span>) yana uzunroq.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S7" value="A" id="s7a"><div class="opt-body">
+        <span class="opt-title">A · <span class="mono">// ikki blok</span> / <span class="mono">// два блока</span> <span class="rec">TAVSIYA</span></span>
+        <figure><img src="img/s7-a.jpg" alt="Qisqartirilgan variant: qator qutiga sig'adi, ✓ ko'rinadi"><figcaption><b class="good">A variant</b> · uz va ru ikkalasida quti 472 = 472, aylantirgich yo'q</figcaption></figure>
+        <div class="pm"><span class="plus">✓ ko'rinadi, aylantirgich yo'qoladi</span><span class="minus">izoh matni biroz qisqaradi (ma'no bir xil)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S7" value="B" id="s7b"><div class="opt-body">
+        <span class="opt-title">B · Tegmaymiz, yashil qator yetarli</span>
+        <figure><img src="img/s7-hozir.jpg" alt="Hozirgi holat: uzun qator qutining chetiga yetgan, ✓ ko'rinmaydi"><figcaption>Hozirgi holat · ✓ qutidan tashqarida</figcaption></figure>
+        <div class="pm"><span class="plus">o'zgarish yo'q</span><span class="minus">kod qutisida aylantirgich chiqadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S7" value="Boshqa" id="s7c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S7" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+</section>
+
+<section>
+  <h2>Oldingi hisobot</h2>
+  <p class="lead">S1–S5 ga javob berilgan. Pastdagi topilmalar va savollar o'zgarmagan, ma'lumot uchun qoldirildi.</p>
+</section>
+
+<section>
+  <h2>Qisqacha</h2>
+  <div class="bugs">
+    <div class="card bug">
+      <span class="tag green">Qaror kerak emas</span>
+      <h3>JS o'zgaruvchilar: <span class="mono">score is not defined</span></h3>
+      <span class="where">2-Modul · 03-dars · 6-ekran «let»</span>
+      <dl><dt>Sabab</dt><dd>Kod oynasida mavjud bo'lmagan <code>score</code> o'zgaruvchisi</dd>
+          <dt>Holat</dt><dd>28.09 da manbada tuzatilgan, LMS'ga yuklanmagan</dd></dl>
+    </div>
+    <div class="card bug">
+      <span class="tag red">S1, S2</span>
+      <h3>«Endi xatoni toping»: qatorlar ustma-ust</h3>
+      <span class="where">1-Modul · 03 HTML asoslari · 8-ekran</span>
+      <dl><dt>Sabab</dt><dd><code>fixed</code> sinfi LMS'ning Tailwind CSS'i bilan to'qnashadi</dd>
+          <dt>Holat</dt><dd>Manbada ham bor, 15 joyda</dd></dl>
+    </div>
+    <div class="card bug">
+      <span class="tag red">S1</span>
+      <h3>Ekranni kesib o'tgan yashil chiziq</h3>
+      <span class="where">4-Modul · 12 «Ilova nimani yozib qoladi?» · 10-ekran</span>
+      <dl><dt>Sabab</dt><dd>Xuddi shu <code>fixed</code> sinfi</dd>
+          <dt>Holat</dt><dd>Manbada ham bor</dd></dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>1. JS o'zgaruvchilar darsi (F-0929-90)</h2>
+  <div class="card">
+    <ul class="facts">
+      <li>O'quvchi 6-ekranda birinchi qiymat-tokenni (25 / 60 / 100 / 250) bosishi bilan dars yiqiladi. Brauzerda qayta chiqarildi: «25» bosildi va <span class="mono">score is not defined</span> chiqdi.</li>
+      <li><b>Sabab:</b> 22.09 da ko'rinadigan nom <span class="mono">ball</span> → <span class="mono">score</span> bo'ldi, JS ifoda ham adashib <span class="mono">{score}</span> bo'lib qoldi. Qiymat esa <span class="mono">ball</span> da turadi.</li>
+      <li><b>Uyda:</b> o'quvchi tiqilib qoladi. «Davom etish» token qo'yilmaguncha yopiq, qayta yuklansa progress uni yana shu ekranga qaytaradi, natija CRM'ga bormaydi. <b>Jonli darsda</b> token bosilmasa o'tib ketsa bo'ladi.</li>
+      <li>27.09 da topilgan va 28.09 da tuzatilgan (0ff0a8e). Yuklashdan oldingi tekshiruv faqat birinchi ekranni ochadi va hech narsani bosmaydi, shuning uchun o'tib ketgan.</li>
+      <li>Kechqurungi yangi paketda o'zi tuzaladi. Ekranlar soni va ball-kalitlari o'zgarmagan, o'quvchi progressi buzilmaydi.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>2. <span class="mono">fixed</span> sinfi (F-0929-91)</h2>
+  <p class="lead">LMS sahifasi Tailwind CSS ishlatadi, unda <code>.fixed { position: fixed }</code> qoidasi bor. LMS darsni o'z sahifasining ichida chizadi (iframe yo'q), shuning uchun bu qoida darsga ham tegadi. Dars tuzatilgan qatorga aynan <span class="mono">fixed</span> degan sinf beradi. Natijada qator joyidan uzilib, brauzer oynasiga yopishib qoladi.</p>
+
+  <div class="pair">
+    <figure><img src="img/siz-html1.jpg" alt="Sizning suratingiz: HTML darsida ikki kod qatori ustma-ust chizilgan, yashil ramka qora qutidan chiqib ketgan"><figcaption><b class="bad">Sizning suratingiz</b> · HTML asoslari, 8-ekran</figcaption></figure>
+    <figure><img src="img/html1-buzuq.jpg" alt="Qayta chiqarilgan holat: LMS CSS bilan 1- va 2-qator ustma-ust"><figcaption><b class="bad">Qayta chiqarildi</b> · LMS CSS bilan, xato qator bosilgach</figcaption></figure>
+    <figure><img src="img/siz-pm13.jpg" alt="Sizning suratingiz: ekranni gorizontal kesib o'tgan yashil chiziq"><figcaption><b class="bad">Sizning suratingiz</b> · «Ilova nimani yozib qoladi?», 10-ekran</figcaption></figure>
+    <figure><img src="img/pm13-buzuq.jpg" alt="Qayta chiqarilgan holat: Telefon raqami qatori butun oyna eniga cho'zilgan"><figcaption><b class="bad">Qayta chiqarildi</b> · 2-shartda «Telefon raqami» 🔒 olgach</figcaption></figure>
+  </div>
+  <p style="font-size:13px;color:var(--ink3)">Bizning suratlarda shriftlar tarmoqsiz yuklangani uchun sarlavhalar boshqacha ko'rinadi. Bu farqning bugga aloqasi yo'q.</p>
+
+  <div class="card">
+    <h3>O'lchov (LMS CSS bilan / usiz)</h3>
+    <ul class="facts">
+      <li><b>HTML darsi:</b> tuzatilgan qator <span class="mono">position: fixed</span> bo'ladi. 2-qator uning tagiga ko'tariladi (ikkalasi <span class="mono">top: 393px</span>), eni 281 → 334 px bo'lib qora qutidan chiqadi, quti balandligi 105 → 61 px ga tushadi.</li>
+      <li><b>PM darsi:</b> <span class="mono">.sxm-row</span> da <span class="mono">width: 100%</span> bor. Qator fixed bo'lgach bu 100% ota-blokdan emas, butun oynadan hisoblanadi: eni 470 → 1366 px. Yashil chiziq shundan paydo bo'ladi.</li>
+      <li>LMS CSS'isiz ikkala ekran ham to'g'ri chiziladi.</li>
+    </ul>
+  </div>
+
+  <div class="note"><b>Nega o'tgan safar tuzalmagan:</b> xuddi shu bug 22.09 da React darsidan kelgan edi (F-0922-55, «kod qatorlari ustma-ust»). O'shanda ekran ochilib, xato qator bosilib tekshirilgan va natija «takrorlanmadi, skrinshot artefakti bo'lsa kerak» deb yopilgan. Bizning barcha tekshiruvlarimiz (page-audit, ru-walk, smoke-lms, Vercel QA saytlari) darsni LMS CSS'isiz ochadi, shuning uchun bug ularda hech qachon ko'rinmagan. Ya'ni u tuzatilmagan, «topilmadi» deb qolgan.</div>
+
+  <h3 style="margin-top:6px">Ta'sirlangan joylar: 15 ta</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Modul</th><th>Dars</th><th>Ekran</th><th>Qator turi</th><th>Holat</th></tr></thead>
+    <tbody>
+      <tr><td>1-Modul</td><td>03 · HTML asoslari</td><td class="n">8</td><td>debug-qator</td><td><span class="pill proved">isbotlandi</span></td></tr>
+      <tr><td>1-Modul</td><td>05 · Takrorlash: HTML ustaxonasi</td><td class="n">7</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>1-Modul</td><td>09 · HTML Praktika: Portfolio sayt</td><td class="n">15</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>3-Modul</td><td>01 · React nima va nima uchun?</td><td class="n">16</td><td>debug-qator</td><td><span class="pill seen">22.09 da kelgan</span></td></tr>
+      <tr><td>3-Modul</td><td>03 · Birinchi komponent: Vite, JSX, props</td><td class="n">19</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>3-Modul</td><td>06 · Props va qayta ishlatish</td><td class="n">17</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>3-Modul</td><td>09 · API: POST/PUT/DELETE</td><td class="n">17</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>3-Modul</td><td>11 · Praktika: React Router</td><td class="n">17</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>3-Modul</td><td>yangi · Bitta natija, uch xil sabab (JTBD)</td><td class="n">12</td><td>kod-qator</td><td><span class="pill new">hali yuklanmagan</span></td></tr>
+      <tr><td>4-Modul</td><td>02 · Ilova nimani eslab qolsin?</td><td class="n">10</td><td>jadval-qator</td><td>LMS'da</td></tr>
+      <tr><td>4-Modul</td><td>05 · Routing: server so'rovni qanday topadi</td><td class="n">13</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>4-Modul</td><td>06 · PostgreSQL so'rovlar: CRUD + AI</td><td class="n">16</td><td>debug-qator</td><td>LMS'da</td></tr>
+      <tr><td>4-Modul</td><td>12 · Ilova nimani yozib qoladi?</td><td class="n">10</td><td>sxema-qator</td><td><span class="pill proved">isbotlandi</span></td></tr>
+      <tr><td>4a-Modul</td><td>04 · Praktika: KitobShop backend</td><td class="n">4, 19</td><td>voqea-qator</td><td>LMS'da</td></tr>
+      <tr><td>4c-Modul</td><td>04 · Loyiha kuni: to'liq lentani qurish</td><td class="n">4</td><td>debug-qator</td><td>LMS'da</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--ink2)">2 tasi brauzerda isbotlandi. Qolgan 13 tasida sinf ham, mexanizm ham bir xil. Tuzatishdan keyin har biri brauzerda LMS CSS bilan alohida tekshiriladi. LMS CSS'idagi 401 ta Tailwind sinfining boshqalari bilan to'qnashuv yo'q (<span class="mono">.italic</span> ham bor, lekin u darsdagi bilan bir xil ishni qiladi).</p>
+</section>
+
+<section>
+  <h2>3. Qolgan darslar: bosib-yurish sinovi</h2>
+  <div class="card">
+    <ul class="facts">
+      <li>LMS paketidagi <b>88 fayl, 1365 ekran</b> brauzerda ochildi. Har ekranda 6 tagacha tugma bosildi va sahifa xatolari yig'ildi.</li>
+      <li>Crash faqat bitta chiqdi: JS o'zgaruvchilar, 6-ekran. E'lon qilinmagan o'zgaruvchi bo'yicha statik tekshiruvda ham 88 fayldan faqat shu bitta topildi. Hozirgi manbada (1–4c) esa 0.</li>
+      <li>Cheklov: faqat sudrab bajariladigan harakatlar va kod-muharririga yozish bu sinovda qamrab olinmadi.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Savollar</h2>
+
+  <div class="q" data-q="S1">
+    <div class="q-head"><span class="q-id">S1</span><h3><span class="mono">fixed</span> sinfini qanday tuzatamiz?</h3></div>
+    <p class="q-why">15 joy, hammasining ildizi bir xil.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S1" value="A" id="s1a"><div class="opt-body">
+        <span class="opt-title">A · Dars tomonda nomini almashtiramiz: <span class="mono">fixed</span> → <span class="mono">is-fixed</span></span>
+        <div class="pair">
+          <figure><img src="img/html1-a.jpg" alt="Nomi almashtirilgan variant: HTML darsida ikki qator alohida, LMS CSS bilan"><figcaption><b class="good">A variant</b> · LMS CSS bilan, HTML darsi</figcaption></figure>
+          <figure><img src="img/pm13-a.jpg" alt="Nomi almashtirilgan variant: Telefon raqami qatori ro'yxat ichida"><figcaption><b class="good">A variant</b> · LMS CSS bilan, PM darsi</figcaption></figure>
+        </div>
+        <div class="pm"><span class="plus">bugun kechgacha ulguradi, butunlay bizning qo'limizda</span><span class="minus">15 fayl (8+ fayl qoidasi, KATTA_TOZALASH)</span><span class="plus">har faylda 2 joy, mexanik o'zgarish</span><span class="minus">LMS'ning boshqa sinfi bilan kelajakda yana to'qnashishi mumkin</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S1" value="B" id="s1b"><div class="opt-body">
+        <span class="opt-title">B · LMS jamoasidan darsni ajratib chizishni so'raymiz</span>
+        <p style="font-size:14.5px;color:var(--ink2)">Tailwind'ga prefiks berish yoki darsni Shadow DOM ichida chizish. Ko'rinishi A bilan bir xil bo'ladi.</p>
+        <div class="pm"><span class="plus">ildizdan hal qiladi, kelajakdagi to'qnashuvlardan ham himoya</span><span class="minus">bizning qo'limizda emas, bugunga ulgurmaydi</span><span class="plus">darslarga tegilmaydi</span><span class="minus">bu vaqtgacha bug LMS'da qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S1" value="C" id="s1c"><div class="opt-body">
+        <span class="opt-title">C · A bugun + B so'rov sifatida LMS jamoasiga <span class="rec">TAVSIYA</span></span>
+        <div class="pm"><span class="plus">bugungi yuklash toza chiqadi</span><span class="minus">ikki tomonda ish</span><span class="plus">keyinchalik boshqa to'qnashuvlar ham yopiladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S1" value="Boshqa" id="s1d"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S1" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S2">
+    <div class="q-head"><span class="q-id">S2</span><h3>«✓ tuzatildi» belgisi tor ustunda qirqiladi. Nima qilamiz?</h3></div>
+    <p class="q-why">S1 tuzatilgach ko'rinib qoladi. HTML darsida 3 ustun bor, qora quti tor bo'lgani uchun belgi o'ng chetda kesiladi (LMS'siz ham shunday). Hozir u faqat qator «qochib» chiqqani uchun ko'rinardi. Bir xil komponent 8 ta debug-darsda bor.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S2" value="A" id="s2a"><div class="opt-body">
+        <span class="opt-title">A · Tegmaymiz</span>
+        <figure><img src="img/badge-a.jpg" alt="Belgi qora qutining o'ng chetida qirqilgan"><figcaption>Belgi chetda «✓ tu…» bo'lib qirqilgan</figcaption></figure>
+        <div class="pm"><span class="plus">o'zgarish yo'q</span><span class="minus">qirqilgan matn nuqson bo'lib qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S2" value="B" id="s2b"><div class="opt-body">
+        <span class="opt-title">B · Belgini olib tashlaymiz <span class="rec">TAVSIYA</span></span>
+        <figure><img src="img/badge-b.jpg" alt="Belgisiz variant: yashil qator va pastdagi Topdingiz qutisi"><figcaption>Yashil qator va pastdagi «✓ Topdingiz!» qutisi baribir aytadi</figcaption></figure>
+        <div class="pm"><span class="plus">hech narsa qirqilmaydi</span><span class="minus">8 ta darsda bitta qator</span><span class="plus">bir ma'no ikki marta aytilmaydi (159-qonun)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S2" value="Boshqa" id="s2c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S2" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S3">
+    <div class="q-head"><span class="q-id">S3</span><h3>Kechqurungi paketni qachon yig'aman?</h3></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S3" value="A" id="s3a"><div class="opt-body">
+        <span class="opt-title">A · Avval S1/S2 tuzatiladi, keyin yig'aman <span class="rec">TAVSIYA</span></span>
+        <p style="font-size:14.5px;color:var(--ink2)">1–4c eng so'nggi manbadan. Tekshiruvlar: odatiy qabul-tekshiruvi (uz+ru, md5, katalog), bosib-yurish sinovi va LMS CSS bilan ochish. Natija: yuklashga tayyor papka va ROYXAT.</p>
+      </div></label>
+      <label class="opt"><input type="radio" name="S3" value="B" id="s3b"><div class="opt-body">
+        <span class="opt-title">B · Hozir boricha yig'aman</span>
+        <div class="pm"><span class="plus">tezroq</span><span class="minus"><span class="mono">fixed</span> bugi 15 joyda paket ichida qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S3" value="Boshqa" id="s3c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S3" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S4">
+    <div class="q-head"><span class="q-id">S4</span><h3>28.09 da qo'shilgan 2 ta yangi dars bugun yuklansinmi?</h3></div>
+    <p class="q-why">2-Modul «Muammoni qanday topamiz» (3-o'rin) va 3-Modul «Bitta natija, uch xil sabab» (3-o'rin). Ikkalasining <span class="mono">lesson_id</span> si (<span class="mono">pm-m2d3-v1</span>, <span class="mono">pm-m3d3-v1</span>) server katalogida yo'q, katalog 20.09 dan beri yangilanmagan. Katalogsiz bu darslarning natijasi CRM'ga yozilmaydi.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S4" value="A" id="s4a"><div class="opt-body">
+        <span class="opt-title">A · Yuklanadi: avval katalog serverga chiqadi <span class="rec">TAVSIYA, agar bugun server chiqsa</span></span>
+        <div class="pm"><span class="plus">modullar to'liq, v9 dasturiga mos</span><span class="minus">server chiqarish kerak (GitLab, sizning buyrug'ingiz bilan)</span><span class="plus">bir kunda tugaydi</span><span class="minus">CRM'da keyingi darslarning tartib raqami bittaga suriladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S4" value="B" id="s4b"><div class="opt-body">
+        <span class="opt-title">B · Bugun yuklanmaydi, faqat mavjud 88 material yangilanadi</span>
+        <div class="pm"><span class="plus">server ishi kerak emas</span><span class="minus">ikki dars keyinroq alohida yuklanadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S4" value="Boshqa" id="s4c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S4" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S5">
+    <div class="q-head"><span class="q-id">S5</span><h3>Bunday buglar yana o'tib ketmasligi uchun ikki darvoza qo'shaymi?</h3></div>
+    <p class="q-why">Bu jarayon o'zgarishi. <span class="mono">gates.mjs</span> umumiy fayl, shuning uchun parallel seanslar tugagach qo'shiladi.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S5" value="A" id="s5a"><div class="opt-body">
+        <span class="opt-title">A · Ha, ikkalasi <span class="rec">TAVSIYA</span></span>
+        <ul class="facts" style="font-size:14.5px"><li><b>gates:</b> dars sinfi LMS'ning Tailwind sinfi bilan bir xil nomda bo'lsa xato beradi (bugungi skaner, bir necha soniya).</li><li><b>Yuklash-tekshiruvi:</b> har ekranni bosib yurish va LMS CSS bilan ochish (bugungi skript, 88 faylga ~15 daqiqa).</li></ul>
+      </div></label>
+      <label class="opt"><input type="radio" name="S5" value="B" id="s5b"><div class="opt-body"><span class="opt-title">B · Faqat gates'dagi sinf-tekshiruvi</span></div></label>
+      <label class="opt"><input type="radio" name="S5" value="C" id="s5c"><div class="opt-body"><span class="opt-title">C · Yo'q, hozircha kerak emas</span></div></label>
+      <label class="opt"><input type="radio" name="S5" value="Boshqa" id="s5d"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S5" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+</section>
+
+<div class="copy">
+  <strong>Javobingiz</strong>
+  <pre id="out">Hali tanlanmadi.</pre>
+  <div class="copy-row"><button class="btn" id="copy" type="button">Javobni nusxalash</button><span class="status" id="st" aria-live="polite"></span></div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var Q = ['S6', 'S7', 'S1', 'S2', 'S3', 'S4', 'S5'];
+  var out = document.getElementById('out');
+  function build() {
+    var lines = [];
+    Q.forEach(function (q) {
+      var c = document.querySelector('input[name="' + q + '"]:checked');
+      var n = (document.getElementById('n-' + q).value || '').trim();
+      if (c || n) lines.push(q + ': ' + (c ? c.value : '—') + (n ? ' · ' + n : ''));
+    });
+    out.textContent = lines.length ? 'LMS buglari 29.09\n' + lines.join('\n') : 'Hali tanlanmadi.';
+  }
+  document.addEventListener('change', build);
+  document.addEventListener('input', build);
+  document.getElementById('copy').addEventListener('click', function () {
+    build();
+    var t = out.textContent, st = document.getElementById('st');
+    function sel() { var r = document.createRange(); r.selectNodeContents(out); var s = getSelection(); s.removeAllRanges(); s.addRange(r); st.textContent = 'Matn belgilandi, Ctrl+C bosing'; }
+    try { navigator.clipboard.writeText(t).then(function () { st.textContent = 'Nusxalandi'; }, sel); } catch (e) { sel(); }
+  });
+})();
+</script>

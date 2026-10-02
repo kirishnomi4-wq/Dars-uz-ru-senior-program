@@ -268,15 +268,15 @@ const RECAPS = {
   3: {
     title: { uz: "Notanish so'z", ru: 'Незнакомое слово' },
     cards: [
-      { ic: '🗣', h: { uz: 'Rost javob ham yetib bormaydi', ru: 'Даже правдивый ответ не доходит' }, body: { uz: <>Javobingiz rost bo'lsa ham, <b>notanish so'z bilan</b> aytilsa — so'ragan odam undan hech narsa olmaydi.</>, ru: <>Даже если ваш ответ правдив, но сказан <b>незнакомым словом</b> — спросивший ничего из него не получит.</> } },
-      { ic: '🙂', h: { uz: "Ishni oddiy so'zda ayting", ru: 'Скажите дело простыми словами' }, body: { uz: <>Ishni oddiy so'z bilan aytsangiz, javob <b>yetib boradi</b>: «telefon o'chsa ham band joylar turadi».</>, ru: <>Скажите дело простыми словами — и ответ <b>дойдёт</b>: «даже если телефон выключить, занятые места останутся».</> } },
-      { ic: '🔎', h: { uz: "Odam bilmaydigan kasb-so'z", ru: 'Слово из профессии, которого человек не знает' }, body: { uz: <>Qarab turgan odam bilmaydigan kasb-so'zni <b>texnik so'z</b> deymiz. U javobning o'rnini egallab qo'yadi.</>, ru: <>Слово из профессии, которого не знает человек рядом, мы называем <b>техническим словом</b>. Оно занимает место ответа.</> }, ask: { uz: "Uyingizdagilar biladigan bitta texnik so'z bormi?", ru: 'Есть ли хоть одно техническое слово, которое знают у вас дома?' } }
+      { ic: '🗣', h: { uz: 'Rost javob ham yetib bormaydi', ru: 'Даже правдивый ответ не доходит' }, body: { uz: <>Rost javob ham <b>notanish so'z bilan</b> aytilsa, odamga yetib bormaydi.</>, ru: <>Даже верный ответ, сказанный <b>незнакомым словом</b>, до человека не дойдёт.</> } },
+      { ic: '🙂', h: { uz: "Ishni oddiy so'zda ayting", ru: 'Скажите дело простыми словами' }, body: { uz: <>Oddiy so'z bilan javob <b>yetib boradi</b>: «telefon o'chsa ham band joylar turadi».</>, ru: <>Скажите дело простыми словами — и ответ <b>дойдёт</b>: «даже если телефон выключить, занятые места останутся».</> } },
+      { ic: '🔎', h: { uz: "Odam bilmaydigan kasb-so'z", ru: 'Слово из профессии, которого человек не знает' }, body: { uz: <>Qarab turgan odam bilmaydigan kasb-so'z — <b>texnik so'z</b>, u javob o'rnini egallaydi.</>, ru: <>Слово из профессии, незнакомое человеку рядом, — это <b>техническое слово</b>, оно занимает место ответа.</> }, ask: { uz: "Uyingizdagilar biladigan bitta texnik so'z bormi?", ru: 'Есть ли хоть одно техническое слово, которое знают у вас дома?' } }
     ]
   },
   5: {
     title: { uz: 'Uch qavat', ru: 'Три этажа' },
     cards: [
-      { ic: '🏢', h: { uz: 'Har qavatning bitta ishi bor', ru: 'У каждого этажа одно дело' }, body: { uz: <>Sahifa <b>ko'rsatadi</b>, server <b>tekshiradi</b>, baza <b>eslab qoladi</b>. Uch qavat, uch ish.</>, ru: <>Страница <b>показывает</b>, сервер <b>проверяет</b>, база <b>запоминает</b>. Три этажа, три дела.</> } },
+      { ic: '🏢', h: { uz: 'Har qavatning bitta ishi bor', ru: 'У каждого этажа одно дело' }, body: { uz: <>Sahifa <b>ko'rsatadi</b>, server <b>tekshiradi</b>, baza <b>eslab qoladi</b>.</>, ru: <>Страница <b>показывает</b>, сервер <b>проверяет</b>, база <b>запоминает</b>.</> } },
       { ic: '🔵', h: { uz: "Bitta bosish uchalasidan o'tadi", ru: 'Одно нажатие проходит через все три' }, body: { uz: <>Sahifa so'rovni serverga yuboradi, server bazaga yozadi, javob yana sahifaga qaytadi.</>, ru: <>Страница отправляет запрос серверу, сервер записывает в базу, ответ возвращается на страницу.</> } },
       { ic: '🗄', h: { uz: 'Eslab qolish bazaning ishi', ru: 'Запоминать — дело базы' }, body: { uz: <>Telefon o'chsa ham band joylar turaveradi — chunki ularni <b>baza</b> eslab qolgan.</>, ru: <>Даже если телефон выключить, занятые места останутся — потому что их запомнила <b>база</b>.</> }, ask: { uz: "Telefoningiz o'chganda saytdagi band joylar qayerda turadi?", ru: 'Когда ваш телефон выключен, где хранятся занятые места сайта?' } }
     ]
@@ -284,7 +284,7 @@ const RECAPS = {
   7: {
     title: { uz: "Texnika o'z qadamini olmagan", ru: 'Техника не получила своего шага' },
     cards: [
-      { ic: '🏠', h: { uz: "Besh qadamda nima yo'q", ru: 'Чего нет в пяти шагах' }, body: { uz: <>Airbnb — begonaning uyida ijaraga turish xizmati. U aytib bergan besh qadamda <b>«sayt qanday qurilgani»</b> qadami yo'q.</>, ru: <>Airbnb — сервис аренды жилья у обычных людей. В пяти шагах, которые рассказал Airbnb, нет шага <b>«как устроен сайт»</b>.</> } },
+      { ic: '🏠', h: { uz: "Besh qadamda nima yo'q", ru: 'Чего нет в пяти шагах' }, body: { uz: <>Airbnb aytib bergan besh qadamda <b>«sayt qanday qurilgani»</b> qadami yo'q.</>, ru: <>В пяти шагах, которые рассказал Airbnb, нет шага <b>«как устроен сайт»</b>.</> } },
       { ic: '📋', h: { uz: 'Mahsulot qadamida nima bor', ru: 'Что есть в шаге «продукт»' }, body: { uz: <>Mahsulot qadamida mahsulotning o'zi turgan: <b>sayt odamga nima qilib berishi</b>.</>, ru: <>В шаге «продукт» стоял сам продукт: <b>что сайт делает для человека</b>.</> } },
       { ic: '🙋', h: { uz: 'Besh qadam kim haqida', ru: 'О ком пять шагов' }, body: { uz: <>Besh qadamning hammasi <b>odam va mahsulot</b> ishi haqida bo'lgan.</>, ru: <>Все пять шагов были о деле <b>человека и продукта</b>.</> }, ask: { uz: "O'z saytingizni bir gapda aytsangiz, nimadan boshlaysiz?", ru: 'Если рассказать о своём сайте одной фразой — с чего начнёте?' } }
     ]
@@ -293,13 +293,13 @@ const RECAPS = {
     title: { uz: 'Qaror va sabab', ru: 'Решение и причина' },
     cards: [
       { ic: '🎤', h: { uz: 'Qarorni foydasi tushuntiradi', ru: 'Решение объясняет его польза' }, body: { uz: <>Texnik qarorni <b>odamga foydasi</b> tushuntiradi — texnika so'zlari emas.</>, ru: <>Техническое решение объясняет <b>его польза для человека</b> — а не слова из техники.</> } },
-      { ic: '🤔', h: { uz: 'Sabab — qutuladigan noqulaylik', ru: 'Причина — неудобство, от которого избавляет' }, body: { uz: <>Sabab odam <b>qaysi noqulaylikdan qutulishini</b> aytadi: unutilish, to'qnashuv, eskirgan ro'yxat.</>, ru: <>Причина говорит, <b>от какого неудобства избавляется человек</b>: забывание, столкновение, устаревший список.</> } },
+      { ic: '🤔', h: { uz: 'Sabab — qutuladigan noqulaylik', ru: 'Причина — неудобство, от которого избавляет' }, body: { uz: <>Sabab — odam <b>qutuladigan noqulaylik</b>: unutilish, to'qnashuv, eskirgan ro'yxat.</>, ru: <>Причина говорит, <b>от какого неудобства избавляется человек</b>: забывание, столкновение, устаревший список.</> } },
       { ic: '🗣', h: { uz: 'Bitta savol yetadi', ru: 'Достаточно одного вопроса' }, body: { uz: <>Har qarorga bitta savol bering: bu qaror odamni <b>qaysi noqulaylikdan qutqaradi?</b></>, ru: <>К каждому решению задайте один вопрос: от какого неудобства это решение <b>спасает человека?</b></> }, ask: { uz: "Bazada saqlash qarori odamni qaysi noqulaylikdan qutqaradi?", ru: 'От какого неудобства спасает человека решение хранить в базе?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -317,7 +317,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -325,13 +325,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -410,7 +410,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -491,7 +491,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -499,8 +499,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -511,7 +512,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -847,11 +848,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Texnik so'z bilan javob bersangiz, so'ragan odam nima qiladi", ru: 'Что сделает спросивший, если ответить техническим словом' })}
     options={[tr({ uz: "Javobni tushunib, boshqa savolga o'tadi", ru: 'Поймёт ответ и перейдёт к другому вопросу' }), tr({ uz: "O'sha so'z nimaligini qaytadan so'raydi", ru: 'Переспросит, что значит это слово' }), tr({ uz: "Javobingizni o'z so'zi bilan takrorlaydi", ru: 'Повторит ваш ответ своими словами' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "O'sha so'z unga hech narsa aytmadi, savoli javobsiz qoldi. Ishni oddiy so'z bilan aytsangiz — yetib boradi.", ru: 'Это слово ему ничего не сказало, вопрос остался без ответа. Скажите дело простыми словами — и ответ дойдёт.' })}
+    explainCorrect={tr({ uz: "Notanish so'z hech narsa aytmadi — savol javobsiz qoldi.", ru: 'Незнакомое слово ничего не сказало — вопрос остался без ответа.' })}
     explainWrong={{
-      0: tr({ uz: "Tushunmadi — texnik so'z unga hech narsa aytmaydi.", ru: 'Не понял — техническое слово ему ничего не говорит.' }),
-      2: tr({ uz: "Bilmagan so'zini o'z so'zi bilan aytolmaydi — javob unga yetib bormadi.", ru: 'Незнакомое слово своими словами не перескажешь — ответ до него не дошёл.' }),
-      default: tr({ uz: "Texnik so'z odamga yetib bormaydi — u savolini qaytadan beradi.", ru: 'Техническое слово до человека не доходит — он задаёт вопрос заново.' })
+      0: tr({ uz: "Texnik so'z unga hech narsa aytmadi — u tushunmadi.", ru: 'Техническое слово ему ничего не сказало — он не понял.' }),
+      2: tr({ uz: "Bilmagan so'zini o'z so'zi bilan takrorlay olmaydi.", ru: 'Незнакомое слово своими словами не перескажешь.' }),
+      default: tr({ uz: "Notanish so'zni eshitgan odam o'zini qanday tutadi?", ru: 'Как ведёт себя человек, услышав незнакомое слово?' })
     }}
   />
 );
@@ -948,11 +949,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: "Telefon o'chganda band joylarni qaysi qavat ushlab qoladi", ru: 'Какой этаж удерживает занятые места, когда телефон выключен' })}
     options={[tr({ uz: 'Yuqori qavat — sahifa', ru: 'Верхний этаж — страница' }), tr({ uz: "O'rta qavat — server", ru: 'Средний этаж — сервер' }), tr({ uz: 'Pastki qavat — baza', ru: 'Нижний этаж — база' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Eslab qolish bazaning ishi: telefon o'chsa ham band joylar turadi.", ru: 'Запоминать умеет база: даже если телефон выключить, занятые места останутся.' })}
+    explainCorrect={tr({ uz: "Baza eslab qoladi: telefon o'chsa ham band joylar turadi.", ru: 'База запоминает: даже если телефон выключить, места останутся.' })}
     explainWrong={{
-      0: tr({ uz: "Sahifa ko'rsatadi, lekin telefon o'chganda u hech narsani ushlab turmaydi.", ru: 'Страница показывает, но когда телефон выключен, она ничего не удерживает.' }),
+      0: tr({ uz: "Sahifa ko'rsatadi, telefon o'chsa esa hech narsa saqlamaydi.", ru: 'Страница показывает, но при выключенном телефоне ничего не хранит.' }),
       1: tr({ uz: "Server tekshiradi, lekin eslab qolish uning ishi emas.", ru: 'Сервер проверяет, но запоминать — не его дело.' }),
-      default: tr({ uz: "Eslab qolish bazaning ishi — telefon o'chsa ham band joylar turadi.", ru: 'Запоминать — дело базы: даже если телефон выключить, занятые места останутся.' })
+      default: tr({ uz: "Uch qavat, uch ish: qaysi qavat eslab qoladi?", ru: 'Три этажа, три дела: какой этаж запоминает?' })
     }}
   />
 );
@@ -1069,11 +1070,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Airbnb besh qadamida qaysi biri aytilmagan', ru: 'Что не названо в пяти шагах Airbnb' })}
     options={[tr({ uz: 'Odamlar nimadan qiynalgani', ru: 'От чего страдали люди' }), tr({ uz: 'Saytni qanday qurgani', ru: 'Как построили сайт' }), tr({ uz: 'Ishni kim qilayotgani', ru: 'Кто делает дело' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Besh qadam odam va mahsulot haqida bo'lgan; saytni qanday qurgani ularning orasida yo'q.", ru: 'Пять шагов были о человеке и продукте; как построили сайт — среди них нет.' })}
+    explainCorrect={tr({ uz: "Besh qadam odam va mahsulot haqida — texnika u yerda yo'q.", ru: 'Пять шагов — о человеке и продукте, техники там нет.' })}
     explainWrong={{
-      0: tr({ uz: "Odamlar nimadan qiynalgani besh qadam ichida aytilgan edi.", ru: 'От чего страдали люди — это в пяти шагах было сказано.' }),
-      2: tr({ uz: "Ishni kim qilayotgani ham besh qadam ichida aytilgan edi.", ru: 'Кто делает дело — это тоже было сказано в пяти шагах.' }),
-      default: tr({ uz: "Besh qadamda saytni qanday qurgani yo'q — qolgan ikkitasi o'sha ro'yxatda bor.", ru: 'В пяти шагах нет того, как построили сайт — остальные два есть в том списке.' })
+      0: tr({ uz: "Odamlar nimadan qiynalgani besh qadamda aytilgan edi.", ru: 'От чего страдали люди — об этом в пяти шагах было.' }),
+      2: tr({ uz: "Ishni kim qilayotgani ham besh qadamda bor edi.", ru: 'Кто делает дело — это тоже было в пяти шагах.' }),
+      default: tr({ uz: "Besh qadamni eslang: qaysi biri ro'yxatda yo'q edi?", ru: 'Вспомните пять шагов: чего в списке не было?' })
     }}
   />
 );
@@ -1657,11 +1658,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Texnik qarorning sababi qanday aytiladi', ru: 'Как называют причину технического решения' })}
     options={[tr({ uz: 'Qaror odamga nima berishi aytiladi', ru: 'Говорят, что решение даёт человеку' }), tr({ uz: 'Qavat nomlari birma-bir sanab beriladi', ru: 'Перечисляют по очереди названия этажей' }), tr({ uz: "Odamga kod qatorlari ochib ko'rsatiladi", ru: 'Открывают и показывают человеку строки кода' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Texnik qarorni odamga foydasi tushuntiradi, texnika so'zlari emas.", ru: 'Техническое решение объясняет его польза для человека, а не слова из техники.' })}
+    explainCorrect={tr({ uz: "Qarorni texnika so'zlari emas, odamga foydasi tushuntiradi.", ru: 'Решение объясняет польза для человека, а не слова из техники.' })}
     explainWrong={{
-      1: tr({ uz: "Qavat nomlarini sanash sababni aytmaydi — sabab qaror odamga nima berishini aytadi.", ru: 'Перечислить названия этажей — не значит назвать причину; причина говорит, что решение даёт человеку.' }),
-      2: tr({ uz: "Kod qatorlarini qarab turgan odam o'qimaydi — sabab odam tilida aytiladi.", ru: 'Строки кода человек, который смотрит, не читает — причину говорят языком человека.' }),
-      default: tr({ uz: "Sabab bitta narsani aytadi: qaror odamga nima berishini.", ru: 'Причина говорит одно: что решение даёт человеку.' })
+      1: tr({ uz: "Qavat nomlarini sanash sababni aytmaydi.", ru: 'Перечисление этажей не называет причину.' }),
+      2: tr({ uz: "Kod qatorlarini qarab turgan odam o'qiy olmaydi.", ru: 'Строки кода человек рядом прочитать не сможет.' }),
+      default: tr({ uz: "Qarab turgan odamga qaysi javob tushunarli bo'ladi?", ru: 'Какой ответ будет понятен человеку рядом?' })
     }}
   />
 );

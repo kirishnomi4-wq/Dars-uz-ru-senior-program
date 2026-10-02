@@ -1,0 +1,400 @@
+{
+ "file": "src/4c-Modull/GithubActionsLesson.jsx",
+ "lessonId": "github-actions-4c-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HAR PUSH'DA TEKSHIRUVNI QANDAY AVTOMATIK ISHGA TUSHIRAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! GitHub Actions — repozitoriyangiz ichidagi bepul lenta tizimi. Unga bir marta yo'l ",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — HAR PUSH'DA SHU CHIQADI",
+     "box": "ghrun",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 23,
+     "left": "frame",
+     "right": "frame fade-step",
+     "hs": [
+      111,
+      134
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "✓ YASHIL CHIROQ Lenta · on: push · #14 ✓ nuqta · ubuntu-latest ✓ YIG'ISH ✓ SKANER ✓ O'RASH",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ YASHIL CHIROQ Lenta · on: push · #14 ✓ nuqta · ubuntu-latest ✓ YIG'ISH ✓ SKANER ✓ O'RASH",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "IZOH",
+     "box": "sk-info fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 8,
+     "left": "editor",
+     "right": "sk-info fade-step",
+     "hs": [
+      126,
+      118
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 72,
+     "left": "editor",
+     "right": "sk-info",
+     "hs": [
+      148,
+      76
+     ]
+    },
+    {
+     "diff": 26,
+     "left": "editor",
+     "right": "term",
+     "hs": [
+      148,
+      122
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Tartib xato — bo'lakni bosib qaytaring va qayta joylang",
+     "b": "⚠️ Tartib xato — qayta joylang.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Node 18 ✓ o'tdi Node 20 ✓ o'tdi Node 22 ✓ o'tdi",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "- run: curl -H \"Authorization: sk_live_9a8f...\"",
+     "b": "- run: curl -H \"Authorization: ${{ secrets.API_KEY }}\"",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 8,
+     "left": "editor",
+     "right": "editor",
+     "hs": [
+      96,
+      104
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s17",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "4 · YO'L XARITANGIZ (CI.YML)",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s18",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Qizil chiroq yondi — sababini jurnaldan toping.",
+     "b": "Qizil chiroq sababini jurnaldan topdingiz",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NEGA QIZIL CHIROQ YONDI?",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Log Detective Qizil chiroq sababini jurnaldan topdingiz",
+     "box": "acu-medal-wrap",
+     "gap": 22
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  }
+ ]
+}

@@ -1,0 +1,498 @@
+{
+ "file": "src/3-Modull/ReactIntroLesson.jsx",
+ "lessonId": "react-intro-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [
+    {
+     "diff": 11,
+     "cols": 2,
+     "left": "bp-window",
+     "right": "hook-option ",
+     "y": 308,
+     "row": "split",
+     "kids": [
+      "col@264",
+      "col@264"
+     ],
+     "tops": [
+      319,
+      308
+     ]
+    }
+   ],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Like bossangiz, butun sahifa qayta yuklanadimi?",
+     "b": "Har safar butun sahifa qayta yuklanadi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "↑ like bosing — nima bo'lishini kuzating",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, ZAMONAVIY ILOVALAR BUNI QANDAY UDDALAYDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "↑ like bosing — endi solishtiring",
+     "box": "bp-window",
+     "gap": 6
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri! Faqat o'zgargan joy yangilanadi. Buni qiladigan vositaning nomi — React. Hozir qa",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Instagram nega buncha tez ishlaydi?",
+     "b": "Ishonasizmi — dars oxirida Instagram nega buncha tez ishlashini aniq bilib olasiz. Buning ortida ikkita muhim ",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 36,
+     "left": "frame",
+     "right": "step-card fade-up",
+     "hs": [
+      84,
+      48
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN O'RGANADIGAN 2 TUSHUNCHA",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYT SHUNDAY KO'RINADI — LIKE BOSIB KO'RING",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "REACT'DA QURILGANMI? 0 / 4",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "REACT'DA QURILGANMI? 1 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "REACT'DA QURILGANMI? 2 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "REACT'DA QURILGANMI? 3 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "REACT'DA QURILGANMI? 4 / 4",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KOMPONENTLAR 0 / 4 komponent topildi",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAHIFA — LIKE BOSIB KO'RING",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SINF JURNALI",
+     "box": "frame fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "React xotirasida sahifaning yengil nusxasini saqlaydi. Bu Virtual DOM deyiladi. O'zgarish bo'lganda: yangi nus",
+     "b": "3 Faqat o'zgargan joy yangilanadi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "React xotirasida sahifaning yengil nusxasini saqlaydi. Bu Virtual DOM deyiladi. O'zgarish bo'lganda: yangi nus",
+     "b": "Faqat o'zgargan joy yangilanadi",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HAQIQIY SAHIFA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "mc_quruvchi ✓ Toshkent · 2 soat oldin",
+     "b": "mc_quruvchi ✓ Toshkent · 2 soat oldin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "mc_quruvchi Yangi qasrni qurib bo'ldim — kelib ko'ringlar! 🏰",
+     "b": "mc_quruvchi Yangi qasrni qurib bo'ldim — kelib ko'ringlar! 🏰",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ODDIY SAYT (HTML + JS)",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "REACT ILOVA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "React'ni bilsangiz, faqat sayt emas — haqiqiy telefon ilovalarini ham yasay olasiz. Buning nomi React Native. ",
+     "b": "// → 📱 telefonda ilova bo'ladi — React Native",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "// → 📱 telefonda ilova bo'ladi — React Native",
+     "b": "REACT NATIVE BILAN QURILADIGAN ILOVALAR",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BRAUZER (SAYT)",
+     "box": "demo-swap to-web",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "REACT NATIVE BILAN QURILADIGAN ILOVALAR 🛒 Onlayn do'kon 💬 Chat 🎮 O'yin 🎬 Video",
+     "box": "demo-swap to-web",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAHIFANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Built It! Saytni komponent bloklaridan yig'dingiz",
+     "box": "acu-medal-wrap",
+     "gap": 22
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "AI Minecraft do'koni sahifasini bir zumda komponentlarga bo'lib berdi. Lekin AI ham xato qiladi. Bitta qator k",
+     "b": "AI Minecraft do'koni sahifasini komponentlarga bo'ldim:",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "AI Minecraft do'koni sahifasini bir zumda komponentlarga bo'lib berdi. Lekin AI ham xato qiladi. Bitta qator k",
+     "b": "Minecraft do'koni sahifasini komponentlarga bo'ldim:",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI Minecraft do'koni sahifasini komponentlarga bo'ldim:",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Xato bor qatorni toping va bosing",
+     "box": "dbg-code",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Like bosildi — React ichida nima yuz beradi?",
+     "b": "Oxirgi sinov! Like bosilgandan to sahifa yangilangunigacha React ichida nima yuz beradi? Bo'laklarni to'g'ri t",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 63,
+     "left": "dd-pool",
+     "right": "dd-slot filled  ",
+     "hs": [
+      138,
+      75
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BO'LAKLAR",
+     "box": "dd-pool",
+     "gap": 7
+    },
+    {
+     "pos": "tepada",
+     "t": "TO'G'RI TARTIB",
+     "box": "dd-slots",
+     "gap": 7
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

@@ -349,21 +349,21 @@ const RECAPS = {
     title: { uz: 'VS Code oynasi', ru: 'Окно VS Code' }, cards: [
       { ic: '🗂️', h: { uz: "Explorer — fayllar ro'yxati", ru: 'Explorer — список файлов' },
         body: {
-          uz: <>Chapdagi panel <b>Explorer</b> deyiladi — loyihangizdagi <b>barcha fayllar</b> shu yerda ro'yxat bo'lib turadi: <b className="mono">index.html</b>, <b className="mono">style.css</b> va boshqalar. Faylni bossangiz — <b>Editor</b>'da ochiladi.</>,
-          ru: <>Панель слева называется <b>Explorer</b> — здесь списком лежат <b>все файлы</b> вашего проекта: <b className="mono">index.html</b>, <b className="mono">style.css</b> и другие. Нажмёте на файл — он откроется в <b>Editor</b>.</>,
+          uz: <>Chapdagi <b>Explorer</b> panelida <b>barcha fayllar</b> turadi: <b className="mono">index.html</b>, <b className="mono">style.css</b>.</>,
+          ru: <>В панели <b>Explorer</b> слева лежат <b>все файлы</b>: <b className="mono">index.html</b>, <b className="mono">style.css</b>.</>,
         },
         vis: <RcFlow items={['Explorer', 'index.html', 'style.css']} sep="·" />,
         ask: { uz: "style.css faylini ochish uchun qaysi panelga qaraymiz?", ru: 'В какую панель мы смотрим, чтобы открыть style.css?' } },
       { ic: '📝', h: { uz: 'Editor — kod yoziladigan panel', ru: 'Editor — панель, где пишется код' },
         body: {
-          uz: <>O'rtadagi katta qora panel — <b>Editor</b> (kod yoziladigan joy). Kod aynan shu yerga yoziladi. Har ochilgan fayl tepada o'z <b>varag'i (tab)</b> bilan turadi — varaqlar orasida bir bosishda o'tasiz.</>,
-          ru: <>Большая тёмная панель в центре — <b>Editor</b> (место, где пишется код). Код пишется именно здесь. Каждый открытый файл держит сверху свою <b>вкладку (tab)</b> — между вкладками вы переходите одним нажатием.</>,
+          uz: <>O'rtadagi katta panel — <b>Editor</b>, kod aynan shu yerga yoziladi.</>,
+          ru: <>Большая панель в центре — <b>Editor</b>, код пишется именно здесь.</>,
         },
         vis: <RcFlow items={[{ uz: 'Fayl', ru: 'Файл' }, '📝 Editor', { uz: '⌨️ Kod', ru: '⌨️ Код' }]} /> },
       { ic: '🧩', h: { uz: "Extensions — qo'shimcha dasturlar paneli", ru: 'Extensions — панель дополнений' },
         body: {
-          uz: <>Chap ustundagi kubiklar belgisi — <b>Extensions</b> (qo'shimcha dasturlar). Bu panelda VS Code'ga yangi imkoniyat qo'shadigan <b>mini-dasturlar</b> turadi. Jonli server — <b>Live Server</b> ham aynan shu yerdan o'rnatiladi.</>,
-          ru: <>Значок из кубиков в левой колонке — <b>Extensions</b> (дополнения). В этой панели лежат <b>мини-программы</b>, которые добавляют VS Code новые возможности. Живой сервер — <b>Live Server</b> — ставится именно отсюда.</>,
+          uz: <>Kubiklar belgisi — <b>Extensions</b>, <b>Live Server</b> ham shu yerdan o'rnatiladi.</>,
+          ru: <>Значок из кубиков — <b>Extensions</b>, отсюда ставится и <b>Live Server</b>.</>,
         },
         vis: <RcFlow items={['Extensions', 'Live Server', 'Go Live']} />,
         ask: { uz: "Live Server'ni qaysi paneldan o'rnatamiz?", ru: 'Из какой панели мы ставим Live Server?' } },
@@ -374,21 +374,21 @@ const RECAPS = {
     title: { uz: 'Jonli server', ru: 'Живой сервер' }, cards: [
       { ic: '⚡', h: { uz: 'Go Live — sahifa brauzerda jonlanadi', ru: 'Go Live — страница оживает в браузере' },
         body: {
-          uz: <>Pastki <b>ko'k chiziqdagi</b> «Go Live» tugmasi bosilganda Live Server ishga tushadi va sahifangiz brauzerda <b className="mono">127.0.0.1:5500</b> manzilida ochiladi. Fayl shunchaki ochilmaydi — <b>jonli server</b> orqali ko'rsatiladi.</>,
-          ru: <>Когда вы нажимаете «Go Live» на нижней <b>синей полосе</b>, запускается Live Server, и страница открывается в браузере по адресу <b className="mono">127.0.0.1:5500</b>. Файл не просто открывается — его показывает <b>живой сервер</b>.</>,
+          uz: <>«Go Live» bosilsa, sahifa <b className="mono">127.0.0.1:5500</b> manzilida <b>jonli</b> ochiladi.</>,
+          ru: <>После «Go Live» страница <b>вживую</b> открывается по адресу <b className="mono">127.0.0.1:5500</b>.</>,
         },
         vis: <RcFlow items={['Go Live', { uz: 'Brauzer', ru: 'Браузер' }, '127.0.0.1:5500']} /> },
       { ic: '🏠', h: { uz: '127.0.0.1 — «mening kompyuterim»', ru: '127.0.0.1 — «мой компьютер»' },
         body: {
-          uz: <><b className="mono">127.0.0.1</b> — bu internet emas: har bir kompyuterda bu manzil <b>o'zini</b> bildiradi. <b className="mono">5500</b> esa — <b>eshik raqami</b> (port): sahifa aynan shu eshikdan chiqadi. Demak sahifani hozircha <b>faqat siz</b> ko'rasiz.</>,
-          ru: <><b className="mono">127.0.0.1</b> — это не интернет: на любом компьютере этот адрес означает <b>«я сам»</b>. А <b className="mono">5500</b> — <b>номер двери</b> (порт): страница выходит именно через эту дверь. Значит, страницу пока видите <b>только вы</b>.</>,
+          uz: <><b className="mono">127.0.0.1</b> — <b>o'z kompyuteringiz</b>, <b className="mono">5500</b> — eshik (port): sahifani faqat siz ko'rasiz.</>,
+          ru: <><b className="mono">127.0.0.1</b> — <b>ваш компьютер</b>, <b className="mono">5500</b> — дверь (порт): страницу видите только вы.</>,
         },
         vis: <RcFlow items={[{ uz: 'O\'z kompyuteringiz', ru: 'Ваш компьютер' }, { uz: '5500 — port', ru: '5500 — порт' }]} sep="·" />,
         ask: { uz: "Sinfdoshingiz o'z telefonida shu manzilni ochsa, sizning sahifangizni ko'radimi?", ru: 'Если одноклассник откроет этот адрес на своём телефоне, увидит ли он вашу страницу?' } },
       { ic: '💾', h: { uz: "Ctrl+S — saqlang, brauzer o'zi yangilanadi", ru: 'Ctrl+S — сохраните, браузер обновится сам' },
         body: {
-          uz: <>Jonli server shuning uchun qulay: kodni o'zgartirib <b className="mono">Ctrl+S</b> bilan saqlasangiz, brauzer sahifani <b>o'zi yangilaydi</b> — hech narsani qayta ochish shart emas. Yozdingiz → saqladingiz → ko'rdingiz.</>,
-          ru: <>Живой сервер удобен именно этим: измените код и сохраните его через <b className="mono">Ctrl+S</b> — браузер <b>сам обновит</b> страницу, ничего заново открывать не нужно. Написали → сохранили → увидели.</>,
+          uz: <><b className="mono">Ctrl+S</b> bilan saqlasangiz, brauzer sahifani <b>o'zi yangilaydi</b>.</>,
+          ru: <>Сохраните через <b className="mono">Ctrl+S</b> — и браузер <b>сам обновит</b> страницу.</>,
         },
         vis: <RcFlow items={[{ uz: '⌨️ Yozish', ru: '⌨️ Пишем' }, 'Ctrl+S', { uz: 'Yangilanadi', ru: 'Обновилось' }]} /> },
     ]
@@ -398,21 +398,21 @@ const RECAPS = {
     title: { uz: 'HTML va CSS ulanishi', ru: 'Связь HTML и CSS' }, cards: [
       { ic: '🔗', h: { uz: "<link> — ikki fayl orasidagi ko'prik", ru: '<link> — мост между двумя файлами' },
         body: {
-          uz: <>Bezaklar alohida faylda — <b className="mono">style.css</b>'da yashaydi. Sahifa uni ko'rishi uchun <b className="mono">&lt;head&gt;</b> ichiga bitta qator yoziladi: <b className="mono">&lt;link rel="stylesheet" href="style.css"&gt;</b>. Shu qator — ko'prik.</>,
-          ru: <>Оформление живёт в отдельном файле — <b className="mono">style.css</b>. Чтобы страница его увидела, внутрь <b className="mono">&lt;head&gt;</b> пишется одна строка: <b className="mono">&lt;link rel="stylesheet" href="style.css"&gt;</b>. Эта строка — мост.</>,
+          uz: <><b className="mono">&lt;head&gt;</b> ichidagi <b className="mono">&lt;link&gt;</b> qatori — sahifa bilan <b className="mono">style.css</b> orasidagi ko'prik.</>,
+          ru: <>Строка <b className="mono">&lt;link&gt;</b> внутри <b className="mono">&lt;head&gt;</b> — мост между страницей и <b className="mono">style.css</b>.</>,
         },
         vis: <RcFlow items={['index.html', '<link>', 'style.css']} />,
         ask: { uz: "Bu qator head'ga yoziladimi yoki body'gami?", ru: 'Эта строка пишется в head или в body?' } },
       { ic: '🎨', h: { uz: 'HTML — nima bor, CSS — qanday ko\'rinadi', ru: 'HTML — что есть, CSS — как выглядит' },
         body: {
-          uz: <><b>HTML</b> sahifada nima borligini aytadi: card, ism, orzu-kasb. <b>CSS</b> esa u qanday ko'rinishini: rangi, burchagi, soyasi. Link uzilsa — card yana oddiy qora matnga qaytadi.</>,
-          ru: <><b>HTML</b> говорит, что есть на странице: карточка, имя, профессия мечты. А <b>CSS</b> — как это выглядит: цвет, углы, тень. Порвётся связь — карточка снова станет простым чёрным текстом.</>,
+          uz: <><b>HTML</b> sahifada nima borligini aytadi, <b>CSS</b> esa u qanday ko'rinishini.</>,
+          ru: <><b>HTML</b> говорит, что есть на странице, а <b>CSS</b> — как это выглядит.</>,
         },
         vis: <RcFlow items={[{ uz: 'HTML — tuzilish', ru: 'HTML — структура' }, { uz: "CSS — ko'rinish", ru: 'CSS — внешний вид' }]} sep="·" /> },
       { ic: '🎯', h: { uz: 'class — CSS uchun nishon', ru: 'class — мишень для CSS' },
         body: {
-          uz: <>HTML'da <b className="mono">&lt;div class="card"&gt;</b> deb yozdik. CSS'da esa <b className="mono">.card</b> selektori aynan shu qutini <b>topib</b>, bezak beradi. Nomlar mos bo'lmasa — bezak ishlamaydi.</>,
-          ru: <>В HTML мы написали <b className="mono">&lt;div class="card"&gt;</b>. А селектор <b className="mono">.card</b> в CSS <b>находит</b> именно эту коробку и оформляет её. Не совпадут имена — оформление не сработает.</>,
+          uz: <>CSS'dagi <b className="mono">.card</b> HTML'dagi <b className="mono">class="card"</b> qutini <b>nomi bilan</b> topadi.</>,
+          ru: <>Селектор <b className="mono">.card</b> находит в HTML коробку с <b className="mono">class="card"</b> <b>по имени</b>.</>,
         },
         vis: <RcFlow items={['class="card"', '.card { ... }']} />,
         ask: { uz: "CSS'da .card deb yozsak, HTML'da nima turishi kerak?", ru: 'Если в CSS мы пишем .card, что должно стоять в HTML?' } },
@@ -423,20 +423,20 @@ const RECAPS = {
     title: { uz: 'Bir bosishda jonli sahifa', ru: 'Живая страница в одно нажатие' }, cards: [
       { ic: '⚡', h: { uz: 'Tugma nomi — Go Live', ru: 'Кнопка называется Go Live' },
         body: {
-          uz: <>VS Code oynasining eng pastida <b>ko'k chiziq</b> bor. O'ng burchagida — <b className="mono">Go Live</b> yozuvi. Bir bosish — va Live Server sahifangizni brauzerda ochadi.</>,
-          ru: <>В самом низу окна VS Code есть <b>синяя полоса</b>. В её правом углу — надпись <b className="mono">Go Live</b>. Одно нажатие — и Live Server открывает вашу страницу в браузере.</>,
+          uz: <>Pastdagi <b>ko'k chiziqda</b> <b className="mono">Go Live</b> bor — bir bosishda sahifa brauzerda ochiladi.</>,
+          ru: <>На нижней <b>синей полосе</b> есть <b className="mono">Go Live</b> — одно нажатие, и страница в браузере.</>,
         },
         vis: <RcFlow items={[{ uz: "🖱️ Go Live bosildi", ru: 'Нажали Go Live' }, { uz: 'Sahifa ochildi', ru: 'Страница открылась' }]} /> },
       { ic: '📖', h: { uz: "Manzilni endi o'qiy olasiz", ru: 'Теперь вы умеете читать адрес' },
         body: {
-          uz: <><b className="mono">127.0.0.1:5500/index.html</b> — bu «<b>mening kompyuterim</b>, <b>5500-eshik</b>, <b>index.html</b> fayli» degani. Har bo'lagining ma'nosini bilasiz — bu endi sirli raqamlar emas.</>,
-          ru: <><b className="mono">127.0.0.1:5500/index.html</b> — это значит: «<b>мой компьютер</b>, <b>дверь 5500</b>, файл <b>index.html</b>». Вы знаете смысл каждой части — это больше не загадочные цифры.</>,
+          uz: <><b className="mono">127.0.0.1:5500/index.html</b> — «<b>mening kompyuterim</b>, 5500-eshik, index.html fayli».</>,
+          ru: <><b className="mono">127.0.0.1:5500/index.html</b> — «<b>мой компьютер</b>, дверь 5500, файл index.html».</>,
         },
         vis: <RcFlow items={['127.0.0.1', ':5500', '/index.html']} sep="·" /> },
       { ic: '🔁', h: { uz: "Har kunlik ish tartibi", ru: 'Ежедневный порядок работы' },
         body: {
-          uz: <>Endi siz dasturchilar kabi ishlaysiz: kodni <b>o'zgartirasiz</b> → <b className="mono">Ctrl+S</b> bilan <b>saqlaysiz</b> → brauzerda natijani <b>ko'rasiz</b>. Shu uch qadam — har kunlik ish usuli.</>,
-          ru: <>Теперь вы работаете как профессионал: <b>меняете</b> код → <b>сохраняете</b> через <b className="mono">Ctrl+S</b> → <b>видите</b> результат в браузере. Эти три шага — ежедневный рабочий приём.</>,
+          uz: <>Har kuni uch qadam: <b>o'zgartirasiz</b> → <b className="mono">Ctrl+S</b> → natijani <b>ko'rasiz</b>.</>,
+          ru: <>Каждый день три шага: <b>меняете</b> код → <b className="mono">Ctrl+S</b> → <b>видите</b> результат.</>,
         },
         vis: <RcFlow items={[{ uz: "O'zgartirish", ru: 'Изменить' }, { uz: 'Saqlash', ru: 'Сохранить' }, { uz: "Ko'rish", ru: 'Увидеть' }]} />,
         ask: { uz: "Card rangini o'zgartirdik — brauzerda ko'rish uchun nima bosamiz?", ru: 'Мы поменяли цвет карточки — что нажать, чтобы увидеть это в браузере?' } },
@@ -446,7 +446,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -464,7 +464,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -473,13 +473,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -566,7 +566,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением сделайте короткое повторение.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -575,7 +575,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -657,7 +657,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={tr(entry.starter)} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-15" lang={__lang} task={entry.task} starterCode={tr(entry.starter)} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -780,7 +780,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -788,8 +788,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -801,11 +802,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1529,12 +1530,12 @@ const ScreenTest1 = (props) => (
       { uz: "Extensions — qo'shimcha dasturlar paneli", ru: 'Extensions — панель дополнений' },
       { uz: "Status bar — pastki ko'k chiziq", ru: 'Status bar — нижняя синяя полоса' },
     ]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri. Explorer — chapdagi panel: loyihangizdagi barcha fayllar shu yerda. Faylni bossangiz — Editor panelida ochiladi.", ru: 'Верно. Explorer — панель слева: там все файлы проекта. Нажмёте на файл — он откроется в панели Editor.' })}
+    explainCorrect={tr({ uz: "Explorer — loyihaning barcha fayllari turadigan panel.", ru: 'Explorer — панель, где лежат все файлы проекта.' })}
     explainWrong={{
-      0: tr({ uz: "Terminal — kompyuterga yozma buyruq beriladigan panel. Fayllar ro'yxatini Explorer ko'rsatadi.", ru: 'Terminal — панель для письменных команд компьютеру. Список файлов показывает Explorer.' }),
-      2: tr({ uz: "Extensions — qo'shimcha dasturlar paneli: Live Server ham shu yerdan o'rnatiladi. Fayllar ro'yxati — Explorer'da.", ru: 'Extensions — панель дополнений: отсюда ставится и Live Server. Список файлов — в Explorer.' }),
-      3: tr({ uz: "Status bar — pastki ko'k chiziq, u yerda Go Live tugmasi turadi. Fayllar ro'yxati — Explorer'da.", ru: 'Status bar — нижняя синяя полоса, там живёт кнопка Go Live. Список файлов — в Explorer.' }),
-      default: tr({ uz: "Fayllar ro'yxatini chapdagi Explorer paneli ko'rsatadi.", ru: 'Список файлов показывает панель Explorer слева.' }),
+      0: tr({ uz: "Terminal — yozma buyruqlar paneli, fayllar ro'yxati emas.", ru: 'Terminal — панель для команд, а не список файлов.' }),
+      2: tr({ uz: "Extensions'da qo'shimcha dasturlar bor, fayllaringiz emas.", ru: 'В Extensions лежат дополнения, а не файлы проекта.' }),
+      3: tr({ uz: "Status bar — pastki chiziq, fayllar u yerda turmaydi.", ru: 'Status bar — нижняя полоса, файлов там нет.' }),
+      default: tr({ uz: "Fayllar ro'yxati qaysi panelda turishini eslang.", ru: 'Вспомните, в какой панели лежит список файлов.' }),
     }} />
 );
 
@@ -1784,12 +1785,12 @@ const ScreenTest2 = (props) => (
       { uz: 'HTML fayl brauzerda jonli ochiladi', ru: 'HTML-файл живо открывается в браузере' },
       { uz: 'Fayl avtomatik saqlanib, yopiladi', ru: 'Файл автоматически сохраняется и закрывается' },
     ]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri. Go Live jonli serverni yoqadi: sahifa brauzerda 127.0.0.1:5500 manzilida ochiladi. Har saqlashda esa o'zi yangilanadi.", ru: 'Верно. Go Live включает живой сервер: страница открывается в браузере на 127.0.0.1:5500. А при каждом сохранении обновляется сама.' })}
+    explainCorrect={tr({ uz: "Go Live jonli serverni yoqib, sahifani brauzerda ochadi.", ru: 'Go Live включает живой сервер и открывает страницу в браузере.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — 127.0.0.1 faqat o'z kompyuteringiz. Internetga chiqarish alohida qadam, unga hali yetamiz.", ru: 'Нет — 127.0.0.1 это только ваш компьютер. Публикация в интернете — отдельный шаг, до него ещё дойдём.' }),
-      1: tr({ uz: 'Xatolarni tekshirish — boshqa vositalar ishi. Go Live sahifani jonli serverda ochadi.', ru: 'Проверка ошибок — работа других инструментов. Go Live открывает страницу на живом сервере.' }),
-      3: tr({ uz: 'Saqlash — Ctrl+S ishi. Go Live esa sahifani brauzerda jonli ochadi.', ru: 'Сохранение — работа Ctrl+S. А Go Live живо открывает страницу в браузере.' }),
-      default: tr({ uz: 'Go Live sahifani 127.0.0.1:5500 manzilida jonli ochadi.', ru: 'Go Live живо открывает страницу на адресе 127.0.0.1:5500.' }),
+      0: tr({ uz: "127.0.0.1 — faqat o'z kompyuteringiz, internet emas.", ru: '127.0.0.1 — только ваш компьютер, а не интернет.' }),
+      1: tr({ uz: 'Go Live xatolarni tekshirmaydi — bu boshqa vositalar ishi.', ru: 'Go Live не проверяет ошибки — это работа других инструментов.' }),
+      3: tr({ uz: 'Saqlash — Ctrl+S ishi, Go Live esa faylni yopmaydi.', ru: 'Сохранение — работа Ctrl+S, а Go Live файл не закрывает.' }),
+      default: tr({ uz: 'Go Live bosilganda brauzerda nima bo\'lishini eslang.', ru: 'Вспомните, что происходит в браузере после Go Live.' }),
     }} />
 );
 
@@ -1932,12 +1933,12 @@ const ScreenTest3 = (props) => (
       { uz: '`<css file="style.css">` — `head` ichida', ru: '`<css file="style.css">` — внутри `head`' },
       { uz: '`<script href="style.css">` — `body` oxirida', ru: '`<script href="style.css">` — в конце `body`' },
     ]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri. `link` tegi head ichida turadi: `rel=\"stylesheet\"` — «bu bezak fayli», `href` — fayl manzili. Shu ko'prik orqali CSS sahifaga yetib boradi.", ru: 'Верно. Тег `link` стоит внутри head: `rel="stylesheet"` — «это файл оформления», `href` — адрес файла. По этому мосту CSS доходит до страницы.' })}
+    explainCorrect={tr({ uz: "`link` — HTML va CSS orasidagi ko'prik, u `head` ichida turadi.", ru: '`link` — мост между HTML и CSS, он стоит внутри `head`.' })}
     explainWrong={{
-      1: tr({ uz: "`style` tegida `src` atributi ishlamaydi. CSS faylni `head` ichidagi `link` tegi ulaydi.", ru: 'У тега `style` атрибут `src` не работает. CSS-файл подключает тег `link` внутри `head`.' }),
-      2: tr({ uz: "`css` degan teg mavjud emas. CSS faylni `link` tegi ulaydi.", ru: 'Тега `css` не существует. CSS-файл подключает тег `link`.' }),
-      3: tr({ uz: "`script` — JavaScript uchun. CSS faylni `head` ichidagi `link` tegi ulaydi.", ru: '`script` — для JavaScript. CSS-файл подключает тег `link` внутри `head`.' }),
-      default: tr({ uz: "CSS faylni `head` ichidagi `link` tegi ulaydi.", ru: 'CSS-файл подключает тег `link` внутри `head`.' }),
+      1: tr({ uz: "`style` tegida `src` atributi ishlamaydi.", ru: 'У тега `style` атрибут `src` не работает.' }),
+      2: tr({ uz: "`css` degan teg HTML'da mavjud emas.", ru: 'Тега `css` в HTML не существует.' }),
+      3: tr({ uz: "`script` JavaScript ulaydi, bezak faylini emas.", ru: '`script` подключает JavaScript, а не файл оформления.' }),
+      default: tr({ uz: "Ikki faylni ko'prikdek bog'laydigan tegni eslang.", ru: 'Вспомните тег, который как мост связывает два файла.' }),
     }} />
 );
 
@@ -4579,7 +4580,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
           Production'da onPractice berilsa, bu overlay umuman ochilmaydi. */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang}
+          <HtmlCompiler stage="m1-15" lang={__lang}
             task={practice.task}
             starterCode={practice.starter ? tr(practice.starter) : undefined}
             storageKey={practice.codeKey}

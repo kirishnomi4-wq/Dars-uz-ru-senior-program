@@ -205,20 +205,20 @@ const RECAPS = {
       {
         ic: "👣",
         h: { uz: "i++ — bu bir qadam oldinga", ru: 'i++ — это один шаг вперёд' },
-        body: { uz: <>for siklining oxiridagi <b>i++</b> — bu <b>qadam</b>. Har aylanishdan so'ng u <b>i ni 1 ga oshiradi</b>. Xuddi konveyer har aylanishda bir quti oldinga surilgandek.</>, ru: <>В конце цикла for стоит <b>i++</b> — это <b>шаг</b>. После каждой итерации он <b>увеличивает i на 1</b>. Как конвейер, который за каждый оборот продвигает коробку вперёд.</> },
+        body: { uz: <>Sikl oxiridagi <b>i++</b> har aylanishdan so'ng i ni 1 ga oshiradi.</>, ru: <><b>i++</b> в конце цикла после каждой итерации увеличивает i на 1.</> },
         vis: <RcFlow items={["i = 0", "i++", "i = 1", "i++", "i = 2"]} />,
         ask: { uz: "Konveyer bir marta aylansa, sanagich nechtaga oshadi?", ru: 'Если конвейер сделает один оборот, на сколько вырастет счётчик?' }
       },
       {
         ic: "🔁",
         h: { uz: "For siklining 3 qismi", ru: 'Три части цикла for' },
-        body: { uz: <>for da uch qism bor: <b>boshlanish</b> (i = 0), <b>shart</b> (i qachongacha?) va <b>qadam</b> (i++). i++ aynan uchinchisi — sanoqni oldinga suradi, shu tufayli sikl bir kun to'xtaydi.</>, ru: <>У for три части: <b>старт</b> (i = 0), <b>условие</b> (до какого i?) и <b>шаг</b> (i++). i++ — именно третья: она двигает счёт вперёд, поэтому цикл однажды остановится.</> },
+        body: { uz: <>for da uch qism bor: boshlanish (i = 0), shart va <b>qadam</b> (i++).</>, ru: <>У for три части: старт (i = 0), условие и <b>шаг</b> (i++).</> },
         vis: <RcFlow items={[{ uz: "boshlanish", ru: 'старт' }, { uz: "shart", ru: 'условие' }, { uz: "qadam i++", ru: 'шаг i++' }]} sep="·" />
       },
       {
         ic: "⏭️",
         h: { uz: "To'xtatmaydi, oshiradi", ru: 'Не останавливает, а увеличивает' },
-        body: { uz: <>i++ siklni <b>to'xtatmaydi</b> va massiv ham yaratmaydi — u faqat <b>i ni bittaga oshiradi</b>. Agar i++ bo'lmasa, i o'zgarmay qolib, sikl <b>cheksiz</b> aylanaverardi.</>, ru: <>i++ цикл <b>не останавливает</b> и массив не создаёт — он лишь <b>увеличивает i на единицу</b>. Без i++ значение i не менялось бы, и цикл крутился бы <b>бесконечно</b>.</> }
+        body: { uz: <>i++ siklni to'xtatmaydi, massiv ham yaratmaydi — faqat i ni <b>bittaga oshiradi</b>.</>, ru: <>i++ не останавливает цикл и не создаёт массив — он лишь <b>увеличивает i на 1</b>.</> }
       }
     ]
   },
@@ -230,20 +230,20 @@ const RECAPS = {
       {
         ic: "🔢",
         h: { uz: "i ni birma-bir sanaymiz", ru: 'Считаем i по одному' },
-        body: { uz: <>i <b>1</b> dan boshlanadi, har qadamda <b>1 ga oshadi</b> va <b>i &lt;= 3</b> to'g'ri turgan ekan aylanaveradi. Shuning uchun konsolga <b>1, 2, 3</b> chiqadi.</>, ru: <>i начинается с <b>1</b>, на каждом шаге <b>растёт на 1</b> и крутится, пока <b>i &lt;= 3</b> истинно. Поэтому в консоль выйдут <b>1, 2, 3</b>.</> },
+        body: { uz: <>i 1 dan boshlanib, i &lt;= 3 rost ekan aylanadi — konsolga <b>1, 2, 3</b> chiqadi.</>, ru: <>i стартует с 1 и крутится, пока i &lt;= 3 истинно, — в консоль выйдут <b>1, 2, 3</b>.</> },
         vis: <RcFlow items={["1", "2", "3"]} />,
         ask: { uz: "i = 4 bo'lganda i <= 3 sharti rostmi? Sikl davom etadimi?", ru: 'При i = 4 условие i <= 3 истинно? Цикл продолжится?' }
       },
       {
         ic: "🛑",
         h: { uz: "3 da to'xtaydi, 4 chiqmaydi", ru: 'На 3 остановится, 4 не выйдет' },
-        body: { uz: <>i = 3 da <b>3 &lt;= 3</b> hali rost — 3 chiqadi. Keyin i = 4 bo'ladi va <b>4 &lt;= 3</b> yolg'on — sikl to'xtaydi. Shu bois <b>4 chiqmaydi</b>. Belgi <b>&lt;=</b> bo'lgani uchun 3 ham qamraladi.</>, ru: <>При i = 3 условие <b>3 &lt;= 3</b> ещё истинно — 3 печатается. Потом i = 4, а <b>4 &lt;= 3</b> уже ложь — цикл останавливается. Поэтому <b>4 не выводится</b>. Благодаря знаку <b>&lt;=</b> тройка тоже попадает.</> },
+        body: { uz: <>i = 4 bo'lganda 4 &lt;= 3 <b>yolg'on</b> — sikl to'xtaydi va 4 chiqmaydi.</>, ru: <>При i = 4 условие 4 &lt;= 3 <b>ложно</b> — цикл останавливается, и 4 не выводится.</> },
         vis: <RcFlow items={[{ uz: "3 <= 3 rost", ru: '3 <= 3 истина' }, { uz: "chop: 3", ru: 'печать: 3' }, { uz: "4 <= 3 yolg'on", ru: '4 <= 3 ложь' }, "stop"]} />
       },
       {
         ic: "🧭",
         h: { uz: "Teskari emas — oldinga", ru: 'Не назад — вперёд' },
-        body: { uz: <>Sonlar <b>1 dan 3 ga qarab</b> oshib boradi (i++ oshiradi), shu bois javob <b>3, 2, 1</b> emas. Boshlanish nuqtasi (1) va qadam yo'nalishi (oshirish) tartibni belgilaydi.</>, ru: <>Числа растут <b>от 1 к 3</b> (i++ увеличивает), поэтому ответ не <b>3, 2, 1</b>. Стартовая точка (1) и направление шага (вверх) задают порядок.</> }
+        body: { uz: <>i++ sonni <b>oshiradi</b>, shu bois sanoq 1 dan 3 ga qarab yuradi.</>, ru: <>i++ <b>увеличивает</b> число, поэтому счёт идёт от 1 к 3.</> }
       }
     ]
   },
@@ -255,20 +255,20 @@ const RECAPS = {
       {
         ic: "🍎",
         h: { uz: "[0] — birinchi element", ru: '[0] — первый элемент' },
-        body: { uz: <>Massivda sanoq <b>1 dan emas, 0 dan</b> boshlanadi. Shuning uchun <b>mevalar[0]</b> — bu <b>birinchi</b> meva, ya'ni <b>"olma"</b>. Banan esa mevalar[1].</>, ru: <>В массиве счёт начинается <b>не с 1, а с 0</b>. Поэтому <b>mevalar[0]</b> — это <b>первый</b> фрукт, то есть <b>"olma"</b>. А банан — mevalar[1].</> },
+        body: { uz: <>Massivda sanoq <b>0 dan</b> boshlanadi: mevalar[0] — birinchi meva.</>, ru: <>В массиве счёт начинается <b>с 0</b>: mevalar[0] — первый фрукт.</> },
         vis: <RcFlow items={["[0] olma", "[1] banan", "[2] uzum"]} sep="·" />,
         ask: { uz: "Unda \"uzum\" ni chaqirish uchun qaysi indeksni yozamiz?", ru: 'А какой индекс напишем, чтобы получить "uzum"?' }
       },
       {
         ic: "🏢",
         h: { uz: "Kundalik misol — qavat 0", ru: 'Пример из жизни — этаж 0' },
-        body: { uz: <>Ba'zi liftlarda birinchi qavat <b>0</b> deb belgilanadi. Massiv ham xuddi shunday: <b>0-o'rin = birinchisi</b>. Indeks — bu qutining tartib raqami, u nolabosh.</>, ru: <>В некоторых лифтах первый этаж обозначен как <b>0</b>. Массив устроен так же: <b>место 0 = первое</b>. Индекс — это номер коробки, и он начинается с нуля.</> },
+        body: { uz: <>Ba'zi liftlarda birinchi qavat 0 — massivda ham <b>0-o'rin</b> birinchisi.</>, ru: <>В некоторых лифтах первый этаж — 0, и в массиве <b>место 0</b> — первое.</> },
         vis: <RcFlow items={[{ uz: "0 = 1-o'rin", ru: '0 = 1-е место' }, { uz: "1 = 2-o'rin", ru: '1 = 2-е место' }]} sep="·" />
       },
       {
         ic: "⚠️",
         h: { uz: "Oxirgisi length dan 1 kam", ru: 'Последний на 1 меньше length' },
-        body: { uz: <>3 ta meva bo'lsa, indekslar <b>0, 1, 2</b> — oxirgisi <b>uzum = [2]</b>, [3] esa yo'q. Ya'ni oxirgi indeks har doim <b>uzunlikdan bitta kam</b> bo'ladi.</>, ru: <>Если фруктов 3, индексы — <b>0, 1, 2</b>: последний <b>uzum = [2]</b>, а [3] не существует. То есть последний индекс всегда <b>на единицу меньше длины</b>.</> }
+        body: { uz: <>Oxirgi indeks har doim uzunlikdan <b>bitta kam</b>: 3 ta mevada u [2].</>, ru: <>Последний индекс всегда на <b>единицу меньше</b> длины: у 3 фруктов это [2].</> }
       }
     ]
   },
@@ -280,20 +280,20 @@ const RECAPS = {
       {
         ic: "🔁",
         h: { uz: "Har element uchun bir marta", ru: 'По разу на каждый элемент' },
-        body: { uz: <>Sikl massivning <b>har bir elementi</b> uchun bir marta aylanadi. 5 ta nom bo'lsa — sikl <b>5 marta</b> ishlaydi. <b>dostlar.length</b> esa aynan «5» ni beradi.</>, ru: <>Цикл делает по одной итерации <b>на каждый элемент</b> массива. Если имён 5 — цикл сработает <b>5 раз</b>. А <b>dostlar.length</b> как раз даёт «5».</> },
+        body: { uz: <>Sikl har element uchun <b>bir marta</b> aylanadi: 5 ta nom — 5 marta.</>, ru: <>Цикл делает <b>по одной</b> итерации на элемент: 5 имён — 5 раз.</> },
         vis: <RcFlow items={["i=0", "i=1", "i=2", "i=3", "i=4"]} />,
         ask: { uz: "5 ta do'stga xabar yuborsangiz, «yubor» tugmasini necha marta bosasiz?", ru: 'Если отправить сообщение 5 друзьям, сколько раз нажмёте «отправить»?' }
       },
       {
         ic: "📏",
         h: { uz: ".length — elementlar soni", ru: '.length — число элементов' },
-        body: { uz: <><b>.length</b> massivda nechta element borligini aytadi. i <b>0 dan boshlanib</b>, i &lt; 5 to'g'ri turganicha yuradi: 0, 1, 2, 3, 4 — bu <b>rosa 5 ta</b> qadam.</>, ru: <><b>.length</b> говорит, сколько элементов в массиве. i идёт <b>с 0</b>, пока i &lt; 5 истинно: 0, 1, 2, 3, 4 — это <b>ровно 5</b> шагов.</> },
+        body: { uz: <><b>.length</b> massivda nechta element borligini aytadi.</>, ru: <><b>.length</b> говорит, сколько элементов в массиве.</> },
         vis: <RcFlow items={["0,1,2,3,4", { uz: "5 ta qadam", ru: '5 шагов' }]} sep="·" />
       },
       {
         ic: "🎯",
         h: { uz: "Nega 4 emas, 6 emas?", ru: 'Почему не 4 и не 6?' },
-        body: { uz: <>Sanoq 0 dan boshlangani uchun 0..4 — 5 ta qadamni beradi (4 emas). <b>i &lt; length</b> belgisi (kichik, teng emas) 5-indeksga o'tkazmaydi, shu bois <b>6 marta ham emas</b>.</>, ru: <>Счёт начинается с 0, поэтому 0..4 — это 5 шагов (а не 4). Знак <b>i &lt; length</b> (строго меньше) не пускает к индексу 5, поэтому и <b>не 6 раз</b>.</> }
+        body: { uz: <>0..4 — bu <b>5 ta</b> qadam, i &lt; length esa 5-indeksga o'tkazmaydi.</>, ru: <>0..4 — это <b>5 шагов</b>, а i &lt; length не пускает к индексу 5.</> }
       }
     ]
   }
@@ -301,7 +301,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -319,7 +319,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -328,13 +328,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -414,7 +414,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -423,7 +423,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -561,7 +561,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -569,8 +569,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -582,11 +583,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -975,12 +976,12 @@ const Screen4 = (props) => (
     questionText="for siklida 'i++' nima vazifani bajaradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>for siklidagi <span className="mono" style={{ color: T.accent }}>i++</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>i++</span> в цикле for?</> })}</h2></>}
     options={[{ uz: "Siklni boshlang'ich qiymatini belgilaydi", ru: 'Задаёт начальное значение цикла' }, { uz: 'Har aylanishdan keyin i ni 1 ga oshiradi', ru: 'После каждой итерации увеличивает i на 1' }, { uz: "Siklni butunlay to'xtatib qo'yadi", ru: 'Полностью останавливает цикл' }, { uz: 'Yangi massiv yaratadi', ru: 'Создаёт новый массив' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! i++ — bu qadam. Har bir aylanishdan so'ng i qiymati 1 ga oshadi va shart qaytadan tekshiriladi.", ru: 'Верно! i++ — это шаг. После каждой итерации значение i растёт на 1, и условие проверяется снова.' }}
+    explainCorrect={{ uz: "`i++` — sikl qadami: sanoqni bittaga oldinga suradi.", ru: '`i++` — шаг цикла: двигает счёт на единицу вперёд.' }}
     explainWrong={{
-      0: { uz: "Yo'q — boshlang'ich qiymat «let i = 1» qismi. i++ esa qadam — har safar i ni o'zgartiradi.", ru: 'Нет — начальное значение задаёт часть «let i = 1». А i++ — шаг: он меняет i каждый раз.' },
-      2: { uz: "Yo'q — siklni shart to'xtatadi (i <= 5 buzilganda). i++ esa i ni oshiradi.", ru: 'Нет — цикл останавливает условие (когда i <= 5 нарушится). А i++ увеличивает i.' },
-      3: { uz: "Yo'q — massiv boshqa narsa. i++ faqat i ni 1 ga oshiradi.", ru: 'Нет — массив тут ни при чём. i++ лишь увеличивает i на 1.' },
-      default: { uz: 'i++ — qadam: har aylanishdan keyin i ni 1 ga oshiradi.', ru: 'i++ — шаг: после каждой итерации увеличивает i на 1.' }
+      0: { uz: "Boshlang'ich qiymatni `let i = 1` qismi beradi, `i++` emas.", ru: 'Начальное значение задаёт `let i = 1`, а не `i++`.' },
+      2: { uz: "Siklni shart to'xtatadi, `i++` emas.", ru: 'Цикл останавливает условие, а не `i++`.' },
+      3: { uz: "`i++` massiv yaratmaydi — u faqat `i` bilan ishlaydi.", ru: '`i++` не создаёт массив — он работает только с `i`.' },
+      default: { uz: 'Konveyerni eslang: har aylanishda nima bo\'ladi?', ru: 'Вспомните конвейер: что происходит на каждом обороте?' }
     }} />
 );
 
@@ -1041,12 +1042,12 @@ const Screen5b = (props) => (
     questionText="for (let i = 1; i <= 3; i++) console.log(i) — konsolda qaysi sonlar chiqadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Siklni o'qing", ru: 'Прочитайте цикл' })}</p><h2 className="title h-ask" style={{ margin: '8px 0 2px' }}>{tr({ uz: <>Bu sikl konsolga <span className="italic" style={{ color: T.accent }}>qaysi sonlarni</span> yozadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какие числа</span> этот цикл выведет в консоль?</> })}</h2><div className="codebox" style={{ marginTop: 10, marginBottom: 4 }}><div><KW>for</KW> (<KW>let</KW> i = <NUM>1</NUM>; i &lt;= <NUM>3</NUM>; i++) {'{'}</div><div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(i)</div><div>{'}'}</div></div></>}
     options={['1, 2, 3', '1, 2', '1, 2, 3, 4', '3, 2, 1']} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! i = 1 dan boshlanadi va «i <= 3» bo'lgancha ishlaydi: 1, 2, 3. i = 4 bo'lganda shart buziladi — sikl to'xtaydi.", ru: 'Верно! i начинается с 1 и работает, пока «i <= 3»: 1, 2, 3. При i = 4 условие нарушается — цикл останавливается.' }}
+    explainCorrect={{ uz: "`i <= 3` da 3 ham kiradi, `i = 4` da sikl to'xtaydi.", ru: 'При `i <= 3` тройка входит, а при `i = 4` цикл останавливается.' }}
     explainWrong={{
-      1: { uz: "Deyarli! Shart «i <= 3» — ya'ni 3 ham kiradi (3 <= 3 — to'g'ri). Demak 1, 2, 3.", ru: 'Почти! Условие «i <= 3» — значит, 3 тоже входит (3 <= 3 — истина). Итого 1, 2, 3.' },
-      2: { uz: "Yo'q — i = 4 bo'lganda «4 <= 3» noto'g'ri, sikl to'xtaydi. 4 chiqmaydi. Faqat 1, 2, 3.", ru: 'Нет — при i = 4 условие «4 <= 3» ложно, цикл останавливается. 4 не выводится. Только 1, 2, 3.' },
-      3: { uz: "Yo'q — i++ i ni oshiradi (1 dan yuqoriga), kamaytirmaydi. Demak 1, 2, 3 tartibda.", ru: 'Нет — i++ увеличивает i (от 1 вверх), а не уменьшает. Значит порядок 1, 2, 3.' },
-      default: { uz: 'Boshlanish 1, shart «i <= 3» → 1, 2, 3.', ru: 'Старт 1, условие «i <= 3» → 1, 2, 3.' }
+      1: { uz: "Belgi `<=` — «kichik yoki teng», 3 ning o'zini ham tekshiring.", ru: 'Знак `<=` — «меньше или равно»: проверьте и саму тройку.' },
+      2: { uz: "`i = 4` da `4 <= 3` yolg'on — sikl 4 ni chiqarmaydi.", ru: 'При `i = 4` условие `4 <= 3` ложно — 4 не выводится.' },
+      3: { uz: "`i++` oshiradi, kamaytirmaydi — sanoq 1 dan yuqoriga yuradi.", ru: '`i++` увеличивает, а не уменьшает — счёт идёт от 1 вверх.' },
+      default: { uz: '`i` 1 dan boshlanadi — har qadamda `i <= 3` ni tekshiring.', ru: '`i` начинается с 1 — на каждом шаге проверяйте `i <= 3`.' }
     }} />
 );
 
@@ -1232,12 +1233,12 @@ const Screen9 = (props) => (
     questionText="mevalar = ['olma','banan','uzum']. mevalar[0] nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>let</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>]</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>mevalar[0]</span> nimaga teng?</>, ru: <>Чему равно <span className="mono" style={{ color: T.accent }}>mevalar[0]</span>?</> })}</h2></>}
     options={['"banan"', '"olma"', { uz: "Xato — [0] yo'q", ru: 'Ошибка — [0] не существует' }, '"uzum"']} correctIdx={1}
-    explainCorrect={{ uz: `To'g'ri! Indeks 0 dan boshlanadi, shuning uchun mevalar[0] — birinchi element, ya'ni "olma".`, ru: 'Верно! Индекс начинается с 0, поэтому mevalar[0] — первый элемент, то есть "olma".' }}
+    explainCorrect={{ uz: `Indeks 0 dan boshlanadi — \`[0]\` birinchi elementni oladi.`, ru: 'Индекс начинается с 0 — `[0]` берёт первый элемент.' }}
     explainWrong={{
-      0: { uz: 'Yo\'q — "banan" ikkinchi element, uning indeksi [1]. [0] esa birinchi — "olma".', ru: 'Нет — "banan" второй элемент, его индекс [1]. А [0] — первый, это "olma".' },
-      2: { uz: "Yo'q — [0] aniq bor: u birinchi elementni bildiradi (indeks 0 dan boshlanadi).", ru: 'Нет — [0] точно существует: это первый элемент (индекс начинается с 0).' },
-      3: { uz: 'Yo\'q — "uzum" uchinchi element, indeksi [2]. [0] — "olma".', ru: 'Нет — "uzum" третий элемент, его индекс [2]. [0] — это "olma".' },
-      default: { uz: 'Indeks 0 dan boshlanadi → mevalar[0] = "olma".', ru: 'Индекс начинается с 0 → mevalar[0] = "olma".' }
+      0: { uz: '"banan" ikkinchi element, uning indeksi `[1]`.', ru: '"banan" — второй элемент, его индекс `[1]`.' },
+      2: { uz: "`[0]` bor — indeks aynan 0 dan boshlanadi.", ru: '`[0]` существует — индекс как раз начинается с 0.' },
+      3: { uz: '"uzum" uchinchi element, uning indeksi `[2]`.', ru: '"uzum" — третий элемент, его индекс `[2]`.' },
+      default: { uz: 'Liftdagi 0-qavatni eslang: sanoq qayerdan boshlanadi?', ru: 'Вспомните этаж 0 в лифте: откуда начинается счёт?' }
     }} />
 );
 
@@ -1367,12 +1368,12 @@ const Screen12 = (props) => (
     questionText="dostlar massivida 5 ta nom bor. for (i=0; i<dostlar.length; i++) sikli necha marta ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><CM>{tr({ uz: '// dostlar = 5 ta nom', ru: '// dostlar = 5 имён' })}</CM></div><div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{ … }'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <>Sikl <span className="italic" style={{ color: T.accent }}>necha marta</span> ishlaydi?</>, ru: <>Цикл сработает <span className="italic" style={{ color: T.accent }}>сколько раз</span>?</> })}</h2></>}
     options={[{ uz: '4 marta', ru: '4 раза' }, { uz: '5 marta', ru: '5 раз' }, { uz: '6 marta', ru: '6 раз' }, { uz: 'Cheksiz', ru: 'Бесконечно' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! .length = 5, sikl i = 0, 1, 2, 3, 4 bo'lganda ishlaydi — ya'ni 5 marta, har bir element uchun bir marta.", ru: 'Верно! .length = 5, цикл работает при i = 0, 1, 2, 3, 4 — то есть 5 раз, по разу на каждый элемент.' }}
+    explainCorrect={{ uz: "`i` 0 dan 4 gacha yuradi — har element uchun bir marta.", ru: '`i` идёт от 0 до 4 — по разу на каждый элемент.' }}
     explainWrong={{
-      0: { uz: "Yo'q — bu klassik «±1» xato. i 0,1,2,3,4 — bu 5 ta qiymat. Demak 5 marta.", ru: 'Нет — это классическая ошибка «±1». i идёт 0,1,2,3,4 — это 5 значений. Значит 5 раз.' },
-      2: { uz: "Yo'q — i 5 bo'lganda «5 < 5» noto'g'ri, sikl to'xtaydi. Demak 6 emas, 5 marta.", ru: 'Нет — при i = 5 условие «5 < 5» ложно, цикл останавливается. Значит не 6, а 5 раз.' },
-      3: { uz: "Yo'q — i++ tufayli i oshadi va shart bir kun buziladi. Cheksiz emas — 5 marta.", ru: 'Нет — благодаря i++ значение i растёт, и условие однажды нарушится. Не бесконечно — 5 раз.' },
-      default: { uz: '.length = 5 → i 0..4 → 5 marta.', ru: '.length = 5 → i 0..4 → 5 раз.' }
+      0: { uz: "Sanoq 0 dan boshlanadi — 0 ning o'zini ham sanang.", ru: 'Счёт начинается с 0 — посчитайте и сам 0.' },
+      2: { uz: "`i = 5` da `5 < 5` yolg'on — sikl u yerga yetmaydi.", ru: 'При `i = 5` условие `5 < 5` ложно — до этого цикл не доходит.' },
+      3: { uz: "`i++` tufayli `i` o'sadi va shart bir kun buziladi.", ru: 'Из-за `i++` значение `i` растёт, и условие однажды нарушится.' },
+      default: { uz: '`.length` nechta ekanini va `i` qayerdan boshlanishini ko\'ring.', ru: 'Посмотрите, чему равен `.length` и с чего начинается `i`.' }
     }} />
 );
 

@@ -257,24 +257,24 @@ const RECAPS = {
   4: {
     title: { uz: "Matrix — parallel lentalar", ru: 'Matrix — параллельные ленты' },
     cards: [
-      { ic: "🧬", h: { uz: "Bir nechta muhit", ru: 'Несколько сред' }, body: { uz: <>Matrix bitta yukni <b>bir necha muhitda</b> (masalan Node 18/20/22) bir vaqtda tekshiradi.</>, ru: <>Matrix проверяет один груз <b>в нескольких средах</b> (например, Node 18/20/22) одновременно.</> } },
-      { ic: "🔍", h: { uz: "Muammoni oldindan topadi", ru: 'Находит проблему заранее' }, body: { uz: <>Bitta muhitda yashil, boshqasida qizil bo'lishi mumkin — matrix buni <b>productiondan oldin</b> ko'rsatadi.</>, ru: <>В одной среде может быть зелёный, в другой — красный. Matrix покажет это <b>до продакшена</b>.</> } },
-      { ic: "🚦", h: { uz: "Faqat singan muhit qizil", ru: 'Красной становится только сломанная среда' }, body: { uz: <>Qolgan muhitlar davom etadi — aynan qaysi sharoitda singani aniq bo'ladi.</>, ru: <>Остальные среды продолжают работать — и сразу видно, в каких именно условиях всё сломалось.</> }, ask: { uz: "Matrix nechta muhitni bir vaqtda tekshiradi?", ru: 'Сколько сред matrix проверяет одновременно?' } },
+      { ic: "🧬", h: { uz: "Bir nechta muhit", ru: 'Несколько сред' }, body: { uz: <>Matrix bitta yukni <b>bir necha muhitda</b> (Node 18/20/22) bir vaqtda tekshiradi.</>, ru: <>Matrix проверяет один груз <b>в нескольких средах</b> (Node 18/20/22) одновременно.</> } },
+      { ic: "🔍", h: { uz: "Muammoni oldindan topadi", ru: 'Находит проблему заранее' }, body: { uz: <>Bir muhitda yashil, boshqasida qizil bo'lsa, matrix buni <b>productiondan oldin</b> ko'rsatadi.</>, ru: <>Если в одной среде зелёный, а в другой красный, matrix покажет это <b>до продакшена</b>.</> } },
+      { ic: "🚦", h: { uz: "Faqat singan muhit qizil", ru: 'Красной становится только сломанная среда' }, body: { uz: <>Qolgan muhitlar davom etadi, shuning uchun qaysi sharoitda singani aniq ko'rinadi.</>, ru: <>Остальные среды продолжают работу, и видно, в каких именно условиях всё сломалось.</> }, ask: { uz: "Matrix nechta muhitni bir vaqtda tekshiradi?", ru: 'Сколько сред matrix проверяет одновременно?' } },
     ]
   },
   8: {
     title: { uz: "Cache — yaqin javon", ru: 'Cache — ближняя полка' },
     cards: [
-      { ic: "💨", h: { uz: "Birinchi reys sekin", ru: 'Первый рейс медленный' }, body: { uz: <>Yaqin javon bo'lmasa, har reysda paketlar <b>noldan</b> yuklanadi — 40 soniya.</>, ru: <>Без ближней полки пакеты на каждом рейсе загружаются <b>с нуля</b> — 40 секунд.</> } },
-      { ic: "⚡", h: { uz: "Keyingi reys tez", ru: 'Следующий рейс быстрый' }, body: { uz: <>Yaqin javon bilan avvalgi paketlar saqlanadi — 8 soniya, <b>5 baravar tezroq</b>.</>, ru: <>С ближней полкой прежние пакеты сохраняются — 8 секунд, <b>в 5 раз быстрее</b>.</> } },
-      { ic: "📦", h: { uz: "Nima saqlanadi", ru: 'Что сохраняется' }, body: { uz: <>Odatda <span className="mono">node_modules</span> — o'zgarmagan paketlarni qayta yuklash shart emas.</>, ru: <>Обычно <span className="mono">node_modules</span> — незачем заново скачивать пакеты, которые не менялись.</> }, ask: { uz: "Yaqin javon (cache) nimani tezlashtiradi?", ru: 'Что ускоряет ближняя полка (cache)?' } },
+      { ic: "💨", h: { uz: "Birinchi reys sekin", ru: 'Первый рейс медленный' }, body: { uz: <>Yaqin javon bo'lmasa, har reysda paketlar <b>noldan</b> yuklanadi — 40 soniya.</>, ru: <>Без ближней полки пакеты на каждом рейсе грузятся <b>с нуля</b> — 40 секунд.</> } },
+      { ic: "⚡", h: { uz: "Keyingi reys tez", ru: 'Следующий рейс быстрый' }, body: { uz: <>Yaqin javon bilan paketlar saqlanadi — 8 soniya, <b>5 baravar tezroq</b>.</>, ru: <>С ближней полкой пакеты сохраняются — 8 секунд, <b>в 5 раз быстрее</b>.</> } },
+      { ic: "📦", h: { uz: "Nima saqlanadi", ru: 'Что сохраняется' }, body: { uz: <>Odatda <span className="mono">node_modules</span> saqlanadi — o'zgarmagan paketlar qayta yuklanmaydi.</>, ru: <>Обычно хранят <span className="mono">node_modules</span> — неизменённые пакеты заново не качают.</> }, ask: { uz: "Yaqin javon (cache) nimani tezlashtiradi?", ru: 'Что ускоряет ближняя полка (cache)?' } },
     ]
   },
   10: {
     title: { uz: "Seyf — maxfiy kalit", ru: 'Сейф — секретный ключ' },
     cards: [
-      { ic: "🔓", h: { uz: "Ochiq yozilsa — xavfli", ru: 'Записан открыто — опасно' }, body: { uz: <>Kalit yo'l xaritasida ochiq yozilsa, repo ochiq bo'lganda <b>hamma uni ko'radi</b>.</>, ru: <>Если ключ записан в маршрутной карте открыто, то в открытом репозитории <b>его увидят все</b>.</> } },
-      { ic: "🔐", h: { uz: "Seyfga qo'yilsa — xavfsiz", ru: 'Лежит в сейфе — безопасно' }, body: { uz: <>Platformaning maxsus seyfiga saqlanadi, kod ichida faqat <span className="mono">{'${{ secrets.API_KEY }}'}</span> ko'rinadi.</>, ru: <>Хранится в специальном сейфе платформы, а в коде видно только <span className="mono">{'${{ secrets.API_KEY }}'}</span>.</> } },
+      { ic: "🔓", h: { uz: "Ochiq yozilsa — xavfli", ru: 'Записан открыто — опасно' }, body: { uz: <>Kalit yo'l xaritasida ochiq yozilsa, repo ochiq bo'lganda <b>hamma uni ko'radi</b>.</>, ru: <>Если ключ открыто записан в маршрутной карте, в открытом репозитории <b>его увидят все</b>.</> } },
+      { ic: "🔐", h: { uz: "Seyfga qo'yilsa — xavfsiz", ru: 'Лежит в сейфе — безопасно' }, body: { uz: <>Kalit seyfda turadi, kodda faqat <span className="mono">{'${{ secrets.API_KEY }}'}</span> ko'rinadi.</>, ru: <>Ключ хранится в сейфе, а в коде видно только <span className="mono">{'${{ secrets.API_KEY }}'}</span>.</> } },
       { ic: "🛡️", h: { uz: "Jurnalda ham yashirin", ru: 'Скрыт даже в журнале' }, body: { uz: <>Seyfdagi qiymat lenta jurnalida ham yulduzchalar bilan yashiriladi.</>, ru: <>Значение из сейфа даже в журнале ленты закрывается звёздочками.</> }, ask: { uz: "Maxfiy kalit qayerda saqlanishi kerak?", ru: 'Где должен храниться секретный ключ?' } },
     ]
   },
@@ -282,7 +282,7 @@ const RECAPS = {
     title: { uz: "Rollback — eski yukni qaytarish", ru: 'Rollback — возврат старого багажа' },
     cards: [
       { ic: "💥", h: { uz: "Yangi yuk buzuq chiqdi", ru: 'Новый багаж оказался сломанным' }, body: { uz: <>Ba'zan sinov reysida yashil bo'lgan yuk ham haqiqiy reysda kutilmagan xato beradi.</>, ru: <>Иногда даже груз, зелёный на тестовом рейсе, на настоящем рейсе выдаёт неожиданную ошибку.</> } },
-      { ic: "⏪", h: { uz: "Bir bosishda qaytarish", ru: 'Возврат в один клик' }, body: { uz: <>Rollback — oldingi <b>ishlaydigan</b> yukka darhol qaytish.</>, ru: <>Rollback — мгновенное возвращение к прежнему <b>рабочему</b> багажу.</> } },
+      { ic: "⏪", h: { uz: "Bir bosishda qaytarish", ru: 'Возврат в один клик' }, body: { uz: <>Rollback — oldingi <b>ishlaydigan</b> yukka darhol qaytish.</>, ru: <>Rollback — мгновенный возврат к прежнему <b>рабочему</b> багажу.</> } },
       { ic: "🛡️", h: { uz: "Yo'lovchi tinch", ru: 'Пассажир спокоен' }, body: { uz: <>Tez rollback qilinsa, ko'pchilik yo'lovchi muammoni sezmay ham qoladi.</>, ru: <>Если откатиться быстро, большинство пассажиров даже не заметит проблему.</> }, ask: { uz: "Eski yukni qaytarish (rollback) qachon ishlatiladi?", ru: 'Когда используется возврат старого багажа (rollback)?' } },
     ]
   },
@@ -296,7 +296,7 @@ const RECAPS = {
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -314,7 +314,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Разбор ещё раз' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -323,13 +323,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -406,7 +406,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не разобрался в этой теме. Прежде чем идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Разбор ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите, прежде чем продолжать.</> })}</p>
@@ -499,7 +499,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -507,8 +507,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -520,11 +521,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -941,12 +942,12 @@ const Screen4 = (props) => (
     questionText="Parallel lentalar (matrix) nima uchun kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Parallel lentalar (matrix) <span className="italic" style={{ color: T.accent }}>nima uchun</span> kerak?</>, ru: <>Зачем нужны <span className="italic" style={{ color: T.accent }}>параллельные ленты</span> (matrix)?</> })}</h2></>}
     options={[{ uz: "Maxfiy kalitlarni xavfsiz joyda saqlab qo'yish uchun", ru: 'Чтобы хранить секретные ключи в надёжном месте' }, { uz: "Bir nechta muhitda (masalan, Node versiyalarida) bir vaqtda tekshirish uchun", ru: 'Чтобы проверять в нескольких средах (например, версиях Node) одновременно' }, { uz: "Faqat bitta muhitda, lekin avvalgidan tezroq tekshirish uchun", ru: 'Чтобы проверять только в одной среде, но быстрее, чем раньше' }, { uz: "Productionni sinov reysisiz, tekshiruvsiz to'g'ridan-to'g'ri ishga tushirish uchun", ru: 'Чтобы запускать продакшен сразу, без тестового рейса и проверок' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Matrix bitta yukni bir nechta muhitda bir vaqtning o'zida tekshiradi — muhitga bog'liq xatolarni productiondan oldin topib beradi.", ru: 'Верно! Matrix проверяет один груз в нескольких средах одновременно — и находит ошибки, зависящие от среды, ещё до продакшена.' }}
+    explainCorrect={{ uz: "Muhitga bog'liq xato productiondan oldin topiladi.", ru: 'Ошибку, зависящую от среды, находят ещё до продакшена.' }}
     explainWrong={{
-      0: { uz: "Kalitlarni saqlash — seyf (secrets) ishi. Matrix esa turli muhitda tekshiradi.", ru: 'Хранение ключей — работа сейфа (secrets). А matrix проверяет в разных средах.' },
-      2: { uz: "Aksincha — matrix bir emas, bir NECHTA muhitda parallel tekshiradi.", ru: 'Наоборот — matrix проверяет параллельно не в одной, а в НЕСКОЛЬКИХ средах.' },
-      3: { uz: "Sinov reysisiz to'g'ridan-to'g'ri chiqarish — bu xavfli yo'l, matrix bunga aloqasi yo'q.", ru: 'Выпускать без тестового рейса — опасный путь, и matrix тут ни при чём.' },
-      default: { uz: "Matrix = bir nechta muhitda bir vaqtda tekshirish.", ru: 'Matrix = одновременная проверка в нескольких средах.' }
+      0: { uz: "Kalitlarni saqlash — seyf ishi, `matrix` boshqa narsa qiladi.", ru: 'Хранить ключи — работа сейфа, `matrix` делает другое.' },
+      2: { uz: "Bitta muhit bo'lsa, parallel lentalar nimaga kerak?", ru: 'Будь среда одна, зачем тогда параллельные ленты?' },
+      3: { uz: "Sinov reysisiz chiqarish xavfli, `matrix` buni qilmaydi.", ru: 'Выпуск без тестового рейса опасен, и `matrix` этого не делает.' },
+      default: { uz: "Nega `matrix` «parallel lentalar» deb ataladi — o'ylang.", ru: 'Подумайте, почему `matrix` называют «параллельными лентами».' }
     }} />
 );
 
@@ -1067,12 +1068,12 @@ const Screen8 = (props) => (
     questionText="Yaqin javon (cache) nimaga yordam beradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yaqin javon (cache) <span className="italic" style={{ color: T.accent }}>nimaga</span> yordam beradi?</>, ru: <>Чем помогает <span className="italic" style={{ color: T.accent }}>ближняя полка</span> (cache)?</> })}</h2></>}
     options={[{ uz: "Bir nechta muhitda (masalan, turli Node versiyalarida) parallel test o'tkazadi", ru: 'Проводит параллельные тесты в нескольких средах (например, в разных версиях Node)' }, { uz: "Kod sifatini avtomatik tekshirib, xatolarni ekranda ko'rsatib beradi", ru: 'Автоматически проверяет качество кода и показывает ошибки на экране' }, { uz: "Maxfiy kalitlarni xavfsiz joyda saqlab, kod ichidan yashiradi", ru: 'Хранит секретные ключи в надёжном месте и прячет их из кода' }, { uz: "Har reysda paketlarni qaytadan yuklamaslik orqali vaqtni tejaydi", ru: 'Экономит время: не скачивает пакеты заново на каждом рейсе' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Yaqin javon avvalgi reysda yuklangan paketlarni saqlab qo'yadi — keyingi reys sezilarli tezroq o'tadi.", ru: 'Верно! Ближняя полка сохраняет пакеты, загруженные в прошлом рейсе, — следующий рейс проходит заметно быстрее.' }}
+    explainCorrect={{ uz: "Yaqin javon paketlarni saqlaydi — keyingi reys tezroq.", ru: 'Ближняя полка хранит пакеты — следующий рейс быстрее.' }}
     explainWrong={{
-      0: { uz: "Parallel test — matrix ishi. Cache install bosqichini tezlashtiradi.", ru: 'Параллельные тесты — работа matrix. Cache ускоряет этап install.' },
-      1: { uz: "Sifat tekshiruvi — bu boshqa vosita. Cache esa vaqtni tejaydi.", ru: 'Проверка качества — это другой инструмент. Cache же экономит время.' },
-      2: { uz: "Kalitlarni saqlash — seyf (secrets) ishi. Cache paketlarni saqlaydi.", ru: 'Хранение ключей — работа сейфа (secrets). Cache хранит пакеты.' },
-      default: { uz: "Cache = takroriy install'ni tezlashtiradi.", ru: 'Cache = ускоряет повторный install.' }
+      0: { uz: "Parallel test — `matrix` ishi, yaqin javon emas.", ru: 'Параллельные тесты — работа `matrix`, а не ближней полки.' },
+      1: { uz: "Kod sifatini boshqa vosita tekshiradi, yaqin javon emas.", ru: 'Качество кода проверяет другой инструмент, не ближняя полка.' },
+      2: { uz: "Kalitlar seyfda turadi, yaqin javonda emas.", ru: 'Ключи лежат в сейфе, а не на ближней полке.' },
+      default: { uz: "Yaqin javonda nima turishini eslang.", ru: 'Вспомните, что лежит на ближней полке.' }
     }} />
 );
 
@@ -1125,12 +1126,12 @@ const Screen10 = (props) => (
     questionText="Maxfiy kalitni ci.yml faylida qanday ishlatish xavfsiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Maxfiy kalitni <span className="italic" style={{ color: T.accent }}>qanday</span> ishlatish xavfsiz?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>безопасно</span> использовать секретный ключ?</> })}</h2></>}
     options={[{ uz: "Seyfga saqlab, ${{ secrets.API_KEY }} orqali chaqirish", ru: 'Хранить в сейфе и вызывать через ${{ secrets.API_KEY }}' }, { uz: "Commit izohiga (commit message) yozib, keyin push qilish", ru: 'Записать в сообщение коммита (commit message) и сделать push' }, { uz: "README faylining eng boshiga alohida qatorga yozib qo'yish", ru: 'Записать отдельной строкой в самом начале файла README' }, { uz: "To'g'ridan-to'g'ri ochiq matn sifatida faylning ichiga yozib qo'yish", ru: 'Записать прямо в файл открытым текстом' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Maxfiy kalit hech qachon kod ichida ochiq yozilmaydi — u seyfga saqlanadi va yo'l xaritasida faqat ${{ secrets.API_KEY }} orqali chaqiriladi.", ru: 'Верно! Секретный ключ никогда не пишется в коде открыто — он хранится в сейфе, а в маршрутной карте вызывается только через ${{ secrets.API_KEY }}.' }}
+    explainCorrect={{ uz: "Koddagi kalitni hamma ko'radi, seyfdagini — hech kim.", ru: 'Ключ в коде видят все, а ключ в сейфе — никто.' }}
     explainWrong={{
-      1: { uz: "Commit izohi ham hammaga ko'rinadi — seyf emas.", ru: 'Сообщение коммита тоже видно всем — это не сейф.' },
-      2: { uz: "README ham ochiq fayl — kalit u yerda ham xavfsiz emas.", ru: 'README — тоже открытый файл, ключ там не в безопасности.' },
-      3: { uz: "Ochiq matn — repo ochiq bo'lsa, hamma kalitni ko'radi. Bu xavfli.", ru: 'Открытый текст — если репозиторий открыт, ключ увидят все. Это опасно.' },
-      default: { uz: "Maxfiy kalit — faqat seyfdan, ${{ secrets.API_KEY }} orqali.", ru: 'Секретный ключ — только из сейфа, через ${{ secrets.API_KEY }}.' }
+      1: { uz: "Commit izohi ham hammaga ko'rinadi — kalit ochilib qoladi.", ru: 'Сообщение коммита видно всем — ключ окажется открытым.' },
+      2: { uz: "README ham ochiq fayl — kalitni u yerda hamma o'qiydi.", ru: 'README — тоже открытый файл, ключ там прочитает любой.' },
+      3: { uz: "Repo ochiq bo'lsa, fayldagi kalitni hamma ko'radi.", ru: 'Если репозиторий открыт, ключ из файла увидят все.' },
+      default: { uz: "Maxfiy kalitni hech kim ko'rmaydigan joyni eslang.", ru: 'Вспомните место, где ключ никто не увидит.' }
     }} />
 );
 
@@ -1283,12 +1284,12 @@ const Screen14 = (props) => (
     questionText="Yangi versiya productionda buzuq chiqdi. Nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yangi yuk production'da buzuq chiqdi. <span className="italic" style={{ color: T.accent }}>Nima qilasiz</span>?</>, ru: <>Новый багаж в продакшене оказался сломанным. <span className="italic" style={{ color: T.accent }}>Что будете делать</span>?</> })}</h2></>}
     options={[{ uz: "Hech narsa qilmayman, o'zi tuzalib ketadi deb kutaman", ru: 'Ничего — подожду, вдруг само починится' }, { uz: "Yaqin javonni (cache) butunlay o'chirib, install'ni noldan qayta ishga tushiraman", ru: 'Полностью отключу кеш (cache) и запущу install заново с нуля' }, { uz: "Eski yukni qaytarish (rollback) bilan darhol oldingi versiyaga qaytaman", ru: 'Сразу вернусь к прежней версии через rollback (возврат старого багажа)' }, { uz: "Parallel lentalar sonini yana ko'paytirib, qaytadan sinab ko'raman", ru: 'Увеличу количество параллельных лент и попробую ещё раз' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Rollback — muammoli yangi yukdan darhol oldingi ishlaydigan yukka qaytish. Bu eng tez va ishonchli yechim.", ru: 'Верно! Rollback — мгновенный возврат от проблемного нового багажа к прежнему рабочему. Это самое быстрое и надёжное решение.' }}
+    explainCorrect={{ uz: "Oldingi yuk ishlagan — unga qaytish eng tez yechim.", ru: 'Прежний багаж работал — вернуться к нему быстрее всего.' }}
     explainWrong={{
-      0: { uz: "Kutish — foydalanuvchi shu vaqtda buzuq saytni ko'raveradi. Darhol harakat kerak.", ru: 'Ждать нельзя — всё это время пользователь видит сломанный сайт. Действовать нужно сразу.' },
-      1: { uz: "Cache'ni o'chirish muammoni hal qilmaydi — bu boshqa yaxshilash.", ru: 'Отключение кеша проблему не решит — это другое улучшение.' },
-      3: { uz: "Matrix sonini ko'paytirish ham hozirgi buzuq versiyani tuzatmaydi.", ru: 'Больше параллельных лент — но текущую сломанную версию это не починит.' },
-      default: { uz: "Muammo chiqsa — rollback bilan darhol qaytiladi.", ru: 'Если возникла проблема — сразу откатываемся через rollback.' }
+      0: { uz: "Kutgan sari yo'lovchi buzuq saytni ko'raveradi.", ru: 'Пока вы ждёте, пассажиры видят сломанный сайт.' },
+      1: { uz: "Yaqin javonni o'chirish buzuq versiyani tuzatmaydi.", ru: 'Если убрать ближнюю полку, сломанная версия не починится.' },
+      3: { uz: "Lentalarni ko'paytirish hozirgi buzuq yukni tuzatmaydi.", ru: 'Больше лент — но текущий сломанный багаж это не починит.' },
+      default: { uz: "Yo'lovchi kutmasligi uchun eng tez yo'lni o'ylang.", ru: 'Подумайте о самом быстром пути, чтобы пассажир не ждал.' }
     }} />
 );
 
@@ -1340,7 +1341,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {consequence === 'skip-staging' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: 'Sinov reysisiz haqiqiy reysga chiqib ketdi!', ru: 'Улетело на настоящий рейс без тестового!' }) /* F-0926-06: sarlavha emojisi olindi (H3) */}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tekshirilmagan yuk to'g'ridan-to'g'ri yo'lovchi qo'liga tushdi. Tartibni to'g'rilang.", ru: 'Непроверенный груз попал прямо в руки пассажира. Исправьте порядок.' })}</p><PhoneMock state="broken" /></div>}
         {consequence === 'wrong' && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qaytadan joylang.", ru: 'Порядок неверный — нажмите на блок, верните его и разложите заново.' })}</p></div>}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ishonchli lenta tayyor: <b>Matrix → Cache → Secret → Staging → Production</b>. Muammo chiqsa — rollback bilan bir bosishda qaytarasiz.</>, ru: <>✓ Надёжная лента готова: <b>Matrix → Cache → Secret → Staging → Production</b>. Если возникнет проблема — вернётесь через rollback в один клик.</> })}</p><PhoneMock state="new" />
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>

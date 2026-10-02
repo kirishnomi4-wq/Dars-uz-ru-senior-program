@@ -238,38 +238,38 @@ const RECAPS = {
   4: {
     title: { uz: 'Shakl — jadval va hujjat farqi', ru: 'Форма — разница таблицы и документа' },
     cards: [
-      { ic: "📋", h: { uz: 'SQL = ustunlari oldindan belgilangan jadval', ru: 'SQL = таблица с заранее заданными столбцами' }, body: { uz: <>SQL jadvalida ustunlar <b>oldindan belgilangan</b> — har qator bir xil ustunlarga ega. Yangi maydon uchun jadval tuzilishini o'zgartirish kerak.</>, ru: <>В SQL-таблице столбцы <b>заданы заранее</b> — у каждой строки одни и те же столбцы. Ради нового поля придётся менять структуру таблицы.</> } },
-      { ic: "🧾", h: { uz: "NoSQL = { } hujjat", ru: 'NoSQL = { } документ' }, body: { uz: <>NoSQL hujjatiga <b>yangi maydon</b> qo'shish osonroq — boshqa hujjatlar o'zgarmaydi.</>, ru: <>В NoSQL-документ <b>новое поле</b> добавить проще — остальные документы не изменятся.</> } },
-      { ic: "🎵", h: { uz: "«musiqa» maydoni qayerga osonroq?", ru: 'Куда проще добавить поле «музыка»?' }, body: { uz: <>Har yozuv har xil maydonga ega bo'lsa — <b>NoSQL</b> qulayroq. Shakli qat'iy bo'lsa — <b>SQL</b>.</>, ru: <>Если у каждой записи свои поля — удобнее <b>NoSQL</b>. Если форма строгая — <b>SQL</b>.</> }, ask: { uz: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur qulayroq?", ru: 'Какой тип удобнее для данных, чья форма часто меняется?' } },
+      { ic: "📋", h: { uz: 'SQL = ustunlari oldindan belgilangan jadval', ru: 'SQL = таблица с заранее заданными столбцами' }, body: { uz: <>SQL jadvalida <b>ustunlar oldindan belgilangan</b>, har qator bir xil ustunlarga ega.</>, ru: <>В SQL-таблице <b>столбцы заданы заранее</b>, у каждой строки они одинаковые.</> } },
+      { ic: "🧾", h: { uz: "NoSQL = { } hujjat", ru: 'NoSQL = { } документ' }, body: { uz: <>NoSQL hujjatiga <b>yangi maydon</b> qo'shish oson — boshqa hujjatlar o'zgarmaydi.</>, ru: <>В NoSQL-документ <b>новое поле</b> добавить проще — остальные документы не изменятся.</> } },
+      { ic: "🎵", h: { uz: "«musiqa» maydoni qayerga osonroq?", ru: 'Куда проще добавить поле «музыка»?' }, body: { uz: <>Yozuvlar maydoni har xil bo'lsa — <b>NoSQL</b>, shakli qat'iy bo'lsa — <b>SQL</b>.</>, ru: <>Если поля у записей разные — <b>NoSQL</b>, если форма строгая — <b>SQL</b>.</> }, ask: { uz: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur qulayroq?", ru: 'Какой тип удобнее для данных, чья форма часто меняется?' } },
     ]
   },
   6: {
     title: { uz: "SQL kuchi — JOIN va ishonchlilik", ru: 'Сила SQL — JOIN и надёжность' },
     cards: [
-      { ic: "🔗", h: { uz: "JOIN — ikki jadvalni id orqali bog'laydi", ru: 'JOIN — связывает две таблицы через id' }, body: { uz: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bir-biriga bog'laydi — bir so'rovda javob.</>, ru: <><b>JOIN</b> соединяет две таблицы через <span className="mono">user_id</span> — ответ одним запросом.</> } },
-      { ic: "🔒", h: { uz: "Tranzaksiya — ikki marta sotilmaydi", ru: 'Транзакция — дважды не продастся' }, body: { uz: <>SQL bir lahzada faqat bittasiga sotadi — pul va buyurtmada <b>ishonchlilik</b> shu.</>, ru: <>SQL в один миг продаёт только одному — в деньгах и заказах это и есть <b>надёжность</b>.</> } },
-      { ic: "🧩", h: { uz: "Bog'langan ma'lumot — SQL ishi", ru: 'Связанные данные — работа SQL' }, body: { uz: <>users↔posts↔comments bir-biriga bog'langan bo'lsa — <b>SQL (JOIN)</b> qulay.</>, ru: <>Если users↔posts↔comments связаны между собой — удобен <b>SQL (JOIN)</b>.</> }, ask: { uz: "Bir-biriga bog'liq ma'lumotlar uchun qaysi tur qulayroq?", ru: 'Для связанных между собой данных какой тип удобнее?' } },
+      { ic: "🔗", h: { uz: "JOIN — ikki jadvalni id orqali bog'laydi", ru: 'JOIN — связывает две таблицы через id' }, body: { uz: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bog'laydi — javob bitta so'rovda.</>, ru: <><b>JOIN</b> соединяет две таблицы через <span className="mono">user_id</span> — ответ одним запросом.</> } },
+      { ic: "🔒", h: { uz: "Tranzaksiya — ikki marta sotilmaydi", ru: 'Транзакция — дважды не продастся' }, body: { uz: <><b>Tranzaksiya</b> bilan SQL bir narsani bir lahzada faqat bittasiga sotadi.</>, ru: <>Благодаря <b>транзакции</b> SQL в один миг продаёт вещь только одному.</> } },
+      { ic: "🧩", h: { uz: "Bog'langan ma'lumot — SQL ishi", ru: 'Связанные данные — работа SQL' }, body: { uz: <>users↔posts↔comments bog'langan bo'lsa, <b>SQL (JOIN)</b> qulay.</>, ru: <>Если users↔posts↔comments связаны, удобен <b>SQL (JOIN)</b>.</> }, ask: { uz: "Bir-biriga bog'liq ma'lumotlar uchun qaysi tur qulayroq?", ru: 'Для связанных между собой данных какой тип удобнее?' } },
     ]
   },
   10: {
     title: { uz: "Qaror — qaysi loyihaga qaysi baza", ru: 'Решение — какому проекту какая база' },
     cards: [
-      { ic: "🏦", h: { uz: "Bank — bog'langan va ishonchli", ru: 'Банк — связанно и надёжно' }, body: { uz: <>Pul, hisob, o'tkazma bog'langan va xato qimmatga tushadi → <b>SQL</b> (tranzaksiya).</>, ru: <>Деньги, счета и переводы связаны, а ошибка обходится дорого → <b>SQL</b> (транзакции).</> } },
-      { ic: "🧭", h: { uz: "Modaga emas, vazifaga qarab", ru: 'Не по моде, а по задаче' }, body: { uz: <>«Zamonaviyroq» — sabab emas. Tanlov <b>vazifaga</b> bog'liq: bog'lanish/shakl/ishonchlilik/hajm.</>, ru: <>«Современнее» — не аргумент. Выбор зависит от <b>задачи</b>: связи/форма/надёжность/объём.</> } },
-      { ic: "💬", h: { uz: "Katta va oddiy oqim — NoSQL", ru: 'Большой и простой поток — NoSQL' }, body: { uz: <>Millionlab oddiy chat xabari, tezlik kerak, bog'lanish kam → <b>NoSQL</b>.</>, ru: <>Миллионы простых чат-сообщений, нужна скорость, связей мало → <b>NoSQL</b>.</> }, ask: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi tur mos?", ru: 'Какой тип подходит банковскому приложению (деньги, счета)?' } },
+      { ic: "🏦", h: { uz: "Bank — bog'langan va ishonchli", ru: 'Банк — связанно и надёжно' }, body: { uz: <>Pul, hisob va o'tkazma bog'langan, xato qimmat — shuning uchun <b>SQL</b>.</>, ru: <>Деньги, счета и переводы связаны, а ошибка дорога — поэтому <b>SQL</b>.</> } },
+      { ic: "🧭", h: { uz: "Modaga emas, vazifaga qarab", ru: 'Не по моде, а по задаче' }, body: { uz: <>Baza <b>vazifaga qarab</b> tanlanadi: bog'lanish, shakl, ishonchlilik, hajm.</>, ru: <>Базу выбирают <b>по задаче</b>: связи, форма, надёжность, объём.</> } },
+      { ic: "💬", h: { uz: "Katta va oddiy oqim — NoSQL", ru: 'Большой и простой поток — NoSQL' }, body: { uz: <>Millionlab oddiy chat xabari, bog'lanish kam — bu yerda <b>NoSQL</b> qulay.</>, ru: <>Миллионы простых чат-сообщений и мало связей — здесь удобен <b>NoSQL</b>.</> }, ask: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi tur mos?", ru: 'Какой тип подходит банковскому приложению (деньги, счета)?' } },
     ]
   },
   13: {
     title: { uz: "Nega aynan PostgreSQL", ru: 'Почему именно PostgreSQL' },
     cards: [
-      { ic: "🐘", h: { uz: "PostgreSQL — bizning SQL bazamiz", ru: 'PostgreSQL — наша SQL-база' }, body: { uz: <>Jadvalli (JOIN bor), ishonchli (tranzaksiya bor), bepul va ochiq kodli.</>, ru: <>Табличная (есть JOIN), надёжная (есть транзакции), бесплатная и с открытым кодом.</> } },
-      { ic: "🔀", h: { uz: "JSON ham saqlaydi", ru: 'Хранит и JSON' }, body: { uz: <>Kerak bo'lsa PostgreSQL <b>har xil shakldagi ma'lumotni</b> JSON ko'rinishida ham saqlaydi.</>, ru: <>Если нужно, PostgreSQL хранит и <b>данные разной формы</b> — в виде JSON.</> } },
-      { ic: "🅿️", h: { uz: "Bizning to'plamimizga mos", ru: 'Подходит нашему набору' }, body: { uz: <>React, Node va Express bilan birga ishlaydi — biz shu to'plamda loyiha quramiz.</>, ru: <>Работает вместе с React, Node и Express — мы строим проекты на этом наборе.</> }, ask: { uz: "Nega aynan PostgreSQL tanlaymiz?", ru: 'Почему мы выбираем именно PostgreSQL?' } },
+      { ic: "🐘", h: { uz: "PostgreSQL — bizning SQL bazamiz", ru: 'PostgreSQL — наша SQL-база' }, body: { uz: <>PostgreSQL <b>jadvalli, ishonchli</b>, bepul va ochiq kodli.</>, ru: <>PostgreSQL — <b>табличная, надёжная</b>, бесплатная и с открытым кодом.</> } },
+      { ic: "🔀", h: { uz: "JSON ham saqlaydi", ru: 'Хранит и JSON' }, body: { uz: <>Kerak bo'lsa PostgreSQL har xil shakldagi ma'lumotni <b>JSON</b> ko'rinishida ham saqlaydi.</>, ru: <>Если нужно, PostgreSQL хранит и данные разной формы — в виде <b>JSON</b>.</> } },
+      { ic: "🅿️", h: { uz: "Bizning to'plamimizga mos", ru: 'Подходит нашему набору' }, body: { uz: <>PostgreSQL <b>React, Node va Express</b> bilan birga ishlaydi.</>, ru: <>PostgreSQL работает вместе с <b>React, Node и Express</b>.</> }, ask: { uz: "Nega aynan PostgreSQL tanlaymiz?", ru: 'Почему мы выбираем именно PostgreSQL?' } },
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -287,7 +287,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -296,13 +296,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карта' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -381,7 +381,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && level !== 'good' && level !== 'few' && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
+            {onOpenRecap && level !== 'good' && level !== 'few' && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
           </div>
         );
       })()}
@@ -463,7 +463,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -471,8 +471,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -482,11 +483,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -899,12 +900,12 @@ const Screen4 = (props) => (
     questionText="Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur qulayroq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shakli tez-tez o'zgaradigan ma'lumot uchun <span className="italic" style={{ color: T.accent }}>qaysi tur</span> qulayroq?</>, ru: <>Для данных с часто меняющейся формой <span className="italic" style={{ color: T.accent }}>какой тип</span> удобнее?</> })}</h2></>}
     options={[tr({ uz: "SQL — jadvaldagi hamma qatorda bir xil ustunlar bo'ladi", ru: 'SQL — во всех строках таблицы одни и те же столбцы' }), tr({ uz: "Ikkalasi ham bir xil — farqi yo'q", ru: 'Оба одинаковые — разницы нет' }), tr({ uz: "NoSQL — har hujjatda maydonlar boshqacha bo'lishi mumkin", ru: 'NoSQL — в каждом документе поля могут быть разными' }), tr({ uz: "Hech biri yangi maydon qo'sha olmaydi", ru: 'Ни одно не может добавить новое поле' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! NoSQL hujjatlarida maydonlar har xil bo'lishi mumkin — har biriga boshqa maydon qo'shsa bo'ladi. SQL jadvalida esa ustunlar oldindan belgilangan.", ru: 'Верно! В документах NoSQL поля могут быть разными — в каждый можно добавить другие. А в таблице SQL столбцы заданы заранее.' })}
+    explainCorrect={tr({ uz: "NoSQL'da har hujjatga o'z maydonini qo'shsa bo'ladi.", ru: 'В NoSQL в каждый документ можно добавить свои поля.' })}
     explainWrong={{
-      0: tr({ uz: "Aksincha — SQL jadvalida hamma qatorda bir xil ustunlar bo'ladi. Maydonlari har xil bo'la oladigani — NoSQL.", ru: 'Наоборот — в таблице SQL во всех строках одни и те же столбцы. Разные поля бывают у NoSQL.' }),
-      1: tr({ uz: "Yo'q — farqi katta: SQL'da ustunlar oldindan belgilangan, NoSQL'da esa har hujjatda boshqacha bo'lishi mumkin.", ru: 'Нет — разница большая: в SQL столбцы заданы заранее, а в NoSQL в каждом документе они могут быть другими.' }),
-      3: tr({ uz: "Yo'q — ikkalasi ham qo'sha oladi, lekin NoSQL buni osonroq qiladi (jadvalni qayta tuzmasdan).", ru: 'Нет — добавить могут оба, но NoSQL делает это проще (без перестройки таблицы).' }),
-      default: tr({ uz: "Maydonlari har xil bo'la olishi — NoSQL'ning kuchi.", ru: 'Разные поля — сила NoSQL.' })
+      0: tr({ uz: "SQL ustunlari qat'iy, shaklni o'zgartirish qiyin.", ru: 'Столбцы SQL строгие — менять форму трудно.' }),
+      1: tr({ uz: "Farqi katta: biri qat'iy jadval, biri erkin hujjat.", ru: 'Разница большая: одна — строгая таблица, другая — свободный документ.' }),
+      3: tr({ uz: "Ikkalasi ham qo'sha oladi, faqat biri buni osonroq qiladi.", ru: 'Добавить могут обе, просто одной это проще.' }),
+      default: tr({ uz: "Qaysi bazada har yozuvning shakli erkin — shuni eslang.", ru: 'Вспомните, в какой базе форма каждой записи свободная.' })
     }} />
 );
 
@@ -980,12 +981,12 @@ const Screen5b = (props) => (
     questionText="Bir-biriga bog'liq ma'lumotlar uchun qaysi tur qulayroq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bir-biriga <span className="italic" style={{ color: T.accent }}>bog'liq</span> ma'lumotlar uchun qaysi tur qulayroq?</>, ru: <>Для <span className="italic" style={{ color: T.accent }}>связанных</span> между собой данных какой тип удобнее?</> })}</h2></>}
     options={[tr({ uz: "SQL — bog'liq ma'lumotlarni birlashtira oladi", ru: 'SQL — умеет объединять связанные данные' }), tr({ uz: 'NoSQL — har narsa alohida hujjatda saqlanadi', ru: 'NoSQL — всё хранится в отдельных документах' }), tr({ uz: "Bog'lanish ikkalasida ham umuman yo'q", ru: 'Связей нет ни в одном из них' }), tr({ uz: "Faqat qo'lda hisoblashga to'g'ri keladi", ru: 'Придётся считать только вручную' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! SQL bog'liq ma'lumotlar bilan ishlashda juda kuchli. JOIN yordamida bir nechta jadvaldagi ma'lumotlarni birlashtira oladi.", ru: 'Верно! SQL очень силён в работе со связанными данными. С помощью JOIN он объединяет данные из нескольких таблиц.' })}
+    explainCorrect={tr({ uz: "JOIN bir nechta jadvaldagi bog'liq ma'lumotni birlashtiradi.", ru: 'JOIN объединяет связанные данные из нескольких таблиц.' })}
     explainWrong={{
-      1: tr({ uz: "NoSQL'da bog'lanish qiyinroq — ko'pincha ma'lumotni takrorlashga to'g'ri keladi.", ru: 'В NoSQL связи сложнее — часто приходится дублировать данные.' }),
-      2: tr({ uz: "Bog'lanish bor — SQL uni JOIN orqali bajaradi.", ru: 'Связи есть — SQL выполняет их через JOIN.' }),
-      3: tr({ uz: "Yo'q — SQL JOIN buni avtomatik bajaradi.", ru: 'Нет — SQL JOIN делает это автоматически.' }),
-      default: tr({ uz: "Bog'liq ma'lumot — SQL'ning kuchli tomoni (JOIN).", ru: 'Связанные данные — сильная сторона SQL (JOIN).' })
+      1: tr({ uz: "Alohida hujjatlarni bog'lash qiyin — ma'lumot takrorlanadi.", ru: 'Отдельные документы трудно связать — данные приходится дублировать.' }),
+      2: tr({ uz: "Bog'lanish bor — jadvallar id orqali ulanadi.", ru: 'Связи есть — таблицы соединяются через id.' }),
+      3: tr({ uz: "Qo'lda hisoblash shart emas — baza buni o'zi qila oladi.", ru: 'Считать вручную не нужно — база умеет это сама.' }),
+      default: tr({ uz: "Bog'liq ma'lumot bilan qaysi baza yaxshi ishlashini eslang.", ru: 'Вспомните, какая база хорошо работает со связанными данными.' })
     }} />
 );
 
@@ -1139,12 +1140,12 @@ const Screen9 = (props) => (
     questionText="Bank ilovasi (pul, hisoblar, o'tkazmalar) uchun qaysi tur mos?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bank ilovasi — pul, hisoblar, o'tkazmalar. <span className="italic" style={{ color: T.accent }}>Qaysi tur</span> mos?</>, ru: <>Банковское приложение — деньги, счета, переводы. <span className="italic" style={{ color: T.accent }}>Какой тип</span> подходит?</> })}</h2></>}
     options={[tr({ uz: "NoSQL — katta hajmli oddiy ma'lumot uchun qulay", ru: 'NoSQL — удобен для больших и простых данных' }), tr({ uz: "Aslida ikkalasining ham farqi yo'q", ru: 'На самом деле разницы никакой' }), tr({ uz: 'Bunga hech qanday baza kerak emas', ru: 'Тут вообще не нужна никакая база' }), tr({ uz: "SQL — ma'lumotlar bog'langan va ishonchlilik muhim", ru: 'SQL — данные связаны и важна надёжность' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Bankda ma'lumot bog'langan (hisob↔o'tkazma) va xato qimmatga tushadi — pul yo'qolmasligi kerak. Bu SQL'ning aynan kuchli tomoni (tranzaksiya, ishonchlilik).", ru: 'Верно! В банке данные связаны (счёт↔перевод), а ошибка обходится дорого — деньги не должны теряться. Это как раз сильная сторона SQL (транзакции, надёжность).' })}
+    explainCorrect={tr({ uz: "Bankda ma'lumot bog'langan, xato esa qimmatga tushadi.", ru: 'В банке данные связаны, а ошибка обходится дорого.' })}
     explainWrong={{
-      0: tr({ uz: "Bu rost, lekin bank ma'lumoti bog'langan va xato qimmatga tushadi — bu yerda SQL kerak.", ru: 'Это верно, но данные банка связаны, а ошибка обходится дорого — здесь нужен SQL.' }),
-      1: tr({ uz: "Farqi katta: bankka ishonchlilik va bog'lanish kerak → SQL.", ru: 'Разница большая: банку нужны надёжность и связи → SQL.' }),
-      2: tr({ uz: "Albatta kerak — va bunday muhim ma'lumot uchun SQL (masalan PostgreSQL).", ru: 'Конечно нужна — и для таких важных данных это SQL (например, PostgreSQL).' }),
-      default: tr({ uz: "Bank ma'lumoti bog'langan va ishonchlilik shart → SQL.", ru: 'Данные банка связаны и нужна надёжность → SQL.' })
+      0: tr({ uz: "Bu rost, lekin bankda ma'lumot bog'langan va xato qimmat.", ru: 'Это правда, но в банке данные связаны, а ошибка дорога.' }),
+      1: tr({ uz: "Farqi bor: bankka bog'lanish va ishonchlilik kerak.", ru: 'Разница есть: банку нужны связи и надёжность.' }),
+      2: tr({ uz: "Pul ma'lumoti albatta bazada saqlanadi.", ru: 'Данные о деньгах обязательно хранятся в базе.' }),
+      default: tr({ uz: "Bank uchun eng muhimi nima — shuni o'ylang.", ru: 'Подумайте, что для банка важнее всего.' })
     }} />
 );
 
@@ -1263,12 +1264,12 @@ const Screen12 = (props) => (
     questionText="Nega aynan PostgreSQL tanlaymiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nega aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span> tanlaymiz?</>, ru: <>Почему мы выбираем именно <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></>}
     options={[tr({ uz: 'Chunki u eng yangi va zamonaviy baza', ru: 'Потому что это самая новая и современная база' }), tr({ uz: "Bog'langan, ishonchli, bepul va JSON ham saqlaydi", ru: 'Связи, надёжность, бесплатно и хранит JSON' }), tr({ uz: "Chunki boshqa hech qanday baza yo'q", ru: 'Потому что других баз не существует' }), tr({ uz: 'Chunki u faqat kichik loyihalarga mos', ru: 'Потому что подходит только мелким проектам' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! PostgreSQL jadvalli (bog'lanish bor), ishonchli (tranzaksiya bor), bepul va ochiq kodli, ustiga har xil shakldagi ma'lumotni JSON ko'rinishida ham saqlaydi.", ru: 'Верно! PostgreSQL табличная (есть связи), надёжная (есть транзакции), бесплатная и с открытым кодом, а ещё хранит данные разной формы в виде JSON.' })}
+    explainCorrect={tr({ uz: "U SQL'ning kuchini JSON qulayligi bilan birlashtiradi.", ru: 'Она сочетает силу SQL с удобством JSON.' })}
     explainWrong={{
-      0: tr({ uz: "Tanlov modaga emas, vazifaga bog'liq. PostgreSQL bog'langan ma'lumot bilan yaxshi ishlaydi, ishonchli va bepul.", ru: 'Выбор зависит не от моды, а от задачи. PostgreSQL хорошо работает со связанными данными, надёжна и бесплатна.' }),
-      2: tr({ uz: "Bazalar ko'p (MySQL, MongoDB...). PostgreSQL aniq sabablarga ko'ra tanlanadi.", ru: 'Баз много (MySQL, MongoDB...). PostgreSQL выбирают по конкретным причинам.' }),
-      3: tr({ uz: "Aksincha — PostgreSQL katta loyihalarni ham ko'taradi.", ru: 'Наоборот — PostgreSQL справляется и с большими проектами.' }),
-      default: tr({ uz: "PostgreSQL: bog'langan ma'lumot uchun qulay, ishonchli, bepul va JSON ham saqlaydi.", ru: 'PostgreSQL: удобна для связанных данных, надёжна, бесплатна и хранит JSON.' })
+      0: tr({ uz: "Tanlov modaga emas, vazifaga qarab qilinadi.", ru: 'Выбирают не по моде, а по задаче.' }),
+      2: tr({ uz: "Bazalar ko'p: MySQL, MongoDB va boshqalar.", ru: 'Баз много: MySQL, MongoDB и другие.' }),
+      3: tr({ uz: "PostgreSQL katta loyihalarni ham bemalol ko'taradi.", ru: 'PostgreSQL спокойно тянет и большие проекты.' }),
+      default: tr({ uz: "PostgreSQL'ning aniq afzalliklarini eslang.", ru: 'Вспомните конкретные плюсы PostgreSQL.' })
     }} />
 );
 

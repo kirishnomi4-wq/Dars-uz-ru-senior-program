@@ -1,0 +1,387 @@
+{
+ "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+ "lessonId": "react-crud-practice-p1-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Qo'shish, o'zgartirish va o'chirish ham kerak",
+     "b": "Aynan! Hozircha ilova faqat ko'rsata oladi (Read). Yana uchtasi kerak: qo'shish, o'zgartirish, o'chirish — bug",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HAQIQIY ILOVAGA, KO'RSATISHDAN TASHQARI, YANA NIMA KERAK?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Hozircha ilova faqat ko'rsata oladi (Read). Yana uchtasi kerak: qo'shish, o'zgartir",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Ishonasizmi — dars oxirida o'yinlarni qo'sha, o'zgartira va o'chira oladigan ilovangiz bo'ladi. Avval har amal",
+     "b": "DARS OXIRIDA — SIZNING TO'LIQ ILOVANGIZ",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING TO'LIQ ILOVANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ qo'shish · o'zgartirish · o'chirish — hammasi sizda",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TIRIK AKVARIUM — SUV = MA'LUMOT (STATE), OYNA = EKRAN",
+     "box": "aq ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "CRUD AMALLARI",
+     "box": "opcol fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJANI TANLANG",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "NATIJANI TANLANG",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Yangi o'yin ro'yxatga qanday qo'shiladi?",
+     "b": "Akvariumdagi o'sha 4 amal — endi «Mening o'yinlarim» ro'yxatida. Qo'shishning kaliti uch nuqtada: [...games, y",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 2 ta",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 3 ta",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 4 ta",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 5 ta",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Hammasi qo'shildi ✓",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 6 ta",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 41,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM 4 ta",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Siz har amal state'ni qanday o'zgartirishini bilasiz, demak agent kodini tekshira olasiz: qo'shishda [...games",
+     "b": "Buyruq bering va rejani tasdiqlang…",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Har kartochkaga ✕ tugma — bosilganda o'chsin\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. AGENTGA SO'Z BILAN AYTING",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — O'ZINGIZ SINAB KO'RING",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda jonlanadi — keyin uni o'zingiz sinaysiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING O'YINLARIM",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s13",
+   "type": "debug",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s14",
+   "type": "test",
+   "inp": [
+    {
+     "label": "2 const yangi = { name: 'Piggy' };",
+     "ph": "setGames([...games, yangi])",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 setGames( 2 [...games 3 , yangi]",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

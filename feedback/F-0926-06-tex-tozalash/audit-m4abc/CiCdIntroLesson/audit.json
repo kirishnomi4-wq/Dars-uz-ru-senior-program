@@ -1,0 +1,354 @@
+{
+ "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+ "lessonId": "cicd-intro-4c-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BU ISHNI QANDAY YAXSHILAYMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Bugun CI/CD — kodingizni har push'da avtomatik tekshiradigan va uchiradigan lentani",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner ✓ → 📐 O'lcham ramkasi ✓ → 🎁 O'rash ✓ → ✈️ Uchirish ✓",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QO'LDA KETGAN VAQT 0 daq LENTA BILAN (KEYINGI EKRAN) 4 son",
+     "box": "tempt-btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QO'LDA KETGAN VAQT 4 daq LENTA BILAN (KEYINGI EKRAN) 4 son",
+     "box": "tempt-btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NUQTA TAFSILOTI",
+     "box": "sk-info fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QO'LDA KETGAN VAQT 8 daq LENTA BILAN (KEYINGI EKRAN) 4 son",
+     "box": "tempt-btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QO'LDA KETGAN VAQT 12 daq LENTA BILAN (KEYINGI EKRAN) 4 son",
+     "box": "tempt-btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QO'LDA KETGAN VAQT 16 daq LENTA BILAN (KEYINGI EKRAN) 4 son",
+     "box": "tempt-btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "QO'LDA 20 daq LENTA BILAN 4 son",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "LENTA NATIJASI",
+     "box": "sk-info fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "📦 Yig'ish → 🔍 Skaner → 📐 O'lcham ramkasi → 🎁 O'rash → ✈️ Uchirish",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner → 📐 O'lcham ramkasi → 🎁 O'rash → ✈️ Uchirish",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner ✓ → 📐 O'lcham ramkasi → 🎁 O'rash → ✈️ Uchirish",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner ✓ → 📐 O'lcham ramkasi ✓ → 🎁 O'rash → ✈️ Uchirish",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner ✓ → 📐 O'lcham ramkasi ✓ → 🎁 O'rash ✓ → ✈️ Uchirish",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Chamadonni o'zingiz yig'ing — lentaga qo'ying.",
+     "b": "Mana bu 5 buyumdan xohlaganingizni chamadonga soling, keyin «Lentaga qo'ying» tugmasini bosing. Har buyum bosh",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "📦 Yig'ish → 🔍 Skaner → 📐 O'lcham ramkasi → 🎁 O'rash → ✈️ Uchirish",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "📟 LENTA JURNALI",
+     "box": "belt-log",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🧳 Sayt ishlayapti ✓ joriy versiya 🎉 Yangi versiya! ✓ yangilandi 💥 Sayt buzildi ✗ xato \ud83d",
+     "box": "belt-log",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "📱 foydalanuvchi ekrani",
+     "box": "phone-body",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": ".GITHUB/WORKFLOWS/CI.YML",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 55,
+     "left": "dd-slot   ",
+     "right": "dd-pool",
+     "hs": [
+      58,
+      113
+     ]
+    },
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

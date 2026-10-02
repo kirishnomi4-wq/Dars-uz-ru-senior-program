@@ -1,0 +1,474 @@
+{
+ "file": "src/2-Modull/JsIntroLesson.jsx",
+ "lessonId": "js-intro-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [
+    {
+     "diff": 72,
+     "cols": 2,
+     "left": "bpm-row",
+     "right": "hook-option ",
+     "y": 302,
+     "row": "split",
+     "kids": [
+      "col@269",
+      "col@269"
+     ],
+     "tops": [
+      374,
+      302
+     ]
+    }
+   ],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Ko'p a'zo birgalikda ishlaydi",
+     "b": "To'g'ri! Tana — bu sistema: ko'p a'zo birga ishlaydi. Bugun shuni o'rganamiz.",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Yugurganda tanangizda faqat oyoq ishlaydimi?",
+     "b": "Yugurib ketayotganingizni tasavvur qiling. Faqat oyoq ishlayaptimi? Yo'q — yurak tezroq uradi, nafas tezlashad",
+     "am": false,
+     "bm": true
+    },
+    {
+     "score": 0.68,
+     "a": "Yugurganda tanangizda faqat oyoq ishlaydimi?",
+     "b": "Faqat oyoq mushaklari ishlaydi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, NEGA YUGURA OLASIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri! Tana — bu sistema: ko'p a'zo birga ishlaydi. Bugun shuni o'rganamiz.",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 2 TA ASOSIY TUSHUNCHA",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ Har qanday dastur aynan shu ikki g'oyadan quriladi",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "○ Uyg'onish → ○ Yuvinish → ○ Kiyinish → ○ Nonushta → ○ Maktabga",
+     "box": "btn",
+     "gap": 14
+    },
+    {
+     "pos": "tepada",
+     "t": "🛏️ Uyg'onish → ○ Yuvinish → ○ Kiyinish → ○ Nonushta → ○ Maktabga",
+     "box": "btn",
+     "gap": 14
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 🛏️ Uyg'onish 2 🚿 Yuvinish 3 👕 Kiyinish 4 🎒 Ko'chaga chiqish",
+     "box": "btn cc-run",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ERTALABKI SAHNA",
+     "box": "kx-stage kx-run",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "1 🎒 Ko'chaga chiqish 2 👕 Kiyinish 3 🚿 Yuvinish 4 🛏️ Uyg'onish",
+     "box": "btn cc-run",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Har doim bir xil ish qilmaysiz-ku: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham",
+     "b": "AGAR yomg'ir 🌧️ BO'LSA → soyabon ol ☂️",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Har doim bir xil ish qilmaysiz-ku: tashqarida yomg'ir bo'lsa soyabon olasiz, bo'lmasa — olmaysiz. Algoritm ham",
+     "b": "AKS HOLDA ☀️ → soyabonsiz chiq",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 60,
+     "left": "weather-btn fade-up delay-1 wx-hint",
+     "right": "cond-card fade-up delay-1",
+     "hs": [
+      175,
+      115
+     ]
+    },
+    {
+     "diff": 60,
+     "left": "weather-btn fade-up delay-1 ",
+     "right": "cond-card fade-up delay-1",
+     "hs": [
+      175,
+      115
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TASHQARIDA HOZIR:",
+     "box": "weather-btn fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ALGORITMNING QARORI",
+     "box": "cond-card fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🚶 Soyabonsiz chiqildi",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🚶 Soyabonsiz chiqildi",
+     "box": "cond-card fade-up delay-1",
+     "gap": 20
+    },
+    {
+     "pos": "tepada",
+     "t": "☂️ Soyabon olindi",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "☂️ Soyabon olindi",
+     "box": "cond-card fade-up delay-1",
+     "gap": 20
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 60,
+     "left": "loop-card fade-up delay-1",
+     "right": "frame fade-up delay-2",
+     "hs": [
+      203,
+      143
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 38,
+     "left": "BUTTON",
+     "right": "sk-info fade-step",
+     "hs": [
+      63,
+      101
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi navbat sizga. Quyidagi bloklardan o'z ertalabki algoritmingizni yig'ing — qadam, shart va siklni qo'shing",
+     "b": "⏳ bloklarni qo'shing va RUN bosing",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Endi navbat sizga. Quyidagi bloklardan o'z ertalabki algoritmingizni yig'ing — qadam, shart va siklni qo'shing",
+     "b": "bloklarni qo'shing va RUN bosing",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Maslahat: kuchli algoritm — qadam + shart + sikl birga.",
+     "box": "cc-console",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MENING ALGORITMIM",
+     "box": "algo-build",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "ERTALABKI SAHNA",
+     "box": "kx-stage kx-idle",
+     "gap": 16
+    }
+   ],
+   "scroll": 33,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "AI sizga algoritm yozib berdi, lekin biror joyda adashibdi — qadamlar chalkashib ketibdi. Dasturchining eng mu",
+     "b": "Qaysi qadam noto'g'ri joyda? Bosing.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Oxirgi qadam: tartibni o'zingiz tuzing.",
+     "b": "Mana, oxirgi sinov. Endi hammasini o'zingiz qiling: ertalabki tartibni to'g'ri ketma-ketlikda tuzing, keyin ▶ ",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MENING ALGORITMIM",
+     "box": "algo-build",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "ERTALABKI SAHNA",
+     "box": "kx-stage kx-idle",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "sflash",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

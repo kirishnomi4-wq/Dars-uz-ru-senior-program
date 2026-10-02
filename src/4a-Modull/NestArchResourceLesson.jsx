@@ -107,49 +107,49 @@ const RECAPS = {
   4: {
     title: { uz: "Entity — javon chizmasi", ru: 'Entity — чертёж стеллажа' },
     cards: [
-      { ic: "📐", h: { uz: "Entity — jadval shakli", ru: 'Entity — форма таблицы' }, body: { uz: <><b>Entity</b> bazadagi jadval qanday ko'rinishini belgilaydi: qaysi ustunlar bor (<span className="mono">brand</span>, <span className="mono">price</span>...).</>, ru: <><b>Entity</b> задаёт, как выглядит таблица в базе: какие в ней столбцы (<span className="mono">brand</span>, <span className="mono">price</span>...).</> } },
-      { ic: "🎁", h: { uz: "BaseEntity — tayyor tokchalar", ru: 'BaseEntity — готовые полки' }, body: { uz: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> — <b>BaseEntity</b>'dan meros orqali tekin keladi, o'zingiz yozmaysiz.</>, ru: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> — достаются бесплатно по наследству от <b>BaseEntity</b>, сами их не пишете.</> } },
-      { ic: "🚫", h: { uz: "Entity boshqa qatlam emas", ru: 'Entity — не другой слой' }, body: { uz: <>So'rovni <b>Controller</b> qabul qiladi, qoidani <b>DTO</b> tekshiradi. Entity faqat jadval shakli — javob bermaydi, buyruq bajarmaydi.</>, ru: <>Запрос принимает <b>Controller</b>, правила проверяет <b>DTO</b>. Entity — только форма таблицы: не отвечает и не выполняет команд.</> }, ask: { uz: "Entity nima uchun so'rovga javob qaytara olmaydi?", ru: 'Почему Entity не может ответить на запрос?' } },
+      { ic: "📐", h: { uz: "Entity — jadval shakli", ru: 'Entity — форма таблицы' }, body: { uz: <><b>Entity</b> bazadagi jadval shaklini belgilaydi: qaysi ustunlar bor (<span className="mono">brand</span>, <span className="mono">price</span>...).</>, ru: <><b>Entity</b> задаёт форму таблицы в базе: какие в ней столбцы (<span className="mono">brand</span>, <span className="mono">price</span>...).</> } },
+      { ic: "🎁", h: { uz: "BaseEntity — tayyor tokchalar", ru: 'BaseEntity — готовые полки' }, body: { uz: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> — <b>BaseEntity</b>'dan meros orqali tekin keladi.</>, ru: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> достаются бесплатно по наследству от <b>BaseEntity</b>.</> } },
+      { ic: "🚫", h: { uz: "Entity boshqa qatlam emas", ru: 'Entity — не другой слой' }, body: { uz: <>So'rov — <b>Controller</b>, qoida — <b>DTO</b> ishi, Entity esa faqat jadval shakli.</>, ru: <>Запрос — дело <b>Controller</b>, правила — <b>DTO</b>, а Entity — только форма таблицы.</> }, ask: { uz: "Entity nima uchun so'rovga javob qaytara olmaydi?", ru: 'Почему Entity не может ответить на запрос?' } },
     ]
   },
   7: {
     title: { uz: "DTO — buyurtma anketasi", ru: 'DTO — анкета заказа' },
     cards: [
       { ic: "📋", h: { uz: "DTO — kelgan ma'lumot qoidalari", ru: 'DTO — правила входящих данных' }, body: { uz: <><b>DTO</b> — buyurtma anketasi: <span className="mono">brand</span> matn va majburiy, <span className="mono">price</span> raqam bo'lishi shart.</>, ru: <><b>DTO</b> — анкета заказа: <span className="mono">brand</span> обязан быть текстом и заполнен, <span className="mono">price</span> — числом.</> } },
-      { ic: "🧐", h: { uz: "Nazoratchi (ValidationPipe) tekshiradi", ru: 'Проверяет контролёр (ValidationPipe)' }, body: { uz: <>Qoida buzilsa so'rov <span className="mono">400</span> bilan qaytadi — hatto Service'gacha ham bormaydi.</>, ru: <>Если правило нарушено, запрос вернётся с <span className="mono">400</span> — даже до Service не дойдёт.</> } },
-      { ic: "🔁", h: { uz: "PartialType — bir xil anketa nusxasi", ru: 'PartialType — копия той же анкеты' }, body: { uz: <><b>PartialType(CreateCarDto)</b> tahrirlash uchun anketa yasaydi — har katakcha ixtiyoriy bo'ladi, kod ikki marta yozilmaydi.</>, ru: <><b>PartialType(CreateCarDto)</b> делает анкету для редактирования — каждое поле становится необязательным, и код не пишется дважды.</> }, ask: { uz: "Bo'sh brand bilan POST /car yuborilsa, so'rov qayerda to'xtaydi?", ru: 'Отправили POST /car с пустым brand — где остановится запрос?' } },
+      { ic: "🧐", h: { uz: "Nazoratchi (ValidationPipe) tekshiradi", ru: 'Проверяет контролёр (ValidationPipe)' }, body: { uz: <>Qoida buzilsa, so'rov <span className="mono">400</span> bilan qaytadi va Service'gacha bormaydi.</>, ru: <>Если правило нарушено, запрос вернётся с <span className="mono">400</span> и до Service не дойдёт.</> } },
+      { ic: "🔁", h: { uz: "PartialType — bir xil anketa nusxasi", ru: 'PartialType — копия той же анкеты' }, body: { uz: <><b>PartialType</b> tahrirlash anketasini yasaydi — hamma katakcha ixtiyoriy bo'ladi.</>, ru: <><b>PartialType</b> делает анкету для редактирования — все поля необязательны.</> }, ask: { uz: "Bo'sh brand bilan POST /car yuborilsa, so'rov qayerda to'xtaydi?", ru: 'Отправили POST /car с пустым brand — где остановится запрос?' } },
     ]
   },
   9: {
     title: { uz: "BaseService — tayyor retsept kitobi", ru: 'BaseService — готовая книга рецептов' },
     cards: [
-      { ic: "👨‍🍳", h: { uz: "Service — oshpaz", ru: 'Service — повар' }, body: { uz: <><b>Service</b> asosiy ishni bajaradi: ma'lumotni saqlaydi, o'qiydi, o'zgartiradi, o'chiradi.</>, ru: <><b>Service</b> делает основную работу: сохраняет, читает, изменяет и удаляет данные.</> } },
-      { ic: "📖", h: { uz: "BaseService — tayyor retsept kitobi", ru: 'BaseService — готовая книга рецептов' }, body: { uz: <><span className="mono">create</span>, <span className="mono">findAll</span>, <span className="mono">update</span>, <span className="mono">remove</span> — meros orqali tekin keladi, qo'lda yozilmaydi.</>, ru: <><span className="mono">create</span>, <span className="mono">findAll</span>, <span className="mono">update</span>, <span className="mono">remove</span> — приходят бесплатно по наследству, вручную не пишутся.</> } },
-      { ic: "🔑", h: { uz: "super(carRepo) — omborni ko'rsatadi", ru: 'super(carRepo) — показывает склад' }, body: { uz: <>Bu qator <b>BaseService</b>ga qaysi jadval bilan ishlashini aytadi — shu sababli faqat 4 qator yetarli.</>, ru: <>Эта строка говорит <b>BaseService</b>, с какой таблицей работать — поэтому и хватает всего 4 строк.</> }, ask: { uz: "Nega CarService'da 40 qator emas, atigi 4 qator yetarli?", ru: 'Почему в CarService хватает всего 4 строк, а не 40?' } },
+      { ic: "👨‍🍳", h: { uz: "Service — oshpaz", ru: 'Service — повар' }, body: { uz: <><b>Service</b> asosiy ishni bajaradi: saqlaydi, o'qiydi, o'zgartiradi, o'chiradi.</>, ru: <><b>Service</b> делает основную работу: сохраняет, читает, изменяет, удаляет.</> } },
+      { ic: "📖", h: { uz: "BaseService — tayyor retsept kitobi", ru: 'BaseService — готовая книга рецептов' }, body: { uz: <><span className="mono">create</span>, <span className="mono">findAll</span>, <span className="mono">update</span>, <span className="mono">remove</span> — <b>meros</b> orqali tekin keladi, qo'lda yozilmaydi.</>, ru: <><span className="mono">create</span>, <span className="mono">findAll</span>, <span className="mono">update</span>, <span className="mono">remove</span> приходят бесплатно по <b>наследству</b>, вручную не пишутся.</> } },
+      { ic: "🔑", h: { uz: "super(carRepo) — omborni ko'rsatadi", ru: 'super(carRepo) — показывает склад' }, body: { uz: <>Bu qator <b>BaseService</b>'ga qaysi jadval bilan ishlashni aytadi.</>, ru: <>Эта строка говорит <b>BaseService</b>, с какой таблицей работать.</> }, ask: { uz: "Nega CarService'da 40 qator emas, atigi 4 qator yetarli?", ru: 'Почему в CarService хватает всего 4 строк, а не 40?' } },
     ]
   },
   11: {
     title: { uz: "Controller — ofitsiant", ru: 'Controller — официант' },
     cards: [
-      { ic: "🤵", h: { uz: "Controller — ofitsiant", ru: 'Controller — официант' }, body: { uz: <><b>Controller</b> so'rovni qabul qiladi va Service'ning mos metodini chaqiradi. Ishni o'zi bajarmaydi.</>, ru: <><b>Controller</b> принимает запрос и вызывает нужный метод Service. Сам работу не делает.</> } },
+      { ic: "🤵", h: { uz: "Controller — ofitsiant", ru: 'Controller — официант' }, body: { uz: <><b>Controller</b> so'rovni qabul qilib, Service'ning mos metodini chaqiradi.</>, ru: <><b>Controller</b> принимает запрос и вызывает нужный метод Service.</> } },
       { ic: "🚪", h: { uz: "Har dekorator — bir eshik", ru: 'Каждый декоратор — своя дверь' }, body: { uz: <><span className="mono">@Post</span> qo'shish, <span className="mono">@Get</span> o'qish, <span className="mono">@Patch</span> o'zgartirish, <span className="mono">@Delete</span> o'chirish uchun.</>, ru: <><span className="mono">@Post</span> — добавить, <span className="mono">@Get</span> — читать, <span className="mono">@Patch</span> — изменить, <span className="mono">@Delete</span> — удалить.</> } },
-      { ic: "🧭", h: { uz: "Controller va Service — boshqa-boshqa", ru: 'Controller и Service — разные' }, body: { uz: <>Controller faqat chaqiradi — asosiy ishni <b>Service</b> (BaseService orqali) bajaradi.</>, ru: <>Controller только вызывает — основную работу делает <b>Service</b> (через BaseService).</> }, ask: { uz: "Yangi mashina qo'shish uchun qaysi eshik (dekorator) ochiladi?", ru: 'Какая дверь (декоратор) откроется, чтобы добавить новую машину?' } },
+      { ic: "🧭", h: { uz: "Controller va Service — boshqa-boshqa", ru: 'Controller и Service — разные' }, body: { uz: <>Controller faqat chaqiradi — asosiy ishni <b>Service</b> bajaradi.</>, ru: <>Controller только вызывает — основную работу делает <b>Service</b>.</> }, ask: { uz: "Yangi mashina qo'shish uchun qaysi eshik (dekorator) ochiladi?", ru: 'Какая дверь (декоратор) откроется, чтобы добавить новую машину?' } },
     ]
   },
   14: {
     title: { uz: "Module — kirish taxtasi", ru: 'Module — вывеска у входа' },
     cards: [
-      { ic: "📑", h: { uz: "Module — bo'lim ro'yxati", ru: 'Module — список отдела' }, body: { uz: <><b>Module</b> jadval (<span className="mono">forFeature</span>), eshik (controller) va oshxona (service)ni bitta joyda ro'yxatga oladi.</>, ru: <><b>Module</b> вносит в один список таблицу (<span className="mono">forFeature</span>), дверь (controller) и кухню (service).</> } },
+      { ic: "📑", h: { uz: "Module — bo'lim ro'yxati", ru: 'Module — список отдела' }, body: { uz: <><b>Module</b> jadval (<span className="mono">forFeature</span>), eshik va oshxonani bitta ro'yxatga yig'adi.</>, ru: <><b>Module</b> собирает таблицу (<span className="mono">forFeature</span>), дверь и кухню в один список.</> } },
       { ic: "🚪", h: { uz: "Kirish taxtasi — AppModule imports", ru: 'Вывеска у входа — imports AppModule' }, body: { uz: <><span className="mono">CarModule</span> shu ro'yxatda bo'lmasa, mijoz bo'limni topa olmaydi — <span className="mono">/car</span> = <span className="mono">404</span>.</>, ru: <>Если <span className="mono">CarModule</span> нет в этом списке, посетитель не найдёт отдел — <span className="mono">/car</span> = <span className="mono">404</span>.</> } },
-      { ic: "🔌", h: { uz: "Ulangach — avtomatik ishlaydi", ru: 'Подключили — работает само' }, body: { uz: <>NestJS qismlarni o'zi tanishtirib ulaydi (DI) — siz faqat ro'yxatga <b>CarModule</b>ni qo'shasiz.</>, ru: <>NestJS сам знакомит и соединяет части (DI) — вы только добавляете <b>CarModule</b> в список.</> }, ask: { uz: "CarModule AppModule'ga ulanmasa, /car nima qaytaradi?", ru: 'Что вернёт /car, если CarModule не подключён к AppModule?' } },
+      { ic: "🔌", h: { uz: "Ulangach — avtomatik ishlaydi", ru: 'Подключили — работает само' }, body: { uz: <>NestJS qismlarni o'zi ulaydi (<b>DI</b>) — siz faqat CarModule'ni ro'yxatga qo'shasiz.</>, ru: <>NestJS сам соединяет части (<b>DI</b>) — вы лишь добавляете CarModule в список.</> }, ask: { uz: "CarModule AppModule'ga ulanmasa, /car nima qaytaradi?", ru: 'Что вернёт /car, если CarModule не подключён к AppModule?' } },
     ]
   },
   17: {
     title: { uz: "Debug — har qator o'z qatlamida", ru: 'Отладка — каждая строка в своём слое' },
     cards: [
-      { ic: "🔎", h: { uz: "Har qator — o'z qatlamida", ru: 'Каждая строка — в своём слое' }, body: { uz: <><span className="mono">@Column</span> — Entity qatori (jadval ustuni). Controller ichida turmaydi, chunki u boshqa qatlamga tegishli.</>, ru: <><span className="mono">@Column</span> — строка Entity (столбец таблицы). В Controller ей не место — она из другого слоя.</> } },
+      { ic: "🔎", h: { uz: "Har qator — o'z qatlamida", ru: 'Каждая строка — в своём слое' }, body: { uz: <><span className="mono">@Column</span> — Entity qatori, u Controller ichida turmaydi.</>, ru: <><span className="mono">@Column</span> — строка Entity, в Controller ей не место.</> } },
       { ic: "🧯", h: { uz: "Begona qator — nega kod buziladi", ru: 'Чужая строка — почему код ломается' }, body: { uz: <>Qatlamlar aralashsa, Controller kutilmagan narsani ko'radi va <span className="mono">/car</span> ishlamay qoladi.</>, ru: <>Если слои перемешать, Controller видит неожиданное — и <span className="mono">/car</span> перестаёт работать.</> } },
-      { ic: "🕵️", h: { uz: "Siz — nazoratchi", ru: 'Вы — контролёр' }, body: { uz: <>Agent tez yozadi, lekin xato qilishi mumkin. Arxitekturani bilsangiz, xatoni darrov topasiz.</>, ru: <>Агент пишет быстро, но может ошибиться. Знаете архитектуру — найдёте ошибку сразу.</> }, ask: { uz: <>Nega <span className="mono">@Column</span> qatori <span className="mono">car.controller.ts</span> ichida ishlamaydi?</>, ru: <>Почему строка <span className="mono">@Column</span> не работает внутри <span className="mono">car.controller.ts</span>?</> } },
+      { ic: "🕵️", h: { uz: "Siz — nazoratchi", ru: 'Вы — контролёр' }, body: { uz: <>Arxitekturani bilsangiz, agent yozgan koddagi <b>xatoni</b> darrov topasiz.</>, ru: <>Зная архитектуру, вы сразу найдёте <b>ошибку</b> в коде агента.</> }, ask: { uz: <>Nega <span className="mono">@Column</span> qatori <span className="mono">car.controller.ts</span> ichida ishlamaydi?</>, ru: <>Почему строка <span className="mono">@Column</span> не работает внутри <span className="mono">car.controller.ts</span>?</> } },
     ]
   }
 };
@@ -270,7 +270,7 @@ const RECAP_GOOD_PCT = 75;
 const RECAP_MIN_ANSWERS = 3;
 
 // 📖 Qayta tushuntirish overlay — ekran USTIDA ochiladi (indekslarga tegmaydi)
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -288,7 +288,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -296,13 +296,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -382,7 +382,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
           </div>
         );
       })()}
@@ -465,7 +465,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -473,8 +473,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -484,11 +485,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -932,12 +933,12 @@ const Screen4 = (props) => (
     questionText="Entity nimani belgilaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>Entity</span> <span className="italic" style={{ color: T.accent }}>nimani</span> belgilaydi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что</span> определяет <span className="mono" style={{ color: T.accent }}>Entity</span>?</> })}</h2></>}
     options={[{ uz: "So'rovni butunlay qabul qilib olishni", ru: 'Полностью принимать запросы' }, { uz: "Kelgan ma'lumot qoidalarini tekshirishni", ru: 'Проверять правила входящих данных' }, { uz: "Bazadagi jadval qanday ko'rinishini", ru: 'Как выглядит таблица в базе' }, { uz: 'Loyihani ishga tushirish tartibini', ru: 'Порядок запуска проекта' }]} correctIdx={2}
-    explainCorrect={{ uz: "Entity — jadval ko'rinishi: qaysi ustunlar bor (brand, price...). id va vaqtlar BaseEntity'dan tekin keladi.", ru: 'Entity — вид таблицы: какие в ней столбцы (brand, price...). id и время приходят бесплатно из BaseEntity.' }}
+    explainCorrect={{ uz: "Entity — javon chizmasi: jadvalda qaysi ustunlar borligi.", ru: 'Entity — чертёж стеллажа: какие столбцы есть в таблице.' }}
     explainWrong={{
-      0: { uz: "So'rovni qabul qilish — Controller (ofitsiant) ishi. Entity — jadval shakli.", ru: 'Принимать запросы — работа Controller (официанта). Entity — форма таблицы.' },
-      1: { uz: "Ma'lumot qoidalari — DTO ishi. Entity esa bazadagi ustunlarni belgilaydi.", ru: 'Правила данных — работа DTO. А Entity задаёт столбцы в базе.' },
-      3: { uz: 'Ishga tushirish — main.ts. Entity — jadval shakli.', ru: 'Запуск — это main.ts. Entity — форма таблицы.' },
-      default: { uz: 'Entity = jadval shakli (qaysi ustunlar bor).', ru: 'Entity = форма таблицы (какие есть столбцы).' }
+      0: { uz: "So'rovni qabul qilish — Controller (ofitsiant) ishi.", ru: 'Принимать запросы — работа Controller (официанта).' },
+      1: { uz: "Kelgan ma'lumot qoidalarini DTO tekshiradi, Entity emas.", ru: 'Правила входящих данных проверяет DTO, а не Entity.' },
+      3: { uz: 'Loyihani ishga tushirish — main.ts ishi, Entity emas.', ru: 'Запуск проекта — дело main.ts, а не Entity.' },
+      default: { uz: 'Entity bazaga yaqin qatlam — u bazada nimani belgilaydi?', ru: 'Entity — слой рядом с базой. Что он задаёт в базе?' }
     }} />
 );
 
@@ -1067,12 +1068,12 @@ const Screen7 = (props) => (
     questionText="brand bo'sh holda POST /car yuborilsa nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bo'sh <span className="mono">brand</span> yuborilsa <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что</span> будет, если отправить пустой <span className="mono">brand</span>?</> })}</h2></>}
     options={[{ uz: '201 — mashina baribir saqlanadi', ru: '201 — машина всё равно сохранится' }, { uz: 'Server butunlay ishdan chiqadi', ru: 'Сервер полностью упадёт' }, { uz: "brand avtomatik ravishda qo'yiladi", ru: 'brand подставится автоматически' }, { uz: '400 qaytadi — bazaga bormaydi', ru: 'Вернётся 400 — до базы не дойдёт' }]} correctIdx={3}
-    explainCorrect={{ uz: "DTO qoidasi (@IsNotEmpty) buzilgani uchun nazoratchi (ValidationPipe) so'rovni 400 bilan rad etadi — service va bazaga yetib bormaydi.", ru: 'Правило DTO (@IsNotEmpty) нарушено, поэтому контролёр (ValidationPipe) отклонит запрос с 400 — до service и базы он не дойдёт.' }}
+    explainCorrect={{ uz: "Bo'sh brand DTO qoidasini buzadi — so'rov 400 bilan qaytadi.", ru: 'Пустой brand нарушает правило DTO — запрос вернётся с 400.' }}
     explainWrong={{
-      0: { uz: "Saqlanmaydi — qoida buzilgan. DTO yomon ma'lumotni ichkariga kiritmaydi (400).", ru: 'Не сохранится — правило нарушено. DTO не пропустит плохие данные внутрь (400).' },
-      1: { uz: 'Server ishdan chiqmaydi — DTO toza ravishda 400 qaytaradi.', ru: 'Сервер не упадёт — DTO аккуратно вернёт 400.' },
-      2: { uz: "Avtomatik qo'yilmaydi — qoida buzilsa so'rov rad etiladi (400).", ru: 'Автоматически ничего не подставится — при нарушении правила запрос отклоняется (400).' },
-      default: { uz: "Bo'sh brand = 400, bazaga bormaydi.", ru: 'Пустой brand = 400, до базы не дойдёт.' }
+      0: { uz: "201 faqat saqlanganda keladi, bo'sh brand qoidani buzadi.", ru: '201 приходит только при сохранении, а пустой brand нарушает правило.' },
+      1: { uz: 'Server yiqilmaydi — yomon so\'rovni DTO o\'zi to\'xtatadi.', ru: 'Сервер не упадёт — плохой запрос DTO остановит сам.' },
+      2: { uz: "NestJS bo'sh brand'ni to'ldirmaydi — DTO uni tekshiradi.", ru: 'NestJS не заполнит пустой brand сам — его проверит DTO.' },
+      default: { uz: "brand majburiy — qoida buzilsa, DTO nima qiladi?", ru: 'brand обязателен — что делает DTO, если правило нарушено?' }
     }} />
 );
 
@@ -1163,12 +1164,12 @@ const Screen9 = (props) => (
     questionText="CarService'da CRUD (create, findAll, remove...) kodini kim yozadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>CRUD kodini <span className="italic" style={{ color: T.accent }}>kim</span> yozadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Кто</span> пишет код CRUD?</> })}</h2></>}
     options={[{ uz: "Har resurs uchun qo'lda qayta yozamiz", ru: 'Пишем заново вручную для каждого ресурса' }, { uz: "Hech kim — BaseService'dan tekin keladi", ru: 'Никто — он бесплатно приходит из BaseService' }, { uz: "Controller o'zi to'liq yozib chiqadi", ru: 'Controller сам всё напишет' }, { uz: "PostgreSQL o'zi avtomatik ravishda yozadi", ru: 'PostgreSQL напишет его автоматически' }]} correctIdx={1}
-    explainCorrect={{ uz: "BaseService'dan meros olgani uchun CRUD tekin keladi. Siz faqat o'ziga xos mantiqni (kerak bo'lsa) qo'shasiz.", ru: 'Благодаря наследованию от BaseService CRUD приходит бесплатно. Вы добавляете только особую логику (если нужна).' }}
+    explainCorrect={{ uz: "CRUD BaseService'dan meros bo'lib tekin keladi.", ru: 'CRUD достаётся бесплатно — по наследству от BaseService.' }}
     explainWrong={{
-      0: { uz: 'Qayta yozish — vaqt isrofi. Aynan shuning uchun BaseService bor — meros olasiz, tekin keladi.', ru: 'Переписывать — трата времени. Именно для этого есть BaseService — наследуетесь, и всё бесплатно.' },
-      2: { uz: "Controller faqat so'rovni qabul qiladi. CRUD esa BaseService'dan keladi.", ru: 'Controller только принимает запросы. А CRUD приходит из BaseService.' },
-      3: { uz: "Baza kodni yozmaydi. CRUD metodlari BaseService'dan meros bo'lib keladi.", ru: 'База код не пишет. CRUD-методы приходят по наследству из BaseService.' },
-      default: { uz: "CRUD = BaseService'dan tekin (meros).", ru: 'CRUD = бесплатно из BaseService (наследование).' }
+      0: { uz: 'Bir xil kodni har safar qayta yozish — vaqt isrofi.', ru: 'Каждый раз переписывать один и тот же код — трата времени.' },
+      2: { uz: "Controller — ofitsiant: faqat so'rovni qabul qiladi.", ru: 'Controller — официант: он только принимает запросы.' },
+      3: { uz: "Baza faqat ma'lumot saqlaydi, kod yozmaydi.", ru: 'База только хранит данные, код она не пишет.' },
+      default: { uz: "CRUD qayerdan meros bo'lib keladi — eslang.", ru: 'Вспомните, откуда CRUD приходит по наследству.' }
     }} />
 );
 
@@ -1217,12 +1218,12 @@ const Screen11 = (props) => (
     questionText="Yangi mashina qo'shish uchun qaysi dekorator ishlatiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yangi mashina <span className="italic" style={{ color: T.accent }}>qo'shish</span> uchun qaysi dekorator?</>, ru: <>Какой декоратор — чтобы <span className="italic" style={{ color: T.accent }}>добавить</span> новую машину?</> })}</h2></>}
     options={[{ uz: "@Post() — yangi mashina qo'shish", ru: '@Post() — добавить новую машину' }, { uz: "@Get() — mashinalarni o'qish", ru: '@Get() — прочитать машины' }, { uz: "@Delete() — mashinani o'chirish", ru: '@Delete() — удалить машину' }, { uz: '@Column() — ustunni belgilash', ru: '@Column() — задать столбец' }]} correctIdx={0}
-    explainCorrect={{ uz: "@Post() — create uchun. @Get o'qish, @Patch o'zgartirish, @Delete o'chirish.", ru: '@Post() — для create. @Get — читать, @Patch — изменять, @Delete — удалять.' }}
+    explainCorrect={{ uz: "@Post() — create eshigi, yangi mashina qo'shadi.", ru: '@Post() — дверь для create, добавляет новую машину.' }}
     explainWrong={{
-      1: { uz: "@Get() — o'qish uchun. Qo'shish uchun @Post().", ru: '@Get() — для чтения. Для добавления — @Post().' },
-      2: { uz: "@Delete() — o'chirish uchun. Qo'shish uchun @Post().", ru: '@Delete() — для удаления. Для добавления — @Post().' },
-      3: { uz: "@Column() — Entity ustuni, controller dekoratori emas. Qo'shish — @Post().", ru: '@Column() — столбец Entity, а не декоратор контроллера. Добавление — @Post().' },
-      default: { uz: "Qo'shish = @Post().", ru: 'Добавить = @Post().' }
+      1: { uz: "@Get() — o'qish eshigi, u hech narsa qo'shmaydi.", ru: '@Get() — дверь для чтения, она ничего не добавляет.' },
+      2: { uz: "@Delete() — o'chirish eshigi, qo'shish emas.", ru: '@Delete() — дверь для удаления, а не добавления.' },
+      3: { uz: "@Column() — Entity ustuni, controller eshigi emas.", ru: '@Column() — столбец Entity, а не дверь контроллера.' },
+      default: { uz: "Qaysi dekorator yangi yozuv qo'shadi — eslang.", ru: 'Вспомните, какой декоратор добавляет новую запись.' }
     }} />
 );
 
@@ -1382,12 +1383,12 @@ const Screen14 = (props) => (
     questionText="5 fayl yozildi, lekin CarModule AppModule'ga qo'shilmadi. Nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>CarModule <span className="italic" style={{ color: T.accent }}>ulanmasa</span> nima bo'ladi?</>, ru: <>Что будет, если CarModule <span className="italic" style={{ color: T.accent }}>не подключить</span>?</> })}</h2></>}
     options={[{ uz: 'Hammasi baribir avvalgidek ishlayveradi', ru: 'Всё продолжит работать как раньше' }, { uz: '/car endpointlari ishlamaydi — 404', ru: 'Эндпоинты /car не работают — 404' }, { uz: 'Butun loyiha umuman ishga tushmay qoladi', ru: 'Весь проект вообще не запустится' }, { uz: "Faqat GET so'rovlari ishlayveradi", ru: 'Работать будут только GET-запросы' }]} correctIdx={1}
-    explainCorrect={{ uz: "NestJS faqat AppModule imports'idagi modullarni biladi. Ulanmasa — CarModule ko'rinmaydi, /car = 404.", ru: 'NestJS знает только модули из imports у AppModule. Не подключили — CarModule невидим, /car = 404.' }}
+    explainCorrect={{ uz: "NestJS faqat AppModule imports'dagi modullarni ko'radi.", ru: 'NestJS видит только модули из imports у AppModule.' }}
     explainWrong={{
-      0: { uz: "Ishlamaydi — NestJS modulni ro'yxatdan ko'rmasa, endpointlar paydo bo'lmaydi (404).", ru: 'Не будет — если NestJS не видит модуль в списке, эндпоинты не появятся (404).' },
-      2: { uz: "Loyiha ishga tushadi, lekin /car eshiklari yo'q bo'ladi (404). Bu juda tez-tez bo'ladigan xato.", ru: 'Проект запустится, но дверей /car не будет (404). Это очень частая ошибка.' },
-      3: { uz: "GET ham ishlamaydi — butun CarModule ko'rinmaydi.", ru: 'GET тоже не работает — невидим весь CarModule.' },
-      default: { uz: 'Ulanmasa = /car 404.', ru: 'Не подключён = /car 404.' }
+      0: { uz: "Ro'yxatda yo'q modulni NestJS umuman ko'rmaydi.", ru: 'Модуль, которого нет в списке, NestJS не видит.' },
+      2: { uz: "Loyiha ishga tushadi — faqat bitta modul ulanmagan.", ru: 'Проект запустится — не подключён лишь один модуль.' },
+      3: { uz: "GET ham shu modulda — modul ko'rinmasa, u ham yo'q.", ru: 'GET тоже в этом модуле — модуль невидим, значит, и его нет.' },
+      default: { uz: 'Ulanmagan modulning eshiklari bormi — o\'ylang.', ru: 'Подумайте: есть ли двери у неподключённого модуля?' }
     }} />
 );
 

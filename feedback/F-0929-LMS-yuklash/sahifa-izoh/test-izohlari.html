@@ -1,0 +1,339 @@
+<title>Test izohlari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun (max 900px) — hozirgi holat raqam va surat bilan, yakuniy qoida, 4 qaror-savoli, pastda nusxalash paneli. 29.09 qaror-sahifasi bilan bir xil tizim */
+:root {
+  --bg: #F3F4F7; --paper: #FFFFFF; --ink: #1B1F2A; --ink2: #4A5163; --ink3: #7A8194; --line: #DCDFE7;
+  --accent: #E8472A; --accent-soft: #FDE9E4; --ok: #178A5A; --ok-soft: #E2F4EB; --warn: #B36B00; --warn-soft: #FFF2DB;
+  --code-bg: #1C2333; --code-fg: #E6E9F2; --on-accent: #FFFFFF;
+  --f-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; --on-accent: #12151C; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; --on-accent: #12151C; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.6; padding-inline: 16px; padding-block: 28px 64px; }
+.wrap { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 21px; font-weight: 800; }
+h3 { font-size: 17px; font-weight: 700; }
+p { margin: 0; }
+.mono { font-family: var(--f-mono); font-size: 0.9em; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); }
+.lead { color: var(--ink2); max-width: 66ch; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stat .k { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); }
+.stat .v { font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat .v small { font-size: 14px; font-weight: 600; color: var(--ink3); }
+.stat p { font-size: 14px; color: var(--ink2); }
+.stat b.bad { color: var(--accent); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; background: var(--paper); }
+figcaption { font-size: 13px; color: var(--ink2); }
+figcaption b.bad { color: var(--accent); }
+figcaption b.good { color: var(--ok); }
+.rule { background: var(--paper); border: 1.5px solid var(--ok); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.rule ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; }
+.rule li { padding-left: 4px; }
+.rule li > b { display: block; }
+.demo { margin-top: 6px; font-size: 14.5px; border-radius: 10px; padding: 9px 12px; }
+.demo.ok { background: var(--ok-soft); }
+.demo.bad { background: var(--accent-soft); }
+.demo .h-ok { color: var(--ok); font-weight: 800; margin-right: 6px; }
+.demo .h-bad { color: var(--accent); font-weight: 800; margin-right: 6px; }
+.rule .small { font-size: 13.5px; color: var(--ink2); }
+.q { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.q-head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.q-id { font-family: var(--f-mono); font-weight: 600; color: var(--accent); }
+.q-why { color: var(--ink2); font-size: 14.5px; max-width: 70ch; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 16px; cursor: pointer; transition: border-color .15s, background .15s; }
+.opt:hover { border-color: var(--ink3); }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt input { margin-top: 5px; accent-color: var(--accent); width: 17px; height: 17px; }
+.opt input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.opt-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.opt-title { font-weight: 700; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.rec { font-size: 11.5px; font-weight: 800; letter-spacing: 0.04em; background: var(--ok); color: var(--on-accent); padding: 2px 8px; border-radius: 99px; }
+.pm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; font-size: 14px; color: var(--ink2); }
+.pm span::before { font-weight: 800; margin-right: 6px; }
+.pm .plus::before { content: "+"; color: var(--ok); }
+.pm .minus::before { content: "−"; color: var(--accent); }
+.opt figure { max-width: 460px; }
+.opt figure.wide { max-width: 560px; }
+.steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; font-size: 14.5px; color: var(--ink2); }
+.steps b { color: var(--ink); }
+textarea { width: 100%; min-height: 64px; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 14.5px; background: var(--bg); color: var(--ink); resize: vertical; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.copy { position: sticky; bottom: 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px -18px rgba(0,0,0,.45); }
+.copy pre { margin: 0; font-family: var(--f-mono); font-size: 13px; background: var(--code-bg); color: var(--code-fg); padding: 10px 12px; border-radius: 10px; white-space: pre-wrap; word-break: break-word; max-height: 160px; overflow: auto; }
+.copy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+button.btn { font: inherit; font-weight: 800; border: none; background: var(--accent); color: var(--on-accent); padding: 11px 20px; border-radius: 11px; cursor: pointer; }
+button.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.status { font-size: 14px; color: var(--ok); font-weight: 700; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.tbl table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); font-weight: 700; }
+.tbl td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag-ok { color: var(--ok); font-weight: 700; }
+.tag-warn { color: var(--warn); font-weight: 700; }
+.old { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; }
+.old > summary { cursor: pointer; font-weight: 700; color: var(--ink2); }
+.old > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.old[open] > summary { margin-bottom: 22px; }
+.old-body { display: flex; flex-direction: column; gap: 30px; }
+.opt:has(input:disabled) { cursor: default; }
+@media (max-width: 720px) {
+  .stats, .pair, .pm { grid-template-columns: minmax(0, 1fr); }
+  .q, .rule { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="eyebrow">LMS yuklash · 1–4c · 88 fayl · 30.09 kechqurun</span>
+  <h1>Yuklashdan oldin ikki savol</h1>
+  <p class="lead">Paket <span class="mono">yuklash-2026-09-30</span> tayyor va tekshirilgan, uni bugun yuklash mumkin. Oxirgi tekshiruvda ikki narsa chiqdi: LMS sinflari bilan to'qnashuvni topadigan vosita LMS CSS qoidalarining yarmini ko'rmagan ekan. Tuzatilgan nusxasi bitta darsda kichik ko'rinish farqini topdi. Ikkalasi ham bugungi yuklashni to'xtatmaydi.</p>
+</header>
+
+<section>
+  <h2>Savollar</h2>
+
+  <div class="q" data-q="S12">
+    <div class="q-head"><span class="q-id">S12</span><h3>To'qnashuv tekshiruvini tuzatamizmi?</h3></div>
+    <p class="q-why">LMS darsni o'z sahifasida chizadi, shuning uchun LMS'ning CSS sinflari darsga ham ta'sir qiladi. 29.09 dagi «qatorlar ustma-ust» bugi shundan chiqqan edi. Bunday sinflarni topadigan vosita CSS faylini o'qishda har ikkinchi qoidani o'tkazib yuborgan. Tuzatilgan nusxasini bugungi paketda yurgizdim, har bir moslikni brauzerda LMS CSS bilan o'lchadim.</p>
+    <div class="stats">
+      <div class="stat"><span class="k">LMS sinflari</span><span class="v">812 <small>ta</small></span><p>Vosita ulardan faqat <b class="bad">401 tasini</b> ko'rgan.</p></div>
+      <div class="stat"><span class="k">Moslik, 30.09 paketi</span><span class="v">76</span><p>25.09 paketida 90 edi: 14 tasi tuzatilgan <span class="mono">fixed</span>.</p></div>
+      <div class="stat"><span class="k">Darsni buzadigani</span><span class="v">0</span><p>1 tasi faqat ko'rinishni o'zgartiradi (S13).</p></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Sinf</th><th>Qayerda</th><th>LMS CSS bilan o'lchov</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">visible</td><td class="n">70 dars</td><td><span class="tag-ok">farq yo'q</span> · javob izohi LMS bilan ham, usiz ham bir xil ochiladi</td></tr>
+        <tr><td class="mono">block</td><td>4-Modul 11 · Auth</td><td><span class="tag-ok">farq yo'q</span> · dars qoidasi ustun, qo'riqchi kartasi joyida</td></tr>
+        <tr><td class="mono">inline</td><td>4c-Modul 04</td><td><span class="tag-ok">farq yo'q</span> · dars qoidasi kuchliroq</td></tr>
+        <tr><td class="mono">static</td><td>4-Modul 12 · PM</td><td><span class="tag-ok">farq yo'q</span> · bu qiymat baribir sukut bo'yicha turadi</td></tr>
+        <tr><td class="mono">block, inline</td><td>1-Modul 08 · CSS 2</td><td><span class="tag-ok">soxta signal</span> · sinf emas, tugma holatini solishtiradigan so'z</td></tr>
+        <tr><td class="mono">code-line</td><td>4c-Modul 04</td><td><span class="tag-warn">ko'rinish</span> · kod oynasi 15 px uzayadi, pastda S13</td></tr>
+      </tbody>
+    </table></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S12" value="A" id="s12a"><div class="opt-body">
+        <span class="opt-title">A · Hozir tuzataman (bitta qator), jurnalga yozaman <span class="rec">TAVSIYA</span></span>
+        <div class="pm"><span class="plus">keyingi yuklashlarda to'qnashuv to'liq ko'rinadi</span><span class="plus">paketga tegmaydi, faqat vosita fayli</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S12" value="B" id="s12b"><div class="opt-body">
+        <span class="opt-title">B · S5 darvozalari bilan birga, keyinroq</span>
+        <div class="pm"><span class="plus">bugun hech narsa o'zgarmaydi</span><span class="minus">ungacha vosita LMS sinflarining yarmini ko'rmaydi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S12" value="Boshqa" id="s12c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S12" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S13">
+    <div class="q-head"><span class="q-id">S13</span><h3>«Loyiha kuni — to'liq lentani qurish», 14-ekran: kod oynasi LMS'da uzayadi. Nima qilamiz?</h3></div>
+    <p class="q-why">4c-Modul 04, «Oxirgi qadam: o'zingiz to'ldiring» ekrani. LMS'da ham <span class="mono">code-line</span> degan sinf bor, u qatorga oraliq beradi. Dars ham shu nomni ishlatadi, shuning uchun kiritish maydoni bor ikki qator 23 px o'rniga 27 px bo'ladi, oyna 267 px dan 282 px ga uzayadi. Hech narsa ustma-ust tushmaydi va kesilmaydi, maydonlarga yozish ishlaydi. Bu farq LMS'dagi 25.09 faylida ham bor.</p>
+    <div class="pair">
+      <figure><img src="img/fp-toza.jpg" alt="Sinov saytidagi ko'rinish: ci.yml oynasi, on: va DEPLOY_TOKEN qatorlarida bo'sh maydon" width="570" height="390"><figcaption><b class="good">Sinov saytlari</b> · oyna 267 px</figcaption></figure>
+      <figure><img src="img/fp-lms.jpg" alt="LMS CSS bilan: xuddi shu oyna, maydonli ikki qator biroz balandroq" width="570" height="405"><figcaption><b class="bad">LMS CSS bilan</b> · oyna 282 px, maydonli qatorlar balandroq</figcaption></figure>
+    </div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S13" value="A" id="s13a"><div class="opt-body">
+        <span class="opt-title">A · Bugun shunday yuklanadi, sinf nomi keyingi paketda o'zgaradi <span class="rec">TAVSIYA</span></span>
+        <div class="pm"><span class="plus">bugungi yuklash kechikmaydi</span><span class="minus">LMS'da oyna 15 px baland turadi (faqat ko'rinish)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S13" value="B" id="s13b"><div class="opt-body">
+        <span class="opt-title">B · Hozir tuzataman: bitta fayl, paket qayta yig'iladi, shu dars qayta tekshiriladi</span>
+        <div class="pm"><span class="plus">LMS'da ham sinov saytidagidek</span><span class="minus">yuklash taxminan 20 daqiqa kechikadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S13" value="Boshqa" id="s13c"><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S13" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+</section>
+
+<details class="old">
+<summary>Oldingi savollar: test izohlari (javob berilgan: S8 A · S9 A · S10 B · S11 B, bajarildi)</summary>
+<div class="old-body">
+
+<section>
+  <h2>Hozir qanday</h2>
+  <div class="stats">
+    <div class="stat"><span class="k">To'g'ri javob izohi</span><span class="v">106 <small>belgi o'rtacha</small></span><p>268 izoh, 69 darsda. 158 tasi 100 belgidan uzun (2–3 qator). <b class="bad">131 tasi</b> yana «To'g'ri!» deb boshlanadi, tepada esa allaqachon «TO'G'RI» turibdi.</p></div>
+    <div class="stat"><span class="k">Xato javob izohi</span><span class="v">70 <small>belgi o'rtacha</small></span><p>840 izoh. Kamida <b class="bad">43 tasi</b> to'g'ri javobni so'zma-so'z aytib qo'yadi, shunda qayta urinish ko'chirib bosishga aylanadi.</p></div>
+    <div class="stat"><span class="k">«📖» recap</span><span class="v">286 <small>× 3 karta</small></span><p>Har recapda ~71 so'z. Har kartada «Sinfga savol» bor, uyda yolg'iz o'qiyotgan o'quvchiga u keraksiz.</p></div>
+  </div>
+  <div class="pair">
+    <figure><img src="img/hoz-ok.jpg" alt="Hozir to'g'ri javobdan keyin: TO'G'RI sarlavhasi va ostida yana «To'g'ri!» bilan boshlangan ikki qatorli izoh" width="600" height="540"><figcaption><b class="bad">To'g'ri javob</b> · sarlavha + 2 qator, «To'g'ri» ikki marta</figcaption></figure>
+    <figure><img src="img/hoz-xato.jpg" alt="Hozir xato javobdan keyin: QAYTADAN URINIB KO'RING sarlavhasi, to'g'ri javobni aytib qo'yadigan izoh va uzun recap tugmasi" width="600" height="540"><figcaption><b class="bad">Xato javob</b> · izoh to'g'ri javobni aytib qo'yadi, tugma 6 so'z</figcaption></figure>
+  </div>
+  <div class="pair">
+    <figure><img src="img/hoz-nishon.jpg" alt="Nishon bayrami to'g'ri javob izohini yopib turibdi" width="600" height="540"><figcaption><b class="bad">Nishon bor savolda</b> · bayram izohni yopadi, o'quvchi uni umuman ko'rmaydi</figcaption></figure>
+    <figure><img src="img/hoz-recap.jpg" alt="Hozirgi recap: 1-karta, sarlavha, ikki qatorli matn, zanjir va Sinfga savol" width="690" height="555"><figcaption><b class="bad">Recap</b> · 3 kartaning birinchisi: 2 qator matn + zanjir + «Sinfga savol»</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Yakuniy taklifim</h2>
+  <div class="rule">
+    <ol>
+      <li><b>To'g'ri javob: «✓ To'g'ri.» va bitta qisqa gap.</b>
+        60 belgigacha (~8 so'z), eng asosiy fikr birinchi so'zlarda. «To'g'ri!» qayta yozilmaydi, variant matni takrorlanmaydi.
+        <div class="demo ok"><span class="h-ok">✓ To'g'ri.</span>O'zgaruvchi — nomli quti, ichida qiymat turadi.</div></li>
+      <li><b>Xato javob: «✗ Xato.» va bitta qisqa gap: tanlangan variant nega noto'g'ri.</b>
+        60 belgigacha. To'g'ri javobni aytmaydi, o'quvchi qayta o'ylab tanlaydi. «Qaytadan urinib ko'ring» sarlavhasi olinadi: pastdagi «To'g'ri javobni toping» tugmasi buni aytib turibdi.
+        <div class="demo bad"><span class="h-bad">✗ Xato.</span>Hisob-kitob — bu amal. O'zgaruvchi esa amal emas.</div></li>
+      <li><b>Recap: «📖 Eslatma» tugmasi, bitta karta.</b>
+        Qoida-sarlavha (6 so'zgacha) + bitta rasm-qator + bitta gap (12 so'zgacha) + «Tushunarli» tugmasi. «Sinfga savol» faqat mentor ekranida qoladi.</li>
+    </ol>
+    <p class="small">Ball, test kalitlari va server o'zgarmaydi, faqat ko'rinadigan matn qisqaradi (uz va ru). PM uyga vazifalariga tegilmaydi.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Savollar</h2>
+
+  <div class="q" data-q="S8">
+    <div class="q-head"><span class="q-id">S8</span><h3>To'g'ri javobdan keyin nima chiqadi?</h3></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S8" value="A" id="s8a" checked disabled><div class="opt-body">
+        <span class="opt-title">A · «✓ To'g'ri.» + bitta qisqa gap <span class="rec">TAVSIYA</span></span>
+        <figure><img src="img/A-ok.jpg" alt="A variant: bitta qator — ✓ To'g'ri. O'zgaruvchi — nomli quti, ichida qiymat turadi." width="600" height="540"><figcaption><b class="good">A</b> · bir qarashda o'qiladi</figcaption></figure>
+        <div class="pm"><span class="plus">taxmin qilib topgan o'quvchi ham «nega»sini oladi</span><span class="minus">268 izohni qo'lda qisqartirish kerak (uz + ru)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S8" value="B" id="s8b" disabled><div class="opt-body">
+        <span class="opt-title">B · Faqat «✓ To'g'ri.», izohsiz</span>
+        <figure><img src="img/B-ok.jpg" alt="B variant: faqat ✓ To'g'ri." width="600" height="540"><figcaption><b class="good">B</b> · eng toza</figcaption></figure>
+        <div class="pm"><span class="plus">ish tez, deyarli avtomatik</span><span class="minus">taxmin bilan topgan o'quvchi nega to'g'riligini bilmay qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S8" value="C" id="s8c" disabled><div class="opt-body">
+        <span class="opt-title">C · Hozirgidek qoladi</span>
+        <div class="pm"><span class="plus">ish yo'q</span><span class="minus">2–3 qator o'qilmaydi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S8" value="Boshqa" id="s8d" disabled><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S8" disabled placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S9">
+    <div class="q-head"><span class="q-id">S9</span><h3>Xato javobdan keyin nima chiqadi?</h3></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S9" value="A" id="s9a" checked disabled><div class="opt-body">
+        <span class="opt-title">A · «✗ Xato.» + nega bu variant noto'g'ri, to'g'ri javob aytilmaydi <span class="rec">TAVSIYA</span></span>
+        <figure><img src="img/A-xato.jpg" alt="A variant: ✗ Xato. Hisob-kitob — bu amal. O'zgaruvchi esa amal emas. Ostida Eslatma tugmasi" width="600" height="540"><figcaption><b class="good">A</b> · o'quvchi qayta o'ylab tanlaydi</figcaption></figure>
+        <div class="pm"><span class="plus">qayta urinish haqiqiy fikrlash bo'ladi</span><span class="minus">har xato variantga o'z gapi kerak (840 izohning ko'pida bor, qisqartiriladi)</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S9" value="B" id="s9b" disabled><div class="opt-body">
+        <span class="opt-title">B · «✗ Xato.» + bitta gap, to'g'ri javobni ham aytadi</span>
+        <figure><img src="img/B-xato.jpg" alt="B variant: ✗ Xato. O'zgaruvchi — qiymat saqlaydigan nomli quti." width="600" height="540"><figcaption><b class="good">B</b> · qisqa, lekin javobni aytib qo'yadi</figcaption></figure>
+        <div class="pm"><span class="plus">yozish oson</span><span class="minus">o'quvchi o'ylamay, aytilganini bosadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S9" value="C" id="s9c" disabled><div class="opt-body">
+        <span class="opt-title">C · Hozirgidek qoladi</span>
+        <div class="pm"><span class="plus">ish yo'q</span><span class="minus">sarlavha + 2 qator, ba'zan javobni aytib qo'yadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S9" value="Boshqa" id="s9d" disabled><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S9" disabled placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S10">
+    <div class="q-head"><span class="q-id">S10</span><h3>Xatodan keyingi «📖» recap qanday bo'ladi?</h3></div>
+    <p class="q-why">Hozir: tugma «📖 Qisqa takrorlash — mavzuni yana bir ko'rish», ichida 3 karta, har birida 2 qator matn, zanjir va «Sinfga savol».</p>
+    <figure class="wide"><img src="img/hoz-recap-3.jpg" alt="Hozirgi recapning 3 kartasi yonma-yon" width="1400" height="370"><figcaption><b class="bad">Hozir</b> · 3 karta ketma-ket</figcaption></figure>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S10" value="A" id="s10a" disabled><div class="opt-body">
+        <span class="opt-title">A · Bitta karta: qoida + rasm-qator + bitta gap, «Tushunarli» <span class="rec">TAVSIYA</span></span>
+        <figure class="wide"><img src="img/A-recap.jpg" alt="A variant: bitta karta — sarlavha, bitta gap, zanjir, Tushunarli tugmasi" width="690" height="555"><figcaption><b class="good">A</b> · bir ekranda tugaydi</figcaption></figure>
+        <div class="pm"><span class="plus">xato qilgan o'quvchi 5 soniyada qoidani ko'radi</span><span class="minus">286 recapni bittadan kartaga yig'ish kerak</span><span class="plus">«Sinfga savol» mentor ekranida qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S10" value="B" id="s10b" checked disabled><div class="opt-body">
+        <span class="opt-title">B · 3 karta qoladi, har birida bitta gap, «Sinfga savol» yo'q</span>
+        <figure class="wide"><img src="img/B-recap.jpg" alt="B variant: birinchi karta qisqa, pastda 3 nuqta va Keyingisi tugmasi" width="690" height="555"><figcaption><b class="good">B</b> · qisqa, lekin 3 marta bosiladi</figcaption></figure>
+        <div class="pm"><span class="plus">mavzu to'liqroq qoladi</span><span class="minus">o'quvchi odatda 1-kartadan keyin yopadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S10" value="C" id="s10c" disabled><div class="opt-body">
+        <span class="opt-title">C · Recap olib tashlanadi, xato izohining o'zi yetadi</span>
+        <div class="pm"><span class="plus">eng kam matn</span><span class="minus">mavzuni tushunmagan o'quvchi qayta ko'ra olmaydi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S10" value="Boshqa" id="s10d" disabled><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S10" disabled placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+
+  <div class="q" data-q="S11">
+    <div class="q-head"><span class="q-id">S11</span><h3>Qaysi tartibda qilamiz va qayerga yozamiz?</h3></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S11" value="A" id="s11a" disabled><div class="opt-body">
+        <span class="opt-title">A · Bugun hozirgi paket yuklanadi, qisqartirish keyingi yuklashga <span class="rec">TAVSIYA</span></span>
+        <ol class="steps">
+          <li><b>Bugun kechqurun</b> tayyor paket (<span class="mono">yuklash-2026-09-30</span>) yuklanadi, bu o'zgarish unga kirmaydi.</li>
+          <li><b>Namuna:</b> JS o'zgaruvchilar darsining hamma testi (uz + ru), siz ko'rib tasdiqlaysiz.</li>
+          <li><b>Global:</b> 1–4c ning qolgan darslari modulma-modul, har moduldan keyin darvozalar va har ekranni bosib-yurish.</li>
+          <li><b>Qonun va MD:</b> qoida hozir nomzodlar fayliga, parallel seanslar tugagach DARS_ETALON, MATN_KORPUS va MD-birinchi qoidalariga. 5–6-Modul MD'lari shu qoida bilan yoziladi.</li>
+          <li><b>Darvoza:</b> izoh 60 belgidan uzun, «To'g'ri!» bilan boshlansa yoki recap 1 kartadan ko'p bo'lsa, tekshiruv qizil chiqadi.</li>
+        </ol>
+        <div class="pm"><span class="plus">bugungi yuklash kechikmaydi</span><span class="minus">LMS'da bir muddat eski izohlar turadi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S11" value="B" id="s11b" checked disabled><div class="opt-body">
+        <span class="opt-title">B · Bugungi yuklash kutadi: avval hammasi qisqartiriladi, keyin yangi paket</span>
+        <div class="pm"><span class="plus">bir yuklashda hammasi</span><span class="minus">«Xatoni toping» va JS o'zgaruvchilar buglari LMS'da yana bir necha kun qoladi</span></div>
+      </div></label>
+      <label class="opt"><input type="radio" name="S11" value="Boshqa" id="s11c" disabled><div class="opt-body"><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S11" disabled placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+</section>
+
+</div>
+</details>
+
+<div class="copy">
+  <strong>Javobingiz</strong>
+  <pre id="out">Hali tanlanmadi.</pre>
+  <div class="copy-row"><button class="btn" id="copy" type="button">Javobni nusxalash</button><span class="status" id="st" aria-live="polite"></span></div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var Q = ['S12', 'S13'];
+  var out = document.getElementById('out');
+  function build() {
+    var lines = [];
+    Q.forEach(function (q) {
+      var c = document.querySelector('input[name="' + q + '"]:checked');
+      var n = (document.getElementById('n-' + q).value || '').trim();
+      if (c || n) lines.push(q + ': ' + (c ? c.value : '—') + (n ? ' · ' + n : ''));
+    });
+    out.textContent = lines.length ? 'LMS yuklash 30.09 kech\n' + lines.join('\n') : 'Hali tanlanmadi.';
+  }
+  document.addEventListener('change', build);
+  document.addEventListener('input', build);
+  build();
+  document.getElementById('copy').addEventListener('click', function () {
+    build();
+    var t = out.textContent, st = document.getElementById('st');
+    function sel() { var r = document.createRange(); r.selectNodeContents(out); var s = getSelection(); s.removeAllRanges(); s.addRange(r); st.textContent = 'Matn belgilandi, Ctrl+C bosing'; }
+    try { navigator.clipboard.writeText(t).then(function () { st.textContent = 'Nusxalandi'; }, sel); } catch (e) { sel(); }
+  });
+})();
+</script>

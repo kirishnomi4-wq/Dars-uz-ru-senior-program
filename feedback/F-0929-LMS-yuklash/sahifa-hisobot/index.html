@@ -1,0 +1,213 @@
+<title>Kompilyator hisoboti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun (max 900px) — holat-kartalar, nima qilindi (suratlar bilan), tekshiruvlar jadvali, keyingi qadam, bitta savol-blok. 29.09/30.09 qaror-sahifalari bilan bir xil tizim */
+:root {
+  --bg: #F3F4F7; --paper: #FFFFFF; --ink: #1B1F2A; --ink2: #4A5163; --ink3: #7A8194; --line: #DCDFE7;
+  --accent: #E8472A; --accent-soft: #FDE9E4; --ok: #178A5A; --ok-soft: #E2F4EB; --warn: #B36B00; --warn-soft: #FFF2DB;
+  --code-bg: #1C2333; --code-fg: #E6E9F2; --on-accent: #FFFFFF;
+  --f-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; --on-accent: #12151C; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151C; --paper: #1A1E28; --ink: #E9ECF3; --ink2: #B4BACB; --ink3: #8A91A5; --line: #2C3242;
+  --accent: #FF6A4D; --accent-soft: #3A211C; --ok: #45C48C; --ok-soft: #173327; --warn: #F0A63A; --warn-soft: #36290F;
+  --code-bg: #0E121B; --code-fg: #E6E9F2; --on-accent: #12151C; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.6; padding-inline: 16px; padding-block: 28px 64px; }
+.wrap { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 21px; font-weight: 800; }
+h3 { font-size: 17px; font-weight: 700; }
+p { margin: 0; }
+.mono { font-family: var(--f-mono); font-size: 0.9em; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); }
+.lead { color: var(--ink2); max-width: 66ch; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stat .k { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); }
+.stat .v { font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat .v small { font-size: 14px; font-weight: 600; color: var(--ink3); }
+.stat .v.ok { color: var(--ok); }
+.stat p { font-size: 14px; color: var(--ink2); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; background: var(--paper); }
+figcaption { font-size: 13px; color: var(--ink2); }
+figcaption b.good { color: var(--ok); }
+figcaption b.bad { color: var(--accent); }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.card.ok { border-color: var(--ok); }
+.card ul, .card ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; color: var(--ink2); font-size: 14.5px; }
+.card li b { color: var(--ink); }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.tbl table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); font-weight: 700; }
+.tag-ok { color: var(--ok); font-weight: 700; }
+.tag-warn { color: var(--warn); font-weight: 700; }
+.note { background: var(--warn-soft); border-radius: 12px; padding: 12px 14px; font-size: 14.5px; max-width: 72ch; }
+a { color: var(--accent); }
+.q { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.q-id { font-family: var(--f-mono); font-weight: 600; color: var(--accent); }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 16px; cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt input { margin-top: 5px; accent-color: var(--accent); width: 17px; height: 17px; }
+.opt input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.opt-title { font-weight: 700; }
+.opt-text { font-size: 14.5px; color: var(--ink2); }
+.rec { font-size: 11.5px; font-weight: 800; letter-spacing: 0.04em; background: var(--ok); color: var(--on-accent); padding: 2px 8px; border-radius: 99px; margin-left: 8px; }
+textarea { width: 100%; min-height: 64px; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 14.5px; background: var(--bg); color: var(--ink); resize: vertical; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.copy { position: sticky; bottom: 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px -18px rgba(0,0,0,.45); }
+.copy pre { margin: 0; font-family: var(--f-mono); font-size: 13px; background: var(--code-bg); color: var(--code-fg); padding: 10px 12px; border-radius: 10px; white-space: pre-wrap; word-break: break-word; }
+.copy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+button.btn { font: inherit; font-weight: 800; border: none; background: var(--accent); color: var(--on-accent); padding: 11px 20px; border-radius: 11px; cursor: pointer; }
+button.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.status { font-size: 14px; color: var(--ok); font-weight: 700; }
+@media (max-width: 720px) { .stats, .pair { grid-template-columns: minmax(0, 1fr); } .card, .q { padding: 16px; } }
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="eyebrow">Kompilyator · F-1001-91 · 01.10 avtopilot</span>
+  <h1>Kompilyator to'liq tuzatildi, paket v2 tayyor</h1>
+  <p class="lead">Reja bo'yicha 1–4-bosqich bajarildi: teglar xaritasi, HTML-CSS-JS maslahatlari, S12/S13, paket. Kodga tegishdan oldin yozilgan 149 holatli sinov va LMS CSS bilan olingan suratlar pastda. Yuklash va commit sizning buyrug'ingiz bilan.</p>
+  <p class="lead">Sinab ko'rish uchun QA sayti: <a href="https://coddycamp-kompilyator.vercel.app" target="_blank" rel="noopener">coddycamp-kompilyator.vercel.app</a> (5 dars, LMS emas).</p>
+</header>
+
+<section>
+  <h2>Holat</h2>
+  <div class="stats">
+    <div class="stat"><span class="k">Sinov holatlari</span><span class="v ok">149 <small>✓ / 149</small></span><p>HTML 114 · CSS 14 · JS 21. Har teg uchun «yozsam chiqadimi, Tab yoyadimi» avtomatik, Enter/Tab, Emmet, eski ishlar regressiyasi.</p></div>
+    <div class="stat"><span class="k">Paket</span><span class="v">88 <small>fayl · -v2</small></span><p>uz+ru ochilish 176/176 · md5 88/88 · katalog 70/70 · LMS sinf-to'qnashuvi 0 ta buzadigan.</p></div>
+    <div class="stat"><span class="k">Har ekranni bosib-yurish</span><span class="v ok" id="cw">0 <small>xato / 2730 ekran</small></span><p id="cw-p">uz 1365 + ru 1365 ekran, 88 fayl. 18 uyga vazifa signali avvalgidek soxta (boshqa ildiz-element).</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Nima qilindi</h2>
+  <div class="card ok">
+    <h3>1 · Teglar xaritasi — yagona manba</h3>
+    <ul>
+      <li><b>Ro'yxat qo'lda yozilmaydi.</b> Har dars qaysi teg, atribut, CSS xossa va JS so'zni qaysi ekranda o'rgatishi xaritaga yozildi (31 teg, 12 atribut, 17 CSS xossa, 17 JS so'z). Kompilyator ro'yxati shundan avtomatik yasaladi.</li>
+      <li><b>Darvoza:</b> ro'yxat xaritadan orqada qolsa, izoh yetishmasa yoki dars topshirig'i xaritada yo'q tegni so'rasa, tekshiruv qizil chiqadi. 51 topshiriq tekshirildi, hammasi mos.</li>
+      <li><b>Bahsli 11 joy</b> (masalan `br`, `script`, `#id`, `alert` o'rgatilmaydi, ro'yxatga kirmaydi) `TEG_XARITASI.md` 6-bo'limida, siz ko'rib chiqasiz.</li>
+    </ul>
+  </div>
+  <div class="card ok">
+    <h3>2 · HTML: mentorning uchala gapi yopildi</h3>
+    <ul>
+      <li><b>h6, form, input, label, main</b> va qolgan 10 teg ro'yxatda. Darsga qarab filtr: HTML-1 da `&lt;s` yozilsa faqat `strong`, HTML-2 da `&lt;fo` yozilsa `footer` va `form`.</li>
+      <li><b>«Goh-goh» yo'qoldi:</b> `&lt;div&gt;` ichida bir qatorda ham ro'yxat chiqadi; `form`+Tab tegga aylanadi.</li>
+      <li><b>Enter qoidasi:</b> `&lt;` bilan ochilgan ro'yxatda Enter va Tab tanlaydi; so'zdan ochilganda faqat Tab, Enter oddiy yangi qator (matndan teg tushib qolmaydi).</li>
+      <li><b>Emmet</b> VS Code darsidan: `!`, `ul&gt;li*3`, `div.card`. `.class` CSS-1 gacha ishlamaydi (HTML-2 dagi `class` xatosi qaytmaydi).</li>
+      <li><b>Planshet:</b> ⇥ tugmasi tegni yoyadi.</li>
+    </ul>
+    <div class="pair">
+      <figure><img src="img/F-1001-91-html2-fo-lms.jpg" alt="HTML-2 praktikasi: <fo yozilganda footer va form chiqadi" width="642" height="240"><figcaption><b class="good">HTML-2</b> · `&lt;fo` → footer, form</figcaption></figure>
+      <figure><img src="img/F-1001-91-html1-s-stage-lms.jpg" alt="HTML-1 praktikasi: <s yozilganda faqat strong chiqadi" width="642" height="230"><figcaption><b class="good">HTML-1</b> · `&lt;s` → faqat o'tilgan strong</figcaption></figure>
+      <figure><img src="img/F-1001-91-html1-h6-emmet-off-lms.jpg" alt="HTML-1: h6 Tab bilan yoyildi, ul>li*3 esa hali ishlamaydi" width="642" height="200"><figcaption><b class="good">HTML-1</b> · `h6` bor; Emmet hali yo'q (VS Code darsidan)</figcaption></figure>
+      <figure><img src="img/F-1001-91-html2-ru-type-lms.jpg" alt="HTML-2 ruscha: input type qiymatlari ro'yxati" width="642" height="330"><figcaption><b class="good">HTML-2, ru</b> · `type="` → qiymatlar</figcaption></figure>
+      <figure><img src="img/F-1001-91-vscode-bang-lms.jpg" alt="VS Code darsi: ! + Tab sahifa qobig'ini yozdi" width="642" height="320"><figcaption><b class="good">VS Code</b> · `!`+Tab</figcaption></figure>
+      <figure><img src="img/F-1001-91-vscode-card-lms.jpg" alt="VS Code darsi: div.card>h2 + Tab" width="642" height="180"><figcaption><b class="good">VS Code</b> · `div.card&gt;h2`+Tab</figcaption></figure>
+    </div>
+  </div>
+  <div class="card ok">
+    <h3>3 · CSS va JS maslahati</h3>
+    <ul>
+      <li><b>CSS:</b> `{ }` ichida xossa (`co` → `color: `), `:` dan keyin qiymatlar (`display:` → flex, block, none). Selektor yozilayotganda jim. CSS-1 dan; `display` CSS-2 dan.</li>
+      <li><b>JS:</b> faqat o'rgatilgan so'zlar, kamida 2 harf, satr va izoh ichida jim, <b>faqat Tab tanlaydi</b>. `log`+Tab → `console.log();`, `for`/`if`/`fn` qoliplari, `arr.le` → `.length`. 14 darsda (4 JS + 10 PM koding).</li>
+    </ul>
+    <div class="pair">
+      <figure><img src="img/F-1001-91-css1-val-lms.jpg" alt="CSS-1: color: dan keyin qiymatlar ro'yxati" width="642" height="420"><figcaption><b class="good">CSS-1</b> · `co`+Tab → `color: ` → qiymatlar</figcaption></figure>
+      <figure><img src="img/F-1001-91-jsvars-log-lms.jpg" alt="JS o'zgaruvchilar: log yozilganda console.log taklifi" width="642" height="260"><figcaption><b class="good">JS o'zgaruvchilar</b> · `log` → console.log (Tab)</figcaption></figure>
+    </div>
+  </div>
+  <div class="card ok">
+    <h3>4 · Qolganlari</h3>
+    <ul>
+      <li><b>S12 (A):</b> LMS sinf-to'qnashuvi vositasi tuzatildi, paketda 75 moslik, buzadigani 0.</li>
+      <li><b>S13 (B):</b> FullPipeline 14-ekran `code-line` → `ci-line`, LMS'da oyna endi uzaymaydi.</li>
+      <li><b>HTML-2</b> 8-ekran `class="card"` olindi (F-1001-90). HTML-1 dagi 3 nomzod tegilmadi.</li>
+      <li><b>Paket</b> `yuklash-2026-10-01/`: 88 fayl `-v2` nomi bilan, `OZGARISH_25-09.md` har faylga 25.09 dagi o'rnini ko'rsatadi (26 kompilyatorli · 44 yangilangan · 18 o'zgarmagan).</li>
+    </ul>
+    <figure style="max-width:480px"><img src="img/F-0929-95-fullpipeline-ci-line-lms.jpg" alt="FullPipeline 14-ekran LMS CSS bilan: kod oynasi normal balandlikda" width="480" height="325"><figcaption><b class="good">4c-Modul 04</b> · LMS CSS bilan, `ci-line`</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Tekshiruvlar</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Tekshiruv</th><th>Natija</th></tr></thead>
+    <tbody>
+      <tr><td>Avto-sinov (kompilyator, 149 holat)</td><td><span class="tag-ok">149 ✓</span> · pageerror 0</td></tr>
+      <tr><td>Darvozalar: kompilyator, 12 dars fayli, FullPipeline</td><td><span class="tag-ok">8/9</span> · emoji/tell qizili HEAD bilan aynan bir xil (eski qarz) · lint:jsx 0 · lint-teg-royxat ✓</td></tr>
+      <tr><td>31 ta kompilyator ishlatadigan dars (5/6-Modul 4 tasi ham)</td><td><span class="tag-ok">esbuild 31/31</span> · smoke:lms «Hammasi ishlaydi»</td></tr>
+      <tr><td>Paket: uz+ru ochilish · md5 · katalog</td><td><span class="tag-ok">176/176 · 88/88 · 70/70</span></td></tr>
+      <tr><td>LMS sinf-to'qnashuvi (tuzatilgan vosita)</td><td><span class="tag-ok">75 moslik, buzadigani 0</span> (code-line yo'qoldi)</td></tr>
+      <tr><td>Har ekranni bosib-yurish, uz</td><td id="cw-uz"><span class="tag-ok">88 fayl · 1365 ekran · xato 0</span> (18 hw soxta signal)</td></tr>
+      <tr><td>Har ekranni bosib-yurish, ru</td><td id="cw-ru"><span class="tag-ok">88 fayl · 1365 ekran · xato 0</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Yo'lda topilgan soxta bug: surat vositasida Tab ikki marta bosilar ekan (menga tegishli xato, vosita tuzatildi). Kompilyatorda bunday bug yo'q, 40 daqiqa shunga ketdi. Jurnalda yozilgan.</p>
+</section>
+
+<section>
+  <h2>Keyingi qadam</h2>
+  <div class="card">
+    <ol>
+      <li><b>Siz:</b> QA saytida kompilyatorni sinab ko'rasiz, `TEG_XARITASI.md` 6-bo'limdagi 11 hukmga qaraysiz.</li>
+      <li><b>[GATE 3]</b> ruxsat bersangiz, `yuklash-2026-10-01/` ni LMS'ga qo'lda yuklaysiz: `OZGARISH_25-09.md` tartibida, avval 🔴 26 kompilyatorli dars. Har fayl `-v2` nomi bilan.</li>
+      <li><b>Men:</b> preview havolalarini bersangiz, LMS'dagi faylni md5 bilan paketga solishtiraman.</li>
+      <li><b>Muhr:</b> 113-qonun tomonlari (xarita + darvoza), tekshiruvchi ov-bandi, `gates`ga ulash, commit — buyruq bilan.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="q">
+    <div><span class="q-id">S16</span> <h3 style="display:inline">GATE 3 — paketni yuklashga ruxsat berasizmi?</h3></div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="S16" value="A" id="s16a"><div><span class="opt-title">A · Ha, yuklayman (OZGARISH tartibida, -v2)<span class="rec">TAVSIYA</span></span><p class="opt-text">Tekshiruvlar toza. Yuklagach preview havolalarini tashlaysiz, men md5 bilan solishtiraman.</p></div></label>
+      <label class="opt"><input type="radio" name="S16" value="B" id="s16b"><div><span class="opt-title">B · Avval QA saytida o'zim ko'raman, keyin aytaman</span></div></label>
+      <label class="opt"><input type="radio" name="S16" value="Boshqa" id="s16c"><div><span class="opt-title">Boshqa</span></div></label>
+    </div>
+    <textarea id="n-S16" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </div>
+</section>
+
+<div class="copy">
+  <strong>Javobingiz</strong>
+  <pre id="out">Hali tanlanmadi.</pre>
+  <div class="copy-row"><button class="btn" id="copy" type="button">Javobni nusxalash</button><span class="status" id="st" aria-live="polite"></span></div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var out = document.getElementById('out');
+  function build() {
+    var c = document.querySelector('input[name="S16"]:checked');
+    var n = (document.getElementById('n-S16').value || '').trim();
+    out.textContent = (c || n) ? 'Kompilyator 01.10\nS16: ' + (c ? c.value : '—') + (n ? ' · ' + n : '') : 'Hali tanlanmadi.';
+  }
+  document.addEventListener('change', build); document.addEventListener('input', build); build();
+  document.getElementById('copy').addEventListener('click', function () {
+    build(); var t = out.textContent, st = document.getElementById('st');
+    function sel() { var r = document.createRange(); r.selectNodeContents(out); var s = getSelection(); s.removeAllRanges(); s.addRange(r); st.textContent = 'Matn belgilandi, Ctrl+C bosing'; }
+    try { navigator.clipboard.writeText(t).then(function () { st.textContent = 'Nusxalandi'; }, sel); } catch (e) { sel(); }
+  });
+})();
+</script>

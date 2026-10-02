@@ -247,31 +247,31 @@ const RECAPS = {
   4: {
     title: { uz: "API — ikki dastur gaplashadigan til", ru: 'API — язык общения двух программ' },
     cards: [
-      { ic: "📮", h: { uz: "API = pochta tizimi", ru: 'API = почтовая система' }, body: { uz: <>Sayt bazani <b>ko'rmaydi</b> — u <b>API</b> orqali serverga so'rov yuboradi. API — til va qoidalar to'plami.</>, ru: <>Сайт <b>не видит</b> базу — он отправляет запрос серверу <b>через API</b>. API — это язык и набор правил.</> } },
-      { ic: "✉️", h: { uz: "So'rov = konvert", ru: 'Запрос = конверт' }, body: { uz: <>Har so'rov: <b>METHOD</b> (niyat) + <b>URL</b> (manzil) + ba'zan <b>BODY</b> (ichi). Server javob-konvert qaytaradi.</>, ru: <>Каждый запрос: <b>METHOD</b> (намерение) + <b>URL</b> (адрес) + иногда <b>BODY</b> (содержимое). Сервер возвращает конверт-ответ.</> } },
+      { ic: "📮", h: { uz: "API = pochta tizimi", ru: 'API = почтовая система' }, body: { uz: <>Sayt bazani <b>ko'rmaydi</b> — u <b>API</b> orqali serverga so'rov yuboradi.</>, ru: <>Сайт <b>не видит</b> базу — он отправляет запрос серверу <b>через API</b>.</> } },
+      { ic: "✉️", h: { uz: "So'rov = konvert", ru: 'Запрос = конверт' }, body: { uz: <>Har so'rov: <b>METHOD</b> (niyat) + <b>URL</b> (manzil) + ba'zan <b>BODY</b> (ichi).</>, ru: <>Каждый запрос: <b>METHOD</b> (намерение) + <b>URL</b> (адрес) + иногда <b>BODY</b> (содержимое).</> } },
       { ic: "🔁", h: { uz: "So'rov → javob", ru: 'Запрос → ответ' }, body: { uz: <>Sayt → API → server → baza, keyin javob shu yo'l bilan ortga qaytadi.</>, ru: <>Сайт → API → сервер → база, потом ответ возвращается тем же путём.</> }, ask: { uz: "Sayt bazaga to'g'ridan-to'g'ri kira oladimi?", ru: 'Может ли сайт попасть в базу напрямую?' } },
     ]
   },
   6: {
     title: { uz: "GET — ma'lumotni o'qib olish", ru: 'GET — чтение данных' },
     cards: [
-      { ic: "📥", h: { uz: "GET = «o'qib ol»", ru: 'GET = «прочитай»' }, body: { uz: <><b>GET</b> serverdan ma'lumotni <b>oladi</b>, hech narsani o'zgartirmaydi. Bazadagi <span className="mono">SELECT</span> bilan bir xil.</>, ru: <><b>GET</b> <b>получает</b> данные с сервера и ничего не меняет. То же самое, что <span className="mono">SELECT</span> в базе.</> } },
+      { ic: "📥", h: { uz: "GET = «o'qib ol»", ru: 'GET = «прочитай»' }, body: { uz: <><b>GET</b> — bazadagi <span className="mono">SELECT</span> kabi: ma'lumotni oladi, hech narsani o'zgartirmaydi.</>, ru: <><b>GET</b> — как <span className="mono">SELECT</span> в базе: получает данные и ничего не меняет.</> } },
       { ic: "🟢", h: "200 OK", body: { uz: <>Muvaffaqiyatli GET javobi — <b>200 OK</b> shtampi + JSON ma'lumot.</>, ru: <>Успешный ответ GET — штамп <b>200 OK</b> + данные в JSON.</> } },
-      { ic: "🚫", h: { uz: "BODY yo'q", ru: 'BODY нет' }, body: { uz: <>GET'da <b>BODY bo'lmaydi</b> — faqat manzil (URL). Qo'shish/o'zgartirishda BODY kerak.</>, ru: <>У GET <b>нет BODY</b> — только адрес (URL). BODY нужен при добавлении и изменении.</> }, ask: { uz: "GET yangi ma'lumot qo'sha oladimi?", ru: 'Может ли GET добавить новые данные?' } },
+      { ic: "🚫", h: { uz: "BODY yo'q", ru: 'BODY нет' }, body: { uz: <>GET'da <b>BODY bo'lmaydi</b> — faqat manzil (URL) yuboriladi.</>, ru: <>У GET <b>нет BODY</b> — отправляется только адрес (URL).</> }, ask: { uz: "GET yangi ma'lumot qo'sha oladimi?", ru: 'Может ли GET добавить новые данные?' } },
     ]
   },
   10: {
     title: { uz: "POST — yangi ma'lumot qo'shish", ru: 'POST — добавление новых данных' },
     cards: [
-      { ic: "➕", h: { uz: "POST = «qo'shib qo'y»", ru: 'POST = «добавь»' }, body: { uz: <><b>POST</b> bazaga yangi yozuv qo'shadi — <span className="mono">INSERT</span> bilan bir xil. BODY'da yangi ma'lumot ketadi.</>, ru: <><b>POST</b> добавляет в базу новую запись — как <span className="mono">INSERT</span>. Новые данные едут в BODY.</> } },
+      { ic: "➕", h: { uz: "POST = «qo'shib qo'y»", ru: 'POST = «добавь»' }, body: { uz: <><b>POST</b> bazaga yangi yozuv qo'shadi — <span className="mono">INSERT</span> bilan bir xil.</>, ru: <><b>POST</b> добавляет в базу новую запись — как <span className="mono">INSERT</span>.</> } },
       { ic: "🆕", h: "201 Created", body: { uz: <>Muvaffaqiyatli POST javobi — <b>201 Created</b>: yangi narsa yaratildi.</>, ru: <>Успешный ответ POST — <b>201 Created</b>: создано что-то новое.</> } },
-      { ic: "📦", h: { uz: "BODY shart", ru: 'BODY обязателен' }, body: { uz: <>POST'da <b>BODY</b> bor — qo'shiladigan ma'lumot. Aks holda server nimani saqlashni bilmaydi.</>, ru: <>У POST есть <b>BODY</b> — данные для добавления. Иначе сервер не знает, что сохранять.</> }, ask: { uz: "Yangi mahsulot qo'shish uchun qaysi method?", ru: 'Каким методом добавить новый товар?' } },
+      { ic: "📦", h: { uz: "BODY shart", ru: 'BODY обязателен' }, body: { uz: <>POST'da <b>BODY</b> bor — busiz server nimani saqlashni bilmaydi.</>, ru: <>У POST есть <b>BODY</b> — без него сервер не знает, что сохранять.</> }, ask: { uz: "Yangi mahsulot qo'shish uchun qaysi method?", ru: 'Каким методом добавить новый товар?' } },
     ]
   },
   13: {
     title: { uz: "Front backend bilan qanday gaplashadi", ru: 'Как фронт говорит с бэком' },
     cards: [
-      { ic: "🔌", h: { uz: "Sayt o'zi kira olmaydi", ru: 'Сайт сам войти не может' }, body: { uz: <>Sayt bazaga <b>to'g'ridan-to'g'ri</b> kira olmaydi — bu xavfli. U <b>API</b> orqali so'raydi.</>, ru: <>Сайт не может попасть в базу <b>напрямую</b> — это опасно. Он спрашивает <b>через API</b>.</> } },
+      { ic: "🔌", h: { uz: "Sayt o'zi kira olmaydi", ru: 'Сайт сам войти не может' }, body: { uz: <>Sayt bazaga <b>to'g'ridan-to'g'ri</b> kira olmaydi — u <b>API</b> orqali so'raydi.</>, ru: <>Сайт не попадает в базу <b>напрямую</b> — он спрашивает <b>через API</b>.</> } },
       { ic: "🔗", h: { uz: "Method = CRUD amali", ru: 'Метод = операция CRUD' }, body: <>GET·POST·PUT·DELETE → SELECT·INSERT·UPDATE·DELETE.</> },
       { ic: "📨", h: { uz: "So'rov → javob", ru: 'Запрос → ответ' }, body: { uz: <>Sayt API'ga <b>so'rov</b> yuboradi, server bazada ishlaydi va <b>javob</b> qaytaradi.</>, ru: <>Сайт отправляет в API <b>запрос</b>, сервер работает с базой и возвращает <b>ответ</b>.</> }, ask: { uz: "Frontend serverdan ma'lumotni qanday so'raydi?", ru: 'Как фронтенд запрашивает данные у сервера?' } },
     ]
@@ -279,7 +279,7 @@ const RECAPS = {
 };
 
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -297,7 +297,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Разбор темы' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -306,13 +306,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -478,7 +478,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -486,8 +486,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -499,11 +500,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -931,12 +932,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: 'API nima vazifani bajaradi?', ru: 'Какую задачу выполняет API?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sayt va server orasida turadigan <span className="italic" style={{ color: T.accent }}>API</span> nima qiladi?</>, ru: <>Что делает <span className="italic" style={{ color: T.accent }}>API</span>, стоящий между сайтом и сервером?</> })}</h2></>}
     options={[tr({ uz: 'Saytning ranglari va shriftlarini chiroyli qilib bezaydi', ru: 'Красиво оформляет цвета и шрифты сайта' }), tr({ uz: 'Server rasmlarini saqlaydigan katta papka', ru: 'Большая папка, где сервер хранит картинки' }), tr({ uz: 'Ikki dastur (sayt va server) gaplashadigan til va qoidalar', ru: 'Язык и правила, на которых общаются две программы (сайт и сервер)' }), tr({ uz: 'Internet tezligini oshiradigan maxsus dastur', ru: 'Специальная программа для ускорения интернета' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "Sayt API orqali so'rov yuboradi va javob oladi — bazaga o'zi kirmaydi.", ru: 'Сайт отправляет запрос через API и получает ответ — в базу сам не заходит.' })} /* F-0926-06 (159/11): izoh qisqa, variantni qaytarmaydi */
+    explainCorrect={tr({ uz: "Sayt bazaga o'zi kirmaydi — API orqali so'rab oladi.", ru: 'Сайт не лезет в базу сам — он спрашивает через API.' })} /* F-0926-06 (159/11): izoh qisqa, variantni qaytarmaydi */
     explainWrong={{
-      0: tr({ uz: "Bezash — CSS ishi. API ma'lumot almashish uchun.", ru: 'Оформление — работа CSS. API нужен для обмена данными.' }),
-      1: tr({ uz: "API papka emas — u har qanday ma'lumotni so'rov-javob orqali uzatadi.", ru: 'API — не папка. Он передаёт любые данные через запрос-ответ.' }),
-      3: tr({ uz: 'API tezlik vositasi emas — u sayt va server orasidagi til.', ru: 'API — не про скорость. Это язык между сайтом и сервером.' }),
-      default: tr({ uz: 'API = dasturlar gaplashadigan til va qoidalar.', ru: 'API = язык и правила общения программ.' })
+      0: tr({ uz: "Bezash — CSS ishi, API esa sahifani bezamaydi.", ru: 'Оформление — работа CSS, API страницу не украшает.' }),
+      1: tr({ uz: "API papka emas — u hech narsani saqlab turmaydi.", ru: 'API — не папка, он ничего не хранит.' }),
+      3: tr({ uz: 'API internet tezligini o\'zgartirmaydi.', ru: 'API не меняет скорость интернета.' }),
+      default: tr({ uz: 'Pochtani eslang: sayt serverga xatni qanday yuboradi?', ru: 'Вспомните почту: как сайт отправляет письмо серверу?' })
     }} />
 );
 
@@ -981,12 +982,12 @@ const Screen5b = (props) => (
     questionText={tr({ uz: 'GET method nima qiladi?', ru: 'Что делает метод GET?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: METHODS.GET }}>GET</span> so'rovi serverdan nimani so'raydi?</>, ru: <>Что запрашивает у сервера <span className="italic" style={{ color: METHODS.GET }}>GET</span>?</> })}</h2></>}
     options={[tr({ uz: "Mavjud ma'lumotni o'qib (olib) keladi", ru: 'Читает (получает) существующие данные' }), tr({ uz: "Butunlay yangi ma'lumot qo'shib yozadi", ru: 'Записывает совершенно новые данные' }), tr({ uz: "Mavjud ma'lumotni bazadan o'chiradi", ru: 'Удаляет существующие данные из базы' }), tr({ uz: "Serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает сервер' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "Bazadagi SELECT kabi: faqat oladi, hech narsani o'zgartirmaydi.", ru: 'Как SELECT в базе: только получает, ничего не меняет.' })} /* F-0926-06 (159/11) */
+    explainCorrect={tr({ uz: "SELECT kabi: faqat oladi, hech narsani o'zgartirmaydi.", ru: 'Как SELECT в базе: только получает, ничего не меняет.' })} /* F-0926-06 (159/11) */
     explainWrong={{
-      1: tr({ uz: "Qo'shish — POST ishi. GET faqat o'qiydi.", ru: 'Добавление — работа POST. GET только читает.' }),
-      2: tr({ uz: "O'chirish — DELETE ishi. GET hech narsani o'chirmaydi.", ru: 'Удаление — работа DELETE. GET ничего не удаляет.' }),
-      3: tr({ uz: "GET serverni o'chirmaydi — u shunchaki ma'lumot so'raydi.", ru: 'GET не выключает сервер — он просто запрашивает данные.' }),
-      default: tr({ uz: "GET = o'qish (olish).", ru: 'GET = чтение (получение).' })
+      1: tr({ uz: "Qo'shish — POST ishi, GET hech narsa yozmaydi.", ru: 'Добавление — работа POST, GET ничего не записывает.' }),
+      2: tr({ uz: "O'chirish — DELETE ishi, GET hech narsani o'chirmaydi.", ru: 'Удаление — работа DELETE, GET ничего не удаляет.' }),
+      3: tr({ uz: "GET serverni o'chirmaydi — bu shunchaki so'rov.", ru: 'GET не выключает сервер — это просто запрос.' }),
+      default: tr({ uz: "GET bazadagi qaysi SQL buyrug'iga o'xshashini eslang.", ru: 'Вспомните, на какую SQL-команду похож GET.' })
     }} />
 );
 
@@ -1127,12 +1128,12 @@ const Screen9 = (props) => (
     questionText={tr({ uz: "Bazaga yangi mahsulot qo'shish uchun qaysi method?", ru: 'Каким методом добавить в базу новый товар?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Do'konga yangi mahsulot qo'shmoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi method?</span></>, ru: <>Вы хотите добавить в магазин новый товар. <span className="italic" style={{ color: T.accent }}>Какой метод?</span></> })}</h2></>}
     options={[tr({ uz: "GET — mavjud ma'lumotni o'qib oladi", ru: 'GET — читает существующие данные' }), tr({ uz: "DELETE — mavjud yozuvni o'chiradi", ru: 'DELETE — удаляет существующую запись' }), tr({ uz: "PUT — mavjud yozuvni o'zgartiradi", ru: 'PUT — изменяет существующую запись' }), tr({ uz: "POST — yangi ma'lumot qo'shib yozadi", ru: 'POST — записывает новые данные' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "Yangi mahsulot ma'lumoti BODY'da ketadi, server 201 Created qaytaradi.", ru: 'Данные нового товара едут в BODY, сервер возвращает 201 Created.' })} /* F-0926-06 (159/11) */
+    explainCorrect={tr({ uz: "Yangi mahsulot BODY'da ketadi, server 201 Created qaytaradi.", ru: 'Данные нового товара едут в BODY, сервер возвращает 201 Created.' })} /* F-0926-06 (159/11) */
     explainWrong={{
       0: tr({ uz: "GET faqat o'qiydi — yangi narsa qo'shmaydi.", ru: 'GET только читает — ничего нового не добавляет.' }),
       1: tr({ uz: "DELETE mavjud mahsulotni o'chiradi, yangi qo'shmaydi.", ru: 'DELETE удаляет существующий товар, а не добавляет новый.' }),
       2: tr({ uz: "PUT mavjud mahsulotni o'zgartiradi, yangi qo'shmaydi.", ru: 'PUT изменяет существующий товар, а не добавляет новый.' }),
-      default: tr({ uz: "Yangi qo'shish — POST.", ru: 'Добавить новое — POST.' })
+      default: tr({ uz: "Bazadagi INSERT'ga qaysi method mos kelishini eslang.", ru: 'Вспомните, какой метод соответствует INSERT в базе.' })
     }} />
 );
 
@@ -1262,12 +1263,12 @@ const Screen12 = (props) => (
     questionText={tr({ uz: "Sayt ma'lumot kerak bo'lganda nima qiladi?", ru: 'Что делает сайт, когда ему нужны данные?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Frontend backend bilan <span className="italic" style={{ color: T.accent }}>qanday gaplashadi?</span></>, ru: <>Как фронтенд <span className="italic" style={{ color: T.accent }}>говорит с бэкендом?</span></> })}</h2></>}
     options={[tr({ uz: "Bazaga to'g'ridan-to'g'ri o'zi kirib ma'lumot oladi", ru: 'Сам напрямую заходит в базу и берёт данные' }), tr({ uz: "API'ga so'rov yuboradi, server javob qaytaradi", ru: 'Отправляет запрос в API, сервер возвращает ответ' }), tr({ uz: "Hech kim bilan gaplashmaydi — hammasini o'zi biladi", ru: 'Ни с кем не разговаривает — всё знает сам' }), tr({ uz: "Boshqa saytdan tayyor ma'lumot nusxasini oladi", ru: 'Берёт готовую копию данных с другого сайта' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Server bazada ishlaydi va javob (response) qaytaradi — sayt bazaga o'zi kira olmaydi.", ru: 'Сервер работает с базой и возвращает ответ (response) — сам сайт в базу попасть не может.' })} /* F-0926-06 (159/11) */
+    explainCorrect={tr({ uz: "Sayt bazaga kira olmaydi — javobni unga server olib beradi.", ru: 'Сайт не попадает в базу — ответ ему приносит сервер.' })} /* F-0926-06 (159/11) */
     explainWrong={{
-      0: tr({ uz: "Sayt bazaga to'g'ridan-to'g'ri kira olmaydi — bu xavfli. U API orqali so'raydi.", ru: 'Сайт не может войти в базу напрямую — это опасно. Он спрашивает через API.' }),
-      2: tr({ uz: "Sayt aniq gaplashadi — API orqali serverga so'rov yuboradi.", ru: 'Ещё как разговаривает — отправляет запрос серверу через API.' }),
-      3: tr({ uz: "Yo'q — har sayt o'z serveridan API orqali so'raydi.", ru: 'Нет — каждый сайт спрашивает свой сервер через API.' }),
-      default: tr({ uz: "Front → API so'rov → server javob.", ru: 'Фронт → запрос в API → ответ сервера.' })
+      0: tr({ uz: "Sayt bazaga to'g'ridan-to'g'ri kira olmaydi — bu xavfli.", ru: 'Сайт не может войти в базу напрямую — это опасно.' }),
+      2: tr({ uz: "Sayt hamma narsani o'zi bilmaydi — ma'lumot serverda turadi.", ru: 'Сайт не знает всё сам — данные лежат на сервере.' }),
+      3: tr({ uz: "Begona saytdan nusxa olinmaydi — har saytda o'z serveri bor.", ru: 'Данные не копируют с чужого сайта — у каждого сайта свой сервер.' }),
+      default: tr({ uz: "Sayt bilan server orasida nima turishini eslang.", ru: 'Вспомните, что стоит между сайтом и сервером.' })
     }} />
 );
 

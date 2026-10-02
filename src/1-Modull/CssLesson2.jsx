@@ -314,20 +314,20 @@ const RECAPS = {
     title: { uz: 'Flexbox: elementlarni qatorga tizish', ru: 'Flexbox: выстраиваем элементы в ряд' }, cards: [
       { ic: '📋', h: { uz: 'Muammo: block ustma-ust tushadi', ru: 'Проблема: block падает друг под друга' },
         body: {
-          uz: <>div, h1, p kabi <b>block</b> elementlar butun qatorni egallaydi — xuddi <b>bino qavatlari</b> kabi, biri ostida ikkinchisi. Shuning uchun menyu tugmalari ustma-ust tushadi.</>,
-          ru: <>Элементы <b>block</b> — div, h1, p — занимают всю строку, как <b>этажи здания</b>: один под другим. Поэтому кнопки меню падают друг под друга.</>,
+          uz: <><b>block</b> elementlar butun qatorni egallaydi, shuning uchun ular ustma-ust tushadi.</>,
+          ru: <>Элементы <b>block</b> занимают всю строку, поэтому падают друг под друга.</>,
         },
         vis: <RcFlow items={['📋 block', { uz: 'ustma-ust', ru: 'друг под другом' }, { uz: 'chiroyli emas', ru: 'некрасиво' }]} sep="·" /> },
       { ic: '📚', h: { uz: 'Yechim: display: flex', ru: 'Решение: display: flex' },
         body: {
-          uz: <>Konteynerga <b className="mono">display: flex</b> bersangiz, ichidagi elementlar o'zi <b>yonma-yon qatorga</b> tiziladi. Xuddi <b>tokchaga kitob terish</b> kabi — tokchani belgilaysiz, kitoblar tizilib ketadi.</>,
-          ru: <>Задайте контейнеру <b className="mono">display: flex</b> — и элементы внутри сами выстроятся <b>в один ряд</b>. Как <b>расставить книги на полке</b>: вы указываете полку, а книги выстраиваются сами.</>,
+          uz: <>Konteynerga <b className="mono">display: flex</b> bersangiz, ichidagilar <b>yonma-yon qatorga</b> tiziladi.</>,
+          ru: <>Задайте контейнеру <b className="mono">display: flex</b> — и элементы внутри встанут <b>в один ряд</b>.</>,
         },
         vis: <RcFlow items={[{ uz: 'Konteyner', ru: 'Контейнер' }, 'display: flex', { uz: 'yonma-yon qator', ru: 'в один ряд' }]} /> },
       { ic: '☝️', h: { uz: 'display: flex qayerga yoziladi?', ru: 'Куда пишется display: flex?' },
         body: {
-          uz: <>Ichidagi elementga emas — <b>o'rab turgan konteynerga</b>. Bolalarni qatorga tizadigan buyruq har doim ularni <b>o'rab turgan</b> qutiga beriladi.</>,
-          ru: <>Не внутреннему элементу — <b>обёртывающему контейнеру</b>. Команда выстроить «детей» в ряд всегда даётся коробке, которая их <b>обёртывает</b>.</>,
+          uz: <><b className="mono">display: flex</b> ichidagi elementga emas, <b>o'rab turgan konteynerga</b> yoziladi.</>,
+          ru: <><b className="mono">display: flex</b> пишут не внутреннему элементу, а <b>обёртывающему контейнеру</b>.</>,
         },
         vis: <RcFlow items={[{ uz: 'Konteyner — flex', ru: 'Контейнер — flex' }, { uz: 'ichki elementlar — tiziladi', ru: 'внутренние элементы — выстраиваются' }]} sep="·" />,
         ask: { uz: "Menyu tugmalari qatorga tizilishi uchun display: flex ni qaysi elementga beramiz?", ru: 'Какому элементу задать display: flex, чтобы кнопки меню выстроились в ряд?' } },
@@ -338,20 +338,20 @@ const RECAPS = {
     title: { uz: 'flex-direction: row va column', ru: 'flex-direction: row и column' }, cards: [
       { ic: '↔️', h: { uz: 'row — yonma-yon qator', ru: 'row — ряд, рядом друг с другом' },
         body: {
-          uz: <><b className="mono">flex-direction: row</b> — ichki elementlar <b>yonma-yon</b>, chapdan o'ngga tiziladi. Bu — odatdagi (sukut) holat: yozmasangiz ham flex shu tomonga tizadi.</>,
-          ru: <><b className="mono">flex-direction: row</b> — внутренние элементы стоят <b>рядом</b>, слева направо. Это значение по умолчанию: даже если его не написать, flex выстроит именно так.</>,
+          uz: <><b className="mono">flex-direction: row</b> — yonma-yon qator, bu <b>odatdagi</b> holat.</>,
+          ru: <><b className="mono">flex-direction: row</b> — элементы в ряд, это значение <b>по умолчанию</b>.</>,
         },
         vis: <RcFlow items={['A', 'B', 'C']} /> },
       { ic: '↕️', h: { uz: 'column — ustma-ust ustun', ru: 'column — столбик, друг под другом' },
         body: {
-          uz: <><b className="mono">flex-direction: column</b> — ichki elementlar <b>ustma-ust</b>, yuqoridan pastga tiziladi. Menyu bandlarini vertikal ro'yxat qilmoqchi bo'lsangiz — aynan shu.</>,
-          ru: <><b className="mono">flex-direction: column</b> — внутренние элементы идут <b>друг под другом</b>, сверху вниз. Хотите вертикальный список пунктов меню — это именно оно.</>,
+          uz: <><b className="mono">flex-direction: column</b> — elementlar <b>ustma-ust</b>, yuqoridan pastga tiziladi.</>,
+          ru: <><b className="mono">flex-direction: column</b> — элементы идут <b>друг под другом</b>, сверху вниз.</>,
         },
         vis: <RcFlow items={['A', 'B', 'C']} sep="↓" /> },
       { ic: '🧭', h: { uz: "Yo'nalishni bir so'z hal qiladi", ru: 'Направление решает одно слово' },
         body: {
-          uz: <>Faqat qiymatni almashtirasiz: <b className="mono">row</b> — qator, <b className="mono">column</b> — ustun. Muhim: avval <b className="mono">display: flex</b> bo'lsin, aks holda flex-direction ishlamaydi.</>,
-          ru: <>Меняется только значение: <b className="mono">row</b> — ряд, <b className="mono">column</b> — столбик. Важно: сначала должен быть <b className="mono">display: flex</b>, иначе flex-direction не сработает.</>,
+          uz: <><b className="mono">row</b> — qator, <b className="mono">column</b> — ustun, lekin avval <b className="mono">display: flex</b> bo'lsin.</>,
+          ru: <><b className="mono">row</b> — ряд, <b className="mono">column</b> — столбик, но сначала нужен <b className="mono">display: flex</b>.</>,
         },
         vis: <RcFlow items={[{ uz: 'row — qator', ru: 'row — ряд' }, { uz: 'column — ustun', ru: 'column — столбик' }]} sep="·" />,
         ask: { uz: "Bandlarni vertikal ustunga tizish uchun qaysi qiymat kerak?", ru: 'Какое значение нужно, чтобы выстроить пункты в вертикальный столбик?' } },
@@ -362,20 +362,20 @@ const RECAPS = {
     title: { uz: "Joylashtirish: ikki o'q", ru: 'Выравнивание: две оси' }, cards: [
       { ic: '➡️', h: { uz: "Asosiy o'q — qator bo'ylab", ru: 'Главная ось — вдоль ряда' },
         body: {
-          uz: <><b className="mono">justify-content</b> elementlarni <b>qator bo'ylab</b> (chapdan o'ngga) suradi: <b className="mono">center</b> — markazga, <b className="mono">space-between</b> — chetdan chetga teng.</>,
-          ru: <><b className="mono">justify-content</b> двигает элементы <b>вдоль ряда</b> (слева направо): <b className="mono">center</b> — к центру, <b className="mono">space-between</b> — от края до края поровну.</>,
+          uz: <><b className="mono">justify-content</b> elementlarni <b>qator bo'ylab</b> suradi: <b className="mono">center</b> — markazga.</>,
+          ru: <><b className="mono">justify-content</b> двигает элементы <b>вдоль ряда</b>: <b className="mono">center</b> — к центру.</>,
         },
         vis: <RcFlow items={['flex-start', 'center', 'space-between']} sep="·" /> },
       { ic: '⬇️', h: { uz: "Vertikal yo'nalish — yuqoridan pastga", ru: 'Вертикальное направление — сверху вниз' },
         body: {
-          uz: <><b className="mono">align-items</b> elementlarni <b>vertikal</b> (yuqoridan pastga) tekislaydi: <b className="mono">center</b> — o'rtaga, <b className="mono">flex-start</b> — yuqoriga.</>,
-          ru: <><b className="mono">align-items</b> выравнивает элементы <b>поперёк ряда</b> (сверху вниз): <b className="mono">center</b> — по середине, <b className="mono">flex-start</b> — вверх.</>,
+          uz: <><b className="mono">align-items</b> elementlarni <b>vertikal</b> tekislaydi: <b className="mono">center</b> — o'rtaga.</>,
+          ru: <><b className="mono">align-items</b> выравнивает элементы <b>поперёк ряда</b>: <b className="mono">center</b> — по середине.</>,
         },
         vis: <RcFlow items={['flex-start', 'center', 'flex-end']} sep="·" /> },
       { ic: '🎯', h: { uz: "To'liq markaz — ikkalasi birga", ru: 'Полный центр — оба вместе' },
         body: {
-          uz: <>Elementni <b>tom o'rtaga</b> qo'yish uchun ikkalasi kerak: <b className="mono">justify-content: center</b> (qator bo'ylab) va <b className="mono">align-items: center</b> (vertikal).</>,
-          ru: <>Чтобы поставить элемент <b>ровно в центр</b>, нужны оба: <b className="mono">justify-content: center</b> (вдоль ряда) и <b className="mono">align-items: center</b> (поперёк).</>,
+          uz: <>Tom o'rta uchun ikkalasi kerak: <b className="mono">justify-content: center</b> va <b className="mono">align-items: center</b>.</>,
+          ru: <>Для точного центра нужны оба: <b className="mono">justify-content: center</b> и <b className="mono">align-items: center</b>.</>,
         },
         vis: <RcFlow items={['justify: center', 'align: center', { uz: 'markaz', ru: 'центр' }]} />,
         ask: { uz: "Elementlarni gorizontal markazga qaysi xususiyat joylashtiradi?", ru: 'Какое свойство ставит элементы по центру по горизонтали?' } },
@@ -386,20 +386,20 @@ const RECAPS = {
     title: { uz: 'DevTools: Styles paneli', ru: 'DevTools: панель Styles' }, cards: [
       { ic: '🔧', h: { uz: 'DevTools — brauzer ustaxonasi', ru: 'DevTools — мастерская браузера' },
         body: {
-          uz: <>Har brauzerda <b>DevTools</b> bor — <b className="mono">F12</b> bosib ochasiz. U orqali istalgan saytning ichki tuzilishini ko'rasiz: HTML, CSS va boshqalar.</>,
-          ru: <>В каждом браузере есть <b>DevTools</b> — открывается по <b className="mono">F12</b>. Через него видно внутреннее устройство любого сайта: HTML, CSS и не только.</>,
+          uz: <><b className="mono">F12</b> bosing — <b>DevTools</b> istalgan saytning ichki tuzilishini ko'rsatadi.</>,
+          ru: <>Нажмите <b className="mono">F12</b> — <b>DevTools</b> покажет устройство любого сайта.</>,
         },
         vis: <RcFlow items={['F12', { uz: 'DevTools ochiladi', ru: 'откроется DevTools' }]} sep="·" /> },
       { ic: '🎨', h: { uz: "Styles — CSS ko'rinadigan panel", ru: 'Styles — панель, где виден CSS' },
         body: {
-          uz: <>Elementni tanlaganingizda <b className="mono">Styles</b> paneli uning <b>barcha CSS qoidalarini</b> ko'rsatadi. Console — xatolar uchun, Network — fayllar uchun, CSS esa aynan <b className="mono">Styles</b>da.</>,
-          ru: <>Выберите элемент — и панель <b className="mono">Styles</b> покажет <b>все его CSS-правила</b>. Console — для ошибок, Network — для файлов, а CSS — именно в <b className="mono">Styles</b>.</>,
+          uz: <><b className="mono">Styles</b> paneli tanlangan elementning <b>barcha CSS qoidalarini</b> ko'rsatadi.</>,
+          ru: <>Панель <b className="mono">Styles</b> показывает <b>все CSS-правила</b> выбранного элемента.</>,
         },
         vis: <RcFlow items={[{ uz: 'Element tanlanadi', ru: 'Выбираем элемент' }, 'Styles', { uz: 'CSS qoidalari', ru: 'CSS-правила' }]} /> },
       { ic: '⚡', h: { uz: "Jonli o'zgartirish", ru: 'Правка вживую' },
         body: {
-          uz: <>Styles panelida qiymatni o'zgartirsangiz, sahifa <b>darhol</b> yangilanadi — kodni saqlamasdan sinaysiz. Lekin bu <b>vaqtincha</b>: sahifani yangilasangiz, o'zgarish yo'qoladi.</>,
-          ru: <>Измените значение в панели Styles — страница обновится <b>мгновенно</b>, пробуете без сохранения кода. Но это <b>временно</b>: обновите страницу — изменение пропадёт.</>,
+          uz: <><b className="mono">Styles</b>dagi o'zgarish darhol ko'rinadi, lekin yangilasangiz <b>yo'qoladi</b>.</>,
+          ru: <>Изменение в <b className="mono">Styles</b> видно сразу, но после обновления страницы оно <b>пропадёт</b>.</>,
         },
         vis: <RcFlow items={[{ uz: "qiymat o'zgaradi", ru: 'значение меняется' }, { uz: "darhol ko'rinadi", ru: 'видно сразу' }]} sep="·" />,
         ask: { uz: "Elementning CSS qoidalarini DevTools'ning qaysi paneli ko'rsatadi?", ru: 'Какая панель DevTools показывает CSS-правила элемента?' } },
@@ -409,7 +409,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -427,7 +427,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -436,13 +436,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -525,7 +525,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -534,7 +534,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -667,7 +667,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -675,8 +675,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -688,11 +689,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1108,8 +1109,8 @@ const Screen4 = (props) => (
     questionText="Elementlarni yonma-yon qatorga tizish uchun konteynerga qaysi xususiyat beriladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Elementlarni <span className="italic" style={{ color: T.accent }}>yonma-yon</span> qatorga tizish uchun konteynerga qaysi xususiyat beriladi?</>, ru: <>Какое свойство задаётся контейнеру, чтобы выстроить элементы <span className="italic" style={{ color: T.accent }}>в ряд</span>?</> })}</h2></>}
     options={['color: red', 'font-size: 20px', 'display: flex', 'text-align: center']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! display: flex konteynerni flex'ga aylantiradi va ichki elementlarini qatorga tizadi.", ru: 'Верно! display: flex превращает контейнер во flex и выстраивает его внутренние элементы в ряд.' }}
-    explainWrong={{ 0: { uz: "color — matn rangi, joylashuvga aloqasi yo'q. Qator uchun — display: flex.", ru: 'color — цвет текста, к расположению отношения не имеет. Для ряда — display: flex.' }, 1: { uz: "font-size — shrift o'lchami. Qator uchun — display: flex.", ru: 'font-size — размер шрифта. Для ряда — display: flex.' }, 3: { uz: 'text-align matn ichidagi joylashuv. Elementlarni qatorga tizadigan — display: flex.', ru: 'text-align — выравнивание текста внутри. Элементы в ряд выстраивает display: flex.' }, default: { uz: 'Qatorga tizadigan — display: flex.', ru: 'В ряд выстраивает display: flex.' } }} />
+    explainCorrect={{ uz: "`display: flex` konteyner ichidagilarni qatorga tizadi.", ru: '`display: flex` выстраивает элементы контейнера в ряд.' }}
+    explainWrong={{ 0: { uz: "`color` — matn rangi, joylashuvga aloqasi yo'q.", ru: '`color` — цвет текста, к расположению отношения не имеет.' }, 1: { uz: "`font-size` — shrift o'lchami, joylashuvni o'zgartirmaydi.", ru: '`font-size` — размер шрифта, расположение он не меняет.' }, 3: { uz: '`text-align` faqat matnni tekislaydi, elementlarni emas.', ru: '`text-align` выравнивает только текст, а не элементы.' }, default: { uz: 'Tokchaga kitob terishni eslang: buyruq konteynerga beriladi.', ru: 'Вспомните книги на полке: команда даётся контейнеру.' } }} />
 );
 
 // ===== SCREEN 5 — FLEX-DIRECTION =====
@@ -1149,8 +1150,8 @@ const Screen5b = (props) => (
     questionText="Flex elementlarni vertikal ustunga tizish uchun?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni <span className="italic" style={{ color: T.accent }}>vertikal ustunga</span> tizish uchun nima yoziladi?</>, ru: <>Что написать, чтобы выстроить flex-элементы <span className="italic" style={{ color: T.accent }}>в вертикальный столбик</span>?</> })}</h2></>}
     options={['flex-direction: row', 'display: block', 'justify-content: center', 'flex-direction: column']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! flex-direction: column elementlarni ustma-ust (ustunga) tizadi.", ru: 'Верно! flex-direction: column выстраивает элементы друг под другом (в столбик).' }}
-    explainWrong={{ 0: { uz: 'row — bu qator (yonma-yon), sukut holat. Ustun uchun — column.', ru: 'row — это ряд (рядом), значение по умолчанию. Для столбика — column.' }, 1: { uz: "display: block flexni o'chiradi. Ustun uchun — flex-direction: column.", ru: 'display: block выключает flex. Для столбика — flex-direction: column.' }, 2: { uz: "justify-content joylashtiradi, yo'nalishni emas. Ustun uchun — column.", ru: 'justify-content выравнивает, а не задаёт направление. Для столбика — column.' }, default: { uz: 'Vertikal ustun — flex-direction: column.', ru: 'Вертикальный столбик — flex-direction: column.' } }} />
+    explainCorrect={{ uz: "`column` elementlarni ustma-ust, yuqoridan pastga tizadi.", ru: '`column` ставит элементы друг под другом, сверху вниз.' }}
+    explainWrong={{ 0: { uz: '`row` — yonma-yon qator, bu odatdagi holat.', ru: '`row` — элементы в ряд, это значение по умолчанию.' }, 1: { uz: "`display: block` flexni o'chiradi.", ru: '`display: block` выключает flex.' }, 2: { uz: "`justify-content` joylashtiradi, yo'nalishni bermaydi.", ru: '`justify-content` выравнивает, а не задаёт направление.' }, default: { uz: 'Qator va ustun inglizcha qanday atalishini eslang.', ru: 'Вспомните, как по-английски ряд и столбик.' } }} />
 );
 // ===== SCREEN 6 — GAP =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1278,8 +1279,8 @@ const Screen9 = (props) => (
     questionText="Flex elementlarni gorizontal markazga joylashtirish uchun?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni qator bo'ylab <span className="italic" style={{ color: T.accent }}>gorizontal markazga</span> joylashtirish uchun?</>, ru: <>Как разместить flex-элементы вдоль ряда <span className="italic" style={{ color: T.accent }}>по центру горизонтали</span>?</> })}</h2></>}
     options={['align-items: center', 'justify-content: center', 'text-align: center', 'margin: center']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! justify-content: center flex elementlarni asosiy o'q (gorizontal) bo'ylab markazga to'playdi.", ru: 'Верно! justify-content: center собирает flex-элементы к центру вдоль главной (горизонтальной) оси.' }}
-    explainWrong={{ 0: { uz: 'align-items vertikal tekislaydi, gorizontal emas. Gorizontal markaz — justify-content.', ru: 'align-items выравнивает по вертикали, не по горизонтали. Центр по горизонтали — justify-content.' }, 2: { uz: 'text-align matn ichida ishlaydi, flex elementlarga emas.', ru: 'text-align работает внутри текста, а не с flex-элементами.' }, 3: { uz: "margin: center degan qiymat yo'q. To'g'risi — justify-content: center.", ru: 'Значения margin: center не существует. Правильно — justify-content: center.' }, default: { uz: 'Gorizontal markaz — justify-content: center.', ru: 'Центр по горизонтали — justify-content: center.' } }} />
+    explainCorrect={{ uz: "`justify-content` qator bo'ylab suradi, `center` — markazga.", ru: '`justify-content` двигает вдоль ряда, а `center` — к центру.' }}
+    explainWrong={{ 0: { uz: '`align-items` vertikal tekislaydi, gorizontal emas.', ru: '`align-items` выравнивает по вертикали, а не по горизонтали.' }, 2: { uz: '`text-align` matn ichida ishlaydi, flex elementlarga emas.', ru: '`text-align` работает внутри текста, а не с flex-элементами.' }, 3: { uz: "`margin: center` degan qiymat yo'q.", ru: 'Значения `margin: center` не существует.' }, default: { uz: 'Qator bo\'ylab surish qaysi xususiyatning ishi — eslang.', ru: 'Вспомните, какое свойство двигает элементы вдоль ряда.' } }} />
 );
 
 // ===== SCREEN 10 — DEVTOOLS (Styles paneli) =====
@@ -1362,8 +1363,8 @@ const Screen12 = (props) => (
     questionText="DevTools'ning qaysi paneli element CSS'ini ko'rsatadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>DevTools'ning qaysi paneli elementning <span className="italic" style={{ color: T.accent }}>CSS qoidalarini</span> ko'rsatadi va o'zgartiradi?</>, ru: <>Какая панель DevTools показывает и меняет <span className="italic" style={{ color: T.accent }}>CSS-правила</span> элемента?</> })}</h2></>}
     options={['Console', 'Network', 'Styles', 'Sources']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Styles paneli tanlangan elementning barcha CSS qoidalarini ko'rsatadi va jonli o'zgartirishga imkon beradi.", ru: 'Верно! Панель Styles показывает все CSS-правила выбранного элемента и позволяет менять их вживую.' }}
-    explainWrong={{ 0: { uz: 'Console — xato va xabarlar uchun. CSS uchun — Styles.', ru: 'Console — для ошибок и сообщений. Для CSS — Styles.' }, 1: { uz: 'Network — fayllar yuklanishi uchun. CSS uchun — Styles.', ru: 'Network — для загрузки файлов. Для CSS — Styles.' }, 3: { uz: "Sources — fayllar kodi uchun. Element CSS'i uchun — Styles.", ru: 'Sources — для кода файлов. CSS элемента — в Styles.' }, default: { uz: "Element CSS'i — Styles panelida.", ru: 'CSS элемента — в панели Styles.' } }} />
+    explainCorrect={{ uz: "Styles tanlangan elementning CSS qoidalarini ko'rsatadi.", ru: 'Styles показывает CSS-правила выбранного элемента.' }}
+    explainWrong={{ 0: { uz: 'Console — xato va xabarlar uchun.', ru: 'Console — для ошибок и сообщений.' }, 1: { uz: 'Network — fayllar yuklanishini ko\'rsatadi.', ru: 'Network показывает загрузку файлов.' }, 3: { uz: "Sources — fayllar kodi uchun, element CSS'i uchun emas.", ru: 'Sources — для кода файлов, а не для CSS элемента.' }, default: { uz: "Ichida CSS qoidalari turadigan panelni eslang.", ru: 'Вспомните панель, где лежат CSS-правила.' } }} />
 );
 
 // ===== SCREEN 13 — BUILDER (flex layout) =====
@@ -2345,7 +2346,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-07" lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -3729,7 +3730,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
       {/* Lokal praktika overlay (LMS compilatorining o'rnini bosadi). Production'da onPractice berilsa ochilmaydi. */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
+          <HtmlCompiler stage="m1-07" lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
         </div>
       )}
       {/* Jonli darsda mentor praktika paneli — o'quvchilar yozadi, keyin mentor doskada ko'rsatadi */}

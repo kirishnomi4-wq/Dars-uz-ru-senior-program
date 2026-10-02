@@ -255,30 +255,30 @@ const RcFlow = ({ items, sep = '→' }) => (
 
 const RECAPS = {
   4: { title: { uz: "POST — yangi yozuv", ru: 'POST — новая запись' }, cards: [
-    { ic: "📮", h: { uz: "Fe'l — jo'natish buyrug'i", ru: 'Глагол — команда отправки' }, body: { uz: <>Har so'rovning <b>fe'li (method)</b> bor — server shu fe'lga qarab nima qilishni biladi. <b>GET</b> olib keladi, <b>POST</b> esa yangi yozuv qo'shadi.</>, ru: <>У каждого запроса есть <b>глагол (method)</b> — по нему сервер понимает, что делать. <b>GET</b> приносит данные, а <b>POST</b> добавляет новую запись.</> }, vis: <RcFlow items={[{ uz: "GET olib keladi", ru: 'GET приносит' }, { uz: "POST olib boradi", ru: 'POST относит' }, { uz: "Server qo'shadi", ru: 'Сервер добавляет' }]} /> },
-    { ic: "📦", h: { uz: "Fe'l sozlamalar qutisida", ru: 'Глагол — в коробке настроек' }, body: { uz: <>POST fetch'ning ikkinchi qismida yoziladi: <b>{"{ method: 'POST' }"}</b>. Bu — "olib kelma, olib bor" degani.</>, ru: <>POST пишется во второй части fetch: <b>{"{ method: 'POST' }"}</b>. Это значит «не приноси — отнеси».</> } },
-    { ic: "🗣️", h: { uz: "O'ylab ko'ring", ru: 'Подумайте' }, body: { uz: <>Adopt Me! katalogda yo'q edi. Uni qo'shish uchun qaysi fe'l kerak?</>, ru: <>Adopt Me! не было в каталоге. Какой глагол нужен, чтобы её добавить?</> }, ask: { uz: "Katalogda yo'q o'yinni qo'shish uchun qaysi fe'l?", ru: 'Какой глагол добавит игру, которой нет в каталоге?' } },
+    { ic: "📮", h: { uz: "Fe'l — jo'natish buyrug'i", ru: 'Глагол — команда отправки' }, body: { uz: <>Server so'rov <b>fe'li</b>ga qarab ishlaydi: GET olib keladi, POST yangi yozuv qo'shadi.</>, ru: <>Сервер действует по <b>глаголу</b> запроса: GET приносит, а POST добавляет новую запись.</> }, vis: <RcFlow items={[{ uz: "GET olib keladi", ru: 'GET приносит' }, { uz: "POST olib boradi", ru: 'POST относит' }, { uz: "Server qo'shadi", ru: 'Сервер добавляет' }]} /> },
+    { ic: "📦", h: { uz: "Fe'l sozlamalar qutisida", ru: 'Глагол — в коробке настроек' }, body: { uz: <>Fe'l fetch'ning ikkinchi qismida yoziladi: <b>method: 'POST'</b> — «olib bor» degani.</>, ru: <>Глагол пишется во второй части fetch: <b>method: 'POST'</b> — значит «отнеси».</> } },
+    { ic: "🗣️", h: { uz: "O'ylab ko'ring", ru: 'Подумайте' }, body: { uz: <>Adopt Me! katalogda yo'q edi — uni qo'shish uchun qaysi fe'l kerak?</>, ru: <>Adopt Me! не было в каталоге — какой глагол нужен, чтобы её добавить?</> }, ask: { uz: "Katalogda yo'q o'yinni qo'shish uchun qaysi fe'l?", ru: 'Какой глагол добавит игру, которой нет в каталоге?' } },
   ]},
   6: { title: { uz: "body va JSON.stringify", ru: 'body и JSON.stringify' }, cards: [
-    { ic: "📦", h: { uz: "body — teskari posilka", ru: 'body — посылка наоборот' }, body: { uz: <>O'tgan darsda posilka serverDAN kelardi. Endi teskari: <b>body</b> orqali ma'lumotni SIZ serverga yuborasiz.</>, ru: <>На прошлом уроке посылка приходила ОТ сервера. Теперь наоборот: через <b>body</b> данные на сервер отправляете ВЫ.</> }, vis: <RcFlow items={[{ uz: "Obyekt", ru: 'Объект' }, "JSON.stringify", { uz: "JSON matn", ru: 'JSON-текст' }]} /> },
-    { ic: "🔤", h: { uz: "Server obyektni tushunmaydi", ru: 'Сервер не понимает объект' }, body: { uz: <>Serverga <b>JSON matn</b> kerak. <b>JSON.stringify()</b> obyektni matnga aylantiradi — bu .json()ning teskarisi.</>, ru: <>Серверу нужен <b>JSON-текст</b>. <b>JSON.stringify()</b> превращает объект в текст — это операция, обратная .json().</> } },
+    { ic: "📦", h: { uz: "body — teskari posilka", ru: 'body — посылка наоборот' }, body: { uz: <>Endi posilka teskari yo'nalishda: <b>body</b> orqali ma'lumotni siz serverga yuborasiz.</>, ru: <>Теперь посылка идёт наоборот: через <b>body</b> данные на сервер отправляете вы.</> }, vis: <RcFlow items={[{ uz: "Obyekt", ru: 'Объект' }, "JSON.stringify", { uz: "JSON matn", ru: 'JSON-текст' }]} /> },
+    { ic: "🔤", h: { uz: "Server obyektni tushunmaydi", ru: 'Сервер не понимает объект' }, body: { uz: <><b>JSON.stringify()</b> obyektni server tushunadigan JSON matnga aylantiradi.</>, ru: <><b>JSON.stringify()</b> превращает объект в JSON-текст, понятный серверу.</> } },
     { ic: "🗣️", h: { uz: "O'ylab ko'ring", ru: 'Подумайте' }, body: { uz: <>Endi siz serverga qaysi "tilda" (formatda) yozyapsiz?</>, ru: <>На каком «языке» (в каком формате) вы теперь пишете серверу?</> }, ask: { uz: "Serverga qaysi formatda yozamiz?", ru: 'В каком формате мы пишем серверу?' } },
   ]},
   11: { title: { uz: "Manzil va ID", ru: 'Адрес и ID' }, cards: [
-    { ic: "📍", h: { uz: "URL — aniq manzil", ru: 'URL — точный адрес' }, body: { uz: <>Har yozuvning <b>ID</b>si bor. <b>/games</b> — hammasi, <b>/games/7</b> — faqat 7-yozuv.</>, ru: <>У каждой записи есть <b>ID</b>. <b>/games</b> — все записи, <b>/games/7</b> — только запись номер 7.</> }, vis: <RcFlow items={["/games", "/games/7", { uz: "bitta yozuv", ru: 'одна запись' }]} /> },
-    { ic: "⚠️", h: { uz: "ID'siz xavfli", ru: 'Без ID — опасно' }, body: { uz: <>PUT va DELETE <b>doim ID bilan</b> ishlaydi — aks holda server qaysi yozuvni o'zgartirishni bilmaydi.</>, ru: <>PUT и DELETE работают <b>всегда с ID</b> — иначе сервер не поймёт, какую запись менять.</> } },
+    { ic: "📍", h: { uz: "URL — aniq manzil", ru: 'URL — точный адрес' }, body: { uz: <><b>/games</b> — hamma yozuvlar, <b>/games/7</b> — faqat ID'si 7 bo'lgan yozuv.</>, ru: <><b>/games</b> — все записи, <b>/games/7</b> — только запись с ID 7.</> }, vis: <RcFlow items={["/games", "/games/7", { uz: "bitta yozuv", ru: 'одна запись' }]} /> },
+    { ic: "⚠️", h: { uz: "ID'siz xavfli", ru: 'Без ID — опасно' }, body: { uz: <>PUT va DELETE <b>doim ID bilan</b> ishlaydi, aks holda server yozuvni topolmaydi.</>, ru: <>PUT и DELETE работают <b>всегда с ID</b> — иначе сервер не поймёт, какую запись менять.</> } },
     { ic: "🗣️", h: { uz: "O'ylab ko'ring", ru: 'Подумайте' }, body: { uz: <><b>/games</b> va <b>/games/2</b> orasidagi farq nima?</>, ru: <>В чём разница между <b>/games</b> и <b>/games/2</b>?</> }, ask: { uz: "/games va /games/2 farqi nimada?", ru: 'В чём разница между /games и /games/2?' } },
   ]},
   15: { title: "DELETE", cards: [
-    { ic: "🗑️", h: { uz: "DELETE + ID, body'siz", ru: 'DELETE + ID, без body' }, body: { uz: <><b>DELETE</b> yozuvni olib tashlaydi. Faqat <b>manzil + ID</b> kerak — body kerak emas.</>, ru: <><b>DELETE</b> убирает запись. Нужны только <b>адрес + ID</b> — body не нужен.</> }, vis: <RcFlow items={["DELETE", { uz: "tasdiqlash", ru: 'подтверждение' }, { uz: "ketdi", ru: 'удалено' }]} /> },
-    { ic: "🚫", h: { uz: "Qaytarilmaydi", ru: 'Не вернуть' }, body: { uz: <>O'chirilgan yozuv <b>butunlay</b> ketadi. Shuning uchun avval <b>tasdiqlash</b> so'raladi.</>, ru: <>Удалённая запись исчезает <b>навсегда</b>. Поэтому сначала спрашивают <b>подтверждение</b>.</> } },
+    { ic: "🗑️", h: { uz: "DELETE + ID, body'siz", ru: 'DELETE + ID, без body' }, body: { uz: <><b>DELETE</b> uchun faqat <b>manzil + ID</b> kerak, body kerak emas.</>, ru: <>Для <b>DELETE</b> нужны только <b>адрес + ID</b>, body не нужен.</> }, vis: <RcFlow items={["DELETE", { uz: "tasdiqlash", ru: 'подтверждение' }, { uz: "ketdi", ru: 'удалено' }]} /> },
+    { ic: "🚫", h: { uz: "Qaytarilmaydi", ru: 'Не вернуть' }, body: { uz: <>O'chirilgan yozuv <b>butunlay</b> ketadi, shuning uchun avval tasdiqlash so'raladi.</>, ru: <>Удалённая запись исчезает <b>навсегда</b>, поэтому сначала спрашивают подтверждение.</> } },
     { ic: "🗣️", h: { uz: "O'ylab ko'ring", ru: 'Подумайте' }, body: { uz: <>Nega saytlar o'chirishdan oldin "Ishonchingiz komilmi?" deb so'raydi?</>, ru: <>Почему сайты перед удалением спрашивают «Вы уверены?»</> }, ask: { uz: "Nega saytlar o'chirishdan oldin so'raydi?", ru: 'Почему сайты спрашивают перед удалением?' } },
   ]},
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -296,7 +296,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -305,13 +305,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -389,7 +389,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед продолжением советуем коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -398,7 +398,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -491,7 +491,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -499,8 +499,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -512,11 +513,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -652,10 +653,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -1079,12 +1080,12 @@ const Screen4 = (props) => (
     audioText="Serverga yangi ma'lumot qo'shish uchun qaysi so'rov ishlatiladi? To'g'ri javobni tanlang."
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Serverga <span className="italic" style={{ color: T.accent }}>yangi ma'lumot qo'shish</span> uchun qaysi so'rov?</>, ru: <>Какой запрос <span className="italic" style={{ color: T.accent }}>добавляет новые данные</span> на сервер?</> })}</h2></>}
     options={[tr({ uz: "GET — u hamma ishni qiladi", ru: 'GET — он делает всю работу' }), tr({ uz: "POST — yangi yozuv yaratadi", ru: 'POST — создаёт новую запись' }), tr({ uz: "Sahifani yangilash kifoya", ru: 'Достаточно обновить страницу' }), tr({ uz: "DELETE — u yozuvni o'chiradi", ru: 'DELETE — он удаляет запись' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri! POST = qo'shish» olindi — natija yorlig'i va variant aytadi (159/11) */ tr({ uz: "fetch(url, { method: 'POST', … }) — ikkinchi qismdagi fe'l serverga 'yangi yozuv yarat' deydi.", ru: "fetch(url, { method: 'POST', … }) — глагол во второй части говорит серверу: «создай новую запись»." })}
+    explainCorrect={/* F-0926-06: «To'g'ri! POST = qo'shish» olindi — natija yorlig'i va variant aytadi (159/11) */ tr({ uz: "Qo'shish serverda yangi yozuv yaratadi — bu POST'ning ishi.", ru: "Добавление создаёт на сервере новую запись — это работа POST." })}
     explainWrong={{
-      0: tr({ uz: "Hook'ni eslang: GET yubordingiz — o'yiningiz katalogga chiqmadi. GET faqat O'QIYDI.", ru: 'Вспомните начало урока: Вы отправили GET — игра в каталоге не появилась. GET только ЧИТАЕТ.' }),
-      2: tr({ uz: "Yangilash faqat bor narsani qayta ko'rsatadi. Serverda yo'q narsa paydo bo'lmaydi.", ru: 'Обновление лишь заново показывает то, что есть. То, чего нет на сервере, не появится.' }),
-      3: tr({ uz: "DELETE — aksincha, o'chiradi! Qo'shish uchun POST.", ru: 'DELETE — наоборот, удаляет! Для добавления — POST.' }),
-      default: tr({ uz: "Qo'shish = POST. Fe'l sozlamalar qutisida yoziladi: { method: 'POST' }.", ru: "Добавить = POST. Глагол пишется в коробке настроек: { method: 'POST' }." })
+      0: tr({ uz: "Boshidagi sinovni eslang: GET'dan keyin o'yin chiqmadi.", ru: 'Вспомните начало урока: после GET игра так и не появилась.' }),
+      2: tr({ uz: "Yangilash faqat bor narsani qayta ko'rsatadi.", ru: 'Обновление лишь заново показывает то, что уже есть.' }),
+      3: tr({ uz: "DELETE — aksincha, yozuvni o'chiradi.", ru: 'DELETE делает обратное — удаляет запись.' }),
+      default: tr({ uz: "Qaysi fe'l serverda yangi narsa paydo qiladi — o'ylang.", ru: "Подумайте, какой глагол создаёт на сервере новое." })
     }} />
 );
 
@@ -1156,12 +1157,12 @@ const Screen5b = (props) => (
     audioText="JSON.stringify(yangi) nima qiladi? To'g'ri javobni tanlang."
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>JSON.stringify(yangi)</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>JSON.stringify(yangi)</span>?</> })}</h2></>}
     options={[tr({ uz: "O'yinni darhol katalogga chizadi", ru: 'Сразу рисует игру в каталоге' }), tr({ uz: "Obyektda xato bor-yo'qligini tekshiradi", ru: 'Проверяет объект на ошибки' }), tr({ uz: "Obyektni JSON matnga aylantiradi", ru: 'Превращает объект в JSON-текст' }), tr({ uz: "Serverdan javob olib keladi", ru: 'Приносит ответ с сервера' })]} correctIdx={2}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/11) */ tr({ uz: "Server obyektni emas, JSON matnni tushunadi. stringify — .json()ning teskarisi.", ru: 'Сервер понимает не объект, а JSON-текст. stringify — операция, обратная .json().' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/11) */ tr({ uz: "Server obyektni emas, JSON matnni tushunadi.", ru: 'Сервер понимает не объект, а JSON-текст.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — chizish React'ning ishi. stringify faqat tarjima qiladi: obyekt → matn.", ru: 'Нет — рисовать это работа React. stringify только переводит: объект → текст.' }),
-      1: tr({ uz: "Yo'q — u tekshirmaydi, aylantiradi. Obyektdan JSON matn yasaydi.", ru: 'Нет — он не проверяет, а превращает. Делает из объекта JSON-текст.' }),
-      3: tr({ uz: "Bu .json()ning ishi — KELGAN javobni o'girish. stringify esa KETAYOTGAN yukni o'giradi.", ru: 'Это работа .json() — переводить ПРИШЕДШИЙ ответ. А stringify переводит УХОДЯЩИЙ груз.' }),
-      default: tr({ uz: "stringify = obyektni JSON matnga aylantirish, body shu matn bilan uchadi.", ru: 'stringify = превратить объект в JSON-текст; body летит именно с этим текстом.' })
+      0: tr({ uz: "Chizish — React'ning ishi, `stringify` chizmaydi.", ru: 'Рисовать — работа React, а `stringify` не рисует.' }),
+      1: tr({ uz: "`stringify` tekshirmaydi — u yukni jo'natishga tayyorlaydi.", ru: '`stringify` не проверяет — он готовит груз к отправке.' }),
+      3: tr({ uz: "Kelgan javob bilan `.json()` ishlaydi, `stringify` emas.", ru: 'С пришедшим ответом работает `.json()`, а не `stringify`.' }),
+      default: tr({ uz: "Server qaysi formatni tushunishini eslang.", ru: 'Вспомните, какой формат понимает сервер.' })
     }} />
 );
 
@@ -1362,12 +1363,12 @@ const Screen9 = (props) => (
     audioText="robo-api.example slesh games slesh yetti — bu manzil nima degani? To'g'ri javobni tanlang."
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>robo-api.example/games/7</span> — bu manzil nima degani?</>, ru: <><span className="mono" style={{ color: T.accent }}>robo-api.example/games/7</span> — что означает этот адрес?</> })}</h2></>}
     options={[tr({ uz: "7 ta o'yin olib keladi", ru: 'Принесёт 7 игр' }), tr({ uz: "Katalogning 7-sahifasini ochadi", ru: 'Откроет 7-ю страницу каталога' }), tr({ uz: "7 soniya kutib turadi", ru: 'Подождёт 7 секунд' }), tr({ uz: "ID raqami 7 bo'lgan bitta o'yin", ru: 'Одна игра с ID номер 7' })]} correctIdx={3}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi (159/11) */ tr({ uz: "Manzil oxiridagi raqam — ID, yozuvning pasport raqami. PUT/DELETE shu aniq yozuvga qaratiladi.", ru: 'Число в конце адреса — ID, «номер паспорта» записи. PUT/DELETE нацеливаются именно на эту запись.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi (159/11) */ tr({ uz: "Manzil oxiridagi raqam — ID, yozuvning pasport raqami.", ru: 'Число в конце адреса — ID, «номер паспорта» записи.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — soni emas, manzili. /games hammasi bo'lardi, /games/7 esa faqat bittasi.", ru: 'Нет — это не количество, а адрес. /games — все записи, /games/7 — только одна.' }),
-      1: tr({ uz: "Yo'q — bu sahifa emas, serverdagi yozuvning raqami.", ru: 'Нет — это не страница, а номер записи на сервере.' }),
-      2: tr({ uz: "Yo'q — vaqtga aloqasi yo'q. 7 — yozuvning ID raqami.", ru: 'Нет — время тут ни при чём. 7 — это ID записи.' }),
-      default: tr({ uz: "/games/7 = ID'si 7 bo'lgan bitta yozuv. PUT va DELETE shunga ishlaydi.", ru: '/games/7 = одна запись с ID 7. PUT и DELETE работают именно так.' })
+      0: tr({ uz: "Raqam o'yinlar soni emas — u manzilning bir qismi.", ru: 'Это не количество игр — число здесь часть адреса.' }),
+      1: tr({ uz: "Bu sahifa raqami emas — manzil serverdagi ma'lumotga boradi.", ru: 'Это не номер страницы — адрес ведёт к данным на сервере.' }),
+      2: tr({ uz: "Manzildagi raqamning vaqtga hech aloqasi yo'q.", ru: 'Число в адресе к времени отношения не имеет.' }),
+      default: tr({ uz: "`/games` va `/games/7` farqini eslang.", ru: 'Вспомните разницу между `/games` и `/games/7`.' })
     }} />
 );
 
@@ -1498,12 +1499,12 @@ const Screen12 = (props) => (
     audioText="Piggy — ID uch — ni o'chirish uchun to'g'ri so'rov qaysi? To'g'ri javobni tanlang."
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Piggy (ID 3) ni <span className="italic" style={{ color: T.accent }}>o'chirish</span> uchun to'g'ri so'rov qaysi?</>, ru: <>Какой запрос правильно <span className="italic" style={{ color: T.accent }}>удалит</span> Piggy (ID 3)?</> })}</h2></>}
     options={["DELETE /games/3", tr({ uz: "DELETE /games — hammasiga yuboramiz", ru: 'DELETE /games — отправим всем' }), "POST /games/3", "GET /games/3"]} correctIdx={0}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/11) */ tr({ uz: "Fe'l — nima qilish, ID — qaysi yozuv. Body kerak emas.", ru: 'Глагол — что сделать, ID — какая запись. Body не нужен.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/11) */ tr({ uz: "Fe'l — nima qilish, ID — qaysi yozuv, body kerak emas.", ru: 'Глагол — что сделать, ID — какая запись, body не нужен.' })}
     explainWrong={{
-      1: tr({ uz: "Xavfli! ID'siz DELETE — qaysi birini? Butun ro'yxatdan ayrilish mumkin. Doim aniq ID bilan.", ru: 'Опасно! DELETE без ID — какую именно? Можно лишиться всего списка. Всегда с точным ID.' }),
-      2: tr({ uz: "POST — qo'shadi, o'chirmaydi. Fe'l noto'g'ri.", ru: 'POST — добавляет, а не удаляет. Глагол не тот.' }),
-      3: tr({ uz: "GET — faqat o'qiydi: Piggy ma'lumotini olib keladi, lekin o'chirmaydi.", ru: 'GET — только читает: принесёт данные Piggy, но не удалит.' }),
-      default: tr({ uz: "O'chirish = DELETE + ID: DELETE /games/3.", ru: 'Удалить = DELETE + ID: DELETE /games/3.' })
+      1: tr({ uz: "ID'siz DELETE xavfli — butun ro'yxatdan ayrilish mumkin.", ru: 'DELETE без ID опасен — можно лишиться всего списка.' }),
+      2: tr({ uz: "POST qo'shadi, o'chirmaydi — fe'l boshqa.", ru: 'POST добавляет, а не удаляет — глагол не тот.' }),
+      3: tr({ uz: "GET faqat o'qiydi: Piggy'ni olib keladi, lekin o'chirmaydi.", ru: 'GET только читает: принесёт Piggy, но не удалит.' }),
+      default: tr({ uz: "Kerakli fe'l va o'yin ID'sini birga yozing.", ru: 'Напишите нужный глагол вместе с ID игры.' })
     }} />
 );
 
@@ -3190,7 +3191,7 @@ export default function ReactApiPostLesson({ lang: langProp, onFinished, liveTok
         .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }

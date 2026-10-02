@@ -280,32 +280,32 @@ const RECAPS = {
   4: {
     title: { uz: "Hodisa (event) nima?", ru: 'Что такое событие (event)?' },
     cards: [
-      { ic: "⚡", h: { uz: "Hodisa = foydalanuvchi harakati", ru: 'Событие = действие пользователя' }, body: { uz: <>Hodisa (event) — bu foydalanuvchi saytda <b>biror harakat qilgani</b>: tugmani bosish, matn yozish yoki sichqonchani ustiga olib borish. Sayt shu harakatni sezadi.</>, ru: <>Событие (event) — это когда пользователь <b>что-то сделал</b> на сайте: нажал кнопку, ввёл текст или навёл мышку. Сайт замечает это действие.</> }, vis: <RcFlow items={[{ uz: "Bosish", ru: 'Клик' }, { uz: "Yozish", ru: 'Ввод' }, "Hover"]} />, ask: { uz: "Sichqonchani rasm ustiga olib borsak — bu hodisami yoki yo'qmi?", ru: 'Если навести мышку на картинку — это событие или нет?' } },
-      { ic: "🎨", h: { uz: "Rang yoki nom — hodisa emas", ru: 'Цвет или название — не событие' }, body: { uz: <>Saytning rangi, shrifti yoki nomi — bu <b>ko'rinish</b>, hodisa emas. Internet tezligi ham hodisa emas. Hodisa faqat foydalanuvchi <b>nimadir qilganda</b> yuz beradi.</>, ru: <>Цвет сайта, шрифт или название — это <b>внешний вид</b>, а не событие. Скорость интернета тоже не событие. Событие происходит, только когда пользователь <b>что-то делает</b>.</> } },
-      { ic: "🔔", h: { uz: "Sayt hodisani kutib turadi", ru: 'Сайт ждёт событие' }, body: { uz: <>Sayt xuddi <b>eshik qo'ng'irog'i</b> kabi: kimdir tugmani bossa (hodisa), sayt buni eshitadi va javob beradi. Hodisa bo'lmasa — sayt jim turadi.</>, ru: <>Сайт — как <b>дверной звонок</b>: кто-то нажал кнопку (событие) — сайт это слышит и отвечает. Нет события — сайт молчит.</> }, vis: <RcFlow items={[{ uz: "Foydalanuvchi harakati", ru: 'Действие пользователя' }, { uz: "Sayt sezadi", ru: 'Сайт замечает' }]} /> },
+      { ic: "⚡", h: { uz: "Hodisa = foydalanuvchi harakati", ru: 'Событие = действие пользователя' }, body: { uz: <>Hodisa (<b>event</b>) — foydalanuvchining saytdagi harakati: bosish, yozish, ustiga olib borish.</>, ru: <>Событие (<b>event</b>) — действие пользователя на сайте: клик, ввод, наведение мышки.</> }, vis: <RcFlow items={[{ uz: "Bosish", ru: 'Клик' }, { uz: "Yozish", ru: 'Ввод' }, "Hover"]} />, ask: { uz: "Sichqonchani rasm ustiga olib borsak — bu hodisami yoki yo'qmi?", ru: 'Если навести мышку на картинку — это событие или нет?' } },
+      { ic: "🎨", h: { uz: "Rang yoki nom — hodisa emas", ru: 'Цвет или название — не событие' }, body: { uz: <>Rang, nom, tezlik — hodisa emas: hodisa <b>foydalanuvchi</b> nimadir qilganda yuz beradi.</>, ru: <>Цвет, название, скорость — не события: событие бывает, когда <b>пользователь</b> что-то делает.</> } },
+      { ic: "🔔", h: { uz: "Sayt hodisani kutib turadi", ru: 'Сайт ждёт событие' }, body: { uz: <>Sayt eshik qo'ng'irog'i kabi: tugma bosilsa — <b>eshitadi</b> va javob beradi.</>, ru: <>Сайт — как дверной звонок: нажали кнопку — он <b>слышит</b> и отвечает.</> }, vis: <RcFlow items={[{ uz: "Foydalanuvchi harakati", ru: 'Действие пользователя' }, { uz: "Sayt sezadi", ru: 'Сайт замечает' }]} /> },
     ]
   },
   7: {
     title: { uz: "Har bosishda son +1", ru: 'Каждое нажатие: son +1' },
     cards: [
-      { ic: "🔢", h: { uz: "Har bosish songa 1 qo'shadi", ru: 'Каждое нажатие добавляет к son единицу' }, body: { uz: <>son <b>0</b> dan boshlanadi. Har safar tugma bosilganda <b>son = son + 1</b> bajariladi. 3 marta bossak: 0 → 1 → 2 → 3. Demak son <b>3</b> bo'ladi.</>, ru: <>son начинается с <b>0</b>. При каждом нажатии кнопки выполняется <b>son = son + 1</b>. Нажали 3 раза: 0 → 1 → 2 → 3. Значит son будет <b>3</b>.</> }, vis: <RcFlow items={["0", "1", "2", "3"]} />, ask: { uz: "Agar tugmani 5 marta bossak, son nechta bo'ladi?", ru: 'А если нажать кнопку 5 раз — чему будет равен son?' } },
-      { ic: "💾", h: { uz: "son — eslab qoluvchi quti", ru: 'son — коробка, которая помнит' }, body: { uz: <>son — bu <b>o'zgaruvchi</b>, xuddi ichiga qiymat solib qo'yiladigan quti kabi. Har bosishda quti ichidagi son yangilanadi va sayt uni <b>esda saqlaydi</b>.</>, ru: <>son — это <b>переменная</b>, как коробка, в которую кладут значение. При каждом нажатии число в коробке обновляется, и сайт его <b>запоминает</b>.</> } },
-      { ic: "❤️", h: { uz: "Like sanagichi aynan shunday", ru: 'Счётчик лайков работает так же' }, body: { uz: <>Like tugmasi ham shu mantiq: har bosganda sanagich <b>1 taga oshadi</b> va ekranda yangi son ko'rinadi. Bosish — hodisa, son+1 — reaksiya.</>, ru: <>Кнопка Like — та же логика: при каждом нажатии счётчик <b>растёт на 1</b>, и на экране видно новое число. Нажатие — событие, son+1 — реакция.</> }, vis: <RcFlow items={[{ uz: "Bosish (hodisa)", ru: 'Нажатие (событие)' }, "son + 1", { uz: "Yangi son", ru: 'Новое число' }]} /> },
+      { ic: "🔢", h: { uz: "Har bosish songa 1 qo'shadi", ru: 'Каждое нажатие добавляет к son единицу' }, body: { uz: <>Har bosishda <b>son = son + 1</b> bajariladi: 0 → 1 → 2 → 3.</>, ru: <>При каждом нажатии выполняется <b>son = son + 1</b>: 0 → 1 → 2 → 3.</> }, vis: <RcFlow items={["0", "1", "2", "3"]} />, ask: { uz: "Agar tugmani 5 marta bossak, son nechta bo'ladi?", ru: 'А если нажать кнопку 5 раз — чему будет равен son?' } },
+      { ic: "💾", h: { uz: "son — eslab qoluvchi quti", ru: 'son — коробка, которая помнит' }, body: { uz: <>son — <b>quti</b>, har bosishda ichidagi qiymat yangilanadi va saqlanadi.</>, ru: <>son — это <b>коробка</b>: при каждом нажатии значение в ней обновляется и запоминается.</> } },
+      { ic: "❤️", h: { uz: "Like sanagichi aynan shunday", ru: 'Счётчик лайков работает так же' }, body: { uz: <>Like tugmasi ham shunday: bosish — <b>hodisa</b>, son + 1 — <b>reaksiya</b>.</>, ru: <>С кнопкой Like так же: нажатие — <b>событие</b>, son + 1 — <b>реакция</b>.</> }, vis: <RcFlow items={[{ uz: "Bosish (hodisa)", ru: 'Нажатие (событие)' }, "son + 1", { uz: "Yangi son", ru: 'Новое число' }]} /> },
     ]
   },
   11: {
     title: { uz: "Ism yozilsa — qaysi hodisa?", ru: 'Пишем имя — какое событие?' },
     cards: [
-      { ic: "⌨️", h: { uz: "Yozish = input hodisasi", ru: 'Ввод текста = событие input' }, body: { uz: <>Foydalanuvchi matn maydoniga harf <b>yozganda</b> «input» hodisasi yuz beradi. Har yozilgan harfda sayt darhol sezadi va salomni yangilaydi.</>, ru: <>Когда пользователь <b>печатает</b> буквы в поле, происходит событие «input». С каждой буквой сайт сразу замечает это и обновляет приветствие.</> }, vis: <RcFlow items={[{ uz: "Harf yozildi", ru: 'Буква введена' }, { uz: "input hodisasi", ru: 'событие input' }, { uz: "Salom yangilandi", ru: 'Приветствие обновилось' }]} />, ask: { uz: "Bu yerda foydalanuvchi biror tugmani bosdimi? Yo'q — faqat yozdi. Qaysi hodisa kerak?", ru: 'Пользователь здесь нажимал какую-то кнопку? Нет — он только печатал. Какое событие нужно?' } },
-      { ic: "🖱️", h: { uz: "Bosish (click) bu yerda emas", ru: 'Клик (click) здесь не подходит' }, body: { uz: <>Click — <b>tugma bosilganda</b> ishlaydi. Ammo bu yerda foydalanuvchi hech narsani bosmaydi, faqat <b>yozadi</b> — shuning uchun click emas, input kerak.</>, ru: <>Click срабатывает, <b>когда нажимают кнопку</b>. Но здесь пользователь ничего не нажимает, а только <b>печатает</b> — поэтому нужен input, а не click.</> } },
-      { ic: "👋", h: { uz: "Jonli salom o'zgaradi", ru: 'Живое приветствие меняется' }, body: { uz: <>Ism yozilgan zahoti «Salom, Ali!» paydo bo'ladi: <b>hodisa</b> (yozish) → <b>reaksiya</b> (salomni yangilash). Hodisa to'g'ri bo'lmasa, salom o'zgarmay qoladi.</>, ru: <>Как только вписали имя, появляется «Salom, Ali!»: <b>событие</b> (ввод) → <b>реакция</b> (обновить приветствие). Если событие не то — приветствие не изменится.</> }, vis: <RcFlow items={["input", { uz: "reaksiya", ru: 'реакция' }, { uz: "yangi salom", ru: 'новое приветствие' }]} /> },
+      { ic: "⌨️", h: { uz: "Yozish = input hodisasi", ru: 'Ввод текста = событие input' }, body: { uz: <>Maydonga harf yozilganda <b>input</b> hodisasi yuz beradi va salom yangilanadi.</>, ru: <>Когда в поле печатают буквы, происходит событие <b>input</b>, и приветствие обновляется.</> }, vis: <RcFlow items={[{ uz: "Harf yozildi", ru: 'Буква введена' }, { uz: "input hodisasi", ru: 'событие input' }, { uz: "Salom yangilandi", ru: 'Приветствие обновилось' }]} />, ask: { uz: "Bu yerda foydalanuvchi biror tugmani bosdimi? Yo'q — faqat yozdi. Qaysi hodisa kerak?", ru: 'Пользователь здесь нажимал какую-то кнопку? Нет — он только печатал. Какое событие нужно?' } },
+      { ic: "🖱️", h: { uz: "Bosish (click) bu yerda emas", ru: 'Клик (click) здесь не подходит' }, body: { uz: <>Bu yerda hech narsa bosilmaydi, faqat yoziladi — shuning uchun click emas, <b>input</b>.</>, ru: <>Здесь ничего не нажимают, а только печатают — поэтому нужен не click, а <b>input</b>.</> } },
+      { ic: "👋", h: { uz: "Jonli salom o'zgaradi", ru: 'Живое приветствие меняется' }, body: { uz: <>Ism yozilishi bilan «Salom, Ali!» chiqadi: <b>hodisa</b> → <b>reaksiya</b>.</>, ru: <>Как только вписали имя, появляется «Salom, Ali!»: <b>событие</b> → <b>реакция</b>.</> }, vis: <RcFlow items={["input", { uz: "reaksiya", ru: 'реакция' }, { uz: "yangi salom", ru: 'новое приветствие' }]} /> },
     ]
   },
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -323,7 +323,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -332,13 +332,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -416,7 +416,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась классу непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите тему перед продолжением.</> })}</p>
@@ -425,7 +425,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — судить по проценту сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -521,7 +521,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`✓ ${tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
               : waiting
@@ -529,8 +529,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(isMentorLive
               ? explainCorrect
               : waiting
@@ -542,11 +543,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -915,12 +916,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: 'Hodisa (event) nima?', ru: 'Что такое событие (event)?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Veb-saytda <span className="italic" style={{ color: T.accent }}>"hodisa" (event)</span> nima?</>, ru: <>Что такое <span className="italic" style={{ color: T.accent }}>«событие» (event)</span> на веб-сайте?</> })}</h2></>}
     options={[tr({ uz: 'Saytning rangi va shrifti', ru: 'Цвет и шрифт сайта' }), tr({ uz: 'Foydalanuvchining harakati', ru: 'Действие пользователя' }), tr({ uz: 'Internet ulanish tezligi', ru: 'Скорость интернет-соединения' }), tr({ uz: 'Saytga berilgan fayl nomi', ru: 'Имя файла сайта' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Hodisa — foydalanuvchi qiladigan harakat: tugmani bosish, matn yozish, sichqonchani ustiga olib borish. JavaScript shu hodisaga javob beradi.", ru: 'Верно! Событие — это действие пользователя: нажатие кнопки, ввод текста, наведение мышки. JavaScript отвечает именно на это событие.' })}
+    explainCorrect={tr({ uz: "Bosish, yozish, sichqonchani olib borish — bular hodisa.", ru: 'Клик, ввод текста, наведение мышки — всё это события.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — rang va shrift bu CSS (ko'rinish). Hodisa esa foydalanuvchining harakati.", ru: 'Нет — цвет и шрифт это CSS (внешний вид). А событие — действие пользователя.' }),
-      2: tr({ uz: "Yo'q — internet tezligi boshqa narsa. Hodisa — bosish, yozish kabi harakatlar.", ru: 'Нет — скорость интернета это другое. Событие — действия вроде клика и ввода.' }),
-      3: tr({ uz: "Yo'q — nom boshqa. Hodisa — foydalanuvchi bajaradigan harakat.", ru: 'Нет — имя это другое. Событие — действие, которое совершает пользователь.' }),
-      default: tr({ uz: 'Hodisa = foydalanuvchining harakati (bosish, yozish, hover).', ru: 'Событие = действие пользователя (клик, ввод, hover).' })
+      0: tr({ uz: "Rang va shrift — bu CSS, sahifaning ko'rinishi.", ru: 'Цвет и шрифт — это CSS, внешний вид страницы.' }),
+      2: tr({ uz: "Internet tezligi — tarmoqqa tegishli, u hodisa emas.", ru: 'Скорость интернета относится к сети, это не событие.' }),
+      3: tr({ uz: "Fayl nomi bir marta beriladi va o'zi hech narsa qilmaydi.", ru: 'Имя файла задаётся один раз и само ничего не делает.' }),
+      default: tr({ uz: 'Eshik qo\'ng\'irog\'ini eslang: sayt nimani sezadi?', ru: 'Вспомните дверной звонок: что замечает сайт?' })
     }} />
 );
 
@@ -1017,13 +1018,13 @@ const Screen7 = (props) => (
     questionText={tr({ uz: "son = 0. Tugma bosilganda son = son + 1. Tugma 3 marta bosilsa, son nechta bo'ladi?", ru: 'son = 0. При нажатии son = son + 1. Если нажать кнопку 3 раза, чему будет равен son?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>let</KW> son = <NUM>0</NUM></div><div><FN>tugma</FN>.<FN>onclick</FN> = () =&gt; son = son + <NUM>1</NUM></div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <>Tugma <span className="italic" style={{ color: T.accent }}>3 marta</span> bosilsa, son nechta bo'ladi?</>, ru: <>Если нажать кнопку <span className="italic" style={{ color: T.accent }}>3 раза</span>, чему будет равен son?</> })}</h2></>}
     options={['0', '1', '3', '33']} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Har bosish son ni 1 ga oshiradi. 3 marta bosilsa: 0 → 1 → 2 → 3. Demak son = 3.", ru: 'Верно! Каждое нажатие увеличивает son на 1. Нажали 3 раза: 0 → 1 → 2 → 3. Значит son = 3.' })}
+    explainCorrect={tr({ uz: "Har bosish `son` ga 1 qo'shadi: 0 → 1 → 2 → 3.", ru: 'Каждое нажатие прибавляет к `son` единицу: 0 → 1 → 2 → 3.' })}
     explainWrong={{
       /* F-0926-06: izohlar qisqardi — ru javobdan keyin tugmalar orqasiga tushardi (159/12) */
-      0: tr({ uz: "Yo'q — tugma endi jonli: har bosish +1. 3 marta → 3.", ru: 'Нет — кнопка теперь живая: каждое нажатие +1. 3 раза → 3.' }),
-      1: tr({ uz: "Yo'q — 1 bitta bosishdan keyin bo'lardi. 3 marta → 3.", ru: 'Нет — 1 было бы после одного нажатия. 3 раза → 3.' }),
-      3: tr({ uz: "Yo'q — 33 matn ulanishida chiqardi. Bu yerda +1 qo'shiladi: 3.", ru: 'Нет — 33 вышло бы при склейке текста. Здесь прибавляется +1: 3.' }),
-      default: tr({ uz: 'Har bosish +1 → 3 marta → son = 3.', ru: 'Каждое нажатие +1 → 3 раза → son = 3.' })
+      0: tr({ uz: "Tugma jonli — har bosish `son` ni o'zgartiradi.", ru: 'Кнопка живая — каждое нажатие меняет `son`.' }),
+      1: tr({ uz: "1 — faqat bitta bosishdan keyingi qiymat.", ru: '1 — это значение после одного нажатия.' }),
+      3: tr({ uz: "33 matn ulanganda chiqadi, bu yerda esa son qo'shiladi.", ru: '33 получается при склейке текста, а здесь складываются числа.' }),
+      default: tr({ uz: 'Har bosishda `son` ga nima qo\'shiladi — sanab ko\'ring.', ru: 'Посчитайте, что прибавляется к `son` при каждом нажатии.' })
     }} />
 );
 
@@ -1175,12 +1176,12 @@ const Screen11 = (props) => (
     questionText={tr({ uz: "Foydalanuvchi ism yozganda jonli salom o'zgarishi uchun qaysi hodisa kerak?", ru: 'Пользователь вводит имя — какое событие нужно, чтобы приветствие менялось вживую?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Foydalanuvchi <span className="italic" style={{ color: T.accent }}>ism yozganda</span> salom jonli o'zgarishi uchun qaysi hodisa kerak?</>, ru: <>Пользователь <span className="italic" style={{ color: T.accent }}>вводит имя</span> — какое событие нужно, чтобы приветствие менялось вживую?</> })}</h2></>}
     options={[tr({ uz: 'Bosish (click)', ru: 'Клик (click)' }), tr({ uz: 'Hech qanday hodisa kerak emas', ru: 'Никакое событие не нужно' }), tr({ uz: 'Hover (ustiga olib borish)', ru: 'Hover (наведение)' }), tr({ uz: 'Yozish (input)', ru: 'Ввод (input)' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Yozish (input) hodisasi har bir harf kiritilganda ishlaydi, shuning uchun salom real vaqtda o'zgaradi.", ru: 'Верно! Событие ввода (input) срабатывает на каждую букву, поэтому приветствие меняется в реальном времени.' })}
+    explainCorrect={tr({ uz: "input har bir harfda ishlaydi — salom darhol yangilanadi.", ru: 'input срабатывает на каждую букву — приветствие сразу обновляется.' })}
     explainWrong={{
-      0: tr({ uz: 'Yo\'q — bosish faqat tugma uchun. Yozilayotgan matnni kuzatish uchun "input" hodisasi kerak.', ru: 'Нет — клик только для кнопок. Чтобы следить за вводом текста, нужно событие «input».' }),
-      1: tr({ uz: 'Yo\'q — hodisasiz sayt o\'zgarmaydi. Yozishni kuzatish uchun "input" hodisasi shart.', ru: 'Нет — без события сайт не изменится. Для отслеживания ввода обязательно событие «input».' }),
-      2: tr({ uz: 'Yo\'q — hover sichqoncha harakati uchun. Yozish uchun "input" hodisasi kerak.', ru: 'Нет — hover для движения мышки. Для ввода нужно событие «input».' }),
-      default: tr({ uz: 'Yozishni kuzatish → "input" hodisasi.', ru: 'Следить за вводом → событие «input».' })
+      0: tr({ uz: 'click bosishni sezadi, bu yerda esa hech narsa bosilmaydi.', ru: 'click ловит нажатие, а здесь ничего не нажимают.' }),
+      1: tr({ uz: 'Hodisasiz sayt o\'zgarmaydi — salom jim turib qoladi.', ru: 'Без события сайт не изменится — приветствие так и останется.' }),
+      2: tr({ uz: 'hover faqat sichqoncha ustiga kelganda ishlaydi.', ru: 'hover срабатывает, только когда наводят мышку.' }),
+      default: tr({ uz: 'Foydalanuvchi bu yerda aslida nima qilyapti?', ru: 'Что на самом деле делает здесь пользователь?' })
     }} />
 );
 

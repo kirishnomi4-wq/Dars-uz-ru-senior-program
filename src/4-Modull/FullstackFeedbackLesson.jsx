@@ -288,9 +288,9 @@ const RECAPS = {
   4: {
     title: { uz: "Foydali fikr — aniq muammoni ko'rsatadi", ru: 'Полезный отзыв указывает на конкретную проблему' },
     cards: [
-      { ic: "🗣️", h: { uz: "«Zo'r!» yetarli emas", ru: '«Круто!» — недостаточно' }, body: { uz: <>Maqtov yoqimli, lekin <b>nima qilishni</b> aytmaydi. U yo'nalish bermaydi.</>, ru: <>Похвала приятна, но не говорит, <b>что делать</b>. Она не даёт направления.</> } },
-      { ic: "🎯", h: { uz: "Foydali fikr — aniq", ru: 'Полезный отзыв — конкретный' }, body: { uz: <>Aniq fikr <b>muammoni</b> ko'rsatadi: «chiqishda tasdiq yo'q» — uni to'g'ridan-to'g'ri tuzatsa bo'ladi.</>, ru: <>Конкретный отзыв показывает <b>проблему</b>: «нет подтверждения при выезде» — её можно сразу исправить.</> } },
-      { ic: "✅", h: { uz: "Amalga oshsa bo'ladigan", ru: 'Выполнимый' }, body: { uz: <>Eng foydali fikr — <b>aniq</b> va <b>amalga oshsa bo'ladigan</b>.</>, ru: <>Самый полезный отзыв — <b>конкретный</b> и <b>выполнимый</b>.</> }, ask: { uz: "Qaysi fikr foydaliroq: «zo'r ekan» yoki «tasdiq so'ramadi»?", ru: 'Какой отзыв полезнее: «круто» или «не спросил подтверждение»?' } }
+      { ic: "🗣️", h: { uz: "«Zo'r!» yetarli emas", ru: '«Круто!» — недостаточно' }, body: { uz: <>Maqtov yoqimli, lekin <b>nima qilishni</b> aytmaydi.</>, ru: <>Похвала приятна, но не говорит, <b>что делать</b>.</> } },
+      { ic: "🎯", h: { uz: "Foydali fikr — aniq", ru: 'Полезный отзыв — конкретный' }, body: { uz: <>Aniq fikr <b>muammoni</b> ko'rsatadi: «chiqishda tasdiq yo'q» — uni darhol tuzatsa bo'ladi.</>, ru: <>Конкретный отзыв показывает <b>проблему</b>: «нет подтверждения при выезде» — её можно сразу исправить.</> } },
+      { ic: "✅", h: { uz: "Amalga oshsa bo'ladigan", ru: 'Выполнимый' }, body: { uz: <>Eng foydali fikr — <b>aniq</b> va <b>bajarsa bo'ladigan</b>.</>, ru: <>Самый полезный отзыв — <b>конкретный</b> и <b>выполнимый</b>.</> }, ask: { uz: "Qaysi fikr foydaliroq: «zo'r ekan» yoki «tasdiq so'ramadi»?", ru: 'Какой отзыв полезнее: «круто» или «не спросил подтверждение»?' } }
     ]
   },
   6: {
@@ -298,7 +298,7 @@ const RECAPS = {
     cards: [
       { ic: "📊", h: { uz: "Foyda / Mehnat doskasi", ru: 'Доска Польза / Усилия' }, body: { uz: <>Fikrlarni <b>foyda</b> va <b>mehnat</b> bo'yicha 4 katakka joylaymiz.</>, ru: <>Раскладываем отзывы по 4 клеткам: по <b>пользе</b> и <b>усилиям</b>.</> } },
       { ic: "⭐", h: { uz: "«Avval shu» katagi", ru: 'Клетка «Сначала это»' }, body: { uz: <>Ko'p foyda + kam mehnat = <b>avval</b> qilinadi (bizda tasdiq va dashboard).</>, ru: <>Много пользы + мало усилий = делаем <b>сначала</b> (у нас — подтверждение и дашборд).</> } },
-      { ic: "⚠️", h: { uz: "Eng qiyini avval — xato", ru: 'Сначала самое сложное — ошибка' }, body: { uz: <>Qiyin ish ko'p vaqt oladi, natija kech ko'rinadi. Avval — ko'p foyda + kam mehnat.</>, ru: <>Сложная работа занимает много времени, результат виден поздно. Сначала — много пользы + мало усилий.</> }, ask: { uz: "Avval qaysi katakdan boshlaymiz?", ru: 'С какой клетки начинаем?' } }
+      { ic: "⚠️", h: { uz: "Eng qiyini avval — xato", ru: 'Сначала самое сложное — ошибка' }, body: { uz: <>Qiyin ish ko'p vaqt oladi, shuning uchun avval — <b>ko'p foyda + kam mehnat</b>.</>, ru: <>Сложная работа долгая, поэтому сначала — <b>много пользы + мало усилий</b>.</> }, ask: { uz: "Avval qaysi katakdan boshlaymiz?", ru: 'С какой клетки начинаем?' } }
     ]
   },
   10: {
@@ -313,13 +313,13 @@ const RECAPS = {
     title: { uz: "Yaxshilash sikli", ru: 'Цикл улучшения' },
     cards: [
       { ic: "🔄", h: { uz: "To'xtovsiz sikl", ru: 'Непрерывный цикл' }, body: { uz: <>Qur → ko'rsat → fikr ol → sarala → upgrade → <b>yana ko'rsat</b>.</>, ru: <>Построй → покажи → собери отзывы → приоритизируй → апгрейд → <b>снова покажи</b>.</> } },
-      { ic: "👥", h: { uz: "Foydalanuvchi fikri", ru: 'Отзыв пользователя' }, body: { uz: <>O'zingiz hammasini ko'ra olmaysiz — <b>foydalanuvchi fikri</b> kamchilikni ochadi.</>, ru: <>Сами Вы всего не увидите — <b>отзыв пользователя</b> вскрывает недочёты.</> } },
+      { ic: "👥", h: { uz: "Foydalanuvchi fikri", ru: 'Отзыв пользователя' }, body: { uz: <>O'zingiz hammasini ko'ra olmaysiz — <b>foydalanuvchi fikri</b> kamchilikni ochadi.</>, ru: <>Сами вы всего не увидите — <b>отзыв пользователя</b> вскрывает недочёты.</> } },
       { ic: "🚀", h: { uz: "Mahsulot o'sadi", ru: 'Продукт растёт' }, body: { uz: <>Qurib unutish emas — fikr bilan doimo <b>yaxshilanadi</b>.</>, ru: <>Не «построил и забыл» — продукт постоянно <b>улучшается</b> благодаря отзывам.</> }, ask: { uz: "Mahsulotni yaxshilash sikli qanday?", ru: 'Как выглядит цикл улучшения продукта?' } }
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -337,7 +337,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -346,13 +346,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -430,7 +430,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -439,7 +439,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по процентам вывод сделать сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -522,7 +522,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -530,8 +530,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -541,11 +542,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -897,12 +898,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: 'Qaysi fikr eng foydali?', ru: 'Какой отзыв самый полезный?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Qaysi fikr <span className="italic" style={{ color: T.accent }}>eng foydali</span>?</>, ru: <>Какой отзыв <span className="italic" style={{ color: T.accent }}>самый полезный</span>?</> })}</h2></>}
     options={[tr({ uz: `"Umuman zo'r ekan!" — quruq maqtov`, ru: '«Вообще круто!» — пустая похвала' }), tr({ uz: `"Bilmadim, normalga o'xshaydi" — noaniq`, ru: '«Не знаю, вроде нормально» — расплывчато' }), tr({ uz: `"Chiqishda tasdiq yo'q" — aniq muammo`, ru: '«Нет подтверждения при выезде» — конкретная проблема' }), tr({ uz: '"Rangi juda chiroyli ekan" — bezak haqida', ru: '«Цвет очень красивый» — про оформление' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Aniq, amalga oshsa bo'ladigan fikr — eng foydalisi. U to'g'ridan-to'g'ri nimani tuzatishni ko'rsatadi.", ru: 'Верно! Конкретный, выполнимый отзыв — самый полезный. Он прямо показывает, что исправлять.' })}
+    explainCorrect={tr({ uz: "Aniq fikr nimani tuzatishni to'g'ridan-to'g'ri ko'rsatadi.", ru: 'Конкретный отзыв прямо показывает, что исправлять.' })}
     explainWrong={{
-      0: tr({ uz: 'Maqtov yoqimli, lekin nimani yaxshilashni aytmaydi. Foydali fikr — aniq.', ru: 'Похвала приятна, но не говорит, что улучшать. Полезный отзыв — конкретный.' }),
-      1: tr({ uz: "Noaniq fikr yo'nalish bermaydi. Foydali fikr — aniq muammoni ko'rsatadi.", ru: 'Расплывчатый отзыв не даёт направления. Полезный отзыв указывает на конкретную проблему.' }),
-      3: tr({ uz: "Bezak haqidagi fikr ham bor, lekin eng foydalisi — aniq ishlash muammosini ko'rsatgani.", ru: 'Отзыв про оформление тоже бывает, но самый полезный — тот, что указывает на конкретную проблему в работе.' }),
-      default: tr({ uz: "Eng foydali fikr — aniq va amalga oshsa bo'ladigan.", ru: 'Самый полезный отзыв — конкретный и выполнимый.' })
+      0: tr({ uz: 'Maqtov yoqimli, lekin nimani yaxshilashni aytmaydi.', ru: 'Похвала приятна, но не говорит, что улучшать.' }),
+      1: tr({ uz: "Noaniq fikr yo'nalish bermaydi — nimani tuzatish kerak?", ru: 'Расплывчатый отзыв не даёт направления — что исправлять?' }),
+      3: tr({ uz: "Rang — bezak, u ilovaning ishlashini yaxshilamaydi.", ru: 'Цвет — это оформление, работу приложения он не улучшает.' }),
+      default: tr({ uz: "Qaysi fikrdan keyin nimani tuzatish darhol aniq bo'ladi?", ru: 'После какого отзыва сразу ясно, что исправлять?' })
     }} />
 );
 
@@ -1039,12 +1040,12 @@ const Screen6 = (props) => (
     questionText={tr({ uz: 'Avval qaysi tuzatishni qilish kerak?', ru: 'Какое исправление нужно сделать первым?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Avval <span className="italic" style={{ color: T.accent }}>qaysi</span> tuzatishni qilamiz?</>, ru: <>Какое исправление делаем <span className="italic" style={{ color: T.accent }}>первым</span>?</> })}</h2></>}
     options={[tr({ uz: 'Eng qiyinini — u qiziqroq va murakkabroq', ru: 'Самое сложное — оно интереснее и посерьёзнее' }), tr({ uz: "Ko'p foyda + kam mehnat beradiganini", ru: 'То, что даёт много пользы при малых усилиях' }), tr({ uz: 'Kam foyda beradiganini — u tezroq bitadi', ru: 'То, что даёт мало пользы — быстрее закончится' }), tr({ uz: "Tasodifan tanlaganini — farqi yo'q", ru: 'Случайное — без разницы' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Ko'p foyda + kam mehnat = eng aqlli boshlanish. Tez natija, katta yaxshilanish (bizda — tasdiq va dashboard).", ru: 'Верно! Много пользы + мало усилий = самое умное начало. Быстрый результат, большое улучшение (у нас — подтверждение и дашборд).' })}
+    explainCorrect={tr({ uz: "Ko'p foyda + kam mehnat — tez natija va katta yaxshilanish.", ru: 'Много пользы + мало усилий — быстрый результат и большое улучшение.' })}
     explainWrong={{
-      0: tr({ uz: "Qiyin ish ko'p vaqt oladi, natija kech ko'rinadi. Avval — ko'p foyda + kam mehnat.", ru: 'Сложная работа занимает много времени, результат виден поздно. Сначала — много пользы + мало усилий.' }),
-      2: tr({ uz: 'Kam foyda beradiganidan boshlash — vaqtni behuda sarflash. Avval foydalisini qilamiz.', ru: 'Начинать с малополезного — трата времени. Сначала делаем полезное.' }),
-      3: tr({ uz: "Tasodif emas — tartib bilan: ko'p foyda + kam mehnat avval.", ru: 'Не случайно, а по порядку: сначала много пользы + мало усилий.' }),
-      default: tr({ uz: "Avval — ko'p foyda + kam mehnat.", ru: 'Сначала — много пользы + мало усилий.' })
+      0: tr({ uz: "Qiyin ish ko'p vaqt oladi — natija kech ko'rinadi.", ru: 'Сложная работа занимает много времени — результат виден поздно.' }),
+      2: tr({ uz: 'Kam foydali ish tez bitsa ham, deyarli hech narsa bermaydi.', ru: 'Малополезная работа, даже быстрая, почти ничего не даёт.' }),
+      3: tr({ uz: "Tasodifiy tanlovda foydali ish keyinga qolib ketadi.", ru: 'При случайном выборе полезное дело может отложиться.' }),
+      default: tr({ uz: "Foyda / mehnat doskasini eslang: qaysi katak birinchi?", ru: 'Вспомните доску «польза / усилия»: какая клетка первая?' })
     }} />
 );
 
@@ -1186,12 +1187,12 @@ const Screen10 = (props) => (
     questionText={tr({ uz: "Mavjud narxni o'zgartirish uchun qaysi SQL amali?", ru: 'Какая SQL-команда изменяет существующую цену?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mavjud narxni <span className="italic" style={{ color: T.accent }}>o'zgartirish</span> uchun?</>, ru: <>Что нужно, чтобы <span className="italic" style={{ color: T.accent }}>изменить</span> существующую цену?</> })}</h2></>}
     options={[tr({ uz: "INSERT — jadvalga yangi qator qo'shish", ru: 'INSERT — добавить новую строку в таблицу' }), tr({ uz: "DELETE — jadvaldan qatorni o'chirish", ru: 'DELETE — удалить строку из таблицы' }), tr({ uz: "SELECT — jadvaldan ma'lumot o'qish", ru: 'SELECT — прочитать данные из таблицы' }), tr({ uz: "UPDATE — mavjud qatorni o'zgartirish", ru: 'UPDATE — изменить существующую строку' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Narx allaqachon bor — uni o'zgartiramiz, yangi qator qo'shmaymiz. Mavjudni o'zgartirish = UPDATE.", ru: 'Верно! Цена уже есть — мы её изменяем, а не добавляем новую строку. Изменить существующее = UPDATE.' })}
+    explainCorrect={tr({ uz: "Narx allaqachon bor — UPDATE mavjud qatorni o'zgartiradi.", ru: 'Цена уже есть — UPDATE изменяет существующую строку.' })}
     explainWrong={{
-      0: tr({ uz: "INSERT yangi qator qo'shadi — bizda narx bor, uni o'zgartiramiz: UPDATE.", ru: 'INSERT добавляет новую строку — а у нас цена уже есть, её меняем: UPDATE.' }),
-      1: tr({ uz: "DELETE o'chiradi. Narxni o'zgartirish — UPDATE.", ru: 'DELETE удаляет. Изменить цену — UPDATE.' }),
-      2: tr({ uz: "SELECT faqat o'qiydi. O'zgartirish uchun UPDATE.", ru: 'SELECT только читает. Для изменения — UPDATE.' }),
-      default: tr({ uz: "Mavjudni o'zgartirish = UPDATE.", ru: 'Изменить существующее = UPDATE.' })
+      0: tr({ uz: "INSERT yangi qator qo'shadi, narx esa allaqachon bor.", ru: 'INSERT добавляет новую строку, а цена уже есть.' }),
+      1: tr({ uz: "DELETE qatorni o'chiradi — narx esa kerak.", ru: 'DELETE удаляет строку, а цена нам нужна.' }),
+      2: tr({ uz: "SELECT faqat o'qiydi, hech narsani o'zgartirmaydi.", ru: 'SELECT только читает, ничего не меняет.' }),
+      default: tr({ uz: "Narx bazada allaqachon bor — u bilan nima qilamiz?", ru: 'Цена уже есть в базе — что мы с ней делаем?' })
     }} />
 );
 
@@ -1296,12 +1297,12 @@ const Screen13 = (props) => (
     questionText={tr({ uz: 'Mahsulotni yaxshilash sikli qanday?', ru: 'Как выглядит цикл улучшения продукта?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mahsulotni <span className="italic" style={{ color: T.accent }}>yaxshilash sikli</span> qanday?</>, ru: <>Как выглядит <span className="italic" style={{ color: T.accent }}>цикл улучшения</span> продукта?</> })}</h2></>}
     options={[tr({ uz: "Qur → ko'rsat → fikr ol → sarala → upgrade", ru: 'Построй → покажи → собери отзывы → приоритизируй → апгрейд' }), tr({ uz: "Qur → e'lon qil → boshqa qaytib tegma", ru: 'Построй → объяви → больше не трогай' }), tr({ uz: "Qur → fikr so'rama → o'zi bilgancha tuzat", ru: 'Построй → не спрашивай отзывов → чини по-своему' }), tr({ uz: 'Qur → hamma yaxshilanishni birdan qil', ru: 'Построй → сделай все улучшения разом' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Yaxshi mahsulot — qurib, foydalanuvchiga ko'rsatib, fikr olib, eng muhimini saralab, yaxshilanadi. Bu — to'xtovsiz sikl.", ru: 'Верно! Хороший продукт строится, показывается пользователю, собирает отзывы, приоритизирует важное и улучшается. Это — непрерывный цикл.' })}
+    explainCorrect={tr({ uz: "Mahsulot foydalanuvchi fikri bilan to'xtovsiz yaxshilanadi.", ru: 'Продукт улучшается непрерывно — по отзывам пользователей.' })}
     explainWrong={{
-      1: tr({ uz: "Qurib unutish — mahsulot o'smaydi. Foydalanuvchi fikri bilan yaxshilanadi.", ru: '«Построил и забыл» — продукт не растёт. Он улучшается благодаря отзывам пользователей.' }),
-      2: tr({ uz: "O'zingiz hammasini ko'ra olmaysiz — foydalanuvchi fikri kamchilikni ochadi.", ru: 'Сами Вы всего не увидите — отзыв пользователя вскрывает недочёты.' }),
-      3: tr({ uz: "Hammasini birdan qilib bo'lmaydi — saralab, eng muhimidan boshlaymiz.", ru: 'Всё сразу сделать нельзя — приоритизируем и начинаем с самого важного.' }),
-      default: tr({ uz: "Sikl: qur → ko'rsat → fikr → sarala → upgrade.", ru: 'Цикл: построй → покажи → отзывы → приоритизируй → апгрейд.' })
+      1: tr({ uz: "Qurib unutilgan mahsulot o'smaydi.", ru: 'Построенный и забытый продукт не растёт.' }),
+      2: tr({ uz: "Hamma kamchilikni o'zingiz ko'ra olmaysiz.", ru: 'Все недочёты сами вы не увидите.' }),
+      3: tr({ uz: "Hammasini birdan qilib bo'lmaydi — tanlash kerak.", ru: 'Всё сразу сделать нельзя — нужно выбирать.' }),
+      default: tr({ uz: "Mahsulot bir marta emas, doimo yaxshilanadi — qanday?", ru: 'Продукт улучшают не один раз, а постоянно — как?' })
     }} />
 );
 

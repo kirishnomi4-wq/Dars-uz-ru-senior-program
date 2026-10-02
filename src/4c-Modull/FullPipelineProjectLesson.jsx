@@ -247,46 +247,46 @@ const RECAPS = {
   2: {
     title: { uz: "5 nuqta tartibi — nega ✈️ Uchirish oxirida", ru: 'Порядок 5 точек — почему ✈️ Взлёт в конце' },
     cards: [
-      { ic: "🧵", h: { uz: "Tartib — himoya ketma-ketligi", ru: 'Порядок — цепочка защиты' }, body: { uz: <>Har nuqta o'zidan oldingisiga <b>ishonadi</b>. <span className="mono">Skaner</span> xato topsa, <span className="mono">O'rash</span> va <span className="mono">Uchirish</span> umuman ishga tushmaydi — buzuq yuk yo'lovchiga yetib bormaydi.</>, ru: <>Каждая точка <b>доверяет</b> предыдущей. Если <span className="mono">Сканер</span> нашёл ошибку, <span className="mono">Упаковка</span> и <span className="mono">Взлёт</span> вообще не запускаются — сломанный багаж не доберётся до пассажира.</> }, vis: <RcFlow items={[{ uz: "Yig'ish", ru: 'Сборка' }, { uz: 'Skaner', ru: 'Сканер' }, { uz: "O'lcham ramkasi", ru: 'Габарит-рамка' }, { uz: "O'rash", ru: 'Упаковка' }, { uz: 'Uchirish', ru: 'Взлёт' }]} /> },
-      { ic: "✈️", h: { uz: 'Uchirish — eng oxirgi, chunki qaytarib bo\'lmaydi', ru: 'Взлёт — последний, потому что его не отменить' }, body: { uz: <>Boshqa nuqtalar xato topsa — tuzatib qayta urinish oson. <b>Uchirish</b>dan keyin yuk yo'lovchi qo'lida — shuning uchun u faqat hammasi tekshirilgach ishga tushadi.</>, ru: <>Если ошибку нашли другие точки — исправить и попробовать снова легко. А после <b>Взлёта</b> багаж уже у пассажира — поэтому он запускается только когда всё проверено.</> } },
-      { ic: "🔀", h: { uz: "Tartib teskari bo'lsa — xavfli", ru: 'Обратный порядок — опасно' }, body: { uz: <>Agar <b>Uchirish</b> Skanerdan OLDIN tursa, tekshirilmagan buzuq yuk to'g'ridan-to'g'ri yo'lovchiga chiqib ketishi mumkin.</>, ru: <>Если <b>Взлёт</b> стоит ДО Сканера, непроверенный сломанный багаж может улететь прямо к пассажиру.</> }, ask: { uz: "Skaner xato topsa, O'rash nuqtasi ishga tushadimi?", ru: 'Если Сканер нашёл ошибку, запустится ли точка Упаковка?' } },
+      { ic: "🧵", h: { uz: "Tartib — himoya ketma-ketligi", ru: 'Порядок — цепочка защиты' }, body: { uz: <><span className="mono">Skaner</span> xato topsa, <span className="mono">O'rash</span> va <span className="mono">Uchirish</span> umuman ishga tushmaydi.</>, ru: <>Если <span className="mono">Сканер</span> нашёл ошибку, <span className="mono">Упаковка</span> и <span className="mono">Взлёт</span> вообще не запускаются.</> }, vis: <RcFlow items={[{ uz: "Yig'ish", ru: 'Сборка' }, { uz: 'Skaner', ru: 'Сканер' }, { uz: "O'lcham ramkasi", ru: 'Габарит-рамка' }, { uz: "O'rash", ru: 'Упаковка' }, { uz: 'Uchirish', ru: 'Взлёт' }]} /> },
+      { ic: "✈️", h: { uz: 'Uchirish — eng oxirgi, chunki qaytarib bo\'lmaydi', ru: 'Взлёт — последний, потому что его не отменить' }, body: { uz: <>Uchirilgan yukni qaytarib bo'lmaydi, shuning uchun <b>Uchirish</b> hammasidan keyin turadi.</>, ru: <>Улетевший багаж не вернуть, поэтому <b>Взлёт</b> срабатывает, только когда всё проверено.</> } },
+      { ic: "🔀", h: { uz: "Tartib teskari bo'lsa — xavfli", ru: 'Обратный порядок — опасно' }, body: { uz: <><b>Uchirish</b> Skanerdan oldin tursa, buzuq yuk yo'lovchiga uchib ketadi.</>, ru: <>Если <b>Взлёт</b> стоит до Сканера, сломанный багаж улетит к пассажиру.</> }, ask: { uz: "Skaner xato topsa, O'rash nuqtasi ishga tushadimi?", ru: 'Если Сканер нашёл ошибку, запустится ли точка Упаковка?' } },
     ]
   },
   5: {
     title: { uz: "YO'L XARITASI — bitta faylda to'liq lenta", ru: 'КАРТА МАРШРУТА — весь конвейер в одном файле' },
     cards: [
-      { ic: "🗺️", h: { uz: "ci.yml — barcha nuqtalar bitta joyda", ru: 'ci.yml — все точки в одном месте' }, body: { uz: <><span className="mono">steps:</span> ostiga 5 nuqta <b>ketma-ket</b> yoziladi. Tartibni almashtirsangiz — lentaning o'zi ham shu tartibda ishlaydi.</>, ru: <>Под <span className="mono">steps:</span> 5 точек записываются <b>по порядку</b>. Поменяете порядок — и сам конвейер будет работать именно в нём.</> } },
-      { ic: "🚦", h: { uz: "on: push — START SIGNALI", ru: 'on: push — СТАРТ-СИГНАЛ' }, body: { uz: <>Fayl boshida <span className="mono">on: push</span> yozilmasa, lenta hech qachon o'z-o'zidan aylanmaydi — u push signalini kutadi.</>, ru: <>Если в начале файла нет <span className="mono">on: push</span>, конвейер никогда не тронется сам — он ждёт сигнала push.</> } },
-      { ic: "📄", h: { uz: "Bitta fayl — alohida repo kerak emas", ru: 'Один файл — отдельный репозиторий не нужен' }, body: { uz: <>5 nuqtaning barchasi bitta <span className="mono">ci.yml</span> faylida, bitta <span className="mono">steps:</span> ro'yxatida turadi — har nuqta uchun alohida repozitoriy ochilmaydi.</>, ru: <>Все 5 точек живут в одном файле <span className="mono">ci.yml</span>, в одном списке <span className="mono">steps:</span> — отдельный репозиторий под каждую точку не заводят.</> }, ask: { uz: "on: push yozuvi bo'lmasa, lenta qachon ishga tushadi?", ru: 'Если записи on: push нет, когда запустится конвейер?' } },
+      { ic: "🗺️", h: { uz: "ci.yml — barcha nuqtalar bitta joyda", ru: 'ci.yml — все точки в одном месте' }, body: { uz: <><span className="mono">steps:</span> ostida 5 nuqta <b>ketma-ket</b> yoziladi va lenta shu tartibda ishlaydi.</>, ru: <>Под <span className="mono">steps:</span> 5 точек идут <b>по порядку</b>, и конвейер работает именно так.</> } },
+      { ic: "🚦", h: { uz: "on: push — START SIGNALI", ru: 'on: push — СТАРТ-СИГНАЛ' }, body: { uz: <>Fayl boshida <span className="mono">on: push</span> bo'lmasa, lenta o'z-o'zidan aylanmaydi.</>, ru: <>Если в начале файла нет <span className="mono">on: push</span>, конвейер сам не тронется.</> } },
+      { ic: "📄", h: { uz: "Bitta fayl — alohida repo kerak emas", ru: 'Один файл — отдельный репозиторий не нужен' }, body: { uz: <>5 nuqta bitta <span className="mono">ci.yml</span> faylida turadi, har biriga alohida repo ochilmaydi.</>, ru: <>Все 5 точек живут в одном <span className="mono">ci.yml</span>, отдельный репозиторий им не нужен.</> }, ask: { uz: "on: push yozuvi bo'lmasa, lenta qachon ishga tushadi?", ru: 'Если записи on: push нет, когда запустится конвейер?' } },
     ]
   },
   7: {
     title: { uz: "O'lcham ramkasi — nima uchun tushirib bo'lmaydi", ru: 'Габарит-рамка — почему её нельзя выкидывать' },
     cards: [
-      { ic: "📐", h: { uz: "Sifat filtri", ru: 'Фильтр качества' }, body: { uz: <><span className="mono">eslint .</span> kodning uslub qoidalariga mosligini tekshiradi. Bu nuqta bo'lmasa, qoidaga zid kod hech kim tomonidan tutilmay o'tib ketadi.</>, ru: <><span className="mono">eslint .</span> проверяет, соответствует ли код правилам стиля. Без этой точки код, нарушающий правила, никто не поймает — он просто проскочит.</> } },
-      { ic: "🔍", h: { uz: "Skaner — mantiq, O'lcham ramkasi — uslub", ru: 'Сканер — логика, Габарит-рамка — стиль' }, body: { uz: <>Ikkisi boshqa narsani tekshiradi: <b>Skaner</b> kod ishlaydimi (test), <b>O'lcham ramkasi</b> kod to'g'ri yozilganmi (uslub). Ikkalasi ham kerak.</>, ru: <>Они проверяют разное: <b>Сканер</b> — работает ли код (тесты), <b>Габарит-рамка</b> — правильно ли он написан (стиль). Нужны обе.</> } },
-      { ic: "⚙️", h: { uz: "eslint . — buyruqning o'zi", ru: 'eslint . — сама команда' }, body: { uz: <><span className="mono">eslint .</span> joriy papkadagi barcha fayllarni uslub qoidalariga qarab tekshiradi — xato topsa, TABLO shu yerda qizil bo'ladi.</>, ru: <><span className="mono">eslint .</span> проверяет все файлы текущей папки по правилам стиля — если найдёт ошибку, ТАБЛО покраснеет именно здесь.</> }, ask: { uz: "Skaner bilan O'lcham ramkasi bir xil narsani tekshiradimi?", ru: 'Сканер и Габарит-рамка проверяют одно и то же?' } },
+      { ic: "📐", h: { uz: "Sifat filtri", ru: 'Фильтр качества' }, body: { uz: <><span className="mono">eslint .</span> uslubni tekshiradi, usiz qoidaga zid kod tutilmay o'tib ketadi.</>, ru: <><span className="mono">eslint .</span> проверяет стиль, без него код с нарушениями проскочит.</> } },
+      { ic: "🔍", h: { uz: "Skaner — mantiq, O'lcham ramkasi — uslub", ru: 'Сканер — логика, Габарит-рамка — стиль' }, body: { uz: <><b>Skaner</b> kod ishlashini, <b>O'lcham ramkasi</b> to'g'ri yozilganini tekshiradi.</>, ru: <><b>Сканер</b> проверяет, работает ли код, а <b>Габарит-рамка</b> — правильно ли он написан.</> } },
+      { ic: "⚙️", h: { uz: "eslint . — buyruqning o'zi", ru: 'eslint . — сама команда' }, body: { uz: <><span className="mono">eslint .</span> papkadagi barcha fayllarni tekshiradi, xato bo'lsa TABLO qizil bo'ladi.</>, ru: <><span className="mono">eslint .</span> проверяет все файлы папки, при ошибке ТАБЛО краснеет.</> }, ask: { uz: "Skaner bilan O'lcham ramkasi bir xil narsani tekshiradimi?", ru: 'Сканер и Габарит-рамка проверяют одно и то же?' } },
     ]
   },
   9: {
     title: { uz: "Sinov reysi va haqiqiy reys", ru: 'Пробный рейс и настоящий рейс' },
     cards: [
-      { ic: "🛫", h: { uz: "Sinov reysi (staging) — yo'lovchisiz parvoz", ru: 'Пробный рейс (staging) — полёт без пассажиров' }, body: { uz: <>Yangi versiya avval sinov reysida tekshiriladi — u yerda <b>haqiqiy yo'lovchi yo'q</b>, xato chiqsa hech kimga zarar yetmaydi.</>, ru: <>Новая версия сначала проверяется на пробном рейсе — там <b>нет настоящих пассажиров</b>, и если вылезет ошибка, никто не пострадает.</> } },
-      { ic: "🌍", h: { uz: "Haqiqiy reys (production) — yo'lovchi qo'lida", ru: 'Настоящий рейс (production) — у пассажира' }, body: { uz: <>Sinov reysi yashil bo'lgach, xuddi shu yuk <b>haqiqiy reysga</b> chiqadi — endi uni chinakam foydalanuvchi ko'radi.</>, ru: <>Как только пробный рейс стал зелёным, тот же самый багаж выходит <b>на настоящий рейс</b> — теперь его видит реальный пользователь.</> } },
-      { ic: "🔁", h: { uz: "Ikkalasi ham bir lentadan o'tadi", ru: 'Оба проходят через один конвейер' }, body: { uz: <>Sinov reysi va haqiqiy reys — ikkalasi ham xuddi shu lentadan o'tadi, faqat sinov reysi avval, xavfsizroq bosqichda turadi.</>, ru: <>И пробный, и настоящий рейс проходят через один и тот же конвейер — просто пробный стоит раньше, на более безопасном этапе.</> }, ask: { uz: "Nega avval sinov reysi, keyin haqiqiy reys?", ru: 'Почему сначала пробный рейс и только потом настоящий?' } },
+      { ic: "🛫", h: { uz: "Sinov reysi (staging) — yo'lovchisiz parvoz", ru: 'Пробный рейс (staging) — полёт без пассажиров' }, body: { uz: <>Yangi versiya avval <b>yo'lovchisiz</b> sinov reysida tekshiriladi.</>, ru: <>Новая версия сначала проверяется на пробном рейсе <b>без пассажиров</b>.</> } },
+      { ic: "🌍", h: { uz: "Haqiqiy reys (production) — yo'lovchi qo'lida", ru: 'Настоящий рейс (production) — у пассажира' }, body: { uz: <>Sinov reysi yashil bo'lgach, xuddi shu yuk <b>haqiqiy reysga</b> chiqadi.</>, ru: <>Когда пробный рейс зелёный, тот же багаж выходит <b>на настоящий рейс</b>.</> } },
+      { ic: "🔁", h: { uz: "Ikkalasi ham bir lentadan o'tadi", ru: 'Оба проходят через один конвейер' }, body: { uz: <>Ikkala reys bitta lentadan o'tadi, faqat sinov reysi avvalroq turadi.</>, ru: <>Оба рейса идут через один конвейер, просто пробный стоит раньше.</> }, ask: { uz: "Nega avval sinov reysi, keyin haqiqiy reys?", ru: 'Почему сначала пробный рейс и только потом настоящий?' } },
     ]
   },
   12: {
     title: { uz: "Qizil TABLO — jurnal va eski yukni qaytarish", ru: 'Красное ТАБЛО — журнал и возврат старого багажа' },
     cards: [
-      { ic: "📋", h: { uz: "LENTA JURNALI — sabab shu yerda", ru: 'ЖУРНАЛ КОНВЕЙЕРА — причина именно там' }, body: { uz: <>TABLO qizil bo'lsa, avval <b>jurnal o'qiladi</b> — aynan qaysi nuqta va nega to'xtaganini ko'rsatadi. Taxmin qilinmaydi.</>, ru: <>Если ТАБЛО красное, сначала <b>читают журнал</b> — он показывает, какая именно точка и почему остановилась. Никаких догадок.</> }, vis: <RcFlow items={[{ uz: 'TABLO qizil', ru: 'ТАБЛО красное' }, { uz: 'jurnal', ru: 'журнал' }, { uz: 'sabab topildi', ru: 'причина найдена' }]} /> },
-      { ic: "⏮️", h: { uz: "Eski yukni qaytarish — tezkor yechim", ru: 'Возврат старого багажа — быстрое решение' }, body: { uz: <>Sabab murakkab bo'lsa yoki tezkor yechim kerak bo'lsa, oxirgi <b>yashil versiyaga</b> qaytariladi — yo'lovchi eski, lekin ishlaydigan yukni oladi.</>, ru: <>Если причина сложная или решение нужно срочно, откатываются к последней <b>зелёной версии</b> — пассажир получает старый, но рабочий багаж.</> } },
-      { ic: "🛡️", h: { uz: "Maqsad — yo'lovchini himoya qilish", ru: 'Цель — защитить пассажира' }, body: { uz: <>Jurnal o'qish ham, eski yukka qaytarish ham bitta maqsadga xizmat qiladi: buzuq versiya yo'lovchi qo'lida uzoq turmasin.</>, ru: <>И чтение журнала, и возврат старого багажа служат одной цели: сломанная версия не должна долго оставаться у пассажира.</> }, ask: { uz: "TABLO qizil bo'lganda birinchi qadam nima?", ru: 'Какой первый шаг, когда ТАБЛО красное?' } },
+      { ic: "📋", h: { uz: "LENTA JURNALI — sabab shu yerda", ru: 'ЖУРНАЛ КОНВЕЙЕРА — причина именно там' }, body: { uz: <>TABLO qizil bo'lsa, avval <b>jurnal o'qiladi</b> — u qaysi nuqta to'xtaganini aytadi.</>, ru: <>Если ТАБЛО красное, сначала <b>читают журнал</b> — он покажет, какая точка остановилась.</> }, vis: <RcFlow items={[{ uz: 'TABLO qizil', ru: 'ТАБЛО красное' }, { uz: 'jurnal', ru: 'журнал' }, { uz: 'sabab topildi', ru: 'причина найдена' }]} /> },
+      { ic: "⏮️", h: { uz: "Eski yukni qaytarish — tezkor yechim", ru: 'Возврат старого багажа — быстрое решение' }, body: { uz: <>Tez yechim kerak bo'lsa, oxirgi <b>yashil versiyaga</b> — eski yukka qaytiladi.</>, ru: <>Если нужно срочно, откатываются к последней <b>зелёной версии</b> — старому багажу.</> } },
+      { ic: "🛡️", h: { uz: "Maqsad — yo'lovchini himoya qilish", ru: 'Цель — защитить пассажира' }, body: { uz: <>Maqsad bitta: buzuq versiya yo'lovchi qo'lida uzoq turmasin.</>, ru: <>Цель одна: сломанная версия не должна долго оставаться у пассажира.</> }, ask: { uz: "TABLO qizil bo'lganda birinchi qadam nima?", ru: 'Какой первый шаг, когда ТАБЛО красное?' } },
     ]
   },
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -304,7 +304,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Разбор ещё раз' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -313,13 +313,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — едем дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -398,7 +398,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс явно не понял эту тему. Перед тем как идти дальше, стоит коротко её повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Разбор ещё раз — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите тему, прежде чем идти дальше.</> })}</p>
@@ -485,7 +485,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -493,8 +493,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -504,11 +505,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Быстрое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -729,10 +730,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onProgress, onWrong }
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? tr(fixed) : tr(l.text)}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -876,12 +877,12 @@ const Screen2 = (props) => (
     questionText="Nega ✈️ Uchirish nuqtasi lentaning oxirida turadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nega <span className="mono" style={{ color: T.accent }}>✈️ Uchirish</span> nuqtasi lentaning oxirida turadi?</>, ru: <>Почему точка <span className="mono" style={{ color: T.accent }}>✈️ Взлёт</span> стоит в конце конвейера?</> })}</h2></>}
     options={[{ uz: "Chunki u lentaning eng tez ishlaydigan qismi", ru: 'Потому что это самая быстрая часть конвейера' }, { uz: "Chunki avvalgi nuqtalar yukni tekshirib bo'lmasa, uchirish xavfli", ru: 'Потому что пока предыдущие точки не проверили багаж, взлетать опасно' }, { uz: "Chunki LENTA MASHINASI faqat eng oxirgi qatorni uchirish deb tushunadi", ru: 'Потому что МАШИНА КОНВЕЙЕРА считает взлётом только самую последнюю строку' }, { uz: "Chunki uni boshqa joyga qo'yish texnik jihatdan mumkin emas", ru: 'Потому что поставить её в другое место технически невозможно' }]} correctIdx={1}
-    /* F-0926-06 (159/11): «To'g'ri!» prefiksi olindi — natija yorlig'i tepada */ explainCorrect={tr({ uz: "Skaner, O'lcham ramkasi va O'rash yukni tekshirib, tayyorlab bo'lgandan keyingina uchirish xavfsiz — shuning uchun Uchirish doim oxirida.", ru: 'Взлетать безопасно только после того, как Сканер, Габарит-рамка и Упаковка проверили и подготовили багаж — поэтому Взлёт всегда в конце.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi olindi — natija yorlig'i tepada */ explainCorrect={tr({ uz: "Avval tekshiruv — uchirilgan yukni qaytarib bo'lmaydi.", ru: 'Сначала проверка — улетевший багаж уже не вернуть.' })}
     explainWrong={{
-      0: tr({ uz: "Tezlik sabab emas — tartib xavfsizlik uchun shunday.", ru: 'Дело не в скорости — такой порядок нужен ради безопасности.' }),
-      2: tr({ uz: "LENTA MASHINASI faqat siz yozgan tartibda ishlaydi, o'zidan qaror qabul qilmaydi.", ru: 'МАШИНА КОНВЕЙЕРА работает строго в том порядке, что вы записали, — сама она решений не принимает.' }),
-      3: tr({ uz: "Texnik jihatdan yozish mumkin — lekin natija xavfli bo'ladi.", ru: 'Технически записать можно — но результат будет опасным.' }),
-      default: tr({ uz: "To'g'risi — avvalgi nuqtalar tekshirib bo'lmasa, uchirish xavfli.", ru: 'Правильный ответ: пока предыдущие точки не проверили багаж, взлетать опасно.' })
+      0: tr({ uz: "Tezlik sabab emas — uchirilgan yuk qaytadimi, o'ylang.", ru: 'Дело не в скорости — подумайте, вернётся ли улетевший багаж.' }),
+      2: tr({ uz: "LENTA MASHINASI o'zi tanlamaydi, siz yozgan tartibda yuradi.", ru: 'МАШИНА КОНВЕЙЕРА сама не выбирает — идёт в том порядке, что вы записали.' }),
+      3: tr({ uz: "Boshqa joyga yozish mumkin — lekin nega bunday qilinmaydi?", ru: 'Записать в другом месте можно — но почему так не делают?' }),
+      default: tr({ uz: "O'ylang: uchirilgan yukni qaytarib olsa bo'ladimi?", ru: 'Подумайте: можно ли вернуть улетевший багаж?' })
     }} />
 );
 
@@ -979,12 +980,12 @@ const Screen5 = (props) => (
     questionText="Bitta yo'l xaritasida barcha 5 nuqta qanday tashkil qilinadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bitta yo'l xaritasida 5 nuqta <span className="italic" style={{ color: T.accent }}>qanday</span> tashkil qilinadi?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>организуются</span> 5 точек в одной карте маршрута?</> })}</h2></>}
     options={[{ uz: "Har nuqta uchun alohida repozitoriy ochiladi", ru: 'Под каждую точку открывается отдельный репозиторий' }, { uz: "Nuqtalar tasodifiy tartibda, navbatsiz yoziladi", ru: 'Точки записываются в случайном порядке, без очереди' }, { uz: "Faqat bitta nuqta yoziladi, qolganlari har safar qo'lda bajariladi", ru: 'Записывается только одна точка, остальные каждый раз выполняются вручную' }, { uz: "Bitta faylda, steps: ostida to'g'ri tartibda ketma-ket yoziladi", ru: 'В одном файле, под steps:, в правильном порядке друг за другом' }]} correctIdx={3}
-    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "LENTA MASHINASI ci.yml faylini yuqoridan pastga o'qiydi — nuqtalar aynan shu tartibda ishlaydi.", ru: 'МАШИНА КОНВЕЙЕРА читает ci.yml сверху вниз — точки срабатывают именно в этом порядке.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "LENTA MASHINASI ci.yml'ni yuqoridan pastga o'qiydi.", ru: 'МАШИНА КОНВЕЙЕРА читает ci.yml сверху вниз.' })}
     explainWrong={{
-      0: tr({ uz: "Bir loyiha — bitta repo. Nuqtalar shu bitta faylda ketma-ket turadi.", ru: 'Один проект — один репозиторий. Точки живут друг за другом в одном файле.' }),
-      1: tr({ uz: "Tartib tasodifiy bo'lsa, Uchirish Skanerdan oldin ham chiqib qolishi mumkin — xavfli.", ru: 'При случайном порядке Взлёт может оказаться раньше Сканера — это опасно.' }),
-      2: tr({ uz: "5 nuqtaning hammasi bitta faylda yoziladi — qo'lda bajarish shart emas.", ru: 'Все 5 точек записываются в один файл — вручную ничего выполнять не нужно.' }),
-      default: tr({ uz: "To'g'risi — bitta faylda, ketma-ket tartibda.", ru: 'Правильный ответ: в одном файле, по порядку.' })
+      0: tr({ uz: "Bir loyiha — bitta repo, har nuqtaga repo ochilmaydi.", ru: 'Один проект — один репозиторий, под каждую точку его не заводят.' }),
+      1: tr({ uz: "Tasodifiy tartibda Uchirish Skanerdan oldin kelishi mumkin.", ru: 'При случайном порядке Взлёт может оказаться раньше Сканера.' }),
+      2: tr({ uz: "Qo'lda bajarsangiz, lentaning keragi qolmaydi.", ru: 'Если выполнять вручную, конвейер теряет смысл.' }),
+      default: tr({ uz: "Lenta ci.yml'ni qanday o'qishini eslang.", ru: 'Вспомните, как конвейер читает ci.yml.' })
     }} />
 );
 
@@ -1111,12 +1112,12 @@ const Screen7 = (props) => (
     questionText="O'lcham ramkasi nuqtasi lentadan olib tashlansa, real oqibati nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>O'lcham ramkasi</span> nuqtasi lentadan olib tashlansa, oqibati nima?</>, ru: <>Если точку <span className="mono" style={{ color: T.accent }}>Габарит-рамка</span> убрать с конвейера — каковы последствия?</> })}</h2></>}
     options={[{ uz: "Qoidaga zid yozilgan kod hech kim tomonidan tutilmay o'tib ketadi", ru: 'Код, нарушающий правила, никто не поймает — он проскочит насквозь' }, { uz: 'Lenta START SIGNALI kelmagani sababli butunlay ishga tushmay qoladi', ru: 'Конвейер вообще не запустится, потому что не придёт СТАРТ-СИГНАЛ' }, { uz: 'Testlar ikki barobar sekinroq ishlay boshlaydi', ru: 'Тесты начнут работать вдвое медленнее' }, { uz: "Yuk avtomatik ravishda kattaroq hajmda o'raladi", ru: 'Багаж автоматически будет упаковываться в больший размер' }]} correctIdx={0}
-    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "O'lcham ramkasi kod uslub qoidalarini tekshiradi. Usiz xato uslubdagi kod to'g'ri O'rash va Uchirishga yetib boradi.", ru: 'Габарит-рамка проверяет правила стиля кода. Без неё код с нарушениями доходит прямо до Упаковки и Взлёта.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Uslub qoidasini faqat O'lcham ramkasi tekshiradi.", ru: 'Правила стиля проверяет только Габарит-рамка.' })}
     explainWrong={{
-      1: tr({ uz: "on: push bilan bog'liq emas — bu boshqa nuqta, START SIGNALI unga bog'liq emas.", ru: 'Это не связано с on: push — СТАРТ-СИГНАЛ от этой точки не зависит.' }),
-      2: tr({ uz: "Tezlikka emas, sifat nazoratiga ta'sir qiladi.", ru: 'Это влияет не на скорость, а на контроль качества.' }),
-      3: tr({ uz: "O'rash hajmga emas, O'lcham ramkasi esa uslubga tegishli.", ru: 'Упаковка не про размер, а Габарит-рамка — про стиль.' }),
-      default: tr({ uz: "To'g'risi — qoidaga zid kod tutilmay o'tib ketadi.", ru: 'Правильный ответ: код, нарушающий правила, проскочит непойманным.' })
+      1: tr({ uz: "START SIGNALI on: push'dan keladi, bu nuqtaga bog'liq emas.", ru: 'СТАРТ-СИГНАЛ даёт on: push, от этой точки он не зависит.' }),
+      2: tr({ uz: "Bu nuqta tezlikka emas, sifat nazoratiga ta'sir qiladi.", ru: 'Эта точка влияет не на скорость, а на контроль качества.' }),
+      3: tr({ uz: "O'lcham ramkasi yuk hajmini emas, kodni tekshiradi.", ru: 'Габарит-рамка проверяет не размер багажа, а код.' }),
+      default: tr({ uz: "O'lcham ramkasi nimani tekshirishini eslang.", ru: 'Вспомните, что проверяет Габарит-рамка.' })
     }} />
 );
 
@@ -1175,12 +1176,12 @@ const Screen9 = (props) => (
     questionText="Sinov reysi (staging) va haqiqiy reys (production) orasidagi asosiy farq nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sinov reysi va haqiqiy reys orasidagi <span className="italic" style={{ color: T.accent }}>asosiy farq</span> nima?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>главная разница</span> между пробным и настоящим рейсом?</> })}</h2></>}
     options={[{ uz: 'Sinov reysida kod umuman ishlamaydi', ru: 'На пробном рейсе код вообще не работает' }, { uz: "Haqiqiy reysda esa testlar butunlay kerak bo'lmay qoladi", ru: 'На настоящем рейсе тесты совсем не нужны' }, { uz: "Sinov reysida haqiqiy yo'lovchi yo'q, xatolarni xavfsiz sinash mumkin", ru: 'На пробном рейсе нет настоящих пассажиров — ошибки можно проверять безопасно' }, { uz: 'Ular texnik jihatdan bir xil, faqat nomi boshqa', ru: 'Технически они одинаковы, отличается только название' }]} correctIdx={2}
-    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Xato sinov reysida chiqsa, hech kimga zarar yetmaydi. Faqat yashil bo'lgach yuk haqiqiy reysga chiqadi.", ru: 'Если ошибка вылезет на пробном рейсе, никто не пострадает. Только когда всё зелёное, багаж выходит на настоящий рейс.' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Xato sinov reysida chiqsa, hech kimga zarar yetmaydi.", ru: 'Если ошибка вылезет на пробном рейсе, никто не пострадает.' })}
     explainWrong={{
-      0: tr({ uz: "Kod sinov reysida ham to'liq ishlaydi — bu haqiqiy tekshiruv muhiti.", ru: 'На пробном рейсе код работает полностью — это настоящая проверочная среда.' }),
-      1: tr({ uz: "Testlar ikkala muhitda ham kerak — sinov reysi ularni ishlatishning aynan o'zidir.", ru: 'Тесты нужны в обеих средах — пробный рейс как раз и есть их применение.' }),
-      3: tr({ uz: "Farq bor: birida haqiqiy yo'lovchi bor, ikkinchisida yo'q.", ru: 'Разница есть: на одном рейсе настоящие пассажиры есть, на другом — нет.' }),
-      default: tr({ uz: "To'g'risi — sinov reysida yo'lovchi yo'q, xato xavfsiz sinaladi.", ru: 'Правильный ответ: на пробном рейсе пассажиров нет, ошибки проверяются безопасно.' })
+      0: tr({ uz: "Sinov reysida kod to'liq ishlaydi — bu haqiqiy tekshiruv.", ru: 'На пробном рейсе код работает полностью — это настоящая проверка.' }),
+      1: tr({ uz: "Testlar har doim kerak — sinov reysi ularni bekor qilmaydi.", ru: 'Тесты нужны всегда — пробный рейс их не отменяет.' }),
+      3: tr({ uz: "Farq bor: har reysda kim borligini o'ylang.", ru: 'Разница есть: подумайте, кто летит каждым рейсом.' }),
+      default: tr({ uz: "Sinov reysi nima uchun kerakligini o'ylang.", ru: 'Подумайте, зачем нужен пробный рейс.' })
     }} />
 );
 
@@ -1294,12 +1295,12 @@ const Screen12 = (props) => (
     questionText="Production'da yangi versiya muammo chiqarsa va TABLO qizil bo'lib qolsa, birinchi navbatda nima qilinadi?"
     /* F-0926-06 (159/1): savol ustidagi «Yakuniy savol» yorlig'i tepa-bardagi bilan bir xil edi — olindi */ question={<><h2 className="title h-ask" style={{ marginTop: 0 }}>{tr({ uz: <>TABLO <span className="italic" style={{ color: T.accent }}>qizil</span> bo'lib qolsa, birinchi navbatda nima qilinadi?</>, ru: <>Если ТАБЛО стало <span className="italic" style={{ color: T.accent }}>красным</span>, что делают в первую очередь?</> })}</h2></>}
     options={[{ uz: "Repozitoriyning o'zi butunlay o'chirilib, yangidan boshlab loyiha qurilyapti", ru: 'Полностью удаляют репозиторий и строят проект заново' }, { uz: "Jurnal o'qilib sabab topiladi, kerak bo'lsa eski yukka qaytariladi", ru: 'Читают журнал, находят причину, при необходимости возвращают старый багаж' }, { uz: "Hech narsa qilinmaydi, o'z-o'zidan tuzalib ketadi", ru: 'Ничего не делают — само починится' }, { uz: "Faqat TABLO rangini qo'lda yashilga o'zgartiriladi", ru: 'Просто вручную перекрашивают ТАБЛО в зелёный' }]} correctIdx={1}
-    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Sababni bilmay turib tuzatib bo'lmaydi. Yo'lovchi kutib qolmasin desangiz, oxirgi yashil versiya (eski yuk) darhol qaytariladi.", ru: 'Не зная причины, ничего не исправить. А чтобы пассажир не ждал, сразу возвращают последнюю зелёную версию (старый багаж).' })}
+    /* F-0926-06 (159/11): «To'g'ri!» prefiksi va variantni qaytargan qism olindi — faqat nega */ explainCorrect={tr({ uz: "Sabab jurnalda, eski yuk esa yo'lovchini kuttirmaydi.", ru: 'Причина — в журнале, а старый багаж не заставит пассажира ждать.' })}
     explainWrong={{
-      0: tr({ uz: "Repozitoriyni o'chirish shart emas — sabab jurnaldan topiladi, kerak bo'lsa faqat qaytariladi.", ru: 'Удалять репозиторий не нужно — причина находится в журнале, при необходимости просто откатываются.' }),
-      2: tr({ uz: "O'z-o'zidan tuzalmaydi — sabab topilib, tuzatish yoki qaytarish kerak.", ru: 'Само не починится — нужно найти причину и исправить или откатиться.' }),
-      3: tr({ uz: "TABLO ranggi lenta natijasidan kelib chiqadi — uni qo'lda o'zgartirib bo'lmaydi.", ru: 'Цвет ТАБЛО определяется результатом конвейера — вручную его не поменять.' }),
-      default: tr({ uz: "To'g'risi — jurnal o'qilib sabab topiladi, kerak bo'lsa qaytariladi.", ru: 'Правильный ответ: читают журнал, находят причину, при необходимости откатываются.' })
+      0: tr({ uz: "Repozitoriyni o'chirish shart emas — sabab bitta joyda.", ru: 'Удалять репозиторий не нужно — причина в одном месте.' }),
+      2: tr({ uz: "O'z-o'zidan tuzalmaydi — yo'lovchi buzuq yukni olaveradi.", ru: 'Само не починится — пассажир так и будет получать сломанный багаж.' }),
+      3: tr({ uz: "TABLO rangini lenta natijasi belgilaydi, qo'lda emas.", ru: 'Цвет ТАБЛО задаёт результат конвейера, а не рука.' }),
+      default: tr({ uz: "Qizil TABLO'da birinchi qaysi joyga qaraysiz?", ru: 'Куда вы смотрите первым делом при красном ТАБЛО?' })
     }} />
 );
 
@@ -1336,9 +1337,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="editor">
               <div className="editor-bar"><span className="bb-dots"><i /><i /><i /></span><span className="editor-file">ci.yml</span></div>
               <div className="editor-body">
-                <div className="code-line"><pre className="editor-code" style={{ display: 'inline' }}>{'on: '}</pre><input className={`code-input inline ${okTrig ? 'ok' : ''}`} value={trig} onChange={e => setTrig(e.target.value)} placeholder="?" spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
+                <div className="ci-line"><pre className="editor-code" style={{ display: 'inline' }}>{'on: '}</pre><input className={`code-input inline ${okTrig ? 'ok' : ''}`} value={trig} onChange={e => setTrig(e.target.value)} placeholder="?" spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
                 <pre className="editor-code">{'jobs:\n  lenta:\n    steps:\n      - run: npm install\n      - run: npm test\n      - run: eslint .\n      - run: npm run build\n      - run: deploy\n        env:'}</pre>
-                <div className="code-line"><pre className="editor-code" style={{ display: 'inline' }}>{'          DEPLOY_TOKEN: ${{ '}</pre><input className={`code-input inline ${okSecret ? 'ok' : ''}`} value={secret} onChange={e => setSecret(e.target.value)} placeholder="?" spellCheck={false} autoCapitalize="off" autoCorrect="off" /><pre className="editor-code" style={{ display: 'inline' }}>{' }}'}</pre></div>
+                <div className="ci-line"><pre className="editor-code" style={{ display: 'inline' }}>{'          DEPLOY_TOKEN: ${{ '}</pre><input className={`code-input inline ${okSecret ? 'ok' : ''}`} value={secret} onChange={e => setSecret(e.target.value)} placeholder="?" spellCheck={false} autoCapitalize="off" autoCorrect="off" /><pre className="editor-code" style={{ display: 'inline' }}>{' }}'}</pre></div>
               </div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -2518,7 +2519,7 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .editor-file { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${CODE.text}; background: ${CODE.bg}; padding: 4px 11px; border-radius: 6px 6px 0 0; word-break: break-all; }
         .editor-body { background: ${CODE.bg}; padding: 12px 14px; }
         .editor-code { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.75; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
-        .code-line { display: flex; align-items: center; flex-wrap: wrap; }
+        .ci-line { display: flex; align-items: center; flex-wrap: wrap; } /* F-0929-95 (S13): LMS ning o'z .code-line sinfi bilan to'qnashardi — ci-line */
         .code-input { display: block; width: 100%; margin: 2px 0; background: rgba(0,122,204,0.12); border: 1px dashed #4FA8D8; border-radius: 6px; color: ${CODE.text}; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11px,1.4vw,12.5px); padding: 7px 9px; outline: none; }
         .code-input.ok { border: 1.5px solid ${T.success}; background: rgba(31,122,77,0.18); }
         .code-input.inline { display: inline-block; width: auto; min-width: 90px; margin: 0; padding: 3px 8px; }
@@ -2616,7 +2617,7 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(11.5px,1.6vw,13px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: ${T.danger}; background: rgba(194,54,43,0.22); animation: dd-shake .4s; }
-        .dbg-line.fixed { border-color: ${CODE.ok}; background: rgba(125,209,129,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${CODE.ok}; background: rgba(125,209,129,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${CODE.ok}; background: rgba(125,209,129,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }

@@ -295,63 +295,63 @@ const RECAPS = {
     title: { uz: "Sistema nima?", ru: 'Что такое система?' },
     cards: [
       { ic: "🧩", h: { uz: "Sistema — birga ishlovchi qismlar", ru: 'Система — части, работающие вместе' },
-        body: { uz: <>Sistema — bu <b>birga ishlaydigan komponentlar</b> va ularning <b>bog'lanishlari</b>. Bitta yaxlit narsa emas, aksincha ko'p qismning jamoasi.</>, ru: <>Система — это <b>компоненты, работающие вместе</b>, и их <b>связи</b>. Это не один цельный предмет, а команда из многих частей.</> },
+        body: { uz: <>Sistema — birga ishlaydigan <b>komponentlar</b> va ularning <b>bog'lanishlari</b>.</>, ru: <>Система — это <b>компоненты</b>, работающие вместе, и их <b>связи</b>.</> },
         vis: <RcFlow items={[{ uz: "🧤 darvozabon", ru: 'вратарь' }, { uz: "🎯 yarim himoyachi", ru: 'полузащитник' }, { uz: "🥅 hujumchi", ru: 'нападающий' }]} sep="+" />,
         ask: { uz: "Sinfimiz sistema bo'la oladimi? Qaysi qismlardan iborat?", ru: 'Может ли наш класс быть системой? Из каких частей он состоит?' } },
       { ic: "🚗", h: { uz: "Bir qism yetmaydi", ru: 'Одной части мало' },
-        body: { uz: <>Faqat <b>bitta g'ildirak</b> mashina emas. Mashina bo'lishi uchun dvigatel, g'ildirak, rul — hammasi <b>birga</b> ishlashi kerak.</>, ru: <>Одно <b>колесо</b> — это ещё не машина. Чтобы получилась машина, двигатель, колёса и руль должны работать <b>вместе</b>.</> },
+        body: { uz: <>Bitta g'ildirak mashina emas — dvigatel, g'ildirak va rul birga ishlashi kerak.</>, ru: <>Одно колесо — ещё не машина: двигатель, колёса и руль должны работать вместе.</> },
         vis: <RcFlow items={[{ uz: "😕 bitta g'ildirak", ru: 'одно колесо' }, { uz: "🔧 hamma qism birga", ru: 'все части вместе' }, { uz: "🚗 mashina", ru: 'машина' }]} /> },
       { ic: "🎯", h: { uz: "Umumiy maqsad uchun", ru: 'Ради общей цели' },
-        body: { uz: <>Sistemaning qismlari <b>tasodifiy</b> emas — ular <b>bitta maqsad</b> uchun birlashgan. Futbol jamoasi gol urish uchun, mashina yurish uchun.</>, ru: <>Части системы собраны <b>не случайно</b> — их объединяет <b>одна цель</b>. Футбольная команда — чтобы забивать голы, машина — чтобы ехать.</> } },
+        body: { uz: <>Sistemaning qismlari tasodifiy emas — ularni bitta <b>maqsad</b> birlashtiradi.</>, ru: <>Части системы собраны не случайно — их объединяет одна <b>цель</b>.</> } },
     ]
   },
   6: {
     title: { uz: "Bog'lanish nima?", ru: 'Что такое связь?' },
     cards: [
       { ic: "🔗", h: { uz: "Bog'lanish — qismlar orasidagi yo'l", ru: 'Связь — путь между частями' },
-        body: { uz: <>Bog'lanish — bu qismlar <b>bir-biriga ta'sir o'tkazadigan yo'l</b>. U eng katta qism ham, sistemaning nomi ham emas.</>, ru: <>Связь — это <b>путь, по которому части влияют друг на друга</b>. Это не самая большая часть и не название системы.</> },
+        body: { uz: <>Bog'lanish — qismlar bir-biriga <b>ta'sir</b> o'tkazadigan yo'l.</>, ru: <>Связь — это путь, по которому части <b>влияют</b> друг на друга.</> },
         vis: <RcFlow items={[{ uz: "🎯 yarim himoyachi", ru: 'полузащитник' }, { uz: "⚽ pas beradi", ru: 'даёт пас' }, { uz: "🥅 hujumchi", ru: 'нападающий' }]} />,
         ask: { uz: "Uyda svet va vaklyuchatel orasida qanday bog'lanish bor?", ru: 'Какая связь дома между лампочкой и выключателем?' } },
       { ic: "🚦", h: { uz: "Ta'sir bir qismdan ikkinchisiga o'tadi", ru: 'Действие переходит от части к части' },
-        body: { uz: <>Yarim himoyachi <b>pas beradi</b>, to'p hujumchiga <b>gol</b> uchun boradi. Bir qismning ishi ikkinchisiga <b>o'tib</b> ketadi — mana bu bog'lanish.</>, ru: <>Полузащитник <b>даёт пас</b>, мяч идёт к нападающему, чтобы тот забил <b>гол</b>. Работа одной части <b>передаётся</b> другой — вот это и есть связь.</> },
+        body: { uz: <>Yarim himoyachi pas beradi, to'p hujumchiga o'tadi — bu <b>bog'lanish</b>.</>, ru: <>Полузащитник даёт пас, мяч уходит к нападающему — это и есть <b>связь</b>.</> },
         vis: <RcFlow items={[{ uz: "👆 bosdim", ru: 'нажал' }, { uz: "⚡ tok o'tdi", ru: 'ток прошёл' }, { uz: "💡 chiroq yondi", ru: 'лампа загорелась' }]} /> },
       { ic: "🎯", h: { uz: "Bog'lanishsiz — sistema emas", ru: 'Без связей — не система' },
-        body: { uz: <>Agar qismlar <b>bir-biriga ta'sir qilmasa</b>, ular shunchaki alohida narsalar. Aynan bog'lanishlar ularni <b>bitta sistema</b> qiladi.</>, ru: <>Если части <b>не влияют друг на друга</b>, это просто отдельные предметы. Именно связи делают их <b>одной системой</b>.</> } },
+        body: { uz: <>Qismlarni bitta sistemaga aynan <b>bog'lanishlar</b> aylantiradi.</>, ru: <>Именно <b>связи</b> превращают отдельные части в одну систему.</> } },
     ]
   },
   10: {
     title: { uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' },
     cards: [
       { ic: "🌦️", h: { uz: "Shart — tanlov qadami", ru: 'Условие — шаг выбора' },
-        body: { uz: <>«AGAR yomg'ir bo'lsa, soyabon ol» — bu <b>shart</b>. Bir narsa <b>rost bo'lsa</b> — bir ish qilamiz, bo'lmasa — qilmaymiz.</>, ru: <>«ЕСЛИ идёт дождь — возьми зонт» — это <b>условие</b>. Если что-то <b>верно</b> — делаем одно, если нет — не делаем.</> },
+        body: { uz: <>«AGAR yomg'ir bo'lsa, soyabon ol» — <b>shart</b> holatga qarab ishni tanlaydi.</>, ru: <>«ЕСЛИ идёт дождь — возьми зонт»: <b>условие</b> выбирает действие по ситуации.</> },
         vis: <RcFlow items={[{ uz: "🌧️ yomg'ir bormi?", ru: 'идёт дождь?' }, { uz: "☂️ ha → soyabon", ru: 'да → зонт' }, { uz: "😎 yo'q → olmaymiz", ru: 'нет → не берём' }]} />,
         ask: { uz: "Kunlik hayotdan yana bitta «agar...bo'lsa» misolini kim aytadi?", ru: 'Кто назовёт ещё один пример «если... то» из повседневной жизни?' } },
       { ic: "🚦", h: { uz: "Sikldan farqi", ru: 'Чем отличается от цикла' },
-        body: { uz: <>Shart <b>bir marta</b> tekshiradi va yo'l tanlaydi. Sikl esa bir ishni <b>ko'p marta takrorlaydi</b> — bular boshqa-boshqa narsa.</>, ru: <>Условие проверяет <b>один раз</b> и выбирает путь. А цикл <b>повторяет действие много раз</b> — это разные вещи.</> },
+        body: { uz: <>Shart bir marta tekshirib yo'l tanlaydi, <b>sikl</b> esa ishni ko'p marta takrorlaydi.</>, ru: <>Условие один раз проверяет и выбирает путь, а <b>цикл</b> повторяет действие много раз.</> },
         vis: <RcFlow items={[{ uz: "🚦 yashil bo'lsa → yur", ru: 'зелёный → иди' }, { uz: "🔴 qizil bo'lsa → to'xta", ru: 'красный → стой' }]} sep="·" /> },
       { ic: "🎯", h: { uz: "«bo'lsa» so'ziga qara", ru: 'Ищите слово «если»' },
-        body: { uz: <>Gapda <b>«agar... bo'lsa»</b> bo'lsa — bu deyarli har doim <b>shart</b>. U qadamni holatga qarab tanlaydi.</>, ru: <>Если во фразе есть <b>«если... то»</b> — это почти всегда <b>условие</b>. Оно выбирает шаг в зависимости от ситуации.</> } },
+        body: { uz: <>Gapda «agar... bo'lsa» bo'lsa, bu deyarli har doim <b>shart</b>.</>, ru: <>Если во фразе есть «если... то», это почти всегда <b>условие</b>.</> } },
     ]
   },
   13: {
     title: { uz: "Sikl (takrorlash)", ru: 'Цикл (повторение)' },
     cards: [
       { ic: "🔁", h: { uz: "Sikl — takrorlash qadami", ru: 'Цикл — шаг повторения' },
-        body: { uz: <>Bir xil amalni <b>ko'p marta</b> takrorlash uchun <b>sikl</b> ishlatamiz. Har safar qaytadan yozib o'tirmaymiz.</>, ru: <>Чтобы повторить одно действие <b>много раз</b>, используем <b>цикл</b>. Не пишем его заново каждый раз.</> },
+        body: { uz: <>Bir xil amalni ko'p marta bajarish uchun <b>sikl</b> ishlatamiz, qayta yozmaymiz.</>, ru: <>Чтобы повторить одно действие много раз, используем <b>цикл</b>, а не пишем его заново.</> },
         vis: <RcFlow items={[{ uz: "🪜 zina 1", ru: 'ступенька 1' }, { uz: "🪜 zina 2", ru: 'ступенька 2' }, { uz: "🪜 zina 3", ru: 'ступенька 3' }, { uz: "🔁 takror", ru: 'повтор' }]} />,
         ask: { uz: "Tishni yuvishda cho'tkani necha marta yuqoriga-pastga yuritamiz — bu sikls mi?", ru: 'Сколько раз мы водим щёткой вверх-вниз, когда чистим зубы, — это цикл?' } },
       { ic: "🏃", h: { uz: "Misol: 10 marta o'tir-tur", ru: 'Пример: 10 приседаний' },
-        body: { uz: <>«10 marta o'tir-tur qil» — bu <b>sikl</b>. Bitta harakat <b>10 marta qaytariladi</b>. Shartdan farqi: sikl takrorlaydi, shart tanlaydi.</>, ru: <>«Присядь 10 раз» — это <b>цикл</b>. Одно движение <b>повторяется 10 раз</b>. Отличие от условия: цикл повторяет, условие выбирает.</> },
+        body: { uz: <>«10 marta o'tir-tur qil» — bu sikl: bitta harakat 10 marta <b>qaytariladi</b>.</>, ru: <>«Присядь 10 раз» — это цикл: одно движение <b>повторяется</b> 10 раз.</> },
         vis: <RcFlow items={["1", "2", "3", "…", "10"]} sep="·" /> },
       { ic: "🎯", h: { uz: "«ko'p marta» = sikl", ru: '«много раз» = цикл' },
-        body: { uz: <>Agar bir ish <b>bir necha marta qaytarilsa</b> — bu sikl. «takror», «har safar», «necha marta» so'zlari sikldan darak beradi.</>, ru: <>Если действие повторяется <b>несколько раз</b> — это цикл. Слова «повтори», «каждый раз», «сколько раз» указывают на цикл.</> } },
+        body: { uz: <>«Takror», «har safar», «necha marta» so'zlari <b>sikl</b>ni bildiradi.</>, ru: <>Слова «повтори», «каждый раз», «сколько раз» указывают на <b>цикл</b>.</> } },
     ]
   },
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -369,7 +369,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем ещё раз' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -378,13 +378,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -470,7 +470,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как идти дальше, лучше коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -479,7 +479,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответов пока мало ({answered}) — по проценту трудно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Объяснить ещё раз' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -611,7 +611,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`${tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
               : waiting
@@ -619,8 +619,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? explainCorrect
               : waiting
@@ -632,11 +633,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -935,8 +936,8 @@ const Screen4 = (props) => (
     questionText="Sistema nima?"
     question={<>{/* F-0926-06 (159/7): sarlavhani takrorlagan «Sistema nima?» yorlig'i olindi */}<h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Sistema nima?', ru: 'Что такое система?' })}</h2></>}
     options={[tr({ uz: "Bo'linmaydigan, ichki qismlari yo'q yaxlit bir narsa", ru: 'Неделимый цельный предмет без внутренних частей' }), tr({ uz: "Birga ishlaydigan komponentlar va ularning bog'lanishlari", ru: 'Компоненты, работающие вместе, и их связи' }), tr({ uz: "Bir-biriga hech qanday aloqasi yo'q tasodifiy narsalar", ru: 'Случайные предметы, никак не связанные между собой' }), tr({ uz: 'Faqat kompyuterga tegishli, boshqa hech narsa emas', ru: 'Что-то только про компьютеры и больше ни про что' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Qismlarning o'zi yetmaydi — ular orasidagi bog'lanish ham sistemaga kiradi. Futbol jamoasi shunga misol.", ru: 'Одних частей мало — связи между ними тоже входят в систему. Футбольная команда — отличный пример.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
-    explainWrong={{ 0: tr({ uz: "Yo'q — sistema aynan ko'p qismdan iborat, bitta bo'linmas narsa emas.", ru: 'Нет — система как раз состоит из многих частей, это не один неделимый предмет.' }), 2: tr({ uz: "Yo'q — sistemadagi qismlar tasodifiy emas, ular birga, maqsad bilan ishlaydi.", ru: 'Нет — части системы не случайны, они работают вместе, ради цели.' }), 3: tr({ uz: "Yo'q — kompyuter ham sistema, lekin sistema faqat kompyuter degani emas. Jamoa, maktab ham sistema.", ru: 'Нет — компьютер тоже система, но система — это не только компьютер. Команда и школа — тоже системы.' }), default: tr({ uz: "Sistema — komponentlar va ularning bog'lanishlari.", ru: 'Система — это компоненты и их связи.' }) }} />
+    explainCorrect={tr({ uz: "Sistemaga qismlar ham, ular orasidagi bog'lanish ham kiradi.", ru: 'В систему входят и части, и связи между ними.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
+    explainWrong={{ 0: tr({ uz: "Sistema qismlarga bo'linadi, u bo'linmas bitta narsa emas.", ru: 'Систему можно разобрать на части — она не неделима.' }), 2: tr({ uz: "Sistema qismlari tasodifiy emas, ular bir maqsadda ishlaydi.", ru: 'Части системы не случайны — они работают ради одной цели.' }), 3: tr({ uz: "Futbol jamoasi, maktab ham sistema — faqat kompyuter emas.", ru: 'Футбольная команда и школа — тоже системы, не только компьютер.' }), default: tr({ uz: "Futbol jamoasini eslang: unda nimalar birga ishlaydi?", ru: 'Вспомните футбольную команду: что в ней работает вместе?' }) }} />
 );
 
 // ===== SCREEN 5 — ATROFDAGI SISTEMALAR =====
@@ -1002,12 +1003,12 @@ const Screen5b = (props) => (
     questionText="Sistemada 'bog'lanish' nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sistemada <span className="italic" style={{ color: T.accent }}>bog'lanish</span> nima?</>, ru: <>Что такое <span className="italic" style={{ color: T.accent }}>связь</span> в системе?</> })}</h2></>}
     options={[tr({ uz: "Qismlar bir-biriga ta'sir o'tkazadigan yo'l", ru: 'Путь, по которому части влияют друг на друга' }), tr({ uz: 'Sistemadagi eng katta va asosiy komponent', ru: 'Самый большой и главный компонент системы' }), tr({ uz: 'Butun sistemaga berilgan umumiy bitta nom', ru: 'Общее название всей системы целиком' }), tr({ uz: 'Rejasiz yuz beradigan tasodifiy hodisa', ru: 'Случайное событие, которое происходит без плана' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "Bog'lanish orqali to'p, signal yoki ma'lumot o'tadi — masalan, pas yoki internet so'rovi.", ru: 'По связи проходит мяч, сигнал или данные — например, пас или интернет-запрос.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
+    explainCorrect={tr({ uz: "Bog'lanish orqali to'p, signal yoki ma'lumot o'tadi.", ru: 'По связи проходит мяч, сигнал или данные.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
-      1: tr({ uz: "Yo'q — bu komponent emas. Bog'lanish — qismlarni ulaydigan yo'l.", ru: 'Нет — это не компонент. Связь — путь, соединяющий части.' }),
-      2: tr({ uz: "Yo'q — bog'lanish nom emas, u qismlar orasidagi aloqa.", ru: 'Нет — связь не название, это соединение между частями.' }),
-      3: tr({ uz: "Yo'q — bog'lanish tasodif emas, u qismlarni maqsadli ulaydi.", ru: 'Нет — связь не случайность, она соединяет части с целью.' }),
-      default: tr({ uz: "Bog'lanish — qismlar bir-biriga ta'sir o'tkazadigan yo'l.", ru: 'Связь — путь, по которому части влияют друг на друга.' })
+      1: tr({ uz: "Komponent — sistemaning qismi, bog'lanish esa qism emas.", ru: 'Компонент — это часть системы, а связь — не часть.' }),
+      2: tr({ uz: "Nom hech narsa uzatmaydi, bog'lanish orqali esa pas o'tadi.", ru: 'Название ничего не передаёт, а по связи проходит пас.' }),
+      3: tr({ uz: "Bog'lanish tasodif emas — u qismlarni maqsad bilan ulaydi.", ru: 'Связь не случайна — она соединяет части ради цели.' }),
+      default: tr({ uz: "Pasni eslang: to'p bir o'yinchidan boshqasiga qanday o'tadi?", ru: 'Вспомните пас: как мяч переходит от игрока к игроку?' })
     }} />
 );
 
@@ -1188,12 +1189,12 @@ const Screen9 = (props) => (
     questionText="'AGAR yomg'ir bo'lsa, soyabon ol' — algoritmda bu qanday qism?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "«AGAR yomg'ir bo'lsa, soyabon ol» — bu qanday qism?", ru: '«ЕСЛИ идёт дождь — возьми зонт» — что это за часть?' })}</h2></>}
     options={[tr({ uz: 'Sikl (takrorlash)', ru: 'Цикл (повторение)' }), tr({ uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' }), tr({ uz: 'Komponent (qism)', ru: 'Компонент (часть)' }), tr({ uz: "Bog'lanish (aloqa)", ru: 'Связь (соединение)' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Algoritm vaziyatga qarab yo'l tanlaydi: yomg'ir bo'lsa — bir ish, bo'lmasa — boshqasi.", ru: 'Алгоритм выбирает путь по ситуации: идёт дождь — одно действие, нет — другое.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
+    explainCorrect={tr({ uz: "Algoritm vaziyatga qarab ikki yo'ldan birini tanlaydi.", ru: 'Алгоритм выбирает один из двух путей по ситуации.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
-      0: tr({ uz: "Yo'q — sikl bu amalni takrorlash. Bu yerda esa qaror qabul qilinyapti — bu shart.", ru: 'Нет — цикл повторяет действие. А здесь принимается решение — это условие.' }),
-      2: tr({ uz: "Yo'q — komponent sistemaning qismi. Bu esa algoritmdagi qaror — shart.", ru: 'Нет — компонент это часть системы. А это решение в алгоритме — условие.' }),
-      3: tr({ uz: "Yo'q — bog'lanish qismlarni ulaydi. Bu esa shart: agar...bo'lsa.", ru: 'Нет — связь соединяет части. А это условие: если... то.' }),
-      default: tr({ uz: "Bu — shart: agar...bo'lsa...", ru: 'Это условие: если... то...' })
+      0: tr({ uz: "Sikl takrorlaydi, bu yerda esa hech narsa takrorlanmaydi.", ru: 'Цикл повторяет действие, а здесь ничего не повторяется.' }),
+      2: tr({ uz: "Komponent — sistemaning qismi, u yo'l tanlamaydi.", ru: 'Компонент — это часть системы, он не выбирает путь.' }),
+      3: tr({ uz: "Bog'lanish qismlarni ulaydi, u yo'l tanlamaydi.", ru: 'Связь соединяет части, она не выбирает путь.' }),
+      default: tr({ uz: "Algoritm bu yerda takrorlayaptimi yoki tanlayaptimi?", ru: 'Алгоритм здесь повторяет или выбирает?' })
     }} />
 );
 
@@ -1306,12 +1307,12 @@ const Screen12 = (props) => (
     questionText="Bir xil amalni ko'p marta takrorlash uchun algoritmda nima ishlatamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "Bir xil amalni ko'p marta takrorlash uchun nima ishlatamiz?", ru: 'Что мы используем, чтобы повторить одно действие много раз?' })}</h2></>}
     options={[tr({ uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' }), tr({ uz: 'Sikl (takrorlash)', ru: 'Цикл (повторение)' }), tr({ uz: 'Komponent (qism)', ru: 'Компонент (часть)' }), tr({ uz: "Bog'lanish (aloqa)", ru: 'Связь (соединение)' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Amal bir marta yoziladi, sikl uni kerakli marta takrorlaydi — qayta-qayta yozish shart emas.", ru: 'Действие пишется один раз, а цикл повторяет его нужное число раз — не нужно писать его снова и снова.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
+    explainCorrect={tr({ uz: "Amal bir marta yoziladi, sikl uni kerakli marta takrorlaydi.", ru: 'Действие пишется один раз, а цикл повторяет его нужное число раз.' }) /* F-0926-06 (159/11): izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi — faqat nega */}
     explainWrong={{
-      0: tr({ uz: "Yo'q — shart qaror qabul qiladi (agar...bo'lsa). Takrorlash uchun esa sikl kerak.", ru: 'Нет — условие принимает решение (если... то). А для повторения нужен цикл.' }),
-      2: tr({ uz: "Yo'q — komponent sistemaning qismi. Takrorlash — sikl ishi.", ru: 'Нет — компонент это часть системы. Повторение — работа цикла.' }),
-      3: tr({ uz: "Yo'q — bog'lanish qismlarni ulaydi. Takrorlash uchun sikl ishlatamiz.", ru: 'Нет — связь соединяет части. Для повторения используем цикл.' }),
-      default: tr({ uz: 'Takrorlash uchun — sikl.', ru: 'Для повторения — цикл.' })
+      0: tr({ uz: "Shart bir marta tekshiradi, u hech narsani takrorlamaydi.", ru: 'Условие проверяет один раз и ничего не повторяет.' }),
+      2: tr({ uz: "Komponent — sistemaning qismi, u amalni takrorlamaydi.", ru: 'Компонент — это часть системы, он не повторяет действия.' }),
+      3: tr({ uz: "Bog'lanish qismlarni ulaydi, amalni takrorlamaydi.", ru: 'Связь соединяет части, а не повторяет действия.' }),
+      default: tr({ uz: 'Bu yerda amal bir marta bajariladimi yoki ko\'p marta?', ru: 'Здесь действие выполняется один раз или много раз?' })
     }} />
 );
 

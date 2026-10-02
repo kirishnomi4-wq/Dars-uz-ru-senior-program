@@ -1,0 +1,396 @@
+{
+ "file": "src/2-Modull/JsConditionsLesson.jsx",
+ "lessonId": "js-cond-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "PIN-kodni kiritsangiz, telefon qachon ochiladi?",
+     "b": "Telefoningizning PIN-kodi — 1234. Har xil PIN-kod kiritib ko'ring: telefon qachon ochiladi, qachon yo'q?",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TELEFON QANDAY QAROR QILADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aslida telefon shartni tekshiradi: PIN-kod to'g'rimi? Buni if bilan yozamiz — bugun shuni ",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN SHUNDAY KOD YOZASIZ",
+     "box": "code-box fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ dastur qaror qabul qiladi",
+     "box": "code-box fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "if degani \"agar\". Telefon zaryad 20% dan kam bo'lsagina ogohlantiradi: shart rost (true) bo'lsa, figurali qavs",
+     "b": "✓ if — shart true bo'lsagina ichidagi kod ishlaydi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "demo-swap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "14 >= 12 ✓ true >= katta yoki teng 14 katta yoki teng 12? Javob: ha (true).",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "14 <= 12 ✗ false <= kichik yoki teng 14 kichik yoki teng 12? Javob: yo'q (false).",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "demo-swap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "↓",
+     "box": "var-box ring-green",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "14 >= 16 → false ↓ o'zgaruvchi: canGetId false",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "17 >= 16 → true ↓ o'zgaruvchi: canGetId true",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "demo-swap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "CHIPTA NARXI",
+     "box": "demo-swap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "Zaryad shartini o'zingiz tuzing",
+     "b": "Zaryad shartini o'zingiz tuzdingiz",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SHARTINGIZNI SINAB KO'RING",
+     "box": "fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Rule Maker Zaryad shartini o'zingiz tuzdingiz",
+     "box": "acu-medal-wrap",
+     "gap": 22
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 13,
+     "left": "fade-up delay-1",
+     "right": "frame-dash",
+     "hs": [
+      73,
+      60
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s14",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "AI kod yozdi, lekin xato qilibdi: PIN-kod 1111 bo'lsa ham telefon ochilyapti! Qaysi qatorda xato? Toping va bo",
+     "b": "Qaysi qatorda xato? Bosing.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 if 2 ( shart ) 3 taqqoslash 4 {",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "selse",
+   "type": "case",
+   "inp": [
+    {
+     "label": "if (score > 90) { console.log(\"Ajoyib!\") ▼ shu qatorni siz yozasiz ▼",
+     "ph": "} else {",
+     "gap": 16
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 } — if ni yop 2 else 3 { — yangi blok",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "sflash",
+   "type": "review",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

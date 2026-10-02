@@ -1,0 +1,3806 @@
+[
+ {
+  "file": "yuklash-2026-10-01/1-Modul/02-PmLesson1-v2.jsx",
+  "name": "02-PmLesson1-v2",
+  "lessonId": "pm-m1d2-v1",
+  "stage": "m1-02",
+  "total": 18,
+  "found": {
+   "s": 12,
+   "prac": "0",
+   "id": "koding",
+   "type": "koding",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/03-Htmllesson1-v2.jsx",
+  "name": "03-Htmllesson1-v2",
+  "lessonId": "html-01-v17",
+  "stage": "m1-03",
+  "total": 18,
+  "found": {
+   "s": 9,
+   "prac": "1",
+   "id": "s8",
+   "type": "rule",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/04-Htmllesson2-v2.jsx",
+  "name": "04-Htmllesson2-v2",
+  "lessonId": "html-02-v16",
+  "stage": "m1-04",
+  "total": 19,
+  "found": {
+   "s": 3,
+   "prac": "1",
+   "id": "s3",
+   "type": "exploration",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/05-HtmlTakrorlashLesson-v2.jsx",
+  "name": "05-HtmlTakrorlashLesson-v2",
+  "lessonId": "html-takrorlash-01-05-v2",
+  "stage": "m1-14",
+  "total": 18,
+  "found": {
+   "s": 3,
+   "prac": "1",
+   "id": "s3",
+   "type": "exploration",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/06-PmLesson2-v2.jsx",
+  "name": "06-PmLesson2-v2",
+  "lessonId": "pm-m1d6-v1",
+  "stage": "m1-05",
+  "total": 17,
+  "found": {
+   "s": 13,
+   "prac": "0",
+   "id": "koding",
+   "type": "koding",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/07-CssLesson1-v2.jsx",
+  "name": "07-CssLesson1-v2",
+  "lessonId": "css-01-v17",
+  "stage": "m1-06",
+  "total": 22,
+  "found": {
+   "s": 8,
+   "prac": "1",
+   "id": "s6",
+   "type": "exploration",
+   "tabs": [
+    "index.html",
+    "style.css"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "ok": true
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "ok": true
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html",
+   "style.css"
+  ],
+  "pass": 19,
+  "fail": 0,
+  "skip": 11
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/08-CssLesson2-v2.jsx",
+  "name": "08-CssLesson2-v2",
+  "lessonId": "css-02-v18",
+  "stage": "m1-07",
+  "total": 20,
+  "found": {
+   "s": 8,
+   "prac": "1",
+   "id": "s6",
+   "type": "exploration",
+   "tabs": [
+    "index.html",
+    "style.css"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "ok": true
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "ok": true
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html",
+   "style.css"
+  ],
+  "pass": 19,
+  "fail": 0,
+  "skip": 11
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/09-HtmlPractice-v2.jsx",
+  "name": "09-HtmlPractice-v2",
+  "lessonId": "html-practice-portfolio-v2",
+  "stage": "m1-08",
+  "total": 20,
+  "found": {
+   "s": 3,
+   "prac": "1",
+   "id": "s3",
+   "type": "build",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/10-VsCodeLesson-v2.jsx",
+  "name": "10-VsCodeLesson-v2",
+  "lessonId": "vscode-start-01-v1",
+  "stage": "m1-15",
+  "total": 19,
+  "found": {
+   "s": 9,
+   "prac": "1",
+   "id": "s9",
+   "type": "exploration",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/11-CssPractice-v2.jsx",
+  "name": "11-CssPractice-v2",
+  "lessonId": "css-practice-portfolio-v3",
+  "stage": "m1-10",
+  "total": 20,
+  "found": {
+   "s": 5,
+   "prac": "1",
+   "id": "s5",
+   "type": "build",
+   "tabs": [
+    "index.html",
+    "style.css"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "ok": true
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "ok": true
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html",
+   "style.css"
+  ],
+  "pass": 19,
+  "fail": 0,
+  "skip": 11
+ },
+ {
+  "file": "yuklash-2026-10-01/1-Modul/14-PmLesson3-v2.jsx",
+  "name": "14-PmLesson3-v2",
+  "lessonId": "pm-pitch-03-v19",
+  "stage": "m1-12",
+  "total": 17,
+  "found": {
+   "s": 12,
+   "prac": "0",
+   "id": "s12",
+   "type": "koding",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/02-PmLesson4-v2.jsx",
+  "name": "02-PmLesson4-v2",
+  "lessonId": "pm-m2d2-v1",
+  "stage": null,
+  "total": 17,
+  "found": {
+   "s": 11,
+   "prac": "0",
+   "id": "s11",
+   "type": "koding",
+   "tabs": [
+    "index.html"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le → let",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: con → console.log",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: { juftlik",
+    "skip": "fayl yorlig'i yo'q"
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html"
+  ],
+  "pass": 17,
+  "fail": 0,
+  "skip": 13
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/04-JsVarsLesson-v2.jsx",
+  "name": "04-JsVarsLesson-v2",
+  "lessonId": "js-vars-01-v18",
+  "stage": null,
+  "total": 20,
+  "found": {
+   "s": 6,
+   "prac": "1",
+   "id": "s5b",
+   "type": "test",
+   "tabs": [
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "script.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/05-JsConditionsLesson-v2.jsx",
+  "name": "05-JsConditionsLesson-v2",
+  "lessonId": "js-cond-01-v18",
+  "stage": null,
+  "total": 19,
+  "found": {
+   "s": 6,
+   "prac": "1",
+   "id": "s5b",
+   "type": "test",
+   "tabs": [
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "script.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/06-JsLoopsLesson-v2.jsx",
+  "name": "06-JsLoopsLesson-v2",
+  "lessonId": "js-loops-01-v18",
+  "stage": null,
+  "total": 19,
+  "found": {
+   "s": 6,
+   "prac": "1",
+   "id": "s5b",
+   "type": "test",
+   "tabs": [
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "script.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/07-JsFunctionsLesson-v2.jsx",
+  "name": "07-JsFunctionsLesson-v2",
+  "lessonId": "js-functions-01-v18",
+  "stage": null,
+  "total": 20,
+  "found": {
+   "s": 6,
+   "prac": "1",
+   "id": "s5b",
+   "type": "test",
+   "tabs": [
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "script.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/08-PmLesson5-v2.jsx",
+  "name": "08-PmLesson5-v2",
+  "lessonId": "pm-m2d7-v1",
+  "stage": null,
+  "total": 18,
+  "found": {
+   "s": 12,
+   "prac": "0",
+   "id": "s12",
+   "type": "koding",
+   "tabs": [
+    "ochilishRoyxati.js"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "ochilishRoyxati.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/09-PracticeLesson1-v2.jsx",
+  "name": "09-PracticeLesson1-v2",
+  "lessonId": "practice-01-jonlantirish-v18",
+  "stage": null,
+  "total": 19,
+  "found": {
+   "s": 5,
+   "prac": "1",
+   "id": "s5",
+   "type": "exploration",
+   "tabs": [
+    "index.html",
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "ok": true
+   },
+   {
+    "name": "<fo → form/footer",
+    "ok": true
+   },
+   {
+    "name": "<in → input",
+    "ok": true
+   },
+   {
+    "name": "<ma → main",
+    "ok": true
+   },
+   {
+    "name": "<la → label",
+    "ok": true
+   },
+   {
+    "name": "<bu → button",
+    "ok": true
+   },
+   {
+    "name": "<h6 aniq",
+    "ok": true
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "ok": true
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "ok": true
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "ok": true
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "ok": true
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "ok": true
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "ok": true
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "ok": true
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "ok": true
+   },
+   {
+    "name": "Esc → yopiladi",
+    "ok": true
+   },
+   {
+    "name": "<H katta harf",
+    "ok": true
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "index.html",
+   "script.js"
+  ],
+  "pass": 28,
+  "fail": 0,
+  "skip": 2
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/11-PeanStackLesson-v2.jsx",
+  "name": "11-PeanStackLesson-v2",
+  "lessonId": "pean-stack-01-v18",
+  "stage": null,
+  "total": 20,
+  "found": {
+   "s": 13,
+   "prac": "1",
+   "id": "s12",
+   "type": "test",
+   "tabs": [
+    "script.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "script.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/2-Modul/14-PmLesson6-v2.jsx",
+  "name": "14-PmLesson6-v2",
+  "lessonId": "pm-m2d13-v1",
+  "stage": null,
+  "total": 18,
+  "found": {
+   "s": 11,
+   "prac": "0",
+   "id": "s11",
+   "type": "practice",
+   "tabs": [
+    "qatlamlar.js"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "qatlamlar.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/02-PmUserStoryLesson-v2.jsx",
+  "name": "02-PmUserStoryLesson-v2",
+  "lessonId": "pm-m3d2-v3",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 11,
+   "prac": "0",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "hikoyaYasa.js"
+   ],
+   "clicked": "🛠 Kompilyatorni ochish"
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "hikoyaYasa.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/3-Modul/11-PmLesson9-v2.jsx",
+  "name": "11-PmLesson9-v2",
+  "lessonId": "pm-m3d10-v1",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 10,
+   "prac": "1",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "app.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "app.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/02-PmLesson11-v2.jsx",
+  "name": "02-PmLesson11-v2",
+  "lessonId": "pm-m4d2-v1",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 10,
+   "prac": "1",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "app.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "app.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/4-Modul/12-PmLesson13-v2.jsx",
+  "name": "12-PmLesson13-v2",
+  "lessonId": "pm-m4d12-v1",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 10,
+   "prac": "1",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "app.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "app.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/4a-Modul/02-PmLesson15-v2.jsx",
+  "name": "02-PmLesson15-v2",
+  "lessonId": "pm-m4a2-v1",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 10,
+   "prac": "1",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "app.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "app.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ },
+ {
+  "file": "yuklash-2026-10-01/4c-Modul/02-PmLesson17-v2.jsx",
+  "name": "02-PmLesson17-v2",
+  "lessonId": "pm-m4c2-v1",
+  "stage": null,
+  "total": 16,
+  "found": {
+   "s": 10,
+   "prac": "1",
+   "id": "s10",
+   "type": "koding",
+   "tabs": [
+    "app.js"
+   ],
+   "clicked": null
+  },
+  "cases": [
+   {
+    "name": "<h → h1…h6",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<fo → form/footer",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<in → input",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<ma → main",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<la → label",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<bu → button",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h6 aniq",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<h + Enter → <h1></h1>",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "form + Tab → yoyiladi (Q2)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div> Enter h1 Tab",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<div>in → ichida ro'yxat",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<a + bo'shliq → href",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<input type=\" → qiymatlar",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "ul>li*3 + Tab (Emmet)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "! + Tab (qobiq)",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "Esc → yopiladi",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "<H katta harf",
+    "skip": "index.html yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: h1 { co",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "CSS: color: → qiymat",
+    "skip": "fayl yorlig'i yo'q"
+   },
+   {
+    "name": "JS: log + Tab",
+    "ok": true
+   },
+   {
+    "name": "JS: le → let",
+    "ok": true
+   },
+   {
+    "name": "JS: con → console.log",
+    "ok": true
+   },
+   {
+    "name": "JS: for + Tab → sikl",
+    "ok": true
+   },
+   {
+    "name": "JS: if → bor/yo'q",
+    "ok": true
+   },
+   {
+    "name": "JS: le + Enter → tanlamaydi",
+    "ok": true
+   },
+   {
+    "name": "JS: o'z so'zi salom → jim",
+    "ok": true
+   },
+   {
+    "name": "JS: izoh ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: satr ichida jim",
+    "ok": true
+   },
+   {
+    "name": "JS: arr.le → .length",
+    "ok": true
+   },
+   {
+    "name": "JS: { juftlik",
+    "ok": true
+   }
+  ],
+  "errs": [],
+  "tabs": [
+   "app.js"
+  ],
+  "pass": 11,
+  "fail": 0,
+  "skip": 19
+ }
+]

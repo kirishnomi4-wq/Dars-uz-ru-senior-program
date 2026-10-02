@@ -267,32 +267,32 @@ const RECAPS = {
   4: {
     title: { uz: "Yaxshi prompt nimasi bilan farq qiladi?", ru: 'Чем отличается хороший промпт?' },
     cards: [
-      { ic: "🎯", h: { uz: "Farqi — aniqlik", ru: 'Разница — в точности' }, body: { uz: <>Yaxshi prompt AI'ga <b>aniq</b> aytadi: qanaqa sahifa (mavzu), qanday ko'rinishda (stil), qaysi rangda va qaysi qismlar bilan. Aniq buyruq — aniq natija.</>, ru: <>Хороший промпт говорит AI <b>точно</b>: какая страница (тема), как она выглядит (стиль), какого цвета и с какими частями. Точная команда — точный результат.</> }, vis: <RcFlow items={[{ uz: 'Mavzu', ru: 'Тема' }, { uz: 'Stil', ru: 'Стиль' }, { uz: 'Rang', ru: 'Цвет' }, { uz: 'Qismlar', ru: 'Части' }]} />, ask: { uz: "«Menga sayt yasab ber» desak — AI qaysi rangni, qaysi mavzuni tanlaydi?", ru: 'Если сказать «сделай мне сайт» — какой цвет и какую тему выберет AI?' } },
-      { ic: "📏", h: { uz: "Uzunlik emas, aniqlik", ru: 'Не длина, а точность' }, body: { uz: <>Yaxshi prompt shunchaki <b>uzun</b> bo'lgani uchun ishlamaydi. Qisqa, lekin <b>4 ingredientli</b> aniq buyruq ham ajoyib natija beradi. Muhimi — tafsilot.</>, ru: <>Хороший промпт работает не потому, что он <b>длинный</b>. Короткая, но точная команда из <b>4 ингредиентов</b> тоже даёт отличный результат. Главное — детали.</> } },
-      { ic: "🌐", h: { uz: "Til muhim emas", ru: 'Язык не важен' }, body: { uz: <>Inglizcha yozish shart emas — <b>o'zbekcha</b> aniq prompt ham zo'r sahifa yasaydi. Gap tilida emas, aniqlikda: nima, stil, rang, qismlar.</>, ru: <>Писать по-английски не обязательно — точный промпт <b>на родном языке</b> тоже делает классную страницу. Дело не в языке, а в точности: что, стиль, цвет, части.</> } },
+      { ic: "🎯", h: { uz: "Farqi — aniqlik", ru: 'Разница — в точности' }, body: { uz: <>Yaxshi prompt AI'ga <b>aniq</b> aytadi: mavzu, stil, rang va qismlar.</>, ru: <>Хороший промпт говорит AI <b>точно</b>: тема, стиль, цвет и части.</> }, vis: <RcFlow items={[{ uz: 'Mavzu', ru: 'Тема' }, { uz: 'Stil', ru: 'Стиль' }, { uz: 'Rang', ru: 'Цвет' }, { uz: 'Qismlar', ru: 'Части' }]} />, ask: { uz: "«Menga sayt yasab ber» desak — AI qaysi rangni, qaysi mavzuni tanlaydi?", ru: 'Если сказать «сделай мне сайт» — какой цвет и какую тему выберет AI?' } },
+      { ic: "📏", h: { uz: "Uzunlik emas, aniqlik", ru: 'Не длина, а точность' }, body: { uz: <>Qisqa, lekin 4 ingredientli buyruq ham yaxshi ishlaydi — muhimi <b>tafsilot</b>.</>, ru: <>Короткая, но точная команда из 4 ингредиентов тоже работает — главное <b>детали</b>.</> } },
+      { ic: "🌐", h: { uz: "Til muhim emas", ru: 'Язык не важен' }, body: { uz: <>O'zbekcha aniq prompt ham zo'r sahifa yasaydi — gap tilda emas, <b>aniqlikda</b>.</>, ru: <>Точный промпт на родном языке тоже делает классную страницу — дело не в языке, а в <b>точности</b>.</> } },
     ]
   },
   7: {
     title: { uz: "Qaysi buyruq eng yaxshi?", ru: 'Какая команда лучшая?' },
     cards: [
-      { ic: "🏆", h: { uz: "Eng aniq buyruq g'olib", ru: 'Побеждает самая точная команда' }, body: { uz: <>«Biror narsa qil», «Chiroyli qilib ber», «Sayt» — hammasi <b>noaniq</b>. Eng yaxshisi rang, stil va qismlarni aytadi: <b>ko'k, zamonaviy, sarlavha, tugma, 3 karta</b>.</>, ru: <>«Сделай что-нибудь», «Сделай красиво», «Сайт» — всё это <b>неточно</b>. Лучшая команда называет цвет, стиль и части: <b>синий, современный, заголовок, кнопка, 3 карточки</b>.</> }, vis: <RcFlow items={[{ uz: 'Rang', ru: 'Цвет' }, { uz: 'Stil', ru: 'Стиль' }, { uz: 'Sarlavha', ru: 'Заголовок' }, { uz: '3 karta', ru: '3 карточки' }]} />, ask: { uz: "«Chiroyli qilib ber» — chiroylini har kim boshqacha tasavvur qiladi. AI nimani chizadi?", ru: '«Сделай красиво» — красиво каждый представляет по-своему. Что нарисует AI?' } },
-      { ic: "🍕", h: { uz: "Prompt = pitsa buyurtmasi", ru: 'Промпт = заказ пиццы' }, body: { uz: <>«Ovqat olib kel» desangiz — nima kelishi noma'lum. «<b>Katta pepperoni pitsa, ko'p pishloq bilan</b>» desangiz — aynan xohlaganingizni olasiz. Prompt ham xuddi shunday ishlaydi.</>, ru: <>Скажете «принеси поесть» — неизвестно, что принесут. Скажете «<b>большую пепперони с двойным сыром</b>» — получите именно то, что хотели. Промпт работает так же.</> } },
-      { ic: "🧩", h: { uz: "Qismlarni sanab ber", ru: 'Перечислите части' }, body: { uz: <>Yaxshi buyruqda sahifaning <b>qismlari</b> aytiladi: sarlavha, tugma, 3 ta karta. AI shu qismlarni topib, joyiga terib beradi.</>, ru: <>В хорошей команде названы <b>части</b> страницы: заголовок, кнопка, 3 карточки. AI соберёт эти части и расставит по местам.</> }, vis: <RcFlow items={[{ uz: 'Sarlavha', ru: 'Заголовок' }, { uz: 'Tugma', ru: 'Кнопка' }, { uz: '3 karta', ru: '3 карточки' }]} /> },
+      { ic: "🏆", h: { uz: "Eng aniq buyruq g'olib", ru: 'Побеждает самая точная команда' }, body: { uz: <>Eng yaxshi buyruq <b>rang, stil va qismlarni</b> aniq aytadi.</>, ru: <>Лучшая команда точно называет <b>цвет, стиль и части</b>.</> }, vis: <RcFlow items={[{ uz: 'Rang', ru: 'Цвет' }, { uz: 'Stil', ru: 'Стиль' }, { uz: 'Sarlavha', ru: 'Заголовок' }, { uz: '3 karta', ru: '3 карточки' }]} />, ask: { uz: "«Chiroyli qilib ber» — chiroylini har kim boshqacha tasavvur qiladi. AI nimani chizadi?", ru: '«Сделай красиво» — красиво каждый представляет по-своему. Что нарисует AI?' } },
+      { ic: "🍕", h: { uz: "Prompt = pitsa buyurtmasi", ru: 'Промпт = заказ пиццы' }, body: { uz: <>«Ovqat olib kel» emas, «katta pepperoni pitsa» desangiz, aynan xohlaganingizni olasiz.</>, ru: <>Скажете не «принеси поесть», а «большую пепперони» — получите именно то, что хотели.</> } },
+      { ic: "🧩", h: { uz: "Qismlarni sanab ber", ru: 'Перечислите части' }, body: { uz: <>Yaxshi buyruqda sahifaning <b>qismlari</b> aytiladi: sarlavha, tugma, 3 ta karta.</>, ru: <>В хорошей команде названы <b>части</b> страницы: заголовок, кнопка, 3 карточки.</> }, vis: <RcFlow items={[{ uz: 'Sarlavha', ru: 'Заголовок' }, { uz: 'Tugma', ru: 'Кнопка' }, { uz: '3 karta', ru: '3 карточки' }]} /> },
     ]
   },
   9: {
     title: { uz: "AI birinchi urinishda mos qilmasa?", ru: 'AI не попал с первого раза?' },
     cards: [
-      { ic: "🔁", h: { uz: "Iteratsiya — qayta so'rash", ru: 'Итерация — попросить ещё раз' }, body: { uz: <>Birinchi natija to'liq mos kelmasa, <b>tashlab ketmaysiz</b> — qayta, aniqroq so'raysiz: «tugmani kattaroq qil», «rangni ko'kroq qil». Har so'rovda natija yaxshilanadi.</>, ru: <>Если первый результат не совсем то — вы <b>не бросаете</b>, а просите снова, точнее: «сделай кнопку больше», «сделай цвет синее». С каждым запросом результат лучше.</> }, vis: <RcFlow items={[{ uz: '1-natija', ru: '1-й результат' }, { uz: "Aniqroq so'rov", ru: 'Точнее запрос' }, { uz: 'Yaxshiroq natija', ru: 'Лучше результат' }]} />, ask: { uz: "AI sarlavhani juda kichkina qilib qo'ydi. Endi unga nima deb aytasiz?", ru: 'AI сделал заголовок слишком маленьким. Что вы ему теперь скажете?' } },
-      { ic: "🎨", h: { uz: "Rassomga aytgandek", ru: 'Как художнику' }, body: { uz: <>Rassomga «bu yerini kattaroq chiz» desangiz — u qayta chizadi. AI bilan ham shunday: har <b>izohingiz</b> bilan sahifa asta-sekin mukammallashadi.</>, ru: <>Скажете художнику «нарисуй вот это крупнее» — он перерисует. С AI так же: с каждым вашим <b>уточнением</b> страница становится всё лучше.</> } },
-      { ic: "💪", h: { uz: "Sifatni SIZ ta'minlaysiz", ru: 'Качество обеспечиваете ВЫ' }, body: { uz: <>AI <b>tezlik</b> beradi, lekin <b>sifatni siz</b> nazorat qilasiz. Xafa bo'lib tashlab ketish yoki hammasini qo'lda yozish emas — aniq izoh berib, AI'ni to'g'rilaysiz.</>, ru: <>AI даёт <b>скорость</b>, но <b>качество контролируете вы</b>. Не обижаться и не переписывать всё руками — а дать точное уточнение и направить AI.</> }, vis: <RcFlow items={[{ uz: 'AI = tezlik', ru: 'AI = скорость' }, { uz: 'Siz = sifat', ru: 'Вы = качество' }]} /> },
+      { ic: "🔁", h: { uz: "Iteratsiya — qayta so'rash", ru: 'Итерация — попросить ещё раз' }, body: { uz: <>Natija mos kelmasa, tashlab ketmaysiz — qayta, <b>aniqroq</b> so'raysiz.</>, ru: <>Если результат не тот, вы не бросаете, а просите снова, <b>точнее</b>.</> }, vis: <RcFlow items={[{ uz: '1-natija', ru: '1-й результат' }, { uz: "Aniqroq so'rov", ru: 'Точнее запрос' }, { uz: 'Yaxshiroq natija', ru: 'Лучше результат' }]} />, ask: { uz: "AI sarlavhani juda kichkina qilib qo'ydi. Endi unga nima deb aytasiz?", ru: 'AI сделал заголовок слишком маленьким. Что вы ему теперь скажете?' } },
+      { ic: "🎨", h: { uz: "Rassomga aytgandek", ru: 'Как художнику' }, body: { uz: <>Rassom kabi AI ham har izohingizdan keyin sahifani qayta chizadi.</>, ru: <>Как художник, AI после каждого вашего уточнения перерисовывает страницу.</> } },
+      { ic: "💪", h: { uz: "Sifatni SIZ ta'minlaysiz", ru: 'Качество обеспечиваете ВЫ' }, body: { uz: <>AI tezlik beradi, <b>sifatni</b> esa siz aniq izohlar bilan nazorat qilasiz.</>, ru: <>AI даёт скорость, а <b>качество</b> контролируете вы — точными уточнениями.</> }, vis: <RcFlow items={[{ uz: 'AI = tezlik', ru: 'AI = скорость' }, { uz: 'Siz = sifat', ru: 'Вы = качество' }]} /> },
     ]
   },
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -310,7 +310,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -319,13 +319,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr({ uz: 'karta', ru: 'карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -403,7 +403,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как продолжить, стоит коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -412,7 +412,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -564,7 +564,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(`✓ ${tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
               : waiting
@@ -572,8 +572,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(`${tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(isMentorLive
               ? explainCorrect
               : waiting
@@ -585,11 +586,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1215,12 +1216,12 @@ const Screen4 = (props) => (
     questionText="Yaxshi prompt yomonidan nimasi bilan farq qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yaxshi prompt yomonidan nimasi bilan <span className="italic" style={{ color: T.accent }}>farq qiladi?</span></>, ru: <>Чем хороший промпт <span className="italic" style={{ color: T.accent }}>отличается</span> от плохого?</> })}</h2></>}
     options={[tr({ uz: 'Aniq tafsilot beradi: nima, stil, rang, qismlar', ru: 'Даёт точные детали: что, стиль, цвет, части' }), tr({ uz: "Shunchaki uzunroq bo'ladi", ru: 'Просто длиннее' }), tr({ uz: 'Faqat inglizcha yoziladi', ru: 'Пишется только по-английски' }), tr({ uz: "Hech qanday farqi yo'q", ru: 'Никакой разницы' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Yaxshi prompt aniq aytadi: mavzu, stil, rang va qismlar.", ru: 'Верно! Хороший промпт говорит точно: тема, стиль, цвет и части.' })}
+    explainCorrect={tr({ uz: "Aniq buyruq aniq natija beradi: mavzu, stil, rang, qismlar.", ru: 'Точная команда даёт точный результат: тема, стиль, цвет, части.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — gap uzunlikda emas, aniqlikda. Qisqa, lekin 4 ingredientli prompt ham zo'r ishlaydi.", ru: 'Нет — дело не в длине, а в точности. Короткий промпт с 4 ингредиентами тоже отлично работает.' }),
-      2: tr({ uz: "Yo'q — til muhim emas. O'zbekcha aniq prompt ham ajoyib natija beradi.", ru: 'Нет — язык не важен. Точный промпт на родном языке тоже даёт отличный результат.' }),
-      3: tr({ uz: "Yo'q — farq katta: aniq prompt aniq natija beradi, noaniq prompt bo'sh natija.", ru: 'Нет — разница огромная: точный промпт даёт точный результат, неточный — пустой.' }),
-      default: tr({ uz: 'Yaxshi prompt = aniq tafsilot (mavzu, stil, rang, qismlar).', ru: 'Хороший промпт = точные детали (тема, стиль, цвет, части).' })
+      1: tr({ uz: "Qisqa prompt ham yaxshi ishlaydi — gap uzunlikda emas.", ru: 'Короткий промпт тоже хорошо работает — дело не в длине.' }),
+      2: tr({ uz: "Til muhim emas — o'zbekcha prompt ham yaxshi natija beradi.", ru: 'Язык не важен — промпт на родном языке тоже даёт хороший результат.' }),
+      3: tr({ uz: "Farq katta — noaniq prompt bo'sh natija beradi.", ru: 'Разница огромная — неточный промпт даёт пустой результат.' }),
+      default: tr({ uz: 'Yaxshi prompt AI\'ga nimalarni aytishini eslang.', ru: 'Вспомните, что хороший промпт сообщает AI.' })
     }} />
 );
 
@@ -1302,12 +1303,12 @@ const Screen7 = (props) => (
     questionText="O'yin promo sahifa uchun qaysi buyruq eng yaxshi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>O'yin promo sahifa uchun qaysi buyruq <span className="italic" style={{ color: T.accent }}>eng yaxshi?</span></>, ru: <>Какая команда для промо-страницы игры <span className="italic" style={{ color: T.accent }}>самая лучшая?</span></> })}</h2></>}
     options={[tr({ uz: 'Menga biror narsa qilib ber', ru: 'Сделай мне что-нибудь' }), tr({ uz: "Ko'k rangli, zamonaviy o'yin promo sahifasi — sarlavha, tugma va 3 ta karta bilan", ru: 'Синяя современная промо-страница игры — с заголовком, кнопкой и 3 карточками' }), tr({ uz: 'Chiroyli va zamonaviy qilib ber', ru: 'Сделай красиво и современно' }), tr({ uz: "O'yin haqida sayt qil", ru: 'Сделай сайт про игру' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Bunda 4 ingredient bor: o'yin promo, zamonaviy, ko'k, tugma va kartalar.", ru: 'Верно! Здесь есть 4 ингредиента: промо игры, современный, синий, кнопка и карточки.' })}
+    explainCorrect={tr({ uz: "Bunda 4 ingredient ham bor: mavzu, stil, rang va qismlar.", ru: 'Здесь есть все 4 ингредиента: тема, стиль, цвет и части.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — «biror narsa» juda noaniq. AI nima qilishni bilmaydi, natija tasodifiy bo'ladi.", ru: 'Нет — «что-нибудь» слишком неточно. AI не знает, что делать, результат будет случайным.' }),
-      2: tr({ uz: "Yo'q — «chiroyli, zamonaviy» faqat stil. Mavzu, rang va qismlar aytilmagan — yarmi yetishmaydi.", ru: 'Нет — «красиво, современно» это только стиль. Тема, цвет и части не названы — половины не хватает.' }),
-      3: tr({ uz: "Yo'q — bunda faqat mavzu bor. Stil, rang va qismlar yo'q, AI qolganini o'zi taxmin qiladi.", ru: 'Нет — здесь только тема. Стиля, цвета и частей нет — остальное AI додумает сам.' }),
-      default: tr({ uz: 'Eng yaxshi buyruq 4 ingredientni aniq aytadi.', ru: 'Лучшая команда точно называет 4 ингредиента.' })
+      0: tr({ uz: "«Biror narsa» juda noaniq — AI nima qilishni bilmaydi.", ru: '«Что-нибудь» слишком неточно — AI не знает, что делать.' }),
+      2: tr({ uz: "«Chiroyli, zamonaviy» — faqat stil, qolgani aytilmagan.", ru: '«Красиво, современно» — это только стиль, остальное не названо.' }),
+      3: tr({ uz: "Bunda faqat mavzu bor — qolganini AI o'zi taxmin qiladi.", ru: 'Здесь только тема — остальное AI додумает сам.' }),
+      default: tr({ uz: '4 ingredientni eslang: qaysi buyruqda hammasi bor?', ru: 'Вспомните 4 ингредиента: в какой команде есть все?' })
     }} />
 );
 
@@ -1364,12 +1365,12 @@ const Screen9 = (props) => (
     questionText="AI birinchi urinishda xohlaganingizday qilmasa, nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI birinchi urinishda <span className="italic" style={{ color: T.accent }}>xohlaganingizday</span> qilmasa, nima qilasiz?</>, ru: <>AI с первой попытки сделал <span className="italic" style={{ color: T.accent }}>не так, как вы хотели</span> — что делать?</> })}</h2></>}
     options={[tr({ uz: "Hammasini qo'lda qayta yozaman", ru: 'Перепишу всё руками' }), tr({ uz: 'Tashlab ketaman', ru: 'Брошу и уйду' }), tr({ uz: "Qayta, aniqroq so'rayman (iteratsiya)", ru: 'Попрошу снова, точнее (итерация)' }), tr({ uz: '"AI yomon" deb xafa bo\'laman', ru: 'Обижусь: «AI плохой»' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Bu — iteratsiya. «Rangni o'zgartir», «tugma qo'sh» kabi qo'shimcha buyruqlar bilan natijani qadam-baqadam yaxshilaysiz.", ru: 'Верно! Это — итерация. Дополнительными командами вроде «поменяй цвет», «добавь кнопку» вы шаг за шагом улучшаете результат.' })}
+    explainCorrect={tr({ uz: "Iteratsiya — natijani qo'shimcha buyruqlar bilan yaxshilash.", ru: 'Итерация — улучшать результат дополнительными командами.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — qo'lda qayta yozish AI tezligini yo'qotadi. Qayta so'rash (iteratsiya) ancha tez.", ru: 'Нет — переписывать руками значит потерять скорость AI. Попросить снова (итерация) гораздо быстрее.' }),
-      1: tr({ uz: "Yo'q — birinchi natija oxirgisi emas. Bir-ikki qo'shimcha buyruq bilan ajoyib bo'ladi.", ru: 'Нет — первый результат не последний. Одна-две дополнительные команды — и будет отлично.' }),
-      3: tr({ uz: "Yo'q — AI yomon emas, shunchaki aniqroq yo'naltirish kerak. Qayta so'rang.", ru: 'Нет — AI не плохой, его просто нужно точнее направить. Попросите снова.' }),
-      default: tr({ uz: "Yoqmasa — qayta, aniqroq so'raysiz. Bu iteratsiya.", ru: 'Не нравится — просите снова, точнее. Это итерация.' })
+      0: tr({ uz: "Qo'lda qayta yozsangiz, AI bergan tezlik yo'qoladi.", ru: 'Если переписывать руками, скорость AI теряется.' }),
+      1: tr({ uz: "Birinchi natija oxirgisi emas — tashlab ketish shart emas.", ru: 'Первый результат — не последний, бросать не нужно.' }),
+      3: tr({ uz: "Xafa bo'lish sahifani yaxshilamaydi — AI yomon emas.", ru: 'Обида страницу не улучшит — AI не плохой.' }),
+      default: tr({ uz: "Natija yoqmasa, AI'ga yana nima aytish mumkinligini o'ylang.", ru: 'Подумайте, что ещё можно сделать с AI, если результат не нравится.' })
     }} />
 );
 

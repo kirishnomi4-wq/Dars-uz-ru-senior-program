@@ -1,0 +1,151 @@
+yuklash-2026-10-01/1-Modul/01-InternetLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1649
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/02-PmLesson1-v2.jsx  .visible {visibility:visible}  ×1  qator: 4347
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/03-Htmllesson1-v2.jsx  .visible {visibility:visible}  ×1  qator: 4455
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/04-Htmllesson2-v2.jsx  .visible {visibility:visible}  ×1  qator: 4484
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/05-HtmlTakrorlashLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4471
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/06-PmLesson2-v2.jsx  .visible {visibility:visible}  ×1  qator: 4380
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/07-CssLesson1-v2.jsx  .visible {visibility:visible}  ×1  qator: 4456
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/08-CssLesson2-v2.jsx  .visible {visibility:visible}  ×1  qator: 4457
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/08-CssLesson2-v2.jsx  .block {display:block}  ×2  qator: 5023,5031
+      {`chip ${mode === "block" ? "chip-on" : ""}`}
+yuklash-2026-10-01/1-Modul/08-CssLesson2-v2.jsx  .inline {display:inline}  ×1  qator: 5023
+      {`chip ${mode === "inline" ? "chip-on" : ""}`}
+yuklash-2026-10-01/1-Modul/09-HtmlPractice-v2.jsx  .visible {visibility:visible}  ×1  qator: 4406
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/10-VsCodeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4511
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/11-CssPractice-v2.jsx  .visible {visibility:visible}  ×1  qator: 4461
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/12-GitLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1623
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/13-DeployLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1632
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/1-Modul/14-PmLesson3-v2.jsx  .visible {visibility:visible}  ×1  qator: 4500
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/01-JsIntroLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1615
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/02-PmLesson4-v2.jsx  .visible {visibility:visible}  ×1  qator: 4509
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/04-JsVarsLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4463
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/05-JsConditionsLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4463
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/06-JsLoopsLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4263
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/07-JsFunctionsLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4295
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/08-PmLesson5-v2.jsx  .visible {visibility:visible}  ×1  qator: 4359
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/09-PracticeLesson1-v2.jsx  .visible {visibility:visible}  ×1  qator: 4430
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/10-PracticeLesson2-v2.jsx  .visible {visibility:visible}  ×1  qator: 1579
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/11-PeanStackLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4294
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/12-PracticeLesson3-v2.jsx  .visible {visibility:visible}  ×1  qator: 1575
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/13-PracticeLesson4-v2.jsx  .visible {visibility:visible}  ×1  qator: 1578
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/2-Modul/14-PmLesson6-v2.jsx  .visible {visibility:visible}  ×1  qator: 4325
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/01-ReactIntroLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1453
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/02-PmUserStoryLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 4344
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/04-ReactFirstComponentLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1456
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/05-ReactStateEffectLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1450
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/06-PmLesson8-v2.jsx  .visible {visibility:visible}  ×1  qator: 1524
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/07-ReactPropsReuseLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1482
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/08-ReactCrudPracticeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1488
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/09-ReactApiGetLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1484
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/10-ReactApiPostLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1487
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/11-PmLesson9-v2.jsx  .visible {visibility:visible}  ×1  qator: 4368
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/12-ReactRouterPracticeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1487
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/13-ReactProjectDayLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1495
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/14-ReactBuildSiteLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1490
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/3-Modul/15-PmLesson10-v2.jsx  .visible {visibility:visible}  ×1  qator: 1525
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4a-Modul/01-NestArchAliveLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1508
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4a-Modul/02-PmLesson15-v2.jsx  .visible {visibility:visible}  ×1  qator: 4365
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4a-Modul/03-NestArchResourceLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1518
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4a-Modul/04-NestArchPracticeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1472
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4b-Modul/01-JestUnitTestLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1467
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4b-Modul/02-PmLesson16-v2.jsx  .visible {visibility:visible}  ×1  qator: 1522
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4b-Modul/03-EdgeCasesTestLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1468
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/01-CiCdIntroLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1492
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/02-PmLesson17-v2.jsx  .visible {visibility:visible}  ×1  qator: 4365
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/03-GithubActionsLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1489
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/04-FullPipelineProjectLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1490
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/04-FullPipelineProjectLesson-v2.jsx  .inline {display:inline}  ×2  qator: 2586,2588
+      {`code-input inline ${okTrig ? "ok" : ""}`}
+yuklash-2026-10-01/4c-Modul/05-AiPipelineProjectLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1485
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/06-PmLesson18-v2.jsx  .visible {visibility:visible}  ×1  qator: 1522
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4c-Modul/07-FullProPipelineLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1484
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/01-DataIntroLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1484
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/02-PmLesson11-v2.jsx  .visible {visibility:visible}  ×1  qator: 4365
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/03-DbSqlNosqlLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1482
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/04-NodeServerLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1485
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/05-RoutingLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1481
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/06-PostgresCrudLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1451
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/07-PmLesson12-v2.jsx  .visible {visibility:visible}  ×1  qator: 1522
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/08-BackendCrudPracticeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1492
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/09-ApiPostmanLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1484
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/10-FullstackConnectPracticeLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1467
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/11-AuthEnvLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1455
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/11-AuthEnvLesson-v2.jsx  .block {display:block}  ×1  qator: 2158
+      {`guarddoor ${sent ? hasToken ? "open" : "block" : ""}`}
+yuklash-2026-10-01/4-Modul/12-PmLesson13-v2.jsx  .visible {visibility:visible}  ×1  qator: 4365
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/12-PmLesson13-v2.jsx  .static {position:static}  ×1  qator: 5525
+      "elon-gap static"
+yuklash-2026-10-01/4-Modul/13-FullstackProjectDayLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1505
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/14-FullstackFeedbackLesson-v2.jsx  .visible {visibility:visible}  ×1  qator: 1533
+      {`feedback-block ${visible ? "visible" : ""}`}
+yuklash-2026-10-01/4-Modul/15-PmLesson14-v2.jsx  .visible {visibility:visible}  ×1  qator: 1522
+      {`feedback-block ${visible ? "visible" : ""}`}
+JAMI: 75 (fayl×sinf) · 70 fayl

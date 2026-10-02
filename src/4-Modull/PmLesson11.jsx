@@ -271,38 +271,38 @@ const RECAPS = {
   3: {
     title: { uz: "Yozib qo'yilgan narsa qaytadi", ru: 'Записанное возвращается' },
     cards: [
-      { ic: '📱', h: { uz: 'Ikki xil narsa', ru: 'Две разные вещи' }, body: { uz: <>Ekranda bir marta ko'ringan narsa faqat <b>o'sha payt</b> ko'rinadi. Ilova yozib qo'ygan narsa esa ertaga ham, bir oydan keyin ham qaytadan chiqadi.</>, ru: <>То, что один раз мелькнуло на экране, видно <b>только в тот момент</b>. А то, что приложение записало, появится снова и завтра, и через месяц.</> } },
-      { ic: '💾', h: { uz: 'Shuning uchun maydon tanlanadi', ru: 'Поэтому поле выбирают' }, body: { uz: <>Ilova hamma narsani yozib qo'ymaydi. <b>Maydon</b> — ilova har safar tinglaganingizda yozib qo'yadigan bitta narsa; uni oldindan tanlab qo'yish kerak.</>, ru: <>Приложение не записывает всё подряд. <b>Поле</b> — это одна вещь, которую приложение записывает при каждом прослушивании; её нужно выбрать заранее.</> } },
-      { ic: '🔁', h: { uz: "Ertangi ekran bugun to'ldiriladi", ru: 'Завтрашний экран заполняется сегодня' }, body: { uz: <>Ertaga ko'rsatiladigan narsa bugun <b>yozib qo'yilgan</b> bo'lishi shart — keyin qo'shib bo'lmaydi.</>, ru: <>То, что покажут завтра, должно быть <b>записано</b> сегодня — потом уже не добавить.</> }, ask: { uz: "Bugun yozib qo'yilmagan narsani ertaga ko'rsatib bo'ladimi?", ru: 'Можно ли завтра показать то, что сегодня не записали?' } }
+      { ic: '📱', h: { uz: 'Ikki xil narsa', ru: 'Две разные вещи' }, body: { uz: <>Bir marta ko'ringan narsa o'tib ketadi, <b>yozib qo'yilgani</b> esa ertaga ham qaytadi.</>, ru: <>Мелькнувшее на экране уходит, а <b>записанное</b> вернётся и завтра.</> } },
+      { ic: '💾', h: { uz: 'Shuning uchun maydon tanlanadi', ru: 'Поэтому поле выбирают' }, body: { uz: <><b>Maydon</b> — ilova har safar yozib qo'yadigan bitta narsa, uni oldindan tanlaysiz.</>, ru: <><b>Поле</b> — одна вещь, которую приложение записывает каждый раз; её выбирают заранее.</> } },
+      { ic: '🔁', h: { uz: "Ertangi ekran bugun to'ldiriladi", ru: 'Завтрашний экран заполняется сегодня' }, body: { uz: <>Ertaga ko'rsatiladigan narsa <b>bugun yozib qo'yilgan</b> bo'lishi shart.</>, ru: <>То, что покажут завтра, должно быть <b>записано сегодня</b>.</> }, ask: { uz: "Bugun yozib qo'yilmagan narsani ertaga ko'rsatib bo'ladimi?", ru: 'Можно ли завтра показать то, что сегодня не записали?' } }
     ]
   },
   5: {
     title: { uz: "Har maydon ortida bitta bo'lim turadi", ru: 'За каждым полем стоит один раздел' },
     cards: [
-      { ic: '🎛', h: { uz: "Bo'lim bermaydigan maydon", ru: 'Поле, которое не даёт раздела' }, body: { uz: <>Maydon saqlandi, lekin undan bitta ham bo'lim qurilmadi — bunday maydon <b>bekorga saqlanadi</b>.</>, ru: <>Поле сохранили, но из него не построился ни один раздел — такое поле <b>хранится зря</b>.</> } },
-      { ic: '✂️', h: { uz: "Shuning uchun ro'yxat qisqa", ru: 'Поэтому список короткий' }, body: { uz: <>Bo'lim topilmasa, maydon saqlanadiganlar ro'yxatiga <b>kiritilmaydi</b> — shuning uchun bu ro'yxat uzun bo'lmaydi.</>, ru: <>Если раздел не нашёлся, поле <b>не попадает</b> в список сохраняемых — поэтому этот список не бывает длинным.</> } },
-      { ic: '🔎', h: { uz: 'Bitta savol yetadi', ru: 'Хватит одного вопроса' }, body: { uz: <>Har maydonga bitta savol bering: bundan qaysi <b>bo'lim ochiladi</b>? Javob topilmasa — o'sha maydon kerak emas.</>, ru: <>Задайте каждому полю один вопрос: какой <b>раздел из него откроется</b>? Нет ответа — поле не нужно.</> }, ask: { uz: "«Telefon batareyasi darajasi» — bundan qaysi bo'lim ochiladi?", ru: '«Уровень заряда телефона» — какой раздел из этого откроется?' } }
+      { ic: '🎛', h: { uz: "Bo'lim bermaydigan maydon", ru: 'Поле, которое не даёт раздела' }, body: { uz: <>Undan bitta ham bo'lim qurilmasa, maydon <b>bekorga saqlanadi</b>.</>, ru: <>Если из поля не строится ни один раздел, оно <b>хранится зря</b>.</> } },
+      { ic: '✂️', h: { uz: "Shuning uchun ro'yxat qisqa", ru: 'Поэтому список короткий' }, body: { uz: <>Bo'lim topilmagan maydon ro'yxatga kirmaydi, shuning uchun ro'yxat <b>qisqa</b> bo'ladi.</>, ru: <>Поле без раздела не попадает в список, поэтому список <b>короткий</b>.</> } },
+      { ic: '🔎', h: { uz: 'Bitta savol yetadi', ru: 'Хватит одного вопроса' }, body: { uz: <>Har maydonga bitta savol bering: <b>bundan qaysi bo'lim ochiladi?</b></>, ru: <>Задайте каждому полю один вопрос: <b>какой раздел из него откроется?</b></> }, ask: { uz: "«Telefon batareyasi darajasi» — bundan qaysi bo'lim ochiladi?", ru: '«Уровень заряда телефона» — какой раздел из этого откроется?' } }
     ]
   },
   7: {
     title: { uz: "Bosh sahifa saqlangan ma'lumotdan quriladi", ru: 'Главная строится из сохранённых данных' },
     cards: [
-      { ic: '🎬', h: { uz: 'Netflix bosh sahifasi', ru: 'Главная Netflix' }, body: { uz: <>Netflix — kino va serial ko'radigan xizmat. Uni bir vaqtda ochgan ikki odam bir xil bosh sahifani ko'rmaydi: har kimniki <b>uning o'zi ko'rgan kinolaridan</b> yig'iladi.</>, ru: <>Netflix — сервис, где смотрят кино и сериалы. Два человека, открывшие её одновременно, не увидят одинаковую главную: у каждого она собрана <b>из фильмов, которые смотрел он сам</b>.</> } },
-      { ic: '📊', h: { uz: 'Netflix aytgan raqam', ru: 'Цифра, которую назвал Netflix' }, body: { uz: <>2016-yilda Netflix ochiq aytdi: ko'rishlarning qariyb <b>80 foizi</b> tavsiyadan keladi — har beshta ko'rishning to'rttasi.</>, ru: <>В 2016 году Netflix открыто сказал: почти <b>80 процентов</b> просмотров приходят из рекомендаций — четыре из каждых пяти.</> } },
-      { ic: '🧭', h: { uz: "Ma'lumot qaror qiladi", ru: 'Данные решают' }, body: { uz: <>Netflix «kim nimani ko'rdi» ni yozib bormaganda, bu sahifa umuman bo'lmasdi. Nimani yozib borishni <b>odam hal qiladi</b>.</>, ru: <>Если бы Netflix не записывал «кто что посмотрел», этой страницы не было бы вовсе. Что записывать — <b>решает человек</b>.</> }, ask: { uz: "Netflix bosh sahifasi nimadan yig'iladi?", ru: 'Из чего собирается главная Netflix?' } }
+      { ic: '🎬', h: { uz: 'Netflix bosh sahifasi', ru: 'Главная Netflix' }, body: { uz: <>Netflix'da har kimning bosh sahifasi <b>o'zi ko'rgan kinolaridan</b> yig'iladi.</>, ru: <>В Netflix главная у каждого собирается из <b>фильмов, которые смотрел он сам</b>.</> } },
+      { ic: '📊', h: { uz: 'Netflix aytgan raqam', ru: 'Цифра, которую назвал Netflix' }, body: { uz: <>2016-yilda Netflix aytdi: ko'rishlarning <b>qariyb 80 foizi</b> tavsiyadan keladi.</>, ru: <>В 2016 году Netflix сказал: <b>почти 80 процентов</b> просмотров приходят из рекомендаций.</> } },
+      { ic: '🧭', h: { uz: "Ma'lumot qaror qiladi", ru: 'Данные решают' }, body: { uz: <>«Kim nimani ko'rdi» yozib borilmaganda, bu sahifa <b>umuman bo'lmasdi</b>.</>, ru: <>Если бы Netflix не записывал «кто что посмотрел», этой страницы <b>не было бы</b>.</> }, ask: { uz: "Netflix bosh sahifasi nimadan yig'iladi?", ru: 'Из чего собирается главная Netflix?' } }
     ]
   },
   11: {
     title: { uz: 'Saqlashga arziydigan maydon', ru: 'Поле, которое стоит хранить' },
     cards: [
-      { ic: '✅', h: { uz: "Bo'lim nomi aytilsa — arziydi", ru: 'Назван раздел — значит, стоит' }, body: { uz: <>Yaxshi maydondan aniq bo'lim quriladi: «Qo'shiq oxirigacha tinglandimi» maydonidan <b>«Sizga yoqadi»</b> bo'limi chiqadi.</>, ru: <>Из хорошего поля строится конкретный раздел: из поля «Дослушана ли песня до конца» получается раздел <b>«Вам нравится»</b>.</> } },
-      { ic: '🌫', h: { uz: "Umumiy so'zlar bo'lim bermaydi", ru: 'Общие слова раздела не дают' }, body: { uz: <>«Umumiy ma'lumot», «kerak bo'ladi», «foydali» — bulardan <b>bitta ham bo'lim</b> qurib bo'lmaydi.</>, ru: <>«Общая информация», «пригодится», «полезно» — из этого <b>ни одного раздела</b> не построить.</> } },
-      { ic: '❓', h: { uz: "O'zingizni tekshiring", ru: 'Проверьте себя' }, body: { uz: <>Yozgan maydoningizni o'chirib ko'ring: ilovada qaysi bo'lim <b>yo'qolar edi</b>? Javob topilmasa — maydon kerak emas.</>, ru: <>Мысленно удалите поле, которое написали: какой раздел в приложении <b>исчез бы</b>? Нет ответа — поле не нужно.</> }, ask: { uz: "«Qo'shiq necha marta tinglandi» saqlansa — qaysi bo'lim ochiladi?", ru: 'Если сохранить «Сколько раз послушали песню» — какой раздел откроется?' } }
+      { ic: '✅', h: { uz: "Bo'lim nomi aytilsa — arziydi", ru: 'Назван раздел — значит, стоит' }, body: { uz: <>Yaxshi maydondan aniq bo'lim chiqadi: «oxirigacha tinglandimi» → <b>«Sizga yoqadi»</b>.</>, ru: <>Из хорошего поля выходит конкретный раздел: «дослушана ли песня» → <b>«Вам нравится»</b>.</> } },
+      { ic: '🌫', h: { uz: "Umumiy so'zlar bo'lim bermaydi", ru: 'Общие слова раздела не дают' }, body: { uz: <>«Umumiy ma'lumot», «foydali» kabi so'zlardan <b>bitta ham bo'lim</b> qurib bo'lmaydi.</>, ru: <>Из слов вроде «общая информация» или «полезно» <b>ни одного раздела</b> не построить.</> } },
+      { ic: '❓', h: { uz: "O'zingizni tekshiring", ru: 'Проверьте себя' }, body: { uz: <>Maydonni o'chirib ko'ring: <b>qaysi bo'lim yo'qolar edi?</b></>, ru: <>Мысленно удалите поле: <b>какой раздел исчез бы?</b></> }, ask: { uz: "«Qo'shiq necha marta tinglandi» saqlansa — qaysi bo'lim ochiladi?", ru: 'Если сохранить «Сколько раз послушали песню» — какой раздел откроется?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -320,7 +320,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -328,13 +328,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -413,7 +413,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -494,7 +494,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -502,8 +502,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -514,7 +515,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -829,9 +830,9 @@ const Screen3 = (props) => (
     correctIdx={1}
     explainCorrect={tr({ uz: "Eslab qolinmagan narsa faqat o'sha payt ko'rinadi.", ru: 'Незапомненное видно только в тот момент.' })}
     explainWrong={{
-      0: tr({ uz: "Bir marta ko'rilgani eslab qolinmagan bo'lsa, keyin uni qaytadan chiqarib bo'lmaydi.", ru: 'Если увиденное один раз не запомнили, потом его уже не вывести снова.' }),
-      2: tr({ uz: "So'rash yetmaydi: ilova faqat eslab qolgan ma'lumotini ko'rsata oladi.", ru: 'Просьбы мало: приложение показывает только те данные, которые запомнило.' }),
-      default: tr({ uz: "Ilova faqat eslab qolgan ma'lumotini keyin yana ko'rsata oladi.", ru: 'Приложение может снова показать только те данные, которые запомнило.' })
+      0: tr({ uz: "Bir marta ko'rilgan narsa yozilmasa, keyin qaytmaydi.", ru: 'Увиденное один раз, если его не записали, потом не вернётся.' }),
+      2: tr({ uz: "So'rash yetmaydi: yozilmagan narsani ilova bera olmaydi.", ru: 'Просьбы мало: то, что не записано, приложение не покажет.' }),
+      default: tr({ uz: "Ilova keyin nimani qaytadan chiqara olishini o'ylang.", ru: 'Подумайте, что приложение сможет показать снова потом.' })
     }}
   />
 );
@@ -952,11 +953,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: "Kontaktlar saqlandi, lekin ilovada hech narsa o'zgarmadi — nega", ru: 'Контакты сохранены, но в приложении ничего не изменилось — почему' })}
     options={[tr({ uz: "Chunki bu ma'lumotdan foydali bo'lim chiqmaydi", ru: 'Потому что из этих данных не получается полезный раздел' }), tr({ uz: 'Chunki ilova buzilgan', ru: 'Потому что приложение сломалось' }), tr({ uz: "Chunki keyinroq o'zi ishlay boshlaydi", ru: 'Потому что позже оно заработает само' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Saqlangan ma'lumotdan bo'lim chiqmasa, u bekorga joy egallaydi.", ru: 'Если из сохранённых данных не выходит раздел, они зря занимают место.' })}
+    explainCorrect={tr({ uz: "Bo'lim bermaydigan ma'lumot bekorga joy egallaydi.", ru: 'Данные, из которых не выходит раздел, зря занимают место.' })}
     explainWrong={{
-      1: tr({ uz: "Ilova buzilmagan: kontaktlarni bemalol saqladi. Faqat ulardan musiqa ilovasiga foydali hech narsa chiqmaydi.", ru: 'Приложение не сломалось: контакты оно спокойно сохранило. Просто из них для музыкального приложения не выходит ничего полезного.' }),
-      2: tr({ uz: "Bo'lim o'zidan paydo bo'lmaydi — uni saqlangan ma'lumot quradi. Kontaktlardan qo'shiq bo'limi chiqmaydi.", ru: 'Раздел не появляется сам по себе — его строят сохранённые данные. Из контактов раздел с песнями не выходит.' }),
-      default: tr({ uz: "Har foydali bo'lim ortida bitta kerakli ma'lumot turadi — kontaktlardan bunday bo'lim chiqmadi.", ru: 'За каждым полезным разделом стоят одни нужные данные — из контактов такого раздела не вышло.' })
+      1: tr({ uz: "Ilova buzilmagan — kontaktlarni bemalol saqladi.", ru: 'Приложение не сломалось — контакты оно спокойно сохранило.' }),
+      2: tr({ uz: "Bo'lim o'zidan paydo bo'lmaydi — uni ma'lumot quradi.", ru: 'Раздел сам не появится — его строят данные.' }),
+      default: tr({ uz: "Kontaktlardan musiqa ilovasiga nima chiqishini o'ylang.", ru: 'Подумайте, что музыкальному приложению даст список контактов.' })
     }}
   />
 );
@@ -1102,11 +1103,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: "Netflix bosh sahifasi nimadan yig'iladi", ru: 'Из чего собирается главная Netflix' })}
     options={[tr({ uz: "Har kim ilgari ko'rgan kinolardan", ru: 'Из фильмов, которые каждый смотрел раньше' }), tr({ uz: "Eng ko'p pul ishlagan kinolardan", ru: 'Из фильмов, которые заработали больше всего денег' }), tr({ uz: "Hamma uchun tuzilgan bitta ro'yxatdan", ru: 'Из одного списка, составленного для всех' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Shu sababli ikki odam Netflix'ni ochsa, bosh sahifalari har xil bo'ladi.", ru: 'Поэтому, когда два человека открывают Netflix, главные у них разные.' })}
+    explainCorrect={tr({ uz: "Shuning uchun ikki odamda bosh sahifa har xil bo'ladi.", ru: 'Поэтому у двух людей главная страница разная.' })}
     explainWrong={{
-      1: tr({ uz: "Pul haqida voqeada gap yo'q: bosh sahifa har kimning ilgari ko'rganidan yig'iladi.", ru: 'О деньгах в истории ни слова: главная собирается из того, что каждый смотрел раньше.' }),
-      2: tr({ uz: "Bitta umumiy ro'yxat bo'lganda ikki odam bir xil bosh sahifani ko'rardi.", ru: 'Будь список один на всех, два человека видели бы одинаковую главную.' }),
-      default: tr({ uz: "Bosh sahifa har kimning ilgari ko'rgan kinolaridan quriladi — shuning uchun u har kimda har xil.", ru: 'Главная строится из фильмов, которые каждый смотрел раньше, — поэтому у всех она разная.' })
+      1: tr({ uz: "Voqeada pul haqida gap yo'q edi.", ru: 'О деньгах в этой истории не было ни слова.' }),
+      2: tr({ uz: "Umumiy ro'yxatda ikki odam bir xil sahifani ko'rardi.", ru: 'С общим списком два человека видели бы одинаковую главную.' }),
+      default: tr({ uz: "Nega ikki odamning bosh sahifasi har xil — shuni o'ylang.", ru: 'Подумайте, почему у двух людей главная страница разная.' })
     }}
   />
 );
@@ -1316,7 +1317,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const inBuilt = !!(korsat && korsat.includes(y.n));
                 // data-l — mobil ko'rinishda sarlavha-qatori o'rniga har qiymat yonida turadi
                 return (
-                  <button key={y.n} type="button" className={`tbl-row${chosen ? ' on' : ''}${inBuilt ? ' fixed' : ''}`} onClick={() => toggleRow(y.n)} disabled={isMentor || !!built || done}>
+                  <button key={y.n} type="button" className={`tbl-row${chosen ? ' on' : ''}${inBuilt ? ' is-fixed' : ''}`} onClick={() => toggleRow(y.n)} disabled={isMentor || !!built || done}>
                     <span className="tbl-c c0"><i className="tbl-box">{chosen ? '✓' : ''}</i>{y.n}</span>
                     <span className="tbl-c" data-l={tr({ uz: "🎵 Qaysi qo'shiq", ru: '🎵 Какая песня' })}>{y.qoshiq}</span>
                     <span className="tbl-c mono" data-l={tr({ uz: '⏰ Qachon', ru: '⏰ Когда' })}>{y.vaqt}</span>
@@ -1707,11 +1708,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Qaysi maydonni saqlashga arziydi', ru: 'Какое поле стоит хранить' })}
     options={[tr({ uz: "Telefondagi kontaktlar ro'yxati", ru: 'Список контактов в телефоне' }), tr({ uz: "Qo'shiq oxirigacha tinglandimi", ru: 'Дослушана ли песня до конца' }), tr({ uz: "Qo'shiq qayerda tinglandi", ru: 'Где прослушана песня' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Bundan «Sizga yoqadi» bo'limi quriladi; qolgan ikkitasi bo'lim bermaydi.", ru: 'Из этого строится раздел «Вам нравится»; два других раздела не дают.' })}
+    explainCorrect={tr({ uz: "Bu maydondan «Sizga yoqadi» bo'limi quriladi.", ru: 'Из этого поля строится раздел «Вам нравится».' })}
     explainWrong={{
-      0: tr({ uz: "Kontaktlardan bitta ham bo'lim qurilmaydi — bu maydon bekorga saqlanadi.", ru: 'Из контактов не строится ни один раздел — это поле хранится зря.' }),
-      2: tr({ uz: "Qayerda tinglanganidan bitta ham bo'lim qurilmaydi — buni beshta tugma sinovida ko'rgansiz.", ru: 'Из места прослушивания не строится ни один раздел — вы видели это в опыте с пятью переключателями.' }),
-      default: tr({ uz: "Saqlashga arziydigan maydon ortida bitta bo'lim turadi.", ru: 'За полем, которое стоит хранить, стоит один раздел.' })
+      0: tr({ uz: "Kontaktlardan bitta ham bo'lim qurilmaydi.", ru: 'Из контактов не строится ни один раздел.' }),
+      2: tr({ uz: "Qayerda tinglanganidan bitta ham bo'lim qurilmaydi.", ru: 'Из места прослушивания не строится ни один раздел.' }),
+      default: tr({ uz: "Qaysi maydondan aniq bo'lim qurilishini qidiring.", ru: 'Ищите поле, из которого строится конкретный раздел.' })
     }}
   />
 );
@@ -2788,7 +2789,7 @@ const CSS_LESSON = `
   .tbl-row:hover:not(:disabled) { background: #FBFAFE; box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
   .tbl-row:active:not(:disabled) { transform: scale(0.99); }
   .tbl-row.on { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; }
-  .tbl-row.fixed { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; }
+  .tbl-row.is-fixed { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; }
   /* Klaviatura-fokusi belgilangan qatorda ham ko'rinsin — shuning uchun holat-ranglardan keyin */
   .tbl-row:focus-visible { outline: none; box-shadow: inset 0 0 0 2px ${T.accent}, 0 0 0 4px rgba(91,61,230,0.22); }
   .tbl-row:disabled { cursor: default; }
@@ -2796,7 +2797,7 @@ const CSS_LESSON = `
   .tbl-c.c0 { display: inline-flex; align-items: center; gap: 6px; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; }
   .tbl-box { flex-shrink: 0; width: 17px; height: 17px; border-radius: 5px; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.line}; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-family: 'Manrope'; font-size: 11px; font-weight: 800; color: #fff; transition: background 0.15s; }
   .tbl-row.on .tbl-box { background: ${T.accent}; box-shadow: none; }
-  .tbl-row.fixed .tbl-box { background: ${T.success}; box-shadow: none; }
+  .tbl-row.is-fixed .tbl-box { background: ${T.success}; box-shadow: none; }
   /* Oraliq siqilish: jadval .split ustunida ~520px enni oladi — sarlavhalarga joy beriladi */
   @media (max-width: 760px) { .tbl-head, .tbl-row { grid-template-columns: 44px minmax(0,1fr) minmax(0,0.62fr) minmax(0,0.95fr); gap: 5px; } }
   /* MOBIL: to'rt bo'lak sinadi — MA'NO saqlanadi. Har yozuv bitta kartaga aylanadi va

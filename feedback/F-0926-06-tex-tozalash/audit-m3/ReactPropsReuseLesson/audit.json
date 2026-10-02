@@ -1,0 +1,578 @@
+{
+ "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+ "lessonId": "react-props-reuse-04-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, BUNGA NECHTA KOMPONENT KODI YOZILGAN?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Qolip — bitta <GameCard />, farq esa faqat ma'lumotda (props). Bugun shu ma'lumotni",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Butun katalogni bitta qator kod bilan chiza olamizmi?",
+     "b": "→ butun katalog — bitta qator kod bilan",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING NATIJANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ butun katalog — bitta qator kod bilan",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 18,
+     "left": "code-box fade-up delay-1",
+     "right": "code-box fade-up delay-2",
+     "hs": [
+      86,
+      104
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "APP — JO'NATUVCHI",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "GAMECARD — QABUL QILUVCHI",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FABRIKA — GAMECARD-3000",
+     "box": "cf cf--debut cf-hum ",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "FABRIKA — GAMECARD-3000",
+     "box": "code-box fade-up delay-2",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "name=\"Doors\" · players=\"310K\"",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "javon bo'sh…",
+     "box": "cf-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FABRIKA — SLIP → KARTOCHKA",
+     "box": "cf cf--fields  ",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "FABRIKA — SLIP → KARTOCHKA",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "name=? players=? emoji=?",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "javon bo'sh…",
+     "box": "cf-body",
+     "gap": -2
+    },
+    {
+     "pos": "tepada",
+     "t": "name=\"Bee Swarm\" players=? emoji=?",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tepada",
+     "t": "name=\"Doors\" players=? emoji=?",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tepada",
+     "t": "name=\"Pet Sim 99\" players=? emoji=?",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tepada",
+     "t": "name=\"Pet Sim 99\" players=\"260K\" emoji=?",
+     "box": "cf-body",
+     "gap": 2
+    }
+   ],
+   "scroll": 19,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "App → props (⬇ pastga)",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "javon bo'sh…",
+     "box": "cf-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "❌ TypeError: props faqat o'qish uchun!",
+     "b": "Qoida: props — faqat o'qish uchun. O'zgartirishni faqat ota qiladi (yangi qiymat yuboradi). Komponent o'zida n",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KONSOL",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FABRIKA — MUHRLANGAN KARTOCHKA",
+     "box": "cf cf--sealed  ",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "App → name=\"Bee Swarm\"",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🔒 ✎",
+     "box": "cf-body",
+     "gap": -2
+    },
+    {
+     "pos": "tepada",
+     "t": "MASHINA 1 · ISHLATILDI 1 · KARTOCHKA 1 App → name=\"Bee Swarm\" <GameCard /> 🐾 ▶ Adopt Me! ",
+     "box": "frame-success fade-step",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "MASHINA 1 · ISHLATILDI 1 · KARTOCHKA 1 App → name=\"Adopt Me!\" <GameCard /> 🐝 ▶ Bee Swarm ",
+     "box": "frame-success fade-step",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "App → name=\"Adopt Me!\"",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐝 ▶ Bee Swarm 👍 93% 🔒 ✎",
+     "box": "cf-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 67,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "GAMES — MA'LUMOTLAR MASSIVI",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BU QATOR QANDAY KARTOCHKA BO'LADI? 0 / 3",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Yetadi! games.map(…) — ro'yxatdagi har bir o'yin uchun bitta kartochka yasaydi: qatorni oladi → props qilib uz",
+     "b": "// konveyer — har qatorga bitta kartochka:",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FABRIKA — AVTO-FEEDER (MAP)",
+     "box": "cf cf--feeder cf-hum ",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "Adopt Blox Brookhaven",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "javon bo'sh…",
+     "box": "cf-body",
+     "gap": -2
+    },
+    {
+     "pos": "tepada",
+     "t": "Blox Brookhaven",
+     "box": "cf-body",
+     "gap": 2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92%",
+     "box": "cf-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FABRIKA — JAVON O'SADI",
+     "box": "cf cf--shelf  ",
+     "gap": 18
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🍇 ▶ Blox Fruits 👍 95% 🏠 ▶ Brookhaven 👍 89%",
+     "box": "cf-body",
+     "gap": -2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🍇 ▶ Blox Fruits 👍 95% 🏠 ▶ Brookhaven 👍 89% 🚪 ▶ Doors 👍 91%",
+     "box": "cf-body",
+     "gap": -2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🍇 ▶ Blox Fruits 👍 95% 🏠 ▶ Brookhaven 👍 89% 🚪 ▶ Doors 👍 91% 🐝 ",
+     "box": "cf-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 11,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi siz props oqimini bilasiz — agent kodini tekshira olasiz: ma'lumot ro'yxatdan kelyaptimi, jingalak qavs t",
+     "b": "Buyruq bering va rejani tasdiqlang…",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Katalog tepasiga sarlavha qo'y: nechta o'yin borl"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Endi o'zingiz! Sevimli o'yinlaringizdan kamida 3 tasini ro'yxatga qo'shing — kartochkalar o'zi chiziladi. Keyi",
+     "b": "KATALOGINGIZ — KARTOCHKANI BOSIB TOP BELGILANG",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KATALOGINGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KATALOGINGIZ — KARTOCHKANI BOSIB TOP BELGILANG",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s14",
+   "type": "debug",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI Katalog kodini yozdim:",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Xato bor qatorni toping va bosing",
+     "box": "dbg-code",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": "5 {games.map(g =>",
+     "ph": "<GameCard name={g} />",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 <GameCard — Katta harf 2 name={g} — jingalak qavs 3 /> yopilishi",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

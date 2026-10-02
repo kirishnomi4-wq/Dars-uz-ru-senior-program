@@ -271,25 +271,25 @@ const RECAPS = {
   3: {
     title: { uz: "Yuk — birdan kelgan og'irlik", ru: 'Нагрузка — тяжесть, пришедшая разом' },
     cards: [
-      { ic: '🎟', h: { uz: 'Yuk nima', ru: 'Что такое нагрузка' }, body: { uz: <>Hamma birdan kirganda saytga tushadigan og'irlik — <b>yuk</b> deyiladi. Chipta ochilgan daqiqada sayt eng og'ir ishini qiladi.</>, ru: <>Тяжесть, которая ложится на сайт, когда все заходят разом, называют <b>нагрузкой</b>. В минуту открытия билетов сайт делает самую тяжёлую работу.</> } },
-      { ic: '⏱', h: { uz: 'Odam soni emas, bir vaqtdaligi', ru: 'Не число людей, а одновременность' }, body: { uz: <>Ming kishi kun bo'yi tarqalib kirsa — yengil ish. O'sha ming kishi <b>bir vaqtda</b> kirsa — og'ir yuk. Son bir xil, yuk boshqa.</>, ru: <>Тысяча человек заходит в течение дня — лёгкая работа. Та же тысяча заходит <b>в одну минуту</b> — тяжёлая нагрузка. Число одно, нагрузка разная.</> } },
+      { ic: '🎟', h: { uz: 'Yuk nima', ru: 'Что такое нагрузка' }, body: { uz: <>Hamma birdan kirganda saytga tushadigan og'irlik — <b>yuk</b> deyiladi.</>, ru: <>Тяжесть, которая ложится на сайт, когда все заходят разом, называют <b>нагрузкой</b>.</> } },
+      { ic: '⏱', h: { uz: 'Odam soni emas, bir vaqtdaligi', ru: 'Не число людей, а одновременность' }, body: { uz: <>Son bir xil bo'lsa ham, <b>bir vaqtda</b> kirgan ming kishi og'ir yuk beradi.</>, ru: <>Та же тысяча человек, зашедшая <b>в одну минуту</b>, даёт тяжёлую нагрузку.</> } },
       { ic: '🔎', h: { uz: 'Bitta savol yetadi', ru: 'Хватает одного вопроса' }, body: { uz: <>Har qismga bitta savol bering: buni odamlar bitta-bitta ishlatadimi — yoki hammasi birdan?</>, ru: <>Задайте каждой части один вопрос: ею пользуются по одному — или все разом?</> }, ask: { uz: "Chiptalar 10:00 da chiqadi. Sayt eng og'ir ishini qachon qiladi?", ru: 'Билеты выходят в 10:00. Когда сайт делает самую тяжёлую работу?' } }
     ]
   },
   5: {
     title: { uz: 'Talashadigan qism birinchi sinadi', ru: 'Первой ломается та часть, за которую борются' },
     cards: [
-      { ic: '💺', h: { uz: "Eng og'ir ish", ru: 'Самая тяжёлая работа' }, body: { uz: <>Hamma <b>bitta narsani talashgan</b> qism eng og'ir ishni qiladi — shuning uchun u birinchi sinadi.</>, ru: <>Часть, где все <b>борются за одно и то же</b>, делает самую тяжёлую работу — поэтому она ломается первой.</> } },
-      { ic: '📄', h: { uz: 'Eng yengil ish', ru: 'Самая лёгкая работа' }, body: { uz: <>Hammaga <b>bir xil sahifa</b> ko'rsatish — eng yengil ish. Shuning uchun e'lon sahifasi eng oxirida sindi.</>, ru: <>Показать всем <b>одну и ту же страницу</b> — самая лёгкая работа. Поэтому страница с афишей сломалась последней.</> } },
-      { ic: '⚖️', h: { uz: 'Ikki belgi', ru: 'Два признака' }, body: { uz: <>Qismni ikki belgi bilan o'lchang: hamma birdan keladimi va har kimga alohida javob kerakmi?</>, ru: <>Измеряйте часть двумя признаками: все ли приходят разом и нужен ли каждому отдельный ответ?</> }, ask: { uz: "Hamma birdan kirdi. Qaysi qism birinchi sinadi?", ru: 'Все зашли разом. Какая часть сломается первой?' } }
+      { ic: '💺', h: { uz: "Eng og'ir ish", ru: 'Самая тяжёлая работа' }, body: { uz: <>Hamma <b>bitta narsani talashgan</b> qism eng og'ir ishlaydi va birinchi sinadi.</>, ru: <>Часть, где все <b>борются за одно и то же</b>, делает самую тяжёлую работу — поэтому она ломается первой.</> } },
+      { ic: '📄', h: { uz: 'Eng yengil ish', ru: 'Самая лёгкая работа' }, body: { uz: <>Hammaga <b>bir xil sahifa</b> ko'rsatish — eng yengil ish, shuning uchun u oxirida sindi.</>, ru: <>Показать всем <b>одну и ту же страницу</b> — самая лёгкая работа, поэтому она сломалась последней.</> } },
+      { ic: '⚖️', h: { uz: 'Ikki belgi', ru: 'Два признака' }, body: { uz: <>Qismni ikki belgi bilan o'lchang: hamma birdan keladimi, har kimga alohida javob kerakmi?</>, ru: <>Измеряйте часть двумя признаками: все ли приходят разом и нужен ли каждому отдельный ответ?</> }, ask: { uz: "Hamma birdan kirdi. Qaysi qism birinchi sinadi?", ru: 'Все зашли разом. Какая часть сломается первой?' } }
     ]
   },
   7: {
     title: { uz: 'Poydevor oldindan quriladi', ru: 'Фундамент строят заранее' },
     cards: [
-      { ic: '🚚', h: { uz: 'Uzum misolida', ru: 'Пример Uzum' }, body: { uz: <>Uzum yetkazish yo'lini <b>birinchi kundan</b> qurdi: ochilish kuniyoq o'z mashinalari va topshirish punktlari tayyor edi (2022).</>, ru: <>Uzum построил доставку <b>с первого дня</b>: уже в день открытия были свои машины и пункты выдачи (2022).</> } },
-      { ic: '📈', h: { uz: "O'sha yo'l bugun", ru: 'Тот же путь сегодня' }, body: { uz: <>O'sha birinchi kundan qurilgan yo'l bugun oyiga qariyb <b>17 million odam</b>ga xizmat qilyapti (2025).</>, ru: <>Тот самый путь, построенный с первого дня, сегодня обслуживает почти <b>17 миллионов человек</b> в месяц (2025).</> } },
-      { ic: '🧭', h: { uz: 'Qachon quriladi', ru: 'Когда строят' }, body: { uz: <>Poydevor sinishdan <b>keyin</b> emas, <b>oldin</b> quriladi — buni mahsulotni o'ylaydigan odam hal qiladi.</>, ru: <>Фундамент строят не <b>после</b> поломки, а <b>до</b> неё — это решает человек, который думает о продукте.</> }, ask: { uz: 'Uzum ochilgan kuni nimasi tayyor edi?', ru: 'Что было готово у Uzum в день открытия?' } }
+      { ic: '🚚', h: { uz: 'Uzum misolida', ru: 'Пример Uzum' }, body: { uz: <>Uzum yetkazish yo'lini <b>birinchi kundan</b> qurdi: mashinalar va punktlar tayyor edi (2022).</>, ru: <>Uzum построил доставку <b>с первого дня</b>: уже в день открытия были свои машины и пункты выдачи (2022).</> } },
+      { ic: '📈', h: { uz: "O'sha yo'l bugun", ru: 'Тот же путь сегодня' }, body: { uz: <>Bu yo'l bugun oyiga qariyb <b>17 million odam</b>ga xizmat qilyapti (2025).</>, ru: <>Этот путь сегодня обслуживает почти <b>17 миллионов человек</b> в месяц (2025).</> } },
+      { ic: '🧭', h: { uz: 'Qachon quriladi', ru: 'Когда строят' }, body: { uz: <>Poydevorni sinishdan <b>oldin</b> qurishni mahsulotni o'ylaydigan odam hal qiladi.</>, ru: <>Строить фундамент <b>до</b> поломки решает человек, который думает о продукте.</> }, ask: { uz: 'Uzum ochilgan kuni nimasi tayyor edi?', ru: 'Что было готово у Uzum в день открытия?' } }
     ]
   },
   11: {
@@ -297,12 +297,12 @@ const RECAPS = {
     cards: [
       { ic: '💪', h: { uz: 'Kuch qayerga boradi', ru: 'Куда идут силы' }, body: { uz: <>Kuch <b>birinchi sinadigan</b> qismga boradi: o'sha qism kuchayganda butun sayt chidaydi.</>, ru: <>Силы идут в ту часть, которая <b>ломается первой</b>: когда она усилена, весь сайт выдерживает.</> } },
       { ic: '🌫', h: { uz: 'Hammasiga yoyilgan kuch', ru: 'Силы, размазанные на всё' }, body: { uz: <>Hamma qismni birga kuchaytirsak, kuch <b>hech qayerga yetmaydi</b> — bu ham yechim emas.</>, ru: <>Если усиливать все части сразу, сил <b>ни на что не хватит</b> — это тоже не решение.</> } },
-      { ic: '❓', h: { uz: "O'zingizni tekshiring", ru: 'Проверьте себя' }, body: { uz: <>Yozgan qaroringizga qarang: sababda yuk ko'rinyaptimi — bu qismni hamma <b>birdan</b> ishlatadimi yoki bitta-bitta?</>, ru: <>Посмотрите на своё решение: видна ли в причине нагрузка — этой частью пользуются <b>разом</b> или по одному?</> }, ask: { uz: 'Qaysi qismni birinchi kundan kuchaytirishga arziydi?', ru: 'Какую часть стоит усилить с первого дня?' } }
+      { ic: '❓', h: { uz: "O'zingizni tekshiring", ru: 'Проверьте себя' }, body: { uz: <>Qaroringizga qarang: bu qismni hamma <b>birdan</b> ishlatadimi yoki bitta-bitta?</>, ru: <>Посмотрите на своё решение: этой частью пользуются <b>разом</b> или по одному?</> }, ask: { uz: 'Qaysi qismni birinchi kundan kuchaytirishga arziydi?', ru: 'Какую часть стоит усилить с первого дня?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -320,7 +320,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -328,13 +328,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -413,7 +413,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -494,7 +494,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -502,8 +502,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -514,7 +515,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -818,11 +819,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Qaysi kuni yuk og'ir bo'ldi", ru: 'В какой день нагрузка была тяжелее' })}
     options={[tr({ uz: "Hammasi kun bo'yi tarqalib kirgan kuni", ru: 'В день, когда все заходили в течение дня' }), tr({ uz: 'Hammasi 10:00 da kirgan kuni', ru: 'В день, когда все зашли в 10:00' }), tr({ uz: "Ikkala kuni ham bir xil bo'lgan", ru: 'В оба дня было одинаково' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Odam soni ikkalasida bir xil edi; yukni bir vaqtda kelgani og'irlashtirdi.", ru: 'Число людей было одинаковым; нагрузку утяжелило то, что они пришли одновременно.' })}
+    explainCorrect={tr({ uz: "Odam soni bir xil — yukni bir vaqtda kelish og'irlashtirdi.", ru: 'Число людей одинаковое — нагрузку утяжелил одновременный приход.' })}
     explainWrong={{
-      0: tr({ uz: "Tarqalib kirganda sayt har biriga bemalol javob beradi — o'sha kuni yuk yengil qolgan.", ru: 'Когда заходят вразнобой, сайт спокойно отвечает каждому — в тот день нагрузка осталась лёгкой.' }),
-      2: tr({ uz: "Odam soni bir xil edi, lekin bir vaqtda kelgan kuni yuk og'irlashdi.", ru: 'Число людей было одинаковым, но в день одновременного прихода нагрузка стала тяжелее.' }),
-      default: tr({ uz: "Yukni odam soni emas, hammasining bir vaqtda kelgani og'irlashtiradi.", ru: 'Нагрузку утяжеляет не число людей, а то, что все приходят одновременно.' })
+      0: tr({ uz: "Tarqalib kirganda sayt har biriga bemalol javob beradi.", ru: 'Когда заходят вразнобой, сайт спокойно отвечает каждому.' }),
+      2: tr({ uz: "Odam soni bir xil edi, lekin kelish vaqti boshqa edi.", ru: 'Число людей было одинаковым, но время прихода — разным.' }),
+      default: tr({ uz: "Ikki kunda odam soni bir xil — unda nima farq qildi?", ru: 'Число людей в оба дня одинаковое — что же тогда отличалось?' })
     }}
   />
 );
@@ -969,11 +970,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: 'Hamma birdan kirdi, qaysi qism birinchi sinadi', ru: 'Все зашли разом, какая часть сломается первой' })}
     options={[tr({ uz: 'Hamma bitta narsani talashadigan qism', ru: 'Часть, где все борются за одно и то же' }), tr({ uz: "Hamma talashmasdan bir xil sahifa ko'radigan qism", ru: 'Часть, где все без борьбы видят одну и ту же страницу' }), tr({ uz: 'Har kim har xil vaqtda ochadigan qism', ru: 'Часть, которую каждый открывает в своё время' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Aynan shu qism eng og'ir ishni qiladi — shuning uchun birinchi sinadi.", ru: 'Именно эта часть делает самую тяжёлую работу — поэтому ломается первой.' })}
+    explainCorrect={tr({ uz: "Talashilgan qism eng og'ir ishni qiladi — u birinchi sinadi.", ru: 'Часть, за которую борются, работает тяжелее всех — ломается первой.' })}
     explainWrong={{
-      1: tr({ uz: "Hammaga bir xil sahifa — eng yengil ish; u eng oxirida sindi.", ru: 'Одна и та же страница для всех — самая лёгкая работа; она сломалась последней.' }),
-      2: tr({ uz: "Har xil vaqtda ochilsa yuk tarqoq bo'ladi — bunday qism uzoq chidaydi.", ru: 'Если открывают в разное время, нагрузка размазана — такая часть держится долго.' }),
-      default: tr({ uz: "Eng og'ir ish — hamma bitta narsani talashgan qismda.", ru: 'Самая тяжёлая работа — в той части, где все борются за одно и то же.' })
+      1: tr({ uz: "Hammaga bir xil sahifa — eng yengil ish, u oxirida sindi.", ru: 'Одна страница для всех — самая лёгкая работа, она сломалась последней.' }),
+      2: tr({ uz: "Har xil vaqtda ochilgan qismga yuk tarqoq tushadi.", ru: 'На часть, которую открывают в разное время, нагрузка ложится вразнобой.' }),
+      default: tr({ uz: "Qaysi qism eng og'ir ishni qiladi — shuni o'ylang.", ru: 'Подумайте, какая часть делает самую тяжёлую работу.' })
     }}
   />
 );
@@ -1134,11 +1135,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Uzum ochilgan kuni nimasi tayyor edi', ru: 'Что было готово у Uzum в день открытия' })}
     options={[tr({ uz: 'Chegirmalar va reklama roliklari', ru: 'Скидки и рекламные ролики' }), tr({ uz: 'Boshqa kompaniyalarning mashinalari', ru: 'Машины других компаний' }), tr({ uz: 'Mashinalari va topshirish punktlari', ru: 'Свои машины и пункты выдачи' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Sayt hali yosh edi, yetkazish yo'li esa birinchi kundan tayyor turgan. Poydevor sinishdan keyin emas, oldin quriladi.", ru: 'Сайт был ещё молодым, а доставка стояла готовой с первого дня. Фундамент строят не после поломки, а до неё.' })}
+    explainCorrect={tr({ uz: "Uzum yetkazish yo'lini birinchi kundan tayyorlab qo'ygan.", ru: 'Uzum подготовил доставку с первого дня.' })}
     explainWrong={{
-      0: tr({ uz: "Voqeada reklama haqida gap yo'q — ochilish kuni yetkazish yo'li tayyor edi.", ru: 'В истории про рекламу речи нет — в день открытия была готова доставка.' }),
-      1: tr({ uz: "Uzum o'z mashinalari va topshirish punktlari bilan boshlagan edi.", ru: 'Uzum начинал со своими машинами и пунктами выдачи.' }),
-      default: tr({ uz: "Ochilish kuniyoq o'z mashinalari va topshirish punktlari ishlab turgan.", ru: 'Уже в день открытия работали свои машины и пункты выдачи.' })
+      0: tr({ uz: "Voqeada reklama haqida gap yo'q edi.", ru: 'В истории о рекламе речи не было.' }),
+      1: tr({ uz: "Uzum boshqalarning mashinalariga tayanmagan.", ru: 'Uzum не опирался на чужие машины.' }),
+      default: tr({ uz: "Ochilish kuni yetkazish uchun nima tayyor turgan edi?", ru: 'Что было готово для доставки уже в день открытия?' })
     }}
   />
 );
@@ -1753,11 +1754,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Qaysi qismni birinchi kundan kuchaytirishga arziydi', ru: 'Какую часть стоит усилить с первого дня' })}
     options={[tr({ uz: 'Saytning hamma qismini birga', ru: 'Все части сайта сразу' }), tr({ uz: 'Hamma birdan talashadigan qismni', ru: 'Ту, за которую все борются разом' }), tr({ uz: "Odam talashmasdan ko'radigan qismni", ru: 'Ту, которую смотрят без борьбы' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Kuch birinchi sinadigan qismga boradi; hammaga yoyilsa, hech qayerga yetmaydi.", ru: 'Силы идут в часть, которая ломается первой; если размазать на всех, не хватит ни на что.' })}
+    explainCorrect={tr({ uz: "Kuch birinchi sinadigan qismga boradi.", ru: 'Силы идут в ту часть, которая ломается первой.' })}
     explainWrong={{
-      0: tr({ uz: 'Hammasini birga kuchaytirsak, kuch hech qayerga yetmaydi.', ru: 'Если усиливать всё сразу, сил не хватит ни на что.' }),
-      2: tr({ uz: "Hech kim talashmaydigan qism eng yengil ishni qiladi — u eng oxirida sinadi.", ru: 'Часть, за которую никто не борется, делает самую лёгкую работу — она ломается последней.' }),
-      default: tr({ uz: 'Kuch hamma birdan talashadigan qismga boradi.', ru: 'Силы идут в ту часть, за которую все борются разом.' })
+      0: tr({ uz: 'Hammasiga yoyilgan kuch hech qayerga yetmaydi.', ru: 'Силы, размазанные на всё, никуда не доходят.' }),
+      2: tr({ uz: "Talashilmaydigan qism yengil ishlaydi — u oxirida sinadi.", ru: 'Часть, за которую никто не борется, работает легко и ломается последней.' }),
+      default: tr({ uz: 'Qaysi qism birinchi sinadi — kuch o\'sha yerga kerak.', ru: 'Какая часть ломается первой — силы нужны там.' })
     }}
   />
 );

@@ -1,0 +1,325 @@
+{
+ "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+ "lessonId": "nest-arch-resource-4a-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Dars 1'da clone qilgan skeletda admin tizimi ishlayapti. Endi admin avtosalon mashinalarini boshqarishi kerak ",
+     "b": "POST /car sinab ko'ring ▸",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "Mashinalar uchun yangi resurs (Car) quramiz",
+     "b": "Bunda admin fayli ikki ishni bajarib, chalkashib ketadi. To'g'ri yo'l — mashinalar uchun alohida resurs: o'z p",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HOZIRGI HOLAT — /CAR HALI YO'Q",
+     "box": "swg fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ENDI /CAR NI QANDAY PAYDO QILAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "404 — bunday eshik yo'q. Chunki mashinalar jadvalini hali hech kim qo'shmagan.",
+     "box": "swg fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Bunda admin fayli ikki ishni bajarib, chalkashib ketadi. To'g'ri yo'l — mashinalar uchun a",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZ QO'SHADIGAN USTUNLAR",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TEKIN KELADI (BASEENTITY)",
+     "box": "frame",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NAZORATCHI JAVOBI",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "// a) to'liq anketa — hamma katakcha MAJBURIY export class UpdateCarDto { @IsString() @IsNotEmpty() brand: str",
+     "b": "brand, model, price ← create'da majburiy",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA · PATCH /CAR/:ID { PRICE: 12000 }",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 36,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ create() ✓ findAll() ✓ findOneById() ✓ update() ✓ remove()",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 39,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "RESTORAN KIRISHI",
+     "box": "oc-door oc-walk  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "GET /CAR NATIJASI",
+     "box": "editor",
+     "gap": 12
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "\"Avtosalon uchun Car resursini qo'sh: Entity (brand, model, price, is_available) → create/update DTO → BaseSer",
+     "b": "brand · model · price · is_available",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "\"Avtosalon uchun Car resursini qo'sh: Entity (brand, model, price, is_available) → create/update DTO → BaseSer",
+     "b": "✓ car.entity.ts brand · model · price · is_available",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s17",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "hint",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

@@ -1479,7 +1479,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   const isOpen = open === i;
                   const fx = fixed[i];
                   return (
-                    <div key={r.komp} role="button" tabIndex={0} className={`vsc-line dbg${isOpen ? ' open' : ''}${fx ? ' fixed' : ''}${!fx && open === null && !done ? waveCls(rowTurn, i, 3) : ''}`} onClick={() => clickRow(i)} onKeyDown={e => { if (e.key === 'Enter' && !isOpen) clickRow(i); }}>
+                    <div key={r.komp} role="button" tabIndex={0} className={`vsc-line dbg${isOpen ? ' open' : ''}${fx ? ' is-fixed' : ''}${!fx && open === null && !done ? waveCls(rowTurn, i, 3) : ''}`} onClick={() => clickRow(i)} onKeyDown={e => { if (e.key === 'Enter' && !isOpen) clickRow(i); }}>
                       <span className="vsc-ln">{10 + i}</span>
                       <span className="vsc-code">{'  { komponent: '}{S(`'${r.komp}'`)}{`,${r.pad} vazifa: `}{S(`"${r.vazifa}"`)}{`,${r.vpad} tur: `}
                         {isOpen
@@ -2972,7 +2972,7 @@ const CSS_LESSON = `
   .vsc-line.dbg { cursor: pointer; border-radius: 6px; transition: background 0.2s ease; }
   .vsc-line.dbg:hover { background: rgba(255,255,255,0.06); }
   .vsc-line.dbg.open { background: rgba(110,75,255,0.22); cursor: default; }
-  .vsc-line.dbg.fixed { background: rgba(18,169,104,0.16); cursor: default; }
+  .vsc-line.dbg.is-fixed { background: rgba(18,169,104,0.16); cursor: default; }
   .vsc-line.dbg.star { cursor: default; }
   .dbg-in { font: inherit; color: #FFD580; background: #2D2D2D; border: none; border-radius: 4px; padding: 0 4px; width: 11ch; outline: 1.5px solid ${T.accentVivid}; }
   .dbg-in.w { width: 10ch; }

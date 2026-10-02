@@ -372,13 +372,13 @@ const RECAPS = {
   4: {
     title: { uz: 'Birinchi ekran — birinchi blok', ru: 'Первый экран — первый блок' }, cards: [
       { ic: '👀', h: { uz: 'Birinchi ekran — birinchi taassurot', ru: 'Первый экран — первое впечатление' },
-        body: { uz: <>Foydalanuvchi saytga kirgach <b>juda tez</b> hal qiladi: qolamanmi yoki ketamanmi. Shuning uchun eng tepada <b>birinchi blok</b> (<b className="mono">hero</b>) turadi — katta sarlavha va bir qatorlik izoh.</>, ru: <>Пользователь решает <b>очень быстро</b>: остаться или уйти. Поэтому в самом верху стоит <b>первый блок</b> (<b className="mono">hero</b>) — крупный заголовок и одна строка пояснения.</> },
+        body: { uz: <>Odam tez hal qiladi, shuning uchun eng tepada <b>birinchi blok</b> (<b className="mono">hero</b>) turadi.</>, ru: <>Человек решает быстро, поэтому в самом верху стоит <b>первый блок</b> (<b className="mono">hero</b>).</> },
         vis: { uz: <RcFlow items={['👀 Kirdi', '📢 Birinchi blok', '✅ Qoldi']} />, ru: <RcFlow items={['👀 Зашёл', '📢 Первый блок', '✅ Остался']} /> } },
       { ic: '📢', h: { uz: "Birinchi blok — bir jumlali va'da", ru: 'Первый блок — обещание в одной фразе' },
-        body: { uz: <>Yaxshi birinchi blok <b>bitta jumlada</b> sayt nima berishini aytadi: «Ortiqcha buyumingizni soting». Foydalanuvchi shuni o'qib, «ha, bu menga kerak» deydi.</>, ru: <>Хороший первый блок <b>одной фразой</b> говорит, что даёт сайт: «Продайте вещь, которой не пользуетесь». Пользователь читает и думает: «да, это мне нужно».</> },
+        body: { uz: <>Yaxshi birinchi blok <b>bitta jumlada</b> sayt nima berishini aytadi.</>, ru: <>Хороший первый блок <b>одной фразой</b> говорит, что даёт сайт.</> },
         vis: { uz: <RcFlow items={['"Ortiqcha buyumni soting"']} />, ru: <RcFlow items={['«Продайте лишнюю вещь»']} /> } },
       { ic: '⛔', h: { uz: 'Tugma birinchi emas', ru: 'Кнопка — не первая' },
-        body: { uz: <>Ba'zilar harakat tugmasini eng tepaga qo'yadi. Lekin foydalanuvchi hali <b>nega bosishini</b> bilmaydi. Avval birinchi blok — keyin qolgani.</>, ru: <>Кнопку действия иногда ставят в самый верх. Но пользователь ещё не знает, <b>зачем на неё жать</b>. Сначала первый блок — потом всё остальное.</> },
+        body: { uz: <>Tepadagi tugmani odam bosmaydi, chunki hali <b>nega bosishini</b> bilmaydi.</>, ru: <>Кнопку наверху не нажмут: человек ещё не знает, <b>зачем жать</b>.</> },
         vis: { uz: <RcFlow items={['📢 Birinchi blok', '🖱️ Tugma — keyin']} sep="·" />, ru: <RcFlow items={['📢 Первый блок', '🖱️ Кнопка — потом']} sep="·" /> },
         ask: { uz: 'Sevimli saytingizda birinchi ekranda nima yozilgan?', ru: 'Что написано на первом экране вашего любимого сайта?' } },
     ]
@@ -387,13 +387,13 @@ const RECAPS = {
   6: {
     title: { uz: 'Harakat tugmasi — oxirida', ru: 'Кнопка действия — в конце' }, cards: [
       { ic: '🖱️', h: { uz: 'CTA — harakatga chaqiruvchi tugma', ru: 'CTA — кнопка призыва к действию' },
-        body: { uz: <><b className="mono">CTA</b> (Call To Action — harakatga chaqiruv) — foydalanuvchini <b>aniq bir ishga</b> chaqiradigan tugma: «E'lon berish», «Ro'yxatdan o'tish». U — sahifaning maqsadi.</>, ru: <><b className="mono">CTA</b> (Call To Action — призыв к действию) — кнопка, зовущая к <b>одному конкретному шагу</b>: «Подать объявление», «Зарегистрироваться». Это цель страницы.</> },
+        body: { uz: <><b className="mono">CTA</b> — odamni aniq bir ishga chaqiradigan tugma, u sahifaning maqsadi.</>, ru: <><b className="mono">CTA</b> — кнопка, которая зовёт к одному шагу, и это цель страницы.</> },
         vis: { uz: <RcFlow items={["[ E'lon berish ]"]} />, ru: <RcFlow items={['[ Подать объявление ]']} /> } },
       { ic: '🤝', h: { uz: 'Avval ishonch — keyin tugma', ru: 'Сначала доверие — потом кнопка' },
-        body: { uz: <>Odam notanish tugmani bosmaydi. Avval u <b>muammo</b>, <b>yechim</b> va <b>isbot</b>ni ko'radi — ishonadi. Shundan keyingina tugmani bosadi.</>, ru: <>На незнакомую кнопку не жмут. Сначала человек видит <b>проблему</b>, <b>решение</b> и <b>доказательство</b> — и начинает доверять. Только потом жмёт.</> },
+        body: { uz: <>Odam avval muammo, yechim va isbotni ko'rib <b>ishonadi</b>, keyin tugmani bosadi.</>, ru: <>Человек видит проблему, решение и доказательство, <b>начинает доверять</b> и только потом жмёт.</> },
         vis: { uz: <RcFlow items={['🤝 Ishondi', '🖱️ Bosdi']} sep="·" />, ru: <RcFlow items={['🤝 Поверил', '🖱️ Нажал']} sep="·" /> } },
       { ic: '📍', h: { uz: 'Shuning uchun — sababdan keyin', ru: 'Поэтому — после причины' },
-        body: { uz: <>Tugma <b>sababdan keyin</b> turadi — odam nima taklif qilinayotganini tushunib bo'lgach. Shuning uchun uni birinchi blok tagiga yoki sahifa oxiriga qo'yishadi. Izohsiz, yolg'iz tepada tursa — odam nega bosishini bilmaydi.</>, ru: <>Кнопка стоит <b>после причины</b> — когда человек уже понял, что ему предлагают. Поэтому её ставят под первым блоком или в конце страницы. Одна наверху без пояснения — и человек не знает, зачем жать.</> },
+        body: { uz: <>Tugma <b>sababdan keyin</b> turadi: birinchi blok tagida yoki sahifa oxirida.</>, ru: <>Кнопка стоит <b>после причины</b>: под первым блоком или в конце страницы.</> },
         vis: { uz: <RcFlow items={['📢 Birinchi blok', 'sabab', '🖱️ Tugma']} />, ru: <RcFlow items={['📢 Первый блок', 'причина', '🖱️ Кнопка']} /> },
         ask: { uz: "Nega tugma sababdan keyin qo'yiladi?", ru: 'Почему кнопку ставят после причины?' } },
     ]
@@ -402,13 +402,13 @@ const RECAPS = {
   9: {
     title: { uz: 'Tartib — foydalanuvchi uchun qulaylik', ru: 'Порядок — удобство для пользователя' }, cards: [
       { ic: '🧭', h: { uz: 'Tartib foydalanuvchini yetaklaydi', ru: 'Порядок ведёт пользователя' },
-        body: { uz: <>Bo'limlar tartibi tasodifiy emas. U foydalanuvchini <b>qadam-baqadam</b> yetaklaydi: muammodan yechimga, yechimdan ishonchga, ishonchdan harakatga.</>, ru: <>Порядок разделов не случаен. Он ведёт пользователя <b>шаг за шагом</b>: от проблемы к решению, от решения к доверию, от доверия к действию.</> },
+        body: { uz: <>Tartib odamni <b>qadam-baqadam</b> muammodan yechimga, keyin harakatga yetaklaydi.</>, ru: <>Порядок ведёт человека <b>шаг за шагом</b>: от проблемы к решению, потом к действию.</> },
         vis: { uz: <RcFlow items={['❓ Muammo', '💡 Yechim', '🖱️ Harakat']} />, ru: <RcFlow items={['❓ Проблема', '💡 Решение', '🖱️ Действие']} /> } },
       { ic: '🎯', h: { uz: 'Bezak emas — odam uchun qulaylik', ru: 'Не украшение — удобство для человека' },
-        body: { uz: <>Bo'limlarni qanday joylash — bu <b>foydalanuvchi uchun qilingan qulaylik</b>. Chiroylilik uchun emas — foydalanuvchi <b>adashmasligi</b> uchun.</>, ru: <>Как расставить разделы — это <b>удобство, сделанное для пользователя</b>. Не ради красоты, а чтобы человек <b>не запутался</b>.</> },
+        body: { uz: <>Bo'limlar tartibi chiroy uchun emas, <b>odam adashmasligi</b> uchun.</>, ru: <>Порядок разделов нужен не для красоты, а чтобы <b>человек не запутался</b>.</> },
         vis: { uz: <RcFlow items={["🎨 Bezak — yo'q", '🎯 Odam uchun — ha']} sep="·" />, ru: <RcFlow items={['🎨 Украшение — нет', '🎯 Для человека — да']} sep="·" /> } },
       { ic: '🔀', h: { uz: 'Aralash tartib — foydalanuvchi adashadi', ru: 'Порядок перепутан — человек теряется' },
-        body: { uz: <>Bo'limlar aralashsa, foydalanuvchi <b>nima qilishini</b> tushunmaydi va ketadi. To'g'ri tartib esa uni <b>maqsadga</b> olib boradi.</>, ru: <>Если разделы перемешаны, пользователь не понимает, <b>что делать</b>, и уходит. Верный порядок доводит его до <b>цели</b>.</> },
+        body: { uz: <>Bo'limlar aralashsa, odam nima qilishini tushunmay <b>chiqib ketadi</b>.</>, ru: <>Если разделы перемешаны, человек не понимает, что делать, и <b>уходит</b>.</> },
         vis: { uz: <RcFlow items={['🔀 Aralash — ketadi', '➡️ Tartibli — qoladi']} sep="·" />, ru: <RcFlow items={['🔀 Вперемешку — уходит', '➡️ По порядку — остаётся']} sep="·" /> },
         ask: { uz: "Bo'limlar aralashib ketsa foydalanuvchi nima qiladi?", ru: 'Что сделает пользователь, если разделы перепутаны?' } },
     ]
@@ -417,13 +417,13 @@ const RECAPS = {
   11: {
     title: { uz: 'Sahifa tartibi — hikoya', ru: 'Порядок страницы — это история' }, cards: [
       { ic: '📖', h: { uz: 'Sahifa — bu hikoya', ru: 'Страница — это история' },
-        body: { uz: <>Yaxshi sahifa hikoyadek o'qiladi: <b>birinchi blok</b> (nima), <b>muammo</b> (nega), <b>yechim</b> (qanday), <b>isbot</b> (ishonch), <b>tugma</b> (harakat).</>, ru: <>Хорошая страница читается как история: <b>первый блок</b> (что), <b>проблема</b> (зачем), <b>решение</b> (как), <b>доказательство</b> (доверие), <b>кнопка</b> (действие).</> },
+        body: { uz: <>Yaxshi sahifa <b>hikoyadek</b> o'qiladi: nima, nega, qanday, ishonch, harakat.</>, ru: <>Хорошая страница читается <b>как история</b>: что, зачем, как, доверие, действие.</> },
         vis: { uz: <RcFlow items={['Birinchi blok', 'Muammo', 'Yechim', 'Isbot', 'Tugma']} />, ru: <RcFlow items={['Первый блок', 'Проблема', 'Решение', 'Доказательство', 'Кнопка']} /> } },
       { ic: '🧩', h: { uz: "Har bo'limning o'z o'rni", ru: 'У каждого раздела своё место' },
-        body: { uz: <>Har bo'lim bitta savolga javob beradi. Ularning <b>joyini almashtirsangiz</b> — hikoya buziladi, foydalanuvchi adashadi.</>, ru: <>Каждый раздел отвечает на один вопрос. <b>Поменяйте их местами</b> — история ломается, пользователь теряется.</> },
+        body: { uz: <>Har bo'lim bitta savolga javob beradi, joyi almashsa <b>hikoya buziladi</b>.</>, ru: <>Каждый раздел отвечает на один вопрос, и если их поменять, <b>история ломается</b>.</> },
         vis: { uz: <RcFlow items={['nima', 'nega', 'qanday', 'ishonch', 'harakat']} />, ru: <RcFlow items={['что', 'зачем', 'как', 'доверие', 'действие']} /> } },
       { ic: '✅', h: { uz: "To'g'ri tartib — konversiya", ru: 'Верный порядок — конверсия' },
-        body: { uz: <>To'g'ri tartibda foydalanuvchi ishonib, tugmani bosadi — bu <b>konversiya</b> (tashrifchi mijozga aylanadi). Noto'g'ri tartibda esa foydalanuvchi saytdan chiqib ketadi.</>, ru: <>При верном порядке пользователь доверяет и жмёт кнопку — это <b>конверсия</b> (посетитель становится клиентом). При неверном — просто уходит с сайта.</> },
+        body: { uz: <>To'g'ri tartibda odam tugmani bosadi — bu <b>konversiya</b>: tashrifchi mijozga aylanadi.</>, ru: <>При верном порядке человек жмёт кнопку — это <b>конверсия</b>: посетитель становится клиентом.</> },
         vis: { uz: <RcFlow items={['➡️ Tartibli', '🤝 Ishondi', '✅ Konversiya']} />, ru: <RcFlow items={['➡️ По порядку', '🤝 Поверил', '✅ Конверсия']} /> },
         ask: { uz: 'Konversiya nima degani?', ru: 'Что означает слово «конверсия»?' } },
     ]
@@ -432,7 +432,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -450,7 +450,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -459,13 +459,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — идём дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -543,7 +543,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -552,7 +552,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс тему освоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:`, ru: `Ответивших мало (${answered}) — по проценту выводы делать сложно. Оцените сами:` })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -711,7 +711,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)}` })
               : waiting
@@ -719,8 +719,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${uzOf(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${(options[correctIdx] && options[correctIdx].ru) || uzOf(options[correctIdx])}` })
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -733,7 +734,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1268,8 +1269,8 @@ const Screen4 = (props) => (
     questionText={{ uz: "Saytga kirgan foydalanuvchi birinchi nimani ko'rishi kerak?", ru: 'Что пользователь должен увидеть на сайте первым?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> пользователь должен увидеть на сайте первым?</h2></> }}
     options={[{ uz: 'Birinchi blokni — sayt nima taklif qilishini', ru: 'Первый блок — что предлагает сайт' }, { uz: 'Eng pastdagi `footer`ni — havolalar va aloqani', ru: 'Нижний `footer` — ссылки и контакты' }, { uz: "Harakat tugmasini — darrov bosib qo'yishi uchun", ru: 'Кнопку действия — чтобы сразу нажал' }, { uz: "Mahsulotlar ro'yxatini — narxlari bilan", ru: 'Список товаров — вместе с ценами' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Eng birinchi bo'lib birinchi blok (`hero`) ko'rinadi — katta sarlavha bir jumlada sayt nima taklif qilishini aytadi. Shuni tushungan foydalanuvchi qiziqib, saytdan foydalanishda davom etadi.", ru: 'Верно! Первым виден первый блок (`hero`) — крупный заголовок одной фразой говорит, что предлагает сайт. Поняв это, пользователь остаётся.' }}
-    explainWrong={{ 1: { uz: "`footer` — sahifaning eng pastki qismi: havolalar va aloqa. Birinchi ko'rinishda esa birinchi blok turadi.", ru: '`footer` — самый низ страницы: ссылки и контакты. А первым виден первый блок.' }, 2: { uz: "Tugmani sababsiz ko'rsatsa, foydalanuvchi nega bosishini tushunmaydi. Avval birinchi blok.", ru: 'Кнопка без причины — и человек не поймёт, зачем жать. Сначала первый блок.' }, 3: { uz: "Ro'yxat foydalanuvchi nima taklif qilinayotganini tushungach kerak bo'ladi. Avval birinchi blok.", ru: 'Список нужен, когда человек уже понял, что ему предлагают. Сначала первый блок.' }, default: { uz: 'Birinchi — birinchi blok (sayt nima taklif qiladi).', ru: 'Первым — первый блок (что предлагает сайт).' } }} />
+    explainCorrect={{ uz: "Odam bir zumda hal qiladi: qolamanmi yoki ketamanmi.", ru: 'Человек решает мгновенно: остаться или уйти.' }}
+    explainWrong={{ 1: { uz: "Footer — sahifaning eng pasti, unga oxirida yetib boriladi.", ru: 'Footer — самый низ страницы, до него доходят в конце.' }, 2: { uz: "Sababsiz tugmani odam nega bosishini tushunmaydi.", ru: 'Без причины человек не поймёт, зачем жать на кнопку.' }, 3: { uz: "Narxlar odam taklifni tushungandan keyin kerak bo'ladi.", ru: 'Цены нужны, когда человек уже понял предложение.' }, default: { uz: 'Odam birinchi soniyada nimani bilishi kerak — shuni o\'ylang.', ru: 'Подумайте, что человек должен понять в первую же секунду.' } }} />
 );
 
 // ===== SCREEN 5 — HAR BO'LIMNING VAZIFASI =====
@@ -1312,8 +1313,8 @@ const Screen5b = (props) => (
     questionText={{ uz: 'Harakat tugmasi sahifaning qayerida turishi kerak?', ru: 'Где на странице должна стоять кнопка действия?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) sahifaning <span className="italic" style={{ color: T.accent }}>qayerida</span> turishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Где</span> на странице должна стоять кнопка действия (CTA)?</h2></> }}
     options={[{ uz: 'Eng tepada, hammadan ham oldin', ru: 'В самом верху, раньше всего' }, { uz: "Sahifa o'rtasida, muammodan oldin", ru: 'В середине страницы, до проблемы' }, { uz: "Sabab ko'rsatilgandan keyin, oxirroqda", ru: 'После того как показана причина, ближе к концу' }, { uz: 'Menyuda, boshqa havolalar orasida', ru: 'В меню, среди других ссылок' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Avval foydalanuvchi muammo, yechim va isbotni ko'rib ishonch hosil qiladi — endi tugmani bosishga sababi bor.", ru: 'Верно! Сначала пользователь видит проблему, решение и доказательство и начинает доверять — теперь у него есть причина нажать.' }}
-    explainWrong={{ 0: { uz: "Tepada bo'lsa, foydalanuvchi nega bosishini hali bilmaydi. Avval ishontirish kerak.", ru: 'Наверху человек ещё не знает, зачем жать. Сначала нужно его убедить.' }, 1: { uz: "Muammodan oldin hali erta — foydalanuvchi bu yerda hali ishonmagan. Tugma sabab ko'rsatilgandan keyin keladi.", ru: 'До проблемы ещё рано — здесь доверия пока нет. Кнопка идёт после причины.' }, 3: { uz: "Havolalar orasida tugma ko'zga tashlanmaydi. U foyda tushuntirilgach, alohida turishi kerak.", ru: 'Среди ссылок кнопка теряется. Она должна стоять отдельно — после того как объяснили пользу.' }, default: { uz: 'Tugma — foydalanuvchi nega bosishini tushungandan keyin.', ru: 'Кнопка — после того, как человек понял, зачем жать.' } }} />
+    explainCorrect={{ uz: "Isbotni ko'rgach, odamda tugmani bosishga sabab bo'ladi.", ru: 'Увидев доказательство, человек получает причину нажать.' }}
+    explainWrong={{ 0: { uz: "Tepada odam hali nega bosishini bilmaydi.", ru: 'Наверху человек ещё не знает, зачем жать.' }, 1: { uz: "Muammodan oldin hali erta — odam hali ishonmagan.", ru: 'До проблемы ещё рано — человек пока не доверяет.' }, 3: { uz: "Havolalar orasida tugma ko'zga tashlanmaydi.", ru: 'Среди ссылок кнопка теряется.' }, default: { uz: 'Odam tugmani qachon bosishga tayyor bo\'lishini o\'ylang.', ru: 'Подумайте, когда человек будет готов нажать кнопку.' } }} />
 );
 
 // ===== SCREEN 6 — TARTIB = HIKOYA (stepper) =====
@@ -1406,8 +1407,8 @@ const Screen9 = (props) => (
     questionText={{ uz: "Bo'limlarni to'g'ri tartibda joylashdan maqsad nima?", ru: 'Зачем расставлять разделы в верном порядке?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bo'limlarni to'g'ri tartibda joylashdan <span className="italic" style={{ color: T.accent }}>maqsad</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Зачем</span> расставлять разделы в верном порядке?</h2></> }}
     options={[{ uz: "Sahifaga chiroyli ko'rinish berish uchun", ru: 'Чтобы страница выглядела красиво' }, { uz: 'Foydalanuvchini muammodan yechimga yetaklash uchun', ru: 'Чтобы провести пользователя от проблемы к решению' }, { uz: "Sahifani uzunroq va to'liqroq qilish uchun", ru: 'Чтобы страница стала длиннее и полнее' }, { uz: 'Qidiruvda yuqoriroq chiqib turish uchun', ru: 'Чтобы оказаться выше в поиске' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Tartib — bu yo'l: foydalanuvchini muammodan yechimga, keyin harakatga olib boradi. Bu foydalanuvchi uchun qilingan qulaylik.", ru: 'Верно! Порядок — это дорога: он ведёт человека от проблемы к решению, а затем к действию. Это удобство, сделанное для пользователя.' }}
-    explainWrong={{ 0: { uz: "Chiroyli ko'rinish — bezashning ishi, u keyingi darslarda. Tartibning vazifasi esa foydalanuvchini yetaklash.", ru: 'Красота — работа оформления, она в следующих уроках. А задача порядка — вести человека.' }, 2: { uz: "Uzunlik maqsad emas. Tartib — foydalanuvchini to'g'ri yo'ldan olib borish uchun.", ru: 'Длина — не цель. Порядок нужен, чтобы вести человека верной дорогой.' }, 3: { uz: "Qidiruvdagi o'rin boshqa narsalarga bog'liq. Tartib esa odamni yechimga olib borish uchun.", ru: 'Место в поиске зависит от другого. А порядок — чтобы довести человека до решения.' }, default: { uz: 'Tartib foydalanuvchini muammodan yechimga olib boradi.', ru: 'Порядок ведёт пользователя от проблемы к решению.' } }} />
+    explainCorrect={{ uz: "Tartib — yo'l: u odamni muammodan harakatgacha olib boradi.", ru: 'Порядок — это дорога: он ведёт человека от проблемы к действию.' }}
+    explainWrong={{ 0: { uz: "Chiroyli ko'rinish — bezakning ishi, tartibniki emas.", ru: 'Красота — работа оформления, а не порядка.' }, 2: { uz: "Sahifaning uzunligi maqsad emas.", ru: 'Длина страницы — не цель.' }, 3: { uz: "Qidiruvdagi o'rin bo'limlar tartibiga bog'liq emas.", ru: 'Место в поиске не зависит от порядка разделов.' }, default: { uz: 'Tartib kimga xizmat qilishini o\'ylang.', ru: 'Подумайте, кому служит порядок.' } }} />
 );
 
 // ===== SCREEN 11 — REORDER WARM-UP (3 bo'lim) =====
@@ -1448,8 +1449,8 @@ const Screen12 = (props) => (
     questionText={{ uz: "Sahifa bo'limlarining eng mantiqiy tartibi qaysi?", ru: 'Какой порядок разделов страницы самый логичный?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Eng <span className="italic" style={{ color: T.accent }}>mantiqiy</span> tartib qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какой порядок самый <span className="italic" style={{ color: T.accent }}>логичный</span>?</h2></> }}
     options={[{ uz: 'Tugma, isbot, birinchi blok, muammo, yechim', ru: 'Кнопка, доказательство, первый блок, проблема, решение' }, { uz: 'Isbot, tugma, muammo, birinchi blok, yechim', ru: 'Доказательство, кнопка, проблема, первый блок, решение' }, { uz: 'Muammo, tugma, birinchi blok, yechim, isbot', ru: 'Проблема, кнопка, первый блок, решение, доказательство' }, { uz: 'Birinchi blok, muammo, yechim, isbot, tugma', ru: 'Первый блок, проблема, решение, доказательство, кнопка' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Birinchi blok — nima taklif qilinmoqda, muammo — nega kerak, yechim — qanday ishlaydi, isbot — nega ishonsa bo'ladi, tugma — endi nima qilish kerak.", ru: 'Верно! Первый блок — что предлагают, проблема — зачем это нужно, решение — как работает, доказательство — почему можно верить, кнопка — что делать теперь.' }}
-    explainWrong={{ 0: { uz: 'Tugma boshida — erta. Avval birinchi blok, keyin ishontirish kerak.', ru: 'Кнопка в начале — рано. Сначала первый блок, потом убеждение.' }, 1: { uz: "Bo'limlar o'rni almashib ketgan. To'g'risi: birinchi blok, muammo, yechim, isbot, tugma.", ru: 'Разделы перепутаны местами. Верно так: первый блок, проблема, решение, доказательство, кнопка.' }, 2: { uz: "Birinchi blok eng boshida bo'lishi kerak, tugma esa oxirida.", ru: 'Первый блок должен быть в самом начале, а кнопка — в конце.' }, default: { uz: 'Birinchi blok, muammo, yechim, isbot, tugma.', ru: 'Первый блок, проблема, решение, доказательство, кнопка.' } }} />
+    explainCorrect={{ uz: "Nima, nega, qanday, ishonch, harakat — hikoya shu tartibda.", ru: 'Что, зачем, как, доверие, действие — история идёт в этом порядке.' }}
+    explainWrong={{ 0: { uz: 'Tugma boshida — erta, odam hali ishonmagan.', ru: 'Кнопка в начале — рано, человек ещё не доверяет.' }, 1: { uz: "Isbot va tugma muammodan oldin kelib qolgan.", ru: 'Доказательство и кнопка оказались раньше проблемы.' }, 2: { uz: "Birinchi blok uchinchi o'rinda, tugma esa ikkinchida qolgan.", ru: 'Первый блок оказался третьим, а кнопка — второй.' }, default: { uz: 'Sahifani hikoya kabi o\'qing: har bo\'lim bitta savolga javob.', ru: 'Прочитайте страницу как историю: каждый раздел отвечает на вопрос.' } }} />
 );
 
 // ===== SCREEN 13 — NAMUNA (tayyor tartib + izohlar) =====
@@ -1748,7 +1749,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code} storageKey={`${KODING_KEY}:code`}
+          <HtmlCompiler stage="m1-05" lang={__lang} task={KOD_TASK} starterCode={code} storageKey={`${KODING_KEY}:code`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}

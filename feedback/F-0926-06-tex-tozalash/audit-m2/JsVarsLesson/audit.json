@@ -1,0 +1,409 @@
+{
+ "file": "src/2-Modull/JsVarsLesson.jsx",
+ "lessonId": "js-vars-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, O'YIN BALLNI QANDAY ESLAB QOLADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "↑ har bir qiymat — nomlangan \"quti\"da",
+     "box": "demo-swap",
+     "gap": 22
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri yo'nalish! Bu \"qutilar\" — o'zgaruvchilar. Bugun ularni o'rganamiz.",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Bugun birinchi haqiqiy kodingizni yozasiz!",
+     "b": "Mana, eng qizig'i boshlanadi — bugun siz birinchi marta haqiqiy JavaScript kodi yozasiz! Hammasi o'zgaruvchila",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN SHUNDAY KOD YOZASIZ",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ uchta o'zgaruvchi, uchta \"quti\"",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [
+    {
+     "diff": 161,
+     "cols": 2,
+     "left": "code-box fade-up delay-2",
+     "right": "frame-dash",
+     "y": 263,
+     "row": "split",
+     "kids": [
+      "col@263",
+      "col@263"
+     ],
+     "tops": [
+      424,
+      263
+     ]
+    }
+   ],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NOMI 📦 name QIYMATI · ICHIDAGI \"Aziza\"",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "📦 name \"Dilnoza\"",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🤖 name → \"Dilnoza\"",
+     "box": "btn",
+     "gap": 8
+    },
+    {
+     "pos": "tagida",
+     "t": "🤖 name → \"Dilnoza\"",
+     "box": "btn",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "O'yindagi ballingiz doim o'zgarib turadi-ku. Bunday qiymatlar uchun let so'zini ishlatamiz. Qutiga yangi qiyma",
+     "b": "YANGI QIYMAT TOKENI — QUTIGA SOLING",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KOD",
+     "box": "code-box fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "📦 birth_year 2012",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KOD",
+     "box": "code-box fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 birth_year 2012 🔒 2015 ↩",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "O'yindagi ballingiz ✓ let — doim o'zgaradi Tug'ilgan yilingiz ✓ const — hech o'zgarmaydi H",
+     "box": "frame-success fade-step",
+     "gap": 14
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "var — eski usul (endi ishlatilmaydi)",
+     "b": "var — eski usul, eski kodlarda ko'rasiz. let va const — zamonaviy, ishonchli usul. Siz doim shu ikkitasini ish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "✨ Zamonaviy va ishonchli usul",
+     "box": "code-box demo-swap",
+     "gap": 24
+    },
+    {
+     "pos": "tagida",
+     "t": "⚠️ Eski usul — kamchiliklari bor edi",
+     "box": "code-box demo-swap",
+     "gap": 24
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 17,
+     "left": "BUTTON",
+     "right": "frame-dash",
+     "hs": [
+      43,
+      60
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "📦 name \"Aziza\"",
+     "box": "sk-info",
+     "gap": 12
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 age 14",
+     "box": "sk-info",
+     "gap": 12
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 maktabda true Rost/yolg'on — boolean Faqat ikki qiymat: true (rost) yoki false (yolg'on",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "📦 maktabda true",
+     "box": "sk-info",
+     "gap": 12
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "demo-swap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNING KODINGIZ",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 let / const 2 nom 3 = 4 qiymat",
+     "box": "fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

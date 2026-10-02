@@ -314,12 +314,12 @@ const RECAPS = {
     title: { uz: "Tugatib bo'ladigan bo'lak", ru: 'Часть, которую можно завершить' },
     cards: [
       { ic: '🧩', h: { uz: 'Katta ish bitta qatorga sig\'maydi', ru: 'Большая работа не влезает в одну строку' },
-        body: { uz: <>«Kinoteatrga sayt qilish» — bu butun ishning o'zi. Uni <b>bo'laklarga</b> bo'lish kerak: seanslar, chipta tugmasi, manzil. Katta ishni shunday bo'lish — <b>dekompozitsiya</b>.</>, ru: <>«Сделать сайт для кинотеатра» — это вся работа целиком. Её надо разбить на <b>части</b>: сеансы, кнопка билета, адрес. Такое разбиение — <b>декомпозиция</b>.</> },
+        body: { uz: <>Katta ishni bo'laklarga bo'lish — <b>dekompozitsiya</b>: seanslar, chipta tugmasi, manzil.</>, ru: <>Разбить большую работу на части — <b>декомпозиция</b>: сеансы, кнопка билета, адрес.</> },
         vis: { uz: <RcFlow items={['Katta ish', 'Bo\'laklar', 'Har bo\'lak tugaydi']} />, ru: <RcFlow items={['Большая работа', 'Части', 'Каждая часть завершается']} /> } },
       { ic: '✅', h: { uz: 'Bo\'lakning oxiri ko\'rinib turadi', ru: 'У части виден конец' },
-        body: { uz: <>Yaxshi bo'lakni alohida qilib, <b>tugatib bo'ladi</b>: seanslar ro'yxati qo'shildi — tamom. «Chiroyli qilish» qachon tugaganini esa hech kim ayta olmaydi.</>, ru: <>Хорошую часть можно сделать отдельно и <b>завершить</b>: список сеансов добавлен — всё. А про «сделать красиво» никто не скажет, когда оно закончилось.</> } },
+        body: { uz: <>Yaxshi bo'lakni <b>tugatib bo'ladi</b>: seanslar ro'yxati qo'shildi — tamom.</>, ru: <>Хорошую часть можно <b>завершить</b>: список сеансов добавлен — всё.</> } },
       { ic: '🎯', h: { uz: 'Natija ish emas', ru: 'Результат — это не работа' },
-        body: { uz: <>«Kinoteatrni mashhur qilish» — bu <b>natija</b>, ish emas. Uni sayt ustida o'tirib tugatib bo'lmaydi, shuning uchun u bo'lak bo'la olmaydi.</>, ru: <>«Сделать кинотеатр известным» — это <b>результат</b>, а не работа. Её нельзя завершить, сидя над сайтом, поэтому частью она быть не может.</> },
+        body: { uz: <>«Kinoteatrni mashhur qilish» — <b>natija</b>, ish emas, uni bo'lak qilib tugatib bo'lmaydi.</>, ru: <>«Сделать кинотеатр известным» — это <b>результат</b>, а не работа: его не завершить как часть.</> },
         ask: { uz: 'Sizning ro\'yxatingizda qaysi yozuvning oxiri ko\'rinmayapti?', ru: 'В вашем списке у какой записи не виден конец?' } },
     ]
   },
@@ -327,12 +327,12 @@ const RECAPS = {
     title: { uz: 'Birinchi versiyaga nima kiradi', ru: 'Что входит в первую версию' },
     cards: [
       { ic: '🔥', h: { uz: 'Busiz sayt ish bermaydi', ru: 'Без этого сайт не работает' },
-        body: { uz: <>Birinchi versiyaga faqat <b>busiz sayt ish bermaydigan</b> ishlar kiradi. Sayt ish beradigan eng sodda birinchi versiya — shu ro'yxat <b>MVP</b> deb ataladi.</>, ru: <>В первую версию входят только те дела, <b>без которых сайт не работает</b>. Самая простая рабочая первая версия — этот список и называется <b>MVP</b>.</> },
+        body: { uz: <>Busiz sayt ish bermaydigan ishlar ro'yxati — eng sodda birinchi versiya, <b>MVP</b>.</>, ru: <>Список дел, без которых сайт не работает, — самая простая первая версия, <b>MVP</b>.</> },
         vis: { uz: <RcFlow items={['Busiz ish bermaydi', 'Bir kunda bo\'ladi', 'Ochilish ro\'yxati']} />, ru: <RcFlow items={['Без него не работает', 'Делается за день', 'Список к открытию']} /> } },
       { ic: '⚖️', h: { uz: 'Osonligi qaror qilmaydi', ru: 'Лёгкость не решает' },
-        body: { uz: <>Bufet menyusi oson qilinadi, lekin busiz ham sayt ish beradi. Demak <b>osonlik</b> yetarli emas — birinchi savol boshqa: busiz sayt ish beradimi?</>, ru: <>Меню буфета сделать легко, но и без него сайт работает. Значит <b>лёгкость</b> — не аргумент: первый вопрос другой — работает ли сайт без этого?</> } },
+        body: { uz: <>Bufet menyusi oson, lekin busiz ham sayt ish beradi — <b>osonlik</b> yetarli emas.</>, ru: <>Меню буфета сделать легко, но сайт работает и без него — <b>лёгкость</b> не аргумент.</> } },
       { ic: '🙂', h: { uz: 'Yoqish-yoqmaslik ham qaror qilmaydi', ru: 'Нравится или нет — тоже не решает' },
-        body: { uz: <>Kinoteatr egasiga bir imkoniyat juda yoqishi mumkin. Lekin ro'yxatni <b>ikki savol</b> tuzadi: busiz sayt ish beradimi va buni qurish qancha vaqt oladi.</>, ru: <>Владельцу кинотеатра какая-то возможность может очень нравиться. Но список составляют <b>два вопроса</b>: работает ли сайт без неё и сколько времени займёт её сделать.</> },
+        body: { uz: <>Egasiga yoqishi emas, <b>ikki savol</b> hal qiladi: busiz ish beradimi va qancha vaqt oladi.</>, ru: <>Решает не то, что нравится владельцу, а <b>два вопроса</b>: работает ли сайт без этого и сколько времени займёт.</> },
         ask: { uz: 'Ochilish kuni odam saytga kirsa, nima qila olishi shart?', ru: 'Что человек обязан суметь сделать на сайте в день открытия?' } },
     ]
   },
@@ -340,12 +340,12 @@ const RECAPS = {
     title: { uz: 'Kerak, lekin og\'ir ish qayerga tushadi', ru: 'Куда попадает нужная, но тяжёлая работа' },
     cards: [
       { ic: '⚡', h: { uz: 'Kerak + og\'ir = keyingi versiya', ru: 'Нужно + тяжело = следующая версия' },
-        body: { uz: <>Imkoniyat kerak, lekin uni qurish bir necha kun oladi — u <b>keyingi versiyaga</b> tushadi. Ochilishgacha bir hafta bor, unga uchta ish sig'adi.</>, ru: <>Возможность нужна, но на неё уйдёт несколько дней — она попадает в <b>следующую версию</b>. До открытия неделя, а в неё влезают три дела.</> },
+        body: { uz: <>Kerak, lekin bir necha kun oladigan imkoniyat <b>keyingi versiyaga</b> tushadi.</>, ru: <>Нужная возможность, на которую уйдёт несколько дней, попадает в <b>следующую версию</b>.</> },
         vis: { uz: <RcFlow items={['Kerak', 'Bir necha kun', 'Keyingi versiya']} />, ru: <RcFlow items={['Нужно', 'Несколько дней', 'Следующая версия']} /> } },
       { ic: '🌱', h: { uz: 'Keyinga qoldirilganlar boshqa ro\'yxat', ru: 'Отложенные — это другой список' },
-        body: { uz: <>Keyinga qoldirilganlar ro'yxatida <b>busiz ham sayt ish beradigan</b> ishlar turadi. Kerakli ish u yerga tushmaydi — u faqat navbatini kutadi.</>, ru: <>В списке отложенных лежат дела, <b>без которых сайт и так работает</b>. Нужное дело туда не попадает — оно просто ждёт своей очереди.</> } },
+        body: { uz: <>Keyinga qoldirilganlar ro'yxatida <b>busiz ham</b> sayt ish beradigan ishlar turadi.</>, ru: <>В списке отложенных лежат дела, без которых сайт <b>и так</b> работает.</> } },
       { ic: '📦', h: { uz: 'Hech narsa o\'chirilmaydi', ru: 'Ничего не удаляется' },
-        body: { uz: <>Ro'yxatdan chiqqan imkoniyat yo'qolmaydi: uning <b>navbati kechroqqa suriladi</b>, xolos. Shuning uchun uch ro'yxat ham saqlanadi.</>, ru: <>Возможность, не попавшая в список, не исчезает: её <b>очередь просто сдвигается</b>. Поэтому сохраняются все три списка.</> },
+        body: { uz: <>Ro'yxatdan chiqqan imkoniyat <b>yo'qolmaydi</b> — uning navbati kechroqqa suriladi, xolos.</>, ru: <>Возможность, не попавшая в список, <b>не исчезает</b> — её очередь просто сдвигается.</> },
         ask: { uz: 'Ro\'yxatingizdagi qaysi ish kerak, lekin bir haftaga sig\'maydi?', ru: 'Какое дело в вашем списке нужно, но не влезает в неделю?' } },
     ]
   },
@@ -353,12 +353,12 @@ const RECAPS = {
     title: { uz: 'Nega aynan uchta', ru: 'Почему именно три' },
     cards: [
       { ic: '📅', h: { uz: 'Chegara — vaqt', ru: 'Ограничение — это время' },
-        body: { uz: <>Ochilishgacha <b>bir hafta</b> bor, sayt ustida <b>bitta odam</b> ishlaydi. U bir haftada atigi uchta ishni bajaradi — shuning uchun ro'yxatga uchtasi sig'adi.</>, ru: <>До открытия <b>неделя</b>, над сайтом работает <b>один человек</b>. За неделю он сделает всего три дела — поэтому в список входят три.</> },
+        body: { uz: <>Bitta odam bir haftada atigi <b>uchta ish</b> qila oladi — ro'yxatga shuncha sig'adi.</>, ru: <>Один человек за неделю успевает только <b>три дела</b> — столько и входит в список.</> },
         vis: { uz: <RcFlow items={['Bir hafta', 'Bitta odam', 'Uchta ish']} />, ru: <RcFlow items={['Неделя', 'Один человек', 'Три дела']} /> } },
       { ic: '⏳', h: { uz: 'To\'rtinchisi tugamay qoladi', ru: 'Четвёртое останется незавершённым' },
-        body: { uz: <>To'rtinchi ish boshlanadi, lekin tugamaydi. Ochilish kuni sayt <b>yarim qolgan holda</b> ochiladi — bu eng yomon natija.</>, ru: <>Четвёртое дело начнётся, но не закончится. В день открытия сайт откроется <b>наполовину готовым</b> — это худший исход.</> } },
+        body: { uz: <>To'rtinchi ish tugamay qoladi va sayt <b>yarim tayyor</b> ochiladi — bu eng yomon natija.</>, ru: <>Четвёртое дело не закончится, и сайт откроется <b>наполовину готовым</b> — худший исход.</> } },
       { ic: '🔢', h: { uz: 'Uchta — har doimgi son emas', ru: 'Три — не постоянное число' },
-        body: { uz: <>Boshqa muddat bo'lsa, son ham boshqacha bo'ladi. Uchta — bu <b>bir haftaga sig'adigan</b> son, doimiy qoida emas.</>, ru: <>При другом сроке и число будет другим. Три — это число, <b>которое влезает в неделю</b>, а не магическая цифра.</> },
+        body: { uz: <>Uchta — bir haftaga sig'adigan son, <b>doimiy qoida</b> emas.</>, ru: <>Три — это число, которое влезает в неделю, а не <b>постоянное правило</b>.</> },
         ask: { uz: 'Agar ikki hafta bo\'lsa, ro\'yxatga nechta ish sig\'ardi?', ru: 'Если бы было две недели, сколько дел влезло бы в список?' } },
     ]
   },
@@ -366,7 +366,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -384,7 +384,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -393,13 +393,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol: ', ru: '🗣️ Вопрос классу: ' })}{tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol: ', ru: '🗣️ Вопрос классу: ' })}{tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -477,7 +477,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -486,7 +486,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -590,7 +590,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, payloa
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)}` })
               : waiting
@@ -598,8 +598,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, payloa
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -612,7 +613,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, payloa
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );

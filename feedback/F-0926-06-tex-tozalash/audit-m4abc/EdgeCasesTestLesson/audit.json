@@ -1,0 +1,367 @@
+{
+ "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+ "lessonId": "edge-cases-04b-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FUNKSIYA BUNDAY KIRISHGA QANDAY JAVOB BERISHI KERAK?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Test faqat \"to'g'ri ishlaydimi\" ni tekshiradimi — yoki \"noto'g'rini rad etadimi\" ham?",
+     "b": "Endi test faqat \"to'g'ri ishlaydimi\" emas, \"noto'g'rini rad etadimi\" ni ham tekshiradi.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — EXCEPTIONNI HAM SINAYSIZ",
+     "box": "jestrun el-in ok",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 22,
+     "left": "editor",
+     "right": "jestrun el-in ok",
+     "hs": [
+      126,
+      148
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ENDI NIMA BO'LADI",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "orderTotal(10000, 2) → 20000 ✓ orderTotal(10000, 0) → Error tashlaydi ✋",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.TS — VARAQA",
+     "box": "dd-sheet",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "API JAVOBI",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NPM TEST",
+     "box": "jestrun el-in bad",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "haqiqatan edge holatni tutadi",
+     "b": "QAYSI TESTLAR HAQIQATAN EDGE HOLATNI TUTADI?",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "it('0 ta xato beradi', () => { expect(() => orderTotal(10000, 0)).toThrow(); }) +",
+     "b": "it('0 ta xato beradi', () => { expect(orderTotal(10000, 0)).toThrow(); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "describe('orderTotal — edge cases', () => { it('0 ta xato beradi', () => { expect(() => orderTotal(10000, 0)).",
+     "b": "it('0 ta xato beradi', () => { expect(() => orderTotal(10000, 0)).toThrow(); }) ✓",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "describe('orderTotal — edge cases', () => { it('0 ta xato beradi', () => { expect(() => orderTotal(10000, 0)).",
+     "b": "it('0 ta xato beradi', () => { expect(orderTotal(10000, 0)).toThrow(); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "it('0 ta xato beradi', () => { expect(() => orderTotal(10000, 0)).toThrow(); }) ✓",
+     "b": "it('0 ta xato beradi', () => { expect(orderTotal(10000, 0)).toThrow(); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "Bir nechta test yozildi. Qaysilari haqiqatan edge holatni tutadi?",
+     "b": "QAYSI TESTLAR HAQIQATAN EDGE HOLATNI TUTADI?",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QAYSI TESTLAR HAQIQATAN EDGE HOLATNI TUTADI?",
+     "box": "pick-list",
+     "gap": 16
+    }
+   ],
+   "scroll": 13,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 43,
+     "left": "editor",
+     "right": "sk-info",
+     "hs": [
+      146,
+      103
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS — ETALON KARTOCHKASI",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BURILISH — GUARD ESKI TESTNI BUZADI",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

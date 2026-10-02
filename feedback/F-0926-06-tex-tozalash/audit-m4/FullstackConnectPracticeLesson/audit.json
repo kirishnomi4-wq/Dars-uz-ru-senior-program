@@ -1,0 +1,700 @@
+{
+ "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+ "lessonId": "fullstack-connect-practice-p2-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BAZA — BACK (LOCALHOST:3000)",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SAYT 3 TA, BAZA 4 TA. NEGA ULAR BIR XIL EMAS?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Yangiladingiz — lekin baribir 3 ta mashina. Spark yo'q!",
+     "box": "fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aslida sayt buzilmagan va mashina yomon emas. Front va back — alohida tillarda emas, bitta",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SAYT SERVERDAN O'QIYDI",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ Spark paydo bo'ldi! Sayt endi bazadagi 4 mashinani ko'rsatadi",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ULAR QANDAY GAPLASHADI",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Front :5173 fetch → ← JSON Back :3000",
+     "box": "hint",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MA'LUMOT MANBASI",
+     "box": "vcard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "React katalog fetch → GET /api/cars → PostgreSQL",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.76,
+     "a": "AI'ga aniq buyruq beramiz: \"qattiq const cars o'rniga, sahifa ochilganda GET /api/cars'dan fetch qilib, useSta",
+     "b": "Siz \"Katalogda const cars o'rniga, sahifa ochilganda GET /api/cars dan fetch qilib useState'ga saqla.\"",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.76,
+     "a": "AI'ga aniq buyruq beramiz: \"qattiq const cars o'rniga, sahifa ochilganda GET /api/cars'dan fetch qilib, useSta",
+     "b": "\"Katalogda const cars o'rniga, sahifa ochilganda GET /api/cars dan fetch qilib useState'ga saqla.\"",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ANIQ BUYRUQ (PROMPT)",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "HAR BIR QATOR NIMA QILADI",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "React: fetch → GET /api/cars → Server → JSON javob → setCars → ekran",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HOLATNI SINAB KO'RING",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SAYT — SHU HOLATDA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Front — sayt localhost:5173 📦 SO'ROV HALI YUBORILMAGAN Back — server localhost:3000",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SERVER.JS",
+     "box": "takeaway ok fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "SERVER.JS",
+     "box": "kons",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "SAYT — FRONT (LOCALHOST:5173)",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Front — sayt localhost:5173 📦 ⛔ CORS POLICY — BRAUZER SO'ROVNI TO'SDI Back — server local",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Front — sayt localhost:5173 📦 ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✓ 200 OK — SHLAGBAUM OCHIQ, MA'LUMOT O'TDI ",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 24,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "190 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "Narx 450 000 so'm/kun",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "YANGI MASHINA FORMASI",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Tracker chiqdi! Endi 🔄 yangilang — saqlanib qoladimi?",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.77,
+     "a": "Mashina qo'shilganda ma'lumot qaysi yo'lni bosib o'tadi?",
+     "b": "Bitta mashina qo'shilganda ma'lumot to'liq bir yo'lni bosib o'tadi: siz formaga yozasiz → front POST bilan ser",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Forma (front) POST → Express PostgreSQL GET → Katalog (front)",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "520 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "610 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "190 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "280 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "520 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "610 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "190 000 so'm/kun Ijaraga olish",
+     "b": "450 000 so'm/kun Ijaraga olish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNING SAYTINGIZ",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 42,
+     "left": "step-card",
+     "right": "frame-success",
+     "hs": [
+      48,
+      90
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "3 TA ASOSIY G'OYA",
+     "box": "roadmap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YODDA TUTING",
+     "box": "frame-success",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

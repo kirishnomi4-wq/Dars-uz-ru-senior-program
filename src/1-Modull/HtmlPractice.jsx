@@ -306,7 +306,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -314,8 +314,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -326,7 +327,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -626,8 +627,8 @@ const Screen4 = (props) => (
     questionText="Eng katta, asosiy sarlavha qaysi teg?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifadagi <span className="italic" style={{ color: T.accent }}>eng katta</span>, asosiy sarlavha (ismingiz) qaysi teg bilan yoziladi?</>, ru: <>Каким тегом пишется <span className="italic" style={{ color: T.accent }}>самый большой</span>, главный заголовок страницы (ваше имя)?</> })}</h2></>}
     options={['`<p>`', '`<h1>`', '`<h6>`', '`<title>`']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! `<h1>` — sahifadagi eng katta va eng muhim sarlavha (ismingiz). Har sahifada bitta `<h1>` bo'ladi.", ru: 'Верно! `<h1>` — самый большой и главный заголовок страницы (ваше имя). На странице бывает один `<h1>`.' }}
-    explainWrong={{ 0: { uz: "`<p>` — oddiy matn (paragraf), sarlavha emas. Eng katta sarlavha — `<h1>`.", ru: '`<p>` — обычный текст (абзац), а не заголовок. Самый большой заголовок — `<h1>`.' }, 2: { uz: "`<h6>` — eng kichik sarlavha. Eng kattasi — `<h1>`.", ru: '`<h6>` — самый маленький заголовок. Самый большой — `<h1>`.' }, 3: { uz: "`<title>` — brauzer yorlig'idagi nom, sahifa ichida ko'rinmaydi. Asosiy sarlavha — `<h1>`.", ru: '`<title>` — имя на вкладке браузера, внутри страницы его не видно. Главный заголовок — `<h1>`.' }, default: { uz: "Eng katta sarlavha — `<h1>`.", ru: 'Самый большой заголовок — `<h1>`.' } }} />
+    explainCorrect={{ uz: "`<h1>` — eng katta sarlavha, sahifada faqat bittasi bo'ladi.", ru: '`<h1>` — самый большой заголовок, на странице он один.' }}
+    explainWrong={{ 0: { uz: "`<p>` — oddiy matn (paragraf), sarlavha emas.", ru: '`<p>` — обычный текст (абзац), а не заголовок.' }, 2: { uz: "`<h6>` — eng kichik sarlavha, bizga esa eng kattasi kerak.", ru: '`<h6>` — самый маленький заголовок, а нужен самый большой.' }, 3: { uz: "`<title>` — yorliqdagi nom, sahifa ichida ko'rinmaydi.", ru: '`<title>` — имя на вкладке, на странице его не видно.' }, default: { uz: "Qaysi sarlavha tegi eng katta ekanini eslang.", ru: 'Вспомните, какой тег заголовка самый большой.' } }} />
 );
 
 // ===== SCREEN 5 — BUILD: NAV =====
@@ -679,8 +680,8 @@ const Screen6 = (props) => (
     questionText="Bosiladigan havola qaysi teg?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Menyudagi yozuv bosilsa, boshqa bo'limga olib boradi. Bunday <span className="italic" style={{ color: T.accent }}>havolani</span> qaysi teg yasaydi?</>, ru: <>Надпись в меню при клике ведёт в другой раздел. Какой тег делает <span className="italic" style={{ color: T.accent }}>такую ссылку</span>?</> })}</h2></>}
     options={['`<nav>`', '`<p>`', '`<link>`', '`<a>`']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `<a>` (anchor) — bosiladigan havola. `href` atributi qayerga o'tishni ko'rsatadi: `<a href=…>`.", ru: 'Верно! `<a>` (anchor) — кликабельная ссылка. Атрибут `href` указывает, куда переходить: `<a href=…>`.' }}
-    explainWrong={{ 0: { uz: "`<nav>` — menyuni o'rab turadigan idish. Ichidagi har bir havola — `<a>`.", ru: '`<nav>` — контейнер, оборачивающий меню. Каждая ссылка внутри — `<a>`.' }, 1: { uz: "`<p>` — oddiy matn. Bosiladigan havola — `<a>`.", ru: '`<p>` — обычный текст. Кликабельная ссылка — `<a>`.' }, 2: { uz: "`<link>` — boshqa narsa (masalan CSS fayl ulash) uchun. Ko'rinadigan havola — `<a>`.", ru: '`<link>` — для другого (например, подключить CSS-файл). Видимая ссылка — `<a>`.' }, default: { uz: "Bosiladigan havola — `<a>` tegi.", ru: 'Кликабельная ссылка — тег `<a>`.' } }} />
+    explainCorrect={{ uz: "`<a>` — bosiladigan havola, `href` qayerga o'tishini aytadi.", ru: '`<a>` — кликабельная ссылка, `href` говорит, куда перейти.' }}
+    explainWrong={{ 0: { uz: "`<nav>` — menyuni o'rab turadigan idish, havolaning o'zi emas.", ru: '`<nav>` — контейнер для меню, а не сама ссылка.' }, 1: { uz: "`<p>` — oddiy matn, uni bosib hech qayerga o'tilmaydi.", ru: '`<p>` — обычный текст, по нему никуда не перейти.' }, 2: { uz: "`<link>` sahifada ko'rinmaydi — u CSS faylni ulaydi.", ru: '`<link>` на странице не виден — он подключает CSS-файл.' }, default: { uz: "Bosilganda boshqa joyga olib boradigan tegni eslang.", ru: 'Вспомните тег, который при клике ведёт в другое место.' } }} />
 );
 
 // ===== SCREEN 7 — BUILD: ABOUT (img) =====
@@ -732,8 +733,8 @@ const Screen8 = (props) => (
     questionText="Rasm o'rniga matn ko'rsatadigan atribut?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "«Men haqimda» rasmingiz yuklanmasa, uning o'rniga matn ko'rsatadigan (va ko'rish imkoni cheklanganlar uchun muhim) atribut qaysi?", ru: 'Если фото из «Обо мне» не загрузится, какой атрибут покажет вместо него текст (важный и для людей с нарушением зрения)?' })}</h2></>}
     options={['`src`', '`href`', '`alt`', '`title`']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! `alt` (alternative) — rasm chiqmasa o'rniga ko'rsatiladigan matn. Ekran o'qigichlar ham shu matnni o'qiydi.", ru: 'Верно! `alt` (alternative) — текст, который показывается вместо картинки, если она не появилась. Скринридеры тоже читают этот текст.' }}
-    explainWrong={{ 0: { uz: "`src` — rasm faylining manzili. O'rniga matn esa — `alt`.", ru: '`src` — адрес файла картинки. А текст вместо неё — `alt`.' }, 1: { uz: "`href` — bu havola (`<a>`) uchun. Rasm matni — `alt`.", ru: '`href` — это для ссылки (`<a>`). Текст картинки — `alt`.' }, 3: { uz: "`title` — sichqoncha ustiga kelganda chiqadigan maslahat. Asosiy muqobil matn — `alt`.", ru: '`title` — подсказка при наведении мыши. Основной альтернативный текст — `alt`.' }, default: { uz: "Rasm o'rniga matn — `alt` atributi.", ru: 'Текст вместо картинки — атрибут `alt`.' } }} />
+    explainCorrect={{ uz: "`alt` — rasm chiqmasa, uning o'rniga ko'rinadigan matn.", ru: '`alt` — текст, который виден, если картинка не загрузилась.' }}
+    explainWrong={{ 0: { uz: "`src` — rasm faylining manzili, matn emas.", ru: '`src` — адрес файла картинки, а не текст.' }, 1: { uz: "`href` — havolaning manzili, rasmga aloqasi yo'q.", ru: '`href` — адрес ссылки, к картинке он не относится.' }, 3: { uz: "`title` faqat sichqoncha ustiga kelganda chiqadi.", ru: '`title` появляется только при наведении мыши.' }, default: { uz: "Rasm yuklanmasa, uning o'rnida nima chiqishini eslang.", ru: 'Вспомните, что видно, если картинка не загрузилась.' } }} />
 );
 
 // ===== SCREEN 9 — BUILD: LOYIHALAR (ul / li + a) =====
@@ -781,8 +782,8 @@ const Screen10 = (props) => (
     questionText="Tartibsiz (nuqtali) ro'yxat qaysi teg?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Loyihalar ro'yxatida tartib muhim emas. <span className="italic" style={{ color: T.accent }}>Tartibsiz (nuqtali)</span> ro'yxatni qaysi teg yasaydi?</>, ru: <>В списке проектов порядок не важен. Какой тег делает <span className="italic" style={{ color: T.accent }}>маркированный (с точками)</span> список?</> })}</h2></>}
     options={['`<ol>`', '`<ul>`', '`<li>`', '`<dl>`']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! `<ul>` (unordered list) — tartibsiz, nuqtali ro'yxat. Ichidagi har bir element — `<li>`.", ru: 'Верно! `<ul>` (unordered list) — маркированный список с точками. Каждый элемент внутри — `<li>`.' }}
-    explainWrong={{ 0: { uz: "`<ol>` (ordered list) — raqamli, tartibli ro'yxat. Nuqtalisi — `<ul>`.", ru: '`<ol>` (ordered list) — нумерованный, упорядоченный список. С точками — `<ul>`.' }, 2: { uz: "`<li>` — ro'yxat elementi. Uni o'rab turadigan idish — `<ul>`.", ru: '`<li>` — элемент списка. Контейнер, который его оборачивает, — `<ul>`.' }, 3: { uz: "`<dl>` — boshqa tur (ta'rif ro'yxati). Oddiy nuqtali ro'yxat — `<ul>`.", ru: '`<dl>` — другой вид (список определений). Обычный маркированный список — `<ul>`.' }, default: { uz: "Nuqtali ro'yxat — `<ul>`.", ru: 'Маркированный список — `<ul>`.' } }} />
+    explainCorrect={{ uz: "`<ul>` — tartiblanmagan ro'yxat, har bandi `<li>` bo'ladi.", ru: '`<ul>` — неупорядоченный список, каждый пункт в нём — `<li>`.' }}
+    explainWrong={{ 0: { uz: "`<ol>` bandlarni raqamlaydi, nuqta qo'ymaydi.", ru: '`<ol>` нумерует пункты, а не ставит точки.' }, 2: { uz: "`<li>` — bitta band, butun ro'yxatni o'ramaydi.", ru: '`<li>` — один пункт, а не весь список.' }, 3: { uz: "`<dl>` — ta'riflar ro'yxati, u nuqtali emas.", ru: '`<dl>` — список определений, он без точек.' }, default: { uz: "Nuqta qo'yadigan ro'yxat tegini eslang.", ru: 'Вспомните тег списка с точками.' } }} />
 );
 
 // ===== SCREEN 11 — BUILD: ALOQA (mailto) =====
@@ -876,8 +877,8 @@ const Screen13 = (props) => (
     questionText="Sahifaning eng pastki qismi qaysi teg?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning <span className="italic" style={{ color: T.accent }}>eng pastida</span> (mualliflik ©, yil) joylashadigan qism qaysi teg bilan belgilanadi?</>, ru: <>Каким тегом обозначается часть в <span className="italic" style={{ color: T.accent }}>самом низу</span> страницы (авторство ©, год)?</> })}</h2></>}
     options={['`<header>`', '`<nav>`', '`<section>`', '`<footer>`']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `<footer>` — sahifaning eng pastki, yakuniy qismi: mualliflik, yil, aloqa. Nomi ham 'oyoq' (foot) degani.", ru: 'Верно! `<footer>` — самая нижняя, завершающая часть страницы: авторство, год, контакты. Название и значит «нога» (foot).' }}
-    explainWrong={{ 0: { uz: "`<header>` — aksincha, eng yuqoridagi qism (sarlavha). Pastdagi — `<footer>`.", ru: '`<header>` — наоборот, самая верхняя часть (шапка). Нижняя — `<footer>`.' }, 1: { uz: "`<nav>` — menyu (havolalar). Pastki qism — `<footer>`.", ru: '`<nav>` — меню (ссылки). Нижняя часть — `<footer>`.' }, 2: { uz: "`<section>` — oddiy bo'lim. Maxsus pastki qism — `<footer>`.", ru: '`<section>` — обычный раздел. Специальная нижняя часть — `<footer>`.' }, default: { uz: "Eng pastki qism — `<footer>`.", ru: 'Самая нижняя часть — `<footer>`.' } }} />
+    explainCorrect={{ uz: "`<footer>` — eng pastki qism, nomi ham «oyoq» (foot) degani.", ru: '`<footer>` — самая нижняя часть: foot и значит «нога».' }}
+    explainWrong={{ 0: { uz: "`<header>` aksincha — sahifaning eng yuqori qismi.", ru: '`<header>` — наоборот, самая верхняя часть страницы.' }, 1: { uz: "`<nav>` — havolalar menyusi, pastki qism emas.", ru: '`<nav>` — меню из ссылок, а не нижняя часть.' }, 2: { uz: "`<section>` — o'rtadagi oddiy bo'lim, pastki qism emas.", ru: '`<section>` — обычный раздел в середине, а не низ страницы.' }, default: { uz: "Sahifaning eng pastki qismi qaysi teg ekanini eslang.", ru: 'Вспомните, какой тег отвечает за самый низ страницы.' } }} />
 );
 
 // ===== SCREEN 14 — DEBUGGING (o'quvchi xatoni o'zi topadi) =====
@@ -976,8 +977,8 @@ const Screen16 = (props) => (
     questionText="Bo'limlar to'g'ri tartibi qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Butun saytni eslang', ru: 'Вспомните весь сайт' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Portfolio sahifangiz <span className="italic" style={{ color: T.accent }}>yuqoridan pastga</span> qanday tartibda joylashadi?</>, ru: <>В каком порядке идёт ваша страница портфолио <span className="italic" style={{ color: T.accent }}>сверху вниз</span>?</> })}</h2></>}
     options={[{ uz: 'Footer → Header → Men haqimda → Loyihalar → Aloqa', ru: 'Footer → Header → Обо мне → Проекты → Контакты' }, { uz: 'Men haqimda → Header → Loyihalar → Aloqa → Footer', ru: 'Обо мне → Header → Проекты → Контакты → Footer' }, { uz: 'Header → Men haqimda → Loyihalar → Aloqa → Footer', ru: 'Header → Обо мне → Проекты → Контакты → Footer' }, { uz: 'Header → Loyihalar → Men haqimda → Footer → Aloqa', ru: 'Header → Проекты → Обо мне → Footer → Контакты' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Yuqorida header (ism), keyin bo'limlar (men haqimda, loyihalar, aloqa), eng pastda footer.", ru: 'Верно! Сверху header (имя), затем разделы (обо мне, проекты, контакты), в самом низу footer.' }}
-    explainWrong={{ 0: { uz: "Footer eng pastda bo'lishi kerak, yuqorida emas. Header — birinchi.", ru: 'Footer должен быть в самом низу, а не сверху. Header — первый.' }, 1: { uz: 'Header birinchi bo\'ladi — "Men haqimda" undan keyin keladi.', ru: 'Header идёт первым — «Обо мне» после него.' }, 3: { uz: "Boshlanishi to'g'ri, lekin Footer eng oxirida bo'lishi kerak.", ru: 'Начало верное, но Footer должен быть в самом конце.' }, default: { uz: "To'g'ri tartib: Header → bo'limlar → Footer.", ru: 'Верный порядок: Header → разделы → Footer.' } }} />
+    explainCorrect={{ uz: "Sahifa tepadan o'qiladi: header boshida, footer oxirida.", ru: 'Страница читается сверху вниз: header в начале, footer в конце.' }}
+    explainWrong={{ 0: { uz: "Footer — pastki qism, u boshda turolmaydi.", ru: 'Footer — нижняя часть, он не может стоять первым.' }, 1: { uz: '«Men haqimda» — bo\'lim, u header\'dan oldin kelmaydi.', ru: '«Обо мне» — раздел, он не идёт раньше header.' }, 3: { uz: "Footer'dan keyin bo'lim kelmaydi, bu yerda esa Aloqa bor.", ru: 'После footer разделов не бывает, а здесь стоят «Контакты».' }, default: { uz: "Sahifani tepadan pastga qarab ko'z oldingizga keltiring.", ru: 'Представьте страницу сверху вниз.' } }} />
 );
 
 // ===== SCREEN 17 — YAKUN =====
@@ -1099,12 +1100,12 @@ const RECAPS = {
   4: {
     title: { uz: 'Sarlavhalar: h1 va boshqalar', ru: 'Заголовки: h1 и другие' }, cards: [
       { ic: '🔤', h: { uz: 'h1 — eng katta sarlavha', ru: 'h1 — самый большой заголовок' },
-        body: { uz: <>Portfolioingizda ismingiz eng katta, eng muhim sarlavha — <b className="mono">&lt;h1&gt;</b> ichiga yoziladi. Bir sahifada faqat <b>bitta</b> <b className="mono">&lt;h1&gt;</b> bo'ladi.</>, ru: <>В вашем портфолио имя — самый большой и главный заголовок, он пишется внутри <b className="mono">&lt;h1&gt;</b>. На странице бывает только <b>один</b> <b className="mono">&lt;h1&gt;</b>.</> },
+        body: { uz: <>Ismingiz — eng muhim sarlavha, u bitta <b className="mono">&lt;h1&gt;</b> ichiga yoziladi.</>, ru: <>Ваше имя — главный заголовок, он пишется в одном <b className="mono">&lt;h1&gt;</b>.</> },
         ask: { uz: 'Sizning portfolioingizda h1 ichiga nima yoziladi?', ru: 'Что пишется внутри h1 в вашем портфолио?' } },
       { ic: '📉', h: { uz: 'h2, h3 — kichikroq sarlavhalar', ru: 'h2, h3 — заголовки поменьше' },
-        body: { uz: <>Sarlavhalar <b>bosqichma-bosqich</b> kichrayadi: <b className="mono">&lt;h1&gt;</b> eng katta, keyin <b className="mono">&lt;h2&gt;</b>, <b className="mono">&lt;h3&gt;</b> … <b className="mono">&lt;h6&gt;</b> eng kichik. Bo'lim sarlavhalari (Men haqimda, Loyihalar) — <b className="mono">&lt;h2&gt;</b>.</>, ru: <>Заголовки уменьшаются <b>ступенями</b>: <b className="mono">&lt;h1&gt;</b> самый большой, затем <b className="mono">&lt;h2&gt;</b>, <b className="mono">&lt;h3&gt;</b> … <b className="mono">&lt;h6&gt;</b> самый маленький. Заголовки разделов (Обо мне, Проекты) — <b className="mono">&lt;h2&gt;</b>.</> } },
+        body: { uz: <>Sarlavhalar <b>bosqichma-bosqich</b> kichrayadi, bo'lim nomlari esa <b className="mono">&lt;h2&gt;</b> bo'ladi.</>, ru: <>Заголовки уменьшаются <b>ступенями</b>, а названия разделов — это <b className="mono">&lt;h2&gt;</b>.</> } },
       { ic: '📰', h: { uz: 'p — oddiy matn', ru: 'p — обычный текст' },
-        body: { uz: <><b className="mono">&lt;p&gt;</b> — sarlavha emas, <b>oddiy matn</b> (paragraf). Yo'nalishingiz va tanishtiruv matni shu tegga yoziladi.</>, ru: <><b className="mono">&lt;p&gt;</b> — не заголовок, а <b>обычный текст</b> (абзац). Ваше направление и текст-представление пишутся этим тегом.</> },
+        body: { uz: <><b className="mono">&lt;p&gt;</b> — sarlavha emas, <b>oddiy matn</b>: yo'nalishingiz shu tegga yoziladi.</>, ru: <><b className="mono">&lt;p&gt;</b> — не заголовок, а <b>обычный текст</b>: в нём пишется ваше направление.</> },
         ask: { uz: "Yo'nalishingiz qaysi tegga yoziladi — h1'gami yoki p'gami?", ru: 'Каким тегом пишется ваше направление — h1 или p?' } },
     ]
   },
@@ -1112,11 +1113,11 @@ const RECAPS = {
   6: {
     title: { uz: 'Havolalar: a tegi', ru: 'Ссылки: тег a' }, cards: [
       { ic: '🔗', h: { uz: 'a — bosiladigan havola', ru: 'a — кликабельная ссылка' },
-        body: { uz: <><b className="mono">&lt;a&gt;</b> (anchor) — bosilganda boshqa joyga <b>olib boradigan</b> havola. Menyu va aloqa havolalari shu teg bilan yasaladi.</>, ru: <><b className="mono">&lt;a&gt;</b> (anchor) — ссылка, которая при клике <b>ведёт</b> в другое место. Меню и контактные ссылки делаются этим тегом.</> } },
+        body: { uz: <><b className="mono">&lt;a&gt;</b> — bosilganda boshqa joyga <b>olib boradigan</b> havola.</>, ru: <><b className="mono">&lt;a&gt;</b> — ссылка, которая при клике <b>ведёт</b> в другое место.</> } },
       { ic: '🧭', h: { uz: 'href — qayerga olib boradi', ru: 'href — куда ведёт' },
-        body: { uz: <>Havola qayerga o'tishini <b className="mono">href</b> atributi ko'rsatadi: <b className="mono">&lt;a href="#about"&gt;</b> — «Men haqimda» bo'limiga olib boradi.</>, ru: <>Куда перейдёт ссылка, указывает атрибут <b className="mono">href</b>: <b className="mono">&lt;a href="#about"&gt;</b> — ведёт к разделу «Обо мне».</> } },
+        body: { uz: <>Havola qayerga o'tishini <b className="mono">href</b> atributi ko'rsatadi.</>, ru: <>Куда перейдёт ссылка, указывает атрибут <b className="mono">href</b>.</> } },
       { ic: '📂', h: { uz: 'nav — menyu idishi', ru: 'nav — контейнер меню' },
-        body: { uz: <><b className="mono">&lt;nav&gt;</b> — menyuni <b>o'rab turadigan idish</b>. Ichida bir nechta <b className="mono">&lt;a&gt;</b> havola bo'ladi.</>, ru: <><b className="mono">&lt;nav&gt;</b> — контейнер, <b>оборачивающий меню</b>. Внутри несколько ссылок <b className="mono">&lt;a&gt;</b>.</> },
+        body: { uz: <><b className="mono">&lt;nav&gt;</b> — menyuni <b>o'rab turadigan idish</b>, ichida <b className="mono">&lt;a&gt;</b> havolalar turadi.</>, ru: <><b className="mono">&lt;nav&gt;</b> — контейнер, <b>оборачивающий меню</b> из ссылок <b className="mono">&lt;a&gt;</b>.</> },
         ask: { uz: "Menyudagi har bir havola qaysi teg bilan yoziladi?", ru: 'Каким тегом пишется каждая ссылка в меню?' } },
     ]
   },
@@ -1124,11 +1125,11 @@ const RECAPS = {
   8: {
     title: { uz: 'Rasmlar: img, src, alt', ru: 'Картинки: img, src, alt' }, cards: [
       { ic: '🖼️', h: { uz: "img — rasm qo'yish", ru: 'img — вставить картинку' },
-        body: { uz: <><b className="mono">&lt;img&gt;</b> — sahifaga rasm qo'yadi. Bu <b>bo'sh teg</b>: yopuvchi jufti yo'q, atributlar bilan ishlaydi.</>, ru: <><b className="mono">&lt;img&gt;</b> — вставляет картинку на страницу. Это <b>пустой тег</b>: у него нет закрывающей пары, он работает с атрибутами.</> } },
+        body: { uz: <><b className="mono">&lt;img&gt;</b> — rasm qo'yadigan <b>bo'sh teg</b>, uning yopuvchi jufti yo'q.</>, ru: <><b className="mono">&lt;img&gt;</b> вставляет картинку; это <b>пустой тег</b> без закрывающей пары.</> } },
       { ic: '📍', h: { uz: 'src — rasm manzili', ru: 'src — адрес картинки' },
         body: { uz: <><b className="mono">src</b> (source) — brauzerga <b>qaysi faylni</b> ko'rsatishni aytadi: <b className="mono">&lt;img src="men.jpg"&gt;</b>.</>, ru: <><b className="mono">src</b> (source) говорит браузеру, <b>какой файл</b> показать: <b className="mono">&lt;img src="men.jpg"&gt;</b>.</> } },
       { ic: '💬', h: { uz: "alt — o'rniga chiqadigan matn", ru: 'alt — текст вместо картинки' },
-        body: { uz: <><b className="mono">alt</b> — rasm <b>yuklanmasa</b>, o'rniga chiqadigan matn. Ko'rish imkoni cheklanganlar uchun ham muhim: ekran o'qigich shu matnni o'qiydi.</>, ru: <><b className="mono">alt</b> — текст, который появится, если картинка <b>не загрузилась</b>. Важен и для людей с нарушением зрения: скринридер читает именно его.</> },
+        body: { uz: <><b className="mono">alt</b> — rasm <b>yuklanmasa</b>, o'rniga chiqadigan matn, uni ekran o'qigich ham o'qiydi.</>, ru: <><b className="mono">alt</b> — текст вместо картинки, если она <b>не загрузилась</b>; его читает и скринридер.</> },
         ask: { uz: "Rasm chiqmay qolsa, foydalanuvchi nimani ko'radi?", ru: 'Что увидит пользователь, если картинка не показалась?' } },
     ]
   },
@@ -1136,11 +1137,11 @@ const RECAPS = {
   10: {
     title: { uz: "Ro'yxatlar: ul, ol, li", ru: 'Списки: ul, ol, li' }, cards: [
       { ic: '•', h: { uz: "ul — nuqtali ro'yxat", ru: 'ul — маркированный список' },
-        body: { uz: <><b className="mono">&lt;ul&gt;</b> (unordered list) — <b>tartibsiz</b>, nuqtali ro'yxat. Loyihalaringiz ro'yxati shu teg bilan yasaladi.</>, ru: <><b className="mono">&lt;ul&gt;</b> (unordered list) — <b>неупорядоченный</b> список с точками. Список ваших проектов делается этим тегом.</> } },
+        body: { uz: <><b className="mono">&lt;ul&gt;</b> (unordered list) — <b>tartiblanmagan</b> ro'yxat: loyihalaringiz shu tegda yoziladi.</>, ru: <><b className="mono">&lt;ul&gt;</b> (unordered list) — список <b>с точками</b>: так пишется список ваших проектов.</> } },
       { ic: '🔢', h: { uz: "ol — raqamli ro'yxat", ru: 'ol — нумерованный список' },
-        body: { uz: <><b className="mono">&lt;ol&gt;</b> (ordered list) — <b>raqamli</b>, tartibli ro'yxat. Tartib muhim bo'lgan joylarda ishlatiladi.</>, ru: <><b className="mono">&lt;ol&gt;</b> (ordered list) — <b>нумерованный</b>, упорядоченный список. Используется там, где важен порядок.</> } },
+        body: { uz: <><b className="mono">&lt;ol&gt;</b> (ordered list) — <b>raqamli</b> ro'yxat, tartib muhim joyda ishlatiladi.</>, ru: <><b className="mono">&lt;ol&gt;</b> (ordered list) — <b>нумерованный</b> список для случаев, где важен порядок.</> } },
       { ic: '📄', h: { uz: 'li — bitta band', ru: 'li — один пункт' },
-        body: { uz: <><b className="mono">&lt;li&gt;</b> (list item) — ro'yxatning <b>bitta bandi</b>. Har bir loyiha alohida <b className="mono">&lt;li&gt;</b> bo'ladi, hammasi <b className="mono">&lt;ul&gt;</b> ichida.</>, ru: <><b className="mono">&lt;li&gt;</b> (list item) — <b>один пункт</b> списка. Каждый проект — отдельный <b className="mono">&lt;li&gt;</b>, и все внутри <b className="mono">&lt;ul&gt;</b>.</> },
+        body: { uz: <><b className="mono">&lt;li&gt;</b> — ro'yxatning <b>bitta bandi</b>: har bir loyiha alohida <b className="mono">&lt;li&gt;</b>.</>, ru: <><b className="mono">&lt;li&gt;</b> — <b>один пункт</b> списка: каждый проект — отдельный <b className="mono">&lt;li&gt;</b>.</> },
         ask: { uz: 'Uchta loyiha bo\'lsa, nechta li kerak bo\'ladi?', ru: 'Если проектов три, сколько нужно li?' } },
     ]
   },
@@ -1148,11 +1149,11 @@ const RECAPS = {
   13: {
     title: { uz: 'Sahifa qismlari: header va footer', ru: 'Части страницы: header и footer' }, cards: [
       { ic: '🔝', h: { uz: 'header — yuqori qism', ru: 'header — верхняя часть' },
-        body: { uz: <><b className="mono">&lt;header&gt;</b> — sahifaning eng <b>yuqori</b> qismi: ism, yo'nalish va menyu shu yerda turadi.</>, ru: <><b className="mono">&lt;header&gt;</b> — самая <b>верхняя</b> часть страницы: имя, направление и меню живут здесь.</> } },
+        body: { uz: <><b className="mono">&lt;header&gt;</b> — sahifaning eng <b>yuqori</b> qismi: ism, yo'nalish va menyu.</>, ru: <><b className="mono">&lt;header&gt;</b> — самая <b>верхняя</b> часть страницы: имя, направление и меню.</> } },
       { ic: '🔻', h: { uz: 'footer — pastki qism', ru: 'footer — нижняя часть' },
-        body: { uz: <><b className="mono">&lt;footer&gt;</b> — sahifaning eng <b>pastki</b> qismi: mualliflik, yil, aloqa. Nomi ham «oyoq» (foot) degani.</>, ru: <><b className="mono">&lt;footer&gt;</b> — самая <b>нижняя</b> часть страницы: авторство, год, контакты. Название и значит «нога» (foot).</> } },
+        body: { uz: <><b className="mono">&lt;footer&gt;</b> — sahifaning eng <b>pastki</b> qismi: mualliflik, yil, aloqa.</>, ru: <><b className="mono">&lt;footer&gt;</b> — самая <b>нижняя</b> часть страницы: авторство, год, контакты.</> } },
       { ic: '🧱', h: { uz: 'section — alohida bo\'lim', ru: 'section — отдельный раздел' },
-        body: { uz: <><b className="mono">&lt;section&gt;</b> — sahifadagi <b>alohida bo'lim</b>: «Men haqimda», «Aloqa» kabi qismlar shunday yasaladi.</>, ru: <><b className="mono">&lt;section&gt;</b> — <b>отдельный раздел</b> страницы: части вроде «Обо мне», «Контакты» делаются так.</> },
+        body: { uz: <><b className="mono">&lt;section&gt;</b> — <b>alohida bo'lim</b>, masalan «Men haqimda» yoki «Aloqa».</>, ru: <><b className="mono">&lt;section&gt;</b> — <b>отдельный раздел</b>, например «Обо мне» или «Контакты».</> },
         ask: { uz: 'Sahifaning eng pastida qaysi teg turadi?', ru: 'Какой тег стоит в самом низу страницы?' } },
     ]
   },
@@ -1160,16 +1161,16 @@ const RECAPS = {
   16: {
     title: { uz: 'Sahifa tartibi (yuqoridan pastga)', ru: 'Порядок страницы (сверху вниз)' }, cards: [
       { ic: '📐', h: { uz: 'Header — birinchi', ru: 'Header — первый' },
-        body: { uz: <>Sahifa <b>yuqoridan</b> boshlanadi: eng tepada <b className="mono">&lt;header&gt;</b> — ism, yo'nalish va menyu.</>, ru: <>Страница начинается <b>сверху</b>: в самом верху <b className="mono">&lt;header&gt;</b> — имя, направление и меню.</> } },
+        body: { uz: <>Sahifa <b>yuqoridan</b> boshlanadi: eng tepada <b className="mono">&lt;header&gt;</b> turadi.</>, ru: <>Страница начинается <b>сверху</b>: в самом верху стоит <b className="mono">&lt;header&gt;</b>.</> } },
       { ic: '📚', h: { uz: "Bo'limlar — o'rtada", ru: 'Разделы — посередине' },
-        body: { uz: <>Header'dan keyin <b>bo'limlar</b> keladi: «Men haqimda» → «Loyihalar» → «Aloqa». Har biri alohida <b className="mono">&lt;section&gt;</b>.</>, ru: <>После header идут <b>разделы</b>: «Обо мне» → «Проекты» → «Контакты». Каждый — отдельный <b className="mono">&lt;section&gt;</b>.</> } },
+        body: { uz: <>Header'dan keyin <b>bo'limlar</b> keladi, har biri alohida <b className="mono">&lt;section&gt;</b>.</>, ru: <>После header идут <b>разделы</b>, каждый — отдельный <b className="mono">&lt;section&gt;</b>.</> } },
       { ic: '🏁', h: { uz: 'Footer — oxirgi', ru: 'Footer — последний' },
-        body: { uz: <>Eng <b>pastda</b> — <b className="mono">&lt;footer&gt;</b>. Demak tartib: header → bo'limlar → footer.</>, ru: <>В самом <b>низу</b> — <b className="mono">&lt;footer&gt;</b>. Значит порядок: header → разделы → footer.</> },
+        body: { uz: <>Eng <b>pastda</b> <b className="mono">&lt;footer&gt;</b> turadi: header → bo'limlar → footer.</>, ru: <>В самом <b>низу</b> стоит <b className="mono">&lt;footer&gt;</b>: header → разделы → footer.</> },
         ask: { uz: 'Butun portfolioingizni yuqoridan pastga aytib bering.', ru: 'Назовите всё своё портфолио сверху вниз.' } },
     ]
   },
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -1187,7 +1188,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -1196,13 +1197,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -1281,7 +1282,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -1290,7 +1291,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -1329,7 +1330,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler task={entry.task} starterCode={entry.starter} lang={uiLang} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-08" task={entry.task} starterCode={entry.starter} lang={uiLang} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -1481,10 +1482,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? tr(fixed) : tr(l.text)}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">✓ {tr({ uz: 'tuzatildi', ru: 'исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -2983,7 +2984,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice, l
         .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }
@@ -3379,7 +3380,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice, l
                 React konteksti (til/jonli) portalda ham saqlanadi. */}
             {practice && createPortal(
               <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-                <HtmlCompiler task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} lang={lang} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
+                <HtmlCompiler stage="m1-08" task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} lang={lang} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
               </div>,
               document.body
             )}

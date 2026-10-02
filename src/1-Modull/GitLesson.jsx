@@ -306,14 +306,14 @@ const RECAPS = {
   4: {
     title: { uz: 'Git — kodning nusxalarini yurituvchi dastur', ru: 'Git — программа, которая ведёт копии кода' }, cards: [
       { ic: '🎮', h: { uz: "Git — kod uchun saqlash nuqtasi", ru: 'Git — точка сохранения для кода' },
-        body: { uz: <>O'yinda qiyin joyga yetganda <b>saqlash nuqtasi</b> qo'yasiz: yutqazsangiz, boshidan emas, o'sha nuqtadan davom etasiz. Git kod uchun aynan shu ishni qiladi.</>, ru: <>В игре перед сложным местом вы ставите <b>точку сохранения</b>: проиграете — продолжите не с начала, а с неё. Для кода Git делает ровно то же самое.</> },
+        body: { uz: <>Git — kod uchun o'yindagi <b>saqlash nuqtasi</b>: yutqazsangiz, o'sha joydan davom etasiz.</>, ru: <>Git — это <b>точка сохранения</b> для кода, как в игре: проиграете — продолжите с неё.</> },
         vis: <RcFlow items={[{ uz: "O'yin", ru: 'Игра' }, { uz: 'Saqlash nuqtasi', ru: 'Точка сохранения' }, { uz: 'Qaytish', ru: 'Возврат' }]} />,
         ask: { uz: "Qaysi o'yinlarda saqlash nuqtasi bo'ladi?", ru: 'В каких играх есть точки сохранения?' } },
       { ic: '🕐', h: { uz: 'Har holatni saqlab qoladi', ru: 'Сохраняет каждое состояние' },
-        body: { uz: <>Git kodning <b>har bir holatini</b> saqlaydi. Xato qilsangiz, kechagi holatga qaytasiz — yozilgan narsa yo'qolmaydi.</>, ru: <>Git хранит <b>каждое состояние</b> кода. Ошибётесь — вернётесь ко вчерашнему состоянию, написанное не пропадёт.</> },
+        body: { uz: <>Git kodning <b>har bir holatini</b> saqlaydi, xato qilsangiz kechagi holatga qaytasiz.</>, ru: <>Git хранит <b>каждое состояние</b> кода — ошибётесь, вернётесь ко вчерашнему.</> },
         vis: <RcFlow items={[{ uz: "Kod o'zgardi", ru: 'Код изменился' }, { uz: 'Git saqladi', ru: 'Git сохранил' }, { uz: 'Orqaga qaytish', ru: 'Возврат назад' }]} /> },
       { ic: '☝️', h: { uz: 'Git nima QILMAYDI', ru: 'Чего Git НЕ делает' },
-        body: { uz: <>Kodni ranglash va xatoni belgilash — <b>VS Code</b> ishi. Kodni brauzerda ochish — <b>Live Server</b> ishi. Git faqat versiyalarni saqlaydi va qaytaradi.</>, ru: <>Раскрашивать код и подчёркивать ошибки — работа <b>VS Code</b>. Открывать код в браузере — работа <b>Live Server</b>. Git только хранит и возвращает версии.</> },
+        body: { uz: <>Git kodni ranglamaydi va ochmaydi — u faqat <b>versiyalarni</b> saqlaydi va qaytaradi.</>, ru: <>Git не раскрашивает и не открывает код — он только хранит и возвращает <b>версии</b>.</> },
         vis: <RcFlow items={[{ uz: 'Versiyani saqlaydi', ru: 'Хранит версию' }, { uz: 'Orqaga qaytaradi', ru: 'Возвращает назад' }]} sep="·" />,
         ask: { uz: 'Git saqlaydi — yana nima qiladi?', ru: 'Git хранит — а что ещё он делает?' } },
     ]
@@ -322,13 +322,13 @@ const RECAPS = {
   6: {
     title: { uz: 'Git — dastur, GitHub — sayt', ru: 'Git — программа, GitHub — сайт' }, cards: [
       { ic: '💻', h: { uz: 'Git kompyuterda ishlaydi', ru: 'Git работает на компьютере' },
-        body: { uz: <>Git — siz <b>o'rnatgan dastur</b>. U internetsiz ham ishlaydi: fayllarni tanlaydi, saqlash nuqtalarini yozadi.</>, ru: <>Git — <b>программа, которую вы установили</b>. Она работает и без интернета: выбирает файлы, записывает точки сохранения.</> },
+        body: { uz: <>Git — siz <b>o'rnatgan dastur</b>, u internetsiz ham ishlaydi.</>, ru: <>Git — <b>программа, которую вы установили</b>, она работает и без интернета.</> },
         vis: <RcFlow items={[{ uz: 'Kompyuter', ru: 'Компьютер' }, 'Git']} sep="·" /> },
       { ic: '🌐', h: { uz: 'GitHub brauzerda ochiladi', ru: 'GitHub открывается в браузере' },
-        body: { uz: <>GitHub — <b>sayt</b>: kodning internetdagi nusxasi shu yerda turadi. Manzili bor, havolasini boshqalarga yuborish mumkin.</>, ru: <>GitHub — <b>сайт</b>: там лежит интернет-копия кода. У него есть адрес, ссылку можно отправить другим.</> },
+        body: { uz: <>GitHub — <b>sayt</b>: kodning internetdagi nusxasi shu yerda turadi.</>, ru: <>GitHub — <b>сайт</b>: там лежит интернет-копия кода.</> },
         vis: <RcFlow items={['github.com', { uz: 'nomingiz', ru: 'ваше имя' }, { uz: 'loyiha', ru: 'проект' }]} /> },
       { ic: '🤝', h: { uz: 'Ular birga ishlaydi', ru: 'Они работают вместе' },
-        body: { uz: <>Git kompyuterda saqlash nuqtasini yozadi, keyin o'sha nuqtani GitHub'ga jo'natadi. Biri dastur, ikkinchisi joy.</>, ru: <>Git записывает точку сохранения на компьютере, затем отправляет её на GitHub. Одно — программа, другое — место.</> },
+        body: { uz: <>Git kompyuterda saqlash nuqtasini yozadi, keyin uni GitHub'ga jo'natadi.</>, ru: <>Git записывает точку сохранения на компьютере, а затем отправляет её на GitHub.</> },
         ask: { uz: "Qaysi biri kompyuterga o'rnatiladi?", ru: 'Что из них ставится на компьютер?' } },
     ]
   },
@@ -336,13 +336,13 @@ const RECAPS = {
   11: {
     title: { uz: "Uch qadam — qat'iy tartibda", ru: 'Три шага — в строгом порядке' }, cards: [
       { ic: '📥', h: { uz: 'add — fayllarni tanlash', ru: 'add — выбор файлов' },
-        body: { uz: <><b className="mono">git add</b> — qaysi fayllar yuborilishini belgilaydi. Bu qadamda hech narsa yuborilmaydi, faqat ro'yxat tuziladi.</>, ru: <><b className="mono">git add</b> — отмечает, какие файлы уйдут. На этом шаге ничего не отправляется, только составляется список.</> },
+        body: { uz: <><b className="mono">git add</b> qaysi fayllar yuborilishini belgilaydi, lekin hali hech narsa yubormaydi.</>, ru: <><b className="mono">git add</b> отмечает, какие файлы уйдут, но пока ничего не отправляет.</> },
         vis: <RcFlow items={['index.html', 'style.css']} sep="·" /> },
       { ic: '📸', h: { uz: 'commit — nuqtani belgilash', ru: 'commit — отметить точку' },
-        body: { uz: <><b className="mono">git commit</b> tanlangan fayllarni bitta nuqtaga izoh bilan yozadi. Izoh — nima o'zgargani.</>, ru: <><b className="mono">git commit</b> записывает выбранные файлы в одну точку с комментарием. Комментарий — что изменилось.</> },
+        body: { uz: <><b className="mono">git commit</b> tanlangan fayllarni bitta nuqtaga izoh bilan yozadi.</>, ru: <><b className="mono">git commit</b> записывает выбранные файлы в одну точку с комментарием.</> },
         vis: <RcFlow items={['git commit', '-m', { uz: '"izoh"', ru: '"комментарий"' }]} /> },
       { ic: '⬆️', h: { uz: 'push — internetga yuborish', ru: 'push — отправить в интернет' },
-        body: { uz: <><b className="mono">git push</b> saqlangan nuqtani repoga jo'natadi. Saqlanmagan narsa yuborilmaydi — shuning uchun commit push'dan oldin turadi.</>, ru: <><b className="mono">git push</b> отправляет сохранённую точку в репо. Несохранённое не уйдёт — поэтому commit стоит раньше push.</> },
+        body: { uz: <><b className="mono">git push</b> saqlangan nuqtani repoga jo'natadi, shuning uchun commit undan oldin turadi.</>, ru: <><b className="mono">git push</b> отправляет сохранённую точку в репо, поэтому commit идёт раньше.</> },
         vis: <RcFlow items={['add', 'commit', 'push']} />,
         ask: { uz: "add'dan keyin, push'dan oldin qaysi qadam turadi?", ru: 'Какой шаг стоит после add и перед push?' } },
     ]
@@ -351,20 +351,20 @@ const RECAPS = {
   14: {
     title: { uz: 'Repo — kodning internetdagi nusxasi', ru: 'Репо — интернет-копия кода' }, cards: [
       { ic: '📦', h: { uz: 'Har loyihaga alohida joy', ru: 'Для каждого проекта своё место' },
-        body: { uz: <>GitHub'da loyiha uchun ochilgan joy <b>repo</b> deyiladi. Ichida fayllar, saqlangan nuqtalar va loyiha tavsifi (<span className="mono">README</span>) turadi.</>, ru: <>Место, открытое на GitHub для проекта, называется <b>репо</b>. Внутри файлы, сохранённые точки и описание проекта (<span className="mono">README</span>).</> },
+        body: { uz: <>GitHub'da loyiha uchun ochilgan joy <b>repo</b> deyiladi, ichida fayllar va <span className="mono">README</span> turadi.</>, ru: <>Место на GitHub для проекта называется <b>репо</b>, внутри лежат файлы и <span className="mono">README</span>.</> },
         vis: <RcFlow items={[{ uz: 'fayllar', ru: 'файлы' }, { uz: 'nuqtalar', ru: 'точки' }, 'README']} sep="·" /> },
       { ic: '🛡️', h: { uz: 'Kompyuter buzilsa ham qoladi', ru: 'Останется, даже если компьютер сломается' },
-        body: { uz: <>Repo internetda turadi. Yangi kompyuterda GitHub'ga kirasiz va <b>nusxasini olasiz</b> — fayllar ham, saqlangan nuqtalar ham qaytadi.</>, ru: <>Репо находится в интернете. На новом компьютере вы заходите на GitHub и <b>забираете копию</b> — вернутся и файлы, и сохранённые точки.</> },
+        body: { uz: <>Repo internetda turadi: yangi kompyuterda uning <b>nusxasini olasiz</b>.</>, ru: <>Репо лежит в интернете: на новом компьютере вы <b>забираете копию</b>.</> },
         vis: <RcFlow items={[{ uz: 'GitHub repo', ru: 'Репо GitHub' }, { uz: 'yangi kompyuter', ru: 'новый компьютер' }]} /> },
       { ic: '🔗', h: { uz: 'Havolasi bor', ru: 'У него есть ссылка' },
-        body: { uz: <>Repo manzili shunday ko'rinadi: <span className="mono">github.com/nomingiz/loyiha</span>. Shu havolani kimga yuborsangiz, u kodni brauzerda ochib ko'radi.</>, ru: <>Адрес репо выглядит так: <span className="mono">github.com/vashe-imya/proekt</span>. Кому отправите ссылку — тот откроет код в браузере.</> },
+        body: { uz: <>Repo manzili — <span className="mono">github.com/nomingiz/loyiha</span>: havolani ochgan odam kodni ko'radi.</>, ru: <>Адрес репо — <span className="mono">github.com/vashe-imya/proekt</span>: кто откроет ссылку, тот увидит код.</> },
         ask: { uz: 'Havolangizni birinchi kimga yuborardingiz?', ru: 'Кому бы вы первым отправили свою ссылку?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -382,7 +382,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -391,13 +391,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -475,7 +475,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -484,7 +484,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -623,7 +623,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -631,8 +631,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -644,11 +645,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -985,12 +986,12 @@ const ScreenTest1 = (props) => (
       { uz: 'Kodni brauzerda ochib beradi', ru: 'Открывает код в браузере' },
       { uz: 'Saytni internetda hammaga ochadi', ru: 'Открывает сайт в интернете для всех' },
     ]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri. Git kodning har bir holatini saqlaydi, shuning uchun istalgan eski holatga qaytish mumkin.", ru: 'Верно. Git хранит каждое состояние кода, поэтому можно вернуться к любому старому состоянию.' })}
+    explainCorrect={tr({ uz: "Git har bir holatni saqlaydi — eski holatga qaytish mumkin.", ru: 'Git хранит каждое состояние кода — можно вернуться к старому.' })}
     explainWrong={{
-      0: tr({ uz: "Kodni ranglash va xatoni belgilash — VS Code ishi. Git versiyalarni saqlaydi.", ru: 'Раскрашивать код и подчёркивать ошибки — работа VS Code. Git хранит версии.' }),
-      2: tr({ uz: "Kodni brauzerda ochish — Live Server ishi. Git versiyalarni saqlaydi.", ru: 'Открывать код в браузере — работа Live Server. Git хранит версии.' }),
-      3: tr({ uz: "Saytni hammaga ochish — GitHub ishi. Git esa kompyuterda versiyalarni saqlaydi.", ru: 'Открывать сайт для всех — работа GitHub. А Git хранит версии на компьютере.' }),
-      default: tr({ uz: 'Git kodning versiyalarini saqlaydi va eski holatiga qaytaradi.', ru: 'Git хранит версии кода и возвращает старое состояние.' }),
+      0: tr({ uz: "Kodni ranglash va xatoni belgilash — VS Code ishi.", ru: 'Раскрашивать код и подчёркивать ошибки — работа VS Code.' }),
+      2: tr({ uz: "Kodni brauzerda ochish — Live Server ishi.", ru: 'Открывать код в браузере — работа Live Server.' }),
+      3: tr({ uz: "Git kompyuterda ishlaydi, saytni internetga chiqarmaydi.", ru: 'Git работает на компьютере и сайт в интернет не выкладывает.' }),
+      default: tr({ uz: 'O\'yindagi saqlash nuqtasini eslang — Git shunga o\'xshaydi.', ru: 'Вспомните точку сохранения в игре — Git похож на неё.' }),
     }} />
 );
 
@@ -1035,12 +1036,12 @@ const ScreenTest2 = (props) => (
       { uz: "Ikkalasi bir narsaning ikki nomi", ru: 'Это два названия одного и того же' },
       { uz: 'Git — brauzer, GitHub — kod redaktori' /* F-0926-06: muharrir → redaktor (KORPUS) */, ru: 'Git — браузер, GitHub — редактор кода' },
     ]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri. Git kompyuterda o'rnatiladi va versiyalarni saqlaydi, GitHub esa brauzerda ochiladigan sayt — kod nusxasi o'sha yerda turadi.", ru: 'Верно. Git ставится на компьютер и хранит версии, а GitHub — сайт в браузере, где лежит копия кода.' })}
+    explainCorrect={tr({ uz: "Git kompyuterga o'rnatiladi, GitHub — brauzerdagi sayt.", ru: 'Git ставится на компьютер, а GitHub — сайт в браузере.' })}
     explainWrong={{
-      1: tr({ uz: "Teskarisi: Git — kompyuterga o'rnatgan dasturingiz, GitHub — brauzerda ochgan saytingiz.", ru: 'Наоборот: Git — программа, которую вы поставили на компьютер, GitHub — сайт, который открыли в браузере.' }),
-      2: tr({ uz: "Ular boshqa-boshqa: Git kompyuterda ishlaydi, GitHub internetda turadi.", ru: 'Они разные: Git работает на компьютере, GitHub находится в интернете.' }),
-      3: tr({ uz: "Brauzer — Chrome, kod redaktori — VS Code. Git kompyuterdagi dastur, GitHub — sayt.", ru: 'Браузер — Chrome, редактор кода — VS Code. Git — программа на компьютере, GitHub — сайт.' }),
-      default: tr({ uz: 'Git — kompyuterdagi dastur, GitHub — kod turadigan sayt.', ru: 'Git — программа на компьютере, GitHub — сайт, где лежит код.' }),
+      1: tr({ uz: "Joylari almashgan: qaysi birini o'rnatganingizni eslang.", ru: 'Они поменяны местами: вспомните, что вы устанавливали.' }),
+      2: tr({ uz: "Ular boshqa-boshqa: biri kompyuterda, biri internetda.", ru: 'Они разные: одно на компьютере, другое в интернете.' }),
+      3: tr({ uz: "Brauzer — Chrome, kod redaktori — VS Code.", ru: 'Браузер — это Chrome, редактор кода — VS Code.' }),
+      default: tr({ uz: 'Qaysi biri o\'rnatiladi, qaysi biri sayt ekanini eslang.', ru: 'Вспомните, что устанавливается, а что — сайт.' }),
     }} />
 );
 
@@ -1204,12 +1205,12 @@ const ScreenTest3 = (props) => (
     questionText="Kodni internetga yuborish qadamlari qaysi tartibda bajariladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Kodni internetga yuborish qadamlari qaysi <span className="italic" style={{ color: T.accent }}>tartibda</span> bajariladi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>порядке</span> идут шаги отправки кода в интернет?</> })}</h2></>}
     options={['commit → add → push', 'push → add → commit', 'add → commit → push', 'add → push → commit']} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri. Avval fayllar tanlanadi (add), keyin nuqta belgilanadi (commit), keyin internetga yuboriladi (push).", ru: 'Верно. Сначала выбирают файлы (add), потом отмечают точку (commit), потом отправляют в интернет (push).' })}
+    explainCorrect={tr({ uz: "Avval tanlaysiz, keyin nuqta qo'yasiz, keyin yuborasiz.", ru: 'Сначала выбираете, потом ставите точку, потом отправляете.' })}
     explainWrong={{
-      0: tr({ uz: "commit fayllar tanlanmaguncha ishlamaydi: avval add, keyin commit, keyin push.", ru: 'commit не сработает, пока файлы не выбраны: сначала add, потом commit, потом push.' }),
-      1: tr({ uz: "push — oxirgi qadam: u faqat saqlangan nuqtani yuboradi. Tartib: add → commit → push.", ru: 'push — последний шаг: он отправляет только сохранённую точку. Порядок: add → commit → push.' }),
-      3: tr({ uz: "push saqlanmagan narsani yubormaydi. Avval commit bilan nuqta belgilanadi: add → commit → push.", ru: 'push не отправит несохранённое. Сначала точка отмечается коммитом: add → commit → push.' }),
-      default: tr({ uz: 'Tartib: add → commit → push.', ru: 'Порядок: add → commit → push.' }),
+      0: tr({ uz: "Fayllar tanlanmaguncha commit ishlamaydi.", ru: 'commit не сработает, пока файлы не выбраны.' }),
+      1: tr({ uz: "push saqlangan nuqtani yuboradi, u birinchi turolmaydi.", ru: 'push отправляет сохранённую точку — первым он стоять не может.' }),
+      3: tr({ uz: "push saqlanmagan narsani yubormaydi.", ru: 'push не отправит то, что ещё не сохранено.' }),
+      default: tr({ uz: 'Nima avval kerak: tanlash, saqlash yoki yuborish?', ru: 'Что нужно сначала: выбрать, сохранить или отправить?' }),
     }} />
 );
 
@@ -1298,12 +1299,12 @@ const ScreenFinalTest = (props) => (
       { uz: "Boshqa yo'l yo'q — qaytadan yozaman", ru: 'Другого пути нет — напишу заново' },
       { uz: "GitHub'dagi repodan nusxasini olaman", ru: 'Заберу копию из репо на GitHub' },
     ]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri. Repo internetda turadi: yangi kompyuterda GitHub'ga kirib, nusxasini olasiz — fayllar ham, saqlangan nuqtalar ham qaytadi.", ru: 'Верно. Репо лежит в интернете: на новом компьютере заходите на GitHub и забираете копию — вернутся и файлы, и сохранённые точки.' })}
+    explainCorrect={tr({ uz: "Repo internetda turadi — nusxani yangi kompyuterda olasiz.", ru: 'Репо лежит в интернете — копию можно забрать на новый компьютер.' })}
     explainWrong={{
-      0: tr({ uz: "Brauzer tarixida ochilgan sahifalar qoladi, fayllar emas. Nusxa repoda turadi.", ru: 'В истории браузера остаются открытые страницы, а не файлы. Копия лежит в репо.' }),
-      1: tr({ uz: "VS Code — dastur, fayllaringizni saqlamaydi. Nusxa repoda turadi.", ru: 'VS Code — программа, ваши файлы она не хранит. Копия лежит в репо.' }),
-      2: tr({ uz: "Qaytadan yozish shart emas: repoga yuborilgan kod internetda saqlanib turadi.", ru: 'Писать заново не нужно: код, отправленный в репо, хранится в интернете.' }),
-      default: tr({ uz: "Kod nusxasi GitHub'dagi repoda turadi — o'sha yerdan olinadi.", ru: 'Копия кода лежит в репо на GitHub — оттуда её и забирают.' }),
+      0: tr({ uz: "Brauzer tarixida sahifalar qoladi, fayllar emas.", ru: 'В истории браузера остаются страницы, а не файлы.' }),
+      1: tr({ uz: "VS Code — dastur, u fayllaringizni saqlamaydi.", ru: 'VS Code — программа, ваши файлы она не хранит.' }),
+      2: tr({ uz: "Qaytadan yozish shart emas: kod internetda saqlanib turadi.", ru: 'Писать заново не нужно: код хранится в интернете.' }),
+      default: tr({ uz: "Kodni push bilan qayerga yuborganingizni eslang.", ru: 'Вспомните, куда вы отправили код через push.' }),
     }} />
 );
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).

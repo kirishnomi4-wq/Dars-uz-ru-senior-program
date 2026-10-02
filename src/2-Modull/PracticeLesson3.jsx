@@ -258,20 +258,20 @@ const RECAPS = {
       {
         ic: "🛹",
         h: { uz: "MVP = eng kichik, lekin ISHLAYDIGAN versiya", ru: 'MVP = самая маленькая, но РАБОТАЮЩАЯ версия' },
-        body: { uz: <>MVP degani <b>eng kichik</b>, lekin allaqachon <b>ishlaydigan</b> mahsulot. Uni skeytbordga o'xshating: bola bir joydan ikkinchi joyga borishi uchun to'liq mashina shart emas — avval skeytbord ham yetadi. Skeytbord kichkina, lekin haqiqatan yumaladi va ish beradi.</>, ru: <>MVP — это <b>самый маленький</b>, но уже <b>работающий</b> продукт. Представьте скейтборд: чтобы добраться из точки А в точку Б, не нужна целая машина — сначала хватит и скейтборда. Он маленький, но реально едет и делает своё дело.</> },
+        body: { uz: <>MVP — eng kichik, lekin <b>ishlaydigan</b> mahsulot: avval mashina emas, skeytbord.</>, ru: <>MVP — самый маленький, но уже <b>работающий</b> продукт: сначала не машина, а скейтборд.</> },
         vis: { uz: <RcFlow items={["Skeytbord", "Samokat", "Velosiped", "Mashina"]} />, ru: <RcFlow items={["Скейтборд", "Самокат", "Велосипед", "Машина"]} /> },
         ask: { uz: "Mini-do'konning eng kichik 'skeytbordi' — bu nima bo'ladi?", ru: 'Какой самый маленький «скейтборд» будет у мини-магазина?' }
       },
       {
         ic: "🎨",
         h: { uz: "MVP — chiroyli ham, qimmat ham, oxirgi ham EMAS", ru: 'MVP — НЕ самое красивое, НЕ самое дорогое и НЕ финальное' },
-        body: { uz: <>Ko'pchilik adashadi: MVP eng chiroyli dizayn yoki eng qimmat funksiya deb o'ylashadi. Yo'q — MVP <b>chiroyliligi bilan emas, ishlashi bilan</b> baholanadi. Bezak, ranglar, qo'shimcha funksiyalar keyin qo'shiladi.</>, ru: <>Многие путаются: думают, что MVP — это самый красивый дизайн или самая дорогая функция. Нет — MVP оценивается <b>не красотой, а тем, что он работает</b>. Украшения, цвета и дополнительные функции добавят потом.</> },
+        body: { uz: <>MVP chiroyliligi bilan emas, <b>ishlashi</b> bilan baholanadi, bezak keyin qo'shiladi.</>, ru: <>MVP оценивают не по красоте, а по тому, что он <b>работает</b>, — украшения добавят потом.</> },
         vis: { uz: <RcFlow items={["Ishlaydimi?", "Ha", "Demak MVP tayyor"]} sep="→" />, ru: <RcFlow items={["Работает?", "Да", "Значит, MVP готов"]} sep="→" /> }
       },
       {
         ic: "🚀",
         h: { uz: "Nega avval MVP?", ru: 'Почему сначала MVP?' },
-        body: { uz: <>Kichik ishlaydigan versiyani tez yasab, sinab ko'rasiz. Agar yaxshi bo'lsa — ustiga qo'shib o'stirasiz. <b>Avval kichik, keyin katta</b> — barcha mashhur ilovalar shunday boshlangan.</>, ru: <>Маленькую работающую версию можно быстро собрать и проверить. Если всё ок — достраиваете сверху. <b>Сначала маленькое, потом большое</b> — все известные приложения начинались именно так.</> },
+        body: { uz: <>Kichik versiyani tez yasab <b>sinab ko'rasiz</b>, yaxshi bo'lsa, ustiga qo'shib borasiz.</>, ru: <>Маленькую версию можно быстро собрать и <b>проверить</b>, а если всё хорошо — достроить сверху.</> },
       },
     ]
   },
@@ -283,20 +283,20 @@ const RECAPS = {
       {
         ic: "🧱",
         h: { uz: "Har doim POYDEVORDAN boshlaymiz", ru: 'Всегда начинаем с ФУНДАМЕНТА' },
-        body: { uz: <>Uy qurganda tomdan emas, <b>poydevordan</b> boshlaysiz — pastdagi asos bo'lmasa, ustidagi hech narsa turmaydi. Do'konda ham xuddi shunday: eng asosiy narsa — <b>mahsulotlar ro'yxati</b>. U bo'lmasa, savat ham, to'lov ham ma'nosiz.</>, ru: <>Дом строят не с крыши, а <b>с фундамента</b> — без основы внизу ничего сверху не удержится. С магазином так же: самое главное — <b>список товаров</b>. Без него и корзина, и оплата теряют смысл.</> },
+        body: { uz: <>Uy <b>poydevordan</b> quriladi, do'konning poydevori esa mahsulotlar ro'yxati.</>, ru: <>Дом строят с <b>фундамента</b>, а фундамент магазина — это список товаров.</> },
         vis: { uz: <RcFlow items={["Poydevor", "Devor", "Tom"]} />, ru: <RcFlow items={["Фундамент", "Стены", "Крыша"]} /> },
         ask: { uz: "Do'konda savat bor-u, mahsulotlar ro'yxati yo'q — nima savatga solamiz?", ru: 'В магазине есть корзина, но нет списка товаров — что мы будем в неё класть?' }
       },
       {
         ic: "🚫",
         h: { uz: "Login, reklama, sharhlar — poydevor EMAS", ru: 'Логин, реклама, отзывы — НЕ фундамент' },
-        body: { uz: <>Login tizimi, reklama bannerlari yoki sharhlar bo'limi — bular do'konning <b>bezagi va qo'shimchasi</b>, o'zagi emas. Ularsiz ham do'kon ishlaydi. Shuning uchun ulardan boshlamaymiz.</>, ru: <>Система логина, рекламные баннеры или раздел отзывов — это <b>украшение и дополнение</b> магазина, а не его ядро. Магазин работает и без них. Поэтому мы с них не начинаем.</> },
+        body: { uz: <>Login, reklama va sharhlar — do'kon <b>bezagi</b>, ularsiz ham u ishlaydi.</>, ru: <>Логин, реклама и отзывы — <b>украшение</b> магазина, он работает и без них.</> },
         vis: { uz: <RcFlow items={["Mahsulotlar ro'yxati", "keyin narx", "keyin savat"]} sep="→" />, ru: <RcFlow items={["Список товаров", "потом цены", "потом корзина"]} sep="→" /> }
       },
       {
         ic: "🏗️",
         h: { uz: "Tartib: avval asos, keyin ustiga qo'shamiz", ru: 'Порядок: сначала основа, потом достраиваем' },
-        body: { uz: <>Avval ko'rinadigan, ishlaydigan <b>ro'yxatni</b> quramiz. Keyin narx, keyin savat qo'shiladi. <b>Pastdan yuqoriga</b> — har qadam avvalgisining ustiga qo'yiladi.</>, ru: <>Сначала строим видимый, работающий <b>список</b>. Потом добавляются цены, потом корзина. <b>Снизу вверх</b> — каждый шаг кладётся поверх предыдущего.</> },
+        body: { uz: <>Avval ro'yxat, keyin narx, keyin savat — har qadam <b>pastdan yuqoriga</b> qo'yiladi.</>, ru: <>Сначала список, потом цены, потом корзина — каждый шаг кладётся <b>снизу вверх</b>.</> },
       },
     ]
   },
@@ -308,20 +308,20 @@ const RECAPS = {
       {
         ic: "📋",
         h: { uz: "Biz MVP o'zagini qurdik: ro'yxat + narx", ru: 'Мы построили ядро MVP: список + цены' },
-        body: { uz: <>Shu bosqichda do'konning <b>o'zagini</b> — mahsulotlar ro'yxati va ularning narxini qurib oldik. Bu do'konning <b>vitrinasi</b>: mijoz nima borligini va qancha turishini ko'radi. Bu allaqachon ishlaydigan MVP o'zagi.</>, ru: <>На этом этапе мы построили <b>ядро</b> магазина — список товаров и их цены. Это <b>витрина</b> магазина: клиент видит, что есть и сколько стоит. И это уже работающее ядро MVP.</> },
+        body: { uz: <>Biz do'kon <b>vitrinasini</b> qurdik: mijoz nima borligini va narxini ko'radi.</>, ru: <>Мы построили <b>витрину</b> магазина: клиент видит, что есть и сколько стоит.</> },
         vis: { uz: <RcFlow items={["Mahsulot nomi", "+ narx", "= katalog"]} sep="" />, ru: <RcFlow items={["Название товара", "+ цена", "= каталог"]} sep="" /> },
         ask: { uz: "Bizning ekranda hozir ko'rinib turgan narsa nima — ro'yxatmi yoki to'lov oynasimi?", ru: 'Что сейчас видно на нашем экране — список или окно оплаты?' }
       },
       {
         ic: "🛒",
         h: { uz: "Savat va to'lov — hali qurilmagan", ru: 'Корзина и оплата — ещё не построены' },
-        body: { uz: <>«Savat va to'lov tizimi» yoki «hamma narsa tayyor» degan javob noto'g'ri: biz hali <b>faqat katalogni</b> qildik. Savat va jami narx <b>keyingi darsda</b> qo'shiladi.</>, ru: <>Ответ «корзина и система оплаты» или «всё уже готово» — неверный: пока мы сделали <b>только каталог</b>. Корзина и итоговая сумма появятся <b>на следующем уроке</b>.</> },
+        body: { uz: <>Savat va to'lov hali <b>yo'q</b>, ular keyingi darsda qo'shiladi.</>, ru: <>Корзины и оплаты пока <b>нет</b> — они появятся на следующем уроке.</> },
         vis: { uz: <RcFlow items={["Katalog ✅", "Savat ⏳", "To'lov ⏳"]} />, ru: <RcFlow items={["Каталог ✅", "Корзина ⏳", "Оплата ⏳"]} /> }
       },
       {
         ic: "🎯",
         h: { uz: "O'zi nimani qurganingizni bilish muhim", ru: 'Важно знать, что именно Вы построили' },
-        body: { uz: <>Yaxshi quruvchi doim <b>qayerda turganini</b> biladi: nima tayyor, nima keyingi navbatda. Biz endigina <b>poydevorni</b> — katalogni bitirdik, do'kon hali to'liq emas.</>, ru: <>Хороший строитель всегда знает, <b>где он находится</b>: что готово, что на очереди. Мы только что закончили <b>фундамент</b> — каталог, магазин ещё не полный.</> },
+        body: { uz: <>Yaxshi quruvchi <b>nima tayyor</b> va nima navbatda ekanini doim biladi.</>, ru: <>Хороший строитель всегда знает, <b>что готово</b>, а что на очереди.</> },
       },
     ]
   },
@@ -329,7 +329,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -347,7 +347,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -356,13 +356,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -441,7 +441,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Прежде чем идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -450,7 +450,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответов мало ({answered}) — делать выводы по процентам рано. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -582,7 +582,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? `✓ ${tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`
               : waiting
@@ -590,8 +590,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? `${tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? explainCorrect
               : waiting
@@ -603,11 +604,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1021,12 +1022,12 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>MVP</span> nima degani?</>, ru: <>Что означает <span className="mono" style={{ color: T.accent }}>MVP</span>?</> })}</h2></>}
     audioText="MVP nima degani? To'rt variantdan eng to'g'risini tanlang."
     options={[tr({ uz: 'Eng kichik, lekin ishlaydigan versiya', ru: 'Самая маленькая, но работающая версия' }), tr({ uz: 'Eng chiroyli, jozibali dizayn', ru: 'Самый красивый, эффектный дизайн' }), tr({ uz: 'Eng qimmat, murakkab funksiya', ru: 'Самая дорогая, сложная функция' }), tr({ uz: 'Loyihaning oxirgi, tayyor varianti', ru: 'Последняя, готовая версия проекта' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! MVP — eng kam xususiyat bilan, lekin haqiqatan ishlaydigan birinchi versiya. Avval shuni quramiz, qolganini keyin qo'shamiz.", ru: 'Верно! MVP — первая версия с минимумом функций, которая уже реально работает. Сначала строим её, остальное добавляем потом.' })}
+    explainCorrect={tr({ uz: "MVP — ishlaydigan birinchi versiya, qolgani keyin keladi.", ru: 'MVP — первая работающая версия, остальное добавят потом.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — chiroyli dizayn keyin bo'ladi. MVP — avvalo ishlaydigan eng kichik versiya.", ru: 'Нет — красивый дизайн будет потом. MVP — прежде всего минимальная работающая версия.' }),
-      2: tr({ uz: "Yo'q — qimmat funksiya emas. MVP — eng zarur, eng oddiy ishlaydigan qism.", ru: 'Нет — не дорогая функция. MVP — самая необходимая, простейшая работающая часть.' }),
-      3: tr({ uz: "Yo'q — oxirgisi emas, aksincha birinchi ishlaydigan versiya. Keyin yaxshilanadi.", ru: 'Нет — не последняя, а наоборот первая работающая версия. Потом её улучшают.' }),
-      default: tr({ uz: 'MVP — eng kichik ishlaydigan versiya.', ru: 'MVP — минимальная работающая версия.' })
+      1: tr({ uz: "Chiroyli dizayn keyin qo'shiladi, MVP'da u asosiy emas.", ru: 'Красивый дизайн добавят потом — в MVP он не главное.' }),
+      2: tr({ uz: "Qimmat va murakkab funksiya MVP'ga kirmaydi.", ru: 'Дорогая и сложная функция в MVP не входит.' }),
+      3: tr({ uz: "MVP oxirgi emas — undan keyin ham ko'p narsa qo'shiladi.", ru: 'MVP — не последняя версия, после неё добавляют ещё много.' }),
+      default: tr({ uz: 'Skeytbordni eslang — nega avval mashina shart emas?', ru: 'Вспомните скейтборд — почему сначала не нужна машина?' })
     }} />
 );
 
@@ -1117,12 +1118,12 @@ const Screen7 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mini-do'kon qurishni <span className="italic" style={{ color: T.accent }}>nimadan</span> boshlaysiz?</>, ru: <>С чего <span className="italic" style={{ color: T.accent }}>начнёте</span> строить мини-магазин?</> })}</h2></>}
     audioText="Mini-do'kon qurishni nimadan boshlaymiz? Qaysi qism poydevor — o'ylab tanlang."
     options={[tr({ uz: 'Foydalanuvchi login tizimidan', ru: 'С системы логина пользователей' }), tr({ uz: "Mahsulotlar ro'yxatidan", ru: 'Со списка товаров' }), tr({ uz: 'Reklama bannerlaridan', ru: 'С рекламных баннеров' }), tr({ uz: "Mijoz sharhlari bo'limidan", ru: 'С раздела отзывов клиентов' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! Mahsulotlar ro'yxati — do'konning poydevori. Busiz qolgan hamma narsa (savat, qidiruv) ma'nosiz. Poydevordan boshlanadi.", ru: 'Верно! Список товаров — фундамент магазина. Без него всё остальное (корзина, поиск) бессмысленно. Начинают с фундамента.' })}
+    explainCorrect={tr({ uz: "Ro'yxat — do'kon poydevori: busiz savat ham ma'nosiz.", ru: 'Список товаров — фундамент магазина: без него корзина бессмысленна.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — login muhim, lekin u poydevor emas. Avval mahsulotlar bo'lishi kerak.", ru: 'Нет — логин важен, но это не фундамент. Сначала должны быть товары.' }),
-      2: tr({ uz: "Yo'q — reklama keyin. Avval sotadigan mahsulot ro'yxati kerak.", ru: 'Нет — реклама потом. Сначала нужен список товаров, которые продаём.' }),
-      3: tr({ uz: "Yo'q — sharhlar mahsulotga yoziladi. Demak avval mahsulotlar ro'yxati.", ru: 'Нет — отзывы пишут на товары. Значит, сначала список товаров.' }),
-      default: tr({ uz: "Poydevor — mahsulotlar ro'yxati.", ru: 'Фундамент — список товаров.' })
+      0: tr({ uz: "Login muhim, lekin u do'konning poydevori emas.", ru: 'Логин важен, но это не фундамент магазина.' }),
+      2: tr({ uz: "Reklama keyin keladi — avval sotadigan narsa kerak.", ru: 'Реклама потом — сначала нужно то, что продавать.' }),
+      3: tr({ uz: "Sharhlar poydevor emas — ular biror narsa haqida yoziladi.", ru: 'Отзывы — не фундамент: их пишут о чём-то уже существующем.' }),
+      default: tr({ uz: "Uy qurishni eslang: do'konda poydevor nima?", ru: 'Вспомните стройку дома: что в магазине фундамент?' })
     }} />
 );
 
@@ -1224,12 +1225,12 @@ const Screen10 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bu bosqichda do'konning <span className="italic" style={{ color: T.accent }}>qaysi qismini</span> qurdik?</>, ru: <>Какую <span className="italic" style={{ color: T.accent }}>часть магазина</span> мы построили на этом этапе?</> })}</h2></>}
     audioText="Bu bosqichda do'konning qaysi qismini qurdik? To'g'ri javobni tanlang."
     options={[tr({ uz: "Mahsulot katalogi: ro'yxat va narx", ru: 'Каталог товаров: список и цены' }), tr({ uz: "Savat va to'lov tizimi to'liq", ru: 'Корзину и систему оплаты полностью' }), tr({ uz: "Hamma narsa — do'kon butunlay tayyor", ru: 'Всё — магазин полностью готов' }), tr({ uz: "Faqat login va ro'yxatdan o'tish", ru: 'Только логин и регистрацию' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "Biz MVP o'zagini — mahsulotlar ro'yxati va narxlarni — qurdik.", ru: 'Мы построили ядро MVP — список товаров и цены.' }) /* F-0926-06: «To'g'ri!» boshlanishi (159/5) va «keyingi darsda» va'dasi (HP3) olindi */}
+    explainCorrect={tr({ uz: "Biz do'kon vitrinasini — MVP o'zagini qurdik.", ru: 'Мы построили витрину магазина — ядро MVP.' }) /* F-0926-06: «To'g'ri!» boshlanishi (159/5) va «keyingi darsda» va'dasi (HP3) olindi */}
     explainWrong={{
-      1: tr({ uz: "Yo'q — savat va to'lov hali yo'q, ular keyingi bosqich. Biz katalogni qurdik.", ru: 'Нет — корзины и оплаты ещё нет, это следующий этап. Мы построили каталог.' }),
-      2: tr({ uz: "Yo'q — hammasi tugamadi. Biz faqat o'zakni (katalog) qurdik, davomi bor.", ru: 'Нет — ещё не всё. Мы построили только ядро (каталог), продолжение впереди.' }),
-      3: tr({ uz: "Yo'q — login MVP'ga kirmadi. Biz mahsulot ro'yxati va narxni qurdik.", ru: 'Нет — логин не вошёл в MVP. Мы построили список товаров и цены.' }),
-      default: tr({ uz: "Biz MVP o'zagini qurdik: ro'yxat va narx.", ru: 'Мы построили ядро MVP: список и цены.' })
+      1: tr({ uz: "Savat va to'lov hali qurilmagan — ular keyingi bosqich.", ru: 'Корзины и оплаты ещё нет — это следующий этап.' }),
+      2: tr({ uz: "Do'kon hali to'liq tayyor emas — davomi bor.", ru: 'Магазин ещё не готов полностью — продолжение впереди.' }),
+      3: tr({ uz: "Login bu bosqichda umuman qurilmadi.", ru: 'Логин на этом этапе вообще не строили.' }),
+      default: tr({ uz: "Shu darsda ekranda nima paydo bo'lganini eslang.", ru: 'Вспомните, что появилось на экране в этом уроке.' })
     }} />
 );
 

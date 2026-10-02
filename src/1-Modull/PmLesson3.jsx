@@ -366,32 +366,32 @@ const RECAPS = {
   3: {
     title: { uz: 'Sayt nima uchun kerak', ru: 'Зачем нужен сайт' },
     cards: [
-      { ic: '🔍', h: { uz: 'Uch narsa bir gapda', ru: 'Три вещи в одном предложении' }, body: { uz: 'Saytning nega kerakligi uch narsadan yig\'iladi: kim ishlatadi, unga nimasi qiyin edi va sayt nimani osonlashtiradi. Uchtasi birga bo\'lsa, zaldagi odam darrov tushunadi.', ru: 'Ответ «зачем сайт» складывается из трёх вещей: кто им пользуется, что ему было трудно и что сайт упрощает. Когда все три вместе — человек в зале понимает сразу.' }, vis: { uz: <RcFlow items={['Kim', 'nimasi qiyin edi', 'nima osonlashdi']} />, ru: <RcFlow items={['Кто', 'что было трудно', 'что стало проще']} /> }, ask: { uz: 'Saytingizni kim ishlatadi — bitta aniq odamni ayting.', ru: 'Кто будет пользоваться вашим сайтом — назовите одного конкретного человека.' } },
-      { ic: '🎨', h: { uz: 'Tavsif — bu javob emas', ru: 'Описание — это не ответ' }, body: { uz: '«To\'rtta bo\'limi bor, rangi ko\'k» — bu saytning tashqi ko\'rinishi. Undan sayt kimga foyda berishi bilinmaydi.', ru: '«Четыре раздела, цвет синий» — это внешний вид сайта. Из него не понять, кому сайт приносит пользу.' }, ask: { uz: 'Saytingiz rangini aytsangiz, ota-onangiz nimani bilib oladi?', ru: 'Если вы назовёте цвет сайта, что из этого узна́ют ваши родители?' } },
-      { ic: '🧰', h: { uz: 'Texnika ham javob emas', ru: 'Техника — тоже не ответ' }, body: { uz: '«HTML va CSS bilan qildim» — qanday qilganingiz. Nega qilganingiz esa boshqa savol: kimning ishi yengillashdi?', ru: '«Сделал на HTML и CSS» — это КАК вы сделали. А ЗАЧЕМ — другой вопрос: чья работа стала легче?' }, ask: { uz: 'Sizning saytingiz kimning vaqtini tejaydi?', ru: 'Чьё время экономит ваш сайт?' } },
+      { ic: '🔍', h: { uz: 'Uch narsa bir gapda', ru: 'Три вещи в одном предложении' }, body: { uz: 'Kim ishlatadi, unga nima qiyin edi va sayt nimani osonlashtiradi — uchtasi bir gapda.', ru: 'Кто пользуется, что ему было трудно и что сайт упрощает — все три в одной фразе.' }, vis: { uz: <RcFlow items={['Kim', 'nimasi qiyin edi', 'nima osonlashdi']} />, ru: <RcFlow items={['Кто', 'что было трудно', 'что стало проще']} /> }, ask: { uz: 'Saytingizni kim ishlatadi — bitta aniq odamni ayting.', ru: 'Кто будет пользоваться вашим сайтом — назовите одного конкретного человека.' } },
+      { ic: '🎨', h: { uz: 'Tavsif — bu javob emas', ru: 'Описание — это не ответ' }, body: { uz: '«To\'rtta bo\'limi bor, rangi ko\'k» — bu faqat tashqi ko\'rinish, foyda emas.', ru: '«Четыре раздела, цвет синий» — это только внешний вид, а не польза.' }, ask: { uz: 'Saytingiz rangini aytsangiz, ota-onangiz nimani bilib oladi?', ru: 'Если вы назовёте цвет сайта, что из этого узна́ют ваши родители?' } },
+      { ic: '🧰', h: { uz: 'Texnika ham javob emas', ru: 'Техника — тоже не ответ' }, body: { uz: '«HTML va CSS bilan qildim» — qanday qilganingiz, nega qilganingiz emas.', ru: '«Сделал на HTML и CSS» — это о том, как вы сделали, а не зачем.' }, ask: { uz: 'Sizning saytingiz kimning vaqtini tejaydi?', ru: 'Чьё время экономит ваш сайт?' } },
     ],
   },
   7: {
     title: { uz: 'Jonli demoda nima ko\'rsatiladi', ru: 'Что показывают в живом демо' },
     cards: [
-      { ic: '🖥️', h: { uz: 'Saytning o\'zi — eng kuchli dalil', ru: 'Сам сайт — самое сильное доказательство' }, body: { uz: 'Zaldagi odam ishlayotgan saytni ko\'rsa, ishonadi. Shuning uchun demo saytning manzilidan ochilishi bilan boshlanadi.', ru: 'Когда человек в зале видит работающий сайт — он верит. Поэтому демо начинается с того, что вы открываете сайт по его адресу.' }, vis: { uz: <RcFlow items={['Ochaman', 'ko\'rsataman', 'aytaman']} />, ru: <RcFlow items={['Открываю', 'показываю', 'рассказываю']} /> }, ask: { uz: 'Ishlayotgan saytni ko\'rgan odam nimaga ishonadi?', ru: 'Во что верит человек, увидевший работающий сайт?' } },
-      { ic: '🚫', h: { uz: 'Kod — dasturchilar uchun', ru: 'Код — для программистов' }, body: { uz: 'Kod oynasini ochsangiz, ota-onangiz sayt nima qilishini bilmay qoladi. Kodni sizdan mentor so\'raydi, zal esa natijani ko\'radi.', ru: 'Если открыть окно с кодом, родители так и не поймут, что сайт делает. Код у вас спросит ментор, а зал смотрит на результат.' }, ask: { uz: 'Ota-onangiz kod oynasini ko\'rib nima deb o\'ylaydi?', ru: 'Что подумают ваши родители, увидев окно с кодом?' } },
-      { ic: '⏱️', h: { uz: 'Demo — eng katta bo\'lak', ru: 'Демо — самая большая часть' }, body: { uz: '3 daqiqadan bir daqiqasi demoga ketadi. Chunki qolgan hamma gap shu bir daqiqani tayyorlaydi.', ru: 'Из трёх минут одна уходит на демо. Потому что все остальные слова готовят зал именно к этой минуте.' }, ask: { uz: 'Nega demoga eng ko\'p vaqt ajratiladi?', ru: 'Почему на демо отводят больше всего времени?' } },
+      { ic: '🖥️', h: { uz: 'Saytning o\'zi — eng kuchli dalil', ru: 'Сам сайт — самое сильное доказательство' }, body: { uz: 'Ishlayotgan saytni ko\'rgan zal ishonadi — demo shu bilan boshlanadi.', ru: 'Зал верит, когда видит работающий сайт, — с этого и начинается демо.' }, vis: { uz: <RcFlow items={['Ochaman', 'ko\'rsataman', 'aytaman']} />, ru: <RcFlow items={['Открываю', 'показываю', 'рассказываю']} /> }, ask: { uz: 'Ishlayotgan saytni ko\'rgan odam nimaga ishonadi?', ru: 'Во что верит человек, увидевший работающий сайт?' } },
+      { ic: '🚫', h: { uz: 'Kod — dasturchilar uchun', ru: 'Код — для программистов' }, body: { uz: 'Kodni ko\'rib ota-onangiz hech narsa tushunmaydi — zalga natijani ko\'rsating.', ru: 'По коду родители ничего не поймут — покажите залу результат.' }, ask: { uz: 'Ota-onangiz kod oynasini ko\'rib nima deb o\'ylaydi?', ru: 'Что подумают ваши родители, увидев окно с кодом?' } },
+      { ic: '⏱️', h: { uz: 'Demo — eng katta bo\'lak', ru: 'Демо — самая большая часть' }, body: { uz: '3 daqiqadan bir daqiqasi demoga ketadi — qolgan gap shu daqiqani tayyorlaydi.', ru: 'Из трёх минут одна уходит на демо — остальные слова готовят к ней.' }, ask: { uz: 'Nega demoga eng ko\'p vaqt ajratiladi?', ru: 'Почему на демо отводят больше всего времени?' } },
     ],
   },
   10: {
     title: { uz: 'HTML, CSS va JavaScript farqi', ru: 'Чем различаются HTML, CSS и JavaScript' },
     cards: [
-      { ic: '🧱', h: { uz: 'HTML — bo\'limlar', ru: 'HTML — разделы' }, body: { uz: 'HTML sahifaga nima turishini aytadi: sarlavha, matn, rasm joyi. U sahifaning skeleti (shabloni).', ru: 'HTML говорит, ЧТО стоит на странице: заголовок, текст, место для картинки. Это скелет (шаблон) страницы.' }, vis: { uz: <RcFlow items={['HTML — bo\'limlar', 'CSS — ko\'rinish', 'JS — harakat']} sep="·" />, ru: <RcFlow items={['HTML — разделы', 'CSS — внешний вид', 'JS — действие']} sep="·" /> }, ask: { uz: 'Sahifadagi sarlavhani kim joylashtiradi?', ru: 'Кто ставит на страницу заголовок?' } },
-      { ic: '🎨', h: { uz: 'CSS — ko\'rinish', ru: 'CSS — внешний вид' }, body: { uz: 'CSS rang, o\'lcham va joylashuvni beradi. U sahifani chiroyli qiladi, lekin uni harakatga keltirmaydi.', ru: 'CSS задаёт цвет, размер и расположение. Он делает страницу красивой, но не заставляет её двигаться.' }, ask: { uz: 'Matn rangini o\'zgartirish kimning ishi?', ru: 'Чья работа — поменять цвет текста?' } },
-      { ic: '⚡', h: { uz: 'JavaScript — harakat', ru: 'JavaScript — действие' }, body: { uz: 'Tugma bosilganda nimadir o\'zgarishi — bu harakat. Savatga qo\'shish, hisoblash, qidirish shu yerdan chiqadi.', ru: 'Нажали кнопку — и что-то изменилось: это действие. Добавить в корзину, посчитать, найти — всё отсюда.' }, ask: { uz: 'Tugma bosilganda hech nima bo\'lmasa, nima yetishmayapti?', ru: 'Если после нажатия кнопки ничего не происходит — чего не хватает?' } },
+      { ic: '🧱', h: { uz: 'HTML — bo\'limlar', ru: 'HTML — разделы' }, body: { uz: 'HTML sahifada nima turishini aytadi: sarlavha, matn, rasm joyi.', ru: 'HTML говорит, что стоит на странице: заголовок, текст, место для картинки.' }, vis: { uz: <RcFlow items={['HTML — bo\'limlar', 'CSS — ko\'rinish', 'JS — harakat']} sep="·" />, ru: <RcFlow items={['HTML — разделы', 'CSS — внешний вид', 'JS — действие']} sep="·" /> }, ask: { uz: 'Sahifadagi sarlavhani kim joylashtiradi?', ru: 'Кто ставит на страницу заголовок?' } },
+      { ic: '🎨', h: { uz: 'CSS — ko\'rinish', ru: 'CSS — внешний вид' }, body: { uz: 'CSS rang, o\'lcham va joylashuvni beradi, lekin sahifani harakatga keltirmaydi.', ru: 'CSS задаёт цвет, размер и расположение, но не заставляет страницу двигаться.' }, ask: { uz: 'Matn rangini o\'zgartirish kimning ishi?', ru: 'Чья работа — поменять цвет текста?' } },
+      { ic: '⚡', h: { uz: 'JavaScript — harakat', ru: 'JavaScript — действие' }, body: { uz: 'Tugma bosilganda nimadir o\'zgarishi — harakat: savatga qo\'shish, hisoblash, qidirish.', ru: 'Действие — это когда после нажатия что-то меняется: корзина, подсчёт, поиск.' }, ask: { uz: 'Tugma bosilganda hech nima bo\'lmasa, nima yetishmayapti?', ru: 'Если после нажатия кнопки ничего не происходит — чего не хватает?' } },
     ],
   },
 };
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -409,7 +409,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -418,13 +418,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — идём дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -504,7 +504,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -513,7 +513,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс тему освоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:`, ru: `Ответивших мало (${answered}) — по проценту выводы делать сложно. Оцените сами:` })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -713,7 +713,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)}` })
               : waiting
@@ -721,8 +721,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${uzOf(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${(options[correctIdx] && options[correctIdx].ru) || uzOf(options[correctIdx])}` })
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? tr(explainCorrect)
               : waiting
@@ -735,7 +736,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1290,12 +1291,12 @@ const Screen3 = (props) => (
       { uz: 'Saytimni HTML va CSS bilan qildim', ru: 'Свой сайт я сделал на HTML и CSS' },
       { uz: 'Saytim juda chiroyli chiqdi', ru: 'Мой сайт получился очень красивым' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Bu gapda KIM bor (sinfdoshlarim), unga nimasi qiyin edi bor va sayt nimani osonlashtirgani bor. Shuning uchun tinglovchi saytning nega kerakligini tushunadi.", ru: 'Верно! В этой фразе есть КТО (одноклассники), что ему было трудно и что сайт упростил. Поэтому слушатель понимает, зачем сайт нужен.' }}
+    explainCorrect={{ uz: "Bu gapda kim, uning qiyinchiligi va saytning yordami bor.", ru: 'Здесь есть кто, что ему было трудно и чем помог сайт.' }}
     explainWrong={{
-      0: { uz: 'Bu — saytning tavsifi: nechta bo\'lim va qanday rang. Zaldagi odam bundan saytning kimga kerakligini bilmaydi.', ru: 'Это описание сайта: сколько разделов и какой цвет. Из этого человек в зале не поймёт, кому сайт нужен.' },
-      2: { uz: 'Bu — qanday qilganingiz, nega qilganingiz emas. Sayt kimning ishini yengillashtiradi?', ru: 'Это КАК вы сделали, а не ЗАЧЕМ. Чью работу облегчает сайт?' },
-      3: { uz: 'Bu — sizning bahoyingiz. Zaldagi odam uchun saytning kimga foyda berishi muhimroq.', ru: 'Это ваша оценка. Человеку в зале важнее, кому сайт приносит пользу.' },
-      default: { uz: 'Saytning nega kerakligi uch narsadan yig\'iladi: kim ishlatadi, unga nimasi qiyin edi, sayt nimani osonlashtiradi.', ru: 'Ответ «зачем сайт» складывается из трёх вещей: кто пользуется, что ему было трудно, что сайт упрощает.' }
+      0: { uz: 'Bo\'lim va rang — tavsif, sayt kimga kerakligini aytmaydi.', ru: 'Разделы и цвет — это описание, оно не говорит, кому нужен сайт.' },
+      2: { uz: 'Bu — qanday qilganingiz, nega qilganingiz emas.', ru: 'Это о том, как вы сделали, а не зачем.' },
+      3: { uz: 'Bu — sizning bahoyingiz, sayt kimga foyda berishi emas.', ru: 'Это ваша оценка, а не то, кому сайт приносит пользу.' },
+      default: { uz: 'Kim ishlatadi va unga nima qiyin edi — shuni izlang.', ru: 'Ищите, кто пользуется и что ему было трудно.' }
     }} />
 );
 
@@ -1439,12 +1440,12 @@ const Screen7 = (props) => (
       { uz: 'Saytning o\'zini: ochib, asosiy qismini', ru: 'Сам сайт: открыть и показать главную часть' },
       { uz: 'Netlify\'ning sozlamalar sahifasini', ru: 'Страницу настроек Netlify' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Saytning o'zi — eng kuchli dalil. Zaldagi odam ishlayotgan saytni ko'radi va ishonadi.", ru: 'Верно! Сам сайт — самое сильное доказательство. Человек в зале видит работающий сайт и верит.' }}
+    explainCorrect={{ uz: "Ishlayotgan sayt — eng kuchli dalil, zal unga ishonadi.", ru: 'Работающий сайт — самое сильное доказательство, зал ему верит.' }}
     explainWrong={{
-      0: { uz: 'Kod — dasturchilar uchun. Ota-onangiz kodni ko\'rib sayt nima qilishini bilmaydi. Nimani ko\'rsa, darrov tushunadi?', ru: 'Код — для программистов. По коду родители не поймут, что сайт делает. А что они поймут сразу?' },
-      1: { uz: 'Fayllar ro\'yxati saytning ishlayotganini ko\'rsatmaydi. Zaldagi odam nimani ko\'rmoqchi?', ru: 'Список файлов не показывает, что сайт работает. А что хочет увидеть человек в зале?' },
-      3: { uz: 'Sozlamalar sahifasi — sizning ish qurolingiz. Demo esa natijani ko\'rsatadi.', ru: 'Страница настроек — ваш рабочий инструмент. А демо показывает результат.' },
-      default: { uz: 'Demoda saytning o\'zi ochiladi: siz uni ochasiz va asosiy qismini ko\'rsatasiz.', ru: 'В демо открывается сам сайт: вы его открываете и показываете главную часть.' }
+      0: { uz: 'Kodni ko\'rib ota-onangiz sayt nima qilishini tushunmaydi.', ru: 'По коду родители не поймут, что делает сайт.' },
+      1: { uz: 'Fayllar ro\'yxati sayt ishlayotganini ko\'rsatmaydi.', ru: 'Список файлов не показывает, что сайт работает.' },
+      3: { uz: 'Sozlamalar — sizning ish qurolingiz, natija emas.', ru: 'Настройки — ваш рабочий инструмент, а не результат.' },
+      default: { uz: 'Zaldagi odam nimani ko\'rsa, darrov tushunishini o\'ylang.', ru: 'Подумайте, что человек в зале поймёт сразу.' }
     }} />
 );
 
@@ -1580,12 +1581,12 @@ const Screen10 = (props) => (
       { uz: 'Tugma bosilganda mahsulotni savatga qo\'shish', ru: 'При нажатии кнопки добавить товар в корзину' },
       { uz: 'Matn rangini ko\'k qilish', ru: 'Сделать текст синим' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Tugma bosilganda nimadir o'zgarishi — bu harakat. Harakatni JavaScript beradi, uni keyingi modulda o'rganasiz.", ru: 'Верно! Когда после нажатия кнопки что-то меняется — это действие. Действие даёт JavaScript, его вы выучите в следующем модуле.' }}
+    explainCorrect={{ uz: "Bosilganda o'zgarish — bu harakat, uni JavaScript beradi.", ru: 'Изменение после нажатия — это действие, его даёт JavaScript.' }}
     explainWrong={{
-      0: { uz: 'Shrift o\'lchami — ko\'rinish, uni CSS hal qiladi. Tugma bosilganda nima bo\'lishini kim hal qiladi?', ru: 'Размер шрифта — внешний вид, это решает CSS. А кто решает, что будет при нажатии кнопки?' },
-      1: { uz: 'Rasm qo\'yish — bo\'lim, uni HTML hal qiladi. Sahifada nimadir o\'zgarishi uchun nima kerak?', ru: 'Поставить картинку — это раздел, это решает HTML. А что нужно, чтобы на странице что-то изменилось?' },
-      3: { uz: 'Matn rangi — ko\'rinish, uni CSS beradi. JavaScript esa harakatni beradi.', ru: 'Цвет текста — внешний вид, его задаёт CSS. А JavaScript даёт действие.' },
-      default: { uz: 'HTML — bo\'limlar, CSS — ko\'rinish, JavaScript — harakat: bosilganda nima bo\'lishi.', ru: 'HTML — разделы, CSS — внешний вид, JavaScript — действие: что произойдёт при нажатии.' }
+      0: { uz: 'Shrift o\'lchami — ko\'rinish, uni CSS hal qiladi.', ru: 'Размер шрифта — внешний вид, его решает CSS.' },
+      1: { uz: 'Rasm qo\'yish — bo\'lim, uni HTML hal qiladi.', ru: 'Поставить картинку — это раздел, это решает HTML.' },
+      3: { uz: 'Matn rangi — ko\'rinish, uni CSS beradi.', ru: 'Цвет текста — внешний вид, его задаёт CSS.' },
+      default: { uz: 'HTML — bo\'limlar, CSS — ko\'rinish; JavaScript nima beradi?', ru: 'HTML — разделы, CSS — внешний вид; а что даёт JavaScript?' }
     }} />
 );
 
@@ -1859,7 +1860,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code} storageKey={`${KODING_KEY}:code`}
+          <HtmlCompiler stage="m1-12" lang={__lang} task={KOD_TASK} starterCode={code} storageKey={`${KODING_KEY}:code`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}

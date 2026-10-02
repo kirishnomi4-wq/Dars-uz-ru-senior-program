@@ -1,0 +1,457 @@
+{
+ "file": "src/3-Modull/ReactApiPostLesson.jsx",
+ "lessonId": "react-api-post-06-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-GAMES — KATALOG",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNING KOMPYUTERINGIZDA",
+     "box": "frame-dash",
+     "gap": 6
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, NEGA CHIQMADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "O'tgan darsda ofitsiant taomni olib kelardi — bugun teskarisi: siz serverga jo'natasiz. Dars oxirida o'z o'yin",
+     "b": "DARS OXIRIDA — SIZNING O'YININGIZ SERVERDA",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING O'YININGIZ SERVERDA",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ endi siz serverga buyruq berasiz",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — SERVER JADVALI",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TAQQOSLANG",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Sozlamalar qutisida yana bir xona bor: body — posilka yuki. Lekin server obyektni tushunmaydi — unga JSON matn",
+     "b": "JSON.stringify() — obyekt → JSON matn",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Sozlamalar qutisida yana bir xona bor: body — posilka yuki. Lekin server obyektni tushunmaydi — unga JSON matn",
+     "b": "KETISHDA JSON.stringify() — obyekt → JSON matn",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "POSILKA ICHI",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "POSILKA ICHI — TAYYOR",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Yuk tayyorlandi — stringify matnga o'girdi 2 POST uchdi — posilka serverga yo'lda 3 Serv",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL (XATONI BOSING)",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KATALOGDA",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🤖 Robo Rase 👍 100%",
+     "box": "hint",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Keraksiz yozuvni qanday olib tashlaymiz?",
+     "b": "Jadvalda eski sinov yozuvi qolib ketgan: \"test test\" (ID 5). Uni DELETE olib tashlaydi. E'tibor bering: body k",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Tartib xato — bo'lakni bosib qaytaring va qayta joylang",
+     "b": "⚠️ Tartib xato — qayta joylang.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "CHIPLARNI TO'G'RI TARTIBDA YIG'ING",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ROBO-API.EXAMPLE — JADVAL (JONLI)",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi siz fe'llarni bilasiz — agent kodini tekshira olasiz: fe'l to'g'rimi, ID bormi, body kerak joyda stringif",
+     "b": "Buyruq bering va rejani tasdiqlang…",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"O'chirish tugmasi qo'sh — lekin avval tasdiqlash "
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s15",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONSOL VA JADVAL",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 19,
+   "id": "s16",
+   "type": "test",
+   "inp": [
+    {
+     "label": "3 fetch('https://robo-api.example/games', {",
+     "ph": "method: 'POST',",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 method: — kichik harf 2 'POST' — katta, qo'shtirnoqda 3 , — oxirida vergul",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

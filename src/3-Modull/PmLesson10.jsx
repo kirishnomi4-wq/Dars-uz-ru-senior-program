@@ -269,38 +269,38 @@ const RECAPS = {
   3: {
     title: { uz: 'Ekran nimani aytmaydi', ru: 'Чего экран не говорит' },
     cards: [
-      { ic: '🖥', h: { uz: "Ekran nima borligini ko'rsatadi", ru: 'Экран показывает, что есть' }, body: { uz: <>Ro'yxat, tugma, sahifalar — bularning hammasi ekranda <b>ko'rinib turadi</b>, ularni aytib o'tirish shart emas.</>, ru: <>Список, кнопка, страницы — всё это на экране <b>видно</b>, проговаривать это незачем.</> } },
-      { ic: '🗣', h: { uz: 'Nima uchunligini gap aytadi', ru: 'Зачем это — говорите вы' }, body: { uz: <>Bu ish ilgari qanday og'ir qilinardi va endi nimasi oson — buni ekran ko'rsata olmaydi, buni <b>faqat siz</b> aytasiz.</>, ru: <>Как это делали раньше и что теперь стало проще — экран показать не может, это говорите <b>только вы</b>.</> } },
-      { ic: '❓', h: { uz: 'Shuning uchun gap kerak', ru: 'Поэтому слова нужны' }, body: { uz: <>Sayt ishlab tursa ham, u <b>o'zini o'zi tushuntirmaydi</b>: yonida turgan odam nima uchun qilinganini bilmaydi.</>, ru: <>Даже если сайт работает, он <b>сам себя не объясняет</b>: человек рядом не знает, зачем это сделано.</> }, ask: { uz: "Saytingizni ochdingiz. Ekran o'zi nimani ayta olmaydi?", ru: 'Вы открыли свой сайт. Чего экран сам сказать не может?' } }
+      { ic: '🖥', h: { uz: "Ekran nima borligini ko'rsatadi", ru: 'Экран показывает, что есть' }, body: { uz: <>Ro'yxat, tugma, sahifalar ekranda <b>ko'rinib turadi</b> — ularni aytish shart emas.</>, ru: <>Список, кнопка, страницы <b>и так видны</b> на экране — проговаривать их незачем.</> } },
+      { ic: '🗣', h: { uz: 'Nima uchunligini gap aytadi', ru: 'Зачем это — говорите вы' }, body: { uz: <>Ilgari qanchalik og'ir edi va endi nimasi oson — buni <b>faqat siz</b> aytasiz.</>, ru: <>Как тяжело было раньше и что стало проще — это говорите <b>только вы</b>.</> } },
+      { ic: '❓', h: { uz: 'Shuning uchun gap kerak', ru: 'Поэтому слова нужны' }, body: { uz: <>Ishlab turgan sayt ham <b>o'zini o'zi tushuntirmaydi</b>.</>, ru: <>Даже работающий сайт <b>сам себя не объясняет</b>.</> }, ask: { uz: "Saytingizni ochdingiz. Ekran o'zi nimani ayta olmaydi?", ru: 'Вы открыли свой сайт. Чего экран сам сказать не может?' } }
     ]
   },
   5: {
     title: { uz: "Bo'sh gap", ru: 'Пустая фраза' },
     cards: [
-      { ic: '💬', h: { uz: 'Ekranni takrorlagan gap', ru: 'Фраза, которая повторяет экран' }, body: { uz: <>«Bu — bosh sahifa», «Bu yerda qidiruv bor» — odam buni allaqachon ko'rib turibdi, gap <b>hech narsa qo'shmadi</b>.</>, ru: <>«Это — главная страница», «здесь есть поиск» — человек это уже видит, фраза <b>ничего не добавила</b>.</> } },
-      { ic: '✅', h: { uz: "Qo'shadigan gap", ru: 'Фраза, которая добавляет' }, body: { uz: <>«Ilgari buni guruhda so'rab yurardik» — buni ekran ko'rsatmaydi. Gap ekranda <b>ko'rinmaydigan</b> narsani aytadi.</>, ru: <>«Раньше мы спрашивали об этом в группе» — этого экран не показывает. Фраза говорит о том, чего на экране <b>не видно</b>.</> } },
-      { ic: '✂️', h: { uz: 'Tekshirish oson', ru: 'Проверить легко' }, body: { uz: <>Har gapdan keyin o'zingizga savol bering: buni odam ekrandan <b>o'zi ko'ryaptimi</b>? Ha bo'lsa — gap keraksiz.</>, ru: <>После каждой фразы спросите себя: человек <b>видит это сам</b> на экране? Если да — фраза лишняя.</> }, ask: { uz: "«Bu yerda qidiruv bor» — bu gap ko'rsatuvga nima qo'shadi?", ru: '«Здесь есть поиск» — что эта фраза добавляет к показу?' } }
+      { ic: '💬', h: { uz: 'Ekranni takrorlagan gap', ru: 'Фраза, которая повторяет экран' }, body: { uz: <>«Bu — bosh sahifa» kabi gap <b>hech narsa qo'shmaydi</b>: odam buni o'zi ko'rib turibdi.</>, ru: <>Фраза вроде «Это — главная страница» <b>ничего не добавляет</b>: человек и так это видит.</> } },
+      { ic: '✅', h: { uz: "Qo'shadigan gap", ru: 'Фраза, которая добавляет' }, body: { uz: <>Kerakli gap ekranda <b>ko'rinmaydigan</b> narsani aytadi, masalan ilgari qanday bo'lganini.</>, ru: <>Нужная фраза говорит о том, чего <b>не видно</b> на экране, например как было раньше.</> } },
+      { ic: '✂️', h: { uz: 'Tekshirish oson', ru: 'Проверить легко' }, body: { uz: <>Har gapdan keyin so'rang: <b>odam buni ekrandan o'zi ko'ryaptimi?</b></>, ru: <>После каждой фразы спросите себя: <b>человек видит это сам?</b></> }, ask: { uz: "«Bu yerda qidiruv bor» — bu gap ko'rsatuvga nima qo'shadi?", ru: '«Здесь есть поиск» — что эта фраза добавляет к показу?' } }
     ]
   },
   7: {
     title: { uz: 'Tartib tasodifiy emas', ru: 'Порядок не случаен' },
     cards: [
-      { ic: '📑', h: { uz: 'Airbnb varaqlari', ru: 'Слайды Airbnb' }, body: { uz: <>Airbnb — begonaning uyida ijaraga turish xizmati. Avval odamlarning qiyinchiligi, keyin uni yengadigan yechim, so'ng shu yechimni qancha odam kutayotgani va mahsulotning o'zi — <b>aniq tartib</b>.</>, ru: <>Airbnb — сервис аренды жилья у обычных людей. Сначала трудность людей, потом решение, которое её снимает, дальше — сколько людей этого ждут, и сам продукт — <b>точный порядок</b>.</> } },
-      { ic: '👥', h: { uz: 'Oxirgi varaq', ru: 'Последний слайд' }, body: { uz: <>Oxirida <b>jamoa</b> turgan: ishni kim qilayotgani. Shu taqdimotni bugun ham dunyo bo'ylab o'rganishadi.</>, ru: <>В конце — <b>команда</b>: кто это делает. Ту презентацию и сегодня разбирают по всему миру.</> } },
-      { ic: '🎬', h: { uz: 'Sizda ham shunday', ru: 'У вас так же' }, body: { uz: <>Kadrlaringiz ham tartib bilan turadi: avval ilgari qanday og'ir bo'lgani, keyin bosib ko'rsatish, oxirida nima <b>oson bo'lgani</b>.</>, ru: <>Ваши кадры тоже стоят по порядку: сначала — как было тяжело раньше, потом — нажимаете и показываете, в конце — что стало <b>проще</b>.</> } , ask: { uz: "Sizning ko'rsatuvingiz nimadan boshlanadi?", ru: 'С чего начинается ваш показ?' } }
+      { ic: '📑', h: { uz: 'Airbnb varaqlari', ru: 'Слайды Airbnb' }, body: { uz: <>Airbnb varaqlari <b>aniq tartibda</b> turgan: qiyinchilik, yechim, kutayotganlar, mahsulot.</>, ru: <>Слайды Airbnb шли в <b>точном порядке</b>: трудность, решение, кто ждёт, сам продукт.</> } },
+      { ic: '👥', h: { uz: 'Oxirgi varaq', ru: 'Последний слайд' }, body: { uz: <>Oxirgi varaqda <b>jamoa</b> turgan: ishni kim qilayotgani.</>, ru: <>На последнем слайде — <b>команда</b>: кто это делает.</> } },
+      { ic: '🎬', h: { uz: 'Sizda ham shunday', ru: 'У вас так же' }, body: { uz: <>Kadrlaringiz ham <b>tartib bilan</b> turadi: ilgari og'ir → bosib ko'rsatish → endi oson.</>, ru: <>Ваши кадры тоже идут <b>по порядку</b>: раньше было тяжело → показ нажатия → теперь проще.</> } , ask: { uz: "Sizning ko'rsatuvingiz nimadan boshlanadi?", ru: 'С чего начинается ваш показ?' } }
     ]
   },
   11: {
     title: { uz: 'Bitta harakat', ru: 'Одно действие' },
     cards: [
-      { ic: '🎯', h: { uz: 'Hamma sahifa ochilmaydi', ru: 'Все страницы не открываем' }, body: { uz: <>Ko'rsatuvda sayt bo'ylab yurib chiqilmaydi: <b>bitta joy</b> bosiladi va shuning natijasi ko'rsatiladi.</>, ru: <>В показе по сайту не гуляют: нажимают <b>одно место</b> и показывают его результат.</> } },
-      { ic: '👆', h: { uz: 'Qaysi joy bosiladi', ru: 'Какое место нажимают' }, body: { uz: <>Ish <b>chindan bajariladigan</b> joy — masalan, soatni band qiladigan tugma. Menyu yoki qidiruv bunday joy emas.</>, ru: <>То, где дело <b>правда делается</b> — например, кнопка, которая бронирует час. Меню или поиск таким местом не будут.</> } },
-      { ic: '👀', h: { uz: "Natija ko'rinishi shart", ru: 'Результат должен быть виден' }, body: { uz: <>Bosgandan keyin ekranda <b>o'zgarish</b> chiqmasa, qarab turgan odam ish bajarilganini bilmaydi.</>, ru: <>Если после нажатия на экране не появилось <b>изменение</b>, человек рядом не поймёт, что дело сделано.</> }, ask: { uz: 'Ishingizda qaysi joy bosilsa, ish chindan bajariladi?', ru: 'Какое место в вашей работе нажать, чтобы дело правда выполнилось?' } }
+      { ic: '🎯', h: { uz: 'Hamma sahifa ochilmaydi', ru: 'Все страницы не открываем' }, body: { uz: <>Ko'rsatuvda <b>bitta joy</b> bosiladi va uning natijasi ko'rsatiladi.</>, ru: <>В показе нажимают <b>одно место</b> и показывают его результат.</> } },
+      { ic: '👆', h: { uz: 'Qaysi joy bosiladi', ru: 'Какое место нажимают' }, body: { uz: <>Ish <b>chindan bajariladigan</b> joy bosiladi, masalan soatni band qiladigan tugma.</>, ru: <>Нажимают место, где дело <b>правда делается</b>, например кнопку брони часа.</> } },
+      { ic: '👀', h: { uz: "Natija ko'rinishi shart", ru: 'Результат должен быть виден' }, body: { uz: <>Bosgandan keyin ekranda <b>o'zgarish</b> chiqmasa, odam ish bajarilganini bilmaydi.</>, ru: <>Если после нажатия нет <b>изменения</b> на экране, человек не поймёт, что дело сделано.</> }, ask: { uz: 'Ishingizda qaysi joy bosilsa, ish chindan bajariladi?', ru: 'Какое место в вашей работе нажать, чтобы дело правда выполнилось?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -318,7 +318,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -326,13 +326,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -411,7 +411,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -492,7 +492,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -500,8 +500,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -512,7 +513,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -811,11 +812,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: 'Ekranga qarab odam nimani bilmaydi', ru: 'Чего человек не знает, глядя на экран' })}
     options={[tr({ uz: "Qaysi soatlar bo'sh qolganini", ru: 'Какие часы остались свободными' }), tr({ uz: 'Bu sayt nima uchun qilinganini', ru: 'Зачем сделан этот сайт' }), tr({ uz: "«Band qilaman» tugmasi qayerdaligini", ru: 'Где кнопка «Забронировать»' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Soatlar ham, tugma ham ekranda ko'rinib turibdi. Sayt nima uchun qilinganini esa faqat siz aytasiz.", ru: 'И часы, и кнопка на экране видны. А зачем сделан сайт, говорите только вы.' })}
+    explainCorrect={tr({ uz: "Soat va tugma ko'rinadi, nima uchunligini esa siz aytasiz.", ru: 'Часы и кнопку видно, а зачем это всё — говорите только вы.' })}
     explainWrong={{
       0: tr({ uz: "Bo'sh soatlar ro'yxatda turibdi — odam buni o'zi ko'radi.", ru: 'Свободные часы стоят в списке — человек видит это сам.' }),
       2: tr({ uz: "Tugma ekranda ko'rinib turibdi — odam uni o'zi topadi.", ru: 'Кнопка на экране видна — человек найдёт её сам.' }),
-      default: tr({ uz: "Ekran nima borligini ko'rsatadi; sayt nima uchun qilinganini faqat sizning gapingiz aytadi.", ru: 'Экран показывает, что есть; зачем сделан сайт — говорят только ваши слова.' })
+      default: tr({ uz: "Odam ekrandan o'zi ko'ra olmaydigan narsani qidiring.", ru: 'Ищите то, чего человек не увидит на экране сам.' })
     }}
   />
 );
@@ -945,9 +946,9 @@ const Screen5 = (props) => (
     correctIdx={2}
     explainCorrect={tr({ uz: "Bu gap ekranda ko'rinib turgan narsani takrorlaydi.", ru: 'Эта фраза повторяет то, что и так видно на экране.' })}
     explainWrong={{
-      0: tr({ uz: "Bu gap ilgari qanday bo'lganini aytadi — buni ekran ko'rsata olmaydi.", ru: 'Эта фраза говорит, как было раньше — экран такого показать не может.' }),
-      1: tr({ uz: "Bu gap hozirgina bo'lgan o'zgarishni aytadi — u ham ekranga yangi ma'no qo'shadi.", ru: 'Эта фраза говорит об изменении, которое только что произошло — она тоже добавляет экрану новый смысл.' }),
-      default: tr({ uz: "Ekranda ko'rinib turgan narsani takrorlagan gap hech narsa qo'shmaydi.", ru: 'Фраза, которая повторяет видимое на экране, ничего не добавляет.' })
+      0: tr({ uz: "Bu gap o'tmishni aytadi — ekran buni ko'rsata olmaydi.", ru: 'Эта фраза говорит о прошлом — экран такого не покажет.' }),
+      1: tr({ uz: "Bu gap hozirgi o'zgarishni aytadi — u ham ma'no qo'shadi.", ru: 'Эта фраза говорит о только что случившемся — она тоже добавляет смысл.' }),
+      default: tr({ uz: "Ekrandagini shunchaki takrorlaydigan gapni qidiring.", ru: 'Ищите фразу, которая просто повторяет то, что на экране.' })
     }}
   />
 );
@@ -1063,9 +1064,9 @@ const Screen7 = (props) => (
     correctIdx={0}
     explainCorrect={tr({ uz: 'Airbnb oxirgi varaqda jamoasini ko\'rsatgan.', ru: 'На последнем слайде Airbnb показал свою команду.' })}
     explainWrong={{
-      1: tr({ uz: "Ko'rsatilgan tartibda narx varag'i yo'q edi — tartib boshqacha tugagan.", ru: 'В том порядке слайда с ценой не было — он закончился иначе.' }),
-      2: tr({ uz: "Mahsulot varag'i tartibda oxirgi emas — undan keyin yana bitta varaq bo'lgan.", ru: 'Слайд с продуктом в том порядке не последний — после него был ещё один.' }),
-      default: tr({ uz: "Tartib jamoa bilan tugagan: oxirgi varaqda ishni kim qilayotgani ko'rsatilgan.", ru: 'Порядок закончился командой: на последнем слайде показано, кто делает это дело.' })
+      1: tr({ uz: "Ko'rsatilgan tartibda narx varag'i umuman yo'q edi.", ru: 'В том порядке слайда с ценой вообще не было.' }),
+      2: tr({ uz: "Mahsulot varag'idan keyin yana bitta varaq bo'lgan.", ru: 'После слайда с продуктом был ещё один слайд.' }),
+      default: tr({ uz: "Mahsulotdan keyin oxirgi varaqda nima turganini eslang.", ru: 'Вспомните, что стояло на последнем слайде после продукта.' })
     }}
   />
 );
@@ -1648,11 +1649,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: 'Bosiladigan joy qanday tanlanadi', ru: 'Как выбирают место для нажатия' })}
     options={[tr({ uz: "Sahifada birinchi ko'ringan joy tanlanadi", ru: 'Берут первое, что попалось на глаза на странице' }), tr({ uz: 'Ish chindan bajariladigan joy tanlanadi', ru: 'Берут место, где дело правда делается' }), tr({ uz: "Eng chiroyli ko'ringan sahifa tanlanadi", ru: 'Берут страницу, которая выглядит красивее всех' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Bitta harakat ishning bajarilishini ko'rsatadi — qolgan sahifalarni ochib o'tirmaysiz.", ru: 'Одно действие показывает, что дело выполняется — остальные страницы открывать не нужно.' })}
+    explainCorrect={tr({ uz: "Qarab turgan odam ish bajarilishini ko'rishi kerak.", ru: 'Зритель должен увидеть, как дело выполняется.' })}
     explainWrong={{
-      0: tr({ uz: "Birinchi ko'ringan joy ko'pincha menyu bo'ladi — u yerda ish bajarilmaydi.", ru: 'Первым на глаза чаще попадается меню — там дело не делается.' }),
-      2: tr({ uz: "Chiroylilik bu yerda o'lchov emas: qarab turgan odam ish bajarilishini kutadi.", ru: 'Красота здесь не мерило: человек, который смотрит, ждёт, что дело выполнится.' }),
-      default: tr({ uz: "Ish chindan bajariladigan joy tanlanadi — bitta harakat va uning natijasi ko'rsatiladi.", ru: 'Берут место, где дело правда делается — показывают одно действие и его результат.' })
+      0: tr({ uz: "Ko'pincha birinchi menyu ko'rinadi — unda ish bajarilmaydi.", ru: 'Первым на глаза чаще попадается меню — там дело не делается.' }),
+      2: tr({ uz: "Chiroylilik o'lchov emas — odam ish bajarilishini kutadi.", ru: 'Красота не мерило — зритель ждёт, что дело выполнится.' }),
+      default: tr({ uz: "Qarab turgan odam nimani ko'rishni kutishini o'ylang.", ru: 'Подумайте, что зритель ждёт увидеть.' })
     }}
   />
 );

@@ -1,0 +1,33 @@
+old 88 new 88
+only old: []
+only new: []
+md5 same 18 changed 70
+renamed 28
+  ('2-Modul', '03-JsVarsLesson.jsx', '04-JsVarsLesson.jsx')
+  ('2-Modul', '04-JsConditionsLesson.jsx', '05-JsConditionsLesson.jsx')
+  ('2-Modul', '05-JsLoopsLesson.jsx', '06-JsLoopsLesson.jsx')
+  ('2-Modul', '06-JsFunctionsLesson.jsx', '07-JsFunctionsLesson.jsx')
+  ('2-Modul', '07-PmLesson5.jsx', '08-PmLesson5.jsx')
+  ('2-Modul', '07-PmLesson5-uyga-vazifa.jsx', '08-PmLesson5-uyga-vazifa.jsx')
+  ('2-Modul', '08-PracticeLesson1.jsx', '09-PracticeLesson1.jsx')
+  ('2-Modul', '09-PracticeLesson2.jsx', '10-PracticeLesson2.jsx')
+  ('2-Modul', '10-PeanStackLesson.jsx', '11-PeanStackLesson.jsx')
+  ('2-Modul', '11-PracticeLesson3.jsx', '12-PracticeLesson3.jsx')
+  ('2-Modul', '12-PracticeLesson4.jsx', '13-PracticeLesson4.jsx')
+  ('2-Modul', '13-PmLesson6.jsx', '14-PmLesson6.jsx')
+  ('2-Modul', '13-PmLesson6-uyga-vazifa.jsx', '14-PmLesson6-uyga-vazifa.jsx')
+  ('3-Modul', '03-ReactFirstComponentLesson.jsx', '04-ReactFirstComponentLesson.jsx')
+  ('3-Modul', '04-ReactStateEffectLesson.jsx', '05-ReactStateEffectLesson.jsx')
+  ('3-Modul', '05-PmLesson8.jsx', '06-PmLesson8.jsx')
+  ('3-Modul', '05-PmLesson8-uyga-vazifa.jsx', '06-PmLesson8-uyga-vazifa.jsx')
+  ('3-Modul', '06-ReactPropsReuseLesson.jsx', '07-ReactPropsReuseLesson.jsx')
+  ('3-Modul', '07-ReactCrudPracticeLesson.jsx', '08-ReactCrudPracticeLesson.jsx')
+  ('3-Modul', '08-ReactApiGetLesson.jsx', '09-ReactApiGetLesson.jsx')
+  ('3-Modul', '09-ReactApiPostLesson.jsx', '10-ReactApiPostLesson.jsx')
+  ('3-Modul', '10-PmLesson9.jsx', '11-PmLesson9.jsx')
+  ('3-Modul', '10-PmLesson9-uyga-vazifa.jsx', '11-PmLesson9-uyga-vazifa.jsx')
+  ('3-Modul', '11-ReactRouterPracticeLesson.jsx', '12-ReactRouterPracticeLesson.jsx')
+  ('3-Modul', '12-ReactProjectDayLesson.jsx', '13-ReactProjectDayLesson.jsx')
+  ('3-Modul', '13-ReactBuildSiteLesson.jsx', '14-ReactBuildSiteLesson.jsx')
+  ('3-Modul', '14-PmLesson10.jsx', '15-PmLesson10.jsx')
+  ('3-Modul', '14-PmLesson10-uyga-vazifa.jsx', '15-PmLesson10-uyga-vazifa.jsx')

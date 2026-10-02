@@ -237,39 +237,39 @@ const RECAPS = {
   4: {
     title: { uz: "Props — komponentga uzatiladigan ma'lumot", ru: 'Props — данные, передаваемые компоненту' },
     cards: [
-      { ic: "🎁", h: { uz: "Props — kartochkaga solingan ma'lumot", ru: 'Props — данные, вложенные в карточку' }, body: { uz: <>Hamma <span className="mono">{'<GameCard />'}</span> bir xil qolipdan yasaladi — farqi faqat ichidagi <b style={{ color: T.ink }}>ma'lumotda</b>: nom, o'yinchilar soni, belgi. Kartochkaga solinadigan shu ma'lumot <b style={{ color: T.ink }}>props</b> deb ataladi. Xuddi varaqa kabi: ichida nima borligini bergan odam belgilaydi.</>, ru: <>Все <span className="mono">{'<GameCard />'}</span> собраны по одному шаблону — отличаются только <b style={{ color: T.ink }}>данными</b> внутри: название, число игроков, значок. Эти вложенные в карточку данные и называются <b style={{ color: T.ink }}>props</b>. Как слип: что внутри — решает тот, кто её отправил.</> } },
-      { ic: "🏷️", h: { uz: "Atribut yozasiz — props bo'lib yetib boradi", ru: 'Пишете атрибут — доходит как props' }, body: { uz: <>Props'ni <b style={{ color: T.ink }}>App</b> (ota komponent) uzatadi: chaqiruvda atribut yozadi — <span className="mono">name="Doors"</span>. O'sha yozuv <span className="mono">GameCard</span> ichiga <b style={{ color: T.ink }}>props bo'lib</b> yetib boradi. Ya'ni atribut — tashqaridan, props — komponentning ichida ko'ringan o'sha ma'lumot.</>, ru: <>Props передаёт <b style={{ color: T.ink }}>App</b> (родительский компонент): при вызове он пишет атрибут — <span className="mono">name="Doors"</span>. Эта запись доходит внутрь <span className="mono">GameCard</span> <b style={{ color: T.ink }}>уже как props</b>. То есть атрибут — снаружи, props — те же данные, видимые внутри компонента.</> } },
-      { ic: "📦", h: { uz: "Bir nechta props — bir nechta atribut", ru: 'Несколько props — несколько атрибутов' }, body: { uz: <>Bitta kartochkaga bir nechta ma'lumot uzatsa bo'ladi: har biri alohida atribut, alohida props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Qancha kerak bo'lsa, shuncha yozasiz.</>, ru: <>Одной карточке можно передать несколько данных: каждое — отдельный атрибут, отдельный props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Пишете столько, сколько нужно.</> }, ask: { uz: "Sevimli o'yiningiz kartochkasiga qanday props'lar kerak bo'lardi?", ru: 'Какие props понадобились бы карточке вашей любимой игры?' } },
+      { ic: "🎁", h: { uz: "Props — kartochkaga solingan ma'lumot", ru: 'Props — данные, вложенные в карточку' }, body: { uz: <>Hamma <span className="mono">&lt;GameCard /&gt;</span> bir xil qolipdan yasaladi, ichidagi <b>ma'lumot</b> esa props deyiladi.</>, ru: <>Все <span className="mono">&lt;GameCard /&gt;</span> собраны по одному шаблону, а <b>данные</b> внутри них называются props.</> } },
+      { ic: "🏷️", h: { uz: "Atribut yozasiz — props bo'lib yetib boradi", ru: 'Пишете атрибут — доходит как props' }, body: { uz: <>App yozgan <span className="mono">name="Doors"</span> atributi <span className="mono">GameCard</span> ichiga <b>props bo'lib</b> yetadi.</>, ru: <>Атрибут <span className="mono">name="Doors"</span> от App доходит внутрь <span className="mono">GameCard</span> <b>уже как props</b>.</> } },
+      { ic: "📦", h: { uz: "Bir nechta props — bir nechta atribut", ru: 'Несколько props — несколько атрибутов' }, body: { uz: <>Bir nechta ma'lumot uchun bir nechta <b>atribut</b> yoziladi: <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>.</>, ru: <>Для нескольких данных пишут несколько <b>атрибутов</b>: <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>.</> }, ask: { uz: "Sevimli o'yiningiz kartochkasiga qanday props'lar kerak bo'lardi?", ru: 'Какие props понадобились бы карточке вашей любимой игры?' } },
     ]
   },
   6: {
     title: { uz: "Props oqimi — faqat pastga", ru: 'Поток props — только вниз' },
     cards: [
-      { ic: "⬇️", h: { uz: "Otadan bolaga, yuqoridan pastga", ru: 'От родителя к ребёнку, сверху вниз' }, body: { uz: <>Komponentlar oilaga o'xshaydi: yuqorida <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>GameCard (bola)</b>. Ma'lumot (props) doim <b style={{ color: T.ink }}>yuqoridan pastga</b> oqadi — ota bolaga uzatadi.</>, ru: <>Компоненты похожи на семью: сверху <b style={{ color: T.ink }}>App (родитель)</b>, под ним <b style={{ color: T.ink }}>GameCard (ребёнок)</b>. Данные (props) всегда текут <b style={{ color: T.ink }}>сверху вниз</b> — родитель передаёт ребёнку.</> } },
-      { ic: "🚫", h: { uz: "Bola otaga qaytara olmaydi", ru: 'Ребёнок не может вернуть родителю' }, body: { uz: <>Oqim <b style={{ color: T.ink }}>bir tomonlama</b>: <span className="mono">GameCard</span> o'ziga kelgan props'ni <span className="mono">App</span>'ga qaytara olmaydi. Ma'lumot faqat pastga tushadi, orqaga ko'tarilmaydi.</>, ru: <>Поток <b style={{ color: T.ink }}>односторонний</b>: <span className="mono">GameCard</span> не может вернуть пришедшие props обратно в <span className="mono">App</span>. Данные только спускаются вниз и не поднимаются обратно.</> } },
-      { ic: "🌊", h: { uz: "Nega bir tomonlama?", ru: 'Почему в одну сторону?' }, body: { uz: <>Ma'lumot bitta yo'nalishda oqsa — kim nimani yuborganini kuzatish oson bo'ladi. Har narsa istalgan tomonga oqsa, xatoni topib bo'lmasdi. Shuning uchun React'da props doim pastga oqadi.</>, ru: <>Когда данные текут в одном направлении — легко отследить, кто что отправил. Если бы всё текло куда угодно, ошибку было бы не найти. Поэтому в React props всегда текут вниз.</> }, ask: { uz: "Ma'lumot bir tomonlama oqishi nega chalkashlikni kamaytiradi?", ru: 'Почему односторонний поток данных уменьшает путаницу?' } },
+      { ic: "⬇️", h: { uz: "Otadan bolaga, yuqoridan pastga", ru: 'От родителя к ребёнку, сверху вниз' }, body: { uz: <>Props doim <b>yuqoridan pastga</b> oqadi: ota App bola GameCard'ga uzatadi.</>, ru: <>Props всегда текут <b>сверху вниз</b>: родитель App передаёт их ребёнку GameCard.</> } },
+      { ic: "🚫", h: { uz: "Bola otaga qaytara olmaydi", ru: 'Ребёнок не может вернуть родителю' }, body: { uz: <>Oqim <b>bir tomonlama</b>: <span className="mono">GameCard</span> props'ni <span className="mono">App</span>'ga qaytara olmaydi.</>, ru: <>Поток <b>односторонний</b>: <span className="mono">GameCard</span> не может вернуть props в <span className="mono">App</span>.</> } },
+      { ic: "🌊", h: { uz: "Nega bir tomonlama?", ru: 'Почему в одну сторону?' }, body: { uz: <>Ma'lumot <b>bitta yo'nalishda</b> oqsa, kim nimani yuborganini kuzatish oson.</>, ru: <>Когда данные текут <b>в одну сторону</b>, легко отследить, кто что отправил.</> }, ask: { uz: "Ma'lumot bir tomonlama oqishi nega chalkashlikni kamaytiradi?", ru: 'Почему односторонний поток данных уменьшает путаницу?' } },
     ]
   },
   10: {
     title: { uz: "Ro'yxat + map — katalog o'zi chiziladi", ru: 'Список + map — каталог рисуется сам' },
     cards: [
-      { ic: "📋", h: { uz: "Ma'lumot alohida ro'yxatda turadi", ru: 'Данные лежат в отдельном списке' }, body: { uz: <>Katta saytlarning siri: o'yinlar ma'lumoti <b style={{ color: T.ink }}>kod ichiga yozilmaydi</b> — alohida <b style={{ color: T.ink }}>ro'yxatda (massivda)</b> turadi. Har qator — bitta o'yin, ichida props uchun hamma narsa tayyor.</>, ru: <>Секрет больших сайтов: данные об играх <b style={{ color: T.ink }}>не пишутся прямо в код</b> — они лежат в отдельном <b style={{ color: T.ink }}>списке (массиве)</b>. Каждая строка — одна игра, внутри всё готово для props.</> } },
-      { ic: "⚙️", h: { uz: "map — konveyer kabi ishlaydi", ru: 'map работает как конвейер' }, body: { uz: <><span className="mono">games.map(…)</span> — konveyerga o'xshaydi: ro'yxatdagi <b style={{ color: T.ink }}>har bir o'yin uchun</b> bitta kartochka yasaydi. Qatorni oladi → props qilib uzatadi → kartochkani chizadi. Va shu ishni ro'yxat oxirigacha takrorlaydi.</>, ru: <><span className="mono">games.map(…)</span> — как конвейер: для <b style={{ color: T.ink }}>каждой игры</b> из списка делает одну карточку. Берёт строку → передаёт как props → рисует карточку. И повторяет это до конца списка.</> } },
-      { ic: "➕", h: { uz: "Yangi o'yin qo'shsangiz — kartochka o'zi chiqadi", ru: 'Добавили игру — карточка появится сама' }, body: { uz: <>Ro'yxatga yangi o'yin qo'shsangiz, <span className="mono">map</span> qatoriga <b style={{ color: T.ink }}>tegmasangiz ham</b> kartochkasi o'zi paydo bo'ladi. Sayt ma'lumotga qarab o'zini chizadi — buni <b style={{ color: T.ink }}>data-driven</b> deymiz.</>, ru: <>Добавите в список новую игру — её карточка появится сама, <b style={{ color: T.ink }}>даже если не трогать</b> строку с <span className="mono">map</span>. Сайт рисует себя по данным — это называется <b style={{ color: T.ink }}>data-driven</b>.</> }, ask: { uz: "Katalogga 100 ta o'yin qo'shsangiz, kod necha qator o'zgaradi?", ru: 'Если добавить в каталог 100 игр, сколько строк кода изменится?' } },
+      { ic: "📋", h: { uz: "Ma'lumot alohida ro'yxatda turadi", ru: 'Данные лежат в отдельном списке' }, body: { uz: <>O'yinlar ma'lumoti kod ichida emas, alohida <b>ro'yxatda</b> (massivda) turadi.</>, ru: <>Данные об играх лежат не в коде, а в отдельном <b>списке</b> (массиве).</> } },
+      { ic: "⚙️", h: { uz: "map — konveyer kabi ishlaydi", ru: 'map работает как конвейер' }, body: { uz: <><span className="mono">games.map(…)</span> <b>konveyer</b> kabi har bir o'yin uchun bitta kartochka yasaydi.</>, ru: <><span className="mono">games.map(…)</span> как <b>конвейер</b> делает по одной карточке для каждой игры.</> } },
+      { ic: "➕", h: { uz: "Yangi o'yin qo'shsangiz — kartochka o'zi chiqadi", ru: 'Добавили игру — карточка появится сама' }, body: { uz: <>O'yin qo'shilsa, <span className="mono">map</span>ga tegmasangiz ham kartochka o'zi chiqadi — bu <b>data-driven</b>.</>, ru: <>Добавили игру — карточка появится сама, даже не трогая <span className="mono">map</span>: это <b>data-driven</b>.</> }, ask: { uz: "Katalogga 100 ta o'yin qo'shsangiz, kod necha qator o'zgaradi?", ru: 'Если добавить в каталог 100 игр, сколько строк кода изменится?' } },
     ]
   },
   13: {
     title: { uz: "Props read-only — faqat o'qiladi", ru: 'Props read-only — только для чтения' },
     cards: [
-      { ic: "🔒", h: { uz: "Komponent props'ni o'zgartira olmaydi", ru: 'Компонент не может менять props' }, body: { uz: <>Kartochka o'ziga kelgan props'ni faqat <b style={{ color: T.ink }}>o'qiy oladi</b>, o'zgartira olmaydi. Bunga <b style={{ color: T.ink }}>read-only</b> (faqat o'qiladi) deyiladi. Xuddi muhrlangan xat kabi: o'qiysiz, lekin ichini qayta yozolmaysiz.</>, ru: <>Карточка может пришедшие props только <b style={{ color: T.ink }}>читать</b>, менять — нет. Это называется <b style={{ color: T.ink }}>read-only</b> (только для чтения). Как запечатанное письмо: прочитать можно, переписать — нельзя.</> } },
-      { ic: "✏️", h: { uz: "O'zgaruvchan narsa uchun — state", ru: 'Для изменяемого — state' }, body: { uz: <>Agar biror qiymat <b style={{ color: T.ink }}>o'zgarib turishi</b> kerak bo'lsa (masalan like soni), props emas — <b style={{ color: T.ink }}>state</b> ishlatiladi. Props tashqaridan keladi va qotib turadi; state komponentning o'zida o'zgaradi.</>, ru: <>Если значение должно <b style={{ color: T.ink }}>меняться</b> (например, число лайков), используется не props, а <b style={{ color: T.ink }}>state</b>. Props приходят снаружи и застывают; state меняется внутри самого компонента.</> } },
-      { ic: "🛡️", h: { uz: "Nega props qotib turadi?", ru: 'Почему props «застывают»?' }, body: { uz: <>Props o'zgarmas bo'lgani uchun kod ishonchli bo'ladi: bola komponent otasi bergan ma'lumotni buzib yubormaydi. Shuning uchun har komponent props'ini o'zicha o'zgartirmaydi — faqat o'qiydi.</>, ru: <>Раз props неизменны — код надёжен: дочерний компонент не испортит данные, которые дал родитель. Поэтому компонент не меняет свои props сам — только читает.</> }, ask: { uz: "Nega props'ni o'zgartirmaslik xatolarni kamaytiradi?", ru: 'Почему запрет менять props уменьшает число ошибок?' } },
+      { ic: "🔒", h: { uz: "Komponent props'ni o'zgartira olmaydi", ru: 'Компонент не может менять props' }, body: { uz: <>Kartochka props'ni faqat o'qiydi — bu <b>read-only</b>, xuddi muhrlangan xat kabi.</>, ru: <>Карточка props только читает — это <b>read-only</b>, как запечатанное письмо.</> } },
+      { ic: "✏️", h: { uz: "O'zgaruvchan narsa uchun — state", ru: 'Для изменяемого — state' }, body: { uz: <>O'zgarib turadigan qiymat uchun (masalan like soni) props emas, <b>state</b> ishlatiladi.</>, ru: <>Для меняющегося значения (например, лайков) нужен не props, а <b>state</b>.</> } },
+      { ic: "🛡️", h: { uz: "Nega props qotib turadi?", ru: 'Почему props «застывают»?' }, body: { uz: <>Props o'zgarmas, shuning uchun bola otasi bergan ma'lumotni <b>buzib yubormaydi</b>.</>, ru: <>Props неизменны, поэтому ребёнок <b>не испортит</b> данные, которые дал родитель.</> }, ask: { uz: "Nega props'ni o'zgartirmaslik xatolarni kamaytiradi?", ru: 'Почему запрет менять props уменьшает число ошибок?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -287,7 +287,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -296,13 +296,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -380,7 +380,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась классу непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -389,7 +389,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -482,7 +482,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -490,8 +490,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -503,11 +504,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -909,12 +910,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: "App komponenti GameCard'ga ma'lumotni qanday uzatadi?", ru: 'Как компонент App передаёт данные в GameCard?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday uzatadi</span>?</>, ru: <>Как App <span className="italic" style={{ color: T.accent }}>передаёт данные</span> в GameCard?</> })}</h2></>}
     options={[tr({ uz: "Atribut orqali: name=\"Doors\"", ru: 'Через атрибут: name="Doors"' }), tr({ uz: 'Internet orqali yuboradi', ru: 'Отправляет через интернет' }), tr({ uz: 'Fayl orqali saqlab beradi', ru: 'Сохраняет в файл' }), tr({ uz: "GameCard o'zi App'dan olib ketadi", ru: 'GameCard сам забирает из App' })]} correctIdx={0}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Chaqiruvda atribut yoziladi, komponent ichida esa o'sha ma'lumot props bo'lib keladi: name → props.name.", ru: 'При вызове пишется атрибут, а внутри компонента эти данные приходят как props: name → props.name.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Chaqiruvdagi atribut komponent ichida `props.name` bo'ladi.", ru: 'Атрибут из вызова внутри компонента становится `props.name`.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — internet kerak emas. Bu kod ichidagi uzatish: atribut → props.", ru: 'Нет — интернет не нужен. Это передача внутри кода: атрибут → props.' }),
-      2: tr({ uz: "Yo'q — fayl ham kerak emas. Atributning o'zi yetadi: <GameCard name=\"…\" />.", ru: 'Нет — и файл не нужен. Достаточно атрибута: <GameCard name="…" />.' }),
-      3: tr({ uz: "Yo'q — komponent o'zi 'olib keta olmaydi'. Ota (App) jo'natadi, bola (GameCard) qabul qiladi.", ru: 'Нет — компонент не может «забрать сам». Родитель (App) отправляет, ребёнок (GameCard) принимает.' }),
-      default: tr({ uz: "Atribut orqali: <GameCard name=\"…\" /> → props.name.", ru: 'Через атрибут: <GameCard name="…" /> → props.name.' })
+      1: tr({ uz: "Internet kerak emas — uzatish kodning o'zida bo'ladi.", ru: 'Интернет не нужен — передача происходит прямо в коде.' }),
+      2: tr({ uz: "Fayl kerak emas — ma'lumot chaqiruvning o'zida yoziladi.", ru: 'Файл не нужен — данные пишутся прямо в вызове.' }),
+      3: tr({ uz: "Bola o'zi olib ketolmaydi — ma'lumotni ota jo'natadi.", ru: 'Ребёнок сам не забирает — данные отправляет родитель.' }),
+      default: tr({ uz: "`<GameCard />` chaqiruvi ichida nima yozilganiga qarang.", ru: 'Посмотрите, что написано внутри вызова `<GameCard />`.' })
     }} />
 );
 
@@ -983,12 +984,12 @@ const Screen5b = (props) => (
     questionText={tr({ uz: "Props qaysi yo'nalishda oqadi?", ru: 'В каком направлении текут props?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Props qaysi <span className="italic" style={{ color: T.accent }}>yo'nalishda</span> oqadi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>направлении</span> текут props?</> })}</h2></>}
     options={[tr({ uz: 'Pastdan yuqoriga — boladan otaga', ru: 'Снизу вверх — от ребёнка к родителю' }), tr({ uz: 'Istalgan tomonga — yuqoriga ham, pastga ham', ru: 'В любую сторону — и вверх, и вниз' }), tr({ uz: "Faqat yuqoridan pastga — otadan bolaga", ru: 'Только сверху вниз — от родителя к ребёнку' }), tr({ uz: 'Props umuman oqmaydi — bir joyda turadi', ru: 'Props вообще не текут — стоят на месте' })]} correctIdx={2}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Daryo kabi — faqat pastga: App → GameCard → LikeButton. Bola otaga props uzata olmaydi.", ru: 'Как река — только вниз: App → GameCard → LikeButton. Ребёнок не может передать props родителю.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Props daryo kabi faqat pastga oqadi: App → GameCard.", ru: 'Props, как река, текут только вниз: App → GameCard.' })}
     explainWrong={{
-      0: tr({ uz: "Teskari yuborishda nima bo'lgandi? ❌ Yo'l yo'q — bola otaga uzata olmaydi.", ru: 'Помните, что было при отправке наверх? ❌ Пути нет — ребёнок не может передать родителю.' }),
-      1: tr({ uz: "Yo'q — React'da qat'iy tartib bor: faqat yuqoridan pastga. Shu tufayli kod tushunarli qoladi.", ru: 'Нет — в React строгий порядок: только сверху вниз. Благодаря этому код остаётся понятным.' }),
-      3: tr({ uz: "Oqadi — atribut yozilgan zahoti pastga: name → props.name.", ru: 'Текут — как только написан атрибут, данные идут вниз: name → props.name.' }),
-      default: tr({ uz: "Faqat yuqoridan pastga: otadan bolaga.", ru: 'Только сверху вниз: от родителя к ребёнку.' })
+      0: tr({ uz: "Teskari yuborishni eslang — bola otaga uzata olmadi.", ru: 'Вспомните отправку наверх — ребёнок не смог передать родителю.' }),
+      1: tr({ uz: "React'da props uchun qat'iy bitta yo'nalish bor.", ru: 'В React у props строго одно направление.' }),
+      3: tr({ uz: "Oqadi — atribut yozilgan zahoti ma'lumot yo'lga chiqadi.", ru: 'Текут — как только написан атрибут, данные отправляются в путь.' }),
+      default: tr({ uz: "App va GameCard'dan qaysi biri atribut yozganini eslang.", ru: 'Вспомните, кто из App и GameCard пишет атрибут.' })
     }} />
 );
 
@@ -1163,12 +1164,12 @@ const Screen9 = (props) => (
     questionText={tr({ uz: "Ro'yxatga yangi o'yin qo'shilsa nima bo'ladi?", ru: 'Что будет, если добавить в список новую игру?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>games ro'yxatiga <span className="italic" style={{ color: T.accent }}>yangi o'yin qo'shilsa</span> nima bo'ladi?</>, ru: <>Что будет, если в список games <span className="italic" style={{ color: T.accent }}>добавить новую игру</span>?</> })}</h2></>}
     options={[tr({ uz: "Katalog kodini ham qayta yozish kerak", ru: 'Придётся переписать и код каталога' }), tr({ uz: "Hech narsa — sayt eski holatda qoladi", ru: 'Ничего — сайт останется прежним' }), tr({ uz: 'Butun katalog buzilib qoladi', ru: 'Весь каталог сломается' }), tr({ uz: "React yangi kartochkani o'zi chizadi", ru: 'React сам нарисует новую карточку' })]} correctIdx={3}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "map ro'yxatdagi HAR BIR element uchun ishlaydi — qator qo'shildi, kartochka o'zi paydo bo'ladi. Kod bir qator bo'lib qolaveradi.", ru: 'map работает для КАЖДОГО элемента списка — строка добавилась, карточка появится сама. Код так и останется одной строкой.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "`map` ro'yxatdagi har bir qator uchun kartochka chizadi.", ru: '`map` рисует карточку для каждой строки списка.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — bu eski usul edi. map bilan kod o'zgarmaydi: u ro'yxatning hammasiga ishlaydi.", ru: 'Нет — так было раньше. С map код не меняется: он работает со всем списком.' }),
-      1: tr({ uz: "Aksincha — map yangi qatorni ham ko'radi va kartochkasini chizadi.", ru: 'Наоборот — map увидит и новую строку и нарисует её карточку.' }),
-      2: tr({ uz: "Yo'q — buzilmaydi. map nechta qator bo'lsa, shuncha kartochka yasayveradi.", ru: 'Нет — не сломается. Сколько строк, столько карточек map и сделает.' }),
-      default: tr({ uz: "map ro'yxatga qarab ishlaydi: yangi qator → yangi kartochka, kod o'zgarmaydi.", ru: 'map работает по списку: новая строка → новая карточка, код не меняется.' })
+      0: tr({ uz: "Kodni qayta yozish — eski usul, `map` bilan kod o'zgarmaydi.", ru: 'Переписывать код — старый способ, с `map` код не меняется.' }),
+      1: tr({ uz: "`map` ro'yxatni har safar boshidan oxirigacha o'qiydi.", ru: '`map` каждый раз читает список от начала до конца.' }),
+      2: tr({ uz: "Katalog buzilmaydi — yangi qator oddiy qator bo'lib turadi.", ru: 'Каталог не сломается — новая строка просто добавится в список.' }),
+      default: tr({ uz: "`map` ro'yxatga qarab ishlaydi — qator qo'shilsa nima bo'ladi?", ru: '`map` работает по списку — что будет, если добавить строку?' })
     }} />
 );
 
@@ -1287,12 +1288,12 @@ const Screen12 = (props) => (
     questionText={tr({ uz: "GameCard o'ziga kelgan props.name'ni o'zgartira oladimi?", ru: 'Может ли GameCard изменить пришедший ему props.name?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>GameCard o'ziga kelgan <span className="mono" style={{ color: T.accent }}>props.name</span>'ni o'zgartira oladimi?</>, ru: <>Может ли GameCard изменить пришедший ему <span className="mono" style={{ color: T.accent }}>props.name</span>?</> })}</h2></>}
     options={[tr({ uz: "Ha — xohlagancha o'zgartiradi", ru: 'Да — меняет сколько угодно' }), tr({ uz: "Yo'q — props faqat o'qiladi", ru: 'Нет — props только читаются' }), tr({ uz: "Faqat kichik harf bilan yozsa bo'ladi", ru: 'Можно, только строчными буквами' }), tr({ uz: "Faqat kechasi o'zgartiradi", ru: 'Меняет только по ночам' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Props — otadan kelgan sovg'a: faqat o'qiladi. O'zgartirishni ota qiladi (yangi props yuboradi), komponentning o'z o'zgaruvchan narsasi esa state'da yashaydi.", ru: 'Props — подарок от родителя: только читается. Меняет родитель (отправляя новые props), а собственное изменяемое компонента живёт в state.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Props — otadan kelgan sovg'a: uni faqat o'qish mumkin.", ru: 'Props — подарок от родителя: его можно только читать.' })}
     explainWrong={{
-      0: tr({ uz: "Esingizdami konsol xatosi? ❌ TypeError — props faqat o'qish uchun.", ru: 'Помните ошибку в консоли? ❌ TypeError — props только для чтения.' }),
-      2: tr({ uz: "Yo'q — harfga bog'liq emas. Props har qanday holatda read-only.", ru: 'Нет — дело не в буквах. Props в любом случае read-only.' }),
-      3: tr({ uz: "Yo'q — vaqtga ham bog'liq emas. Props hech qachon ichkaridan o'zgarmaydi.", ru: 'Нет — и время ни при чём. Props никогда не меняются изнутри.' }),
-      default: tr({ uz: "Props — read-only. O'zgartirish kerakmi? Ota yangi props yuboradi yoki state ishlatiladi.", ru: 'Props — read-only. Нужно изменить? Родитель отправляет новые props или используется state.' })
+      0: tr({ uz: "Konsol xatosini eslang — `TypeError` chiqqan edi.", ru: 'Вспомните ошибку в консоли — там был `TypeError`.' }),
+      2: tr({ uz: "Harfning katta-kichikligi bu yerda hech narsani hal etmaydi.", ru: 'Регистр букв здесь ничего не решает.' }),
+      3: tr({ uz: "Qoida vaqtga bog'liq emas — kechasi ham xuddi kunduzgidek.", ru: 'Правило от времени не зависит — ночью всё так же, как днём.' }),
+      default: tr({ uz: "Props'ni kim beradi va kim o'zgartira oladi — o'ylang.", ru: 'Подумайте, кто даёт props и кто может их менять.' })
     }} />
 );
 
@@ -1485,10 +1486,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -2829,7 +2830,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished, live
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }

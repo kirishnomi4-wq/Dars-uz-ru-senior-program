@@ -1,0 +1,579 @@
+{
+ "file": "src/2-Modull/JsFunctionsLesson.jsx",
+ "lessonId": "js-functions-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "Har urishda zararni qo'lda hisoblaysizmi?",
+     "b": "Har urishda hisobni qo'lda qayta yozaman",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 1-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 2-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 1-urish — 4 amal qo'lda bajarildi",
+     "b": "2-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "1-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 2-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "1-urish — 4 amal qo'lda bajarildi",
+     "b": "2-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 1-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 1-urish — 4 amal qo'lda bajarildi",
+     "b": "3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "1-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "1-urish — 4 amal qo'lda bajarildi",
+     "b": "3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 2-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "⚔️ 2-urish — 4 amal qo'lda bajarildi",
+     "b": "3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "2-urish — 4 amal qo'lda bajarildi",
+     "b": "⚔️ 3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "2-urish — 4 amal qo'lda bajarildi",
+     "b": "3-urish — 4 amal qo'lda bajarildi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 13,
+     "left": "msg-list fade-up delay-1",
+     "right": "hook-option ",
+     "hs": [
+      44,
+      54
+     ]
+    },
+    {
+     "diff": 35,
+     "left": "msg-list fade-up delay-1",
+     "right": "hook-option on",
+     "hs": [
+      92,
+      54
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QO'LDA HISOBLANGAN URISHLAR",
+     "box": "msg-list fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 🙂 0%",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "DASTURCHI BUNI QANDAY HAL QILADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 🙂 20%",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri yo'l — funksiya yasash! Bir marta \"mashina\"ni yozasiz, keyin nom bilan istalgancha",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 😐 40%",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 😐 60%",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Bugungi mavzu — funksiya: bir ishni bir marta yozasiz, unga nom berasiz va keyin shu nom bilan xohlagancha ish",
+     "b": "Bir marta yozasiz — xohlagancha ishlatasiz.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI ASOSIY FIKR",
+     "box": "frame fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "zarar() zarar() zarar() … xohlagancha",
+     "box": "frame fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA (IKKALASIDA BIR XIL)",
+     "box": "term",
+     "gap": 10
+    },
+    {
+     "pos": "tepada",
+     "t": "🛠️ 1 tartib · 3 urish NATIJA (IKKALASIDA BIR XIL) console › Urish! › Zarar: 15 › Jon: 85 ",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 41,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      48,
+      89
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MASHINANI SINAB KO'RAMIZ",
+     "box": "codebox fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "return funksiyaning javobini tashqariga qaytaradi. Eng muhimi: bu javobni o'zgaruvchiga saqlash va keyin ishla",
+     "b": "return kuch * 3 // natijani qaytaradi",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "return kuch * 3 // natijani qaytaradi",
+     "b": "✓ return kuch * 3 javob (6 × 3 = 18) ni qaytardi, u natija o'zgaruvchisiga saqlandi. Endi bu qiymatni xohlagan",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Ekranga ko'rsatish va kodga qaytarish — bir xilmi?",
+     "b": "Yangi dasturchilar console.log va return ni adashtiradi. Farq oddiy: console.log natijani ekranga ko'rsatadi (",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "// hisoblanmadi",
+     "box": "iwatch fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "34 zarar",
+     "box": "frame-success fade-step",
+     "gap": 17
+    },
+    {
+     "pos": "tagida",
+     "t": "34 zarar",
+     "box": "iwatch fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FUNKSIYA HAR URISHNI HISOBLAYAPTI",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "👊 Oddiy urish navbatda… 👊 ⚔️ Qilich zarbasi navbatda… ⚔️ 🔥 Olovli zarba navbatda… 🔥",
+     "box": "term",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🧾 Oddiy urish 12 zarar ✅ 🧾 Qilich zarbasi 18 zarar ✅ 🔥 Olovli zarba navbatda… 🔥",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [
+    {
+     "label": "KODINGIZNI SHU YERGA YOZING 👇",
+     "ph": "function salom() { return \"Salom!\" }",
+     "gap": 16
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "✏️ 1 — E'lon ✏️ 2 — Parametr ✏️ 3 — Chaqirish",
+     "box": "mentor fade-up  ",
+     "gap": 14
+    },
+    {
+     "pos": "tepada",
+     "t": "KODINGIZNI SHU YERGA YOZING 👇",
+     "box": "INPUT",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KODINGIZNI SHU YERGA YOZING 👇",
+     "box": "frame fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1 function 2 salom nomi 3 ( ) 4 { 5 return \"Salom!\" 6 }",
+     "box": "INPUT",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "MASHINA QUVURI",
+     "box": "pipe fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.75,
+     "a": "AI zararni hisoblaydigan funksiya yozdi, lekin natija undefined (hech narsa) chiqyapti! Funksiya hisobni bajar",
+     "b": "⚠️ funksiya hisobladi, lekin hech narsa qaytarmadi!",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": "FUNKSIYANGIZNI SHU YERGA YOZING 👇",
+     "ph": "function ...",
+     "gap": 16
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FUNKSIYANGIZNI SHU YERGA YOZING 👇",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1 function 2 nom 3 (n) 4 { 5 return kuch * 3 6 }",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "sflash",
+   "type": "review",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

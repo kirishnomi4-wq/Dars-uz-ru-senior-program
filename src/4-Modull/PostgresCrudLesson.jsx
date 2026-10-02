@@ -215,8 +215,8 @@ const RECAPS = {
   4: {
     title: { uz: "INSERT — jadvalga yangi mahsulot qo'shish", ru: 'INSERT — добавление нового товара в таблицу' },
     cards: [
-      { ic: "🛒", h: "INSERT INTO products", body: { uz: <>Yangi qator qo'shish buyrug'i <span className="mono">INSERT INTO products (...)</span> bilan boshlanadi — qaysi jadval va qaysi ustunlarga.</>, ru: <>Команда добавления новой строки начинается с <span className="mono">INSERT INTO products (...)</span> — в какую таблицу и в какие столбцы.</> } },
-      { ic: "🧾", h: { uz: "VALUES (...) — qiymatlar", ru: 'VALUES (...) — значения' }, body: { uz: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — kiritiladigan qiymatlar. Matn qo'shtirnoq ichida, son raqam bilan.</>, ru: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — вводимые значения. Текст в кавычках, число цифрами.</> } },
+      { ic: "🛒", h: "INSERT INTO products", body: { uz: <>Yangi qator <span className="mono">INSERT INTO products (...)</span> bilan qo'shiladi — jadval va ustunlar aytiladi.</>, ru: <>Новая строка добавляется через <span className="mono">INSERT INTO products (...)</span> — с таблицей и столбцами.</> } },
+      { ic: "🧾", h: { uz: "VALUES (...) — qiymatlar", ru: 'VALUES (...) — значения' }, body: { uz: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — kiritiladigan qiymatlar, matn qo'shtirnoq ichida.</>, ru: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — вводимые значения, текст в кавычках.</> } },
       { ic: "➕", h: { uz: "Yangi mahsulot = yangi qator", ru: 'Новый товар = новая строка' }, body: { uz: <>Har bir <span className="mono">INSERT</span> jadvalga bitta <b>yangi qator</b> (mahsulot) qo'shadi — mavjudini o'zgartirmaydi.</>, ru: <>Каждый <span className="mono">INSERT</span> добавляет в таблицу одну <b>новую строку</b> (товар) — существующие не меняет.</> }, ask: { uz: "Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новые данные?' } },
     ]
   },
@@ -233,7 +233,7 @@ const RECAPS = {
     cards: [
       { ic: "🏷️", h: { uz: "SET — yangi qiymat", ru: 'SET — новое значение' }, body: { uz: <><span className="mono">UPDATE products SET narx = 99000</span> — qaysi ustunni qanday qiymatga o'zgartirishni aytadi.</>, ru: <><span className="mono">UPDATE products SET narx = 99000</span> — говорит, какой столбец на какое значение поменять.</> } },
       { ic: "🎯", h: { uz: "WHERE — qaysi qator", ru: 'WHERE — какая строка' }, body: { uz: <><span className="mono">WHERE id = 1</span> — <b>qaysi qatorni</b> o'zgartirishni aniqlaydi.</>, ru: <><span className="mono">WHERE id = 1</span> — определяет, <b>какую строку</b> изменить.</> } },
-      { ic: "⚠️", h: { uz: "WHERE'siz — hammasi!", ru: 'Без WHERE — все сразу!' }, body: { uz: <><span className="mono">WHERE</span> unutilsa — <b>BARCHA</b> qator o'zgaradi. Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ru: <>Забыли <span className="mono">WHERE</span> — изменятся <b>ВСЕ</b> строки. Поэтому в UPDATE почти всегда нужен WHERE.</> }, ask: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq?", ru: 'Какой командой изменить цену товара?' } },
+      { ic: "⚠️", h: { uz: "WHERE'siz — hammasi!", ru: 'Без WHERE — все сразу!' }, body: { uz: <><span className="mono">WHERE</span> unutilsa, <b>BARCHA</b> qator o'zgaradi.</>, ru: <>Забыли <span className="mono">WHERE</span> — изменятся <b>ВСЕ</b> строки.</> }, ask: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq?", ru: 'Какой командой изменить цену товара?' } },
     ]
   },
   13: {
@@ -241,12 +241,12 @@ const RECAPS = {
     cards: [
       { ic: "🤖", h: { uz: "AI yozadi, siz tekshirasiz", ru: 'ИИ пишет, вы проверяете' }, body: { uz: <>AI SQL'ni bir zumda yozadi — lekin uni <b>o'qib, to'g'riligini tekshirib</b> ishlatasiz.</>, ru: <>ИИ пишет SQL мгновенно — но вы <b>читаете и проверяете</b> его перед запуском.</> } },
       { ic: "🐛", h: { uz: "AI ham adashadi", ru: 'ИИ тоже ошибается' }, body: { uz: <>Bitta harf xato (<span className="mono">product</span> o'rniga <span className="mono">products</span>) butun so'rovni ishlamas qiladi.</>, ru: <>Одна буква (<span className="mono">product</span> вместо <span className="mono">products</span>) — и весь запрос не работает.</> } },
-      { ic: "🏗️", h: { uz: "Siz — arxitektsiz", ru: 'Вы — архитектор' }, body: { uz: <>SQL'ni yoddan bilish shart emas. Muhimi — <b>tushunish va tekshirish</b>: manzil to'g'rimi, WHERE bormi.</>, ru: <>Зубрить SQL не нужно. Главное — <b>понимать и проверять</b>: верный ли адрес, есть ли WHERE.</> }, ask: { uz: "AI sizga SQL yozib berdi — endi nima qilasiz?", ru: 'ИИ написал вам SQL — что делаете дальше?' } },
+      { ic: "🏗️", h: { uz: "Siz — arxitektsiz", ru: 'Вы — архитектор' }, body: { uz: <>SQL'ni yodlash shart emas, muhimi — <b>tushunish va tekshirish</b>.</>, ru: <>Зубрить SQL не нужно, главное — <b>понимать и проверять</b>.</> }, ask: { uz: "AI sizga SQL yozib berdi — endi nima qilasiz?", ru: 'ИИ написал вам SQL — что делаете дальше?' } },
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -264,7 +264,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -273,13 +273,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -445,7 +445,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -453,8 +453,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -466,11 +467,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -826,12 +827,12 @@ const Screen4 = (props) => (
     questionText="Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Do'konga yangi mahsulot keldi. Jadvalga yangi qator qo'shish uchun <span className="italic" style={{ color: T.accent }}>qaysi buyruq</span>?</>, ru: <>В магазин привезли новый товар. <span className="italic" style={{ color: T.accent }}>Какая команда</span> добавит в таблицу новую строку?</> })}</h2></>}
     options={['INSERT INTO', 'SELECT', 'DELETE', 'UPDATE']} correctIdx={0} /* F-0926-06 P1: variantda faqat buyruq nomi, tavsif izohda */
-    explainCorrect={{ uz: "INSERT INTO jadvalga yangi qator qo'shadi. INSERT INTO ... VALUES (...) — qavs ichida yangi mahsulotning qiymatlari turadi.", ru: 'INSERT INTO добавляет в таблицу новую строку. INSERT INTO ... VALUES (...) — в скобках стоят значения нового товара.' /* F-0926-06: izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi (159/11) */ }}
+    explainCorrect={{ uz: "INSERT INTO — jadvalga yangi qator qo'shadigan buyruq.", ru: 'INSERT INTO — команда, которая добавляет в таблицу новую строку.' /* F-0926-06: izoh «To'g'ri!» bilan boshlanmaydi, variantni qaytarmaydi (159/11) */ }}
     explainWrong={{
       1: { uz: "SELECT faqat ko'rsatadi — yangi ma'lumot qo'shmaydi.", ru: 'SELECT только показывает — новых данных не добавляет.' },
-      2: { uz: "DELETE o'chiradi, qo'shmaydi.", ru: 'DELETE удаляет, а не добавляет.' },
+      2: { uz: "DELETE qatorni o'chiradi, qo'shmaydi.", ru: 'DELETE удаляет строку, а не добавляет.' },
       3: { uz: "UPDATE mavjud qatorni o'zgartiradi, yangi qo'shmaydi.", ru: 'UPDATE изменяет существующую строку, новую не добавляет.' },
-      default: { uz: "Qo'shish — bu INSERT INTO.", ru: 'Добавление — это INSERT INTO.' }
+      default: { uz: "Qaysi buyruq jadvalga yangi qator qo'shishini eslang.", ru: 'Вспомните, какая команда добавляет в таблицу новую строку.' }
     }} />
 );
 
@@ -882,10 +883,10 @@ const Screen5b = (props) => (
     options={[{ uz: "Jadvalni butunlay o'chiradi", ru: 'Полностью удаляет таблицу' }, { uz: "Ustundagi narxlarni o'zgartiradi", ru: 'Изменяет цены в столбце' }, { uz: "Ma'lumotni o'qib ko'rsatadi", ru: 'Читает и показывает данные' }, { uz: "Yangi bo'sh jadval yaratadi", ru: 'Создаёт новую пустую таблицу' }]} correctIdx={2}
     explainCorrect={{ uz: "SELECT jadvalni faqat o'qiydi — hech narsani o'zgartirmaydi.", ru: 'SELECT только читает таблицу — ничего не меняет.' }}
     explainWrong={{
-      0: { uz: "O'chirish — DELETE/DROP. SELECT hech narsani o'chirmaydi.", ru: 'Удаление — это DELETE/DROP. SELECT ничего не удаляет.' },
-      1: { uz: "O'zgartirish — UPDATE. SELECT faqat o'qiydi.", ru: 'Изменение — это UPDATE. SELECT только читает.' },
-      3: { uz: "Jadval yaratish — CREATE TABLE. SELECT mavjud ma'lumotni ko'rsatadi.", ru: 'Создание таблицы — CREATE TABLE. SELECT показывает существующие данные.' },
-      default: { uz: "SELECT = o'qish/ko'rish.", ru: 'SELECT = чтение/просмотр.' }
+      0: { uz: "SELECT hech narsani o'chirmaydi — bu DELETE/DROP ishi.", ru: 'SELECT ничего не удаляет — это работа DELETE/DROP.' },
+      1: { uz: "SELECT narxni o'zgartirmaydi — bu UPDATE ishi.", ru: 'SELECT не меняет цены — это работа UPDATE.' },
+      3: { uz: "Jadvalni CREATE TABLE yaratadi, SELECT emas.", ru: 'Таблицу создаёт CREATE TABLE, а не SELECT.' },
+      default: { uz: "SELECT jadvalda biror narsani o'zgartiradimi — o'ylang.", ru: 'Подумайте, меняет ли SELECT что-нибудь в таблице.' }
     }} />
 );
 
@@ -1004,12 +1005,12 @@ const Screen9 = (props) => (
     questionText="Mahsulot narxini o'zgartirish uchun qaysi buyruq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sichqoncha narxini yangilamoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi buyruq</span> kerak?</>, ru: <>Вы хотите обновить цену Sichqoncha. <span className="italic" style={{ color: T.accent }}>Какая команда</span> нужна?</> })}</h2></>}
     options={['INSERT', 'SELECT', 'DELETE', 'UPDATE']} correctIdx={3} /* F-0926-06 P1: variantda faqat buyruq nomi, tavsif izohda */
-    explainCorrect={{ uz: "UPDATE mavjud qatorni o'zgartiradi: SET yangi narxni beradi, WHERE — qaysi qatorni o'zgartirishni.", ru: 'UPDATE изменяет существующую строку: SET задаёт новую цену, WHERE — какую строку менять.' }}
+    explainCorrect={{ uz: "UPDATE bor qatorni o'zgartiradi, yangi qator qo'shmaydi.", ru: 'UPDATE меняет существующую строку, а не добавляет новую.' }}
     explainWrong={{
       0: { uz: "INSERT yangi qator qo'shadi — eski narxni o'zgartirmaydi.", ru: 'INSERT добавляет новую строку — старую цену не меняет.' },
       1: { uz: "SELECT faqat ko'rsatadi, o'zgartirmaydi.", ru: 'SELECT только показывает, не меняет.' },
-      2: { uz: "DELETE o'chiradi — o'zgartirish uchun UPDATE kerak.", ru: 'DELETE удаляет — чтобы изменить, нужен UPDATE.' },
-      default: { uz: "O'zgartirish — bu UPDATE.", ru: 'Изменение — это UPDATE.' }
+      2: { uz: "DELETE qatorni o'chiradi — mahsulot esa qolishi kerak.", ru: 'DELETE удаляет строку, а товар должен остаться.' },
+      default: { uz: "Bor qatordagi qiymatni qaysi buyruq almashtiradi — eslang.", ru: 'Вспомните, какая команда меняет значение в существующей строке.' }
     }} />
 );
 
@@ -1173,12 +1174,12 @@ const Screen12 = (props) => (
     questionText="AI siz uchun SQL yozib bersa, eng to'g'ri yo'l qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI sizga SQL so'rov yozib berdi. <span className="italic" style={{ color: T.accent }}>Endi nima qilasiz?</span></>, ru: <>ИИ написал вам SQL-запрос. <span className="italic" style={{ color: T.accent }}>Что делаете дальше?</span></> })}</h2></>}
     options={[{ uz: "Ko'rmasdan darrov ishga tushiraman", ru: 'Запущу сразу, не глядя' }, { uz: "Kodni o'qib, tekshirib, keyin ishlataman", ru: 'Прочитаю код, проверю, потом применю' }, { uz: "AI har doim to'g'ri yozadi — tekshirish shart emas", ru: 'ИИ всегда пишет верно — проверять не нужно' }, { uz: "O'chirib, hammasini qo'lda qaytadan yozaman", ru: 'Удалю и перепишу всё вручную' }]} correctIdx={1}
-    explainCorrect={{ uz: "AI — kuchli yordamchi, lekin u ham adashadi. Oxirgi so'z — sizniki.", ru: 'ИИ — мощный помощник, но и он ошибается. Последнее слово — за вами.' }}
+    explainCorrect={{ uz: "AI ham adashadi — oxirgi so'z sizniki.", ru: 'ИИ тоже ошибается — последнее слово за вами.' }}
     explainWrong={{
-      0: { uz: "Tekshirmasdan ishlatish xavfli — AI noto'g'ri jadval yoki WHERE yozsa, ma'lumot buziladi.", ru: 'Запускать без проверки опасно — если ИИ напишет не ту таблицу или WHERE, данные испортятся.' },
-      2: { uz: "AI ham xato qiladi (keyingi ekranda ko'rasiz). Tekshirish shart.", ru: 'ИИ тоже ошибается (увидите на следующем экране). Проверка обязательна.' },
-      3: { uz: "Hammasini qo'lda yozish shart emas — AI vaqtni tejaydi. Faqat tekshiring.", ru: 'Писать всё вручную не нужно — ИИ экономит время. Просто проверяйте.' },
-      default: { uz: "AI yozadi — siz tekshirasiz.", ru: 'ИИ пишет — вы проверяете.' }
+      0: { uz: "Ko'rmasdan ishga tushirish xavfli: xato WHERE bazani buzadi.", ru: 'Запускать не глядя опасно: неверный WHERE испортит базу.' },
+      2: { uz: "AI ham xato qiladi — keyingi ekranda buni ko'rasiz.", ru: 'ИИ тоже ошибается — вы увидите это на следующем экране.' },
+      3: { uz: "Hammasini qo'lda yozish shart emas — AI vaqtni tejaydi.", ru: 'Писать всё вручную не нужно — ИИ экономит время.' },
+      default: { uz: "AI yozgan kodni kim tekshirishi kerak — o'ylang.", ru: 'Подумайте, кто должен проверять код, который написал ИИ.' }
     }} />
 );
 
@@ -1237,10 +1238,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''} ${!solved && wrongIdx !== i ? 'hint' : ''}`} onClick={() => click(i)} style={!solved && wrongIdx !== i ? { animationDelay: `${i * 0.24}s` } : undefined}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''} ${!solved && wrongIdx !== i ? 'hint' : ''}`} onClick={() => click(i)} style={!solved && wrongIdx !== i ? { animationDelay: `${i * 0.24}s` } : undefined}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -2707,7 +2708,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
         /* xato qator bosilganda qizil→yashil morph (rang tuzatildi degan sezgi) */
         @keyframes dbg-morph { 0% { border-color: #E24848; background: rgba(226,72,72,0.20); } 45% { border-color: #E24848; background: rgba(226,72,72,0.20); } 100% { border-color: ${T.success}; background: rgba(18,169,104,0.16); } }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; animation: dbg-morph 0.6s ease-out; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; animation: dbg-morph 0.6s ease-out; }
         /* affordance — bosiladigan kod qatorlari to'lqin bilan jimgina yonadi */
         @keyframes dbg-tap { 0%,100% { background: rgba(255,255,255,0.02); } 50% { background: rgba(255,255,255,0.10); } }
         .dbg-line.hint { animation: dbg-tap 1.9s ease-in-out infinite; }
@@ -2954,7 +2955,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         /* prefers-reduced-motion — yangi harakatlarga tinch variant: takrorlanuvchi/kuchli animatsiyalar o'chadi, o'tishlar oniy */
         @media (prefers-reduced-motion: reduce) {
           .crud-card.tap-hint, .dbg-line.hint, .option-wait, .mn-event, .crud-card.ok, .mn-ev-step.done { animation: none !important; }
-          .dtable tr.flash-green, .dtable tr.flash-green td, .dbg-line.fixed { animation: none !important; }
+          .dtable tr.flash-green, .dtable tr.flash-green td, .dbg-line.is-fixed { animation: none !important; }
           .dtable td.num-flash { animation: none !important; background: ${T.accentSoft}; color: ${T.accent}; }
           .dtable tr.deleting td { animation: dt-row-out 0.2s linear both; }
           .dtable tr.dimmed td { animation: none !important; opacity: 0.34; }

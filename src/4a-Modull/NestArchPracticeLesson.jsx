@@ -229,39 +229,39 @@ const RECAPS = {
   5: {
     title: { uz: "Tekshiruvchi — AI yozgach nima qilamiz", ru: 'Проверяющий — что делать после кода от ИИ' },
     cards: [
-      { ic: "📋", h: { uz: "Uch ish: rejalashtir, yo'naltir, tekshir", ru: 'Три дела: планируй, направляй, проверяй' }, body: { uz: <>Avval <b>reja</b> tuzasiz (qaysi resurs, qaysi ustun), keyin agentga <b>aniq buyruq</b> berasiz, so'ng natijani <b>tekshirasiz</b>. Uchinchisi tushib qolsa — xato sizniki bo'lib qoladi.</>, ru: <>Сначала вы составляете <b>план</b> (какой ресурс, какие колонки), затем даёте агенту <b>чёткую команду</b>, а после <b>проверяете</b> результат. Пропустите третий шаг — и ошибка станет вашей.</> }, vis: <RcFlow items={[{ uz: 'Rejalashtir', ru: 'Планируй' }, { uz: "Yo'naltir", ru: 'Направляй' }, { uz: 'Tekshir', ru: 'Проверяй' }]} /> },
-      { ic: "🧾", h: { uz: '5 fayl — bitta resurs', ru: '5 файлов — один ресурс' }, body: { uz: <>Har resurs: <span className="mono">entity</span> (javon chizmasi), <span className="mono">dto</span> (anketa), <span className="mono">service</span> (omborchi), <span className="mono">controller</span> (sotuvchi), <span className="mono">module</span> (bo'lim). Beshtasi ham bormi — birinchi tekshiruv shu.</>, ru: <>У каждого ресурса: <span className="mono">entity</span> (чертёж стеллажа), <span className="mono">dto</span> (анкета), <span className="mono">service</span> (кладовщик), <span className="mono">controller</span> (продавец), <span className="mono">module</span> (отдел). Все пять на месте? — это первая проверка.</> }, vis: <RcFlow items={["entity", "dto", "service", "controller", "module"]} sep="·" /> },
-      { ic: "🚪", h: { uz: 'Kirish taxtasi — 404 sababi', ru: 'Входная вывеска — причина 404' }, body: { uz: <>Bo'lim <span className="mono">AppModule.imports</span> ga yozilmasa, u restoranning kirish taxtasida yo'q — <b>mijoz eshikni topa olmaydi</b> (<span className="mono">404</span>). Swagger'da ko'rinyaptimi — shuni tekshiring.</>, ru: <>Если отдел не вписан в <span className="mono">AppModule.imports</span>, его нет на входной вывеске ресторана — <b>клиент не найдёт дверь</b> (<span className="mono">404</span>). Проверьте, виден ли он в Swagger.</> }, ask: { uz: "AI kod yozib berdi. Birinchi navbatda nimani tekshirasiz?", ru: 'ИИ написал код. Что вы проверите в первую очередь?' } },
+      { ic: "📋", h: { uz: "Uch ish: rejalashtir, yo'naltir, tekshir", ru: 'Три дела: планируй, направляй, проверяй' }, body: { uz: <>Reja tuzasiz, agentga aniq buyruq berasiz, keyin natijani <b>tekshirasiz</b>.</>, ru: <>Вы составляете план, даёте агенту чёткую команду, затем <b>проверяете</b> результат.</> }, vis: <RcFlow items={[{ uz: 'Rejalashtir', ru: 'Планируй' }, { uz: "Yo'naltir", ru: 'Направляй' }, { uz: 'Tekshir', ru: 'Проверяй' }]} /> },
+      { ic: "🧾", h: { uz: '5 fayl — bitta resurs', ru: '5 файлов — один ресурс' }, body: { uz: <>Avval tekshiring: <span className="mono">entity</span>, <span className="mono">dto</span>, <span className="mono">service</span>, <span className="mono">controller</span>, <span className="mono">module</span> — <b>beshtasi</b> ham bormi.</>, ru: <>Сначала проверьте, на месте ли все <b>пять</b>: <span className="mono">entity</span>, <span className="mono">dto</span>, <span className="mono">service</span>, <span className="mono">controller</span>, <span className="mono">module</span>.</> }, vis: <RcFlow items={["entity", "dto", "service", "controller", "module"]} sep="·" /> },
+      { ic: "🚪", h: { uz: 'Kirish taxtasi — 404 sababi', ru: 'Входная вывеска — причина 404' }, body: { uz: <>Bo'lim <span className="mono">AppModule.imports</span>'da bo'lmasa, mijoz eshikni topa olmaydi — <span className="mono">404</span>.</>, ru: <>Если отдела нет в <span className="mono">AppModule.imports</span>, клиент не найдёт дверь — <span className="mono">404</span>.</> }, ask: { uz: "AI kod yozib berdi. Birinchi navbatda nimani tekshirasiz?", ru: 'ИИ написал код. Что вы проверите в первую очередь?' } },
     ]
   },
   8: {
     title: { uz: "Eshik va qo'riqchi — public vs admin", ru: 'Дверь и страж — public vs admin' },
     cards: [
-      { ic: "🛡️", h: { uz: "Qo'riqchi = @UseGuards", ru: 'Страж = @UseGuards' }, body: { uz: <><span className="mono">@UseGuards(AuthGuard, RolesGuard)</span> — eshikka qo'riqchi qo'yadi. <span className="mono">AuthGuard</span> tokenni tekshiradi, <span className="mono">RolesGuard</span> — rolni.</>, ru: <><span className="mono">@UseGuards(AuthGuard, RolesGuard)</span> — ставит у двери стража. <span className="mono">AuthGuard</span> проверяет токен, <span className="mono">RolesGuard</span> — роль.</> }, vis: <RcFlow items={[{ uz: "so'rov", ru: 'запрос' }, { uz: "qo'riqchi", ru: 'страж' }, 'controller']} /> },
-      { ic: "🔑", h: { uz: "@Roles — qo'riqchining ro'yxati", ru: '@Roles — список у стража' }, body: { uz: <>🌐 <span className="mono">@Roles('public')</span> — hamma kiradi. 🔒 <span className="mono">@Roles(UserRole.ADMIN)</span> — faqat admin. Ro'yxatni <b>siz</b> yozasiz, qo'riqchi shuni bajaradi.</>, ru: <>🌐 <span className="mono">@Roles('public')</span> — входят все. 🔒 <span className="mono">@Roles(UserRole.ADMIN)</span> — только админ. Список пишете <b>вы</b>, а страж его исполняет.</> } },
-      { ic: "🚫", h: { uz: "403 — qo'riqchi rad etdi", ru: '403 — страж отказал' }, body: { uz: <>Token yo'q bo'lsa — <span className="mono">401</span>. Token bor, lekin rol yetmasa — <span className="mono">403</span>. Ikkalasi ham «kirmaysiz» degani; server o'chmaydi.</>, ru: <>Нет токена — <span className="mono">401</span>. Токен есть, но роли не хватает — <span className="mono">403</span>. Оба значат «вход закрыт»; сервер при этом не падает.</> }, ask: { uz: "Oddiy mijoz POST /book qilsa nima bo'ladi?", ru: 'Что будет, если обычный клиент сделает POST /book?' } },
+      { ic: "🛡️", h: { uz: "Qo'riqchi = @UseGuards", ru: 'Страж = @UseGuards' }, body: { uz: <><span className="mono">@UseGuards</span> eshikka qo'riqchi qo'yadi: <span className="mono">AuthGuard</span> tokenni, <span className="mono">RolesGuard</span> rolni tekshiradi.</>, ru: <><span className="mono">@UseGuards</span> ставит у двери стража: <span className="mono">AuthGuard</span> проверяет токен, <span className="mono">RolesGuard</span> — роль.</> }, vis: <RcFlow items={[{ uz: "so'rov", ru: 'запрос' }, { uz: "qo'riqchi", ru: 'страж' }, 'controller']} /> },
+      { ic: "🔑", h: { uz: "@Roles — qo'riqchining ro'yxati", ru: '@Roles — список у стража' }, body: { uz: <><span className="mono">@Roles('public')</span> — hamma kiradi, <span className="mono">@Roles(UserRole.ADMIN)</span> — faqat <b>admin</b>.</>, ru: <><span className="mono">@Roles('public')</span> — входят все, <span className="mono">@Roles(UserRole.ADMIN)</span> — только <b>админ</b>.</> } },
+      { ic: "🚫", h: { uz: "403 — qo'riqchi rad etdi", ru: '403 — страж отказал' }, body: { uz: <>Token yo'q bo'lsa — <span className="mono">401</span>, token bor, lekin rol yetmasa — <span className="mono">403</span>.</>, ru: <>Нет токена — <span className="mono">401</span>, токен есть, но роли не хватает — <span className="mono">403</span>.</> }, ask: { uz: "Oddiy mijoz POST /book qilsa nima bo'ladi?", ru: 'Что будет, если обычный клиент сделает POST /book?' } },
     ]
   },
   12: {
     title: { uz: 'findAll + where — tayyor retsept kitobi', ru: 'findAll + where — готовая книга рецептов' },
     cards: [
-      { ic: "📕", h: { uz: 'BaseService — tayyor retsept kitobi', ru: 'BaseService — готовая книга рецептов' }, body: { uz: <>Service <span className="mono">BaseService</span> ni <b>meros oladi</b> (ya'ni tayyor retsept kitobini qo'liga oladi) — shu zahoti <span className="mono">create / findAll / update / remove</span> tekin keladi. Ularni qaytadan yozmaysiz.</>, ru: <>Сервис <b>наследует</b> <span className="mono">BaseService</span> (то есть берёт в руки готовую книгу рецептов) — и сразу бесплатно получает <span className="mono">create / findAll / update / remove</span>. Заново их писать не нужно.</> }, vis: <RcFlow items={["BaseService", "findAll", "create"]} sep="·" /> },
-      { ic: "🔎", h: { uz: 'where — shart', ru: 'where — условие' }, body: { uz: <>Maxsus endpoint uchun yangi CRUD yozmaysiz: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span> — faqat shart berasiz.</>, ru: <>Для особого эндпоинта новый CRUD не пишут: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span> — вы лишь передаёте условие.</> } },
-      { ic: "🏷️", h: { uz: 'relations — yorliqni ham olib kelish', ru: 'relations — принести и ярлык' }, body: { uz: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob bilan birga uning yorlig'i (kategoriyasi) ham qaytadi.</>, ru: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — вместе с книгой вернётся и её ярлык (категория).</> }, ask: { uz: 'Faqat top kitoblarni qanday qaytaramiz?', ru: 'Как вернуть только топ-книги?' } },
+      { ic: "📕", h: { uz: 'BaseService — tayyor retsept kitobi', ru: 'BaseService — готовая книга рецептов' }, body: { uz: <>Service <span className="mono">BaseService</span>'ni <b>meros oladi</b> va <span className="mono">create / findAll / update / remove</span> tekin keladi.</>, ru: <>Сервис <b>наследует</b> <span className="mono">BaseService</span> — и <span className="mono">create / findAll / update / remove</span> достаются бесплатно.</> }, vis: <RcFlow items={["BaseService", "findAll", "create"]} sep="·" /> },
+      { ic: "🔎", h: { uz: 'where — shart', ru: 'where — условие' }, body: { uz: <>Yangi CRUD yozmaysiz, shart berasiz: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span>.</>, ru: <>Новый CRUD не нужен, передайте условие: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span>.</> } },
+      { ic: "🏷️", h: { uz: 'relations — yorliqni ham olib kelish', ru: 'relations — принести и ярлык' }, body: { uz: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob kategoriyasi bilan birga keladi.</>, ru: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — книга придёт вместе с ярлыком (категорией).</> }, ask: { uz: 'Faqat top kitoblarni qanday qaytaramiz?', ru: 'Как вернуть только топ-книги?' } },
     ]
   },
   15: {
     title: { uz: "Debug — qo'riqchiga noto'g'ri ro'yxat", ru: 'Дебаг — стражу дали не тот список' },
     cards: [
-      { ic: "🧍", h: { uz: "Mijozni o'z do'koningizga kiritmaslik", ru: 'Не пускать клиента в собственный магазин' }, body: { uz: <>Agent <span className="mono">POST /order</span> ga <span className="mono">@Roles(ADMIN)</span> qo'yib ketgan. Natija: <b>mijoz buyurtma bera olmaydi</b> — 403. Ochilish kuni, buyurtma yo'q.</>, ru: <>Агент оставил на <span className="mono">POST /order</span> декоратор <span className="mono">@Roles(ADMIN)</span>. Итог: <b>клиент не может оформить заказ</b> — 403. День открытия — а заказов нет.</> }, vis: <RcFlow items={[{ uz: 'mijoz', ru: 'клиент' }, "POST /order", "403"]} /> },
-      { ic: "🔍", h: { uz: 'Dalil avval, kod keyin', ru: 'Сначала улики, потом код' }, body: { uz: <>Avval <b>ikki rolda</b> eshikni sinaysiz (🧍 mijoz / 🔑 admin), dalil jadvalini to'ldirasiz — <b>keyin</b> kodni ochasiz. Xato qatorni dalil ko'rsatadi.</>, ru: <>Сначала вы пробуете дверь <b>в двух ролях</b> (🧍 клиент / 🔑 админ) и заполняете таблицу улик — и <b>только потом</b> открываете код. Улики сами укажут на строку с ошибкой.</> } },
-      { ic: "🔧", h: { uz: "Faqat o'sha qator tuzatiladi", ru: 'Правится только эта строка' }, body: { uz: <>Guard'ni butunlay o'chirmaysiz (u holda admin eshiklari ham ochilib qoladi). Faqat <span className="mono">POST /order</span> ni <span className="mono">@Roles('public')</span> qilasiz.</>, ru: <>Стража целиком не убирают (иначе распахнутся и админские двери). Вы лишь меняете <span className="mono">POST /order</span> на <span className="mono">@Roles('public')</span>.</> }, ask: { uz: 'Mijoz buyurtma berolsin desak, qatorni qanday tuzatamiz?', ru: 'Как исправить строку, чтобы клиент мог оформить заказ?' } },
+      { ic: "🧍", h: { uz: "Mijozni o'z do'koningizga kiritmaslik", ru: 'Не пускать клиента в собственный магазин' }, body: { uz: <>Agent <span className="mono">POST /order</span>'ga <span className="mono">@Roles(ADMIN)</span> qo'ygan — mijoz buyurtma bera olmaydi (<b>403</b>).</>, ru: <>Агент поставил на <span className="mono">POST /order</span> <span className="mono">@Roles(ADMIN)</span> — клиент не может сделать заказ (<b>403</b>).</> }, vis: <RcFlow items={[{ uz: 'mijoz', ru: 'клиент' }, "POST /order", "403"]} /> },
+      { ic: "🔍", h: { uz: 'Dalil avval, kod keyin', ru: 'Сначала улики, потом код' }, body: { uz: <>Avval eshikni ikki rolda sinab, <b>dalil</b> yig'asiz, keyin kodni ochasiz.</>, ru: <>Сначала вы проверяете дверь в двух ролях и собираете <b>улики</b>, потом открываете код.</> } },
+      { ic: "🔧", h: { uz: "Faqat o'sha qator tuzatiladi", ru: 'Правится только эта строка' }, body: { uz: <>Qo'riqchini o'chirmaysiz — faqat <span className="mono">POST /order</span>'ni <span className="mono">@Roles('public')</span> qilasiz.</>, ru: <>Стража вы не убираете — только ставите на <span className="mono">POST /order</span> <span className="mono">@Roles('public')</span>.</> }, ask: { uz: 'Mijoz buyurtma berolsin desak, qatorni qanday tuzatamiz?', ru: 'Как исправить строку, чтобы клиент мог оформить заказ?' } },
     ]
   },
 };
 
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -279,7 +279,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -288,13 +288,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -373,7 +373,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только у <b>{pct}%</b> — класс эту тему не понял. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -500,7 +500,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -508,8 +508,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -519,11 +520,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
         {_tip && !solved && tip && <p className="bhint fade-step">{tr(tip)}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Bu savolni keyinroq birga ko'rib chiqamiz — hozir davom etsangiz bo'ladi.", ru: 'Этот вопрос разберём вместе позже — сейчас можно продолжить.' })}</p>}
       </div>
@@ -998,7 +999,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {wired
                   ? <div className="ent-row free el-in">CategoryModule <span>{tr({ uz: 'yozildi', ru: 'вписан' })}</span></div>
                   : <div className="ent-row siz">CategoryModule <span>{tr({ uz: "yo'q", ru: 'нет' })}</span></div>}
-                <div className={`ev-row ${wired ? 'fixed' : 'hot'}`} style={{ marginTop: 8, marginBottom: 0 }}>
+                <div className={`ev-row ${wired ? 'is-fixed' : 'hot'}`} style={{ marginTop: 8, marginBottom: 0 }}>
                   <span className="ev-m">GET</span><span style={{ flex: 1 }}>/category</span>
                   <b style={{ color: wired ? T.success : T.danger }}>{wired ? '200 ✓' : '404'}</b>
                 </div>
@@ -1055,12 +1056,12 @@ const Screen5 = (props) => (
     questionText="Bosh dasturchi sifatida AI kod yozgandan keyin eng muhim vazifangiz nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI yozgach, sizning eng muhim <span className="italic" style={{ color: T.accent }}>vazifangiz</span>?</>, ru: <>ИИ написал код — ваша самая важная <span className="italic" style={{ color: T.accent }}>задача</span>?</> })}</h2></>}
     options={[{ uz: "Natijani ko'rmasdan keyingi ishga o'tish", ru: 'Перейти к следующей задаче, не глядя на результат' }, { uz: "Kodni har safar o'chirib qayta yozdirish", ru: 'Каждый раз стирать код и просить написать заново' }, { uz: 'Natijani tekshirish — qatlam va ulanish', ru: 'Проверить результат — слой и подключение' }, { uz: "Xuddi shu vazifani boshqa AI'ga berish", ru: 'Отдать ту же задачу другому ИИ' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! AI tez yozadi, siz esa natijani tekshirasiz: to'g'ri qatlam? bo'lim ulanganmi? eshik himoyalanganmi? Swagger'da ko'rinyaptimi? Bu — bosh dasturchining asosiy ishi.", ru: 'Верно! ИИ пишет быстро, а вы проверяете результат: слой верный? отдел подключён? дверь защищена? видно ли в Swagger? Это — главная работа ведущего разработчика.' }}
+    explainCorrect={{ uz: "AI tez yozadi, tekshirish esa — bosh dasturchining ishi.", ru: 'ИИ пишет быстро, а проверка — работа ведущего разработчика.' }}
     explainWrong={{
-      0: { uz: "Ko'rmasdan o'tib ketish xavfli — mayda narsa o'tkazib yuborilishi mumkin. Tekshirish shart.", ru: 'Идти дальше не глядя опасно — легко пропустить мелочь. Проверка обязательна.' },
-      1: { uz: "Har safar qayta yozdirish shart emas — avval tekshiring, kerak bo'lsa aniq tuzating.", ru: 'Переписывать каждый раз не нужно — сначала проверьте и, если надо, точечно поправьте.' },
-      3: { uz: 'Boshqa AI ham xato qilishi mumkin. Asosiysi — natijani siz tekshirasiz.', ru: 'Другой ИИ тоже может ошибиться. Главное — результат проверяете вы.' },
-      default: { uz: 'Eng muhimi — natijani tekshirish.', ru: 'Самое важное — проверить результат.' }
+      0: { uz: "Ko'rmasdan o'tsangiz, AI'ning mayda xatosi qolib ketadi.", ru: 'Пойдёте дальше не глядя — мелкая ошибка ИИ останется.' },
+      1: { uz: "Qayta yozdirilgan kodda ham xato bo'lishi mumkin.", ru: 'В переписанном коде тоже может быть ошибка.' },
+      3: { uz: 'Boshqa AI ham xato qilishi mumkin — javobgar baribir siz.', ru: 'Другой ИИ тоже может ошибиться — отвечаете всё равно вы.' },
+      default: { uz: 'AI yozib bo\'lgach, bosh dasturchi nima qiladi — o\'ylang.', ru: 'Подумайте: что делает ведущий разработчик после ИИ?' }
     }} />
 );
 
@@ -1163,12 +1164,12 @@ const Screen8 = (props) => (
     questionText="Oddiy mijoz (admin emas) POST /book qilsa nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mijoz <span className="mono">POST /book</span> qilsa <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</>, ru: <>Клиент делает <span className="mono">POST /book</span> — <span className="italic" style={{ color: T.accent }}>что</span> произойдёт?</> })}</h2></>}
     options={[{ uz: "401/403 — qo'riqchi rad etadi", ru: '401/403 — страж откажет' }, { uz: '201 — kitob baribir qo\'shiladi', ru: '201 — книга всё равно добавится' }, { uz: "200 — qo'shiladi, lekin yashirin", ru: '200 — добавится, но скрыто' }, { uz: "500 — server xato berib o'chadi", ru: '500 — сервер упадёт с ошибкой' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! `@Roles(UserRole.ADMIN)` tufayli qo'riqchi mijozni rad etadi — 403. Token umuman bo'lmasa — 401. Faqat admin kitob qo'sha oladi.", ru: 'Верно! Из-за `@Roles(UserRole.ADMIN)` страж откажет клиенту — 403. Если токена нет вовсе — 401. Добавлять книги может только админ.' }}
+    explainCorrect={{ uz: "Eshikda `@Roles(ADMIN)` — qo'riqchi mijozni o'tkazmaydi.", ru: 'На двери `@Roles(ADMIN)` — страж не пропустит клиента.' }}
     explainWrong={{
-      1: { uz: "Qo'shilmaydi — bu eshik faqat admin uchun. Mijoz 403 oladi.", ru: 'Не добавится — эта дверь только для админа. Клиент получит 403.' },
-      2: { uz: "Yashirin ham qo'shilmaydi — qo'riqchi so'rovni butunlay to'xtatadi.", ru: 'И скрыто не добавится — страж останавливает запрос полностью.' },
-      3: { uz: "Server o'chmaydi — qo'riqchi toza javob qaytaradi: 401 yoki 403.", ru: 'Сервер не падает — страж возвращает чистый ответ: 401 или 403.' },
-      default: { uz: "Mijoz admin eshigiga kelsa — qo'riqchi rad etadi (401/403).", ru: 'Если клиент подходит к админской двери — страж отказывает (401/403).' }
+      1: { uz: "201 — «qo'shildi» degani, bu eshik esa faqat admin uchun.", ru: '201 значит «добавлено», а эта дверь только для админа.' },
+      2: { uz: "200 — «bajarildi» degani, mijoz esa admin eshigida turibdi.", ru: '200 значит «выполнено», а клиент стоит у админской двери.' },
+      3: { uz: "Server o'chmaydi — ruxsat yo'qligi server xatosi emas.", ru: 'Сервер не падает: отказ в доступе — не сбой сервера.' },
+      default: { uz: "Eshikda `@Roles(ADMIN)` turibdi — mijozga nima bo'ladi?", ru: 'На двери `@Roles(ADMIN)` — что будет с клиентом?' }
     }} />
 );
 
@@ -1418,12 +1419,12 @@ const Screen12 = (props) => (
     questionText="Top kitoblarni (is_featured) qaytaruvchi endpointni qanday yozamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Top kitoblarni <span className="italic" style={{ color: T.accent }}>qanday</span> qaytaramiz?</>, ru: <>Топ-книги — <span className="italic" style={{ color: T.accent }}>как</span> их вернуть?</> })}</h2></>}
     options={[{ uz: 'Yangi `findFeatured` metodini yozib', ru: 'Написав новый метод `findFeatured`' }, { uz: "Bazaga to'g'ridan-to'g'ri SQL yozib", ru: 'Написав SQL прямо в базу' }, { uz: "Hammasini olib, frontend'da filtrlab", ru: 'Забрав всё и отфильтровав на фронтенде' }, { uz: 'Tayyor `findAll` ga `where` berib', ru: 'Передав `where` в готовый `findAll`' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Tayyor `findAll` shart qabul qiladi: `findAll({ where: { is_featured: true } })`. Yangi metod yozmaysiz — faqat shartni berasiz.", ru: 'Верно! Готовый `findAll` принимает условие: `findAll({ where: { is_featured: true } })`. Новый метод не нужен — вы лишь передаёте условие.' }}
+    explainCorrect={{ uz: "Tayyor `findAll` shart qabul qiladi — yangi metod kerak emas.", ru: 'Готовый `findAll` принимает условие — новый метод не нужен.' }}
     explainWrong={{
-      0: { uz: 'Yangi metod yozish shart emas — tayyor `findAll` allaqachon `where` shartini qabul qiladi.', ru: 'Новый метод не нужен — готовый `findAll` уже принимает условие `where`.' },
-      1: { uz: 'Xom SQL kerak emas — buni `findAll` va `where` hal qiladi.', ru: 'Сырой SQL не нужен — это решают `findAll` и `where`.' },
-      2: { uz: "Frontend'da filtrlash sekin: server barcha kitobni behuda yuboradi. Shartni serverda bering.", ru: 'Фильтровать на фронтенде медленно: сервер зря отправит все книги. Передайте условие на сервере.' },
-      default: { uz: 'Top kitoblar = `findAll` ga `where` shartini berish.', ru: 'Топ-книги = передать `findAll` условие `where`.' }
+      0: { uz: 'Yangi metod ortiqcha — tayyor metodlar shart qabul qiladi.', ru: 'Новый метод лишний — готовые методы принимают условие.' },
+      1: { uz: 'Xom SQL kerak emas — BaseService metodlari buni uddalaydi.', ru: 'Сырой SQL не нужен — методы BaseService справятся сами.' },
+      2: { uz: "Bunda server barcha kitobni behuda yuboradi.", ru: 'Тогда сервер зря отправит все книги.' },
+      default: { uz: 'Tayyor metodga qanday shart berish mumkin — eslang.', ru: 'Вспомните, какое условие можно передать готовому методу.' }
     }} />
 );
 
@@ -1573,12 +1574,12 @@ const Screen15 = (props) => (
     questionText="POST /order'ga xato bilan @Roles(ADMIN) qo'yilgan. To'g'ri tuzatish qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mijoz buyurtma berolsin desak, qatorni <span className="italic" style={{ color: T.accent }}>qanday</span> tuzatamiz?</>, ru: <>Чтобы клиент мог заказать — <span className="italic" style={{ color: T.accent }}>как</span> исправить строку?</> })}</h2></>}
     options={[{ uz: "Qo'riqchini (`@UseGuards()`) butunlay olib tashlaymiz", ru: 'Полностью убрать стража (`@UseGuards()`)' }, { uz: "`@Roles('public')` ga o'zgartiramiz", ru: "Поменять на `@Roles('public')`" }, { uz: "Har bir mijozga `@Roles(ADMIN)` beramiz", ru: 'Дать каждому клиенту `@Roles(ADMIN)`' }, { uz: "Tugmani frontend'da yashiramiz", ru: 'Спрятать кнопку на фронтенде' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! `POST /order` hamma uchun ochiq bo'lishi kerak — `@Roles('public')`. Qolgan eshiklar (`GET /order`) admin'da qoladi. Faqat shu qator tuzatiladi.", ru: "Верно! `POST /order` должен быть открыт для всех — `@Roles('public')`. Остальные двери (`GET /order`) остаются админскими. Правится только эта строка." }}
+    explainCorrect={{ uz: "`POST /order` hammaga ochiq, qolgan eshiklar admin'da qoladi.", ru: "`POST /order` открыт всем, остальные двери остаются админскими." }}
     explainWrong={{
-      0: { uz: "Qo'riqchini olib tashlasak, admin eshiklari ham ochilib qoladi. Faqat shu qatorni public qilamiz.", ru: 'Уберём стража — распахнутся и админские двери. Делаем public только эту строку.' },
-      2: { uz: "Har mijozni admin qilish juda xavfli — u holda ular kitob ham qo'sha oladi.", ru: 'Делать каждого клиента админом очень опасно — тогда они смогут и книги добавлять.' },
-      3: { uz: 'Frontend himoya emas — server baribir 403 beradi. Ruxsat server tomonda tuzatiladi.', ru: 'Фронтенд — не защита: сервер всё равно вернёт 403. Права правятся на стороне сервера.' },
-      default: { uz: "To'g'ri tuzatish — `POST /order` ni `@Roles('public')` qilish.", ru: "Правильное исправление — сделать `POST /order` с `@Roles('public')`." }
+      0: { uz: "Qo'riqchi ketsa, admin eshiklari ham ochilib qoladi.", ru: 'Уберёте стража — распахнутся и админские двери.' },
+      2: { uz: "Har mijoz admin bo'lsa, u kitob ham qo'sha oladi — xavfli.", ru: 'Если каждый клиент — админ, он сможет и книги добавлять.' },
+      3: { uz: 'Tugmani yashirish himoya emas — server baribir 403 beradi.', ru: 'Спрятать кнопку — не защита: сервер всё равно вернёт 403.' },
+      default: { uz: "`POST /order` kimlar uchun ochiq bo'lishi kerak — o'ylang.", ru: "Подумайте: для кого должен быть открыт `POST /order`?" }
     }} />
 );
 
@@ -1728,7 +1729,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const hot = found && d.id === 'delbook' && !guarded;
                 const fx = guarded && d.id === 'delbook';
                 return (
-                  <div key={d.id} className={`ev-row ${hot ? 'hot' : ''} ${fx ? 'fixed' : ''}`}>
+                  <div key={d.id} className={`ev-row ${hot ? 'hot' : ''} ${fx ? 'is-fixed' : ''}`}>
                     <span className="ev-m">{d.m}</span>
                     <span style={{ flex: 1 }}>{d.p}</span>
                     <span className={`ev-tag ${lk ? 'lock' : 'open'}`}>{lk ? '🔒 admin' : '🌐 public'}</span>
@@ -3056,7 +3057,7 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
         /* === ♿ TINCH VARIANT — har og'ir/takrorlanuvchi harakat bilan BIRGA tug'iladi (keyin emas) === */
         @media (prefers-reduced-motion: reduce) {
           .tap-hint, .ev-row.hot, .shop-sign.open, .mstats-reveal.ready { animation: none !important; }
-          .vseen.tick, .bk-tag, .sh.catch, .dr-cell.rej, .dr-cell.ok, .ev-row.fixed, .cl-row.liar, .shake { animation: none !important; }
+          .vseen.tick, .bk-tag, .sh.catch, .dr-cell.rej, .dr-cell.ok, .ev-row.is-fixed, .cl-row.liar, .shake { animation: none !important; }
           .bk.drag, .sh, .bk { transition: none !important; }
           .bk:hover, .sh:hover, .sh.over { transform: none; }
           .fade-up, .fade-step, .el-in { animation-duration: 0.01ms !important; }
@@ -3144,7 +3145,7 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
         /* ochiq qolgan eshik SIGNAL BERADI — jim turmaydi (topilgach to'xtamaydi, qo'riqchi qo'yilguncha) */
         .ev-row.hot { background: ${T.dangerSoft}; box-shadow: inset 0 0 0 1.5px ${T.danger}66; animation: ev-alarm 1.7s ease-in-out infinite; }
         @keyframes ev-alarm { 0%, 62%, 100% { transform: translateX(0); } 68% { transform: translateX(-3px); } 74% { transform: translateX(3px); } 80% { transform: translateX(-2px); } 86% { transform: translateX(1px); } }
-        .ev-row.fixed { background: ${T.successSoft}; animation: ev-lock 0.5s cubic-bezier(.34,1.5,.4,1) both; }
+        .ev-row.is-fixed { background: ${T.successSoft}; animation: ev-lock 0.5s cubic-bezier(.34,1.5,.4,1) both; }
         @keyframes ev-lock { 0% { transform: scale(0.97); } 45% { transform: scale(1.025); } 100% { transform: scale(1); } }
         .ev-m { font-weight: 700; color: ${T.ink}; min-width: 58px; }
         /* eshik chipi: 🌐 public — ochiq (neytral-ko'k, XATO EMAS) · 🔒 admin — qulflangan (yashil = himoyalangan) */

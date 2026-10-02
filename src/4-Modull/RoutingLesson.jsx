@@ -239,23 +239,23 @@ const RECAPS = {
   4: {
     title: { uz: "Route — shtamp va manzil", ru: 'Route — штамп и адрес' },
     cards: [
-      { ic: "✉️", h: "Route = method + path", body: { uz: <>Route ikki qismdan: <b>method</b> (shtamp — niyat) va <b>path</b> (manzil). Ikkisi birga bir eshikni belgilaydi.</>, ru: <>Route состоит из двух частей: <b>method</b> (штамп — намерение) и <b>path</b> (адрес). Вместе они задают одну дверь.</> } },
-      { ic: "📮", h: { uz: "Bir manzil — ko'p shtamp", ru: 'Один адрес — много штампов' }, body: { uz: <>Bitta <span className="mono">/games</span> manziliga har xil shtamp qo'yish mumkin: <span className="mono">GET</span> ham, <span className="mono">POST</span> ham. Ular boshqa-boshqa eshik.</>, ru: <>На один адрес <span className="mono">/games</span> можно ставить разные штампы: и <span className="mono">GET</span>, и <span className="mono">POST</span>. Это разные двери.</> } },
-      { ic: "🔑", h: { uz: "Ikkisi birga eshikni ochadi", ru: 'Дверь открывают только вместе' }, body: { uz: <>Server faqat method va path <b>birga</b> mos kelganda eshikni ochadi. Bittasi yetmaydi.</>, ru: <>Сервер открывает дверь, только когда method и path совпали <b>вместе</b>. Одного мало.</> }, ask: { uz: "GET /games va POST /games — nega ikki xil eshik?", ru: 'GET /games и POST /games — почему это две разные двери?' } },
+      { ic: "✉️", h: "Route = method + path", body: { uz: <>Route ikki qismdan: <b>method</b> (shtamp) va <b>path</b> (manzil) — birga bitta eshik.</>, ru: <>Route — это <b>method</b> (штамп) и <b>path</b> (адрес): вместе они задают одну дверь.</> } },
+      { ic: "📮", h: { uz: "Bir manzil — ko'p shtamp", ru: 'Один адрес — много штампов' }, body: { uz: <>Bitta <span className="mono">/games</span> manzilida <span className="mono">GET</span> va <span className="mono">POST</span> — boshqa-boshqa eshik.</>, ru: <>На одном адресе <span className="mono">/games</span> <span className="mono">GET</span> и <span className="mono">POST</span> — это разные двери.</> } },
+      { ic: "🔑", h: { uz: "Ikkisi birga eshikni ochadi", ru: 'Дверь открывают только вместе' }, body: { uz: <>Server eshikni faqat method va path <b>birga</b> mos kelganda ochadi.</>, ru: <>Сервер открывает дверь, только когда method и path совпали <b>вместе</b>.</> }, ask: { uz: "GET /games va POST /games — nega ikki xil eshik?", ru: 'GET /games и POST /games — почему это две разные двери?' } },
     ]
   },
   6: {
     title: { uz: "Method — xatning niyati (CRUD)", ru: 'Method — намерение письма (CRUD)' },
     cards: [
-      { ic: "📥", h: { uz: "GET olish · POST yaratish", ru: 'GET читает · POST создаёт' }, body: { uz: <><b>GET</b> — «menga ko'rsat» (o'qish). <b>POST</b> — «buni qo'sh» (yaratish). Shtampga qarab niyat bilinadi.</>, ru: <><b>GET</b> — «покажи мне» (чтение). <b>POST</b> — «добавь это» (создание). По штампу видно намерение.</> } },
-      { ic: "🔁", h: { uz: "PUT yangilash · DELETE o'chirish", ru: 'PUT обновляет · DELETE удаляет' }, body: { uz: <><b>PUT</b> — «buni yangila». <b>DELETE</b> — «buni o'chir». To'rttasi CRUD amallari.</>, ru: <><b>PUT</b> — «обнови это». <b>DELETE</b> — «удали это». Вся четвёрка — операции CRUD.</> } },
-      { ic: "🏷️", h: { uz: "Method = xat niyati", ru: 'Method = намерение письма' }, body: { uz: <>Har method — bitta niyat. Yangi o'yin qo'shmoqchimisiz? Demak shtamp <span className="mono">POST</span>.</>, ru: <>Каждый method — одно намерение. Хотите добавить новую игру? Значит, штамп — <span className="mono">POST</span>.</> }, ask: { uz: "Yangi o'yin qo'shish uchun qaysi shtamp?", ru: 'Какой штамп нужен, чтобы добавить новую игру?' } },
+      { ic: "📥", h: { uz: "GET olish · POST yaratish", ru: 'GET читает · POST создаёт' }, body: { uz: <><b>GET</b> — «menga ko'rsat» (o'qish), <b>POST</b> — «buni qo'sh» (yaratish).</>, ru: <><b>GET</b> — «покажи мне» (чтение), <b>POST</b> — «добавь это» (создание).</> } },
+      { ic: "🔁", h: { uz: "PUT yangilash · DELETE o'chirish", ru: 'PUT обновляет · DELETE удаляет' }, body: { uz: <><b>PUT</b> — «buni yangila», <b>DELETE</b> — «buni o'chir»: to'rttasi birga CRUD.</>, ru: <><b>PUT</b> — «обнови это», <b>DELETE</b> — «удали это»: вся четвёрка — это CRUD.</> } },
+      { ic: "🏷️", h: { uz: "Method = xat niyati", ru: 'Method = намерение письма' }, body: { uz: <>Har method — bitta niyat: yangi o'yin qo'shish uchun shtamp <span className="mono">POST</span>.</>, ru: <>Каждый method — одно намерение: чтобы добавить игру, штамп — <span className="mono">POST</span>.</> }, ask: { uz: "Yangi o'yin qo'shish uchun qaysi shtamp?", ru: 'Какой штамп нужен, чтобы добавить новую игру?' } },
     ]
   },
   10: {
     title: { uz: "/:id — istalgan xonadon eshigi", ru: '/:id — дверь любой квартиры' },
     cards: [
-      { ic: "🚪", h: { uz: "/:id — o'zgaruvchi manzil", ru: '/:id — переменный адрес' }, body: { uz: <><span className="mono">/games/:id</span> — bitta eshik, lekin <span className="mono">:id</span> o'zgaruvchi. Qaysi raqam kelsa, o'shanga xizmat qiladi.</>, ru: <><span className="mono">/games/:id</span> — одна дверь, но <span className="mono">:id</span> — переменная. Какое число придёт, тому и служит.</> } },
+      { ic: "🚪", h: { uz: "/:id — o'zgaruvchi manzil", ru: '/:id — переменный адрес' }, body: { uz: <><span className="mono">/games/:id</span> — bitta eshik, <span className="mono">:id</span> o'rniga istalgan raqam keladi.</>, ru: <><span className="mono">/games/:id</span> — одна дверь, на место <span className="mono">:id</span> приходит любое число.</> } },
       { ic: "♾️", h: { uz: "Bitta eshik — ko'p qiymat", ru: 'Одна дверь — много значений' }, body: { uz: <>Har o'yinga alohida eshik shart emas: bitta <span className="mono">/:id</span> minglab o'yinga yetadi.</>, ru: <>Отдельная дверь каждой игре не нужна: одного <span className="mono">/:id</span> хватит на тысячи игр.</> } },
       { ic: "🎯", h: { uz: "@Param ushlaydi", ru: '@Param ловит значение' }, body: { uz: <>So'rovdagi raqamni <span className="mono">@Param('id')</span> ushlab metodga beradi — endi kod <span className="mono">id</span> ni biladi.</>, ru: <>Число из запроса ловит <span className="mono">@Param('id')</span> и передаёт методу — теперь код знает <span className="mono">id</span>.</> }, ask: { uz: "/games/7 kelsa, id nimaga teng?", ru: 'Пришёл /games/7 — чему равен id?' } },
     ]
@@ -265,11 +265,11 @@ const RECAPS = {
     cards: [
       { ic: "📭", h: { uz: "Mos eshik yo'q → 404", ru: 'Нет подходящей двери → 404' }, body: { uz: <>Server route ro'yxatidan mosini topolmasa — <b>404 Not Found</b> qaytaradi: «Adresat topilmadi».</>, ru: <>Если сервер не нашёл совпадения в списке route'ов — возвращает <b>404 Not Found</b>: «Адресат не найден».</> } },
       { ic: "🔀", h: { uz: "Method mos kelmasa ham 404", ru: 'Method не совпал — тоже 404' }, body: { uz: <>Path to'g'ri bo'lsa-yu, method xato bo'lsa (POST kelib, faqat @Get bo'lsa) — baribir 404.</>, ru: <>Даже если path верный, а method не тот (пришёл POST, но есть только @Get) — всё равно 404.</> } },
-      { ic: "🔁", h: { uz: "404 — vozvrat, server tirik", ru: '404 — возврат, сервер жив' }, body: { uz: <>404 — xat egasiga qaytadi, lekin server o'chmaydi. U ishlashda davom etadi.</>, ru: <>404 — письмо возвращается отправителю, но сервер не выключается. Он продолжает работать.</> }, ask: { uz: "Xat POST, eshik @Get() — natija nima?", ru: 'Письмо POST, дверь @Get() — что получится?' } },
+      { ic: "🔁", h: { uz: "404 — vozvrat, server tirik", ru: '404 — возврат, сервер жив' }, body: { uz: <>404 — xat egasiga qaytadi, lekin server o'chmaydi va ishlashda davom etadi.</>, ru: <>404 — письмо возвращается отправителю, но сервер не выключается и работает дальше.</> }, ask: { uz: "Xat POST, eshik @Get() — natija nima?", ru: 'Письмо POST, дверь @Get() — что получится?' } },
     ]
   }
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -287,7 +287,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -296,13 +296,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -381,7 +381,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</button>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>}
           </div>
         );
       })()}
@@ -463,7 +463,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -471,8 +471,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -482,11 +483,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -776,12 +777,12 @@ const Screen4 = (props) => (
     questionText="Route (so'rovni topish uchun) nimadan iborat?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Server qaysi kodni ishga tushirishni nimaga qarab biladi?', ru: 'По чему сервер понимает, какой код запустить?' })}</h2></>}
     options={[{ uz: 'Faqat path — manzil (masalan /games)', ru: 'Только path — адрес (например /games)' }, { uz: 'Faqat method — shtamp (masalan GET)', ru: 'Только method — штамп (например GET)' }, { uz: 'METHOD va PATH — ikkisi birgalikda', ru: 'METHOD и PATH — оба вместе' }, { uz: 'Brauzer turi (Chrome, Firefox, Safari)', ru: 'Тип браузера (Chrome, Firefox, Safari)' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Route = method + path. Server aynan shu juftlikka mos kodni topadi — masalan GET /games va POST /games bir-biridan farq qiladi.", ru: 'Верно! Route = method + path. Сервер ищет код именно по этой паре — например, GET /games и POST /games отличаются друг от друга.' }}
+    explainCorrect={{ uz: "Route = method + path: bitta manzilda turli shtamp bo'ladi.", ru: 'Route = method + path: на одном адресе бывают разные штампы.' }}
     explainWrong={{
-      0: { uz: "Yetarli emas — bir xil path'da turli method bo'lishi mumkin (GET /games va POST /games). Demak method ham kerak.", ru: 'Этого мало — на одном path бывают разные методы (GET /games и POST /games). Значит, нужен и method.' },
-      1: { uz: "Yetarli emas — faqat method bilan qaysi manzil ekanini bilmaymiz. Path ham kerak.", ru: 'Этого мало — по одному method непонятно, какой адрес нужен. Нужен и path.' },
-      3: { uz: "Yo'q — brauzer turi muhim emas. Server method + path'ga qaraydi.", ru: 'Нет — тип браузера не важен. Сервер смотрит на method + path.' },
-      default: { uz: 'Route = method + path birgalikda.', ru: 'Route = method + path вместе.' }
+      0: { uz: "Bitta path'da GET ham, POST ham bo'ladi — path yetmaydi.", ru: 'На одном path бывают и GET, и POST — одного path мало.' },
+      1: { uz: "Faqat shtampdan xat qaysi manzilga borishi bilinmaydi.", ru: 'По одному штампу неясно, по какому адресу идёт письмо.' },
+      3: { uz: "Server so'rov qaysi brauzerdan kelganiga qaramaydi.", ru: 'Серверу неважно, из какого браузера пришёл запрос.' },
+      default: { uz: 'Xat kerakli eshikka yetishi uchun nima kerak — o\'ylang.', ru: 'Подумайте, что нужно письму, чтобы дойти до нужной двери.' }
     }} />
 );
 
@@ -839,12 +840,12 @@ const Screen5b = (props) => (
     questionText="Yangi o'yin qo'shish (yaratish) uchun qaysi method?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Serverga <span style={{ color: T.accent }}>yangi o'yin qo'shmoqchisiz</span> — qaysi method?</>, ru: <>Вы хотите <span style={{ color: T.accent }}>добавить на сервер новую игру</span> — какой method?</> })}</h2></>}
     options={["GET", "POST", "DELETE", "PUT"]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! POST = yaratish (Create). Yangi ma'lumot qo'shganda har doim POST ishlatiladi.", ru: 'Верно! POST = создание (Create). Когда добавляем новые данные — всегда POST.' }}
+    explainCorrect={{ uz: "POST — yangi narsa yaratish (Create) shtampi.", ru: 'POST — штамп создания нового (Create).' }}
     explainWrong={{
-      0: { uz: "GET — bu olish (o'qish). Yangi narsa yaratmaydi, faqat mavjudini qaytaradi.", ru: 'GET — это получение (чтение). Он ничего не создаёт, только возвращает существующее.' },
-      2: { uz: "DELETE — bu o'chirish. Bizga aksincha — yangi qo'shish kerak.", ru: 'DELETE — это удаление. А нам наоборот — нужно добавить новое.' },
-      3: { uz: "PUT — bu mavjud narsani yangilash. Yangidan yaratish uchun POST.", ru: 'PUT — это обновление существующего. Чтобы создать новое — POST.' },
-      default: { uz: 'Yaratish (Create) = POST.', ru: 'Создание (Create) = POST.' }
+      0: { uz: "GET — faqat o'qish, u yangi narsa yaratmaydi.", ru: 'GET — только чтение, он ничего нового не создаёт.' },
+      2: { uz: "DELETE — o'chirish shtampi, bizga esa qo'shish kerak.", ru: 'DELETE — штамп удаления, а нам нужно добавить.' },
+      3: { uz: "PUT bor narsani yangilaydi, yangisini yaratmaydi.", ru: 'PUT обновляет существующее, а не создаёт новое.' },
+      default: { uz: 'CRUD\'dagi «Create» qaysi shtampga to\'g\'ri kelishini eslang.', ru: 'Вспомните, какой штамп соответствует «Create» в CRUD.' }
     }} />
 );
 
@@ -987,12 +988,12 @@ const Screen9 = (props) => (
     questionText="@Get(':id') route'iga GET /games/7 kelsa, id qiymati nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>@Get(':id')</span> route'iga <span className="mono">GET /games/7</span> kelsa — <span className="mono">id</span> nima bo'ladi?</>, ru: <>На route <span className="mono" style={{ color: T.accent }}>@Get(':id')</span> пришёл <span className="mono">GET /games/7</span> — чему равен <span className="mono">id</span>?</> })}</h2></>}
     options={["7", "':id'", "games", "/games/7"]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! :id o'rniga so'rovdagi haqiqiy qiymat — 7 — keladi. @Param('id') uni ushlab oladi, endi id = 7.", ru: "Верно! Вместо :id приходит настоящее значение из запроса — 7. @Param('id') ловит его, теперь id = 7." }}
+    explainCorrect={{ uz: "`:id` — joy belgisi, uning o'rniga so'rovdagi qiymat keladi.", ru: "`:id` — заполнитель, на его место приходит значение из запроса." }}
     explainWrong={{
-      1: { uz: "Yo'q — ':id' bu shablon (joy belgisi). Haqiqiy so'rovda uning o'rniga raqam — 7 — keladi.", ru: "Нет — ':id' это шаблон (заполнитель). В настоящем запросе на его месте число — 7." },
-      2: { uz: "Yo'q — games bu path'ning boshqa qismi. :id o'rniga 7 keladi.", ru: 'Нет — games это другая часть path. Вместо :id приходит 7.' },
-      3: { uz: 'Bu butun manzil. Bizga faqat :id qismi kerak — u 7 ga teng.', ru: 'Это весь адрес. Нам нужна только часть :id — она равна 7.' },
-      default: { uz: ":id o'rniga so'rovdagi qiymat — 7 — keladi.", ru: 'Вместо :id приходит значение из запроса — 7.' }
+      1: { uz: "`:id` — faqat joy belgisi, u o'zi qiymat emas.", ru: "`:id` — лишь заполнитель, сам по себе это не значение." },
+      2: { uz: "games — path'ning doimiy qismi, `:id` esa boshqa joyda.", ru: 'games — постоянная часть path, а `:id` стоит в другом месте.' },
+      3: { uz: 'Bu butun manzil, bizga esa faqat `:id` qismi kerak.', ru: 'Это весь адрес, а нам нужна только часть `:id`.' },
+      default: { uz: "Manzilda `:id` joyida nima turganiga qarang.", ru: 'Посмотрите, что стоит в адресе на месте `:id`.' }
     }} />
 );
 
@@ -1140,10 +1141,10 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
     <div className="dbg fade-up">
       <div className="dbg-code">
         {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
           </div>
         ))}
       </div>
@@ -1206,12 +1207,12 @@ const Screen12 = (props) => (
     questionText="So'rovga mos route topilmasa, server nima qaytaradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>So'rovga <span style={{ color: T.accent }}>mos route topilmasa</span> — server nima qaytaradi?</>, ru: <>Для запроса <span style={{ color: T.accent }}>не нашлось подходящего route</span> — что вернёт сервер?</> })}</h2></>}
     options={[{ uz: '200 — hammasi joyida (javob topildi)', ru: '200 — всё в порядке (ответ найден)' }, { uz: "Serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключит сервер' }, { uz: "Eng birinchi route'ni ishga tushiradi", ru: 'Запустит самый первый route' }, { uz: '404 — Not Found (adresat topilmadi)', ru: '404 — Not Found (адресат не найден)' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Mos route bo'lmasa — 404 Not Found. Bu method yoki path mos kelmaganini bildiradi.", ru: 'Верно! Нет подходящего route — 404 Not Found. Это значит, что method или path не совпали.' }}
+    explainCorrect={{ uz: "Mos route bo'lmasa, server 404 — «adresat topilmadi» deydi.", ru: 'Нет подходящего route — сервер отвечает 404: «адресат не найден».' }}
     explainWrong={{
-      0: { uz: "200 — bu muvaffaqiyat (javob topildi). Mos route bo'lmasa esa 404 chiqadi.", ru: '200 — это успех (ответ найден). А когда совпадения нет — будет 404.' },
-      1: { uz: "Yo'q — server o'chmaydi, ishlashda davom etadi. Faqat 404 qaytaradi.", ru: 'Нет — сервер не выключается, он продолжает работать. Просто возвращает 404.' },
-      2: { uz: "Yo'q — server tasodifiy route tanlamaydi. Mos kelmasa 404 beradi.", ru: 'Нет — сервер не выбирает route наугад. Нет совпадения — вернёт 404.' },
-      default: { uz: "Mos route yo'q → 404 Not Found.", ru: 'Нет подходящего route → 404 Not Found.' }
+      0: { uz: "200 — javob topilganda chiqadi, bu yerda esa mos route yo'q.", ru: '200 бывает, когда ответ найден, а здесь совпадения нет.' },
+      1: { uz: "Server o'chmaydi — xato so'rovdan keyin ham ishlayveradi.", ru: 'Сервер не выключается — он работает и после неудачного запроса.' },
+      2: { uz: "Server tasodifiy route tanlamaydi — faqat mosini qidiradi.", ru: 'Сервер не берёт route наугад — ищет только подходящий.' },
+      default: { uz: "Xat adresatni topmasa, pochta nima qiladi — eslang.", ru: 'Вспомните, что делает почта, если адресат не найден.' }
     }} />
 );
 
@@ -2695,17 +2696,17 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; animation: dbg-door-open .6s cubic-bezier(.34,1.3,.4,1); }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; animation: dbg-door-open .6s cubic-bezier(.34,1.3,.4,1); }
         /* 🔁 tabelka @Get→@Post morph (flip) + eshik ochilishi */
         @keyframes dbg-door-open { 0% { box-shadow: 0 0 0 0 ${T.success}00; } 26% { box-shadow: 0 0 0 3px ${T.success}44, 0 0 20px -2px ${T.success}77; } 100% { box-shadow: 0 0 0 0 ${T.success}00; } }
-        .dbg-line.fixed .dbg-txt { display: inline-block; transform-origin: left center; animation: dbg-flip .5s cubic-bezier(.4,0,.2,1); }
+        .dbg-line.is-fixed .dbg-txt { display: inline-block; transform-origin: left center; animation: dbg-flip .5s cubic-bezier(.4,0,.2,1); }
         @keyframes dbg-flip { 0% { transform: rotateX(-90deg); opacity: 0; } 55% { transform: rotateX(12deg); opacity: 1; } 100% { transform: rotateX(0); } }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; }
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }
         .dbg-hint { margin: 0; font-size: 13px; color: ${T.ink3}; font-style: italic; }
         .dbg-ok { font-weight: 700; color: ${T.success}; font-size: 14px; background: ${T.successSoft}; border-radius: 12px; padding: 10px 14px; }
-        @media (prefers-reduced-motion: reduce) { .dd-slot.ok, .dd-slot.ok .dd-chip, .dd-slot.bad, .dd-wrong .pechat-404, .dbg-line.fixed, .dbg-line.fixed .dbg-txt, .dbg-line.wrong { animation: none !important; } }
+        @media (prefers-reduced-motion: reduce) { .dd-slot.ok, .dd-slot.ok .dd-chip, .dd-slot.bad, .dd-wrong .pechat-404, .dbg-line.is-fixed, .dbg-line.is-fixed .dbg-txt, .dbg-line.wrong { animation: none !important; } }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }

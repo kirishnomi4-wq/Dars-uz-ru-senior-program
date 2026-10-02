@@ -1,0 +1,29 @@
+kompilyatorli fayllar: 26 
+✅ 02-PmLesson1-v2                  stage=m1-02  ekran koding(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 20s
+✅ 03-Htmllesson1-v2                stage=m1-03  ekran s8(rule,prac) yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 43s
+✅ 04-Htmllesson2-v2                stage=m1-04  ekran s3(exploration,prac) yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 24s
+✅ 05-HtmlTakrorlashLesson-v2       stage=m1-14  ekran s3(exploration,prac) yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 24s
+✅ 06-PmLesson2-v2                  stage=m1-05  ekran koding(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 15s
+✅ 07-CssLesson1-v2                 stage=m1-06  ekran s6(exploration,prac) yorliqlar [index.html style.css] — 19 ✓ 0 ❌ 11 o'tkazildi · 42s
+✅ 08-CssLesson2-v2                 stage=m1-07  ekran s6(exploration,prac) yorliqlar [index.html style.css] — 19 ✓ 0 ❌ 11 o'tkazildi · 42s
+✅ 09-HtmlPractice-v2               stage=m1-08  ekran s3(build,prac) yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 24s
+✅ 10-VsCodeLesson-v2               stage=m1-15  ekran s9(exploration,prac) yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 44s
+✅ 11-CssPractice-v2                stage=m1-10  ekran s5(build,prac) yorliqlar [index.html style.css] — 19 ✓ 0 ❌ 11 o'tkazildi · 32s
+✅ 14-PmLesson3-v2                  stage=m1-12  ekran s12(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 15s
+✅ 02-PmLesson4-v2                  stage=null   ekran s11(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [index.html] — 17 ✓ 0 ❌ 13 o'tkazildi · 21s
+✅ 04-JsVarsLesson-v2               stage=null   ekran s5b(test,prac) yorliqlar [script.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 67s
+✅ 05-JsConditionsLesson-v2         stage=null   ekran s5b(test,prac) yorliqlar [script.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 64s
+✅ 06-JsLoopsLesson-v2              stage=null   ekran s5b(test,prac) yorliqlar [script.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 66s
+✅ 07-JsFunctionsLesson-v2          stage=null   ekran s5b(test,prac) yorliqlar [script.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 68s
+✅ 08-PmLesson5-v2                  stage=null   ekran s12(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [ochilishRoyxati.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 66s
+✅ 09-PracticeLesson1-v2            stage=null   ekran s5(exploration,prac) yorliqlar [index.html script.js] — 28 ✓ 0 ❌ 2 o'tkazildi · 38s
+✅ 11-PeanStackLesson-v2            stage=null   ekran s12(test,prac) yorliqlar [script.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 69s
+✅ 14-PmLesson6-v2                  stage=null   ekran s11(practice,tugma «🛠 Kompilyatorni ochish») yorliqlar [qatlamlar.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 69s
+✅ 02-PmUserStoryLesson-v2          stage=null   ekran s10(koding,tugma «🛠 Kompilyatorni ochish») yorliqlar [hikoyaYasa.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 62s
+✅ 11-PmLesson9-v2                  stage=null   ekran s10(koding,prac) yorliqlar [app.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 67s
+✅ 02-PmLesson11-v2                 stage=null   ekran s10(koding,prac) yorliqlar [app.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 61s
+✅ 12-PmLesson13-v2                 stage=null   ekran s10(koding,prac) yorliqlar [app.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 62s
+✅ 02-PmLesson15-v2                 stage=null   ekran s10(koding,prac) yorliqlar [app.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 67s
+✅ 02-PmLesson17-v2                 stage=null   ekran s10(koding,prac) yorliqlar [app.js] — 11 ✓ 0 ❌ 19 o'tkazildi · 61s
+
+JAMI: 26 dars · 26 ✅ · 0 ❌

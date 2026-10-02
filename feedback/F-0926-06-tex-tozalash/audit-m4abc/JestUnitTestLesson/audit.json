@@ -1,0 +1,344 @@
+{
+ "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+ "lessonId": "jest-unit-04b-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Javob: 20000. To'g'ri ko'rinadi. Lekin funksiyada 5 ta hisob bo'lsa? 50 ta? Har birini har safar qo'lda tekshi",
+     "b": "Har safar qo'lda hisoblab, ko'z bilan tekshiraman",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KOD TO'G'RI ISHLASHIGA QANDAY ISHONCH HOSIL QILAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SHU NATIJAGA ERISHASIZ",
+     "box": "jestrun el-in ok",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MASHINA NATIJASI",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🤖 JESTBOT",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS",
+     "box": "editor",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS — VARAQA",
+     "box": "dd-sheet",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "jestrun el-in ok",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NPM TEST NATIJASI",
+     "box": "jestrun el-in bad",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); }) +",
+     "b": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(10002); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); }) ✓",
+     "b": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(10002); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "describe('orderTotal', () => { it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); }); });",
+     "b": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); }) ✓",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "describe('orderTotal', () => { it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); }); });",
+     "b": "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(10002); }) +",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "AI 5 ta test yozdi. Qaysilari haqiqatan tekshiradi?",
+     "b": "QAYSI TESTLAR HAQIQATAN TEKSHIRADI?",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QAYSI TESTLAR HAQIQATAN TEKSHIRADI?",
+     "box": "pick-list",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 67,
+     "left": "editor",
+     "right": "sk-info",
+     "hs": [
+      146,
+      79
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ORDER.SPEC.TS — ETALON KARTOCHKASI",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BURILISH — NOTO'G'RI ETALON",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

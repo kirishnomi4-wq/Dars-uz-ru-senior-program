@@ -244,17 +244,17 @@ const RECAPS = {
   4: {
     title: { uz: "fetch — serverga boradigan ofitsiant", ru: 'fetch — официант, который ходит на сервер' },
     cards: [
-      { ic: "📡", h: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, body: { uz: <>Ma'lumot bitta joyda — <b>serverda</b> — turadi: <span className="mono">robo-api.example</span>. Hamma qurilma o'sha markazdan so'rab oladi.</>, ru: <>Данные живут в одном месте — на <b>сервере</b>: <span className="mono">robo-api.example</span>. Все устройства запрашивают их из этого центра.</> } },
-      { ic: "🛎️", h: { uz: "fetch — «borib olib kel»", ru: 'fetch — «сходи и принеси»' }, body: { uz: <><span className="mono">fetch</span> — ofitsiant kabi GET so'rovi: manzilga boradi va javobni <b>olib keladi</b>. O'zi ekranga hech narsa <b>chizmaydi</b>.</>, ru: <><span className="mono">fetch</span> — GET-запрос, как официант: идёт по адресу и <b>приносит ответ</b>. Сам на экране ничего <b>не рисует</b>.</> } },
+      { ic: "📡", h: { uz: "Server — ma'lumot markazi", ru: 'Сервер — центр данных' }, body: { uz: <>Ma'lumot <b>serverda</b> turadi — <span className="mono">robo-api.example</span>, hamma qurilma o'shandan so'rab oladi.</>, ru: <>Данные живут на <b>сервере</b> — <span className="mono">robo-api.example</span>, и все устройства берут их оттуда.</> } },
+      { ic: "🛎️", h: { uz: "fetch — «borib olib kel»", ru: 'fetch — «сходи и принеси»' }, body: { uz: <><span className="mono">fetch</span> — ofitsiant: manzilga borib javobni <b>olib keladi</b>, lekin o'zi hech narsa chizmaydi.</>, ru: <><span className="mono">fetch</span> — официант: идёт по адресу и <b>приносит</b> ответ, но сам ничего не рисует.</> } },
       { ic: "🧾", h: { uz: "So'rovning 3 qismi", ru: 'Три части запроса' }, body: { uz: <>To'liq so'rov: <b>buyruq</b> (fetch) + <b>manzil</b> (https://robo-api.example) + <b>bo'lim</b> (/games).</>, ru: <>Полный запрос: <b>команда</b> (fetch) + <b>адрес</b> (https://robo-api.example) + <b>раздел</b> (/games).</> }, ask: { uz: "Serverdan kelgan ma'lumotni ekranga kim chizadi?", ru: 'Кто рисует на экране данные, пришедшие с сервера?' } },
     ]
   },
   6: {
     title: { uz: ".json() — patnisning qopqog'ini ochadi", ru: '.json() — снимает крышку с подноса' },
     cards: [
-      { ic: "📝", h: { uz: "Javob avval MATN bo'ladi", ru: 'Ответ сначала — ТЕКСТ' }, body: { uz: <>Server javobi <b>shunchaki matn</b> bo'lib keladi (qo'shtirnoq ichida). Matnga <span className="mono">map()</span> qilib bo'lmaydi.</>, ru: <>Ответ сервера приходит <b>просто текстом</b> (в кавычках). К тексту <span className="mono">map()</span> применить нельзя.</> } },
+      { ic: "📝", h: { uz: "Javob avval MATN bo'ladi", ru: 'Ответ сначала — ТЕКСТ' }, body: { uz: <>Server javobi <b>shunchaki matn</b> bo'lib keladi, matnga esa <span className="mono">map()</span> qilib bo'lmaydi.</>, ru: <>Ответ сервера приходит <b>просто текстом</b>, а к тексту <span className="mono">map()</span> не применить.</> } },
       { ic: "🔄", h: { uz: ".json() — tarjima qiladi", ru: '.json() — переводит' }, body: { uz: <><span className="mono">.json()</span> matnni <b>haqiqiy massivga</b> aylantiradi — endi <span className="mono">map()</span> ishlaydi.</>, ru: <><span className="mono">.json()</span> превращает текст в <b>настоящий массив</b> — теперь <span className="mono">map()</span> работает.</> } },
-      { ic: "➡️", h: { uz: "To'liq yo'l", ru: 'Полный путь' }, body: { uz: <>Yo'l: <b>matn → .json() → massiv → map → kartochka</b>. Tarjimasiz massiv yo'q.</>, ru: <>Путь: <b>текст → .json() → массив → map → карточка</b>. Без перевода массива не будет.</> }, ask: { uz: "Nega server javobiga darhol map qilib bo'lmaydi?", ru: 'Почему к ответу сервера нельзя сразу применить map?' } },
+      { ic: "➡️", h: { uz: "To'liq yo'l", ru: 'Полный путь' }, body: { uz: <>Yo'l: <b>matn → .json() → massiv → map → kartochka</b>.</>, ru: <>Путь: <b>текст → .json() → массив → map → карточка</b>.</> }, ask: { uz: "Nega server javobiga darhol map qilib bo'lmaydi?", ru: 'Почему к ответу сервера нельзя сразу применить map?' } },
     ]
   },
   10: {
@@ -268,14 +268,14 @@ const RECAPS = {
   13: {
     title: { uz: "404 — noto'g'ri eshik", ru: '404 — не та дверь' },
     cards: [
-      { ic: "🚪", h: { uz: "404 = «bunday eshik yo'q»", ru: '404 = «такой двери нет»' }, body: { uz: <>404 — server javobi: <b>so'ralgan manzil topilmadi</b>. Sayt buzilmagan, faqat manzil xato.</>, ru: <>404 — ответ сервера: <b>запрошенный адрес не найден</b>. Сайт не сломан — просто адрес неверный.</> } },
+      { ic: "🚪", h: { uz: "404 = «bunday eshik yo'q»", ru: '404 = «такой двери нет»' }, body: { uz: <>404 — <b>so'ralgan manzil topilmadi</b>, sayt esa buzilmagan.</>, ru: <>404 — <b>запрошенный адрес не найден</b>, а сайт не сломан.</> } },
       { ic: "🔡", h: { uz: "Manzilni harfma-harf tekshir", ru: 'Проверьте адрес по буквам' }, body: { uz: <><span className="mono">/gmaes</span> emas, <span className="mono">/games</span> — bitta harf xato ham 404 beradi.</>, ru: <>Не <span className="mono">/gmaes</span>, а <span className="mono">/games</span> — даже одна неверная буква даёт 404.</> } },
-      { ic: "📬", h: { uz: "404 — xabarchi", ru: '404 — вестник' }, body: { uz: <>404 dushman emas, <b>xabarchi</b>: manzilni tekshir, deydi. <span className="mono">200 OK</span> esa — to'g'ri eshik, javob keldi.</>, ru: <>404 не враг, а <b>вестник</b>: он говорит «проверь адрес». А <span className="mono">200 OK</span> — дверь верная, ответ пришёл.</> }, ask: { uz: "Skeleton to'xtamayapti, konsolda 404 — birinchi nima qilasiz?", ru: 'Скелетон не исчезает, в консоли 404 — что сделаете первым делом?' } },
+      { ic: "📬", h: { uz: "404 — xabarchi", ru: '404 — вестник' }, body: { uz: <>404 dushman emas, <b>xabarchi</b>: manzilni tekshirishni aytadi, <span className="mono">200 OK</span> esa — to'g'ri eshik.</>, ru: <>404 не враг, а <b>вестник</b>: он просит проверить адрес, а <span className="mono">200 OK</span> — дверь верная.</> }, ask: { uz: "Skeleton to'xtamayapti, konsolda 404 — birinchi nima qilasiz?", ru: 'Скелетон не исчезает, в консоли 404 — что сделаете первым делом?' } },
     ]
   }
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -293,7 +293,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -302,13 +302,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карта' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -474,7 +474,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -482,8 +482,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -495,11 +496,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -850,12 +851,12 @@ const Screen4 = (props) => (
     questionText="fetch('https://robo-api.example/games') nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>fetch('https://robo-api.example/games')</span>?</> })}</h2></>}
     options={[tr({ uz: "Saytni to'liq qaytadan yuklaydi", ru: 'Полностью перезагружает сайт' }), tr({ uz: "Manzilga borib ma'lumotni olib keladi", ru: 'Идёт по адресу и приносит данные' }), tr({ uz: "Faylni kompyuterga yuklab saqlaydi", ru: 'Скачивает и сохраняет файл на компьютер' }), tr({ uz: "Yangi bo'sh sahifa ochadi", ru: 'Открывает новую пустую страницу' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi — natija yorlig'i aytadi (159/5) */ tr({ uz: "fetch — ofitsiant kabi ishlaydi. Bu GET so'rovi: faqat oladi, serverda hech narsani o'zgartirmaydi.", ru: 'fetch работает как официант. Это GET-запрос: только получает, ничего на сервере не меняет.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi — natija yorlig'i aytadi (159/5) */ tr({ uz: "`fetch` — ofitsiant: GET so'rovi bilan faqat olib keladi.", ru: '`fetch` — официант: GET-запросом он только приносит.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — sahifa joyida qoladi. fetch indamasdan, orqa fonda serverga borib keladi.", ru: 'Нет — страница остаётся на месте. fetch тихо, в фоне сходит на сервер и вернётся.' }),
-      2: tr({ uz: "Yo'q — hech narsa saqlanmaydi. fetch ma'lumotni kodga olib keladi, xolos.", ru: 'Нет — ничего не сохраняется. fetch просто приносит данные в код.' }),
-      3: tr({ uz: "Yo'q — yangi sahifa ochilmaydi. Hammasi shu sahifaning ichida, ko'zga ko'rinmay bo'ladi.", ru: 'Нет — новая страница не открывается. Всё происходит внутри этой же страницы, незаметно для глаз.' }),
-      default: tr({ uz: "fetch = manzilga so'rov yuborish va javobni olib kelish.", ru: 'fetch = отправить запрос по адресу и принести ответ.' })
+      0: tr({ uz: "Sahifa joyida qoladi — `fetch` orqa fonda ishlaydi.", ru: 'Страница остаётся на месте — `fetch` работает в фоне.' }),
+      2: tr({ uz: "Kompyuterga hech qanday fayl saqlanmaydi.", ru: 'На компьютер никакой файл не сохраняется.' }),
+      3: tr({ uz: "Yangi sahifa ochilmaydi — hammasi shu sahifa ichida bo'ladi.", ru: 'Новая страница не открывается — всё происходит внутри этой же.' }),
+      default: tr({ uz: "Ofitsiantni eslang: u qayerga boradi va nima qiladi?", ru: 'Вспомните официанта: куда он ходит и что делает?' })
     }} />
 );
 
@@ -935,12 +936,12 @@ const Screen5b = (props) => (
     questionText="Server javobini kodda ishlatishdan oldin nima qilamiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Server javobini kodda ishlatishdan oldin <span className="italic" style={{ color: T.accent }}>nima qilamiz</span>?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что мы делаем</span> с ответом сервера перед использованием в коде?</> })}</h2></>}
     options={[tr({ uz: "Hech narsa — javob darrov tayyor bo'ladi", ru: 'Ничего — ответ сразу готов' }), tr({ uz: "Javobni qaytadan serverga yuboramiz", ru: 'Отправляем ответ обратно на сервер' }), tr({ uz: ".json() bilan massivga aylantiramiz", ru: 'Превращаем в массив с помощью .json()' }), tr({ uz: "Ma'lumotni qo'lda ko'chirib yozamiz", ru: 'Переписываем данные вручную' })]} correctIdx={2}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "Javob JSON matn bo'lib keladi — matnga map qilib bo'lmaydi. Massiv bo'lgachgina map ishlaydi.", ru: 'Ответ приходит JSON-текстом — к тексту map не применить. Только массив даёт работать map.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "Javob matn bo'lib keladi, `map` esa faqat massivda ishlaydi.", ru: 'Ответ приходит текстом, а `map` работает только с массивом.' })}
     explainWrong={{
-      0: tr({ uz: "Konsolni eslang: javob matn edi — qo'shtirnoq ichida. Matnga map qilolmaysiz, avval .json().", ru: 'Вспомните консоль: ответ был текстом — в кавычках. К тексту map не применить, сначала .json().' }),
-      1: tr({ uz: "Yo'q — javob bizga keldi, uni qaytarish shart emas. Faqat tarjima kerak: .json().", ru: 'Нет — ответ уже у нас, возвращать его не нужно. Нужен только перевод: .json().' }),
-      3: tr({ uz: "Yo'q — hech narsa qo'lda yozilmaydi. .json() bir o'zi hammasini aylantiradi.", ru: 'Нет — вручную ничего не пишется. .json() сам всё преобразует.' }),
-      default: tr({ uz: "Avval .json() — JSON matnni haqiqiy massivga aylantiradi.", ru: 'Сначала .json() — он превращает JSON-текст в настоящий массив.' })
+      0: tr({ uz: "Konsolni eslang: javob qo'shtirnoq ichidagi matn edi.", ru: 'Вспомните консоль: ответ был текстом в кавычках.' }),
+      1: tr({ uz: "Javob allaqachon bizda, uni qaytarish shart emas.", ru: 'Ответ уже у нас, возвращать его не нужно.' }),
+      3: tr({ uz: "Qo'lda hech narsa yozilmaydi — buni bitta buyruq qiladi.", ru: 'Вручную ничего не пишут — это делает одна команда.' }),
+      default: tr({ uz: "Matnga `map` qilib bo'lmaydi — avval uni nima qilish kerak?", ru: 'К тексту `map` не применить — что с ним нужно сделать сначала?' })
     }} />
 );
 
@@ -1148,12 +1149,12 @@ const Screen9 = (props) => (
     questionText="Serverdan kelgan o'yinlar qanday qilib ekranga chiqadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Serverdan kelgan o'yinlar <span className="italic" style={{ color: T.accent }}>qanday qilib</span> ekranga chiqadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> игры с сервера попадают на экран?</> })}</h2></>}
     options={[tr({ uz: "Sahifani qo'lda yangilab turish kerak", ru: 'Нужно вручную обновлять страницу' }), tr({ uz: "fetch o'zi ekranga chizib qo'yadi", ru: 'fetch сам рисует их на экране' }), tr({ uz: "useEffect o'zi chizib beradi", ru: 'useEffect сам их рисует' }), tr({ uz: "setGames state'ga yozadi — React qayta chizadi", ru: 'setGames пишет в state — React перерисовывает' })]} correctIdx={3}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "fetch faqat olib keladi, chizish — state'ning ishi. O'tgan darsdagi qoida shu yerda ham ishlayapti!", ru: 'fetch только приносит, а рисование — дело state. Правило из прошлого урока работает и здесь!' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "`fetch` faqat olib keladi, chizish esa state'ning ishi.", ru: '`fetch` только приносит, а рисование — дело state.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — qo'lda yangilash kerak emas. setGames state'ni o'zgartirgan zahoti React o'zi qayta chizadi.", ru: 'Нет — вручную обновлять не нужно. Как только setGames изменит state, React сам всё перерисует.' }),
-      1: tr({ uz: "fetch — ofitsiant: olib keladi, lekin chizmaydi. Chizish uchun ma'lumot state'ga tushishi kerak.", ru: 'fetch — официант: приносит, но не рисует. Чтобы нарисовалось, данные должны попасть в state.' }),
-      2: tr({ uz: "useEffect — faqat 'qachon ishga tushirish'ni hal qiladi. Chizishni state o'zgarishi boshlaydi.", ru: 'useEffect решает только «когда запустить». Рисование запускает изменение state.' }),
-      default: tr({ uz: "Yo'l: javob → .json() → setGames(data) → state yangilandi → React chizdi.", ru: 'Путь: ответ → .json() → setGames(data) → state обновился → React нарисовал.' })
+      0: tr({ uz: "Qo'lda yangilash kerak emas — o'tgan dars qoidasini eslang.", ru: 'Обновлять вручную не нужно — вспомните правило прошлого урока.' }),
+      1: tr({ uz: "`fetch` — ofitsiant: olib keladi, lekin chizmaydi.", ru: '`fetch` — официант: приносит, но не рисует.' }),
+      2: tr({ uz: "`useEffect` faqat so'rov qachon ketishini hal qiladi.", ru: '`useEffect` решает только, когда уйдёт запрос.' }),
+      default: tr({ uz: "Ekranni React qachon qayta chizishini eslang.", ru: 'Вспомните, когда React перерисовывает экран.' })
     }} />
 );
 
@@ -1291,12 +1292,12 @@ const Screen12 = (props) => (
     questionText="Konsolda 404 xatosini ko'rsangiz, birinchi nimani tekshirasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Konsolda <span className="mono" style={{ color: T.accent }}>404</span> ko'rsangiz, birinchi <span className="italic" style={{ color: T.accent }}>nimani tekshirasiz</span>?</>, ru: <>Увидели в консоли <span className="mono" style={{ color: T.accent }}>404</span> — <span className="italic" style={{ color: T.accent }}>что проверите</span> первым делом?</> })}</h2></>}
     options={[tr({ uz: "Manzilni — endpoint to'g'ri yozilganmi", ru: 'Адрес — верно ли написан эндпоинт' }), tr({ uz: "Kompyuterni o'chirib yoqaman", ru: 'Перезагружу компьютер' }), tr({ uz: "React'ni qaytadan o'rnataman", ru: 'Переустановлю React' }), tr({ uz: "Hech narsani — o'zi tuzalib ketadi", ru: 'Ничего — само починится' })]} correctIdx={0}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "404 = server 'bunday eshik menda yo'q' deyapti. Bitta harf yetarli: /gmaes emas, /games.", ru: '404 = сервер говорит «такой двери у меня нет». Хватает одной буквы: не /gmaes, а /games.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/5) */ tr({ uz: "404 — «bunday eshik yo'q»: bitta harf xato ham yetadi.", ru: '404 — «такой двери нет»: хватит и одной неверной буквы.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — kompyuterda ayb yo'q. 404 server javobi: so'ralgan manzil topilmadi.", ru: 'Нет — компьютер не виноват. 404 — ответ сервера: запрошенный адрес не найден.' }),
-      2: tr({ uz: "Yo'q — React joyida. 404 faqat manzil haqida gapiryapti.", ru: 'Нет — React в порядке. 404 говорит только об адресе.' }),
-      3: tr({ uz: "O'zi tuzalmaydi — manzil xato bo'lsa, server har safar 404 deyveradi. Harflarni tuzatish kerak.", ru: 'Само не починится — пока адрес неверный, сервер каждый раз будет отвечать 404. Нужно исправить буквы.' }),
-      default: tr({ uz: "404 = manzil topilmadi. Birinchi qadam — endpoint harflarini tekshirish.", ru: '404 = адрес не найден. Первый шаг — проверить буквы эндпоинта.' })
+      1: tr({ uz: "Kompyuterda ayb yo'q — 404 serverdan kelgan javob.", ru: 'Компьютер не виноват — 404 пришёл от сервера.' }),
+      2: tr({ uz: "React joyida — 404 u haqida gapirmayapti.", ru: 'React в порядке — 404 говорит не о нём.' }),
+      3: tr({ uz: "O'zi tuzalmaydi — server har safar 404 deyveradi.", ru: 'Само не починится — сервер каждый раз будет отвечать 404.' }),
+      default: tr({ uz: "404 — «bunday eshik yo'q»: nimani tekshirish kerak?", ru: '404 — «такой двери нет»: что стоит проверить?' })
     }} />
 );
 

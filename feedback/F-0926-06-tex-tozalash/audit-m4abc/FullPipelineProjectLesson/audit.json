@@ -1,0 +1,264 @@
+{
+ "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+ "lessonId": "cicd-full-pipeline-4c-03-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN NIMA QILAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Bugun 5 nuqtani bitta LENTAga birlashtiramiz, jurnal o'qishni va eski yukni qaytari",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🧳 📦 Yig'ish ✓ → 🔍 Skaner ✓ → 📐 O'lcham ramkasi ✓ → 🎁 O'rash ✓ → ✈️ Uchirish ✓",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Qizil chiroq yongan qatorni toping va bosing",
+     "box": "dbg-code",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "- run: npm run build # 4. O'rash",
+     "b": "🎁 O'rash npm run build",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "name: CI on: push jobs: lenta: runs-on: ubuntu-latest steps: - run: npm install # 1. Yig'ish - run: npm test #",
+     "b": "🎁 O'rash npm run build",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-warn fade-step",
+     "gap": 0
+    }
+   ],
+   "scroll": 6,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "REPO SAHIFASI",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.8,
+     "a": "B Jurnal o'qilib sabab topiladi, kerak bo'lsa eski yukka qaytariladi",
+     "b": "To'g'ri! Avval LENTA JURNALI o'qiladi — sabab topiladi. Tezkor yechim kerak bo'lsa, oxirgi yashil versiyaga (e",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "YAKUNIY SAVOL TABLO qizil bo'lib qolsa, birinchi navbatda nima qilinadi?",
+     "box": "fade-up delay-1",
+     "gap": 24
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "case",
+   "inp": [
+    {
+     "label": "ci.yml",
+     "ph": "?",
+     "gap": 12
+    },
+    {
+     "label": "jobs: lenta: steps: - run: npm install - run: npm test - run: eslint . - run: npm run buil",
+     "ph": "?",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": ".GITHUB/WORKFLOWS/CI.YML — BO'SH JOYNI TO'LDIRING",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1 START SIGNALI 2 SEYF yozuvi",
+     "box": "editor",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

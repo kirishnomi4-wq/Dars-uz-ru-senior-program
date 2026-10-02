@@ -1,0 +1,565 @@
+{
+ "file": "src/4-Modull/PostgresCrudLesson.jsx",
+ "lessonId": "pg-crud-04-05-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Foydalanuvchi ko'radigan chiroyli tomon",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA MAHSULOTLAR ASOSAN QAYERDA SAQLANADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Ma'lumot qator-ustun bo'lib bazada yotadi",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aslida ma'lumot bazada (PostgreSQL) yashaydi — sayt yopilsa ham yo'qolmaydi. Bugun o'sha b",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN SHU JADVAL USTIDA ISHLAYMIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ qo'shamiz · ko'ramiz · o'zgartiramiz · o'chiramiz",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 56,
+     "left": "sql-box ",
+     "right": "frame-dash",
+     "hs": [
+      166,
+      110
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALINING \"CHIZMASI\"",
+     "box": "sql-box ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 24,
+     "left": "pick-row ",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      42,
+      66
+     ]
+    },
+    {
+     "diff": 24,
+     "left": "pick-row on",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      42,
+      66
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QO'SHILADIGAN MAHSULOTLAR",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.79,
+     "a": "Ma'lumotni o'qib olish — SELECT buyrug'i. SELECT * FROM products = \"products jadvalidagi hamma ustunni ko'rsat",
+     "b": "O'qilishi: \"products jadvalidan faqat nom va narx ustunlarini ko'rsat\".",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "O'qilishi: \"products jadvalidan hamma narsani ko'rsat\".",
+     "box": "sql-box ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "O'qilishi: \"products jadvalidan faqat nom va narx ustunlarini ko'rsat\".",
+     "box": "sql-box ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "Qimmatlar: narx > 100000"
+    }
+   ],
+   "eqh": [
+    {
+     "diff": 27,
+     "left": "chip ",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      39,
+      66
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA (2 TA TOPILDI)",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA (1 TA TOPILDI)",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 39,
+     "left": "sql-box ",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      97,
+      136
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SO'ROV: KLAVIATURA (ID=1) NARXINI YANGILASH",
+     "box": "srunner",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ Bajarildi",
+     "box": "sql-box ",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 27,
+     "left": "sql-box ",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      74,
+      101
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SO'ROV: QULOQCHIN (ID=3) NI O'CHIRISH",
+     "box": "srunner",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ Bajarildi",
+     "box": "sql-box ",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "challenge",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "QAYSI AMALNI BAJARASIZ?",
+     "box": "mn-event",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Zamonaviy usul: siz oddiy tilda nima xohlashingizni aytasiz — AI SQL yozadi. Lekin muhimi: AI yozgan kodni o'q",
+     "b": "Vazifa tanlang → AI SQL yozadi → tekshirib bajaring",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 24,
+     "left": "pick-row ",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      42,
+      66
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA VAZIFA BERING (ODDIY TILDA)",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 91,
+     "left": "ai-card",
+     "right": "frame-dash",
+     "hs": [
+      201,
+      110
+     ]
+    },
+    {
+     "diff": 7,
+     "left": "ai-card",
+     "right": "dtable-wrap fade-up",
+     "hs": [
+      143,
+      136
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNING SO'ROVINGIZ",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — USERS JADVALI",
+     "box": "dtable-wrap fade-up",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "AI arzon mahsulotlarni so'radi, lekin so'rov ishlamayapti — baza \"bunday jadval yo'q\" deyapti. Xato qatorni to",
+     "b": "👆 Xato bor qatorni toping va bosing",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "ai-card fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "code-box",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": "1 -- products jadvaliga yangi mahsulot qo'shing",
+     "ph": "INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Mana SQL Editor (muharrir). 2-qatorga INSERT yozing — masalan: INSERT INTO products (nom, narx, soni) VALUES (",
+     "b": "1 INSERT INTO products 2 VALUES (...) 3 'nom', narx, soni",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)",
+     "b": "1 INSERT INTO products 2 VALUES (...) 3 'nom', narx, soni",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 INSERT INTO products 2 VALUES (...) 3 'nom', narx, soni",
+     "box": "vsc fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TERMINAL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PRODUCTS JADVALI",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "PRODUCTS JADVALI",
+     "box": "code-box",
+     "gap": 18
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

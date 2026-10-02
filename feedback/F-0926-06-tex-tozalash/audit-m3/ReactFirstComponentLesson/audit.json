@@ -1,0 +1,506 @@
+{
+ "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+ "lessonId": "react-first-component-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KOMPYUTERINGIZDA",
+     "box": "frame fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "KOMPYUTERINGIZDA",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, HOZIR NIMA YUZ BERDI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING NATIJANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ mana shu qatorni dars oxirida to'liq o'zingiz yozasiz",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 61,
+     "left": "code-box fade-up delay-1",
+     "right": "frame-dash",
+     "hs": [
+      181,
+      120
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TERMINAL — BUYRUQLARNI BOSING",
+     "box": "code-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — BRAUZERINGIZDA",
+     "box": "frame-dash",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FAYL NIMA QILADI? 0 / 4",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FAYL NIMA QILADI? 1 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FAYL NIMA QILADI? 2 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FAYL NIMA QILADI? 3 / 4",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FAYL NIMA QILADI? 4 / 4",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QOIDA NIMA DEYDI? 0 / 3",
+     "box": "frame-dash",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QOIDA NIMA DEYDI? 1 / 3",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QOIDA NIMA DEYDI? 2 / 3",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QOIDA NIMA DEYDI? 3 / 3",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92%",
+     "box": "cm-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BLOXY-PRESS — HAR TORT = BITTA CHAQIRUV",
+     "box": "cm cm--lever ",
+     "gap": 20
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BLOXY-PRESS — NOM-KAPSULA = PROPS",
+     "box": "cm cm--capsule ",
+     "gap": 20
+    },
+    {
+     "pos": "tepada",
+     "t": "Adopt NOM-KAPSULA",
+     "box": "cm-body",
+     "gap": 0
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92%",
+     "box": "cm-body",
+     "gap": -2
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🐾 ▶ Adopt Me! 👍 92%",
+     "box": "cm-body",
+     "gap": -2
+    },
+    {
+     "pos": "tepada",
+     "t": "Blox NOM-KAPSULA",
+     "box": "cm-body",
+     "gap": 0
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🐾 ▶ Adopt Me! 👍 92% 🍇 ▶ Blox Fruits 👍 95%",
+     "box": "cm-body",
+     "gap": -2
+    },
+    {
+     "pos": "tepada",
+     "t": "Brookhaven NOM-KAPSULA",
+     "box": "cm-body",
+     "gap": 0
+    },
+    {
+     "pos": "tagida",
+     "t": "🐾 ▶ Adopt Me! 👍 92% 🐾 ▶ Adopt Me! 👍 92% 🍇 ▶ Blox Fruits 👍 95% 🏠 ▶ Brookhaven 👍 89%",
+     "box": "cm-body",
+     "gap": -2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "✓Chaqiruvda yoziladi: name=\"Blox Fruits\"📦 \"Blox Fruits\"",
+     "b": "name=\"Blox Fruits\" ↓ props ↓ {props.name} ↓ Blox Fruits",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1Chaqiruvda yoziladi: name=\"Blox Fruits\" ↓ 2Komponent uni props orqali qabul qiladi ↓ 3JSX",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KOD ICHIDA",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BLOXY-PRESS — RENTGEN REJIMI",
+     "box": "cm cm--xray ",
+     "gap": 19
+    },
+    {
+     "pos": "tagida",
+     "t": "BLOXY-PRESS — RENTGEN REJIMI",
+     "box": "code-box fade-up delay-2",
+     "gap": 18
+    },
+    {
+     "pos": "tepada",
+     "t": "NOM-KAPSULA",
+     "box": "cm-body",
+     "gap": 0
+    },
+    {
+     "pos": "tagida",
+     "t": "latok bo'sh…",
+     "box": "cm-body",
+     "gap": -2
+    },
+    {
+     "pos": "tagida",
+     "t": "✓Chaqiruvda yoziladi: name=\"Blox Fruits\"📦 \"Blox Fruits\" ↓ 2Komponent uni props orqali qab",
+     "box": "btn fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 64,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s11",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Sayt pastiga footer yasab ber\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KARTOCHKANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s14",
+   "type": "debug",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI GameCard komponentini yozdim:",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "dbg fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👆 Xato bor qatorni toping va bosing",
+     "box": "dbg-code",
+     "gap": 10
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 19,
+   "id": "s15",
+   "type": "test",
+   "inp": [
+    {
+     "label": "3 <div>",
+     "ph": "<GameCard name=\"Blox Fruits\" />",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Mana haqiqiy dasturchi muhiti — VS Code'da App.jsx ochiq. 4-qatorda komponent chaqiruvi yetishmayapti: <GameCa",
+     "b": "4-qatorni to'liq yozing: <GameCard + name=\"…\" + />",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 <GameCard — Katta harf 2 name=\"…\" props 3 /> yopilishi",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — LOCALHOST:5173",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

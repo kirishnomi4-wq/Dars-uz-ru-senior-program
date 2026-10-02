@@ -267,38 +267,38 @@ const RECAPS = {
   3: {
     title: { uz: 'Ikki savol', ru: 'Два вопроса' },
     cards: [
-      { ic: '❓', h: { uz: 'Ikki savol', ru: 'Два вопроса' }, body: { uz: <>Har ishga ikki savol beriladi: buni <b>nechta odam so'raydi</b> va u <b>qancha vaqt oladi</b>. Bitta savol yetmaydi — ikkalasi birga qarorni beradi.</>, ru: <>Каждой задаче задают два вопроса: <b>сколько людей об этом просят</b> и <b>сколько времени она займёт</b>. Одного вопроса мало — решение дают оба вместе.</> } },
-      { ic: '👥', h: { uz: "Birinchi savol — odam haqida", ru: 'Первый вопрос — про людей' }, body: { uz: <>«Soatlik narxlar»ni deyarli hamma so'raydi, «Zalni 3D'da aylanib ko'rish»ni esa kam odam. Shu savol ishni <b>ko'pchilikka kerakmi</b> deb ajratadi.</>, ru: <>«Цены по часам» спрашивают почти все, а «Пройтись по залу в 3D» — единицы. Этот вопрос отделяет то, что <b>нужно многим</b>.</> } },
-      { ic: '⏱', h: { uz: 'Ikkinchi savol — vaqt haqida', ru: 'Второй вопрос — про время' }, body: { uz: <>Bir kunlik ish bilan uch haftalik ish bir xil emas. Shuning uchun ikkinchi savol beriladi: <b>bu ish qancha vaqt oladi</b>?</>, ru: <>Задача на один день и задача на три недели — не одно и то же. Поэтому задают второй вопрос: <b>сколько времени она займёт</b>?</> }, ask: { uz: "Ikkala ishni ham hamma so'rasa, ularni nima ajratadi?", ru: 'Если обе задачи просят все — что тогда их различает?' } }
+      { ic: '❓', h: { uz: 'Ikki savol', ru: 'Два вопроса' }, body: { uz: <>Har ishga ikki savol beriladi: <b>nechta odam so'raydi</b> va <b>qancha vaqt oladi</b>.</>, ru: <>Каждой задаче задают два вопроса: <b>сколько людей просят</b> и <b>сколько времени займёт</b>.</> } },
+      { ic: '👥', h: { uz: "Birinchi savol — odam haqida", ru: 'Первый вопрос — про людей' }, body: { uz: <>Birinchi savol <b>ko'pchilikka kerak</b> ishni kam odamga keraklisidan ajratadi.</>, ru: <>Первый вопрос отделяет то, что <b>нужно многим</b>, от того, что нужно единицам.</> } },
+      { ic: '⏱', h: { uz: 'Ikkinchi savol — vaqt haqida', ru: 'Второй вопрос — про время' }, body: { uz: <>Bir kunlik va uch haftalik ish farq qiladi — shuning uchun <b>vaqt</b> ham so'raladi.</>, ru: <>Задача на день и задача на три недели разные — поэтому спрашивают и про <b>время</b>.</> }, ask: { uz: "Ikkala ishni ham hamma so'rasa, ularni nima ajratadi?", ru: 'Если обе задачи просят все — что тогда их различает?' } }
     ]
   },
   5: {
     title: { uz: "To'rt katak", ru: 'Четыре клетки' },
     cards: [
-      { ic: '🎯', h: { uz: "To'rt katak", ru: 'Четыре клетки' }, body: { uz: <>Ikki javob kesishgan joy ishning navbatini aytadi: ko'p so'raladigan va tez ish — <b>darrov qilinadi</b>; ko'p so'raladigan, uzoq ish — <b>rejaga tushadi</b>.</>, ru: <>Место, где пересекаются два ответа, и говорит очередь задачи: то, что просят многие и делается быстро, — <b>делаем сразу</b>; то, что просят многие, но делается долго, — <b>ставим в план</b>.</> } },
-      { ic: '🌱', h: { uz: 'Kam so\'raladigan ishlar', ru: 'Задачи, которые просят редко' }, body: { uz: <>Kam odam so'raydigan ish tez bo'lsa — <b>vaqt bo'lsa</b> qilinadi. Uzoq bo'lsa — <b>kerak emas</b>: ko'p vaqt ketadi, foydasi esa oz.</>, ru: <>Если такую задачу можно сделать быстро — делаем, <b>когда будет время</b>. Если долго — <b>не нужно</b>: времени уйдёт много, а пользы мало.</> } },
-      { ic: '🧭', h: { uz: 'Kataklarni qanday o\'qiymiz', ru: 'Как читать клетки' }, body: { uz: <>Yuqoriga qaragan o'q: buni nechta odam so'raydi. O'ngga qaragan o'q: qancha vaqt oladi. Ikki javob <b>kesishgan katak</b> — ishning joyi.</>, ru: <>Стрелка вверх: сколько людей об этом просят. Стрелка вправо: сколько времени это займёт. Клетка, где <b>ответы пересеклись</b>, — место задачи.</> }, ask: { uz: "Kam so'raladigan uzoq ish qaysi katakka tushadi?", ru: 'В какую клетку попадёт долгая задача, которую просят редко?' } }
+      { ic: '🎯', h: { uz: "To'rt katak", ru: 'Четыре клетки' }, body: { uz: <>Ko'p so'raladigan tez ish <b>darrov qilinadi</b>, uzoq ish esa <b>rejaga tushadi</b>.</>, ru: <>То, что просят многие и делается быстро, <b>делаем сразу</b>, а долгое — <b>ставим в план</b>.</> } },
+      { ic: '🌱', h: { uz: 'Kam so\'raladigan ishlar', ru: 'Задачи, которые просят редко' }, body: { uz: <>Kam so'raladigan tez ish <b>vaqt bo'lsa</b> qilinadi, uzoq ish esa <b>kerak emas</b>.</>, ru: <>Редкую просьбу, если она быстрая, делаем <b>когда будет время</b>, а долгую — <b>не делаем</b>.</> } },
+      { ic: '🧭', h: { uz: 'Kataklarni qanday o\'qiymiz', ru: 'Как читать клетки' }, body: { uz: <>Yuqoriga o'q — odam soni, o'ngga o'q — vaqt, ular <b>kesishgan katak</b> — ishning joyi.</>, ru: <>Стрелка вверх — число людей, вправо — время, а <b>клетка на пересечении</b> — место задачи.</> }, ask: { uz: "Kam so'raladigan uzoq ish qaysi katakka tushadi?", ru: 'В какую клетку попадёт долгая задача, которую просят редко?' } }
     ]
   },
   7: {
     title: { uz: 'Qayerda chiqarilgani ham muhim', ru: 'Важно и то, где это вышло' },
     cards: [
-      { ic: '📱', h: { uz: 'Qayerda chiqarilgani ham muhim', ru: 'Важно и то, где это вышло' }, body: { uz: <>Bir xil ish har joyda bir xil natija bermaydi: <b>odam ko'p bo'lgan joyda</b> u ko'proq odamga yetib boradi.</>, ru: <>Одна и та же вещь в разных местах даёт разный результат: <b>там, где людей уже много</b>, она доходит до большего числа людей.</> } },
-      { ic: '👻', h: { uz: 'Bir xil ish, ikki ilova', ru: 'Одна и та же вещь, два приложения' }, body: { uz: <>Stories'ni Snapchat (yuborilgan surat ko'rilgach yo'qoladigan ilova) o'ylab topdi, Instagram esa uni ochiq ko'chirdi. Ish bir xil edi — <b>natija boshqacha bo'ldi</b>.</>, ru: <>Stories придумал Snapchat (приложение, где отправленное фото исчезает после просмотра), а Instagram открыто их скопировал. Вещь была одна и та же — <b>результат вышел разный</b>.</> } },
-      { ic: '👥', h: { uz: 'Farqni odam soni qildi', ru: 'Разницу сделало число людей' }, body: { uz: <>Instagram'da odam allaqachon ko'p edi: yangi narsa <b>birinchi kunidayoq</b> juda ko'p odamga yetib bordi.</>, ru: <>В Instagram людей уже было много: новинка <b>в первый же день</b> дошла до огромного числа людей.</> }, ask: { uz: "Stories ikki ilovada bir xil edi — nega natija boshqacha bo'ldi?", ru: 'Stories в двух приложениях были одинаковые — почему результат вышел разный?' } }
+      { ic: '📱', h: { uz: 'Qayerda chiqarilgani ham muhim', ru: 'Важно и то, где это вышло' }, body: { uz: <>Bir xil ish <b>odam ko'p bo'lgan joyda</b> ko'proq odamga yetib boradi.</>, ru: <>Одна и та же вещь <b>там, где людей много</b>, доходит до большего числа людей.</> } },
+      { ic: '👻', h: { uz: 'Bir xil ish, ikki ilova', ru: 'Одна и та же вещь, два приложения' }, body: { uz: <>Stories'ni Snapchat o'ylab topdi, Instagram ochiq ko'chirdi — ish bir xil, <b>natija boshqa</b>.</>, ru: <>Stories придумал Snapchat, Instagram открыто их скопировал — вещь одна, а <b>результат разный</b>.</> } },
+      { ic: '👥', h: { uz: 'Farqni odam soni qildi', ru: 'Разницу сделало число людей' }, body: { uz: <>Instagram'da odam ko'p edi — yangilik <b>birinchi kunidayoq</b> ko'pchilikka yetdi.</>, ru: <>В Instagram людей уже было много — новинка <b>в первый же день</b> дошла до огромного числа людей.</> }, ask: { uz: "Stories ikki ilovada bir xil edi — nega natija boshqacha bo'ldi?", ru: 'Stories в двух приложениях были одинаковые — почему результат вышел разный?' } }
     ]
   },
   11: {
     title: { uz: 'Vaqt teng bo\'lganda', ru: 'Когда время одинаковое' },
     cards: [
-      { ic: '⚖️', h: { uz: "Vaqt teng bo'lsa", ru: 'Если время одинаковое' }, body: { uz: <>Ikki ish ham bir kunlik bo'lsa, ikkinchi savol ularni ajratmaydi. Qarorni <b>birinchi savol</b> hal qiladi: buni nechta odam so'raydi.</>, ru: <>Если обе задачи на один день, второй вопрос их не различит. Решение принимает <b>первый вопрос</b>: сколько людей об этом просят.</> } },
-      { ic: '🔄', h: { uz: 'Qaror bir marta qilinmaydi', ru: 'Решение принимают не один раз' }, body: { uz: <>Ish vaqti o'zgarsa, karta <b>yangi katakka ko'chadi</b> — bu xato emas, ish shunday yuradi.</>, ru: <>Если время задачи изменилось, карточка <b>переезжает в новую клетку</b> — это не ошибка, так и работает.</> } },
-      { ic: '🧑‍💻', h: { uz: 'Vaqtni dasturchi aytadi', ru: 'Время называет программист' }, body: { uz: <>Ish qancha vaqt olishini siz emas, <b>kodni yozadigan odam</b> biladi. Yangi vaqt kelsa, kataklar qayta ko'riladi.</>, ru: <>Сколько времени займёт задача, знаете не вы, а <b>тот, кто пишет код</b>. Пришло новое время — клетки пересматриваем.</> }, ask: { uz: "Ish vaqti ikki hafta uzaysa, kataklarda nima o'zgaradi?", ru: 'Если время задачи вырастет на две недели — что изменится в клетках?' } }
+      { ic: '⚖️', h: { uz: "Vaqt teng bo'lsa", ru: 'Если время одинаковое' }, body: { uz: <>Vaqt teng bo'lsa, qarorni <b>birinchi savol</b> hal qiladi: buni nechta odam so'raydi.</>, ru: <>При равном времени решает <b>первый вопрос</b>: сколько людей об этом просят.</> } },
+      { ic: '🔄', h: { uz: 'Qaror bir marta qilinmaydi', ru: 'Решение принимают не один раз' }, body: { uz: <>Ish vaqti o'zgarsa, karta <b>yangi katakka ko'chadi</b> — bu xato emas.</>, ru: <>Изменилось время задачи — карточка <b>переезжает в новую клетку</b>, и это не ошибка.</> } },
+      { ic: '🧑‍💻', h: { uz: 'Vaqtni dasturchi aytadi', ru: 'Время называет программист' }, body: { uz: <>Vaqtni <b>kodni yozadigan odam</b> aytadi, yangi vaqt kelsa kataklar qayta ko'riladi.</>, ru: <>Время называет <b>тот, кто пишет код</b>, и с новым сроком клетки пересматривают.</> }, ask: { uz: "Ish vaqti ikki hafta uzaysa, kataklarda nima o'zgaradi?", ru: 'Если время задачи вырастет на две недели — что изменится в клетках?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -316,7 +316,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -324,13 +324,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -409,7 +409,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirishni ochish</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Eslatmani ochish', ru: '📖 Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -490,7 +490,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -498,8 +498,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -510,7 +511,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -886,11 +887,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: 'Ikki ishni qaysi savol ajratadi', ru: 'Какой вопрос различает две задачи' })}
     options={[tr({ uz: 'Ishning qancha vaqt olishi', ru: 'Сколько времени займёт задача' }), tr({ uz: "Ishni kim birinchi so'ragani", ru: 'Кто попросил задачу первым' }), tr({ uz: "Ishning chiroyli ko'rinishi", ru: 'Насколько красиво она выглядит' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Birinchi savol ikkalasini teng qildi, ajratgani ikkinchisi: qancha vaqt oladi.", ru: 'Первый вопрос уравнял обе, различил второй: сколько времени займёт.' })}
+    explainCorrect={tr({ uz: "Ikkalasini ko'p odam so'raydi, farq faqat vaqtda.", ru: 'Обе просят многие — разница только во времени.' })}
     explainWrong={{
-      1: tr({ uz: "Kim birinchi so'ragani kataklarda so'ralmaydi. Ikkalasini ajratgani — qancha vaqt olishi.", ru: 'Кто попросил первым — в клетках не спрашивают. Различает их время выполнения.' }),
-      2: tr({ uz: "Ishning ko'rinishi katakdagi ikki savoldan biri emas. Ajratgani — qancha vaqt olishi.", ru: 'Внешний вид — не один из двух вопросов клеток. Различает их время выполнения.' }),
-      default: tr({ uz: "Ikkalasini ham deyarli hamma so'raydi — demak ajratadigani ikkinchi savol: qancha vaqt oladi.", ru: 'Обе просят почти все — значит, различает второй вопрос: сколько времени займёт.' })
+      1: tr({ uz: "Kim birinchi so'ragani kataklarda umuman so'ralmaydi.", ru: 'Кто попросил первым — клетки об этом не спрашивают.' }),
+      2: tr({ uz: "Ko'rinish katakdagi ikki savoldan biri emas.", ru: 'Внешний вид — не один из двух вопросов клеток.' }),
+      default: tr({ uz: "Birinchi savolda ikkalasi teng chiqdi — ikkinchisiga qarang.", ru: 'По первому вопросу обе равны — посмотрите на второй.' })
     }}
   />
 );
@@ -1058,11 +1059,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: "Bo'sh joylar ishining katagi", ru: 'Клетка задачи о свободных местах' })}
     options={[tr({ uz: '🎯 Darrov qilinadi', ru: '🎯 Делаем сразу' }), tr({ uz: '🏔 Rejaga tushadi', ru: '🏔 Ставим в план' }), tr({ uz: "🌱 Vaqt bo'lsa", ru: '🌱 Когда будет время' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Ko'p odam so'raydi, shuning uchun tashlanmaydi; uzoq vaqt oladi, shuning uchun rejaga tushadi.", ru: 'Просят многие, поэтому не выбрасываем; времени много, поэтому ставим в план.' })}
+    explainCorrect={tr({ uz: "Ko'p so'raladi, lekin uzoq — bunday ish rejaga tushadi.", ru: 'Просят многие, но делать долго — такая задача идёт в план.' })}
     explainWrong={{
-      0: tr({ uz: "Uch hafta bir haftaga sig'maydi — darrov qilib bo'lmaydi. Ko'p odam so'ragani uchun u rejaga tushadi.", ru: 'Три недели в одну неделю не влезут — сразу не сделать. А раз просят многие — задача идёт в план.' }),
-      2: tr({ uz: "«Vaqt bo'lsa» katagiga kam odam so'raydigan ish tushadi. Buni esa deyarli hamma so'raydi.", ru: 'В клетку «Когда будет время» попадает то, что просят немногие. А это просят почти все.' }),
-      default: tr({ uz: "Ko'p odam so'raydi, lekin uch hafta oladi — bunday ish rejaga tushadi.", ru: 'Просят многие, но времени — три недели: такая задача идёт в план.' })
+      0: tr({ uz: "Uch haftalik ish bir haftaga sig'maydi — darrov bo'lmaydi.", ru: 'Три недели в одну неделю не влезут — сразу не выйдет.' }),
+      2: tr({ uz: "Bu katak kam so'raladigan ishga, buni esa hamma so'raydi.", ru: 'Эта клетка для редких просьб, а это просят почти все.' }),
+      default: tr({ uz: "Ikki javobni birga qo'ying: ko'p so'raladi, uch hafta oladi.", ru: 'Сложите два ответа: просят многие, делать три недели.' })
     }}
   />
 );
@@ -1155,11 +1156,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: "Stories nega Instagram'da ko'proq ishlatildi", ru: 'Почему Stories больше пошли в Instagram' })}
     options={[tr({ uz: 'Instagram uni chiroyliroq qilib chiqargan', ru: 'Instagram сделал их красивее' }), tr({ uz: "Instagram'da reklama ko'proq ko'rsatilgan", ru: 'В Instagram было больше рекламы' }), tr({ uz: "Instagram'da allaqachon odam ko'p edi", ru: 'В Instagram уже было много людей' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Bir xil ish odam ko'p joyda ko'proq odamga yetib bordi.", ru: 'Одна и та же вещь там, где людей больше, дошла до большего числа людей.' })}
+    explainCorrect={tr({ uz: "Bir xil ish odam ko'p joyda ko'proq odamga yetadi.", ru: 'Одна и та же вещь там, где людей больше, доходит до большего числа.' })}
     explainWrong={{
-      0: tr({ uz: "Ko'rinish emas — Instagram uni ochiq ko'chirgan edi. Farqni odam soni qildi.", ru: 'Дело не во внешнем виде — Instagram скопировал их открыто. Разницу сделало число людей.' }),
-      1: tr({ uz: "Reklama haqida voqeada gap yo'q. Farqni odam soni qildi.", ru: 'О рекламе в истории речи не было. Разницу сделало число людей.' }),
-      default: tr({ uz: "Bir xil ish edi — farqni odam soni qildi: Instagram'da allaqachon odam ko'p edi.", ru: 'Вещь была одна и та же — разницу сделало число людей: в Instagram их уже было много.' })
+      0: tr({ uz: "Ko'rinish emas — Instagram uni ochiq ko'chirgan edi.", ru: 'Дело не во внешнем виде — Instagram скопировал их открыто.' }),
+      1: tr({ uz: "Voqeada reklama haqida gap yo'q edi.", ru: 'В истории о рекламе речи не было.' }),
+      default: tr({ uz: "Ish bir xil edi — ikki ilova nimasi bilan farq qilardi?", ru: 'Вещь была одна и та же — чем отличались два приложения?' })
     }}
   />
 );
@@ -1816,11 +1817,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: "Vaqt teng bo'lsa qaysi ish birinchi", ru: 'Какая задача первой, если время одинаковое' })}
     options={[tr({ uz: "Ko'proq odam so'ragani", ru: 'Та, которую просят больше людей' }), tr({ uz: "Ro'yxatda yuqorida turgani", ru: 'Та, что выше в списке' }), tr({ uz: "Qilish qiziqroq bo'lgani", ru: 'Та, которую интереснее делать' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Vaqt teng bo'lsa, qarorni birinchi savol hal qiladi: buni nechta odam so'raydi.", ru: 'При равном времени решение принимает первый вопрос: сколько людей об этом просят.' })}
+    explainCorrect={tr({ uz: "Vaqt teng bo'lsa, qarorni birinchi savol hal qiladi.", ru: 'При равном времени решает первый вопрос.' })}
     explainWrong={{
-      1: tr({ uz: "Ro'yxatdagi o'rni qarorga ta'sir qilmaydi. Vaqt teng bo'lsa, ko'proq odam so'ragani birinchi.", ru: 'Место в списке на решение не влияет. При равном времени первой идёт та, которую просят больше людей.' }),
-      2: tr({ uz: "Qiziqarliligi katakdagi ikki savoldan biri emas. Vaqt teng bo'lsa, ko'proq odam so'ragani birinchi.", ru: 'Интересность — не один из двух вопросов клеток. При равном времени первой идёт та, которую просят больше людей.' }),
-      default: tr({ uz: "Vaqt teng — demak qarorni birinchi savol hal qiladi: buni nechta odam so'raydi.", ru: 'Время равное — значит решение принимает первый вопрос: сколько людей об этом просят.' })
+      1: tr({ uz: "Ro'yxatdagi o'rin qarorga ta'sir qilmaydi.", ru: 'Место в списке на решение не влияет.' }),
+      2: tr({ uz: "Qiziqlik katakdagi ikki savoldan biri emas.", ru: 'Интересность — не один из двух вопросов клеток.' }),
+      default: tr({ uz: "Vaqt teng — demak, ikkinchi savol ularni ajratmaydi.", ru: 'Время равное — значит, второй вопрос их не различит.' })
     }}
   />
 );

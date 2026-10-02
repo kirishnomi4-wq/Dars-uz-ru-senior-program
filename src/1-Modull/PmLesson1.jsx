@@ -303,15 +303,15 @@ const RECAPS = {
   4: {
     title: { uz: 'Sayt aniq odamlar uchun ochiladi', ru: 'Сайт делают для конкретных людей' }, cards: [
       { ic: '🎯', h: { uz: 'Har bir sayt aniq odamlar guruhi uchun ishlaydi', ru: 'Каждый сайт работает для конкретной группы людей' },
-        body: { uz: <>YouTube — bo'sh vaqtida qiziqarli narsa izlaydiganlar uchun. Telegram — uzoqdagi yaqinlari bilan gaplashadiganlar uchun. Bu guruh saytning <b>auditoriyasi</b> deyiladi.</>, ru: <>YouTube — для тех, кто ищет интересное в свободное время. Telegram — для тех, кто общается с далёкими близкими. Эта группа называется <b>аудиторией</b> сайта.</> },
+        body: { uz: <>Sayt kimlar uchun ishlasa, o'sha guruh saytning <b>auditoriyasi</b> deyiladi.</>, ru: <>Группа людей, для которой работает сайт, называется его <b>аудиторией</b>.</> },
         vis: { uz: <RcFlow items={['👥 Aniq odamlar', '🌐 Sayt', '😊 Ular qaytib keladi']} />, ru: <RcFlow items={['👥 Конкретные люди', '🌐 Сайт', '😊 Они возвращаются']} /> },
         ask: { uz: "Sevimli saytingiz kimlar uchun qilingan deb o'ylaysiz?", ru: 'Как думаете, для кого сделан ваш любимый сайт?' } },
       { ic: '🌯', h: { uz: 'Lavash do\'koni kartasi ham shunday boshlanadi', ru: 'Карточка лавашной начинается так же' },
-        body: { uz: <>KIM — tanaffusda lavash oladigan maktab o'quvchilari. Sayt ularga aniq gapiradi: <b>oldindan buyurtma qiling, navbatsiz oling</b>.</>, ru: <>КТО — школьники, которые берут лаваш на перемене. Сайт говорит им прямо: <b>закажите заранее, заберите без очереди</b>.</> },
+        body: { uz: <>KIM — tanaffusdagi o'quvchilar, sayt ularga aytadi: <b>oldindan buyurtma qiling</b>.</>, ru: <>КТО — школьники на перемене, и сайт говорит им: <b>закажите заранее</b>.</> },
         vis: { uz: <RcFlow items={['🎒 O\'quvchi', '📱 Oldindan buyurtma', '🌯 Navbatsiz']} />, ru: <RcFlow items={['🎒 Школьник', '📱 Заказ заранее', '🌯 Без очереди']} /> },
         ask: { uz: 'Lavash do\'koni saytiga yana kimlar kirishi mumkin?', ru: 'Кто ещё может зайти на сайт лавашной?' } },
       { ic: '🏆', h: { uz: 'Mashhurlik — natija, sabab emas', ru: 'Популярность — результат, а не причина' },
-        body: { uz: <>Avval aniq odamlarning qiyinchiligi hal qilinadi, keyin ular o'zi kelaveradi. <b>Tartibni almashtirib bo'lmaydi.</b></>, ru: <>Сначала решают трудность конкретных людей — потом они приходят сами. <b>Порядок поменять нельзя.</b></> },
+        body: { uz: <>Avval aniq odamlarning qiyinchiligi hal qilinadi, keyin ular <b>o'zlari keladi</b>.</>, ru: <>Сначала решают трудность конкретных людей, и тогда они <b>приходят сами</b>.</> },
         vis: { uz: <RcFlow items={['✅ Qiyinchilik hal bo\'ldi', '👥 Odamlar keldi', '⭐ Mashhurlik']} />, ru: <RcFlow items={['✅ Трудность решена', '👥 Люди пришли', '⭐ Популярность']} /> },
         ask: { uz: "Sevimli ilovangiz nima uchun mashhur bo'lgan deb o'ylaysiz?", ru: 'Как думаете, почему ваше любимое приложение стало популярным?' } },
     ]
@@ -320,15 +320,15 @@ const RECAPS = {
   6: {
     title: { uz: '«Hamma uchun» — hech kim uchun', ru: '«Для всех» — значит ни для кого' }, cards: [
       { ic: '🤷', h: { uz: '«Hamma uchun» sayt hech kimga aniq gapirmaydi', ru: 'Сайт «для всех» ни с кем не говорит прямо' },
-        body: { uz: <>Hammaga birdek yoqadigan sayt bo'lmaydi: bir xil gap o'quvchiga ham, ofis xodimiga ham to'g'ri kelmaydi — ikkisi ham <b>saytdan chiqib ketadi</b>.</>, ru: <>Сайта, который нравится всем одинаково, не бывает: одни и те же слова не подходят ни школьнику, ни офисному работнику — оба <b>уходят с сайта</b>.</> },
+        body: { uz: <>Hammaga birdek yoqadigan sayt bo'lmaydi — bir xil gap <b>hammaga to'g'ri kelmaydi</b>.</>, ru: <>Сайта, который нравится всем одинаково, не бывает — одни слова подходят <b>не всем</b>.</> },
         vis: { uz: <RcFlow items={['🎒 o\'quvchiga — oldindan buyurtma', '🧑‍💼 ofisga — doimiy tushlik']} sep="·" />, ru: <RcFlow items={['🎒 школьнику — заказ заранее', '🧑‍💼 офису — постоянный обед']} sep="·" /> },
         ask: { uz: 'Hamma sinfdoshingizga birdek yoqadigan bitta o\'yin bormi?', ru: 'Есть игра, которая нравится всем вашим одноклассникам одинаково?' } },
       { ic: '🔍', h: { uz: 'Tor auditoriya — kamchilik emas, kuch', ru: 'Узкая аудитория — не слабость, а сила' },
-        body: { uz: <>«Tanaffusda lavash oladigan o'quvchilar» — endi saytda nima yozishni aniq bilasiz: <b>menyu, narx, oldindan buyurtma</b>.</>, ru: <>«Школьники, которые берут лаваш на перемене» — и вы точно знаете, что писать на сайте: <b>меню, цена, заказ заранее</b>.</> },
+        body: { uz: <>Auditoriya tor bo'lsa, saytda nima yozishni <b>aniq bilasiz</b>: menyu, narx, buyurtma.</>, ru: <>Когда аудитория узкая, вы <b>точно знаете</b>, что писать на сайте: меню, цену, заказ.</> },
         vis: { uz: <RcFlow items={['KIM aniq', 'MUAMMO aniq', 'YECHIM ham aniq']} />, ru: <RcFlow items={['КТО ясно', 'ПРОБЛЕМА ясна', 'РЕШЕНИЕ тоже ясно']} /> },
         ask: { uz: "O'zingiz izlagan narsani «hamma uchun» saytdan topish osonmi?", ru: 'Легко ли найти нужное вам на сайте «для всех»?' } },
       { ic: '🌍', h: { uz: 'Eng katta sayt ham tor auditoriyadan boshlangan', ru: 'Даже самый большой сайт начинался с узкой аудитории' },
-        body: { uz: <>Facebook boshida faqat <b>bitta universitet</b> talabalari uchun ochiq bo'lgan. Dunyoga ochilish — keyingi qadam bo'lgan.</>, ru: <>Facebook сначала был открыт только для студентов <b>одного университета</b>. Выход на весь мир — это уже следующий шаг.</> },
+        body: { uz: <>Facebook ham boshida faqat <b>bitta universitet</b> talabalari uchun ochiq bo'lgan.</>, ru: <>Даже Facebook сначала был открыт только для студентов <b>одного университета</b>.</> },
         vis: { uz: <RcFlow items={['🏫 Bitta universitet', '🔗 Boshqa universitetlar', '🌍 Butun dunyo']} />, ru: <RcFlow items={['🏫 Один университет', '🔗 Другие университеты', '🌍 Весь мир']} /> },
         ask: { uz: 'Faqat sizning sinfingiz uchun qilingan sayt nimasi bilan boshqacha bo\'lardi?', ru: 'Чем отличался бы сайт, сделанный только для вашего класса?' } },
     ]
@@ -337,15 +337,15 @@ const RECAPS = {
   9: {
     title: { uz: 'Birinchi savol — KIM', ru: 'Первый вопрос — КТО' }, cards: [
       { ic: '🧑‍💼', h: { uz: 'Avval so\'raladi: KIM va qanday MUAMMO?', ru: 'Сначала спрашивают: КТО и какая ПРОБЛЕМА?' },
-        body: { uz: <>Dizayn, nom, narx — bularning hammasi <b>keyin</b>. KIM va MUAMMO aniq bo'lsa, qolgan javoblar o'z-o'zidan kelib chiqadi.</>, ru: <>Дизайн, название, цена — всё это <b>потом</b>. Когда КТО и ПРОБЛЕМА ясны, остальные ответы приходят сами.</> },
+        body: { uz: <>Dizayn, nom, narx — keyin, avval <b>KIM va MUAMMO</b> aniqlanadi.</>, ru: <>Дизайн, название, цена — потом, сначала выясняют <b>КТО и ПРОБЛЕМУ</b>.</> },
         vis: { uz: <RcFlow items={['1️⃣ KIM?', '2️⃣ MUAMMO?', '3️⃣ YECHIM?']} />, ru: <RcFlow items={['1️⃣ КТО?', '2️⃣ ПРОБЛЕМА?', '3️⃣ РЕШЕНИЕ?']} /> },
         ask: { uz: 'Yangi ilova o\'ylab topsangiz, birinchi qaysi savolga javob berasiz?', ru: 'Если придумаете новое приложение, на какой вопрос ответите первым?' } },
       { ic: '📇', h: { uz: 'Uch javob — bitta karta', ru: 'Три ответа — одна карточка' },
-        body: { uz: <><b>KIM</b> — tanaffusda shoshgan o'quvchi → <b>MUAMMO</b> — navbatga ulgurmaydi → <b>YECHIM</b> — oldindan buyurtma sahifasi. Har javob keyingisini ochadi.</>, ru: <><b>КТО</b> — школьник, который спешит на перемене → <b>ПРОБЛЕМА</b> — не успевает отстоять очередь → <b>РЕШЕНИЕ</b> — страница заказа заранее. Каждый ответ открывает следующий.</> },
+        body: { uz: <>KIM → MUAMMO → YECHIM: har javob <b>keyingisini ochadi</b>.</>, ru: <>КТО → ПРОБЛЕМА → РЕШЕНИЕ: каждый ответ <b>открывает следующий</b>.</> },
         vis: { uz: <RcFlow items={['🎒 O\'quvchi', '❓ Navbatga ulgurmaydi', '📱 Oldindan buyurtma']} />, ru: <RcFlow items={['🎒 Школьник', '❓ Не успевает в очереди', '📱 Заказ заранее']} /> },
         ask: { uz: "Sinfdoshingiz «sayt qilmoqchiman» desa, unga birinchi nima deysiz?", ru: 'Одноклассник говорит: «Хочу сделать сайт». Что скажете первым?' } },
       { ic: '👀', h: { uz: 'Har odam o\'z narsasini izlaydi', ru: 'Каждый ищет своё' },
-        body: { uz: <>Bitta saytda o'quvchi <b>oldindan buyurtmaga</b>, sotuvchi <b>kelgan buyurtmalarga</b>, doimiy xaridor <b>oxirgi buyurtmaga</b> qaraydi. Shuning uchun kartada eng muhim guruh tanlanadi.</>, ru: <>На одном сайте школьник смотрит на <b>заказ заранее</b>, продавец — на <b>поступившие заказы</b>, постоянный покупатель — на <b>последний заказ</b>. Поэтому в карточке выбирают самую важную группу.</> },
+        body: { uz: <>Har odam o'z narsasini izlaydi, shuning uchun kartada <b>eng muhim guruh</b> tanlanadi.</>, ru: <>Каждый ищет своё, поэтому в карточке выбирают <b>самую важную группу</b>.</> },
         vis: { uz: <RcFlow items={['🎒 oldindan buyurtma', '🧑‍🍳 buyurtmalar', '🧑‍💼 oxirgi buyurtma']} sep="·" />, ru: <RcFlow items={['🎒 заказ заранее', '🧑‍🍳 заказы', '🧑‍💼 последний заказ']} sep="·" /> },
         ask: { uz: 'Bitta ilovada siz va onangiz bir xil narsaga qaraysizmi?', ru: 'В одном приложении вы и ваша мама смотрите на одно и то же?' } },
     ]
@@ -354,15 +354,15 @@ const RECAPS = {
   11: {
     title: { uz: 'To\'liq karta', ru: 'Полная карточка' }, cards: [
       { ic: '🧩', h: { uz: 'To\'liq karta — KIM, MUAMMO va YECHIM birga', ru: 'Полная карточка — КТО, ПРОБЛЕМА и РЕШЕНИЕ вместе' },
-        body: { uz: <>Uch bo'lakning bittasi yetishmasa, karta to'liq emas: nima qurishni ham, kimga kerakligini ham bilmaysiz.</>, ru: <>Если не хватает одной из трёх частей, карточка неполная: непонятно ни что строить, ни кому это нужно.</> },
+        body: { uz: <>Uch bo'lakning bittasi yetishmasa, karta <b>to'liq emas</b>.</>, ru: <>Если не хватает одной из трёх частей, карточка <b>неполная</b>.</> },
         vis: { uz: <RcFlow items={['👤 KIM', '❓ MUAMMO', '💡 YECHIM']} sep="+" />, ru: <RcFlow items={['👤 КТО', '❓ ПРОБЛЕМА', '💡 РЕШЕНИЕ']} sep="+" /> },
         ask: { uz: 'Kartadan MUAMMO qatorini olib tashlasak, nima qoladi?', ru: 'Что останется, если убрать из карточки строку ПРОБЛЕМА?' } },
       { ic: '⚖️', h: { uz: 'Yechim aynan O\'SHA qiyinchilikni hal qilsin', ru: 'Решение должно закрывать ИМЕННО ту трудность' },
-        body: { uz: <>Navbatda turishga vaqti yo'q o'quvchiga — oldindan buyurtma. Yechim boshqa odamniki bo'lsa, <b>hech kimga foydasi tegmaydi</b>.</>, ru: <>Школьнику, у которого нет времени стоять в очереди, — заказ заранее. Если решение чужое, <b>пользы не будет никому</b>.</> },
+        body: { uz: <>Yechim aynan <b>o'sha odamning</b> qiyinchiligini hal qilishi kerak.</>, ru: <>Решение должно снимать трудность <b>именно этого</b> человека.</> },
         vis: { uz: <RcFlow items={['🎒 Vaqti yo\'q', '📱 Oldindan buyurtma']} />, ru: <RcFlow items={['🎒 Нет времени', '📱 Заказ заранее']} /> },
         ask: { uz: 'Sizning yechimingiz do\'stingizning qiyinchiligiga to\'g\'ri keladimi?', ru: 'Подходит ли ваше решение к трудности вашего друга?' } },
       { ic: '🔍', h: { uz: 'To\'liq bo\'lmagan kartani bir savol ochib beradi', ru: 'Неполную карточку выдаёт один вопрос' },
-        body: { uz: <>«Juda chiroyli sayt qilamiz» — KIM uchun? Qaysi MUAMMOga? Javob yo'q — demak bu hali karta emas, faqat istak.</>, ru: <>«Сделаем очень красивый сайт» — для КОГО? К какой ПРОБЛЕМЕ? Ответа нет — значит это ещё не карточка, а просто желание.</> },
+        body: { uz: <>KIM va MUAMMOsiz «chiroyli sayt» — hali karta emas, <b>faqat istak</b>.</>, ru: <>«Красивый сайт» без КТО и ПРОБЛЕМЫ — ещё не карточка, а <b>просто желание</b>.</> },
         vis: { uz: <RcFlow items={['💭 Istak', '❓ 3 savol', '✅ Karta']} />, ru: <RcFlow items={['💭 Желание', '❓ 3 вопроса', '✅ Карточка']} /> },
         ask: { uz: "«O'quvchilar uchun hamma narsa bo'lgan sayt» — bu kartada nima yetishmayapti?", ru: '«Сайт для школьников, где есть всё» — чего не хватает в этой карточке?' } },
     ]
@@ -370,7 +370,7 @@ const RECAPS = {
 };
 
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -388,7 +388,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -397,13 +397,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — идём дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -488,7 +488,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)}` })
               : waiting
@@ -496,8 +496,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${uzOf(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${(options[correctIdx] && options[correctIdx].ru) || uzOf(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? tr(explainCorrect)
               : waiting
@@ -510,7 +511,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -592,7 +593,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема осталась классу непонятной. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. Если хотите, коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -601,7 +602,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс тему освоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:`, ru: `Ответивших мало (${answered}) — по проценту выводы делать сложно. Оцените сами:` })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -1060,12 +1061,12 @@ const Screen4 = (props) => (
     questionText="Sayt birinchi navbatda nima uchun yaratiladi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Sayt birinchi navbatda <span className="italic" style={{ color: T.accent }}>nima uchun</span> yaratiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Ради чего</span> в первую очередь создают сайт?</h2></> }}
     options={[{ uz: 'Ko\'p odam kirib, mashhur bo\'lishi uchun', ru: 'Чтобы заходило много людей и он стал популярным' }, { uz: 'Egasiga pul topib berishi uchun', ru: 'Чтобы приносить деньги владельцу' }, { uz: 'Kimningdir aniq muammosini yechish uchun', ru: 'Чтобы решить конкретную проблему конкретных людей' }, { uz: 'Zamonaviy va chiroyli ko\'rinishi uchun', ru: 'Чтобы выглядеть современно и красиво' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Hammasi muammodan boshlanadi. Muammo yaxshi yechilsa — odamlar o'zi kirib keladi, mashhurlik ham, pul ham shundan keyin keladi.", ru: 'Верно! Всё начинается с проблемы. Если проблема решена хорошо, люди приходят сами — а популярность и деньги приходят уже после.' }}
+    explainCorrect={{ uz: "Avval muammo yechiladi, pul va mashhurlik keyin keladi.", ru: 'Сначала решают проблему, а деньги и популярность приходят потом.' }}
     explainWrong={{
-      0: { uz: 'Mashhurlik — natija, sabab emas. Odamlar saytga muammosini yechgani uchun kiradi, shundan keyingina u mashhur bo\'ladi.', ru: 'Популярность — результат, а не причина. Люди заходят на сайт, чтобы решить свою проблему, и только потом он становится популярным.' },
-      1: { uz: 'Pul ham natija: sayt odamlarga foyda berganidagina pul topadi. Avval — muammo yechimi, keyin daromad.', ru: 'Деньги — тоже результат: сайт зарабатывает, только если приносит людям пользу. Сначала решение проблемы, потом доход.' },
-      3: { uz: 'Chiroyli dizayn kerak, lekin u yechimga xizmat qiladi. Muammoni yechmasa, eng chiroyli saytga ham hech kim qaytib kirmaydi.', ru: 'Красивый дизайн нужен, но он служит решению. Если проблема не решена, на самый красивый сайт никто не вернётся.' },
-      default: { uz: 'Sayt avvalo kimningdir aniq muammosini yechish uchun yaratiladi — qolgani shundan kelib chiqadi.', ru: 'Сайт создают прежде всего ради решения конкретной проблемы конкретных людей — остальное вытекает отсюда.' }
+      0: { uz: 'Mashhurlik — natija, sabab emas.', ru: 'Популярность — результат, а не причина.' },
+      1: { uz: 'Pul ham natija: sayt avval foyda bersagina pul topadi.', ru: 'Деньги — тоже результат: сайт зарабатывает, только принося пользу.' },
+      3: { uz: 'Chiroyli, lekin foydasiz saytga hech kim qaytib kirmaydi.', ru: 'На красивый, но бесполезный сайт никто не возвращается.' },
+      default: { uz: 'Odamlar saytga nima uchun kirishini o\'ylang.', ru: 'Подумайте, зачем люди заходят на сайт.' }
     }} />
 );
 
@@ -1165,12 +1166,12 @@ const Screen5b = (props) => (
     questionText="'Hamma uchun' qilingan sayt nega kam ishlaydi?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>"Hamma uchun" sayt nega <span className="italic" style={{ color: T.accent }}>kam</span> ishlaydi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Почему сайт «для всех» работает <span className="italic" style={{ color: T.accent }}>плохо</span>?</h2></> }}
     options={[{ uz: 'Hammaga yoqadigan sayt qurish juda ko\'p pulga tushadi', ru: 'Сайт, который нравится всем, слишком дорого строить' }, { uz: 'Hamma narsa bor, lekin hech kim o\'zi izlaganini topolmaydi', ru: 'Есть всё, но никто не находит того, что искал' }, { uz: 'Ko\'p odam bir vaqtda kirganidan sayt sekinlashib qoladi', ru: 'Из-за наплыва посетителей сайт начинает тормозить' }, { uz: 'Reklama qilinmasa, uni hech kim ko\'rmay va bilmay qoladi', ru: 'Без рекламы его никто не увидит и не узнает' }]} correctIdx={1}
-    explainCorrect={{ uz: "Aniq topdingiz! Hammaga gapirgan sayt hech kimga aniq gapirmaydi. Tanaffusga shoshgan o'quvchiga ham, katta buyurtma qidirgan ofis xodimiga ham bir xil gapirsangiz — ikkisi ham kerakli narsasini topolmaydi.", ru: 'Точно! Сайт, который говорит со всеми, ни с кем не говорит прямо. Если одинаково обращаться и к школьнику, спешащему на перемене, и к офисному работнику с большим заказом, — нужного не найдёт ни тот, ни другой.' }}
+    explainCorrect={{ uz: "Hammaga gapirgan sayt hech kimga aniq gapirmaydi.", ru: 'Сайт, который говорит со всеми, ни с кем не говорит прямо.' }}
     explainWrong={{
-      0: { uz: 'Pul haqida o\'ylash to\'g\'ri, lekin gap unda emas: eng katta kompaniyalar ham «hamma uchun» sayt qilolmagan. Aniq odam tanlanmasa, nimani yaxshilashni ham bilib bo\'lmaydi.', ru: 'Про деньги думать правильно, но дело не в них: даже крупнейшие компании не смогли сделать сайт «для всех». Если не выбран конкретный человек, непонятно и что улучшать.' },
-      2: { uz: 'Sekinlik — texnik masala, uni tuzatsa bo\'ladi. «Hamma uchun» saytning qiyinchiligi boshqa: unga odam umuman kam kiradi.', ru: 'Медленная работа — техническая задача, её можно починить. Трудность сайта «для всех» в другом: на него вообще мало кто заходит.' },
-      3: { uz: 'Reklama saytni tanitadi — bu rost. Lekin kirgan odam o\'ziga keraklisini topmasa, bir kirib, qaytib kelmaydi.', ru: 'Реклама делает сайт известным — это правда. Но если зашедший не найдёт нужного, он зайдёт один раз и не вернётся.' },
-      default: { uz: 'Aniq odam tanlanmagan — shuning uchun hech kim aynan o\'zi izlaganini topa olmaydi.', ru: 'Конкретный человек не выбран — поэтому никто не находит именно того, что искал.' }
+      0: { uz: 'Gap pulda emas — katta kompaniyalar ham buni qilolmagan.', ru: 'Дело не в деньгах — даже крупные компании этого не смогли.' },
+      2: { uz: 'Sekinlik — texnik masala, uni tuzatsa bo\'ladi.', ru: 'Медленная работа — техническая задача, её можно починить.' },
+      3: { uz: 'Reklama odam olib keladi, lekin saytda ushlab qolmaydi.', ru: 'Реклама приводит людей, но не удерживает их на сайте.' },
+      default: { uz: 'O\'quvchi va ofis xodimi bir xil narsa izlaydimi?', ru: 'Школьник и офисный работник ищут одно и то же?' }
     }} />
 );
 
@@ -1383,12 +1384,12 @@ const Screen9 = (props) => (
     questionText="Do'stingizga birinchi qaysi savolni berasiz?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Vaziyatni yeching</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Do'stingiz: «Zo'r sayt qilmoqchiman, lekin <span className="italic" style={{ color: T.accent }}>nimadan boshlashni</span> bilmayapman» — deydi. Unga birinchi qaysi savolni berasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Разберите ситуацию</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Друг говорит: «Хочу сделать классный сайт, но не знаю, <span className="italic" style={{ color: T.accent }}>с чего начать</span>». Какой вопрос зададите ему первым?</h2></> }}
     options={[{ uz: '«Sayt qanday zamonaviy dizaynda va rangda bo\'ladi?»', ru: '«Какой у сайта будет современный дизайн и цвет?»' }, { uz: '«Saytga qancha pul, vaqt va odam kuchi sarflanadi?»', ru: '«Сколько денег, времени и людей уйдёт на сайт?»' }, { uz: '«Sayt aniq kimga kerak va qanday muammosini yechadi?»', ru: '«Кому именно нужен сайт и какую его проблему он решает?»' }, { uz: '«Saytga qanday zo\'r va yodda qoladigan nom topamiz?»', ru: '«Какое классное и запоминающееся имя придумаем сайту?»' }]} correctIdx={2}
-    explainCorrect={{ uz: "Barakalla! Mahsulot menejeri ham aynan shu savoldan boshlaydi: KIM va MUAMMO aniq bo'lsa, dizayn ham, nom ham, hatto qancha vaqt ketishi ham o'z-o'zidan ayon bo'ladi.", ru: 'Молодец! Продакт-менеджер начинает ровно с этого вопроса: когда ясны КТО и ПРОБЛЕМА, дизайн, название и даже сроки становятся понятны сами собой.' }}
+    explainCorrect={{ uz: "KIM va MUAMMO aniq bo'lsa, qolgani o'z-o'zidan ayon bo'ladi.", ru: 'Когда ясны КТО и ПРОБЛЕМА, остальные вопросы решаются сами.' }}
     explainWrong={{
-      0: { uz: 'Dizayn haqida so\'rash to\'g\'ri — lekin keyinroq: kim uchunligini bilmasangiz, qanday dizayn yoqishini ham bilolmaysiz.', ru: 'Про дизайн спросить правильно — но позже: не зная, для кого сайт, не поймёшь, какой дизайн понравится.' },
-      1: { uz: 'Muhim savol, lekin birinchisi emas: nima qurilishini bilmasdan turib qancha vaqt va pul ketishini hisoblab bo\'lmaydi.', ru: 'Важный вопрос, но не первый: не зная, что строим, нельзя посчитать время и деньги.' },
-      3: { uz: 'Nom kerak, ammo u eng oxirgi bezak. Avval sayt kimga va qanday muammo bilan kerakligi aniqlanadi.', ru: 'Название нужно, но это самый последний штрих. Сначала выясняют, кому сайт нужен и с какой проблемой.' },
-      default: { uz: 'Birinchi savol doim bitta: sayt aniq KIMGA kerak va qanday MUAMMONI yechadi?', ru: 'Первый вопрос всегда один: КОМУ именно нужен сайт и какую ПРОБЛЕМУ он решает?' }
+      0: { uz: 'Dizayn — keyingi savol, u boshqa javoblarga bog\'liq.', ru: 'Дизайн — вопрос на потом, он зависит от других ответов.' },
+      1: { uz: 'Nima qurilishini bilmay, vaqt va pulni hisoblab bo\'lmaydi.', ru: 'Не зная, что строим, нельзя посчитать время и деньги.' },
+      3: { uz: 'Nom — eng oxirgi bezak, u boshlanish emas.', ru: 'Название — последний штрих, а не начало.' },
+      default: { uz: 'Qolgan savollarni qaysi biri ochib berishini o\'ylang.', ru: 'Подумайте, какой вопрос открывает все остальные.' }
     }} />
 );
 
@@ -1625,12 +1626,12 @@ const Screen12 = (props) => (
     questionText="Qaysi g'oya TO'LIQ (kim + muammo + yechim bor)?"
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mahsulot menejeri ko'zi bilan tekshiring</p><h2 className="title h-ask" style={{ marginTop: 8 }}>To'rtta g'oyadan qaysi biri <span className="italic" style={{ color: T.accent }}>to'liq</span> — KIM + MUAMMO + YECHIM uchchalasi ham bormi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Проверьте глазами продакт-менеджера</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая из четырёх идей <span className="italic" style={{ color: T.accent }}>полная</span> — есть все три части: КТО + ПРОБЛЕМА + РЕШЕНИЕ?</h2></> }}
     options={[{ uz: '«Juda chiroyli, zamonaviy va tez sport sayti qilib beramiz»', ru: '«Сделаем очень красивый, современный и быстрый спортивный сайт»' }, { uz: '«O\'quvchilar uchun sayt — unda mumkin bo\'lgan hamma narsa bo\'ladi»', ru: '«Сайт для школьников — на нём будет вообще всё, что можно»' }, { uz: '«Avtobus kutgan o\'quvchiga — u qachon kelishini ko\'rsatadigan sayt»', ru: '«Школьнику на остановке — сайт, который показывает, когда придёт автобус»' }, { uz: '«Lavash buyurtma qilinadigan qulay sayt — maktabdagi hamma uchun»', ru: '«Удобный сайт для заказа лаваша — для всех в школе»' }]} correctIdx={2}
-    explainCorrect={{ uz: "Aniq topdingiz! KIM — avtobus kutadigan o'quvchilar, MUAMMO — qachon kelishi noma'lum, YECHIM — vaqtni ko'rsatadigan sayt. Uchchalasi joyida — qurish mumkin!", ru: 'Точно! КТО — школьники, ждущие автобус; ПРОБЛЕМА — неизвестно, когда он придёт; РЕШЕНИЕ — сайт, который показывает время. Все три на месте — можно строить!' }}
+    explainCorrect={{ uz: "Uchchalasi joyida: KIM, MUAMMO va YECHIM aniq.", ru: 'Все три на месте: КТО, ПРОБЛЕМА и РЕШЕНИЕ ясны.' }}
     explainWrong={{
-      0: { uz: 'Chiroyli va tez bo\'lishi — yomon istak emas. Lekin sport sayti KIMGA kerakligi ham, qanday MUAMMOni yechishi ham aytilmagan.', ru: 'Красиво и быстро — неплохое желание. Но не сказано ни КОМУ нужен спортивный сайт, ни какую ПРОБЛЕМУ он решает.' },
-      1: { uz: 'KIM to\'g\'ri ko\'rsatilgan — o\'quvchilar. Lekin MUAMMO yozilmagan, «hamma narsa» esa YECHIM emas: nimadan boshlashni bilib bo\'lmaydi.', ru: 'КТО указан верно — школьники. Но ПРОБЛЕМА не написана, а «всё, что можно» — это не РЕШЕНИЕ: непонятно, с чего начинать.' },
-      3: { uz: 'YECHIM aniq — buyurtma sayti. Lekin «maktabdagi hamma» aniq guruh emas, MUAMMO esa umuman yozilmagan.', ru: 'РЕШЕНИЕ ясное — сайт заказа. Но «все в школе» — это не конкретная группа, а ПРОБЛЕМА вообще не написана.' },
-      default: { uz: 'To\'liq g\'oyada uchchala javob bo\'ladi: aniq KIM + aniq MUAMMO + aniq YECHIM.', ru: 'В полной идее есть все три ответа: конкретный КТО + конкретная ПРОБЛЕМА + конкретное РЕШЕНИЕ.' }
+      0: { uz: 'Bu yerda KIM ham, MUAMMO ham aytilmagan.', ru: 'Здесь не сказано ни КТО, ни какая ПРОБЛЕМА.' },
+      1: { uz: 'KIM bor, lekin MUAMMO yo\'q, «hamma narsa» esa YECHIM emas.', ru: 'КТО есть, но нет ПРОБЛЕМЫ, а «всё» — это не РЕШЕНИЕ.' },
+      3: { uz: '«Maktabdagi hamma» aniq guruh emas, MUAMMO ham yozilmagan.', ru: '«Все в школе» — не конкретная группа, и ПРОБЛЕМА не написана.' },
+      default: { uz: 'To\'liq g\'oyada uch bo\'lak bor: KIM, MUAMMO, YECHIM.', ru: 'В полной идее три части: КТО, ПРОБЛЕМА, РЕШЕНИЕ.' }
     }} />
 );
 
@@ -1789,7 +1790,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || kodStart()} storageKey={`${KODING_KEY}:code`}
+          <HtmlCompiler stage="m1-02" lang={__lang} task={KOD_TASK} starterCode={code || kodStart()} storageKey={`${KODING_KEY}:code`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}

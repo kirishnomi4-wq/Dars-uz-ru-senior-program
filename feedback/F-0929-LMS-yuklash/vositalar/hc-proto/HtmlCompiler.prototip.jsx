@@ -1,0 +1,2661 @@
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback, isValidElement } from 'react';
+
+// ============================================================
+//  KOD KOMPILYATORI — UMUMIY MODUL (barcha darslar shu faylni ishlatadi)
+//
+//  Kontrakt (LMS uchun ham shu):
+//    <HtmlCompiler task={...} starterCode="..." storageKey="..."
+//                  lang="uz|ru" onContinue={fn} onBack={fn} />
+//
+//  `task` kalitlari:
+//    eyebrow · title · brief          — sarlavha bloki (matn yoki {uz,ru} yoki JSX)
+//    requirements: [{id, label, check}] — shartlar (yoki deklarativ data, quyida)
+//    files: [{name, lang, starter, placeholder}] — ko'p fayl; bo'lmasa yakka HTML
+//    placeholder                      — «xira NAMUNA» (fayl-darajasi ustunroq)
+//    previewUrl                       — natija paneli SOXTA BRAUZER oynasiga aylanadi
+//                                       (masalan `olx.uz`) — PM darslari uchun
+//    previewCss                       — natija oynasining dars-uslubi; standart
+//                                       uslubdan KEYIN, o'quvchi CSS'idan OLDIN
+//
+//  TIL: modul dars LangContext'idan TASHQARIDA (portal) ishlaydi, shuning uchun
+//  til `lang` propi orqali keladi. Ichkarida darslardagi bilan bir xil naqsh:
+//  modul-darajali __lang + tr({uz,ru}).
+//
+//  TEKSHIRUV — HAQIQIY TAHLIL (regex emas):
+//    HTML → DOMParser bilan real DOM · CSS → stylesheet parse · JS → manba/runtime
+//
+//  🔴 TARIX: 2026-08-01 da bu fayl bir marta ajratilgan edi, lekin hech kim import
+//  qilmagan va u eskirib qoldi (faqat o'zbekcha, F-0808-02 tuzatishlarisiz).
+//  2026-08-08 da HtmlPractice ichidagi ENG YANGI nusxadan qayta qurildi.
+// ============================================================
+
+// ── TIL ─────────────────────────────────────────────────────
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+
+// ── Qurilma-so'rovi (F-0808-03, 3-bosqich) ──────────────────
+// Ekran eni EMAS, qurilma XUSUSIYATI so'raladi: `pointer: coarse` — barmoq bilan
+// ishlanadigan ekran (planshet/telefon). Shu tufayli tor oynadagi noutbukka
+// sensor-panel chiqmaydi, planshetga esa chiqadi.
+const useMedia = (q) => {
+  const [on, setOn] = useState(() => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(q).matches : false));
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia(q);
+    const upd = () => setOn(mq.matches);
+    upd();
+    if (mq.addEventListener) { mq.addEventListener('change', upd); return () => mq.removeEventListener('change', upd); }
+    mq.addListener(upd); return () => mq.removeListener(upd);   // eski brauzerlar
+  }, [q]);
+  return on;
+};
+// Barmoq bilan yoziladigan klaviaturada eng qiyin topiladigan belgilar
+const TOUCH_KEYS = {
+  html: ['<', '>', '/', '"', '=', '#', '-'],
+  css: ['{', '}', ':', ';', '.', '#', '-'],
+  js: ['(', ')', '{', '}', ';', '=', '"'],
+};
+
+// ── Yozilgan kod saqlovi (F-0801-01) ────────────────────────
+const codesRead = (k) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const codesWrite = (k, codes) => { try { localStorage.setItem(k, JSON.stringify({ codes, savedAt: Date.now() })); } catch {} };
+// ============================================================
+//  🔧 INTERAKTIV QATLAMLAR (Htmllesson1 etalonidan ko'chirilgan)
+// ============================================================
+//
+//  LMSga tayyor kontrakt (o'zgarmaydi):
+//    <HtmlCompiler task={...} starterCode="..." onContinue={fn} onBack={fn} />
+//  Kelajakda CSS/JS darslarida ham shu komponent ishlatiladi — task.files
+//  orqali qaysi fayllar ko'rinishini va shartlarni belgilaysiz.
+// ============================================================
+
+const HC_T = {
+  bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2',
+  paper: '#FFFFFF', accent: '#FF4D26', accent2: '#FF8A3D', accentSoft: '#FFEDE5',
+  success: '#0FA968', successSoft: '#E4F7EE', warn: '#9A5400', shadowBase: '58, 53, 48', line: '#E9E6DF',
+};
+// Kod ranglari — DARS matnidagi `CODE` bilan AYNAN bir xil: bola darsda ko'rgan
+// `<h1>` rangi kompilyatorda ham o'sha bo'lsin (F-0808-03).
+const HC_CODE = {
+  bg: '#0E1525', text: '#E7EAF2', gutter: '#1C2740',
+  tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8', num: '#C9A9FF',
+};
+
+// ============================================================
+//  SINTAKSIS RANGI — matn maydoni ORTIDA turadigan qatlam uchun.
+//  Textarea matni shaffof, kursor ko'rinadi; ortida shu HTML chiziladi.
+//  Har tokenizator TO'LIQ: hech qachon xato tashlamaydi — tanimagan
+//  bo'lagini oddiy matn deb chiqaradi (yomon rang > buzilgan muharrir).
+// ============================================================
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => (c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;'));
+const tok = (cls, s) => (s ? '<i class="t-' + cls + '">' + esc(s) + '</i>' : '');
+const NAME_CH = /[a-zA-Z0-9:_-]/;
+
+function hlHtml(src) {
+  let out = '', i = 0;
+  const n = src.length;
+  while (i < n) {
+    const lt = src.indexOf('<', i);
+    if (lt === -1) { out += esc(src.slice(i)); break; }
+    out += esc(src.slice(i, lt));
+    if (src.startsWith('<!--', lt)) {                       // izoh
+      const e = src.indexOf('-->', lt + 4);
+      const end = e === -1 ? n : e + 3;
+      out += tok('comment', src.slice(lt, end)); i = end; continue;
+    }
+    if (src[lt + 1] === '!') {                              // <!doctype …>
+      const e = src.indexOf('>', lt); const end = e === -1 ? n : e + 1;
+      out += tok('comment', src.slice(lt, end)); i = end; continue;
+    }
+    const isClose = src[lt + 1] === '/';
+    const ns = lt + (isClose ? 2 : 1);
+    let j = ns;
+    while (j < n && NAME_CH.test(src[j])) j++;
+    if (j === ns) { out += esc('<'); i = lt + 1; continue; }  // oddiy matndagi `<`
+    out += tok('punct', isClose ? '</' : '<') + tok('tag', src.slice(ns, j));
+    // ── atribut sohasi: nom=qiymat juftlari ──
+    while (j < n && src[j] !== '>' && src[j] !== '<') {
+      const c = src[j];
+      if (/\s/.test(c)) { out += esc(c); j++; continue; }
+      if (c === '=' || c === '/') { out += tok('punct', c); j++; continue; }
+      if (c === '"' || c === "'") {                          // qiymat
+        let k = j + 1;
+        while (k < n && src[k] !== c) k++;
+        const end = Math.min(k + 1, n);
+        out += tok('str', src.slice(j, end)); j = end; continue;
+      }
+      let k = j;                                             // atribut nomi (yoki tirnoqsiz qiymat)
+      while (k < n && NAME_CH.test(src[k])) k++;
+      if (k === j) { out += esc(c); j++; continue; }
+      out += tok('attr', src.slice(j, k)); j = k;
+    }
+    if (src[j] === '>') { out += tok('punct', '>'); j++; }
+    i = j;
+  }
+  return out;
+}
+
+function hlCss(src) {
+  let out = '', i = 0, inBlock = false, afterColon = false;
+  const n = src.length;
+  while (i < n) {
+    if (src.startsWith('/*', i)) {
+      const e = src.indexOf('*/', i + 2); const end = e === -1 ? n : e + 2;
+      out += tok('comment', src.slice(i, end)); i = end; continue;
+    }
+    const c = src[i];
+    if (c === '{') { out += tok('punct', c); inBlock = true; afterColon = false; i++; continue; }
+    if (c === '}') { out += tok('punct', c); inBlock = false; afterColon = false; i++; continue; }
+    if (c === ';') { out += tok('punct', c); afterColon = false; i++; continue; }
+    if (c === ':' && inBlock) { out += tok('punct', c); afterColon = true; i++; continue; }
+    let j = i;
+    while (j < n && !'{};'.includes(src[j]) && !(src[j] === ':' && inBlock) && !src.startsWith('/*', j)) j++;
+    const chunk = src.slice(i, j);
+    const lead = /^\s*/.exec(chunk)[0];
+    const body = chunk.slice(lead.length);
+    out += esc(lead) + (!inBlock ? tok('tag', body) : afterColon ? tok('str', body) : tok('attr', body));
+    i = j;
+  }
+  return out;
+}
+
+const JS_KW = new Set(['const','let','var','function','return','if','else','for','while','do','break','continue','new','class','extends','typeof','instanceof','null','undefined','true','false','this','import','export','from','async','await','try','catch','finally','throw','switch','case','default','of','in']);
+function hlJs(src) {
+  let out = '', i = 0;
+  const n = src.length;
+  while (i < n) {
+    if (src.startsWith('//', i)) { let e = src.indexOf('\n', i); if (e === -1) e = n; out += tok('comment', src.slice(i, e)); i = e; continue; }
+    if (src.startsWith('/*', i)) { const e = src.indexOf('*/', i + 2); const end = e === -1 ? n : e + 2; out += tok('comment', src.slice(i, end)); i = end; continue; }
+    const c = src[i];
+    if (c === '"' || c === "'" || c === '`') {
+      let j = i + 1;
+      while (j < n && src[j] !== c) { if (src[j] === String.fromCharCode(92)) j++; j++; }
+      out += tok('str', src.slice(i, Math.min(j + 1, n))); i = Math.min(j + 1, n); continue;
+    }
+    if (/[A-Za-z_$]/.test(c)) {
+      let j = i; while (j < n && /[\w$]/.test(src[j])) j++;
+      const w = src.slice(i, j);
+      out += JS_KW.has(w) ? tok('tag', w) : esc(w);
+      i = j; continue;
+    }
+    if (/[0-9]/.test(c)) {
+      let j = i; while (j < n && /[\d.]/.test(src[j])) j++;
+      out += tok('num', src.slice(i, j)); i = j; continue;
+    }
+    out += esc(c); i++;
+  }
+  return out;
+}
+
+// Juda uzun matnda ranglash o'chadi — yozish tezligi muhimroq
+const HL_MAX = 20000;
+export const highlight = (src, lang) => {
+  if (!src) return '';
+  if (src.length > HL_MAX) return esc(src);
+  try { return lang === 'css' ? hlCss(src) : lang === 'js' ? hlJs(src) : hlHtml(src); }
+  catch { return esc(src); }
+};
+
+// ============================================================
+//  «CHIROYLI QILISH» — HTML ni qayta chekintirish
+//  Qoida: MA'NOGA TEGMAYDI. Teglar ketma-ketligi yoki matn zarracha
+//  o'zgarsa — null qaytaradi va chaqiruvchi hech narsa qilmaydi.
+//  Tugallanmagan teg, `<pre>`/`<textarea>` bo'lsa ham null.
+// ============================================================
+function parseNodes(src) {
+  const nodes = [];
+  let i = 0; const n = src.length;
+  const pushText = (s) => { if (s) nodes.push({ t: 'text', raw: s }); };
+  while (i < n) {
+    const lt = src.indexOf('<', i);
+    if (lt === -1) { pushText(src.slice(i)); break; }
+    pushText(src.slice(i, lt));
+    if (src.startsWith('<!--', lt)) {
+      const e = src.indexOf('-->', lt + 4);
+      if (e === -1) return null;
+      nodes.push({ t: 'comment', raw: src.slice(lt, e + 3) }); i = e + 3; continue;
+    }
+    if (src[lt + 1] === '!') {
+      const e = src.indexOf('>', lt);
+      if (e === -1) return null;
+      nodes.push({ t: 'doctype', raw: src.slice(lt, e + 1) }); i = e + 1; continue;
+    }
+    let j = lt + 1, q = null;
+    while (j < n) {
+      const c = src[j];
+      if (q) { if (c === q) q = null; }
+      else if (c === '"' || c === "'") q = c;
+      else if (c === '>') break;
+      else if (c === '<') return null;   // ichma-ich `<` — shubhali, tegmaymiz
+      j++;
+    }
+    if (j >= n) return null;             // `>` yo'q — tugallanmagan
+    const raw = src.slice(lt, j + 1);
+    const m = /^<\/?\s*([a-zA-Z][a-zA-Z0-9-]*)/.exec(raw);
+    if (!m) return null;
+    const name = m[1].toLowerCase();
+    const close = raw[1] === '/';
+    const self = /\/\s*>$/.test(raw) || VOID_TAGS.has(name);
+    nodes.push({ t: close ? 'close' : self ? 'self' : 'open', name, raw });
+    i = j + 1;
+  }
+  return nodes;
+}
+// Ma'no barmoq izi: teglar ketma-ketligi + bo'shliqsiz matn
+const domFingerprint = (nodes) => nodes.map((x) =>
+  x.t === 'text' ? 'T:' + x.raw.replace(/\s+/g, ' ').trim()
+    : x.t === 'comment' || x.t === 'doctype' ? x.t + ':' + x.raw.replace(/\s+/g, ' ')
+      : x.t + ':' + x.name + ':' + x.raw.replace(/\s+/g, ' ')).filter((s) => s !== 'T:').join('|');
+
+export function formatHtml(src) {
+  if (!src || !src.trim()) return null;
+  if (/<(pre|textarea)\b/i.test(src)) return null;   // bo'shliq ma'noli — tegmaymiz
+  const nodes = parseNodes(src);
+  if (!nodes) return null;
+  const IND = '  ';
+  const out = [];
+  let depth = 0;
+  for (let k = 0; k < nodes.length; k++) {
+    const nd = nodes[k];
+    if (nd.t === 'text') {
+      const txt = nd.raw.replace(/\s+/g, ' ').trim();
+      if (txt) out.push(IND.repeat(depth) + txt);
+      continue;
+    }
+    if (nd.t === 'close') { depth = Math.max(0, depth - 1); out.push(IND.repeat(depth) + nd.raw); continue; }
+    if (nd.t === 'open') {
+      // <h1>Matn</h1> — ichida FAQAT qisqa matn bo'lsa, bitta qatorda qoladi
+      // (odam shunday yozadi; ichma-ich teg bo'lsa ataylab qatorlarga bo'linadi —
+      //  bola uchun ichma-ichlik ko'rinib turgani foydali).
+      const a = nodes[k + 1], b = nodes[k + 2];
+      if (a && b && a.t === 'text' && b.t === 'close' && b.name === nd.name) {
+        const txt = a.raw.replace(/\s+/g, ' ').trim();
+        const line = nd.raw + txt + b.raw;
+        if (!txt.includes('\n') && (IND.repeat(depth) + line).length <= 100) {
+          out.push(IND.repeat(depth) + line); k += 2; continue;
+        }
+      }
+      out.push(IND.repeat(depth) + nd.raw); depth++; continue;
+    }
+    out.push(IND.repeat(depth) + nd.raw);   // self / comment / doctype
+  }
+  const res = out.join('\n');
+  const back = parseNodes(res);
+  if (!back || domFingerprint(back) !== domFingerprint(nodes)) return null;  // ma'no o'zgargan — rad
+  return res;
+}
+
+// ============================================================
+//  LUG'AT — taklif-ro'yxati teglari va atribut takliflari.
+//  Ro'yxat ikki yo'l bilan ochiladi: `<` dan keyin, YOKI qatorda yolg'iz turgan
+//  so'zdan keyin (`h1` — F-0809-01).
+//  Faqat darslar o'rgatadigan teglar: ro'yxat qisqa bo'lsin, bola adashmasin.
+// ============================================================
+const TAG_MENU_FULL = [
+  { t: 'h1', d: { uz: 'eng katta sarlavha', ru: 'самый большой заголовок' } },
+  { t: 'h2', d: { uz: "bo'lim sarlavhasi", ru: 'заголовок раздела' } },
+  { t: 'h3', d: { uz: 'kichik sarlavha', ru: 'малый заголовок' } },
+  { t: 'h4', d: { uz: 'yanada kichik sarlavha', ru: 'ещё меньший заголовок' } },
+  { t: 'p', d: { uz: 'matn xatboshisi', ru: 'абзац текста' } },
+  { t: 'a', d: { uz: 'havola', ru: 'ссылка' } },
+  { t: 'img', d: { uz: 'rasm', ru: 'картинка' } },
+  { t: 'ul', d: { uz: "ro'yxat", ru: 'список' } },
+  { t: 'ol', d: { uz: "raqamli ro'yxat", ru: 'нумерованный список' } },
+  { t: 'li', d: { uz: "ro'yxat bandi", ru: 'пункт списка' } },
+  { t: 'header', d: { uz: 'sahifa boshi', ru: 'шапка страницы' } },
+  { t: 'nav', d: { uz: 'menyu', ru: 'меню' } },
+  { t: 'main', d: { uz: 'asosiy qism', ru: 'основная часть' } },
+  { t: 'section', d: { uz: "bo'lim", ru: 'раздел' } },
+  { t: 'footer', d: { uz: 'sahifa pasti', ru: 'подвал страницы' } },
+  { t: 'div', d: { uz: 'oddiy quti', ru: 'обычный блок' } },
+  { t: 'span', d: { uz: "matn ichidagi bo'lak", ru: 'кусочек внутри текста' } },
+  { t: 'strong', d: { uz: "qalin matn", ru: 'жирный текст' } },
+  { t: 'em', d: { uz: 'qiya matn', ru: 'наклонный текст' } },
+  { t: 'br', d: { uz: 'qator uzish', ru: 'перенос строки' } },
+  { t: 'form', d: { uz: 'forma', ru: 'форма' } },
+  { t: 'input', d: { uz: 'yozish maydoni', ru: 'поле ввода' } },
+  { t: 'label', d: { uz: 'maydon yozuvi', ru: 'подпись поля' } },
+  { t: 'button', d: { uz: 'tugma', ru: 'кнопка' } },
+  { t: 'textarea', d: { uz: 'katta matn maydoni', ru: 'большое поле текста' } },
+  { t: 'select', d: { uz: "tanlash ro'yxati", ru: 'выпадающий список' } },
+  { t: 'option', d: { uz: 'tanlov bandi', ru: 'пункт выбора' } },
+  { t: 'html', d: { uz: 'butun sahifa', ru: 'вся страница' } },
+  { t: 'head', d: { uz: "sahifa boshi (ko'rinmas)", ru: 'голова (невидимая)' } },
+  { t: 'title', d: { uz: 'varaq nomi', ru: 'название вкладки' } },
+  { t: 'body', d: { uz: "sahifa tanasi (ko'rinadi)", ru: 'тело (видимое)' } },
+  { t: 'link', d: { uz: 'CSS faylini ulash', ru: 'подключить CSS' } },
+  { t: 'style', d: { uz: 'CSS shu yerda', ru: 'CSS здесь' } },
+  { t: 'script', d: { uz: 'JavaScript', ru: 'JavaScript' } },
+];
+const __allow = (typeof window !== 'undefined' && window.__PROTO_ALLOW) || null;
+const TAG_MENU = __allow ? TAG_MENU_FULL.filter((x) => __allow.includes(x.t)) : TAG_MENU_FULL;
+const ALL_TAG_NAMES = new Set(TAG_MENU_FULL.map((x) => x.t));
+const ATTR_MENU = {
+  a: [{ a: 'href', d: { uz: 'qayerga olib boradi', ru: 'куда ведёт' } }],
+  img: [{ a: 'src', d: { uz: 'rasm manzili', ru: 'адрес картинки' } }, { a: 'alt', d: { uz: "rasm o'rnidagi matn", ru: 'текст вместо картинки' } }],
+  input: [{ a: 'type', d: { uz: 'maydon turi', ru: 'тип поля' } }, { a: 'placeholder', d: { uz: 'xira maslahat', ru: 'подсказка' } }, { a: 'name', d: { uz: 'maydon nomi', ru: 'имя поля' } }],
+  label: [{ a: 'for', d: { uz: 'qaysi maydonga tegishli', ru: 'к какому полю' } }],
+  form: [{ a: 'action', d: { uz: 'qayerga yuboriladi', ru: 'куда отправить' } }],
+  button: [{ a: 'type', d: { uz: 'tugma turi', ru: 'тип кнопки' } }],
+  '*': [{ a: 'class', d: { uz: 'CSS uchun nom', ru: 'имя для CSS' } }, { a: 'id', d: { uz: 'yagona nom', ru: 'уникальное имя' } }],
+};
+// Ko'p qatorli/atributli tuzilmalar tanasi — ro'yxatdan tanlanganda ham,
+// qatorda yolg'iz so'z ustida Tab bosilganda ham shu tushadi.
+// h1/h2/p bu yerda yo'q: ular oddiy juft (`<h1></h1>`) — alohida tana kerakmas.
+
+// ── PROTOTIP: mini-Emmet (!, teg, .class, #id, >, *n) ──
+function __emmet(abbr, ind) {
+  if (abbr === '!') {
+    const t = '<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <meta charset="UTF-8">\n  <title>Sahifa</title>\n</head>\n<body>\n  \n</body>\n</html>';
+    const tt = t.split('\n').join('\n' + ind);
+    return { text: tt, caret: tt.indexOf('<body>\n') + 7 + ind.length + 2 };
+  }
+  const parts = abbr.split('>');
+  const re = /^([a-zA-Z][a-zA-Z0-9]*)?((?:[.#][a-zA-Z0-9_-]+)*)(?:\*(\d{1,2}))?$/;
+  const P = [];
+  for (const x of parts) {
+    const m = re.exec(x); if (!m || (!m[1] && !m[2])) return null;
+    const tag = (m[1] || 'div').toLowerCase();
+    if (!ALL_TAG_NAMES.has(tag)) return null;
+    if (parts.length === 1 && !m[2] && !m[3]) return null;   // yolg'iz so'z — ro'yxat/Tab o'zi qiladi
+    const cls = (m[2].match(/\.[a-zA-Z0-9_-]+/g) || []).map((c) => c.slice(1));
+    const id = ((m[2].match(/#[a-zA-Z0-9_-]+/) || [''])[0]).slice(1);
+    P.push({ tag, cls, id, n: Math.max(1, Number(m[3] || 1)) });
+  }
+  const open = (q) => '<' + q.tag + (q.id ? ' id="' + q.id + '"' : '') + (q.cls.length ? ' class="' + q.cls.join(' ') + '"' : '') + '>';
+  const rend = (i, pad) => {
+    const q = P[i]; const out = [];
+    for (let k = 0; k < q.n; k++) {
+      if (VOID_TAGS.has(q.tag)) { out.push(pad + open(q)); continue; }
+      if (i === P.length - 1) out.push(pad + open(q) + '</' + q.tag + '>');
+      else out.push(pad + open(q) + '\n' + rend(i + 1, pad + '  ') + '\n' + pad + '</' + q.tag + '>');
+    }
+    return out.join('\n');
+  };
+  const text = rend(0, ind).slice(ind.length);
+  const c = text.indexOf('></'); 
+  return { text, caret: c === -1 ? text.length : c + 1 };
+}
+
+const SNIPPETS = {
+  ul: { body: '<ul>\n  <li></li>\n  <li></li>\n</ul>', caret: 11 },
+  ol: { body: '<ol>\n  <li></li>\n  <li></li>\n</ol>', caret: 11 },
+  a: { body: '<a href=""></a>', caret: 9 },
+  img: { body: '<img src="" alt="">', caret: 10 },
+};
+
+
+// ============================================================
+//  TEKSHIRUV YORDAMCHILARI (builders)
+//  Har biri ctx (kontekst) qabul qiladigan funksiya qaytaradi.
+//  Funksiya:  true  → shart bajarildi
+//             "..."  → bajarilmadi, qaytgan matn = o'quvchiga maslahat
+//
+//  ctx ichida nimalar bor:
+//    ctx.html / ctx.css / ctx.js  — xom (raw) manba matnlar
+//    ctx.doc                       — o'quvchi HTML'idan qurilgan real DOM
+//    ctx.$  / ctx.$$               — doc bo'yicha querySelector / All
+//    ctx.cssRules                  — [{selector, props:{...}}] — parslangan CSS
+// ============================================================
+const norm = (s) => (s || '').trim();
+// K-C-01: kutilgan CSS qiymatini brauzerning o'zi bilan normallashtirish — o'quvchi qiymati
+// (stylesheet'dan) qanday serializatsiya bo'lsa, kutilgan ham shunday bo'ladi. Ajratilgan element,
+// tarmoq/layout yo'q. Yaroqsiz qiymat bo'lsa xom matn qaytadi.
+let __cssNormEl = null;
+const cssNorm = (prop, val) => {
+  const raw = String(val ?? '').trim();
+  if (typeof document === 'undefined') return raw;
+  try {
+    if (!__cssNormEl) __cssNormEl = document.createElement('div');
+    __cssNormEl.style.cssText = '';
+    __cssNormEl.style.setProperty(prop, raw);
+    return __cssNormEl.style.getPropertyValue(prop) || raw;
+  } catch { return raw; }
+};
+// Rang-xossalar (`color`, `background-color`, `border-color`…): CSSOM `white` ni `white`, `#fff` ni
+// `rgb(255, 255, 255)` deb saqlaydi — ikkalasi bir rang. Faqat shu xossalar uchun HISOBLANGAN
+// (computed) qiymat solishtiriladi; layout'ga bog'liq xossalarga (margin/auto…) tegilmaydi.
+let __cssColorEl = null;
+const cssColorEq = (prop, a, b) => {
+  if (!/(^|-)color$/.test(prop) || typeof document === 'undefined' || !document.body) return false;
+  try {
+    if (!__cssColorEl) { __cssColorEl = document.createElement('i'); __cssColorEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;visibility:hidden'; }
+    if (!__cssColorEl.isConnected) document.body.appendChild(__cssColorEl);
+    const comp = (v) => {
+      __cssColorEl.style.setProperty(prop, ''); __cssColorEl.style.setProperty(prop, String(v ?? '').trim());
+      if (!__cssColorEl.style.getPropertyValue(prop)) return null;   // yaroqsiz qiymat — solishtirilmaydi
+      return getComputedStyle(__cssColorEl).getPropertyValue(prop);
+    };
+    const ca = comp(a), cb = comp(b);
+    __cssColorEl.style.setProperty(prop, '');
+    return !!ca && ca === cb;
+  } catch { return false; }
+};
+
+// JS izohlarini olib tashlaymiz — izoh ichidagi matn `js` shartini ALDAB
+// o'tmasligi uchun (masalan starterdagi "// console.log ..." izohi).
+// K-C-03: oddiy regex-yondashuv satr ichidagi `//` (URL!) va `"/*"` ni ham izoh deb yerdi —
+// `const u = "https://x"; alert(1)` da `alert` yo'qolardi. Endi bir o'tishli skaner: `'` `"` `` ` ``
+// satrlar (qochirish bilan) va regex-literallar (`/` oldida operator/qavs/boshlanish bo'lsa) o'tkazib
+// yuboriladi, faqat HAQIQIY `//…` va `/*…*/` bo'shliqqa almashadi (satr-tuzilma saqlanadi). Satr-mazmuni
+// tegilmaydi — darslardagi `js(/["'][^"']+["']/)` kabi regexlar avvalgidek ishlaydi.
+const stripJsComments = (src) => {
+  const s = src || '';
+  let out = '', i = 0, last = ''; // last — oxirgi ma'noli (bo'shliq bo'lmagan) belgi
+  const n = s.length;
+  const regexMayStart = () => !last || /[(,=:\[!&|?{};+\-*%<>~^]/.test(last) || /\b(return|typeof|case|in|of|delete|void|throw|new)$/.test(out.slice(-8));
+  while (i < n) {
+    const c = s[i], d = s[i + 1];
+    if (c === '/' && d === '/') {                       // satr-izoh
+      while (i < n && s[i] !== '\n') { out += ' '; i++; }
+      continue;
+    }
+    if (c === '/' && d === '*') {                       // blok-izoh
+      const e = s.indexOf('*/', i + 2); const end = e === -1 ? n : e + 2;
+      for (; i < end; i++) out += s[i] === '\n' ? '\n' : ' ';
+      continue;
+    }
+    if (c === '"' || c === "'" || c === '`') {          // satr / template (mazmuni saqlanadi)
+      const q = c; out += c; i++;
+      while (i < n && s[i] !== q) {
+        if (s[i] === '\\' && i + 1 < n) { out += s[i] + s[i + 1]; i += 2; continue; }
+        if (s[i] === '\n' && q !== '`') break;          // yopilmagan oddiy satr — qatorda tugaydi
+        out += s[i]; i++;
+      }
+      if (i < n && s[i] === q) { out += q; i++; }
+      last = q; continue;
+    }
+    if (c === '/' && regexMayStart()) {                 // regex-literal
+      out += c; i++; let cls = false;
+      while (i < n && s[i] !== '\n' && (cls || s[i] !== '/')) {
+        if (s[i] === '\\' && i + 1 < n) { out += s[i] + s[i + 1]; i += 2; continue; }
+        if (s[i] === '[') cls = true; else if (s[i] === ']') cls = false;
+        out += s[i]; i++;
+      }
+      if (i < n && s[i] === '/') { out += '/'; i++; }
+      last = '/'; continue;
+    }
+    out += c; if (!/\s/.test(c)) last = c; i++;
+  }
+  return out;
+};
+
+const checks = {
+  // Teg/selektor mavjudmi?
+  has: (sel, hint) => (x) =>
+    x.$(sel) ? true : tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` }),
+
+  // Mavjud VA ichida bo'sh bo'lmagan matn bormi?
+  text: (sel, hint) => (x) => {
+    const el = x.$(sel);
+    if (!el) return tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` });
+    return norm(el.textContent) ? true : tr(hint ?? { uz: `\`${sel}\` bor, lekin ichi bo'sh — matn yozing`, ru: `\`${sel}\` есть, но внутри пусто — напишите текст` });
+  },
+
+  // Atribut bormi va bo'sh emasmi? (yoki equals bilan aniq qiymat)
+  attr: (sel, attr, hint, equals) => (x) => {
+    const el = x.$(sel);
+    if (!el) return tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` });
+    const v = el.getAttribute(attr);
+    if (v == null || !norm(v)) return tr(hint ?? { uz: `\`${sel}\` da \`${attr}="..."\` to'ldiring`, ru: `заполните \`${attr}="..."\` у \`${sel}\`` });
+    if (equals != null && norm(v) !== norm(equals)) return tr(hint ?? { uz: `\`${sel}\` da \`${attr}\` qiymati \`${equals}\` bo'lsin`, ru: `у \`${sel}\` значение \`${attr}\` должно быть \`${equals}\`` });
+    return true;
+  },
+
+  // Bir nechta atribut — hammasi bo'sh bo'lmasligi kerak
+  attrs: (sel, attrList, hint) => (x) => {
+    const el = x.$(sel);
+    if (!el) return tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` });
+    const miss = attrList.filter((a) => !norm(el.getAttribute(a) || ''));
+    return miss.length ? tr(hint ?? { uz: `\`${sel}\` da \`${miss.join('` va `')}\` to'ldiring`, ru: `заполните \`${miss.join('` и `')}\` у \`${sel}\`` }) : true;
+  },
+
+  // child element parent ichidami?
+  nested: (parent, child, hint) => (x) =>
+    x.$(`${parent} ${child}`) ? true : tr(hint ?? { uz: `\`${child}\` ni \`${parent}\` ichiga joylang`, ru: `поместите \`${child}\` внутрь \`${parent}\`` }),
+
+  // Kamida n ta bormi?
+  count: (sel, n, hint) => (x) =>
+    x.$$(sel).length >= n ? true : tr(hint ?? { uz: `Kamida ${n} ta \`${sel}\` kerak`, ru: `Нужно минимум ${n} \`${sel}\`` }),
+
+  // CSS: selektorga shu xossa yozilganmi?
+  cssProp: (selector, prop, hint) => (x) => {
+    const hit = x.cssRules.some(
+      (r) => r.selector.split(',').map(norm).includes(norm(selector)) && norm(r.props[prop])
+    );
+    return hit ? true : tr(hint ?? { uz: `\`${selector}\` uchun \`${prop}\` xossasini yozing`, ru: `для \`${selector}\` задайте свойство \`${prop}\`` });
+  },
+
+  // CSS: selektorga shu xossa AYNAN shu qiymat bilan yozilganmi?
+  // K-C-01: o'quvchi qiymati CSSOM'dan NORMALLASHGAN holda keladi (`#ff0000`→`rgb(255, 0, 0)`,
+  // `0`→`0px`, `flex:1`→`1 1 0%`), kutilgan qiymat esa xom matn edi — hech qachon mos kelmasdi.
+  // Endi kutilgan qiymat ham O'SHA CSSOM orqali o'tkaziladi (cssNorm), keyin solishtiriladi.
+  cssValue: (selector, prop, val, hint) => (x) => {
+    const want = cssNorm(prop, val);
+    const hit = x.cssRules.some(
+      (r) => r.selector.split(',').map(norm).includes(norm(selector))
+        && (norm(r.props[prop]) === norm(String(val ?? '')) || norm(r.props[prop]).toLowerCase() === want.toLowerCase()
+            || cssColorEq(prop, r.props[prop], val))
+    );
+    return hit ? true : tr(hint ?? { uz: `\`${selector}\` da \`${prop}: ${val}\` yozing`, ru: `в \`${selector}\` напишите \`${prop}: ${val}\`` });
+  },
+
+  // JS: manbada namuna (regex) bormi? (izohlar hisobga olinmaydi)
+  js: (re, hint) => (x) =>
+    re.test(stripJsComments(x.js)) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
+
+  // JS: manbada shu MATN bormi? (deklarativ { js: 'console.log(' } uchun — K-C-05)
+  jsText: (text, hint) => (x) =>
+    stripJsComments(x.js).includes(text) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
+
+  // To'liq erkin tekshiruv: (ctx) => true | "maslahat"
+  custom: (fn) => fn,
+
+  // ── RUNTIME tekshiruvlar (kod iframe'da ishlatiladi) ──
+  // Bular funksiya emas, "probe" obyekti qaytaradi — komponent ularni
+  // iframe ichida ishlatib, natijani postMessage orqali oladi.
+
+  // console.log chiqishida shu qiymat bormi?
+  logs: (value, hint) => ({ __runtime: 'log_includes', value: String(value), hint }),
+
+  // JS ifoda (masalan global o'zgaruvchi yoki typeof) shu qiymatga tengmi?
+  evalEquals: (expr, expected, hint) => ({ __runtime: 'eval_equals', expr, expected: String(expected), hint }),
+
+  // clickSel bosilgach, readSel matni expected'ni o'z ichiga oladimi?
+  domAfterClick: (clickSel, readSel, expected, hint) =>
+    ({ __runtime: 'click_text', clickSel, readSel, expected: String(expected), hint }),
+
+  // ALMASHISH (toggle): clickSel ni ikki marta bosamiz.
+  //   boshida readSel matni = textA, 1-bosishdan keyin = textB,
+  //   2-bosishdan keyin yana = textA. Hammasi to'g'ri bo'lsa — haqiqiy toggle.
+  toggle: (clickSel, readSel, textA, textB, hint) =>
+    ({ __runtime: 'toggle', clickSel, readSel, textA: String(textA), textB: String(textB), hint }),
+};
+
+// ============================================================
+//  DEKLARATIV SHARTLAR — oddiy data → check (tarjimon)
+//  Dars yaratuvchi `C.has('form')` kabi kod yozmasdan, faqat data
+//  bilan shart bera oladi: { tag: 'form', attrs: ['action'] }.
+//  Istalgan teg/atribut ishlaydi — backend kerak emas, hammasi darsda.
+//  Qo'llab-quvvatlanadigan kalitlar:
+//    HTML:  { tag, text }                       → teg bor + ichi bo'sh emas
+//           { tag, attr, equals? }              → atribut bor (yoki aniq qiymat)
+//           { tag, attrs: ['src','alt'] }       → bir nechta atribut
+//           { tag, child: 'input' }             → child teg ichidami (nested)
+//           { tag, count: 3 }                   → kamida n ta
+//    CSS:   { css: { sel, prop, value? } }      → xossa (yoki aniq qiymat)
+//    JS:    { js: /addEventListener/ }          → manbada namuna
+//    Runtime: { logs: 5 }                       → console.log chiqishi
+//             { eval: 'typeof f', equals: 'function' }
+//             { click: '#btn', read: '#out', expect: 'Salom' }
+//  Har bir kalitga ixtiyoriy `hint` (maslahat matni) qo'shsa bo'ladi.
+// ============================================================
+function specToCheck(s) {
+  const hint = s.hint;
+  if (s.css) {
+    const { sel, prop, value } = s.css;
+    return value != null ? checks.cssValue(sel, prop, value, hint) : checks.cssProp(sel, prop, hint);
+  }
+  // K-C-05: `js` SATR bo'lsa — regex EMAS, oddiy matn-qidiruv (`console.log(`, `arr[0]` maxsus
+  // belgilari RegExp'ni yiqitardi → butun dars oq ekran). RegExp berilsa avvalgidek.
+  if (s.js) return s.js instanceof RegExp ? checks.js(s.js, hint) : checks.jsText(String(s.js), hint);
+  if (s.logs !== undefined) return checks.logs(s.logs, hint);
+  if (s.eval !== undefined) return checks.evalEquals(s.eval, s.equals, hint);
+  if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
+  if (s.click) return checks.domAfterClick(s.click, s.read, s.expect, hint);
+  const sel = s.tag || s.sel;
+  if (sel) {
+    if (s.child || s.nested) return checks.nested(sel, s.child || s.nested, hint);
+    if (s.count != null) return checks.count(sel, s.count, hint);
+    if (Array.isArray(s.attrs)) return checks.attrs(sel, s.attrs, hint);
+    if (s.attr) return checks.attr(sel, s.attr, hint, s.equals);
+    if (s.text) return checks.text(sel, hint);
+    return checks.has(sel, hint);
+  }
+  // Tanib bo'lmadi — yiqilmaydi, shunchaki bajarilmagan bo'lib qoladi
+  return () => tr(hint ?? { uz: 'shart aniqlanmadi', ru: 'условие не распознано' });
+}
+
+// Deklarativ shartdan o'qiladigan label avtomatik yasaymiz (label berilmasa)
+function buildLabel(s) {
+  if (s.css) return `CSS: ${s.css.sel} { ${s.css.prop}${s.css.value != null ? `: ${s.css.value}` : ''} }`;
+  if (s.logs !== undefined) return { uz: `konsolda «${s.logs}»`, ru: `в консоли «${s.logs}»` };
+  if (s.toggle) return `${s.a} ⇄ ${s.b}`;
+  if (s.click) return { uz: `bosilsa «${s.expect}»`, ru: `по клику «${s.expect}»` };
+  if (s.eval !== undefined) return `${s.eval} = ${s.equals}`;
+  if (s.js) return s.js instanceof RegExp ? { uz: 'JS namunasi', ru: 'фрагмент JS' } : `JS: ${s.js}`;
+  const sel = s.tag || s.sel;
+  if (sel) {
+    if (s.child || s.nested) return { uz: `<${sel}> ichida <${s.child || s.nested}>`, ru: `<${s.child || s.nested}> внутри <${sel}>` };
+    if (Array.isArray(s.attrs)) return `<${sel}> — ${s.attrs.join(', ')}`;
+    if (s.attr) return `<${sel}> — ${s.attr}`;
+    if (s.count != null) return { uz: `kamida ${s.count} ta <${sel}>`, ru: `минимум ${s.count} <${sel}>` };
+    if (s.text) return { uz: `<${sel}> (matn bilan)`, ru: `<${sel}> (с текстом)` };
+    return `<${sel}>`;
+  }
+  return { uz: 'shart', ru: 'условие' };
+}
+
+// Shartni to'liq { id, label, check } shakliga keltiramiz.
+// Eski uslub (check: C.has(...) / runtime obyekt / re:/.../) — tegmaymiz,
+// faqat yetishmasa id/label to'ldiramiz. Deklarativ data bo'lsa — tarjima qilamiz.
+function normalizeReq(req, i = 0) {
+  if (!req || typeof req !== 'object') req = {};   // K-K-26: null/satr element → «shart aniqlanmadi», yiqilmaydi
+  const ready = typeof req.check === 'function' || (req.check && req.check.__runtime) || req.re;
+  if (ready) return { id: req.id ?? `r${i}`, label: req.label ?? '', ...req };
+  const check = specToCheck(req);
+  const id = req.id ?? `${req.tag || req.sel || 'r'}${i}`;
+  return { ...req, id, label: req.label ?? buildLabel(req), check };
+}
+
+// ============================================================
+//  STANDART SHART (komponent yakka ishga tushganda)
+// ============================================================
+// `starter` matn ham, `{uz, ru}` juftlik ham bo'lishi mumkin — quyida hamma joyda
+// `tr()` dan o'tkaziladi (F-0809-04: dars-nusxalari shunday ishlardi).
+const DEFAULT_FILES = [
+  { name: 'index.html', lang: 'html', starter: { uz: '<!-- Bu yerga yozing -->\n', ru: '<!-- Пишите здесь -->\n' } },
+];
+
+const DEFAULT_TASK = {
+  eyebrow: { uz: 'Praktika', ru: 'Практика' },
+  title: { uz: "O'z sahifangizni quring", ru: 'Соберите свою страницу' },
+  brief: {
+    uz: "Quyidagi shartlarni bajaring. Har biri bajarilganda yashil ✓ yonadi. Hammasi yashil bo'lsa — “Davom etish” ochiladi.",
+    ru: 'Выполните условия ниже. За каждое выполненное загорается зелёная ✓. Когда всё зелёное — откроется «Продолжить».',
+  },
+  requirements: [
+    { id: 'h1', label: { uz: '<h1> sarlavha (matn bilan)', ru: '<h1> заголовок (с текстом)' }, check: checks.text('h1', { uz: "`<h1>` ichiga sarlavha matnini yozing", ru: 'Напишите текст заголовка внутри `<h1>`' }) },
+    { id: 'p', label: { uz: '<p> — matn (paragraf)', ru: '<p> — текст (абзац)' }, check: checks.text('p', { uz: "`<p>` ichiga bir-ikki gap yozing", ru: 'Напишите пару предложений внутри `<p>`' }) },
+    { id: 'img', label: { uz: '<img> — src va alt bilan', ru: '<img> — с src и alt' }, check: checks.attrs('img', ['src', 'alt'], { uz: "`<img>` da `src` va `alt` ikkalasini to'ldiring", ru: 'Заполните у `<img>` оба атрибута: `src` и `alt`' }) },
+  ],
+};
+
+// ============================================================
+//  CSS'ni xavfsiz parslash — vaqtinchalik <style> orqali,
+//  qiymatlarni oddiy obyektga ko'chirib olamiz (DOM'dan ajratamiz).
+// ============================================================
+function parseCss(css) {
+  if (!css || !css.trim() || typeof document === 'undefined') return [];
+  // K-C-06: o'quvchi CSS'idagi `@import` KESILADI — aks holda tekshiruv-`<style>` asosiy hujjat
+  // (dars-origin, cookie bilan) nomidan har tugma bosishda tarmoqqa chiqardi. Preview baribir
+  // `@import`ni qo'llamaydi (baseStyle'dan keyin turadi); qolgan qoidalar to'liq tahlil qilinadi.
+  css = css.replace(/@import\b[^;]*;?/gi, '');
+  const el = document.createElement('style');
+  el.textContent = css;
+  document.head.appendChild(el);
+  let rules = [];
+  try {
+    // K-C-04: QISQA XOSSALAR — CSSOM ularni longhandga yoyadi (gap→row-gap/column-gap,
+    // margin→4 tomon…), enumeratsiyada faqat longhand chiqadi va `props['gap']` bo'sh qolardi
+    // (F-0809-04). Avval qo'lda ro'yxat bor edi (`border-bottom`, `text-decoration`, `outline`,
+    // `columns`, `animation`, `grid-area`… unda yo'q, `gridArea` camelCase — ishlamasdi). Endi:
+    // manbada E'LON QILINGAN har bir xossa-nom uchun CSSOM'dan qiymat so'raladi — brauzer bilgan
+    // istalgan qisqa xossa avtomatik chiqadi, ro'yxat kerak emas.
+    const declared = new Set((css.match(/([-a-zA-Z]+)\s*:/g) || []).map((m) => m.replace(/\s*:$/, '').toLowerCase()));
+    // K-C-04: @media/@supports/@layer (va boshqa guruh-qoidalar) ichidagi qoidalar ham hisobga
+    // olinadi — rekursiv tekislanadi. @keyframes/@font-face (selectorText yo'q) o'tkazib yuboriladi.
+    const flat = [];
+    const walk = (list) => {
+      for (const r of list || []) {
+        if (r.style && r.selectorText != null) flat.push(r);
+        else if (r.cssRules && r.cssRules.length && !(typeof CSSKeyframesRule !== 'undefined' && r instanceof CSSKeyframesRule)) walk([...r.cssRules]);
+      }
+    };
+    walk([...(el.sheet?.cssRules || [])]);
+    rules = flat.map((r) => {
+      const props = {};
+      for (let i = 0; i < r.style.length; i++) {
+        const p = r.style[i];
+        props[p] = r.style.getPropertyValue(p);
+      }
+      declared.forEach((name) => {
+        if (props[name] == null) { const v = r.style.getPropertyValue(name); if (v) props[name] = v; }
+      });
+      return { selector: r.selectorText || '', props };
+    });
+  } catch { /* parse xatosi — bo'sh qaytadi */ }
+  el.remove();
+  return rules;
+}
+
+// ============================================================
+//  HTML LINTER — sintaksis tekshiruvi (DOMParser kechirimchi,
+//  bu esa qattiqqo'l). Yopilmagan teg, yopish typo'si, yopilmagan
+//  tirnoq/izoh, noto'g'ri ichma-ichlikni ushlaydi.
+//  Qaytaradi: [{ line, msg }]
+// ============================================================
+const VOID_TAGS = new Set([
+  'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+  'link', 'meta', 'param', 'source', 'track', 'wbr',
+]);
+
+// Yopish tegi IXTIYORIY bo'lgan elementlar (HTML brauzer o'zi yopadi).
+// Bularni "yopilmagan" deb xato chiqarmaymiz — aks holda <li>, ketma-ket
+// <p> kabi to'g'ri kod noto'g'ri qizil bo'lardi.
+const OPTIONAL_CLOSE = new Set(['li', 'p', 'td', 'th', 'tr', 'dt', 'dd', 'option', 'thead', 'tbody', 'tfoot']);
+const BLOCK_TAGS = new Set([
+  'address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset',
+  'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'header', 'hr', 'main', 'menu', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul',
+]);
+// Yangi ochuvchi teg (open) stack tepasidagi (top) ixtiyoriy tegni yopadimi?
+function closesOnOpen(open, top) {
+  if (top === 'li') return open === 'li';
+  if (top === 'p') return open === 'p' || BLOCK_TAGS.has(open);
+  if (top === 'option') return open === 'option';
+  if (top === 'td' || top === 'th') return open === 'td' || open === 'th' || open === 'tr';
+  if (top === 'tr') return open === 'tr';
+  if (top === 'dt' || top === 'dd') return open === 'dt' || open === 'dd';
+  if (top === 'thead' || top === 'tbody' || top === 'tfoot') return open === 'tbody' || open === 'tfoot' || open === 'thead';
+  return false;
+}
+
+// Ichida MATN yoziladigan teglar. Kursor shulardan birining ichida bo'lsa, `<` SIZ
+// taklif-ro'yxati ochilmaydi (F-0809-02): bola «olma» yozayotganda `ol` ro'yxatni
+// qalqitmasligi kerak — ayniqsa endi Enter tanlaydi, ya'ni tasodifan teg tushib qolardi.
+// `<` bilan boshlansa ro'yxat HAMMA joyda ishlayveradi — `<p>` ichida `<a>` yozish mumkin.
+const TEXT_TAGS = new Set([
+  'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'span', 'strong', 'em', 'b', 'i',
+  'button', 'li', 'label', 'title', 'td', 'th', 'figcaption', 'blockquote',
+]);
+// Kursoroldidagi matndan teg-stekni yig'ib, eng ichkarisi matn tegimi — shuni aytadi.
+// Yopish tegi ixtiyoriy bo'lganlar (`<li>` ketma-ket) linterdagi AYNAN shu qoida
+// (`closesOnOpen`) bilan hisoblanadi — ikki joyda ikki xil mantiq bo'lmasin.
+const inTextTag = (src) => {
+  const re = /<(\/?)([a-zA-Z][a-zA-Z0-9-]*)(?:"[^"]*"|'[^']*'|[^<>"'])*?(\/?)>/g;
+  const st = [];
+  let m;
+  while ((m = re.exec(src))) {
+    const name = m[2].toLowerCase();
+    if (m[1]) {                                                    // yopuvchi teg
+      const i = st.lastIndexOf(name);
+      if (i !== -1) st.length = i;
+    } else if (!m[3] && !VOID_TAGS.has(name)) {                    // ochuvchi teg
+      while (st.length && closesOnOpen(name, st[st.length - 1])) st.pop();
+      st.push(name);
+    }
+  }
+  return st.length > 0 && TEXT_TAGS.has(st[st.length - 1]);
+};
+
+// Linter jim turadigan muddat (ms): shu vaqt yozilmasa — endi tekshiradi.
+const LINT_DELAY_MS = 700;
+// `atEnd: true` — xato matn OXIRIDA tugallanmagani uchun chiqdi (bola hali yozyapti).
+// Bunday ogohlantirish kursor oxirida turganda ko'rsatilmaydi (F-0808-02).
+function lintHtml(src) {
+  const errors = [];
+  if (!src) return errors;
+  const stack = []; // { name, line }
+  const n = src.length;
+  let i = 0, line = 1, col = 1;
+  const here = () => ({ line, col });
+  const step = () => { if (src[i] === '\n') { line++; col = 1; } else { col++; } i++; };
+  const skipTo = (idx) => { while (i < idx && i < n) step(); };
+
+  while (i < n) {
+    if (src[i] !== '<') { step(); continue; }
+    const next = src[i + 1];
+
+    // Izoh
+    if (src.startsWith('<!--', i)) {
+      const end = src.indexOf('-->', i + 4);
+      if (end === -1) { errors.push({ ...here(), atEnd: true, msg: tr({ uz: 'Izoh yopilmagan (`-->` yetishmayapti)', ru: 'Комментарий не закрыт (не хватает `-->`)' }) }); break; }
+      skipTo(end + 3); continue;
+    }
+    // <!doctype ...> yoki deklaratsiya
+    if (next === '!') {
+      const end = src.indexOf('>', i);
+      if (end === -1) { errors.push({ ...here(), atEnd: true, msg: tr({ uz: '`<! ... >` yopilmagan', ru: '`<! ... >` не закрыт' }) }); break; }
+      skipTo(end + 1); continue;
+    }
+    // Yopuvchi teg </...>
+    if (next === '/') {
+      const start = here();
+      let j = i + 2, name = '';
+      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
+      while (j < n && src[j] !== '>') j++;
+      if (j >= n) { errors.push({ line: start.line, atEnd: true, msg: tr({ uz: `Yopuvchi teg \`</${name}>\` to'liq emas (\`>\` yetishmayapti)`, ru: `Закрывающий тег \`</${name}>\` неполный (не хватает \`>\`)` }) }); break; }
+      const lname = name.toLowerCase();
+      // Ixtiyoriy yopiladigan teglarni jimgina yopamiz (masalan </ul> ochiq <li>'ni yopadi)
+      while (
+        stack.length &&
+        OPTIONAL_CLOSE.has(stack[stack.length - 1].name) &&
+        stack[stack.length - 1].name !== lname &&
+        stack.some((s, idx) => s.name === lname && idx < stack.length - 1)
+      ) {
+        stack.pop();
+      }
+      if (stack.length === 0) {
+        errors.push({ line: start.line, msg: tr({ uz: `Ortiqcha yopuvchi teg \`</${name}>\` — mos ochuvchi yo'q`, ru: `Лишний закрывающий тег \`</${name}>\` — нет парного открывающего` }) });
+      } else {
+        const top = stack[stack.length - 1];
+        if (top.name === lname) {
+          stack.pop();
+        } else {
+          const idx = stack.map((s) => s.name).lastIndexOf(lname);
+          if (idx === -1) {
+            errors.push({ line: start.line, msg: tr({ uz: `\`</${name}>\` mos ochuvchi tegga ega emas (xato yoki typo)`, ru: `У \`</${name}>\` нет парного открывающего тега (ошибка или опечатка)` }) });
+          } else {
+            errors.push({ line: top.line, msg: tr({ uz: `\`<${top.name}>\` yopilmagan — \`</${top.name}>\` kutilgan, \`</${name}>\` keldi`, ru: `\`<${top.name}>\` не закрыт — ожидался \`</${top.name}>\`, а пришёл \`</${name}>\`` }) });
+            stack.length = idx;
+          }
+        }
+      }
+      skipTo(j + 1); continue;
+    }
+    // Ochuvchi teg <...>
+    if (/[a-zA-Z]/.test(next || '')) {
+      const start = here();
+      let j = i + 1, name = '';
+      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
+      let selfClose = false, closed = false, quote = null, strayLt = false;
+      while (j < n) {
+        const c = src[j];
+        if (quote) { if (c === quote) quote = null; j++; continue; }
+        if (c === '"' || c === "'") { quote = c; j++; continue; }
+        if (c === '<') { strayLt = true; break; }
+        if (c === '/' && src[j + 1] === '>') { selfClose = true; closed = true; j += 2; break; }
+        if (c === '>') { closed = true; j++; break; }
+        j++;
+      }
+      if (quote && j >= n) { errors.push({ line: start.line, atEnd: true, msg: tr({ uz: `\`<${name}>\` ichida tirnoq (${quote}) yopilmagan`, ru: `Кавычка (${quote}) внутри \`<${name}>\` не закрыта` }) }); break; }
+      if (strayLt) {
+        errors.push({ line: start.line, msg: tr({ uz: `\`<${name}\` tegi \`>\` bilan yopilmagan`, ru: `Тег \`<${name}\` не закрыт символом \`>\`` }) });
+        skipTo(j); continue; // '<' dan qayta boshlaymiz
+      }
+      if (!closed && j >= n) { errors.push({ line: start.line, atEnd: true, msg: tr({ uz: `\`<${name}\` tegi \`>\` bilan yopilmagan`, ru: `Тег \`<${name}\` не закрыт символом \`>\`` }) }); break; }
+      const lname = name.toLowerCase();
+      // Ochuvchi teg stack tepasidagi ixtiyoriy tegni yopsa — jimgina yopamiz
+      while (stack.length && closesOnOpen(lname, stack[stack.length - 1].name)) stack.pop();
+      if (!selfClose && !VOID_TAGS.has(lname)) stack.push({ name: lname, line: start.line });
+      skipTo(j); continue;
+    }
+    // '<' dan keyin harf/`/`/`!` emas → matn deb qaraladi (brauzer ham shunday)
+    step();
+  }
+  // Oxirida ochiq qolgan teglar (ixtiyoriy yopiladiganlardan tashqari)
+  for (const t of stack) {
+    if (OPTIONAL_CLOSE.has(t.name)) continue;
+    errors.push({ line: t.line, msg: tr({ uz: `\`<${t.name}>\` ochiq qoldi — \`</${t.name}>\` bilan yoping`, ru: `\`<${t.name}>\` остался открытым — закройте его \`</${t.name}>\`` }) });
+  }
+  return errors;
+}
+
+// Bitta shartni ishga tushiramiz → { ok, hint }
+function runOne(req, ctx) {
+  try {
+    // Runtime probe — bu yerda emas, iframe'da tekshiriladi (placeholder)
+    if (req.check && req.check.__runtime) {
+      return { ok: false, hint: tr({ uz: 'ishga tushirilmoqda…', ru: 'запускается…' }), runtime: true };
+    }
+    // `req.hint` dars tomonidan `{uz, ru}` obyekt qilib berilishi mumkin — tr() SHART,
+    // aks holda chip-tooltipda `[object Object]` chiqadi (F-0809-04, dars-nusxalaridan).
+    if (typeof req.check === 'function') {
+      const r = req.check(ctx);
+      if (r === true) return { ok: true, hint: null };
+      return { ok: false, hint: typeof r === 'string' ? r : (tr(req.hint) || null) };
+    }
+    // Eski uslub: regex (orqaga moslik). Izohlarni olib tashlab tekshiramiz.
+    if (req.re) {
+      const ok = req.re.test((ctx.html || '').replace(/<!--[\s\S]*?-->/g, ''));
+      return { ok, hint: ok ? null : (tr(req.hint) || null) };
+    }
+    return { ok: false, hint: null };
+  } catch {
+    return { ok: false, hint: tr({ uz: 'tekshirishda xatolik', ru: 'ошибка при проверке' }) };
+  }
+}
+
+// ============================================================
+//  RUNTIME HARNESS — iframe ichida ishlaydigan kod.
+//  console.log'ni ushlaydi, probe'larni bajaradi, natijani
+//  postMessage bilan ota-oynaga (parent) yuboradi. Xavfsiz:
+//  sandbox buzilmaydi, faqat bool natijalar uzatiladi.
+// ============================================================
+// KO'RINADIGAN konsol uchun: console.log/info/warn/error va xatolarni
+// ota-oynaga (parent) postMessage bilan uzatadi → UI'da chiqaramiz.
+// nonce — eski va yangi natijalar aralashmasligi uchun.
+// K-C-09: `pos` = {jsStart, htmlStart} — wrapDoc hujjatida o'quvchi script.js / index.html
+// BIRINCHI qatorining hujjat-satr raqami (wrapDoc aniq hisoblaydi). error-hodisadagi `lineno`
+// hujjat bo'yicha keladi → ofset AYIRILADI (taxmin emas): script.js:N yoki index.html:N.
+const CONSOLE_FORWARD = (nonce, pos) => `<script>
+(function(){
+  var N=${JSON.stringify(nonce)},JS=${Number(pos && pos.jsStart) || 0},HT=${Number(pos && pos.htmlStart) || 0};
+  // K-P-07/K-C-16: DevTools uslubidagi ko'rinish — Error name: message, Map(n) {k => v}, Set(n) {..}, <tag id>, Date ISO,
+  // undefined saqlanadi, 5n, ƒ nom(); chuqurlik maks 3 ({…}/[…]), 50 element (… +N), [Circular]; bitta satr maks 4000 belgi.
+  var DEPTH=3,ITEMS=50,MAXCH=4000;
+  function insp(v,d,seen){
+    var t=typeof v;
+    if(v===null)return 'null';if(t==='undefined')return 'undefined';
+    if(t==='string')return d>0?JSON.stringify(v):v;
+    if(t==='number')return (v===0&&1/v<0)?'-0':String(v);
+    if(t==='bigint')return String(v)+'n';if(t==='symbol'||t==='boolean')return String(v);
+    if(t==='function')return 'ƒ '+(v.name||'')+'()';
+    try{
+      if(v instanceof Error)return (v.name||'Error')+': '+v.message;
+      if(v instanceof Date)return isNaN(v.getTime())?'Invalid Date':v.toISOString();
+      if(v instanceof RegExp)return String(v);
+      if(v.nodeType===1)return '<'+String(v.tagName).toLowerCase()+(v.id?' id="'+v.id+'"':'')+(typeof v.className==='string'&&v.className?' class="'+v.className+'"':'')+'>';
+      if(v.nodeType)return String(v.nodeName);
+      if(seen.indexOf(v)!==-1)return '[Circular]';
+      var isArr=Array.isArray(v),isMap=v instanceof Map,isSet=v instanceof Set;
+      if(d>=DEPTH)return isArr?'[…]':'{…}';
+      seen.push(v);
+      var out=[],i=0,more=0;
+      if(isMap){v.forEach(function(val,k){if(i<ITEMS)out.push(insp(k,d+1,seen)+' => '+insp(val,d+1,seen));else more++;i++;});seen.pop();return 'Map('+v.size+') {'+out.join(', ')+(more?', … +'+more:'')+'}';}
+      if(isSet){v.forEach(function(val){if(i<ITEMS)out.push(insp(val,d+1,seen));else more++;i++;});seen.pop();return 'Set('+v.size+') {'+out.join(', ')+(more?', … +'+more:'')+'}';}
+      if(isArr){for(i=0;i<v.length;i++){if(i<ITEMS)out.push(insp(v[i],d+1,seen));else{more=v.length-ITEMS;break;}}seen.pop();return '['+out.join(', ')+(more?', … +'+more:'')+']';}
+      var ks=Object.keys(v);for(i=0;i<ks.length;i++){if(i<ITEMS)out.push(ks[i]+': '+insp(v[ks[i]],d+1,seen));else{more=ks.length-ITEMS;break;}}
+      seen.pop();return '{'+out.join(', ')+(more?', … +'+more:'')+'}';
+    }catch(e){try{return String(v);}catch(x){return '[?]';}}
+  }
+  function fmt(a){return insp(a,0,[]);}
+  var indent='';
+  function join(args){
+    var parts=[],i=0;
+    if(args.length>1&&typeof args[0]==='string'&&/%[sdifoOc]/.test(args[0])){ // %s/%d/%o format-belgilar (birinchi arg satr)
+      var k=1,str=args[0].replace(/%([sdifoOc])/g,function(m,c){if(k>=args.length)return m;var a=args[k++];if(c==='c')return '';if(c==='d'||c==='i')return String(parseInt(a,10));if(c==='f')return String(parseFloat(a));return fmt(a);});
+      parts.push(str);i=k;
+    }
+    for(;i<args.length;i++)parts.push(fmt(args[i]));
+    var text=parts.join(' ');
+    if(text.length>MAXCH)text=text.slice(0,MAXCH)+' … (+'+(text.length-MAXCH)+' belgi)';
+    return indent+text;
+  }
+  function send(level,args){
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:level,text:join(args)},'*');}catch(e){}
+  }
+  ['log','info','warn','error'].forEach(function(m){
+    var _o=console[m]?console[m].bind(console):function(){};
+    console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
+  });
+  // K-P-16: debug/dir → log; group/groupEnd → chekinish; table → matnli jadval (maks 20 qator × 6 ustun); clear → panel tozalanadi
+  var _dbg=console.debug?console.debug.bind(console):function(){},_dir=console.dir?console.dir.bind(console):function(){};
+  console.debug=function(){send('log',arguments);try{_dbg.apply(null,arguments);}catch(e){}};
+  console.dir=function(){send('log',arguments);try{_dir.apply(null,arguments);}catch(e){}};
+  console.group=console.groupCollapsed=function(){send('log',arguments.length?['▼ '+join(arguments).slice(indent.length)]:['▼']);indent+='  ';};
+  console.groupEnd=function(){indent=indent.slice(0,-2);};
+  console.clear=function(){try{parent.postMessage({__hcConsole:true,nonce:N,level:'clear',text:''},'*');}catch(e){}};
+  console.table=function(data){
+    if(!data||typeof data!=='object'){send('log',arguments);return;}
+    var ROWS=20,COLS=6,rows=[],keys=[],rk=Object.keys(data),i,j;
+    for(i=0;i<rk.length&&i<ROWS;i++){var r=data[rk[i]];rows.push([rk[i],r]);if(r&&typeof r==='object'){var kk=Object.keys(r);for(j=0;j<kk.length;j++)if(keys.indexOf(kk[j])===-1&&keys.length<COLS)keys.push(kk[j]);}}
+    var hasVal=rows.some(function(r){return !(r[1]&&typeof r[1]==='object');});
+    var head=['(index)'].concat(keys,hasVal?['Value']:[]);
+    var lines=[head];
+    rows.forEach(function(r){var line=[r[0]];keys.forEach(function(k){line.push(r[1]&&typeof r[1]==='object'&&k in r[1]?insp(r[1][k],1,[]):'');});if(hasVal)line.push(r[1]&&typeof r[1]==='object'?'':insp(r[1],1,[]));lines.push(line);});
+    var w=head.map(function(_,c){var m=0;lines.forEach(function(l){var s=String(l[c]==null?'':l[c]).slice(0,24);if(s.length>m)m=s.length;});return m;});
+    var txt=lines.map(function(l){return l.map(function(c,ci){var s=String(c==null?'':c).slice(0,24);while(s.length<w[ci])s+=' ';return s;}).join(' │ ');});
+    txt.splice(1,0,w.map(function(x){var s='';while(s.length<x)s+='─';return s;}).join('─┼─'));
+    if(rk.length>ROWS)txt.push('… +'+(rk.length-ROWS)+' qator');
+    send('log',[txt.join('\\n')]);
+  };
+  // K-C-14 (= K-P-05): sandbox'da (allow-modals yo'q) alert/prompt/confirm brauzer tomonidan JIM yutiladi.
+  // Semantika SAQLANADI (alert→undefined, prompt→null, confirm→false — «Bekor» bosilgandek), lekin har
+  // chaqiriq konsolga warn-marker yuboradi (matn RENDER paytida o'quvchi tilida — K-M-01). O'quvchi
+  // o'z kodida window.alert'ni qayta belgilasa — uniki ustun (oddiy o'zlashtirish, himoya YO'Q, ataylab).
+  var seenModal=false,firstOf={};
+  function modal(kind,ret){return function(msg){
+    seenModal=true;var again=!!firstOf[kind];firstOf[kind]=true;
+    var t='';try{t=msg===undefined?'':String(msg);}catch(e){t='';}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'warn',text:'__hcModal:'+kind+':'+(again?'again':'first')+':'+t},'*');}catch(e){}
+    return ret;};}
+  try{window.alert=modal('alert',undefined);window.prompt=modal('prompt',null);window.confirm=modal('confirm',false);}catch(e){}
+  window.addEventListener('error',function(e){
+    var ln=e.lineno||0,file='',line=0;
+    if(JS&&ln>=JS){file='script.js';line=ln-JS+1;}
+    else if(HT&&ln>=HT){file='index.html';line=ln-HT+1;}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'error',text:String(e.message||''),file:file,line:line,col:e.colno||0,hint:seenModal?'modal-null':''},'*');}catch(x){}
+  });
+})();
+<\/script>`;
+
+// K-C-11: capture (console.log ushlash) + probes BITTA closure-skriptda, HEAD'da turadi:
+// loglar yopiq massivda (`window.__logs` yo'q — o'quvchi kodi yozolmaydi), native havolalar
+// (push/String/JSON.stringify/indexOf/trim/toLowerCase) o'quvchi kodi ishlashidan OLDIN saqlanadi —
+// prototip zaharlansa (`String.prototype.indexOf=()=>0`) ham probe aldanmaydi. Skript elementi
+// DOM'dan olib tashlanadi (K-C-02 — nonce o'qilmasin). Probes 'load'dan keyin ishlaydi (avvalgidek).
+const buildHarness = (probes, nonce) => `<script>
+(function(){
+  try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
+  var logs=[],_push=Array.prototype.push,_str=String,_json=JSON.stringify,
+      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,
+      _st=window.setTimeout,_qs=document.querySelector;
+  var _l=console.log;console.log=function(){
+    for(var i=0;i<arguments.length;i++){var a=arguments[i];
+      try{_push.call(logs,typeof a==='object'?_json(a):_str(a));}catch(e){_push.call(logs,_str(a));}}
+    try{_l.apply(console,arguments);}catch(e){}
+  };
+  function has(hay,needle){return _idx.call(_str(hay),needle)!==-1;}
+  function qs(sel){try{return _qs.call(document,sel);}catch(e){return null;}}
+  function runProbes(){
+    var P=${JSON.stringify(probes)};
+    var joined='';for(var j=0;j<logs.length;j++)joined+=(j?' ':'')+logs[j];
+    var out={};
+    for(var k=0;k<P.length;k++){
+      var p=P[k],ok=false;
+      try{
+        if(p.type==='log_includes'){
+          var v=_trim.call(_str(p.value));
+          ok=has(joined,v);
+          if(!ok){for(var q=0;q<logs.length;q++){if(has(_trim.call(_str(logs[q])),v)){ok=true;break;}}}
+        }else if(p.type==='eval_equals'){
+          var r; try{r=eval(p.expr);}catch(e){r=undefined;}
+          ok=_str(r)===_str(p.expected);
+        }else if(p.type==='click_text'){
+          var exp=_str(p.expected);
+          var t0=qs(p.readSel);
+          var before=t0?t0.textContent:'';
+          var b=qs(p.clickSel);
+          if(b){try{b.click();}catch(e){}}
+          var t1=qs(p.readSel);
+          var after=t1?t1.textContent:'';
+          // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi
+          ok=has(after,exp) && !has(before,exp);
+        }else if(p.type==='toggle'){
+          var A=_trim.call(_low.call(_str(p.textA)));
+          var B=_trim.call(_low.call(_str(p.textB)));
+          var rd=function(){var e=qs(p.readSel);return _low.call(_str(e?e.textContent:''));};
+          var b2=qs(p.clickSel);
+          var s0=rd();
+          var startOk=has(s0,A) && !has(s0,B); // boshida A
+          if(b2){try{b2.click();}catch(e){}}
+          var s1=rd();
+          var firstOk=has(s1,B) && !has(s1,A); // 1-bosish -> B
+          if(b2){try{b2.click();}catch(e){}}
+          var s2=rd();
+          var secondOk=has(s2,A) && !has(s2,B); // 2-bosish -> A
+          ok=startOk && firstOk && secondOk;
+        }
+      }catch(e){ok=false;}
+      out[p.id]=ok;
+    }
+    try{parent.postMessage({__hcReport:true,nonce:${JSON.stringify(nonce)},results:out},'*');}catch(e){}
+  }
+  // 'load' hodisasidan keyin ishga tushiramiz — o'quvchi handler'ni
+  // window.onload / addEventListener('load') ichida ulagan bo'lsa ham ulgursin.
+  function start(){ _st.call(window, runProbes, 50); }
+  if(document.readyState==='complete') start();
+  else window.addEventListener('load', start);
+})();
+</script>`;
+
+// Foydalanuvchi 3 faylini bitta jonli HTML hujjatga birlashtiramiz
+const baseStyle = `
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:24px;color:#13141A;line-height:1.6;background:#fff}
+  h1{font-family:Georgia,serif;margin:0 0 12px;letter-spacing:-.01em}
+  img{max-width:100%;border-radius:12px;display:block;margin:10px 0}
+  p{margin:0 0 12px}
+  li:empty{display:none}
+  .hc-imgfb{display:flex;flex-direction:column;gap:2px;border:2px dashed #D8D3C8;border-radius:12px;padding:16px 18px;margin:10px 0;background:#FAF8F4;color:#5A5A60;font-size:14px}
+  .hc-imgfb-i{font-size:26px;line-height:1}
+  .hc-imgfb-t{font-weight:700;color:#0E0E10}
+  .hc-imgfb-h{font-size:12.5px;color:#8A8880}
+  .hc-imgfb code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#EFEBE3;padding:1px 5px;border-radius:5px}`;
+
+// Rasm yuklanmasa — buzuq belgi o'rniga tushuntiruvchi quti (F-0809-03).
+// Bola `src`/`alt` shartini bajaradi (✓ yashil yonadi), lekin `rasm.png` mavjud emas
+// va ekranda siniq belgi ko'rinadi — «to'g'ri qildim, nega buzuq?» degan holat.
+// Bu quti AYNAN `alt` nima uchun kerakligini ko'rsatadi: matn rasm o'rnida qoladi.
+// 🔴 MUHIM: `<img>` DOM'dan O'CHIRILMAYDI (faqat yashiriladi) — aks holda
+// yashirin tekshiruv-iframe'idagi `querySelector('img')` shartlari sinardi.
+// K-M-03: matn til bo'yicha — preview hujjati yig'ilayotganda `tr()` (`__lang`) allaqachon o'rnatilgan
+const IMG_FALLBACK = () => `<script>
+document.addEventListener('error',function(e){
+  var el=e.target;
+  if(!el||el.tagName!=='IMG'||el.dataset.hcFb)return;
+  el.dataset.hcFb='1';el.style.display='none';
+  var alt=(el.getAttribute('alt')||'').trim();
+  var b=document.createElement('div');
+  b.className='hc-imgfb';
+  b.innerHTML='<span class="hc-imgfb-i">\\uD83D\\uDDBC</span>'
+    +'<span class="hc-imgfb-t"></span>'
+    +'<span class="hc-imgfb-h">'+${JSON.stringify(tr({ uz: 'rasm topilmadi — <code>src</code> manzilini tekshiring', ru: 'картинка не найдена — проверьте адрес в <code>src</code>' }))}+'</span>';
+  b.querySelector('.hc-imgfb-t').textContent = alt || ${JSON.stringify(tr({ uz: 'alt matni yozilmagan', ru: 'текст alt не написан' }))};
+  if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
+},true);
+<\/script>`;
+
+const wrapDoc = (html, css, js, opts = {}) => {
+  // K-C-09: o'quvchi kodi hujjatning QAYSI satridan boshlanishi aniq hisoblanadi (prefiksdagi
+  // `\n` soni — CSS/HTML uzunligiga qarab o'zgaradi) va CONSOLE_FORWARD'ga uzatiladi.
+  // Raqamlar head'ning satr-sonini o'zgartirmaydi → avval 0/0 bilan o'lchab, keyin haqiqiysi qo'yiladi.
+  const head = (pos) => `<!doctype html>
+<html lang="${__lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base target="_blank">
+<style>${baseStyle}
+${opts.previewCss || ''}
+${css || ''}</style>
+${opts.harness || '' /* K-C-11: capture+probes bitta skript, o'quvchi kodidan OLDIN (head) */}
+${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce, pos) : ''}
+${opts.harness ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
+</head>
+<body>
+`;
+  const nl = (s) => (String(s || '').match(/\n/g) || []).length;
+  const htmlStart = nl(head({ jsStart: 0, htmlStart: 0 })) + 1;   // index.html 1-qatori = hujjatning shu satri
+  const jsStart = htmlStart + nl(html) + 1;                        // script.js 1-qatori
+  return `${head({ jsStart, htmlStart })}${html || ''}
+<script>${js || ''}<\/script>
+${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ''}
+</body>
+</html>`;
+};
+// K-P-01: `__hcDone` — o'quvchi skripti (sinxron qismi) TUGAGANINI bildiradi. Cheksiz
+// sikl bo'lsa bu xabar hech qachon kelmaydi → ota-oyna watchdog bilan qotganini biladi.
+
+// K-C-09: brauzerning inglizcha JS-xato matni → o'quvchi tilida (RENDER paytida chaqiriladi —
+// til almashsa darhol qayta chiziladi, K-M-01 mexanizmi). Xom matn saqlanadi (title'da).
+// Lug'atda yo'q xato → xom inglizcha (faqat `Uncaught ` prefiksi olinadi) — hech qachon bo'sh emas.
+const JS_ERR_DICT = [
+  [/^(?:Uncaught )?ReferenceError: (.+?) is not defined$/, (m) => ({
+    uz: `\`${m[1]}\` aniqlanmagan — bunday o'zgaruvchi yoki funksiya yo'q. Imlosini yoki e'lon qilinganini tekshiring`,
+    ru: `\`${m[1]}\` не определено — такой переменной или функции нет. Проверьте написание или объявление` })],
+  [/^(?:Uncaught )?TypeError: Cannot read propert(?:y|ies) of (null|undefined) \(reading '(.+?)'\)$/, (m) => ({
+    uz: `\`${m[2]}\` ni o'qib bo'lmadi — qiymat ${m[1]}. Element topilmagan yoki o'zgaruvchi hali bo'sh bo'lishi mumkin`,
+    ru: `не удалось прочитать \`${m[2]}\` — значение ${m[1]}. Возможно, элемент не найден или переменная ещё пустая` })],
+  [/^(?:Uncaught )?TypeError: (.+?) is not a function$/, (m) => ({
+    uz: `\`${m[1]}\` funksiya emas — uni qavs bilan chaqirib bo'lmaydi. Nomini tekshiring`,
+    ru: `\`${m[1]}\` — не функция, её нельзя вызвать со скобками. Проверьте имя` })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected token '?(.+?)'?$/, (m) => ({
+    uz: `kutilmagan belgi \`${m[1]}\` — oldingi qator(lar)da qavs, tirnoq yoki nuqta-vergul tekshiring`,
+    ru: `неожиданный символ \`${m[1]}\` — проверьте скобки, кавычки или точку с запятой в предыдущих строках` })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected end of input$/, () => ({
+    uz: `kod tugab qoldi — qavs \`)\` yoki \`}\` yopilmagan`,
+    ru: `код оборвался — не закрыта скобка \`)\` или \`}\`` })],
+  [/^(?:Uncaught )?SyntaxError: Invalid or unexpected token$/, () => ({
+    uz: `noto'g'ri belgi — tirnoq yopilmagan yoki begona belgi kirib qolgan bo'lishi mumkin`,
+    ru: `неверный символ — возможно, не закрыта кавычка или попал лишний символ` })],
+  [/^(?:Uncaught )?SyntaxError: Identifier '(.+?)' has already been declared$/, (m) => ({
+    uz: `\`${m[1]}\` allaqachon e'lon qilingan — ikkinchi marta \`let\`/\`const\` yozmang`,
+    ru: `\`${m[1]}\` уже объявлено — не пишите \`let\`/\`const\` второй раз` })],
+  [/^(?:Uncaught )?SyntaxError: Missing initializer in const declaration$/, () => ({
+    uz: `\`const\` ga qiymat berilmagan — \`const nom = qiymat;\` shaklida yozing`,
+    ru: `\`const\` без значения — пишите \`const имя = значение;\`` })],
+  [/^(?:Uncaught )?TypeError: Assignment to constant variable\.?$/, () => ({
+    uz: `\`const\` ga qayta qiymat berib bo'lmaydi — o'zgarishi kerak bo'lsa \`let\` ishlating`,
+    ru: `\`const\` нельзя переприсвоить — если значение меняется, используйте \`let\`` })],
+  [/^(?:Uncaught )?Error: (.+)$/, (m) => ({ uz: `xato: ${m[1]}`, ru: `ошибка: ${m[1]}` })],
+];
+const jsErrText = (raw, hint) => {
+  const s = String(raw ?? '').trim();
+  // K-C-14: shu run'da prompt/confirm chaqirilgan bo'lsa, «null» xatosining sababi ehtimol o'sha — element-taxmini emas
+  if (hint === 'modal-null') {
+    const m = /^(?:Uncaught )?TypeError: Cannot read propert(?:y|ies) of null \(reading '(.+?)'\)$/.exec(s);
+    if (m) return tr({
+      uz: `\`${m[1]}\` ni o'qib bo'lmadi — qiymat null. Ehtimol bu \`prompt()\`/\`confirm()\` javobi: bu muhitda ular doim null/false qaytaradi — qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing`,
+      ru: `не удалось прочитать \`${m[1]}\` — значение null. Вероятно, это ответ \`prompt()\`/\`confirm()\`: в этой среде они всегда возвращают null/false — запишите значение в переменную напрямую` });
+  }
+  for (const [re, fn] of JS_ERR_DICT) { const m = re.exec(s); if (m) return tr(fn(m)); }
+  return s.replace(/^Uncaught /, '') || s;   // lug'atda yo'q — xom inglizcha, bo'sh EMAS
+};
+// K-C-14: alert/prompt/confirm marker → o'quvchi tilida ogoh (birinchi chaqiriq to'liq, keyingilari qisqa)
+const MODAL_RE = /^__hcModal:(alert|prompt|confirm):(first|again):([\s\S]*)$/;
+const modalText = (raw) => {
+  const m = MODAL_RE.exec(String(raw ?? ''));
+  if (!m) return null;
+  const [, kind, when, arg] = m;
+  const call = `${kind}(${arg ? JSON.stringify(arg) : ''})`;
+  if (when === 'again') return tr({ uz: `${call} — o'tkazib yuborildi (bu muhitda ishlamaydi)`, ru: `${call} — пропущено (в этой среде не работает)` });
+  const T = {
+    alert:   { uz: `${call} — bu muhitda dialog-oyna ochilmaydi. Matnni ko'rsatish uchun \`console.log(...)\` yoki sahifaga yozing`,
+               ru: `${call} — в этой среде диалоговое окно не открывается. Чтобы показать текст, используйте \`console.log(...)\` или выведите на страницу` },
+    prompt:  { uz: `${call} — bu yerda ishlamaydi, javob null (bo'sh) qaytdi. Qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing: \`let ism = "Ali"\``,
+               ru: `${call} — здесь не работает, ответ null (пусто). Запишите значение в переменную напрямую: \`let ism = "Ali"\`` },
+    confirm: { uz: `${call} — bu yerda ishlamaydi, javob false qaytdi — \`else\` tarmog'i ishlaydi`,
+               ru: `${call} — здесь не работает, ответ false — сработает ветка \`else\`` },
+  };
+  return tr(T[kind]);
+};
+
+function HtmlCompiler({
+  task: taskProp = DEFAULT_TASK,
+  starterCode,            // eski kontrakt: bitta HTML fayl uchun starter
+  onContinue,
+  onBack,
+  storageKey,             // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
+  lang = 'uz',            // 'uz' | 'ru' — modul dars kontekstidan tashqarida ishlaydi
+}) {
+  // Til RENDERDAN OLDIN o'rnatiladi: quyidagi barcha tr(...) chaqiriqlari (jumladan
+  // linter xabarlari) shu qiymatni o'qiydi. Darslardagi __lang naqshi bilan bir xil.
+  __lang = (lang === 'ru' ? 'ru' : 'uz');
+  // K-K-26: yaroqsiz kirish (task:null, requirements:'h1'/{…}, files:'x'/[null]) oq ekran bermasin —
+  // obyekt bo'lmagan task → DEFAULT_TASK; requirements/files massiv bo'lmasa e'tiborsiz.
+  const task = taskProp && typeof taskProp === 'object' ? taskProp : DEFAULT_TASK;
+  const taskReqs = Array.isArray(task.requirements) ? task.requirements : [];
+  const taskFiles = Array.isArray(task.files) ? task.files.filter((f) => f && typeof f === 'object' && f.name) : [];
+  // Shartlarni bir marta normalizatsiya: deklarativ data ham, eski C.has(...)
+  // uslubi ham bir xil { id, label, check } shaklga keladi. Quyidagi butun
+  // kod (runtimeProbes, results, merged, render) o'zgarmaydi.
+  const reqs = useMemo(
+    () => taskReqs.map((r, i) => normalizeReq(r, i)),
+    [task.requirements]
+  );
+
+  // Fayllar: task.files bo'lsa o'shani, bo'lmasa eski yakka HTML faylni ishlatamiz
+  const files = useMemo(() => {
+    if (taskFiles.length) return taskFiles;
+    const single = { ...DEFAULT_FILES[0] };
+    if (starterCode != null) single.starter = starterCode;   // tr() codes/reset da qo'llanadi
+    return [single];
+  }, [task.files, starterCode]);
+
+  // F-0801-01 (102-qonun): saqlangan kod bo'lsa — o'shandan boshlanadi (faqat AYNAN shu
+  // fayllar to'plami uchun; topshiriq o'zgargan bo'lsa saqlov e'tiborsiz qoldiriladi).
+  const [codes, setCodes] = useState(() => {
+    const fresh = Object.fromEntries(files.map((f) => [f.name, tr(f.starter) ?? '']));
+    if (!storageKey) return fresh;
+    const s = codesRead(storageKey);
+    if (!s || !s.codes) return fresh;
+    const names = Object.keys(fresh);
+    if (!s.codes || typeof s.codes !== 'object' || Array.isArray(s.codes)) return fresh;
+    if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
+    // K-K-10: qiymat satr bo'lmasa (raqam/obyekt — buzuq saqlov) → shu fayl uchun starter, oq ekran emas
+    return Object.fromEntries(names.map((n) => [n, typeof s.codes[n] === 'string' ? s.codes[n] : fresh[n]]));
+  });
+  // Yozilgan kod jonli saqlanadi (400ms) — tab almashinuvida yo'qolmasin
+  useEffect(() => {
+    if (!storageKey) return;
+    const id = setTimeout(() => codesWrite(storageKey, codes), 400);
+    return () => clearTimeout(id);
+  }, [codes, storageKey]);
+  const [active, setActive] = useState(files[0].name);
+  const taRef = useRef(null);
+
+  // Til bo'yicha matnni olish (birlashtirilgan preview uchun)
+  const byLang = (lang) => {
+    const f = files.find((ff) => ff.lang === lang);
+    return f ? (codes[f.name] ?? '') : '';
+  };
+  const html = byLang('html'), css = byLang('css'), js = byLang('js');
+
+  // Runtime shartlar (iframe'da ishlatib tekshiriladi)
+  const runtimeProbes = useMemo(
+    () => reqs.filter((r) => r.check && r.check.__runtime)
+      .map((r) => ({ id: r.id, type: r.check.__runtime, ...r.check })),
+    [reqs]
+  );
+  const hasRuntime = runtimeProbes.length > 0;
+  const nonceRef = useRef('');
+  const gotReportRef = useRef(null);   // K-C-02: shu token uchun hisobot allaqachon qabul qilinganmi
+  const [runtimeResults, setRuntimeResults] = useState({});
+  // K-C-02: xabar MANBASI tekshiriladi — faqat o'z iframe'imizdan (contentWindow) kelgan
+  // hisobot/konsol/done qabul qilinadi; o'quvchi kodi (preview'dan) hisobotni soxtalashtira olmaydi.
+  const previewFrameRef = useRef(null);
+  const checkFrameRef = useRef(null);
+  const fromFrame = (e, ref) => !!(ref.current && e.source && e.source === ref.current.contentWindow);
+
+  // ── KO'RINADIGAN KONSOL — JS fayli bo'lsa ko'rsatamiz (console.log natijasi) ──
+  const showConsole = useMemo(() => files.some((f) => f.lang === 'js'), [files]);
+  const consoleNonceRef = useRef(0);
+  // K-P-06: 500 satr (eskisi tashlanadi, `dropped` sanaladi), scroll-lock: faqat pastda turganda auto-scroll
+  const [consoleBuf, setConsoleBuf] = useState({ lines: [], dropped: 0 });
+  const consoleLines = consoleBuf.lines;
+  const setConsoleLines = useCallback((v) => setConsoleBuf({ lines: Array.isArray(v) ? v : [], dropped: 0 }), []);
+  const CONSOLE_MAX = 500;
+  const consoleBodyRef = useRef(null);
+  const consoleAtBottomRef = useRef(true);
+  const [consoleNew, setConsoleNew] = useState(0);
+  const consoleScrollBottom = useCallback(() => { const el = consoleBodyRef.current; if (el) el.scrollTop = el.scrollHeight; consoleAtBottomRef.current = true; setConsoleNew(0); }, []);
+  const consoleLastTopRef = useRef(0);
+  // Faqat o'quvchi TEPAGA surganda lock ochiladi (programmatik scrollTop=scrollHeight faqat oshiradi — uning kechikkan
+  // scroll-hodisasi yangi balandlik bilan kelib lockni yo'qotmasin); pastga yetsa lock qaytadi.
+  const onConsoleScroll = useCallback(() => {
+    const el = consoleBodyRef.current; if (!el) return;
+    const atB = el.scrollHeight - el.scrollTop - el.clientHeight < 24;
+    if (atB) { consoleAtBottomRef.current = true; setConsoleNew(0); }
+    else if (el.scrollTop < consoleLastTopRef.current - 2) consoleAtBottomRef.current = false;
+    consoleLastTopRef.current = el.scrollTop;
+  }, []);
+  const consolePrevLenRef = useRef(0);
+  useEffect(() => {
+    const el = consoleBodyRef.current, prevLen = consolePrevLenRef.current; consolePrevLenRef.current = consoleLines.length;
+    if (!el || consoleLines.length === 0) return;
+    if (consoleAtBottomRef.current) { el.scrollTop = el.scrollHeight; consoleLastTopRef.current = el.scrollTop; }   // pastda edi → pastda qoladi
+    else setConsoleNew((c) => c + Math.max(1, consoleLines.length - prevLen));           // tepada o'qiyapti → surilmaydi, «↓ yangi N»
+  }, [consoleLines]);
+
+  // Dars natija-oynasiga O'Z uslubini bera oladi (F-0809-05): PM darslarida sahifa
+  // «tayyor mahsulot» ko'rinishida chiqadi (qora header, binafsha sarlavha, karta-p).
+  // `baseStyle` dan KEYIN, o'quvchining `style.css` idan OLDIN — bola baribir ustidan yoza oladi.
+  const mkDoc = (extra = {}) => wrapDoc(html, css, js, { previewCss: task.previewCss, ...extra });
+  // Ko'rinadigan preview — HECH QACHON tekshiruv tomonidan o'zgartirilmaydi
+  const [doc, setDoc] = useState(() => wrapDoc(html, css, js, { previewCss: task.previewCss }));
+  // Tekshiruv hujjati — alohida YASHIRIN iframe'da ishlaydi (tugmani bosadi,
+  // DOMni o'zgartiradi — lekin foydalanuvchi buni ko'rmaydi)
+  const [checkDoc, setCheckDoc] = useState('');
+
+  // ── K-P-01: QOTGAN KOD WATCHDOG'I (cheksiz sikl) ──────────────────────────────
+  // O'lchandi (dev/hc-stend/x-recreate*.mjs): sandbox-iframe'lar BITTA jarayonda — biri
+  // `while(true){}` da qotsa ikkinchisi ham qotadi, `srcdoc` almashtirish tiklamaydi;
+  // faqat HAMMA iframe DOM'dan olib tashlansa jarayon o'ladi va yangi frame ishlaydi.
+  // Shuning uchun: har hujjat `__hcDone` (yoki hisobot) yuboradi; HUNG_MS ichida kelmasa →
+  // frame'lar o'chiriladi (jarayon o'ladi) → 120 ms → yangi `key` bilan qayta yaratiladi
+  // (oxirgi kod bilan BIR marta; yana qotsa keyingi tahrirgacha o'chiq qoladi) + xabar.
+  const HUNG_MS = 5000;   // preview + tekshiruv-iframe ketma-ket ishlaydi — 3 s halol uzun kodni ham qotgan derdi
+  const HUNG_MSG = tr({
+    uz: '⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o\'zgaryaptimi (masalan i++)?',
+    ru: '⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?',
+  });
+  const [frameGen, setFrameGen] = useState(0);        // iframe `key` — oshsa yangi frame
+  const [framesOff, setFramesOff] = useState(false);  // true = iframe'lar DOM'da yo'q
+  const [hung, setHung] = useState(false);            // xabar ko'rsatish uchun
+  const doneNonceRef = useRef(0);                     // preview hujjatining «tugadi» nonce'i
+  const pendingRef = useRef({});                      // { doc: nonce|null, check: nonce|null }
+  const dogRef = useRef(null);
+  const killedForRef = useRef(null);                  // qaysi (doc,check) juftlik uchun o'ldirilgan
+  const armDog = () => {
+    clearTimeout(dogRef.current);
+    dogRef.current = setTimeout(() => {
+      const p = pendingRef.current;
+      if (p.doc == null && p.check == null) return;   // hammasi yetib keldi
+      const sigKill = `${p.doc}/${p.check}`;
+      setHung(true);
+      pendingRef.current = {};
+      setFramesOff(true);                             // 1) frame'lar yo'q → jarayon o'ladi
+      if (killedForRef.current === sigKill) return;   // shu kod uchun allaqachon qayta urinilgan — o'chiq qoladi
+      killedForRef.current = sigKill;
+      setTimeout(() => {                              // 2) yangi frame'lar — o'sha kod bilan bir marta
+        setFrameGen((g) => g + 1); setFramesOff(false);
+        pendingRef.current = { ...p }; armDog();      // yana qotsa — yuqoridagi shart o'chiq qoldiradi
+      }, 120);
+    }, HUNG_MS);
+  };
+  const expect = (which, nonce) => { pendingRef.current = { ...pendingRef.current, [which]: nonce }; armDog(); };
+  const settle = (which, nonce) => {                  // xabar keldi — kutish ro'yxatidan chiqadi
+    if (pendingRef.current[which] !== nonce) return;
+    pendingRef.current = { ...pendingRef.current, [which]: null };
+    const p = pendingRef.current;
+    if (p.doc == null && p.check == null) { clearTimeout(dogRef.current); setHung(false); }
+  };
+  useEffect(() => () => clearTimeout(dogRef.current), []);
+  // ── PREVIEW QACHON YANGILANADI (F-0809-03) ────────────────────────────────
+  // HTML/CSS darslarida — JONLI: bola yozadi, darrov ko'radi (1-modulning zavqi).
+  // JS fayli bor darslarda — QO'LDA: har bosishda iframe qayta yuklansa, bola o'z
+  // tugmasini bosib olgan natijasi bitta harfdan keyin yo'qolardi (o'lchandi:
+  // preview'ga yozilgan matn 1 belgidan keyin bo'shab qoldi).
+  // Shart-belgilari (✓) BARIBIR jonli qoladi — ular yashirin iframe'da tekshiriladi.
+  const manualRun = showConsole;
+  const sig = `${html} ${css} ${js}`;   // kodning hozirgi imzosi
+  const lastRunRef = useRef(null);
+  const [stale, setStale] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => {
+      // K-P-01: yangi kod keldi — qotgan holat tashlanadi, frame'lar (kerak bo'lsa) qaytadi
+      setHung(false); setFramesOff(false);
+      if (!manualRun) {
+        const dn = ++doneNonceRef.current;
+        setDoc(mkDoc({ doneNonce: dn })); expect('doc', dn);
+      } else if (lastRunRef.current === null) {
+        const cn = ++consoleNonceRef.current;     // birinchi ochilish — bir marta o'zi yuradi
+        const dn = ++doneNonceRef.current;
+        setConsoleLines([]);
+        setDoc(mkDoc({ consoleNonce: cn, doneNonce: dn })); expect('doc', dn);
+        lastRunRef.current = sig;
+        setStale(false);
+      } else {
+        setStale(lastRunRef.current !== sig);     // faqat nishonni yoqamiz, iframe'ga tegmaymiz
+      }
+      if (hasRuntime) {
+        // K-C-02: sanoq emas — tasodifiy token (brute-force yopiladi); bitta token uchun
+        // faqat BIRINCHI hisobot qabul qilinadi (harness load+50ms da, soxta kechiktirilgan
+        // xabar undan keyin keladi va rad etiladi).
+        const nonce = nonceRef.current = `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
+        gotReportRef.current = null;
+        setRuntimeResults({}); // kutish holatiga qaytaramiz
+        setCheckDoc(mkDoc({ harness: buildHarness(runtimeProbes, nonce) })); expect('check', nonce);
+      }
+    }, 300);
+    return () => clearTimeout(id);
+  }, [sig, html, css, js, hasRuntime, runtimeProbes, manualRun]);
+
+  // iframe'dan kelgan runtime natijalarni qabul qilamiz (faqat oxirgi nonce)
+  useEffect(() => {
+    if (!hasRuntime) return;
+    const onMsg = (e) => {
+      const d = e.data;
+      if (d && d.__hcReport && d.nonce === nonceRef.current && fromFrame(e, checkFrameRef)
+          && gotReportRef.current !== d.nonce) {              // K-C-02: birinchi hisobot g'olib
+        gotReportRef.current = d.nonce;
+        setRuntimeResults(d.results || {});
+        settle('check', d.nonce);   // K-P-01
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasRuntime]);
+
+  // K-P-01: preview hujjati «tugadi» dedi — watchdog uchun
+  useEffect(() => {
+    const onDone = (e) => {
+      const d = e.data;
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current && fromFrame(e, previewFrameRef)) settle('doc', d.nonce);
+    };
+    window.addEventListener('message', onDone);
+    return () => window.removeEventListener('message', onDone);
+  }, []);
+
+  // Preview iframe'dan kelgan console.log xabarlarini yig'amiz (faqat oxirgi nonce)
+  useEffect(() => {
+    if (!showConsole) return;
+    const onMsg = (e) => {
+      const d = e.data;
+      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
+        // K-C-09: xato-satrlar {file,line,col} bilan keladi (xom inglizcha matn saqlanadi, tarjima renderda)
+        if (d.level === 'clear') { setConsoleBuf({ lines: [{ level: 'clear', text: '' }], dropped: 0 }); return; }   // K-P-16: o'quvchi console.clear()
+        const item = { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0, hint: String(d.hint || '') };
+        setConsoleBuf((prev) => (prev.lines.length >= CONSOLE_MAX
+          ? { lines: [...prev.lines.slice(prev.lines.length - CONSOLE_MAX + 1), item], dropped: prev.dropped + 1 }
+          : { lines: [...prev.lines, item], dropped: prev.dropped }));
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [showConsole]);
+
+  // ── TEKSHIRUV: real tahlil, sinxron, xavfsiz (iframe'ga tegmaydi) ──
+  const results = useMemo(() => {
+    const parsed = new DOMParser().parseFromString(html || '', 'text/html');
+    const ctx = {
+      html, css, js,
+      doc: parsed,
+      $: (s) => { try { return parsed.querySelector(s); } catch { return null; } },
+      $$: (s) => { try { return [...parsed.querySelectorAll(s)]; } catch { return []; } },
+      cssRules: parseCss(css),
+    };
+    return reqs.map((r) => runOne(r, ctx));
+  }, [html, css, js, reqs, lang]);   // K-M-01: maslahat-matnlari tr() bilan shu yerda tug'iladi — til almashsa qayta hisoblansin
+
+  // ── SINTAKSIS: HTML linter (DOMParser ushlamaydigan xatolarni tutadi) ──
+  // F-0808-02: linter YOZIB BO'LGANDAN KEYIN gapiradi. Avval har bosishda ishlardi —
+  // `</h1` yozayotgan bola har harfda qizil xato ko'rardi (14 bosishdan 12 tasida).
+  const [lintSrc, setLintSrc] = useState(html);
+  useEffect(() => { const id = setTimeout(() => setLintSrc(html), LINT_DELAY_MS); return () => clearTimeout(id); }, [html]);
+  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc, lang]);   // K-M-01: linter xabari ham til bilan
+  // Kursor matn oxirida turib, muharrir fokusda bo'lsa — bola AYNAN shu tegni yozyapti.
+  // Shunda «tugallanmagan» (atEnd) ogohlantirishlari KO'RSATILMAYDI; boshqa joyga o'tsa chiqadi.
+  const [tailTyping, setTailTyping] = useState(false);
+  // «Tayyor» hukmi TO'LIQ ro'yxatga qaraydi — yashirish faqat ko'rinishga tegishli.
+  const hasSyntaxError = htmlErrors.length > 0;
+
+  // Sinxron + runtime natijalarni birlashtiramiz
+  const merged = reqs.map((r, i) => {
+    if (r.check && r.check.__runtime) {
+      const got = runtimeResults[r.id];
+      if (got === undefined) return { ok: false, hint: hung ? HUNG_MSG : tr({ uz: 'ishga tushirilmoqda…', ru: 'запускается…' }) };
+      return { ok: !!got, hint: got ? null : (tr(r.check.hint) || tr({ uz: 'natija kutilgancha emas', ru: 'результат не такой, как ожидалось' })) };
+    }
+    return results[i];
+  });
+
+  const passedCount = merged.filter((r) => r.ok).length;
+  const allPassed = reqs.length > 0 && passedCount === reqs.length && !hasSyntaxError;
+  const firstHint = merged.find((r) => !r.ok && r.hint)?.hint;
+
+  // 🔴 F-0809-03: HAMMA shart bajarilgan, lekin «Davom etish» sintaksis tufayli yopiq.
+  // Bu holatda «bola hali yozyapti» yashirish qoidasi BEKOR bo'ladi — aks holda
+  // o'quvchi 3/3 yashilni va o'lik tugmani ko'rib, SABABSIZ boshi berk ko'chada qolardi
+  // (o'lchov: 4 soniya kutildi, xabar maydoni bo'sh, tugma o'chiq).
+  const blockedBySyntax = reqs.length > 0 && passedCount === reqs.length && hasSyntaxError;
+  const shownErrors = useMemo(
+    () => (tailTyping && !blockedBySyntax ? htmlErrors.filter((e) => !e.atEnd) : htmlErrors),
+    [htmlErrors, tailTyping, blockedBySyntax]
+  );
+
+  const setActiveCode = (val) => setCodes((prev) => ({ ...prev, [active]: val }));
+
+  // ── MUHARRIR YORDAMI (F-0808-02) ──────────────────────────────────────────
+  // Matn HAR DOIM `insertText` orqali qo'yiladi — bu brauzerning o'z «bekor qilish»
+  // tarixiga tushadi, shuning uchun Ctrl+Z ishlaydi. Avval `setState` bilan qo'yilardi
+  // va Tab bosilgandan keyin Ctrl+Z hech narsani qaytarmasdi.
+  // Kursorni FAQAT rAF bilan tiklash yetmaydi: React `value` ni qayta yozganda kursor
+  // matn oxiriga sakraydi va keyingi harf noto'g'ri joyga tushadi. Shuning uchun kutilayotgan
+  // kursor ref'da saqlanadi va HAR RENDERDAN KEYIN (useLayoutEffect) o'rniga qo'yiladi.
+  const caretRef = useRef(null);
+  useLayoutEffect(() => {
+    const c = caretRef.current;
+    if (c == null) return;
+    caretRef.current = null;
+    const el = taRef.current;
+    if (el && document.activeElement === el) el.setSelectionRange(c, c);
+  });
+  const put = (el, text, caret) => {
+    el.focus();
+    document.execCommand('insertText', false, text); // React onChange o'zi ishga tushadi
+    if (caret != null) { el.setSelectionRange(caret, caret); caretRef.current = caret; }
+  };
+  // Kursor matn oxirida + fokusda bo'lsa — bola shu tegni yozayotgan hisoblanadi
+  const syncTail = () => {
+    const el = taRef.current;
+    setTailTyping(!!el && document.activeElement === el && el.selectionStart === el.selectionEnd && el.selectionStart === el.value.length);
+  };
+
+  // ── F-0808-03: VS Code uslubidagi yordamlar ────────────────────────────────
+  const activeLang = (files.find((f) => f.name === active) || {}).lang || 'html';
+  // 3-bosqich: tor ekranda muharrir va natija YONMA-YON emas, TAB bilan almashadi
+  // (860px da yonma-yon qo'ysak, ikkalasi ham ~6 qatordan qolardi).
+  const narrow = useMedia('(max-width: 860px)');
+  const touch = useMedia('(pointer: coarse)');
+  const [pane, setPane] = useState('code');   // faqat `narrow` da ishlaydi
+  const hlRef = useRef(null);
+  const boxRef = useRef(null);
+  const charWRef = useRef(0);            // monoshirift belgi eni (bir marta o'lchanadi)
+  const prevRef = useRef('');            // juft tegni birga tahrirlash uchun oldingi matn
+  const busyRef = useRef(false);         // rekursiyani to'xtatadi
+
+  // ── F-0813-01: VS Code qulayliklari — joriy qator, holat-qatori, shrift, chegara ──
+  // Joriy qator xira yoritiladi (VS Code'dagidek). O'rni state'da EMAS — har
+  // surishda render bo'lmasligi uchun element to'g'ridan-to'g'ri suriladi.
+  const curLineRef = useRef(null);
+  const updateCurLine = () => {
+    const el = taRef.current, d = curLineRef.current;
+    if (!el || !d) return;
+    const cs = getComputedStyle(el);
+    const lh = parseFloat(cs.lineHeight) || 24;
+    const padT = parseFloat(cs.paddingTop) || 0;
+    const row = el.value.slice(0, el.selectionStart).split('\n').length - 1;
+    d.style.top = padT + row * lh - el.scrollTop + 'px';
+    d.style.height = lh + 'px';
+    d.style.opacity = document.activeElement === el && el.selectionStart === el.selectionEnd ? '1' : '0';
+  };
+  // Holat-qatori: Qator/Ustun (state faqat qiymat o'zgarganda yangilanadi)
+  const [caretPos, setCaretPos] = useState({ ln: 1, col: 1 });
+  const updateCaretUi = () => {
+    updateCurLine();
+    const el = taRef.current;
+    if (!el) return;
+    const before = el.value.slice(0, el.selectionStart);
+    const ln = before.split('\n').length;
+    const col = before.length - before.lastIndexOf('\n');
+    setCaretPos((p) => (p.ln === ln && p.col === col ? p : { ln, col }));
+  };
+  // Shrift o'lchami — bola o'zi tanlaydi, eslab qolinadi (proyektor / ko'zi zaif o'quvchi)
+  const [fontSize, setFontSize] = useState(() => {
+    try { const n = parseInt(localStorage.getItem('hcFont'), 10); return n >= 12 && n <= 20 ? n : 14; } catch { return 14; }
+  });
+  const bumpFont = (d) => setFontSize((f) => Math.max(12, Math.min(20, f + d)));
+  useEffect(() => {
+    try { localStorage.setItem('hcFont', String(fontSize)); } catch { /* localStorage yopiq — jim */ }
+    charWRef.current = 0;   // belgi eni qayta o'lchanadi — taklif-ro'yxati joyi aniq qolsin
+    updateCurLine();
+  }, [fontSize]);
+  // Editor ↔ Natija chegarasi sudraladi (30–70%); ikki marta bosish — teng bo'linish
+  const splitRef = useRef(null);
+  const [split, setSplit] = useState(() => {
+    try { const n = parseFloat(localStorage.getItem('hcSplit')); return n >= 0.3 && n <= 0.7 ? n : 0.5; } catch { return 0.5; }
+  });
+  const [dragging, setDragging] = useState(false);
+  useEffect(() => {
+    try { localStorage.setItem('hcSplit', String(split)); } catch { /* localStorage yopiq — jim */ }
+  }, [split]);
+  const dragStart = (e) => {
+    const box = splitRef.current;
+    if (!box) return;
+    e.preventDefault();
+    setDragging(true);
+    const move = (ev) => {
+      const r = box.getBoundingClientRect();
+      if (!r.width) return;
+      setSplit(Math.max(0.3, Math.min(0.7, (ev.clientX - r.left) / r.width)));
+    };
+    const up = () => { setDragging(false); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  // Tab almashganda Qator/Ustun yangi fayl bo'yicha qayta hisoblanadi
+  useEffect(() => {
+    const id = requestAnimationFrame(updateCaretUi);
+    return () => cancelAnimationFrame(id);
+  }, [active]);
+  const [menu, setMenu] = useState(null); // { kind, items, idx, from, prefix, x, y }
+  // Tanlangan qator ko'rinishga suriladi. `scrollIntoView` ATAYLAB ishlatilmadi —
+  // u ota-elementlarni ham surib, butun sahifani sakratib yuborishi mumkin.
+  const menuListRef = useRef(null);
+  useLayoutEffect(() => {
+    const box = menuListRef.current;
+    if (!box || !menu) return;
+    const row = box.children[menu.idx];
+    if (!row) return;
+    const top = row.offsetTop, bot = top + row.offsetHeight;
+    if (top < box.scrollTop) box.scrollTop = top;
+    else if (bot > box.scrollTop + box.clientHeight) box.scrollTop = bot - box.clientHeight;
+  }, [menu]);
+
+  // Rang qatlami + qator ustuni matn maydoni bilan birga suriladi
+  const syncScroll = (e) => {
+    const t = e.target;
+    if (gutRef.current) gutRef.current.scrollTop = t.scrollTop;
+    if (hlRef.current) { hlRef.current.scrollTop = t.scrollTop; hlRef.current.scrollLeft = t.scrollLeft; }
+    updateCurLine();   // joriy-qator chizig'i matn bilan birga suriladi
+  };
+
+  // Kursorning PIKSEL o'rni — shrift monoshirift bo'lgani uchun aniq hisoblanadi
+  const caretXY = () => {
+    const el = taRef.current, box = boxRef.current;
+    if (!el || !box) return { x: 0, y: 0 };
+    const cs = getComputedStyle(el);
+    const lh = parseFloat(cs.lineHeight) || 24;
+    const padL = parseFloat(cs.paddingLeft) || 0;
+    const padT = parseFloat(cs.paddingTop) || 0;
+    let cw = charWRef.current;
+    if (!cw) {
+      const probe = document.createElement('span');
+      probe.textContent = 'M'.repeat(50);
+      probe.style.cssText = `position:absolute;visibility:hidden;white-space:pre;font-family:${cs.fontFamily};font-size:${cs.fontSize};font-feature-settings:"liga" 0,"calt" 0`;
+      box.appendChild(probe);
+      cw = probe.getBoundingClientRect().width / 50;
+      probe.remove();
+      charWRef.current = cw;
+    }
+    const before = el.value.slice(0, el.selectionStart);
+    const row = before.split('\n').length - 1;
+    const col = before.length - (before.lastIndexOf('\n') + 1);
+    let x = padL + col * cw - el.scrollLeft;
+    let y = padT + (row + 1) * lh - el.scrollTop;
+    // Ro'yxat quti ichida qolsin: tor ekranda o'ngga yoki pastga chiqib ketmasin
+    const MW = 246, MH = 250;
+    x = Math.max(4, Math.min(x, Math.max(4, box.clientWidth - MW - 6)));
+    const above = y + MH > box.clientHeight && y > MH;   // pastda joy yo'q — tepaga chiqadi
+    if (above) y -= lh;
+    return { x, y, above };
+  };
+
+  // Esc bilan yopilgan joy — bola shu yerda turganda ro'yxat qayta ochilmaydi
+  // Esc — KEYINGI TAHRIRGACHA jim qoladi (F-0809-02). Ilgari faqat kursor o'rni
+  // saqlanardi va hech qachon tozalanmasdi: bola bir marta Esc bosgach, o'sha joyga
+  // qaytsa ro'yxat BOSHQA chiqmasdi. Matnni eslash ham yetmaydi — harf o'chirilib
+  // qayta yozilsa matn aynan o'sha bo'ladi. Shuning uchun o'lchov — tahrir raqami:
+  // har o'zgarish uni surib yuboradi, ya'ni yozishda davom etilsa ro'yxat qaytadi.
+  const editSeqRef = useRef(0);
+  const escAtRef = useRef({ at: -1, seq: -1 });
+  // Taklif-ro'yxatini yangilaydi (faqat HTML faylida).
+  // MUHIM: agar kontekst o'zgarmagan bo'lsa (kind+from bir xil), tanlangan qator
+  // saqlanadi — aks holda strelka bilan tanlash keyingi `keyup` da nolga qaytardi.
+  const refreshMenu = () => {
+    const el = taRef.current;
+    if (!el || activeLang !== 'html' || document.activeElement !== el) return setMenu(null);
+    const v = el.value, s = el.selectionStart;
+    if (s !== el.selectionEnd) return setMenu(null);
+    if (escAtRef.current.at === s && escAtRef.current.seq === editSeqRef.current) return setMenu(null);
+    const open = (next) => setMenu((prev) => (prev && prev.kind === next.kind && prev.from === next.from && prev.items.length === next.items.length)
+      ? { ...next, idx: Math.min(prev.idx, next.items.length - 1) } : next);
+    const before = v.slice(0, s);
+    // `from` — ALMASHTIRILADIGAN bo'lakning boshi (teg uchun `<` ning o'zi ham kiradi):
+    // tanlanganda uning o'rniga to'liq teg tushadi.
+    const mTag = /<([a-zA-Z][a-zA-Z0-9-]*)?$/.exec(before);
+    if (mTag && before[mTag.index + 1] !== '/') {
+      const pref = (mTag[1] || '').toLowerCase();
+      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      if (!items.length) return setMenu(null);
+      return open({ kind: 'tag', items, idx: 0, from: mTag.index, ...caretXY() });
+    }
+    const mAttr = /<([a-zA-Z][a-zA-Z0-9-]*)((?:"[^"]*"|'[^']*'|[^<>"'])*)\s([a-zA-Z-]*)$/.exec(before);
+    if (mAttr) {
+      const tag = mAttr[1].toLowerCase(), pref = (mAttr[3] || '').toLowerCase(), had = mAttr[2];
+      const pool = [...(ATTR_MENU[tag] || []), ...ATTR_MENU['*']];
+      const items = pool.filter((x) => x.a.startsWith(pref) && !new RegExp('(^|\\s)' + x.a + '\\s*=').test(had));
+      if (!items.length) return setMenu(null);
+      return open({ kind: 'attr', items, idx: 0, from: s - pref.length, ...caretXY() });
+    }
+    // `<` SIZ ham: qatorda YOLG'IZ turgan so'z (`h1`) ro'yxatni ochadi — F-0809-01.
+    // Bola `<` dan boshlashni bilmasa ham teglarni ko'radi. «Yolg'iz» sharti ataylab
+    // qat'iy: `<p>Bugun ol…` kabi MATN yozilayotganda ro'yxat qalqib chiqmaydi.
+    const ls = before.lastIndexOf('\n') + 1;
+    const mBare = /(?:^[ \t]*|>)([a-zA-Z][a-zA-Z0-9-]*)$/.exec(before.slice(ls));
+    const restLine = v.slice(s).split('\n')[0];
+    if (mBare && (!restLine.trim() || /^\s*<\/[a-zA-Z][a-zA-Z0-9-]*>\s*$/.test(restLine)) && !inTextTag(before.slice(0, s - mBare[1].length))) {
+      const pref = mBare[1].toLowerCase();
+      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      if (!items.length) return setMenu(null);
+      return open({ kind: 'tag', items, idx: 0, from: s - mBare[1].length, ...caretXY() });
+    }
+    setMenu(null);
+  };
+
+  // Ro'yxatdan tanlash. Teg uchun TO'LIQ juft qo'yiladi (F-0809-01) — ro'yxat qatorida
+  // `<h1>` ko'rsatilgan, demak aynan o'sha tushishi kerak; ilgari faqat `h1` qo'yilib,
+  // bola `>` ni baribir o'zi bosardi — tanlash qo'lda yozishdan foydasizroq edi.
+  // «Tegni yop» sabog'i zarar ko'rmaydi: qo'lda yozilganda avto-yopish o'z ishida qoladi.
+  const acceptMenu = (item) => {
+    const el = taRef.current; if (!el || !menu) return;
+    const s = el.selectionStart;
+    el.setSelectionRange(menu.from, s);
+    if (menu.kind === 'attr') { put(el, item.a + '=""', menu.from + item.a.length + 2); setMenu(null); return; }
+    const name = item.t, v = el.value;
+    // Ko'p qatorli tuzilma (ul/ol) qatorning chekinishini saqlab tushadi
+    const ls = v.lastIndexOf('\n', menu.from - 1) + 1;
+    const ind = (/^[ \t]*/.exec(v.slice(ls, menu.from)) || [''])[0];
+    const sn = SNIPPETS[name];
+    let body, caretOff;
+    if (sn) {
+      body = sn.body.split('\n').join('\n' + ind);
+      caretOff = sn.body.slice(0, sn.caret).split('\n').join('\n' + ind).length;
+    } else if (VOID_TAGS.has(name)) {
+      body = `<${name}>`; caretOff = body.length;           // <br> — juft kerakmas
+    } else {
+      body = `<${name}></${name}>`; caretOff = name.length + 2; // kursor juft orasida
+    }
+    put(el, body, menu.from + caretOff);
+    setMenu(null);
+  };
+
+  // Ochuvchi teg nomi o'zgarsa — juftini ham o'zgartiradi (VS Code «linked editing»).
+  // Eng ko'p uchraydigan xatoni yo'q qiladi: bittasini o'zgartirib, ikkinchisini unutish.
+  const maybeLinkedRename = (el, prev, next) => {
+    if (activeLang !== 'html' || !prev || prev === next) return;
+    const s = el.selectionStart;
+    const m = /<([a-zA-Z][a-zA-Z0-9-]*)$/.exec(next.slice(0, s));
+    if (!m) return;
+    const tagStart = m.index, nu = m[1];
+    const mo = /^<([a-zA-Z][a-zA-Z0-9-]*)/.exec(prev.slice(tagStart));
+    if (!mo) return;
+    const old = mo[1];
+    if (old === nu || VOID_TAGS.has(old.toLowerCase())) return;
+    // shu ochuvchi tegga MOS yopuvchini topamiz (chuqurlik hisobi bilan)
+    const gt = next.indexOf('>', s);
+    if (gt === -1) return;
+    let depth = 1, i = gt + 1;
+    const openRe = new RegExp('<' + old + '(?=[\\s/>])', 'gi');
+    const closeStr = '</' + old + '>';
+    while (i < next.length) {
+      const c = next.toLowerCase().indexOf(closeStr.toLowerCase(), i);
+      if (c === -1) return;
+      openRe.lastIndex = i;
+      let opens = 0, mm;
+      while ((mm = openRe.exec(next)) && mm.index < c) opens++;
+      depth += opens - 1;
+      if (depth === 0) {
+        el.setSelectionRange(c, c + closeStr.length);
+        document.execCommand('insertText', false, '</' + nu + '>');
+        el.setSelectionRange(s, s);
+        caretRef.current = s;
+        return;
+      }
+      i = c + closeStr.length;
+    }
+  };
+
+  const onChangeCode = (e) => {
+    const el = e.target;
+    if (!busyRef.current) {
+      busyRef.current = true;
+      try { maybeLinkedRename(el, prevRef.current, el.value); } catch {} finally { busyRef.current = false; }
+    }
+    setActiveCode(el.value);
+    prevRef.current = el.value;
+    editSeqRef.current += 1;   // Esc-jimligini bo'shatadi (yuqoriga qarang)
+    syncTail();
+    refreshMenu();
+    updateCaretUi();
+  };
+
+  const onKeyDown = (e) => {
+    const el = e.target;
+    const v = el.value, s = el.selectionStart, en = el.selectionEnd;
+    const oneCaret = s === en;
+    const lineStart = v.lastIndexOf('\n', s - 1) + 1;
+    const line = v.slice(lineStart, s);
+
+    // Taklif-ro'yxati ochiq bo'lsa — u birinchi navbatda javob beradi
+    if (menu) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setMenu((m) => ({ ...m, idx: (m.idx + 1) % m.items.length })); return; }
+      if (e.key === 'ArrowUp') { e.preventDefault(); setMenu((m) => ({ ...m, idx: (m.idx - 1 + m.items.length) % m.items.length })); return; }
+      // Enter ham, Tab ham tanlaydi (F-0809-02): bola sichqoncha bilan bosganda ishlab,
+      // Enter bosganda ishlamasligi — eng ko'p adashtiradigan nomuvofiqlik edi.
+      // Shift+Enter — chiqish yo'li: ro'yxat ochiq bo'lsa ham oddiy yangi qator.
+      if ((e.key === 'Enter' && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) || e.key === 'Tab') {
+        e.preventDefault(); acceptMenu(menu.items[menu.idx]); return;
+      }
+      if (e.key === 'Escape') { e.preventDefault(); escAtRef.current = { at: s, seq: editSeqRef.current }; setMenu(null); return; }
+    }
+
+    // ── F-0813-01: Ctrl+/ — VS Code'dagidek izoh qo'yish/olish ────────────────
+    // Fayl tiliga qarab: HTML <!-- --> · CSS /* */ · JS //. Tanlangan qatorlar
+    // birga o'raladi; hammasi allaqachon izohda bo'lsa — aksincha, ochiladi.
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && e.key === '/') {
+      e.preventDefault();
+      const from = v.lastIndexOf('\n', s - 1) + 1;
+      const endSel = en > s && v[en - 1] === '\n' ? en - 1 : en;
+      const nl = v.indexOf('\n', endSel);
+      const to = nl === -1 ? v.length : nl;
+      const rows = v.slice(from, to).split('\n');
+      const C = activeLang === 'js' ? { re: /^(\s*)\/\/ ?/, o: '// ', c: '' }
+        : activeLang === 'css' ? { re: /^(\s*)\/\*\s?/, ce: /\s?\*\/\s*$/, o: '/* ', c: ' */' }
+          : { re: /^(\s*)<!--\s?/, ce: /\s?-->\s*$/, o: '<!-- ', c: ' -->' };
+      const filled = rows.filter((r) => r.trim());
+      const allOn = filled.length > 0 && filled.every((r) => C.re.test(r) && (!C.ce || C.ce.test(r)));
+      const out = rows.map((r) => {
+        if (!r.trim()) return r;
+        if (allOn) {
+          const x = r.replace(C.re, '$1');
+          return C.ce ? x.replace(C.ce, '') : x;
+        }
+        const m = /^(\s*)([\s\S]*)$/.exec(r);
+        return m[1] + C.o + m[2] + C.c;
+      }).join('\n');
+      el.setSelectionRange(from, to);
+      document.execCommand('insertText', false, out);
+      const caret = from + out.length;
+      el.setSelectionRange(caret, caret);
+      caretRef.current = caret;
+      return;
+    }
+
+    // Tab — 2 bo'sh joy · Shift+Tab — 2 bo'sh joyni olib tashlaydi
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      // Qisqartma: qatorda yolg'iz `ul`/`ol`/`a`/`img` tursa — to'liq tuzilma ochiladi.
+      // Odatda bu holatda taklif-ro'yxati ochiq bo'ladi va Tab yuqorida ushlanadi;
+      // bu yo'l Esc bilan ro'yxat yopilgan holat uchun qoladi.
+      if (oneCaret && activeLang === 'html') {
+        const mm = /([!a-zA-Z.#][a-zA-Z0-9.#>*_-]*|!)$/.exec(line);
+        const ex = mm ? __emmet(mm[1], (/^[ \t]*/.exec(line) || [''])[0]) : null;
+        if (ex) {
+          const from = s - mm[1].length;
+          el.setSelectionRange(from, s);
+          document.execCommand('insertText', false, ex.text);
+          const caret = from + ex.caret;
+          el.setSelectionRange(caret, caret); caretRef.current = caret;
+          return;
+        }
+      }
+      const sn = oneCaret && activeLang === 'html' ? SNIPPETS[line.trim().toLowerCase()] : null;
+      if (sn && /^[ \t]*[a-z0-9]+$/i.test(line)) {
+        const ind = (/^[ \t]*/.exec(line) || [''])[0];
+        const body = sn.body.split('\n').join('\n' + ind);
+        el.setSelectionRange(lineStart, s);
+        document.execCommand('insertText', false, ind + body);
+        const caret = lineStart + ind.length + sn.caret;
+        el.setSelectionRange(caret, caret);
+        caretRef.current = caret;
+        return;
+      }
+      if (e.shiftKey) {
+        const back = /^ {1,2}/.exec(v.slice(lineStart, lineStart + 2));
+        if (!back) return;
+        const caret = Math.max(lineStart, s - back[0].length);
+        el.setSelectionRange(lineStart, lineStart + back[0].length);
+        document.execCommand('delete'); // bekor-qilish tarixini saqlaydi
+        el.setSelectionRange(caret, caret);
+      } else {
+        put(el, '  ', s + 2);
+      }
+      return;
+    }
+
+    // Enter — yangi qator oldingi qator kabi chekinadi; teg ichida bo'lsa ichkariga suradi
+    if (e.key === 'Enter' && oneCaret) {
+      const ind = (/^[ \t]*/.exec(line) || [''])[0];
+      const opensTag = /<[a-zA-Z][a-zA-Z0-9-]*(\s[^<>]*)?>$/.test(line.trimEnd());
+      const closesNext = /^<\//.test(v.slice(s));
+      // F-0813-01: `{` bilan `}` orasida Enter (CSS/JS) — VS Code'dagidek ikki
+      // qator ochiladi, kursor ichkarida; faqat `{` dan keyin — chuqurroq chekinadi.
+      const lastCh = line.trimEnd().slice(-1);
+      const braceWrap = activeLang !== 'html' && lastCh === '{' && v[s] === '}';
+      const braceOpen = activeLang !== 'html' && lastCh === '{';
+      e.preventDefault();
+      if ((opensTag && closesNext) || braceWrap) put(el, `\n${ind}  \n${ind}`, s + 1 + ind.length + 2);
+      else if (braceOpen) put(el, `\n${ind}  `, s + 1 + ind.length + 2);
+      else put(el, `\n${ind}`, s + 1 + ind.length);
+      return;
+    }
+
+    // `>` — ochuvchi teg yopilganda juftini o'zi qo'yadi: <h1>|</h1>
+    if (e.key === '>' && oneCaret && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      // Bola yopuvchi tegni O'ZI yozsa (dars aynan shunga o'rgatadi) — takrorlanmasin.
+      // `<p>a</p|</p>` holatida yozilgani yutiladi va kursor mavjud juftdan keyin turadi.
+      const typedClose = /<\/([a-zA-Z][a-zA-Z0-9-]*)$/.exec(v.slice(0, s));
+      if (typedClose) {
+        const pair = `</${typedClose[1]}>`;
+        if (v.slice(s).startsWith(pair)) {
+          e.preventDefault();
+          const from = s - typedClose[0].length;
+          el.setSelectionRange(from, s);
+          document.execCommand('delete');
+          const caret = from + pair.length;
+          el.setSelectionRange(caret, caret);
+          caretRef.current = caret;
+        }
+        return; // yopuvchi tegga juft qo'yilmaydi
+      }
+      const lt = v.lastIndexOf('<', s - 1);
+      if (lt === -1) return;
+      const inner = v.slice(lt + 1, s);
+      if (!/^[a-zA-Z][a-zA-Z0-9-]*(\s[^<>]*)?$/.test(inner)) return; // </x · <!-- · tugallanmagan
+      if (/\/\s*$/.test(inner)) return;                              // <img /> — o'zi yopiladi
+      const name = /^[a-zA-Z][a-zA-Z0-9-]*/.exec(inner)[0].toLowerCase();
+      if (VOID_TAGS.has(name)) return;                               // <br> <img> — juft kerakmas
+      if (v.slice(s).startsWith(`</${name}>`)) return;               // juft allaqachon bor
+      e.preventDefault();
+      put(el, `></${name}>`, s + 1);
+      return;
+    }
+
+    // `"` — atribut tirnog'i juft qo'yiladi; yopuvchi tirnoq ustida bo'lsa — ustidan o'tadi
+    // (faqat HTML faylida; CSS/JS uchun quyidagi umumiy juftlik-qoidalar ishlaydi)
+    if (e.key === '"' && oneCaret && activeLang === 'html' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (v[s] === '"') { e.preventDefault(); el.setSelectionRange(s + 1, s + 1); syncTail(); return; }
+      const lt = v.lastIndexOf('<', s - 1), gt = v.lastIndexOf('>', s - 1);
+      if (lt === -1 || gt > lt) return;                              // teg ichida emas — oddiy tirnoq
+      e.preventDefault();
+      put(el, '""', s + 1);
+      return;
+    }
+
+    // ── F-0813-01: VS Code juftliklari — CSS/JS fayllarida qavs va tirnoq ─────
+    // HTML fayliga TEGILMAYDI: bola <p> ichida oddiy matn («(masalan)», «o'zim»)
+    // yozadi — u yerda qavs-jufti xalaqit beradi, mavjud > va " yordami yetarli.
+    const codey = activeLang !== 'html';
+    const plain = !e.ctrlKey && !e.metaKey && !e.altKey;
+    const pairs = { '{': '}', '(': ')', '[': ']' };
+    const quotes = activeLang === 'js' ? ['"', "'", '`'] : activeLang === 'css' ? ['"', "'"] : [];
+
+    // Tanlov ustida qavs/tirnoq bosilsa — tanlov O'RALADI: salom → "salom"
+    if (plain && !oneCaret && codey && (pairs[e.key] || quotes.includes(e.key))) {
+      e.preventDefault();
+      put(el, e.key + v.slice(s, en) + (pairs[e.key] || e.key), en + 2);
+      return;
+    }
+    if (plain && oneCaret && codey) {
+      // Yopuvchi belgi allaqachon shu yerda tursa — ustidan o'tiladi, ikkilanmaydi
+      if ((e.key === ')' || e.key === ']' || e.key === '}' || quotes.includes(e.key)) && v[s] === e.key) {
+        e.preventDefault();
+        el.setSelectionRange(s + 1, s + 1);
+        syncTail();
+        return;
+      }
+      // Ochuvchi qavs jufti bilan tushadi, kursor o'rtada: {|}
+      if (pairs[e.key]) {
+        e.preventDefault();
+        put(el, e.key + pairs[e.key], s + 1);
+        return;
+      }
+      // Tirnoq — faqat so'z chetida turganda juftlanadi. Sabab: o'zbekcha yozuvda
+      // apostrof so'z O'RTASIDA keladi (o'zim, g'oya) — u yerda juft chiqsa xalaqit.
+      if (quotes.includes(e.key) && !/[A-Za-z0-9_'"`]/.test(v[s - 1] || '') && !/[A-Za-z0-9_]/.test(v[s] || '')) {
+        e.preventDefault();
+        put(el, e.key + e.key, s + 1);
+        return;
+      }
+    }
+    // Backspace — bo'sh juftlik ichida ikkalasi birga o'chadi: (|) → hech narsa
+    if (e.key === 'Backspace' && oneCaret && s > 0 && ['()', '[]', '{}', '""', "''", '``'].includes(v.slice(s - 1, s + 1))) {
+      e.preventDefault();
+      el.setSelectionRange(s - 1, s + 1);
+      document.execCommand('delete');
+      return;
+    }
+  };
+
+  // Qator raqamlari (chap ustun) — xato «qator 3» desa, bola uni sanamasdan topsin
+  const gutRef = useRef(null);
+  const lineCount = ((codes[active] ?? '').match(/\n/g) || []).length + 1;
+  const lineNos = useMemo(() => Array.from({ length: lineCount }, (_, i) => i + 1).join('\n'), [lineCount]);
+  const syncGutter = (e) => { if (gutRef.current) gutRef.current.scrollTop = e.target.scrollTop; };
+
+  // «Chiroyli» — chekinishni tartibga soladi. Ma'noga tegmaydi: formatHtml o'zi
+  // natijani qayta o'qib, teglar/matn zarracha o'zgargan bo'lsa null qaytaradi.
+  const [fmtNote, setFmtNote] = useState('');
+  const note = (m) => { setFmtNote(m); setTimeout(() => setFmtNote(''), 2400); };
+  const prettify = () => {
+    const el = taRef.current; if (!el) return;
+    const cur = codes[active] ?? '';
+    const out = formatHtml(cur);
+    if (out == null) return note(tr({ uz: 'Avval sintaksis xatosini tuzating', ru: 'Сначала исправьте синтаксис' }));
+    if (out === cur) return note(tr({ uz: 'Kod allaqachon chiroyli 👍', ru: 'Код уже аккуратный 👍' }));
+    el.focus();
+    el.setSelectionRange(0, cur.length);
+    document.execCommand('insertText', false, out);   // bekor-qilish tarixi saqlanadi
+    el.setSelectionRange(0, 0); caretRef.current = 0;
+  };
+  // Xato yozuvi bosilsa — kursor o'sha qatorga tushadi (bola qatorni sanamasin)
+  const jumpToLine = (ln, text) => {   // K-C-09: `text` berilsa (boshqa fayl) — o'sha matn bo'yicha
+    const el = taRef.current; if (!el || !ln) return;
+    const lines = (text ?? codes[active] ?? '').split('\n');
+    let pos = 0;
+    for (let i = 0; i < Math.min(ln - 1, lines.length); i++) pos += lines[i].length + 1;
+    el.focus(); el.setSelectionRange(pos, pos); caretRef.current = pos;
+  };
+
+  const runNow = () => {
+    const cn = showConsole ? ++consoleNonceRef.current : null;
+    if (showConsole) setConsoleLines([]);
+    const dn = ++doneNonceRef.current;               // K-P-01
+    setHung(false); setFramesOff(false); killedForRef.current = null;
+    setDoc(mkDoc(cn != null ? { consoleNonce: cn, doneNonce: dn } : { doneNonce: dn })); expect('doc', dn);
+    lastRunRef.current = sig;
+    setStale(false);
+    if (narrow) setPane('result');   // tor ekranda «Ishga tushirish» natija tabini ochadi
+  };
+  // ── «Qaytadan» — IKKI QADAM + QAYTARISH (F-0809-03) ────────────────────────
+  // Ilgari bitta bosish butun ishni o'chirardi: tasdiq yo'q, Ctrl+Z qaytarmasdi
+  // (`setCodes` brauzer tarixiga tushmaydi) va 400 ms dan keyin SAQLANGAN nusxa
+  // ham ustidan yozilardi — ish butunlay yo'qolardi (o'lchov bilan tasdiqlangan).
+  // Ctrl+Z ga tayanib bo'lmaydi: dars ko'p faylli bo'lsa brauzer faqat ochiq
+  // faylni biladi. Shuning uchun nusxa `ref` da — hamma faylni birga qaytaradi.
+  const [resetArmed, setResetArmed] = useState(false);
+  const armTimerRef = useRef(null);
+  const snapRef = useRef(null);
+  const [canRestore, setCanRestore] = useState(false);
+  const restoreTimerRef = useRef(null);
+  const disarm = () => { clearTimeout(armTimerRef.current); armTimerRef.current = null; setResetArmed(false); };
+  useEffect(() => () => { clearTimeout(armTimerRef.current); clearTimeout(restoreTimerRef.current); }, []);
+
+  const reset = () => {
+    if (!resetArmed) {                       // 1-bosish — faqat ogohlantiradi
+      setResetArmed(true);
+      clearTimeout(armTimerRef.current);
+      armTimerRef.current = setTimeout(() => { armTimerRef.current = null; setResetArmed(false); }, 4000);
+      return;
+    }
+    disarm();                                // 2-bosish — tozalaydi, lekin nusxa qoladi
+    snapRef.current = codes;
+    setCodes(Object.fromEntries(files.map((f) => [f.name, tr(f.starter) ?? ''])));
+    setCanRestore(true);
+    clearTimeout(restoreTimerRef.current);
+    restoreTimerRef.current = setTimeout(() => setCanRestore(false), 8000);
+  };
+  const restore = () => {
+    if (!snapRef.current) return;
+    setCodes(snapRef.current);
+    snapRef.current = null;
+    setCanRestore(false);
+    clearTimeout(restoreTimerRef.current);
+  };
+
+  // Pastki holat-matni — ustuvorlik tartibida (ichma-ich ternar o'qib bo'lmas edi):
+  //   qaytarish taklifi → o'chirish ogohlantirishi → tayyor → sintaksis qoldi → oddiy
+  let statusMsg;
+  if (canRestore) {
+    statusMsg = (
+      <span className="hc-wait-msg">{tr({ uz: 'Kod tozalandi.', ru: 'Код очищен.' })}{' '}
+        <button type="button" className="hc-undo" onClick={restore}>↶ {tr({ uz: 'Qaytarish', ru: 'Вернуть' })}</button>
+      </span>
+    );
+  } else if (resetArmed) {
+    statusMsg = <span className="hc-warn-msg">⚠ {tr({ uz: "Butun kod o'chadi — tugmani yana bosing", ru: 'Весь код сотрётся — нажмите кнопку ещё раз' })}</span>;
+  } else if (allPassed) {
+    statusMsg = <span className="hc-ok-msg">✓ {tr({ uz: 'Barcha shartlar bajarildi!', ru: 'Все условия выполнены!' })}</span>;
+  } else if (blockedBySyntax) {
+    // Shartlar bajarilgan — «shartlarni bajaring» deyish yolg'on bo'lardi (F-0809-03)
+    statusMsg = <span className="hc-wait-msg">✓ {tr({ uz: 'Shartlar bajarildi — sintaksis xatosi qoldi (yuqorida)', ru: 'Условия выполнены — остался синтаксис (см. выше)' })}</span>;
+  } else {
+    statusMsg = <span className="hc-wait-msg">{narrow
+      ? tr({ uz: "Shartlarni bajaring — «Natija» tabida ko'rinadi", ru: 'Выполняйте условия — смотрите во вкладке «Результат»' })
+      : tr({ uz: "Shartlarni bajaring — natija o'ngda ko'rinadi", ru: 'Выполняйте условия — результат виден справа' })}</span>;
+  }
+
+  return (
+    <div className={`hc-root${dragging ? ' dragging' : ''}`}
+      style={{ '--hcfs': fontSize + 'px', '--hcL': split.toFixed(3) + 'fr', '--hcR': (1 - split).toFixed(3) + 'fr' }}>
+      <StyleTag />
+
+      {/* ── Tepa: shart (markazda) ── */}
+      <header className="hc-top">
+        {task.eyebrow && <span className="hc-eyebrow">{tr(task.eyebrow)}</span>}
+        <h1 className="hc-title">{tr(task.title)}</h1>
+        {task.brief && <p className="hc-brief">{tr(task.brief)}</p>}
+        <div className="hc-checklist">
+          <span className="hc-count">{passedCount}/{reqs.length}</span>
+          {reqs.map((r, i) => (
+            <span key={r.id} className={`hc-chip ${merged[i]?.ok ? 'ok' : ''}`} title={merged[i]?.hint || ''}>
+              <span className="hc-dot">{merged[i]?.ok ? '✓' : i + 1}</span>
+              {tr(r.label)}
+            </span>
+          ))}
+        </div>
+        {/* Xabar maydoni — BALANDLIGI QOTIRILGAN va bitta qator.
+            Avval xato paneli 1↔3 qatorga o'zgarardi va `.hc-root` markazlashtirgani uchun
+            butun muharrir har bosishda 29px sakrardi (F-0808-02). Endi sakramaydi.
+            Bir vaqtda BITTA xato: 13 yoshli bolaga uchta qizil qator — shovqin. */}
+        <div className="hc-msg">
+          {fmtNote ? (
+            <p className="hc-note">{fmtNote}</p>
+          ) : shownErrors.length > 0 ? (
+            /* K-M-02: matn alohida span'da kesiladi (ellipsis), «+N» belgisi esa DOIM ko'rinadi;
+               title'da to'liq xabar — kesilgan bo'lsa ham o'qish yo'li bor */
+            <button type="button" className="hc-err" onClick={() => jumpToLine(shownErrors[0].line)}
+              title={`${tr({ uz: 'Qator', ru: 'Строка' })} ${shownErrors[0].line}: ${shownErrors[0].msg}\n${tr({ uz: 'Bosing — kursor shu qatorga tushadi', ru: 'Нажмите — курсор перейдёт на эту строку' })}`}>
+              <span className="hc-err-text">⚠ {tr({ uz: 'Qator', ru: 'Строка' })} {shownErrors[0].line}: {shownErrors[0].msg}</span>
+              {shownErrors.length > 1 && <b className="hc-err-more">+{shownErrors.length - 1}</b>}
+            </button>
+          ) : (!allPassed && firstHint && (
+            <p className="hc-hint">💡 {firstHint}</p>
+          ))}
+        </div>
+      </header>
+
+      {/* Tor ekranda: muharrir va natija tab bilan almashadi (yonma-yon sig'maydi) */}
+      {narrow && (
+        <div className="hc-panetabs" role="tablist">
+          <button type="button" role="tab" aria-selected={pane === 'code'} className={pane === 'code' ? 'on' : ''} onClick={() => setPane('code')}>
+            ⌨ {tr({ uz: 'Kod', ru: 'Код' })}
+          </button>
+          <button type="button" role="tab" aria-selected={pane === 'result'} className={pane === 'result' ? 'on' : ''} onClick={() => setPane('result')}>
+            📺 {tr({ uz: 'Natija', ru: 'Результат' })}
+          </button>
+        </div>
+      )}
+
+      {/* ── O'rta: editor | natija ── */}
+      <main ref={splitRef} className={`hc-split${narrow ? ` tabbed pane-${pane}` : ''}`}>
+        <section className="hc-pane hc-editor-pane">
+          <div className="hc-pane-bar hc-tabs-bar">
+            <span className="hc-dots"><i /><i /><i /></span>
+            <div className="hc-tabs">
+              {files.map((f) => (
+                <button
+                  key={f.name}
+                  className={`hc-tab ${active === f.name ? 'active' : ''}`}
+                  onClick={() => setActive(f.name)}
+                >
+                  {f.name}
+                </button>
+              ))}
+            </div>
+            <div className="hc-tools">
+              <button className="hc-ic" onMouseDown={(e) => e.preventDefault()} onClick={() => { taRef.current?.focus(); document.execCommand('undo'); }}
+                title={tr({ uz: 'Orqaga qaytarish (Ctrl+Z)', ru: 'Отменить (Ctrl+Z)' })} aria-label={tr({ uz: 'Orqaga qaytarish', ru: 'Отменить' })}>↶</button>
+              <button className="hc-ic" onMouseDown={(e) => e.preventDefault()} onClick={() => { taRef.current?.focus(); document.execCommand('redo'); }}
+                title={tr({ uz: 'Qaytarilganni tiklash (Ctrl+Y)', ru: 'Вернуть (Ctrl+Y)' })} aria-label={tr({ uz: 'Tiklash', ru: 'Вернуть' })}>↷</button>
+              {activeLang === 'html' && (
+                <button className="hc-ic wide" onMouseDown={(e) => e.preventDefault()} onClick={prettify}
+                  title={tr({ uz: 'Kodni chiroyli chekintiradi', ru: 'Аккуратно расставит отступы' })}>✨ {tr({ uz: 'Chiroyli', ru: 'Красиво' })}</button>
+              )}
+            </div>
+            <button className="hc-mini" onClick={runNow} title={tr({ uz: 'Ishga tushirish', ru: 'Запустить' })}>▶ {tr({ uz: 'Ishga tushirish', ru: 'Запустить' })}</button>
+          </div>
+          <div className="hc-editor-wrap">
+            <div className="hc-gutter" ref={gutRef} aria-hidden="true">{lineNos}</div>
+            <div className="hc-code-box" ref={boxRef}>
+              {/* Rang qatlami matn maydoni ORTIDA turadi; matn maydonining o'z matni shaffof */}
+              <pre className="hc-hl" ref={hlRef} aria-hidden="true"
+                dangerouslySetInnerHTML={{ __html: highlight(codes[active] ?? '', activeLang) + '\n' }} />
+              {/* F-0813-01: joriy qator xira yoritiladi — bola qayerdaligini ko'radi */}
+              <div className="hc-curline" ref={curLineRef} aria-hidden="true" />
+              <textarea
+                ref={taRef}
+                className="hc-code"
+                value={codes[active] ?? ''}
+                onChange={onChangeCode}
+                onKeyDown={onKeyDown}
+                onKeyUp={() => { syncTail(); refreshMenu(); updateCaretUi(); }}
+                onSelect={() => { syncTail(); refreshMenu(); updateCaretUi(); }}
+                onFocus={() => { syncTail(); updateCaretUi(); }}
+                onBlur={() => { setTailTyping(false); setMenu(null); updateCurLine(); }}
+                onScroll={syncScroll}
+                spellCheck={false}
+                autoCapitalize="off"
+                autoCorrect="off"
+                /* Xira NAMUNA: dars `placeholder` bersa — o'shani ko'rsatamiz (F-0809-05).
+                   Bu shunchaki bezak emas, o'qitadi: bola tuzilma shaklini ko'radi va
+                   yozishni boshlashi bilan namuna o'chadi. Avval fayl-darajasi, keyin
+                   topshiriq-darajasi, oxirida umumiy standart matn. */
+                placeholder={tr(files.find((f) => f.name === active)?.placeholder ?? task.placeholder
+                  ?? { uz: 'Kodingizni shu yerga yozing…', ru: 'Пишите свой код здесь…' })}
+              />
+              {menu && (
+                <div className={`hc-menu${menu.above ? ' up' : ''}`} style={{ left: menu.x, top: menu.y }} role="listbox"
+                  onMouseDown={(e) => e.preventDefault() /* fokus muharrirda qolsin */}>
+                  {/* HAMMA mos band chiqadi, ~8 tasi ko'rinadi va ichida suriladi
+                      (F-0809-03): ilgari `slice(0,8)` edi, lekin strelka HAMMA band
+                      bo'ylab yurardi — 9-bandga o'tilganda tanlangan qator ko'rinmay
+                      qolardi va Enter kutilmagan tegni qo'yardi. */}
+                  <div className="hc-menu-list" ref={menuListRef}>
+                    {menu.items.map((it, i) => (
+                      <button key={it.t || it.a} role="option" aria-selected={i === menu.idx}
+                        className={`hc-menu-row ${i === menu.idx ? 'on' : ''}`}
+                        onClick={() => acceptMenu(it)}>
+                        <span className="hc-menu-k">{menu.kind === 'tag' ? `<${it.t}>` : it.a}</span>
+                        <span className="hc-menu-d">{tr(it.d)}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <span className="hc-menu-tip">{touch
+                    ? tr({ uz: 'Bosib tanlang', ru: 'Нажмите, чтобы выбрать' })
+                    : tr({ uz: 'Enter — tanlash · Esc — yopish', ru: 'Enter — выбрать · Esc — закрыть' })}</span>
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Barmoq bilan yoziladigan klaviaturada `<` `>` `/` `"` chuqurda yashiringan —
+              shu qator ularni bir bosishga chiqaradi. Sichqonchali qurilmada ko'rinmaydi. */}
+          {touch && (
+            <div className="hc-keys">
+              {(TOUCH_KEYS[activeLang] || TOUCH_KEYS.html).map((ch) => (
+                <button type="button" key={ch} className="hc-key" onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => { const el = taRef.current; if (el) put(el, ch, el.selectionStart + ch.length); }}>{ch}</button>
+              ))}
+              <button type="button" className="hc-key wide" onMouseDown={(e) => e.preventDefault()}
+                onClick={() => { const el = taRef.current; if (el) put(el, '  ', el.selectionStart + 2); }}
+                title={tr({ uz: 'Ichkariga surish', ru: 'Отступ' })}>⇥</button>
+            </div>
+          )}
+          {/* F-0813-01: VS Code uslubidagi holat-qatori — fayl · til · shrift · Qator/Ustun */}
+          {!narrow && (
+            <div className="hc-statusbar">
+              <span className="hc-sb-file">{active}</span>
+              <span className="hc-sb-lang">{activeLang}</span>
+              <div className="hc-sb-font">
+                <button type="button" className="hc-sb-btn" onMouseDown={(e) => e.preventDefault()} onClick={() => bumpFont(-1)}
+                  title={tr({ uz: 'Shriftni kichraytirish', ru: 'Уменьшить шрифт' })}
+                  aria-label={tr({ uz: 'Shriftni kichraytirish', ru: 'Уменьшить шрифт' })}>A−</button>
+                <span className="hc-sb-fs">{fontSize}</span>
+                <button type="button" className="hc-sb-btn" onMouseDown={(e) => e.preventDefault()} onClick={() => bumpFont(1)}
+                  title={tr({ uz: 'Shriftni kattalashtirish', ru: 'Увеличить шрифт' })}
+                  aria-label={tr({ uz: 'Shriftni kattalashtirish', ru: 'Увеличить шрифт' })}>A+</button>
+              </div>
+              <span className="hc-sb-pos">{tr({ uz: 'Qator', ru: 'Строка' })} {caretPos.ln}, {tr({ uz: 'Ustun', ru: 'Столбец' })} {caretPos.col}</span>
+            </div>
+          )}
+        </section>
+
+        {/* F-0813-01: chegara — sudrab Editor/Natija ulushi o'zgaradi, 2 bosish — teng */}
+        {!narrow && (
+          <div className="hc-divider" role="separator" aria-orientation="vertical"
+            onPointerDown={dragStart} onDoubleClick={() => setSplit(0.5)}
+            title={tr({ uz: "Sudrang — panellar kengligi o'zgaradi · 2 marta bosish — teng", ru: 'Тяните — изменится ширина панелей · двойной клик — поровну' })}>
+            <i />
+          </div>
+        )}
+
+        <section className="hc-pane hc-preview-pane">
+          <div className="hc-pane-bar">
+            {/* `task.previewUrl` berilsa — natija paneli SOXTA BRAUZER oynasiga aylanadi
+                (manzil qatori bilan). PM darslarining o'zagi shu: bola o'zi yozgan
+                sahifani «haqiqiy sayt» sifatida ko'radi (F-0809-05, PM shc-* dan). */}
+            {task.previewUrl ? (
+              <>
+                <span className="hc-dots"><i /><i /><i /></span>
+                <span className="hc-url"><span className="hc-lock">●</span>{tr(task.previewUrl)}</span>
+              </>
+            ) : (
+              <span className="hc-pane-name">📺 {tr({ uz: 'Natija', ru: 'Результат' })}</span>
+            )}
+            {/* Kod o'zgargan, lekin hali ishga tushirilmagan bo'lsa — ochiq aytiladi */}
+            {stale
+              ? <span className="hc-stale">{tr({ uz: 'eskirdi · ▶ bosing', ru: 'устарело · нажмите ▶' })}</span>
+              : <span className="hc-live">{tr({ uz: 'jonli', ru: 'live' })}</span>}
+          </div>
+          {/* K-P-01: `key` — qotgan frame tashlanib yangisi yaratiladi; framesOff — jarayon o'lsin */}
+          {!framesOff && (
+            <iframe
+              key={frameGen}
+              ref={previewFrameRef}
+              className="hc-frame"
+              title="natija"
+              sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+              srcDoc={doc}
+            />
+          )}
+          {hung && (
+            <div className="hc-hung" role="alert">{HUNG_MSG}</div>
+          )}
+          {showConsole && (
+            <div className="hc-console">
+              <div className="hc-console-bar">
+                <span className="hc-console-title">🖥️ Console</span>
+                {consoleLines.length > 0 && (
+                  <span className="hc-console-count">{consoleLines.length}{consoleBuf.dropped > 0 ? ' · ' + tr({ uz: `eng eski ${consoleBuf.dropped} yashirildi`, ru: `скрыто старых: ${consoleBuf.dropped}` }) : ''}</span>
+                )}
+                {consoleNew > 0 && (
+                  <button className="hc-console-new" onClick={consoleScrollBottom}>↓ {tr({ uz: `yangi ${consoleNew}`, ru: `новых ${consoleNew}` })}</button>
+                )}
+                {consoleLines.length > 0 && (
+                  <button className="hc-console-clear" onClick={() => setConsoleLines([])}>{tr({ uz: 'tozalash', ru: 'очистить' })}</button>
+                )}
+              </div>
+              <div className="hc-console-body" ref={consoleBodyRef} onScroll={onConsoleScroll}>
+                {consoleLines.length === 0 ? (
+                  <div className="hc-console-empty">{tr({ uz: 'console.log(...) natijasi shu yerda chiqadi', ru: 'результат console.log(...) появится здесь' })}</div>
+                ) : (
+                  consoleLines.map((l, i) => (
+                    l.level === 'clear' ? (
+                      <div key={i} className="hc-console-line lvl-clear"><span className="hc-console-text">— {tr({ uz: 'console.clear() — tozalandi', ru: 'console.clear() — очищено' })} —</span></div>
+                    ) : l.level === 'error' && l.file ? (
+                      // K-C-09: xato — fayl:satr (bosilsa o'sha faylning o'sha qatoriga kursor) + o'quvchi tilida matn; xom matn title'da
+                      <div key={i} className={`hc-console-line lvl-${l.level} has-pos`} title={l.text}
+                        onClick={() => { if (files.some((f) => f.name === l.file)) { setActive(l.file); setTimeout(() => jumpToLine(l.line, codes[l.file]), 0); } }}>
+                        <span className="hc-console-caret">›</span>
+                        <span className="hc-console-pos">{l.file}:{l.line}</span>
+                        <span className="hc-console-text">{jsErrText(l.text, l.hint)}</span>
+                      </div>
+                    ) : (
+                      <div key={i} className={`hc-console-line lvl-${l.level}${l.level === 'warn' && MODAL_RE.test(l.text) ? ' is-modal' : ''}`} title={l.level === 'error' && /^Uncaught /.test(l.text) ? l.text : undefined}>
+                        <span className="hc-console-caret">{l.level === 'warn' && MODAL_RE.test(l.text) ? '⚠' : '›'}</span>
+                        <span className="hc-console-text">{l.level === 'error' && /^Uncaught /.test(l.text) ? jsErrText(l.text, l.hint) : (l.level === 'warn' && modalText(l.text)) || l.text}</span>
+                      </div>
+                    )
+                  ))
+                )}
+              </div>
+            </div>
+          )}
+        </section>
+      </main>
+
+      {/* Yashirin tekshiruv iframe'i — probe'lar shu yerda ishlaydi (tugmani
+          bosadi, DOMni o'zgartiradi), foydalanuvchi ko'radigan preview esa toza qoladi */}
+      {hasRuntime && !framesOff && (
+        <iframe
+          key={frameGen}
+          ref={checkFrameRef}
+          aria-hidden="true"
+          tabIndex={-1}
+          title="tekshiruv"
+          sandbox="allow-scripts"
+          srcDoc={checkDoc}
+          style={{ position: 'fixed', left: '-9999px', top: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none', border: 'none' }}
+        />
+      )}
+
+      {/* ── Past: harakatlar ── */}
+      <footer className="hc-bottom">
+        {onBack && <button className="hc-ghost" onClick={onBack}>← {tr({ uz: 'Orqaga', ru: 'Назад' })}</button>}
+        {/* Yorliq QISQA qoladi — pastki panel kengligi sakramasin; tushuntirish yonda */}
+        <button className={`hc-ghost${resetArmed ? ' armed' : ''}`} onClick={reset} onBlur={disarm}
+          title={tr({ uz: 'Kodni boshlang\'ich holatga qaytaradi', ru: 'Вернуть код к начальному виду' })}>
+          {resetArmed ? `⚠ ${tr({ uz: 'Rostdanmi?', ru: 'Точно?' })}` : tr({ uz: 'Qaytadan', ru: 'Заново' })}
+        </button>
+        <div className="hc-status">{statusMsg}</div>
+        <button
+          className="hc-next"
+          disabled={!allPassed}
+          /* O'chiq tugma sababsiz turmasin — sichqoncha ustiga borsa aytadi (F-0809-03) */
+          title={allPassed ? '' : blockedBySyntax
+            ? tr({ uz: 'Sintaksis xatosi tuzatilsa ochiladi', ru: 'Откроется после исправления синтаксиса' })
+            : tr({ uz: 'Barcha shartlar bajarilsa ochiladi', ru: 'Откроется, когда все условия выполнены' })}
+          onClick={() => allPassed && onContinue && onContinue({ codes, code: html })}
+        >
+          {tr({ uz: 'Davom etish', ru: 'Продолжить' })} →
+        </button>
+      </footer>
+    </div>
+  );
+}
+
+const HC_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap';
+function StyleTag() {
+  // K-P-25/K-K-24 (+K-P-26): shrift sahifaga BIR MARTA <link id="hc-fonts"> bilan ulanadi — har mount /
+  // har instansiya uchun @import emas. Yuklanmasa (oflayn/CSP) — system-ui fallback, hech narsa sinmaydi.
+  useEffect(() => {
+    if (typeof document === 'undefined' || document.getElementById('hc-fonts')) return;
+    const l = document.createElement('link'); l.id = 'hc-fonts'; l.rel = 'stylesheet'; l.href = HC_FONTS_URL;
+    document.head.appendChild(l);
+  }, []);
+  return (
+    <style>{`
+      .hc-root,.hc-root *{box-sizing:border-box}
+      .hc-root{font-family:'Manrope',system-ui,sans-serif;color:${HC_T.ink};background:
+        radial-gradient(120% 80% at 50% -10%, ${HC_T.accentSoft} 0%, rgba(255,237,229,0) 46%),
+        ${HC_T.bg};
+        /* Keng ekranda dars bilan bir xil masshtab (--lz), lekin balandlik zoomga BO'LINADI —
+           aks holda 100dvh zoomga ko'payib, kompilyatorning pasti ekrandan chiqib ketadi (F-0808-02). */
+        zoom:var(--lz,1);height:calc(100dvh / var(--lz,1));
+        /* F-0813-01: 1160px «kichkina ramka» e'tirozi — desktopda +50% kengaytirildi.
+           Balandlik TEGILMAGAN (100dvh o'zgarishsiz); kichik ekranda width:100% cap. */
+        display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1740px;margin:0 auto}
+
+      .hc-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+      .hc-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:${HC_T.accent};display:inline-flex;align-items:center;gap:7px}
+      .hc-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.accent}}
+      .hc-title{font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);margin:0;color:${HC_T.ink};font-weight:600;letter-spacing:-.015em;line-height:1.12}
+      .hc-brief{margin:0;color:${HC_T.ink2};font-size:clamp(13px,1.5vw,15px);line-height:1.55;max-width:60ch}
+
+      .hc-checklist{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+      .hc-count{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
+      .hc-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:${HC_T.ink2};background:${HC_T.paper};padding:6px 14px 6px 7px;border-radius:99px;border:1px solid ${HC_T.line};box-shadow:0 1px 2px rgba(${HC_T.shadowBase},.04);transition:all .22s ease;cursor:default}
+      .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
+      .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
+      .hc-chip.ok .hc-dot{background:${HC_T.success};color:#fff;box-shadow:0 3px 8px -2px ${HC_T.success}88}
+      /* F-0808-02: qat'iy balandlik — xabar paydo bo'lganda/yo'qolganda muharrir SAKRAMAYDI */
+      .hc-msg{height:40px;width:100%;display:flex;align-items:center;justify-content:center;margin-top:3px;overflow:hidden}
+      .hc-hint.hc-hint{margin:0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      /* K-M-02: tugma flex — matn (span) kesiladi, «+N» belgisi qisilmaydi va doim ko'rinadi */
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
+      .hc-err-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+      .hc-err:hover{background:#FBDFDF;border-color:#EEB8B8}
+      .hc-err-more{flex-shrink:0;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
+
+      /* F-0813-01: 3 ustun — editor | sudraluvchi chegara | natija. Ulush --hcL/--hcR
+         o'zgaruvchilarida (30–70%), sudralganda JS yangilaydi, tanlov eslab qolinadi. */
+      .hc-split{flex:none;height:calc(62dvh / var(--lz,1));min-height:0;display:grid;grid-template-columns:minmax(0,var(--hcL,1fr)) 12px minmax(0,var(--hcR,1fr));gap:clamp(3px,.4vw,5px)}
+      .hc-pane{display:flex;flex-direction:column;min-height:0;border-radius:18px;overflow:hidden;background:${HC_T.paper};box-shadow:0 1px 0 ${HC_T.line},0 18px 40px -22px rgba(${HC_T.shadowBase},.35)}
+      .hc-pane-bar{display:flex;align-items:center;gap:10px;padding:10px 15px;font-size:12px;font-weight:600;color:${HC_T.ink2}}
+      .hc-editor-pane .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-preview-pane .hc-pane-bar{background:${HC_T.paper};border-bottom:1px solid ${HC_T.line}}
+      .hc-dots{display:inline-flex;gap:6px;flex-shrink:0}
+      .hc-dots i{width:11px;height:11px;border-radius:50%;background:#3A4760;display:block}
+      .hc-dots i:nth-child(1){background:#ff5f56}.hc-dots i:nth-child(2){background:#ffbd2e}.hc-dots i:nth-child(3){background:#27c93f}
+      .hc-pane-name{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700}
+      /* Soxta brauzer manzil-qatori — task.previewUrl berilganda (F-0809-05) */
+      .hc-url{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;color:${HC_T.ink2};display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+      .hc-lock{color:${HC_T.success};font-size:8px;flex-shrink:0}
+      .hc-live{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:${HC_T.success};background:${HC_T.successSoft};padding:4px 9px;border-radius:99px;font-weight:800;display:inline-flex;align-items:center;gap:6px}
+      .hc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.success};animation:hc-pulse 1.8s infinite}
+      /* Kod o'zgardi, natija hali eski (F-0809-03) */
+      .hc-stale{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:${HC_T.warn};background:#FFF3E0;padding:4px 9px;border-radius:99px;font-weight:800;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+      .hc-stale::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.warn}}
+      @keyframes hc-pulse{0%{box-shadow:0 0 0 0 ${HC_T.success}66}70%{box-shadow:0 0 0 6px ${HC_T.success}00}100%{box-shadow:0 0 0 0 ${HC_T.success}00}}
+
+      /* K-E-01: tablar QISILMAYDI (flex-shrink:0) va joy yetmasa gorizontal suriladi — 1024–1400px
+         va telefonda style.css/script.js 0 gacha qisilib yo'qolardi. Tor panelda ▶/✨ ikonkaga ixchamlashadi. */
+      .hc-tabs{display:flex;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .hc-tabs::-webkit-scrollbar{display:none}
+      .hc-tab{flex-shrink:0}
+      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
+      .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
+      .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
+      .hc-mini{margin-left:auto;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:9px;padding:6px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .18s;flex-shrink:0;box-shadow:0 6px 14px -6px rgba(255,77,38,.6)}
+      .hc-mini:hover{transform:translateY(-1px);box-shadow:0 9px 18px -6px rgba(255,77,38,.7)}
+      .hc-mini:active{transform:translateY(0)}
+
+      .hc-editor-wrap{flex:1;min-height:0;display:flex;background:${HC_CODE.bg};overflow:hidden}
+      .hc-gutter{flex:0 0 auto;padding:18px 10px 18px 16px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;color:#41527A;text-align:right;white-space:pre;user-select:none;overflow:hidden;pointer-events:none}
+      /* overflow:hidden — joriy-qator chizig'i surilganda quti tashqarisiga chiqmasin */
+      .hc-code-box{position:relative;flex:1;min-width:0;min-height:0;overflow:hidden}
+
+      /* 🔴 RANG QATLAMI: quyidagi UCHTA xossa .hc-hl va .hc-code da AYNAN bir xil
+         bo'lishi shart (shrift, o'lcham, qator balandligi, chekinish, white-space) —
+         bitta piksel farq qilsa, harflar kursordan siljib ketadi. */
+      .hc-hl,.hc-code{position:absolute;inset:0;margin:0;border:none;
+        font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;letter-spacing:0;
+        padding:18px 20px 18px 12px;tab-size:2;white-space:pre;overflow:auto}
+      .hc-hl{color:${HC_CODE.text};background:${HC_CODE.bg};pointer-events:none;overflow:hidden;z-index:0}
+      .hc-code{resize:none;outline:none;background:transparent;color:transparent;caret-color:${HC_T.accent2};z-index:1}
+      .hc-code::placeholder{color:#5B6B86}
+      /* yarim-shaffof: tanlangan matn ostidagi rangli harflar ko'rinib tursin */
+      .hc-code::selection{background:rgba(255,138,61,.34)}
+      .hc-hl i{font-style:normal}
+      .hc-hl .t-tag{color:${HC_CODE.tag}}
+      .hc-hl .t-attr{color:${HC_CODE.attr}}
+      .hc-hl .t-str{color:${HC_CODE.str}}
+      .hc-hl .t-comment{color:${HC_CODE.comment};font-style:italic}
+      .hc-hl .t-punct{color:${HC_CODE.punct}}
+      .hc-hl .t-num{color:${HC_CODE.num}}
+
+      /* Taklif-ro'yxati (teg va atribut) */
+      .hc-menu{position:absolute;z-index:5;min-width:230px;max-width:330px;background:#16213A;border:1px solid #2C3C5E;border-radius:12px;padding:5px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:1px}
+      /* ~8 qator ko'rinadi, qolgani suriladi; yorliq pastda QOTIB turadi */
+      .hc-menu-list{display:flex;flex-direction:column;gap:1px;max-height:248px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#3A4C70 transparent}
+      .hc-menu-list::-webkit-scrollbar{width:8px}
+      .hc-menu-list::-webkit-scrollbar-thumb{background:#3A4C70;border-radius:99px}
+      .hc-menu-row{display:flex;align-items:baseline;gap:9px;width:100%;text-align:left;background:transparent;border:none;border-radius:8px;padding:7px 10px;cursor:pointer;color:#C9D6EE;font-family:'Manrope',sans-serif}
+      .hc-menu-row:hover{background:rgba(255,255,255,.07)}
+      .hc-menu-row.on{background:${HC_T.accent}2E;outline:1px solid ${HC_T.accent}77}
+      .hc-menu-k{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:${HC_CODE.tag};white-space:nowrap;font-feature-settings:"liga" 0,"calt" 0}
+      .hc-menu-d{font-size:12px;color:#8FA2C4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .hc-menu-tip{padding:5px 10px 3px;font-size:10.5px;color:#61759B;font-family:'Manrope',sans-serif;border-top:1px solid #26344F;margin-top:2px}
+
+      /* Muharrir tugmachalari: ↶ ↷ ✨ */
+      .hc-tools{display:flex;align-items:center;gap:4px;margin-left:10px;flex-shrink:0}
+      .hc-ic{background:rgba(255,255,255,.07);color:#B9C8E4;border:none;border-radius:8px;min-width:28px;height:26px;padding:0 7px;font-size:14px;line-height:1;cursor:pointer;transition:all .15s;font-family:'Manrope',sans-serif}
+      .hc-ic.wide{font-size:11.5px;font-weight:700;padding:0 10px}
+      .hc-ic:hover{background:rgba(255,255,255,.16);color:#fff}
+      .hc-note{margin:0;font-size:13px;font-weight:600;color:${HC_T.ink2};background:${HC_T.paper};border:1px solid ${HC_T.line};padding:8px 15px;border-radius:11px;white-space:nowrap}
+      @media (max-width:720px){ .hc-ic.wide{font-size:0;padding:0 8px} .hc-ic.wide::after{content:"✨";font-size:13px} }
+
+      /* 🔴 F-0808-02 LIGATURA: JetBrains Mono izoh-ochilishini chap strelka deb, izoh-yopilishini
+         o'ng strelka deb chizadi; yopuvchi-teg boshi va o'zi-yopiluvchi teg oxiri bir-biriga
+         qo'shilib ketadi. HTML o'rganayotgan bola o'zi yozgan belgini ko'rmay qoladi.
+         Shuning uchun barcha kod-matnda ligatura O'CHIRILGAN.
+         DIQQAT: font-variant-ligatures QO'SHILMAYDI — u qo'shilsa Chrome bu qatorni e'tiborsiz qoldiradi. */
+      .hc-code,.hc-hl,.hc-gutter,.hc-err,.hc-count,.hc-pane-name,.hc-tab,.hc-console-title,.hc-console-body{font-feature-settings:"liga" 0,"calt" 0}
+
+      .hc-frame{flex:1;min-height:0;width:100%;border:none;background:#fff}
+      .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
+
+      .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
+      .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-console-title{font-family:'JetBrains Mono',monospace;font-feature-settings:"liga" 0,"calt" 0}
+      .hc-console-clear{margin-left:auto;background:rgba(255,255,255,.08);color:#cfe0ff;border:none;border-radius:7px;padding:4px 10px;font-size:10.5px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;transition:all .15s}
+      .hc-console-clear:hover{background:${HC_T.accent};color:#fff}
+      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:13px;line-height:1.6}
+      .hc-console-empty{color:#5B6B86;padding:4px 15px;font-style:italic}
+      .hc-console-count{font-weight:600;color:#5B6B86;text-transform:none;letter-spacing:0}
+      .hc-console-new{background:${HC_T.accent};color:#fff;border:none;border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:700;cursor:pointer;text-transform:none;letter-spacing:0}
+      .hc-console-line.lvl-clear{color:#5B6B86;font-style:italic;justify-content:center}
+      .hc-console-line{display:flex;gap:8px;padding:2px 15px;color:#E7EAF2;border-bottom:1px solid rgba(255,255,255,.03);white-space:pre-wrap;word-break:break-word}
+      .hc-console-caret{color:#27c93f;flex-shrink:0;font-weight:700}
+      .hc-console-line.lvl-warn{color:#FFD380;background:rgba(255,189,46,.08)}
+      .hc-console-line.lvl-error{color:#ff8a7a;background:rgba(255,95,86,.1)}
+      .hc-console-line.lvl-error .hc-console-caret{color:#ff5f56}
+      .hc-console-line.has-pos{cursor:pointer}
+      .hc-console-line.has-pos:hover{background:rgba(255,95,86,.18)}
+      .hc-console-pos{flex-shrink:0;color:#FFD380;font-weight:700;text-decoration:underline dotted}
+
+      .hc-bottom{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+      .hc-ghost{background:transparent;border:1px solid transparent;color:${HC_T.ink2};font-family:'Manrope',sans-serif;font-weight:600;font-size:14px;cursor:pointer;padding:11px 17px;border-radius:12px;transition:all .15s}
+      .hc-ghost:hover{background:${HC_T.paper};color:${HC_T.ink};border-color:${HC_T.line};box-shadow:0 6px 16px -10px rgba(${HC_T.shadowBase},.3)}
+      .hc-status{margin-left:auto}
+      .hc-ok-msg{color:${HC_T.success};font-weight:700;font-size:14px}
+      .hc-wait-msg{color:${HC_T.ink3};font-size:13px}
+      /* «Qaytadan» ogohlantirish holati (F-0809-03) */
+      .hc-ghost.armed{color:#C01024;border-color:#F6CFCF;background:#FDECEC;font-weight:800}
+      .hc-ghost.armed:hover{background:#FBDFDF;border-color:#EEB8B8;color:#C01024}
+      .hc-warn-msg{color:#C01024;font-size:13px;font-weight:700}
+      .hc-undo{background:${HC_T.ink};color:#fff;border:none;border-radius:9px;padding:5px 12px;font-family:'Manrope',sans-serif;font-weight:800;font-size:12.5px;cursor:pointer;margin-left:4px}
+      .hc-undo:hover{background:${HC_T.accent}}
+      .hc-next{background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:13px;font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;cursor:pointer;padding:13px 30px;box-shadow:0 10px 24px -8px rgba(255,77,38,.6);transition:all .2s}
+      .hc-next:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 32px -8px rgba(255,77,38,.7)}
+      .hc-next:active:not(:disabled){transform:translateY(0)}
+      .hc-next:disabled{background:#D7D8DE;color:#fff;cursor:not-allowed;box-shadow:none}
+
+      /* ============================================================
+         F-0813-01 — VS CODE QULAYLIKLARI
+         Joriy qator · holat-qatori · shrift o'lchami · sudraluvchi chegara
+         ============================================================ */
+      /* Joriy qator — DOM'da .hc-hl DAN KEYIN turadi (hl foni to'q va shaffof emas,
+         shuning uchun tartib muhim); matn maydoni (z-index:1) baribir ustida. */
+      .hc-curline{position:absolute;left:0;right:0;top:0;height:0;background:rgba(148,180,255,.08);pointer-events:none;opacity:0;transition:opacity .2s}
+
+      .hc-statusbar{flex-shrink:0;display:flex;align-items:center;gap:14px;padding:3px 14px;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07);color:#7E92B4;font-size:11px;font-family:'JetBrains Mono',monospace;user-select:none;font-feature-settings:"liga" 0,"calt" 0}
+      .hc-sb-file{color:#A7B6D6;font-weight:700}
+      .hc-sb-lang{text-transform:uppercase;letter-spacing:.08em;color:#61759B}
+      .hc-sb-pos{margin-left:auto;white-space:nowrap}
+      .hc-sb-font{display:flex;align-items:center;gap:3px}
+      .hc-sb-fs{min-width:20px;text-align:center;color:#A7B6D6}
+      .hc-sb-btn{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;font-weight:700;cursor:pointer;border-radius:6px;padding:2px 7px;transition:all .15s}
+      .hc-sb-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+
+      .hc-divider{cursor:col-resize;display:flex;align-items:center;justify-content:center;touch-action:none;border-radius:8px;transition:background .15s}
+      .hc-divider:hover{background:rgba(0,0,0,.04)}
+      .hc-divider i{width:4px;height:46px;border-radius:99px;background:${HC_T.line};transition:all .15s}
+      .hc-divider:hover i{background:${HC_T.accent};height:70px}
+      .hc-root.dragging .hc-divider i{background:${HC_T.accent};height:70px}
+      .hc-root.dragging{cursor:col-resize;user-select:none}
+      /* Sudrash payti iframe sichqonchani «yutmasin» — aks holda chegara qo'ldan chiqadi */
+      .hc-root.dragging .hc-frame{pointer-events:none}
+
+      /* ============================================================
+         3-BOSQICH — PLANSHET VA TELEFON
+         Ikki mustaqil o'lchov:
+           1) tabbed sinfi (JS, 860px gacha) — muharrir/natija tab bilan almashadi
+           2) pointer:coarse so'rovi (CSS) — barmoq bilan ishlanadigan ekran
+         Sichqonchali keng ekranga bu qoidalarning BIRORTASI ham tegmaydi.
+         ============================================================ */
+      .hc-panetabs{display:flex;gap:6px;justify-content:center;width:100%}
+      .hc-panetabs button{flex:1;max-width:200px;background:${HC_T.paper};border:1px solid ${HC_T.line};color:${HC_T.ink2};
+        font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:9px 12px;border-radius:11px;cursor:pointer;transition:all .15s}
+      .hc-panetabs button.on{background:${HC_T.ink};color:#fff;border-color:${HC_T.ink}}
+
+      /* Tab rejimi: bitta panel to'liq balandlikda */
+      .hc-split.tabbed{grid-template-columns:1fr;grid-template-rows:1fr;flex:1;height:auto;min-height:0}
+      .hc-split.tabbed .hc-pane{display:none}
+      .hc-split.tabbed.pane-code .hc-editor-pane{display:flex}
+      .hc-split.tabbed.pane-result .hc-preview-pane{display:flex}
+
+      /* Barmoq uchun belgi qatori */
+      .hc-keys{flex-shrink:0;display:flex;gap:5px;padding:6px 8px;background:#121C30;border-top:1px solid rgba(255,255,255,.07);overflow-x:auto}
+      /* flex 1 1 auto — tor telefonda tugmalar QISQARADI, oxirgisi qirqilib qolmaydi */
+      .hc-key{flex:1 1 auto;min-width:34px;max-width:76px;height:38px;background:rgba(255,255,255,.09);color:#DCE6F7;border:none;border-radius:9px;
+        font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;cursor:pointer;font-feature-settings:"liga" 0,"calt" 0}
+      .hc-key:active{background:${HC_T.accent};color:#fff}
+      .hc-key.wide{font-size:15px}
+
+      /* Ro'yxat pastga sig'masa — kursordan TEPAGA chiqadi */
+      .hc-menu.up{transform:translateY(-100%)}
+
+      @media (max-width:860px){
+        .hc-root{justify-content:flex-start;padding:10px 12px;gap:8px}
+        .hc-statusbar{display:none}
+        .hc-title{font-size:clamp(17px,4.6vw,23px)}
+        .hc-brief{font-size:12.5px;line-height:1.4}
+        .hc-checklist{width:100%;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:3px;gap:6px}
+        .hc-chip{flex-shrink:0}
+        .hc-msg{height:34px}
+        .hc-bottom{gap:8px}
+        .hc-status{order:3;width:100%;text-align:center}
+      }
+      @media (max-width:520px){
+        /* Telefonda shart-matni o'rniga chiplar qoladi — ular baribir shartni aytadi */
+        .hc-brief{display:none}
+        .hc-panetabs button{font-size:12.5px;padding:8px 10px}
+        .hc-ghost{padding:10px 12px;font-size:12.5px}
+      }
+      /* Barmoq bilan bosiladigan nishonlar kattaroq */
+      @media (pointer: coarse){
+        .hc-tab{padding:9px 14px;font-size:13px}
+        .hc-ic{min-width:38px;height:36px;font-size:17px}
+        .hc-mini{padding:9px 15px;font-size:13px}
+        .hc-menu-row{padding:11px 12px}
+        .hc-menu{min-width:246px}
+        .hc-ghost,.hc-next{padding:12px 18px}
+        .hc-panetabs button{padding:11px 12px}
+      }
+      /* K-E-01: tor panelda ▶/✨ ikonkaga ixchamlashadi (panel ENIga qarab — container query) */
+      .hc-editor-pane{container-type:inline-size}
+      @container (max-width:760px){
+        .hc-mini{font-size:0;padding:6px 10px;line-height:1}
+        .hc-mini::after{content:"▶";font-size:13px}
+        .hc-ic.wide{font-size:0;padding:0 8px}
+        .hc-ic.wide::after{content:"✨";font-size:13px}
+        .hc-tools{margin-left:4px}
+      }
+      @container (max-width:480px){
+        /* telefon: tablar O'Z qatorida (to'liq en), tugmalar pastki qatorda — hech biri yo'qolmaydi */
+        .hc-tabs-bar{flex-wrap:wrap;row-gap:6px}
+        .hc-tabs{order:-1;flex-basis:100%}
+        .hc-dots{display:none}
+      }
+
+    `}</style>
+  );
+}
+// ============================================================
+//  EKSPORTLAR
+//    default — kompilyator komponenti
+//    checks  — dars shartlarini yozish uchun tekshiruv quruvchilari (C.has, C.text, …)
+// ============================================================
+export { checks };
+export default HtmlCompiler;

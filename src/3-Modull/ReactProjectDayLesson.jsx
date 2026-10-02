@@ -247,47 +247,47 @@ const RECAPS = {
   4: {
     title: { uz: "Yaxshi prompt — Nima + Qanday + Qayerda", ru: 'Хороший промпт — Что + Как + Где' },
     cards: [
-      { ic: "🎯", h: { uz: "Yaxshi prompt 3 narsani aytadi", ru: 'Хороший промпт называет 3 вещи' }, body: { uz: <>Agent siz nima desangiz — shuni quradi. Kuchli prompt uchtasini aniq aytadi: <b>Nima</b> kerak, <b>Qanday</b> ishlasin, <b>Qayerda</b> bo'lsin. Shunda agent adashmaydi.</>, ru: <>Агент строит ровно то, что Вы сказали. Сильный промпт чётко называет три вещи: <b>Что</b> нужно, <b>Как</b> это должно работать, <b>Где</b> это должно быть. Тогда агент не запутается.</> }, vis: <RcFlow items={[{ uz: 'Nima', ru: 'Что' }, { uz: 'Qanday', ru: 'Как' }, { uz: 'Qayerda', ru: 'Где' }]} /> },
-      { ic: "😕", h: { uz: "Zaif prompt → taxmin → xato", ru: 'Слабый промпт → догадки → ошибка' }, body: { uz: <>"Chiroyli qil", "mashina" kabi noaniq buyruq agentni <b>taxminga</b> majbur qiladi. Taxmin ko'pincha xato chiqadi — keyin qayta-qayta tuzatasiz.</>, ru: <>Расплывчатые команды вроде «сделай красиво» или «машина» заставляют агента <b>гадать</b>. Догадки часто оказываются неверными — потом придётся исправлять снова и снова.</> } },
-      { ic: "💪", h: { uz: "Kuchli prompt → aniq natija", ru: 'Сильный промпт → точный результат' }, body: { uz: <>Aniq buyruq — aniq natija. Siz <b>loyiha boshlig'i</b>siz: aniq topshiriq berasiz, agent aynan shuni quradi.</>, ru: <>Точная команда — точный результат. Вы — <b>руководитель проекта</b>: даёте чёткое задание, и агент строит именно его.</> }, ask: { uz: "Zaif promptni qanday qilib kuchaytirasiz?", ru: 'Как Вы усилите слабый промпт?' } },
+      { ic: "🎯", h: { uz: "Yaxshi prompt 3 narsani aytadi", ru: 'Хороший промпт называет 3 вещи' }, body: { uz: <>Kuchli prompt uchtasini aniq aytadi: <b>Nima, Qanday, Qayerda</b>.</>, ru: <>Сильный промпт чётко называет три вещи: <b>Что, Как, Где</b>.</> }, vis: <RcFlow items={[{ uz: 'Nima', ru: 'Что' }, { uz: 'Qanday', ru: 'Как' }, { uz: 'Qayerda', ru: 'Где' }]} /> },
+      { ic: "😕", h: { uz: "Zaif prompt → taxmin → xato", ru: 'Слабый промпт → догадки → ошибка' }, body: { uz: <>Noaniq buyruq agentni <b>taxminga</b> majbur qiladi, taxmin esa ko'pincha xato chiqadi.</>, ru: <>Расплывчатая команда заставляет агента <b>гадать</b>, а догадки часто неверны.</> } },
+      { ic: "💪", h: { uz: "Kuchli prompt → aniq natija", ru: 'Сильный промпт → точный результат' }, body: { uz: <>Siz aniq topshiriq berasiz — agent <b>aynan shuni</b> quradi.</>, ru: <>Вы даёте чёткое задание — агент строит <b>именно его</b>.</> }, ask: { uz: "Zaif promptni qanday qilib kuchaytirasiz?", ru: 'Как Вы усилите слабый промпт?' } },
     ]
   },
   6: {
     title: { uz: "Katalog — GET + map", ru: 'Каталог — GET + map' },
     cards: [
-      { ic: "🌐", h: { uz: "Ro'yxatni serverdan olamiz (GET)", ru: 'Берём список с сервера (GET)' }, body: { uz: <>Katalog — mashinalar ro'yxati. Uni serverdan <b>fetch (GET)</b> bilan olamiz, <b>.json()</b> massivga aylantiradi, <b>setCars</b> state'ga yozadi.</>, ru: <>Каталог — это список машин. Мы получаем его с сервера через <b>fetch (GET)</b>, <b>.json()</b> превращает ответ в массив, а <b>setCars</b> записывает его в state.</> }, vis: <RcFlow items={["GET", "map", { uz: 'kartochka', ru: 'карточка' }]} /> },
-      { ic: "🧩", h: { uz: "map → <CarCard/>", ru: 'map → <CarCard/>' }, body: { uz: <>Ro'yxatni <b>.map()</b> aylanib, har biriga bitta <b>{"<CarCard/>"}</b> chizadi. Minglab mashina bo'lsa ham kod bitta.</>, ru: <><b>.map()</b> проходит по списку и рисует для каждой машины свой <b>{"<CarCard/>"}</b>. Даже для тысяч машин код один и тот же.</> } },
-      { ic: "🎁", h: { uz: "props: nom + narx", ru: 'props: название + цена' }, body: { uz: <>Har kartochkaga <b>props</b> orqali mashinaning nomi va kunlik narxi uzatiladi: <b>{'<CarCard car={c} />'}</b>.</>, ru: <>Каждая карточка получает название машины и цену за день через <b>props</b>: <b>{'<CarCard car={c} />'}</b>.</> }, ask: { uz: "Katalogda har kartochkaga qanday ma'lumot props orqali beriladi?", ru: 'Какие данные передаются каждой карточке каталога через props?' } },
+      { ic: "🌐", h: { uz: "Ro'yxatni serverdan olamiz (GET)", ru: 'Берём список с сервера (GET)' }, body: { uz: <>Ro'yxatni serverdan <b>fetch (GET)</b> bilan olamiz va setCars bilan state'ga yozamiz.</>, ru: <>Список получаем с сервера через <b>fetch (GET)</b> и записываем в state через setCars.</> }, vis: <RcFlow items={["GET", "map", { uz: 'kartochka', ru: 'карточка' }]} /> },
+      { ic: "🧩", h: { uz: "map → <CarCard/>", ru: 'map → <CarCard/>' }, body: { uz: <><b>.map()</b> ro'yxatni aylanib, har mashinaga bitta <b>{"<CarCard/>"}</b> chizadi.</>, ru: <><b>.map()</b> проходит по списку и рисует для каждой машины свой <b>{"<CarCard/>"}</b>.</> } },
+      { ic: "🎁", h: { uz: "props: nom + narx", ru: 'props: название + цена' }, body: { uz: <>Har kartochkaga mashina nomi va kunlik narxi <b>props</b> orqali uzatiladi: <b>{'<CarCard car={c} />'}</b>.</>, ru: <>Каждая карточка получает название и цену за день через <b>props</b>: <b>{'<CarCard car={c} />'}</b>.</> }, ask: { uz: "Katalogda har kartochkaga qanday ma'lumot props orqali beriladi?", ru: 'Какие данные передаются каждой карточке каталога через props?' } },
     ]
   },
   11: {
     title: { uz: "Ijara + jami — State", ru: 'Аренда + итог — State' },
     cards: [
-      { ic: "💾", h: { uz: "useState — ijara ro'yxati", ru: 'useState — список аренд' }, body: { uz: <>Foydalanuvchi tanlagan mashinalar <b>state</b>da (useState) eslab qolinadi. State o'zgarsa — React ekranni o'zi yangilaydi.</>, ru: <>Выбранные машины запоминаются в <b>state</b> (useState). Когда state меняется — React сам обновляет экран.</> } },
-      { ic: "➕", h: { uz: "kun +/- state bilan", ru: 'дни +/- через state' }, body: { uz: <>Kun sonini +/- tugmalar state'da o'zgartiradi. Har o'zgarishda jami qayta hisoblanadi.</>, ru: <>Кнопки +/- меняют число дней в state. При каждом изменении итог пересчитывается заново.</> }, vis: <RcFlow items={[{ uz: 'Tanla', ru: 'Выбери' }, { uz: 'kun', ru: 'дни' }, { uz: 'jami', ru: 'итог' }]} /> },
-      { ic: "🧮", h: { uz: "jami = kun × narx", ru: 'итог = дни × цена' }, body: { uz: <>Jami narx <b>kun × kunlik narx</b> formulasidan chiqadi va state o'zgarganda <b>o'zi qayta hisoblanadi</b>.</>, ru: <>Итоговая цена считается по формуле <b>дни × цена за день</b> и <b>сама пересчитывается</b>, когда меняется state.</> }, ask: { uz: "Kun soni o'zgarsa, jami narxni kim qayta hisoblaydi?", ru: 'Если число дней изменится, кто пересчитает итоговую цену?' } },
+      { ic: "💾", h: { uz: "useState — ijara ro'yxati", ru: 'useState — список аренд' }, body: { uz: <>Tanlangan mashinalar <b>state</b>da turadi, u o'zgarsa React ekranni o'zi yangilaydi.</>, ru: <>Выбранные машины хранятся в <b>state</b>, и при его изменении React сам обновляет экран.</> } },
+      { ic: "➕", h: { uz: "kun +/- state bilan", ru: 'дни +/- через state' }, body: { uz: <>+/- tugmalar kun sonini state'da o'zgartiradi va <b>jami qayta hisoblanadi</b>.</>, ru: <>Кнопки +/- меняют число дней в state, и <b>итог пересчитывается</b>.</> }, vis: <RcFlow items={[{ uz: 'Tanla', ru: 'Выбери' }, { uz: 'kun', ru: 'дни' }, { uz: 'jami', ru: 'итог' }]} /> },
+      { ic: "🧮", h: { uz: "jami = kun × narx", ru: 'итог = дни × цена' }, body: { uz: <>Jami narx <b>kun × kunlik narx</b> formulasidan chiqadi.</>, ru: <>Итог считается по формуле <b>дни × цена за день</b>.</> }, ask: { uz: "Kun soni o'zgarsa, jami narxni kim qayta hisoblaydi?", ru: 'Если число дней изменится, кто пересчитает итоговую цену?' } },
     ]
   },
   16: {
     title: { uz: "Debugging — kodni o'qib xato topish", ru: 'Дебаггинг — найти ошибку, читая код' },
     cards: [
-      { ic: "🔍", h: { uz: "Mijoz shikoyati", ru: 'Жалоба клиента' }, body: { uz: <>Sayt tayyor, lekin mijoz "jami noto'g'ri" deydi. Boshliq sifatida siz <b>tekshirasiz</b> — muammo qayerdaligini topasiz.</>, ru: <>Сайт готов, но клиент говорит: «итог неверный». Как руководитель Вы <b>проверяете</b> — и находите, где именно проблема.</> } },
-      { ic: "🐞", h: { uz: "Xato: kun unutilgan", ru: 'Ошибка: забыли дни' }, body: { uz: <>Eng ko'p uchraydigan xato — jami hisobida <b>× kun</b> (b.days) tushib qolgan. Faqat narx qolib, jami noto'g'ri chiqadi.</>, ru: <>Самая частая ошибка — в расчёте итога потерялось <b>× дни</b> (b.days). Остаётся только цена, и итог выходит неверным.</> } },
-      { ic: "🛠️", h: { uz: "Boshliq tekshiradi → tuzatadi", ru: 'Руководитель проверяет → исправляет' }, body: { uz: <>Agentning birinchi javobi ko'pincha to'liq emas. Siz o'qiysiz, xatoni topasiz va aniqlashtiruvchi prompt bilan tuzatasiz.</>, ru: <>Первый ответ агента часто неполный. Вы читаете код, находите ошибку и исправляете её уточняющим промптом.</> }, ask: { uz: "Nega agentning birinchi javobini ko'r-ko'rona qabul qilmaslik kerak?", ru: 'Почему нельзя слепо принимать первый ответ агента?' } },
+      { ic: "🔍", h: { uz: "Mijoz shikoyati", ru: 'Жалоба клиента' }, body: { uz: <>Mijoz «jami noto'g'ri» desa, boshliq sifatida <b>muammo qayerdaligini</b> siz topasiz.</>, ru: <>Если клиент говорит «итог неверный», Вы как руководитель находите, <b>где проблема</b>.</> } },
+      { ic: "🐞", h: { uz: "Xato: kun unutilgan", ru: 'Ошибка: забыли дни' }, body: { uz: <>Eng ko'p uchraydigan xato — jami hisobida <b>× kun</b> tushib qolgan.</>, ru: <>Самая частая ошибка — в расчёте итога потерялось <b>× дни</b>.</> } },
+      { ic: "🛠️", h: { uz: "Boshliq tekshiradi → tuzatadi", ru: 'Руководитель проверяет → исправляет' }, body: { uz: <>Siz kodni o'qiysiz, xatoni topasiz va <b>aniqlashtiruvchi prompt</b> bilan tuzatasiz.</>, ru: <>Вы читаете код, находите ошибку и исправляете её <b>уточняющим промптом</b>.</> }, ask: { uz: "Nega agentning birinchi javobini ko'r-ko'rona qabul qilmaslik kerak?", ru: 'Почему нельзя слепо принимать первый ответ агента?' } },
     ]
   },
   19: {
     title: { uz: "Boshliq halqasi — istalgan ilovaga", ru: 'Цикл руководителя — для любого приложения' },
     cards: [
-      { ic: "🧭", h: { uz: "5 qadam", ru: '5 шагов' }, body: { uz: <>Har loyihada bir xil halqa: <b>buyur → reja → tasdiq → tekshir → sina</b>. Siz boshqarasiz, agent quradi.</>, ru: <>В каждом проекте один и тот же цикл: <b>поручи → план → одобри → проверь → испытай</b>. Вы управляете, агент строит.</> }, vis: <RcFlow items={[{ uz: 'buyur', ru: 'поручи' }, { uz: 'reja', ru: 'план' }, { uz: 'tasdiq', ru: 'одобри' }, { uz: 'tekshir', ru: 'проверь' }, { uz: 'sina', ru: 'испытай' }]} /> },
-      { ic: "🔁", h: { uz: 'Iteratsiya — aniqlashtirish', ru: 'Итерация — уточнение' }, body: { uz: <>Natija to'liq bo'lmasa — <b>aniqlashtiruvchi prompt</b> (follow-up) berasiz. AI sayqallaydi, siz tasdiqlaysiz.</>, ru: <>Если результат неполный — Вы даёте <b>уточняющий промпт</b> (follow-up). ИИ дорабатывает, Вы одобряете.</> } },
-      { ic: "🚀", h: { uz: "Istalgan ilovaga", ru: 'Для любого приложения' }, body: { uz: <>Bu mashina sayti edi — lekin xuddi shu 5 qadam bilan <b>istalgan saytni</b> qura olasiz.</>, ru: <>Это был сайт про машины — но теми же 5 шагами Вы можете построить <b>любой сайт</b>.</> }, ask: { uz: "Shu halqa bilan yana qanday ilovalar qura olasiz?", ru: 'Какие ещё приложения Вы можете построить этим циклом?' } },
+      { ic: "🧭", h: { uz: "5 qadam", ru: '5 шагов' }, body: { uz: <>Har loyihada bir xil halqa: <b>buyur → reja → tasdiq → tekshir → sina</b>.</>, ru: <>В каждом проекте один цикл: <b>поручи → план → одобри → проверь → испытай</b>.</> }, vis: <RcFlow items={[{ uz: 'buyur', ru: 'поручи' }, { uz: 'reja', ru: 'план' }, { uz: 'tasdiq', ru: 'одобри' }, { uz: 'tekshir', ru: 'проверь' }, { uz: 'sina', ru: 'испытай' }]} /> },
+      { ic: "🔁", h: { uz: 'Iteratsiya — aniqlashtirish', ru: 'Итерация — уточнение' }, body: { uz: <>Natija to'liq bo'lmasa, <b>aniqlashtiruvchi prompt</b> berasiz va AI sayqallaydi.</>, ru: <>Если результат неполный, Вы даёте <b>уточняющий промпт</b>, и ИИ дорабатывает.</> } },
+      { ic: "🚀", h: { uz: "Istalgan ilovaga", ru: 'Для любого приложения' }, body: { uz: <>Xuddi shu 5 qadam bilan <b>istalgan saytni</b> qura olasiz.</>, ru: <>Теми же 5 шагами Вы можете построить <b>любой сайт</b>.</> }, ask: { uz: "Shu halqa bilan yana qanday ilovalar qura olasiz?", ru: 'Какие ещё приложения Вы можете построить этим циклом?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -305,7 +305,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -314,13 +314,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -398,7 +398,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед тем как продолжить, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед тем, как продолжить.</> })}</p>
@@ -407,7 +407,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — делать выводы по процентам сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -500,7 +500,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -508,8 +508,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -521,11 +522,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -905,12 +906,12 @@ const Screen4 = (props) => (
     questionText="Qaysi prompt agentga aniqroq va yaxshiroq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Qaysi prompt agentga <span className="italic" style={{ color: T.accent }}>aniqroq</span>?</>, ru: <>Какой промпт для агента <span className="italic" style={{ color: T.accent }}>точнее</span>?</> })}</h2></>}
     options={[tr({ uz: '"chiroyli qil"', ru: '«сделай красиво»' }), tr({ uz: '"mashina"', ru: '«машина»' }), tr({ uz: '"Bosh sahifaga mashinalar katalogini chiqar — serverdan (GET), har birini kartochka qilib, nom va narx bilan"', ru: '«Выведи на главной странице каталог машин — с сервера (GET), каждую карточкой, с названием и ценой»' }), tr({ uz: '"hammasini o\'zing bil"', ru: '«разберись сам»' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "Bu promptda Nima (katalog), Qanday (GET, kartochka, nom+narx) va Qayerda (Bosh sahifa) bor — agent adashmaydi.", ru: 'В этом промпте есть Что (каталог), Как (GET, карточки, название+цена) и Где (главная страница) — агент не запутается.' }) /* F-0926-06: «To'g'ri!» olindi — yorliq tepada (159/11) */}
+    explainCorrect={tr({ uz: "Unda Nima, Qanday va Qayerda bor — agent adashmaydi.", ru: 'В нём есть Что, Как и Где — агент не запутается.' }) /* F-0926-06: «To'g'ri!» olindi — yorliq tepada (159/11) */}
     explainWrong={{
-      0: tr({ uz: "Juda noaniq — nimani chiroyli qil? Agent taxmin qiladi. Nima/Qanday/Qayerda kerak.", ru: 'Слишком расплывчато — что именно сделать красиво? Агент будет гадать. Нужны Что/Как/Где.' }),
-      1: tr({ uz: "Bitta so'z — agent hech narsa bilmaydi. Aniqlik qo'shing.", ru: 'Одно слово — агент ничего не поймёт. Добавьте точности.' }),
-      3: tr({ uz: "Bu eng yomoni — siz boshliqsiz, rejani siz berasiz. Aniq ayting.", ru: 'Это худший вариант — руководитель Вы, и план даёте Вы. Говорите точно.' }),
-      default: tr({ uz: "Yaxshi prompt = Nima + Qanday + Qayerda. Aniq prompt — aniq natija.", ru: 'Хороший промпт = Что + Как + Где. Точный промпт — точный результат.' })
+      0: tr({ uz: "«Chiroyli qil» juda noaniq — agent taxmin qiladi.", ru: '«Сделай красиво» слишком расплывчато — агент будет гадать.' }),
+      1: tr({ uz: "Bitta so'zdan agent hech narsani bilmaydi.", ru: 'По одному слову агент ничего не поймёт.' }),
+      3: tr({ uz: "Rejani agent emas, boshliq — siz berasiz.", ru: 'План даёт не агент, а руководитель — Вы.' }),
+      default: tr({ uz: "Qaysi variantda Nima, Qanday va Qayerda bor?", ru: 'В каком варианте есть Что, Как и Где?' })
     }} />
 );
 
@@ -959,12 +960,12 @@ const Screen5b = (props) => (
     questionText="Katalogni serverdan yuklash uchun qaysi kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Katalogni <span className="italic" style={{ color: T.accent }}>serverdan yuklash</span> uchun?</>, ru: <>Что нужно, чтобы <span className="italic" style={{ color: T.accent }}>загрузить каталог с сервера</span>?</> })}</h2></>}
     options={[tr({ uz: 'fetch (GET) + .json() + setCars, keyin map bilan chizish', ru: 'fetch (GET) + .json() + setCars, затем нарисовать через map' }), tr({ uz: 'Faqat map yetadi', ru: 'Достаточно одного map' }), tr({ uz: "Har mashinani qo'lda yozish", ru: 'Вписать каждую машину вручную' }), tr({ uz: 'CSS bilan', ru: 'Через CSS' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "Mashinalar serverda turadi: avval ularni olib kelib state'ga yozamiz, keyin React ro'yxatni chizadi.", ru: 'Машины хранятся на сервере: сначала получаем их и записываем в state, потом React рисует список.' }) /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
+    explainCorrect={tr({ uz: "Mashinalar serverda turadi — avval ularni olib kelish kerak.", ru: 'Машины лежат на сервере — сначала их нужно получить.' }) /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
     explainWrong={{
-      1: tr({ uz: "map faqat tayyor ro'yxatni chizadi. Ro'yxatni avval serverdan fetch bilan olish kerak.", ru: 'map рисует только готовый список. Сначала список нужно получить с сервера через fetch.' }),
-      2: tr({ uz: "Yo'q — minglab mashinani qo'lda yozmaymiz. Server + fetch + map.", ru: 'Нет — тысячи машин вручную не впишешь. Сервер + fetch + map.' }),
-      3: tr({ uz: "CSS — bezak. Ma'lumotni olish — fetch (GET).", ru: 'CSS — это оформление. Данные получает fetch (GET).' }),
-      default: tr({ uz: "fetch(GET) → .json() → setCars → map.", ru: 'fetch(GET) → .json() → setCars → map.' })
+      1: tr({ uz: "map faqat tayyor ro'yxatni chizadi — ro'yxat hali yo'q.", ru: 'map рисует только готовый список, а списка ещё нет.' }),
+      2: tr({ uz: "Minglab mashinani qo'lda yozib bo'lmaydi.", ru: 'Тысячи машин вручную не впишешь.' }),
+      3: tr({ uz: "CSS faqat bezaydi — ma'lumot olib kelmaydi.", ru: 'CSS только оформляет — данные он не получает.' }),
+      default: tr({ uz: "Ro'yxat qayerda turadi va uni qanday olib kelamiz?", ru: 'Где лежит список и как его получить?' })
     }} />
 );
 
@@ -1077,12 +1078,12 @@ const Screen8 = (props) => (
     questionText="3 kunlik Tesla ($80/kun) — jami qancha?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Tesla <span className="mono" style={{ color: T.accent }}>$80/kun</span>, 3 kunga — <span className="italic" style={{ color: T.accent }}>jami</span>?</>, ru: <>Tesla по <span className="mono" style={{ color: T.accent }}>$80/день</span>, на 3 дня — <span className="italic" style={{ color: T.accent }}>итого</span>?</> })}</h2></>}
     options={[tr({ uz: '$80 — kunini hisobga olmaymiz', ru: '$80 — дни не учитываем' }), tr({ uz: "$83 — qo'shamiz", ru: '$83 — складываем' }), '$3', tr({ uz: '$240 — kun × narx (3 × 80)', ru: '$240 — дни × цена (3 × 80)' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "Kunlik narx har kun uchun to'lanadi — shuning uchun ko'paytiramiz. Bu ilovaning asosiy formulasi.", ru: 'Цена за день платится за каждый день — поэтому умножаем. Это главная формула приложения.' }) /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
+    explainCorrect={tr({ uz: "Narx har kun uchun to'lanadi, shuning uchun ko'paytiramiz.", ru: 'Цена платится за каждый день — поэтому умножаем.' }) /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
     explainWrong={{
-      0: tr({ uz: "Diqqat! Bu — eng ko'p uchraydigan xato: kunni unutish. Jami = kun × narx.", ru: 'Внимание! Это самая частая ошибка: забыть про дни. Итог = дни × цена.' }),
-      1: tr({ uz: "Qo'shish emas, ko'paytirish: 3 × 80 = 240.", ru: 'Не сложение, а умножение: 3 × 80 = 240.' }),
-      2: tr({ uz: "Yo'q — bu faqat kun soni. Narxga ko'paytiring: 3 × 80.", ru: 'Нет — это только число дней. Умножьте на цену: 3 × 80.' }),
-      default: tr({ uz: "Jami = kun × kunlik narx = 3 × 80 = $240.", ru: 'Итог = дни × цена за день = 3 × 80 = $240.' })
+      0: tr({ uz: "Kun unutilgan — bu eng ko'p uchraydigan xato.", ru: 'Дни забыты — это самая частая ошибка.' }),
+      1: tr({ uz: "Kunlarni dollarga qo'shib bo'lmaydi — 3 + 80 ma'nosiz.", ru: 'Дни нельзя складывать с долларами — 3 + 80 не имеет смысла.' }),
+      2: tr({ uz: "3 — bu faqat kun soni, narx hali hisobga olinmagan.", ru: '3 — это только число дней, цена ещё не учтена.' }),
+      default: tr({ uz: "Har kun uchun $80 to'lansa, 3 kunga qancha bo'ladi?", ru: 'Если за каждый день платят $80, сколько выйдет за 3 дня?' })
     }} />
 );
 
@@ -1282,12 +1283,12 @@ const Screen12 = (props) => (
     questionText="Agentning birinchi kodi natijasi to'liq emas. Nima qilasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Agent kodi natijasi <span className="italic" style={{ color: T.accent }}>to'liq emas</span> — nima qilasiz?</>, ru: <>Результат кода агента <span className="italic" style={{ color: T.accent }}>неполный</span> — что Вы сделаете?</> })}</h2></>}
     options={[tr({ uz: 'Birinchi natijani shundayligicha qabul qilaman', ru: 'Приму первый результат как есть' }), tr({ uz: "Natijani ko'rib, aniqlashtiruvchi prompt beraman", ru: 'Посмотрю результат и дам уточняющий промпт' }), tr({ uz: 'Loyihani tashlab ketaman', ru: 'Брошу проект' }), tr({ uz: "AI yomon deb, hammasini qo'lda yozaman", ru: 'Решу, что ИИ плох, и напишу всё вручную' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri!» olindi (159/11) */tr({ uz: "Agentni boshqarish — bu suhbat: natijani ko'rasiz, aniqlashtiruvchi prompt berasiz («kunni ham hisobla»), AI tuzatadi. Birinchi javob ko'pincha boshlanish, oxiri emas.", ru: 'Управление агентом — это диалог: Вы смотрите на результат, даёте уточняющий промпт («учти ещё дни»), и ИИ исправляет. Первый ответ — чаще начало, а не конец.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» olindi (159/11) */tr({ uz: "Agent bilan ish — suhbat: birinchi javob faqat boshlanish.", ru: 'Управление агентом — это диалог: первый ответ — только начало.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — birinchi javob ko'pincha to'liq emas. Siz boshliqsiz: tekshiring va sayqallang.", ru: 'Нет — первый ответ часто неполный. Вы руководитель: проверяйте и дорабатывайте.' }),
-      2: tr({ uz: "Yo'q — bir-ikki aniqlashtiruvchi prompt bilan to'g'rilanadi. Tashlab ketish shart emas.", ru: 'Нет — один-два уточняющих промпта всё исправят. Бросать не нужно.' }),
-      3: tr({ uz: "AI yomon emas — uni boshqarish kerak. Aniq prompt bilan tezroq bo'lasiz.", ru: 'ИИ не плох — им нужно управлять. С точным промптом Вы будете быстрее.' }),
-      default: tr({ uz: "Natijani tekshiring → aniqlashtiruvchi prompt bering → AI sayqallaydi.", ru: 'Проверьте результат → дайте уточняющий промпт → ИИ доработает.' })
+      0: tr({ uz: "Birinchi javob ko'pincha to'liq emas — uni tekshirish kerak.", ru: 'Первый ответ часто неполный — его нужно проверить.' }),
+      2: tr({ uz: "Tashlab ketish shart emas — kamchilik tuzatiladi.", ru: 'Бросать не нужно — недочёт можно исправить.' }),
+      3: tr({ uz: "AI yomon emas — uni boshqarish kerak, shunda tezroq bo'ladi.", ru: 'ИИ не плох — им нужно управлять, так выйдет быстрее.' }),
+      default: tr({ uz: "Boshliq natijani ko'rgach nima qiladi — shuni o'ylang.", ru: 'Подумайте, что делает руководитель, увидев результат.' })
     }} />
 );
 

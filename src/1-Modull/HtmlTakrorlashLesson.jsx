@@ -324,23 +324,23 @@ const RECAPS = {
     title: { uz: 'Teg — brauzerga buyruq', ru: 'Тег — команда браузеру' }, cards: [
       { ic: '🏷️', h: { uz: 'Teg nimani chizishni aytadi', ru: 'Тег говорит, что нарисовать' },
         body: {
-          uz: <>Sahifadagi har bir qism <b>teg</b> bilan yoziladi: <b className="mono">&lt;h1&gt;</b> — katta sarlavha, <b className="mono">&lt;p&gt;</b> — oddiy matn. Brauzer tegni o'qiydi va <b>faqat natijani</b> chizadi — tegning o'zi ekranda ko'rinmaydi.</>,
-          ru: <>Каждая часть страницы пишется <b>тегом</b>: <b className="mono">&lt;h1&gt;</b> — большой заголовок, <b className="mono">&lt;p&gt;</b> — обычный текст. Браузер читает тег и рисует <b>только результат</b> — сам тег на экране не виден.</>,
+          uz: <>Brauzer tegni o'qib, faqat <b>natijani</b> chizadi — tegning o'zi ekranda ko'rinmaydi.</>,
+          ru: <>Браузер читает тег и рисует только <b>результат</b> — сам тег на экране не виден.</>,
         },
         vis: <RcFlow items={[{ uz: 'Teg', ru: 'Тег' }, { uz: "🧠 Brauzer o'qiydi", ru: 'Браузер читает' }, { uz: 'Natija', ru: 'Результат' }]} />,
         ask: { uz: "Ekranda «Chempionlar» katta chiqdi. Kodda qaysi teg turganini ayta olasizmi?", ru: 'На экране «Чемпионы» вышло крупно. Какой тег стоит в коде?' } },
       { ic: '💪', h: { uz: "strong — so'zni qalin qiladi", ru: 'strong — делает слово жирным' },
         body: {
-          uz: <>Matn ichidagi muhim so'z <b className="mono">&lt;strong&gt;</b> ichiga olinadi — brauzer uni <b>qalin</b> chizadi. Qolgan matn oddiy qoladi: teg faqat o'zi o'ragan qismga ta'sir qiladi.</>,
-          ru: <>Важное слово внутри текста оборачивается в <b className="mono">&lt;strong&gt;</b> — браузер рисует его <b>жирным</b>. Остальной текст остаётся обычным: тег влияет только на то, что обернул.</>,
+          uz: <><b className="mono">&lt;strong&gt;</b> faqat o'zi o'ragan so'zni qalin qiladi.</>,
+          ru: <><b className="mono">&lt;strong&gt;</b> делает жирным только то, что обернул.</>,
         },
         vis: <RcFlow items={[{ uz: 'Biz', ru: 'Мы' }, { uz: '3 yil (qalin)', ru: '3 года (жирно)' }, { uz: 'birgamiz', ru: 'вместе' }]} sep="·" />,
         ask: { uz: "«Aziz» ismini qalin qilish uchun kodda nima yozamiz?", ru: 'Что напишем в коде, чтобы имя «Aziz» стало жирным?' } },
       // F-0926-06 (til-lint usta-sandiqcha): «Usta» → «Dasturchi» / «Мастер» → «Программист»
       { ic: '👀', h: { uz: "Kodni o'qish — natijani oldindan ko'rish", ru: 'Читать код — видеть результат заранее' },
         body: {
-          uz: <>Dasturchi kodga qarab, brauzer nimani chizishini <b>oldindan aytadi</b>. Buning yo'li oddiy: har tegning vazifasini eslang va qatorlarni yuqoridan pastga «chizib» chiqing.</>,
-          ru: <>Программист смотрит на код и <b>заранее говорит</b>, что нарисует браузер. Способ простой: вспомните задачу каждого тега и мысленно «нарисуйте» строки сверху вниз.</>,
+          uz: <>Har tegning vazifasini eslab, kodni <b>yuqoridan pastga</b> «chizib» chiqing.</>,
+          ru: <>Вспомните задачу каждого тега и мысленно «нарисуйте» код <b>сверху вниз</b>.</>,
         },
         vis: <RcFlow items={['<h1>', '<p>', '<strong>']} sep="→" />,
         ask: { uz: "Kodda <p> ichida <strong> bor. Ekranda nechta yozuv qalin bo'ladi?", ru: 'В коде внутри <p> есть <strong>. Сколько надписей на экране будет жирными?' } },
@@ -351,22 +351,22 @@ const RECAPS = {
     title: { uz: 'Havola qanday yoziladi', ru: 'Как пишется ссылка' }, cards: [
       { ic: '🔗', h: { uz: 'a + href — juftlik', ru: 'a + href — пара' },
         body: {
-          uz: <>Havola <b className="mono">&lt;a&gt;</b> tegi bilan yasaladi: <b className="mono">href</b> ichiga boriladigan <b>manzil</b>, teglar orasiga esa <b>bosiladigan matn</b> yoziladi. Jamoa kanali uchun: <b className="mono">&lt;a href="https://t.me/chempionlar"&gt;Kanalimiz&lt;/a&gt;</b>.</>,
-          ru: <>Ссылка делается тегом <b className="mono">&lt;a&gt;</b>: в <b className="mono">href</b> пишется <b>адрес</b>, куда идти, а между тегами — <b>кликабельный текст</b>. Для канала команды: <b className="mono">&lt;a href="https://t.me/chempionlar"&gt;Kanalimiz&lt;/a&gt;</b>.</>,
+          uz: <>Havola <b className="mono">&lt;a&gt;</b> bilan yoziladi: <b className="mono">href</b> ichiga manzil, teglar orasiga matn.</>,
+          ru: <>Ссылку пишут тегом <b className="mono">&lt;a&gt;</b>: в <b className="mono">href</b> — адрес, между тегами — текст.</>,
         },
         vis: <RcFlow items={[{ uz: 'href = manzil', ru: 'href = адрес' }, { uz: 'matn = bosiladigan joy', ru: 'текст = куда нажимают' }]} sep="+" />,
         ask: { uz: 'Manzil qayerga yoziladi — teg ichigami yoki teglar orasigami?', ru: 'Куда пишется адрес — внутрь тега или между тегами?' } },
       { ic: '🧷', h: { uz: "Qo'shtirnoq va yopuvchi teg", ru: 'Кавычки и закрывающий тег' },
         body: {
-          uz: <>Ikkita kichik narsa havolani buzadi: manzil <b>qo'shtirnoqsiz</b> yozilsa (<b className="mono">href=https://...</b>) va teg <b>yopilmasa</b> (<b className="mono">&lt;/a&gt;</b> yo'q bo'lsa). Ikkalasini har doim tekshiring.</>,
-          ru: <>Ссылку ломают две мелочи: адрес <b>без кавычек</b> (<b className="mono">href=https://...</b>) и <b>незакрытый</b> тег (нет <b className="mono">&lt;/a&gt;</b>). Всегда проверяйте обе.</>,
+          uz: <>Havolani ikki narsa buzadi: <b>qo'shtirnoqsiz manzil</b> va yopilmagan teg.</>,
+          ru: <>Ссылку ломают две вещи: <b>адрес без кавычек</b> и незакрытый тег.</>,
         },
         vis: <RcFlow items={['href="..."', '</a>']} sep="✓" />,
         ask: { uz: "`<a href=\"...\">Kanalimiz` yozuvida nima yetishmayapti?", ru: 'Чего не хватает в записи `<a href="...">Kanalimiz`?' } },
       { ic: '🐞', h: { uz: 'Harf xatosi — teg ishlamaydi', ru: 'Опечатка — тег не работает' },
         body: {
-          uz: <>Brauzer atribut nomini <b>aynan</b> biladi: <b className="mono">href</b> to'g'ri, <b className="mono">herf</b> yoki <b className="mono">link</b> esa unga notanish — havola bosilmay qoladi. Xato-topish sinovida aynan shu xatoni tuzatgansiz.</>,
-          ru: <>Браузер знает имя атрибута <b>точно</b>: <b className="mono">href</b> — верно, а <b className="mono">herf</b> или <b className="mono">link</b> ему незнакомы — ссылка перестаёт нажиматься. Именно эту ошибку вы чинили в испытании.</>,
+          uz: <>Brauzer faqat <b className="mono">href</b> nomini taniydi, <b className="mono">herf</b> yoki <b className="mono">link</b> bilan havola ishlamaydi.</>,
+          ru: <>Браузер знает только имя <b className="mono">href</b> — с <b className="mono">herf</b> или <b className="mono">link</b> ссылка не работает.</>,
         },
         vis: <RcFlow items={['herf ✗', 'link ✗', 'href ✓']} sep="·" />,
         ask: { uz: "Havola ko'rinyapti, lekin bosilmayapti. Avval nimani tekshirasiz?", ru: 'Ссылка видна, но не нажимается. Что проверите первым?' } },
@@ -377,22 +377,22 @@ const RECAPS = {
     title: { uz: 'Sahifa qobig\'i', ru: 'Оболочка страницы' }, cards: [
       { ic: '📢', h: { uz: "Eng boshida — e'lon", ru: 'В самом начале — объявление' },
         body: {
-          uz: <><b className="mono">&lt;!DOCTYPE html&gt;</b> sahifaning eng birinchi qatori: brauzerga «bu HTML5 hujjat» deb bildiradi. U teg emas, e'lon — shuning uchun yopilmaydi.</>,
-          ru: <><b className="mono">&lt;!DOCTYPE html&gt;</b> — самая первая строка страницы: она объявляет браузеру «это документ HTML5». Это не тег, а объявление — поэтому оно не закрывается.</>,
+          uz: <><b className="mono">&lt;!DOCTYPE html&gt;</b> — teg emas, e'lon, shuning uchun yopilmaydi.</>,
+          ru: <><b className="mono">&lt;!DOCTYPE html&gt;</b> — не тег, а объявление, поэтому не закрывается.</>,
         },
         vis: <RcFlow items={['<!DOCTYPE html>', '<html>']} sep="→" />,
         ask: { uz: 'DOCTYPE sahifaning qayerida turadi?', ru: 'Где стоит DOCTYPE на странице?' } },
       { ic: '🏠', h: { uz: "head — ko'rinmas, body — ko'rinadigan", ru: 'head — невидимая, body — видимая' },
         body: {
-          uz: <><b className="mono">&lt;head&gt;</b> — sozlamalar qismi: <b className="mono">&lt;title&gt;</b> (sahifa nomi) shu yerda, u brauzerning yuqorisidagi yorliqda chiqadi. <b className="mono">&lt;body&gt;</b> — ekranda ko'rinadigan hamma narsa: sarlavha, ro'yxat, rasm, havola.</>,
-          ru: <><b className="mono">&lt;head&gt;</b> — часть с настройками: там живёт <b className="mono">&lt;title&gt;</b> (имя страницы), он виден только на вкладке браузера. <b className="mono">&lt;body&gt;</b> — всё, что видно на экране: заголовок, список, картинка, ссылка.</>,
+          uz: <><b className="mono">&lt;head&gt;</b> — ko'rinmas sozlamalar, <b className="mono">&lt;body&gt;</b> — ekranda ko'rinadigan hamma narsa.</>,
+          ru: <><b className="mono">&lt;head&gt;</b> — невидимые настройки, <b className="mono">&lt;body&gt;</b> — всё, что видно на экране.</>,
         },
         vis: <RcFlow items={[{ uz: 'head · sozlamalar', ru: 'head · настройки' }, { uz: 'body · sahifa mazmuni', ru: 'body · содержимое страницы' }]} sep="+" />,
         ask: { uz: "«Chempionlar» sarlavhasi qaysi qism ichida turadi?", ru: 'В какой части живёт заголовок «Чемпионы»?' } },
       { ic: '🪆', h: { uz: 'Tartib: html ichida head va body', ru: 'Порядок: head и body внутри html' },
         body: {
-          uz: <>Butun sahifani <b className="mono">&lt;html&gt;</b> o'rab turadi, uning ichida avval <b className="mono">&lt;head&gt;</b>, keyin <b className="mono">&lt;body&gt;</b> keladi. Sahifaning butun mazmuni — body ichida.</>,
-          ru: <>Всю страницу оборачивает <b className="mono">&lt;html&gt;</b>, внутри него сначала идёт <b className="mono">&lt;head&gt;</b>, потом <b className="mono">&lt;body&gt;</b>. Всё содержимое страницы — внутри body.</>,
+          uz: <><b className="mono">&lt;html&gt;</b> ichida avval <b className="mono">&lt;head&gt;</b>, keyin <b className="mono">&lt;body&gt;</b> keladi.</>,
+          ru: <>Внутри <b className="mono">&lt;html&gt;</b> сначала идёт <b className="mono">&lt;head&gt;</b>, потом <b className="mono">&lt;body&gt;</b>.</>,
         },
         vis: <RcFlow items={['<!DOCTYPE html>', '<html>', '<head>', '<body>']} sep="→" />,
         ask: { uz: "body'ni head'dan OLDIN yozsak, brauzer tushunadimi? Nega tartib muhim?", ru: 'Если написать body ПЕРЕД head — поймёт ли браузер? Почему порядок важен?' } },
@@ -402,7 +402,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -420,7 +420,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -429,13 +429,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {fmtCode(tr(card.ask))}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {fmtCode(tr(card.ask))}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -522,7 +522,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -531,7 +531,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -613,7 +613,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={tr(entry.starter)} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-14" lang={__lang} task={entry.task} starterCode={tr(entry.starter)} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -739,7 +739,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -747,8 +747,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -760,11 +761,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1242,12 +1243,12 @@ const ScreenTest1 = (props) => (
       { uz: "Hamma yozuv bir xil chiqadi, teglar ham ekranda ko\'rinadi", ru: 'Весь текст выйдет одинаковым, теги тоже будут видны на экране' },
       { uz: "Faqat sarlavha chiqadi — pastdagi matn umuman ko\'rinmaydi", ru: 'Выйдет только заголовок — текст ниже не появится вовсе' },
     ]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri. `h1` nomni katta chizadi, `p` oddiy matn beradi, `strong` esa faqat o'zi o'ragan «3 yil»ni qalin qiladi.", ru: 'Верно. `h1` рисует имя крупно, `p` даёт обычный текст, а `strong` делает жирным только обёрнутое «3 года».' })}
+    explainCorrect={tr({ uz: "`strong` faqat o'zi o'ragan «3 yil»ni qalin qiladi.", ru: '`strong` делает жирным только обёрнутое «3 года».' })}
     explainWrong={{
-      0: tr({ uz: "Qiya (kursiv) matn uchun boshqa teg ishlatiladi. Kodda esa `strong` turibdi — u so'zni qalin qiladi.", ru: 'Для наклонного (курсивного) текста используется другой тег. А в коде стоит `strong` — он делает слово жирным.' }),
-      2: tr({ uz: "Brauzer teglarni ekranga chiqarmaydi — ularni o'qib, faqat natijani chizadi: sarlavha katta, «3 yil» qalin.", ru: 'Браузер не выводит теги на экран — он читает их и рисует только результат: заголовок крупный, «3 года» жирным.' }),
-      3: tr({ uz: "`p` ham ko'rinadigan teg — matni sarlavha ostida chiqadi. Sahifa nomi va sozlamalar kabi ko'rinmas narsalar esa `head` ichida turadi.", ru: '`p` — тоже видимый тег, его текст выйдет под заголовком. А невидимое — имя страницы и настройки — стоит внутри `head`.' }),
-      default: tr({ uz: "Kodni yuqoridan pastga o'qing: `h1` — katta nom, `p` — matn, `strong` — «3 yil»ni qalin qiladi.", ru: 'Читайте код сверху вниз: `h1` — крупное имя, `p` — текст, `strong` делает «3 года» жирным.' }),
+      0: tr({ uz: "Qiya matn uchun boshqa teg kerak, kodda u yo'q.", ru: 'Для курсива нужен другой тег, а в коде его нет.' }),
+      2: tr({ uz: "Brauzer teglarni ko'rsatmaydi, faqat natijani chizadi.", ru: 'Браузер не выводит теги на экран — он рисует только результат.' }),
+      3: tr({ uz: "`p` ham ko'rinadigan teg, uning matni ham chiqadi.", ru: '`p` — тоже видимый тег, его текст тоже появится.' }),
+      default: tr({ uz: "Kodni yuqoridan pastga o'qib, har teg ishini eslang.", ru: 'Читайте код сверху вниз и вспомните, что делает каждый тег.' }),
     }} />
 );
 
@@ -1327,10 +1328,10 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="dbg-code nocopy fade-up delay-1" {...noCopy}>
               {DBG_LINES.map((l, i) => (
                 <React.Fragment key={i}>
-                  <div className={`dbg-line ${fixed.has(i) ? 'fixed' : ''} ${active === i ? 'mdbg-active' : ''} ${wrongLine === i ? 'wrong' : ''}`} onClick={() => tapLine(i)}>
+                  <div className={`dbg-line ${fixed.has(i) ? 'is-fixed' : ''} ${active === i ? 'mdbg-active' : ''} ${wrongLine === i ? 'wrong' : ''}`} onClick={() => tapLine(i)}>
                     <span className="dbg-ln">{i + 1}</span>
                     <span className="dbg-txt">{fixed.has(i) ? l.fixed : l.code}</span>
-                    {fixed.has(i) && <span className="dbg-badge">✓ {tr({ uz: 'tuzatildi', ru: 'исправлено' })}</span>}
+                    {fixed.has(i) && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
                   </div>
                   {active === i && !fixed.has(i) && (
                     <div className="mdbg-fixes fade-step">
@@ -1407,12 +1408,12 @@ const ScreenTest2 = (props) => (
       '`<a href="https://t.me/chempionlar">Kanalimiz</a>`',
       '`<a link="https://t.me/chempionlar">Kanalimiz</a>`',
     ]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri. Hammasi joyida: `href` atributi, manzil qo'shtirnoq ichida, matn teglar orasida va `</a>` yopuvchi teg bor.", ru: 'Верно. Всё на месте: атрибут `href`, адрес в кавычках, текст между тегами и закрывающий тег `</a>`.' })}
+    explainCorrect={tr({ uz: "`href`, qo'shtirnoq va yopuvchi `</a>` — hammasi joyida.", ru: '`href`, кавычки и закрывающий `</a>` — всё на месте.' })}
     explainWrong={{
-      0: tr({ uz: "Manzil qo'shtirnoqsiz qolgan: `href=\"...\"` bo'lishi kerak. Qo'shtirnoq manzilning boshi-oxirini aniq belgilaydi.", ru: 'Адрес остался без кавычек: должно быть `href="..."`. Кавычки точно отмечают начало и конец адреса.' }),
-      1: tr({ uz: "Yopuvchi `</a>` tegi yo'q — havola yopilmagan, undan keyingi butun matn ham havolaga «yopishib» ketadi.", ru: 'Нет закрывающего тега `</a>` — ссылка не закрыта, и весь текст после неё «прилипнет» к ссылке.' }),
-      3: tr({ uz: "`<a>` tegida `link` degan atribut yo'q — manzil aynan `href` ichiga yoziladi.", ru: 'У тега `<a>` нет атрибута `link` — адрес пишется именно в `href`.' }),
-      default: tr({ uz: "To'g'ri havolada uchta narsa tekshiriladi: `href` nomi, qo'shtirnoqlar va yopuvchi `</a>`.", ru: 'В верной ссылке проверяются три вещи: имя `href`, кавычки и закрывающий `</a>`.' }),
+      0: tr({ uz: "Manzil qo'shtirnoqsiz qolgan, uning chegarasi noaniq.", ru: 'Адрес остался без кавычек, его границы неясны.' }),
+      1: tr({ uz: "Yopuvchi teg yo'q, keyingi matn ham havolaga yopishadi.", ru: 'Закрывающего тега нет — следующий текст прилипнет к ссылке.' }),
+      3: tr({ uz: "`<a>` tegida `link` degan atribut yo'q.", ru: 'У тега `<a>` нет атрибута `link`.' }),
+      default: tr({ uz: "Atribut nomi, qo'shtirnoq va yopuvchi tegni tekshiring.", ru: 'Проверьте имя атрибута, кавычки и закрывающий тег.' }),
     }} />
 );
 
@@ -3122,7 +3123,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
         .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 5px 12px; /* F-0927 (layout-lint E): 8→5 — tanlov ochilganda kod qutisi tugmalar chizig'idan 13–37px tushardi (159/6) */ border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
-        .dbg-line.fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
+        .dbg-line.is-fixed { border-color: ${T.success}; background: rgba(18,169,104,0.16); cursor: default; }
         .dbg-ln { color: ${CODE.comment}; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; }
         .dbg-txt { flex: 1; min-width: 0; overflow-wrap: anywhere; } /* F-0926-06 (159/12): uzun qator (havola) quti chetida kesilmasin — satr ichida o'raladi */
         .dbg-badge { font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.success}; background: rgba(18,169,104,0.2); border-radius: 99px; padding: 3px 9px; flex-shrink: 0; }
@@ -4107,7 +4108,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
       {/* Lokal praktika overlay (LMS kompilyatorining o'rnini bosadi). */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang}
+          <HtmlCompiler stage="m1-14" lang={__lang}
             task={practice.task}
             starterCode={tr(practice.starter)}
             storageKey={practice.codeKey}

@@ -1,0 +1,430 @@
+{
+ "file": "src/2-Modull/JsLoopsLesson.jsx",
+ "lessonId": "js-loops-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [
+    {
+     "diff": 50,
+     "cols": 3,
+     "left": "msg-list fade-up delay-1",
+     "right": "hook-option ",
+     "y": 269,
+     "row": "split split3",
+     "kids": [
+      "col@269",
+      "col@269",
+      "col@269"
+     ],
+     "tops": [
+      299,
+      269,
+      319
+     ]
+    }
+   ],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QO'LDA YUBORILGAN XABARLAR",
+     "box": "msg-list fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 🙂 0%",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "DASTURCHI 1000 TA XABARNI QANDAY YOZADI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "CHARCHOQ DARAJASI 🙂 3%",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri yo'l — sikl! Bir marta yozasiz, kompyuter uni 1000 marta takrorlaydi. Bugun shuni ",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 36,
+     "left": "frame",
+     "right": "step-card fade-up",
+     "hs": [
+      84,
+      48
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 2 KATTA VOSITA",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ ikkalasini birga ishlatsak — haqiqiy kuch!",
+     "box": "fade-up",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA (IKKALASIDA BIR XIL)",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOSHLANISH i = 1 SHART i <= 5 QADAM i++ i · › › › // yashik hali bo'sh",
+     "box": "term",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BOSHLANISH i = 1 SHART i <= 5 QADAM i++ i 1 › › › 📦 1",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 2 3 4 5 6 7 8 9 10 11 12",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 109,
+     "left": "codebox fade-up delay-1",
+     "right": "glass-wrap fade-up delay-1",
+     "hs": [
+      130,
+      238
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "BOSHLANISH suv = 0 👀 TEKSHIRUVCHI suv < 100 QADAM suv += 20 i · › › › // yashik hali bo's",
+     "box": "glass-wrap fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "BOSHLANISH suv = 0 👀 TEKSHIRUVCHI suv < 100 QADAM suv += 20 i 1 › › › 📦 0",
+     "box": "glass-wrap fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "BOSHLANISH suv = 0 👀 TEKSHIRUVCHI suv < 100 QADAM suv += 20 i 2 › › › 📦 0 📦 1",
+     "box": "glass-wrap fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 10,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 19,
+     "left": "codebox fade-up delay-1",
+     "right": "frame-dash",
+     "hs": [
+      79,
+      60
+     ]
+    },
+    {
+     "diff": 45,
+     "left": "codebox fade-up delay-1",
+     "right": "sk-info fade-step",
+     "hs": [
+      79,
+      124
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "QUTILAR — INDEKSINI BOSING",
+     "box": "codebox fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🍎 olma [0] 🍌 banan [1] 🍇 uzum [2] 🍓 qulupnay [3]",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🍎 olma [0] 🍌 banan [1] 🍇 uzum [2] 🍓 qulupnay [3]",
+     "box": "codebox fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA (HAR BIR ELEMENT)",
+     "box": "term",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIKL HAR BIR DO'STGA YUBORYAPTI",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🧑 Ali navbatini kutyapti… ✉️ 👩 Laylo navbatini kutyapti… ✉️ 🧔 Bobur navbatini kutyapti…",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "BOSHLANISH i = 0 SHART i < dostlar.length QADAM i++ i · › › › // yashik hali bo'sh",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🧑 Ali \"Bayram muborak, Ali\" ✅ 👩 Laylo \"Bayram muborak, Laylo\" ✅ 🧔 Bobur navbatini kutya",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "BOSHLANISH i = 0 SHART i < dostlar.length QADAM i++ i 2 › › › 🎁 Ali 🎁 Laylo",
+     "box": "fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNING NATIJANGIZ",
+     "box": "fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 17,
+     "left": "ai-card fade-up delay-1",
+     "right": "zavod zavod-cheksiz  zavod-sm ",
+     "hs": [
+      241,
+      224
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 1,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "sflash",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

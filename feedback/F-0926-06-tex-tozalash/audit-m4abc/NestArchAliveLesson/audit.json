@@ -1,0 +1,514 @@
+{
+ "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+ "lessonId": "nest-arch-alive-4a-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SERVER.JS — 1240 QATOR 😵",
+     "box": "fade-up delay-1 ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "KATTA LOYIHA O'SIB BORISHI UCHUN NIMA KERAK?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.75,
+     "a": "Tayyor arxitektura qanday ishlaydi — o'zimiz ko'ramiz?",
+     "b": "Bugun kod yozmaymiz — tayyor, ishlab turgan loyihani clone qilib, qanday ishlashini ko'ramiz. Yordamchi g'oya:",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUN KO'RADIGANINGIZ — TIRIK API",
+     "box": "swg",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 4 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 56,
+     "left": "code-box",
+     "right": "sk-info",
+     "hs": [
+      135,
+      78
+     ]
+    },
+    {
+     "diff": 72,
+     "left": "term",
+     "right": "sk-info",
+     "hs": [
+      150,
+      78
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "📁 core/ Ombor zonasi — chizma va omborchi ✓",
+     "b": "core/ · Ombor zonasi — chizma va omborchi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "📁 api/ Bo'limlar — zal va oshxona ✓",
+     "b": "api/ · Bo'limlar — zal va oshxona",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "📁 common/ Eshik qo'riqchisi va qoidalar ✓",
+     "b": "common/ · Eshik qo'riqchisi va qoidalar",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "📁 api/ Bo'limlar — zal va oshxona ✓",
+     "b": "Mana bino: core (ombor zonasi), api (bo'limlar — zal va oshxona), infrastructure (umumiy jihozlar), common (qo",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 43,
+     "left": "tree fade-up delay-1",
+     "right": "frame fade-step",
+     "hs": [
+      247,
+      204
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "🟢 To'g'ri mijoz POST /admin · token ✓ · { username: 'ali', password: 'Aa1!xyz' } ▶",
+     "b": "🔴 Tokensiz mijoz POST /admin · token ✗ · { username: 'ali', password: 'Aa1!xyz' } ▶",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.64,
+     "a": "🟡 Bo'sh username POST /admin · token ✓ · { username: '', password: '123' } ▶",
+     "b": "🔴 Tokensiz mijoz POST /admin · token ✗ · { username: 'ali', password: 'Aa1!xyz' } ▶",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "rz-run fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "rz-board fade-up delay-1",
+     "gap": 16
+    }
+   ],
+   "scroll": 64,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 43,
+     "left": "code-box",
+     "right": "frame",
+     "hs": [
+      207,
+      164
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ADMIN.ENTITY.TS",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZ YOZASIZ",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BASEENTITY — TAYYOR KELADI",
+     "box": "frame",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "DTO — kelgan ma'lumot qanday bo'lishi kerakligini belgilaydi (@IsString, @IsStrongPassword). Anketani nazoratc",
+     "b": "Anketa to'g'ri to'ldirilgan — ichkariga o'tdi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 71,
+     "left": "code-box",
+     "right": "frame-success fade-step",
+     "hs": [
+      153,
+      82
+     ]
+    },
+    {
+     "diff": 63,
+     "left": "code-box",
+     "right": "frame-warn fade-step",
+     "hs": [
+      153,
+      90
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "CREATE-ADMIN.DTO.TS",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NAZORATCHI JAVOBI",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "TUSHUNCHA · MODULE — SHTAT JADVALI",
+     "b": "Module — bo'limning shtat jadvali.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ADMIN.MODULE.TS — SHTAT JADVALI",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NESTJS XODIMLARNI O'ZI ULAYDI",
+     "box": "wire",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s15",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Bo'lim ochish tartibini yig'amiz. Kartalarni sudrab to'g'ri tartibga qo'ying: avval NIMA saqlanadi, keyin ma'l",
+     "b": "2 ma'lumot QANDAY kelishi kerak — anketa",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Bo'lim ochish tartibini yig'amiz. Kartalarni sudrab to'g'ri tartibga qo'ying: avval NIMA saqlanadi, keyin ma'l",
+     "b": "ma'lumot QANDAY kelishi kerak — anketa",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 55,
+     "left": "dd-slot   ",
+     "right": "dd-pool",
+     "hs": [
+      58,
+      113
+     ]
+    },
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s18",
+   "type": "builder",
+   "inp": [
+    {
+     "label": "BO'LIM NOMINI YOZING",
+     "ph": "masalan: Task",
+     "gap": 16
+    }
+   ],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi shu 5 qadamni ish holida ko'ramiz. Yangi bo'lim kerakmi (masalan Task)? Nomini yozing va \"Yaratish\" bosin",
+     "b": "1 Entity 2 DTO 3 Service 4 Controller 5 Module",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Endi shu 5 qadamni ish holida ko'ramiz. Yangi bo'lim kerakmi (masalan Task)? Nomini yozing va \"Yaratish\" bosin",
+     "b": "1 Entity ✓ DTO 3 Service 4 Controller 5 Module",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BO'LIM NOMINI YOZING",
+     "box": "prompt-row",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1 Entity 2 DTO 3 Service 4 Controller 5 Module",
+     "box": "hint fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "AI YOZAYOTGAN FAYLLAR · TASK",
+     "box": "filestream",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "DTO yozilmoqda",
+     "box": "fs-file el-in",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s19",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "👨‍🍳 ADMIN.SERVICE.TS",
+     "box": "rz-drop  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

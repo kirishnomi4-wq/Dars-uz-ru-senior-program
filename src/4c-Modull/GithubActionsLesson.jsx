@@ -253,25 +253,25 @@ const RECAPS = {
   4: {
     title: { uz: "Yo'l xaritasi qayerda yashaydi", ru: 'Где живёт карта маршрута' },
     cards: [
-      { ic: '🗂️', h: { uz: 'Aniq manzil', ru: 'Точный адрес' }, body: { uz: <><span className="mono">.github/workflows/</span> ichidagi har <span className="mono">.yml</span> fayl — alohida yo'l xaritasi. GitHub aynan shu papkani qidiradi.</>, ru: <>Каждый <span className="mono">.yml</span>-файл внутри <span className="mono">.github/workflows/</span> — отдельная карта маршрута. GitHub ищет именно эту папку.</> } },
-      { ic: '📛', h: { uz: 'Nom muhim emas, joy muhim', ru: 'Имя не важно — важно место' }, body: { uz: <>Faylni istalgan nom bilan atash mumkin (masalan <span className="mono">ci.yml</span>), lekin u albatta <span className="mono">.github/workflows/</span> ichida turishi kerak.</>, ru: <>Файл можно назвать как угодно (например <span className="mono">ci.yml</span>), но лежать он обязан внутри <span className="mono">.github/workflows/</span>.</> } },
-      { ic: '🚫', h: { uz: 'Boshqa joyda ishlamaydi', ru: 'В другом месте не сработает' }, body: { uz: <>Fayl boshqa papkada tursa, GitHub uni umuman ko'rmaydi — lenta hech qachon aylanmaydi.</>, ru: <>Если файл лежит в другой папке, GitHub его просто не увидит — лента никогда не закрутится.</> }, ask: { uz: "Yo'l xaritasi qaysi papkada saqlanadi?", ru: 'В какой папке хранится карта маршрута?' } },
+      { ic: '🗂️', h: { uz: 'Aniq manzil', ru: 'Точный адрес' }, body: { uz: <><span className="mono">.github/workflows/</span> ichidagi har <span className="mono">.yml</span> fayl — alohida yo'l xaritasi.</>, ru: <>Каждый <span className="mono">.yml</span>-файл в <span className="mono">.github/workflows/</span> — отдельная карта маршрута.</> } },
+      { ic: '📛', h: { uz: 'Nom muhim emas, joy muhim', ru: 'Имя не важно — важно место' }, body: { uz: <>Fayl nomi istalgan bo'lishi mumkin, joyi esa faqat <span className="mono">.github/workflows/</span>.</>, ru: <>Имя файла может быть любым, а место — только <span className="mono">.github/workflows/</span>.</> } },
+      { ic: '🚫', h: { uz: 'Boshqa joyda ishlamaydi', ru: 'В другом месте не сработает' }, body: { uz: <>Fayl boshqa papkada tursa, GitHub uni ko'rmaydi va lenta aylanmaydi.</>, ru: <>Если файл в другой папке, GitHub его не увидит и лента не закрутится.</> }, ask: { uz: "Yo'l xaritasi qaysi papkada saqlanadi?", ru: 'В какой папке хранится карта маршрута?' } },
     ]
   },
   7: {
     title: { uz: "Yo'l xaritasi ichidagi ierarxiya", ru: 'Иерархия внутри карты маршрута' },
     cards: [
-      { ic: '🗺️', h: { uz: "Eng katta — yo'l xaritasi", ru: 'Самое большое — карта маршрута' }, body: { uz: <><b style={{ color: T.ink }}>Workflow</b> — butun <span className="mono">ci.yml</span> fayli. Ichida bir yoki bir nechta nuqta (job) bo'ladi.</>, ru: <><b style={{ color: T.ink }}>Workflow</b> — весь файл <span className="mono">ci.yml</span>. Внутри него — одна или несколько точек (job).</> } },
-      { ic: '🛑', h: { uz: "Nuqta — o'z mashinasida", ru: 'Точка — на своей машине' }, body: { uz: <><b style={{ color: T.ink }}>Job</b> (nuqta) o'z alohida lenta mashinasida ishlaydi. <span className="mono">runs-on</span> shu darajada yoziladi.</>, ru: <><b style={{ color: T.ink }}>Job</b> (точка) работает на своей отдельной машине ленты. <span className="mono">runs-on</span> пишется именно на этом уровне.</> } },
-      { ic: '🔧', h: { uz: 'Amal — eng kichik birlik', ru: 'Шаг — самая маленькая единица' }, body: { uz: <><b style={{ color: T.ink }}>Step</b> (amal) — bitta harakat. Nuqta ichida ketma-ket bir nechta amal bo'ladi.</>, ru: <><b style={{ color: T.ink }}>Step</b> (шаг) — одно действие. Внутри точки шаги идут друг за другом.</> }, vis: <RcFlow items={['🗺️ Workflow', { uz: 'Nuqta (job)', ru: 'Точка (job)' }, { uz: 'Amal (step)', ru: 'Шаг (step)' }]} />, ask: { uz: "Yo'l xaritasi ichida nima birinchi, nima oxirgi turadi?", ru: 'Что в карте маршрута самое внешнее, а что — самое маленькое?' } },
+      { ic: '🗺️', h: { uz: "Eng katta — yo'l xaritasi", ru: 'Самое большое — карта маршрута' }, body: { uz: <><b>Workflow</b> — butun <span className="mono">ci.yml</span> fayli, ichida bir yoki bir nechta nuqta bor.</>, ru: <><b>Workflow</b> — весь файл <span className="mono">ci.yml</span>, внутри одна или несколько точек.</> } },
+      { ic: '🛑', h: { uz: "Nuqta — o'z mashinasida", ru: 'Точка — на своей машине' }, body: { uz: <><b>Job</b> (nuqta) o'z lenta mashinasida ishlaydi, <span className="mono">runs-on</span> shu yerda yoziladi.</>, ru: <><b>Job</b> (точка) работает на своей машине ленты, <span className="mono">runs-on</span> пишется здесь.</> } },
+      { ic: '🔧', h: { uz: 'Amal — eng kichik birlik', ru: 'Шаг — самая маленькая единица' }, body: { uz: <><b>Step</b> (amal) — bitta harakat, nuqta ichida ular ketma-ket turadi.</>, ru: <><b>Step</b> (шаг) — одно действие, внутри точки шаги идут друг за другом.</> }, vis: <RcFlow items={['🗺️ Workflow', { uz: 'Nuqta (job)', ru: 'Точка (job)' }, { uz: 'Amal (step)', ru: 'Шаг (step)' }]} />, ask: { uz: "Yo'l xaritasi ichida nima birinchi, nima oxirgi turadi?", ru: 'Что в карте маршрута самое внешнее, а что — самое маленькое?' } },
     ]
   },
   10: {
     title: { uz: 'Signal va mashina', ru: 'Сигнал и машина' },
     cards: [
-      { ic: '🚦', h: { uz: 'on: — qachon', ru: 'on: — когда' }, body: { uz: <><span className="mono">on: push</span> — lenta har push'da o'zi ishga tushadi. Bu START SIGNALI.</>, ru: <><span className="mono">on: push</span> — лента сама запускается при каждом пуше. Это СТАРТ-СИГНАЛ.</> } },
-      { ic: '🖥️', h: { uz: 'runs-on: — qayerda', ru: 'runs-on: — где' }, body: { uz: <><span className="mono">runs-on: ubuntu-latest</span> — GitHub sizga bepul, toza lenta mashinasi beradi.</>, ru: <><span className="mono">runs-on: ubuntu-latest</span> — GitHub бесплатно выдаёт вам чистую машину ленты.</> } },
-      { ic: '🔗', h: { uz: 'Ikkalasi birga', ru: 'Только вместе' }, body: { uz: <>Signal bo'lmasa — lenta aylanmaydi. Mashina bo'lmasa — lenta aylansa ham hech narsa bajarilmaydi.</>, ru: <>Нет сигнала — лента не закрутится. Нет машины — лента крутится, но ничего не выполняется.</> }, ask: { uz: 'on: va runs-on qaysi savollarga javob beradi?', ru: 'На какие вопросы отвечают on: и runs-on?' } },
+      { ic: '🚦', h: { uz: 'on: — qachon', ru: 'on: — когда' }, body: { uz: <><span className="mono">on: push</span> — START SIGNALI: lenta har push'da o'zi ishga tushadi.</>, ru: <><span className="mono">on: push</span> — СТАРТ-СИГНАЛ: лента сама запускается при каждом пуше.</> } },
+      { ic: '🖥️', h: { uz: 'runs-on: — qayerda', ru: 'runs-on: — где' }, body: { uz: <><span className="mono">runs-on: ubuntu-latest</span> — GitHub bepul, toza lenta mashinasi beradi.</>, ru: <><span className="mono">runs-on: ubuntu-latest</span> — GitHub бесплатно даёт чистую машину ленты.</> } },
+      { ic: '🔗', h: { uz: 'Ikkalasi birga', ru: 'Только вместе' }, body: { uz: <>Signalsiz lenta aylanmaydi, mashinasiz esa hech narsa bajarilmaydi.</>, ru: <>Без сигнала лента не закрутится, а без машины ничего не выполнится.</> }, ask: { uz: 'on: va runs-on qaysi savollarga javob beradi?', ru: 'На какие вопросы отвечают on: и runs-on?' } },
     ]
   },
   15: {
@@ -279,20 +279,20 @@ const RECAPS = {
     cards: [
       { ic: '🧩', h: { uz: 'uses — tayyor amal', ru: 'uses — готовый шаг' }, body: { uz: <>Marketplace'dagi tayyor amalni chaqiradi, masalan <span className="mono">actions/checkout@v4</span>.</>, ru: <>Вызывает готовый шаг из Marketplace, например <span className="mono">actions/checkout@v4</span>.</> } },
       { ic: '⌨️', h: { uz: 'run — buyruq', ru: 'run — команда' }, body: { uz: <>Oddiy terminal buyrug'i, masalan <span className="mono">npm install</span> yoki <span className="mono">npm test</span>.</>, ru: <>Обычная команда терминала, например <span className="mono">npm install</span> или <span className="mono">npm test</span>.</> } },
-      { ic: '🔍', h: { uz: 'Skanerni unutmang', ru: 'Не забудьте сканер' }, body: { uz: <><span className="mono">npm test</span> — bu SKANER. Uni tashlab ketsangiz, buzuq yuk to'g'ridan-to'g'ri uchib ketadi.</>, ru: <><span className="mono">npm test</span> — это СКАНЕР. Пропустите его — и сломанный груз улетит без проверки.</> }, ask: { uz: 'uses bilan run orasidagi farq nima?', ru: 'В чём разница между uses и run?' } },
+      { ic: '🔍', h: { uz: 'Skanerni unutmang', ru: 'Не забудьте сканер' }, body: { uz: <><span className="mono">npm test</span> — SKANER: uni tashlab ketsangiz, buzuq yuk uchib ketadi.</>, ru: <><span className="mono">npm test</span> — это СКАНЕР: пропустите его, и сломанный груз улетит.</> }, ask: { uz: 'uses bilan run orasidagi farq nima?', ru: 'В чём разница между uses и run?' } },
     ]
   },
   18: {
     title: { uz: 'Jurnaldan sababni topish', ru: 'Найти причину в журнале' },
     cards: [
-      { ic: '📜', h: { uz: 'Jurnal — hamma narsani yozadi', ru: 'Журнал записывает всё' }, body: { uz: <>Har amal LENTA JURNALIGA yoziladi: qaysi nuqta yashil, qaysi biri qizil bo'lgani ko'rinadi.</>, ru: <>Каждый шаг записывается в ЖУРНАЛ ЛЕНТЫ: видно, какая точка зелёная, а какая покраснела.</> } },
-      { ic: '🔍', h: { uz: 'Skanersiz — xavfli', ru: 'Без сканера — опасно' }, body: { uz: <>🔍 SKANER (<span className="mono">npm test</span>) o'tkazib yuborilsa, kod tekshirilmasdan to'g'ridan-to'g'ri uchiriladi.</>, ru: <>Если пропустить 🔍 СКАНЕР (<span className="mono">npm test</span>), код улетит дальше без всякой проверки.</> } },
-      { ic: '🛠️', h: { uz: 'Tuzatib qayta yuboring', ru: 'Почините и отправьте снова' }, body: { uz: <>Sababni topgach, yo'l xaritasini tuzating va qaytadan lentaga qo'ying — endi yashil chiqadi.</>, ru: <>Нашли причину — поправьте карту маршрута и снова положите груз на ленту: теперь загорится зелёный.</> }, ask: { uz: 'Qizil chiroq yonganda birinchi qayerga qaraysiz?', ru: 'Куда вы смотрите первым делом, когда загорается красный?' } },
+      { ic: '📜', h: { uz: 'Jurnal — hamma narsani yozadi', ru: 'Журнал записывает всё' }, body: { uz: <>Har amal LENTA JURNALIGA yoziladi — qaysi nuqta qizil bo'lgani ko'rinadi.</>, ru: <>Каждый шаг записывается в ЖУРНАЛ ЛЕНТЫ — видно, какая точка покраснела.</> } },
+      { ic: '🔍', h: { uz: 'Skanersiz — xavfli', ru: 'Без сканера — опасно' }, body: { uz: <>SKANER (<span className="mono">npm test</span>) o'tkazib yuborilsa, kod tekshiruvsiz uchib ketadi.</>, ru: <>Если пропустить СКАНЕР (<span className="mono">npm test</span>), код улетит без проверки.</> } },
+      { ic: '🛠️', h: { uz: 'Tuzatib qayta yuboring', ru: 'Почините и отправьте снова' }, body: { uz: <>Sababni topgach, yo'l xaritasini tuzatib, yukni qayta lentaga qo'ying.</>, ru: <>Нашли причину — поправьте карту маршрута и снова положите груз на ленту.</> }, ask: { uz: 'Qizil chiroq yonganda birinchi qayerga qaraysiz?', ru: 'Куда вы смотрите первым делом, когда загорается красный?' } },
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -310,7 +310,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснение заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -319,13 +319,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -401,7 +401,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Прежде чем идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснение заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -526,7 +526,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -534,8 +534,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -545,11 +546,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                   : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
         {_tip && !solved && tip && <p className="bhint fade-step">{tr(tip)}</p>}
         {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Bu savolni keyinroq birga ko'rib chiqamiz — hozir davom etsangiz bo'ladi.", ru: 'Этот вопрос разберём вместе позже — сейчас можно продолжить.' })}</p>}
       </div>
@@ -901,12 +902,12 @@ const Screen4 = (props) => (
     questionText="Yo'l xaritasi (workflow) fayli qayerda saqlanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yo'l xaritasi fayli <span className="italic" style={{ color: T.accent }}>qayerda</span> saqlanadi?</>, ru: <>Файл карты маршрута — <span className="italic" style={{ color: T.accent }}>где</span> он хранится?</> })}</h2></>}
     options={[{ uz: 'src/ papkasi ichida — bu yerga hech qachon yozilmaydi', ru: 'В папке src/ — там, где лежит код проекта' }, { uz: 'package.json fayli ichida', ru: 'Внутри файла package.json' }, { uz: '.github/workflows/ papkasida, .yml fayl sifatida', ru: 'В папке .github/workflows/, в виде .yml-файла' }, { uz: "Hech qayerda — GitHub o'zi biladi", ru: 'Нигде — GitHub сам всё знает' }]} correctIdx={2}
-    explainCorrect={{ uz: "GitHub aynan shu papkani o'zi qidiradi — boshqa joydagi .yml faylni ko'rmaydi.", ru: 'GitHub сам ищет именно эту папку — .yml-файл в другом месте он не увидит.' }} /* F-0926-06 (159/11): «To'g'ri!» yorliqda bor, variant takrorlanmaydi */
+    explainCorrect={{ uz: "GitHub yo'l xaritasini faqat shu papkadan qidiradi.", ru: 'GitHub ищет карту маршрута только в этой папке.' }} /* F-0926-06 (159/11): «To'g'ri!» yorliqda bor, variant takrorlanmaydi */
     explainWrong={{
-      0: { uz: "src/ — bu loyiha kodi uchun. Yo'l xaritasi esa .github/workflows/ ichida bo'ladi.", ru: 'src/ — для кода проекта. А карта маршрута живёт в .github/workflows/.' },
-      1: { uz: "package.json — paketlar va scriptlar uchun. Yo'l xaritasi alohida .yml faylda.", ru: 'package.json — для пакетов и скриптов. Карта маршрута — отдельный .yml-файл.' },
-      3: { uz: "GitHub aniq joyni qidiradi: .github/workflows/. Bo'lmasa — hech narsa ishlamaydi.", ru: 'GitHub ищет строго определённое место: .github/workflows/. Иначе ничего не заработает.' },
-      default: { uz: "To'g'risi — .github/workflows/ papkasidagi .yml fayl.", ru: 'Правильный ответ — .yml-файл в папке .github/workflows/.' }
+      0: { uz: "`src/` — loyiha kodi uchun, GitHub u yerdan qidirmaydi.", ru: '`src/` — для кода проекта, GitHub там не ищет.' },
+      1: { uz: "`package.json` paketlar uchun — yo'l xaritasi u yerda emas.", ru: '`package.json` — для пакетов, карта маршрута живёт не там.' },
+      3: { uz: "GitHub o'zi bilmaydi — faylni aniq bir papkadan qidiradi.", ru: 'GitHub сам не знает — он ищет файл в строго определённой папке.' },
+      default: { uz: "GitHub yo'l xaritasini qaysi papkadan qidirishini eslang.", ru: 'Вспомните, в какой папке GitHub ищет карту маршрута.' }
     }} />
 );
 
@@ -1018,12 +1019,12 @@ const Screen7 = (props) => (
     questionText="Workflow, job va step qanday joylashgan?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yo'l xaritasi, nuqta va amal qanday <span className="italic" style={{ color: T.accent }}>joylashgan</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>устроены</span> карта маршрута, точка и шаг?</> })}</h2></>}
     options={[{ uz: "Yo'l xaritasi ichida nuqta, nuqta ichida amal", ru: 'Внутри карты маршрута — точка, внутри точки — шаг' }, { uz: "Amal ichida nuqta, nuqta ichida yo'l xaritasi", ru: 'Внутри шага — точка, внутри точки — карта маршрута' }, { uz: 'Uchchalasi ham bir xil darajada', ru: 'Все три — на одном уровне' }, { uz: "Nuqta ichida yo'l xaritasi, yo'l xaritasi ichida amal", ru: 'Внутри точки — карта маршрута, внутри карты — шаг' }]} correctIdx={0}
-    explainCorrect={{ uz: "Workflow ⊃ Job ⊃ Step — ci.yml'dagi bo'sh joy aynan shu ichma-ichlikni ko'rsatadi.", ru: 'Workflow ⊃ Job ⊃ Step — отступы в ci.yml показывают именно эту вложенность.' }} /* F-0926-06 (159/11) */
+    explainCorrect={{ uz: "`ci.yml` faylidagi bo'sh joy shu ichma-ichlikni ko'rsatadi.", ru: 'Отступы в `ci.yml` показывают именно эту вложенность.' }} /* F-0926-06 (159/11) */
     explainWrong={{
-      1: { uz: "Teskari — eng katta yo'l xaritasi, eng kichigi amal. Amal hech narsani o'z ichiga olmaydi.", ru: 'Наоборот — самое большое карта маршрута, самое маленькое шаг. Шаг ничего в себя не вмещает.' },
-      2: { uz: "Bir xil daraja emas — ular ichma-ich joylashgan (ierarxiya).", ru: 'Уровни не одинаковые — они вложены друг в друга (иерархия).' },
-      3: { uz: "Yo'l xaritasi eng tashqarida — u nuqta ichiga kira olmaydi.", ru: 'Карта маршрута — самая внешняя, она не поместится внутри точки.' },
-      default: { uz: "To'g'risi: Yo'l xaritasi ⊃ Nuqta ⊃ Amal.", ru: 'Правильно: карта маршрута ⊃ точка ⊃ шаг.' }
+      1: { uz: "Teskari: amal eng kichigi, uning ichiga hech narsa kirmaydi.", ru: 'Наоборот: шаг — самая маленькая единица, он ничего не вмещает.' },
+      2: { uz: "Bir xil daraja emas — ular ichma-ich joylashgan.", ru: 'Уровни не одинаковые — они вложены друг в друга.' },
+      3: { uz: "Yo'l xaritasi — butun fayl, u nuqta ichiga sig'maydi.", ru: 'Карта маршрута — весь файл, она не поместится внутри точки.' },
+      default: { uz: "Qaysi biri butun fayl, qaysi biri bitta harakat — o'ylang.", ru: 'Подумайте, что из них — весь файл, а что — одно действие.' }
     }} />
 );
 
@@ -1119,12 +1120,12 @@ const Screen10 = (props) => (
     questionText="ci.yml'da on: push va runs-on: nimaga javob beradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>on: push</span> va <span className="mono" style={{ color: T.accent }}>runs-on</span> <span className="italic" style={{ color: T.accent }}>nimaga</span> javob beradi?</>, ru: <><span className="mono" style={{ color: T.accent }}>on: push</span> и <span className="mono" style={{ color: T.accent }}>runs-on</span> — <span className="italic" style={{ color: T.accent }}>за что</span> они отвечают?</> })}</h2></>}
     options={[{ uz: "Ikkalasi ham aynan bir xil narsani anglatadi, hech qanday farqi yo'q butunlay", ru: 'Оба означают ровно одно и то же, никакой разницы между ними нет' }, { uz: "runs-on kodni serverga o'zi push qilib yuboradi", ru: 'runs-on сам пушит код на сервер' }, { uz: 'on: push — mashinani tanlaydi, runs-on — qachonligini', ru: 'on: push выбирает машину, а runs-on — время запуска' }, { uz: "on: push qachon, runs-on qaysi mashinada ishlashini belgilaydi", ru: 'on: push задаёт когда, runs-on — на какой машине работать' }]} correctIdx={3}
-    explainCorrect={{ uz: "on: push — START SIGNALI (qachon). runs-on — LENTA MASHINASI (qaysi mashinada). Ikkalasi birga bo'lmasa, lenta ishlamaydi.", ru: 'on: push — СТАРТ-СИГНАЛ (когда). runs-on — МАШИНА ЛЕНТЫ (на какой машине). Без любого из них лента не заработает.' }}
+    explainCorrect={{ uz: "Signal va mashina — ikki xil savol, lentaga ikkalasi kerak.", ru: 'Сигнал и машина — два разных вопроса, ленте нужны оба.' }}
     explainWrong={{
-      0: { uz: "Yo'q — ular boshqa-boshqa savollarga javob beradi: biri qachon, biri qayerda.", ru: 'Нет — они отвечают на разные вопросы: один «когда», другой «где».' },
-      1: { uz: "runs-on push qilmaydi — u faqat nuqta ishlaydigan mashinani tanlaydi.", ru: 'runs-on ничего не пушит — он лишь выбирает машину, на которой работает точка.' },
-      2: { uz: "Aksincha: on: — qachon, runs-on — qayerda.", ru: 'Наоборот: on: — когда, runs-on — где.' },
-      default: { uz: "on: push qachon, runs-on qaysi mashinada ishlashini belgilaydi.", ru: 'on: push задаёт когда, runs-on — на какой машине.' }
+      0: { uz: "Ular bir xil emas — har biri boshqa savolga javob beradi.", ru: 'Они не одинаковые — каждый отвечает на свой вопрос.' },
+      1: { uz: "Push'ni siz qilasiz — `runs-on` bunday ish qilmaydi.", ru: 'Push делаете вы — `runs-on` этим не занимается.' },
+      2: { uz: "Teskari aytilgan — qaysi biri signal ekanini eslang.", ru: 'Перепутано — вспомните, какой из них сигнал.' },
+      default: { uz: "START SIGNALI va LENTA MASHINASI — qaysi biri qaysi?", ru: 'СТАРТ-СИГНАЛ и МАШИНА ЛЕНТЫ — где что?' }
     }} />
 );
 
@@ -1313,12 +1314,12 @@ const Screen15 = (props) => (
     questionText="uses va run orasidagi farq nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>uses</span> bilan <span className="mono" style={{ color: T.accent }}>run</span> orasidagi <span className="italic" style={{ color: T.accent }}>farq</span> nima?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>разница</span> между <span className="mono" style={{ color: T.accent }}>uses</span> и <span className="mono" style={{ color: T.accent }}>run</span>?</> })}</h2></>}
     options={[{ uz: 'uses va run — ikkalasi ham aynan bir xil ishni bajaradi', ru: 'uses и run делают ровно одно и то же' }, { uz: 'uses tayyor amalni chaqiradi, run buyruq bajaradi', ru: 'uses вызывает готовый шаг, run выполняет команду' }, { uz: 'matrix — faqat bitta lentani tezlashtiradi', ru: 'matrix лишь ускоряет одну-единственную ленту' }, { uz: "cache har doim skanerni o'chirib qo'yadi", ru: 'cache всегда отключает сканер' }]} correctIdx={1}
-    explainCorrect={{ uz: "uses — marketplace'dagi tayyor amalni chaqiradi (masalan checkout). run — oddiy terminal buyrug'i (masalan npm test).", ru: 'uses вызывает готовый шаг из Marketplace (например checkout). run — обычная команда терминала (например npm test).' }}
+    explainCorrect={{ uz: "`uses` — tayyor amal (checkout), `run` — terminal buyrug'i.", ru: '`uses` — готовый шаг (checkout), `run` — команда терминала.' }}
     explainWrong={{
-      0: { uz: "Yo'q — uses tayyor blok, run esa siz yozadigan buyruq. Ular boshqa-boshqa.", ru: 'Нет — uses это готовый блок, а run — команда, которую пишете вы. Это разные вещи.' },
-      2: { uz: "Aksincha — matrix bir yukni bir nechta PARALLEL lentada birdan tekshiradi.", ru: 'Наоборот — matrix проверяет один груз сразу на нескольких ПАРАЛЛЕЛЬНЫХ лентах.' },
-      3: { uz: "Cache skanerni o'chirmaydi — u faqat 📦 YIG'ISHni tezlashtiradi.", ru: 'Cache не выключает сканер — он лишь ускоряет 📦 СБОРКУ.' },
-      default: { uz: "uses tayyor amal chaqiradi, run buyruq bajaradi.", ru: 'uses вызывает готовый шаг, run выполняет команду.' }
+      0: { uz: "Bir xil bo'lsa, ikkita nom kerak bo'lmasdi.", ru: 'Будь они одинаковыми, не понадобилось бы два названия.' },
+      2: { uz: "`matrix` bitta emas, bir nechta lentani birdan yurgizadi.", ru: '`matrix` запускает не одну ленту, а несколько сразу.' },
+      3: { uz: "Cache skanerni o'chirmaydi — faqat YIG'ISHni tezlashtiradi.", ru: 'Cache не выключает сканер — он лишь ускоряет СБОРКУ.' },
+      default: { uz: "`uses` va `run` qatorlarini eslang: qaysi biri tayyor?", ru: 'Вспомните строки `uses` и `run`: какая из них готовая?' }
     }} />
 );
 
@@ -1533,7 +1534,7 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* Javobdan keyin izoh jurnal OSTIDA, telefon o'rnida: o'ng ustunda variantlar ostiga tushsa pastdan qirqilardi (s18, F-0913-02) */}
             {done
               ? <div className={picked === correctIdx ? 'frame-success fade-step' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{picked === correctIdx ? tr({ uz: "Jurnalda 🔍 SKANER umuman ko'rinmaydi — u tashlab ketilgan, shuning uchun buzuq yuk to'g'ridan-to'g'ri uchib ketdi.", ru: 'В журнале 🔍 СКАНЕР вообще не появился — его пропустили, поэтому сломанный груз улетел без проверки.' }) : tr(S18_EXPLAIN[picked] || S18_EXPLAIN.default)}</p>
-                  {picked !== correctIdx && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
+                  {picked !== correctIdx && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>}
                 </div>
               : <PhonePreview state="bad" />}
           </Col>

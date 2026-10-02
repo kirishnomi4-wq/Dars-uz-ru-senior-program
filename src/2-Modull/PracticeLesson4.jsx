@@ -271,20 +271,20 @@ const RECAPS = {
       {
         ic: "🛒",
         h: { uz: "Xarid imkoni: savat + jami narx", ru: 'Возможность покупки: корзина + итоговая цена' },
-        body: { uz: <>Faqat mahsulotlar ro'yxati — bu hali <b>vitrina</b>, xarid qilib bo'lmaydi. Katalogni haqiqiy do'konga aylantirgan narsa — <b>savat va jami narx</b>. Ular bilan mijoz mahsulotni tanlaydi, savatga soladi va qancha to'lashini ko'radi.</>, ru: <>Просто список товаров — это ещё <b>витрина</b>, купить там ничего нельзя. Настоящим магазином каталог делают <b>корзина и итоговая цена</b>. С ними покупатель выбирает товар, кладёт его в корзину и видит, сколько платить.</> },
+        body: { uz: <>Ro'yxat hali vitrina, <b>savat va jami narx</b> esa uni haqiqiy do'konga aylantiradi.</>, ru: <>Список — это ещё витрина, а настоящим магазином его делают <b>корзина и итоговая цена</b>.</> },
         vis: { uz: <RcFlow items={["Ro'yxat (vitrina)", "+ savat + jami", "= do'kon"]} sep="" />, ru: <RcFlow items={['Список (витрина)', '+ корзина + итог', '= магазин']} sep="" /> },
         ask: { uz: "Do'kondan biror narsa ololmasangiz — u do'konmi yoki shunchaki ko'rgazmami?", ru: 'Если в магазине ничего нельзя купить — это магазин или просто выставка?' }
       },
       {
         ic: "🎨",
         h: { uz: "Rang, shrift, rasm — do'kon qilmaydi", ru: 'Цвет, шрифт, картинки — магазина не делают' },
-        body: { uz: <>Ko'proq rang, kattaroq shrift yoki ko'proq rasm — bular faqat <b>bezak</b>. Ular saytni chiroyli qiladi, lekin <b>xarid imkonini bermaydi</b>. Do'konni do'kon qiladigan narsa — savatga qo'shish va to'lov, bezak emas.</>, ru: <>Больше цвета, крупнее шрифт или больше картинок — это лишь <b>украшение</b>. Они делают сайт красивым, но <b>не дают возможности купить</b>. Магазин магазином делают корзина и оплата, а не декор.</> },
+        body: { uz: <>Rang, shrift va rasm — faqat <b>bezak</b>, ular xarid qilish imkonini bermaydi.</>, ru: <>Цвет, шрифт и картинки — лишь <b>украшение</b>, возможности купить они не дают.</> },
         vis: { uz: <RcFlow items={["Bezak", "chiroyli qiladi", "lekin xarid bermaydi"]} sep="→" />, ru: <RcFlow items={['Декор', 'делает красиво', 'но купить не даёт']} sep="→" /> }
       },
       {
         ic: "🚀",
         h: { uz: "Vitrinadan do'konga — bir qadam", ru: 'От витрины до магазина — один шаг' },
-        body: { uz: <>Bizda ro'yxat allaqachon bor edi. Ustiga <b>savat + jami narx</b> qo'shishimiz bilan u to'liq ishlaydigan do'konga aylandi. Ana shu qadam MVP'ni <b>tugallaydi</b>.</>, ru: <>Список у нас уже был. Стоило добавить <b>корзину + итоговую цену</b> — и он превратился в полноценный рабочий магазин. Именно этот шаг <b>завершает</b> MVP.</> },
+        body: { uz: <>Ro'yxat ustiga savat va jami narx qo'shildi — shu qadam <b>MVP'ni tugalladi</b>.</>, ru: <>К списку добавились корзина и итоговая цена — этот шаг <b>завершил MVP</b>.</> },
       },
     ]
   },
@@ -296,20 +296,20 @@ const RECAPS = {
       {
         ic: "🔧",
         h: { uz: "Aniq ayt: nima noto'g'ri va qanday bo'lishi kerak", ru: 'Скажите точно: что не так и как должно быть' },
-        body: { uz: <>Bug (xato) chiqsa, AI'ga <b>aniq tushuntiring</b>: hozir nima noto'g'ri va qanday bo'lishi kerak. Xuddi shifokorga borgandek — «qayerim og'riyapti va qanday his qilyapman» deb aytasiz, shunda u aniq davolaydi. Masalan: «Jami narx ikki barobar ko'p chiqyapti, aslida faqat bir marta qo'shilishi kerak».</>, ru: <>Если вылез баг (ошибка), <b>объясните ИИ точно</b>: что сейчас не так и как должно быть. Как у врача — Вы говорите «где болит и что чувствую», и он лечит прицельно. Например: «Итоговая цена выходит вдвое больше, а каждый товар должен считаться только один раз».</> },
+        body: { uz: <>Bug chiqsa, AI'ga aniq ayting: <b>nima noto'g'ri</b> va qanday bo'lishi kerak.</>, ru: <>Если вылез баг, скажите ИИ точно: <b>что не так</b> и как должно быть.</> },
         vis: { uz: <RcFlow items={["Nima noto'g'ri", "+ qanday bo'lishi kerak", "= aniq buyruq"]} sep="" />, ru: <RcFlow items={['Что не так', '+ как должно быть', '= точная команда']} sep="" /> },
         ask: { uz: "Do'stingizga 'ishlamayapti' desangiz, u nimasini tuzatishni biladimi?", ru: 'Если сказать другу «не работает» — поймёт ли он, что чинить?' }
       },
       {
         ic: "🙅",
         h: { uz: "Faqat 'tuzat' yoki baqirish — foydasiz", ru: 'Просто «почини» или крик — бесполезно' },
-        body: { uz: <>Faqat «tuzat» deyish, jahl bilan «ishlamayapti!» deb baqirish yoki hech narsa demaslik — <b>AI nimani tuzatishni bilmaydi</b>. Muammoni ko'rsatmasangiz, yechim ham bo'lmaydi. Aniqlik — hammasi.</>, ru: <>Просто сказать «почини», сердито крикнуть «не работает!» или промолчать — <b>ИИ не поймёт, что чинить</b>. Не покажете проблему — не будет и решения. Точность решает всё.</> },
+        body: { uz: <>«Tuzat» deyish yoki jahl bilan baqirish AI'ga <b>nimani tuzatishni</b> aytmaydi.</>, ru: <>Из «почини» или сердитого крика ИИ не поймёт, <b>что чинить</b>.</> },
         vis: { uz: <RcFlow items={["'tuzat'", "noaniq", "AI adashadi"]} sep="→" />, ru: <RcFlow items={['«почини»', 'неточно', 'ИИ запутается']} sep="→" /> }
       },
       {
         ic: "😌",
         h: { uz: "Bug — falokat emas, oddiy hol", ru: 'Баг — не катастрофа, а обычное дело' },
-        body: { uz: <>Bug chiqishi <b>normal</b> — hatto eng yaxshi dasturchilarda ham bo'ladi. Muhimi loyihani tashlab ketmaslik: <b>aniq tushuntirib, tinch tuzatasiz</b>. Har tuzatilgan bug — o'rganish.</>, ru: <>Баги — это <b>нормально</b>, они случаются даже у лучших программистов. Главное — не бросать проект: <b>спокойно и точно объясняете — и чините</b>. Каждый исправленный баг — это опыт.</> },
+        body: { uz: <>Bug chiqishi — <b>oddiy hol</b>, uni tinch va aniq tushuntirib tuzatasiz.</>, ru: <>Баг — это <b>нормально</b>: его спокойно и точно объясняют и чинят.</> },
       },
     ]
   },
@@ -321,20 +321,20 @@ const RECAPS = {
       {
         ic: "✅",
         h: { uz: "'Tayyor' = asosiy ish bajariladi", ru: '«Готов» = главное дело выполняется' },
-        body: { uz: <>MVP «tayyor» deganda <b>asosiy funksiyalar ishlayapti</b> demoqchimiz — do'konda mahsulot tanlab, savatga solib, jami narxni ko'rish mumkin. Bu <b>yetarli</b>. Keyinchalik istagancha yaxshilash mumkin.</>, ru: <>Когда мы говорим «MVP готов», мы имеем в виду: <b>основные функции работают</b> — в магазине можно выбрать товар, положить в корзину и увидеть итог. Этого <b>достаточно</b>. Потом можно улучшать сколько угодно.</> },
+        body: { uz: <>MVP <b>tayyor</b> — demak, mahsulot tanlash, savatga solish va jami narx ishlaydi.</>, ru: <>MVP <b>готов</b> — значит, работают выбор товара, корзина и итоговая цена.</> },
         vis: { uz: <RcFlow items={["Asosiy ish bo'ladimi?", "Ha", "Demak tayyor"]} sep="→" />, ru: <RcFlow items={['Главное работает?', 'Да', 'Значит готов']} sep="→" /> },
         ask: { uz: "Do'kondan xarid qilib bo'lyaptimi? Bo'lsa — u ishlayaptimi yoki yo'qmi?", ru: 'В магазине можно сделать покупку? Если да — он работает или нет?' }
       },
       {
         ic: "💎",
         h: { uz: "'Tayyor' — mukammal degani EMAS", ru: '«Готов» — НЕ значит «идеален»' },
-        body: { uz: <>«Hech qanday kamchilik qolmagan, mukammal» degan javob noto'g'ri. Mukammallikni <b>hech qachon</b> kutib o'tirmaymiz — u kelmaydi. «Faqat dizayn chiroyli» yoki «juda ko'p funksiya bor» ham «tayyor» degani emas. Muhimi — <b>asosiy ish yuraptimi</b>.</>, ru: <>Ответ «идеален, ни одного недостатка» — неверный. Идеала мы <b>никогда</b> не ждём — он не наступит. «Просто красивый дизайн» или «очень много функций» — тоже не «готов». Главное — <b>работает ли основное</b>.</> },
+        body: { uz: <>«Tayyor» <b>mukammal</b> degani emas, muhimi — asosiy ish yurishi.</>, ru: <>«Готов» не значит <b>идеальный</b> — главное, что работает основное.</> },
         vis: { uz: <RcFlow items={["Ishlaydi", "keyin yaxshilaymiz", "yana yaxshilaymiz"]} sep="→" />, ru: <RcFlow items={['Работает', 'потом улучшаем', 'и снова улучшаем']} sep="→" /> }
       },
       {
         ic: "🚀",
         h: { uz: "Avval ishlatib chiqar, keyin sayqalla", ru: 'Сначала выпустите, потом шлифуйте' },
-        body: { uz: <>Ishlaydigan MVP'ni <b>internetga chiqarish</b> (deploy) — kutishdan yaxshi. Odamlar ishlatadi, fikr bildiradi, siz esa ustiga qo'shib <b>o'stirasiz</b>. Kichik ishlaydigan narsa — hech qachon chiqmagan «mukammal»dan afzal.</>, ru: <>Выпустить работающий MVP <b>в интернет</b> (деплой) лучше, чем ждать. Люди пользуются, дают обратную связь, а Вы достраиваете и <b>растите</b> проект. Маленькое работающее лучше «идеального», которое так и не вышло.</> },
+        body: { uz: <>Ishlaydigan MVP'ni <b>chiqarish</b> hech qachon chiqmagan «mukammal»dan yaxshiroq.</>, ru: <><b>Выпустить</b> работающий MVP лучше, чем ждать «идеального», который так и не выйдет.</> },
       },
     ]
   },
@@ -342,7 +342,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -360,7 +360,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -369,13 +369,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol', ru: '🗣️ Вопрос классу' })}: {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol', ru: '🗣️ Вопрос классу' })}: {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -453,7 +453,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -462,7 +462,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — судить по процентам трудно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -594,7 +594,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? `${tr({ uz: "✓ To'g'ri javob", ru: '✓ Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`
               : waiting
@@ -602,8 +602,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? `${tr({ uz: "To'g'ri javob", ru: 'Правильный ответ' })}: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? explainCorrect
               : waiting
@@ -615,11 +616,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -985,12 +986,12 @@ const Screen4 = (props) => (
     questionText={tr({ uz: "Katalogni haqiqiy do'konga aylantirgan narsa nima?", ru: 'Что превратило каталог в настоящий магазин?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Oddiy katalogni <span className="italic" style={{ color: T.accent }}>haqiqiy do'konga</span> aylantirgan narsa nima?</>, ru: <>Что превратило обычный каталог <span className="italic" style={{ color: T.accent }}>в настоящий магазин?</span></> })}</h2></>}
     options={[tr({ uz: "Savatga qo'shish va jami narx", ru: 'Корзина и итоговая цена' }), tr({ uz: "Ko'proq yorqin rang qo'shish", ru: 'Больше ярких цветов' }), tr({ uz: 'Kattaroq va qalin shrift', ru: 'Крупный и жирный шрифт' }), tr({ uz: "Ko'proq mahsulot rasmi", ru: 'Больше фотографий товаров' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Mahsulotni ko'rsatish — boshlanish. Lekin xaridor savatga qo'sha olsa va jami narxni ko'rsa — bu haqiqiy do'kon. Mana shu MVP'ni to'ldiradi.", ru: 'Верно! Показать товары — это начало. Но когда покупатель может положить их в корзину и увидеть итог — это настоящий магазин. Именно это завершает MVP.' })}
+    explainCorrect={tr({ uz: "Savat va jami narx vitrinani haqiqiy do'konga aylantiradi.", ru: 'Корзина и итоговая цена превращают витрину в настоящий магазин.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — rang bezak, xarid imkoni emas. Do'kon uchun savat va jami narx kerak.", ru: 'Нет — цвет это декор, а не возможность купить. Магазину нужны корзина и итоговая цена.' }),
-      2: tr({ uz: "Yo'q — shrift faqat ko'rinish. Haqiqiy do'kon uchun savat va jami narx zarur.", ru: 'Нет — шрифт это лишь внешний вид. Настоящему магазину нужны корзина и итоговая цена.' }),
-      3: tr({ uz: "Yo'q — rasm yaxshi, lekin asosiysi — savatga qo'shish va jami narx.", ru: 'Нет — фото это хорошо, но главное — корзина и итоговая цена.' }),
-      default: tr({ uz: "Savat + jami narx = haqiqiy do'kon (MVP).", ru: 'Корзина + итоговая цена = настоящий магазин (MVP).' })
+      1: tr({ uz: "Rang — bezak, u xarid qilish imkonini bermaydi.", ru: 'Цвет — это декор, возможности купить он не даёт.' }),
+      2: tr({ uz: "Shrift faqat ko'rinishni o'zgartiradi, xarid imkonini emas.", ru: 'Шрифт меняет только внешний вид, а не возможность купить.' }),
+      3: tr({ uz: "Ko'proq rasm bilan ham mijoz hali xarid qila olmaydi.", ru: 'Даже с большим числом фото покупатель всё ещё не может купить.' }),
+      default: tr({ uz: "Mijoz xarid qilishi uchun vitrinada nima yetishmaydi?", ru: 'Чего не хватает витрине, чтобы покупатель мог купить?' })
     }} />
 );
 
@@ -1119,12 +1120,12 @@ const Screen8 = (props) => (
     questionText={tr({ uz: 'AI bugni tuzatishi uchun unga qanday aytish kerak?', ru: 'Как сказать ИИ, чтобы он починил баг?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI bugni <span className="italic" style={{ color: T.accent }}>tuzatishi</span> uchun unga qanday aytish kerak?</>, ru: <>Как сказать ИИ, чтобы он <span className="italic" style={{ color: T.accent }}>починил</span> баг?</> })}</h2></>}
     options={[tr({ uz: 'Faqat "tuzat" deb yozish kifoya', ru: 'Достаточно написать просто «почини»' }), tr({ uz: "Hech narsa demaslik — AI o'zi topib oladi", ru: 'Ничего не говорить — ИИ сам найдёт' }), tr({ uz: "Nima noto'g'ri va qanday bo'lishi kerakligini aytish", ru: 'Сказать, что не так и как должно быть' }), tr({ uz: 'Jahl bilan "umuman ishlamayapti!" deb yozish', ru: 'Сердито написать «вообще не работает!»' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! Aniq bug-report: nima noto'g'ri (jami ikki barobar) va qanday bo'lishi kerak (bir marta hisoblansin). Aniqlik — AI tez va to'g'ri tuzatadi.", ru: 'Верно! Точный баг-репорт: что не так (итог вдвое больше) и как должно быть (считать один раз). Точность — и ИИ чинит быстро и правильно.' })}
+    explainCorrect={tr({ uz: "Aniq bug-report bo'lsa, AI tez va to'g'ri tuzatadi.", ru: 'С точным баг-репортом ИИ чинит быстро и правильно.' })}
     explainWrong={{
-      0: tr({ uz: 'Yo\'q — "tuzat" juda umumiy. AI nimani tuzatishni bilmaydi. Aniq tushuntiring.', ru: 'Нет — «почини» слишком общо. ИИ не поймёт, что чинить. Объясните точно.' }),
-      1: tr({ uz: "Yo'q — AI o'zi qaysi bugni nazarda tutganingizni bilmaydi. Aniq ayting.", ru: 'Нет — ИИ не догадается, какой баг Вы имеете в виду. Скажите точно.' }),
-      3: tr({ uz: "Yo'q — hissiyot yordam bermaydi. Aniq, tinch tushuntirish ishlaydi.", ru: 'Нет — эмоции не помогут. Работает точное и спокойное объяснение.' }),
-      default: tr({ uz: "Aniq ayting: nima noto'g'ri va qanday bo'lishi kerak.", ru: 'Скажите точно: что не так и как должно быть.' })
+      0: tr({ uz: '«Tuzat» juda umumiy — AI nimani tuzatishni bilmaydi.', ru: '«Почини» — слишком общо: ИИ не поймёт, что чинить.' }),
+      1: tr({ uz: "AI qaysi bugni nazarda tutganingizni o'zi bilmaydi.", ru: 'ИИ сам не догадается, какой баг Вы имеете в виду.' }),
+      3: tr({ uz: "Jahl yordam bermaydi — AI his-tuyg'udan bugni topmaydi.", ru: 'Злость не поможет — по эмоциям ИИ баг не найдёт.' }),
+      default: tr({ uz: "Shifokorni eslang: unga nimalarni aytasiz?", ru: 'Вспомните врача: что Вы ему рассказываете?' })
     }} />
 );
 
@@ -1179,12 +1180,12 @@ const Screen10 = (props) => (
     questionText={tr({ uz: "MVP 'tayyor' deganda nimani nazarda tutamiz?", ru: 'Что мы имеем в виду, когда говорим «MVP готов»?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>MVP <span className="italic" style={{ color: T.accent }}>"tayyor"</span> deganda nimani nazarda tutamiz?</>, ru: <>Что мы имеем в виду, когда говорим: MVP <span className="italic" style={{ color: T.accent }}>«готов»</span>?</> })}</h2></>}
     options={[tr({ uz: 'Hech qanday kamchilik qolmagan, mukammal', ru: 'Идеален, ни одного недостатка' }), tr({ uz: "Juda ko'p funksiya qo'shilgan", ru: 'Добавлено очень много функций' }), tr({ uz: 'Faqat dizayni chiroyli qilingan', ru: 'Только дизайн сделан красивым' }), tr({ uz: 'Asosiy funksiyalar ishlab turadi', ru: 'Основные функции работают' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! MVP tayyor = asosiy funksiyalar ishlaydi va foydalanish mumkin. U mukammal bo'lishi shart emas — keyin yaxshilab boriladi. Asosiysi — ishlaydi va chiqarsa bo'ladi.", ru: 'Верно! MVP готов = основные функции работают и им можно пользоваться. Идеальным он быть не обязан — улучшим потом. Главное — работает, и можно выпускать.' })}
+    explainCorrect={tr({ uz: "MVP mukammal bo'lishi shart emas — asosiysi, ishlaydi.", ru: 'MVP не обязан быть идеальным — главное, что он работает.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — mukammallikni kutib o'tirilmaydi. MVP — ishlaydigan eng kichik versiya, keyin yaxshilanadi.", ru: 'Нет — идеала не ждут. MVP — минимальная работающая версия, улучшается потом.' }),
-      1: tr({ uz: "Yo'q — ko'p funksiya MVP emas. MVP — eng zarurlari ishlaydi.", ru: 'Нет — много функций это не MVP. MVP — работает самое необходимое.' }),
-      2: tr({ uz: "Yo'q — faqat dizayn yetarli emas. MVP — ishlaydigan asosiy funksiyalar.", ru: 'Нет — одного дизайна мало. MVP — это работающие основные функции.' }),
-      default: tr({ uz: 'MVP tayyor = asosiy funksiyalar ishlaydi.', ru: 'MVP готов = основные функции работают.' })
+      0: tr({ uz: "Mukammallikni kutmaymiz — u hech qachon kelmaydi.", ru: 'Идеала не ждут — он никогда не наступит.' }),
+      1: tr({ uz: "Ko'p funksiya MVP'ni tayyor qilmaydi.", ru: 'Много функций ещё не делают MVP готовым.' }),
+      2: tr({ uz: "Faqat dizayn bilan do'kondan foydalanib bo'lmaydi.", ru: 'С одним дизайном магазином пользоваться нельзя.' }),
+      default: tr({ uz: 'O\'ylang: mijoz do\'kondan qachon foydalana oladi?', ru: 'Подумайте: когда покупатель уже может пользоваться магазином?' })
     }} />
 );
 

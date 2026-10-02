@@ -273,38 +273,38 @@ const RECAPS = {
   3: {
     title: { uz: '«Ishlaydi» — hali «tayyor» emas', ru: '«Работает» — это ещё не «готово»' },
     cards: [
-      { ic: '🔧', h: { uz: 'Ikki so\'z, ikki ma\'no', ru: 'Два слова — два смысла' }, body: { uz: <>Dasturchi «ishlaydi» deganda <b>bitta yo'l</b> tekshirilgan bo'ladi: hammasi to'g'ri kiritilganda. Siz «tayyor» deganingizda esa kelishilgan <b>hamma shart</b> bajarilgan bo'ladi.</>, ru: <>Когда программист говорит «работает», проверен <b>один путь</b>: когда всё введено правильно. А когда «готово» говорите вы — выполнены <b>все условия</b>, о которых договорились.</> } },
-      { ic: '🚪', h: { uz: 'Nega bu farq muhim', ru: 'Почему эта разница важна' }, body: { uz: <>Odam har doim ham to'g'ri to'ldirmaydi: bo'sh yuboradi, tugmani ikki marta bosadi. Shunday yo'llar tekshirilmagan bo'lsa, ish <b>hali tayyor emas</b>.</>, ru: <>Человек не всегда заполняет правильно: отправит пустое, нажмёт кнопку дважды. Если такие пути не проверены — работа <b>ещё не готова</b>.</> } },
-      { ic: '🧾', h: { uz: 'Shartlar oldindan yoziladi', ru: 'Условия пишут заранее' }, body: { uz: <>Shartlar ish boshlanishidan oldin yoziladi va dasturchiga beriladi — keyin «tayyor» so'zi ustida <b>bahs qolmaydi</b>.</>, ru: <>Условия пишут до начала работы и отдают программисту — тогда о слове «готово» <b>спорить не придётся</b>.</> }, ask: { uz: "«Ishlaydi» dedi — nimani tekshirmagan bo'lishi mumkin?", ru: 'Сказал «работает» — чего он мог не проверить?' } }
+      { ic: '🔧', h: { uz: 'Ikki so\'z, ikki ma\'no', ru: 'Два слова — два смысла' }, body: { uz: <>«Ishlaydi» — bitta yo'l tekshirilgan, <b>«tayyor»</b> — kelishilgan hamma shart bajarilgan.</>, ru: <>«Работает» — проверен один путь, а <b>«готово»</b> — выполнены все условия, о которых договорились.</> } },
+      { ic: '🚪', h: { uz: 'Nega bu farq muhim', ru: 'Почему эта разница важна' }, body: { uz: <>Bo'sh yuborish, ikki marta bosish kabi yo'llar sinalmasa, ish <b>hali tayyor emas</b>.</>, ru: <>Если пути вроде пустой отправки или двойного нажатия не проверены, работа <b>ещё не готова</b>.</> } },
+      { ic: '🧾', h: { uz: 'Shartlar oldindan yoziladi', ru: 'Условия пишут заранее' }, body: { uz: <>Shartlar <b>ish boshlanishidan oldin</b> yoziladi — keyin «tayyor» ustida bahs qolmaydi.</>, ru: <>Условия пишут <b>до начала работы</b> — тогда о слове «готово» спорить не придётся.</> }, ask: { uz: "«Ishlaydi» dedi — nimani tekshirmagan bo'lishi mumkin?", ru: 'Сказал «работает» — чего он мог не проверить?' } }
     ]
   },
   5: {
     title: { uz: 'Hamma shart', ru: 'Все условия' },
     cards: [
-      { ic: '📋', h: { uz: 'Bittasi yetmasa', ru: 'Если не хватает одного' }, body: { uz: <>Shartlarning bittasi bajarilmagan bo'lsa, ish <b>hali tayyor emas</b> — «eng muhimi bajarildi» degan hisob yo'q.</>, ru: <>Если не выполнено хотя бы одно условие, работа <b>ещё не готова</b> — зачёта «главное сделано» не бывает.</> } },
-      { ic: '✂️', h: { uz: 'Shuning uchun ro\'yxat qisqa', ru: 'Поэтому список короткий' }, body: { uz: <>Har shart tekshiriladi, shuning uchun ularni ko'p yozmaymiz: <b>uch-to'rtta</b> aniq shart yetadi.</>, ru: <>Каждое условие проверяют, поэтому их не пишут много: хватает <b>трёх-четырёх</b> конкретных.</> } },
-      { ic: '🔎', h: { uz: 'Har shart birma-bir sinaladi', ru: 'Каждое условие проверяют по очереди' }, body: { uz: <>Dasturchi ishni topshirganda shartlar birma-bir <b>bosib ko'riladi</b> — xuddi buyurtma oynasidagidek.</>, ru: <>Когда программист сдаёт работу, условия <b>прожимают</b> одно за другим — как в окне заказа.</> }, ask: { uz: "To'rt shartdan uchtasi bajarilmadi. Ish qabul qilinadimi?", ru: 'Из четырёх условий три не выполнены. Работу принимают?' } }
+      { ic: '📋', h: { uz: 'Bittasi yetmasa', ru: 'Если не хватает одного' }, body: { uz: <>Bitta shart bajarilmasa ham ish <b>tayyor emas</b> — «eng muhimi bajarildi» degan hisob yo'q.</>, ru: <>Не выполнено хоть одно условие — работа <b>не готова</b>, зачёта «главное сделано» не бывает.</> } },
+      { ic: '✂️', h: { uz: 'Shuning uchun ro\'yxat qisqa', ru: 'Поэтому список короткий' }, body: { uz: <>Har shart tekshiriladi, shuning uchun <b>uch-to'rtta aniq shart</b> yetadi.</>, ru: <>Каждое условие проверяют, поэтому хватает <b>трёх-четырёх конкретных</b>.</> } },
+      { ic: '🔎', h: { uz: 'Har shart birma-bir sinaladi', ru: 'Каждое условие проверяют по очереди' }, body: { uz: <>Ish topshirilganda shartlar <b>birma-bir bosib ko'riladi</b>, xuddi buyurtma oynasidagidek.</>, ru: <>Когда работу сдают, условия <b>прожимают одно за другим</b>, как в окне заказа.</> }, ask: { uz: "To'rt shartdan uchtasi bajarilmadi. Ish qabul qilinadimi?", ru: 'Из четырёх условий три не выполнены. Работу принимают?' } }
     ]
   },
   7: {
     title: { uz: 'Tutilmagan nosozlik narxi', ru: 'Цена незамеченной неполадки' },
     cards: [
-      { ic: '🎮', h: 'Cyberpunk 2077', body: { uz: <>Uzoq kutilgan o'yin nosoz chiqdi. Sony uni PlayStation do'konidan <b>olib tashladi</b> — qariyb yarim yilga.</>, ru: <>Долгожданная игра вышла с неполадками. Sony <b>убрала</b> её из магазина PlayStation — почти на полгода.</> } },
-      { ic: '🤝', h: { uz: 'Ishonch kodda emas, odamda', ru: 'Доверие живёт не в коде, а в людях' }, body: { uz: <>Nosozliklar kodda edi, zarar esa <b>ishonchda</b>: odamlar puli qaytarilgandan keyin ham ishonmay qoldi.</>, ru: <>Неполадки были в коде, а урон — в <b>доверии</b>: людям вернули деньги, но верить они перестали.</> } },
-      { ic: '🧾', h: { uz: 'Yetishmagani — shartlar', ru: 'Не хватало условий' }, body: { uz: <>Chiqishdan oldin ham «ishlaydi» deyilgan edi. Yetishmagani — ish boshlanishidan oldin yozilgan <b>qabul shartlari</b>.</>, ru: <>Перед выходом тоже говорили «работает». Не хватало <b>условий приёмки</b>, написанных до начала работы.</> }, ask: { uz: "Nosozlik eng ko'p nimani yo'qotdi?", ru: 'Что больше всего потеряли из-за неполадки?' } }
+      { ic: '🎮', h: 'Cyberpunk 2077', body: { uz: <>Nosoz chiqqan o'yinni Sony PlayStation do'konidan <b>qariyb yarim yilga</b> olib tashladi.</>, ru: <>Игру с неполадками Sony убрала из магазина PlayStation <b>почти на полгода</b>.</> } },
+      { ic: '🤝', h: { uz: 'Ishonch kodda emas, odamda', ru: 'Доверие живёт не в коде, а в людях' }, body: { uz: <>Nosozlik kodda edi, zarar esa <b>ishonchda</b>: pul qaytgach ham odamlar ishonmay qoldi.</>, ru: <>Неполадки были в коде, а урон — в <b>доверии</b>: деньги вернули, но верить перестали.</> } },
+      { ic: '🧾', h: { uz: 'Yetishmagani — shartlar', ru: 'Не хватало условий' }, body: { uz: <>O'shanda ham «ishlaydi» deyilgan, lekin <b>oldindan yozilgan qabul shartlari</b> yo'q edi.</>, ru: <>Тогда тоже говорили «работает», но не было <b>заранее написанных условий приёмки</b>.</> }, ask: { uz: "Nosozlik eng ko'p nimani yo'qotdi?", ru: 'Что больше всего потеряли из-за неполадки?' } }
     ]
   },
   11: {
     title: { uz: 'Tekshiriladigan shart', ru: 'Проверяемое условие' },
     cards: [
-      { ic: '✅', h: { uz: 'Aniq harakat yoki son', ru: 'Конкретное действие или число' }, body: { uz: <>Yaxshi shartda <b>bosib ko'riladigan harakat</b> yoki son bo'ladi: «bo'sh buyurtma yuborilsa, xabar chiqadi».</>, ru: <>В хорошем условии есть <b>действие, которое можно прожать</b>, или число: «если отправить пустой заказ, появляется сообщение».</> } },
-      { ic: '🌫', h: { uz: 'Baholanadigan so\'zlar yaramaydi', ru: 'Оценочные слова не годятся' }, body: { uz: <>«Chiroyli», «qulay», «tez» — bularni <b>har kim boshqacha baholaydi</b>, shuning uchun ular shart bo'lolmaydi.</>, ru: <>«Красиво», «удобно», «быстро» — это <b>каждый оценит по-своему</b>, поэтому условием они быть не могут.</> } },
-      { ic: '❓', h: { uz: 'Bitta savol yetadi', ru: 'Хватит одного вопроса' }, body: { uz: <>Yozgan shartingizga o'zingiz savol bering: <b>buni qanday tekshiraman?</b> Javob topilmasa — shartni qayta yozing.</>, ru: <>Задайте своему условию вопрос: <b>как я это проверю?</b> Не находится ответ — перепишите условие.</> }, ask: { uz: "«Sayt chiroyli bo'lsin» — buni qanday tekshirasiz?", ru: '«Пусть сайт будет красивым» — как вы это проверите?' } }
+      { ic: '✅', h: { uz: 'Aniq harakat yoki son', ru: 'Конкретное действие или число' }, body: { uz: <>Yaxshi shartda <b>bosib ko'riladigan harakat</b> yoki son bo'ladi.</>, ru: <>В хорошем условии есть <b>действие, которое можно прожать</b>, или число.</> } },
+      { ic: '🌫', h: { uz: 'Baholanadigan so\'zlar yaramaydi', ru: 'Оценочные слова не годятся' }, body: { uz: <>«Chiroyli», «qulay», «tez»ni har kim o'zicha baholaydi — ular <b>shart emas</b>.</>, ru: <>«Красиво», «удобно», «быстро» каждый оценит по-своему — это <b>не условия</b>.</> } },
+      { ic: '❓', h: { uz: 'Bitta savol yetadi', ru: 'Хватит одного вопроса' }, body: { uz: <>Shartingizga savol bering: <b>buni qanday tekshiraman?</b> — javob bo'lmasa, qayta yozing.</>, ru: <>Спросите своё условие: <b>как я это проверю?</b> — нет ответа, перепишите его.</> }, ask: { uz: "«Sayt chiroyli bo'lsin» — buni qanday tekshirasiz?", ru: '«Пусть сайт будет красивым» — как вы это проверите?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -322,7 +322,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -330,13 +330,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -415,7 +415,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirishni ochish</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Eslatmani ochish', ru: '📖 Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -496,7 +496,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -504,8 +504,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -516,7 +517,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -825,11 +826,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: '«Ishlaydi» nimani anglatadi', ru: 'Что значит «работает»' })}
     options={[tr({ uz: "Hamma shart bajarilgan — ishni bemalol qabul qilsa bo'ladi", ru: 'Все условия выполнены — работу спокойно можно принимать' }), tr({ uz: "Bitta yo'l tekshirilgan — hammasi to'g'ri kiritilganda", ru: 'Проверен один путь — когда всё введено правильно' }), tr({ uz: 'Kodda birorta ham xato qolmagan — hammasi joyida', ru: 'В коде не осталось ни одной ошибки — всё на месте' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "«Ishlaydi» bitta yo'lni aytadi; qolgan yo'llar hali tekshirilmagan.", ru: '«Работает» говорит про один путь; остальные пути ещё не проверены.' })}
+    explainCorrect={tr({ uz: "«Ishlaydi» — bitta yo'l; qolgan yo'llar hali tekshirilmagan.", ru: '«Работает» — это один путь; остальные ещё не проверены.' })}
     explainWrong={{
-      0: tr({ uz: "Hamma shart bajarilgani — bu «tayyor». «Ishlaydi» esa faqat bitta yo'l tekshirilganini aytadi.", ru: 'Все условия выполнены — это «готово». А «работает» говорит лишь о том, что проверен один путь.' }),
-      2: tr({ uz: "Xato qolmagani ham shu bitta yo'lda ko'rindi. Odam adashadigan yo'llar hali tekshirilmagan.", ru: 'Отсутствие ошибок тоже видно лишь на этом одном пути. Пути, где человек ошибается, ещё не проверены.' }),
-      default: tr({ uz: "«Ishlaydi» bitta yo'lni aytadi: hammasi to'g'ri kiritilganda. Qolgan yo'llar tekshirilmagan.", ru: '«Работает» говорит про один путь: когда всё введено правильно. Остальные пути не проверены.' })
+      0: tr({ uz: "Hamma shart bajarilgani — bu «tayyor», «ishlaydi» emas.", ru: 'Все условия выполнены — это «готово», а не «работает».' }),
+      2: tr({ uz: "Odam adashadigan yo'llarda xato hali qolgan bo'lishi mumkin.", ru: 'На путях, где человек ошибается, ошибки ещё могут быть.' }),
+      default: tr({ uz: "Dasturchi qaysi holatni bosib ko'rganini o'ylang.", ru: 'Подумайте, какой случай программист прожал.' })
     }}
   />
 );
@@ -1007,11 +1008,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: 'Uch shart bajarilmasa ish qabul qilinadimi', ru: 'Примут ли работу, если три условия не выполнены' })}
     options={[tr({ uz: 'Ha — eng muhim shart bajarilgan', ru: 'Да — самое важное условие выполнено' }), tr({ uz: "Yo'q — dasturchi hali kodni yozmagan", ru: 'Нет — программист ещё не написал код' }), tr({ uz: "Yo'q — hamma shart bajarilishi kerak", ru: 'Нет — должны быть выполнены все условия' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "«Tayyor» degani kelishilgan shartlarning hammasi bajarilgani.", ru: '«Готово» значит, что выполнены все условия, о которых договорились.' })}
+    explainCorrect={tr({ uz: "«Tayyor» — kelishilgan shartlarning hammasi bajarilgani.", ru: '«Готово» — выполнены все условия, о которых договорились.' })}
     explainWrong={{
-      0: tr({ uz: "Shartlar orasida «eng muhimi» yo'q: bittasi bajarilmasa ham ish hali tayyor emas.", ru: 'Среди условий нет «самого важного»: не выполнено хотя бы одно — работа ещё не готова.' }),
-      1: tr({ uz: "Kod yozilgan: bitta shart allaqachon bajarildi. Sabab boshqa — qolgan uchtasi bajarilmagan.", ru: 'Код написан: одно условие уже выполнено. Причина в другом — остальные три не выполнены.' }),
-      default: tr({ uz: "«Tayyor» degani hamma shart bajarilgani — uchtasi ochiq qolsa, ish qabul qilinmaydi.", ru: '«Готово» значит, что выполнены все условия — если три остались открытыми, работу не принимают.' })
+      0: tr({ uz: "Shartlar orasida «eng muhimi» yo'q — ular teng.", ru: 'Среди условий нет «самого важного» — они равны.' }),
+      1: tr({ uz: "Kod yozilgan — bu shart allaqachon bajarildi.", ru: 'Код написан — это условие уже выполнено.' }),
+      default: tr({ uz: "Nechta shart hali ochiq qolganini sanab ko'ring.", ru: 'Посчитайте, сколько условий ещё открыто.' })
     }}
   />
 );
@@ -1123,11 +1124,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: "Nosoz o'yin eng ko'p nimani yo'qotdi", ru: 'Что больше всего потеряла игра с неполадками' })}
     options={[tr({ uz: "Odamlarning ishonchi yo'qoldi", ru: 'Потеряли доверие людей' }), tr({ uz: "Boshqa o'yinlar sotuvi tushdi", ru: 'Упали продажи других игр' }), tr({ uz: "Yangi o'yinlar keyinga surildi", ru: 'Новые игры перенесли на потом' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Tutilmagan nosozlik kodda emas, odamlarning ishonchida qimmatga tushdi.", ru: 'Незамеченная неполадка дорого обошлась не коду, а доверию людей.' })}
+    explainCorrect={tr({ uz: "Pul qaytarildi, ishonch esa qaytmadi.", ru: 'Деньги вернули, а доверие — нет.' })}
     explainWrong={{
-      1: tr({ uz: "Boshqa o'yinlar haqida voqeada gap yo'q. Eng katta yo'qotish — odamlarning ishonchi.", ru: 'О других играх в истории речи не было. Самая большая потеря — доверие людей.' }),
-      2: tr({ uz: "Yangi o'yinlar haqida voqeada gap yo'q. Eng katta yo'qotish — odamlarning ishonchi.", ru: 'О новых играх в истории речи не было. Самая большая потеря — доверие людей.' }),
-      default: tr({ uz: "Pul qaytarildi, lekin ishonch qaytmadi — eng katta yo'qotish shu bo'ldi.", ru: 'Деньги вернули, а доверие — нет; это и стало самой большой потерей.' })
+      1: tr({ uz: "Voqeada boshqa o'yinlar haqida gap yo'q edi.", ru: 'В истории о других играх речи не было.' }),
+      2: tr({ uz: "Voqeada yangi o'yinlar haqida gap yo'q edi.", ru: 'В истории о новых играх речи не было.' }),
+      default: tr({ uz: "Pul qaytarilgach ham nima qaytmadi — shuni eslang.", ru: 'Вспомните, что не вернулось даже после возврата денег.' })
     }}
   />
 );
@@ -1775,11 +1776,11 @@ const ScreenFinalTest = (props) => (
     questionText={tr({ uz: "Qaysi shartni tekshirib bo'ladi", ru: 'Какое условие можно проверить' })}
     options={[tr({ uz: "Sayt chiroyli va zamonaviy ko'rinib turadi", ru: 'Сайт выглядит красиво и современно' }), tr({ uz: "Bo'sh buyurtma yuborilsa, xabar chiqadi", ru: 'Если отправить пустой заказ, появляется сообщение' }), tr({ uz: "Odamlarga qulay va tushunarli bo'ladi", ru: 'Людям будет удобно и понятно' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Buni bosib ko'rish mumkin; qolgan ikkitasini har kim boshqacha baholaydi.", ru: 'Это можно проверить нажатием; остальные два каждый оценит по-своему.' })}
+    explainCorrect={tr({ uz: "Buni bosib tekshirish mumkin — natija aniq.", ru: 'Это можно проверить нажатием — результат однозначный.' })}
     explainWrong={{
-      0: tr({ uz: "«Chiroyli» va «zamonaviy»ni har kim boshqacha baholaydi — buni bosib tekshirib bo'lmaydi.", ru: '«Красиво» и «современно» каждый оценит по-своему — нажатием это не проверить.' }),
-      2: tr({ uz: "«Qulay» va «tushunarli»ni har kim boshqacha baholaydi — buni bosib tekshirib bo'lmaydi.", ru: '«Удобно» и «понятно» каждый оценит по-своему — нажатием это не проверить.' }),
-      default: tr({ uz: "Tekshirib bo'ladigan shartda aniq harakat bo'ladi: bo'sh buyurtma yuborilsa, xabar chiqadi.", ru: 'В проверяемом условии есть конкретное действие: отправили пустой заказ — появилось сообщение.' })
+      0: tr({ uz: "«Chiroyli»ni har kim o'zicha baholaydi, uni bosib bo'lmaydi.", ru: '«Красиво» каждый оценит по-своему — нажатием не проверить.' }),
+      2: tr({ uz: "«Qulay»ni har kim o'zicha baholaydi, uni bosib bo'lmaydi.", ru: '«Удобно» каждый оценит по-своему — нажатием не проверить.' }),
+      default: tr({ uz: "Qaysi shartni bosib ko'rib, ha yoki yo'q deya olasiz?", ru: 'Какое условие можно прожать и ответить «да» или «нет»?' })
     }}
   />
 );

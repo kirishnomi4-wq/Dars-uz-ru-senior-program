@@ -325,14 +325,14 @@ const RECAPS = {
   9: {
     title: { uz: 'Netlify — saytning internetdagi joyi', ru: 'Netlify — место сайта в интернете' }, cards: [
       { ic: '📁', h: { uz: 'Netlify nima qiladi?', ru: 'Что делает Netlify?' },
-        body: { uz: <><b>Netlify</b> sayt papkangizni <b>doimo yonib turgan</b> kompyuterda saqlaydi va sizga <b>havola</b> beradi. Havolani bilgan har kim saytni ochadi.</>, ru: <><b>Netlify</b> хранит папку вашего сайта на <b>всегда включённом</b> компьютере и выдаёт вам <b>ссылку</b>. Сайт откроет каждый, кто знает ссылку.</> },
+        body: { uz: <><b>Netlify</b> sayt papkangizni <b>doimo yonib turgan</b> kompyuterda saqlab, <b>havola</b> beradi.</>, ru: <><b>Netlify</b> хранит папку сайта на <b>всегда включённом</b> компьютере и выдаёт <b>ссылку</b>.</> },
         vis: <RcFlow items={[{ uz: 'Sayt papkasi', ru: 'Папка сайта' }, '🌐 Netlify', { uz: 'Havola', ru: 'Ссылка' }]} />,
         ask: { uz: "Netlify bo'lmasa, saytingizni kim ko'ra oladi?", ru: 'Кто увидит ваш сайт без Netlify?' } },
       { ic: '💻', h: { uz: 'Kompyuteringiz va Netlify farqi', ru: 'Разница между вашим компьютером и Netlify' },
-        body: { uz: <>Sayt faqat sizda tursa, kompyuter o'chgach u ham yo'qoladi va uni faqat siz ko'rasiz. Netlify'dagi kompyuter esa <b>doimo yonib turadi</b> — sayt kechasi ham ochiq.</>, ru: <>Если сайт лежит только у вас, он исчезает вместе с выключенным компьютером, и видите его только вы. А компьютер у Netlify <b>работает всегда</b> — сайт открыт и ночью.</> },
+        body: { uz: <>Netlify'dagi kompyuter <b>doimo yonib turadi</b>, shuning uchun sayt kechasi ham ochiq.</>, ru: <>Компьютер у Netlify <b>работает всегда</b>, поэтому сайт открыт даже ночью.</> },
         vis: <RcFlow items={[{ uz: 'faqat men', ru: 'только я' }, { uz: 'Netlify — hamma', ru: 'Netlify — все' }]} sep="·" /> },
       { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не путайте!' },
-        body: { uz: <>Netlify saytni <b>bezamaydi</b> (bu CSS ishi) va internetni <b>tezlashtirmaydi</b>. Uning ishi bitta: sayt fayllarini saqlash va havola berish.</>, ru: <>Netlify сайт <b>не украшает</b> (это работа CSS) и интернет <b>не ускоряет</b>. Его дело одно: хранить файлы сайта и выдавать ссылку.</> },
+        body: { uz: <>Netlify saytni <b>bezamaydi</b> va tezlashtirmaydi — u faqat fayllarni saqlab, havola beradi.</>, ru: <>Netlify сайт <b>не украшает</b> и не ускоряет — он только хранит файлы и выдаёт ссылку.</> },
         ask: { uz: 'Saytni kim bezaydi — Netlify yoki CSS?', ru: 'Кто украшает сайт — Netlify или CSS?' } },
     ]
   },
@@ -340,13 +340,13 @@ const RECAPS = {
   6: {
     title: { uz: 'Sayt fayllari va bosh sahifa', ru: 'Файлы сайта и главная страница' }, cards: [
       { ic: '📄', h: { uz: 'Bosh sahifa — index.html', ru: 'Главная страница — index.html' },
-        body: { uz: <>Brauzer sayt papkasini ochganda birinchi <span className="mono">index.html</span> ni qidiradi. Topa olmasa, sahifa o'rniga xato chiqadi.</>, ru: <>Открывая папку сайта, браузер первым делом ищет <span className="mono">index.html</span>. Не найдёт — вместо страницы покажет ошибку.</> },
+        body: { uz: <>Brauzer sayt papkasida birinchi <span className="mono">index.html</span> ni qidiradi, topmasa xato chiqadi.</>, ru: <>Браузер первым делом ищет в папке сайта <span className="mono">index.html</span>, а без него покажет ошибку.</> },
         vis: <RcFlow items={['index.html', { uz: '= bosh sahifa', ru: '= главная страница' }]} sep="" /> },
       { ic: '🗂️', h: { uz: 'Qaysi fayl nima qiladi', ru: 'Какой файл за что отвечает' },
-        body: { uz: <><span className="mono">index.html</span> — bosh sahifa, <span className="mono">style.css</span> — bezak, qolgan <span className="mono">.html</span> fayllar — menyudagi boshqa sahifalar.</>, ru: <><span className="mono">index.html</span> — главная страница, <span className="mono">style.css</span> — оформление, остальные <span className="mono">.html</span> — другие страницы из меню.</> },
+        body: { uz: <><span className="mono">index.html</span> — bosh sahifa, <span className="mono">style.css</span> — bezak, qolgan <span className="mono">.html</span> — boshqa sahifalar.</>, ru: <><span className="mono">index.html</span> — главная страница, <span className="mono">style.css</span> — оформление, остальные <span className="mono">.html</span> — другие страницы.</> },
         vis: <RcFlow items={['index.html', 'style.css', '….html']} sep="·" /> },
       { ic: '☝️', h: { uz: 'Nom bitta harf ham farq qilmasin', ru: 'Имя не должно отличаться ни на букву' },
-        body: { uz: <>AI bergan fayl nomini <b>aynan</b> ko'chiring. <span className="mono">Index.html</span> yoki <span className="mono">home.html</span> deb saqlansa, sayt ochilmaydi.</>, ru: <>Копируйте имя файла от AI <b>точь-в-точь</b>. Если сохранить как <span className="mono">Index.html</span> или <span className="mono">home.html</span>, сайт не откроется.</> },
+        body: { uz: <>AI bergan nomni <b>aynan</b> ko'chiring: <span className="mono">Index.html</span> yoki <span className="mono">home.html</span> bo'lsa, sayt ochilmaydi.</>, ru: <>Копируйте имя от AI <b>точь-в-точь</b>: с <span className="mono">Index.html</span> или <span className="mono">home.html</span> сайт не откроется.</> },
         ask: { uz: 'Bosh sahifa fayli qanday nomlanadi?', ru: 'Как называется файл главной страницы?' } },
     ]
   },
@@ -354,7 +354,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -372,7 +372,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -381,13 +381,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -471,7 +471,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>
@@ -480,7 +480,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — делать вывод по проценту сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -613,7 +613,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -621,8 +621,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -634,11 +635,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -971,12 +972,12 @@ const Screen2 = (props) => (
       { uz: 'Internet tezligini oshiradi', ru: 'Увеличивает скорость интернета' },
       { uz: "Telefonga o'yin o'rnatadi", ru: 'Устанавливает игры на телефон' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "Fayllar doimo yonib turgan kompyuterda turadi — shuning uchun havolani istalgan odam istalgan vaqtda ochadi.", ru: 'Файлы лежат на всегда включённом компьютере — поэтому ссылку любой человек откроет в любое время.' } /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
+    explainCorrect={{ uz: "Netlify fayllarni doimo yonib turgan kompyuterda saqlaydi.", ru: 'Netlify хранит файлы на всегда включённом компьютере.' } /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
     explainWrong={{
-      1: { uz: "Yo'q — kodni bezash CSS ishi. Netlify saytni internetda saqlaydi va havola beradi.", ru: 'Нет — украшать код это работа CSS. Netlify хранит сайт в интернете и даёт ссылку.' },
-      2: { uz: "Yo'q — Netlify internetni tezlashtirmaydi. U saytni internetda saqlaydi va havola beradi.", ru: 'Нет — Netlify не ускоряет интернет. Он хранит сайт в интернете и даёт ссылку.' },
-      3: { uz: "Yo'q — o'yin bilan aloqasi yo'q. Netlify saytni internetda saqlaydi va havola beradi.", ru: 'Нет — к играм это отношения не имеет. Netlify хранит сайт в интернете и даёт ссылку.' },
-      default: { uz: 'Netlify sayt fayllarini internetda saqlaydi va havola beradi.', ru: 'Netlify хранит файлы сайта в интернете и выдаёт ссылку.' }
+      1: { uz: "Kodni chiroyli bezash — CSS ishi, Netlify'niki emas.", ru: 'Украшать код — работа CSS, а не Netlify.' },
+      2: { uz: "Netlify internet tezligiga ta'sir qilmaydi.", ru: 'Netlify не влияет на скорость интернета.' },
+      3: { uz: "Netlify'ning telefon o'yinlariga aloqasi yo'q.", ru: 'Netlify не имеет отношения к играм на телефоне.' },
+      default: { uz: 'Kompyuteringiz o\'chsa ham sayt qanday ochilishini o\'ylang.', ru: 'Подумайте, как сайт открывается, даже когда ваш компьютер выключен.' }
     }} />
 );
 
@@ -1388,12 +1389,12 @@ const Screen6 = (props) => (
       { uz: '`index.html`', ru: '`index.html`' },
       { uz: '`netlify.txt`', ru: '`netlify.txt`' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Brauzer saytni ochganda avval shu faylni qidiradi. Shuning uchun AI bergan bosh sahifa faylini aynan shu nom bilan saqlaysiz.", ru: 'Открывая сайт, браузер первым ищет именно этот файл. Поэтому файл главной страницы от AI вы сохраняете под этим именем.' } /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
+    explainCorrect={{ uz: "Brauzer saytni ochganda avval aynan shu faylni qidiradi.", ru: 'Открывая сайт, браузер первым ищет именно этот файл.' } /* F-0926-06: «To'g'ri!» va variant takrori olindi (159/11) */}
     explainWrong={{
-      0: { uz: "`style.css` — bezak fayli. Brauzer avval bosh sahifani, ya'ni `index.html` ni qidiradi.", ru: '`style.css` — файл оформления. Браузер сначала ищет главную страницу, то есть `index.html`.' },
-      1: { uz: "Rasm — sahifa ichidagi bo'lak. Bosh sahifa fayli `index.html` deb nomlanadi.", ru: 'Картинка — часть страницы. Файл главной страницы называется `index.html`.' },
-      3: { uz: 'Bunday fayl kerak emas. Bosh sahifa fayli `index.html` deb nomlanadi.', ru: 'Такой файл не нужен. Файл главной страницы называется `index.html`.' },
-      default: { uz: 'Bosh sahifa fayli `index.html` deb nomlanadi.', ru: 'Файл главной страницы называется `index.html`.' }
+      0: { uz: "style.css — bezak fayli, bosh sahifa emas.", ru: 'style.css — файл оформления, а не главная страница.' },
+      1: { uz: "Rasm — sahifa ichidagi bo'lak, sahifaning o'zi emas.", ru: 'Картинка — часть страницы, а не сама страница.' },
+      3: { uz: 'Bunday fayl sayt uchun kerak emas.', ru: 'Такой файл сайту не нужен.' },
+      default: { uz: 'Brauzer birinchi qaysi faylni qidirishini eslang.', ru: 'Вспомните, какой файл браузер ищет первым.' }
     }} />
 );
 
@@ -1573,12 +1574,12 @@ const Screen12 = (props) => (
       { uz: 'GitHub parolimni', ru: 'Свой пароль от GitHub' },
       { uz: 'Netlify bergan havolani', ru: 'Ссылку, которую выдал Netlify' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "Sayt endi internetda: havolaning o'zi yetadi. Fayl yuborish ham, parol berish ham kerak emas.", ru: 'Сайт теперь в интернете: хватает самой ссылки. Ни файл отправлять, ни пароль давать не нужно.' } /* F-0926-06: «To'g'ri!» olindi (159/11) */}
+    explainCorrect={{ uz: "Sayt internetda — do'stingizga havolaning o'zi yetadi.", ru: 'Сайт уже в интернете — другу хватит самой ссылки.' } /* F-0926-06: «To'g'ri!» olindi (159/11) */}
     explainWrong={{
-      0: { uz: "Bitta fayl do'stning telefonida sayt bo'lib ochilmaydi. Netlify bergan havolani yuboring.", ru: 'Один файл на телефоне друга сайтом не откроется. Отправьте ссылку от Netlify.' },
-      1: { uz: 'Arxivni ochish uchun kompyuter kerak. Havola esa telefonda ham ochiladi.', ru: 'Чтобы открыть архив, нужен компьютер. А ссылка открывается и на телефоне.' },
-      2: { uz: "Parol hech qachon yuborilmaydi. Sayt uchun havolaning o'zi yetadi.", ru: 'Пароль отправлять нельзя никогда. Для сайта достаточно самой ссылки.' },
-      default: { uz: 'Netlify bergan havolani yuborasiz.', ru: 'Вы отправляете ссылку, которую выдал Netlify.' }
+      0: { uz: "Bitta fayl do'stning telefonida sayt bo'lib ochilmaydi.", ru: 'Один файл на телефоне друга сайтом не откроется.' },
+      1: { uz: 'Arxivni ochish uchun kompyuter kerak — do\'stingiz qiynaladi.', ru: 'Чтобы открыть архив, нужен компьютер — другу будет неудобно.' },
+      2: { uz: "Parol hech qachon hech kimga yuborilmaydi.", ru: 'Пароль никогда и никому не отправляют.' },
+      default: { uz: 'Netlify sayt joylaganda sizga nima berganini eslang.', ru: 'Вспомните, что Netlify выдал вам после загрузки сайта.' }
     }} />
 );
 

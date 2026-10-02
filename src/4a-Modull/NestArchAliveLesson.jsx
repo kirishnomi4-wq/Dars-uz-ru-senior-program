@@ -279,7 +279,7 @@ const RECAPS = {
     title: { uz: "Eshik qo'riqchisi — birinchi bekat", ru: 'Охранник у входа — первая станция' },
     cards: [
       { ic: "🛡️", h: { uz: "Eng birinchi — qo'riqchi", ru: 'Самый первый — охранник' }, body: { uz: <>So'rov ichkariga kirishdan oldin <b>qo'riqchi</b> (guard) tekshiradi: klub kartasi (token) bormi?</>, ru: <>Прежде чем запрос попадёт внутрь, <b>охранник</b> (guard) проверяет: есть ли клубная карта (токен)?</> } },
-      { ic: "⛔", h: { uz: "Yo'q bo'lsa — 401", ru: 'Нет карты — 401' }, body: { uz: <>Token bo'lmasa mijoz eshikdan o'tmaydi: <span className="mono">401</span>. Oshpazgacha ham bormaydi.</>, ru: <>Без токена клиент не пройдёт дальше двери: <span className="mono">401</span>. До повара он даже не дойдёт.</> } },
+      { ic: "⛔", h: { uz: "Yo'q bo'lsa — 401", ru: 'Нет карты — 401' }, body: { uz: <>Token bo'lmasa mijoz eshikdan o'tmaydi: <span className="mono">401</span>, oshpazgacha ham bormaydi.</>, ru: <>Без токена клиент не пройдёт дальше двери: <span className="mono">401</span>, до повара он не дойдёт.</> } },
       { ic: "🧐", h: { uz: "Qo'riqchi va nazoratchi — boshqa-boshqa", ru: 'Охранник и контролёр — разные' }, body: { uz: <>Qo'riqchi <b>odamni</b> tekshiradi, nazoratchi (ValidationPipe) esa <b>anketani</b>.</>, ru: <>Охранник проверяет <b>человека</b>, а контролёр (ValidationPipe) — <b>анкету</b>.</> }, ask: { uz: "So'rov birinchi kimga uchraydi?", ru: 'Кого запрос встречает первым?' } },
     ]
   },
@@ -294,15 +294,15 @@ const RECAPS = {
   17: {
     title: { uz: "Har ish — o'z xonasida", ru: 'Каждое дело — в своей комнате' },
     cards: [
-      { ic: "🤵", h: { uz: "Ofitsiant oshxonaga kirmaydi", ru: 'Официант не заходит на кухню' }, body: { uz: <><b>Controller</b> faqat so'rovni oladi va javobni qaytaradi. Asosiy ishni o'zi bajarmaydi.</>, ru: <><b>Controller</b> только принимает запрос и возвращает ответ. Основную работу сам не делает.</> } },
-      { ic: "👨‍🍳", h: { uz: "Parolni oshpaz shifrlaydi", ru: 'Пароль шифрует повар' }, body: { uz: <><span className="mono">bcrypt.hash()</span> — bu asosiy ish. Demak uning joyi <span className="mono">admin.service.ts</span> ichida.</>, ru: <><span className="mono">bcrypt.hash()</span> — это основная работа. Значит, её место — внутри <span className="mono">admin.service.ts</span>.</> } },
-      { ic: "🧲", h: { uz: "AI tez yozadi, siz joyiga qo'yasiz", ru: 'ИИ пишет быстро, а вы расставляете по местам' }, body: { uz: <>AI qatorni noto'g'ri faylga qo'yishi mumkin. Arxitekturani bilsangiz — xatoni darrov ko'rasiz.</>, ru: <>ИИ может положить строку не в тот файл. Если вы знаете архитектуру — сразу заметите ошибку.</> }, ask: { uz: <>Nima uchun <span className="mono">bcrypt.hash()</span> ofitsiantning ishi emas?</>, ru: <>Почему <span className="mono">bcrypt.hash()</span> — не дело официанта?</> } },
+      { ic: "🤵", h: { uz: "Ofitsiant oshxonaga kirmaydi", ru: 'Официант не заходит на кухню' }, body: { uz: <><b>Controller</b> faqat so'rovni oladi va javobni qaytaradi, asosiy ishni o'zi qilmaydi.</>, ru: <><b>Controller</b> только принимает запрос и возвращает ответ, а основную работу не делает.</> } },
+      { ic: "👨‍🍳", h: { uz: "Parolni oshpaz shifrlaydi", ru: 'Пароль шифрует повар' }, body: { uz: <><span className="mono">bcrypt.hash()</span> — asosiy ish, shuning uchun joyi <span className="mono">admin.service.ts</span> ichida.</>, ru: <><span className="mono">bcrypt.hash()</span> — основная работа, поэтому её место — в <span className="mono">admin.service.ts</span>.</> } },
+      { ic: "🧲", h: { uz: "AI tez yozadi, siz joyiga qo'yasiz", ru: 'ИИ пишет быстро, а вы расставляете по местам' }, body: { uz: <>Arxitekturani bilsangiz, AI qatorni noto'g'ri faylga qo'yganini darrov ko'rasiz.</>, ru: <>Если вы знаете архитектуру, сразу заметите, что ИИ положил строку не в тот файл.</> }, ask: { uz: <>Nima uchun <span className="mono">bcrypt.hash()</span> ofitsiantning ishi emas?</>, ru: <>Почему <span className="mono">bcrypt.hash()</span> — не дело официанта?</> } },
     ]
   }
 };
 
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -320,7 +320,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -329,13 +329,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -412,7 +412,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>
@@ -507,7 +507,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -515,8 +515,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -528,11 +529,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -954,12 +955,12 @@ const Screen4 = (props) => (
     questionText="Maxfiy sozlamalar (baza manzili, kalitlar) qayerga yoziladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Maxfiy sozlamalar <span className="italic" style={{ color: T.accent }}>qayerga</span> yoziladi?</>, ru: <>Куда записывают <span className="italic" style={{ color: T.accent }}>секретные</span> настройки?</> })}</h2></>}
     options={[{ uz: "To'g'ridan-to'g'ri kod ichiga", ru: 'Прямо внутрь кода' }, { uz: "Alohida `.env` fayli ichiga", ru: 'В отдельный файл `.env`' }, { uz: "`Swagger` hujjati ichiga", ru: 'В документацию `Swagger`' }, { uz: "Loyiha `README` fayli ichiga", ru: 'В файл `README` проекта' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Maxfiy kalitlar `.env` faylida saqlanadi va `.gitignore` orqali GitHub'ga chiqmaydi — bu xavfsizlik.", ru: 'Верно! Секретные ключи хранятся в файле `.env` и благодаря `.gitignore` не попадают на GitHub — это безопасность.' }}
+    explainCorrect={{ uz: ".env GitHub'ga chiqmaydi — kalitlar u yerda xavfsiz.", ru: 'Файл .env не попадает на GitHub — ключи там в безопасности.' }}
     explainWrong={{
-      0: { uz: "Kodga yozsangiz, GitHub'da hamma ko'radi — xavfli. To'g'risi: `.env`.", ru: 'Если написать в код, на GitHub это увидят все — опасно. Правильно: `.env`.' },
-      2: { uz: "`Swagger` — menyu (API eshiklari ro'yxati), sozlama joyi emas. To'g'risi: `.env`.", ru: '`Swagger` — меню (список дверей API), а не место для настроек. Правильно: `.env`.' },
-      3: { uz: "`README` — loyihani tanishtiruvchi fayl. Maxfiy sozlamalar `.env`da turadi.", ru: '`README` — файл-знакомство с проектом. Секретные настройки живут в `.env`.' },
-      default: { uz: "Maxfiy sozlamalar = `.env` fayli.", ru: 'Секретные настройки = файл `.env`.' }
+      0: { uz: "Kodga yozilgan kalitni GitHub'da hamma ko'radi — xavfli.", ru: 'Ключ в коде на GitHub увидят все — опасно.' },
+      2: { uz: "Swagger — menyu (API eshiklari ro'yxati), sozlama joyi emas.", ru: 'Swagger — меню (список дверей API), а не место для настроек.' },
+      3: { uz: "README loyihani tanishtiradi, uni esa hamma o'qiydi.", ru: 'README знакомит с проектом, и его читают все.' },
+      default: { uz: "Kalit qayerda tursa, GitHub'ga chiqmaydi?", ru: 'Где должен лежать ключ, чтобы не попасть на GitHub?' }
     }} />
 );
 
@@ -1046,12 +1047,12 @@ const Screen8 = (props) => (
     questionText="Controller (ofitsiant) nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>Controller</span> (ofitsiant) <span className="italic" style={{ color: T.accent }}>nima</span> qiladi?</>, ru: <><span className="mono" style={{ color: T.accent }}>Controller</span> (официант) — <span className="italic" style={{ color: T.accent }}>что</span> он делает?</> })}</h2></>}
     options={[{ uz: "Ma'lumotni omborga o'zi yozadi", ru: 'Сам записывает данные на склад' }, { uz: "Parolni shifrlaydi (hash qiladi)", ru: 'Шифрует пароль (делает hash)' }, { uz: "Loyihani ishga tushiradi va kuzatadi", ru: 'Запускает проект и следит за ним' }, { uz: "So'rovni oladi, javobni qaytaradi", ru: 'Принимает запрос, возвращает ответ' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `Controller` — ofitsiant: so'rovni oladi va javobni qaytaradi. Asosiy ishni `Service` (oshpaz) bajaradi.", ru: 'Верно! `Controller` — официант: принимает запрос и возвращает ответ. Основную работу делает `Service` (повар).' }}
+    explainCorrect={{ uz: "Controller — ofitsiant: oshpaz pishiradi, u faqat tashiydi.", ru: 'Controller — официант: готовит повар, а он только приносит.' }}
     explainWrong={{
-      0: { uz: "Omborga yozish — omborchi (`Repository`) ishi. Ofitsiant faqat buyurtmani oladi.", ru: 'Запись на склад — дело кладовщика (`Repository`). Официант только принимает заказ.' },
-      1: { uz: "Parolni shifrlash — oshpaz (`Service`) ishi. Ofitsiant oshxonaga kirmaydi.", ru: 'Шифровать пароль — дело повара (`Service`). Официант на кухню не заходит.' },
-      2: { uz: "Ishga tushirish va kuzatish — `npm run start:dev` ishi. `Controller` — so'rovlar eshigi.", ru: 'Запуск и наблюдение — работа `npm run start:dev`. `Controller` — двери для запросов.' },
-      default: { uz: "`Controller` = so'rovni oladi va javob qaytaradi (ofitsiant).", ru: '`Controller` = принимает запрос и возвращает ответ (официант).' }
+      0: { uz: "Omborga omborchi (Repository) yozadi, ofitsiant emas.", ru: 'На склад пишет кладовщик (Repository), а не официант.' },
+      1: { uz: "Parolni oshpaz (Service) shifrlaydi, ofitsiant emas.", ru: 'Пароль шифрует повар (Service), а не официант.' },
+      2: { uz: "Loyihani npm run start:dev ishga tushiradi, Controller emas.", ru: 'Проект запускает npm run start:dev, а не Controller.' },
+      default: { uz: "Restoranda ofitsiant nima qiladi — shuni eslang.", ru: 'Вспомните, что в ресторане делает официант.' }
     }} />
 );
 
@@ -1270,12 +1271,12 @@ const Screen10 = (props) => (
     questionText="So'rov serverga kelganda birinchi kimga uchraydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>So'rov <span className="italic" style={{ color: T.accent }}>birinchi</span> kimga uchraydi?</>, ru: <>Кого запрос встречает <span className="italic" style={{ color: T.accent }}>первым</span>?</> })}</h2></>}
     options={[{ uz: "`Guard` — eshik qo'riqchisi", ru: '`Guard` — охранник у входа' }, { uz: "`Service` — oshpaz (oshxona)", ru: '`Service` — повар (кухня)' }, { uz: "`successRes` — bir xil lagan", ru: '`successRes` — одинаковый поднос' }, { uz: "`PostgreSQL` — ombor (baza)", ru: '`PostgreSQL` — склад (база)' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Avval eshik qo'riqchisi (`Guard`) tekshiradi: token bormi? Faqat o'tgach ofitsiantga boradi. Ruxsat yo'q bo'lsa — 401.", ru: 'Верно! Сначала проверяет охранник (`Guard`): есть ли токен? Только после этого запрос идёт к официанту. Нет доступа — 401.' }}
+    explainCorrect={{ uz: "Qo'riqchi eshikda turadi — token tekshiruvi eng birinchi.", ru: 'Охранник стоит у двери — проверка токена идёт первой.' }}
     explainWrong={{
-      1: { uz: "Oshpaz ishni keyinroq boshlaydi. Eng avval — eshikdagi qo'riqchi.", ru: 'Повар начинает работу позже. Самый первый — охранник у двери.' },
-      2: { uz: "`successRes` — javob idishi, u eng oxirida keladi. Birinchi — qo'riqchi.", ru: '`successRes` — посуда для ответа, она в самом конце. Первый — охранник.' },
-      3: { uz: "Ombor — eng oxirgi bekat. Avval eshikda qo'riqchi turadi.", ru: 'Склад — самая последняя станция. Сначала у двери стоит охранник.' },
-      default: { uz: "Birinchi — `Guard` (eshik qo'riqchisi).", ru: 'Первый — `Guard` (охранник у входа).' }
+      1: { uz: "Oshpaz ishni keyinroq boshlaydi — undan oldin kimdir bor.", ru: 'Повар начинает позже — перед ним кто-то есть.' },
+      2: { uz: "successRes — javob idishi, u eng oxirida keladi.", ru: 'successRes — посуда для ответа, она в самом конце.' },
+      3: { uz: "Ombor — eng oxirgi bekat, so'rov unga oxirida yetadi.", ru: 'Склад — последняя станция, запрос доходит до него в конце.' },
+      default: { uz: "So'rov yo'lining eng boshida kim turadi?", ru: 'Кто стоит в самом начале пути запроса?' }
     }} />
 );
 
@@ -1510,12 +1511,12 @@ const Screen16 = (props) => (
     questionText="Yangi bo'lim qo'shganda asosan nechta fayl yoziladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yangi bo'lim = <span className="italic" style={{ color: T.accent }}>nechta</span> asosiy fayl?</>, ru: <>Новый раздел = <span className="italic" style={{ color: T.accent }}>сколько</span> основных файлов?</> })}</h2></>}
     options={[{ uz: "1 ta: hamma kod bitta katta faylda turadi", ru: '1: весь код лежит в одном большом файле' }, { uz: "0 ta: NestJS fayllarni o'zi yozib beradi", ru: '0: NestJS сам пишет файлы за вас' }, { uz: "5 ta: har bo'lim uchun bir xil to'plam", ru: '5: одинаковый набор для каждого раздела' }, { uz: "20 ta: har bir vazifaga alohida fayl kerak", ru: '20: на каждую задачу нужен отдельный файл' }]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Har bo'lim — bir xil 5 qadam: `Entity`, `DTO`, `Service` (BaseService'dan), `Controller`, `Module`.", ru: 'Верно! Каждый раздел — одни и те же 5 шагов: `Entity`, `DTO`, `Service` (из BaseService), `Controller`, `Module`.' }}
+    explainCorrect={{ uz: "Har bo'lim bir xil 5 qadam: Entity'dan Module'gacha.", ru: 'Каждый раздел — одни и те же 5 шагов: от Entity до Module.' }}
     explainWrong={{
-      0: { uz: "Bitta faylga yozsak — yana o'sha chalkashlik. Arxitektura buni 5 faylga bo'ladi.", ru: 'Один файл — и снова та же путаница. Архитектура делит это на 5 файлов.' },
-      1: { uz: "Avtomatik emas — 5 faylni siz yozasiz (lekin CRUD `BaseService`'dan tayyor keladi).", ru: 'Не автоматически — 5 файлов пишете вы (но CRUD приходит готовым из `BaseService`).' },
-      3: { uz: "20 ta emas — asosiy 5 ta fayl yetadi (qolgani tayyor jihozlar).", ru: 'Не 20 — хватает 5 основных файлов (остальное — готовое оборудование).' },
-      default: { uz: "Yangi bo'lim = 5 fayl (Entity, DTO, Service, Controller, Module).", ru: 'Новый раздел = 5 файлов (Entity, DTO, Service, Controller, Module).' }
+      0: { uz: "Bitta faylda hamma kod — yana o'sha chalkashlik.", ru: 'Весь код в одном файле — снова та же путаница.' },
+      1: { uz: "NestJS fayllarni o'zi yozmaydi — ularni siz yozasiz.", ru: 'NestJS сам файлы не пишет — их пишете вы.' },
+      3: { uz: "20 ta ortiqcha — qolgan ishni tayyor jihozlar qiladi.", ru: '20 — это лишнее: остальное делает готовое оборудование.' },
+      default: { uz: "Entity'dan Module'gacha qadamlarni sanab chiqing.", ru: 'Посчитайте шаги от Entity до Module.' }
     }} />
 );
 
@@ -1720,7 +1721,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Term title="terminal" minH={70}><TLine cmd="npm run start:dev" /><TLine out="server running on port 3000 ✓" col={CODE.str} /></Term>
               <div className="takeaway fade-step"><div className="ta-bulb">🧲</div><p className="ta-h">{tr({ uz: "Har ish — o'z xonasida!", ru: 'Каждое дело — в своей комнате!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz joyiga qo'yasiz — yaxshi jamoa", ru: 'ИИ пишет быстро, вы расставляете по местам — отличная команда' })}</p></div>
               {firstCorrectRef.current === false && RECAPS[screen] && (
-                <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+                <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
               )}
             </>}
           </Col>

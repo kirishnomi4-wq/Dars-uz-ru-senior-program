@@ -1,0 +1,442 @@
+{
+ "file": "src/2-Modull/PracticeLesson1.jsx",
+ "lessonId": "practice-01-jonlantirish-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNING SAYTINGIZ",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NEGA TUGMA ISHLAMAYAPTI?",
+     "box": "DIV",
+     "gap": 9
+    },
+    {
+     "pos": "tagida",
+     "t": "To'g'ri. HTML/CSS — saytning tashqi ko'rinishi, lekin u jonsiz. Jon kiritadigan narsa — Ja",
+     "box": "DIV",
+     "gap": 0
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Hodisa → 2 Reaksiya → 3 O'zgarish",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUN SAYTGA 5 TA VOSITA QO'SHAMIZ",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ — ENDI REAKSIYA QILADI",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NIMA YUZ BERYAPTI?",
+     "box": "frame",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "sinov.uz",
+     "ph": "Bu yerga yozing…",
+     "gap": 26
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SINAB KO'RING",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ — KUNDUZGI",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ — TUNGI",
+     "box": "browser browser-dark",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🙈 Holat: yashirin",
+     "box": "codebox",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "👁️ Holat: ochiq",
+     "box": "codebox",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🙈 Holat: yashirin",
+     "box": "frame-success fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "👁️ Holat: ochiq",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "Ismingizni kiriting:",
+     "ph": "Ismingiz…",
+     "gap": 13
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "Bog'lanish formasi",
+     "ph": "Ismingiz…",
+     "gap": 13
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAYTINGIZ",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "1 bo'sh → xato 2 to'liq → ok",
+     "box": "codebox",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ bo'sh → xato 2 to'liq → ok",
+     "box": "codebox",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "A Salom, Akmal! Veb-dasturchi · 14 yosh",
+     "ph": "Ismingizni yozing…",
+     "gap": 13
+    },
+    {
+     "label": "A Salom, Akmal! Veb-dasturchi · 14 yosh",
+     "ph": "(jonsiz — yozib bo'lmaydi)",
+     "gap": 13
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NIMALARNI SINAB KO'RDINGIZ?",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 8,
+     "left": "BUTTON",
+     "right": "frame-dash",
+     "hs": [
+      52,
+      60
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "18k",
+     "txt": "\"Ochiladigan menyu qo'shib ber\""
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "2. NATIJA — BOSIB SINAB KO'RING",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Buyruq bering va rejani tasdiqlang — ishlaydigan natija shu yerda paydo bo'ladi.",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Maqsad: \"Tugma bosilganda sahifa rangi o'zgarsin.\" To'g'ri HODISA va to'g'ri REAKSIYAni tanlang. Ikkalasi to'g",
+     "b": "Hodisa va reaksiyani to'g'ri tanlasangiz, tugma ishlay boshlaydi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 HODISA 2 REAKSIYA",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Hodisa va reaksiyani to'g'ri tanlasangiz, tugma ishlay boshlaydi.",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ HODISA 2 REAKSIYA",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✗ HODISA 2 REAKSIYA",
+     "box": "browser ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ To'g'ri reaksiya — rang o'zgaradi",
+     "box": "codebox",
+     "gap": 22
+    },
+    {
+     "pos": "tepada",
+     "t": "✗ HODISA ✓ REAKSIYA",
+     "box": "browser ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

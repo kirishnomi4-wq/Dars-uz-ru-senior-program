@@ -291,38 +291,145 @@ export function formatHtml(src) {
 }
 
 // ============================================================
-//  LUG'AT — taklif-ro'yxati teglari va atribut takliflari.
-//  Ro'yxat ikki yo'l bilan ochiladi: `<` dan keyin, YOKI qatorda yolg'iz turgan
-//  so'zdan keyin (`h1` — F-0809-01).
-//  Faqat darslar o'rgatadigan teglar: ro'yxat qisqa bo'lsin, bola adashmasin.
+//  LUG'AT — taklif-ro'yxati (teg · atribut · CSS · JS).
+//  Ro'yxat ikki yo'l bilan ochiladi: `<` dan keyin, YOKI qatorda (yoki `>` dan keyin)
+//  turgan so'zdan keyin (`h1` — F-0809-01, F-1001-91).
+//  🔴 F-1001-91: ro'yxat QO'LDA YOZILMAYDI — darslar xaritasidan avto-yasaladi (quyidagi blok).
+//  Avgustda qo'lda yozilgan 19 teg ikki oy davomida `h6`, `form`, `main` siz yurgan; sinovlar
+//  faqat ro'yxatdagi teglar bilan qilingan. Endi: xarita → blok → darvoza (lint-teg-royxat).
 // ============================================================
-const TAG_MENU = [
-  { t: 'h1', d: { uz: 'eng katta sarlavha', ru: 'самый большой заголовок' } },
-  { t: 'h2', d: { uz: "bo'lim sarlavhasi", ru: 'заголовок раздела' } },
-  { t: 'h3', d: { uz: 'kichik sarlavha', ru: 'малый заголовок' } },
-  { t: 'p', d: { uz: 'matn xatboshisi', ru: 'абзац текста' } },
-  { t: 'a', d: { uz: 'havola', ru: 'ссылка' } },
-  { t: 'img', d: { uz: 'rasm', ru: 'картинка' } },
-  { t: 'ul', d: { uz: "ro'yxat", ru: 'список' } },
-  { t: 'ol', d: { uz: "raqamli ro'yxat", ru: 'нумерованный список' } },
-  { t: 'li', d: { uz: "ro'yxat bandi", ru: 'пункт списка' } },
-  { t: 'header', d: { uz: 'sahifa boshi', ru: 'шапка страницы' } },
-  { t: 'nav', d: { uz: 'menyu', ru: 'меню' } },
-  { t: 'section', d: { uz: "bo'lim", ru: 'раздел' } },
-  { t: 'footer', d: { uz: 'sahifa pasti', ru: 'подвал страницы' } },
-  { t: 'div', d: { uz: 'oddiy quti', ru: 'обычный блок' } },
-  { t: 'span', d: { uz: "matn ichidagi bo'lak", ru: 'кусочек внутри текста' } },
-  { t: 'strong', d: { uz: "qalin matn", ru: 'жирный текст' } },
-  { t: 'em', d: { uz: 'qiya matn', ru: 'наклонный текст' } },
-  { t: 'br', d: { uz: 'qator uzish', ru: 'перенос строки' } },
-  { t: 'button', d: { uz: 'tugma', ru: 'кнопка' } },
+// ⟨TEG-ROYXAT boshi⟩
+//  AVTO-YIG'ILGAN — QO'LDA TAHRIRLAMANG. Manba: src/compilator/teg-xaritasi.json (odam o'qiydigani: feedback/F-0929-LMS-yuklash/TEG_XARITASI.md)
+//  Qayta yig'ish: node scripts/gen-teg-royxat.mjs · Darvoza: node scripts/lint-teg-royxat.mjs
+//  Har teg `dars` bilan: `stage` berilgan darsda faqat o'sha darsgacha o'tilganlari chiqadi (Q2).
+const TEG_TARTIB = ["m1-01","m1-02","m1-03","m1-04","m1-14","m1-05","m1-06","m1-07","m1-08","m1-15","m1-10","m1-09","m1-11","m1-12","m1-13","m2-01","m2-02","m2-03","m2-04","m2-05","m2-06","m2-07","m2-08","m2-09","m2-10","m2-11","m2-12","m2-13","m2-14","m2-15","m2-16","m3-*","m4-*","m4a-*","m4b-*","m4c-*"];
+const BOSQICH = {"_izoh":"Qaysi darsdan qaysi imkoniyat ochiladi (Q5). Dars kompilyatorga `stage` bermasa — hammasi ochiq (2-Moduldan boshlab).","emmet":"m1-15","class_id_qisqartma":"m1-06","css_maslahat":"m1-06","js_maslahat":"m2-02"};
+const TAG_MENU_ALL = [
+  { t: "h1", dars: "m1-03", matn: true, d: {"uz":"eng katta sarlavha","ru":"самый большой заголовок"} },
+  { t: "h2", dars: "m1-03", matn: true, d: {"uz":"bo'lim sarlavhasi","ru":"заголовок раздела"} },
+  { t: "h3", dars: "m1-03", matn: true, d: {"uz":"kichik sarlavha","ru":"малый заголовок"} },
+  { t: "h4", dars: "m1-03", matn: true, d: {"uz":"4-daraja sarlavha","ru":"заголовок 4-го уровня"} },
+  { t: "h5", dars: "m1-03", matn: true, d: {"uz":"5-daraja sarlavha","ru":"заголовок 5-го уровня"} },
+  { t: "h6", dars: "m1-03", matn: true, d: {"uz":"eng kichik sarlavha","ru":"самый маленький заголовок"} },
+  { t: "p", dars: "m1-03", matn: true, d: {"uz":"matn xatboshisi","ru":"абзац текста"} },
+  { t: "strong", dars: "m1-03", matn: true, d: {"uz":"qalin matn","ru":"жирный текст"} },
+  { t: "em", dars: "m1-03", matn: true, d: {"uz":"qiya matn","ru":"наклонный текст"} },
+  { t: "ul", dars: "m1-03", d: {"uz":"ro'yxat","ru":"список"} },
+  { t: "ol", dars: "m1-03", d: {"uz":"raqamli ro'yxat","ru":"нумерованный список"} },
+  { t: "li", dars: "m1-03", matn: true, d: {"uz":"ro'yxat bandi","ru":"пункт списка"} },
+  { t: "a", dars: "m1-03", matn: true, d: {"uz":"havola","ru":"ссылка"} },
+  { t: "html", dars: "m1-03", d: {"uz":"butun sahifa","ru":"вся страница"} },
+  { t: "head", dars: "m1-03", d: {"uz":"sahifa sozlamalari (ko'rinmaydi)","ru":"настройки страницы (не видно)"} },
+  { t: "title", dars: "m1-03", matn: true, d: {"uz":"varaq nomi","ru":"название вкладки"} },
+  { t: "body", dars: "m1-03", d: {"uz":"sahifa tanasi (ko'rinadi)","ru":"тело страницы (видно)"} },
+  { t: "img", dars: "m1-04", void: true, d: {"uz":"rasm","ru":"картинка"} },
+  { t: "header", dars: "m1-04", d: {"uz":"sahifa boshi","ru":"шапка страницы"} },
+  { t: "main", dars: "m1-04", d: {"uz":"asosiy qism","ru":"основная часть"} },
+  { t: "footer", dars: "m1-04", d: {"uz":"sahifa pasti","ru":"подвал страницы"} },
+  { t: "div", dars: "m1-04", d: {"uz":"oddiy quti","ru":"обычный блок"} },
+  { t: "form", dars: "m1-04", d: {"uz":"forma","ru":"форма"} },
+  { t: "input", dars: "m1-04", void: true, d: {"uz":"yozish maydoni","ru":"поле ввода"} },
+  { t: "label", dars: "m1-04", matn: true, d: {"uz":"maydon yozuvi","ru":"подпись поля"} },
+  { t: "button", dars: "m1-04", matn: true, d: {"uz":"tugma","ru":"кнопка"} },
+  { t: "style", dars: "m1-06", d: {"uz":"CSS shu yerda","ru":"CSS здесь"} },
+  { t: "link", dars: "m1-06", void: true, d: {"uz":"CSS faylini ulash","ru":"подключить CSS"} },
+  { t: "nav", dars: "m1-08", d: {"uz":"menyu","ru":"меню"} },
+  { t: "section", dars: "m1-08", d: {"uz":"bo'lim","ru":"раздел"} },
+  { t: "span", dars: "m2-08", matn: true, d: {"uz":"matn ichidagi bo'lak","ru":"кусочек внутри текста"} },
 ];
-const ATTR_MENU = {
-  a: [{ a: 'href', d: { uz: 'qayerga olib boradi', ru: 'куда ведёт' } }],
-  img: [{ a: 'src', d: { uz: 'rasm manzili', ru: 'адрес картинки' } }, { a: 'alt', d: { uz: "rasm o'rnidagi matn", ru: 'текст вместо картинки' } }],
-  input: [{ a: 'type', d: { uz: 'maydon turi', ru: 'тип поля' } }, { a: 'placeholder', d: { uz: 'xira maslahat', ru: 'подсказка' } }],
-  '*': [{ a: 'class', d: { uz: 'CSS uchun nom', ru: 'имя для CSS' } }, { a: 'id', d: { uz: 'yagona nom', ru: 'уникальное имя' } }],
+const ATTR_MENU_ALL = {
+  "a": [{ a: "href", dars: "m1-03", d: {"uz":"qayerga olib boradi","ru":"куда ведёт"} }],
+  "img": [{ a: "src", dars: "m1-04", d: {"uz":"rasm manzili","ru":"адрес картинки"} }, { a: "alt", dars: "m1-04", d: {"uz":"rasm o'rnidagi matn","ru":"текст вместо картинки"} }],
+  "input": [{ a: "type", dars: "m1-04", d: {"uz":"maydon turi","ru":"тип поля"}, v: ["text","email","password","number"] }, { a: "placeholder", dars: "m1-04", d: {"uz":"xira maslahat","ru":"подсказка"} }, { a: "value", dars: "m1-04", d: {"uz":"boshlang'ich qiymat","ru":"начальное значение"} }],
+  "*": [{ a: "class", dars: "m1-06", d: {"uz":"CSS uchun nom","ru":"имя для CSS"} }, { a: "style", dars: "m1-06", d: {"uz":"CSS shu yerning o'zida","ru":"CSS прямо здесь"} }, { a: "id", dars: "m1-08", d: {"uz":"yagona nom","ru":"уникальное имя"} }],
+  "link": [{ a: "rel", dars: "m1-06", d: {"uz":"ulash turi","ru":"тип связи"}, v: ["stylesheet"] }, { a: "href", dars: "m1-06", d: {"uz":"fayl manzili","ru":"адрес файла"} }],
+  "html": [{ a: "lang", dars: "m1-15", d: {"uz":"sahifa tili","ru":"язык страницы"} }],
 };
+const CSS_MENU_ALL = [
+  { p: "color", dars: "m1-06", d: {"uz":"matn rangi","ru":"цвет текста"}, v: ["red","blue","green","white","black","#…"] },
+  { p: "background-color", dars: "m1-06", d: {"uz":"fon rangi","ru":"цвет фона"}, v: ["#…","white","black"] },
+  { p: "font-size", dars: "m1-06", d: {"uz":"shrift kattaligi","ru":"размер шрифта"}, v: ["16px","24px","32px"] },
+  { p: "text-align", dars: "m1-06", d: {"uz":"matn tekislash","ru":"выравнивание текста"}, v: ["center","left","right"] },
+  { p: "font-family", dars: "m1-06", d: {"uz":"shrift","ru":"шрифт"}, v: ["Arial","Georgia","sans-serif"] },
+  { p: "margin", dars: "m1-06", d: {"uz":"tashqi bo'shliq","ru":"внешний отступ"}, v: ["0","8px","16px","auto"] },
+  { p: "padding", dars: "m1-06", d: {"uz":"ichki bo'shliq","ru":"внутренний отступ"}, v: ["8px","16px","24px"] },
+  { p: "display", dars: "m1-07", d: {"uz":"ko'rinish turi","ru":"тип отображения"}, v: ["flex","block","none"] },
+  { p: "gap", dars: "m1-07", d: {"uz":"elementlar orasi","ru":"промежуток"}, v: ["8px","16px","24px"] },
+  { p: "justify-content", dars: "m1-07", d: {"uz":"gorizontal joylash","ru":"по горизонтали"}, v: ["center","space-between","flex-start","flex-end"] },
+  { p: "align-items", dars: "m1-07", d: {"uz":"vertikal joylash","ru":"по вертикали"}, v: ["center","flex-start","flex-end"] },
+  { p: "flex-direction", dars: "m1-07", d: {"uz":"yo'nalish","ru":"направление"}, v: ["row","column"] },
+  { p: "height", dars: "m1-07", d: {"uz":"balandlik","ru":"высота"}, v: ["100px","200px","100vh"] },
+  { p: "width", dars: "m1-15", d: {"uz":"kenglik","ru":"ширина"}, v: ["100px","300px","100%"] },
+  { p: "background", dars: "m1-15", d: {"uz":"fon","ru":"фон"}, v: ["#…","white"] },
+  { p: "border-radius", dars: "m1-15", d: {"uz":"burchak yumaloqligi","ru":"скругление углов"}, v: ["8px","12px","50%"] },
+  { p: "box-shadow", dars: "m1-15", d: {"uz":"soya","ru":"тень"}, v: ["0 4px 12px rgba(0,0,0,.15)"] },
+];
+const JS_MENU_ALL = {
+  kw: [{ k: "let", dars: "m2-02", d: {"uz":"o'zgaruvchi (o'zgaradi)","ru":"переменная (меняется)"} }, { k: "const", dars: "m2-02", d: {"uz":"o'zgarmas","ru":"константа"} }, { k: "if", dars: "m2-04", d: {"uz":"shart","ru":"условие"} }, { k: "else", dars: "m2-04", d: {"uz":"aks holda","ru":"иначе"} }, { k: "else if", dars: "m2-04", d: {"uz":"yana bir shart","ru":"ещё одно условие"} }, { k: "true", dars: "m2-04", d: {"uz":"rost","ru":"истина"} }, { k: "false", dars: "m2-04", d: {"uz":"yolg'on","ru":"ложь"} }, { k: "for", dars: "m2-05", d: {"uz":"sikl (sanab)","ru":"цикл (со счётчиком)"} }, { k: "while", dars: "m2-05", d: {"uz":"sikl (shart bo'lguncha)","ru":"цикл (пока условие)"} }, { k: "function", dars: "m2-06", d: {"uz":"funksiya","ru":"функция"} }, { k: "return", dars: "m2-06", d: {"uz":"javob qaytarish","ru":"вернуть значение"} }, { k: "=>", dars: "m2-08", d: {"uz":"qisqa funksiya","ru":"стрелочная функция"} }],
+  api: [{ k: "console.log", dars: "m2-02", d: {"uz":"konsolga chiqarish","ru":"вывести в консоль"}, q: "console.log()" }, { k: "prompt", dars: "m2-04", d: {"uz":"foydalanuvchidan so'rash","ru":"спросить у пользователя"}, q: "prompt(\"\")" }, { k: ".length", dars: "m2-05", d: {"uz":"nechta element","ru":"сколько элементов"} }, { k: "onclick", dars: "m2-08", d: {"uz":"bosilganda","ru":"при нажатии"}, q: ".onclick = () => {\n  \n}" }, { k: "oninput", dars: "m2-08", d: {"uz":"yozilganda","ru":"при вводе"}, q: ".oninput = () => {\n  \n}" }],
+  snip: [{ q: "log", dars: "m2-02", body: "console.log();" }, { q: "if", dars: "m2-04", body: "if () {\n  \n}" }, { q: "else", dars: "m2-04", body: "else {\n  \n}" }, { q: "for", dars: "m2-05", body: "for (let i = 0; i < 5; i++) {\n  \n}" }, { q: "while", dars: "m2-05", body: "while () {\n  \n}" }, { q: "fn", dars: "m2-06", body: "function nom() {\n  \n}" }],
+};
+// ⟨TEG-ROYXAT oxiri⟩
+
+// Dars tartibi bo'yicha o'rin: `stage` berilgan darsda faqat shu darsgacha o'tilgan narsa chiqadi (Q2).
+// Noma'lum kalit → Infinity (hech qachon chiqmaydi); `stage` yo'q → hamma narsa ochiq (2-Moduldan boshlab).
+const tegRank = (k) => {
+  if (!k) return Infinity;
+  const i = TEG_TARTIB.indexOf(k);
+  if (i !== -1) return i;
+  const m = /^(m\d[abc]?)-/.exec(k);
+  const w = m ? TEG_TARTIB.indexOf(m[1] + '-*') : -1;
+  return w === -1 ? Infinity : w;
+};
+// `dars` o'tilganmi — `stage` bo'lmasa har doim ha
+const tegOchiq = (stage, dars) => !stage || tegRank(dars) <= tegRank(stage);
+
+// Yolg'iz teg nomidan to'liq tana: juft (`<h1></h1>`, kursor orasida) yoki void (`<br>`).
+// Ro'yxatdan tanlanganda ham, so'z ustida Tab bosilganda ham AYNAN shu (113-qonun: ko'rsatilgan = qo'yilgan).
+const tagBody = (name, ind) => {
+  const sn = SNIPPETS[name];
+  if (sn) return { body: sn.body.split('\n').join('\n' + ind), caret: sn.body.slice(0, sn.caret).split('\n').join('\n' + ind).length };
+  if (VOID_TAGS.has(name)) return { body: `<${name}>`, caret: name.length + 2 };
+  return { body: `<${name}></${name}>`, caret: name.length + 2 };
+};
+
+// ── Emmet asoslari (F-1001-91, Q5) ───────────────────────────
+// `!` (qatorda yolg'iz) · `a>b` ichma-ich · `*n` takror · `.c` class · `#i` id. Faqat xaritadagi teglar.
+// `.`/`#` — CSS-1 dan (BOSQICH.class_id_qisqartma), butun Emmet — VS Code darsidan (BOSQICH.emmet).
+const EMMET_BANG = '<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <meta charset="UTF-8">\n  <title>Sahifa</title>\n</head>\n<body>\n  \n</body>\n</html>';
+function emmetExpand(abbr, ind, { classOn }) {
+  if (abbr === '!') {
+    const t = EMMET_BANG.split('\n').join('\n' + ind);
+    return { body: t, caret: t.indexOf('<body>\n') + 7 + ind.length + 2 };
+  }
+  const parts = abbr.split('>');
+  const re = /^([a-zA-Z][a-zA-Z0-9]*)?((?:[.#][a-zA-Z0-9_-]+)*)(?:\*(\d{1,2}))?$/;
+  const P = [];
+  for (const x of parts) {
+    const m = re.exec(x); if (!m || (!m[1] && !m[2])) return null;
+    if (m[2] && !classOn) return null;
+    const tag = (m[1] || 'div').toLowerCase();
+    if (!TAG_MENU_ALL.some((q) => q.t === tag)) return null;
+    if (parts.length === 1 && !m[2] && !m[3]) return null;   // yolg'iz so'z — tagBody ishi
+    const cls = (m[2].match(/\.[a-zA-Z0-9_-]+/g) || []).map((c) => c.slice(1));
+    const id = ((m[2].match(/#[a-zA-Z0-9_-]+/) || [''])[0]).slice(1);
+    P.push({ tag, cls, id, n: Math.min(20, Math.max(1, Number(m[3] || 1))) });
+  }
+  const open = (q) => '<' + q.tag + (q.id ? ' id="' + q.id + '"' : '') + (q.cls.length ? ' class="' + q.cls.join(' ') + '"' : '') + '>';
+  const rend = (i, pad) => {
+    const q = P[i]; const out = [];
+    for (let k = 0; k < q.n; k++) {
+      if (VOID_TAGS.has(q.tag)) { out.push(pad + open(q)); continue; }
+      if (i === P.length - 1) out.push(pad + open(q) + '</' + q.tag + '>');
+      else out.push(pad + open(q) + '\n' + rend(i + 1, pad + '  ') + '\n' + pad + '</' + q.tag + '>');
+    }
+    return out.join('\n');
+  };
+  const body = rend(0, ind).slice(ind.length);
+  const c = body.indexOf('></');
+  return { body, caret: c === -1 ? body.length : c + 1 };
+}
+
 // Ko'p qatorli/atributli tuzilmalar tanasi — ro'yxatdan tanlanganda ham,
 // qatorda yolg'iz so'z ustida Tab bosilganda ham shu tushadi.
 // h1/h2/p bu yerda yo'q: ular oddiy juft (`<h1></h1>`) — alohida tana kerakmas.
@@ -707,6 +814,7 @@ function closesOnOpen(open, top) {
 const TEXT_TAGS = new Set([
   'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'span', 'strong', 'em', 'b', 'i',
   'button', 'li', 'label', 'title', 'td', 'th', 'figcaption', 'blockquote',
+  ...TAG_MENU_ALL.filter((t) => t.matn).map((t) => t.t),   // xaritadagi `matn` belgisi (F-1001-91)
 ]);
 // Kursoroldidagi matndan teg-stekni yig'ib, eng ichkarisi matn tegimi — shuni aytadi.
 // Yopish tegi ixtiyoriy bo'lganlar (`<li>` ketma-ket) linterdagi AYNAN shu qoida
@@ -1169,7 +1277,28 @@ function HtmlCompiler({
   onBack,
   storageKey,             // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
   lang = 'uz',            // 'uz' | 'ru' — modul dars kontekstidan tashqarida ishlaydi
+  stage,                  // F-1001-91 (Q2): dars kaliti (`'m1-03'`) — ro'yxatda faqat shu darsgacha o'tilganlar; yo'q bo'lsa hammasi
 }) {
+  // Ro'yxatlar xaritadan, `stage` ga qarab (bir marta hisoblanadi)
+  const tagMenu = useMemo(() => TAG_MENU_ALL.filter((t) => tegOchiq(stage, t.dars)), [stage]);
+  const attrMenu = useMemo(() => {
+    const o = {};
+    for (const k of Object.keys(ATTR_MENU_ALL)) o[k] = ATTR_MENU_ALL[k].filter((a) => tegOchiq(stage, a.dars));
+    return o;
+  }, [stage]);
+  const emmetOn = tegOchiq(stage, BOSQICH.emmet);
+  const classOn = tegOchiq(stage, BOSQICH.class_id_qisqartma);
+  // 2b/2c (F-1001-91, Q11): CSS xossa/qiymat va JS kalit so'z/API/qisqartma — xaritadan, `stage` bilan
+  const cssMenu = useMemo(() => tegOchiq(stage, BOSQICH.css_maslahat) ? CSS_MENU_ALL.filter((c) => tegOchiq(stage, c.dars)) : [], [stage]);
+  const jsMenu = useMemo(() => {
+    if (!tegOchiq(stage, BOSQICH.js_maslahat)) return [];
+    const snip = Object.fromEntries(JS_MENU_ALL.snip.filter((q) => tegOchiq(stage, q.dars)).map((q) => [q.q, q.body]));
+    const items = [];
+    for (const k of JS_MENU_ALL.kw) if (tegOchiq(stage, k.dars)) items.push({ k: k.k, d: k.d, body: snip[k.k] || (/^(true|false|null|=>)$/.test(k.k) ? k.k : k.k + ' ') });
+    for (const a of JS_MENU_ALL.api) if (tegOchiq(stage, a.dars)) items.push({ k: a.k, d: a.d, body: a.q || a.k });
+    for (const q of Object.keys(snip)) if (!items.some((i) => i.k === q)) items.push({ k: q, d: { uz: snip[q].split('\n')[0] + ' …', ru: snip[q].split('\n')[0] + ' …' }, body: snip[q] });
+    return items;
+  }, [stage]);
   // Til RENDERDAN OLDIN o'rnatiladi: quyidagi barcha tr(...) chaqiriqlari (jumladan
   // linter xabarlari) shu qiymatni o'qiydi. Darslardagi __lang naqshi bilan bir xil.
   __lang = (lang === 'ru' ? 'ru' : 'uz');
@@ -1627,40 +1756,97 @@ function HtmlCompiler({
   // saqlanadi — aks holda strelka bilan tanlash keyingi `keyup` da nolga qaytardi.
   const refreshMenu = () => {
     const el = taRef.current;
-    if (!el || activeLang !== 'html' || document.activeElement !== el) return setMenu(null);
+    if (!el || document.activeElement !== el) return setMenu(null);
     const v = el.value, s = el.selectionStart;
     if (s !== el.selectionEnd) return setMenu(null);
     if (escAtRef.current.at === s && escAtRef.current.seq === editSeqRef.current) return setMenu(null);
     const open = (next) => setMenu((prev) => (prev && prev.kind === next.kind && prev.from === next.from && prev.items.length === next.items.length)
       ? { ...next, idx: Math.min(prev.idx, next.items.length - 1) } : next);
     const before = v.slice(0, s);
+    // ── CSS (2b): faqat `{ }` ichida — xossa nomi (`co` → color) yoki `:` dan keyin qiymat (`display:` → flex …).
+    //    Selektor yozilayotganda (blokdan tashqarida) jim. Enter ham, Tab ham tanlaydi.
+    if (activeLang === 'css') {
+      if (!cssMenu.length) return setMenu(null);
+      const ob = before.lastIndexOf('{'), cb = before.lastIndexOf('}');
+      if (ob === -1 || cb > ob) return setMenu(null);                          // blokdan tashqarida — selektor
+      const seg = before.slice(Math.max(ob, before.lastIndexOf(';'), before.lastIndexOf('\n')) + 1);
+      const mv = /^\s*([a-z-]+)\s*:\s*([a-zA-Z0-9#.%-]*)$/.exec(seg);
+      if (mv) {                                                                // qiymat o'rni
+        const def = cssMenu.find((c) => c.p === mv[1]);
+        if (!def) return setMenu(null);
+        const pref = mv[2];
+        const items = def.v.filter((x) => x.startsWith(pref)).map((x) => ({ a: x, d: '' }));
+        if (!items.length) return setMenu(null);
+        return open({ kind: 'cssval', src: 'lt', items, idx: 0, from: s - pref.length, ...caretXY() });
+      }
+      const mp = /^\s*([a-z-]+)$/.exec(seg);
+      if (mp) {                                                                // xossa o'rni
+        const pref = mp[1];
+        const items = cssMenu.filter((c) => c.p.startsWith(pref)).sort((x, y) => (x.p === pref ? 0 : 1) - (y.p === pref ? 0 : 1));
+        if (!items.length) return setMenu(null);
+        return open({ kind: 'cssprop', src: 'lt', items, idx: 0, from: s - pref.length, ...caretXY() });
+      }
+      return setMenu(null);
+    }
+    // ── JS (2c): identifikator ≥2 harf, faqat o'rgatilgan so'zlar; satr/izoh ichida jim; FAQAT Tab tanlaydi (src 'bare').
+    if (activeLang === 'js') {
+      if (!jsMenu.length) return setMenu(null);
+      const ls0 = before.lastIndexOf('\n') + 1, line = before.slice(ls0);
+      if (line.includes('//')) return setMenu(null);                           // qator izohi
+      if (before.lastIndexOf('/*') > before.lastIndexOf('*/')) return setMenu(null); // blok izohi
+      let q = null; for (const ch of line) { if (q) { if (ch === q) q = null; } else if (ch === '"' || ch === "'" || ch === '`') q = ch; }
+      if (q) return setMenu(null);                                             // satr ichida
+      const mi = /([A-Za-z_$.][\w$.]*)$/.exec(line);
+      if (!mi || mi[1].replace(/^\./, '').length < 2) return setMenu(null);
+      const match = (pf) => jsMenu.filter((x) => x.k.startsWith(pf)).sort((x, y) => (x.k === pf ? 0 : 1) - (y.k === pf ? 0 : 1));
+      let pref = mi[1], items = match(pref);
+      // `arr.le` — butun zanjir mos kelmasa, oxirgi `.le` qismi (`.length`)
+      if (!items.length && pref.includes('.')) { pref = pref.slice(pref.lastIndexOf('.')); items = match(pref); }
+      if (!items.length) return setMenu(null);
+      return open({ kind: 'js', src: 'bare', items, idx: 0, from: s - pref.length, ...caretXY() });
+    }
+    if (activeLang !== 'html') return setMenu(null);
     // `from` — ALMASHTIRILADIGAN bo'lakning boshi (teg uchun `<` ning o'zi ham kiradi):
     // tanlanganda uning o'rniga to'liq teg tushadi.
+    // Aynan yozilgan so'z ro'yxatda bo'lsa — birinchi turadi (`he` → head, header; `form` → form)
+    const byPref = (list, key, pref) => list.filter((x) => x[key].startsWith(pref)).sort((x, y) => (x[key] === pref ? 0 : 1) - (y[key] === pref ? 0 : 1));
     const mTag = /<([a-zA-Z][a-zA-Z0-9-]*)?$/.exec(before);
     if (mTag && before[mTag.index + 1] !== '/') {
       const pref = (mTag[1] || '').toLowerCase();
-      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      const items = byPref(tagMenu, 't', pref);
       if (!items.length) return setMenu(null);
-      return open({ kind: 'tag', items, idx: 0, from: mTag.index, ...caretXY() });
+      return open({ kind: 'tag', src: 'lt', items, idx: 0, from: mTag.index, ...caretXY() });
+    }
+    // Atribut QIYMATI: `type="` → xaritadagi qiymatlar (`text`, `email`…)
+    const mVal = /<([a-zA-Z][a-zA-Z0-9-]*)(?:"[^"]*"|'[^']*'|[^<>"'])*\s([a-zA-Z-]+)="([a-zA-Z0-9-]*)$/.exec(before);
+    if (mVal) {
+      const tag = mVal[1].toLowerCase(), attr = mVal[2].toLowerCase(), pref = mVal[3].toLowerCase();
+      const def = [...(attrMenu[tag] || []), ...(attrMenu['*'] || [])].find((x) => x.a === attr);
+      const items = def && def.v ? byPref(def.v.map((v) => ({ a: v, d: '' })), 'a', pref) : [];
+      if (!items.length) return setMenu(null);
+      return open({ kind: 'val', src: 'lt', items, idx: 0, from: s - pref.length, ...caretXY() });
     }
     const mAttr = /<([a-zA-Z][a-zA-Z0-9-]*)((?:"[^"]*"|'[^']*'|[^<>"'])*)\s([a-zA-Z-]*)$/.exec(before);
     if (mAttr) {
       const tag = mAttr[1].toLowerCase(), pref = (mAttr[3] || '').toLowerCase(), had = mAttr[2];
-      const pool = [...(ATTR_MENU[tag] || []), ...ATTR_MENU['*']];
-      const items = pool.filter((x) => x.a.startsWith(pref) && !new RegExp('(^|\\s)' + x.a + '\\s*=').test(had));
+      const pool = [...(attrMenu[tag] || []), ...(attrMenu['*'] || [])];
+      const items = byPref(pool, 'a', pref).filter((x) => !new RegExp('(^|\\s)' + x.a + '\\s*=').test(had));
       if (!items.length) return setMenu(null);
-      return open({ kind: 'attr', items, idx: 0, from: s - pref.length, ...caretXY() });
+      return open({ kind: 'attr', src: 'lt', items, idx: 0, from: s - pref.length, ...caretXY() });
     }
-    // `<` SIZ ham: qatorda YOLG'IZ turgan so'z (`h1`) ro'yxatni ochadi — F-0809-01.
-    // Bola `<` dan boshlashni bilmasa ham teglarni ko'radi. «Yolg'iz» sharti ataylab
-    // qat'iy: `<p>Bugun ol…` kabi MATN yozilayotganda ro'yxat qalqib chiqmaydi.
+    // `<` SIZ ham: qatorda yolg'iz turgan so'z (`h1`) ro'yxatni ochadi — F-0809-01.
+    // F-1001-91: `>` dan keyin ham (`<div>h1|</div>` — avto-yopilgan juft orasida), kursordan keyin
+    // faqat yopuvchi teg qolsa ham. MATN teglari ichida (`<p>Bugun ol…`) hamon jim (F-0809-02).
+    // Bu yo'ldan ochilgan ro'yxatni faqat Tab tanlaydi (Q4): Enter oddiy yangi qator.
     const ls = before.lastIndexOf('\n') + 1;
-    const mBare = /^[ \t]*([a-zA-Z][a-zA-Z0-9-]*)$/.exec(before.slice(ls));
-    if (mBare && !v.slice(s).split('\n')[0].trim() && !inTextTag(before.slice(0, ls))) {
+    // `>` dan keyingi so'z faqat u TEG YOPUVCHISI bo'lsa (`<div>h1`); `ul>li` (Emmet) emas
+    const mBare = /(?:^[ \t]*|<[a-zA-Z][^<>]*>)([a-zA-Z][a-zA-Z0-9-]*)$/.exec(before.slice(ls));
+    const rest = v.slice(s).split('\n')[0];
+    if (mBare && (!rest.trim() || /^\s*<\/[a-zA-Z][a-zA-Z0-9-]*>\s*$/.test(rest)) && !inTextTag(before.slice(0, s - mBare[1].length))) {
       const pref = mBare[1].toLowerCase();
-      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      const items = byPref(tagMenu, 't', pref);
       if (!items.length) return setMenu(null);
-      return open({ kind: 'tag', items, idx: 0, from: s - mBare[1].length, ...caretXY() });
+      return open({ kind: 'tag', src: 'bare', items, idx: 0, from: s - mBare[1].length, ...caretXY() });
     }
     setMenu(null);
   };
@@ -1674,21 +1860,21 @@ function HtmlCompiler({
     const s = el.selectionStart;
     el.setSelectionRange(menu.from, s);
     if (menu.kind === 'attr') { put(el, item.a + '=""', menu.from + item.a.length + 2); setMenu(null); return; }
+    if (menu.kind === 'val' || menu.kind === 'cssval') { put(el, item.a, menu.from + item.a.length); setMenu(null); return; }
+    if (menu.kind === 'cssprop') { put(el, item.p + ': ', menu.from + item.p.length + 2); setMenu(null); return; }
+    if (menu.kind === 'js') {
+      const v0 = el.value, ls0 = v0.lastIndexOf('\n', menu.from - 1) + 1;
+      const ind0 = (/^[ \t]*/.exec(v0.slice(ls0, menu.from)) || [''])[0];
+      const body = item.body.split('\n').join('\n' + ind0);
+      const ci = body.indexOf('()') !== -1 ? body.indexOf('()') + 1 : body.indexOf('\n' + ind0 + '  \n') !== -1 ? body.indexOf('\n' + ind0 + '  \n') + ind0.length + 3 : body.length;
+      put(el, body, menu.from + ci); setMenu(null); return;
+    }
     const name = item.t, v = el.value;
     // Ko'p qatorli tuzilma (ul/ol) qatorning chekinishini saqlab tushadi
     const ls = v.lastIndexOf('\n', menu.from - 1) + 1;
     const ind = (/^[ \t]*/.exec(v.slice(ls, menu.from)) || [''])[0];
-    const sn = SNIPPETS[name];
-    let body, caretOff;
-    if (sn) {
-      body = sn.body.split('\n').join('\n' + ind);
-      caretOff = sn.body.slice(0, sn.caret).split('\n').join('\n' + ind).length;
-    } else if (VOID_TAGS.has(name)) {
-      body = `<${name}>`; caretOff = body.length;           // <br> — juft kerakmas
-    } else {
-      body = `<${name}></${name}>`; caretOff = name.length + 2; // kursor juft orasida
-    }
-    put(el, body, menu.from + caretOff);
+    const { body, caret } = tagBody(name, ind);
+    put(el, body, menu.from + caret);
     setMenu(null);
   };
 
@@ -1742,6 +1928,51 @@ function HtmlCompiler({
     updateCaretUi();
   };
 
+  // Tab (klaviatura ham, sensor paneldagi ⇥ ham — F-1001-91 Q6, bitta yo'l):
+  //   1) HTML: kursor oldidagi so'z xaritadagi teg → `<teg></teg>` (Esc bilan ro'yxat yopilgan bo'lsa ham);
+  //   2) HTML: Emmet (`!`, `ul>li*3`, `div.card`) — VS Code darsidan (BOSQICH.emmet), `!` faqat qatorda yolg'iz;
+  //   3) aks holda 2 bo'sh joy (Shift — olib tashlaydi).
+  const handleTab = (el, shift) => {
+    const v = el.value, s = el.selectionStart, en = el.selectionEnd;
+    const lineStart = v.lastIndexOf('\n', s - 1) + 1;
+    const line = v.slice(lineStart, s);
+    if (s === en && activeLang === 'html' && !shift) {
+      const ind = (/^[ \t]*/.exec(line) || [''])[0];
+      const mWord = /(?:^[ \t]*|<[a-zA-Z][^<>]*>)([a-zA-Z][a-zA-Z0-9-]*)$/.exec(line);
+      const word = mWord ? mWord[1].toLowerCase() : null;
+      let ex = null, from = s;
+      if (word && TAG_MENU_ALL.some((t) => t.t === word) && !inTextTag(v.slice(0, s - word.length))) {
+        ex = tagBody(word, ind); from = s - word.length;
+      } else if (emmetOn) {
+        const mAb = /([!a-zA-Z.#][a-zA-Z0-9.#>*_-]*)$/.exec(line);
+        let abbr = mAb ? mAb[1] : null;
+        // `<p>ul>li` — `<` dan keyingi `p>` teg, Emmet emas: qisqartma birinchi `>` dan keyin boshlanadi
+        if (abbr && line[mAb.index - 1] === '<') { const g = abbr.indexOf('>'); abbr = g === -1 ? null : abbr.slice(g + 1) || null; }
+        if (abbr && (abbr !== '!' || line.trim() === '!') && !inTextTag(v.slice(0, s - abbr.length))) {
+          ex = emmetExpand(abbr, ind, { classOn }); if (ex) from = s - abbr.length;
+        }
+      }
+      if (ex) {
+        el.setSelectionRange(from, s);
+        document.execCommand('insertText', false, ex.body);
+        const caret = from + ex.caret;
+        el.setSelectionRange(caret, caret); caretRef.current = caret;
+        setMenu(null);
+        return;
+      }
+    }
+    if (shift) {
+      const back = /^ {1,2}/.exec(v.slice(lineStart, lineStart + 2));
+      if (!back) return;
+      const caret = Math.max(lineStart, s - back[0].length);
+      el.setSelectionRange(lineStart, lineStart + back[0].length);
+      document.execCommand('delete'); // bekor-qilish tarixini saqlaydi
+      el.setSelectionRange(caret, caret);
+    } else {
+      put(el, '  ', s + 2);
+    }
+  };
+
   const onKeyDown = (e) => {
     const el = e.target;
     const v = el.value, s = el.selectionStart, en = el.selectionEnd;
@@ -1756,9 +1987,12 @@ function HtmlCompiler({
       // Enter ham, Tab ham tanlaydi (F-0809-02): bola sichqoncha bilan bosganda ishlab,
       // Enter bosganda ishlamasligi — eng ko'p adashtiradigan nomuvofiqlik edi.
       // Shift+Enter — chiqish yo'li: ro'yxat ochiq bo'lsa ham oddiy yangi qator.
-      if ((e.key === 'Enter' && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) || e.key === 'Tab') {
+      // F-1001-91 (Q4): `<`siz so'zdan ochilgan ro'yxatni FAQAT Tab tanlaydi — Enter oddiy yangi qator
+      // (matn yozayotganda `U`+Enter `<ul>` tushirmasin — F-0809-02 sinfi). `<` bilan ochilganda ikkovi ham.
+      if (e.key === 'Tab' || (e.key === 'Enter' && menu.src !== 'bare' && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)) {
         e.preventDefault(); acceptMenu(menu.items[menu.idx]); return;
       }
+      if (e.key === 'Enter' && menu.src === 'bare') setMenu(null);   // pastdagi Enter-tarmog'i davom etadi
       if (e.key === 'Escape') { e.preventDefault(); escAtRef.current = { at: s, seq: editSeqRef.current }; setMenu(null); return; }
     }
 
@@ -1794,35 +2028,8 @@ function HtmlCompiler({
       return;
     }
 
-    // Tab — 2 bo'sh joy · Shift+Tab — 2 bo'sh joyni olib tashlaydi
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      // Qisqartma: qatorda yolg'iz `ul`/`ol`/`a`/`img` tursa — to'liq tuzilma ochiladi.
-      // Odatda bu holatda taklif-ro'yxati ochiq bo'ladi va Tab yuqorida ushlanadi;
-      // bu yo'l Esc bilan ro'yxat yopilgan holat uchun qoladi.
-      const sn = oneCaret && activeLang === 'html' ? SNIPPETS[line.trim().toLowerCase()] : null;
-      if (sn && /^[ \t]*[a-z0-9]+$/i.test(line)) {
-        const ind = (/^[ \t]*/.exec(line) || [''])[0];
-        const body = sn.body.split('\n').join('\n' + ind);
-        el.setSelectionRange(lineStart, s);
-        document.execCommand('insertText', false, ind + body);
-        const caret = lineStart + ind.length + sn.caret;
-        el.setSelectionRange(caret, caret);
-        caretRef.current = caret;
-        return;
-      }
-      if (e.shiftKey) {
-        const back = /^ {1,2}/.exec(v.slice(lineStart, lineStart + 2));
-        if (!back) return;
-        const caret = Math.max(lineStart, s - back[0].length);
-        el.setSelectionRange(lineStart, lineStart + back[0].length);
-        document.execCommand('delete'); // bekor-qilish tarixini saqlaydi
-        el.setSelectionRange(caret, caret);
-      } else {
-        put(el, '  ', s + 2);
-      }
-      return;
-    }
+    // Tab — teg/Emmet yoyish yoki 2 bo'sh joy · Shift+Tab — 2 bo'sh joyni olib tashlaydi
+    if (e.key === 'Tab') { e.preventDefault(); handleTab(el, e.shiftKey); return; }
 
     // Enter — yangi qator oldingi qator kabi chekinadi; teg ichida bo'lsa ichkariga suradi
     if (e.key === 'Enter' && oneCaret) {
@@ -2144,17 +2351,19 @@ function HtmlCompiler({
                       qolardi va Enter kutilmagan tegni qo'yardi. */}
                   <div className="hc-menu-list" ref={menuListRef}>
                     {menu.items.map((it, i) => (
-                      <button key={it.t || it.a} role="option" aria-selected={i === menu.idx}
+                      <button key={it.t || it.a || it.p || it.k} role="option" aria-selected={i === menu.idx}
                         className={`hc-menu-row ${i === menu.idx ? 'on' : ''}`}
                         onClick={() => acceptMenu(it)}>
-                        <span className="hc-menu-k">{menu.kind === 'tag' ? `<${it.t}>` : it.a}</span>
+                        <span className="hc-menu-k">{menu.kind === 'tag' ? `<${it.t}>` : menu.kind === 'val' ? `"${it.a}"` : menu.kind === 'cssprop' ? `${it.p}:` : (it.a ?? it.k)}</span>
                         <span className="hc-menu-d">{tr(it.d)}</span>
                       </button>
                     ))}
                   </div>
                   <span className="hc-menu-tip">{touch
                     ? tr({ uz: 'Bosib tanlang', ru: 'Нажмите, чтобы выбрать' })
-                    : tr({ uz: 'Enter — tanlash · Esc — yopish', ru: 'Enter — выбрать · Esc — закрыть' })}</span>
+                    : menu.src === 'bare'
+                      ? tr({ uz: 'Tab — tanlash · Esc — yopish', ru: 'Tab — выбрать · Esc — закрыть' })
+                      : tr({ uz: 'Enter — tanlash · Esc — yopish', ru: 'Enter — выбрать · Esc — закрыть' })}</span>
                 </div>
               )}
             </div>
@@ -2168,8 +2377,8 @@ function HtmlCompiler({
                   onClick={() => { const el = taRef.current; if (el) put(el, ch, el.selectionStart + ch.length); }}>{ch}</button>
               ))}
               <button type="button" className="hc-key wide" onMouseDown={(e) => e.preventDefault()}
-                onClick={() => { const el = taRef.current; if (el) put(el, '  ', el.selectionStart + 2); }}
-                title={tr({ uz: 'Ichkariga surish', ru: 'Отступ' })}>⇥</button>
+                onClick={() => { const el = taRef.current; if (!el) return; if (menu) acceptMenu(menu.items[menu.idx]); else handleTab(el, false); }}
+                title={tr({ uz: 'Tab — tegni yoyish / ichkariga surish', ru: 'Tab — раскрыть тег / отступ' })}>⇥</button>
             </div>
           )}
           {/* F-0813-01: VS Code uslubidagi holat-qatori — fayl · til · shrift · Qator/Ustun */}

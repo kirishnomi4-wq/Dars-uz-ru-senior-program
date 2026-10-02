@@ -1,0 +1,407 @@
+{
+ "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+ "lessonId": "nest-arch-practice-4a-03-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "UCH DARS — BITTA ZANJIR (HAR BIRINI BOSIB KO'RING)",
+     "box": "mentor fade-up  ",
+     "gap": 24
+    },
+    {
+     "pos": "tepada",
+     "t": "BUNDAY BACKENDNI QANDAY QURAMIZ?",
+     "box": "s0-opts fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 156,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "📦 Book ✓ title · author · price · is_featured",
+     "b": "title · author · price · is_featured ← ustunlar",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "↑ → Category (@ManyToOne)",
+     "box": "vcard ",
+     "gap": 3
+    },
+    {
+     "pos": "tagida",
+     "t": "↑ → Category (@ManyToOne)",
+     "box": "vcard ",
+     "gap": 4
+    },
+    {
+     "pos": "tagida",
+     "t": "↑ → Book (@ManyToOne)",
+     "box": "vcard ",
+     "gap": 5
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🍽️ RESTORAN KIRISH TAXTASI — APPMODULE.IMPORTS",
+     "box": "frame",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 38,
+     "left": "vcard tap-hint",
+     "right": "agent-card",
+     "hs": [
+      40,
+      78
+     ]
+    },
+    {
+     "diff": 22,
+     "left": "vcard ",
+     "right": "agent-card",
+     "hs": [
+      56,
+      78
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "3 RASTA — UCH XIL YORLIQ",
+     "box": "sh    ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SRC/CORE/ENTITY/BOOK.ENTITY.TS",
+     "box": "editor",
+     "gap": 16
+    }
+   ],
+   "scroll": 13,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "GET /BOOK/FEATURED",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "\"Order resursini qo'sh: Entity (customer_name, quantity + @ManyToOne Book) → DTO (bookId, quantity) → BaseServ",
+     "b": "✓ order.entity.ts customer_name, quantity + @ManyToOne Book",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Order resursini qo'sh: Entity (customer_name, quantity + @ManyToOne Book) → DTO (bookId, quantity) → BaseServ",
+     "b": "customer_name, quantity + @ManyToOne Book",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ESHIK SINOVI — IKKI ROLDA TAQILLATIB KO'RING",
+     "box": "dr-tbl fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ESHIK 🧍 MIJOZ 🔑 ADMIN",
+     "box": "dr-row",
+     "gap": 6
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 17,
+   "id": "s17",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s19",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "2 POST /book — faqat admin",
+     "b": "4 DELETE /book — faqat admin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "2 POST /book — faqat admin ✓",
+     "b": "4 DELETE /book — faqat admin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "2 POST /book — faqat admin ✓",
+     "b": "4 DELETE /book — faqat admin ❗",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "5 DA'VO — QAYSI BIRI RO'YXATGA MOS EMAS?",
+     "box": "cl-row checked   ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "cl-row    tap-hint",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "DALIL — ESHIKLAR RO'YXATI",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "cl-row    ",
+     "gap": 16
+    }
+   ],
+   "scroll": 32,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  }
+ ]
+}

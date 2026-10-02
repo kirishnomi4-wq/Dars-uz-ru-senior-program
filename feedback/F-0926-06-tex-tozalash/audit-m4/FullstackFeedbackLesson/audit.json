@@ -1,0 +1,436 @@
+{
+ "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+ "lessonId": "fullstack-feedback-p4-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AZIZ PANELNI SINAYAPTI",
+     "box": "fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PANEL TAYYOR EDI — ENDI NIMA QILAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — YANGILANGAN PANEL",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ tasdiq · dashboard · sozlamalar (narx, joylar soni)",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YAXSHILASH SIKLI",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 4,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "A Aziz \"Band joyni bosgan zahoti chiqib ketdi — 'rostdanmi?' deb so'ramadi\"",
+     "b": "\"Band joyni bosgan zahoti chiqib ketdi — 'rostdanmi?' deb so'ramadi\"",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "L Laylo \"Nechta joy bo'sh, nechtasi band — darrov ko'rinmadi\"",
+     "b": "\"Nechta joy bo'sh, nechtasi band — darrov ko'rinmadi\"",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "B Bek \"Narx 10 000 da qotib qolgan — o'zgartirib bo'lmaydi\"",
+     "b": "\"Narx 10 000 da qotib qolgan — o'zgartirib bo'lmaydi\"",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "D Diana \"Stoyanka kattalashdi — 8 joy yetmaydi\"",
+     "b": "\"Stoyanka kattalashdi — 8 joy yetmaydi\"",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "TANLANGAN FIKR",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "FIKR-KARTALAR",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "FIKR-KARTALAR — ENDI KATAKNI BOSING",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA PROMPT",
+     "box": "prompt-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YANGILANGAN PANEL",
+     "box": "guard",
+     "gap": 16
+    }
+   ],
+   "scroll": 28,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Laylo: \"nechta bo'sh, nechta band — darrov ko'rinmadi\". Yechim — dashboard (holat paneli): yuqorida yirik raqa",
+     "b": "💰 kunlik tushum ham darrov ko'rinadi.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ESKI — KICHIK SANAGICH",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YANGI — DASHBOARD BILAN",
+     "box": "guard",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [
+    {
+     "label": "Soatlik narx (so'm)",
+     "ph": "",
+     "gap": 9
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI'GA PROMPT",
+     "box": "prompt-box fade-up delay-1",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Prompt yuborilgach, panelda ⚙ paydo bo'ladi.",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — ⚙ NI BOSIB KO'RING",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "case",
+   "inp": [
+    {
+     "label": "Soatlik narx (so'm)",
+     "ph": "",
+     "gap": 9
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "JORIY SOZLAMALAR",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "○ Narx o'zgardi ○ Joylar ko'paydi",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "PANEL — 8 JOY · 10 000 SO'M",
+     "box": "DIV",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Hamma upgrade bir joyda: dashboard, 12 joy, narx 15 000, va tasdiq. Band joylarni chiqarib ko'ring — endi avva",
+     "b": "✓ Tasdiq ✓ Dashboard ✓ Narx 15 000 ✓ 12 joy",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "YANGILANGAN QOROVUL PANELI",
+     "box": "guard",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "✓ Tasdiq ✓ Dashboard ✓ Narx 15 000 ✓ 12 joy",
+     "box": "frame fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 26,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 40,
+     "left": "step-card",
+     "right": "frame-success",
+     "hs": [
+      48,
+      88
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "YAXSHILASH SIKLI",
+     "box": "roadmap",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "YODDA TUTING",
+     "box": "frame-success",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "test",
+   "inp": [
+    {
+     "label": "1 function chiqar(id) {",
+     "ph": "…",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 confirm(...)",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

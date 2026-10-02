@@ -1,0 +1,479 @@
+{
+ "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+ "lessonId": "react-project-day-p3-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SHULARNI BIRLASHTIRIB, TO'LIQ SAYT CHIQADIMI?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING TO'LIQ ILOVANGIZ",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ katalog · ijara · jami narx — bitta ilovada",
+     "box": "bp-window",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "VAZIFANI TANLANG",
+     "box": "sk-info",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TAYYOR CHIZMA",
+     "box": "code-box fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "YAXSHI PROMPTNING 3 QISMI",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "🎯 Nima qanday funksiya kerak ⚙️ Qanday qanday ishlasin / ko'rinsin 📍 Qayerda qaysi sahif",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "har birini kartochka qilib (map)",
+     "b": "+ har birini kartochka qilib (map)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "har birini kartochka qilib (map),",
+     "b": "+ har birini kartochka qilib (map)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifada mashinalar katalogini ko'rsat — serverdan yuklab (GET), har birini kartochka qilib (map)\"",
+     "b": "+ har birini kartochka qilib (map)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifada mashinalar katalogini ko'rsat — serverdan yuklab (GET), har birini kartochka qilib (map), nom v",
+     "b": "+ har birini kartochka qilib (map)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.77,
+     "a": "Birinchi sahifa — Bosh: mashinalar katalogi. Promptga aniqlik qo'shing (qaysi ma'lumot, qayerdan), so'ng agent",
+     "b": "\"Bosh sahifada mashinalar katalogini ko'rsat …aniqlik qo'shing\"",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 98,
+     "left": "ai-card",
+     "right": "bp-window",
+     "hs": [
+      258,
+      160
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. PROMPTNI YIG'ING — ANIQLIK QO'SHING",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — AVTOIJARA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Endi kartochka bosilganda mashina sahifasi (/car/:id) ochilsin — qayta yuklanmay. Promptga aniqlik qo'shing, a",
+     "b": "\"Kartochka bosilganda mashina sahifasi ochilsin …aniqlik qo'shing\"",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.77,
+     "a": "Endi kartochka bosilganda mashina sahifasi (/car/:id) ochilsin — qayta yuklanmay. Promptga aniqlik qo'shing, a",
+     "b": "\"Kartochka bosilganda mashina sahifasi ochilsin — har mashinaga /car/:id manzili\"",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Endi kartochka bosilganda mashina sahifasi (/car/:id) ochilsin — qayta yuklanmay. Promptga aniqlik qo'shing, a",
+     "b": "\"Kartochka bosilganda mashina sahifasi ochilsin — har mashinaga /car/:id manzili, <Link> bilan (qayta yuklanma",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 118,
+     "left": "ai-card",
+     "right": "bp-window",
+     "hs": [
+      278,
+      160
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. PROMPTNI YIG'ING — ANIQLIK QO'SHING",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "\"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "b": "+ \"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "\"Mening ijaralarim\" ro'yxatiga qo'shsin,",
+     "b": "+ \"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "jami = kun × kunlik narx",
+     "b": "+ jami = kun × kunlik narx",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Mashinani ijaraga olish funksiyasini qo'sh — \"Mening ijaralarim\" ro'yxatiga qo'shsin\"",
+     "b": "+ \"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Mashinani ijaraga olish funksiyasini qo'sh — \"Mening ijaralarim\" ro'yxatiga qo'shsin, necha kun tanlansin\"",
+     "b": "+ \"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Mashinani ijaraga olish funksiyasini qo'sh — \"Mening ijaralarim\" ro'yxatiga qo'shsin, necha kun tanlansin, ja",
+     "b": "+ \"Mening ijaralarim\" ro'yxatiga qo'shsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Mashinani ijaraga olish funksiyasini qo'sh — \"Mening ijaralarim\" ro'yxatiga qo'shsin, necha kun tanlansin, ja",
+     "b": "+ jami = kun × kunlik narx",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 78,
+     "left": "ai-card",
+     "right": "bp-window",
+     "hs": [
+      258,
+      180
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. PROMPTNI YIG'ING — ANIQLIK QO'SHING",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s9",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 34,
+     "left": "ai-card",
+     "right": "bp-window",
+     "hs": [
+      204,
+      170
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. PROMPTNI YIG'ING — ANIQLIK QO'SHING",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s10",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s11",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "🔑 MENING IJARALARIM",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 18,
+   "id": "s13",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [
+    {
+     "cls": "chip chip-on",
+     "bg": "rgb(255, 79, 40)",
+     "area": "15k",
+     "txt": "⚽ Sport jadvali o'yinlar · natija · sevimli"
+    }
+   ],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 Rejalashtiring — sahifalar va ma'lumot 2 Aniq prompt yozing (Nima + Qanday + Qayerda) 3 ",
+     "box": "frame-success fade-step",
+     "gap": 0
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 1,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 19,
+   "id": "s14",
+   "type": "test",
+   "inp": [
+    {
+     "label": "2 (s, b) => s +",
+     "ph": "b.price * b.days",
+     "gap": 0
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 b.price 2 * (ko'paytirish) 3 b.days",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — MENING IJARALARIM",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

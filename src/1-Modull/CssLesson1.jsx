@@ -317,21 +317,21 @@ const RECAPS = {
     title: { uz: 'CSS qoidasining 3 qismi', ru: 'Три части правила CSS' }, cards: [
       { ic: '🎯', h: { uz: 'Selektor — kimni bezaymiz', ru: 'Селектор — кого украшаем' },
         body: {
-          uz: <>CSS qoidasi <b>selektor</b> bilan boshlanadi — qaysi elementni bezashni aytadi: <b className="mono">h1</b>, <b className="mono">p</b>. Undan keyin <b className="mono">{'{ }'}</b> qavs ichida bezaklar yoziladi.</>,
-          ru: <>Правило CSS начинается с <b>селектора</b> — он говорит, какой элемент украшаем: <b className="mono">h1</b>, <b className="mono">p</b>. Дальше в скобках <b className="mono">{'{ }'}</b> пишутся украшения.</>,
+          uz: <>CSS qoidasi <b>selektor</b> bilan boshlanadi — u qaysi elementni bezashni aytadi.</>,
+          ru: <>Правило CSS начинается с <b>селектора</b> — он говорит, какой элемент украшаем.</>,
         },
         vis: <RcFlow items={[{ uz: 'h1 — selektor', ru: 'h1 — селектор' }, '{ ... }', { uz: 'bezaklar', ru: 'украшения' }]} /> },
       { ic: '🔧', h: { uz: "Xususiyat — nimani o'zgartiramiz", ru: 'Свойство — что меняем' },
         body: {
-          uz: <>Qavs ichida <b>xususiyat</b> (property) — nimani o'zgartirishni aytadi: <b className="mono">color</b> (rang), <b className="mono">font-size</b> (o'lcham). Undan keyin ikki nuqta <b className="mono">:</b> qo'yiladi.</>,
-          ru: <>Внутри скобок — <b>свойство</b> (property): оно говорит, что меняем: <b className="mono">color</b> (цвет), <b className="mono">font-size</b> (размер). После него ставится двоеточие <b className="mono">:</b>.</>,
+          uz: <><b>Xususiyat</b> (property) nimani o'zgartirishni aytadi: <b className="mono">color</b>, <b className="mono">font-size</b>.</>,
+          ru: <><b>Свойство</b> (property) говорит, что меняем: <b className="mono">color</b>, <b className="mono">font-size</b>.</>,
         },
         vis: <RcFlow items={['color', ':', { uz: 'qiymat', ru: 'значение' }]} sep="" />,
         ask: { uz: "`color` xususiyati nimani o'zgartiradi?", ru: 'Что меняет свойство `color`?' } },
       { ic: '💡', h: { uz: "Qiymat — qanday qilib", ru: 'Значение — как именно' },
         body: {
-          uz: <>Ikki nuqtadan keyin <b>qiymat</b> — qanday bo'lishini aytadi: <b className="mono">red</b>, <b className="mono">24px</b>. Har satr oxiriga nuqta-vergul <b className="mono">;</b> qo'yiladi.</>,
-          ru: <>После двоеточия идёт <b>значение</b> — каким именно будет элемент: <b className="mono">red</b>, <b className="mono">24px</b>. В конце каждой строки ставится точка с запятой <b className="mono">;</b>.</>,
+          uz: <>Ikki nuqtadan keyin <b>qiymat</b> keladi — <b className="mono">red</b>, <b className="mono">24px</b> — va oxirida <b className="mono">;</b> turadi.</>,
+          ru: <>После двоеточия идёт <b>значение</b> — <b className="mono">red</b>, <b className="mono">24px</b> — а в конце стоит <b className="mono">;</b>.</>,
         },
         vis: <RcFlow items={['color', 'red', ';']} sep="" />,
         ask: { uz: "`color: red;` da qaysi qism qiymat?", ru: 'Какая часть в `color: red;` — значение?' } },
@@ -342,21 +342,21 @@ const RECAPS = {
     title: { uz: 'Ranglar: color va background', ru: 'Цвета: color и background' }, cards: [
       { ic: '🖋️', h: { uz: 'color — matn (harflar) rangi', ru: 'color — цвет текста (букв)' },
         body: {
-          uz: <><b className="mono">color</b> — matnning, ya'ni harflarning rangini o'zgartiradi. Masalan <b className="mono">color: red</b> — harflar qizil bo'ladi.</>,
-          ru: <><b className="mono">color</b> меняет цвет текста, то есть букв. Например, <b className="mono">color: red</b> — буквы станут красными.</>,
+          uz: <><b className="mono">color</b> harflarning rangini o'zgartiradi: <b className="mono">color: red</b> — harflar qizil.</>,
+          ru: <><b className="mono">color</b> меняет цвет букв: <b className="mono">color: red</b> — буквы красные.</>,
         },
         vis: <RcFlow items={['color: red', '→', { uz: 'qizil matn', ru: 'красный текст' }]} />,
         ask: { uz: "Matnni ko'k qilish uchun nima yozasiz?", ru: 'Что вы напишете, чтобы сделать текст синим?' } },
       { ic: '🎨', h: { uz: 'background-color — fon rangi', ru: 'background-color — цвет фона' },
         body: {
-          uz: <>Element ORTIDAGI fon rangi esa <b className="mono">background-color</b> bilan beriladi. Ikkisini adashtirmang: <b>color</b> — harflar, <b>background-color</b> — orqa fon.</>,
-          ru: <>Цвет фона ПОЗАДИ элемента задаётся через <b className="mono">background-color</b>. Не путайте: <b>color</b> — буквы, <b>background-color</b> — задний фон.</>,
+          uz: <>Element ortidagi fon rangi <b className="mono">background-color</b> bilan beriladi.</>,
+          ru: <>Цвет фона позади элемента задаётся через <b className="mono">background-color</b>.</>,
         },
         vis: <RcFlow items={[{ uz: 'color — harflar', ru: 'color — буквы' }, { uz: 'background-color — fon', ru: 'background-color — фон' }]} sep="·" /> },
       { ic: '📇', h: { uz: 'Rangni qanday yozamiz', ru: 'Как записать цвет' },
         body: {
-          uz: <>Rangni nomi bilan (<b className="mono">red</b>, <b className="mono">blue</b>) yoki HEX kod bilan (<b className="mono">#FF4D26</b>) yozish mumkin. HEX — aniqroq, millionlab tus.</>,
-          ru: <>Цвет можно записать именем (<b className="mono">red</b>, <b className="mono">blue</b>) или HEX-кодом (<b className="mono">#FF4D26</b>). HEX точнее — миллионы оттенков.</>,
+          uz: <>Rangni nomi (<b className="mono">red</b>) yoki <b>HEX kod</b> (<b className="mono">#FF4D26</b>) bilan yozish mumkin.</>,
+          ru: <>Цвет можно записать именем (<b className="mono">red</b>) или <b>HEX-кодом</b> (<b className="mono">#FF4D26</b>).</>,
         },
         vis: <RcFlow items={['red', '#FF4D26', 'rgb(...)']} sep="·" /> },
     ]
@@ -366,21 +366,21 @@ const RECAPS = {
     title: { uz: 'Shrift xususiyatlari', ru: 'Свойства шрифта' }, cards: [
       { ic: '📏', h: { uz: "font-size — o'lcham", ru: 'font-size — размер' },
         body: {
-          uz: <><b className="mono">font-size</b> — harflarning <b>kattaligini</b> belgilaydi, masalan <b className="mono">font-size: 24px</b>. Raqam qancha katta — harf shuncha yirik.</>,
-          ru: <><b className="mono">font-size</b> задаёт <b>размер</b> букв, например <b className="mono">font-size: 24px</b>. Чем больше число — тем крупнее буквы.</>,
+          uz: <><b className="mono">font-size</b> harflar kattaligini beradi: raqam qancha katta, harf shuncha yirik.</>,
+          ru: <><b className="mono">font-size</b> задаёт размер букв: чем больше число, тем крупнее буквы.</>,
         },
         vis: <RcFlow items={['16px', '24px', '40px']} sep="·" />,
         ask: { uz: "Sarlavhani kattaroq qilish uchun qaysi xususiyat?", ru: 'Какое свойство сделает заголовок крупнее?' } },
       { ic: '🔤', h: { uz: 'font-family — shrift turi', ru: 'font-family — вид шрифта' },
         body: {
-          uz: <><b className="mono">font-family</b> — harflarning <b>ko'rinishini</b> (turini) tanlaydi: Arial, Georgia, Times. Bu o'lcham emas — shakl.</>,
-          ru: <><b className="mono">font-family</b> выбирает <b>вид</b> (тип) букв: Arial, Georgia, Times. Это не размер — это форма.</>,
+          uz: <><b className="mono">font-family</b> harflarning turini tanlaydi: Arial, Georgia, Times.</>,
+          ru: <><b className="mono">font-family</b> выбирает вид букв: Arial, Georgia, Times.</>,
         },
         vis: <RcFlow items={['Arial', 'Georgia', 'Times']} sep="·" /> },
       { ic: '💪', h: { uz: 'font-weight — qalinlik', ru: 'font-weight — жирность' },
         body: {
-          uz: <>Matnni <b>qalin</b> qilish uchun <b className="mono">font-weight: bold</b>. Adashtirmang: <b>size</b> — kattalik, <b>family</b> — tur, <b>weight</b> — qalinlik.</>,
-          ru: <>Чтобы сделать текст <b>жирным</b> — <b className="mono">font-weight: bold</b>. Не путайте: <b>size</b> — размер, <b>family</b> — вид, <b>weight</b> — жирность.</>,
+          uz: <>Matnni qalin qilish uchun <b className="mono">font-weight: bold</b> yoziladi.</>,
+          ru: <>Чтобы сделать текст жирным, пишут <b className="mono">font-weight: bold</b>.</>,
         },
         vis: <RcFlow items={[{ uz: 'size — kattalik', ru: 'size — размер' }, { uz: 'family — tur', ru: 'family — вид' }, { uz: 'weight — qalinlik', ru: 'weight — жирность' }]} sep="·" /> },
     ]
@@ -390,21 +390,21 @@ const RECAPS = {
     title: { uz: "Bo'shliqlar: padding va margin", ru: 'Отступы: padding и margin' }, cards: [
       { ic: '📦', h: { uz: "padding — ICHKI bo'shliq", ru: 'padding — ВНУТРЕННИЙ отступ' },
         body: {
-          uz: <><b className="mono">padding</b> — kontent bilan elementning cheti orasidagi <b>ichki</b> bo'shliq. Quti ICHIDAGI havo — matn devorga yopishmaydi.</>,
-          ru: <><b className="mono">padding</b> — <b>внутренний</b> отступ между контентом и краем элемента. Воздух ВНУТРИ коробки — текст не прилипает к стенкам.</>,
+          uz: <><b className="mono">padding</b> — quti ichidagi havo, matn devorga yopishmaydi.</>,
+          ru: <><b className="mono">padding</b> — воздух внутри коробки, текст не прилипает к стенкам.</>,
         },
         vis: <RcFlow items={[{ uz: 'quti cheti', ru: 'край коробки' }, '← padding →', { uz: 'kontent', ru: 'контент' }]} />,
         ask: { uz: "Tugma ichidagi matnga havo berish uchun qaysi xususiyat?", ru: 'Какое свойство даст воздух тексту внутри кнопки?' } },
       { ic: '↔️', h: { uz: "margin — TASHQI bo'shliq", ru: 'margin — ВНЕШНИЙ отступ' },
         body: {
-          uz: <><b className="mono">margin</b> — element bilan BOSHQA elementlar orasidagi <b>tashqi</b> bo'shliq. Qutilar bir-biriga yopishmasligi uchun.</>,
-          ru: <><b className="mono">margin</b> — <b>внешний</b> отступ между элементом и ДРУГИМИ элементами. Чтобы коробки не слипались друг с другом.</>,
+          uz: <><b className="mono">margin</b> — elementlar orasidagi tashqi bo'shliq, qutilar yopishmaydi.</>,
+          ru: <><b className="mono">margin</b> — внешний отступ между элементами, коробки не слипаются.</>,
         },
         vis: <RcFlow items={[{ uz: 'quti A', ru: 'коробка А' }, '← margin →', { uz: 'quti B', ru: 'коробка Б' }]} /> },
       { ic: '🎁', h: { uz: "Eslab qolish yo'li", ru: 'Как запомнить' },
         body: {
-          uz: <>Sovg'a qutisini tasavvur qiling: <b>padding</b> — quti ICHIDAGI to'ldirgich (sovg'a atrofida), <b>margin</b> — qutilar ORASIDAGI masofa.</>,
-          ru: <>Представьте коробку с подарком: <b>padding</b> — наполнитель ВНУТРИ коробки (вокруг подарка), <b>margin</b> — расстояние МЕЖДУ коробками.</>,
+          uz: <>Sovg'a qutisi: <b>padding</b> — ichidagi to'ldirgich, <b>margin</b> — qutilar orasidagi masofa.</>,
+          ru: <>Коробка с подарком: <b>padding</b> — наполнитель внутри, <b>margin</b> — расстояние между коробками.</>,
         },
         vis: <RcFlow items={[{ uz: 'padding — ichkarida', ru: 'padding — внутри' }, { uz: 'margin — tashqarida', ru: 'margin — снаружи' }]} sep="·" /> },
     ]
@@ -413,7 +413,7 @@ const RECAPS = {
 
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -431,7 +431,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-tag">📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -440,13 +440,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← {tr({ uz: 'Oldingi', ru: 'Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi', ru: 'Дальше' })} →</button>}
       </div>
     </div>
@@ -529,7 +529,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -538,7 +538,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -671,7 +671,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
@@ -679,8 +679,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
@@ -692,11 +693,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: 'Eslatma', ru: 'Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -1117,8 +1118,8 @@ const Screen4 = (props) => (
     questionText="h1 { color: red; } — bu yerda 'color' nima deb ataladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono">h1 {'{'} color: red; {'}'}</span> — bu yerda <span className="italic" style={{ color: T.accent }}>color</span> nima deb ataladi?</>, ru: <><span className="mono">h1 {'{'} color: red; {'}'}</span> — как здесь называется <span className="italic" style={{ color: T.accent }}>color</span>?</> })}</h2></>}
     options={[{ uz: 'Selektor', ru: 'Селектор' }, { uz: 'Qiymat', ru: 'Значение' }, { uz: 'Teg', ru: 'Тег' }, { uz: 'Xususiyat (property)', ru: 'Свойство (property)' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `color` — bu xususiyat (property): nimani o'zgartirishni aytadi. Bu yerda — matn rangini.", ru: 'Верно! `color` — это свойство (property): оно говорит, что меняем. Здесь — цвет текста.' }}
-    explainWrong={{ 0: { uz: 'Selektor — bu h1 (qaysi element). `color` esa xususiyat.', ru: 'Селектор — это h1 (какой элемент). А `color` — свойство.' }, 1: { uz: 'Qiymat — bu red (qanday). `color` esa xususiyat.', ru: 'Значение — это red (как). А `color` — свойство.' }, 2: { uz: "Teg — bu HTML tushunchasi. CSS'da `color` — xususiyat.", ru: 'Тег — понятие из HTML. В CSS `color` — свойство.' }, default: { uz: '`color` — bu xususiyat (property).', ru: '`color` — это свойство (property).' } }} />
+    explainCorrect={{ uz: "`color` nimani o'zgartirishni aytadi — bu yerda matn rangini.", ru: '`color` говорит, что меняем, — здесь цвет текста.' }}
+    explainWrong={{ 0: { uz: 'Selektor — bu `h1`, u qaysi elementni bezashni aytadi.', ru: 'Селектор — это `h1`, он говорит, какой элемент украшаем.' }, 1: { uz: 'Qiymat — bu `red`, u qanday bo\'lishini aytadi.', ru: 'Значение — это `red`, оно говорит, каким будет элемент.' }, 2: { uz: "Teg — HTML'dagi tushuncha, CSS qoidasining qismi emas.", ru: 'Тег — понятие из HTML, а не часть правила CSS.' }, default: { uz: 'CSS qoidasining 3 qismini eslang: kimni, nimani, qanday.', ru: 'Вспомните 3 части правила CSS: кого, что, как.' } }} />
 );
 
 // ===== SCREEN 5 — RANGLAR =====
@@ -1161,8 +1162,8 @@ const Screen5b = (props) => (
     questionText="Matnning rangini qaysi xususiyat o'zgartiradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Matnning</span> rangini qaysi xususiyat o'zgartiradi?</>, ru: <>Какое свойство меняет цвет <span className="italic" style={{ color: T.accent }}>текста</span>?</> })}</h2></>}
     options={['`background-color`', '`color`', '`font-size`', '`margin`']} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! `color` — matnning (harflarning) rangini o'zgartiradi.", ru: 'Верно! `color` меняет цвет текста (букв).' }}
-    explainWrong={{ 0: { uz: '`background-color` — bu fon rangi, matn emas. Matn uchun — `color`.', ru: '`background-color` — цвет фона, а не текста. Для текста — `color`.' }, 2: { uz: "`font-size` — shrift o'lchami. Rang uchun — `color`.", ru: '`font-size` — размер шрифта. Для цвета — `color`.' }, 3: { uz: "`margin` — tashqi bo'shliq. Rang uchun — `color`.", ru: '`margin` — внешний отступ. Для цвета — `color`.' }, default: { uz: 'Matn rangi — `color` xususiyati.', ru: 'Цвет текста — свойство `color`.' } }} />
+    explainCorrect={{ uz: "`color` harflarning rangini o'zgartiradi.", ru: '`color` меняет цвет букв.' }}
+    explainWrong={{ 0: { uz: '`background-color` fonni bo\'yaydi, harflarni emas.', ru: '`background-color` красит фон, а не буквы.' }, 2: { uz: "`font-size` — shrift o'lchami, rang emas.", ru: '`font-size` — размер шрифта, а не цвет.' }, 3: { uz: "`margin` — tashqi bo'shliq, rang emas.", ru: '`margin` — внешний отступ, а не цвет.' }, default: { uz: 'Fon emas, harflarning rangi kerakligini eslang.', ru: 'Помните: нужен цвет букв, а не фона.' } }} />
 );
 // ===== SCREEN 6 — RANG FORMATLARI (nom / hex) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1322,8 +1323,8 @@ const Screen9 = (props) => (
     questionText="Shriftning o'lchamini (kattaligini) qaysi xususiyat belgilaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shriftning <span className="italic" style={{ color: T.accent }}>o'lchamini</span> qaysi xususiyat belgilaydi?</>, ru: <>Какое свойство задаёт <span className="italic" style={{ color: T.accent }}>размер</span> шрифта?</> })}</h2></>}
     options={['`color`', '`font-family`', '`font-size`', '`padding`']} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! `font-size` — shriftning o'lchamini (masalan 24px) belgilaydi.", ru: 'Верно! `font-size` задаёт размер шрифта (например 24px).' }}
-    explainWrong={{ 0: { uz: "`color` — matn rangi, o'lcham emas. O'lcham — `font-size`.", ru: '`color` — цвет текста, а не размер. Размер — `font-size`.' }, 1: { uz: "`font-family` — shrift turi (Sans, Serif). O'lcham — `font-size`.", ru: '`font-family` — вид шрифта (Sans, Serif). Размер — `font-size`.' }, 3: { uz: "`padding` — ichki bo'shliq. Shrift o'lchami — `font-size`.", ru: '`padding` — внутренний отступ. Размер шрифта — `font-size`.' }, default: { uz: "Shrift o'lchami — `font-size` xususiyati.", ru: 'Размер шрифта — свойство `font-size`.' } }} />
+    explainCorrect={{ uz: "`font-size` harflar kattaligini belgilaydi, masalan 24px.", ru: '`font-size` задаёт размер букв, например 24px.' }}
+    explainWrong={{ 0: { uz: "`color` — matn rangi, o'lcham emas.", ru: '`color` — цвет текста, а не размер.' }, 1: { uz: "`font-family` — shrift turi (Sans, Serif), o'lcham emas.", ru: '`font-family` — вид шрифта (Sans, Serif), а не размер.' }, 3: { uz: "`padding` — ichki bo'shliq, shriftga tegmaydi.", ru: '`padding` — внутренний отступ, шрифт он не меняет.' }, default: { uz: "Shrift xususiyatlaridan kattalikni beradiganini eslang.", ru: 'Вспомните, какое из свойств шрифта задаёт величину.' } }} />
 );
 
 // ===== SCREEN 10 — PADDING (ichki bo'shliq) =====
@@ -1405,8 +1406,8 @@ const Screen12 = (props) => (
     questionText="Kontent bilan elementning cheti orasidagi ichki bo'shliq qaysi xususiyat?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Kontent bilan elementning cheti orasidagi <span className="italic" style={{ color: T.accent }}>ichki</span> bo'shliq qaysi xususiyat?</>, ru: <>Какое свойство — <span className="italic" style={{ color: T.accent }}>внутренний</span> отступ между контентом и краем элемента?</> })}</h2></>}
     options={['`margin`', '`color`', '`font-size`', '`padding`']} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! `padding` — ichki bo'shliq (kontent bilan chet orasida).", ru: 'Верно! `padding` — внутренний отступ (между контентом и краем).' }}
-    explainWrong={{ 0: { uz: "`margin` — tashqi bo'shliq (elementlar orasida). Ichki — `padding`.", ru: '`margin` — внешний отступ (между элементами). Внутренний — `padding`.' }, 1: { uz: "`color` — matn rangi, bo'shliq emas.", ru: '`color` — цвет текста, а не отступ.' }, 2: { uz: "`font-size` — shrift o'lchami. Ichki bo'shliq — `padding`.", ru: '`font-size` — размер шрифта. Внутренний отступ — `padding`.' }, default: { uz: "Ichki bo'shliq — `padding`.", ru: 'Внутренний отступ — `padding`.' } }} />
+    explainCorrect={{ uz: "`padding` — kontent bilan chet orasidagi ichki bo'shliq.", ru: '`padding` — внутренний отступ между контентом и краем.' }}
+    explainWrong={{ 0: { uz: "`margin` — tashqi bo'shliq, u elementlar orasida bo'ladi.", ru: '`margin` — внешний отступ, он между элементами.' }, 1: { uz: "`color` — matn rangi, bo'shliq emas.", ru: '`color` — цвет текста, а не отступ.' }, 2: { uz: "`font-size` — shrift o'lchami, bo'shliq emas.", ru: '`font-size` — размер шрифта, а не отступ.' }, default: { uz: "Sovg'a qutisini eslang: to'ldirgich quti ichida bo'ladi.", ru: 'Вспомните коробку с подарком: наполнитель — внутри коробки.' } }} />
 );
 
 // ===== SCREEN 13 — BUILDER (kartani bezat) =====
@@ -2466,7 +2467,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler stage="m1-06" lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -3759,7 +3760,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
       {/* Lokal praktika overlay (LMS compilatorining o'rnini bosadi). Production'da onPractice berilsa ochilmaydi. */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
+          <HtmlCompiler stage="m1-06" lang={__lang} task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
         </div>
       )}
       {/* Jonli darsda mentor praktika paneli — o'quvchilar yozadi, keyin mentor doskada ko'rsatadi */}

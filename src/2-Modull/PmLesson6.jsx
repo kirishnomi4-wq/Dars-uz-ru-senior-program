@@ -270,14 +270,14 @@ const RECAPS = {
     cards: [
       { ic: "🧑‍🍳",
         h: { uz: "Tinglovchining boshida rasm hosil bo'lmaydi", ru: 'В голове слушателя не появляется картинка' },
-        body: { uz: <>«Ma'lumotlar bazasi» — <b>faqat shu ishni qiladigan odamlar biladigan so'z</b>. Do'kon egasi uni eshitadi, lekin ko'z oldida hech qanday rasm paydo bo'lmaydi. Shuning uchun u gapni tashlab yuboradi.</>, ru: <>«База данных» — <b>слово, которое знают только те, кто этим занимается</b>. Хозяин магазина его слышит, но перед глазами не возникает никакой картинки. Поэтому он пропускает фразу мимо ушей.</> },
+        body: { uz: <>Kasbiy so'zni eshitganda do'kon egasining <b>ko'z oldida rasm</b> paydo bo'lmaydi.</>, ru: <>Услышав профессиональное слово, хозяин магазина не видит <b>картинки перед глазами</b>.</> },
         vis: { uz: <RcFlow items={["Notanish so'z", "Rasm yo'q", "Gap tashlab yuborildi"]} />, ru: <RcFlow items={['Незнакомое слово', 'Картинки нет', 'Фразу пропустили']} /> } },
       { ic: "📏",
         h: { uz: 'Muammo uzunlikda emas', ru: 'Дело не в длине' },
-        body: { uz: <>«Peshtaxta» so'zi ham uzun, lekin tushunarli. Demak masala <b>uzunlikda emas</b>, balki so'zning tinglovchiga tanish yoki notanishligida.</>, ru: <>Слово «прилавок» тоже длинное, но понятное. Значит, дело <b>не в длине</b>, а в том, знакомо слушателю слово или нет.</> } },
+        body: { uz: <>«Peshtaxta» ham uzun, lekin tushunarli — masala so'zning <b>tanishligida</b>.</>, ru: <>«Прилавок» тоже длинное, но понятное — дело в том, <b>знакомо</b> ли слово.</> } },
       { ic: "🔁",
         h: { uz: 'Tashlamaysiz — almashtirasiz', ru: 'Не выбрасываете — заменяете' },
-        body: { uz: <>Kasbiy so'zni gapdan olib tashlash shart emas: uning o'rniga <b>tanish so'z yoki o'xshatish</b> qo'yasiz. «Massiv» → «ro'yxat». Ma'no qoladi, tushunish paydo bo'ladi.</>, ru: <>Профессиональное слово не обязательно убирать из фразы: вместо него вы ставите <b>знакомое слово или сравнение</b>. «Массив» → «список». Смысл остаётся, понимание появляется.</> },
+        body: { uz: <>Kasbiy so'zni tashlamaysiz, uning o'rniga <b>tanish so'z</b> yoki o'xshatish qo'yasiz.</>, ru: <>Профессиональное слово не убирают, а заменяют <b>знакомым словом</b> или сравнением.</> },
         ask: { uz: "Saytingizdagi qaysi so'zni do'kon egasi tushunmaydi?", ru: 'Какое слово с вашего сайта хозяин магазина не поймёт?' } },
     ]
   },
@@ -286,14 +286,14 @@ const RECAPS = {
     cards: [
       { ic: "🎯",
         h: { uz: 'Birinchi gap — tinglovchi haqida', ru: 'Первая фраза — о слушателе' },
-        body: { uz: <>Tushuntirish <b>tinglovchi oladigan foydadan</b> boshlanadi: «Endi mijoz narxni bilish uchun telefon qilmaydi». Sayt nimadan qurilgani — keyingi gap.</>, ru: <>Объяснение начинается <b>с пользы для слушателя</b>: «Теперь клиенту не нужно звонить, чтобы узнать цену». Из чего собран сайт — это следующая фраза.</> },
+        body: { uz: <>Tushuntirish <b>tinglovchining foydasidan</b> boshlanadi, sayt nimadan qurilgani — keyin.</>, ru: <>Объяснение начинается с <b>пользы для слушателя</b>, а из чего собран сайт — потом.</> },
         vis: { uz: <RcFlow items={["Foyda", "Keyin — qurilishi"]} />, ru: <RcFlow items={['Польза', 'Потом — устройство']} /> } },
       { ic: "🧱",
         h: { uz: "«To'rtta sahifa bor» — bu qurilish", ru: '«Тут четыре страницы» — это устройство' },
-        body: { uz: <>Sahifa soni, ro'yxatlar, qaysi tilda yozilgani — bularning hammasi <b>qurilish haqida</b>. Tinglovchi ularni eshitib «xo'sh, menga nima?» deb qoladi.</>, ru: <>Число страниц, списки, на каком языке написано — всё это <b>про устройство</b>. Слушатель это слышит и думает: «ну и что мне с этого?»</> } },
+        body: { uz: <>Sahifa soni va ro'yxatlar — <b>qurilish</b> haqida, tinglovchi «menga nima?» deb qoladi.</>, ru: <>Число страниц и списки — это про <b>устройство</b>, слушатель подумает: «а мне-то что?»</> } },
       { ic: "🧾",
         h: { uz: '«Ikki hafta ishladim» — siz haqingizda', ru: '«Я работал две недели» — это о вас' },
-        body: { uz: <>Bu gap sizning mehnatingiz haqida. Tinglovchi esa <b>o'zi haqidagi</b> gapdan tez ushlaydi. Mehnatingizni oxirida ayta olasiz.</>, ru: <>Эта фраза о вашем труде. А слушатель быстрее цепляется за фразу <b>о себе</b>. О своей работе вы расскажете в конце.</> },
+        body: { uz: <>«Ikki hafta ishladim» — <b>siz haqingizda</b>, mehnatingizni oxirida ayta olasiz.</>, ru: <>«Две недели работал» — это <b>о вас</b>, о своём труде расскажете в конце.</> },
         ask: { uz: 'Saytingizning birinchi gapi kim haqida?', ru: 'О ком первая фраза про ваш сайт?' } },
     ]
   },
@@ -302,14 +302,14 @@ const RECAPS = {
     cards: [
       { ic: "🏪",
         h: { uz: "Tinglovchining o'z dunyosidan", ru: 'Из мира самого слушателя' },
-        body: { uz: <>Yaxshi o'xshatish tinglovchi <b>har kuni ko'radigan narsadan</b> olinadi: peshtaxta, oshpaz, javon. U tasavvur qilishi bilan tushunish paydo bo'ladi.</>, ru: <>Хорошее сравнение берётся из того, <b>что слушатель видит каждый день</b>: прилавок, повар, полка. Как только он это представил — появляется понимание.</> },
+        body: { uz: <>Yaxshi o'xshatish tinglovchi <b>har kuni ko'radigan</b> narsadan olinadi: peshtaxta, javon.</>, ru: <>Хорошее сравнение берут из того, что слушатель <b>видит каждый день</b>: прилавок, полка.</> },
         vis: { uz: <RcFlow items={["Peshtaxta", "Oshpaz", "Javon"]} />, ru: <RcFlow items={['Прилавок', 'Повар', 'Полка']} /> } },
       { ic: "🚫",
         h: { uz: "Ikkinchi notanish so'z — o'xshatish emas", ru: 'Второе незнакомое слово — не сравнение' },
-        body: { uz: <>«Server xotirasi» yoki «massiv» — bu o'xshatish emas, <b>yana bitta notanish so'z</b>. Tushunish o'rniga yana bir savol paydo bo'ladi.</>, ru: <>«Память сервера» или «массив» — это не сравнение, а <b>ещё одно незнакомое слово</b>. Вместо понимания появляется новый вопрос.</> } },
+        body: { uz: <>«Server xotirasi» yoki «massiv» — o'xshatish emas, yana bitta <b>notanish so'z</b>.</>, ru: <>«Память сервера» или «массив» — не сравнение, а ещё одно <b>незнакомое слово</b>.</> } },
       { ic: "🌫️",
         h: { uz: '«Ichki qism» — noaniq', ru: '«Внутренняя часть» — расплывчато' },
-        body: { uz: <>«Kompyuterning ichki qismi» hech qanday aniq narsani ko'rsatmaydi. Yaxshi o'xshatish <b>bitta aniq narsani</b> ko'rsatadi — javonni ko'z oldiga keltirish oson.</>, ru: <>«Внутренняя часть компьютера» не показывает ничего конкретного. Хорошее сравнение показывает <b>одну конкретную вещь</b> — полку легко представить.</> },
+        body: { uz: <>«Ichki qism» emas, yaxshi o'xshatish bitta <b>aniq narsani</b> ko'rsatadi.</>, ru: <>Хорошее сравнение показывает одну <b>конкретную вещь</b>, а не «внутреннюю часть».</> },
         ask: { uz: "Saytingiz eslab qoladigan narsa do'konda nimaga o'xshaydi?", ru: 'На что в магазине похоже то, что запоминает ваш сайт?' } },
     ]
   },
@@ -318,21 +318,21 @@ const RECAPS = {
     cards: [
       { ic: "🔎",
         h: { uz: "Avval so'zlarni tekshiring", ru: 'Сначала проверьте слова' },
-        body: { uz: <>Tushunmaslikning birinchi sababi — <b>gapda qolib ketgan kasbiy so'z</b>. Uni topib, tanish so'z yoki o'xshatish bilan almashtirasiz.</>, ru: <>Первая причина непонимания — <b>профессиональное слово, оставшееся во фразе</b>. Вы его находите и заменяете знакомым словом или сравнением.</> },
+        body: { uz: <>«Tushunmadim» desa, avval gapda qolgan <b>kasbiy so'zni</b> qidiring.</>, ru: <>Услышали «не понял» — сначала ищите во фразе <b>профессиональное слово</b>.</> },
         vis: { uz: <RcFlow items={["So'zni top", "Almashtir", "Qayta ayt"]} />, ru: <RcFlow items={['Найдите слово', 'Замените', 'Скажите заново']} /> } },
       { ic: "🔊",
         h: { uz: 'Ovoz va uzunlik — ikkinchi darajali', ru: 'Громкость и длина — дело второе' },
-        body: { uz: <>U «eshitmadim» demadi, <b>«tushunmadim»</b> dedi — demak ovoz yetgan. Qisqa gap ham tushunarsiz bo'lishi mumkin, uzunlik ham asosiy sabab emas.</>, ru: <>Он сказал не «не расслышал», а <b>«не понял»</b> — значит, звук дошёл. Короткая фраза тоже бывает непонятной, так что и длина здесь не главная причина.</> } },
+        body: { uz: <>U «tushunmadim» dedi — demak, <b>ovoz</b> ham, uzunlik ham asosiy sabab emas.</>, ru: <>Он сказал «не понял» — значит, ни <b>голос</b>, ни длина не главная причина.</> } },
       { ic: "🧑‍🍳",
         h: { uz: "Sinov — tinglovchining o'zi", ru: 'Проверка — сам слушатель' },
-        body: { uz: <>Eng ishonchli tekshiruv: <b>qayta ayting va savolini eshiting</b>. Uning savoli qaysi bo'lak tushunarsiz qolganini aniq ko'rsatadi.</>, ru: <>Самая надёжная проверка: <b>скажите заново и выслушайте его вопрос</b>. Его вопрос точно покажет, какая часть осталась непонятной.</> },
+        body: { uz: <>Qayta ayting va <b>savolini</b> eshiting — u qaysi bo'lak tushunarsiz qolganini ko'rsatadi.</>, ru: <>Скажите заново и выслушайте его <b>вопрос</b> — он покажет, какая часть осталась непонятной.</> },
         ask: { uz: 'Oxirgi marta kim sizga «tushunmadim» degan edi?', ru: 'Кто последним сказал вам «не понял»?' } },
     ]
   },
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -350,7 +350,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -359,13 +359,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol: ', ru: '🗣️ Вопрос классу: ' })}{tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol: ', ru: '🗣️ Вопрос классу: ' })}{tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — идём дальше' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -443,7 +443,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>
@@ -452,7 +452,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Объяснить заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -549,7 +549,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -557,8 +557,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -571,7 +572,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -944,12 +945,12 @@ const Screen3 = (p) => (
       tr({ uz: "Do'kon egasi saytga qiziqmaydi.", ru: 'Хозяину магазина сайт неинтересен.' })
     ]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Boshida rasm hosil bo'lmasa, tinglovchi gapni tashlab yuboradi.", ru: 'Нет картинки в голове — слушатель теряет нить.' })}
+    explainCorrect={tr({ uz: "Rasm hosil bo'lmasa, tinglovchi gapni tashlab yuboradi.", ru: 'Нет картинки в голове — слушатель теряет нить.' })}
     explainWrong={{
-      0: tr({ uz: "Uzunlik muammo emas: «peshtaxta» ham uzun, lekin tushunarli. Muammo — so'zning tanish emasligida.", ru: 'Длина ни при чём: «прилавок» тоже длинное, но понятное. Дело в незнакомости слова.' }),
-      2: tr({ uz: "So'z to'g'ri ishlatilgan. Muammo aniqlikda emas, tinglovchida.", ru: 'Слово употреблено верно. Проблема не в точности, а в слушателе.' }),
-      3: tr({ uz: "Aksincha — sayt uniki. U qiziqadi, lekin so'zni tushunmaydi.", ru: 'Наоборот — сайт его. Ему интересно, но слово непонятно.' }),
-      default: tr({ uz: "Yana bir bor o'ylab ko'ring.", ru: 'Подумайте ещё раз.' })
+      0: tr({ uz: "«Peshtaxta» ham uzun, lekin tushunarli — gap uzunlikda emas.", ru: '«Прилавок» тоже длинное, но понятное — дело не в длине.' }),
+      2: tr({ uz: "So'z to'g'ri ishlatilgan — muammo boshqa joyda.", ru: 'Слово употреблено верно — проблема в другом.' }),
+      3: tr({ uz: "Aksincha — sayt uniki, u juda qiziqadi.", ru: 'Наоборот — сайт его, ему очень интересно.' }),
+      default: tr({ uz: "Do'kon egasi so'zni eshitganda ko'z oldida nima bo'ladi?", ru: 'Что возникает перед глазами хозяина, когда он слышит это слово?' })
     }} />
 );
 
@@ -1102,12 +1103,12 @@ const Screen6 = (p) => (
       tr({ uz: "«Saytni ikki hafta ishlab chiqdim.»", ru: '«Я делал сайт две недели.»' })
     ]}
     correctIdx={2}
-    explainCorrect={tr({ uz: 'Birinchi gap tinglovchi oladigan foydani aytadi; qurilishi keyin keladi.', ru: 'Первая фраза говорит о выгоде слушателя; устройство — потом.' })}
+    explainCorrect={tr({ uz: 'Birinchi gap — tinglovchining foydasi, qurilish keyin.', ru: 'Первая фраза — о выгоде слушателя, устройство — потом.' })}
     explainWrong={{
-      0: tr({ uz: "Bu — nimadan qurilgani. Tinglovchi «xo'sh, menga nima?» deb qoladi.", ru: 'Это про устройство. Слушатель подумает: «а мне-то что?»' }),
-      1: tr({ uz: "Bu ham qurilishi haqida, ustiga kasbiy so'z bilan.", ru: 'Это тоже про устройство, да ещё и с профессиональным словом.' }),
-      3: tr({ uz: "Bu siz haqingizda. Tinglovchi o'zi haqidagi gapdan tez ushlaydi.", ru: 'Это о вас. Слушатель быстрее цепляется за фразу о себе.' }),
-      default: tr({ uz: "Yana bir bor o'ylab ko'ring.", ru: 'Подумайте ещё раз.' })
+      0: tr({ uz: "Bu — nimadan qurilgani, tinglovchi «menga nima?» deydi.", ru: 'Это про устройство — слушатель подумает: «а мне-то что?»' }),
+      1: tr({ uz: "Bu ham qurilish haqida, ustiga kasbiy so'z bilan.", ru: 'Это тоже про устройство, да ещё с профессиональным словом.' }),
+      3: tr({ uz: "Bu gap siz haqingizda, tinglovchi haqida emas.", ru: 'Эта фраза о вас, а не о слушателе.' }),
+      default: tr({ uz: "Tinglovchi qaysi gapdan keyin «bu menga kerak» deydi?", ru: 'После какой фразы слушатель скажет: «это мне нужно»?' })
     }} />
 );
 
@@ -1185,12 +1186,12 @@ const Screen8 = (p) => (
       tr({ uz: "«Ma'lumot saqlanadigan joy — kompyuterning ichki qismi.»", ru: '«Место хранения данных — внутренняя часть компьютера.»' })
     ]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "O'xshatish tinglovchining O'Z dunyosidan olingan — u javonni har kuni ko'radi.", ru: 'Сравнение взято из СВОЕГО мира слушателя — полку он видит каждый день.' })}
+    explainCorrect={tr({ uz: "Javonni tinglovchi har kuni ko'radi — bu uning o'z dunyosi.", ru: 'Полку слушатель видит каждый день — это его собственный мир.' })}
     explainWrong={{
-      0: tr({ uz: "«Server xotirasi» — yana kasbiy so'z; o'xshatish emas, ikkinchi noma'lum so'z.", ru: '«Память сервера» — снова профессиональное слово; это не сравнение, а второе непонятное слово.' }),
-      2: tr({ uz: "«Massiv» — kod tili. Do'kon egasi bu so'zni bilmaydi.", ru: '«Массив» — язык кода. Хозяин этого слова не знает.' }),
-      3: tr({ uz: "Bu aniq narsani ko'rsatmaydi: «ichki qism» ham noma'lum bo'lib qolaveradi.", ru: 'Это не показывает конкретную вещь: «внутренняя часть» остаётся непонятной.' }),
-      default: tr({ uz: "Yana bir bor o'ylab ko'ring.", ru: 'Подумайте ещё раз.' })
+      0: tr({ uz: "«Server xotirasi» — yana kasbiy so'z, o'xshatish emas.", ru: '«Память сервера» — снова профессиональное слово, а не сравнение.' }),
+      2: tr({ uz: "«Massiv» — kod tili, do'kon egasi bu so'zni bilmaydi.", ru: '«Массив» — язык кода, хозяин этого слова не знает.' }),
+      3: tr({ uz: "«Ichki qism» aniq narsani ko'rsatmaydi, u ham noma'lum.", ru: '«Внутренняя часть» не показывает конкретную вещь — она тоже непонятна.' }),
+      default: tr({ uz: "Do'kon egasi har kuni nimalarni ko'rishini o'ylang.", ru: 'Подумайте, что хозяин магазина видит каждый день.' })
     }} />
 );
 
@@ -1634,12 +1635,12 @@ const Screen14 = (p) => (
       tr({ uz: 'Saytning rangi do\'konga mos kelishini.', ru: 'Подходит ли цвет сайта магазину.' })
     ]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Tushunmaslikning birinchi sababi — kasbiy so'z. Uni tanish so'z yoki o'xshatish bilan almashtirasiz.", ru: 'Первая причина непонимания — профессиональное слово. Его заменяют знакомым словом или сравнением.' })}
+    explainCorrect={tr({ uz: "Tushunmaslikning birinchi sababi — kasbiy so'z.", ru: 'Первая причина непонимания — профессиональное слово.' })}
     explainWrong={{
-      1: tr({ uz: 'Ovoz eshitilgan — u «eshitmadim» demadi, «tushunmadim» dedi.', ru: 'Голос был слышен — он сказал не «не расслышал», а «не понял».' }),
-      2: tr({ uz: 'Uzunlik ikkinchi darajali: qisqa gap ham tushunarsiz bo\'lishi mumkin.', ru: 'Длина второстепенна: и короткая фраза бывает непонятной.' }),
-      3: tr({ uz: 'Rang bu yerda hech narsani hal qilmaydi — gap so\'zlarda.', ru: 'Цвет здесь ничего не решает — дело в словах.' }),
-      default: tr({ uz: "Yana bir bor o'ylab ko'ring.", ru: 'Подумайте ещё раз.' })
+      1: tr({ uz: 'U «eshitmadim» demadi, «tushunmadim» dedi — ovoz yetgan.', ru: 'Он сказал не «не расслышал», а «не понял» — голос дошёл.' }),
+      2: tr({ uz: 'Qisqa nutq ham tushunarsiz bo\'lishi mumkin.', ru: 'Даже короткая речь бывает непонятной.' }),
+      3: tr({ uz: 'Rang bu yerda hech narsani hal qilmaydi.', ru: 'Цвет здесь ничего не решает.' }),
+      default: tr({ uz: "U «tushunmadim» dedi — nimani tushunmagan bo'lishi mumkin?", ru: 'Он сказал «не понял» — что именно ему могло быть непонятно?' })
     }} />
 );
 

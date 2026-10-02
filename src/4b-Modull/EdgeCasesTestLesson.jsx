@@ -238,46 +238,46 @@ const RECAPS = {
     title: { uz: 'Edge case — chegaradagi qiymat', ru: 'Edge case — значение на границе' },
     cards: [
       { ic: '🎭', h: { uz: 'Shumtaka mijoz', ru: 'Клиент-озорник' }, body: { uz: <>Har mijoz to'g'ri kiritmaydi — kimdir <b>0 ta</b>, kimdir <b>manfiy</b> buyurtma beradi.</>, ru: <>Не каждый клиент вводит данные как надо — кто-то закажет <b>0 штук</b>, а кто-то <b>минус</b>.</> } },
-      { ic: '📐', h: { uz: 'Chegara', ru: 'Граница' }, body: { uz: <>Edge case — oddiylikning <b>chetidagi</b> qiymati: 0, manfiy, juda katta.</>, ru: <>Edge case — значение <b>на краю</b> обычного: 0, отрицательное, слишком большое.</> } },
-      { ic: '🕳️', h: { uz: 'Xato shu yerda yashiringan', ru: 'Ошибка прячется именно тут' }, body: { uz: <>Himoyasiz funksiya chegarada <b>jim ravishda noto'g'ri</b> javob beradi.</>, ru: <>Функция без защиты на границе <b>молча выдаёт неверный</b> ответ.</> }, ask: { uz: 'Edge case nima?', ru: 'Что такое edge case?' } }
+      { ic: '📐', h: { uz: 'Chegara', ru: 'Граница' }, body: { uz: <><b>Edge case</b> — oddiylikning chetidagi qiymat: 0, manfiy, juda katta.</>, ru: <><b>Edge case</b> — значение на краю обычного: 0, отрицательное, слишком большое.</> } },
+      { ic: '🕳️', h: { uz: 'Xato shu yerda yashiringan', ru: 'Ошибка прячется именно тут' }, body: { uz: <>Himoyasiz funksiya chegarada <b>jim</b> ravishda noto'g'ri javob beradi.</>, ru: <>Функция без защиты на границе <b>молча</b> выдаёт неверный ответ.</> }, ask: { uz: 'Edge case nima?', ru: 'Что такое edge case?' } }
     ]
   },
   8: {
     title: { uz: "expect(() => ...).toThrow() — xato tashlashni sinash", ru: 'expect(() => ...).toThrow() — проверяем выброс ошибки' },
     cards: [
-      { ic: '🧯', h: { uz: "() => bilan o'rash", ru: 'Оборачиваем в () =>' }, body: { uz: <>Xato tashlaydigan funksiyani <span className="mono">() =&gt;</span> ichiga o'rab beramiz — shunda Jest uni nazorat ostida chaqiradi.</>, ru: <>Функцию, бросающую ошибку, оборачиваем в <span className="mono">() =&gt;</span> — тогда Jest вызывает её под контролем.</> } },
-      { ic: '💥', h: { uz: "O'ramasangiz", ru: 'Если не обернуть' }, body: { uz: <><span className="mono">() =&gt;</span> siz funksiya darrov chaqiriladi va xato tashlab, test o'zi qulaydi.</>, ru: <>Без <span className="mono">() =&gt;</span> функция вызовется сразу, бросит ошибку — и тест рухнет сам.</> } },
-      { ic: '✅', h: 'toThrow', body: { uz: <><span className="mono">.toThrow()</span> — funksiya xato tashlaganini tasdiqlaydi.</>, ru: <><span className="mono">.toThrow()</span> — подтверждает, что функция бросила ошибку.</> }, ask: { uz: "Manfiy sonda xatoni qanday sinaymiz?", ru: 'Как проверить ошибку при отрицательном числе?' } }
+      { ic: '🧯', h: { uz: "() => bilan o'rash", ru: 'Оборачиваем в () =>' }, body: { uz: <>Funksiyani <span className="mono">() =&gt;</span> ichiga o'rasak, Jest uni nazorat ostida chaqiradi.</>, ru: <>Обёрнутую в <span className="mono">() =&gt;</span> функцию Jest вызывает под контролем.</> } },
+      { ic: '💥', h: { uz: "O'ramasangiz", ru: 'Если не обернуть' }, body: { uz: <><span className="mono">() =&gt;</span> siz funksiya darrov chaqiriladi va test o'zi <b>qulaydi</b>.</>, ru: <>Без <span className="mono">() =&gt;</span> функция вызовется сразу — и тест <b>рухнет</b> сам.</> } },
+      { ic: '✅', h: 'toThrow', body: { uz: <><span className="mono">.toThrow()</span> — funksiya <b>xato tashlaganini</b> tasdiqlaydi.</>, ru: <><span className="mono">.toThrow()</span> подтверждает, что функция <b>бросила ошибку</b>.</> }, ask: { uz: "Manfiy sonda xatoni qanday sinaymiz?", ru: 'Как проверить ошибку при отрицательном числе?' } }
     ]
   },
   11: {
     title: { uz: 'Happy path VA edge case — ikkalasi ham', ru: 'Happy path И edge case — нужны оба' },
     cards: [
-      { ic: '🙂', h: 'Happy path', body: { uz: <>Oddiy, kutilgan kirish — funksiya to'g'ri natija beradi.</>, ru: <>Обычный, ожидаемый ввод — функция выдаёт правильный результат.</> } },
-      { ic: '🎭', h: 'Edge case', body: { uz: <>Chegaradagi g'ayrioddiy kirish — 0, manfiy, noto'g'ri tur.</>, ru: <>Необычный ввод на границе — 0, отрицательное число, неверный тип.</> } },
-      { ic: '🧩', h: { uz: 'Ikkalasi birga', ru: 'Оба вместе' }, body: { uz: <>Puxta test — <b>happy path</b> va <b>edge case</b>larni birga sinaydi.</>, ru: <>Надёжный тест проверяет и <b>happy path</b>, и <b>edge case</b> — вместе.</> }, ask: { uz: "Nega faqat happy path yetarli emas?", ru: 'Почему одного happy path недостаточно?' } }
+      { ic: '🙂', h: 'Happy path', body: { uz: <>Oddiy, kutilgan kirish — funksiya <b>to'g'ri natija</b> beradi.</>, ru: <>Обычный, ожидаемый ввод — функция выдаёт <b>правильный результат</b>.</> } },
+      { ic: '🎭', h: 'Edge case', body: { uz: <>Chegaradagi <b>g'ayrioddiy</b> kirish — 0, manfiy, noto'g'ri tur.</>, ru: <><b>Необычный</b> ввод на границе — 0, отрицательное число, неверный тип.</> } },
+      { ic: '🧩', h: { uz: 'Ikkalasi birga', ru: 'Оба вместе' }, body: { uz: <>Puxta test — happy path va edge case'larni <b>birga</b> sinaydi.</>, ru: <>Надёжный тест проверяет и happy path, и edge case — <b>вместе</b>.</> }, ask: { uz: "Nega faqat happy path yetarli emas?", ru: 'Почему одного happy path недостаточно?' } }
     ]
   },
   14: {
     title: { uz: "Faqat edge test tutadigan xato", ru: 'Ошибка, которую ловит только edge-тест' },
     cards: [
-      { ic: '🕳️', h: { uz: "Ko'rinmas xato", ru: 'Невидимая ошибка' }, body: { uz: <>Happy-path test yashil bo'lsa ham, chegarada xato <b>sezilmay</b> ishlab ketishi mumkin.</>, ru: <>Даже когда happy-path тест зелёный, ошибка на границе может <b>незаметно</b> работать дальше.</> } },
-      { ic: '🚨', h: { uz: 'Edge test tutadi', ru: 'Edge-тест ловит' }, body: { uz: <>Edge test (<span className="mono">toThrow</span>) shu xatoni <b>darhol qizil</b> qilib ko'rsatadi.</>, ru: <>Edge-тест (<span className="mono">toThrow</span>) <b>сразу подсветит</b> эту ошибку красным.</> } },
-      { ic: '💰', h: { uz: "Narxi katta", ru: 'Цена высока' }, body: { uz: <>Manfiy buyurtmada "qaytim" — bu <b>haqiqiy pul yo'qotish</b>. Edge test uni oldindan tutadi.</>, ru: <>«Сдача» при отрицательном заказе — это <b>реальная потеря денег</b>. Edge-тест ловит её заранее.</> }, ask: { uz: "Nega faqat happy-path test yetarli emas?", ru: 'Почему одних happy-path тестов недостаточно?' } }
+      { ic: '🕳️', h: { uz: "Ko'rinmas xato", ru: 'Невидимая ошибка' }, body: { uz: <>Happy-path test yashil bo'lsa ham, chegaradagi xato <b>sezilmay</b> qolishi mumkin.</>, ru: <>Даже при зелёном happy-path тесте ошибка на границе может остаться <b>незамеченной</b>.</> } },
+      { ic: '🚨', h: { uz: 'Edge test tutadi', ru: 'Edge-тест ловит' }, body: { uz: <>Edge test (<span className="mono">toThrow</span>) shu xatoni darhol <b>qizil</b> qilib ko'rsatadi.</>, ru: <>Edge-тест (<span className="mono">toThrow</span>) сразу подсветит эту ошибку <b>красным</b>.</> } },
+      { ic: '💰', h: { uz: "Narxi katta", ru: 'Цена высока' }, body: { uz: <>Manfiy buyurtmadagi «qaytim» — <b>haqiqiy pul</b> yo'qotish, edge test uni oldindan tutadi.</>, ru: <>«Сдача» при отрицательном заказе — <b>реальная потеря</b> денег, и edge-тест ловит её заранее.</> }, ask: { uz: "Nega faqat happy-path test yetarli emas?", ru: 'Почему одних happy-path тестов недостаточно?' } }
     ]
   },
   16: {
     title: { uz: "Chegara qiymati — eng kichik to'g'ri", ru: 'Граничное значение — наименьшее допустимое' },
     cards: [
-      { ic: '📐', h: { uz: "Guard qayerda bo'ladi", ru: 'Где срабатывает guard' }, body: { uz: <>Guard <span className="mono">quantity &lt;= 0</span> bo'lsa xato tashlaydi. Demak eng kichik <b>to'g'ri</b> qiymat — <b>1</b>.</>, ru: <>Guard бросает ошибку, когда <span className="mono">quantity &lt;= 0</span>. Значит, наименьшее <b>допустимое</b> значение — <b>1</b>.</> } },
-      { ic: '🧮', h: { uz: 'Etalonni hisoblang', ru: 'Посчитайте эталон' }, body: { uz: <>10000 so'm × 1 dona = <b>10000</b>. Kartochkaga shu son yoziladi — mashina qanday hisoblasa, siz ham shunday hisoblaysiz.</>, ru: <>10000 сумов × 1 штука = <b>10000</b>. Это число и пишем в карточку — считаете так же, как машина.</> } },
-      { ic: '🚨', h: { uz: 'Guard eski testni buzadi', ru: 'Guard ломает старый тест' }, body: { uz: <>Guard qo'shilgach, eski <span className="mono">expect(orderTotal(10000, 0)).toBe(0)</span> testi endi <b>QIZIL</b> bo'ladi — funksiya 0 o'rniga xato tashlaydi.</>, ru: <>После guard старый тест <span className="mono">expect(orderTotal(10000, 0)).toBe(0)</span> станет <b>КРАСНЫМ</b> — функция теперь бросает ошибку вместо 0.</> }, ask: { uz: "Nega guard qo'shilgach eski test qizil bo'lib qoladi?", ru: 'Почему после добавления guard старый тест становится красным?' } }
+      { ic: '📐', h: { uz: "Guard qayerda bo'ladi", ru: 'Где срабатывает guard' }, body: { uz: <>Guard <span className="mono">quantity &lt;= 0</span> da xato tashlaydi, demak eng kichik to'g'ri qiymat — <b>1</b>.</>, ru: <>Guard бросает ошибку при <span className="mono">quantity &lt;= 0</span>, значит, наименьшее допустимое значение — <b>1</b>.</> } },
+      { ic: '🧮', h: { uz: 'Etalonni hisoblang', ru: 'Посчитайте эталон' }, body: { uz: <>Mashina kabi hisoblang: 10000 so'm × 1 dona = <b>10000</b>.</>, ru: <>Считайте как машина: 10000 сумов × 1 штука = <b>10000</b>.</> } },
+      { ic: '🚨', h: { uz: 'Guard eski testni buzadi', ru: 'Guard ломает старый тест' }, body: { uz: <>Guard qo'shilgach, eski <span className="mono">expect(orderTotal(10000, 0)).toBe(0)</span> testi <b>qizil</b> bo'ladi.</>, ru: <>После guard старый тест <span className="mono">expect(orderTotal(10000, 0)).toBe(0)</span> станет <b>красным</b>.</> }, ask: { uz: "Nega guard qo'shilgach eski test qizil bo'lib qoladi?", ru: 'Почему после добавления guard старый тест становится красным?' } }
     ]
   }
 };
 
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -295,7 +295,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем ещё раз' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -304,13 +304,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -474,7 +474,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
@@ -482,8 +482,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(tr(explainCorrect))
               : waiting
@@ -495,11 +496,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -930,12 +931,12 @@ const Screen4 = (props) => (
       { uz: "Oddiylikning chetidagi qiymat: 0, manfiy, eng kichik yoki katta", ru: 'Значение на краю обычного: 0, отрицательное, наименьшее или наибольшее' },
       { uz: "Funksiyaga berilgan nom yoki uning o'zgaruvchi nomi, xolos", ru: 'Просто имя функции или имя её переменной' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Edge case — chegaradagi g'ayrioddiy qiymat (0, manfiy, juda katta, bo'sh). Aynan shu yerda xatolar yashiringan bo'ladi.", ru: 'Edge case — необычное значение на границе (0, отрицательное, слишком большое, пустое). Именно там и прячутся ошибки.' }}
+    explainCorrect={{ uz: "Edge case — chegara, xatolar ko'pincha aynan shu yerda.", ru: 'Edge case — это граница, и ошибки чаще всего прячутся именно там.' }}
     explainWrong={{
-      0: { uz: "Oddiy kirish — bu happy path. Edge case esa chetdagi g'alati qiymatlar.", ru: 'Обычный ввод — это happy path. А edge case — странные значения на краю.' },
-      1: { uz: "Aksincha — edge case ko'pincha funksiya noto'g'ri ishlaydigan joy.", ru: 'Наоборот — edge case чаще всего то место, где функция работает неверно.' },
-      3: { uz: 'Bu funksiya nomi emas — edge case kirish qiymatining turi.', ru: 'Это не имя функции — edge case описывает тип входного значения.' },
-      default: { uz: "Edge case = chegaradagi g'ayrioddiy qiymat (0, manfiy...).", ru: 'Edge case = необычное значение на границе (0, отрицательное...).' }
+      0: { uz: "Oddiy, kutilgan kirish — bu happy path, chegara emas.", ru: 'Обычный, ожидаемый ввод — это happy path, а не граница.' },
+      1: { uz: "Edge case'da funksiya ko'pincha aynan adashadi.", ru: 'Как раз на edge case функция чаще всего ошибается.' },
+      3: { uz: 'Edge case nom haqida emas — u kirish qiymati haqida.', ru: 'Edge case — не про имя, а про входное значение.' },
+      default: { uz: "Shumtaka mijoz 0 yoki manfiy kiritsa — bu qanday qiymat?", ru: 'Клиент-озорник ввёл 0 или минус — что это за значение?' }
     }} />
 );
 
@@ -1068,12 +1069,12 @@ const Screen8 = (props) => (
       { uz: 'expect(orderTotal(10000, 0)).toBe(0) — natijani solishtiradi', ru: 'expect(orderTotal(10000, 0)).toBe(0) — сравнивает результат' },
       { uz: "orderTotal(10000, 0).toThrow() — bevosita, expect'siz chaqiradi", ru: 'orderTotal(10000, 0).toThrow() — вызывает напрямую, без expect' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "() => bilan o'raymiz — Jest funksiyani o'zi chaqiradi va xato tashlaganini toThrow bilan tekshiradi.", ru: 'Оборачиваем в () => — Jest сам вызовет функцию и через toThrow проверит, что она бросила ошибку.' }}
+    explainCorrect={{ uz: "O'ralgan funksiyani Jest o'zi chaqiradi va xatoni tutadi.", ru: 'Обёрнутую функцию Jest вызовет сам и поймает ошибку.' }}
     explainWrong={{
-      0: { uz: "() => yo'q — funksiya darrov chaqirilib, xato tashlaydi va test qulaydi. O'rash kerak.", ru: 'Без () => функция вызовется сразу, бросит ошибку — и тест рухнет. Нужна обёртка.' },
-      2: { uz: "toBe(0) — bu xatoni emas, qiymatni tekshiradi. Xato uchun toThrow va () => kerak.", ru: 'toBe(0) проверяет значение, а не ошибку. Для ошибки нужны toThrow и () =>.' },
-      3: { uz: "Bu noto'g'ri sintaksis — funksiya darrov ishlab xato tashlaydi.", ru: 'Это неверный синтаксис — функция сработает сразу и бросит ошибку.' },
-      default: { uz: "To'g'risi — expect(() => ...).toThrow().", ru: 'Правильно так: expect(() => ...).toThrow().' }
+      0: { uz: "O'ramasangiz, funksiya darrov ishlab testni o'zi qulatadi.", ru: 'Без обёртки функция сработает сразу и сама уронит тест.' },
+      2: { uz: "toBe(0) qiymatni tekshiradi, xato tashlashni emas.", ru: 'toBe(0) проверяет значение, а не брошенную ошибку.' },
+      3: { uz: "expect'siz tekshiruv yo'q — funksiya darrov xato tashlaydi.", ru: 'Без expect проверки нет — функция сразу бросит ошибку.' },
+      default: { uz: "Jest'ga xato tashlaydigan funksiyani qanday berasiz?", ru: 'Как передать Jest функцию, которая бросает ошибку?' }
     }} />
 );
 
@@ -1274,12 +1275,12 @@ const Screen11 = (props) => (
       { uz: "Hech qaysi holat — funksiya o'zi har doim ishonchli ishlaydi", ru: 'Никакие — функция и так всегда работает надёжно' },
       { uz: "Happy path VA chegara/noto'g'ri holatlar — ikkalasi birga", ru: 'Happy path И граничные/неверные случаи — вместе' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "Ikkalasi: oddiy kirish (happy path) VA chegara/noto'g'ri (0, manfiy, matn). Xatolar ko'pincha aynan chegarada yashiringan.", ru: 'И то, и другое: обычный ввод (happy path) И граничный/неверный (0, отрицательное, текст). Ошибки чаще всего прячутся именно на границе.' }}
+    explainCorrect={{ uz: "Oddiy kirish ham, chegara ham — xatolar ko'pincha chegarada.", ru: 'И обычный ввод, и граница — ошибки чаще прячутся на границе.' }}
     explainWrong={{
-      0: { uz: "Faqat happy path yetarli emas — 0, manfiy, noto'g'ri kirishda xato yashiringan bo'ladi.", ru: 'Одного happy path мало — на 0, отрицательных и неверном вводе прячутся ошибки.' },
-      1: { uz: "Faqat bitta holat — kam. Happy path va edge case'larni birga sinaymiz.", ru: 'Один случай — мало. Проверяем happy path и edge case вместе.' },
-      2: { uz: "Funksiya o'zicha ishonchli emas — aynan shuning uchun test yozamiz.", ru: 'Функция не надёжна сама по себе — именно поэтому мы пишем тесты.' },
-      default: { uz: "Happy path VA edge case'larni birga sinash kerak.", ru: 'Нужно проверять happy path И edge case вместе.' }
+      0: { uz: "Faqat oddiy kirish 0 va manfiydagi xatoni ko'rmaydi.", ru: 'Один обычный ввод не увидит ошибку на 0 и минусе.' },
+      1: { uz: "Bitta holat kam — oddiy kirish tekshirilmay qoladi.", ru: 'Одного случая мало — обычный ввод останется без проверки.' },
+      2: { uz: "Funksiya o'zicha ishonchli emas — test shuning uchun kerak.", ru: 'Функция сама по себе не надёжна — поэтому и пишем тесты.' },
+      default: { uz: "Bitta turdagi kirish hamma xatoni tutadimi — o'ylang.", ru: 'Подумайте: поймает ли один вид ввода все ошибки?' }
     }} />
 );
 
@@ -1369,12 +1370,12 @@ const Screen14 = (props) => (
       { uz: "Jest happy path'ni sinashni umuman qo'llab-quvvatlamaydi", ru: 'Jest вообще не поддерживает проверку happy path' },
       { uz: 'Edge case yozish shart emas — happy path hammasini qamraydi', ru: 'Edge case писать не нужно — happy path покрывает всё' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "Oddiy kirish ko'pincha ishlaydi — xatolar chegarada (0, manfiy, noto'g'ri tur) yashiringan. Faqat edge test ularni tutadi.", ru: 'Обычный ввод чаще всего работает — ошибки прячутся на границе (0, отрицательные, неверный тип). Поймает их только edge-тест.' }}
+    explainCorrect={{ uz: "Oddiy kirish odatda ishlaydi, xatoni edge test tutadi.", ru: 'Обычный ввод, как правило, работает — ошибку ловит edge-тест.' }}
     explainWrong={{
-      1: { uz: "Tezlik masala emas — gap qamrovda: happy path edge xatolarni ko'rmaydi.", ru: 'Дело не в скорости, а в покрытии: happy path не видит ошибок на границе.' },
-      2: { uz: "Jest happy path'ni ham, edge'ni ham qo'llaydi. Gap — ikkalasini sinashda.", ru: 'Jest поддерживает и happy path, и edge. Суть в том, чтобы проверять оба.' },
-      3: { uz: "Aksincha — edge case eng muhim, chunki xatolar aynan o'sha yerda.", ru: 'Наоборот — edge case важнее всего: ошибки именно там.' },
-      default: { uz: "Xatolar edge holatlarda yashiringan — shuning uchun ularni ham sinaymiz.", ru: 'Ошибки прячутся в edge-случаях — поэтому проверяем и их.' }
+      1: { uz: "Tezlik masala emas — gap qaysi kirish sinalganida.", ru: 'Дело не в скорости, а в том, какой ввод проверен.' },
+      2: { uz: "Jest happy path'ni bemalol sinaydi — sabab boshqa.", ru: 'Jest спокойно проверяет happy path — причина в другом.' },
+      3: { uz: "Happy path chegaradagi 0 va manfiyni umuman ko'rmaydi.", ru: 'Happy path вообще не видит 0 и минус на границе.' },
+      default: { uz: "Oddiy kirish ishlasa, xato qayerda qolishi mumkin?", ru: 'Если обычный ввод работает, где ещё может прятаться ошибка?' }
     }} />
 );
 
@@ -1488,7 +1489,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {picked !== null && !showAnswer && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(CARD_WHY[picked] ?? CARD_WHY.default)}</p></div>}
             {showAnswer && <div className={wrongLocked ? 'frame-warn fade-step' : 'frame-success fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{wrongLocked ? tr({ uz: <>To'g'ri chegara — <b className="mono">1</b> (eng kichik butun musbat son). Guard <b>0</b> va undan pastini rad etadi.</>, ru: <>Правильная граница — <b className="mono">1</b> (наименьшее целое положительное число). Guard отклоняет <b>0</b> и всё, что ниже.</> }) : tr({ uz: <>Guard <b className="mono">0</b> va manfiyni rad etadi — undan keyingi birinchi butun son o'tadi.</>, ru: <>Guard отклоняет <b className="mono">0</b> и отрицательные — проходит первое целое число после них.</> }) /* F-0926-06: 159/5 izoh «To'g'ri:» bilan boshlanmaydi, variantni qaytarmaydi */}</p></div>}
             {hasRecap && !isMentorLive && showAnswer && firstCorrectRef.current === false && (
-              <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+              <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
             )}
           </Col>
           <Col>

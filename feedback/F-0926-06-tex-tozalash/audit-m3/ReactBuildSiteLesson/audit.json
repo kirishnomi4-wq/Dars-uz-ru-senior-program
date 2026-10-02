@@ -1,0 +1,529 @@
+{
+ "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+ "lessonId": "react-build-site-final-p4-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUNDAY SAYTNI AI BILAN QANDAY QURAMIZ?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Avval \"Bo'laklarga ajratish\"ni bosing ←",
+     "box": "fade-up delay-3",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Katta sayt — kichik bloklar yig'indisi: <Navbar />, <Hero />, <TaomCard />… Bugun i",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — SIZNING SAYTINGIZ BOSHLANADI",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "→ bu usul bilan istalgan saytni qurasiz",
+     "box": "frame",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI 5 QADAM",
+     "box": "roadmap",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SAHIFALAR (ROUTER) XARITASI",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KOMPONENT DARAXTI",
+     "box": "code-box fade-up delay-2",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "1 ta — qolgani faqat har xil ma'lumot (props)",
+     "b": "Bitta <TaomCard /> — qolgani props (har xil ma'lumot). Qoida: takrorlanuvchini ko'rsangiz — bitta komponent ya",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, NECHTA TAOMCARD KOMPONENTI YOZILGAN?",
+     "box": "fade-up delay-3",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Savatdagi soni (bosilganda ortadi) ?",
+     "b": "Savatdagi soni (bosilganda ortadi) — qaysi uyda yashaydi? (komponent xotirasi)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Savatdagi soni (bosilganda ortadi)",
+     "b": "Savatdagi soni (bosilganda ortadi) — qaysi uyda yashaydi? (komponent xotirasi)",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Savatdagi soni (bosilganda ortadi) State",
+     "b": "Tayyor! API — serverdagi taomlar ro'yxati · props — TaomCard'ga uzatiladigan nom/narx · state — savatdagi soni",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "UYNI TANLANG",
+     "box": "sk-info",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 4,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "0% aniq",
+     "box": "hint fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "33% aniq",
+     "box": "hint fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "67% aniq",
+     "box": "hint fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "100% aniq",
+     "box": "frame-success fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s8",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "b": "+ Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan,",
+     "b": "+ Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "gridda takrorlanuvchi TaomCard (nom, narx, \"Savatga\")",
+     "b": "+ gridda takrorlanuvchi TaomCard (nom, narx, \"Savatga\")",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "gridda takrorlanuvchi TaomCard (nom, narx, \"Savatga\"),",
+     "b": "+ gridda takrorlanuvchi TaomCard (nom, narx, \"Savatga\")",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "taomlar API'dan, map bilan chizilsin",
+     "b": "+ taomlar API'dan, map bilan chizilsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan\"",
+     "b": "+ Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan, gridda takrorlanuvchi TaomCar",
+     "b": "+ Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan, gridda takrorlanuvchi TaomCar",
+     "b": "+ gridda takrorlanuvchi TaomCard (nom, narx, \"Savatga\")",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan, gridda takrorlanuvchi TaomCar",
+     "b": "+ taomlar API'dan, map bilan chizilsin",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan, gridda takrorlanuvchi TaomCar",
+     "b": "○ Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "\"Bosh sahifani qur — Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan, gridda takrorlanuvchi TaomCar",
+     "b": "Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan,",
+     "b": "○ Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan,",
+     "b": "Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "b": "○ Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Hero, Kategoriyalar, Taomlar grid, Footer bo'limlari bilan",
+     "b": "Bo'limlar: Hero, Categories, TaomList, Footer",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "taomlar API'dan, map bilan chizilsin",
+     "b": "○ Taomlarni API'dan olib, map bilan chizaman",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "taomlar API'dan, map bilan chizilsin",
+     "b": "Taomlarni API'dan olib, map bilan chizaman",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 121,
+     "left": "ai-card",
+     "right": "bp-window",
+     "hs": [
+      301,
+      180
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1. PROMPTNI YIG'ING — ANIQLIK QO'SHING",
+     "box": "ai-card",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — BOSH SAHIFA",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s10",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "ANIQLASHTIRUVCHI PROMPTNI TANLANG",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nice Catch! AI xatosini aniqlashtiruvchi prompt bilan tuzatdingiz",
+     "box": "acu-medal-wrap",
+     "gap": 22
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "\"RETSEPTLAR\" BO'LAKLARI",
+     "box": "DIV",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "\"O'YINLAR\" BO'LAKLARI",
+     "box": "DIV",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "\"KUTUBXONA\" BO'LAKLARI",
+     "box": "DIV",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "\"SPORT KLUB\" BO'LAKLARI",
+     "box": "DIV",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s13",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 5,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s14",
+   "type": "test",
+   "inp": [
+    {
+     "label": "⚛ TaomCard.jsx ×",
+     "ph": "function TaomCard(props) {",
+     "gap": 12
+    }
+   ],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Bo'laklashning asosi — takrorlanuvchini komponentga aylantirish. TaomCard komponentini e'lon qiling: function ",
+     "b": "1 function 2 Katta harf nom 3 (props)",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "Bo'laklashning asosi — takrorlanuvchini komponentga aylantirish. TaomCard komponentini e'lon qiling: function ",
+     "b": "Komponent e'lon qilinmaguncha bo'sh: function TaomCard(props) {",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "1 function 2 Katta harf nom 3 (props)",
+     "box": "vsc fade-up delay-2",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "NATIJA — KOMPONENT TAYYOR",
+     "box": "bp-window",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  }
+ ]
+}

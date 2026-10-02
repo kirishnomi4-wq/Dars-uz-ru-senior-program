@@ -253,40 +253,40 @@ const RECAPS = {
   4: {
     title: { uz: "Baza — joylar + BOOLEAN + rang", ru: 'База — joylar + BOOLEAN + цвет' },
     cards: [
-      { ic: "🗄️", h: { uz: "joylar jadvali — har joy bitta qator", ru: 'таблица joylar — каждое место одна строка' }, body: { uz: <>Panel ortida <b>joylar</b> jadvali turadi: har parking joyi bir qator (id, raqam, bandmi). Bu — panel ko'rsatadigan ma'lumot manbai.</>, ru: <>За панелью стоит таблица <b>joylar</b>: каждое парковочное место — одна строка (id, raqam, bandmi). Это источник данных, которые показывает панель.</> }, vis: <RcFlow items={["joylar", "bandmi", { uz: 'rang', ru: 'цвет' }]} /> },
-      { ic: "✅", h: "bandmi = BOOLEAN (true/false)", body: { uz: <>Joy bo'sh yoki bandligi — <b>bandmi BOOLEAN</b> ustunida: false 🟩 (bo'sh), true 🟥 (band). Bu ha/yo'q qiymati.</>, ru: <>Свободно место или занято — хранится в столбце <b>bandmi BOOLEAN</b>: false 🟩 (свободно), true 🟥 (занято). Это значение «да/нет».</> } },
-      { ic: "🎨", h: { uz: "Rang bandmi'dan chiqadi", ru: 'Цвет получается из bandmi' }, body: { uz: <>Panelning yashil/qizil rangi to'g'ridan-to'g'ri <b>bandmi</b> qiymatidan hisoblanadi — qorovul o'qimasdan holatni ko'radi.</>, ru: <>Зелёный/красный цвет панели считается прямо из значения <b>bandmi</b> — охранник видит состояние, ничего не читая.</> }, ask: { uz: "Joy bo'sh/bandligini qaysi ustun va tur saqlaydi?", ru: 'Какой столбец и какой тип хранит, свободно место или занято?' } },
+      { ic: "🗄️", h: { uz: "joylar jadvali — har joy bitta qator", ru: 'таблица joylar — каждое место одна строка' }, body: { uz: <>Panel ortida <b>joylar</b> jadvali turadi: har parking joyi — bitta qator.</>, ru: <>За панелью стоит таблица <b>joylar</b>: каждое парковочное место — одна строка.</> }, vis: <RcFlow items={["joylar", "bandmi", { uz: 'rang', ru: 'цвет' }]} /> },
+      { ic: "✅", h: "bandmi = BOOLEAN (true/false)", body: { uz: <>Joy holati <b>bandmi BOOLEAN</b> ustunida: false 🟩 bo'sh, true 🟥 band.</>, ru: <>Состояние места — в столбце <b>bandmi BOOLEAN</b>: false 🟩 свободно, true 🟥 занято.</> } },
+      { ic: "🎨", h: { uz: "Rang bandmi'dan chiqadi", ru: 'Цвет получается из bandmi' }, body: { uz: <>Panel rangi <b>bandmi</b> qiymatidan chiqadi — qorovul o'qimasdan holatni ko'radi.</>, ru: <>Цвет панели берётся из значения <b>bandmi</b> — охранник видит состояние, ничего не читая.</> }, ask: { uz: "Joy bo'sh/bandligini qaysi ustun va tur saqlaydi?", ru: 'Какой столбец и какой тип хранит, свободно место или занято?' } },
     ]
   },
   7: {
     title: { uz: "Bog'lanish — joy_id foreign key", ru: 'Связь — joy_id foreign key' },
     cards: [
-      { ic: "🔗", h: { uz: "joy_id ikki jadvalni bog'laydi", ru: 'joy_id связывает две таблицы' }, body: { uz: <>Kunlik tarix <b>sessiyalar</b> jadvalida. Har bir sessiyani <b>joy_id</b> ustuni o'z joyiga bog'laydi: u joylar.id ga ishora qiladi. Bunday bog'lovchi ustun — foreign key.</>, ru: <>Дневная история лежит в таблице <b>sessiyalar</b>. Каждый сеанс столбец <b>joy_id</b> привязывает к своему месту: он указывает на joylar.id. Такой связывающий столбец — foreign key.</> }, vis: <RcFlow items={[{ uz: 'joy', ru: 'место' }, "joy_id", { uz: 'sessiya', ru: 'сеанс' }]} /> },
-      { ic: "1️⃣", h: "REFERENCES joylar(id)", body: { uz: <>SQL'da: <b>joy_id INTEGER REFERENCES joylar(id)</b>. Shu yozuv joy_id faqat rostdan bor joyga ishora qilishini ta'minlaydi.</>, ru: <>В SQL: <b>joy_id INTEGER REFERENCES joylar(id)</b>. Эта запись гарантирует, что joy_id указывает только на реально существующее место.</> } },
-      { ic: "➕", h: { uz: "one-to-many: bitta joy → ko'p sessiya", ru: 'one-to-many: одно место → много сеансов' }, body: { uz: <>Bitta joy (mas. A2) kun bo'yi ko'p marta band bo'ladi — turli mashinalar. Hammasi bir xil <b>joy_id</b> bilan bog'lanadi.</>, ru: <>Одно место (напр. A2) за день занимают много раз — разные машины. Все сеансы связаны одним и тем же <b>joy_id</b>.</> }, ask: { uz: "Sessiyani joyga qaysi ustun bog'laydi?", ru: 'Какой столбец привязывает сеанс к месту?' } },
+      { ic: "🔗", h: { uz: "joy_id ikki jadvalni bog'laydi", ru: 'joy_id связывает две таблицы' }, body: { uz: <><b>joy_id</b> har sessiyani joylar.id ga bog'laydi — bunday ustun foreign key deyiladi.</>, ru: <><b>joy_id</b> привязывает каждый сеанс к joylar.id — такой столбец называют foreign key.</> }, vis: <RcFlow items={[{ uz: 'joy', ru: 'место' }, "joy_id", { uz: 'sessiya', ru: 'сеанс' }]} /> },
+      { ic: "1️⃣", h: "REFERENCES joylar(id)", body: { uz: <><b>joy_id INTEGER REFERENCES joylar(id)</b> — joy_id faqat bor joyga ishora qiladi.</>, ru: <><b>joy_id INTEGER REFERENCES joylar(id)</b> — joy_id указывает только на существующее место.</> } },
+      { ic: "➕", h: { uz: "one-to-many: bitta joy → ko'p sessiya", ru: 'one-to-many: одно место → много сеансов' }, body: { uz: <>Bitta joy kun bo'yi ko'p marta band bo'ladi — hammasi bir xil <b>joy_id</b> bilan.</>, ru: <>Одно место за день занимают много раз — все эти сеансы с одним <b>joy_id</b>.</> }, ask: { uz: "Sessiyani joyga qaysi ustun bog'laydi?", ru: 'Какой столбец привязывает сеанс к месту?' } },
     ]
   },
   12: {
     title: { uz: "Backend — POST band / PUT bo'sh", ru: 'Бэкенд — POST занято / PUT свободно' },
     cards: [
-      { ic: "🚗", h: { uz: "Kirish = POST (yangi sessiya)", ru: 'Въезд = POST (новый сеанс)' }, body: { uz: <>Mashina kirsa — <b>POST</b> yangi sessiya yozadi va joyni band qiladi (bandmi=true 🟥). Vaqtni <b>NOW()</b> avtomatik qo'yadi.</>, ru: <>Машина въезжает — <b>POST</b> записывает новый сеанс и делает место занятым (bandmi=true 🟥). Время автоматически ставит <b>NOW()</b>.</> }, vis: <RcFlow items={[{ uz: 'kirdi', ru: 'въехала' }, { uz: 'turdi', ru: 'стояла' }, { uz: 'chiqdi', ru: 'выехала' }]} /> },
-      { ic: "💸", h: { uz: "Chiqish = PUT (bo'sh + to'lov)", ru: 'Выезд = PUT (свободно + оплата)' }, body: { uz: <>Mashina chiqsa — <b>PUT</b> sessiyani yangilaydi: chiqqan vaqt yoziladi, <b>tolov</b> ustuniga 10 000 tushadi, joy bo'shaydi (bandmi=false 🟩).</>, ru: <>Машина выезжает — <b>PUT</b> обновляет сеанс: записывается время выезда, в столбец <b>tolov</b> падает 10 000, место освобождается (bandmi=false 🟩).</> } },
-      { ic: "⏱️", h: { uz: "NOW() — vaqtni server yozadi", ru: 'NOW() — время записывает сервер' }, body: { uz: <>Kirgan/chiqqan vaqtni qo'lda yozmaymiz — <b>NOW()</b> serverda hozirgi vaqtni avtomatik qo'yadi.</>, ru: <>Время въезда/выезда мы не пишем вручную — <b>NOW()</b> на сервере автоматически подставляет текущее время.</> }, ask: { uz: "Mashina kirganda qaysi amal ishlaydi?", ru: 'Какая операция срабатывает, когда машина въезжает?' } },
+      { ic: "🚗", h: { uz: "Kirish = POST (yangi sessiya)", ru: 'Въезд = POST (новый сеанс)' }, body: { uz: <>Mashina kirsa, <b>POST</b> yangi sessiya yozadi va joyni band qiladi (bandmi=true 🟥).</>, ru: <>Машина въезжает — <b>POST</b> пишет новый сеанс и занимает место (bandmi=true 🟥).</> }, vis: <RcFlow items={[{ uz: 'kirdi', ru: 'въехала' }, { uz: 'turdi', ru: 'стояла' }, { uz: 'chiqdi', ru: 'выехала' }]} /> },
+      { ic: "💸", h: { uz: "Chiqish = PUT (bo'sh + to'lov)", ru: 'Выезд = PUT (свободно + оплата)' }, body: { uz: <>Mashina chiqsa, <b>PUT</b> sessiyani yangilaydi va joyni bo'shatadi (bandmi=false 🟩).</>, ru: <>Машина выезжает — <b>PUT</b> обновляет сеанс и освобождает место (bandmi=false 🟩).</> } },
+      { ic: "⏱️", h: { uz: "NOW() — vaqtni server yozadi", ru: 'NOW() — время записывает сервер' }, body: { uz: <>Vaqtni qo'lda yozmaymiz — <b>NOW()</b> uni serverda avtomatik qo'yadi.</>, ru: <>Время не пишем вручную — <b>NOW()</b> ставит его на сервере автоматически.</> }, ask: { uz: "Mashina kirganda qaysi amal ishlaydi?", ru: 'Какая операция срабатывает, когда машина въезжает?' } },
     ]
   },
   16: {
     title: { uz: "JOIN — ikki jadvalni birlashtirish", ru: 'JOIN — объединение двух таблиц' },
     cards: [
-      { ic: "🔍", h: { uz: "sessiyalarda faqat joy_id bor", ru: 'в sessiyalar есть только joy_id' }, body: { uz: <>Kunlik tarixni ochsak, sessiyalarda joy belgisi emas, faqat <b>joy_id</b> (mas. 2) bor. Qorovul "2" nima ekanini bilmaydi.</>, ru: <>Если открыть дневную историю, в сеансах нет обозначения места — только <b>joy_id</b> (напр. 2). Охранник не знает, что такое «2».</> } },
-      { ic: "🔗", h: { uz: "JOIN joy_id = id bo'yicha", ru: 'JOIN по joy_id = id' }, body: { uz: <>JOIN ikki jadvalni <b>sessiyalar.joy_id = joylar.id</b> bo'yicha birlashtiradi — shunda joy belgisi (A2) tarixda ko'rinadi.</>, ru: <>JOIN объединяет две таблицы по условию <b>sessiyalar.joy_id = joylar.id</b> — и в истории появляется обозначение места (A2).</> }, vis: <RcFlow items={["joylar + sessiyalar", "JOIN", { uz: 'tarix', ru: 'история' }]} /> },
-      { ic: "📋", h: { uz: "Natija: o'qiladigan tarix + tushum", ru: 'Итог: читаемая история + выручка' }, body: { uz: <>JOIN'dan keyin tarix o'qiladigan bo'ladi: joy belgisi, mashina, to'lov. Kunlik tushum esa <b>SUM(tolov)</b> bilan chiqadi — SUM barcha to'lovlarni qo'shib jamlaydi.</>, ru: <>После JOIN история становится читаемой: место, машина, оплата. А дневную выручку даёт <b>SUM(tolov)</b> — SUM складывает все оплаты.</> }, ask: { uz: "Sessiya yoniga joy belgisini qo'shish uchun nima kerak?", ru: 'Что нужно, чтобы рядом с сеансом показать обозначение места?' } },
+      { ic: "🔍", h: { uz: "sessiyalarda faqat joy_id bor", ru: 'в sessiyalar есть только joy_id' }, body: { uz: <>Sessiyalarda joy belgisi yo'q, faqat <b>joy_id</b> bor — qorovul «2» nimaligini bilmaydi.</>, ru: <>В сеансах нет обозначения места, только <b>joy_id</b> — охранник не знает, что такое «2».</> } },
+      { ic: "🔗", h: { uz: "JOIN joy_id = id bo'yicha", ru: 'JOIN по joy_id = id' }, body: { uz: <>JOIN <b>sessiyalar.joy_id = joylar.id</b> bo'yicha birlashtiradi — joy belgisi tarixda ko'rinadi.</>, ru: <>JOIN объединяет по <b>sessiyalar.joy_id = joylar.id</b> — и в истории видно место (A2).</> }, vis: <RcFlow items={["joylar + sessiyalar", "JOIN", { uz: 'tarix', ru: 'история' }]} /> },
+      { ic: "📋", h: { uz: "Natija: o'qiladigan tarix + tushum", ru: 'Итог: читаемая история + выручка' }, body: { uz: <>JOIN'dan keyin tarix o'qiladi, kunlik tushumni esa <b>SUM(tolov)</b> hisoblaydi.</>, ru: <>После JOIN история читается, а дневную выручку считает <b>SUM(tolov)</b>.</> }, ask: { uz: "Sessiya yoniga joy belgisini qo'shish uchun nima kerak?", ru: 'Что нужно, чтобы рядом с сеансом показать обозначение места?' } },
     ]
   },
   // Eslatma: yakuniy s16 (idx 20) — custom yozma ekran, QuestionScreen EMAS → RecapOverlay u yerda
   // chaqirilmaydi. Shuning uchun 20-kalit YO'Q (etalon DataIntroLesson ham final ekranga recap bermaydi).
   // JOIN ON mavzusi 16-kalitdagi «JOIN — ikki jadvalni birlashtirish» kartalarida qamrab olingan.
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -304,7 +304,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -313,13 +313,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -397,7 +397,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не разобрался в теме. Перед тем как идти дальше, коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -406,7 +406,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту трудно судить. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatma', ru: 'Напоминание' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -489,7 +489,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -497,8 +497,9 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -508,11 +509,11 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -838,12 +839,12 @@ const Screen4 = (props) => (
     questionText="Joy bo'sh yoki bandligini saqlash uchun qaysi ustun?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Joy <span className="italic" style={{ color: T.accent }}>bo'sh/band</span>ligini qaysi ustun saqlaydi?</>, ru: <>Какой столбец хранит, <span className="italic" style={{ color: T.accent }}>свободно или занято</span> место?</> })}</h2></>}
     options={['id SERIAL PRIMARY KEY', 'raqam TEXT', 'bandmi BOOLEAN', 'tolov INTEGER']} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! BOOLEAN — bu ha/yo'q (true/false). bandmi = true bo'lsa joy band (🟥), false bo'lsa bo'sh (🟩). Panel rangi shunga qarab o'zgaradi.", ru: 'Верно! BOOLEAN — это «да/нет» (true/false). Если bandmi = true — место занято (🟥), если false — свободно (🟩). Цвет панели меняется именно по нему.' })}
+    explainCorrect={tr({ uz: "BOOLEAN — ha/yo'q: true band 🟥, false bo'sh 🟩.", ru: 'BOOLEAN — «да/нет»: true — занято 🟥, false — свободно 🟩.' })}
     explainWrong={{
-      0: tr({ uz: "id — takrorlanmas raqam. Bo'sh/band holati uchun bandmi BOOLEAN.", ru: 'id — уникальный номер. Для состояния «свободно/занято» нужен bandmi BOOLEAN.' }),
-      1: tr({ uz: "raqam — bu joy belgisi (A1, B2), holat emas. Bo'sh/band uchun bandmi BOOLEAN.", ru: 'raqam — это обозначение места (A1, B2), а не состояние. Для «свободно/занято» — bandmi BOOLEAN.' }),
-      3: tr({ uz: "tolov — pul miqdori. Joy holati uchun bandmi BOOLEAN.", ru: 'tolov — сумма денег. Для состояния места — bandmi BOOLEAN.' }),
-      default: tr({ uz: "Bo'sh/band = bandmi BOOLEAN (true/false).", ru: 'Свободно/занято = bandmi BOOLEAN (true/false).' })
+      0: tr({ uz: "id — takrorlanmas raqam, u joy holatini bildirmaydi.", ru: 'id — уникальный номер, состояние места он не показывает.' }),
+      1: tr({ uz: "raqam — joy belgisi (A1, B2), holat emas.", ru: 'raqam — обозначение места (A1, B2), а не его состояние.' }),
+      3: tr({ uz: "tolov — pul miqdori, joy holati emas.", ru: 'tolov — сумма денег, а не состояние места.' }),
+      default: tr({ uz: "Bo'sh yoki band — bu ha/yo'q savoli. Qaysi tur mos?", ru: 'Свободно или занято — это вопрос «да/нет». Какой тип подходит?' })
     }} />
 );
 
@@ -934,12 +935,12 @@ const Screen7 = (props) => (
     questionText="Sessiyani qaysi joyga tegishli ekanini qaysi ustun bog'laydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sessiyani <span className="italic" style={{ color: T.accent }}>joyga</span> qaysi ustun bog'laydi?</>, ru: <>Какой столбец привязывает сеанс <span className="italic" style={{ color: T.accent }}>к месту</span>?</> })}</h2></>}
     options={['mashina TEXT', 'joy_id INTEGER', 'tolov INTEGER', 'kirgan TIMESTAMP']} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! joy_id — foreign key: u joylar jadvalidagi id ga ishora qiladi. Shu orqali har sessiya qaysi joyga tegishli ekani aniqlanadi.", ru: 'Верно! joy_id — foreign key: он указывает на id в таблице joylar. Именно по нему видно, к какому месту относится каждый сеанс.' })}
+    explainCorrect={tr({ uz: "joy_id — foreign key: sessiyani joylar.id ga bog'laydi.", ru: 'joy_id — foreign key: привязывает сеанс к joylar.id.' })}
     explainWrong={{
-      0: tr({ uz: "mashina — bu davlat raqami, joyga bog'lamaydi. Bog'lovchi — joy_id (foreign key).", ru: 'mashina — это госномер, он не связывает с местом. Связующий столбец — joy_id (foreign key).' }),
-      2: tr({ uz: "tolov — pul miqdori. Joyga bog'lovchi ustun — joy_id.", ru: 'tolov — сумма денег. Столбец-связка с местом — joy_id.' }),
-      3: tr({ uz: "kirgan — vaqt. Bog'lanish joy_id orqali bo'ladi.", ru: 'kirgan — время. Связь идёт через joy_id.' }),
-      default: tr({ uz: "Bog'lovchi = joy_id (foreign key).", ru: 'Связующий столбец = joy_id (foreign key).' })
+      0: tr({ uz: "mashina — davlat raqami, u joyga bog'lamaydi.", ru: 'mashina — госномер, с местом он не связывает.' }),
+      2: tr({ uz: "tolov — pul miqdori, joyga ishora qilmaydi.", ru: 'tolov — сумма денег, на место не указывает.' }),
+      3: tr({ uz: "kirgan — vaqt, u qaysi joy ekanini aytmaydi.", ru: 'kirgan — это время, какое место — не говорит.' }),
+      default: tr({ uz: "Qaysi ustun joylar jadvalidagi id ga ishora qiladi?", ru: 'Какой столбец указывает на id в таблице joylar?' })
     }} />
 );
 
@@ -1084,12 +1085,12 @@ const Screen10 = (props) => (
     questionText="Mashina kirganda (yangi sessiya) qaysi amal ishlaydi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mashina <span className="italic" style={{ color: T.accent }}>kirganda</span> qaysi amal?</>, ru: <>Какая операция — когда машина <span className="italic" style={{ color: T.accent }}>въезжает</span>?</> })}</h2></>}
     options={[tr({ uz: 'GET — joylar ro\'yxatini o\'qish', ru: 'GET — прочитать список мест' }), tr({ uz: 'DELETE — sessiyani o\'chirish', ru: 'DELETE — удалить сеанс' }), tr({ uz: 'CSS — panelni chiroyli bezash', ru: 'CSS — красиво оформить панель' }), tr({ uz: 'POST — yangi sessiya yaratish', ru: 'POST — создать новый сеанс' })]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! Kirish = yangi yozuv = POST (INSERT). Va o'sha joy band qilinadi (UPDATE bandmi=true).", ru: 'Верно! Въезд = новая запись = POST (INSERT). И это место занимается (UPDATE bandmi=true).' })}
+    explainCorrect={tr({ uz: "Kirish — yangi yozuv, yangi yozuvni esa POST yaratadi.", ru: 'Въезд — это новая запись, а новую запись создаёт POST.' })}
     explainWrong={{
-      0: tr({ uz: "GET faqat o'qiydi — yangi yozuv qo'shmaydi. Kirish uchun POST kerak (yangi sessiya).", ru: 'GET только читает — новых записей не добавляет. Для въезда нужен POST (новый сеанс).' }),
-      1: tr({ uz: "DELETE bor yozuvni o'chiradi. Kirish esa yangi sessiya yaratadi — bu POST.", ru: 'DELETE удаляет существующую запись. А въезд создаёт новый сеанс — это POST.' }),
-      2: tr({ uz: "CSS faqat bezaydi, bazaga yozmaydi. Yangi sessiya yaratish — POST.", ru: 'CSS только оформляет, в базу не пишет. Создание нового сеанса — POST.' }),
-      default: tr({ uz: "Mashina kirdi = POST (yangi sessiya).", ru: 'Машина въехала = POST (новый сеанс).' })
+      0: tr({ uz: "GET faqat o'qiydi — yangi yozuv qo'shmaydi.", ru: 'GET только читает — новых записей не добавляет.' }),
+      1: tr({ uz: "DELETE bor yozuvni o'chiradi, kirish esa yangi yozuv.", ru: 'DELETE удаляет запись, а въезд — это новая запись.' }),
+      2: tr({ uz: "CSS faqat bezaydi, bazaga hech narsa yozmaydi.", ru: 'CSS только оформляет, в базу ничего не пишет.' }),
+      default: tr({ uz: "Mashina kirsa, yangi yozuv kerak — qaysi so'rov yaratadi?", ru: 'Въезд — это новая запись. Какой запрос её создаёт?' })
     }} />
 );
 
@@ -1210,12 +1211,12 @@ const Screen13 = (props) => (
     questionText="Sessiya yoniga joy belgisini (A2) qo'shib ko'rsatish uchun nima kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sessiya yoniga <span className="italic" style={{ color: T.accent }}>joy belgisini</span> qo'shish uchun?</>, ru: <>Что нужно, чтобы показать рядом с сеансом <span className="italic" style={{ color: T.accent }}>обозначение места</span>?</> })}</h2></>}
     options={[tr({ uz: 'DELETE — eski sessiyalarni o\'chirish', ru: 'DELETE — удалить старые сеансы' }), tr({ uz: 'Sessiyalarga yangi ustun qo\'shish', ru: 'Добавить в sessiyalar новый столбец' }), tr({ uz: 'JOIN — ikki jadvalni birlashtirish', ru: 'JOIN — объединить две таблицы' }), tr({ uz: 'CSS — jadvalga rang berish', ru: 'CSS — раскрасить таблицу' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! JOIN ikki jadvalni bog'lovchi ustun (joy_id = id) bo'yicha birlashtiradi — natijada sessiya bilan joy belgisi birga ko'rinadi.", ru: 'Верно! JOIN объединяет две таблицы по связующему столбцу (joy_id = id) — и сеанс показывается вместе с обозначением места.' })}
+    explainCorrect={tr({ uz: "JOIN jadvallarni joy_id = id bo'yicha birlashtiradi.", ru: 'JOIN объединяет таблицы по условию joy_id = id.' })}
     explainWrong={{
-      0: tr({ uz: "DELETE o'chiradi, birlashtirmaydi. Bu yerda ikki jadvalni birga o'qish kerak — JOIN.", ru: 'DELETE удаляет, а не объединяет. Здесь нужно читать две таблицы вместе — JOIN.' }),
-      1: tr({ uz: "Yangi ustun shart emas: joy belgisi allaqachon joylar jadvalida bor. Uni JOIN olib keladi.", ru: 'Новый столбец не нужен: обозначение места уже есть в таблице joylar. Его принесёт JOIN.' }),
-      3: tr({ uz: "CSS faqat bezaydi, ikki jadvalni birlashtirmaydi. Buning yo'li — JOIN.", ru: 'CSS только оформляет, таблицы он не объединяет. Путь здесь один — JOIN.' }),
-      default: tr({ uz: "Ikki jadvalni birlashtirish = JOIN.", ru: 'Объединить две таблицы = JOIN.' })
+      0: tr({ uz: "DELETE o'chiradi, jadvallarni birlashtirmaydi.", ru: 'DELETE удаляет, а таблицы не объединяет.' }),
+      1: tr({ uz: "Yangi ustun shart emas: joy belgisi joylar jadvalida bor.", ru: 'Новый столбец не нужен: обозначение места уже есть в joylar.' }),
+      3: tr({ uz: "CSS faqat bezaydi, ikki jadvalni birlashtirmaydi.", ru: 'CSS только оформляет, таблицы он не объединяет.' }),
+      default: tr({ uz: "Ikki jadvalni birga o'qiydigan SQL buyrug'ini eslang.", ru: 'Вспомните SQL-команду, которая читает две таблицы вместе.' })
     }} />
 );
 

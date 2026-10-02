@@ -272,23 +272,23 @@ const RECAPS = {
   3: {
     title: { uz: "Ilova faqat yozilganini biladi", ru: 'Приложение знает только записанное' },
     cards: [
-      { ic: '🗂', h: { uz: 'Sxema nima', ru: 'Что такое схема' }, body: { uz: <>Sxema — ilova nimani <b>yozib qolishini</b> ko'rsatadigan ustunlar ro'yxati. Har ustun bitta narsani yozib boradi.</>, ru: <>Схема — список столбцов, который показывает, что приложение <b>записывает</b>. Каждый столбец хранит одну вещь.</> } },
+      { ic: '🗂', h: { uz: 'Sxema nima', ru: 'Что такое схема' }, body: { uz: <>Sxema — ilova nimani <b>yozib qolishini</b> ko'rsatadigan ustunlar ro'yxati.</>, ru: <>Схема — список столбцов, который показывает, что приложение <b>записывает</b>.</> } },
       { ic: '⬜', h: { uz: "Yozilmagani nega yo'q hisoblanadi", ru: 'Почему незаписанного нет' }, body: { uz: <>Ustun bo'lmasa, ilovada bu ma'lumot uchun <b>joy ham yo'q</b> — u ekranga hech qachon chiqmaydi.</>, ru: <>Если столбца нет, в приложении для этих данных <b>нет и места</b> — на экран они не попадут никогда.</> } },
-      { ic: '📕', h: { uz: 'Kutubxonachi nega bilmagan', ru: 'Почему библиотекарь не знал' }, body: { uz: <>Kitob «band» deb turibdi, lekin kimga saqlashni hech kim ayta olmaydi: <b>kim band qilgani</b> yozilmagan.</>, ru: <>Книга стоит как «занята», но кому её отложить — никто сказать не может: <b>кто забронировал</b>, не записано.</> }, ask: { uz: "Ilova kim band qilganini ko'rsatishi uchun nima kerak edi?", ru: 'Что было нужно, чтобы приложение показало, кто забронировал?' } }
+      { ic: '📕', h: { uz: 'Kutubxonachi nega bilmagan', ru: 'Почему библиотекарь не знал' }, body: { uz: <>Kitob «band» deb turibdi, lekin <b>kim band qilgani</b> yozilmagan.</>, ru: <>Книга отмечена как «занята», но <b>кто забронировал</b>, не записано.</> }, ask: { uz: "Ilova kim band qilganini ko'rsatishi uchun nima kerak edi?", ru: 'Что было нужно, чтобы приложение показало, кто забронировал?' } }
     ]
   },
   5: {
     title: { uz: "Ustunni e'lon ochadi", ru: 'Столбец открывает анонс' },
     cards: [
-      { ic: '🧵', h: { uz: 'Gap ustunsiz qolsa', ru: 'Если фраза осталась без столбца' }, body: { uz: <>E'londagi gapga mos ustun topilmasa, sxemaga <b>yangi ustun</b> qo'shiladi — gap javobsiz qolmaydi.</>, ru: <>Если для фразы анонса не нашлось столбца, в схему добавляют <b>новый столбец</b> — фраза не остаётся без ответа.</> } },
-      { ic: '👁', h: { uz: 'Belgi ham gapdan keladi', ru: 'Метка тоже идёт из фразы' }, body: { uz: <>Ustunning 👁 yoki 🔒 belgisini <b>gapning o'zi</b> aytadi: ma'lumotni hamma ko'radimi yoki bitta odammi.</>, ru: <>Метку столбца 👁 или 🔒 подсказывает <b>сама фраза</b>: данные видят все или один человек.</> } },
+      { ic: '🧵', h: { uz: 'Gap ustunsiz qolsa', ru: 'Если фраза осталась без столбца' }, body: { uz: <>E'londagi gapga mos ustun topilmasa, sxemaga <b>yangi ustun</b> qo'shiladi.</>, ru: <>Если для фразы анонса нет столбца, в схему добавляют <b>новый столбец</b>.</> } },
+      { ic: '👁', h: { uz: 'Belgi ham gapdan keladi', ru: 'Метка тоже идёт из фразы' }, body: { uz: <>👁 yoki 🔒 belgisini <b>gapning o'zi</b> aytadi: hamma ko'radimi yoki bitta odam.</>, ru: <>Метку столбца 👁 или 🔒 подсказывает <b>сама фраза</b>: данные видят все или один человек.</> } },
       { ic: '📄', h: { uz: 'Xohish ustun ochmaydi', ru: 'Желание столбец не открывает' }, body: { uz: <>Ustunni «kerak bo'lar» degan o'y emas, e'londagi <b>aniq gap</b> ochadi.</>, ru: <>Столбец открывает не мысль «вдруг пригодится», а <b>конкретная фраза</b> анонса.</> }, ask: { uz: "«Kitob qachon bo'shashini ko'rasiz» — bu gap qaysi ustunni ochdi?", ru: '«Вы видите, когда книга освободится» — какой столбец открыла эта фраза?' } }
     ]
   },
   7: {
     title: { uz: "Avval e'lon, keyin kod", ru: 'Сначала анонс, потом код' },
     cards: [
-      { ic: '📦', h: { uz: 'Amazon nima qiladi', ru: 'Что делает Amazon' }, body: { uz: <>Amazon — dunyodagi eng katta internet-do'kon. Jamoa mahsulot allaqachon chiqqandek <b>e'lon yozadi</b>: u odamga nima beradi, nimasi yangi. Kod hali yo'q.</>, ru: <>Amazon — самый большой интернет-магазин в мире. Команда <b>пишет анонс</b> так, будто продукт уже вышел: что он даёт человеку, что в нём нового. Кода ещё нет.</> } },
+      { ic: '📦', h: { uz: 'Amazon nima qiladi', ru: 'Что делает Amazon' }, body: { uz: <>Amazon jamoasi mahsulot allaqachon chiqqandek <b>e'lon yozadi</b> — kod hali yo'q.</>, ru: <>Команда Amazon <b>пишет анонс</b> так, будто продукт уже вышел, — кода ещё нет.</> } },
       { ic: '🛑', h: { uz: "E'lon qiziqtirmasa", ru: 'Если анонс не заинтересовал' }, body: { uz: <>Hech kim qiziqmasa, mahsulot <b>qurilmaydi</b> — bir qator ham kod yozilmaydi.</>, ru: <>Если никому не интересно, продукт <b>не строят</b> — не пишут ни строчки кода.</> } },
       { ic: '📚', h: { uz: 'Kichikdan boshlangan', ru: 'Начинали с малого' }, body: { uz: <>Amazon ham birdan hamma narsani sotmagan: 1995-yilda u <b>faqat kitob</b> sotardi.</>, ru: <>Amazon тоже не сразу продавал всё подряд: в 1995 году он продавал <b>только книги</b>.</> }, ask: { uz: 'Amazon jamoasi kodni qachon yoza boshlaydi?', ru: 'Когда команда Amazon начинает писать код?' } }
     ]
@@ -296,14 +296,14 @@ const RECAPS = {
   11: {
     title: { uz: "Sxema shartlardan o'tadi", ru: 'Схема проходит проверку' },
     cards: [
-      { ic: '🔎', h: { uz: "Har ustun gapdan chiqqan", ru: 'Каждый столбец вышел из фразы' }, body: { uz: <>Har ustunga bitta savol bering: buni e'londagi <b>qaysi gap</b> so'radi? Javob topilmasa — ustun shartga mos kelmaydi.</>, ru: <>Задайте каждому столбцу один вопрос: <b>какая фраза</b> анонса его попросила? Если ответа нет — столбец условию не отвечает.</> } },
+      { ic: '🔎', h: { uz: "Har ustun gapdan chiqqan", ru: 'Каждый столбец вышел из фразы' }, body: { uz: <>Har ustunga bitta savol bering: buni e'londagi <b>qaysi gap</b> so'radi?</>, ru: <>Задайте каждому столбцу вопрос: <b>какая фраза</b> анонса его попросила?</> } },
       { ic: '🔒', h: { uz: "Yopiq ma'lumot belgilanadi", ru: 'Закрытые данные помечаются' }, body: { uz: <>Ma'lumotni hamma emas, bitta odam ko'rsa — ustun <b>🔒</b> belgisini oladi.</>, ru: <>Если данные видит не каждый, а один человек — столбец получает метку <b>🔒</b>.</> } },
       { ic: '🗂', h: { uz: 'Sxema qisqa qoladi', ru: 'Схема остаётся короткой' }, body: { uz: <>Shartlardan o'tgan sxemada ortiqcha ustun qolmaydi: har ustun ortida <b>bitta gap</b> turadi.</>, ru: <>В схеме, прошедшей проверку, лишних столбцов нет: за каждым столбцом стоит <b>одна фраза</b>.</> }, ask: { uz: 'Hech qaysi gapga ulanmagan ustun nima qilinadi?', ru: 'Что делают со столбцом, который не связан ни с одной фразой?' } }
     ]
   }
 };
 
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -321,7 +321,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -329,13 +329,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <div className="rc-ic">{card.ic}</div>
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
@@ -414,7 +414,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите, прежде чем идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту судить трудно. Оцените сами.</> })}</p>}
-            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirishni ochish', ru: 'Открыть объяснение заново' })}</button>}
+            {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: 'Eslatmani ochish', ru: 'Открыть напоминание' })}</button>}
           </div>
         );
       })()}
@@ -495,7 +495,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>✓ {revealPrefix}: {String.fromCharCode(65 + correctIdx)}</>
               : waiting
@@ -503,8 +503,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{revealPrefix}: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -515,7 +516,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           </p>
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -806,11 +807,11 @@ const Screen3 = (props) => (
     questionText={tr({ uz: "Ilova kim band qilganini ko'rsatishi uchun nima kerak", ru: 'Что нужно, чтобы приложение показало, кто забронировал' })}
     options={[tr({ uz: "Sxemada bu ma'lumot uchun ustun bo'lishi", ru: 'Чтобы в схеме был столбец для этих данных' }), tr({ uz: "Kutubxonachining sxemaga qarab turishi", ru: 'Чтобы библиотекарь следил за схемой' }), tr({ uz: "Kitobga «band» yorlig'i yopishtirilishi", ru: 'Чтобы на книгу наклеили ярлык «занята»' })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Ilova faqat sxemaga yozilganini biladi: ustun bo'lmasa, bu ma'lumot ham yo'q.", ru: 'Приложение знает только записанное в схему: нет столбца — нет и этих данных.' })}
+    explainCorrect={tr({ uz: "Ustun yo'q — ma'lumot ham yo'q: ilova faqat sxemani biladi.", ru: 'Нет столбца — нет и данных: приложение знает только схему.' })}
     explainWrong={{
-      1: tr({ uz: "Sxemaga qarash yetmaydi: ustun bo'lmasa, u yerda hech nima yozilmagan.", ru: 'Смотреть на схему мало: если столбца нет, там ничего не записано.' }),
-      2: tr({ uz: "Yorliq kitob bandligini bildiradi, lekin uni kim band qilgani sxemaga yozilmagan.", ru: 'Ярлык говорит, что книга занята, но кто её забронировал — в схему не записано.' }),
-      default: tr({ uz: "Ilova faqat sxemaga yozilganini biladi — ma'lumot uchun ustun kerak.", ru: 'Приложение знает только записанное в схему — для данных нужен столбец.' })
+      1: tr({ uz: "Qarash yetmaydi: sxemada yozilmaganni ko'rib bo'lmaydi.", ru: 'Смотреть мало: незаписанное в схеме не увидеть.' }),
+      2: tr({ uz: "Yorliq faqat «band» deydi — kim band qilganini aytmaydi.", ru: 'Ярлык говорит лишь «занята», но не говорит, кто забронировал.' }),
+      default: tr({ uz: "Ilova faqat yozilganini biladi — u qayerga yoziladi?", ru: 'Приложение знает только записанное — а куда записывают?' })
     }}
   />
 );
@@ -1008,11 +1009,11 @@ const Screen5 = (props) => (
     questionText={tr({ uz: "Sxemaga yangi ustun qachon qo'shiladi", ru: 'Когда в схему добавляют новый столбец' })}
     options={[tr({ uz: "Dasturchi e'londa yo'q ustunni xohlaganda", ru: 'Когда разработчик захотел столбец, которого нет в анонсе' }), tr({ uz: "E'londagi bitta gap ustunsiz qolganda", ru: 'Когда одна фраза анонса осталась без столбца' }), tr({ uz: "Kutubxonachi qo'shishni so'raganda", ru: 'Когда библиотекарь попросил добавить' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Ustunni dasturchi emas, e'lon ochadi.", ru: 'Столбец открывает не разработчик, а анонс.' })}
+    explainCorrect={tr({ uz: "Ustunni dasturchi emas, e'londagi gap ochadi.", ru: 'Столбец открывает не разработчик, а фраза анонса.' })}
     explainWrong={{
-      0: tr({ uz: "Ustunni dasturchining xohishi emas, e'londagi gap ochadi.", ru: 'Столбец открывает не желание разработчика, а фраза анонса.' }),
-      2: tr({ uz: "So'rov yetmaydi: ustun e'londagi gap ustunsiz qolganda qo'shiladi.", ru: 'Просьбы мало: столбец добавляют, когда фраза анонса осталась без столбца.' }),
-      default: tr({ uz: "Ustunni e'lon ochadi — gap ustunsiz qolsa, yangi ustun qo'shiladi.", ru: 'Столбец открывает анонс — если фраза осталась без столбца, добавляют новый.' })
+      0: tr({ uz: "Dasturchining xohishi ustun ochmaydi — sabab boshqa joyda.", ru: 'Желание разработчика столбец не открывает — причина в другом.' }),
+      2: tr({ uz: "Kutubxonachi so'rovi ham ustun ochmaydi — e'lonni eslang.", ru: 'Просьба библиотекаря тоже не открывает столбец — вспомните анонс.' }),
+      default: tr({ uz: "Ustun sababsiz ochilmaydi — sabab qayerda yozilgan?", ru: 'Столбец не открывают без причины — где записана причина?' })
     }}
   />
 );
@@ -1122,11 +1123,11 @@ const Screen7 = (props) => (
     questionText={tr({ uz: 'Amazon jamoasi kodni qachon yoza boshlaydi', ru: 'Когда команда Amazon начинает писать код' })}
     options={[tr({ uz: "G'oya aytilgan kunning o'zidayoq", ru: 'В тот же день, когда прозвучала идея' }), tr({ uz: "E'lon yozilishidan oldin", ru: 'До того, как написан анонс' }), tr({ uz: "E'lon odamlarni qiziqtirgach", ru: 'После того, как анонс заинтересовал людей' })]}
     correctIdx={2}
-    explainCorrect={tr({ uz: "Avval e'lon, keyin kod.", ru: 'Сначала анонс, потом код.' })}
+    explainCorrect={tr({ uz: "Avval e'lon qiziqtiradi, keyin kod yoziladi.", ru: 'Сначала анонс вызывает интерес, потом пишут код.' })}
     explainWrong={{
-      0: tr({ uz: "G'oya aytilishi bilan kod boshlanmaydi — avval e'lon yoziladi.", ru: 'Код не начинают сразу после идеи — сначала пишут анонс.' }),
-      1: tr({ uz: "Aksincha: e'lon koddan oldin yoziladi — kod undan keyin boshlanadi.", ru: 'Наоборот: анонс пишут до кода — код начинают после него.' }),
-      default: tr({ uz: "Avval e'lon odamlarni qiziqtiradi, kod undan keyin yoziladi.", ru: 'Сначала анонс заинтересовывает людей, код пишут после этого.' })
+      0: tr({ uz: "G'oyaning o'zi yetmaydi — undan keyin yana bir qadam bor.", ru: 'Одной идеи мало — после неё есть ещё один шаг.' }),
+      1: tr({ uz: "E'lonsiz kod yozilmaydi — avval odamlar fikri kerak.", ru: 'Без анонса код не пишут — сначала нужно мнение людей.' }),
+      default: tr({ uz: "Amazon tartibini eslang: kod qaysi qadamdan keyin?", ru: 'Вспомните порядок Amazon: после какого шага код?' })
     }}
   />
 );
@@ -1376,7 +1377,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const off = u.id === 'tug' && chizilgan;
                 const flip = u.id === 'tel' && yopildi;
                 return (
-                  <button key={u.id} type="button" className={`sxm-row${off ? ' off' : ''}${flip ? ' fixed' : ''}`} disabled={isMentor || hal || done} onClick={() => hukm(u.id)}>
+                  <button key={u.id} type="button" className={`sxm-row${off ? ' off' : ''}${flip ? ' is-fixed' : ''}`} disabled={isMentor || hal || done} onClick={() => hukm(u.id)}>
                     <span className="sxm-ic">{u.ic}</span>
                     <span className="sxm-t">{tr(u.t)}</span>
                     <span className={`sxm-mark${flip ? ' lit' : ''}`}>{flip ? '🔒' : u.belgi}</span>
@@ -1758,9 +1759,9 @@ const ScreenFinalTest = (props) => (
     correctIdx={1}
     explainCorrect={tr({ uz: "E'londa yo'q gapga ustun ham kerak emas.", ru: 'Фразе, которой нет в анонсе, столбец не нужен.' })}
     explainWrong={{
-      0: tr({ uz: "Bo'sh ustunni hech qaysi gap so'ramagan — u sxemada qolmaydi.", ru: 'Пустой столбец не просила ни одна фраза — в схеме он не остаётся.' }),
-      2: tr({ uz: "Zaxira bahonasi ustunni saqlab qolmaydi — uni e'londagi gap ochadi.", ru: 'Отговорка «про запас» столбец не спасает — его открывает фраза анонса.' }),
-      default: tr({ uz: "E'londa yo'q gapga ustun ham kerak emas.", ru: 'Фразе, которой нет в анонсе, столбец не нужен.' })
+      0: tr({ uz: "Bo'sh ustunni hech qaysi gap so'ramagan — u ortiqcha.", ru: 'Пустой столбец не просила ни одна фраза — он лишний.' }),
+      2: tr({ uz: "«Zaxira uchun» — bu xohish, e'londagi gap emas.", ru: '«Про запас» — это желание, а не фраза анонса.' }),
+      default: tr({ uz: "Bu ustunni e'londagi qaysi gap so'radi?", ru: 'Какая фраза анонса попросила этот столбец?' })
     }}
   />
 );
@@ -2842,7 +2843,7 @@ const CSS_LESSON = `
   .sxm-row:focus-visible { outline: none; box-shadow: inset 0 0 0 2px ${T.accent}; }
   .sxm-row.off { opacity: 0.45; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .sxm-row.off .sxm-t, .sxm-row.off .sxm-ic { text-decoration: line-through; }
-  .sxm-row.fixed { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; }
+  .sxm-row.is-fixed { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; }
   .sxm-ic { font-size: 17px; line-height: 1; flex-shrink: 0; }
   .sxm-t { flex: 1; min-width: 0; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.35; overflow-wrap: anywhere; }
   .sxm-mark { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; background: ${T.paper}; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; }

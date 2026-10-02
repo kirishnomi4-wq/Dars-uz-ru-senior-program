@@ -252,38 +252,38 @@ const RECAPS = {
   4: {
     title: { uz: "CRUD — ilovaning 4 amali", ru: 'CRUD — 4 действия приложения' },
     cards: [
-      { ic: "🔤", h: { uz: "CRUD — 4 harf, 4 amal", ru: 'CRUD — 4 буквы, 4 действия' }, body: { uz: <>CRUD — yangi dastur yoki til emas. U — deyarli har ilova bajaradigan <b>4 ta amalning</b> qisqartmasi: <b>C</b>reate (qo'shish), <b>R</b>ead (ko'rsatish), <b>U</b>pdate (o'zgartirish), <b>D</b>elete (o'chirish).</>, ru: <>CRUD — не новая программа и не язык. Это сокращение <b>4 действий</b>, которые выполняет почти каждое приложение: <b>C</b>reate (добавить), <b>R</b>ead (показать), <b>U</b>pdate (изменить), <b>D</b>elete (удалить).</> }, vis: <RcFlow items={["Create", "Read", "Update", "Delete"]} sep="·" /> },
-      { ic: "🐟", h: { uz: "Akvarium misolida", ru: 'На примере аквариума' }, body: { uz: <>Akvariumga yangi baliq <b>qo'shasiz</b> (Create), baliqlarga <b>qaraysiz</b> (Read), birining rangini <b>o'zgartirasiz</b> (Update), keraksizini <b>olib tashlaysiz</b> (Delete). "Mening o'yinlarim" ro'yxati ham xuddi shunday ishlaydi.</>, ru: <>В аквариум вы <b>добавляете</b> новую рыбку (Create), <b>смотрите</b> на рыбок (Read), <b>меняете</b> цвет одной из них (Update), ненужную <b>убираете</b> (Delete). Список «Мои игры» работает точно так же.</> } },
-      { ic: "📱", h: { uz: "Har joyda shu 4 amal", ru: 'Эти 4 действия — везде' }, body: { uz: <>Instagram, do'kon, telefon kitobi — hammasi shu 4 amaldan tashkil topgan. Shuning uchun CRUD'ni bilsangiz, deyarli har ilovaning ichki mantig'ini tushunasiz.</>, ru: <>Instagram, магазин, телефонная книга — всё построено из этих 4 действий. Поэтому, зная CRUD, вы понимаете внутреннюю логику почти любого приложения.</> }, ask: { uz: "Telefoningizdagi qaysi ilovada shu 4 amalning hammasini ko'rasiz?", ru: 'В каком приложении на вашем телефоне вы видите все 4 действия?' } },
+      { ic: "🔤", h: { uz: "CRUD — 4 harf, 4 amal", ru: 'CRUD — 4 буквы, 4 действия' }, body: { uz: <>CRUD — deyarli har ilova bajaradigan <b>4 amal</b>: Create, Read, Update, Delete.</>, ru: <>CRUD — <b>4 действия</b> почти любого приложения: Create, Read, Update, Delete.</> }, vis: <RcFlow items={["Create", "Read", "Update", "Delete"]} sep="·" /> },
+      { ic: "🐟", h: { uz: "Akvarium misolida", ru: 'На примере аквариума' }, body: { uz: <>Akvariumda baliq qo'shasiz, qaraysiz, rangini o'zgartirasiz, olib tashlaysiz — bu <b>CRUD</b>.</>, ru: <>В аквариуме вы добавляете рыбку, смотрите, меняете цвет и убираете — это и есть <b>CRUD</b>.</> } },
+      { ic: "📱", h: { uz: "Har joyda shu 4 amal", ru: 'Эти 4 действия — везде' }, body: { uz: <>Instagram, do'kon, telefon kitobi — hammasi <b>shu 4 amal</b> ustiga qurilgan.</>, ru: <>Instagram, магазин, телефонная книга — всё построено на <b>этих 4 действиях</b>.</> }, ask: { uz: "Telefoningizdagi qaysi ilovada shu 4 amalning hammasini ko'rasiz?", ru: 'В каком приложении на вашем телефоне вы видите все 4 действия?' } },
     ]
   },
   7: {
     title: { uz: "Create — [...games, yangi] bilan qo'shish", ru: 'Create — добавление через [...games, yangi]' },
     cards: [
-      { ic: "➕", h: { uz: "Qo'shish = eski hammasi + yangisi", ru: 'Добавить = всё старое + новое' }, body: { uz: <>Ro'yxatga o'yin qo'shish uchun eski ro'yxatni <b>almashtirmaymiz</b> — uni ko'chiramiz va oxiriga yangisini qo'yamiz: <span className="mono">[...games, yangi]</span>.</>, ru: <>Чтобы добавить игру в список, мы <b>не заменяем</b> старый список — мы копируем его и ставим новую в конец: <span className="mono">[...games, yangi]</span>.</> }, vis: <RcFlow items={["...games", "yangi", { uz: "= yangi ro'yxat", ru: '= новый список' }]} /> },
-      { ic: "⋯", h: { uz: "Uch nuqta — spread", ru: 'Три точки — spread' }, body: { uz: <>Uch nuqta (<b>spread</b>) "eski ro'yxatning <b>hammasini ko'chir</b>" degani. Keyin vergul qo'yib yangisini yozamiz. Natijada eski o'yinlar ham saqlanadi, yangisi ham qo'shiladi.</>, ru: <>Три точки (<b>spread</b>) значат «<b>скопируй всё</b> из старого списка». Потом ставим запятую и пишем новую. В итоге старые игры сохраняются, и новая добавляется.</> } },
-      { ic: "⚠️", h: { uz: "games = yangi — xato", ru: 'games = yangi — ошибка' }, body: { uz: <>Agar <span className="mono">games = yangi</span> desangiz, eski o'yinlar <b>yo'qoladi</b>. To'g'ri yo'l — <span className="mono">setGames([...games, yangi])</span>: eski hammasi + yangisi.</>, ru: <>Если написать <span className="mono">games = yangi</span>, старые игры <b>пропадут</b>. Правильный путь — <span className="mono">setGames([...games, yangi])</span>: всё старое + новая.</> }, ask: { uz: "Nega [...games, yangi] eski o'yinlarni saqlaydi, games = yangi esa saqlamaydi?", ru: 'Почему [...games, yangi] сохраняет старые игры, а games = yangi — нет?' } },
+      { ic: "➕", h: { uz: "Qo'shish = eski hammasi + yangisi", ru: 'Добавить = всё старое + новое' }, body: { uz: <>Qo'shishda eski ro'yxatni ko'chirib, <b>oxiriga yangisini</b> qo'yamiz: <span className="mono">[...games, yangi]</span>.</>, ru: <>При добавлении копируем старый список и ставим <b>новую в конец</b>: <span className="mono">[...games, yangi]</span>.</> }, vis: <RcFlow items={["...games", "yangi", { uz: "= yangi ro'yxat", ru: '= новый список' }]} /> },
+      { ic: "⋯", h: { uz: "Uch nuqta — spread", ru: 'Три точки — spread' }, body: { uz: <>Uch nuqta (<b>spread</b>) eski ro'yxatni to'liq ko'chiradi, yangisi verguldan keyin yoziladi.</>, ru: <>Три точки (<b>spread</b>) копируют весь старый список, а новая пишется после запятой.</> } },
+      { ic: "⚠️", h: { uz: "games = yangi — xato", ru: 'games = yangi — ошибка' }, body: { uz: <><span className="mono">games = yangi</span> bilan <b>eski o'yinlar yo'qoladi</b>, to'g'ri yo'l — <span className="mono">setGames([...games, yangi])</span>.</>, ru: <><span className="mono">games = yangi</span> стирает <b>старые игры</b>, верный путь — <span className="mono">setGames([...games, yangi])</span>.</> }, ask: { uz: "Nega [...games, yangi] eski o'yinlarni saqlaydi, games = yangi esa saqlamaydi?", ru: 'Почему [...games, yangi] сохраняет старые игры, а games = yangi — нет?' } },
     ]
   },
   12: {
     title: { uz: "Delete — filter bilan o'chirish", ru: 'Delete — удаление через filter' },
     cards: [
-      { ic: "🗑️", h: { uz: "O'chirish = boshqasini saqlab qolish", ru: 'Удалить = сохранить всё остальное' }, body: { uz: <>Bitta o'yinni o'chirish uchun uni "o'chir" demaymiz — <b>undan boshqa hammasini saqlab</b> qolamiz: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</>, ru: <>Чтобы удалить одну игру, мы не говорим ей «удались» — мы <b>сохраняем все остальные</b>: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</> }, vis: <RcFlow items={["games", { uz: "filter(id !== o'chiriladigan)", ru: 'filter(id !== удаляемый)' }, { uz: "qolgani", ru: 'остальное' }]} /> },
-      { ic: "🔍", h: { uz: "filter — shartga mos kelganini olib qol", ru: 'filter — оставь подходящее под условие' }, body: { uz: <><b>filter</b> ro'yxatdan shartga <b>mos kelganlarini</b> saqlaydi. <span className="mono">g.id !== id</span> = "o'chirilayotganidan boshqa hammasi rost" — natijada o'sha bitta o'yin tushib qoladi.</>, ru: <><b>filter</b> сохраняет из списка элементы, <b>подходящие под условие</b>. <span className="mono">g.id !== id</span> = «все, кроме удаляемой, — истина» — в итоге именно та игра выпадает.</> } },
-      { ic: "🚫", h: { uz: "map ham, [...games] ham emas", ru: 'не map и не [...games]' }, body: { uz: <>map — o'zgartirish (Update), <span className="mono">[...games, yangi]</span> — qo'shish (Create). O'chirish faqat <b>filter</b> bilan bo'ladi.</>, ru: <>map — изменение (Update), <span className="mono">[...games, yangi]</span> — добавление (Create). Удаление делается только через <b>filter</b>.</> }, ask: { uz: "Nega o'chirishni 'boshqasini saqlash' deb tushunish osonroq?", ru: 'Почему удаление проще понимать как «сохранить остальные»?' } },
+      { ic: "🗑️", h: { uz: "O'chirish = boshqasini saqlab qolish", ru: 'Удалить = сохранить всё остальное' }, body: { uz: <>O'chirish — <b>boshqa hammasini</b> saqlab qolish: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</>, ru: <>Удалить — значит <b>оставить все остальные</b>: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</> }, vis: <RcFlow items={["games", { uz: "filter(id !== o'chiriladigan)", ru: 'filter(id !== удаляемый)' }, { uz: "qolgani", ru: 'остальное' }]} /> },
+      { ic: "🔍", h: { uz: "filter — shartga mos kelganini olib qol", ru: 'filter — оставь подходящее под условие' }, body: { uz: <><b>filter</b> shartga mos kelganlarni saqlaydi: <span className="mono">g.id !== id</span> — o'chirilayotganidan boshqa hammasi.</>, ru: <><b>filter</b> оставляет подходящие под условие: <span className="mono">g.id !== id</span> — все, кроме удаляемой.</> } },
+      { ic: "🚫", h: { uz: "map ham, [...games] ham emas", ru: 'не map и не [...games]' }, body: { uz: <>map — o'zgartirish, <span className="mono">[...games, yangi]</span> — qo'shish, o'chirish esa <b>faqat filter</b> bilan.</>, ru: <>map — изменение, <span className="mono">[...games, yangi]</span> — добавление, а удаление — <b>только через filter</b>.</> }, ask: { uz: "Nega o'chirishni 'boshqasini saqlash' deb tushunish osonroq?", ru: 'Почему удаление проще понимать как «сохранить остальные»?' } },
     ]
   },
   16: {
     title: { uz: "Update — map bilan o'zgartirish", ru: 'Update — изменение через map' },
     cards: [
-      { ic: "✏️", h: { uz: "Update = mavjudini o'zgartirish", ru: 'Update = изменить существующее' }, body: { uz: <>Like sonini oshirsangiz, o'yin o'sha o'yinligicha <b>qoladi</b> — faqat bir xossasi o'zgaradi. Bu — <b>Update</b>. Buning uchun <span className="mono">games.map</span> ishlatamiz.</>, ru: <>Когда вы увеличиваете число лайков, игра <b>остаётся</b> той же игрой — меняется лишь одно её свойство. Это — <b>Update</b>. Для этого используем <span className="mono">games.map</span>.</> }, vis: <RcFlow items={["games.map", { uz: "kerakli o'yinni topib", ru: 'находим нужную игру' }, { uz: "yangilaymiz", ru: 'обновляем' }]} /> },
-      { ic: "🎯", h: { uz: "map — faqat kerakligini yangilaydi", ru: 'map обновляет только нужную' }, body: { uz: <><span className="mono">games.map(g =&gt; g.id === id ? {"{"} ...g, likes: g.likes + 1 {"}"} : g)</span> — mos o'yinni <b>yangilaydi</b>, qolganini o'z holicha qaytaradi.</>, ru: <><span className="mono">games.map(g =&gt; g.id === id ? {"{"} ...g, likes: g.likes + 1 {"}"} : g)</span> — <b>обновляет</b> подходящую игру, остальные возвращает как есть.</> } },
-      { ic: "🔁", h: { uz: "Qo'shish emas, o'chirish emas", ru: 'Не добавление и не удаление' }, body: { uz: <>Yangi o'yin qo'shilmayapti (Create emas), o'yin o'chmayapti (Delete emas). Mavjud narsa <b>o'zgaryapti</b> — bu Update.</>, ru: <>Новая игра не добавляется (не Create), игра не удаляется (не Delete). Существующее <b>меняется</b> — это Update.</> }, ask: { uz: "Like bosish nega Create yoki Delete emas, balki Update?", ru: 'Почему лайк — это не Create и не Delete, а Update?' } },
+      { ic: "✏️", h: { uz: "Update = mavjudini o'zgartirish", ru: 'Update = изменить существующее' }, body: { uz: <>Like oshsa, o'yin o'sha o'yinligicha qoladi — bu <b>Update</b>, uni <span className="mono">games.map</span> qiladi.</>, ru: <>Лайков стало больше, а игра та же — это <b>Update</b>, его делает <span className="mono">games.map</span>.</> }, vis: <RcFlow items={["games.map", { uz: "kerakli o'yinni topib", ru: 'находим нужную игру' }, { uz: "yangilaymiz", ru: 'обновляем' }]} /> },
+      { ic: "🎯", h: { uz: "map — faqat kerakligini yangilaydi", ru: 'map обновляет только нужную' }, body: { uz: <><span className="mono">games.map</span> <b>mos o'yinni</b> yangilaydi, qolganini o'z holicha qaytaradi.</>, ru: <><span className="mono">games.map</span> обновляет <b>подходящую игру</b>, а остальные возвращает как есть.</> } },
+      { ic: "🔁", h: { uz: "Qo'shish emas, o'chirish emas", ru: 'Не добавление и не удаление' }, body: { uz: <>Qo'shish ham, o'chirish ham yo'q — <b>bor narsa o'zgaradi</b>, bu Update.</>, ru: <>Ничего не добавляется и не удаляется — <b>меняется существующее</b>, это Update.</> }, ask: { uz: "Like bosish nega Create yoki Delete emas, balki Update?", ru: 'Почему лайк — это не Create и не Delete, а Update?' } },
     ]
   },
 };
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -301,7 +301,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-tag">{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</span>
         <span className="rc-title">{tr(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
@@ -310,13 +310,13 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: 'Tushunarli', ru: 'Понятно' })}</button>
           : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
@@ -397,7 +397,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась классу непонятной. Перед продолжением коротко повторите.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Qayta tushuntirish — ', ru: 'Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: 'Eslatma — ', ru: 'Напоминание — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
@@ -488,7 +488,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
-          <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {(isMentorLive || waiting || wrongLocked) && (<p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
               ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
@@ -496,8 +496,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
                 : wrongLocked
                   ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
                   : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
-          </p>
+          </p>)}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr({ uz: "✓ To'g'ri.", ru: '✓ Верно.' }) : tr({ uz: '✗ Xato.', ru: '✗ Неверно.' })}</b>}
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
@@ -509,11 +510,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Eslatma', ru: '📖 Напоминание' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>
   );
@@ -891,12 +892,12 @@ const Screen4 = (props) => (
     questionText="CRUD nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>CRUD</span> — bu <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <><span className="mono" style={{ color: T.accent }}>CRUD</span> — это <span className="italic" style={{ color: T.accent }}>что</span>?</> })}</h2></>}
     options={[tr({ uz: 'Internet tezligini oshiruvchi dastur', ru: 'Программа для ускорения интернета' }), tr({ uz: "Ilovaning 4 amali (qo'shish, o'chirish...)", ru: '4 действия приложения (добавить, удалить...)' }), tr({ uz: "CSS'dagi maxsus rang nomi", ru: 'Название специального цвета в CSS' }), tr({ uz: 'Yangi dasturlash tilining nomi', ru: 'Название нового языка программирования' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "CRUD = Create (qo'shish) · Read (ko'rsatish) · Update (o'zgartirish) · Delete (o'chirish). Deyarli har ilova shu 4 amalni bajaradi.", ru: 'CRUD = Create (добавить) · Read (показать) · Update (изменить) · Delete (удалить). Почти каждое приложение выполняет эти 4 действия.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "CRUD — Create, Read, Update, Delete: ilovaning 4 amali.", ru: 'CRUD — Create, Read, Update, Delete: четыре действия приложения.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — tezlikka aloqasi yo'q. CRUD — ma'lumot ustidagi 4 amal.", ru: 'Нет — к скорости это не относится. CRUD — 4 действия над данными.' }),
-      2: tr({ uz: "Yo'q — rang emas. CRUD = qo'shish, ko'rsatish, o'zgartirish, o'chirish.", ru: 'Нет — это не цвет. CRUD = добавить, показать, изменить, удалить.' }),
-      3: tr({ uz: "Yo'q — CRUD til emas. Bu 4 ta amalning qisqartmasi: Create, Read, Update, Delete.", ru: 'Нет — CRUD не язык. Это сокращение 4 действий: Create, Read, Update, Delete.' }),
-      default: tr({ uz: "CRUD = Create · Read · Update · Delete — ilovaning 4 asosiy amali.", ru: 'CRUD = Create · Read · Update · Delete — 4 основных действия приложения.' })
+      0: tr({ uz: "CRUD tezlik haqida emas, ma'lumot bilan ishlash haqida.", ru: 'CRUD не про скорость, а про работу с данными.' }),
+      2: tr({ uz: "CRUD rang nomi emas — u to'rt so'zning bosh harflari.", ru: 'CRUD — не цвет, а первые буквы четырёх слов.' }),
+      3: tr({ uz: "CRUD'da kod yozilmaydi — u to'rt so'zning qisqartmasi.", ru: 'На CRUD не пишут код — это сокращение четырёх слов.' }),
+      default: tr({ uz: "CRUD'ning har bir harfi bitta amalni bildiradi.", ru: 'Каждая буква CRUD обозначает одно действие.' })
     }} />
 );
 
@@ -951,12 +952,12 @@ const Screen5b = (props) => (
     questionText="Ro'yxatga yangi o'yin qo'shish uchun to'g'ri kod qaysi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Ro'yxatga <span className="italic" style={{ color: T.accent }}>yangi o'yin qo'shish</span> uchun qaysi kod?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>добавит новую игру</span> в список?</> })}</h2></>}
     options={[tr({ uz: "games = yangi — ro'yxatni almashtiradi", ru: 'games = yangi — заменяет список' }), tr({ uz: 'games.length + 1 — sonini oshiradi', ru: 'games.length + 1 — увеличивает число' }), tr({ uz: 'setGames(yangi) — faqat bittasi qoladi', ru: 'setGames(yangi) — останется только одна' }), tr({ uz: 'setGames([...games, yangi]) — eski + yangisi', ru: 'setGames([...games, yangi]) — старое + новая' })]} correctIdx={3}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "[...games, yangi] eski ro'yxatning hammasini ko'chiradi va oxiriga yangisini qo'shadi. setGames buni ekranga chiqaradi.", ru: '[...games, yangi] копирует весь старый список и добавляет новую в конец. setGames выводит это на экран.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "`...games` eskisini ko'chiradi, yangisi oxiriga qo'shiladi.", ru: '`...games` копирует старые игры, а новая встаёт в конец.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — bunda eski o'yinlar yo'qoladi. [...games, yangi] eskisini ham saqlaydi.", ru: 'Нет — так старые игры пропадут. [...games, yangi] сохраняет и старое.' }),
-      1: tr({ uz: "Yo'q — bu shunchaki son. Ro'yxatga qo'shish: [...games, yangi].", ru: 'Нет — это просто число. Добавление в список: [...games, yangi].' }),
-      2: tr({ uz: "Yo'q — setGames(yangi) bo'lsa ro'yxatda faqat bitta o'yin qoladi. Eskisini saqlash uchun [...games, yangi].", ru: 'Нет — с setGames(yangi) в списке останется только одна игра. Чтобы сохранить старое: [...games, yangi].' }),
-      default: tr({ uz: "Qo'shish = setGames([...games, yangi]): eski hammasi + yangisi.", ru: 'Добавление = setGames([...games, yangi]): всё старое + новая.' })
+      0: tr({ uz: "Bunda eski o'yinlar yo'qoladi, React esa buni sezmaydi.", ru: 'Так старые игры пропадут, а React этого даже не заметит.' }),
+      1: tr({ uz: "Bu shunchaki son — ro'yxatga hech narsa qo'shilmaydi.", ru: 'Это просто число — в список ничего не добавится.' }),
+      2: tr({ uz: "`setGames(yangi)` bilan ro'yxatda faqat bitta o'yin qoladi.", ru: 'С `setGames(yangi)` в списке останется только одна игра.' }),
+      default: tr({ uz: "Eski o'yinlar ham saqlanib, yangisi qo'shilishi kerak.", ru: 'Старые игры должны остаться, а новая — добавиться.' })
     }} />
 );
 
@@ -1053,12 +1054,12 @@ const Screen8 = (props) => (
     questionText="Bitta o'yinni ro'yxatdan o'chirish uchun qaysi kod?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bitta o'yinni <span className="italic" style={{ color: T.accent }}>o'chirish</span> uchun qaysi kod?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>удалит</span> одну игру?</> })}</h2></>}
     options={[tr({ uz: "games.map(...) — bittasini o'zgartiradi", ru: 'games.map(...) — изменяет одну' }), tr({ uz: "[...games, yangi] — bittasini qo'shadi", ru: '[...games, yangi] — добавляет одну' }), tr({ uz: 'games.filter(g => g.id !== id) — boshqasini saqlaydi', ru: 'games.filter(g => g.id !== id) — сохраняет остальные' }), tr({ uz: 'games.length — faqat sonini sanaydi', ru: 'games.length — просто считает количество' })]} correctIdx={2}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "filter shartga mos kelganlarni saqlaydi. g.id !== id = 'o'chirilayotganidan boshqa hammasini olib qol' — natijada o'sha o'yin tushib qoladi.", ru: 'filter сохраняет подходящие под условие. g.id !== id = «оставь все, кроме удаляемой» — в итоге та игра выпадает.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "`filter` o'chirilayotganidan boshqa hammasini olib qoladi.", ru: '`filter` оставляет всё, кроме удаляемой игры.' })}
     explainWrong={{
-      0: tr({ uz: "Yo'q — map o'chirmaydi, o'zgartiradi (Update). O'chirish — filter.", ru: 'Нет — map не удаляет, а изменяет (Update). Удаление — filter.' }),
-      1: tr({ uz: "Yo'q — bu qo'shish (Create). O'chirish uchun filter.", ru: 'Нет — это добавление (Create). Для удаления — filter.' }),
-      3: tr({ uz: "Yo'q — bu shunchaki son. O'chirish: games.filter(g => g.id !== id).", ru: 'Нет — это просто число. Удаление: games.filter(g => g.id !== id).' }),
-      default: tr({ uz: "O'chirish = games.filter(g => g.id !== id) — o'sha id'dan boshqa hammasini saqlaydi.", ru: 'Удаление = games.filter(g => g.id !== id) — сохраняет все, кроме этого id.' })
+      0: tr({ uz: "`map` o'chirmaydi — u bor narsani o'zgartiradi.", ru: '`map` не удаляет — он изменяет то, что есть.' }),
+      1: tr({ uz: "Bu qo'shish (Create), o'chirish emas.", ru: 'Это добавление (Create), а не удаление.' }),
+      3: tr({ uz: "`games.length` faqat sanaydi, ro'yxatni o'zgartirmaydi.", ru: '`games.length` только считает и список не меняет.' }),
+      default: tr({ uz: "Bittasini o'chirish uchun qolganlarini saqlab qolish kerak.", ru: 'Чтобы удалить одну, нужно оставить все остальные.' })
     }} />
 );
 
@@ -1233,12 +1234,12 @@ const Screen12 = (props) => (
     questionText="O'yinning like sonini oshirish — bu CRUD'ning qaysi amali?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>O'yinning <span className="italic" style={{ color: T.accent }}>like sonini oshirish</span> — qaysi amal?</>, ru: <>Увеличить <span className="italic" style={{ color: T.accent }}>число лайков</span> игры — какое это действие?</> })}</h2></>}
     options={[tr({ uz: "Update — mavjud o'yinni o'zgartirish", ru: 'Update — изменить существующую игру' }), tr({ uz: "Create — yangi o'yin qo'shish", ru: 'Create — добавить новую игру' }), tr({ uz: "Delete — o'yinni ro'yxatdan o'chirish", ru: 'Delete — удалить игру из списка' }), tr({ uz: "Read — ro'yxatni ekranga ko'rsatish", ru: 'Read — показать список на экране' })]} correctIdx={0}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Like soni o'zgaradi, lekin o'yin o'sha o'yinligicha qoladi — bu Update. games.map bilan faqat o'sha elementni yangilaymiz.", ru: 'Число лайков меняется, но игра остаётся той же — это Update. Через games.map обновляем только этот элемент.' })}
+    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Like soni o'zgaradi, o'yin esa o'sha o'yinligicha qoladi.", ru: 'Число лайков меняется, а игра остаётся той же.' })}
     explainWrong={{
-      1: tr({ uz: "Yo'q — yangi o'yin qo'shilmayapti, mavjudi o'zgaryapti. Bu Update.", ru: 'Нет — новая игра не добавляется, меняется существующая. Это Update.' }),
-      2: tr({ uz: "Yo'q — o'yin o'chmayapti, like'i o'zgaryapti. Bu Update.", ru: 'Нет — игра не удаляется, меняется её лайк. Это Update.' }),
-      3: tr({ uz: "Read — faqat ko'rsatish. Bu yerda esa o'zgartirish bor — Update.", ru: 'Read — только показ. А здесь есть изменение — Update.' }),
-      default: tr({ uz: "Mavjud narsani o'zgartirish = Update (games.map).", ru: 'Изменение существующего = Update (games.map).' })
+      1: tr({ uz: "Yangi o'yin qo'shilmaydi — like ro'yxatdagi o'yinga bosildi.", ru: 'Новая игра не появляется — лайк ставят игре из списка.' }),
+      2: tr({ uz: "O'yin ro'yxatda qoladi, faqat like soni oshadi.", ru: 'Игра остаётся в списке, растёт только число лайков.' }),
+      3: tr({ uz: "Read faqat ko'rsatadi, bu yerda esa son o'zgaradi.", ru: 'Read только показывает, а здесь число меняется.' }),
+      default: tr({ uz: "O'yin qoladi, faqat like soni o'zgaradi — bu qaysi harf?", ru: 'Игра остаётся, меняется только число лайков — какая это буква?' })
     }} />
 );
 
