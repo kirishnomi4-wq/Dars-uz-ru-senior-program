@@ -3217,3 +3217,23 @@ degan gaplar o'z blokidan tashqarida chiqib ketibdi — blok ichida bo'lishi ker
 
 1-Modulda qo'llangan (27.09): GitLesson s0 s1 s7 · CssLesson2 s0 s8 s12 · Htmllesson1 s0 s13 · InternetLesson s5 s7 s8 ·
 VsCode s0 s7. Qolgan modullar — o'z tozalash to'lqinida.
+
+
+## 12-X. 🙂 161-QONUN: EMOJI — BELGI, MA'NO EMAS (2026-09-29, F-0929-18)
+
+**Foydalanuvchi (6-Modul v2 ko'rigi):** «vizualda emojilar kam ishlatilsin — ma'no jihatdan qayta-qayta beradigan so'zlarni olib
+tashlagandek; soatcha yana soatcha, uning ichida yana soatcha — bunaqalar kerakmas, bitta qolsin; hamma joyga emoji kerakmas —
+o'quvchi fikrni o'qib anglolmay qoladi, chalg'itadi». Qaror: 7 band, darvoza `lint:emoji`.
+
+1. **Ma'no tashimaydi.** Har matn emojisiz ham to'liq tushunarli bo'lishi shart: emoji olib tashlansa, ma'no o'zgarmaydi.
+2. **Bir ekranda bir xil emoji — bir marta.** Ichma-ich takror yo'q (⏳ ichida ⏳; karta ichida karta belgisi).
+3. **Emojisiz joylar:** mentor gapi, savol matni, test variantlari, xato-izohlar, kod va kod izohlari, yakun ro'yxati, kartochkalar.
+4. **Faqat sarlavha-belgi:** ekran eyebrow'ida yoki karta sarlavhasida ko'pi bilan bittadan. Ro'yxat bandlari oldida emoji emas —
+   raqam yoki oddiy belgi (1 · 2 · 3, ✓, —).
+5. **Chegara:** bir ekran (yoki bitta global blok — RECAPS, QUIZ_BANK, kartochkalar) ichida jami ko'pi bilan **4 ta**.
+   Tugma-belgilar (▶ ▸ ✓ ✔ ✕ ↻ ← → ⏹ ✎) emoji hisoblanmaydi.
+6. **Istisno:** nishon va bayram ekrani (o'yin qatlami, 152-qonun) — u yerda ham bitta.
+7. **Darvoza:** `npm run lint:emoji -- <fayl>` — blok bo'yicha sanaydi: limitdan oshsa yoki test-matnida emoji bo'lsa — error;
+   bir blokda takror emoji — warn. `npm run gates` tarkibida.
+
+**Bog'liq:** 109-qonun (TMI), 159-qonun (bezak-qatlam va takror ma'no yo'q), 11.10 (rasm o'rniga emoji emas).

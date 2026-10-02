@@ -1723,3 +1723,17 @@ Doira: 1–3-Modul + GithubActions va boshqa texnik darslar (8+ fayl) — bir yo
 
 ## F-0928-07 · 6-Modul PM darslarida setLiveLang yo'q (2026-09-28)
 `src/6-Modull/PmLesson22–25.jsx` — ruscha rejimda payload `lang:'uz'`. Tuzatish: import + `setLiveLang(lang)` (PmLesson21 naqshi), keyin `smoke-onfinished-all --lang both`. 6-Modul QA/LMS'ga chiqishdan oldin shart.
+
+
+## F-0929-19 · «kompilyator» → «kod oynasi» — o'quvchi matnida (D2, 2026-09-29 qaror)
+Texnik xato: chapda kod, o'ngda natija ko'rinadigan oyna kompilyator emas. Kursda 47 fayl / 345 uchrash (`grep -li ompilyator src/*/*.jsx`).
+Doira: faqat o'quvchi ko'radigan `uz:` matn va lug'at izohi; komponent/CSS nomlari (`.compiler`, `Compiler`) tegilmaydi. Codemod bilan bir yo'la,
+6-Modul razrabotkasidan keyin. Holat: ⬜ NAVBATDA.
+
+## F-0929-20 · Starter loyiha (Expo + navigatsiya) va ishlaydigan backend — 10/11/13-dars amaliyoti (D6, 2026-09-29)
+Kursda navigatsiya kutubxonasi o'rnatish hech qayerda ko'rsatilmagan; 10, 11, 13-dars amaliyoti «ustoz bergan tayyor loyiha» deb yozildi.
+Kerak: (1) Expo + React Navigation sozlangan starter repo (List/Detail bo'sh), (2) backend darslaridagi Node.js + PostgreSQL serverning
+ishlaydigan nusxasi (`/products`, `/orders`), (3) LMS'ga yuklash yo'li. Razrabotka bilan parallel. Holat: ⬜ NAVBATDA (kim/qachon — foydalanuvchi).
+
+## F-0929-21 · Umumiy shablon so'zlari: «sessiya» (podium), «eng uzun streak» (arena) — barcha darslar (2026-09-29)
+Lug'at: sessiya → dars; streak → ketma-ket to'g'ri javob. Bitta shablon-komponentda tuziladi, 100+ faylga tegadi. Holat: ⬜ NAVBATDA.

@@ -25,6 +25,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 | «bu xato / mana feedback / rasmga qara / bu tushunarsiz» | **B** |
 | «shu darsni yaxshila / audit qil / etalonga tortaylik» | **C** |
 | «yangi dars: <nom> · audit yurgiz» | **E** |
+| «yangi dars yaratamiz / MD yoz / darsni MD'ga tortamiz» (2026-09-29 dan asosiy yo'l) | **F** |
 | «commit / push / deploy» | **D** |
 | Texnik (HTML/CSS/JS) dars ustida ish | A/C ning texnik varianti — `PIPELINE.md` |
 
@@ -67,6 +68,17 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 4. Tasdiqdan keyin tuzatish → darvozalar qayta → topilma-sinfi qonunga muhrlanadi
    (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).
 5. 8+ faylga tegadigan ish chiqsa — `KATTA_TOZALASH.md` ga yoziladi, o'sha yerda tuzatilmaydi.
+
+### F — YANGI DARS: MD-BIRINCHI (2026-09-29, D7 — asosiy yo'l; bosqichlar: `feedback/F-0929-QA-6modul/MD_BIRINCHI_JARAYON.md`)
+1. **Manba yig'ish:** dasturdagi o'rni, oldingi/keyingi dars (App.jsx `comp:` dan), bitta misol-ip, o'tilgan atamalar (grep), test rejasi.
+2. **MD v1** — o'quvchi ko'radigan HAR so'z (namuna: `feedback/F-0929-QA-6modul/01-SystemArchitecture-v2.md`): A-bo'lim qoidalari,
+   ip, reja jadvali, har ekran, testlar (✔, variantlar teng), final («1-qadam…»), amaliyot, kartochka, recaps, arena, nishon, keyingi dars.
+   161-qonun (emoji). Kod o'zgarishi kerak bo'lsa — «KOD» belgisi. `.jsx` ga TEGILMAYDI.
+3. **Ko'rik:** foydalanuvchi (`>>`) + ChatGPT (xulosasini foydalanuvchi beradi).
+4. **Filtr:** har band → darsda bormi (grep) → fakt (App.jsx, oldingi darslar) → qonun → kalit/pozitsiya → auditoriya;
+   hukm Qabul/Qisman/Rad + sabab (jurnalga); mustaqil ov. Tashqi audit — kirish, qonun emas (memory `tashqi-audit-filtr`).
+5. **MD v2 → [GATE M]** foydalanuvchi tasdig'i. Modulning barcha darslari GATE M'dan o'tgach — razrabotka (A/C zanjiri, MD = manba-haqiqat).
+6. Yakun: topilma-sinflari muhrlanadi (B/4 marshruti); `npm run gates` (+ `lint:tell`, `lint:emoji`).
 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·

@@ -29,7 +29,9 @@
     "gen:hwqa": "node scripts/gen-hw-qa.mjs",
     "build:hwqa": "node scripts/gen-hw-qa.mjs && vite build --config vite.hwqa.config.js",
     "lint:dizayn": "node lint-dizayn.mjs",
-    "agent:tokens": "python3 scripts/agent-tokens.py"
+    "agent:tokens": "python3 scripts/agent-tokens.py",
+    "lint:tell": "node lint-tell.mjs",
+    "lint:emoji": "node lint-emoji.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

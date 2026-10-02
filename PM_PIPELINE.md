@@ -27,6 +27,12 @@
 - Qolgan 5 rol YANGI — texnik rollar Htmllesson1-ankerli, ular PM'da ishlatilsa L1 uslubini ko'chirib keladi.
 - 💡 Ijodkor PM'da YO'Q — ijod PM_Prompt_v8 keys-banki va senariyda; ✨ Animatsiya alohida YO'Q — harakat pm-dizayn ichida (PM darslar harakatga texnik darsdan yengilroq).
 
+> **🚦 GATE M — MD-BIRINCHI (2026-09-29, D7).** Yangi yoki qayta quriladigan dars uchun kod yozilmasdan OLDIN to'liq MD
+> (har ekranning o'quvchi ko'radigan matni, testlar ✔ bilan, final, kartochka, recaps, arena, nishon, keyingi dars) yoziladi →
+> foydalanuvchi (`>>`) va ChatGPT ko'radi → bosh-agent har bandni grep/fakt/qonun/kalit bilan filtrlaydi (Qabul/Qisman/Rad + sabab)
+> → MD v2 → **[🚦 GATE M — SIZ]** tasdiq. Modulning barcha darslari GATE M'dan o'tgach razrabotka boshlanadi; MD — manba-haqiqat,
+> kod undan chetlashsa MD yangilanadi. Ro'yxat va bosqichlar: `feedback/F-0929-QA-6modul/MD_BIRINCHI_JARAYON.md` (CLAUDE.md F-retsepti).
+
 ## 2. Har dars uchun oqim
 
 ```

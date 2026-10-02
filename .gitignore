@@ -57,3 +57,11 @@ lms-staging
 
 # Uyga vazifa QA ko'rik-sayti build (2026-09-22)
 dist-hwqa
+
+# build chiqishlari (02.10)
+dist-m5
+dist-m6
+dist-internet
+dist-kompilyator
+# LMS yuklash paketlari (30 MB har biri, qo'lda yuklanadi)
+yuklash-*/

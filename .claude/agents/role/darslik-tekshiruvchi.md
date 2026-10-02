@@ -369,3 +369,19 @@ bosishdan keyingi holatda (nishon-sharti `ach-rule`, tanlov ochilgan kod, yakuni
 1-Modulda 7 ta shunday holat kechagi «kesilish 0» xulosasidan o'tib ketgan. Ovlash: `npx vite --port 5300` +
 `npm run lint:layout -- --keys <kalit> --lang uz` va `--lang ru` → «PASTKI CHIZIQDAN TUSHGAN (E)» — 0 (panel/yakun sanalmaydi;
 `ach-coll`/`gloss` — umumiy qarz F-0923-01). Blokni boshqa ustunga ko'chirgan bo'lsang — qayta o'lcha (yomonlashishi mumkin).
+
+## 🔴 F-0929-22 OV-BANDLARI — 6-MODUL MD-KO'RIGIDAN CHIQQAN TAKROR SINFLAR (2026-09-29)
+1. **Final tartib ochiq turadi.** DragDrop/tanlash ekranida `hints` massivi bo'lak nomini yoki tartibli tavsifni takrorlaydi
+   (`FLOW_HINTS = FLOW.map(f => f.label…)`), yoki Mentor gapi butun tartibni aytadi («Eslang: A → B → C»). 5 darsda bor edi.
+   Ovlash: `grep -n "HINTS = \|hints = \[" ` — joylar «1-qadam…N-qadam» yoki vazifa-tavsifi bo'lsin; Mentor gapida «→» zanjiri bo'lmasin.
+2. **`explainWrong` kaliti to'g'ri javob indeksida.** `explainWrong={{0:…,2:…,3:…}}` va `correctIdx` shu kalitlardan biriga teng bo'lsa —
+   bitta variant izohsiz, bittasi hech qachon chiqmaydi. Ovlash: kalitlar to'plami == barcha xato indekslar to'plami.
+3. **`explainCorrect` xato variantni tushuntiradi** (12-dars). Ovlash: to'g'ri-izoh matni to'g'ri variantning so'zlarini qaytarsin.
+4. **«O'tgan darsda…» havolasi noto'g'ri** — PM va texnik darslar navbatlashadi; «o'tgan dars» deb aslida 2–3 dars oldingisiga ishora qilinadi.
+   Ovlash: App.jsx `comp:` tartibi bilan solishtir; raqam bilan ayt («5-darsda»).
+5. **Modul raqami matnda** («Modul 3», «Modul 8/9», «T6/T7», «P1») — LMS raqami bilan mos emas. Ovlash: `grep -n "Modul [0-9]\|T[0-9]/T[0-9]"`.
+6. **Test to'g'ri javobi «sotiladi»** — eng uzun / yagona texnik atama / yagona strelka-qavs / savol jumlasining aks-sadosi.
+   Ovlash: `npm run lint:tell -- <fayl>` — 0 error.
+7. **Emoji zichligi** — 161-qonun. Ovlash: `npm run lint:emoji -- <fayl>` — 0 error.
+8. **Codemod maydonni o'chirgan** — e4d4ced emoji-tozalash `ico:` maydonini olib tashlagan, kod esa `s.ico === '🎯'` bilan yorliq tanlardi
+   (1, 4, 7-darslar). Qoida: kod belgiga emas, alohida `phase`/`kind` maydoniga tayansin. Ovlash: `grep -n "\.ico === '"` → maydon borligini tekshir.

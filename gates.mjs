@@ -31,6 +31,8 @@ const TOOLS = [
   { id: 'keys', file: 'scripts/lint-keys.mjs' }, // F-0916-03: INLINE_KEYS s-kalitlari == scored ekranlar (server total_questions shu kalitdan)
   { id: 'dark', file: 'dark-lint.mjs' },
   { id: 'til', file: 'til-lint.mjs' },
+  { id: 'tell', file: 'lint-tell.mjs' },   // F-0929-18 D5: test javobi sotilmasin (8.4)
+  { id: 'emoji', file: 'lint-emoji.mjs' }, // 161-qonun: emoji belgi, ma'no emas
   { id: 'prompt', file: 'prompt-lint.mjs' },
 ];
 
