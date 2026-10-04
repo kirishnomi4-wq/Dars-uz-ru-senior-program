@@ -4338,3 +4338,134 @@ Ikki joy bir-biriga zid bo'lsa (D2) — manba (mentor/platforma qoidasi) to'g'ri
 
 **Sinf (159/17 davomi):** javobning belgisi (joyi, shakli, qalinligi, birinchi harfi) ham javob. Maslahat qayerga
 QARASHNI aytadi, nima ekanini aytmaydi.
+
+## 218. HOOK JAVOBI VA YASHIL XULOSA QISQA: ≤2 GAP, QUYRUQSIZ (F-1002-54/56/58 · 162-qonun, 02.10)
+
+Foydalanuvchi 1-dars 1-ekranida: «bu uzun so'zda o'quvchi maydalab o'qimasa kerak — aniq, kamroq va to'liq tushunarli, bu GENERAL qonun».
+Sinf: 5-Modul 12 darsda hook 12 · xato-izoh 25 · xulosa 41 matn (uz+ru) qisqartirildi, darvoza `lint:olchov`.
+
+- **Hook javobi** ❌ «**Aynan!** Javobni bot berdi. Telegram botni shunday ta'riflaydi: odam emas, dastur boshqaradigan akkaunt.
+  Dasturi ishlab tursa, bot kechasi ham javob beradi. Bugun u qanday ishlashini ko'ramiz.» (5 gap, 192)
+  ✅ «**Aynan!** Javobni bot berdi: u odam emas, dastur boshqaradigan akkaunt. Dasturi ishlab tursa, kechasi ham javob beradi.» (2 gap, 116)
+- **Xato tanlov javobi dalilni ko'rsatadi** ❌ «…Uni bot yubordi — dastur boshqaradigan Telegram akkaunti. Bugun u qanday ishlashini ko'ramiz.»
+  ✅ «**Qiziq fikr!** Chatga qarang: javob 03:00 da keldi, siz uxlab yotgan edingiz. Demak, javobni bot berdi.»
+- **Xato-izoh** ❌ «Handlerlarni tuzating: har hodisaga to'g'ri javob ulansin. Hech biriga mos kelmagan xabar uchun oxirgi qatorga fallback handler kerak.» (134)
+  ✅ «Bir javob noto'g'ri hodisaga ulangan — qayta tekshiring.» (56) — nima xato, javob emas.
+- **Yashil xulosa** ❌ «Ikkala usul ham xabarni botga yetkazadi. Darslarda avval polling bilan ishlaymiz; webhook'ni 7-darsda, botni serverga joylaganda yana ko'rasiz.» (150)
+  ✅ «Ikkala usul ham xabarni botga yetkazadi. Avval polling bilan ishlaymiz, webhook — 7-darsda.» (92)
+- **Tartib-xulosasi** ❌ «✓ Tayyor: token → bot → /start handleri → tugma handleri → fallback handler → bot.launch(). Telegraf handlerlarni yozilgan tartibda tekshiradi — shuning uchun fallback handler ulardan keyin turadi. (3-qatordagi menu — 7-ekrandagidek Markup.inlineKeyboard bilan yasalgan tugmalar.)» (282)
+  ✅ «✓ Tayyor: token → bot → handlerlar → fallback → bot.launch(). Telegraf ularni yozilgan tartibda tekshiradi.» (107)
+
+**Qoida:** quyruq («Bugun … ko'ramiz», «… shunday ta'riflaydi», qavsdagi izoh) olinadi; asosiy fakt birinchi gapda; ikkinchi gap — nega / keyin nima.
+Uzun tushuntirish kerak bo'lsa — keyingi ekran yoki recap, xato-ramka va xulosa emas. Sabab: o'quvchi uzun blokni o'qimaydi (109). ru — uz × 1.25.
+
+## 219. SARLAVHA BITTA QATOR, IMKONI BO'LSA SAVOL; QOLGANI MENTORGA (F-1002-68/75 · 164-qonun, 02.10)
+
+Foydalanuvchi: «sarlavha 2 qatorga tushishi to'g'ri emas; iloji bo'lsa savol — qiziqarli; qolgan gapi Mentorga». 5-Modulda 36 ta qayta yozildi.
+
+- ❌ «Bugun birinchi yigirmata foydalanuvchingiz keladigan uchta guruhni yozasiz.» (77, 2 qator)
+  ✅ «Botingizni birinchi kim ishlatadi?» — Mentor: «…Bugun birinchi yigirmata foydalanuvchingiz keladigan uchta guruhni yozasiz.»
+- ❌ «AvtoPizza'ning ikki botiga bir xil buyurtma keldi. Qaysi biri uni haqiqatan qabul qiladi?» (89)
+  ✅ «Qaysi bot buyurtmani haqiqatan qabul qiladi?» — Mentor: «Ikki botga bir xil buyurtma keldi — tugmani bosing…»
+- ❌ «AvtoPizza boti bir haftadan beri ishlayapti. Mijozlar fikr yoza boshladi.» ✅ «Mijozlar AvtoPizza boti haqida nima deyapti?»
+- ❌ «Bir kishi aytsa — tasodif bo'lishi mumkin. Ko'pchilik aytsa — muammo.» ✅ «Bir kishi aytsa — tasodif, ko'pchilik aytsa — muammo.»
+- ❌ ru «Цикл агента: Восприятие → Решение → Действие.» (46 belgi, lekin 1280 px da 2 qator) ✅ «Цикл: Восприятие → Решение → Действие.»
+
+**Qoida:** sarlavhada bitta fikr; kontekst (kim, qachon, nima bo'lgan) Mentorga, Mentor sarlavhani takrorlamaydi. Belgi soni
+taxminiy — yakuniy hukm brauzerda (`lint:sarlavha`). ru tarjimada sarlavha qisqaradi, ma'nosi qoladi (BR-§23).
+
+## 220. IKKI MA'NOLI SO'Z ATAMA BO'LMAYDI: «YAQIN GURUH» → «TANISH GURUH» (F-1002-74, 02.10)
+
+Foydalanuvchi: «"yaqin" so'zi tushunarsiz, yanada tushunarli qilish kerak». «Yaqin» — «masofasi yaqin» ham, «qadrdon» ham;
+darsdagi testning xato varianti aynan shu chalkashlikka qurilgan edi («Uyingizga eng yaqin yashaydigan odamlar guruhi»).
+
+- ❌ «Birinchi foydalanuvchilar yaqin guruhlardan keladi.» ✅ «Birinchi foydalanuvchilar tanish guruhlardan keladi.»
+- ❌ «ichkarida yaqinlar, tashqarida notanishlar» ✅ «ichkarida tanishlar, tashqarida notanishlar» — juftlik o'zi tushuntiradi.
+- ❌ test «Yaqin guruh qanday guruh?» (to'g'ri javob ta'rifni takrorlaydi) ✅ «Qaysi biri tanish guruh?» — variantlar misol:
+  «Har kuni ko'rishadigan sinfdoshlaringiz» / «Bekatda avtobus kutayotgan odamlar» …
+- ru «близкая группа» → «группа знакомых».
+
+**Qoida:** atama bitta ma'noli so'zdan tanlanadi; darsda juftligi bo'lsa (tanish ↔ notanish) — o'sha. Test chalg'ituvchisi so'zning
+ikkinchi ma'nosiga qurilmaydi; ta'rif-savolda to'g'ri javob atama ildizini takrorlasa — savol misol-savolga aylantiriladi.
+
+## 221. KAFOLAT SO'ZI «DARROV» → «HOZIR» · AMALIYOT MATNI VAZIFA TILIDA (F-1002-111/112, 03.10)
+
+GATE M ro'yxatidagi kafolat so'zlari («har doim», «hech qachon», «100%», «darrov») 9-dars MD'sida ikki joyda chiqdi (T-020 oilasi).
+
+- ❌ «Darrov qo'shilmaydi — ko'pchilikka kerakmi, qaraladi.» ✅ «Hozir qo'shilmaydi — ko'pchilikka kerakmi, qaraladi.»
+- ❌ «AI yordamchiga berishdan oldin noaniq shikoyatni nimaga aylantirasiz?» (uzun, ichki so'z) ✅ «Antigravity'ga shikoyatni emas, nimani berasiz?» — «Aniq o'zgarishni»
+- ❌ amaliyot qadami: «5 ta fikrni matn fayliga yozing (masalan, fikrlar.txt) … Bugun kod yozmaysiz» ✅ «`FIKRLAR.md` (repo ildizida). Shablonni «Nusxalash» bilan faylga qo'ying.» —
+  joy aniq, fayl repo'da, natija tekshiriladi.
+- Prompt-shablon tili: «{qayerda} da {nima o'zgarsin}. {nima buzilmasin}. Boshqa joyga tegma, o'zgargan qatorlarni ayt.» — o'quvchi faqat qavsni to'ldiradi.
+
+**Qoida:** amaliyot qadami = joy + harakat + ko'rinadigan natija; kafolat so'zi o'rniga vaqt/shart so'zi («hozir», «bu safar»). Bog'liq: §210 (mentor-gap), §216, T-020.
+
+
+## 222. SIZ-FORMA ZANJIR VA TUGMADA HAM: «TINGLA → TANLA» → «TINGLANG → TANLANG» (F-1003-07, 03.10)
+
+QA: «respect form → tingla → tinglang, global audit». 9-dars eski sahnasida qadam nomlari va yakuniy qatori sen-buyruqda edi;
+`til-lint` faqat «sen/senga» olmoshini tutardi, buyruq fe'lini ko'rmasdi.
+
+- ❌ «Bitta iteratsiya: tingla → tanla → tuzat → chiqar → qayta o'lcha.» ✅ «Bitta iteratsiya: tinglang → tanlang → tuzating → chiqaring → qayta o'lchang.»
+- ❌ qadam-teglari `tingla` · `tanla` · `tuzat` · `sikl` ✅ teg yo'q — qadam matni o'zi yetadi (DE-172 tuzatish).
+- ❌ tugma «Yubor», karta «Tekshir» ✅ «Yuboring», «Tekshiring» (yoki ot-shakl: «Tekshiruv»).
+- ✅ istisno: AI-prompt ichida sen-buyruq — «Shu xato chiqdi: {xato}. Tuzat.» (o'quvchi AI'ga buyruq beradi, o'quvchiga emas).
+- ru: «слушай → выбери → почини» ❌ → «слушайте → выбирайте → исправляйте» ✅.
+
+**Qoida:** o'quvchi ko'radigan har fe'l siz-formada — zanjir, tugma, teg, kartochka ham. Ot-shakl («tinglash → tanlash») ham to'g'ri.
+**Darvoza:** `til-lint` `sen-imperativ` (warn; 03.10 o'lchov: 5-Modul 0, boshqa modullar 20 fayl — KATTA F-1003-07).
+
+## 223. SON EKRANDA BIR MARTA (F-1003-02, 03.10)
+
+QA: «5 ta joyda 3 ta savol borligini bildirib turibdi, takrorlik bo'lmagani yaxshi — 6 ta ekan». Bitta ekranda:
+eyebrow «Mustaqil ish · uch savol» · sarlavha «Uchta savolingizni yozing» · mentor «uchta savol bering» · doiralar 1/2/3 · topshiriq «Uch savol yozilgan» · yorliq «Uch savolingiz varaqda».
+
+- ❌ eyebrow «Mustaqil ish · uch savol» ✅ «Mustaqil ish»
+- ❌ mentor «Keyin unga uchta savol bering…» ✅ «Keyin unga savollaringizni bering…»
+- ❌ topshiriq «○ Uch savol yozilgan» ✅ (olib tashlandi — doiralar 1/2/3 shuni ko'rsatadi)
+- ✅ qoladi: sarlavha «Uchta savolingizni yozing» + 1/2/3 doiralar.
+
+**Qoida:** miqdor sarlavhada va bitta vizualda; qolgan joylar uni takrorlamaydi (109-qonun TMI, DE-179). Bog'liq: §150 (takror), P-062.
+
+## 224. FORMULA-ZANJIR OT-SHAKLDA: «YIG' · SINA · TUZAT» → «YIG'ISH · SINASH · TUZATISH» (F-1004-37, 04.10)
+
+Foydalanuvchi (54): «respect form bo'lishini check qilib qo'yaylik». `til-lint` faqat «→» bilan bog'langan zanjirni ko'rardi —
+sarlavhadagi «·» va «—» ajratuvchili zanjir (13-dars «yig' · sina · tuzat · ishga tushir») va katta harfli yorliq («XATONI TUZAT —») o'tib ketgan.
+
+- ❌ «To'liq tizim: yig' · sina · tuzat · ishga tushir» ✅ «To'liq tizim: yig'ish · sinash · tuzatish · ishga tushirish»
+- ❌ «Yig' → sina → xatoni top → tuzat → ishga tushir» ✅ «Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish»
+- ❌ «XATONI TUZAT — ulanish joyini topib…» ✅ «Xatoni tuzatish — ulanish joyini topib…»
+- ❌ tugma «▶ Testni ishga tushir», «Yana yubor →» ✅ «▶ Testni ishga tushiring», «Yana yuboring →»
+- ru ❌ «Собери → проверь → исправь → запусти» ✅ «Сборка → проверка → исправление → запуск»
+- ✅ test variantlari ham bir xil shaklda o'zgaradi (biri ot-shakl, qolgani buyruq bo'lsa — uzunlik/shakl belgisi, 8.4).
+
+**Qoida:** formula, sarlavha-zanjir, yorliq — ot-shakl; tugma — siz-forma. **Darvoza:** `til-lint` `sen-imperativ` (→ · — ajratuvchi) va
+`sen-imperativ-ru`; 6-Modul va yangi modullarda error.
+
+**1–4c supurish (04.10, 5-Modulni yopish Q11 A, F-1004-60):** 13 fayl, 92 joy — zanjir/yorliq/test variantlari ot-shaklga («reja → qurish → tekshirish →
+tuzatish → deploy», ru «план → сборка → проверка → исправление → деплой»), tugma siz-formaga («Yubor» → «Yuboring»), shior «bir marta yozasiz — ming marta
+ishlatasiz». Test variantlari to'rtalasi bir xil shaklda (8.4). ✅ **Istisno (tegilmadi):** AI'ga beriladigan vazifa/prompt yorlig'i («Tepaga menyu qo'sh —
+…», `agent=` prompti, `qo'shib ber`) — §222; «Top kitoblar», «top ro'yxat» — ot (eng yaxshilar), buyruq emas; kod izohlari. Qoldiq faqat shular (til-lint warn).
+
+## 225. SARLAVHA VA MENTOR BIR GAPNI AYTMAYDI (F-1004-31, 04.10)
+
+Foydalanuvchi (44): «title ham bot ham bitta narsani aytyapti». O'lchov: 6-Modulda 33 ekran (sarlavha so'zlarining ≥50% i Mentorda).
+
+- ❌ Sarlavha «Agent backend ichida — tool'lari tizim qismlariga ulanadi.» · Mentor «Bizning tizimda agent backend ichida ishlaydi va har bir tool orqali tizimning bitta qismiga ulanadi. Har bir tool'ni bosib…»
+  ✅ Mentor «Har bir tool'ni bosing: agent u orqali nima qiladi?»
+- ❌ Sarlavha «Pattern — ko'p uchraydigan muammoning sinab ko'rilgan yechim usuli.» + Mentor shu ta'rifni qaytaradi ✅ Sarlavha «Pattern nima?» — ta'rifni Mentor aytadi.
+- ❌ Sarlavha «Savat va jami narx» · Mentor «…savat soni belgisi … jami narx reduce bilan hisoblanadi» ✅ Sarlavha «reduce savatni hisoblaydi».
+- Sinonim bilan qochilmaydi: «jami narx» o'rniga «umumiy summa» — sinonim-taqiq (bir ma'no — bir so'z).
+
+**Qoida:** sarlavha — savol yoki mavzu; Mentor — yangi narsa (qo'shimcha fakt yoki harakat). **Darvoza:** `lint:olchov` «sarlavha≈Mentor %».
+
+## 226. «CHOK» → «ULANISH JOYI»; TEST SAVOLI JAVOBNI AYTMAYDI (F-1004-39 / D8, 04.10)
+
+- ❌ «Tizim choklarda siniydi» ✅ «Tizim ulanish joylarida siniydi»
+- ❌ «Chokdagi xatoni topib, kichik tuzatish bilan yamadi» ✅ «Ulanish joyidagi xatoni topib, kichik tuzatish bilan yamadi»
+- ❌ «Bu joyni chok deymiz. Har chokni bosing» ✅ «Har ulanish joyini bosing» (atama-ta'rif olindi — so'zning o'zi tushunarli)
+- ❌ test: «Ulanish joyidagi xato qayerda bo'ladi?» → to'g'ri javob «Qismlar ulangan joyda» (savol javobni aytadi) ✅ «Integratsiya xatosi qayerda bo'ladi?»
+- ru: «шов / на шве» ❌ → «место соединения / в месте соединения» ✅
+
+**Qoida:** o'quvchi bilmaydigan metafora-atama oddiy so'z bilan almashadi; almashganda test savoli javobni oshkor qilmasligi tekshiriladi (8.4).
+

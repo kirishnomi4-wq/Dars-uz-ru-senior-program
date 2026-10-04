@@ -594,6 +594,10 @@ const runPractice = (entry, fromScreen) => {
 
 Namuna-tatbiq: `src/1-Modull/PmLesson2.jsx` → `ScreenCoding` + `.stq-skip`.
 
+> **2026-10-04 TUZATISH (F-1004 2-qism D7, foydalanuvchi qarori A):** 3-band (takrorlash-yo'li «Bu mashqni sinfda bajarganman →») **BEKOR QILINDI** —
+> 25 faylda olib tashlandi (suratlar 49, 63 — foydalanuvchi o'zi o'chirgan). Sabab: mustaqil rejimda vazifani bajarmay o'tib ketishga yo'l edi.
+> 1-band (bajarilganlik saqlanadi, o'sha qurilmada qayta majburlamaydi) o'z kuchida. Boshqa qurilmada qayta kirgan o'quvchi praktikani yana bajaradi.
+
 ---
 
 ## 10. 🏅 BADGES (nishonlar) tizimi
@@ -3165,14 +3169,17 @@ emoji ≈170–220; 5–6-Modul texnik darslarida `ico:` qatlami ustiga qo'shili
 13. **Cho'zilgan bo'sh quti yo'q** (F-0926-05 #17/#20, foydalanuvchi: «bitta katta karta bom-bo'shday tuyulmasin»).
    Karta balandligi ichidagiga mos: `flex-grow: 1` / `max-height` bilan ekranni to'ldirish (`.wsp-ed`, `.rcp-flow`) yo'q;
    ko'p bosqichli karta har bosqich bilan o'sadi. Blok qolgan joyning o'rtasiga tushirilmaydi (`margin-top: auto`) —
-   mentor gapining shundoq ostida turadi. Yordam/Qo'shimcha havolasi o'z paneli ostida, ustun oyog'ida osilmaydi.
+   mentor gapining shundoq ostida turadi. **Istisno yo'q** (02.10, F-1002-69): maqsad va muhokama ekranining yagona bloki
+   ham Mentor ostida, oddiy oraliq + ~12 px (foydalanuvchi: «yopishib ham qolmasin, juda ochiq ham qolmasin»). Yordam/Qo'shimcha havolasi o'z paneli ostida, ustun oyog'ida osilmaydi.
 14. **Holat bir marta aytiladi** (F-0926-05 #16). Tugma «✓ Bajarildi» ga aylansa — ostidagi takror yashil yozuv
    (`done-mini`) va panelning yashil ramkasi (`.kdpanel.is-done`) yo'q. Tugma yo'q joyda (kompilyator o'zi tasdiqlaydi)
    `done-mini` — yagona natija xabari, QOLADI.
-15. **Yumshoq, lekin bosiladigan** (F-0926-05 #5/#8, foydalanuvchi: «biroz, juda yumshoq bo'lmasin»). Sudraladigan chip —
-   oq fon + `border: 2px solid accent` + accent matn + «⠿» ushlagich (halqa `box-shadow` bilan EMAS — `tap-hint`
-   animatsiyasi `box-shadow`ni almashtirib halqani o'chiradi). Qadam-raqami doirasi (`.rcp-n`) — `accentSoft` fon +
-   accent raqam + 1.5px halqa. Rangli belgilar qatori (5 bo'lim) — `saturate(0.55)`, ranglar farqi qoladi.
+15. **To'ldirilgan chip** (02.10 QAYTA YOZILDI, F-1002-59 — foydalanuvchi 1-dars ko'rigida: «ranglar o'zgarmasin, oldingilariday
+   sarg'ishroq»; 26.09 F-0926-05 #5 «oq fon + 2px chegara» varianti BEKOR). Sudraladigan chip — to'q sariq gradient
+   `linear-gradient(170deg, #FF8A3D, accent)`, oq matn, chegarasiz, «⠿» ushlagich, soya `0 8px 16px -8px rgba(255,79,40,.6)`
+   (namuna: `src/6-Modull/SystemArchitectureLesson.jsx` `.dd-chip`). 5-Modul 8 darsda qaytarildi; 1–4-Modul 23 fayl —
+   `KATTA_TOZALASH.md` F-1002-59. Qadam-raqami doirasi (`.rcp-n`) — `accentSoft` fon + accent raqam + 1.5px halqa.
+   Rangli belgilar qatori (5 bo'lim) — `saturate(0.55)`, ranglar farqi qoladi.
 16. **Yonma-yon qutilar bir balandlikda — imkon bo'lsa** (F-0926-06, foydalanuvchi 27.09: «boshlanishini bir xil balandlik
    qilaylik … istisno variantlar ham bo'lishi mumkin, majburiy emas, vaziyatdan kelib chiqib»). Tepasi bir chiziqdagi
    o'xshash juft (kod-qutisi ↔ Eslatma) — pastki cheti ham bir chiziqda: ustunlar alohida bo'lsa subgrid
@@ -3233,7 +3240,649 @@ o'quvchi fikrni o'qib anglolmay qoladi, chalg'itadi». Qaror: 7 band, darvoza `l
 5. **Chegara:** bir ekran (yoki bitta global blok — RECAPS, QUIZ_BANK, kartochkalar) ichida jami ko'pi bilan **4 ta**.
    Tugma-belgilar (▶ ▸ ✓ ✔ ✕ ↻ ← → ⏹ ✎) emoji hisoblanmaydi.
 6. **Istisno:** nishon va bayram ekrani (o'yin qatlami, 152-qonun) — u yerda ham bitta.
+8. **Istisno — keys-sahna** (02.10, F-1002-70, 165-qonun): PM keys ekranidagi sahnada emoji — illustratsiya (uy, universitet,
+   telefon), matn emas. Sahnada ≤4 **tur** emoji, bir xil element takrorlanishi mumkin (to'rtta uy). Matn-kartaga emoji qaytmaydi.
+   `lint:emoji` `const KEYS_SCENE` blokida turlarni sanaydi.
+9. **Istisno — tushuncha-oqim sahnasi** (02.10, F-1002-82, 167-qonun): xabar yo'li chizmasida har tugunda bitta belgi-illustratsiya
+   (modul belgi-lug'atidan), blokda ≤4 tur. Matn, mentor va test ichiga emoji qaytmaydi.
 7. **Darvoza:** `npm run lint:emoji -- <fayl>` — blok bo'yicha sanaydi: limitdan oshsa yoki test-matnida emoji bo'lsa — error;
    bir blokda takror emoji — warn. `npm run gates` tarkibida.
 
 **Bog'liq:** 109-qonun (TMI), 159-qonun (bezak-qatlam va takror ma'no yo'q), 11.10 (rasm o'rniga emoji emas).
+
+## 12-Y. 📏 162-QONUN: MATN O'LCHOVLARI — HOOK JAVOBI · XATO-IZOH · YASHIL XULOSA (2026-10-02, F-1002-54/56/58)
+
+**Foydalanuvchi (5-Modul 1-dars ko'rigi):** «bu uzun so'zda o'quvchi maydalab o'qimasa kerak — aniq, kamroq va to'liq tushunarli;
+bu GENERAL 1-sahifa qonuni» · «so'z juda uzun, qisqa aniq tushunarli qilishimiz kerak» · «bu sahifada juda uzun matn bo'lmasin —
+bittasi uzun bo'lsin, ikkinchisi qisqa». O'lchov 5-Modul 12 darsida: hook 12 javob 3–5 gap (275 belgigacha), xato-izoh 25 ta
+60 dan uzun (307 gacha), yashil xulosa 41 ta 110 dan uzun (282 gacha) — hammasi qisqartirildi (F-1002-61/62/63).
+
+1. **Hook javobi** («Aynan!» / «Qiziq fikr!» dan keyingi tasdiq-matn) — **≤2 gap, ≤120 belgi**; ochuvchi so'z gap sanalmaydi.
+   «Telegram shunday ta'riflaydi», «Bugun … ko'ramiz» kabi quyruq yo'q. Xato tanlovga ham shu o'lchov: javob ekrandagi dalilni
+   ko'rsatadi («Chatga qarang: javob 03:00 da keldi… Demak, javobni bot berdi.»).
+2. **Xato-izoh** (`frame-warn`) — **bitta gap, ≤60 belgi**: nima xato ekanini aytadi, javobni aytmaydi (Z-01 / 159.11 o'lchovi).
+   Chuqur tushuntirish keyingi ekranda yoki recapda — xato-ramkaga sig'dirilmaydi.
+3. **Yashil xulosa** (`frame-success`) — **≤2 gap, ≤110 belgi** (recap kartasi o'lchoviga yaqin). Ekranda asosiy karta uzun bo'lsa,
+   xulosa qisqa qoladi («bittasi uzun, ikkinchisi qisqa»). «✓ Tartib to'g'ri: a → b → c» qatori ham shu o'lchovda.
+4. **ru** — uz × 1.25 (150 / 75 / 137). Backtik va teglar sanalmaydi.
+5. **Darvoza:** `npm run lint:olchov -- <fayl>` — `npm run gates` ichida (10-darvoza `olchov`). 5-Modul va 7+ modullarda error;
+   1–4-Modul va 6-Modul (o'z fidbek davrigacha) warn. Ikki sinov: 5-Modul `a171852` — 146 topilma, tuzatilgan — 0.
+
+**Bog'liq:** 109-qonun (TMI), KORPUS §154 (tasdiq-bloki 2 gap), §218, QOIDALAR T-067 · S-048 · T-068.
+
+## 12-Z. 🧩 163-QONUN: MINIMALIZM + BITTA KERAKLI VIZUAL (2026-10-02, F-1002-55/57/60)
+
+**Foydalanuvchi (5-Modul 1-dars ko'rigi):** «ancha toza, minimalizmga zo'r; qo'shimcha: iloji boricha vizualda ham ko'rinsin, ammo
+bitta qoida — "vizual ko'rsataman" deb butun ekranni buzib to'ldirib qo'yish kerak emas» · 10-ekran: «jonsiz bo'lib qolibdi —
+real botdan /help ketadi, bot javobi ko'rinadi, shunda zo'r bo'ladi; ham minimalist, ham kerakli vizual».
+
+1. **Bitta vizual.** Har tushuncha-ekranda ma'noni ko'rsatadigan **bitta** vizual (chat oynasi, oqim-chizma, maket, kod-natija) —
+   u ekranning asosiy ishi bilan bog'liq. Ikkinchi vizual, bezak, to'ldiruvchi blok qo'yilmaydi (159-qonun bilan juft).
+2. **Matn-strelka vizual emas.** «→ salom va menyu» kabi matn-oqim jarayonni ko'rsatmaydi — jarayon o'zi ko'rinadi: xabar
+   chatga tushadi, bot javob beradi (1-dars 10-ekran: 1-ekrandagi AvtoPizza chati qayta ishlatildi, 6 pufak).
+3. **Mavjud komponent qayta ishlatiladi**, yangi dizayn o'ylab topilmaydi (145.c bilan bir xil): darsning o'z chat/maket/oqim
+   komponenti bor bo'lsa — o'sha.
+4. **Reja ekrani** (F-1002-55): texnik dars kartasi — oq karta, 12px radius, yengil soya, «01» raqam, o'ngda mono teg (`.step-tag`,
+   uz+ru); karta **bosilmaydi** (hover va kursor yo'q — 30.09 «tugmaga o'xshaydi» shikoyati qaytmaydi); kirish animatsiyasi
+   (stagger) qoladi. 30.09 U1c «oddiy ro'yxat» varianti bekor. PM darslari o'z reja ko'rinishida.
+5. **Tekshiruv:** olib tashlash testi (109) — vizual olinsa ekran tushunarsiz bo'lib qolsa, u kerakli; qolsa — bezak.
+6. **Namuna ekran** (02.10, F-1002-71 — foydalanuvchi: «juda yaxshi, shunaqa qilishimiz kerak: minimalist, toza, vizual, aniq,
+   yoqimli»): 5-Modul 2-dars 9-ekran «Uchta guruhingizni yozing» — tepada bosqich-chiplari (1-guruh ✓ …), chapda bitta
+   ish-kartasi, o'ngda yashil bo'lib boradigan tekshiruv-ro'yxati, Mentor bitta qator. Yangi amaliy ekran shu bilan solishtiriladi.
+7. **Bir raqam — bir joyda** (02.10, F-1002-72): kartadagi son o'ng ustundagi chip-qatorda va xulosada takrorlanmaydi; jarayon
+   («eshitdi → ochdi → ishlatdi») chip-qator bilan emas, qisqarib boradigan chiziq bilan ko'rsatiladi; bo'sh ustun qoldirilmaydi —
+   kartalar butun kenglikda bir qatorda (5-Modul 2-dars 10-ekran).
+
+8. **Ketma-ket ochiladigan qadamlar ekranni cho'zmaydi** (02.10, F-1002-93 — foydalanuvchi: «juda pastga tushib ketgan»): har bosishda
+   yangi to'liq karta qo'shilmaydi. Chapda qadamlar **ro'yxati** (raqam + nom; o'tilgani yashil ✓, joriysi accent ramka), o'ngda faqat
+   **joriy qadamning** kartasi — matn shu karta ichida almashadi; oxirida o'sha karta yashil xulosaga aylanadi. Ekran balandligi
+   o'zgarmaydi, bo'sh ustun qolmaydi (5-Modul 5-dars 13-ekran, `.stp` / `.stp-row` / `.stp-card`). Chat ichidagi ketma-ketlik — bu
+   qoidaga kirmaydi (169-qonun chegaralaydi).
+9. **Sig'im-sahnasi holatni ko'rsatadi** (02.10, F-1002-95 — «animatsiya yoki ma'lumot aniqmas»): sig'imi bor narsa (kontekst oynasi,
+   navbat, xotira) **bo'sh kataklari bilan** boshidanoq ko'rinadi, hisoblagich «n / N» kataklar ustida; tartib hayotdagidek (chat: eski
+   tepada, yangi pastda); chiqib ketgan element yo'qolmaydi — qayerga ketgani ko'rinadi (oyna ustida kulrang chizilgan «chiqib ketdi»);
+   «keyingi chiqadi» belgisi faqat savol javobini sotmaydigan paytda. Ma'noni yozuv emas, harakat beradi — qizil izoh-qatorlar olinadi
+   (6-dars 8-ekran, `Desk`).
+10. **Solishtirish-sahnasida har tomon o'z shaklida** (02.10, F-1002-96 — «juda minimalist, biroz jon kerak, ortiqcha bo'lmasin»): AI
+   gaplari — darsning chat-pufagi (avatar + «Bizda bor:»), baza — jadval kartasi (`menyu · PostgreSQL`, narx ustuni mono); hukm —
+   gapga **muhr** (yashil «✓ Rost» / qizil «✗ To'qib chiqarilgan»), mos qatorga chiziq, yo'q qator uchun jadval ostida qizil uzuq qator
+   «bazada bunday qator yo'q». Boshqa hech narsa qo'shilmaydi (6-dars 12-ekran, `.ck-ai` / `.ck-db` / `.ck-stamp`).
+
+**Bog'liq:** 109, 111, 145.c, 159, 160, 169-qonunlar; QOIDALAR P-052 · P-015 · P-055/056/057.
+
+## 12-AA. 🔤 164-QONUN: SARLAVHA — BITTA QATOR, IMKONI BO'LSA SAVOL (2026-10-02, F-1002-68/75)
+
+**Foydalanuvchi (5-Modul 2-dars ko'rigi):** «sarlavha juda uzun bo'lmasligi kerak, iloji bo'lsa savol bo'lsin — qiziqarli;
+qolgan gapi Mentorning gapiga kiritilib, moslab tushunarli qilinsin; sarlavhani 2 qatorga tushirish birinchidan to'g'ri emas,
+ikkinchidan dizayn ham yaxshi ko'rinmaydi. Bu fidbek butun general» · javobida: «xuddi shunday general qoida, qonun qil».
+
+1. **Bitta qator.** Ekran sarlavhasi (`.h-title`) 1280×800 da uz va ru rejimda bitta qatorga sig'adi. Yakuniy hukm — brauzer
+   o'lchovi (`npm run lint:sarlavha -- <fayl>`), chunki 36 px serif shriftda kirill harfi va «→» keng: 46 belgilik ru sarlavha
+   ham buzildi. Oldindan belgi-tekshiruv (`lint:olchov`, gates 10-darvoza): **uz ≤55, ru ≤60**.
+2. **Savol afzal.** Hook, maqsad, keys, sinov va tushuncha-ekranida sarlavha imkoni bo'lsa savol: «Botingizni birinchi kim
+   ishlatadi?», «Qaysi bot buyurtmani haqiqatan qabul qiladi?». Mashq va yakun sarlavhasi darak gap bo'lishi mumkin.
+3. **Kesilgan qism yo'qolmaydi** — Mentor gapiga ko'chadi («AvtoPizza boti bir haftadan beri ishlayapti. …»); Mentor sarlavhani
+   takrorlamaydi (M5-A5). Sarlavhadagi savolni Mentor qayta so'ramaydi.
+4. **Qolip:** «Oxirgi qadam: … tartibga soling» — qisqa ot bilan («botning ish siklini», «iteratsiya qadamlarini»).
+5. **Qamrov:** 5-Modulda 26 + 10 sarlavha qayta yozildi (02.10); 6-Modul — o'z fidbek davrida (`lint:olchov` 54 warn);
+   1–4-Modul — eski darslar, ko'rganda.
+
+**Bog'liq:** 162-qonun (matn o'lchovlari), 150.4 (sarlavha balance), M5-A5; QOIDALAR T-069.
+
+## 12-AB. 🎬 165-QONUN: PM KEYS-SAHNA — VOQEA VIZUALDA HIS QILINADI (2026-10-02, F-1002-70)
+
+**Foydalanuvchi (2-dars Facebook keysi):** «hozir quruq facebook so'zi; biznes hissini vizualda his qildirsin — emojilari bilan,
+animatsiyon, minimalist, ammo yaxshi, chiroyli, yoqimli; universitet deyapmiz — shuni ham o'ylab ko'rsatish kerak. Barcha PM darsida».
+
+1. **Bitta sahna** keys ekranida, sarlavha ostida (~104–148 px): voqea har bosqichda rasm kabi o'zgaradi (Facebook: 🏛️ bitta
+   universitet → talaba-nuqtalar bir-biriga ulanadi → boshqa 🏛️ va 🏫 maktablar → 🌍). Matn kartada qisqa qoladi.
+2. **≤4 tur emoji** + nuqta (odam), chiziq (bog'lanish), qisqa matn-raqam; ranglar: nuqta accent, «boshqa guruh» to'q sariq,
+   «yo'qolgan/xira» — kulrang (`:dim`). 161-qonun 8-band istisnosi.
+3. **Test halolligi:** bashorat bosqichida javob berilmaguncha sahna `pre` kadrda — javobni ochmaydi (globus 2006 dan oldin yo'q,
+   «xira suratlar» javobdan keyin chiqadi); javobdan keyin `post`.
+4. **Faqat bank fakti:** sahnadagi raqam yoki sana keys-faktdan; maket raqami (Duolingo 7 → 0) «misol» deb izohda aytiladi.
+   Brend logotipi chizilmaydi.
+5. **Bitta vizual** (163): keysda boshqa maket bo'lsa, sahna uning o'rnini oladi (12-dars StreakMock → sahna).
+6. **Reduced-motion:** kadr darhol, animatsiyasiz. Komponent: `KeysScene` + `KEYS_SCENE` (har kadr bosqichga bittadan).
+7. **Qamrov:** 5-Modul 4 PM dars (Facebook · Airbnb · Booking.com · Duolingo) — 02.10 qilindi; 6-Modul 4 PM — o'z fidbek davrida;
+   1–4-Modul PM keyslari (16 fayl) — `KATTA_TOZALASH.md` F-1002-70.
+
+**Bog'liq:** 33/56/91b (keys va bashorat), 161 (emoji), 163 (bitta vizual); QOIDALAR P-053.
+
+## 12-AC. 🏅 166-QONUN: NATIJA EKRANI — BITTA KARTA, NISHON «YUTUQ» BO'LIB KO'RINADI (2026-10-02, F-1002-73)
+
+**Foydalanuvchi:** «nishonlarni emojida beramizmi? olganida bunaqa zerikarli chiqmagandi» + kelgan taklif: «kartalar bir-biriga
+tekislanmasdan layoutlar g'alati bo'lgandan ko'ra, bitta komponentga ochroq fon berib yig'ib qo'ysachi» · javob: «taklifing ma'qul,
+faqat 3/4 aylanacha markazidan joylashsin».
+
+1. **Bitta oq karta** (`.pod-card`, ≤480 px): ball-halqasi karta yuqori chetida, **gorizontal markazda**, raqam halqaning o'rtasida;
+   sarlavha ham karta bilan bir o'qda (markazda).
+2. **Nishonlar bo'limi** och fonda: olingan nishon — och binafsha katakda, 2 px accent halqa, ostida inglizcha nomi, bir marta
+   «pop» (stagger); olinmagani — kulrang 🔒 va «?». Emoji qoladi — bayram oynasida ham aynan shu emoji (o'quvchi taniydi).
+3. **Izoh** 💡 belgili och binafsha qatorda, karta ichida. Uch alohida suzuvchi blok yo'q.
+4. **Qamrov:** natija ekrani 21 PM darsda bir xil — 5-Modul 4 dars 02.10 qilindi; qolgan 17 tasi `KATTA_TOZALASH.md` F-1002-73.
+
+**Bog'liq:** 152 (o'yin qatlami), 159.13, 163; QOIDALAR U-048.
+
+## 12-AD. 🛤️ 167-QONUN: TUSHUNCHA-OQIM SAHNASI — XABAR YO'LI KO'RINADI (2026-10-02, F-1002-82)
+
+**Foydalanuvchi (5-Modul 3-dars 4-ekran):** «shundayam vizual ko'rsatishimiz kerak va buni ham general qilishimiz kerak — minimalizmda,
+ammo vizual ham ko'rinsin, mos bo'lsin, yaxshi bo'lsin» · javobida: «faqat UI to'lib ketmasin, juda bardak qilma».
+
+1. **Yo'l ko'rinadi, aytilmaydi.** Xabar yo'li chizmasi (Telegram → Telegraf → bot.js; hodisa → handler → javob) quruq so'z-quti emas:
+   har tugunda bitta belgi + nomi + bitta qisqa izoh; chizma butun kenglikda (3-dars 4-ekran: kartalar, ostida «/start» yo'l bo'ylab
+   yuradi, «Salom!» qaytish chizig'idan qaytadi — kirishda va hammasi ochilganda bir marta).
+2. **Modul belgi-lug'ati** (bir ma'no — bir belgi, hamma darsda bir xil): 📩 hodisa · 📄 handler / kod-fayl · 💬 javob · 📱 Telegram ·
+   📦 Telegraf (kutubxona) · 🧠 AI · 💻 laptop/server · 👤 mijoz. Yangi belgi qo'shilsa shu ro'yxatga yoziladi.
+3. **Minimal.** Belgi tugun ichida, alohida bezak-qatlam yo'q; harakat bitta (yuruvchi xabar yoki navbat bilan yonish) — ikkalasi
+   birga emas. Chizmada allaqachon navbat bilan yonish bo'lsa (1, 6, 7-dars) faqat belgi qo'shiladi.
+4. **Reduced-motion:** yuruvchi xabar ko'rsatilmaydi, chiziq va tugunlar statik.
+5. **Qamrov:** 5-Modul 4 xabar-yo'li chizmasi (1-dars s1, 3-dars s3, 6-dars s1, 7-dars s3) — 02.10. Boshqa strelkali chizmalar
+   (4-dars holat, 5-dars juftlar, 7-dars deploy) — ko'rganda. 6-Modul — o'z fidbek davrida.
+
+**Bog'liq:** 161.9 (emoji istisnosi), 163 (bitta vizual), 165 (keys-sahna); QOIDALAR P-054.
+
+## 12-AE. 👆 168-QONUN: BOSILADIGAN ELEMENT BOSILISHI BILINADI (2026-10-02, F-1002-83/84)
+
+**Foydalanuvchi (3-dars 4-ekran):** «bosilishi kerakligi ham bilinmadi — oddiy qilingani sababli bo'lsa kerak» · 10-ekran: «biroz aniqsizlik tuyuldi».
+
+1. **Bosib-ochiladigan guruh:** hali ochilmagan element navbat bilan yengil pulslaydi (`.tap-wave`, `outline` bilan — halqa-soyani
+   buzmaydi; ochilgach to'xtaydi); har elementda «›», ochilgani «✓»; hisoblagich («1/3») — tugma-yorlig'ida yoki guruh yonida.
+   PM darslarida bu vazifani `useTurnHint`/`useTurnWalk` bajaradi.
+2. **Puls kirish-animatsiyasi bilan bir elementda emas** (`fade-up` + `.tap-wave` → element ko'rinmas qoladi; `lint:jsx` tutadi):
+   kirish o'rovchi blokka beriladi.
+3. **Ko'p qadamli mashqda bitta yorqin harakat:** har qadamda faqat keyingi bosiladigan narsa pulslaydi/yorqin; qadam-chiplari
+   (① ② ③, tugagani yashil) qayerda ekanini ko'rsatadi; ko'rsatma bitta qisqa qatorda, to'rt joyga bo'linmaydi.
+4. **Tizim holati ko'rinadi:** natija yo'q bo'lsa (handler yo'q — bot jim) chatda bir marta kulrang belgi; kerakli tugma («+ handler
+   qo'shish») kulrang-o'chiq emas, kerak bo'lganda yorqin; kerak bo'lmaganda «handler yo'q» uzuq ramkada.
+5. **Qamrov:** 5-Modul 7 darsda 14 ekran + 3-dars 10-ekran — 02.10; 1–4-Modul texnik darslari o'lchanmagan (ko'rganda).
+
+**Bog'liq:** 152 (tap-hint), 159.15, 163; QOIDALAR U-049 · U-051.
+
+## 12-AF. 💬 169-QONUN: CHAT OYNASI CHO'ZILMAYDI (2026-10-02, F-1002-85)
+
+**Foydalanuvchi (3-dars 10-ekran):** «juda cho'zilib ketdi pastga qarab» — handlersiz «/menu» har bosishda yangi pufak, chat ekrandan uzun.
+
+1. **Balandlik cheklangan:** `.tg-body { max-height: clamp(260px, 48vh, 420px); overflow-y: auto }`; har yangi xabarda eng pastga avtomatik
+   tushadi (`TgBody`, reduced-motion'da sakrab). Yangi xabar har doim ko'rinadi.
+2. **Takror hodisa yig'ilmaydi:** natijasiz hodisani qayta yuborish holat o'zgarmaguncha o'chadi (168.4); ssenariyli chatda bir xil
+   xabar ketma-ket ustma-ust tushmaydi.
+3. **Qamrov:** 5-Modul 8 dars chat komponenti — 02.10; 6-Modul — o'z fidbek davrida.
+4. **Amaliyot chati ekranga sig'adi (2026-10-04, 5-Modulni yopish Q2 A, F-1004-60):** «kutilgan natija» va «bugun quramiz» chati ekranning
+   o'rtasidan boshlanadi — qat'iy `48vh` uni pastki panel ostiga tushirardi (1280×773: 3-dars 17-ekran 62px, 5-dars 2/7-ekran 17/27px; «Ortda
+   qoldingizmi» qatori ko'rinmasdi). Endi balandlik **pastki chiziqqacha qolgan joydan** o'lchanadi (`TgChat fit` → `useChatFit`: `.stage-content`
+   pastki cheti − chat tepasi − chatdan keyingi qator; `--lz` masshtabi hisobga olinadi; ≥180px), sig'magan xabarlar chat ichida skrol, oxirgi
+   xabar ko'rinadi. Telefonda (≤768) va kattalashtirilgan oynada — 1-banddagi CSS chegarasi. 7 dars (3/4/6/10 amaliyot ekrani, 5/7/9 «bugun
+   quramiz» + 3 blok). **Tekshiruv:** `lint:layout` E 1280×773 va 1366×768 — chat 0.
+
+**Bog'liq:** 159.13 (cho'zilgan bo'sh quti yo'q), 168; QOIDALAR U-050, U-080.
+
+## 12-AG. 🎯 170-QONUN: TANLOV RANGI BUTUN KURSDA BITTA — ACCENT (2026-10-02, F-1002-92)
+
+**Foydalanuvchi (5-Modul 5-dars):** «oldingi tex darslarga qara — shu tugmalardan birini bosganda qaysi rang bo'ladi, qorami?» · javob: «tavsiya ma'qul, generalne qil».
+
+1. **Tanlangan variant** (`hook-option.on`, radio, chip, karta tanlovi — ball bermaydigan tanlov ham) — kursning tanlov rangi: `accentSoft` fon +
+   1.5 px `accent` ramka + `accent` matn, radio nuqtasi `accent`. 1–4c-Modul 43 va 6-Modul 10 darsda shunday; 5-Modul 7 darsdagi «neytral qora
+   ramka» (30.09 U1) bekor — 02.10 qaytarildi.
+2. **Qora ramka tanlov belgisi emas** (159.5 «qora tugma yo'q» bilan bir qatorda). «Ballsiz tanlov» degani yashil/qizil baho rangi bo'lmasligi;
+   accent baho emas, «siz shuni tanladingiz» rangi.
+3. **Baho ranglari alohida:** yashil — to'g'ri, qizil — xato, faqat ball yoki tekshiruv natijasida.
+4. **Tekshiruv:** `grep -n "\.hook-option\.on" <fayl>` → `${T.accentSoft}` bo'lmasa — nuqson; QOIDALAR U-053.
+
+**Bog'liq:** 159.5, 168 (bosish signali), M5-U1 (bekor qilingan qismi).
+
+## 12-AH. 📐 171-QONUN: TOR USTUN (`narrow`) FAQAT TEST VA NATIJA EKRANIDA (2026-10-02, F-1002-94)
+
+**Foydalanuvchi (5-Modul 5-dars 14-ekran):** «layoutda katta qilish bor — layout o'zgarmasin va bunga o'xshagan baglar bo'lmasin, qat'iy qara, generalne».
+
+1. **`narrow` (680 px markazlashgan ustun)** faqat ikki ekran turida: test (`QuestionScreen`) va natija (`ScreenPodium`). Butun kursda
+   shunday (02.10 o'lchov: 119 fayl).
+2. **Tushuncha / hayotiy / amaliyot ekrani** kurs layoutida (to'liq kenglik, `.split` ikki ustun yoki bir ustun). Bitta ekran tor bo'lsa
+   dars boshqalaridan farq qiladi — o'quvchi «nimadir buzildi» deb o'ylaydi.
+3. **Topilma (02.10):** 5-Modul 5-dars 14-ekran «Botingiz g'oyasini tanlang» va 10-dars 4-ekran «Agent sikli» — ikkalasidan olindi.
+   1–2-Modulda 8 eski istisno (PmLesson3 ×5 Demo Day, PracticeLesson4 «Tez takror», HtmlTakrorlash «Eslab olish» va «Sahifa tayyor!») —
+   KATTA_TOZALASH F-1002-94, warn.
+4. **Tekshiruv:** `lint-narrow.mjs` = `gates` 11-darvoza (`npm run lint:narrow`): `<Stage … narrow>` ni o'rab turgan komponent
+   `QuestionScreen`/`ScreenPodium` bo'lmasa — 5-Modul va 7+ da error, 1–4 va 6-Modulda warn. QOIDALAR U-054.
+
+**Bog'liq:** 145.c (mavjud komponent), 163 (bitta vizual), 166 (natija ekrani — `narrow` o'rinli).
+
+## 12-AI. 🧱 172-QONUN: LOYIHA KUNI QOLIPI — 8 EKRAN + 3 AMALIYOT BLOKI (2026-10-03, F-1002-101…112)
+
+**Foydalanuvchi (5-Modul 6-dars ko'rigi, CusDev):** «practiceda ko'p ekran nega kerak — o'quvchi 19 ekranni ko'rsinmi yoki praktika qilsinmi
+1,5 soatda? 7–8 eng kerakli ekran + practice» · «practicelarni keskin kamaytiramiz — o'quvchilar ulgurmayapti». Qaror Q1 A·Q2 C·Q3 A·Q4 A.
+
+1. **Qamrov:** modulning **loyiha kunlari** (5-Modulda 5, 7, 9) — 20 ekran emas, **8 ekran + 3 amaliyot bloki = 11**: 0 hook (bitta savol) ·
+   1 «bugun quramiz» (tayyor natija chati + 3 qadam tex-karta + repo teglari qatori) · 2 tushuncha-1 (bitta vizual) · **A1** · 3 test-1 ·
+   4 tushuncha-2 · **A2** · 5 test-2 · **A3** · 6 podium · 7 yakun (kartochkalar shu ekranda, «Keyingi dars» qatori). ≈90 daqiqa, amaliyot ≈58.
+   Qolgan kod-darslar 20 ekranda qoladi, faqat amaliyot ekrani 173-qonun bo'yicha. PM darslar o'zgarmaydi.
+2. **Bitta natija:** dars oxirida o'quvchining repo'sida aniq bir narsa ishlaydi (o'z g'oyasi bot · bot serverda · v2 serverda) — 1-ekranda ko'rsatiladi,
+   bloklarda quriladi, podiumda sanaladi. Bir dars — bitta yangi narsa, qolgani o'tilgandan.
+3. **Tushib qolgan ekranlar yo'qolmaydi:** tushunchalar kartochkalarga (12), keyslar/hikoyalar YAKUNIY MD arxiviga; arena `QUIZ_BANK` (12 savol)
+   test-ekranlarga bog'liq emas — o'zgarmaydi (faqat darsga zid variant matni, o'rni saqlanadi). `INLINE_KEYS` 2 ta, RECAPS 2 ta.
+4. **Nishonlar 3:** ikki test + bitta amaliyot-bonus (A3 oxirgi «Bajardim», birinchi urinish sharti yo'q — memory `nishon-bonus-qismaslik`).
+   Uyga vazifa bloki yakundan olinadi — ish repo'da, keyingi dars shu repo ustida.
+5. **Jarayon:** MD v2 (retsept F, A-bo'lim = qolip qoidalari, har ekran ostida `✎` eski ekran qayerga ketgani) → GATE M → kod bitta
+   anchor-tekshiruvli skript bilan (asl nusxa `arxiv/`ga) → `gates` 11/11 + `lint:jsx` + `lint:sarlavha` → surat (uz + 2–3 ru) → ko'z → foydalanuvchi.
+   Suratdan topilgan nuqson MD'ga `⚙` bilan qaytariladi (MD = manba-haqiqat).
+6. **Tekshiruv:** SCREEN_META uzunligi 11 va `practice` turi 3 ta; `lint:olchov` (sarlavha ≤55, hook ≤2 gap, xato-izoh ≤60, xulosa ≤110);
+   `lint:narrow`; arena 12 savol o'zgarmaganini `git diff` bilan.
+
+**Bog'liq:** 163 (minimalizm), 164 (sarlavha), 169 (chat), 173 (blok), 151 (nishon); QOIDALAR P-058; reja `feedback/F-1002-mexanizm/AMALIYOT_REJA_2026-10-02.md`.
+
+## 12-AJ. 🛠️ 173-QONUN: AMALIYOT BLOKI — REPO USTIDA, 4 QADAM, KUTILGAN NATIJA (2026-10-03, F-1002-106…115)
+
+**Foydalanuvchi:** «Nestjs'da shablon berib, clone qilib ustiga qurishsin» · «aniq amaliyot qilsin Antigravity bilan, ekran o'sha-o'sha, minimalizm».
+
+1. **Shablon-repo:** modulning amaliyoti bitta ochiq repo ustida (`github.com/Azizbekcrypto/TelegramBotNest`: Nest 11 + TypeORM + telegraf + Gemini).
+   O'quvchi 3-darsda **Fork → clone** (keyin deploy o'z nusxasidan), `.env` tokeni; har dars oxiri tegi `dars-0N-done`, ortda qolgan — `git checkout -f dars-0N-start`.
+   Kod yozish — Antigravity (prompt), tushuncha-savollar — gemini.google.com (memory `sinfda-gemini`). Baza — Neon (bepul, bitta URL), hosting — Render Free
+   (kartasiz; 15 daqiqa jimlikda uxlaydi → serverda **webhook**, laptopda **polling**; bitta token ikki joyda ishlamaydi — dars matni buni halol aytadi).
+2. **Blok = 4 qadam, har darsda bir xil (`ScreenBlok`):** `1 · Ochish` (papka, `npm run start:dev`) → `2 · Prompt` (`PromptBox`: «Nusxalash», o'quvchi to'ldiradigan
+   joy `{…}` accent pill, `|`/`#` qatorlar mono) → `3 · Ishga tushirish` (terminal xatosiz; xato yo'li bitta gap: «Shu xato chiqdi: {xato}. Tuzat.») →
+   `4 · Telegramda tekshirish` (aniq buyruq). Qulf: bittadan «Bajardim», ↻ qaytaradi; oxirida yashil xulosa (≤110). Jonli: `PRACTICE_BASE + ekran` zonasi (ball yo'q).
+3. **O'ngda kutilgan natija — bitta vizual:** chat (`TgChat` + pufaklar + tugma qatori), terminal (`Term`, git/Render log) yoki fayl-karta (`FIKRLAR.md`).
+   Namuna doimo AvtoPizza, yorlig'i «kutilgan natija · namuna: AvtoPizza» — o'quvchi o'zinikini solishtiradi. Pastda `.ab-tail`: zaxira tegi yoki halol izoh
+   («bepul server 15 daqiqa jimlikdan keyin uxlaydi»).
+4. **Prompt mazmuni:** texnologiya va token aytilmaydi (repo'da); faqat *nima qilsin*: qayerda · nima o'zgarsin · nima buzilmasin (9-dars) — shikoyat emas, vazifa.
+   Fikrlar `FIKRLAR.md` da repo ildizida (9-dars → Demo Day dalili).
+5. **Texnik tuzoqlar (ov-bandlari, tekshiruvchi):** (a) qadam matnida `**` ishlatilmaydi — `fmtCode` faqat backtikni tushunadi, yulduzcha xom chiqadi («Fork» → «Fork»);
+   (b) Mentor JSX'ida backtik yozilmaydi (Mentor `fmtCode` qilmaydi) — `<code className="qcode">`; (c) `tr()` natijasi obyekt bo'lishi mumkin — string metodidan
+   oldin `String(tr(l))` (FileCard yiqildi); (d) yangi CSS sinfi faylning eski umumiy qoidasidan **oldin** tursa yutqazadi — ikki sinf (`.dpl.dpl3`) yoki
+   o'z sinfi (`.lp-step.ab-cur`); (e) kesib tashlangan yordamchi (`fcAnswer`) esbuild'dan o'tadi — `undef` darvozasi tutadi, cut'dan keyin `grep` bilan tekshiriladi;
+   (f) chat tugma yorlig'i bitta qatorda sig'sin («Buyurtmam» → «Buyurtma», «To'rt pishloq» → «Pishloqli») — 169 bilan juft.
+6. **Boshqa fayllar har xil primitivli bo'lsa** (chat/terminal imzolari) — blok o'zini o'zi ta'minlaydi (`BlkBtns`, `CodeLines`, o'z CSS'i `</style>` oldiga),
+   tashqariga faqat `Stage/Mentor/Col/TgChat/Bubble(from)/MentorPracticeStats/PRACTICE_BASE/LiveGateCtx/fmtCode` ga tayanadi (3/4/6/10-dars).
+
+**Bog'liq:** 172, 145.c (mavjud komponent), 163.6 (amaliy ekran namunasi), 169; QOIDALAR P-059/060, U-055…058; repo README; jurnal F-1002-103…115.
+
+
+## 12-AK. ⬆️ 174-QONUN: KONTENT HAMISHA TEPADAN BOSHLANADI (2026-10-03, F-1003-01)
+
+**Foydalanuvchi (5-Modul QA, 8-dars 3-ekran surati):** «content hardoim layoutda shu yuqoridan boshlansa — bu yerda o'rtaga tushib qolgan;
+generalne qabul qil, bajar va bunga o'xshagan xatolar kutilmasin».
+
+1. `.screen` vertikal markazga olinmaydi — hech qaysi shaklda: inline (`justifyContent: 'center'`), shartli
+   (`isMentorLive ? 'flex-start' : 'center'`), `safe center`, CSS (`.screen:has(.pod-card) { justify-content: center }`).
+   Hook, test, natija, yakun — hammasi: sarlavha eyebrow ostida, birinchi qatorda.
+2. 128-qonun (`safe center`) faqat `.stage-content` kesilishiga himoya — u ekranni markazga olishga ruxsat EMAS.
+3. Qamrov (03.10): 12 fayl (5-Modul 2 ekran, 7-Modul 11 test-ekran), 98 fayl test-ekran (`QuestionScreen`, talaba rejimi), 4 fayl natija ekrani (CSS).
+4. **Tekshiruv:** `gates:qolip` q1 (statik, uchala shakl) · `lint:layout` F-detektor (birinchi blok `.screen` tepasidan >40px).
+
+**Bog'liq:** 128, 163 (minimalizm), 172; QOIDALAR U-059.
+
+## 12-AL. ✍️ 175-QONUN: YOZISH MAYDONI MATN BILAN O'SADI (2026-10-03, F-1003-03)
+
+**Foydalanuvchi (8-dars 13-ekran):** «ko'p text yozilsa, shu qator davom etib ketaverarkan, visual tarafdan nima yozganini ko'rish qiyin».
+
+1. O'quvchi gap yozadigan maydon `<input>` emas — `GrowInput` (`<textarea rows={1}>`): 1 qatordan boshlanadi, matn bilan 4 qatorgacha o'sadi,
+   undan keyin ichida skroll. Enter yangi qator ochmaydi — maydonning o'z `onKeyDown` (saqlash) ishlayveradi.
+2. Son maydoni (`type="number"`, `inputMode`) `<input>` bo'lib qoladi.
+3. Qamrov: 24 PM fayl, 52 maydon. Komponent har faylda o'zini o'zi ta'minlaydi (fayl tepasida, `Stage` dan oldin).
+4. **Tekshiruv:** `gates:qolip` q2.
+
+**Bog'liq:** QOIDALAR U-060.
+
+## 12-AM. 🔒 176-QONUN: «BAJARDIM» QADAMLARGA BOG'LIQ (2026-10-03, F-1003-12)
+
+**QA (9-dars 17-ekran, 10-dars 17-ekran):** «hammasini bosmasa ham shunday chiqishi kerakmi?» · «bittasini tanlab, bajarildi bosilib yashil yonyapti — to'g'ri logicmi? global».
+
+1. Amaliyot ekranida (`ScreenLivePractice`) «Bajardim» hamma qadam belgilanmaguncha yopiq: `disabled={done || checked.size < checklist.length}`,
+   yorliq «Yana N qadam» (ru «Ещё шагов: N»), `complete()` ham shu shart bilan qaytadi; yopiq tugma xira (`.lp-done-btn:disabled:not(.is-done)`).
+2. 173-qonun bloki (`ScreenBlok`) va 163.8 qadam-ro'yxat (bittadan ochiladi) bu qoidani o'zi bajaradi.
+3. Qamrov: 39 fayl (3, 4, 4a–4c, 6-Modul).
+4. **Tekshiruv:** `gates:qolip` q3.
+
+**Bog'liq:** 163.8, 173; QOIDALAR P-061.
+
+## 12-AN. 🎯 177-QONUN: NATIJA VA YAKUN — BITTA O'Q, HALQA BIR JOYDA (2026-10-03, F-1003-04/05)
+
+**QA (8-dars 14/16-ekran):** «buyam buzilgan» · «bungayam qara, generalne qat'iy».
+
+1. **Natija ekrani (podium):** sarlavha, halqa, karta bitta vertikal o'qda, markazda (`.head.head-c`); halqa karta ICHIDA (manfiy `top` yo'q).
+2. **Yakun ekrani:** halqa (`ScoreRing`) sarlavha yonida turmaydi — sarlavha 2 qatorga o'tsa pastki kartaga tushardi. O'rniga
+   «✓ …» chipi yonida `score-chip` «N/M to'g'ri» (ru «верно»); mentor rejimida ko'rinmaydi (`isMentorL` sharti saqlanadi).
+3. Qamrov: 109 faol dars (yakun), 98 podium sarlavhasi, 4 PM podium kartasi.
+4. **Tekshiruv:** `gates:qolip` q4 (yakun `hero` ichida halqa) · q5 (`.pod-card .ring-wrap` manfiy `top`).
+
+**Bog'liq:** 166 (natija kartasi), 171 (narrow); QOIDALAR U-061.
+
+## 12-AO. 📏 178-QONUN: KARTA ICHIDA MATN CHETGA YOPISHMAYDI (2026-10-03, F-1003-21)
+
+**QA (m5-11 11-ekran «Kod nima qilsin»):** «chapga tiqilib qolgan».
+
+1. Sabab: umumiy reset `.lesson-root ol { padding: 0 }` (0,1,1) sinf-qoidasini `.kdreq { padding-left }` (0,1,0) yeydi — raqamlar karta chetida.
+2. Yechim — bitta naqsh barcha PM darslarda: `.lesson-root ol.kdreq` (list-style yo'q) + `li` fonli qator + `li::before` raqam-doira (8-dars naqshi).
+3. Umumiy: element-reset (`ol`, `ul`, `p`) sinf-paddingidan kuchli bo'lishi mumkin — yangi ro'yxat/karta sinfi resetdan yuqori o'ziga xoslik bilan yoziladi.
+4. Qamrov: 11 PM fayl. **Tekshiruv:** `gates:qolip` q6 · `lint:layout` G-detektor (matn karta ichki chetiga <3px).
+
+**Bog'liq:** 145.c; QOIDALAR U-062.
+
+## 12-AP. 1️⃣ 179-QONUN: SON EKRANDA BIR MARTA (2026-10-03, F-1003-02)
+
+**QA (8-dars 9-ekran):** «5 ta joyda 3 ta savol borligini bildirib turibdi — takrorlik bo'lmagani yaxshi, 6 ta ekan».
+
+1. Miqdor (uch savol, uch kun…) sarlavhada + bitta vizualda (1/2/3 doiralar) aytiladi. Eyebrow «Mustaqil ish» (sonsiz), mentor gapi va
+   topshiriq ro'yxati sonni takrorlamaydi («Uch savol yozilgan» bandi — doiralar ko'rsatadi).
+2. Qamrov: 14 PM «Mustaqil ish» ekrani (eyebrow), 5 topshiriq bandi, 1 mentor gapi.
+3. **Tekshiruv:** `gates:qolip` q7 (warn) · karta (boshqa ekran turlarida eyebrow-son + mentor-son juftligi qo'lda ko'riladi).
+
+**Bog'liq:** 109 (TMI), 163; MATN_KORPUS §223; QOIDALAR P-062.
+
+## 12-AQ. 🔗 180-QONUN: BITTA TUSHUNCHA — BITTA MANBA (2026-10-03, F-1003-16)
+
+**QA (10-dars 4/13/16-ekran):** «bularni bir source-dan olganmizmi yo generate bo'lganmi?»
+
+1. Bir tushuncha (agent sikli, bosqichlar, qadamlar ro'yxati) darsning bir nechta ekranida chiqsa — bitta `const` dan olinadi
+   (10-dars: `CYCLE` — Maqsad olinadi → Idrok → Qaror → Amal → Maqsadga yetdimi?; `PHASES`, `FLOW`, `AGENT_RUN` fazalari shundan).
+2. Testda o'rgatilmagan qadam so'ralmaydi: tartib-testi 5 bo'lak so'rasa — tushuncha ekrani ham 5 bo'lakni ko'rsatadi.
+3. **Tekshiruv:** karta (tekshiruvchi ov-bandi: bir xil yorliq ikki literal massivda — topilma).
+
+**Bog'liq:** 145.c; QOIDALAR P-063.
+
+## 12-AR. 🔮 181-QONUN: FAQAT BOSILADIGAN EKRANDA — AVVAL BASHORAT (2026-10-03, F-1003-18)
+
+**QA (m5-11 5-ekran):** «o'quvchi hech nima yechmadimi? faqat buttonni bosib o'tirsa o'tib ketaveradimi?»
+
+1. O'quvchi faqat «Keyingi» bosib kuzatadigan ekranda (kunlar, sikl, sahna) asosiy o'zgarishdan OLDIN ballsiz bashorat so'raladi (2–3 variant),
+   asosiy tugma bashoratsiz yopiq; natija ochilgach «Taxminingiz: … · haqiqatda: …» qatori.
+2. Bashorat baholanmaydi (✓ faqat mos kelsa), keyingi test ekrani tekshiradi.
+3. **Tekshiruv:** karta (tushuncha-ekran faqat bosish bo'lsa — topilma).
+
+**Bog'liq:** 33/56 (bashorat), DE-165 `pre/post`; QOIDALAR P-064.
+
+## 12-AS. 🏷️ 182-QONUN: KEYS EKRANI — BITTA QOLIP, BREND O'Z RANGIDA (2026-10-03, F-1003-19; 165-qonunga qo'shimcha)
+
+**Foydalanuvchi:** «bu pageni komponenti har xil bo'p qopti … rasm yoki animatsiya o'sha brendni — o'quvchi ko'rganda his qilsin, eslasin degan edik».
+
+1. Barcha PM keys ekranlari: ixcham karta (`k-fill` yo'q), Stage eyebrow «Biznes olamidan», slayd yorlig'i «{Brend} · N / M».
+2. Sahnaning chap burchagida brend nom-yorlig'i o'z rangida (`.ksc-brand`: thefacebook #3B5998 · AirBed & Breakfast #FF5A5F · Booking.com #003580 ·
+   duolingo #58CC02). Logotip-rasm emas — nom va rang. Brend sir bo'lgan keysda (2-dars «Bu sayt…») yorliq ochilish qadamida chiqadi (`brand.from`).
+3. **Tekshiruv:** surat (4 dars yonma-yon).
+
+**Bog'liq:** 165; QOIDALAR PM-028.
+
+## 12-AT. 🧩 183-QONUN: ASBOB/FUNKSIYA TUSHUNTIRILSA — KODI KO'RINADI (2026-10-03, F-1003-15)
+
+**Foydalanuvchi (10-dars 7-ekran):** «function'ning kodini yozib qo'ysa qanday bo'larkan, faqat shunday qiladi deb yozib qo'ygandan ko'ra».
+
+1. Funksiya/asbob kartasida 3–4 qator kod (`.ag-tool-code`, kod-rangi) + bir gap tavsif. Repo bo'lsa — repo'dagi koddan qisqartiriladi
+   (10-dars `checkOrder`/`saveOrder` = `TelegramBotNest/src/api/ai/agent.service.ts`). Izoh-qatorlar `{ uz, ru }`.
+2. **Tekshiruv:** karta.
+
+**Bog'liq:** 173 (repo), 145.c; QOIDALAR P-065.
+
+**172-qonunga tuzatish (F-1003-06):** «bugun quramiz» tex-kartasida qadam ostidagi kichik teglar YO'Q — qadam matni o'zi yetadi
+(QA «olib tashlaylik», 8 kod darsi). Pastki «repo · dars-0N-start · namuna dars-0N-done» qatori qoladi.
+**Tugma joyi (F-1003-13/17):** harakat tugmasi u o'zgartiradigan kartadan KEYIN turadi; jarayon tugagach tugma yashiriladi (ro'yxat pastki panel ostiga
+ketmasin) — QOIDALAR U-063, `lint:layout` E.
+
+**178-qonunga tuzatish (F-1004-19, 04.10 — o'z regressiyamiz):** 03.10 naqshi `.kdreq li { display: flex }` band ichidagi har `<code>`/`<b>` ni alohida
+flex-ustunga aylantirdi («qayt / di,»). To'g'ri naqsh: `li` — oddiy blok (`position: relative`, chap padding 35px), raqam-doira `li::before` — `position: absolute`
+(left 10, top 7). 13 PM fayl. **Tekshiruv:** `gates:qolip` q9 · surat (kod-chipli band bitta qatorda).
+
+## 12-AU. 👆 184-QONUN: TUSHUNCHA-EKRAN — HARAKAT → NATIJA VIZUALDA (2026-10-04, F-1004-06/13/22/23; qaror Q1 A)
+
+**Foydalanuvchi (6-Modul QA):** «faqat button bosib keyingi stepni ochyapti, faqat text o'qiyapmiz» · «nimanidir bosasiz, text yozilgan cardlar o'zgarib
+ma'lumot chiqadi, faqat textdan nimadir o'rganish qiyin, boshqa alternativ topish kerak» · «click va text, click va text — boshqacha ilm yo'qdek».
+
+1. Har tushuncha-ekranda o'quvchi **bitta harakat** qiladi (tanlaydi, qo'shadi, sudraydi, o'zgartiradi) va **natija vizualda o'zgaradi**: tugun yonadi, yo'l chiziladi,
+   kod qatori qo'shiladi va telefon/brauzer maketi o'zgaradi, qoida qo'shiladi va AI javobi yaxshilanadi. Matn — faqat bitta yashil xulosa (≤110, 162).
+2. TAQIQ: «bosasiz → yangi matn-karta ochiladi» (karta ichida tushuntirish matni almashadi). Chip/tugma bosilganda faqat gap chiqsa — qayta quriladi.
+3. Avval bashorat (181), ketma-ket qadamlar — 163.8 qadam-ro'yxati + joriy karta. Funksiya/asbob — kodi ko'rinadi (183).
+4. Namuna tanlanmaydi tashqi platformadan (F-1004 izohi: 20-surat QA'niki, foydalanuvchi namunasi emas) — manba foydalanuvchi so'zi va 5-Modul ekranlari.
+5. Qamrov: 6-Modulning hamma tushuncha-ekrani (≈76) MD v3 → GATE M → kod. **Tekshiruv:** MD v3 da har tushuncha-ekranda «Harakat → Vizual o'zgarish» qatori
+   majburiy (yo'q bo'lsa GATE M o'tmaydi); kodda — karta (tekshiruvchi ov-bandi F-1004/1).
+
+**Bog'liq:** 163, 163.8, 181, 183, 109; QOIDALAR P-067.
+
+## 12-AV. 🧼 185-QONUN: TOZA YUZA — EMOJI BELGIDA EMAS, FON FAQAT HOLATDA (2026-10-04, F-1004-14/16/26; qaror Q2 A; 161 ga qo'shimcha)
+
+**Foydalanuvchi:** «pagelarda emojilarni kamaytirib, aniqroq bo'lsa … har elementni background colori bor bo'lib g'alati ko'rinyapti, clean qilish kerak».
+161-qonun darvozadan o'tgan (0 xato) bo'lsa ham ekran «emoji ko'p, fon ko'p» ko'rindi — limit yetmaydi.
+
+1. Tugma, variant, chip, ro'yxat bandi matnida emoji YO'Q (✓ → ← ▶ kabi belgilar emoji emas). Emoji faqat eyebrow va sahna-illustratsiyasida (keys maketi, 186).
+2. Fon — faqat holat: tanlangan = accent, to'g'ri = yashil, xato = qizil. Qolgan bloklar oq karta + 1px chiziq; bir ekranda ko'pi bilan 2 xil fon (sahifa + karta).
+3. O'yin qatlami (arena, podium, nishon hisoblagichi 🏅) tegilmaydi.
+4. **Tekshiruv:** `lint:emoji` 185 (tugma/`li`/chip/`label:`) — 6-Modul va yangi papkalarda error, eski modullarda warn; fon-sanoq — surat (darvoza nomzodi
+   `lint:layout` I, kalibrovkadan keyin). Variant-belgisi ma'lumot maydonida (`ic:`) bo'lsa statik tekshiruv ko'rmaydi — MD v3 da olinadi.
+
+**Bog'liq:** 161, 170 (accent tanlov), 111; QOIDALAR U-064.
+
+## 12-AW. 🎨 186-QONUN: VOQEA/BREND SAHNASI — CHIZILGAN MAKET, EMOJI EMAS (2026-10-04, F-1004-02/15; qaror Q3 A; 165/182 ga qo'shimcha)
+
+**Foydalanuvchi:** «emojini o'rniga nimadir qo'yilsa … har bir PM darsini shu biznes misollarda rasm yoki brendni his qildiradigan animatsiya» ·
+«shuni nima ekanini ko'rsatsa bo'ladimi, emojidan ko'ra».
+
+1. Keys/voqea sahnasida predmet darsning o'z kodida chiziladi (CSS/SVG): Altair paneli, chat oynasi + kulrang ogohlantirish qatori, telefon ekrani — va harakat
+   qiladi (chiroq yonadi, qator paydo bo'ladi). Rasm fayli yo'q (LMS paketi o'zgarmaydi, ru oson).
+2. Logotip chizilmaydi — brend nomi o'z rangida (182). Matnda aytilgan narsa sahnada ko'rinadi («bitta qator» deyilsa — o'sha qator chiziladi).
+3. **Tekshiruv:** surat; `KEYS_SCENE` da emoji-tur 0 ga intiladi (165 limiti 4 — eski darslar uchun).
+
+**Bog'liq:** 165, 182, 184; QOIDALAR PM-029.
+
+## 12-AX. 👉 187-QONUN: ICHKI HARAKAT TUGMASI O'NG CHEKKADA (2026-10-04, F-1004-08)
+
+**Foydalanuvchi:** «button o'ngda bo'lsa qulay, chunki ko'pchilik o'ng qo'li bilan bosadi (mobileda)».
+
+1. Kontent ichidagi harakat tugmasi («Keyingi qadam», «Agentga vazifa berish», «Skanerlash») — u o'zgartiradigan karta/blok OSTIDA, o'ng chekkada
+   (`alignSelf: 'flex-end'` yoki `.act-row`). Pastki navigatsiya o'zgarmaydi. Tugash bilan tugma yashirinadi yoki natija bilan almashadi (U-063, 179).
+2. **Tekshiruv:** `gates:qolip` q8 (6-Modul va yangi — error).
+
+**Bog'liq:** 168, U-063; QOIDALAR U-065.
+
+## 12-AY. 🧩 188-QONUN: TARTIB-MASHQI — BITTA QOLIP, JAVOB OLDINDAN OCHILMAYDI (2026-10-04, F-1004-10/11)
+
+**Foydalanuvchi:** «bu pageni layouti boshqa darslarda boshqacha … standard bo'lsa» · «odatda shunaqa layoutda edi» (m6-05).
+
+1. `DragDropOrder` — to'liq kenglik: bo'sh joylar chapda (keng), bo'laklar o'ngda. Yoniga izoh-ustun qo'yilmaydi.
+2. Tartibni tushuntiradigan matn faqat yechilgandan keyin (yashil xulosa); bo'sh joy belgisi javobni aytmaydi («bu yerga qo'ying» yoki rol-izohi).
+3. **Tekshiruv:** `gates:qolip` q10; test halolligi — karta (izoh javobdan oldin ko'rinsa topilma).
+
+**Bog'liq:** 142 (test halolligi), 180; QOIDALAR P-068.
+
+## 12-AZ. ⛶ 189-QONUN: KATTALASHTIRISH TUGMASI MATN USTIGA TUSHMAYDI (2026-10-04, F-1004-12; 147/159 ga qo'shimcha)
+
+1. Keng ekranda (≥1200px) ⛶ kontentdan tashqarida, `Zoomable` ning o'ng chetida (`right: -42px`); torroqda ichkarida — o'ng ustunning birinchi yorlig'iga 40px joy.
+2. **Tekshiruv:** `lint:layout` D — ⛶ uchun piksel o'lchovi: bitta harf (≥6px) yopilsa topilma (ulush emas — uzun yorliqda 5% chiqib o'tib ketardi).
+
+**Bog'liq:** 147, 159; QOIDALAR U-066.
+
+## 12-BA. 🖥️ 190-QONUN: KOMPILYATOR EKRANI — BO'SH OYNA YO'Q, TASDIQ BIR MARTA (2026-10-04, F-1004-18/20)
+
+**Foydalanuvchi:** «compilator page sig'may qolgan viewportga» · «kichkina text elementlar takror bo'lyapti, to'g'ri qilganini compilator pageda bildi, yana tashqarida shartmas».
+
+1. Vazifa faqat console'da (HTML fayli yo'q, JS sahifaga yozmaydi) — «Natija» oynasi yo'q, console butun panel (`HtmlCompiler` `consoleOnly`, avtomatik).
+2. 1280×773 da tepa kesilmaydi (`safe center`, panel qisqaradi). Starter izoh qatori ≤ 56 belgi (muharrirda o'ngdan kesilmaydi).
+3. Kompilyatordan qaytgach tashqarida takror tasdiq yo'q: oldingi bosqich chipi («✓ Belgilandi…»), «✅ Uchala shart bajarildi», «Bajarildi — … sayqallang» — olinadi;
+   faqat «Davom etish» yonadi (179).
+4. **Tekshiruv:** `gates:qolip` q12; surat (1280×773 + 393).
+
+**Bog'liq:** 179, 147; QOIDALAR U-067.
+
+## 12-BB. 📱 191-QONUN: TELEFON RAMKASI — BITTA, HAQIQIY NISBATDA; WEB — BRAUZER OYNASI (2026-10-04, F-1004-27)
+
+**Foydalanuvchi:** «telefon framelarni sal realistic qiling» · «tellni haqiqiy qilaylik, qaysidir darsda uzunroq normalni bor ekan».
+
+1. Bitta ramka: 196:348 nisbat (joy tor bo'lsa 176×312 yoki 140×246 — o'sha nisbat), tepada status-qatori (9:41, signal, batareya) va kamera-orol, pastda uy-chizig'i;
+   ilova mazmuni status-qatoridan pastda. Namuna: `MobileAppPracticeLesson` `Phone`.
+2. «Web ko'rinishi» telefon ichida ko'rsatilmaydi — brauzer oynasi (`Browser`: uch nuqta + manzil qatori).
+3. **Tekshiruv:** surat; `lint:layout` E (balandroq telefon tugmani pastki chiziqdan tushirmasin).
+
+**Bog'liq:** 147, 163; QOIDALAR U-068.
+
+## 12-BC. 🎫 192-QONUN: YAKUN BANNERLARI — PLATFORMA STANDARTI, QAT'IY (2026-10-04, F-1004-25 → F-1004-57 qayta yozildi)
+
+**Tarix:** F-1004-25 da QA iborasi («biri rounded, biri to'rtburchakroq») bo'yicha 6-Modulda ikkala banner 22px va to'liq enga keltirilgan edi.
+**Foydalanuvchi (77, 04.10 kech):** «CODE STRIKE va uyga vazifa boshqacha bo'pti … tex uroklarda qara, bunaqa juda to'rtburchak emas, o'shalardagiday qil
+barchasiga va qoidalarimizga qat'iy kirit». O'lchov: 1–5-Modul va PM'dagi 84 dars bir xil shaklda — standart shu.
+
+1. **CODE STRIKE** — kapsula: `.cs-cap { border-radius: 999px }`, to'liq en.
+2. **«Uyga vazifa»** — `.hw-big { border-radius: 22px }`, `.hw-big-wrap { align-self: center; width: min(560px, 100%) }` — o'rtada, 560px gacha.
+3. Bu shakl hamma darsda AYNAN bir xil; yangi modul ham shundan chiqmaydi.
+4. **Tekshiruv:** `gates:qolip` q11 — hamma modulda **error** (04.10: 98 dars toza).
+
+**Saboq (qolip qoidasi):** umumiy element o'zgartirilishidan oldin platformadagi mavjud standart o'lchanadi; ko'pchilik darsdagi shakl — standart, yangi
+qonun undan chetga chiqmaydi (foydalanuvchi aytmaguncha).
+
+**Bog'liq:** 177; QOIDALAR U-069.
+
+## 12-BD. 🧱 193-QONUN: UMUMIY QOLIP — DARS 7 EKRAN TURIDAN YIG'ILADI (2026-10-04, F-1004 2-qism D1; D9 pilot — 6-Modul 1-dars)
+
+**QA:** «bir strukturadagi page har darsda har xil … 20 page bo'lsa, 4 xil page darslarda bir xil bo'lsa yaxshi». O'lchov (6-Modul): har dars o'z
+komponent nusxalarini saqlaydi (`DragDropOrder` 9 darsda 9 nusxa), shuning uchun bir turdagi ekran har darsda boshqacha chiqadi.
+
+1. Ekran turlari — `src/qolip/` dagi umumiy komponentlar: **QKirish** (sarlavha-savol · Mentor · maket · 2–3 variant) · **QTushuncha** (bashorat? ·
+   chapda harakat · o'ngda vizual o'zgaradi · natija qatori · bitta xulosa — 184) · **Test** (darsning `QuestionScreen`i — jonli-ball relsi) ·
+   **QKod** (chap: vazifa + Yordam + «Bajardim» o'ngda · o'ng: muharrir · bir balandlik — 190) · **QVoqea** (nuqtalar · slayd-karta + chizilgan maket — 186) ·
+   **QMustaqil** (chiplar 1/2/3 · forma · Yordam — bitta ustun) · **QYakun**.
+2. Yordamchilar ham umumiy: `QBashorat` (181) · `QTaxmin` (natija qatori) · `QQadamlar` (163.8) · `QXulosa` (162) · `QXato` · `QChip` · `QKarta`.
+3. Darsning o'z vizuali (masalan 1-darsning `SysMap`, `SiteMock`) — dars faylida, bitta manbadan (180); bosiladigan qismlari `// qolip-maket:` izohida e'lon qilinadi.
+4. **Qamrov:** yangi modul darslari faqat qolipdan (error). 6-Modulning qolgan 13 darsi MD v3 bilan qolipga o'tadi (hozircha warn — navbat).
+5. **Tekshiruv:** `gates:qolip` q15 (ScreenN qolip turidan yig'ilmagan) · q16 (qolipsiz dars). Qo'llanma: `src/qolip/QOLIP.md`.
+
+**Bog'liq:** 184, 186, 190, 194–196; QOIDALAR U-070.
+
+## 12-BE. 🔘 194-QONUN: TUGMA IKKI DARAJADA (2026-10-04, F-1004 2-qism D2)
+
+**QA:** «buttonlar 2 ta bo'lsa — primary va secondary — va bir qolipda». O'lchov: 6-Modulda 15 dan ortiq ko'rinish, har darsda 22–28 xil tugma sinfi.
+
+1. **Asosiy** (`QTugma`) — to'la modul rangi, ekrandagi keyingi harakat, ekranda bitta. **Ikkinchi darajali** (`QTugma ikkinchi`) — oq, chegarali.
+2. Tanlov — `QChip` (holat: tanlangan · to'g'ri · xato). «Yordam ▸» — tugma emas, matn-ochgich. Navigatsiya («Orqaga» / «Davom etish») — darsning karkasi.
+3. Ikkala daraja ham o'ng chetda (187).
+4. **Tekshiruv:** `gates:qolip` q14 — qolip-darsda `<button>` klassi qolip/infratuzilma ro'yxatida bo'lmasa (maket tugmasi — `// qolip-maket:` bilan).
+
+**Bog'liq:** 187; QOIDALAR U-071.
+
+## 12-BF. 🎨 195-QONUN: RANG — UCH GURUH, TO'QQIZ TOKEN (2026-10-04, F-1004 2-qism D3)
+
+**QA:** «asosan 3 ta asosiy rang bo'lsa, darslar consistent». O'lchov: har darsda 16–23 rang-token, 68–97 xil rang kodi.
+
+1. **Neytral** (5): bg · paper · line · ink2 · ink. **Modul rangi** (2): accent · accentSoft (texnik — to'q sariq, PM — binafsha). **Holat** (2): ok · err.
+2. Palitra `qolipRang('tex' | 'pm')` dan olinadi; blue/honey/grape/violet/amber yo'q. Holat foni — `fon(T.ok)` / `fon(T.err)` (token emas, shaffof qatlam).
+3. Istisno: kod bo'yog'i (`CODE`) va o'yin qatlami (arena, podium).
+4. **Tekshiruv:** `gates:qolip` q13 — `T.<nom>` ruxsat ro'yxatida emas yoki palitra `qolipRang` dan emas.
+
+**Bog'liq:** 185; QOIDALAR U-072.
+
+## 12-BG. 🚫 196-QONUN: QOLIP-DARSDA EMOJI YO'Q (2026-10-04, F-1004 2-qism D4; 161/185 ning yakuniy shakli)
+
+**QA:** «ortiqcha emoji AI generated slop dek ko'rsatadi». Foydalanuvchi: «emojilarni o'rniga real cardlarni qo'yaylik». O'lchov: 185 dan keyin ham
+har darsda 38–63 emoji.
+
+1. Qolip-dars yuzasida emoji umuman yo'q: sarlavha, eyebrow, karta, ro'yxat, tugma, mentor paneli, takrorlash oynasi ham.
+2. Ma'no — haqiqiy karta yoki chizilgan maket (186). ✓ ✗ → ↔ ▸ kabi belgilar emoji emas.
+3. Istisno faqat o'yin qatlami: nishonlar, arena, podium, bayram.
+4. **Tekshiruv:** `lint:emoji` qolip-dars rejimi (har qanday emoji — error).
+
+**Bog'liq:** 161, 185, 186; QOIDALAR U-073.
+
+## 12-BH. 🔁 197-QONUN: SARLAVHA VA MENTOR BIR GAPNI AYTMAYDI (2026-10-04, F-1004-31)
+
+**Foydalanuvchi (44, 56):** «title ham bot ham bitta narsani aytyapti … boshqa pagelarda ham audit qilgani yaxshi». O'lchov: 6-Modulda 33 ekran.
+
+1. Sarlavha qisqa (savol yoki mavzu); Mentor faqat yangi narsani aytadi — sarlavhani qaytarmaydi.
+2. O'lchov: sarlavhaning mazmunli so'zlari (≥4 harf, ≥3 ta) ≥50% i keyingi Mentor gapida bo'lsa — topilma.
+3. **Tekshiruv:** `lint:olchov` «sarlavha≈Mentor %» — 6-Modul va yangi modullarda error, eski modullarda warn (130 ta, KATTA).
+
+**Bog'liq:** 109, 162, 164; QOIDALAR T-072; KORPUS §225.
+
+## 12-BI. 📏 198-QONUN: KARTA MAZMUN BALANDLIGIDA, YAKUN — BITTA XULOSA (2026-10-04, F-1004-40/42/44/46)
+
+**Foydalanuvchi (58, 60, 62, 65):** karta ekranni to'ldirib cho'zilgan; ustunlar har xil balandlikda; yozgandan keyin ikki gap + «🎯 Bugungi qoida».
+
+1. «flex-grow + max-height» bilan kartani bo'sh joyga cho'zish yo'q — karta mazmun balandligida, natija harakat yonida.
+2. Ikki ustunli ekranda ustunlar bir balandlikda (`align-items: stretch`), oxirgi karta qolgan joyni oladi.
+3. Hook kartasi va variantlar Mentor bilan bir chetda (bitta ustun kengligi).
+4. Yozib bo'lgach — bitta xulosa (≤110, emojisiz). PM 106f(b) ga tuzatish.
+
+**Bog'liq:** 162, 174; PM 106f; QOIDALAR U-074.
+
+## 12-BJ. 🎯 199-QONUN: ISH TUGAGACH — PANEL YOPILADI, NATIJA FOKUSGA CHIQADI (2026-10-04, F-1004-53 — foydalanuvchi: «globalne bu buyruq»)
+
+**Foydalanuvchi (73):** «ishlar tugagach sraze ishlar yopilsin, ula maydonga kelib biroz kattalashib animatsiyada e'tiborni tortsa … shunaqa vaziyatni yoritishing kerak».
+
+1. Tushuncha-ekranda harakat paneli (ishlar ro'yxati, qadamlar, kalitlar, qo'shish tugmalari) vazifa tugagach **yopiladi**.
+2. Natija (vizual) butun enga chiqadi va bir lahza kattalashib qaytadi (`q-fokus`, ~0,6 s; `prefers-reduced-motion` da harakatsiz).
+3. Oxirgi harakatning natijasi avval ko'rinadi: yopilish 0,7–1,5 s kechikadi (`useTugadi(done, ms)`); qayta kirganda (saqlangan javob) — darhol.
+4. Ataylab qoldirish mumkin (maket va natija juftligining o'zi natija bo'lsa) — `tugadi={false}` bilan, sababi izohda.
+5. **Tekshiruv:** `gates:qolip` q18 — xulosasi bor `QTushuncha` da `tugadi` yo'q.
+
+**Bog'liq:** 184, 193, 198; QOIDALAR U-075.
+
+## 12-BK. ⛶ 200-QONUN: VIZUAL KATTALASHADI VA JONLI — O'Z TURIGA MOS, ME'YORDA (2026-10-04, F-1004-50/52/54/55/56)
+
+**Foydalanuvchi (70, 72, 74, 75, 76):** «zoomable kerak — faqat o'ng tomondagi», «juda jonsiz bo'lib qolgan … me'yorda vizual ko'rk ham beraylik, minimalist».
+
+1. Vizual har doim ⛶ ichida (`zoom={Zoomable}`) — harakat paneli (qadamlar, ro'yxat) tashqarida.
+2. Maket o'z turiga mos ko'rinadi: brauzer — nuqtali sarlavha va manzil qatori; server — qorong'i panel, yonib-o'chadigan holat chirog'i, `$` qatorlari;
+   chat — sarlavha, kelgan/yuborilgan pufaklar; telefon — ramka va «orol» (191); tizim xaritasi — tugunlarda chizilgan belgilar.
+3. Harakat ma'noni ko'rsatadi, bezak emas: ma'lumot oqayotgan chiziq — oqim; yangi ulanish — chizilib chiqadi; so'rov konverti — modul rangida,
+   javob — yashil; yangi qator/element — bir lahza ajralib kiradi; bo'sh joy — sokin skelet.
+4. Minimal: rang — 9 token (195), emoji yo'q (196), bitta joyda bitta harakat; `prefers-reduced-motion` da hammasi to'xtaydi.
+5. Ketma-ket jarayon bosqichma-bosqich bosiladi — javob ham (so'rov Frontend → Backend → Database, javob Database → Backend → Frontend).
+6. **Tekshiruv:** `gates:qolip` q17 (zoom yo'q) · surat 1280 va 393 · harakatni ko'z bilan.
+
+**Bog'liq:** 184, 186, 189, 191; QOIDALAR U-076.
+
+## 12-BL. 🧭 201-QONUN: KIRISH VA REJA — HAMMA DARSDA BIR STANDART (2026-10-04, F-1004-47/48)
+
+**Foydalanuvchi (67, 68):** «1-page hammasida standart bo'lishi kerak … tex uroklardan qara», «qadam ham buzilgan dizayni».
+
+1. Kirish ekrani — texnik darslar standarti: chapda maket (+ ikkinchi darajali «▶ …» tugma, bosilgach «✓ …» izohga aylanadi), o'ngda yorliq-savol va
+   **radio-belgili variantlar**, ostida javob (Aynan! / Qiziq fikr!). Hammasi ⛶ ichida.
+2. Reja ekrani — chapda «Dars oxirida …» va jonli chizma, o'ngda **«01 · matn · teg»** qadam-kartalari.
+3. Dizaynni qolip beradi: dars faqat ma'lumot uzatadi (`QKirish variantlar/tanlov/onTanla`, `QReja qadamlar`) — o'z ko'rinishini yasay olmaydi.
+
+**Bog'liq:** 193; QOIDALAR U-077.
+
+## 12-BM. 💚 202-QONUN (ASOSIY): XULOSA YASHILI — TEXNIK DARSLARDAGI BITTA YASHIL (2026-10-04, F-1004-58)
+
+**Foydalanuvchi (78):** «bu yerdagi background yashilni qonun qilib yozib ol, shtobe tex uroklarimiznikiday yashil rang bo'lsin … buni asosiy qonun qilib ol».
+O'lchov: 83 texnik darsning `.frame-success` foni — `#E3F0E8` + yashil soya; PM darslarda `#E4F5EC`; qolip xulosasi esa shaffof (kulrangga o'xshardi).
+
+1. To'g'ri/yakun/xulosa foni hamma joyda **bitta**: `#E3F0E8` (`successSoft` / qolipda `okFon`), soya `0 6px 16px -6px rgba(31,122,77,0.22)`, radius 12px.
+2. Qolip: `QXulosa` aynan shu ko'rinishda; `QChip ok` foni ham shu. Xato foni — `#FAE3E0` (`errFon`).
+3. Platforma bo'yicha bitta qiymat: 04.10 da 47 PM darsi `#E4F5EC` → `#E3F0E8` (133 fayl bir xil).
+4. **Tekshiruv:** `gates:qolip` q19 — `successSoft` boshqa qiymat yoki `.frame-success` foni token emas — hamma modulda **error**.
+
+**Bog'liq:** 185, 195; QOIDALAR U-078.
+
+## 12-BN. 📝 203-QONUN: TEST VA TARTIB-MASHQI — QOLIPDAN, TEXNIK DARSLAR STANDARTIDA (2026-10-04, F-1004-59)
+
+**Foydalanuvchi:** «test ekranlarini ham qolipga o'tkaz».
+
+1. Test ekranining ko'rinishi — qolip `QTest` (savol · A–D variantlar · javob bloki `QTestJavob`): texnik darslardagi test bilan AYNAN bir
+   (oq variant, harf; to'g'ri — yashil 202; tanlangan xato — modul rangi; qolgani xira; jonli kutish — modul rangida halqa).
+2. Mantiq darsda qoladi: jonli ball, bitta urinish, mentor «Natijani ochish», takrorlash oynasi, kalitlar (INLINE_KEYS) — o'zgarmaydi.
+3. Tartib-mashqi — faqat qolip `QTartib` (188 ning yagona manbasi); darsda `DragDropOrder` nusxasi bo'lmaydi.
+4. **Tekshiruv:** `gates:qolip` q20 — qolip-darsda `QuestionScreen` `<QTest>` siz yoki `DragDropOrder` nusxasi.
+
+**Bog'liq:** 105 (h-ask), 188, 193, 202; QOIDALAR U-079.
+
+## 12-BO. 🃏 204-QONUN: KARTOCHKA VA YAKUN EKRANI — QOLIPDAN, TEXNIK DARSLAR STANDARTIDA (2026-10-04, F-1004-60 · 6-Modulni yopish Q2 A)
+
+**Qaror:** «kartochkalar va yakun ekrani qolipga — texnik darslar standarti aynan; podium/arena darsda; nusxa bo'lsa — xato».
+
+1. **`QKartochka`** — «O'zingizni sinab ko'ring» mexanikasi va ko'rinishi (navbat, 3D aylanish, «Bildim» / «Takrorlash», uchib chiqish, javob
+   o'lchami 4 pog'ona — PM-107 havola) bitta manbada. Dars faqat tarjima qilingan `cards` beradi. Kontent tepadan boshlanadi (174; texnik
+   darslarda o'rtada edi — qolipda tuzatildi).
+2. **`QYakun`** — yakun ekrani: chiplar (bajarilgan ish + «N/M to'g'ri», F-1003-04) · bitta sarlavha · CODE STRIKE joyi (`cta`) · «Endi siz
+   bilasiz» · «Uyga vazifa» banneri (192: 22px, o'rtada, `min(560px,100%)`) + karta · nishonlar to'ri. Qolipning o'z yorliqlari («Bildim»,
+   «Uyga vazifa»…) `til` bilan ikki tilda — 14 darsda bir xil.
+3. **Darsda qoladi:** CODE STRIKE (`CsWordmark`), arena (`QuizArena`), podium — jonli o'yin qatlami; PM darsining `HwCard` — `uyga` ga tayyor
+   karta bo'lib uzatiladi.
+4. Eski PM «natija — bitta karta» turi endi `QNatija`.
+5. **Tekshiruv:** `gates:qolip` q21 — qolip-darsda `Flashcards`/`.fc-card`/`hw-big` tugmasi/`ach-grid` nusxasi yoki `SummaryScreen` `<QYakun>` siz
+   (asl pilot nusxasida 2 ushlandi); q11 endi `src/qolip/qolipCss.js` ni ham o'lchaydi (radius 30px sinovi ushlandi).
+
+**Bog'liq:** 174, 192, 193, 202, 203; QOIDALAR U-081.
+
+## 12-BP. 🏷 205-QONUN: MENYU NOMI = DARS ICHIDAGI NOM (2026-10-04, F-1004-60 · 5-Modulni yopish Q5 A)
+
+1. Menyudagi sarlavha (`App.jsx` va modulning QA-menyusi `src/m*-demo/`, `src/texnik-demo/`) darsning `LESSON_META.lessonTitle` bilan **aynan bir**;
+   «Keyingi dars — «…»» qatori va `LiveGate` sarlavhasi ham shu nom. 5-Modulda 3 nom (m5-04 · m5-09 · m5-10 sub) + 4 eskirgan havola tuzatildi.
+2. **Qamrov:** 5-Modul va yangi modullar. 1–4c, 6–7-Modulda 61 farq (ko'pi qisqa menyu ↔ to'liq nom) — KATTA F-1004-60, LMS nomlariga
+   tegadi — foydalanuvchi qarori.
+
+**Bog'liq:** 150 (sarlavha), 164; QOIDALAR T-075.

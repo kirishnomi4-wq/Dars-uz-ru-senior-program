@@ -780,6 +780,41 @@
       "severity": "error",
       "suggest": "«foydalanuvchi» (yoki do'kon misolida «mijoz») — shahar metaforasi qoldig'i, 1-dars v2 A-1 (2026-09-29)",
       "law": "MATN_ETALONI lug'at · DARS_ETALON 161 qo'shni"
+    },
+    {
+      "id": "yaqin-guruh",
+      "pattern": "\\b[Yy]aqin guruh",
+      "flags": "",
+      "severity": "error",
+      "suggest": "«tanish guruh» — «yaqin» ikki ma'noli (masofa / qadrdon); darsda «notanish» juftligi bor (KORPUS §220)",
+      "law": "MATN_ETALONI lug'at · KORPUS §220 · F-1002-74 (2026-10-02)"
+    },
+    {
+      "id": "sen-imperativ",
+      "pattern": "(?:\\b(?:tingla|tanla|tuzat|chiqar|yoz|bos|och|sana|saqla|tekshir|guruhla|o'lcha|sina|yubor|ayt|so'ra|qo'sh|top|ko'r|o'qi|yig'|joyla|sudra|ula|boshla|kuzat|chaqir|tayyorla|qur|yo'naltir|rejalashtir|buyur|tushir|ber|bo'l)\\s*[→·—]|[→·]\\s*(?:qayta\\s+|ishga\\s+)?(?:tingla|tanla|tuzat|chiqar|yoz|bos|och|sana|saqla|tekshir|guruhla|o'lcha|sina|yubor|ayt|so'ra|qo'sh|top|ko'r|o'qi|yig'|joyla|sudra|ula|boshla|kuzat|chaqir|tayyorla|qur|yo'naltir|rejalashtir|buyur|tushir|ber|bo'l)(?![\\w'ʻ’])|uz:\\s*['\"](?:Tingla|Tanla|Tuzat|Chiqar|Yoz|Bos|Och|Sana|Saqla|Tekshir|Guruhla|O'lcha|Sina|Yubor|Ayt|So'ra|Qo'sh|Top|Ko'r|O'qi|Yig'|Joyla|Sudra|Ula|Boshla|Kuzat|Chaqir|Tayyorla|Qur|Yo'naltir|Rejalashtir|Buyur)['\"])",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "siz-forma: «tinglang → tanlang → tuzating» (yoki ot-shakl: «tinglash → tanlash»); tugma/yorliq ham «Yuboring», «Tekshiring». AI-promptdagi «… Tuzat.» — istisno (AI'ga buyruq)",
+      "law": "F-1003-07 · MATN_ETALONI siz-forma · QA «respect form» (03.10) · F-1004-37 (04.10: «·» ajratuvchi va «ishga tushir» ham; 6-Modul va yangi modullarda error)",
+      "strictMods": true
+    },
+    {
+      "id": "sen-imperativ-ru",
+      "pattern": "(?:(?<![а-яё])(?:собери|проверь|исправь|запусти|найди|выбери|нажми|напиши|сделай|открой|посмотри|отправь|сохрани|сравни|прочитай|раздели|подключи|спроси|слушай|соедини)\\s*[→·—]|[→·]\\s*(?:снова\\s+)?(?:собери|проверь|исправь|запусти|найди|выбери|нажми|напиши|сделай|открой|посмотри|отправь|сохрани|сравни|прочитай|раздели|подключи|спроси|слушай|соедини)(?![а-яё]))",
+      "flags": "i",
+      "severity": "warn",
+      "strictMods": true,
+      "suggest": "вы-форма: «соберите → проверьте → исправьте» (или существительные: «сборка → проверка»). Промпт для AI — исключение",
+      "law": "F-1004-37 (04.10) · QA «respect form» · RU_I18N_SPEC"
+    },
+    {
+      "id": "chok",
+      "pattern": "\\b[Cc]hok(?:lar)?(?:i|ni|da|dagi|lari|larni|larda|larida)?\\b",
+      "flags": "",
+      "severity": "error",
+      "suggest": "«ulanish joyi» (chokdagi → ulanish joyidagi, choklarda → ulanish joylarida); ru «место соединения», «шов» ham emas",
+      "law": "MATN_ETALONI lug'at · F-1004-39 / D8 (04.10)",
+      "except": "\\bid:\\s*'chok'"
     }
   ]
 }

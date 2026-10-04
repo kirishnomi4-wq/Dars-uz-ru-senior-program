@@ -1737,3 +1737,128 @@ ishlaydigan nusxasi (`/products`, `/orders`), (3) LMS'ga yuklash yo'li. Razrabot
 
 ## F-0929-21 · Umumiy shablon so'zlari: «sessiya» (podium), «eng uzun streak» (arena) — barcha darslar (2026-09-29)
 Lug'at: sessiya → dars; streak → ketma-ket to'g'ri javob. Bitta shablon-komponentda tuziladi, 100+ faylga tegadi. Holat: ⬜ NAVBATDA.
+
+## F-1002-59 · Sudraladigan chip to'ldirilgan gradient — 1–4-Modul 23 fayl (02.10 qaror, DE-159.15 qayta yozildi)
+Foydalanuvchi 5-Modul 1-dars ko'rigida: «ranglar o'zgarmasin — oldingilariday sarg'ishroq». 26.09 (F-0926-05 #5) «oq fon + 2px chegara» varianti BEKOR.
+Yangi ko'rinish = 6-Modul `.dd-chip` (gradient `170deg #FF8A3D → accent`, oq matn, chegarasiz, «⠿» ushlagich) — 5-Modul 8 darsda qo'llandi (F-1002-66).
+Qolgan 23 fayl (`grep -l "\.dd-chip {.*border: 2px solid" src/*/*.jsx`): src/1-Modull/HtmlTakrorlashLesson.jsx CssLesson2 InternetLesson Htmllesson1 CssPractice HtmlPractice CssLesson1 PmLesson2 VsCodeLesson · src/2-Modull/PeanStackLesson PracticeLesson3 PracticeLesson4 JsFunctionsLesson · src/3-Modull/ReactApiPostLesson ReactIntroLesson ReactRouterPracticeLesson · src/4-Modull/RoutingLesson · src/4a-Modull/NestArchAliveLesson · src/4c-Modull/FullProPipelineLesson GithubActionsLesson CiCdIntroLesson AiPipelineProjectLesson FullPipelineProjectLesson.
+Codemod: `.dd-chip {…}` va `.dd-chip::before` qatorlari 5-Modul naqshiga (bir xil satr, `BotIntroLesson.jsx` dan). Keyin `npm run gates` har faylga. Holat: ⬜ NAVBATDA.
+
+## F-1002-70 · PM keys-sahna — 1–4-Modul PM keyslari (16 fayl) (02.10 qaror, 165-qonun)
+Foydalanuvchi 5-Modul 2-dars ko'rigida: «biznes hissini vizualda his qildirsin — emojilar, animatsiya, minimalist; barcha PM darsida».
+5-Modul 4 PM darsda qilindi (`KeysScene` + `KEYS_SCENE`, namuna: `src/5-Modull/PmLesson19.jsx`). 6-Modul 4 PM — o'z fidbek davrida.
+Qolgan (`grep -l "k-slide-body" src/*/*.jsx`): src/2-Modull/PmLesson4 PmLesson5 PmMuammoIzlash · src/3-Modull/PmLesson8 PmLesson9 PmLesson10 ·
+src/4-Modull/PmLesson11 PmLesson12 PmLesson13 PmLesson14 · src/4a-Modull/PmLesson15 · src/4b-Modull/PmLesson16 · src/4c-Modull/PmLesson17 PmLesson18 ·
+src/pm/PmJtbdLesson PmUserStoryLesson. Har biriga voqeasidan sahna (≤4 tur emoji, bashoratda `pre`/`post`), keyin `npm run gates`. Holat: ⬜ NAVBATDA.
+
+## F-1002-73 · Natija ekrani — bitta karta (17 PM fayl) (02.10 qaror, 166-qonun)
+Natija ekrani («Bugungi natijangiz») 21 PM darsda bir xil. 5-Modul 4 darsda qilindi (`.pod-card`, namuna: `src/5-Modull/PmLesson19.jsx` ScreenPodium).
+Qolgan 17 (`grep -l "shaxsiy natijangiz" src/*/*.jsx`): src/3-Modull/PmLesson8 PmLesson9 PmLesson10 · src/4-Modull/PmLesson11 PmLesson12 PmLesson13 PmLesson14 ·
+src/4a-Modull/PmLesson15 · src/4b-Modull/PmLesson16 · src/4c-Modull/PmLesson17 PmLesson18 · src/6-Modull/PmLesson22 PmLesson23 PmLesson24 PmLesson25 ·
+src/pm/PmUserStoryLesson PmJtbdLesson. Codemod: 5-Moduldagi blok almashtirish + CSS (`.pod-card*`, `.pcb*`), eski `.pod-solo*` olinadi. Holat: ⬜ NAVBATDA.
+
+## F-1002-91 · 5-Modul AMALIYOT QATLAMI — Nest-starter + mini-mashq + Antigravity + uyga vazifa (02.10 qaror, 02.10 16:36)
+**Foydalanuvchi:** «tg botdan oldin Nest arxitekturani qilgan edik; Nest bilan tg botni AI Antigravity bilan zo'r qilsa bo'ladi; practicelar juda ko'p
+bo'lishi kerak; 4a dagidek repo URL berib clone qildirish mumkin». Qarorlar: **TypeScript** (4a bilan bir xil) · **Antigravity** amaliyotlarda ·
+**vaqti — 5–12-dars fidbeki tugagach, bir yo'la** (6 darsga chuqur tegadi, MD-birinchi yo'l, retsept F).
+
+Hozirgi holat (02.10 o'lchov): bot oddiy Node + Telegraf `bot.js` (CommonJS); Nest haqida 0 gap (3-dars ko'prik gapi F-1002-63 da qisqartirishda
+olib tashlangan — QAYTARILADI); har kod-darsda 1 amaliyot (8 dan 4 tasi kod emas: qog'oz, Gemini chat, matn fayli, deploy rejasi); brauzer ichida
+kod-mashq 0; starter repo yo'q (3-dars «loyiha papkasida npm install»); uyga vazifa paketi 5-Modulga yo'q; AI vositasi gemini/aistudio, Antigravity 0.
+
+Reja:
+1. **Starter repo `TelegramBotNest`** (GitHub, foydalanuvchi joylaydi, 4a `IntroNestArxitechture` kabi): Nest + TypeScript + PostgreSQL + `.env`;
+   `src/bot/bot.service.ts` ichida oddiy Telegraf (`bot.command/action/hears`, `ctx.reply`) — dars kod-ekranlari o'zgarmaydi; `nestjs-telegraf`
+   dekoratorlari YO'Q. README: clone → `npm i` → `.env` → `npm run start:dev`. `users` jadvali (holat ustunisiz — 4-darsda qo'shiladi), `AiService` skeleti.
+2. **Ko'prik ekran** 3-dars amaliyotida: chapda `bot.js`, o'ngda `bot.service.ts`, bir xil handlerlar; F-1002-63 da olingan «katta loyihada handlerlar
+   NestJS service ichida» gapi shu yerda qaytadi.
+3. **Mini-mashq komponenti `BotSim`** — darsdagi chat-simulyator + kod oynasi: o'quvchi handler yozadi, soxta Telegraf (`bot.command/hears/action/on`,
+   `ctx.reply`) uni sandbox'da yurgizadi, chat javob beradi; token/internet kerak emas. Har kod-darsda 2 ta (3, 4, 5, 6, 7-dars = ~10). K-005
+   («3 praktika-kompilyator») ruhida; shartlar xulq-atvorda tekshiriladi (K-006).
+4. **Amaliyot qayta yoziladi (MD v2 → GATE M → kod):** 3-dars — clone, `.env`, start, handlerlar; 4-dars — qog'oz o'rniga starterda `holat` ustuni +
+   SELECT/UPDATE; 5-dars — Gemini chat nusxasi o'rniga Antigravity playbook (4a-04 naqshi) bilan starterda bot; 6-dars — Gemini tajriba qoladi + `AiService`
+   (kalit `.env`); 7-dars — «deploy rejasi» o'rniga haqiqiy deploy (bepul hosting — foydalanuvchi tanlaydi); 10-dars/Demo Day — bot shu repodan.
+   1, 9-dars va PM darslari o'zgarmaydi. Antigravity nomi — 2/3/4c amaliyotlari bilan bir xil («sinfda Gemini» qoidasi: kontseptual AI-chat qadamlari
+   gemini/aistudio da qoladi, kod yozish — Antigravity).
+5. **Uyga vazifa** — 8 kod-darsga paket (`uyga-vazifa/5-Modull/`, 1–4b shaklida).
+Tartib: starter repo → BotSim → 3-dars MD v2 (pilot, GATE M) → qolgan 4 dars → uyga vazifa → Demo Day. Holat: ⬜ NAVBATDA (5–12-dars fidbekidan keyin).
+
+## F-1002-94 · `narrow` tushuncha-ekranlarda — 1–2-Modul 3 fayl, 8 ekran (02.10 qaror, 171-qonun)
+Qoida: tor ustun faqat `QuestionScreen` va `ScreenPodium`. 5-Moduldagi ikkitasi 02.10 tuzatildi; eski modullarda `lint:narrow` warn beradi:
+`src/1-Modull/PmLesson3.jsx` (Demo Day: Screen2 «Muammo-qidiruv», Screen4 «Birinchi savol», Screen5 «Yechim», Screen6 «Jonli demo» `narrow={!done}`,
+Screen13 «Repetitsiya» `narrow={!edit}`), `src/2-Modull/PracticeLesson4.jsx` (ScreenFlashcards «Tez takror»), `src/1-Modull/HtmlTakrorlashLesson.jsx`
+(ScreenBlitz «Eslab olish», ScreenParty «Sahifa tayyor!»). Har biri ko'rib chiqiladi: Demo Day nutq-ekranlari va yakun-bayram ataylab tor bo'lishi mumkin —
+shunda ALLOWED ro'yxatiga komponent nomi bilan qo'shiladi, qolgani kurs layoutiga qaytadi. Holat: ⬜ NAVBATDA (1–2-Modul tozalash raundida).
+
+## F-1002-114 · Amaliyot bloki qolipi (173-qonun) — 1–4-Modul va 6-Modul amaliyot ekranlariga (03.10 qaror, keyin)
+
+5-Modulda hamma amaliyot ekrani repo ustidagi `ScreenBlok` ga o'tdi (5/7/9 to'liq qolip, 3/4/6/10 bitta blok). Boshqa modullarda
+`ScreenLivePractice` oflayn ro'yxati qoladi: 2-Modul JS (0 amaliyot-tur), 4-Modul (1), 6-Modul (8/11/13 loyiha kunlari — o'z fidbek davrida
+172-qonun bo'yicha ko'riladi: `PipelineProjectLesson`, `MobileAppPracticeLesson`, `FullSystemProjectLesson`). Har modulning o'z shablon-repo'si
+kerakmi — modul fidbek davrida hal qilinadi. Qamrov: ~20 fayl.
+
+## F-1002-91 YOPILDI (03.10): 5-Modul amaliyot qatlami — rejadagi 4 qism (Nest-starter · BotSim · Antigravity · uyga vazifa) → amaliyot-qolip (172/173)
+bilan hal: Nest-starter = `TelegramBotNest` (8 teg), BotSim o'rniga kutilgan-natija chati, Antigravity = blok 2-qadam; uyga vazifa paketi — reja 7-bosqich (keyin).
+
+
+
+## F-1003 · 5-Modul QA fidbeki (03.10) — boshqa modullarga qolgan qism
+
+Global tuzatilgan (hammasi qilindi, `gates:qolip` 109 faol darsda toza): ekran-markaz (12 + 98 + 4 fayl), «Bajardim» qulfi (39), natija/yakun halqasi (109),
+yozish maydoni (24 PM, 52 maydon), ro'yxat-chet (11 PM), son-takror eyebrow (14 PM). Asl nusxa: `arxiv/f1003-oldin-2026-10-03/` (109 fayl).
+**Qolgan (o'z modul fidbek davrida):**
+- **F-1003-07 sen-forma** — `til-lint sen-imperativ` (warn): 20 fayl, 71 qator — 6-Modul 5 fayl (21; 6-Modul fidbekida), 7-Modul 7 (17), 3-Modul 2 (11), 4-Modul 2 (8),
+  4b 1 (6), 2-Modul 1 (4), 4a 1 (3), 1-Modul 1 (`InternetLesson` «Yubor» tugmasi). Masalan: «Tayyorla → Chaqir → Tekshir», «yoz → sina → tuzat», «reja → qur → tekshir».
+  ru da ham ты-forma («Проверь»). Qaror: har modul fidbekida, yoki bir yo'la — foydalanuvchi.
+- **bridge/** 5 dars `reflect-input` `<input>` (alohida ilova, coddycamp-bridge) — 175-qonun hali qo'llanmagan; bridge seansida.
+- **O'lik fayllar** `3-Modull/PmLesson7.jsx`, `7-Modull/PmLesson28.jsx` (App.jsx ga ulanmagan) — q1/q4 eski holatda; o'chirish yoki qoldirish — KATTA 19-band bilan birga.
+- **Oldindan bor darvoza qarzi** (F-1003 dan oldin ham aynan shunday, `arxiv/` bilan solishtirildi): 1–4/7-Modulda `dark` (6), `til` error (39), `tell` (1), `emoji` (15).
+- **lint:layout F/G** yangi — butun ro'yxat bo'yicha yurgizilmagan (vite + daqiqalar). Modul oxirida: `LESSON_URL=http://localhost:5173 node layout-lint.mjs --keys <modul> --interact 0`.
+
+## F-1004 · 6-Modul QA fidbeki (04.10) — 1–5-Modul (va 7-Modul, PM etalonlar) ga qolgan qism (qaror Q4 B)
+
+6-Modulda bajarildi va darvoza qo'yildi; boshqa modullarda — warn rejimida, LMS qayta yuklash bilan birga bir yo'la (1–4-Modul LMS prodda).
+- **q8 tugma-chap (DE-187):** ichki `btn`/`btn-soft` `alignSelf: 'flex-start'` → `'flex-end'`. `node lint-qolip.mjs` warn ro'yxati.
+- **q11 banner-shakl (DE-192):** CODE STRIKE `border-radius: 999px` → 22px; «Uyga vazifa» `width: min(560/520px)` → 100% — 92 fayl.
+- **q12 takror-tasdiq (DE-190):** PM kompilyator ekranlari — «✓ Belgilandi» chip, «Bajarildi — … sayqallang».
+- **q10 tartib-ustun (DE-188):** 1 fayl.
+- **185 toza yuza (DE-185):** tugma/`li`/chip/variant emoji — `node lint-emoji.mjs src` warn (eski modullar). Kodmod `scratchpad/emoji_strip.py` (`--dry` avval!) naqshi.
+- **QA qobiqlari (F-1004-09):** `src/m5-demo`, `m3/m4/fb/internet/kompilyator` demo qobiqlari — telefonda ⌂/UZ-RU «Orqaga» ustida (6-Modul va App.jsx tuzatilgan).
+- **Natija kartasi telefonda (F-1004-21):** 5-Modul `pod-card` da 4 nishon 3+1 bo'lib tushadi — 6-Modul `@media (max-width: 440px)` qatori ko'chiriladi.
+- **Kompilyator:** umumiy — hammaga tegdi (Q4 B istisnosi), qo'shimcha ish yo'q; starter izohlari >56 belgi boshqa modullarda — karta.
+
+## F-1004 (2-qism) · Umumiy qolip va QA umumiy fidbeki (04.10 kech) — eski modullarga qolgan qism
+
+Qaror D1–D9 hammasi A (jurnal: `feedback/F-0929-QA-6modul/JURNAL.md`). 6-Modulda bajarildi; quyidagilar 1–5-Modul (4a/4b/4c), eski 7-Modul va PM etalonlarida
+**warn** bo'lib qoldi — dars ustida ishlaganda ko'tarilmaydi, modul qayta qurilganda (MD v3 → qolip) yopiladi:
+
+| Band | O'lchov (04.10) | Darvoza | Izoh |
+|---|---|---|---|
+| Sarlavha≈Mentor takrori (DE-197) | 130 ekran (1-M 31 · 2-M 22 · 3-M 17 · 4-M 26 · 4a 3 · 4b 6 · 4c 13 · 5-M 8 · bridge 3 · pm 1) | `lint:olchov` takror | 6-Modul 0 (1-dars pilotda yopildi) |
+| Sen-forma zanjir «·/—» + ru (KORPUS §224) | 105 warn (uz + ru) | `til` sen-imperativ(-ru) | 6-Modul 0 |
+| Tugma chapda (q8, regex teshigi yopildi) | 300 warn (279 → 300: `=>` li tugmalar ham) | `gates:qolip` q8 | 6-Modul 0 |
+| Qolipga o'tish (DE-193) | 6-Modul 13 dars warn (q16) | `gates:qolip` q16 | MD v3 navbati; yangi modullar — error |
+| Emoji 0 (DE-196) | qolip-darslardagina error | `lint:emoji` qolip-rejim | eski darslar qolipga o'tganda |
+
+**D7 (havola olib tashlandi) — LMS:** 1–4-Modul (17 PM fayl) o'zgardi → LMS'dagi nusxa eskirdi. Qayta yuklash — foydalanuvchi qarori bilan (commit/deploy buyruqsiz yo'q).
+1–4-Modulda kompilyator ekrani endi mustaqil rejimda majburiy (89 (b)–(g) bekor) — o'quvchi uchun Yordam yetarliligi keyingi QA'da ko'riladi.
+
+**04.10 kech (F-1004-57/58):** q11 bannerlar — eski modullardagi 168 warn YOPILDI (192 platforma standartiga qaytarildi, 6-Modul 14 dars standartga);
+yashil `#E3F0E8` — 47 PM darsida token almashtirildi (1–4-Modul PM fayllari LMS nusxasidan yana farq qiladi — qayta yuklash ro'yxatiga).
+
+## F-1004-60 · 5 va 6-Modulni yopish (04.10 tun) — boshqa modullarga qolgan qism
+
+- **Fon so'zlari ru da o'zbekcha (R-008, RU §10):** 5-Modul YOPILDI (8 dars). Boshqa modullarda skaner topgani (kod-belgilar chiqarilgan):
+  2-Modull PmLesson5 (iteratsiya) · PmLesson6 (peshtaxta, javon, oshpaz, jargon, sistema, qatlam) · PmMuammoIzlash (kuzatuv, sharh, muammo, kuchi) ·
+  PracticeLesson4 (savat, jami, narx) · 3-Modull PmLesson8 (katak, vaqt, foyda, darrov, reja, navbat) · ReactBuildSiteLesson (komponent) ·
+  4b PmLesson16 (nosozlik, karta, navbat, javon, tarozi, skuter, sifat) · 4c AiPipelineProjectLesson (jurnal, so'rov, yordamchi, tekshir) ·
+  pm/PmJtbdLesson (vazifa, funksional, ijtimoiy, emotsional, komponent, tur, savol, markaz) · 6-Modull AgentArchitecture (asbob), ArchPatterns (monolit,
+  mikroservis), ClaudeSkills (kontekst, uslub), FullSystemProject (baza), PmLesson23 (7 so'z), PmLesson25 (8 so'z), WriteSkill (kontekst) — 6-Modul
+  Q3 guruhlarida; 1-dars pilot (tizim) — YOPILDI. 1–4c va PM — LMS'ga tegadi: qaror bilan.
+- **Menyu ↔ dars nomi (DE-205):** 5-Modul 0 farq. Qolgan 61: 1-Modul 10 · 2-Modul 10 · 3-Modul 10 · 4-Modul 13 · 4a 3 · 4b 1 · 4c 3 · 6-Modul 2 (m6-09, m6-11) ·
+  7-Modul 8. Ko'pi «qisqa menyu ↔ to'liq nom» — LMS nomlariga tegadi, foydalanuvchi qarori.
+- **Podium yorlig'i (q22, J-029):** CssLesson1 (ballik 12/15/18 yorliqsiz), PmLesson8 (6/8/12) — warn; 1–4c LMS va PM — qaror bilan.
+- **Test izohi pastki chiziqda (lint:layout E, 04.10 o'lchov):** javobdan keyin izoh qutisi 1280×773 da pastki chiziq ostiga kiradi — 3-dars 8-ekran 10px,
+  11-ekran 13px · 10-dars 4-ekran 7px (matn va tugma ko'rinadi, qutining pastki chekkasi) · 6-dars 3-ekran 51px, 9-ekran 40–86px (xulosa yarmi skrolda).
+  `QuestionScreen` izohi texnik darslar standarti — butun platformada bir xil sinf bo'lishi mumkin; keyingi QA davrida o'lchanadi (DE-199 yo'li: natija fokusga).
+- **1–4c LMS qayta yuklash ro'yxati** (5-Modulni yopish Q10/Q11): F-1003 70 dars + D7/yashil 17+47 PM fayl + sen-forma 13 fayl — paket bitta, commitdan keyin.

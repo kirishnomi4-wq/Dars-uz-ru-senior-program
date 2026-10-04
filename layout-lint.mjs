@@ -92,7 +92,7 @@ const LESSON_IDS = [...new Set([
 ])];
 
 const MEASURE = () => {
-  const out = { clip: [], overlap: [], hover: [], cover: [], below: [] };
+  const out = { clip: [], overlap: [], hover: [], cover: [], below: [], low: [], edge: [] };
   const root = document.querySelector('.lesson-root');
   if (!root) return out;
   const nameOf = (el) => {
@@ -378,7 +378,7 @@ const MEASURE = () => {
       const tz = ts ? (+getComputedStyle(ts).zIndex || 0) : -1;
       if (tz > fz) continue;                                                  // matn tepada
       if (tz === fz && ts && (f.compareDocumentPosition(ts) & Node.DOCUMENT_POSITION_FOLLOWING)) continue; // matn DOM'da keyin — ustida
-      let worst = 0, snippet = '';
+      let worst = 0, snippet = '', worstPx = 0;
       for (const t of texts) {
         rng.selectNodeContents(t);
         for (const r of rng.getClientRects()) {
@@ -388,10 +388,14 @@ const MEASURE = () => {
           if (dx > 1 && dy > 1) {
             const share = (dx * dy) / (r.width * r.height);
             if (share > worst) { worst = share; snippet = t.textContent.trim().slice(0, 40); }
+            if (dx > worstPx && dy > r.height * 0.4) { worstPx = dx; if (!snippet) snippet = t.textContent.trim().slice(0, 40); }
           }
         }
       }
-      if (worst > 0.08) out.cover.push({ over: nameOf(f), txt0: nameOf(el), pct: Math.round(worst * 100), txt: snippet });
+      // F-1004-12: ⛶ uzun yorliqning bitta so'zini yopdi — ulushi 5% (uzun qatorda), 8% chegarasidan o'tib ketdi.
+      // ⛶ uchun ulush emas, PIKSEL: bitta harf (≥ 6 px) yopilsa — topilma.
+      const zb = f.classList.contains('zoom-btn') && worstPx >= 6;
+      if (worst > 0.08 || zb) out.cover.push({ over: nameOf(f), txt0: nameOf(el), pct: Math.round(worst * 100), txt: snippet });
     }
   }
 
@@ -445,6 +449,50 @@ const MEASURE = () => {
     }
     const cut = Math.round(low - clipLine);
     if (cut > 4) out.below.push({ cut, who });
+  }
+
+  // ---- F) KONTENT PASTGA TUSHGAN (F-1003-01, 174-qonun). Ekran tepadan boshlanadi:
+  // `.screen` ning birinchi ko'rinadigan bolasi uning tepasidan 40px dan uzoq bo'lsa —
+  // ekran vertikal markazga olingan (justifyContent: center) yoki bo'sh joy bilan itarilgan.
+  // QA 03.10: 8-dars 3-ekran sarlavhasi ekran o'rtasida turgan — A–E buni ko'rmaydi (hech narsa toshmaydi).
+  const scr = document.querySelector('.screen');
+  if (scr && !document.querySelector('.acu-overlay, .rc-overlay')) {
+    const top0 = scr.getBoundingClientRect().top + (parseFloat(getComputedStyle(scr).paddingTop) || 0);
+    const first = [...scr.children].find((c) => { const cs = getComputedStyle(c); const b = c.getBoundingClientRect(); return vis(c, cs) && cs.position !== 'absolute' && cs.position !== 'fixed' && b.height > 2; });
+    if (first) { const gap = Math.round(first.getBoundingClientRect().top - top0); if (gap > 40) out.low.push({ gap, who: nameOf(first) }); }
+  }
+
+  // ---- G) MATN KARTA CHETIGA YOPISHGAN (F-1003-21, 178-qonun). Karta = fon/soya/chegarasi bor quti.
+  // Matn uning chap yoki o'ng ichki chetiga 3px dan yaqin bo'lsa — ichki chekinish yo'q (QA 03.10:
+  // «Kod nima qilsin» kartasida ro'yxat chetga tiqilgan — umumiy `ol{padding:0}` klass-paddingni yegan).
+  // KALIBROVKA: kichik belgi/pill (kenglik < 120px), markazlangan matn, inline-kod va kiritish maydoni sanalmaydi.
+  const cardOf = (el) => {
+    for (let a = el; a && a !== root; a = a.parentElement) {
+      const cs = getComputedStyle(a);
+      const bg = cs.backgroundColor || '';
+      const bgA = bg.startsWith('rgba') ? parseFloat(bg.split(',')[3]) : (bg === 'transparent' || !bg ? 0 : 1);
+      const boxed = bgA > 0.05 || (cs.boxShadow && cs.boxShadow !== 'none') || (parseFloat(cs.borderLeftWidth) > 0 && cs.borderLeftStyle !== 'none');
+      if (boxed) return a;
+    }
+    return null;
+  };
+  const scrEl = document.querySelector('.screen');
+  if (scrEl) {
+    const tw = document.createTreeWalker(scrEl, NodeFilter.SHOW_TEXT);
+    const seenCard = new Set();
+    for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+      if (!n.textContent.trim()) continue;
+      const el = n.parentElement; if (!el) continue;
+      const cs = getComputedStyle(el);
+      if (!vis(el, cs) || el.closest('[aria-hidden="true"], code, pre, input, textarea, button, .qcode')) continue;
+      const card = cardOf(el); if (!card || card === scrEl || seenCard.has(card)) continue;
+      const cb = card.getBoundingClientRect(); if (cb.width < 120) continue;
+      const ccs = getComputedStyle(card); if (ccs.textAlign === 'center' || cs.textAlign === 'center') continue;
+      const r = document.createRange(); r.selectNodeContents(n); const tb = r.getBoundingClientRect();
+      if (tb.width < 2) continue;
+      const left = tb.left - cb.left, right = cb.right - tb.right;
+      if (left < 3 || right < -1) { seenCard.add(card); out.edge.push({ el: nameOf(card), gap: Math.round(Math.min(left, right)), txt: n.textContent.trim().slice(0, 30) }); }
+    }
   }
 
   return out;
@@ -543,8 +591,8 @@ async function auditLesson(key, mode, vp) {
       // esa lavha y 2..30, matn y 162..236 — kesishmaydi. Ikki qarash shuni kesadi.
       const sig = { clip: (x) => 'c|' + x.el + '|' + x.txt, overlap: (x) => 'o|' + x.a + '|' + x.b,
                     hover: (x) => 'h|' + x.el + '|' + x.txt, cover: (x) => 'v|' + x.over + '|' + x.txt0 + '|' + x.txt,
-                    below: (x) => 'e|' + x.who };
-      const KINDS = ['clip', 'overlap', 'hover', 'cover', 'below'];
+                    below: (x) => 'e|' + x.who, low: (x) => 'f|' + x.who, edge: (x) => 'g|' + x.el + '|' + x.txt };
+      const KINDS = ['clip', 'overlap', 'hover', 'cover', 'below', 'low', 'edge'];
       const any = (m) => KINDS.some((k) => m[k].length);
       const take = async (step, panel = false) => {
         await rest();
@@ -563,7 +611,7 @@ async function auditLesson(key, mode, vp) {
         const last = s === totalScr - 1;
         for (const x of m.below) { x.last = last; x.panel = panel; }
         findings.push({ screen: s, step, ...m });
-        if (m.hover.some((h) => !h.onPurpose) || m.clip.length || m.overlap.length || m.cover.length || m.below.some((x) => !x.last && !x.panel)) realFound = true;
+        if (m.hover.some((h) => !h.onPurpose) || m.clip.length || m.overlap.length || m.cover.length || m.low.length || m.edge.length || m.below.some((x) => !x.last && !x.panel)) realFound = true;
       };
       await take(0);
       // INTERAKTIV HOLATLAR: o'quvchi bosadigan elementlar ketma-ket bosiladi va har
@@ -701,6 +749,13 @@ show('ATAYLAB QISQARTIRILGAN — ellipsis (qaror foydalanuvchida)', tally((f) =>
 show('VERTIKAL QIRQILISH (sinf)', tally((f) => f.clip, (x) => x.el));
 show('USTMA-UST (juftlik)', tally((f) => f.overlap, (x) => `${x.a} / ${x.b}`));
 show('BOSHQARUV MATNNI YOPGAN', tally((f) => f.cover, (x) => `${x.over}  →  ${x.txt0}`));
+// F/G (F-1003): joyi bilan — ekranma-ekran tuzatiladi
+for (const [title, k, fmt] of [['KONTENT PASTGA TUSHGAN (F, 174-qonun)', 'low', (x) => `${x.who} +${x.gap}px`], ['MATN KARTA CHETIGA YOPISHGAN (G, 178-qonun)', 'edge', (x) => `${x.el} ${x.gap}px «${x.txt}»`]]) {
+  const rows = []; for (const r of bad) for (const f of r.findings) for (const x of (f[k] || [])) rows.push(`  ${r.key} s${f.screen} ${f.step} · ${r.mode} · ${fmt(x)}`);
+  if (!rows.length) continue;
+  console.log(NL + '--- ' + title + ' --- ' + rows.length + ' holat');
+  for (const x of rows.slice(0, 60)) console.log(x);
+}
 // E: har topilma ekran/holat bilan — sinf emas, JOY kerak (tuzatish ekranma-ekran).
 const belowKind = (y) => (y.last ? 'last' : y.panel ? 'panel' : 'real');
 const belowRows = (want) => { const rows = []; for (const r of bad) for (const f of r.findings) for (const x of (f.below || []).filter((y) => belowKind(y) === want)) rows.push(`  ${r.key} s${f.screen} ${f.step} · ${r.mode} ${r.vp || ''} · ${x.cut}px · ${x.who}`); return rows; };

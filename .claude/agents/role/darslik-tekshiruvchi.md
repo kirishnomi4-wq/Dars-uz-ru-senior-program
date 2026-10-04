@@ -385,3 +385,76 @@ bosishdan keyingi holatda (nishon-sharti `ach-rule`, tanlov ochilgan kod, yakuni
 7. **Emoji zichligi** — 161-qonun. Ovlash: `npm run lint:emoji -- <fayl>` — 0 error.
 8. **Codemod maydonni o'chirgan** — e4d4ced emoji-tozalash `ico:` maydonini olib tashlagan, kod esa `s.ico === '🎯'` bilan yorliq tanlardi
    (1, 4, 7-darslar). Qoida: kod belgiga emas, alohida `phase`/`kind` maydoniga tayansin. Ovlash: `grep -n "\.ico === '"` → maydon borligini tekshir.
+
+## 🔴 F-1002-106…114 OV-BANDLARI — AMALIYOT-QOLIP (ScreenBlok) DARSLARIDA CHIQQAN SINFLAR (2026-10-03)
+1. **`**` fmtCode matnida.** Qadam/karta matni `fmtCode` orqali chiqadi — u faqat backtikni chip qiladi; `**Fork**` xom yulduzcha bilan ko'rinadi.
+   Ovlash: `grep -n 'uz: "[^"]*\*\*' <fayl>` → «Fork» yoki `<b>`.
+2. **Mentor JSX'ida backtik.** `<Mentor>` `fmtCode` qilmaydi — «4-darsda `users` jadvalini» xom chiqadi. Ovlash: `grep -n "<Mentor>.*\`"`, `mentor={{ uz: <>.*\``.
+3. **`tr()` obyektida string metodi.** `l.includes('★')` — `l` `{uz,ru}` bo'lsa ekran yiqiladi (shot-screen «Node.js v24» bilan tugaydi).
+   Ovlash: `grep -n "tr([a-zA-Z]*)\.\(includes\|startsWith\)\|[a-z]\.includes('★')"` → `String(tr(l))`.
+4. **CSS tartibi.** Yangi sinf eski umumiy qoidadan oldin turgan bo'lsa (`.dpl3` ← `.dpl` keyinroq) ko'rinmaydi. Ovlash: surat; yechim — ikki sinf yoki o'z sinfi.
+5. **Kesilgan yordamchi.** Ekranlarni olib tashlashda helper (`fcAnswer`) ketgan — esbuild jim, `gates:undef` tutadi. Ovlash: `npm run gates` to'liq (11/11), «undef» qatoriga qarang.
+6. **Qolip bir xilligi.** Loyiha kunlarida `SCREEN_META` 11 (`practice` ×3), `INLINE_KEYS` 2, `ACH_TRIGGERS` 3 (biri `a3`), `QUIZ_BANK` 12 o'zgarmagan;
+   «Keyingi dars» qatori yakunda; uyga vazifa bloki yo'q. Ovlash: `grep -c "type: 'practice'"`, `git diff -- <fayl> | grep QUIZ_BANK`.
+7. **Chat tugma yorlig'i ikki qatorga tushadi** («Buyurtmam», «To'rt pishloq») — chat cho'ziladi (169). Ovlash: 1280×800 surat; yorliq ≤10 belgi.
+
+
+## 🔴 F-1003 OV-BANDLARI — 5-MODUL QA FIDBEKIDAN CHIQQAN QOLIP-SINFLAR (2026-10-03)
+
+Har biri bir nechta modulda topildi; statik qismi `gates:qolip` (12-darvoza), brauzer qismi `lint:layout` F/G/E. Darvoza o'tgani yetmaydi — surat bilan ko'riladi.
+
+1. **Kontent o'rtaga tushgan (DE-174).** `.screen` markazda: inline, shartli `isMentorLive ? … : 'center'`, `safe center`, CSS `.screen:has(…)`.
+   Ovlash: `gates:qolip` q1 · `lint:layout --interact 0` F (birinchi blok >40px).
+2. **Bir qatorli yozish maydoni (DE-175).** `reflect-input` matn uchun `<input>` → `GrowInput`. Ovlash: q2; surat — uzun gap 3 qatorga o'sadimi.
+3. **«Bajardim» qulfsiz (DE-176).** Bitta qadam belgilab bosiladi. Ovlash: q3; brauzerda 1/5 belgilab tugma yopiqligini ko'ring.
+4. **Natija/yakun halqasi (DE-177).** Podium sarlavhasi chetda yoki halqa karta chetidan chiqqan; yakunda halqa sarlavha yonida. Ovlash: q4/q5; surat.
+5. **Karta ichida matn chetda (DE-178).** Element-reset sinf-paddingini yeydi (`ol{padding:0}` > `.kdreq`). Ovlash: q6 · `lint:layout` G.
+6. **Son takrori (DE-179).** Eyebrow + sarlavha + mentor + topshiriq bir xil sonni aytadi. Ovlash: q7 (warn) — boshqa ekran turida qo'lda.
+7. **Ikki literal ro'yxat (DE-180).** Bir tushuncha (sikl, bosqich) ikki massivda alohida yozilgan; testda o'rgatilmagan bo'lak. Ovlash:
+   bir xil yorliq (`'Idrok'`) faylda nechta literal massivda — 1 dan ko'p bo'lsa topilma.
+8. **Faqat bosish (DE-181).** Tushuncha-ekranda o'quvchi faqat «Keyingi» bosadi, hech narsa taxmin qilmaydi. Ovlash: ekranni qo'lda yuring.
+9. **Sen-forma zanjir/tugma (MK §222).** «tingla → tanla», «Yubor», «Tekshir». Ovlash: `gates:til` `sen-imperativ` (warn) — AI-prompt istisno.
+10. **Tugma kartadan oldin / tugagach qolgan (U-063).** Ovlash: oxirgi holat surati — tugma o'zgartirgan kartasidan keyinmi, kontent pastki panelga yetmaydimi.
+
+## 🔴 F-1004 OV-BANDLARI — 6-MODUL QA FIDBEKIDAN (2026-10-04)
+
+Statik qismi `gates:qolip` q8–q12 va `lint:emoji` 185 (6-Modul va yangi papkalarda error); brauzer qismi `lint:layout` D/E. Darvoza o'tgani yetmaydi — surat.
+
+1. **Bos → matn-karta (DE-184).** Tushuncha-ekranda chip/tugma bosilganda faqat tushuntirish matni almashadi, vizual o'zgarmaydi. Ovlash: ekranni qo'lda yuring —
+   har bosishdan keyin nima CHIZILDI? Faqat gap bo'lsa — topilma. MD v3 da «Harakat → Vizual o'zgarish» qatori yo'q ekran — topilma.
+2. **Emoji boshqaruvda (DE-185).** Tugma/variant/chip/`li` da emoji; variant-belgisi ma'lumot maydonida (`ic: '🤖'`) bo'lsa statik lint ko'rmaydi — brauzerda ko'ring.
+3. **Harakat tugmasi chapda (DE-187).** `alignSelf: 'flex-start'` (q8) yoki ota-konteyner chapga yig'adi — surat.
+4. **Tartib-mashqi ustunda / izoh javobdan oldin (DE-188).** q10; «Nega tartib muhim?» kabi karta yechimdan OLDIN ko'rinsa — test o'z javobini ko'rsatadi.
+5. **⛶ yorliq ustida (DE-189).** `lint:layout` D piksel-o'lchovi; 1280 va 1366 da.
+6. **Kompilyator atrofi (DE-190).** Bo'sh oq Natija (console-vazifa); 1280×773 da tepa kesilgan; starter izohi >56 belgi; qaytgach chip/«✅ shart bajarildi»/«sayqallang» (q12).
+7. **Ro'yxat bandi bo'lingan (DE-178 tuzatish).** `.kdreq li` flex — kod-chip ustunga ajraydi (q9). Umumiy dars: sinf-naqshini o'zgartirganda kod-chipli band bilan sinang.
+8. **Kodmod xavfsizligi (o'z xatoimiz, F-1004).** Satr-literalga tegadigan kodmod: avval `--dry` ro'yxat ko'z bilan → yozish → HAR fayl esbuild; almashtirish namunasi
+   bo'sh yoki 1 belgili bo'lsa to'xtating (04.10 da bo'sh namuna 14 faylga ~37 ming qo'shtirnoq qo'shdi). Tahrirdan oldin `arxiv/<F-ID>-oldin-…/` nusxa.
+
+## 🔴 F-1004 (2-QISM) OV-BANDLARI — UMUMIY QOLIP VA DARVOZA TESHIKLARI (2026-10-04 kech)
+
+Statik qismi: `gates:qolip` q13–q16 (qolip-dars), `lint:emoji` qolip-rejim, `lint:olchov` sarlavha≈Mentor + `xulosa=`, `til` sen-imperativ «·/—» va chok.
+
+9. **Qolipdan tashqari ekran (DE-193).** Qolip-darsda yangi ekran o'z `<div className="screen">` i bilan yozilgan — q15. Darsning o'z vizuali (xarita, maket)
+   bo'lsa — bitta manbadan va bosiladigan qismi `// qolip-maket:` da; e'lonsiz yangi tugma klassi — q14.
+10. **Regex `[^>]*` va arrow-funksiya.** Teg ichida `onClick={() => …}` bo'lsa `[^>]*` `=>` da to'xtaydi — q8 shu teshik bilan 6-Modulda 5 ta chap tugmani
+    ko'rmagan. Teg-regex yozganda `(?:[^>]|=>)*?` ishlating va salbiy namuna bilan sinang (darvozani bazaga solishtir).
+11. **Qidiruv harf-registrini hisobga olsin.** «sinfda bajarganman» qidiruvi «✓ Sinfda bajarganman» (katta S) ni ko'rmagan — PmLesson24 da qolib ketgan.
+    Matn-olib-tashlashdan keyin `grep -i` va klass nomi (`kd-skip`) bilan ham qidiring.
+12. **Qatorda `align-self: flex-end` ishlamaydi.** Tugma `display:flex` (qator) ichida bo'lsa o'ngga `justify-content: flex-end` bilan suriladi (`.wsp-saverow`) — surat.
+13. **Olib tashlangan matn o'rnida bo'shliq/teshik.** Emoji olib tashlanganda «✅/❌ soni» → «/ soni», «⏳ {nom}» → « {nom}», bo'sh `<span>` qoladi — `--dry` diff'ni o'qing.
+14. **Klass nomi eski o'lik CSS bilan to'qnashadi.** Yangi komponentga qisqa nom (`.tg-ava`) berilganda darsda shu nomli eski qoida keyinroq turgan bo'lsa,
+    u ustidan yozadi (1-dars: Telegram avatari bo'sh oq doira). Yangi klassdan oldin `grep "\.<nom>"`; o'lik eski blokni olib tashlang.
+15. **Tugagach holati (DE-199).** Ish tugagach panel yopilganini va natija fokusga chiqqanini surat bilan ko'ring — `useTugadi` kechikishidan keyin.
+
+## 🔴 F-1004-60 OV-BANDLARI — 5 VA 6-MODULNI YOPISH (2026-10-04 tun)
+
+16. **Ekran soni o'zgarganda eskiradigan kalitlar.** Dars 20 → 11 ekranga o'tganda (172) `Q_LABELS` 4/8/10/14/15 kalitlarda qolgan — 2-test podium
+    nuqtasi yorliqsiz (5/7/9-dars). SCREEN_META o'zgarsa: `Q_LABELS`, `INLINE_KEYS`, `RECAPS` kalitlari va podium ro'yxati SCORED_IDX bilan solishtiriladi
+    (`gates:qolip` q22). Shu sinfda yana 2 dars: CssLesson1, PmLesson8 (warn, KATTA).
+17. **Fon so'zlari ru rejimda.** Arena `QZ_BG_SHAPES`, canvas `TOK`, `HW_TOKENS` — o'quvchi ko'radigan so'z `{ uz, ru }` + `tr()`; canvas `TOK` ko'pincha
+    unutiladi (5-Modulda sahifa 4 darsni sanagan, skaner yana 4 tasini topdi). Kod-belgi va brend nomi o'zgarmaydi (R-008, RU §10).
+18. **Menyu nomi o'zgarsa — hamma havola.** `App.jsx` dagi nom bilan birga modul QA-menyusi (`src/m*-demo/`, `src/texnik-demo/`), oldingi darsning
+    «Keyingi dars — «…»» qatori, `LiveGate` sarlavhasi va YAKUNIY MD (DE-205) — `grep -rn "<eski nom>"` bo'sh chiqmaguncha.
+19. **Ikki zamonli so'z tekshiruvda.** Matn-tekshiruvi regex'ida `keyin`/`потом` kabi ikki zamonda keladigan so'z belgi bo'lmaydi; o'zgarganda ≥8 namuna
+    (uz + ru, ikkala zamon) `node` bilan (PM-108).

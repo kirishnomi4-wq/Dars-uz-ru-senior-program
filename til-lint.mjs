@@ -38,6 +38,7 @@ const compiled = rules.map(r => ({
 // Darvoza JONLI kodni qo'riqlaydi; arxiv topilmalari haqiqiy signalni ko'madi.
 // Arxivning taqdiri (o'chirish yoki saqlash) — KATTA_TOZALASH 19-band.
 const SKIP_DIRS = ['2-moodull eski', 'eski'];
+const LEGACY_MODS = new Set(['1', '2', '3', '4', '4a', '4b', '4c', '5', '7']);
 function walk(dir, out) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (e.name.startsWith('.') || e.name === 'node_modules' || SKIP_DIRS.includes(e.name)) continue;
@@ -62,6 +63,10 @@ files.sort();
 function lintFile(file) {
   const rel = path.relative(ROOT, file).replace(/\\/g, '/');
   const base = path.basename(file, '.jsx');
+  // strictMods (F-1004-37): 6-Modul va yangi modullarda warn → error; eski modullar va
+  // modul-papkasidan tashqari fayllar warn bo'lib qoladi (lint-qolip / lint-emoji bilan bir xil chegara)
+  const mm = /(?:^|\/)src\/(\d+[a-z]?)-Modull\//.exec(rel);
+  const strict = !!mm && !LEGACY_MODS.has(mm[1]);
   const src = fs.readFileSync(file, 'utf8');
   const lines = src.split('\n');
   const findings = [];
@@ -117,7 +122,7 @@ function lintFile(file) {
       const m = s.match(r.re);
       if (m) {
         findings.push({
-          line: i + 1, rule: r.id, severity: r.severity,
+          line: i + 1, rule: r.id, severity: r.strictMods && strict ? 'error' : r.severity,
           match: m[0], suggest: r.suggest, law: r.law,
           excerpt: t.length > 110 ? t.slice(0, 110) + '…' : t,
         });

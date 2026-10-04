@@ -33,6 +33,9 @@ const TOOLS = [
   { id: 'til', file: 'til-lint.mjs' },
   { id: 'tell', file: 'lint-tell.mjs' },   // F-0929-18 D5: test javobi sotilmasin (8.4)
   { id: 'emoji', file: 'lint-emoji.mjs' }, // 161-qonun: emoji belgi, ma'no emas
+  { id: 'olchov', file: 'lint-olchov.mjs' }, // 162-qonun (F-1002-61/62/63): hook ≤2 gap/≤120 · xato-izoh ≤60 · xulosa ≤2 gap/≤110 (5-Modul+ error, eski warn)
+  { id: 'narrow', file: 'lint-narrow.mjs' }, // 171-qonun (F-1002-94): `narrow` faqat test/podium — tushuncha-ekran kurs layoutida
+  { id: 'qolip', file: 'lint-qolip.mjs' },   // 174–179-qonun (F-1003): ekran-markaz · bir-qator maydon · qulfsiz «Bajardim» · yakun-halqa · ro'yxat-chet
   { id: 'prompt', file: 'prompt-lint.mjs' },
 ];
 

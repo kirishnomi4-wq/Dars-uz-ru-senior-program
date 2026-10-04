@@ -247,3 +247,11 @@ aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>
 - **O'zgarmaydi:** o'zgaruvchi/funksiya/komponent nomlari (`tugma`, `matn`, `xato()`, `<Tugma />`) — ru o'quvchi ham shu kodni yozadi;
   mashq topshirig'i va `checks` qidiradigan so'zlar (tekshiruv buziladi).
 - Namuna: `src/2-Modull/PracticeLesson1.jsx` (12 joy). ru-walk qoldig'i shundan keyin faqat nomlar bo'lishi kerak.
+
+## 10. Fon so'zlari ham ikki tilda (04.10, 5-Modulni yopish Q3 A, F-1004-60)
+
+- Arena foni (`QZ_BG_SHAPES`), canvas tokenlari (`QzFX` ichidagi `TOK`), «Uyga vazifa» banneri tokenlari (`HW_TOKENS`) — o'quvchi ko'radigan so'z bo'lsa
+  `{ uz, ru }` juftlik va chizishda `tr(...)`. Namuna: 8-dars `{ uz: 'savol', ru: 'вопрос' }`.
+- **O'zgarmaydi:** kod-belgilar (`/start`, `.env`, `token`, `SELECT`, `useEffect`) va brend/atama nomlari (`Telegraf`, `@BotFather`).
+- 5-Modul: 8 dars (2/4/5/6/8/9/10/11) — 03.10 sahifasidagi 4 dars + sinf-supurishda topilgan 4 dars (canvas `TOK` va `HW_TOKENS`).
+  Boshqa modullar: ~20 fayl — KATTA F-1004-60 ro'yxati (`scratchpad` skanerining natijasi KATTA'da).

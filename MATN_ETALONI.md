@@ -71,6 +71,8 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 
 | ❌ Qiyin / rasmiy / noaniq | ✅ Sodda / tushunarli | Izoh |
 |---|---|---|
+| chok (qismlar ulangan joy) | ulanish joyi (ru «место соединения»; «шов» ham emas) | o'quvchi tushunmaydi (foydalanuvchi, 57-surat); 13-darsda 38 joy almashtirildi. «Chokdagi xato» → «ulanish joyidagi xato», test savolida javobni oshkor qilmasin → «Integratsiya xatosi qayerda bo'ladi?». `til-lint` `chok` (error) · F-1004-39 / D8 (04.10.2026) |
+| yaqin guruh (birinchi foydalanuvchilar) | tanish guruh (ru «группа знакомых») | «yaqin» ikki ma'noli: masofa va qadrdon; darsda «notanish» juftligi bor. KORPUS §220 · F-1002-74 (2026-10-02) |
 | agent (izohsiz) | buyrug'ingiz bilan kod yozadigan AI yordamchi | 4a NestArchPractice amaliyoti: «Agentga playbook yuboring» — ikkala so'z ham izohsiz edi. Atama qoladi, bir martalik izoh qo'shiladi; **dastur nomi ham aytiladi** — sinfda `gemini.google.com` (F-0921-11, 2026-09-21) |
 | playbook (izohsiz) | to'liq yo'riqnoma (bitta xabarda) | «qaysi fayl, qanday tartibda, qayerga ulanadi». Yarim aytilgan buyruq — yarim natija (F-0921-11) |
 | AI yordamchisi (nomsiz) | `gemini.google.com` | «AI yordamchisi» yolg'iz o'zi o'quvchini qidirishga qo'yadi — sinfdagi dastur nomi aytiladi (foydalanuvchi qarori 2026-09-14) |
