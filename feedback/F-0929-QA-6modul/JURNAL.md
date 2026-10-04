@@ -97,3 +97,191 @@ MD birga sayqallanadi → dars MD holatiga keltiriladi → `npm run gates -- <fa
 - Qolgan 13 dars — parallel agentlar (29.09 14:30).
 - RU 14/14 tugadi (14:54): gates 9/9 ×14, ru-gate TENG ×13 (7-dars FARQ — ataylab: arena TOK dekori eski metaforadan tozalandi), kalitlar HEAD bilan bir xil, uyga vazifa md5 bir xil. Darslararo birxillashtirish: «Упражнение · вопрос N», «Короткое повторение», «точка входа», keyingi-dars nomlari = LESSON_META ru, katalog nomlari. Deploy coddycamp-8modul (14:54). Keyingi: vizual ko'rik → commit (buyruq bilan).
 - 17:36: sayt QA ga to'liq vizual ko'rikka berildi (foydalanuvchi). Fidbek yangi seansda keladi.
+
+## F-1004 — 6-Modul QA fidbeki (04.10.2026, 11:52) — TASHXIS, kodga tegilmagan
+
+Foydalanuvchi 36 surat + izoh (29.09 sayti, m6-01…09) yubordi → `qa/F-1004-imgNN.png` (NN = foydalanuvchi raqami; 13 va 24 yo'q).
+Har ekran hozirgi kodda qayta ochildi (1280×773 + telefon 393 px, skript `scratchpad/m6shot.mjs`). 6-Modul fayllari 29.09 dan beri faqat
+03.10 global supurishlar bilan o'zgargan — suratlar hozirgi holatga mos.
+
+**29 topilma (F-1004-01…29):** 11 tasi 5-Modul qonuni bor, 6-Modulga supurilmagan (163.8 · 164 · 165/182 · 166/177 · 183 · 147 · 179) ·
+yangi sinflar: «bos → matn-karta» tushuncha-ekrani (06/13/22/23; 10 kod darsida 76 tushuncha-ekran), toza yuza — emoji + har elementning o'z foni (14/16/26),
+harakat tugmasi o'ngda (08), tartib-mashqi standarti = m6-05 (10), telefon ramkasi = m6-11 o'lchami (27) · nuqsonlar: m6-04 s16 izoh-karta javobni oldindan aytadi (11),
+⛶ yorliq ustida (12), kompilyator 1280×773 da sig'maydi + bo'sh Natija (18), QA qobig'i ⌂/UZ-RU telefonda «Orqaga» ustida (09, App.jsx:423/426),
+m6-08 s18 takror gap (24), yakun bannerlari shakli (25, 106 fayl) · 03 — 03.10 da hal (GrowInput).
+**F-1004-19 REGRESSIYA (bizniki):** 03.10 F-1003-21 (178-qonun) `ol.kdreq li { display:flex }` → band ichidagi kod-chip/`<b>` alohida flex-ustun, matn bo'linadi
+(«qayt / di,»). 9 PM fayl: PmLesson 9, 11, 15, 17, 18, 19, 20, 21, 23. Surat `qa/F-1004-19-regressiya-kdreq.png`.
+**Qaror-sahifa:** https://claude.ai/artifact/WtuRCKbe2SCkMGRRQsK5u1 — 7 savol (Q1 tushuncha-ekran muqobili · Q2 toza yuza · Q3 PM voqea vizuali ·
+Q4 qamrov · Q5–Q7 = 03.10 dagi PieZMjyarKijC53C8urXxm savollari: repo, 172 qamrovi, 162 supurish) + 22 savolsiz tuzatish (qabul/rad belgisi bilan).
+Tavsiya: Q1 B · Q2 A · Q3 A · Q4 B · Q5 A · Q6 A · Q7 B. Javob kutilmoqda.
+
+### F-1004 javob (04.10.2026 13:13) — Q1 A · Q2 A · Q3 A · Q4 B · Q5 A · Q6 A · Q7 B · savolsiz 22 tuzatish hammasi qabul
+- Q1 **A** (tavsiyadan farqli — B emas): 6-Modulning hamma tushuncha-ekrani qayta quriladi, MD v3 → GATE M → kod. Q2 A toza yuza qonuni + darvoza.
+  Q3 A chizilgan maket (CSS/SVG), logotip yo'q. Q4 B: 6-Modul hozir + qonun/darvoza; 1–5-Modul → KATTA (istisno: F-1004-19 va umumiy kompilyator).
+  Q5 A TelegramBotNest davom etadi. Q6 A 8/11/13 → 172 qolip, 9/10 amaliyoti repo-blokiga. Q7 B 162 hozir 13 faylda, keyin 6-Modul error rejimi.
+- **Izoh (foydalanuvchi):** «duolingoga e'tibor berma, u pageni QA o'zi tashagan» — 20-surat (Brilliant) foydalanuvchi namunasi EMAS. Q1/Q2 qoidasi
+  undan olinmaydi; manba = foydalanuvchining o'z so'zlari (#1 «bittadan keladi, matnlar kamayadi», #6 «faqat matndan o'rganish qiyin, alternativ»,
+  #19 «emojini kamaytirib, aniqroq … clean qilish kerak») va 32-surat (tashqi taklif, filtrdan qisman o'tgan).
+
+### F-1004-19 ✅ (04.10 13:30) — kdreq regressiyasi
+- `.kdreq li` flex → blok (`position: relative`, chap padding 35 px), raqam-doira `::before` absolute (left 10, top 7). PmLesson20 telefon-override ham.
+- Qamrov tashxisdagidan keng: **13 fayl** (9 emas) — PmLesson 8, 9, 10, 11, 13, 15, 17, 18, 19, 20, 21, 23, 25. Asl nusxa `arxiv/f1004-oldin-2026-10-04/`.
+- Tekshiruv: 12 dars kompilyator-ekrani ochildi (1280 + 393), har `li` = block, raqam absolute, kod-chip matn oqimida («Do'kon ro'yxatidan `javobYozish` qaytdi»
+  bitta qatorda). PmLesson8 — kirish juftlash o'yini, skript ochmadi; CSS boshqalari bilan bayt-aynan.
+- gates: 5–6-Modul 5 fayl 12/12; 3–4-Modul 8 fayl emoji (+13-dars tell) yiqiladi — arxiv nusxasida ham AYNAN shunday (oldindan bor, KATTA). lint:jsx 173 toza.
+
+### F-1004 savolsiz tuzatishlar — 1-to'lqin (04.10, kod)
+- **F-1004-18 kompilyator** (`src/compilator/HtmlCompiler.jsx`, umumiy — Q4 B istisnosi): HTML fayli yo'q va JS `document`/`alert` ishlatmasa →
+  `consoleOnly`: bo'sh oq «Natija» o'rniga console butun panelda (iframe yashirin ishlaydi), tab/holat yozuvi «Console». Ildiz: `justify-content: safe center`
+  + `.hc-split { flex: 0 1 auto; min-height: 240px }` — 1280×773 da tepadagi yorliq kesilmaydi. PmLesson23/25 starter izohlari ≤ 56 belgi (1280 da kesilardi).
+  Ta'sir: JS-only vazifali ~9 dars. Surat: `scratchpad/f18/` (1280 + 393).
+- **F-1004-09 qobiq** (`src/App.jsx`, `src/m6-demo/M6DemoApp.jsx`): ≤720px da ⌂ va UZ/RU pastki panel ustiga (bottom 80px). m5-demo va boshqa qobiqlar — KATTA.
+- **F-1004-12 ⛶** (10 kod darsi): ≥1200px da tugma kontentdan tashqarida o'ng chetda; torroqda o'ng ustun yorlig'iga 40px joy.
+  `layout-lint` D: ⛶ uchun ulush emas, piksel (≥6px — bitta harf) — eski 8% chegara uzun yorliqda 5% chiqib o'tib ketardi. 10 dars × 2 o'lcham: 0 topilma.
+- **F-1004-10/11** m6-04 s16: tartib-mashqi to'liq kenglik (m6-05 standarti), «Nega tartib muhim?» faqat yechilgandan keyin (yashil xulosa ≤110). Boshqa 8 tartib-mashqida
+  javob oldindan ochilmaydi (hints = «bu yerga qo'ying» yoki rol-izoh).
+- **F-1004-20** PM 22/23/24/25 kompilyator ekrani: «✓ Belgilandi/Son … katagida» chip, «✅ Uchala shart bajarildi», «Bajarildi — … sayqallang» olindi.
+- **F-1004-21** PM 22–25 natija ekrani = 5-Modul `pod-card` (bitta oq karta); telefonda 4 nishon bitta qatorda (≤440px). Nusxada izoh bo'lagi qolib `.pod-card` qoidasini
+  buzgan edi (fon chiqmadi) — surat bilan tutildi, tuzatildi.
+- **F-1004-25** 14 fayl: CODE STRIKE `border-radius: 22px`, «Uyga vazifa» `width: 100%` — bir shakl, bir eni. Qolgan 92 fayl — KATTA.
+- **F-1004-27** RN 09/10/11: bitta ramka (196:348 nisbat; 09/10 da 176×312), 9:41 status-qatori, kamera-orol, uy-chizig'i; m6-09 s4 web = brauzer oynasi (`Browser`).
+  m6-09 hook telefoni kichik variant (tugma pastki chiziqdan 17px tushib qolgandi — lint:layout E tutdi).
+- **F-1004-29** m6-09 s11: kompyuter (QR, `npx expo start`) → o'q → telefon bitta qatorda; tugma ostida o'ngda; skanerdan keyin tugma o'rnida natija (179).
+- **F-1004-08** 6-Modul 10 kod darsi: 68 ichki tugma `alignSelf: 'flex-end'`.
+- **185 toza yuza (Q2) — 1-qadam:** tugmalardan emoji (💡 Yordam, 📖 Qisqa takrorlash, 🛠 Kompilyatorni ochish, 📋 Eslatma…) — 60 tugma + 3 variant-belgisi (💬/🤖, 🏢/🧩, m6-06 🤖/🙋); ✅ → ✓.
+- **Darvozalar:** `lint:qolip` q8 tugma-chap · q9 ro'yxat-flex · q10 tartib-ustun · q11 banner-shakl · q12 takror-tasdiq; `lint:emoji` 185 (tugma/variant/chip/`li`).
+  Ikkalasi `src/<N>-Modull` (N ∉ 1–5, 4a–c, 7) uchun error, qolganida warn (Q4 B). Isbot: arxiv nusxasida qolip 106 error / emoji 69 error, hozir 0 / 0.
+  Butun kurs: qolip error 0 (warn 464), emoji error 489 → 478 (yangi xato yo'q).
+- **🔴 HODISA (o'z xatoim, tuzatildi):** emoji kodmodi satr-literalning yopuvchi qo'shtirnog'ini tushirib qoldirdi; tiklash skripti faqat-emoji yozuvlarda bo'sh namunaga
+  aylanib 14 faylga ~37 ming qo'shtirnoq qo'shdi — 6-Modul 14 fayli yig'ilmay qoldi. Tiklash: `arxiv/f1004-oldin-2026-10-04/` toza nusxasiga bugungi 10 tahrir
+  skript bilan qayta qo'llandi (`scratchpad/replay_f1004.py`, har qadam `assert`), emoji qadami to'g'ri variantda (`emoji_strip.py`: yopuvchi belgi saqlanadi,
+  faqat-emoji yozuvga tegilmaydi, avval `--dry` ro'yxat). 14/14 esbuild ✓, surat bilan tekshirildi. Buzuq holat `scratchpad/buzuq-2026-10-04/` da.
+  Sabog'i → tekshiruvchi ov-bandi: kodmod natijasi har fayl esbuild + `--dry` diff ko'rilmaguncha yozilmaydi; tiklash namunasi bo'sh/1 belgili bo'lsa — to'xta.
+
+### F-1004 qonun muhri + MD v3 pilot (04.10)
+- **Qonun:** DARS_ETALON 184 (tushuncha-ekran: harakat → vizual) · 185 (toza yuza) · 186 (chizilgan maket) · 187 (tugma o'ngda) · 188 (tartib-mashqi) · 189 (⛶) ·
+  190 (kompilyator ekrani) · 191 (telefon ramkasi) · 192 (yakun bannerlari) + 178 ga tuzatish (kdreq li blok). QOIDALAR 365 → 374 (P-067/068, U-064…069, PM-029).
+  Tekshiruvchi ov-bandlari «F-1004» (8 band, kodmod xavfsizligi bilan). KATTA «F-1004» bo'limi (1–5-Modul: q8 279 · q11 168 · q12 16 · 185 695 warn, qobiqlar).
+  `lint:prompt` toza.
+- **MD v3 pilot:** `01-SystemArchitecture-v3.md` — 9 tushuncha-ekran (2, 3, 5, 6, 7, 9, 10, 12, 13) «Harakat → Vizual o'zgarish» qatori bilan; dars bo'yi bitta vizual —
+  tizim xaritasi (`SYS_NODES`/`SysMap`) + hook sayt maketi; bashorat 3/6/12; sarlavha ≤55, xulosa ≤110 (193/141/140 → 61–85).
+  GATE M sahifasi (9 ekran surati + 2 prototip: so'rovni yo'naltirish, Frontend/Backend saralash + 3 savol): https://claude.ai/artifact/5BEHQAxFw88XKuLUA3GzJE
+  Tavsiya G1 A · G2 A (avval pilot kodda, saytda ko'riladi) · G3 A. Javob kutilmoqda.
+
+### F-1004 PM darslari — 2-to'lqin (04.10, GATE M javobini kutish paytida; savolsiz qabul qilinganlar)
+- **F-1004-15** m6-06 s7: emoji-slayd → `ChatMock` (xabarlar + yozish maydoni + kulrang qator): 1–2-bosqich qator yonadi (matni xira), 4-bosqichda ochiladi (186).
+- **F-1004-14** m6-06 s5: qora panel va 🔴/⚪ afsona olindi; «kimga tegadi» tanlangan qatorning o'zida (qizil chiziq — zarar, yashil — xavfsiz);
+  2-bosqichda alohida chiplar yo'q — bitta qatorda «odam» bosiladi, qolgan ikkitasi AI bo'ladi; natija — bitta yashil xulosa. Sarlavha «AI xato qilsa, kimga tegadi?».
+  Bosiladigan: 12 → 6. MentorNote yangilandi (foydali xato endi mentor savoli).
+- **F-1004-17** m6-06 s9: TOPSHIRIQ kartasi, «Qo'shimcha» va pastki «✅ Uch chegarangiz yozildi» olindi — chiplar + forma + Yordam, bitta ustun (163.6, 179).
+- **F-1004-04** m6-02 s5: bitta vizual — to'rt katakli varaq; katak = murabbiyga savol (javob o'sha katakka); murabbiy gapi va PRD izohi Mentor gapida;
+  uch dasturchi natijasi hook'da (s0). Varaq kataklari sarlavhasidan emoji olindi.
+- **Q3 A / 186 keys sahnalari:** m6-02 Microsoft — Altair paneli 5 slaydda bosqichli (va'da: chiroqlar o'chiq · 2 oy: lenta · ko'rsatuv: chiroqlar + «MEMORY SIZE?» ·
+  oxiri: «Nima / Kim uchun» varaq); m6-12 Tesla — reja varag'i har bosqichda, joriy qator ochiladi; m6-14 Airbnb — `DeckMock` (11 varaq, raqamli varaq ajraladi,
+  «AirBed & Breakfast» o'z rangida, son o'ylab topilmagan — ustun-belgi). 📞🗓💾🧭 · 📜🏎🚙🚗 · 🏠📄🪜📚 olindi.
+- **187:** PM `wsp-save` («Saqlash») o'ngga (4 dars); `lint:qolip` q8 kengaydi (`.wsp-save` flex-start).
+- **164/162 (Q7) PM qismi:** 3 sarlavha bitta qatorga (m6-02 hook, m6-06 s7 ru, m6-12 s9) — `lint:olchov` PM 22–25: 0 warn.
+- Darvozalar: PM 22–25 → 12/12, lint:jsx toza, lint:emoji 6-Modul 0 error. Surat: `scratchpad/f02 f04 f14 f15 f17 fq3`.
+
+## F-1004 (2-qism) — m6-11…14 surat-fidbeki + QA umumiy fidbeki (04.10.2026, 15:00) — TASHXIS, kodga tegilmagan
+
+Foydalanuvchi 22 surat (`qa/F-1004-img43…65`, 50 yo'q) + QA umumiy fidbeki (text · layout · emoji · rang · logic · element · summary: «w3schools/brilliant
+kabi manbalardan research»). Har ekran hozirgi kodda ochildi (`scratchpad/cur7/`). 17 topilma F-1004-30…46: 2 tasi bugun hal (43 Airbnb 🏠, 45 kompilyator chip/takror),
+36 — Q1 A sinfi (m6-13 chap ro'yxat → o'ng matn), 39 — «chok» (D8), qolgani savolsiz.
+**O'lchov (6-Modul, 14 dars):** emoji 38–63/dars (≈30 xil) · rang-token 16–23, xil hex 68–97 · tugma sinfi 22–28/dars, 15+ ko'rinish · sarlavha≈Mentor (≥50% so'z) 33 ekran ·
+«chok» 38 (13-dars) · «sinfda bajarganman/yozganman» havolasi 25 faylda · til-lint `sen-imperativ` JSX sarlavhadagi «yig' · sina · tuzat» ni ko'rmagan.
+**Xulosa:** umumiy qolip yo'q — har dars o'z tugma/rang/komponent nusxasini saqlaydi (`DragDropOrder` 9 nusxa). Ekran-ekran tuzatish farqni yo'qotmaydi.
+**Qaror-sahifa:** https://claude.ai/artifact/QzKzUq2MdvxMyv7dqEcxVS — D1 ekran qoliplari (7 tur, umumiy komponent) · D2 tugma 2 daraja · D3 rang 3 guruh (~9 token) ·
+D4 emoji 0 · D5 tadqiqot (w3schools/Brilliant/Khan/Codecademy — kirish, qonun emas) · D6 PM: avval aniq misol/artefakt, keyin atama · D7 «sinfda bajarganman» olib tashlash ·
+D8 «chok» → «ulanish joyi» · D9 pilot yangi qolipda qayta. Tavsiya: hammasi A. Pilot (5BEHQAxFw88XKuLUA3GzJE) D9 ga bog'landi.
+
+### F-1004 (2-qism) javobi (04.10.2026, 18:52)
+Javob (foydalanuvchi uni adashib boshqa seansga yozgan, o'sha seans bu yerga yo'naltirdi): **D1 A · D2 A · D3 A · D4 A · D5 A · D6 A · D7 A · D8 A · D9 A** ·
+savolsiz 30…46 — hammasi qabul · izoh bo'sh. Tartib: (1) D7 havola · D8 «chok» · 37 til-darvoza · 31 sarlavha↔Mentor darvoza → (2) D1–D4 umumiy qolip `src/qolip/`
++ darvoza → (3) D9 pilot 1-dars qolipda (MD v3 bo'yicha) → (4) savolsiz 30…46 (m6-11…14, m6-02) → (5) D5 tadqiqot (fon) · D6 qonun → muhr.
+
+### F-1004 (2-qism) BAJARILDI (04.10.2026, 19:45) — D1–D9 + savolsiz 30…46
+
+**D7 havola** — «Bu kodni/mashqni sinfda …» 25 fayldan olindi (JSX blok + o'lik `.kd-skip/.stq-skip/.kdx-skip` CSS + o'lik `isSelf`); PmLesson24 dagi
+katta harfli «✓ Sinfda bajarganman» birinchi qidiruvda qolib ketgan edi (registr) — keyin tuzatildi. 89-qonun (b)–(g) va DE 9.4-A.3 bekor (tuzatish yozildi).
+25 faylda `tell`/`emoji` yiqilishi D7 dan OLDIN ham bor edi (nusxa bilan solishtirildi) — 1–4-Modul eski qarzi.
+**D8 «chok»** — 13-dars: 38 uz + 34 ru joy («ulanish joyi» / «место соединения»); test savoli javobni oshkor qilmasligi uchun «Integratsiya xatosi qayerda bo'ladi?».
+Lug'at + `til` qoidasi `chok` (error). **37 sen-forma** — `sen-imperativ` «·/—» ajratuvchi + `sen-imperativ-ru` + `strictMods` (6-Modul+ error); 6-Modulda
+40 → 0 (13, 8, 4, 7, 11-darslar; formula ot-shaklga, tugma siz-formaga, test variantlari bir shaklda). **31 takror** — `lint:olchov` «sarlavha≈Mentor %»
+(6-Modul+ error): 32 → 0 (29 ekran qayta yozildi, 1-darsning 3 tasi pilotda). **30** m6-11 telefonda buyurtma ekrani (№1042, mahsulotlar, jami, holat).
+**32–35** m6-12: ufqlar bitta uslubda, yil-yo'li olindi, 9-ekran bitta ustun (chiplar + forma + Yordam, oldingi dars — bitta kulrang qator), kod ekrani
+(m6-02 va m6-12) ikki ustun bir balandlikda, «Bajardim» o'ngda, Eslatma Yordam ichida, starter izohi 2 qator. **38** «N narsani unutmang» (3 dars) olindi.
+**40–46** m6-14: hook bitta ustun kengligi, emojisiz variantlar; slayd oq karta + chiziq; 5-ekranda savol kartalar ustida, ustunlar bir balandlikda;
+voqea kartasi cho'zilmaydi; yakun — bitta xulosa (PM 22/24/25 ham). Topilgan teshiklar: q8 regex `=>` ni ko'rmagan (5 tugma) · `.wsp-saverow` qatorida
+`align-self` ishlamagan («Saqlash» chapda edi).
+**D1–D4 qolip** — `src/qolip/` (tokens · qolipCss · index · QOLIP.md): QKirish · QTushuncha · QKod · QVoqea · QMustaqil · QYakun + QTugma · QChip · QBashorat ·
+QTaxmin · QQadamlar · QXulosa · QXato · QIzoh. Darvoza: `gates:qolip` q13 rang-token · q14 tugma-sinf (`// qolip-maket:`) · q15 ekran-turi · q16 qolipsiz;
+`lint:emoji` qolip-rejim; `lint:olchov` `xulosa=`. Salbiy namunalar bilan sinaldi (q13–q16, D4, xulosa — hammasi ushladi).
+**D9 pilot** — 1-dars MD v3 bo'yicha qolipda: `SYS_NODES` → `SysMap` (tizim xaritasi) + `SiteMock`; 0 kirish · 1 reja · 2 maketdan xaritaga · 3 bashorat + so'rovni o'zi
+yo'naltiradi · 5 ishni brauzer/serverga joylash · 6 bashorat + sahifani yangilash · 7 AI/Bot'ni xaritada ulash · 9 qismni o'chirish (xarita + sayt) · 10 uch
+kirish yo'li → bitta jadval · 12 bashorat + 6 qadam · 13 chizmani yig'ish + `arxitektura.txt`. Palitra 9 token, yuzada emoji 0 (41 qator), o'lik `ScreenLivePractice` olindi.
+Surat: `scratchpad/pilot/shot/` (1280 + 393). **D5** tadqiqot → `D5_TADQIQOT.md` + QOLIP.md 6-bo'lim. **D6** → PM-107.
+**Darvozalar:** 6-Modul 14/14 → 12/12 · lint:jsx toza · lint:prompt toza.
+**Qonun:** DE-193…198, DE 9.4-A tuzatish, PM-89/106f tuzatish, PM-107; QOIDALAR 374 → 384; KORPUS §224–226; lug'at «chok»; tekshiruvchi ov-bandlari 9–13;
+KATTA «F-1004 (2-qism)» (eski modullar: takror 130 · sen-forma 105 · q8 300 warn; D7 → 1–4-Modul LMS nusxasi eskirdi).
+
+### F-1004 (3-qism) — 1-dars pilotiga fidbek (04.10.2026, 20:02) — «global to'g'rilab chiq, hisobot ber, ochiqlarini ayt»
+Suratlar `qa/F-1004-img67…76`. **47** (67) kirish ekrani standartdan chiqqan — variantlar radio-belgisiz, «Ochildi» tugmasi katta; texnik darslar standarti
+(hook-option + radio) · **48** (68) reja: qadam-ro'yxati dizayni buzilgan, zanjir tugunlari mitti — chiroyli va animatsiyali · **49** (69) 3-ekran — «ancha yaxshi» ·
+**50** (70) 4-ekran: o'ngdagi vizual ⛶ ichida (qadamlar emas) · **51** (71) javob Database → Backend → Frontend bosqichma-bosqich, bosib o'tilsin ·
+**52** (72) 6-ekran: Frontend/Backend ramkalari o'ziga mos rang va me'yordagi animatsiya, minimalist, jonsiz emas · **53** (73) GLOBAL BUYRUQ: ishlar tugagach
+ishlar paneli yopilsin, natija maydoni kattalashib, animatsiya bilan e'tiborni tortsin — shunday vaziyatlarni hamma joyda yoritish · **54** (74) 11-ekran:
+uch kirish yo'liga o'ziga mos minimalist vizual · **55** (75) 13-ekran: o'ngdagi yurish animatsiyasi yaxshiroq · **56** (76) 14-ekran: shu ham.
+Tashxis: sabab qolipda — kirish/reja standarti qolipga ko'chmagan, «tugadi» holati va ⛶ qolipda majburiy emas, xarita tugunlari quruq. Tuzatish qolip
+darajasida (komponent dizaynni o'zi beradi), keyin pilot ekranlari.
+
+### F-1004 (3-qism) BAJARILDI (04.10.2026, 20:18) — qolip darajasida
+**Qolip:** `QKirish` endi texnik darslar standarti (radio-variant, ma'lumot `variantlar/tanlov/onTanla/yopiq`); yangi `QReja` («01 · matn · teg»);
+`QTushuncha` — `zoom` (⛶ vizual atrofida), `tugadi` (panel yopiladi → vizual butun enga, `q-fokus` animatsiyasi), `harakatAvval`; `useTugadi(done, ms, darhol)`;
+ikkinchi darajali tugma bajarilgach izoh-matnga aylanadi; ⛶ ichidagi vizual ustun balandligini to'ldiradi. Darvoza: q15 `QReja`, **q17** zoom yo'q, **q18** tugadi
+yo'q (salbiy namuna: 4 + 4 ushlandi).
+**1-dars:** xarita tugunlarida chizilgan belgilar (odam · brauzer · server · baza · AI · chat), shaffof bo'lmagan fon (chiziq matnni kesmaydi), joriy tugun
+pulsi, ma'lumot oqayotgan chiziq, yangi ulanish chizilib chiqadi, konvert (so'rov — modul rangi, javob — yashil), tugun ustida pufak. **47** kirish standartga ·
+**48** reja: «01» kartalar + katta xaritada aylanib yuradigan so'rov/javob · **50** ⛶ hamma vizualda · **51** 4-ekran 5 qadam, javob DB → Backend → Frontend bosib ·
+**52** 6-ekran: brauzer (nuqtalar, manzil, skelet) va server (qorong'i, chiroq, `$` qatorlari), API'da paketlar · **53** tugadi: 4, 6, 7, 8, 10, 11, 13, 14-ekranlar
+(3-ekran ataylab `tugadi={false}` — foydalanuvchi «ancha yaxshi» degan juftlik) · **54** 11-ekran: brauzer · Telegram chat · telefon ramkasi, konvert Backend'ga
+uchadi, jadvalga yangi qator ajralib tushadi · **55** 13-ekran konvert yo'l bo'ylab tugundan tugunga sakraydi (620 ms) · **56** 14-ekran tugun ochiladi, chiziq
+chiziladi, faylda yangi qator ajraladi. Telefonda saralash tepada, qatorli xarita ixcham. Topilgan nuqson: eski o'lik `.tg-*` CSS yangi `.tg-ava` ni bosib
+qo'ygan (avatar bo'sh) — eski blok (18 qator) olindi.
+**Darvozalar:** 1-dars 12/12 · lint:jsx toza · lint:prompt toza · lint-qolip src: 0 error (498 warn — eski modullar).
+**Qonun:** DE-199 (tugagach fokus — GLOBAL) · DE-200 (⛶ + jonli maket) · DE-201 (kirish/reja standarti); QOIDALAR 387; tekshiruvchi ov-bandlari 14–15; QOLIP.md.
+**Ochiq (foydalanuvchi ko'rishi):** test ekranlari (5, 9, 12, 15, 16) va yakun qismi eski ko'rinishda (qolipga ko'chirilmagan) · 3-ekran tugadi={false} qarori ·
+13-ekranda pufak va konvert yaqin turadi · telefonda 11/13/14-ekranlar suratda ko'rilmagan.
+
+### F-1004-57/58 — bannerlar va yashil xulosa (04.10.2026, 20:25)
+**57** (`qa/F-1004-img77`): «CODE STRIKE va uyga vazifa boshqacha … tex uroklarda qara, juda to'rtburchak emas, barchasiga, qoidalarga qat'iy». O'lchov: 1–5-Modul
+va PM'dagi 84 dars — CODE STRIKE kapsula (999px), «Uyga vazifa» 22px o'rtada min(560px,100%); faqat 6-Modul 14 darsi F-1004-25 (192-qonun) bilan chetga chiqqan
+edi. 14 dars standartga qaytdi; 192 qayta yozildi (platforma standarti, QAT'IY); q11 teskari — standartdan chetga chiqish hamma modulda error (98 dars toza;
+eski 168 warn yopildi). Saboq memory'da: umumiy elementni o'zgartirishdan oldin platforma standartini o'lchash.
+**58** (`qa/F-1004-img78`): «background yashilni qonun qil … tex uroklarimiznikiday yashil … asosiy qonun». O'lchov: 83 texnik dars `.frame-success` — `#E3F0E8` +
+yashil soya; PM — `#E4F5EC`; qolip xulosasi shaffof (kulrang ko'rinardi). Qolip: `HOLAT.okFon #E3F0E8`, `errFon #FAE3E0`; `QXulosa` = `.frame-success` aynan;
+1-dars `fon(T.ok)` → `T.okFon` (27 joy); 47 PM darsida `successSoft` → `#E3F0E8` (133 fayl bir xil); 6-Modulda `.frame-success` bitta qator. Darvoza q19
+(hamma modulda error; sinov namunasi ushlandi). Qonun DE-202 (ASOSIY), QOIDALAR 388.
+**Darvozalar:** 6-Modul 14/14 → 12/12 · lint-qolip src 0 error · 53 o'zgargan fayl esbuild ✓ · lint:jsx · lint:prompt toza.
+
+### F-1004-59 — test ekranlari qolipga + 6-Modulni yopish (04.10.2026, 20:55)
+**59** «test ekranlarini ham qolipga o'tkaz»: qolipga `QTest` + `QTestJavob` (texnik darslar test standarti aynan — oq variant, A–D, to'g'ri yashil 202, tanlangan xato
+modul rangi, qolgani xira, jonli kutish halqasi) va `QTartib` (DragDropOrder → qolip, 188 yagona manbasi). 1-dars `QuestionScreen` mantig'i o'zgarmadi (jonli ball,
+bitta urinish, mentor ochishi, takrorlash, INLINE_KEYS), faqat ko'rinish `QTest` ga; 16-ekran `QTartib`. O'lik kod olindi: `FeedbackBlock`, `DragDropOrder`, `.option*`,
+`.dd*`, `.feedback-block`, `.hook-option` CSS (45 qator). Darvoza q20 (qolip-darsda QuestionScreen `<QTest>` siz yoki DragDropOrder nusxasi — sinov nusxasida 2 ushlandi).
+Savolsiz: 13-ekranda konvert pufak kelgach yo'qoladi (ustma-ust tushmaydi), o'ng chetdagi pufak xaritadan chiqmaydi; telefonda 5, 11, 13, 14-ekranlar ko'rildi.
+Qonun DE-203, QOIDALAR 389, QOLIP.md. 1-dars 12/12 · lint:jsx · lint:prompt toza · lint-qolip src 0 error.
+**6-Modulni yopish qaror-sahifasi:** https://claude.ai/artifact/WmAuQSLDigKUNXfWdTDkRQ (manba `scratchpad/yopish6/build.py`) — Q1 3-ekran tugadi={false} ·
+Q2 kartochka + yakun ekrani qolipga · Q3 13 dars 4 guruhda (G1 texnik 3–7 · G2 mobil 9–10 · G3 amaliyot 8/11/13 · G4 PM 2/6/12/14) · Q4 QA sayt deploy vaqti ·
+Q5 oraliq commit'lar. Tavsiya A·A·A·A·A. Savolsiz: ru-walk 1-dars, 18-ekran tepadan, 162 → error oxirida, LMS qayta yuklash ro'yxati. 5-Modul yopish sahifasi
+(MrG32ys4VQZ1qazKL2ZuSw) hali javobsiz.
+
+### F-1004-60 — 6-Modulni yopish javobi va bajarilishi (04.10.2026, 21:22–21:53)
+**Javob:** 6-Modul (WmAuQSLDigKUNXfWdTDkRQ) Q1–Q5 = A · 5-Modul (MrG32ys4VQZ1qazKL2ZuSw) Q1–Q11 = A (5-Modul qismi: `feedback/F-0928-QA-5modul/JURNAL.md` F-1004-60).
+**Q1** 3-ekran `tugadi={false}` — qoladi (o'zgarish yo'q). **Q2** `QKartochka` va `QYakun` qolipga: pilotdagi `Flashcards` + fc-yordamchilar + 93 qator CSS
+qolipga ko'chdi (`T.` → `Q.`; `.card`/`.card-lbl` podium ham ishlatgani uchun darsda qoldi, qolipda `.q-yakun` ostida aynan nusxa). Surat oldin/keyin: yakun
+piksel darajasida bir xil; kartochka endi tepadan (savolsiz, 174). Eski PM «natija — bitta karta» → `QNatija`. Darvoza q21 (asl pilot nusxasida 2 ushlandi) +
+q11 endi `qolipCss.js` ni ham o'lchaydi (radius 30px sinovi ushlandi). Qonun DE-204, U-081, QOLIP.md. **Q3** 13 dars 4 guruhda (G1 texnik 3–7 · G2 mobil 9–10 ·
+G3 amaliyot 8/11/13 · G4 PM 2/6/12/14) — MD v3 → GATE M → qolip: G1 dan boshlanadi. **Q4** coddycamp-8modul — 14 dars qolipda bo'lgach. **Q5** oraliq commit'lar —
+5-Modul Q9 «push» bilan birlashtirildi (DAVOM 21:22).
+1-dars: `gates` 12/12 · `lint:jsx` toza · `lint-emoji` qolip 0.

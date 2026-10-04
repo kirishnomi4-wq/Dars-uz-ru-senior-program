@@ -349,7 +349,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
@@ -503,7 +503,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
@@ -547,7 +547,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: 'Короткое повторение — ещё раз взглянуть на тему' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -761,7 +761,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               {tried ? <div className="fade-step"><p className="body" style={{ margin: '0 0 6px', color: T.ink }}>{tr({ uz: "1-marta: «Bu ajoyib mahsulot bo'lib, sizga juda yoqadi va...» (uzun)", ru: '1-й раз: «Это замечательный товар, который вам очень понравится и...» (длинно)' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '2-marta: «Hamyon. Narxi 120000.» (quruq)', ru: '2-й раз: «Кошелёк. Цена 120000.» (сухо)' })}</p></div>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Muammoni ko'rdingiz", ru: '✓ Вы увидели проблему' }) : tr({ uz: "▶ Ikki marta so'rab ko'rish", ru: '▶ Попросить два раза' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Muammoni ko'rdingiz", ru: '✓ Вы увидели проблему' }) : tr({ uz: "▶ Ikki marta so'rab ko'rish", ru: '▶ Попросить два раза' })}</button>
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "AI har safar sizga kerakli uslubda yozishi uchun nima qilasiz?", ru: 'Что вы сделаете, чтобы ИИ каждый раз писал в нужном вам стиле?' })}</p>
@@ -807,8 +807,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI'ga <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> beramiz: Claude Skill.</>, ru: <>Дадим ИИ <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>: Claude Skill.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Skill — AI uchun <b style={{ color: T.ink }}>qayta ishlatiladigan yozma yo'riqnoma</b>. Bir xil ishni qayta-qayta qilayotgan bo'lsangiz, uni qanday bajarish kerakligini Skill qilib yozib qo'yasiz. Bugun tayyorini o'qib, qanday tuzilganini ko'ramiz.</>, ru: <>Skill — это <b style={{ color: T.ink }}>многоразовая письменная инструкция</b> для ИИ. Если вы снова и снова делаете одну и ту же работу, вы один раз записываете, как её выполнять, в виде Skill. Сегодня прочитаем готовый и посмотрим, как он устроен.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Показать 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Skill'ni ko'rish", ru: '↩ Показать Skill' })}</button>{StepsB}</div>}
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Показать 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Skill'ni ko'rish", ru: '↩ Показать Skill' })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -829,7 +829,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📋 Skill nima?', ru: '📋 Что такое Skill?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta aniq vazifani qanday bajarishni tushuntiradigan yozma yo'riqnoma. U papkada saqlanadi: asosiy fayl — <span className="mono">SKILL.md</span>; kerak bo'lsa, yonida qo'shimcha fayllar ham turadi (namunalar, skriptlar).</>, ru: <>Письменная инструкция, которая объясняет, как выполнить одну конкретную задачу. Она хранится в папке: главный файл — <span className="mono">SKILL.md</span>; при необходимости рядом лежат дополнительные файлы (образцы, скрипты).</> })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Hayotdan misol?', ru: 'Пример из жизни?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Hayotdan misol?', ru: 'Пример из жизни?' })}</button>
           </Col>
           <Col>
             {show
@@ -860,8 +860,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Tuzilish · SKILL.md', ru: 'Структура · SKILL.md' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uchalasini oching (${seen.size}/3)`, ru: `Откройте все три (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SKILL.md'ning <span className="italic" style={{ color: T.accent }}>ikki asosiy qismi</span> bor: frontmatter va body.</>, ru: <>У SKILL.md <span className="italic" style={{ color: T.accent }}>две основные части</span>: frontmatter и body.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana mini-do'kon uchun haqiqiy Skill. Yuqorida — <b style={{ color: T.ink }}>frontmatter</b>, ya'ni Skill haqida qisqa ma'lumot. Pastda — <b style={{ color: T.ink }}>body</b>, ya'ni asosiy yo'riqnoma. Frontmatter ichidagi description qatori alohida muhim, shuning uchun uni ham alohida ko'ramiz. Har birini bosing.</>, ru: <>Вот настоящий Skill для мини-магазина. Вверху — <b style={{ color: T.ink }}>frontmatter</b>, то есть краткие сведения о Skill. Ниже — <b style={{ color: T.ink }}>body</b>, то есть основная инструкция. Строка description внутри frontmatter особенно важна, поэтому её тоже рассмотрим отдельно. Нажмите на каждую часть.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>SKILL.md</span> qanday tuzilgan?</>, ru: <>Как устроен <span className="italic" style={{ color: T.accent }}>SKILL.md</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana mini-do'kon uchun haqiqiy Skill. Yuqorida — <b style={{ color: T.ink }}>frontmatter</b>: Skill haqida qisqa ma'lumot. Pastda — <b style={{ color: T.ink }}>body</b>: asosiy yo'riqnoma. Frontmatter ichidagi description qatorini alohida ko'ramiz. Har birini bosing.</>, ru: <>Вот настоящий Skill для мини-магазина. Вверху — <b style={{ color: T.ink }}>frontmatter</b>: краткие сведения о Skill. Ниже — <b style={{ color: T.ink }}>body</b>: основная инструкция. Строку description внутри frontmatter рассмотрим отдельно. Нажмите на каждую часть.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -898,7 +898,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="prompt-card" style={{ borderLeftColor: T.accent }}><span className="prompt-who" style={{ color: T.accent }}>description</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsulotlari uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товаров мини-магазина. Используется, когда дано название товара.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega muhim?', ru: 'Чем важен description?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega muhim?', ru: 'Чем важен description?' })}</button>
           </Col>
           <Col>
             {show
@@ -926,7 +926,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: "Body · yo'riqnoma", ru: 'Body · инструкция' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qadamlarni o'qing", ru: 'Прочитайте шаги' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Body — AI bajaradigan <span className="italic" style={{ color: T.accent }}>aniq qadamlar</span> va misol.</>, ru: <>Body — <span className="italic" style={{ color: T.accent }}>точные шаги</span> и пример для ИИ.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Body — Skill'ning asosiy yo'riqnomasi: qadamma-qadam ko'rsatma va misol. Qadamlar qancha aniq bo'lsa, natija shuncha bir xil chiqadi. Tugmani bosing.", ru: 'Body — основная инструкция Skill: пошаговые указания и пример. Чем точнее шаги, тем более одинаковым получается результат. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Qadamlar qancha aniq bo'lsa, natija shuncha bir xil chiqadi. Tugmani bosing.", ru: 'Чем точнее шаги, тем более одинаковым получается результат. Нажмите кнопку.' })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -938,7 +938,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {tr({ uz: '4. Narxni eslat.', ru: '4. Напомни цену.' })}{'\n'}
               {tr({ uz: '5. "Savatga qo\'shing!" bilan yakunla.', ru: '5. Заверши фразой "Добавьте в корзину!".' })}
             </CodeFile>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega bunday aniq?', ru: 'Почему так подробно?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega bunday aniq?', ru: 'Почему так подробно?' })}</button>
           </Col>
           <Col>
             {show
@@ -971,7 +971,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.ink2 }}>system prompt</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har suhbatda doim yoqilgan ko'rsatma — AI qanday ohangda gapirishini belgilaydi. «Sen samimiy yordamchisan.»", ru: 'Инструкция, которая включена в каждом разговоре, — задаёт, каким тоном говорит ИИ. «Ты — дружелюбный помощник.»' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Skill-chi?', ru: 'А Skill?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Skill-chi?', ru: 'А Skill?' })}</button>
           </Col>
           <Col>
             {show
@@ -1001,7 +1001,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📩 Vazifa: <b>«Charm hamyon uchun tavsif yoz»</b></>, ru: <>📩 Задача: <b>«Напиши описание для кожаного кошелька»</b></> })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={loaded} onClick={() => { setLoaded(true); setSc(n => n + 1); }}>{loaded ? tr({ uz: '✓ Skill ochildi', ru: '✓ Skill открыт' }) : tr({ uz: '▶ Vazifani yuborish', ru: '▶ Отправить задачу' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={loaded} onClick={() => { setLoaded(true); setSc(n => n + 1); }}>{loaded ? tr({ uz: '✓ Skill ochildi', ru: '✓ Skill открыт' }) : tr({ uz: '▶ Vazifani yuborish', ru: '▶ Отправить задачу' })}</button>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Claude'dagi Skill'lar", ru: 'Skills у Claude' })}</p>
@@ -1110,8 +1110,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: "Markaziy · Skill'ni tanlash", ru: 'Главное · выбор Skill' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (tried ? { uz: "To'g'ri Skill'ni tanlang", ru: 'Выберите нужный Skill' } : { uz: "Avval Skill'siz sinang", ru: 'Сначала попробуйте без Skill' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Avval <span className="italic" style={{ color: T.accent }}>Skill'siz</span> sinang, keyin Claude o'rnida to'g'ri <span className="italic" style={{ color: T.accent }}>Skill'ni</span> tanlang.</>, ru: <>Сначала попробуйте <span className="italic" style={{ color: T.accent }}>без Skill</span>, потом на месте Claude выберите нужный <span className="italic" style={{ color: T.accent }}>Skill</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Skill'siz Claude umumiy javob beradi — avval shuni ko'ring. Keyin Claude o'rnida bo'ling: uchta Skill'ning description'iga qarab, vazifaga mosini tanlang.", ru: 'Без Skill Claude даёт общий ответ — сначала посмотрите на него. Потом побудьте на месте Claude: глядя на description трёх Skills, выберите тот, что подходит задаче.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Claude o'rnida</span> bo'ling</>, ru: <>Побудьте <span className="italic" style={{ color: T.accent }}>на месте Claude</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Avval Skill'siz javobni ko'ring — u umumiy chiqadi. Keyin uchta Skill'ning description'iga qarab, vazifaga mosini tanlang.", ru: 'Сначала посмотрите ответ без Skill — он получается общим. Потом, глядя на description трёх Skills, выберите тот, что подходит задаче.' })}</Mentor>
         <div className="prompt-card" style={{ borderLeftColor: T.accent }}><span className="prompt-who" style={{ color: T.accent }}>{tr({ uz: 'vazifa', ru: 'задача' })}</span><p className="prompt-text">{tr({ uz: '«Charm hamyon uchun sotuvchi tavsif yoz»', ru: '«Напиши продающее описание для кожаного кошелька»' })}</p></div>
         <div className="split">
           <Col>
@@ -1120,7 +1120,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {tried ? <p className="body fade-step" style={{ margin: 0, color: T.ink }}>{tr({ uz: '«Bu yuqori sifatli charm hamyon zamonaviy dizayni bilan ajralib turadi va uzoq muddat xizmat qiladi...» (uzun, narxsiz)', ru: '«Этот высококачественный кожаный кошелёк отличается современным дизайном и прослужит долгое время...» (длинно, без цены)' })}</p>
                 : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Sinadingiz', ru: '✓ Попробовали' }) : tr({ uz: "▶ Skill'siz sinab ko'rish", ru: '▶ Попробовать без Skill' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Sinadingiz', ru: '✓ Попробовали' }) : tr({ uz: "▶ Skill'siz sinab ko'rish", ru: '▶ Попробовать без Skill' })}</button>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "vazifaga mos Skill'ni tanlang", ru: 'выберите Skill, подходящий задаче' })}</p>
@@ -1281,8 +1281,8 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: Skill qanday <span className="italic" style={{ color: T.accent }}>ishga tushishini</span> to'g'ri tartibda yig'ing.</>, ru: <>Последний шаг: соберите в верном порядке, как Skill <span className="italic" style={{ color: T.accent }}>срабатывает</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Vazifa kelganda Skill qanday ishga tushadi? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Как срабатывает Skill, когда приходит задача? Разложите кусочки в верном порядке.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Skill qanday <span className="italic" style={{ color: T.accent }}>ishga tushadi</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>срабатывает</span> Skill?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Vazifa kelgan paytdan boshlang. Bo'laklarni to'g'ri tartibda joylang.", ru: 'Начните с момента, когда приходит задача. Разложите кусочки в верном порядке.' })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
           hints={[
@@ -1295,7 +1295,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           doneText={false}
           onSolved={onSolved} onChange={onChange} />
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib tayyor: <b>Vazifa → description mos → Skill ochiladi → Yo'riqnomaga amal → Natija</b>. Claude Skill'ni shu tartibda ishlatadi.</>, ru: <>✓ Порядок готов: <b>Задача → description подходит → Skill открывается → Работа по инструкции → Результат</b>. Именно в таком порядке Claude применяет Skill.</> })}</p>
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>}
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: 'Короткое повторение — ещё раз взглянуть на тему' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
@@ -1929,7 +1929,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Natijalar', ru: 'Результаты' }} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2024,7 +2024,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -2058,8 +2058,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — подождите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — подождите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
           </Col>
@@ -2225,7 +2225,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq, <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> bera olasiz.</>, ru: <>Теперь вы можете дать ИИ точную <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq, <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> bera olasiz.</>, ru: <>Теперь вы можете дать ИИ точную <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2425,6 +2425,10 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
+           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
+        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
+        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2477,6 +2481,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
@@ -2507,6 +2512,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2515,7 +2521,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
            «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
-        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); } /* 192 (F-1004-57): platforma standarti — o'rtada, 560px gacha */
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
         @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
@@ -2574,6 +2580,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -2744,7 +2751,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
-          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px; /* 192 (F-1004-57): CODE STRIKE — kapsula, platforma standarti */
           background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
           border: 1.5px solid rgba(186,140,255,0.72);
           box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);

@@ -382,7 +382,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -536,7 +536,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -580,7 +580,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: 'Короткое повторение — ещё раз взглянуть на тему' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -736,8 +736,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Zoomable><Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'islands' ? 'chip-on' : ''}`} onClick={() => setV('islands')}>{tr({ uz: '🏝️ Alohida', ru: '🏝️ По отдельности' })}</button>
-              <button className={`chip ${v === 'system' ? 'chip-on' : ''}`} onClick={() => setV('system')}>{tr({ uz: '🔗 Ulangan', ru: '🔗 Связаны' })}</button>
+              <button className={`chip ${v === 'islands' ? 'chip-on' : ''}`} onClick={() => setV('islands')}>{tr({ uz: 'Alohida', ru: 'По отдельности' })}</button>
+              <button className={`chip ${v === 'system' ? 'chip-on' : ''}`} onClick={() => setV('system')}>{tr({ uz: 'Ulangan', ru: 'Связаны' })}</button>
             </div>
             <div key={v} className="demo-swap" style={{ background: T.paper, borderRadius: 14, padding: '16px 17px', boxShadow: `0 8px 20px -8px rgba(${T.shadowBase},0.16)` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 8 }}><span style={{ fontFamily: "'Manrope'", fontWeight: 700, fontSize: 14, color: T.ink }}>{tr(cur.who)}</span></div>
@@ -784,7 +784,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Tayyor qismlarni bitta tizimga ulaymiz', ru: 'Соединим готовые части в одну систему' })}</span></h2></div>
         <Mentor>{tr({ uz: "Qismlarni noldan yozmaymiz. AI'ga aniq topshiriq berasiz, u kod yozadi, siz kodni o'qib, sinab ko'rasiz.", ru: 'Части с нуля писать не будем. Вы даёте ИИ точное задание, он пишет код, а вы читаете этот код и проверяете его.' })}</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Maqsadni ko\'rish', ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
+        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Maqsadni ko\'rish', ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
   );
@@ -855,7 +855,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ); })}
             </div>
-            {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'flex-start' }}>{step < 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Запустить заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
+            {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'flex-end' }}>{step < 0 ? tr({ uz: '▶ Buyurtmani boshlash', ru: '▶ Запустить заказ' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
           </Col>
           <Col>
             <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sxema', ru: 'Схема' })}</p>
@@ -899,8 +899,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'blind' ? 'chip-on' : ''}`} onClick={() => set('blind')}>{tr({ uz: "🙈 Ko'r-ko'rona", ru: '🙈 Вслепую' })}</button>
-              <button className={`chip ${v === 'director' ? 'chip-on' : ''}`} onClick={() => set('director')}>{tr({ uz: '🎬 Nazorat bilan', ru: '🎬 С контролем' })}</button>
+              <button className={`chip ${v === 'blind' ? 'chip-on' : ''}`} onClick={() => set('blind')}>{tr({ uz: "Ko'r-ko'rona", ru: 'Вслепую' })}</button>
+              <button className={`chip ${v === 'director' ? 'chip-on' : ''}`} onClick={() => set('director')}>{tr({ uz: 'Nazorat bilan', ru: 'С контролем' })}</button>
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <span style={{ fontSize: 26 }}>{v === 'director' ? '🎬' : '🙈'}</span>
@@ -913,7 +913,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v === 'blind'
               ? <div className="frame-warn fade-step" key="b"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI xatosini ko'rmaysiz — tizim nazoratingizdan chiqadi.", ru: 'Ошибку ИИ вы не увидите — система выходит из-под вашего контроля.' })}</p></div>
               : <div className="frame-success fade-step" key="d"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Buni direktor ishiga o'xshatish mumkin: nima qilishni siz belgilaysiz, AI bajaradi, natijani siz tekshirasiz.", ru: 'Это можно сравнить с работой директора: что делать, решаете вы, ИИ выполняет, а результат проверяете вы.' })}</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI bilan kod yozish: aniq topshiriq ber · kodni o'qi · sina · tuzat. Natija uchun siz javobgarsiz.", ru: 'Пишем код с ИИ: точное задание · прочитать код · проверить · исправить. За результат отвечаете вы.' })}</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "AI bilan kod yozish: aniq topshiriq berish · kodni o'qish · sinash · tuzatish. Natija uchun siz javobgarsiz.", ru: 'Пишем код с ИИ: точное задание · прочитать код · проверить · исправить. За результат отвечаете вы.' })}</p></div>}
             {done && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Internetda bunday ishni ko'pincha <b>vibecoding</b> deyishadi. Bu so'z ba'zan «kodni o'qimay, AI'ga to'liq ishonish» ma'nosida ham ishlatiladi — biz esa aksincha, kodni o'qib, tekshirib ishlaymiz.</>, ru: <>В интернете такую работу часто называют <b>vibecoding</b>. Иногда это слово значит «не читать код и полностью доверять ИИ» — мы же, наоборот, читаем и проверяем код.</> })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -963,11 +963,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button key={l.id} onClick={() => build(l.id)} className={`plink ${on ? 'plink-on' : ''}`}>
                   <span className="plink-box">{on ? Ico.check(13) : Ico.bolt(13)}</span>
                   <span style={{ flex: 1, textAlign: 'left' }}><span className="plink-label">{l.label}</span></span>
-                  <span className="plink-act">{on ? tr({ uz: 'ulandi', ru: 'связано' }) : tr({ uz: 'prompt yubor', ru: 'отправить промпт' })}</span>
+                  <span className="plink-act">{on ? tr({ uz: 'ulandi', ru: 'связано' }) : tr({ uz: 'prompt yuborish', ru: 'отправить промпт' })}</span>
                 </button>
               ); })}
             </div>
-            {allBuilt && !flowing && <button className="btn" onClick={() => setFlowing(true)} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '▶ Buyurtma yuborish', ru: '▶ Отправить заказ' })}</button>}
+            {allBuilt && !flowing && <button className="btn" onClick={() => setFlowing(true)} style={{ alignSelf: 'flex-end' }}>{tr({ uz: '▶ Buyurtma yuborish', ru: '▶ Отправить заказ' })}</button>}
           </Col>
           <Col>
             {cur && !flowing && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{cur.label} — {tr({ uz: 'promptingiz', ru: 'ваш промпт' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>"{tr(cur.prompt)}"</p><div className="codepill">{tr(cur.code)}</div></div>)}
@@ -991,12 +991,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Prompt sifati', ru: 'Качество промпта' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Aniq prompt — <span className="italic" style={{ color: T.accent }}>aniqroq kod</span></>, ru: <>Точный промпт — <span className="italic" style={{ color: T.accent }}>более точный код</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Prompt qanchalik noaniq bo'lsa, AI shunchalik ko'p taxmin qiladi. Aniq prompt kerakli kodni olishga yordam beradi. Ikkalasini bosing.", ru: 'Чем расплывчатее промпт, тем больше ИИ догадывается. Точный промпт помогает получить нужный код. Нажмите на оба.' })}</Mentor>
+        <Mentor>{tr({ uz: "Prompt qanchalik noaniq bo'lsa, AI shunchalik ko'p taxmin qiladi. Ikkalasini bosib, kodni solishtiring.", ru: 'Чем расплывчатее промпт, тем больше ИИ догадывается. Нажмите на оба и сравните код.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'vague' ? 'chip-on' : ''}`} onClick={() => set('vague')}>{tr({ uz: '🌫️ Noaniq', ru: '🌫️ Расплывчато' })}</button>
-              <button className={`chip ${v === 'precise' ? 'chip-on' : ''}`} onClick={() => set('precise')}>{tr({ uz: '🎯 Aniq', ru: '🎯 Точно' })}</button>
+              <button className={`chip ${v === 'vague' ? 'chip-on' : ''}`} onClick={() => set('vague')}>{tr({ uz: 'Noaniq', ru: 'Расплывчато' })}</button>
+              <button className={`chip ${v === 'precise' ? 'chip-on' : ''}`} onClick={() => set('precise')}>{tr({ uz: 'Aniq', ru: 'Точно' })}</button>
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <p className="mono small" style={{ margin: 0, color: T.ink2, fontWeight: 700 }}>{tr({ uz: 'PROMPT:', ru: 'ПРОМПТ:' })}</p>
@@ -1029,7 +1029,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Sikl · jonli', ru: 'Цикл · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni kuzating (${step + 1}/${VIBE_STEPS.length})`, ru: `Проследите цикл (${step + 1}/${VIBE_STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sikl: <span className="italic" style={{ color: T.accent }}>prompt → kod → test → tuzat</span></>, ru: <>Цикл: <span className="italic" style={{ color: T.accent }}>промпт → код → тест → правка</span></> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sikl: <span className="italic" style={{ color: T.accent }}>prompt → kod → test → tuzatish</span></>, ru: <>Цикл: <span className="italic" style={{ color: T.accent }}>промпт → код → тест → правка</span></> })}</h2></div>
         <Mentor>{tr({ uz: "Bitta ulanishni qanday quramiz? Sikl orqali. Bosib, har qadamni ko'ring — xato ham chiqadi!", ru: 'Как построить одну связку? С помощью цикла. Нажимайте и смотрите каждый шаг — ошибка тоже будет!' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
@@ -1037,7 +1037,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="vibe-track">
               {VIBE_STEPS.map((s, i) => { const on = i <= step; return (<div key={s.k} className="vibe-row" style={{ opacity: on ? 1 : 0.32, transition: 'opacity 0.35s' }}><span className="vibe-dot" style={{ background: on ? s.color : T.ink3 }}>{i < step ? Ico.check(11) : i + 1}</span><span className="vibe-tag" style={{ color: on ? s.color : T.ink3 }}>{tr(s.tag)}</span></div>); })}
             </div>
-            {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'flex-start' }}>{step === 0 ? tr({ uz: '▶ Siklni boshlash', ru: '▶ Запустить цикл' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
+            {!done && <button className="btn" onClick={advance} style={{ alignSelf: 'flex-end' }}>{step === 0 ? tr({ uz: '▶ Siklni boshlash', ru: '▶ Запустить цикл' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
           </Col>
           <Col>
             <div key={step} className="vibe-card fade-step" style={{ }}>
@@ -1045,7 +1045,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="codepill" style={{ margin: '12px 0 10px' }}>{tr(cur.text)}</div>
               <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(cur.note)}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Prompt → AI kod → Test → Xato → Tuzat → Qayta test.</b> Har ulanish shunday quriladi.</>, ru: <><b>Промпт → код ИИ → тест → ошибка → правка → повторный тест.</b> Так строится каждая связка.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Prompt → AI kod → Test → Xato → Tuzatish → Qayta test.</b> Har ulanish shunday quriladi.</>, ru: <><b>Промпт → код ИИ → тест → ошибка → правка → повторный тест.</b> Так строится каждая связка.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1078,8 +1078,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'trust' ? 'chip-on' : ''}`} onClick={() => set('trust')}>{tr({ uz: "🙈 Ko'rmasdan ishlat", ru: '🙈 Взять не глядя' })}</button>
-              <button className={`chip ${v === 'read' ? 'chip-on' : ''}`} onClick={() => set('read')}>{tr({ uz: "👁️ O'qib tushun", ru: '👁️ Прочитать и понять' })}</button>
+              <button className={`chip ${v === 'trust' ? 'chip-on' : ''}`} onClick={() => set('trust')}>{tr({ uz: "Ko'rmasdan ishlat", ru: 'Взять не глядя' })}</button>
+              <button className={`chip ${v === 'read' ? 'chip-on' : ''}`} onClick={() => set('read')}>{tr({ uz: "O'qib tushun", ru: 'Прочитать и понять' })}</button>
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <span style={{ fontSize: 26 }}>{v === 'read' ? '👁️' : '🙈'}</span>
@@ -1175,7 +1175,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{tr(cur.tag)}</span></span><p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: '12px 0 0' }}>"{tr(cur.text)}"</p><p className="body" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr(cur.why)}</p></div>) : (!isNarrow ? null : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bo'l → prompt → sina → ula. Endi navbat sizga.", ru: 'Разбей → промпт → проверь → соедини. Теперь ваша очередь.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bo'lish → prompt → sinash → ulash. Endi navbat sizga.", ru: 'Разбиение → промпт → проверка → соединение. Теперь ваша очередь.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1187,11 +1187,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={{ uz: 'Qoida', ru: 'Правило' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Yakuniy ishga →', ru: 'К итоговому заданию →' }} onClick={onNext} /></>}>
     <div className="screen">
-      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimni ulash qoidasi: <span className="italic" style={{ color: T.accent }}>bo'l · buyur · sina · ula</span></>, ru: <>Правило соединения системы: <span className="italic" style={{ color: T.accent }}>разбей · поручи · проверь · соедини</span></> })}</h2></div>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizimni ulash qoidasi: <span className="italic" style={{ color: T.accent }}>bo'lish · topshiriq · sinash · ulash</span></>, ru: <>Правило соединения системы: <span className="italic" style={{ color: T.accent }}>разбиение · задание · проверка · соединение</span></> })}</h2></div>
       <Mentor>{tr({ uz: "Yodda tuting: tizimni ulanishlarga bo'ling, aniq prompt bering, kodni o'qib sinang, qadamma-qadam ulang.", ru: 'Запомните: разбейте систему на связки, дайте точный промпт, прочитайте и проверьте код, соединяйте шаг за шагом.' })}</Mentor>
       <Zoomable><div style={{ maxWidth: 620, width: '100%', margin: '0 auto' }}>
         <Col>
-          <p className="flow-label">{tr({ uz: '3 narsani unutmang', ru: 'Не забудьте о трёх вещах' })}</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[{ ic: Ico.target(18), c: T.accent, t: { uz: 'ANIQ PROMPT — nima, qayerda, qanday natija', ru: 'ТОЧНЫЙ ПРОМПТ — что, где, какой результат' } }, { ic: Ico.eye(18), c: T.blue, t: { uz: "KODNI O'QING — ko'r-ko'rona ishonmang", ru: 'ЧИТАЙТЕ КОД — не верьте вслепую' } }, { ic: Ico.repeat(18), c: T.success, t: { uz: 'SINANG VA TUZATING — har ulanishni sinab ulang', ru: 'ПРОВЕРЯЙТЕ И ИСПРАВЛЯЙТЕ — соединяйте каждую связку с проверкой' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 2 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
@@ -1328,7 +1327,7 @@ const QUIZ_BANK = [
   { q: { uz: "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?", ru: 'Какая часть срабатывает первой при отправке заказа?' }, opts: [{ uz: "PostgreSQL (baza)", ru: 'PostgreSQL (база)' }, { uz: "Telegram (bot)", ru: 'Telegram (бот)' }, { uz: "AI (yordamchi xizmat)", ru: 'ИИ (вспомогательный сервис)' }, { uz: "React (frontend)", ru: 'React (frontend)' }], correct: 3 },
   { q: { uz: "Bu loyihada Node.js qanday vazifani bajaradi?", ru: 'Какую задачу выполняет Node.js в этом проекте?' }, opts: [{ uz: "So'rovlarni qabul qilib, boshqaradi", ru: 'Принимает запросы и управляет ими' }, { uz: "Faqat rasm va chizmalar chizadi", ru: 'Только рисует картинки и схемы' }, { uz: "Ma'lumotni ko'rmay o'tkazib yuboradi", ru: 'Пропускает данные, не глядя на них' }, { uz: "Foydalanuvchi parolini ko'rsatadi", ru: 'Показывает пароль пользователя' }], correct: 0 },
   { q: { uz: "Buyurtma ma'lumoti qayerda saqlanadi?", ru: 'Где хранятся данные заказа?' }, opts: [{ uz: "Telegram bot xabarida", ru: 'В сообщении Telegram-бота' }, { uz: "Bazadagi orders jadvalida", ru: 'В таблице orders в базе' }, { uz: "Brauzer tarixida", ru: 'В истории браузера' }, { uz: "Hech qayerda saqlanmaydi", ru: 'Нигде не хранятся' }], correct: 1 },
-  { q: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, opts: [{ uz: "Prompt → kod → darhol ishlatish", ru: 'Промпт → код → сразу использовать' }, { uz: "Kodni ko'rmasdan ishlatish", ru: 'Использовать код, не глядя на него' }, { uz: "Prompt → kod → test → tuzat → qayta", ru: 'Промпт → код → тест → правка → заново' }, { uz: "Hammasini bitta promptda yozdirish", ru: 'Получить весь код одним промптом' }], correct: 2 },
+  { q: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, opts: [{ uz: "Prompt → kod → darhol ishlatish", ru: 'Промпт → код → сразу использовать' }, { uz: "Kodni ko'rmasdan ishlatish", ru: 'Использовать код, не глядя на него' }, { uz: "Prompt → kod → test → tuzatish → qayta", ru: 'Промпт → код → тест → правка → заново' }, { uz: "Hammasini bitta promptda yozdirish", ru: 'Получить весь код одним промптом' }], correct: 2 },
   { q: { uz: "«End-to-end test» nimani tekshiradi?", ru: 'Что проверяет «end-to-end тест»?' }, opts: [{ uz: "Faqat bitta tugmaning rangini", ru: 'Только цвет одной кнопки' }, { uz: "Faqat kirish (login) sahifasini", ru: 'Только страницу входа (login)' }, { uz: "Faqat bazaning nomini", ru: 'Только название базы' }, { uz: "Butun oqimni — buyurtma oxirigacha yetadimi", ru: 'Весь поток — доходит ли заказ до конца' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
@@ -1786,7 +1785,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Natijalar', ru: 'Результаты' }} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1881,7 +1880,7 @@ function ScreenLivePractice({ title, task, checklist, extra, screen, storedAnswe
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -1916,8 +1915,8 @@ function ScreenLivePractice({ title, task, checklist, extra, screen, storedAnswe
               })}
             </div>
             {extra && <p className="small" style={{ margin: 0, color: T.ink2 }}>{fmtCode(tr(extra))}</p>}
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
@@ -2023,7 +2022,7 @@ const PIPE_FLASHCARDS = [
   { front: { uz: "Buyurtmalar qayerda saqlanadi?", ru: 'Где хранятся заказы?' }, back: 'PostgreSQL', note: { uz: "Ma'lumotlar bazasi: products va orders jadvallari", ru: 'База данных: таблицы products и orders' } },
   { front: { uz: "Yangi buyurtmada adminga kim xabar yuboradi?", ru: 'Кто отправляет админу сообщение при новом заказе?' }, back: { uz: "Telegram bot", ru: 'Telegram-бот' }, note: { uz: "Xabarni unga Node.js yuboradi", ru: 'Сообщение ему передаёт Node.js' } },
   { front: { uz: "AI tizimda qachon ishlaydi?", ru: 'Когда в системе работает ИИ?' }, back: { uz: "Node.js uni chaqirganda", ru: 'Когда его вызывает Node.js' }, note: { uz: "Masalan, mijoz savol yozganda", ru: 'Например, когда клиент пишет вопрос' } },
-  { front: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, back: { uz: "Prompt → kod → test → tuzat → qayta test", ru: 'Промпт → код → тест → правка → повторный тест' }, note: { uz: "Har ulanish shunday quriladi", ru: 'Так строится каждая связка' } },
+  { front: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, back: { uz: "Prompt → kod → test → tuzatish → qayta test", ru: 'Промпт → код → тест → правка → повторный тест' }, note: { uz: "Har ulanish shunday quriladi", ru: 'Так строится каждая связка' } },
   { front: { uz: "AI yozgan kodni nima qilish kerak?", ru: 'Что нужно сделать с кодом, который написал ИИ?' }, back: { uz: "O'qib tushunish", ru: 'Прочитать и понять' }, note: { uz: "Ko'r-ko'rona ishonsangiz, AI xatosi sizniki bo'ladi", ru: 'Поверите вслепую — ошибка ИИ станет вашей' } },
   { front: { uz: "Aniq prompt nimalarni aytadi?", ru: 'Что говорит точный промпт?' }, back: { uz: "Nima, qayerda, qanday natija", ru: 'Что, где, какой результат' }, note: { uz: "«Sayt qil» emas, «POST /orders yoz»", ru: 'Не «сделай сайт», а «напиши POST /orders»' } },
   { front: { uz: "Konsolda «Failed to fetch» chiqsa, avval nimani tekshirasiz?", ru: 'В консоли «Failed to fetch» — что проверите первым?' }, back: { uz: "Frontend so'rov yuborayotgan backend manzilini", ru: 'Адрес backend, на который frontend отправляет запрос' }, note: { uz: "Server ishlayaptimi va CORS ruxsat beryaptimi — ham tekshiriladi", ru: 'Работает ли сервер и разрешает ли CORS запрос — это тоже проверяют' } },
@@ -2064,7 +2063,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: "Qismlar bir-biriga ma'lumot uzatsa, ular bitta tizim bo'lib ishlaydi", ru: 'Если части передают друг другу данные, они работают как одна система' },
     { uz: "Pipeline — ma'lumotning qismdan qismga o'tish oqimi; u Node.js'dan tarmoqlanadi", ru: 'Pipeline — поток данных от части к части; он ветвится от Node.js' },
-    { uz: 'AI bilan kod yozish sikli: prompt → kod → test → tuzat → qayta test', ru: 'Цикл написания кода с ИИ: промпт → код → тест → правка → повторный тест' },
+    { uz: 'AI bilan kod yozish sikli: prompt → kod → test → tuzatish → qayta test', ru: 'Цикл написания кода с ИИ: промпт → код → тест → правка → повторный тест' },
     { uz: "Aniq prompt aniqroq kod olishga yordam beradi; AI kodini doim o'qing", ru: 'Точный промпт помогает получить более точный код; код ИИ читайте всегда' },
     { uz: 'Ulanish xatolari boshidan oxirigacha (end-to-end) test bilan topiladi', ru: 'Ошибки связок находят тестом от начала до конца (end-to-end)' }
   ];
@@ -2079,7 +2078,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Loyiha kuni tugadi', ru: 'Проектный день завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi tayyor qismlarni <span className="italic" style={{ color: T.accent }}>bitta tizimga ulay olasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>можете соединить готовые части в одну систему</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Loyiha kuni tugadi', ru: 'Проектный день завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi tayyor qismlarni <span className="italic" style={{ color: T.accent }}>bitta tizimga ulay olasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>можете соединить готовые части в одну систему</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
@@ -2318,6 +2317,10 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
+           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
+        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
+        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2362,7 +2365,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(31,122,77,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === SPEC CARD === */
@@ -2375,6 +2378,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -2400,6 +2404,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { display: inline-flex; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2408,7 +2413,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
            «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
-        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); } /* 192 (F-1004-57): platforma standarti — o'rtada, 560px gacha */
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
         @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
@@ -2450,6 +2455,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -2620,7 +2626,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
-          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px; /* 192 (F-1004-57): CODE STRIKE — kapsula, platforma standarti */
           background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
           border: 1.5px solid rgba(186,140,255,0.72);
           box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);

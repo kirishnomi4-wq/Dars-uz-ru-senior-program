@@ -356,7 +356,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -510,7 +510,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, думайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
@@ -554,7 +554,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — посмотреть тему ещё раз' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — посмотреть тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -759,7 +759,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <Cm>{'---'}</Cm>{'\n'}<At>name</At>{': mijoz-javobi'}{'\n'}<At>description</At>{': '}<St>{tr({ uz: 'javob yozish', ru: 'написать ответ' })}</St>{'\n'}<Cm>{'---'}</Cm>{'\n'}{tr({ uz: 'Muloyim javob yoz.', ru: 'Напиши вежливый ответ.' })}
             </CodeFile>
             {tried && <div className="sk-info fade-step" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '❌ Natija', ru: '❌ Результат' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Kechirasiz, biz buni ko'rib chiqamiz.» — muloyim, lekin foydasiz: aniq yechim yo'q.", ru: '«Извините, мы это рассмотрим.» — вежливо, но бесполезно: конкретного решения нет.' })}</p></div>}
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Natijani ko'rdingiz", ru: '✓ Результат вы увидели' }) : tr({ uz: "▶ Sinab ko'rish", ru: '▶ Протестировать' })}</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: "✓ Natijani ko'rdingiz", ru: '✓ Результат вы увидели' }) : tr({ uz: "▶ Sinab ko'rish", ru: '▶ Протестировать' })}</button>
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Eng to'g'ri qadam qaysi?", ru: 'Какой шаг самый верный?' })}</p>
@@ -808,8 +808,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z Skill'ingizni <span className="italic" style={{ color: T.accent }}>yozasiz, sinaysiz va yaxshilaysiz</span>.</>, ru: <>Вы <span className="italic" style={{ color: T.accent }}>напишете, протестируете и улучшите</span> свой Skill.</> })}</h2></div>
         <Mentor>{tr({ uz: <>5-darsda tayyor Skill'ni o'qidingiz. Bugun uni o'zingiz yozasiz: aniq nom, aniq description, qadamlar va misol. Keyin sinab ko'rib, kamchiligini tuzatasiz.</>, ru: <>На 5-м уроке вы читали готовый Skill. Сегодня напишете его сами: точное имя, точный description, шаги и пример. Потом протестируете и исправите недочёт.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Faylni ko'rish", ru: '↩ Посмотреть файл' })}</button>{StepsB}</div>}
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Faylni ko'rish", ru: '↩ Посмотреть файл' })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -828,7 +828,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "5-darsdan eslang: SKILL.md yuqorida frontmatter'dan (name va description), pastda body'dan iborat. Yaxshi Skill yozish uchun shu qismlarning har biri aniq bo'lishi kerak. Tugmani bosing.", ru: 'Вспомните 5-й урок: SKILL.md состоит из frontmatter вверху (name и description) и body внизу. Чтобы написать хороший Skill, каждая из этих частей должна быть точной. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: "Qismlarni ko'rsat", ru: 'Показать части' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: "Qismlarni ko'rsat", ru: 'Показать части' })}</button>
           </Col>
           <Col>
             {show
@@ -860,7 +860,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '❌ Noaniq', ru: '❌ Размыто' })}</p><p className="prompt-text" style={{ margin: 0 }}>{tr(CARD_WHEN_BAD)}</p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr({ uz: '→ Qanaqa javob? Qaysi vaziyatda? Claude bilmaydi.', ru: '→ Какой ответ? В какой ситуации? Claude не знает.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Aniq description-chi?', ru: 'А точный description?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Aniq description-chi?', ru: 'А точный description?' })}</button>
           </Col>
           <Col>
             {show
@@ -907,11 +907,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yozish · body', ru: 'Пишем · body' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Aniq qadamlarni ko'ring", ru: 'Посмотрите точные шаги' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Body — <span className="italic" style={{ color: T.accent }}>aniq, raqamlangan qadamlar</span> va misol.</>, ru: <>Body — <span className="italic" style={{ color: T.accent }}>точные пронумерованные шаги</span> и пример.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Body'ga «yaxshi javob yoz» deb yozsangiz, AI o'zicha taxmin qiladi. Aniq, raqamlangan qadamlar yozsangiz, unga nima qilish kerakligi aniqroq tushunarli bo'ladi. Tugmani bosing.", ru: 'Если написать в body «напиши хороший ответ», ИИ будет гадать сам. Если написать точные пронумерованные шаги, ему будет понятнее, что нужно делать. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Body'ga «yaxshi javob yoz» deb yozsangiz, AI o'zicha taxmin qiladi. Qadamma-qadam yozilsa, unga nima qilish kerakligi tushunarli bo'ladi. Tugmani bosing.", ru: 'Если написать в body «напиши хороший ответ», ИИ будет гадать сам. Если расписать по шагам, ему будет понятно, что делать. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="sk-info" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '❌ Noaniq', ru: '❌ Размытые шаги' })}</p><p className="prompt-text" style={{ margin: 0 }}>{tr({ uz: '«Mijozga yaxshi javob yoz.»', ru: '«Напиши клиенту хороший ответ.»' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Aniq qadamlar-chi?', ru: 'А точные шаги?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Aniq qadamlar-chi?', ru: 'А точные шаги?' })}</button>
           </Col>
           <Col>
             {show
@@ -979,7 +979,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧪 Sinov: shikoyat', ru: '🧪 Тест: жалоба' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '«Telefonim buzuq keldi! Pulimni qaytaring!»', ru: '«Телефон пришёл бракованный! Верните деньги!»' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Sinaldi', ru: '✓ Протестировано' }) : tr({ uz: '▶ Skill bilan sinash', ru: '▶ Протестировать со Skill' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Sinaldi', ru: '✓ Протестировано' }) : tr({ uz: '▶ Skill bilan sinash', ru: '▶ Протестировать со Skill' })}</button>
           </Col>
           <Col>
             {show
@@ -1028,11 +1028,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · aniq tuzatish', ru: 'Понятие · точная правка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qanday tuzatilishini ko'ring", ru: 'Посмотрите, как исправляют' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Natija kutilgandek chiqmasa — hammasini emas, <span className="italic" style={{ color: T.accent }}>aniq joyni</span> tuzatasiz.</>, ru: <>Если результат не такой, как ожидали, — исправляете не всё, а <span className="italic" style={{ color: T.accent }}>конкретное место</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Natija kutilgandek chiqmasa, Skill'ni qaytadan yozmaysiz. Kamchilik qayerdaligini topib, <b style={{ color: T.ink }}>o'sha joyni</b> tuzatasiz — bitta qoida qo'shasiz yoki so'zni aniqroq qilasiz. Tugmani bosing.</>, ru: <>Если результат не такой, как ожидали, Skill заново не переписывают. Вы находите, где недочёт, и исправляете <b style={{ color: T.ink }}>именно это место</b> — добавляете одно правило или уточняете слово. Нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasini emas — <span className="italic" style={{ color: T.accent }}>aniq joyni</span> tuzatasiz</>, ru: <>Исправляете не всё, а <span className="italic" style={{ color: T.accent }}>конкретное место</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Natija kutilgandek chiqmasa, Skill'ni qaytadan yozmaysiz. Kamchilikni topib, bitta qoida qo'shasiz yoki so'zni aniqroq qilasiz. Tugmani bosing.</>, ru: <>Если результат не такой, как ожидали, Skill заново не переписывают. Вы находите недочёт и добавляете одно правило или уточняете слово. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Qanday tuzatiladi?', ru: 'Как исправляют?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Qanday tuzatiladi?', ru: 'Как исправляют?' })}</button>
           </Col>
           <Col>
             {show
@@ -1095,10 +1095,10 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               ))}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Natija yaxshilandi', ru: '✓ Результат стал лучше' }) : step === 0 ? tr({ uz: '▶ 1-variantni sinash', ru: '▶ Протестировать 1-й вариант' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Natija yaxshilandi', ru: '✓ Результат стал лучше' }) : step === 0 ? tr({ uz: '▶ 1-variantni sinash', ru: '▶ Протестировать 1-й вариант' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <div className="agent-card"><span className="agent-lbl">{tr({ uz: '🔁 YAXSHILASH SIKLI', ru: '🔁 ЦИКЛ УЛУЧШЕНИЯ' })}</span><p className="agent-msg">{tr({ uz: "Yoz → Sinab ko'r → Kamchilikni top → Tuzat → Qayta sinab ko'r. Birinchi urinish darrov mukammal bo'lishi shart emas — sikl uni yaxshilaydi.", ru: 'Напиши → Протестируй → Найди недочёт → Исправь → Протестируй снова. Первая попытка не обязана сразу быть идеальной — цикл её улучшит.' })}</p></div>
+            <div className="agent-card"><span className="agent-lbl">{tr({ uz: '🔁 YAXSHILASH SIKLI', ru: '🔁 ЦИКЛ УЛУЧШЕНИЯ' })}</span><p className="agent-msg">{tr({ uz: "Yozish → Sinab ko'rish → Kamchilikni topish → Tuzatish → Qayta sinab ko'rish. Birinchi urinish darrov mukammal bo'lishi shart emas — sikl uni yaxshilaydi.", ru: 'Написание → Тест → Поиск недочёта → Исправление → Повторный тест. Первая попытка не обязана сразу быть идеальной — цикл её улучшит.' })}</p></div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bitta aniq qoida qo'shildi — natija yaxshilandi. Hammasini qayta yozmadingiz.", ru: 'Добавили одно точное правило — результат стал лучше. Вы не переписывали всё заново.' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -1124,7 +1124,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Hayotiy · Skill yozish', ru: 'Из жизни · пишем Skill' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Jarayonni yuring (${shown}/${STEPS.length})`, ru: `Пройдите процесс (${shown}/${STEPS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshidan oxirigacha: <span className="italic" style={{ color: T.accent }}>yoz → sina → tuzat</span>.</>, ru: <>От начала до конца: <span className="italic" style={{ color: T.accent }}>напиши → протестируй → исправь</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshidan oxirigacha: <span className="italic" style={{ color: T.accent }}>yozish → sinash → tuzatish</span>.</>, ru: <>От начала до конца: <span className="italic" style={{ color: T.accent }}>написание → тест → исправление</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Mana to'liq jarayon bitta misolda. Tugmani bosib, Skill qanday yozilib, sinalib va yaxshilanishini kuzating.", ru: 'Вот весь процесс на одном примере. Нажимайте кнопку и смотрите, как Skill пишут, тестируют и улучшают.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1136,7 +1136,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               ))}
             </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Skill tayyor', ru: '✓ Skill готов' }) : shown === 0 ? tr({ uz: "▶ Skill'ni yozish", ru: '▶ Написать Skill' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Skill tayyor', ru: '✓ Skill готов' }) : shown === 0 ? tr({ uz: "▶ Skill'ni yozish", ru: '▶ Написать Skill' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
             <div className="sk-info"><p className="note-h">{tr({ uz: '💡 Diqqat', ru: '💡 Обратите внимание' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "1-variant yechim berdi, lekin muddatni unutdi. Bitta qoidani aniqlashtirish yetdi — hammasini qayta yozmasdan.", ru: '1-й вариант дал решение, но забыл про срок. Хватило уточнить одно правило — без переписывания всего.' })}</p></div>
@@ -1285,7 +1285,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {consequence === 'flaw-early' && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '😕 Hali sinamasdan kamchilikni qayerdan bilasiz?', ru: '😕 Откуда вы узнаете о недочёте, ещё не протестировав?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Avval sinab ko'riladi, keyin kamchilik topiladi.", ru: 'Сначала тестируют, потом находят недочёт.' })}</p></div>}
         {consequence === 'wrong' && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на блок, чтобы вернуть его, и поставьте заново.' })}</p></div>}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Jarayon tayyor: <b>Vazifa → Yozish → Sinov → Kamchilik → Tuzatib qayta sinash</b> ↻</>, ru: <>✓ Процесс готов: <b>Задача → Написание → Тест → Недочёт → Исправить и протестировать снова</b> ↻</> })}</p>
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — посмотреть тему ещё раз' })}</button>}
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — посмотреть тему ещё раз' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
@@ -1394,7 +1394,7 @@ const QZ_BG_SHAPES = [
   { ch: 'name:',       l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: { uz: 'qadamlar', ru: 'шаги' },    l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
   { ch: { uz: 'misol', ru: 'пример' },       l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
-  { ch: { uz: 'yoz→sina→tuzat', ru: 'напиши→протестируй→исправь' }, l: 52, t: 5, s: 20, d: 22, dl: 0.6 },
+  { ch: { uz: 'yozish→sinash→tuzatish', ru: 'написание→тест→правка' }, l: 52, t: 5, s: 20, d: 22, dl: 0.6 },
   { ch: '✗',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '⚡',           l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'frontmatter', l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
@@ -1414,7 +1414,7 @@ const QUIZ_BANK = [
   { q: { uz: "Yaxshi description qanday bo'ladi?", ru: 'Каким бывает хороший description?' }, opts: [{ uz: "Bitta so'zdan iborat, masalan «javob»", ru: 'Из одного слова, например «ответ»' }, { uz: 'Nima qilishi va qachon kerakligini aytadi', ru: 'Говорит, что делает и когда нужен' }, { uz: 'Iloji boricha noaniq, har narsaga mos', ru: 'Как можно размытее, подходит ко всему' }, { uz: 'Faqat emojidan iborat qisqa satr', ru: 'Короткая строка только из эмодзи' }], correct: 1 },
   { q: { uz: 'Misol Skill uchun nega foydali?', ru: 'Чем пример полезен для Skill?' }, opts: [{ uz: 'Faylni uzunroq qiladi', ru: 'Делает файл длиннее' }, { uz: 'Faqat bezak uchun', ru: 'Только для украшения' }, { uz: "Kutilgan natijani ko'rsatadi", ru: 'Показывает ожидаемый результат' }, { uz: "Hech qanday ta'sir qilmaydi", ru: 'Ни на что не влияет' }], correct: 2 },
   { q: { uz: 'Skill har safar narxni unutyapti. Eng aniq tuzatish?', ru: 'Skill каждый раз забывает про цену. Какая правка самая точная?' }, opts: [{ uz: "Butun Skill'ni o'chirib, boshidan yozish", ru: 'Удалить весь Skill и написать с начала' }, { uz: "description'ni uzunroq qilib yozish", ru: 'Написать description длиннее' }, { uz: "AI'ga ko'proq pul to'lab, kuchaytirish", ru: 'Заплатить ИИ больше, чтобы стал сильнее' }, { uz: "Qadamlarga «narxni ko'rsat» qoidasini qo'shish", ru: 'Добавить в шаги правило «укажи цену»' }], correct: 3 },
-  { q: { uz: "Skill yozishning to'g'ri sikli qaysi?", ru: 'Какой цикл написания Skill верный?' }, opts: [{ uz: 'Bir marta yoz, hech qachon tekshirma', ru: 'Написать один раз и никогда не проверять' }, { uz: 'Yoz → sina → tuzat → qayta sina', ru: 'Напиши → протестируй → исправь → протестируй снова' }, { uz: "Sina → o'chir → unut", ru: 'Протестируй → удали → забудь' }, { uz: "Ko'chir → jo'nat → kut", ru: 'Скопируй → отправь → жди' }], correct: 1 },
+  { q: { uz: "Skill yozishning to'g'ri sikli qaysi?", ru: 'Какой цикл написания Skill верный?' }, opts: [{ uz: 'Bir marta yozish, hech qachon tekshirmaslik', ru: 'Написать один раз и никогда не проверять' }, { uz: 'Yozish → sinash → tuzatish → qayta sinash', ru: 'Написать → протестировать → исправить → протестировать снова' }, { uz: "Sinash → o'chirish → unutish", ru: 'Протестировать → удалить → забыть' }, { uz: "Ko'chirish → jo'natish → kutish", ru: 'Скопировать → отправить → ждать' }], correct: 1 },
   { q: { uz: 'Noaniq description nimaga olib keladi?', ru: 'К чему приводит размытый description?' }, opts: [{ uz: 'Skill ikki barobar tezroq ishlaydi', ru: 'Skill работает в два раза быстрее' }, { uz: "Hech qanday ta'sir yo'q, hammasi bir xil", ru: 'Ни на что не влияет, всё то же самое' }, { uz: 'Skill kerakli paytda ishlamasligi mumkin', ru: 'Skill может не сработать в нужный момент' }, { uz: "Ball o'z-o'zidan oshib ketadi", ru: 'Баллы сами собой вырастут' }], correct: 2 },
   { q: { uz: "Yaxshi Skill qanday bo'ladi?", ru: 'Каким бывает хороший Skill?' }, opts: [{ uz: 'Bitta vazifaga, aniq va sinalgan', ru: 'На одну задачу, точный и протестированный' }, { uz: 'Iloji boricha uzun va batafsil', ru: 'Как можно длиннее и подробнее' }, { uz: "Ko'p vazifani birga bajaradigan", ru: 'Делающая много задач сразу' }, { uz: "Faqat nomdan iborat bo'lgan", ru: 'Состоящий только из имени' }], correct: 0 },
 ];
@@ -1875,7 +1875,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1971,7 +1971,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -2005,8 +2005,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Готово — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Готово' })}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Готово — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Готово' })}
             </button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
           </Col>
@@ -2154,7 +2154,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    { uz: 'Skill yozish — jarayon: yoz → sina → tuzat → qayta sina', ru: 'Написание Skill — это процесс: напиши → протестируй → исправь → протестируй снова' },
+    { uz: 'Skill yozish — jarayon: yozish → sinash → tuzatish → qayta sinash', ru: 'Написание Skill — это процесс: написание → тест → исправление → повторный тест' },
     { uz: "description — nima qiladi va qachon ishlatiladi; Claude Skill'ni shunga qarab tanlaydi", ru: 'description — что делает Skill и когда используется; по нему Claude выбирает Skill' },
     { uz: 'Body — aniq, raqamlangan qadamlar va bitta misol', ru: 'Body — точные пронумерованные шаги и один пример' },
     { uz: 'Natija chala bo\'lsa — hammasini emas, aniq joyni tuzatasiz', ru: 'Если результат неполный — исправляете не всё, а конкретное место' },
@@ -2171,7 +2171,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill yozishni o'rgandingiz", ru: 'Вы научились писать Skill' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI uchun <span className="italic" style={{ color: T.accent }}>o'z Skill'ingizni</span> yozasiz.</>, ru: <>Теперь вы напишете для ИИ <span className="italic" style={{ color: T.accent }}>свой Skill</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill yozishni o'rgandingiz", ru: 'Вы научились писать Skill' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI uchun <span className="italic" style={{ color: T.accent }}>o'z Skill'ingizni</span> yozasiz.</>, ru: <>Теперь вы напишете для ИИ <span className="italic" style={{ color: T.accent }}>свой Skill</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2372,6 +2372,10 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
+           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
+        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
+        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2424,6 +2428,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
@@ -2473,6 +2478,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2481,7 +2487,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
            «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
-        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); } /* 192 (F-1004-57): platforma standarti — o'rtada, 560px gacha */
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
         @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
@@ -2540,6 +2546,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -2710,7 +2717,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
-          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px; /* 192 (F-1004-57): CODE STRIKE — kapsula, platforma standarti */
           background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
           border: 1.5px solid rgba(186,140,255,0.72);
           box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);

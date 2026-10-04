@@ -350,7 +350,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -504,7 +504,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -548,7 +548,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: 'Короткое повторение — ещё раз взглянуть на тему' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -612,7 +612,19 @@ const Phone = ({ children, label, lit = true }) => (
   <div className="phone-wrap">
     <div className="phone">
       <div className="phone-notch" />
-      <div className="phone-screen" style={lit ? undefined : { opacity: 0.35 }}>{children}</div>
+      <div className="phone-screen" style={lit ? undefined : { opacity: 0.35 }}><div className="phone-status" aria-hidden="true"><span>9:41</span><span className="ps-r"><span className="ps-sig"><i /><i /><i /><i /></span><span className="ps-bat" /></span></div>{children}</div>
+      <div className="phone-home" />
+    </div>
+    {label && <div className="phone-label">{tr(label)}</div>}
+  </div>
+);
+
+// ===== 🌐 BRAUZER OYNASI (web ko'rinishi — F-1004-27) =====
+const Browser = ({ children, label, url = 'mini-dokon.uz' }) => (
+  <div className="phone-wrap">
+    <div className="bframe">
+      <div className="bframe-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bframe-url">{url}</span></div>
+      <div className="bframe-body">{children}</div>
     </div>
     {label && <div className="phone-label">{tr(label)}</div>}
   </div>
@@ -750,11 +762,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Mentor>{tr({ uz: "React darslarida web ilova yozishni o'rgandingiz. Endi savol: telefon ilovasi uchun hammasini noldan o'rganish kerakmi? Tugmani bosing — javobni ko'ring.", ru: 'На уроках React вы научились писать веб-приложения. Теперь вопрос: чтобы сделать приложение для телефона, придётся учить всё с нуля? Нажмите кнопку — увидите ответ.' })}</Mentor>
         <Zoomable><Split>
           <Col>
-            <Phone label={tried ? { uz: 'React Native bilan — ilova ochildi!', ru: 'С React Native — приложение открылось!' } : { uz: 'telefon (o\'chiq)', ru: 'телефон (выключен)' }} lit={tried}>
-              {tried
-                ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
-                : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>?</p>}
-            </Phone>
+            <div className="ph-sm" style={{ display: 'flex', justifyContent: 'center' }}>{/* F-1004-27: hook'da kichik telefon — tugma ekranga sig'adi */}
+              <Phone label={tried ? { uz: 'React Native bilan — ilova ochildi!', ru: 'С React Native — приложение открылось!' } : { uz: 'telefon (o\'chiq)', ru: 'телефон (выключен)' }} lit={tried}>
+                {tried
+                  ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
+                  : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>?</p>}
+              </Phone>
+            </div>
             <button className="btn-soft" style={{ alignSelf: 'center' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "▶ Ilovani telefonda ochish", ru: '▶ Открыть приложение на телефоне' })}</button>
           </Col>
           <Col>
@@ -805,8 +819,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React bilimingizni <span className="italic" style={{ color: T.accent }}>telefonga</span> olib chiqamiz.</>, ru: <>Переносим ваши знания React <span className="italic" style={{ color: T.accent }}>на телефон</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Yaxshi xabar: mobil ilova — butunlay yangi dunyo emas. <b style={{ color: T.ink }}>React bilimingiz</b> qoladi; bir nechta yangi komponent va Expo vositasini o'rganasiz.</>, ru: <>Хорошая новость: мобильное приложение — не совсем новый мир. <b style={{ color: T.ink }}>Ваши знания React</b> остаются; вы выучите несколько новых компонентов и инструмент Expo.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: '4 qadamni ko\'rish', ru: 'Посмотреть 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Natijani ko\'rish', ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: '4 qadamni ko\'rish', ru: 'Посмотреть 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Natijani ko\'rish', ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -822,11 +836,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · RN', ru: 'Понятие · RN' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tugmani bosing", ru: 'Нажмите кнопку' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React Native — <span className="italic" style={{ color: T.accent }}>React bilan</span> haqiqiy mobil ilova.</>, ru: <>React Native — настоящее мобильное приложение <span className="italic" style={{ color: T.accent }}>на React</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>React Native — React bilimi bilan iOS va Android uchun <b style={{ color: T.ink }}>haqiqiy</b> mobil ilova yasash usuli (web-sayt emas). Tugmani bosing.</>, ru: <>React Native — способ сделать <b style={{ color: T.ink }}>настоящее</b> мобильное приложение для iOS и Android со знаниями React (не веб-сайт). Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bitta kod iOS va Android'da ishlaydi — bu web-sayt emas. Tugmani bosing.</>, ru: <>Один код работает на iOS и Android — это не веб-сайт. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '📱 React Native nima?', ru: '📱 Что такое React Native?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz React komponentlarini yozasiz, ular telefonda <b>haqiqiy mobil ilova</b> bo'lib ishlaydi. Ilovaning ko'p qismini bitta kod bazasida yozib, iOS va Android uchun chiqarish mumkin; platformaga xos joylar ham bo'ladi.</>, ru: <>Вы пишете компоненты React, а на телефоне они работают как <b>настоящее мобильное приложение</b>. Большую часть приложения можно написать в одной кодовой базе и выпустить для iOS и Android; части под конкретную платформу тоже бывают.</> })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Qanday tasavvur qilish mumkin?", ru: 'Как это можно представить?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Qanday tasavvur qilish mumkin?", ru: 'Как это можно представить?' })}</button>
           </Col>
           <Col>
             {show
@@ -856,7 +870,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Farq · web va mobil', ru: 'Разница · веб и мобильное' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 juftlikni oching (${seen.size}/3)`, ru: `Откройте 3 пары (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>React o'sha — faqat <span className="italic" style={{ color: T.accent }}>ekran elementlari</span> boshqacha.</>, ru: <>React тот же — меняются только <span className="italic" style={{ color: T.accent }}>элементы экрана</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "React'da fikrlash usuli o'zgarmaydi: komponent, JSX, props. Lekin mobil ekran uchun HTML elementlari o'rniga React Native komponentlari ishlatiladi. Har juftlikni bosib, farqini ko'ring.", ru: 'Способ мышления в React не меняется: компонент, JSX, props. Но для мобильного экрана вместо HTML-элементов используются компоненты React Native. Нажмите на каждую пару и посмотрите разницу.' })}</Mentor>
+        <Mentor>{tr({ uz: "Komponent, JSX, props — hammasi o'zgarmaydi. HTML teglari o'rniga React Native komponentlari keladi. Har juftlikni bosib, farqini ko'ring.", ru: 'Компонент, JSX, props — всё остаётся. Вместо HTML-тегов приходят компоненты React Native. Нажмите на каждую пару и посмотрите разницу.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="trans-row"><CodeFile name={{ uz: 'React (web)', ru: 'React (веб)' }} minH={0}><Kw>{'<div '}</Kw><At>className</At>{'='}<St>"box"</St><Kw>{'>'}</Kw>{'\n'}{'  '}<Kw>{'<p>'}</Kw>{tr({ uz: 'Salom', ru: 'Привет' })}<Kw>{'</p>'}</Kw>{'\n'}<Kw>{'</div>'}</Kw></CodeFile></div>
@@ -868,10 +882,14 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="ph-sm">
-              <Phone label={live ? { uz: "Mobil ko'rinishi", ru: 'Мобильная версия' } : { uz: "Web ko'rinishi", ru: 'Веб-версия' }}>
-                <div className={`rn-view ${live ? 'on' : ''}`}><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
-              </Phone>
-            <button className="btn-soft" onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: "🌐 Web ko'rinishi", ru: '🌐 Веб-версия' }) : tr({ uz: "📱 Mobil ko'rinishi", ru: '📱 Мобильная версия' })}</button>
+              {live
+                ? <Phone label={{ uz: "Mobil ko'rinishi", ru: 'Мобильная версия' }}>
+                  <div className={`rn-view ${live ? 'on' : ''}`}><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
+                  </Phone>
+                : <Browser label={{ uz: "Web ko'rinishi", ru: 'Веб-версия' }}>
+                  <div className={`rn-view ${live ? 'on' : ''}`}><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
+                  </Browser>}
+            <button className="btn-soft" onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: "Web ko'rinishi", ru: 'Веб-версия' }) : tr({ uz: "Mobil ko'rinishi", ru: 'Мобильная версия' })}</button>
             </div>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{cur.web} → {cur.rn}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.desc)}</p></div>
@@ -913,8 +931,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Komponent · View/Text', ru: 'Компонент · View/Text' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qoidani ko'ring", ru: 'Посмотрите правило' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshlash uchun eng muhim ikki komponent: <span className="italic" style={{ color: T.accent }}>View</span> va <span className="italic" style={{ color: T.accent }}>Text</span>.</>, ru: <>Для начала — два самых важных компонента: <span className="italic" style={{ color: T.accent }}>View</span> и <span className="italic" style={{ color: T.accent }}>Text</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Boshlanishida sizga eng ko'p kerak bo'ladigani — shu ikkitasi. <b style={{ color: T.ink }}>View</b> — quti (web'dagi <span className="mono">div</span> kabi), <b style={{ color: T.ink }}>Text</b> — matn. Muhim qoida bor — tugmani bosing.</>, ru: <>Поначалу вам чаще всего понадобятся именно эти два. <b style={{ color: T.ink }}>View</b> — коробка (как <span className="mono">div</span> в вебе), <b style={{ color: T.ink }}>Text</b> — текст. Есть важное правило — нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki asosiy komponent: <span className="italic" style={{ color: T.accent }}>View</span> va <span className="italic" style={{ color: T.accent }}>Text</span></>, ru: <>Два основных компонента: <span className="italic" style={{ color: T.accent }}>View</span> и <span className="italic" style={{ color: T.accent }}>Text</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>View</b> — quti (web'dagi <span className="mono">div</span> kabi), <b style={{ color: T.ink }}>Text</b> — matn. Bitta qoida bor — tugmani bosing.</>, ru: <><b style={{ color: T.ink }}>View</b> — коробка (как <span className="mono">div</span> в вебе), <b style={{ color: T.ink }}>Text</b> — текст. Есть одно правило — нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="App.js" minH={110}>
@@ -923,7 +941,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  '}<Kw>{'<Text>'}</Kw>{tr({ uz: 'Salom, mini-do\'kon!', ru: 'Привет, мини-магазин!' })}<Kw>{'</Text>'}</Kw>{'\n'}
               <Kw>{'</View>'}</Kw>
             </CodeFile>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Muhim qoida nima?", ru: 'В чём важное правило?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Muhim qoida nima?", ru: 'В чём важное правило?' })}</button>
           </Col>
           <Col>
             {show
@@ -947,7 +965,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Bezash · StyleSheet', ru: 'Оформление · StyleSheet' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Stillar — <span className="mono" style={{ color: T.accent }}>StyleSheet</span>'da (CSS fayl emas).</>, ru: <>Стили — в <span className="mono" style={{ color: T.accent }}>StyleSheet</span> (не CSS-файл).</> })}</h2></div>
-        <Mentor>{tr({ uz: "React Native'da alohida CSS fayl yo'q. Stillar JS obyekt sifatida yoziladi; nomlari deyarli o'sha (padding, color, fontSize). Tugmani bosing.", ru: 'В React Native нет отдельного CSS-файла. Стили пишутся как JS-объект; названия почти те же (padding, color, fontSize). Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Ular JS obyekt sifatida yoziladi; nomlari deyarli o'sha (padding, color, fontSize). Tugmani bosing.", ru: 'Они пишутся как JS-объект; названия почти те же (padding, color, fontSize). Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="styles" minH={120}>
@@ -956,7 +974,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  title: { '}<At>fontSize</At>{': 22, '}<At>color</At>{': '}<St>'#fff'</St>{' }'}{'\n'}
               {'})'}
             </CodeFile>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "CSS'dan farqi?", ru: 'Чем отличается от CSS?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "CSS'dan farqi?", ru: 'Чем отличается от CSS?' })}</button>
           </Col>
           <Col>
             {show
@@ -1050,7 +1068,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧰 Expo nima?', ru: '🧰 Что такое Expo?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "React Native loyihasini yaratish, ishga tushirish va telefonda ko'rishni osonlashtiradigan tayyor to'plam. Boshlovchilar uchun qulay.", ru: 'Готовый набор, который упрощает создание проекта React Native, его запуск и просмотр на телефоне. Удобно для начинающих.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Nega Expo qulay?", ru: 'Чем удобен Expo?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Ko\'rdingiz', ru: '✓ Вы увидели' }) : tr({ uz: "Nega Expo qulay?", ru: 'Чем удобен Expo?' })}</button>
           </Col>
           <Col>
             {show
@@ -1078,22 +1096,27 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Telefonda · Expo Go', ru: 'На телефоне · Expo Go' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "QR kodni skanerlang", ru: 'Отсканируйте QR-код' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>QR kodni skanerlang — ilova <span className="italic" style={{ color: T.accent }}>telefoningizda ochiladi</span>.</>, ru: <>Отсканируйте QR-код — приложение <span className="italic" style={{ color: T.accent }}>откроется на вашем телефоне</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Telefoningizga Expo Go ilovasini o'rnatasiz va kompyuterdagi QR kodni u bilan skanerlaysiz — loyihangiz telefoningizda ochiladi. <b style={{ color: T.ink }}>Muhim shart:</b> odatda telefon va kompyuter bitta Wi-Fi tarmog'ida bo'lishi kerak. Tugmani bosib ko'ring!</>, ru: <>Вы устанавливаете на телефон приложение Expo Go и сканируете им QR-код с компьютера — ваш проект открывается на телефоне. <b style={{ color: T.ink }}>Важное условие:</b> обычно телефон и компьютер должны быть в одной Wi-Fi-сети. Попробуйте нажать кнопку!</> })}</Mentor>
-        <Zoomable><div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: 'kompyuterdagi QR kod', ru: 'QR-код на компьютере' })}</p>
-            <QrBox scanning={!scanned} />
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={scanned} onClick={() => { setScanned(true); setSc(n => n + 1); }}>{scanned ? tr({ uz: '✓ Skanerlandi', ru: '✓ Отсканировано' }) : tr({ uz: "📷 QR kodni skanerlash", ru: '📷 Отсканировать QR-код' })}</button>
-          </Col>
-          <Col>
-            <Phone label={scanned ? { uz: '🟢 ulandi', ru: '🟢 подключено' } : { uz: 'Expo Go (kutyapti)', ru: 'Expo Go (ожидает)' }} lit={scanned}>
-              {scanned
-                ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
-                : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: 'QR kodni kuting…', ru: 'Ждём QR-код…' })}</p>}
-            </Phone>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana natija! Kodni o'zgartirib saqlasangiz, Expo o'zgarishni telefonga tez yuboradi.", ru: 'Вот результат! Измените код и сохраните — Expo быстро отправит изменение на телефон.' })}</p></div>}
-          </Col>
-        </div></Zoomable>
+        <Mentor>{tr({ uz: <>Telefonga Expo Go ilovasini o'rnatasiz va u bilan kompyuterdagi kodni skanerlaysiz. <b style={{ color: T.ink }}>Muhim shart:</b> odatda telefon va kompyuter bitta Wi-Fi tarmog'ida bo'lishi kerak. Tugmani bosib ko'ring!</>, ru: <>Устанавливаете на телефон приложение Expo Go и сканируете им код с компьютера. <b style={{ color: T.ink }}>Важное условие:</b> обычно телефон и компьютер должны быть в одной Wi-Fi-сети. Попробуйте нажать кнопку!</> })}</Mentor>
+        {/* F-1004-29: bitta qator — kompyuter (QR) → telefon; tugma ostida o'ngda (F-1004-08), natija butun kenglikda */}
+        <Zoomable>
+          <div className="qr-scene">
+            <div className="phone-wrap">
+              <div className="bframe qr-pc">
+                <div className="bframe-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bframe-url">npx expo start</span></div>
+                <div className="bframe-body"><QrBox scanning={!scanned} /></div>
+              </div>
+              <div className="phone-label">{tr({ uz: 'kompyuterdagi QR kod', ru: 'QR-код на компьютере' })}</div>
+            </div>
+            <span className={`qr-arrow${scanned ? ' on' : ''}`} aria-hidden="true">→</span>
+              <Phone label={scanned ? { uz: '🟢 ulandi', ru: '🟢 подключено' } : { uz: 'Expo Go (kutyapti)', ru: 'Expo Go (ожидает)' }} lit={scanned}>
+                {scanned
+                  ? <div className="rn-view on fade-step"><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
+                  : <p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: '40px 0' }}>{tr({ uz: 'QR kodni kuting…', ru: 'Ждём QR-код…' })}</p>}
+              </Phone>
+          </div>
+        </Zoomable>
+        {/* skanerlangach tugma o'rnida natija — «✓ Skanerlandi» takrori yo'q (179) */}
+        {!scanned ? <div className="act-row"><button className="btn" disabled={scanned} onClick={() => { setScanned(true); setSc(n => n + 1); }}>{scanned ? tr({ uz: '✓ Skanerlandi', ru: '✓ Отсканировано' }) : tr({ uz: "QR kodni skanerlash", ru: 'Отсканировать QR-код' })}</button></div> : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana natija! Kodni o'zgartirib saqlasangiz, Expo o'zgarishni telefonga tez yuboradi.", ru: 'Вот результат! Измените код и сохраните — Expo быстро отправит изменение на телефон.' })}</p></div>}
       </div>
     </Stage>
   );
@@ -1138,7 +1161,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {CASE_LINES.slice(0, shown).map((l, i) => <span key={i}>{'  ' + tr(l.code)}{'\n'}</span>)}
               <Kw>{'</View>'}</Kw>
             </CodeFile>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Ekran tayyor', ru: '✓ Экран готов' }) : shown === 0 ? tr({ uz: '▶ Qurishni boshlash', ru: '▶ Начать сборку' }) : tr({ uz: 'Keyingi qator →', ru: 'Следующая строка →' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Ekran tayyor', ru: '✓ Экран готов' }) : shown === 0 ? tr({ uz: '▶ Qurishni boshlash', ru: '▶ Начать сборку' }) : tr({ uz: 'Keyingi qator →', ru: 'Следующая строка →' })}</button>
           </Col>
           <Col>
             <Phone label={{ uz: "mini-do'kon mobil", ru: 'мини-магазин мобильный' }}>
@@ -1803,7 +1826,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Natijalar', ru: 'Результаты' }} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1898,7 +1921,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -1932,8 +1955,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
@@ -2099,7 +2122,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi mobil ekran tayyor', ru: 'Первый мобильный экран готов' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>React bilimingiz endi <span className="italic" style={{ color: T.accent }}>telefonda ham</span> ishlaydi.</>, ru: <>Ваши знания React теперь работают <span className="italic" style={{ color: T.accent }}>и на телефоне</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi mobil ekran tayyor', ru: 'Первый мобильный экран готов' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>React bilimingiz endi <span className="italic" style={{ color: T.accent }}>telefonda ham</span> ishlaydi.</>, ru: <>Ваши знания React теперь работают <span className="italic" style={{ color: T.accent }}>и на телефоне</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2300,6 +2323,10 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
+           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
+        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
+        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2352,6 +2379,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
@@ -2382,6 +2410,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2390,7 +2419,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
            «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
-        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); } /* 192 (F-1004-57): platforma standarti — o'rtada, 560px gacha */
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
         @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
@@ -2449,6 +2478,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -2619,7 +2649,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
-          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px; /* 192 (F-1004-57): CODE STRIKE — kapsula, platforma standarti */
           background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
           border: 1.5px solid rgba(186,140,255,0.72);
           box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);
@@ -2895,15 +2925,36 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
 
         /* ===== 📱 TELEFON (ekran ko'rinishi) ===== */
         .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
-        .phone { width: clamp(150px,42vw,196px); background: #16202E; border-radius: 28px; padding: 12px 9px 16px; box-shadow: 0 16px 38px -8px rgba(${T.shadowBase},0.42), inset 0 0 0 2px #2b3a4f; }
-        .phone-notch { width: 52px; height: 5px; background: #3a4660; border-radius: 99px; margin: 2px auto 9px; }
-        .phone-screen { background: ${T.bg}; border-radius: 17px; min-height: 178px; padding: 13px 11px; display: flex; flex-direction: column; gap: 8px; transition: opacity 0.35s; }
+        /* F-1004-27: bitta telefon ramkasi (m6-09 · 10 · 11) — m6-11 o'lchami, tepada 9:41 status-qatori va kamera-orol,
+           pastda uy-chizig'i. Ilova mazmuni status-qatoridan pastda boshlanadi. */
+        .phone { width: 196px; max-width: 100%; background: #11161F; border-radius: 32px; padding: 8px; box-shadow: 0 22px 46px -14px rgba(${T.shadowBase},0.42), inset 0 0 0 2px #2a3344; position: relative; flex-shrink: 0; }
+        .phone-notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 54px; height: 15px; background: #0B0E14; border-radius: 99px; z-index: 4; }
+        .phone-status { position: absolute; top: 0; left: 0; right: 0; height: 26px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; z-index: 3; pointer-events: none; }
+        .phone-status .ps-r { display: inline-flex; align-items: center; gap: 4px; }
+        .ps-sig { display: inline-flex; align-items: flex-end; gap: 1.5px; height: 8px; } .ps-sig i { width: 2.5px; background: currentColor; border-radius: 1px; } .ps-sig i:nth-child(1) { height: 3px; } .ps-sig i:nth-child(2) { height: 5px; } .ps-sig i:nth-child(3) { height: 7px; } .ps-sig i:nth-child(4) { height: 8px; }
+        .ps-bat { width: 17px; height: 8px; border: 1.2px solid currentColor; border-radius: 2.5px; position: relative; padding: 1px; box-sizing: border-box; } .ps-bat::before { content: ''; display: block; height: 100%; width: 75%; background: currentColor; border-radius: 1px; } .ps-bat::after { content: ''; position: absolute; right: -3px; top: 1.5px; width: 1.5px; height: 3px; background: currentColor; border-radius: 0 1px 1px 0; }
+        .phone-home { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 62px; height: 4px; border-radius: 99px; background: rgba(27,22,48,0.32); z-index: 4; pointer-events: none; }
+        .phone { width: 176px; } /* o'sha nisbat (196:348), ekranga sig'ishi uchun biroz kichik */
+        .phone-screen { background: ${T.bg}; border-radius: 25px; height: 312px; padding: 34px 11px 22px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; position: relative; transition: opacity 0.35s; }
         .phone-label { text-align: center; color: ${T.ink2}; font-family: 'Manrope'; font-weight: 600; font-size: 11px; margin-top: 9px; }
-        /* F-0916-01 Q6 (s3 «web va mobil»): telefon maketi ~70% — ikki ustun ham to'la edi, xulosa 120px pastda; faqat shu ekran (ph-sm) */
-        .ph-sm .phone { width: clamp(118px,30vw,140px); border-radius: 22px; padding: 9px 7px 11px; }
-        .ph-sm .phone-notch { margin: 1px auto 6px; }
-        .ph-sm .phone-screen { min-height: 122px; padding: 9px 8px; gap: 6px; border-radius: 13px; }
+        /* F-0916-01 Q6 (s3 «web va mobil»): kichik telefon — o'sha nisbatda (196:348) */
+        .ph-sm .phone { width: 140px; border-radius: 26px; padding: 6px; }
+        .ph-sm .phone-notch { top: 10px; width: 40px; height: 11px; }
+        .ph-sm .phone-screen { height: 246px; padding: 27px 8px 16px; gap: 6px; border-radius: 21px; }
+        .ph-sm .phone-status { height: 21px; padding: 0 11px; font-size: 8px; }
+        .ph-sm .phone-home { bottom: 9px; width: 46px; height: 3px; }
         .ph-sm .phone-label { margin-top: 6px; }
+        /* F-1004-29: QR sahnasi — kompyuter → telefon bitta qatorda */
+        .qr-scene { display: flex; align-items: center; justify-content: center; gap: clamp(14px,3vw,40px); flex-wrap: wrap; }
+        .qr-pc { width: clamp(180px,22vw,220px); } .qr-pc .bframe-body { align-items: center; justify-content: center; min-height: 0; padding: 14px; }
+        .qr-arrow { font-family: 'Manrope'; font-size: 28px; font-weight: 800; color: ${T.ink3}; transition: color .3s; } .qr-arrow.on { color: ${T.success}; }
+        @media (max-width: 560px) { .qr-arrow { transform: rotate(90deg); } }
+        .act-row { display: flex; justify-content: flex-end; }
+        /* F-1004-27: web ko'rinishi — brauzer oynasi (telefon emas) */
+        .bframe { width: clamp(220px, 30vw, 290px); max-width: 100%; background: ${T.paper}; border-radius: 12px; overflow: hidden; border: 1px solid ${T.line}; box-shadow: 0 16px 34px -18px rgba(${T.shadowBase},0.4); }
+        .bframe-bar { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: ${T.bg}; border-bottom: 1px solid ${T.line}; }
+        .bframe-url { flex: 1; min-width: 0; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: 10px; color: ${T.ink2}; background: ${T.paper}; border-radius: 99px; padding: 3px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bframe-body { padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; min-height: 150px; }
         .ph-sm { display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 12px 14px; justify-items: start; }
         .ph-sm .rn-view { padding: 8px; gap: 5px; } .ph-sm .rn-text { font-size: 11.5px; } .ph-sm .rn-text.title { font-size: 13px; } .ph-sm .rn-text.btn { padding: 6px; }
         @media (max-width: 560px) { .ph-sm { grid-template-columns: 1fr; justify-items: center; } }

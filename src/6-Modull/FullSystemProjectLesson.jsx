@@ -304,15 +304,15 @@ const RECAPS = {
     cards: [
       { ic: "🚶", h: { uz: "Bitta amalni to'liq kuzatish", ru: 'Проследить одно действие целиком' }, body: { uz: <>Bitta amalni (buyurtmani) <b>mijozdan tasdiqqacha</b> kuzatish.</>, ru: <>Проследить одно действие (заказ) <b>от клиента до подтверждения</b>.</> } },
       { ic: "🔗", h: { uz: 'Barcha qism birga', ru: 'Все части вместе' }, body: { uz: <>Frontend, backend, baza, bot — hammasi <b>birga</b> ishlayaptimi, shu tekshiriladi.</>, ru: <>Фронтенд, бэкенд, база, бот — проверяется, работают ли они <b>вместе</b>.</> } },
-      { ic: "🐞", h: { uz: 'Chokni ochadi', ru: 'Вскрывает шов' }, body: { uz: <>Bitta qadam ishlamasa — tizim chala; end-to-end aynan shuni tutadi.</>, ru: <>Если не работает один шаг — система неполная; end-to-end ловит именно это.</> }, ask: { uz: 'Nega bitta funksiyani alohida sinash yetarli emas?', ru: 'Почему недостаточно проверить одну функцию отдельно?' } },
+      { ic: "🐞", h: { uz: 'Ulanish joyini sinaydi', ru: 'Проверяет места соединения' }, body: { uz: <>Bitta qadam ishlamasa — tizim chala; end-to-end aynan shuni tutadi.</>, ru: <>Если не работает один шаг — система неполная; end-to-end ловит именно это.</> }, ask: { uz: 'Nega bitta funksiyani alohida sinash yetarli emas?', ru: 'Почему недостаточно проверить одну функцию отдельно?' } },
     ]
   },
   10: {
-    title: { uz: 'Xato — chokda', ru: 'Ошибка — на шве' },
+    title: { uz: 'Xato — ulanish joyida', ru: 'Ошибка — в месте соединения' },
     cards: [
-      { ic: "⚙️", h: { uz: 'Qismlar yaxshi, chok yomon', ru: 'Части хороши, шов плох' }, body: { uz: <>Har qism alohida ishlaydi — xato ular <b>ulangan joyda</b> (chok) chiqadi.</>, ru: <>Каждая часть работает по отдельности — а ошибка появляется <b>в месте соединения</b> (на шве).</> } },
-      { ic: "🎯", h: { uz: "Jadval chokni ko'rsatadi", ru: 'Таблица показывает шов' }, body: { uz: <>Test jadvali chokni ko'rsatadi: har kanal × har qadam; qizil katak — chok o'sha yerda.</>, ru: <>Таблица тестов показывает шов: каждый канал × каждый шаг; красная клетка — шов именно там.</> } },
-      { ic: "🔧", h: { uz: 'Kichik tuzatish', ru: 'Небольшое исправление' }, body: { uz: <>Sababini tekshirib, kichik tuzatish qilasiz — butun tizimni qayta yozmaysiz.</>, ru: <>Проверяете причину и делаете небольшое исправление — всю систему не переписываете.</> }, ask: { uz: "Chokdagi xato qayerda bo'ladi?", ru: 'Где возникает ошибка на шве?' } },
+      { ic: "⚙️", h: { uz: 'Qismlar yaxshi, ulanish yomon', ru: 'Части хороши, соединение плохое' }, body: { uz: <>Har qism alohida ishlaydi — xato ular <b>ulangan joyda</b> chiqadi.</>, ru: <>Каждая часть работает по отдельности — а ошибка появляется <b>в месте соединения</b>.</> } },
+      { ic: "🎯", h: { uz: "Jadval ulanish joyini ko'rsatadi", ru: 'Таблица показывает место соединения' }, body: { uz: <>Test jadvali buzilgan ulanish joyini ko'rsatadi: har kanal × har qadam; qizil katak — xato o'sha yerda.</>, ru: <>Таблица тестов показывает сломанное место соединения: каждый канал × каждый шаг; красная клетка — ошибка именно там.</> } },
+      { ic: "🔧", h: { uz: 'Kichik tuzatish', ru: 'Небольшое исправление' }, body: { uz: <>Sababini tekshirib, kichik tuzatish qilasiz — butun tizimni qayta yozmaysiz.</>, ru: <>Проверяете причину и делаете небольшое исправление — всю систему не переписываете.</> }, ask: { uz: "Integratsiya xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка интеграции?' } },
     ]
   },
   13: {
@@ -351,7 +351,7 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr(card.h)}</h2>
         <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
-        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
@@ -504,7 +504,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -548,7 +548,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: '📖 Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: 'Qisqa takrorlash — mavzuni yana bir ko\'rish', ru: 'Короткое повторение — ещё раз взглянуть на тему' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -723,7 +723,7 @@ const BUG_CELL = 1 * MX_COLS.length + 2; // Mobil qatori (1) × «Bot xabar» us
 
 // Bug tuzatish sikli (s10)
 const FIX_STEPS = [
-  { id: 'bug', tag: { uz: '1 · XATO', ru: '1 · ОШИБКА' }, color: T.accent, text: { uz: "Jadvalda bitta qizil katak: Mobil × «Bot xabar». Mobildan buyurtma berilganda admin Telegram xabarini olmadi.", ru: 'В таблице одна красная клетка: Мобильное × «Сообщ. бота». При заказе с мобильного админ не получил сообщение в Telegram.' }, note: { uz: "Web ishlaydi, mobil yo'q — demak chok mobil↔backend orasida.", ru: 'Веб работает, мобильное нет — значит, шов на участке мобильное↔бэкенд.' } },
+  { id: 'bug', tag: { uz: '1 · XATO', ru: '1 · ОШИБКА' }, color: T.accent, text: { uz: "Jadvalda bitta qizil katak: Mobil × «Bot xabar». Mobildan buyurtma berilganda admin Telegram xabarini olmadi.", ru: 'В таблице одна красная клетка: Мобильное × «Сообщ. бота». При заказе с мобильного админ не получил сообщение в Telegram.' }, note: { uz: "Web ishlaydi, mobil yo'q — demak xato mobil↔backend ulanish joyida.", ru: 'Веб работает, мобильное нет — значит, ошибка в месте соединения мобильное↔бэкенд.' } },
   { id: 'why', tag: { uz: '2 · SABAB (tekshiruv)', ru: '2 · ПРИЧИНА (проверка)' }, color: T.honey, text: { uz: <>Uch ehtimol bor:<br />(a) mobil so'rovda ma'lumot to'liq emas;<br />(b) backend bu so'rovni tekshiruvdan o'tkazmayapti;<br />(c) bot chaqiruvi mobil uchun ishlamayapti.<br /><b>Tekshirdik:</b> mobil <code className="qcode">POST /orders</code> so'rovida bitta maydon yetishmayapti — backend shuning uchun bot xabari qadamini o'tkazib yubordi.</>, ru: <>Возможных причин три:<br />(a) в мобильном запросе не хватает данных;<br />(b) запрос не проходит проверку на бэкенде;<br />(c) вызов бота не работает для мобильного.<br /><b>Проверили:</b> в мобильном запросе <code className="qcode">POST /orders</code> не хватает одного поля — поэтому бэкенд пропустил шаг с сообщением бота.</> }, note: { uz: 'Avval ehtimollarni sanab, keyin tekshirib topasiz.', ru: 'Сначала перечисляете возможные причины, потом проверкой находите настоящую.' } },
   { id: 'fix', tag: { uz: '3 · TUZATISH', ru: '3 · ИСПРАВЛЕНИЕ' }, color: T.grape, text: { uz: "«Mobil buyurtma ekrani barcha maydonlarni yuborsin; backend har buyurtmada, kanal qaysi bo'lishidan qat'i nazar, bot xabarini yuborsin.»", ru: '«Пусть мобильный экран заказа отправляет все поля; пусть бэкенд при каждом заказе, с какого бы канала он ни пришёл, отправляет сообщение бота.»' }, note: { uz: 'Aniq, kichik tuzatish — butun tizimni qayta yozmaysiz.', ru: 'Точное небольшое исправление — всю систему не переписываете.' } },
   { id: 'retest', tag: { uz: '4 · QAYTA SINOV', ru: '4 · ПОВТОРНАЯ ПРОВЕРКА' }, color: T.success, text: { uz: "Jadval endi to'liq yashil ✅ — uchala kanaldan ham bot xabari keladi.", ru: 'Теперь таблица полностью зелёная ✅ — сообщение бота приходит со всех трёх каналов.' } }
@@ -741,7 +741,7 @@ const LAUNCH = [
 const CASE_AC = [
   { tag: { uz: "YIG'DI", ru: 'СОБРАЛ' }, color: T.accent, text: { uz: "Web, mobil, bot — uchala kanalni bitta backend'ga uladi", ru: 'Веб, мобильное, бот — подключил все три канала к одному бэкенду' }, why: { uz: "Hammasi o'sha baza va mantiqdan foydalanadi.", ru: 'Все они пользуются той же базой и той же логикой.' } },
   { tag: { uz: 'SINADI', ru: 'ПРОВЕРИЛ' }, color: T.blue, text: { uz: 'Har kanaldan buyurtma berib, butun oqimni end-to-end sinadi', ru: 'Сделал заказ с каждого канала и проверил весь поток end-to-end' }, why: { uz: 'Bitta amal butun tizimni boshidan oxirigacha tekshiradi.', ru: 'Одно действие проверяет всю систему от начала до конца.' } },
-  { tag: { uz: 'TUZATDI', ru: 'ИСПРАВИЛ' }, color: T.honey, text: { uz: 'Chokdagi xatoni topib, kichik tuzatish bilan yamadi', ru: 'Нашёл ошибку на шве и закрыл её небольшим исправлением' }, why: { uz: "Chok qayerda ekanini topib, faqat o'sha joyni tuzatdi.", ru: 'Нашёл, где именно шов, и исправил только это место.' } },
+  { tag: { uz: 'TUZATDI', ru: 'ИСПРАВИЛ' }, color: T.honey, text: { uz: 'Ulanish joyidagi xatoni topib, kichik tuzatish bilan yamadi', ru: 'Нашёл ошибку в месте соединения и закрыл её небольшим исправлением' }, why: { uz: "Xato qaysi ulanish joyida ekanini topib, faqat o'sha joyni tuzatdi.", ru: 'Нашёл, в каком месте соединения ошибка, и исправил только его.' } },
   { tag: { uz: 'ISHGA TUSHIRDI', ru: 'ЗАПУСТИЛ' }, color: T.success, text: { uz: "Backend'ni serverga joylashtirdi, tizimni ishga tushirdi — mijozlar uch kanaldan kelyapti", ru: 'Разместил бэкенд на сервере, запустил систему — клиенты приходят с трёх каналов' }, why: { uz: "1-bosqichning yakuniy loyihasi tayyor.", ru: 'Итоговый проект 1-го этапа готов.' } }
 ];
 
@@ -796,7 +796,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: { uz: "Hamma qismni bitta tizimga yig'ish (web + mobil + bot)", ru: 'Собрать все части в одну систему (веб + мобильное + бот)' }, tag: null },
     { text: { uz: "Ko'p kanal — bitta backend (buyurtma yo'li)", ru: 'Много каналов — один бэкенд (путь заказа)' }, tag: { uz: 'jonli', ru: 'вживую' } },
     { text: { uz: 'End-to-end test — butun oqimni sinash', ru: 'End-to-end тест — проверить весь поток' }, tag: { uz: 'jonli', ru: 'вживую' } },
-    { text: { uz: 'Chokdagi xatoni topish va tuzatish', ru: 'Найти и исправить ошибку на шве' }, tag: null },
+    { text: { uz: 'Ulanish joyidagi xatoni topish va tuzatish', ru: 'Найти и исправить ошибку в месте соединения' }, tag: null },
     { text: { uz: 'Ishga tushirish', ru: 'Запуск' }, tag: null }
   ];
   const isNarrow = useIsMobile(768);
@@ -817,7 +817,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yakuniy loyiha kuni: <span className="italic" style={{ color: T.accent }}>hamma qism — bitta tizim</span></>, ru: <span className="italic" style={{ color: T.accent }}>Финальный проектный день курса</span> })}</h2></div>
         <Mentor>{tr({ uz: <>Bugun yangi narsa o'rganmaymiz — bilganlarimizni <b style={{ color: T.ink }}>bitta to'liq tizimga</b> yig'amiz va ishga tushiramiz. Bu — 1-bosqichning yakuniy loyihasi.</>, ru: <>Сегодня не учим ничего нового — соберём то, что уже знаем, <b style={{ color: T.ink }}>в одну полную систему</b> и запустим. Это — итоговый проект 1-го этапа.</> })}</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Maqsadni ko\'rish', ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
+        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: '↩ Maqsadni ko\'rish', ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
   );
@@ -962,7 +962,7 @@ const Screen5b = (props) => (
       { uz: 'Bitta amalning barcha qadamlarini birga', ru: 'Все шаги одного действия вместе' },
       { uz: "Backend kodini o'qib chiqib, ishlatmasdan", ru: 'Код бэкенда — чтением, без запуска' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! End-to-end test bitta amalni (masalan, buyurtmani) barcha qadamlari bo'ylab — mijozdan tasdiqqacha — sinaydi. Shunda qismlar orasidagi chokdagi xatolar ko'rinadi.", ru: 'Верно! End-to-end тест проверяет одно действие (например, заказ) по всем его шагам — от клиента до подтверждения. Так становятся видны ошибки на швах между частями.' }}
+    explainCorrect={{ uz: "To'g'ri! End-to-end test bitta amalni (masalan, buyurtmani) barcha qadamlari bo'ylab — mijozdan tasdiqqacha — sinaydi. Shunda qismlar ulangan joydagi xatolar ko'rinadi.", ru: 'Верно! End-to-end тест проверяет одно действие (например, заказ) по всем его шагам — от клиента до подтверждения. Так становятся видны ошибки в местах соединения частей.' }}
     explainWrong={{
       0: { uz: 'Bitta funksiya emas — butun zanjirni birga.', ru: 'Не одну функцию — всю цепочку целиком.' },
       1: { uz: 'Rang emas — oqim ishlayaptimi.', ru: 'Не цвет — работает ли поток.' },
@@ -1013,7 +1013,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className={`trace-node d-node ${phase === 'done' ? 'on' : ''}`} style={{ animationDelay: '0.12s' }}><span style={{ fontSize: 14 }}>✈️</span>{tr({ uz: 'Bot', ru: 'Бот' })}</span>
               </div>
             </div>
-            {phase !== 'flowing' && <button className="btn" onClick={fire} style={{ alignSelf: 'flex-start' }}>{phase === 'idle' ? tr({ uz: `▶ ${tr(selChan.label)}dan buyurtma yubor`, ru: `▶ Отправить заказ с канала «${tr(selChan.label)}»` }) : tr({ uz: 'Yana yubor →', ru: 'Отправить ещё →' })}</button>}
+            {phase !== 'flowing' && <button className="btn" onClick={fire} style={{ alignSelf: 'flex-end' }}>{phase === 'idle' ? tr({ uz: `▶ ${tr(selChan.label)}dan buyurtma yuboring`, ru: `▶ Отправить заказ с канала «${tr(selChan.label)}»` }) : tr({ uz: 'Yana yuboring →', ru: 'Отправить ещё →' })}</button>}
             {phase === 'flowing' && <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: 'Buyurtma oqyapti…', ru: 'Заказ идёт по системе…' })}</p>}
           </Col>
           <Col>
@@ -1048,10 +1048,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = active ? SEAMS.find(s => s.id === active) : null;
   return (
-    <Stage eyebrow={{ uz: 'Integratsiya choklari', ru: 'Швы интеграции' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Choklarni ko'ring (${seen.size}/${SEAMS.length})`, ru: `Посмотрите швы (${seen.size}/${SEAMS.length})` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ulanish joylari', ru: 'Места соединения' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ulanish joylarini ko'ring (${seen.size}/${SEAMS.length})`, ru: `Посмотрите места соединения (${seen.size}/${SEAMS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizim <span className="italic" style={{ color: T.accent }}>choklarda siniydi</span></>, ru: <>Система <span className="italic" style={{ color: T.accent }}>ломается на швах</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Qismlar alohida yaxshi ishlaydi — xato ko'pincha ular <b>ulangan joyda</b> chiqadi. Bu joyni chok deymiz. Har chokni bosing: bu yerda nima buziladi?</>, ru: <>Части по отдельности работают хорошо — ошибка чаще появляется там, где они <b>соединены</b>. Это место мы называем швом. Нажмите на каждый шов: что здесь ломается?</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tizim <span className="italic" style={{ color: T.accent }}>ulanish joylarida siniydi</span></>, ru: <>Система <span className="italic" style={{ color: T.accent }}>ломается в местах соединения</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Qismlar alohida yaxshi ishlaydi — xato ko'pincha ular <b>ulangan joyda</b> chiqadi. Har ulanish joyini bosing: bu yerda nima buziladi?</>, ru: <>Части по отдельности работают хорошо — ошибка чаще появляется там, где они <b>соединены</b>. Нажмите на каждое место соединения: что здесь ломается?</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1064,7 +1064,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            {cur ? (<div className="frame fade-step" key={active} style={{ padding: '14px 16px' }}><p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: 'BU YERDA NIMA BUZILADI', ru: 'ЧТО ЗДЕСЬ ЛОМАЕТСЯ' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.risk)}</p></div>) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bir chokni bosing — qaysi sozlama yoki ulanish buzilishini ko'rasiz.", ru: 'Нажмите на любой шов — увидите, какая настройка или связь ломается.' })}</p></div>}
+            {cur ? (<div className="frame fade-step" key={active} style={{ padding: '14px 16px' }}><p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: 'BU YERDA NIMA BUZILADI', ru: 'ЧТО ЗДЕСЬ ЛОМАЕТСЯ' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.risk)}</p></div>) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bir ulanish joyini bosing — u yerda nima buzilishini ko'rasiz.", ru: 'Нажмите на любое место соединения — увидите, что там ломается.' })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ko'p xatolar — bitta yo'qolgan sozlama yoki yetishmagan maydon. End-to-end test aynan shularni tutadi.", ru: 'Большинство ошибок — одна потерянная настройка или недостающее поле. End-to-end тест ловит именно их.' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -1094,7 +1094,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Test matritsasi · jonli', ru: 'Матрица тестов · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Testni ishga tushiring', ru: 'Запустите тест' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>End-to-end test: <span className="italic" style={{ color: T.accent }}>har kanal × har qadam</span></>, ru: <>End-to-end тест: <span className="italic" style={{ color: T.accent }}>каждый канал × каждый шаг</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Bugungi loyiha uchun test jadvali tuzdik: 3 kanal × 4 asosiy qadam. «Testni ishga tushir» bosing — kataklar yashil bo'lib boradi. Bittasiga e'tibor bering!", ru: 'Для сегодняшнего проекта мы составили таблицу тестов: 3 канала × 4 основных шага. Нажмите «Запустить тест» — клетки будут зеленеть. Обратите внимание на одну из них!' })}</Mentor>
+        <Mentor>{tr({ uz: "Jadvalda 12 katak — har biri bitta sinov. «Testni ishga tushiring» tugmasini bosing — kataklar yashil bo'lib boradi. Bittasiga e'tibor bering!", ru: 'В таблице 12 клеток — каждая это одна проверка. Нажмите «Запустить тест» — клетки будут зеленеть. Обратите внимание на одну из них!' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -1110,13 +1110,13 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ))}
             </div>
-            {!started && <button className="btn" onClick={() => setStarted(true)} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '▶ Testni ishga tushir', ru: '▶ Запустить тест' })}</button>}
+            {!started && <button className="btn" onClick={() => setStarted(true)} style={{ alignSelf: 'flex-end' }}>{tr({ uz: '▶ Testni ishga tushiring', ru: '▶ Запустить тест' })}</button>}
             {started && !done && <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: 'Sinalyapti…', ru: 'Идёт проверка…' })}</p>}
           </Col>
           <Col>
             {!done ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Har katak = bitta kanaldan bitta qadam. Yashil — ishladi, qizil — xato.', ru: 'Каждая клетка = один шаг с одного канала. Зелёная — сработало, красная — ошибка.' })}</p></div>
-              : <div className="frame fade-step" style={{ padding: '14px 16px' }}><p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: '🐞 XATO TOPILDI', ru: '🐞 ОШИБКА НАЙДЕНА' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Mobil × «Bot xabar»</b> qizil: mobildan buyurtma berilganda admin Telegram xabarini olmadi. Web va bot kanallari ishlaydi — demak chok mobil tomonda.</>, ru: <><b>Мобильное × «Сообщ. бота»</b> красная: при заказе с мобильного админ не получил сообщение в Telegram. Веб и бот работают — значит, шов на стороне мобильного.</> })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana end-to-end testning kuchi: 11 katak yashil, 1 qizil — yashirin chok xatosi ko'rindi. Endi tuzatamiz.", ru: 'Вот сила end-to-end теста: 11 клеток зелёные, 1 красная — скрытая ошибка на шве проявилась. Теперь исправляем.' })}</p></div>}
+              : <div className="frame fade-step" style={{ padding: '14px 16px' }}><p className="mono small" style={{ margin: '0 0 6px', color: T.accent, fontWeight: 700 }}>{tr({ uz: '🐞 XATO TOPILDI', ru: '🐞 ОШИБКА НАЙДЕНА' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Mobil × «Bot xabar»</b> qizil: mobildan buyurtma berilganda admin Telegram xabarini olmadi. Web va bot kanallari ishlaydi — demak xato mobil tomondagi ulanish joyida.</>, ru: <><b>Мобильное × «Сообщ. бота»</b> красная: при заказе с мобильного админ не получил сообщение в Telegram. Веб и бот работают — значит, ошибка в месте соединения на стороне мобильного.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana end-to-end testning kuchi: 11 katak yashil, 1 qizil — ulanish joyidagi yashirin xato ko'rindi. Endi tuzatamiz.", ru: 'Вот сила end-to-end теста: 11 клеток зелёные, 1 красная — скрытая ошибка в месте соединения проявилась. Теперь исправляем.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1127,15 +1127,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText="Chokdagi xatolarni qanday topamiz?"
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Chokdagi xatolarni qanday <span className="italic" style={{ color: T.accent }}>topamiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>найти</span> ошибки на швах?</h2></> })}
+    questionText="Ulanish joyidagi xatolarni qanday topamiz?"
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ulanish joyidagi xatolarni qanday <span className="italic" style={{ color: T.accent }}>topamiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>найти</span> ошибки в местах соединения?</h2></> })}
     options={[
       { uz: "Bitta kanalni bir marta sinab, qolganini o'tkazib", ru: 'Проверить один канал один раз, остальные пропустить' },
       { uz: "Faqat kodga qarab, ishlatib ko'rmasdan", ru: 'Только посмотреть код, не запуская' },
       { uz: "Umuman sinamasdan, to'g'ridan chiqarib", ru: 'Вообще не тестировать, сразу выпустить' },
       { uz: 'Har kanaldan butun oqimni sinab', ru: 'Проверить весь поток с каждого канала' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Har kanaldan butun oqimni sinaymiz (end-to-end). Jadval ko'rsatadi: qaysi kanal × qaysi qadam buzilgan. Shunday qilib chok qayerda ekanini aniq topamiz.", ru: 'Верно! Проверяем весь поток с каждого канала (end-to-end). Таблица показывает: какой канал × какой шаг сломан. Так мы точно находим, где шов.' }}
+    explainCorrect={{ uz: "To'g'ri! Har kanaldan butun oqimni sinaymiz (end-to-end). Jadval ko'rsatadi: qaysi kanal × qaysi qadam buzilgan. Shunday qilib xato qaysi ulanish joyida ekanini aniq topamiz.", ru: 'Верно! Проверяем весь поток с каждого канала (end-to-end). Таблица показывает: какой канал × какой шаг сломан. Так мы точно находим место соединения с ошибкой.' }}
     explainWrong={{
       0: { uz: "Bitta kanal kam — xato boshqa kanalda bo'lishi mumkin (mobildagidek).", ru: 'Одного канала мало — ошибка может быть в другом (как в мобильном).' },
       1: { uz: "Faqat o'qish kam — amalda sinash kerak.", ru: 'Одного чтения мало — надо проверить на деле.' },
@@ -1165,7 +1165,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="vibe-track">
               {FIX_STEPS.map((s, i) => { const on = i <= step; return (<div key={s.id} className="vibe-row" style={{ opacity: on ? 1 : 0.32, transition: 'opacity 0.35s' }}><span className="vibe-dot" style={{ background: on ? s.color : T.ink3 }}>{i < step ? Ico.check(11) : i + 1}</span><span className="vibe-tag" style={{ color: on ? s.color : T.ink3 }}>{tr(s.tag)}</span></div>); })}
             </div>
-            {!done && <button className="btn" onClick={() => setStep(n => Math.min(n + 1, FIX_STEPS.length - 1))} style={{ alignSelf: 'flex-start' }}>{step === 0 ? tr({ uz: '▶ Tuzatishni boshlash', ru: '▶ Начать исправление' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
+            {!done && <button className="btn" onClick={() => setStep(n => Math.min(n + 1, FIX_STEPS.length - 1))} style={{ alignSelf: 'flex-end' }}>{step === 0 ? tr({ uz: '▶ Tuzatishni boshlash', ru: '▶ Начать исправление' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
           </Col>
           <Col>
             <div key={step} className="vibe-card fade-step" style={{ }}>
@@ -1173,7 +1173,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: '12px 0 10px', lineHeight: 1.5 }}>{tr(cur.text)}</p>
               {cur.note && <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(cur.note)}</p>}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Xatoni top → sababini tekshir → kichik tuzatish → qayta sina. Bitta chok yamaldi, butun tizim yana yashil.', ru: 'Найди ошибку → проверь причину → небольшое исправление → проверь снова. Один шов залатан, вся система снова зелёная.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Xatoni topish → sababini tekshirish → kichik tuzatish → qayta sinash. Bitta ulanish joyi tuzatildi, butun tizim yana yashil.', ru: 'Поиск ошибки → проверка причины → небольшое исправление → повторная проверка. Одно место соединения исправлено, вся система снова зелёная.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1191,7 +1191,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Ishga tushirish', ru: 'Запуск' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Belgilang (${checked.size}/${LAUNCH.length})`, ru: `Отметьте (${checked.size}/${LAUNCH.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ishga tushirishdan oldin — <span className="italic" style={{ color: T.accent }}>tekshiruv ro'yxati</span></>, ru: <>Перед запуском — <span className="italic" style={{ color: T.accent }}>список проверки</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Tizimni ishga tushirishdan oldin shu ro'yxatni belgilang. Hammasi tayyor bo'lsa — ishga tushiramiz!", ru: 'Перед запуском системы отметьте этот список. Всё готово — запускаем!' })}</Mentor>
+        <Mentor>{tr({ uz: "Har bandni belgilang. Hammasi tayyor bo'lsa — tizimni ishga tushiramiz!", ru: 'Отметьте каждый пункт. Всё готово — запускаем систему!' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="checklist">
@@ -1251,13 +1251,13 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <div className="checklist fade-up delay-1">
-              <div className="cl-head"><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.grid(16)}</span><span className="cl-title">{tr({ uz: "Yig' → sina → tuzat → ishga tushir", ru: 'Собери → проверь → исправь → запусти' })}</span></div>
+              <div className="cl-head"><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.grid(16)}</span><span className="cl-title">{tr({ uz: "Yig'ish → sinash → tuzatish → ishga tushirish", ru: 'Сборка → проверка → исправление → запуск' })}</span></div>
               {CASE_AC.map((c, i) => { const open = seen.has(i); return (<button key={i} onClick={() => tap(i)} className={`crit crit-${open ? 'pass' : 'pending'}`} style={{ width: '100%', textAlign: 'left', cursor: 'pointer', background: active === i ? c.color + '18' : undefined, boxShadow: active === i ? `inset 0 0 0 1.5px ${c.color}` : undefined }}><span className="crit-box">{open ? Ico.check(13) : ''}</span><span className="crit-text"><span className="mono" style={{ fontSize: 9, fontWeight: 800, color: c.color, marginRight: 6 }}>{tr(c.tag)}</span>{tr(c.text)}</span></button>); })}
             </div>
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge" style={{ color: cur.color, background: cur.color + '1c' }}>{tr(cur.tag)}</span></span><p style={{ fontFamily: G, fontSize: 14, color: T.ink, margin: '12px 0 0' }}>{tr(cur.text)}</p><p className="body" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr(cur.why)}</p></div>) : (!isNarrow ? null : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yig' → sina → tuzat → ishga tushir. Endi o'zingiz rejalang.", ru: 'Собери → проверь → исправь → запусти. Теперь спланируйте сами.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yig'ish → sinash → tuzatish → ishga tushirish. Endi o'zingiz rejalang.", ru: 'Сборка → проверка → исправление → запуск. Теперь спланируйте сами.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1269,8 +1269,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={{ uz: 'Qoida', ru: 'Правило' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Yakuniy ishga →', ru: 'К финальному заданию →' }} onClick={onNext} /></>}>
     <div className="screen">
-      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq tizim: <span className="italic" style={{ color: T.accent }}>yig' · sina · tuzat · ishga tushir</span></>, ru: <>Полная система: <span className="italic" style={{ color: T.accent }}>собери · проверь · исправь · запусти</span></> })}</h2></div>
-      <Mentor>{tr({ uz: "Yodda tuting: hamma qismni yig'ing, butun oqimni end-to-end sinab ko'ring, chokdagi xatoni tuzating, keyin ishga tushiring.", ru: 'Запомните: соберите все части, проверьте весь поток end-to-end, исправьте ошибку на шве, потом запускайте.' })}</Mentor>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq tizim: <span className="italic" style={{ color: T.accent }}>yig'ish · sinash · tuzatish · ishga tushirish</span></>, ru: <>Полная система: <span className="italic" style={{ color: T.accent }}>сборка · проверка · исправление · запуск</span></> })}</h2></div>
+      <Mentor>{tr({ uz: "Yodda tuting: hamma qismni yig'ing, butun oqimni end-to-end sinab ko'ring, ulanish joyidagi xatoni tuzating, keyin ishga tushiring.", ru: 'Запомните: соберите все части, проверьте весь поток end-to-end, исправьте ошибку в месте соединения, потом запускайте.' })}</Mentor>
       <Zoomable><div className="split">
         <Col>
           <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
@@ -1279,9 +1279,8 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
           </div>
         </Col>
         <Col>
-          <p className="flow-label">{tr({ uz: '4 narsani unutmang', ru: 'Запомните 4 вещи' })}</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.link(18), c: T.grape, t: { uz: "YIG' — ko'p kanal, bitta backend", ru: 'СОБЕРИ — много каналов, один бэкенд' } }, { ic: Ico.repeat(18), c: T.blue, t: { uz: 'END-TO-END TEST — har kanal × har qadam', ru: 'END-TO-END ТЕСТ — каждый канал × каждый шаг' } }, { ic: Ico.bug(18), c: T.accent, t: { uz: 'XATONI TUZAT — chokni topib, kichik tuzatish', ru: 'ИСПРАВЬ ОШИБКУ — найди шов, сделай небольшое исправление' } }, { ic: Ico.send(18), c: T.success, t: { uz: "ISHGA TUSHIR — sozlama va test tayyor bo'lsa", ru: 'ЗАПУСТИ — когда настройки и тест готовы' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.link(18), c: T.grape, t: { uz: "Yig'ish — ko'p kanal, bitta backend", ru: 'Сборка — много каналов, один бэкенд' } }, { ic: Ico.repeat(18), c: T.blue, t: { uz: 'End-to-end test — har kanal × har qadam', ru: 'End-to-end тест — каждый канал × каждый шаг' } }, { ic: Ico.bug(18), c: T.accent, t: { uz: 'Xatoni tuzatish — ulanish joyini topib, kichik tuzatish', ru: 'Исправление ошибки — найти место соединения, небольшая правка' } }, { ic: Ico.send(18), c: T.success, t: { uz: "Ishga tushirish — sozlama va test tayyor bo'lsa", ru: 'Запуск — когда настройки и тест готовы' } }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{tr(s.t)}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
@@ -1293,7 +1292,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
 const LAUNCH_ORDER = [
   { id: 'yig',    label: { uz: "Qismlarni yig'ish", ru: 'Собрать части' } },
   { id: 'e2e',    label: { uz: 'End-to-end sinov', ru: 'End-to-end проверка' } },
-  { id: 'chok',   label: { uz: 'Chokdagi xatoni topish', ru: 'Найти ошибку на шве' } },
+  { id: 'chok',   label: { uz: 'Ulanish joyidagi xatoni topish', ru: 'Найти ошибку в месте соединения' } },
   { id: 'tuzat',  label: { uz: 'Kichik tuzatish va qayta sinov', ru: 'Небольшое исправление и повторная проверка' } },
   { id: 'ishga',  label: { uz: 'Ishga tushirish', ru: 'Запуск' } }
 ];
@@ -1323,7 +1322,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             items={LAUNCH_ORDER}
             hints={hints}
             onSolved={solve}
-            doneText={{ uz: <>Jarayon tayyor: <b>Yig' → Sina → Xatoni top → Tuzat → Ishga tushir</b>. To'liq tizim shunday yetkaziladi.</>, ru: <>Процесс готов: <b>Собери → Проверь → Найди ошибку → Исправь → Запусти</b>. Так полную систему доводят до запуска.</> }}
+            doneText={{ uz: <>Jarayon tayyor: <b>Yig'ish → Sinash → Xatoni topish → Tuzatish → Ishga tushirish</b>. To'liq tizim shunday yetkaziladi.</>, ru: <>Процесс готов: <b>Сборка → Проверка → Поиск ошибки → Исправление → Запуск</b>. Так полную систему доводят до запуска.</> }}
           />
         </Zoomable>
       </div>
@@ -1335,7 +1334,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   grandOpening: { icon: '🔗', name: 'One System', desc: { uz: "Ko'p kanal, bitta backend g'oyasini topdingiz", ru: 'Вы нашли идею: много каналов, один бэкенд' } },
   fullSystem:   { icon: '🧪', name: 'End to End',   desc: { uz: 'Butun oqimni sinashni bildingiz', ru: 'Вы поняли, как проверять весь поток' } },
-  cityLive:     { icon: '🧵', name: 'Seam Finder',    desc: { uz: "Xato chokda bo'lishini topdingiz", ru: 'Вы выяснили: ошибка — на шве' } },
+  cityLive:     { icon: '🧵', name: 'Seam Finder',    desc: { uz: "Xato ulanish joyida bo'lishini topdingiz", ru: 'Вы выяснили: ошибка — в месте соединения' } },
   launchDay:    { icon: '🚀', name: 'Launch Ready',   desc: { uz: 'Ishga tushirish shartini bildingiz', ru: 'Вы узнали условие запуска' } } };
 // Ekran id → nishon. ❗ FAQAT SCORED test ekranlariga (correct=to'g'ri javob): s4 · s5b · s9 · s12.
 const ACH_TRIGGERS = { s4: 'grandOpening', s5b: 'fullSystem', s9: 'cityLive', s12: 'launchDay' };
@@ -1396,7 +1395,7 @@ const Confetti = () => {
 const Q_LABELS = {
   4: { uz: '1 — Bitta tizim', ru: '1 — Одна система' },
   6: { uz: '2 — End-to-end', ru: '2 — End-to-end' },
-  10: { uz: '3 — Chokdagi xato', ru: '3 — Ошибка на шве' },
+  10: { uz: '3 — Ulanish joyidagi xato', ru: '3 — Ошибка в месте соединения' },
   13: { uz: '4 — Ishga tushirish sharti', ru: '4 — Условие запуска' },
   17: { uz: '5 — Jarayon', ru: '5 — Процесс' }
 };
@@ -1413,7 +1412,7 @@ const QZ_BG_SHAPES = [
   { ch: { uz: "ko'p kanal", ru: 'много каналов' }, l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
   { ch: '🖥️',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '🤖',          l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
-  { ch: { uz: 'chok', ru: 'шов' },           l: 34, t: 62, s: 22, d: 29, dl: 3.4 },
+  { ch: { uz: 'ulanish', ru: 'соединение' }, l: 34, t: 62, s: 22, d: 29, dl: 3.4 },
   { ch: '🚀',          l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
   { ch: '.env',        l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
   { ch: { uz: 'tizim', ru: 'система' },        l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
@@ -1424,15 +1423,15 @@ const QUIZ_BANK = [
   { q: { uz: "Web, mobil va bot «bitta tizim» deyilishining sababi?", ru: 'Почему веб, мобильное приложение и бот называют «одной системой»?' }, opts: [{ uz: 'Uchalasi bir xil backend va bazadan foydalanadi', ru: 'Все три пользуются одним бэкендом и одной базой' }, { uz: "Har birida o'z alohida bazasi bor", ru: 'У каждого своя отдельная база' }, { uz: "Ular bir-biriga umuman bog'liq emas", ru: 'Они вообще никак не связаны друг с другом' }, { uz: "Faqat ranglari o'xshash", ru: 'Только цвета похожи' }], correct: 0 },
   { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nimani anglatadi?", ru: 'Что означает «Много точек входа, одна система»?' }, opts: [{ uz: "Web, bot va mobil bitta backend'ga ulanadi", ru: 'Веб, бот и мобильное подключаются к одному бэкенду' }, { uz: 'Bitta kanal hammaga yetarli', ru: 'Одного канала хватит на всех' }, { uz: 'Har kanalga alohida tizim kerak', ru: 'Каждому каналу нужна отдельная система' }, { uz: "Faqat web bo'lishi mumkin", ru: 'Возможен только веб' }], correct: 0 },
   { q: { uz: 'End-to-end test nimani sinaydi?', ru: 'Что проверяет end-to-end тест?' }, opts: [{ uz: 'Bitta funksiyani alohida', ru: 'Одну функцию по отдельности' }, { uz: 'Ranglar va dizaynni', ru: 'Цвета и дизайн' }, { uz: 'Bitta amalning barcha qadamlarini', ru: 'Все шаги одного действия' }, { uz: "Backend kodini o'qib chiqib", ru: 'Код бэкенда, прочитав его' }], correct: 2 },
-  { q: { uz: "Chokdagi (integratsiya) xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка на шве (ошибка интеграции)?' }, opts: [{ uz: 'Qismlar ulangan joyda', ru: 'Там, где части соединены' }, { uz: 'Faqat frontend rangida', ru: 'Только в цвете фронтенда' }, { uz: "Hech qachon paydo bo'lmaydi", ru: 'Она никогда не появляется' }, { uz: 'Faqat bazaning ichida', ru: 'Только внутри базы' }], correct: 0 },
+  { q: { uz: "Integratsiya xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка интеграции?' }, opts: [{ uz: 'Qismlar ulangan joyda', ru: 'Там, где части соединены' }, { uz: 'Faqat frontend rangida', ru: 'Только в цвете фронтенда' }, { uz: "Hech qachon paydo bo'lmaydi", ru: 'Она никогда не появляется' }, { uz: 'Faqat bazaning ichida', ru: 'Только внутри базы' }], correct: 0 },
   { q: { uz: 'Test jadvalida bitta qizil katak nimani bildiradi?', ru: 'О чём говорит одна красная клетка в таблице тестов?' }, opts: [{ uz: "Hammasi to'g'ri — xato yo'q", ru: 'Всё верно — ошибок нет' }, { uz: "O'sha kanal × qadamda xato bor", ru: 'В этом канале × шаге есть ошибка' }, { uz: 'Dizayn ishlari tugadi', ru: 'Работа над дизайном закончена' }, { uz: 'Baza juda tez ishlayapti', ru: 'База работает очень быстро' }], correct: 1 },
-  { q: { uz: 'Chokdagi xatoni qanday tuzatamiz?', ru: 'Как мы исправляем ошибку на шве?' }, opts: [{ uz: 'Butun tizimni noldan qayta yozamiz', ru: 'Переписываем всю систему с нуля' }, { uz: "Umuman e'tibor bermaymiz", ru: 'Вообще не обращаем внимания' }, { uz: 'Sababini topib, kichik tuzatish qilamiz', ru: 'Находим причину и делаем небольшое исправление' }, { uz: "Faqat rang o'zgartiramiz", ru: 'Просто меняем цвет' }], correct: 2 },
+  { q: { uz: 'Ulanish joyidagi xatoni qanday tuzatamiz?', ru: 'Как мы исправляем ошибку в месте соединения?' }, opts: [{ uz: 'Butun tizimni noldan qayta yozamiz', ru: 'Переписываем всю систему с нуля' }, { uz: "Umuman e'tibor bermaymiz", ru: 'Вообще не обращаем внимания' }, { uz: 'Sababini topib, kichik tuzatish qilamiz', ru: 'Находим причину и делаем небольшое исправление' }, { uz: "Faqat rang o'zgartiramiz", ru: 'Просто меняем цвет' }], correct: 2 },
   { q: { uz: 'Tizimni ishga tushirishdan oldin nima SHART?', ru: 'Что ОБЯЗАТЕЛЬНО перед запуском системы?' }, opts: [{ uz: 'Hech narsa — darrov chiqaramiz', ru: 'Ничего — сразу выпускаем' }, { uz: "Butun oqim sinalgan va sozlamalar to'g'ri", ru: 'Весь поток проверен, и настройки верные' }, { uz: "Ko'proq rang va bezak", ru: 'Больше цвета и украшений' }, { uz: 'Logotip va nom tayyor', ru: 'Готовы логотип и название' }], correct: 1 },
   { q: { uz: '«Deploy» nima demak?', ru: 'Что значит «Deploy»?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полностью удалить код' }, { uz: 'Chiroyli dizayn chizish', ru: 'Нарисовать красивый дизайн' }, { uz: 'Tizimni serverga joylashtirish', ru: 'Разместить систему на сервере' }, { uz: "Yangi dasturlash tili o'rganish", ru: 'Выучить новый язык программирования' }], correct: 2 },
   { q: { uz: "Buyurtma bir kanaldan berilsa, boshqa kanalda ko'rinadimi?", ru: 'Если заказ сделан с одного канала, виден ли он в другом?' }, opts: [{ uz: "Yo'q — har kanal alohida saqlaydi", ru: 'Нет — каждый канал хранит отдельно' }, { uz: "Faqat qo'lda ko'chirsa", ru: 'Только если скопировать вручную' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }, { uz: "Ko'rinadi — ma'lumot bitta bazada", ru: 'Виден — данные в одной базе' }], correct: 3 },
   { q: { uz: "Mavjud tizimga yangi kanal (mobil) qo'shishning oson yo'li?", ru: 'Самый простой способ добавить новый канал (мобильное) к готовой системе?' }, opts: [{ uz: 'Butun tizimni noldan yozish', ru: 'Написать всю систему с нуля' }, { uz: "Yangi frontend yozib, o'sha backend'ga ulash", ru: 'Написать новый фронтенд и подключить к тому же бэкенду' }, { uz: 'Mobil uchun alohida baza qurish', ru: 'Построить отдельную базу для мобильного' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }], correct: 1 },
   { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorni yakka o'zi qabul qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Buyurtmani bazaga o'zi yozadi", ru: 'Сам записывает заказ в базу' }, { uz: 'Backend chaqirganda savolga javob, tavsif yozadi', ru: 'По запросу бэкенда отвечает на вопросы, пишет описания' }], correct: 3 },
-  { q: { uz: "To'liq tizimni yetkazish jarayoni qanday?", ru: 'В каком порядке доводят полную систему до запуска?' }, opts: [{ uz: "Ishga tushir → sina → yig' → tuzat → xatoni top", ru: 'Запусти → проверь → собери → исправь → найди ошибку' }, { uz: "Sina → yig' → ishga tushir → xatoni top → tuzat", ru: 'Проверь → собери → запусти → найди ошибку → исправь' }, { uz: "Tuzat → xatoni top → sina → yig' → ishga tushir", ru: 'Исправь → найди ошибку → проверь → собери → запусти' }, { uz: "Yig' → sina → xatoni top → tuzat → ishga tushir", ru: 'Собери → проверь → найди ошибку → исправь → запусти' }], correct: 3 },
+  { q: { uz: "To'liq tizimni yetkazish jarayoni qanday?", ru: 'В каком порядке доводят полную систему до запуска?' }, opts: [{ uz: "Ishga tushirish → sinash → yig'ish → tuzatish → xatoni topish", ru: 'Запуск → проверка → сборка → исправление → поиск ошибки' }, { uz: "Sinash → yig'ish → ishga tushirish → xatoni topish → tuzatish", ru: 'Проверка → сборка → запуск → поиск ошибки → исправление' }, { uz: "Tuzatish → xatoni topish → sinash → yig'ish → ishga tushirish", ru: 'Исправление → поиск ошибки → проверка → сборка → запуск' }, { uz: "Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Сборка → проверка → поиск ошибки → исправление → запуск' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -1889,7 +1888,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Natijalar', ru: 'Результаты' }} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1984,7 +1983,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -2018,8 +2017,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
@@ -2126,15 +2125,15 @@ const FULL_FLASHCARDS = [
   { front: { uz: "Web, mobil va bot qaysi umumiy qismga ulanadi?", ru: 'К какой общей части подключаются веб, мобильное и бот?' }, back: { uz: "Bitta backend'ga", ru: 'К одному бэкенду' }, note: { uz: "Kirish yo'li uchta, tizim bitta", ru: 'Входа три, система одна' } },
   { front: { uz: "Nega web va bot bir xil buyurtmani ko'radi?", ru: 'Почему веб и бот видят один и тот же заказ?' }, back: { uz: 'Baza bitta', ru: 'База одна' }, note: { uz: 'Bu loyihada hamma buyurtma bitta PostgreSQL bazasida', ru: 'В этом проекте все заказы хранятся в одной базе PostgreSQL' } },
   { front: { uz: 'Bitta amalni boshidan oxirigacha sinaydigan test?', ru: 'Тест, который проверяет одно действие от начала до конца?' }, back: 'End-to-end', note: { uz: 'Mijozdan boshlanib, tasdiq bilan tugaydi', ru: 'Начинается с клиента, заканчивается подтверждением' } },
-  { front: { uz: 'Qismlar alohida ishlab, birga ishlamasa — bu qanday xato?', ru: 'Части работают порознь, но не вместе — что это за ошибка?' }, back: { uz: 'Chokdagi (integratsiya) xatosi', ru: 'Ошибка на шве (ошибка интеграции)' }, note: { uz: 'Qismlar ulangan joyda yashiringan', ru: 'Прячется там, где части соединены' } },
-  { front: { uz: "Qaysi kanal qaysi qadamda buzilganini nima ko'rsatadi?", ru: 'Что показывает, какой канал сломался на каком шаге?' }, back: { uz: 'Test jadvali (matritsa)', ru: 'Таблица тестов (матрица)' }, note: { uz: 'Har kanal × har qadam — katak; qizili — chok', ru: 'Каждый канал × каждый шаг — клетка; красная — шов' } },
+  { front: { uz: 'Qismlar alohida ishlab, birga ishlamasa — bu qanday xato?', ru: 'Части работают порознь, но не вместе — что это за ошибка?' }, back: { uz: 'Integratsiya xatosi — ulanish joyida', ru: 'Ошибка интеграции — в месте соединения' }, note: { uz: 'Qismlar ulangan joyda yashiringan', ru: 'Прячется там, где части соединены' } },
+  { front: { uz: "Qaysi kanal qaysi qadamda buzilganini nima ko'rsatadi?", ru: 'Что показывает, какой канал сломался на каком шаге?' }, back: { uz: 'Test jadvali (matritsa)', ru: 'Таблица тестов (матрица)' }, note: { uz: 'Har kanal × har qadam — katak; qizili — xato joyi', ru: 'Каждый канал × каждый шаг — клетка; красная — место ошибки' } },
   { front: { uz: 'Tizimni serverga joylashtirish qanday ataladi?', ru: 'Как называется размещение системы на сервере?' }, back: 'Deploy', note: { uz: 'Ishga tushirish — foydalanuvchiga berish', ru: 'А запуск — это отдать систему пользователю' } },
   { front: { uz: "Ishga tushirishdan oldin test jadvali qanday bo'lishi shart?", ru: 'Какой должна быть таблица тестов перед запуском?' }, back: { uz: "To'liq yashil", ru: 'Полностью зелёной' }, note: { uz: 'Bitta qizil katak qolsa — ishga tushirilmaydi', ru: 'Осталась хоть одна красная клетка — не запускаем' } },
   { front: { uz: 'BOT_TOKEN kabi maxfiy sozlamalar qayerda turadi?', ru: 'Где хранятся секретные настройки вроде BOT_TOKEN?' }, back: { uz: '.env faylida', ru: 'В файле .env' }, note: { uz: "Frontend kodiga yozilmaydi, GitHub'ga yuborilmaydi", ru: 'Их не пишут в код фронтенда и не отправляют на GitHub' } },
   { front: { uz: 'Buyurtmalar doimiy saqlanadigan joy?', ru: 'Место, где заказы хранятся постоянно?' }, back: { uz: 'Baza (PostgreSQL)', ru: 'База (PostgreSQL)' }, note: { uz: "Backend unga yozadi va o'qiydi", ru: 'Бэкенд записывает в неё и читает из неё' } },
   { front: { uz: "Barcha kanaldan so'rovni qabul qilib boshqaradigan qism?", ru: 'Часть, которая принимает запросы со всех каналов и управляет ими?' }, back: { uz: 'Backend (Node.js)', ru: 'Бэкенд (Node.js)' }, note: { uz: 'Baza, bot va AI bilan ham u ishlaydi', ru: 'Он же работает с базой, ботом и AI' } },
   { front: { uz: 'AI buyurtma oqimida ishtirok etadimi?', ru: 'Участвует ли AI в потоке заказа?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'U alohida: mijoz savoli → backend → AI → javob', ru: 'Он отдельно: вопрос клиента → бэкенд → AI → ответ' } },
-  { front: { uz: "To'liq tizimni yetkazish jarayoni?", ru: 'Процесс доведения полной системы до запуска?' }, back: { uz: "Yig' → sina → xatoni top → tuzat → ishga tushir", ru: 'Собери → проверь → найди ошибку → исправь → запусти' }, note: { uz: 'Bugungi darsning bosh formulasi', ru: 'Главная формула сегодняшнего урока' } },
+  { front: { uz: "To'liq tizimni yetkazish jarayoni?", ru: 'Процесс доведения полной системы до запуска?' }, back: { uz: "Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Сборка → проверка → поиск ошибки → исправление → запуск' }, note: { uz: 'Bugungi darsning bosh formulasi', ru: 'Главная формула сегодняшнего урока' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2172,9 +2171,9 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: "Ko'p kanal (web, mobil, bot) — bitta backend bilan ishlasa, bitta tizimning kirish yo'llari", ru: 'Много каналов (веб, мобильное, бот) — если они работают с одним бэкендом, это точки входа одной системы' },
     { uz: "End-to-end test bitta amalni barcha qadamlari bo'ylab sinaydi", ru: 'End-to-end тест проверяет одно действие по всем его шагам' },
-    { uz: "Xato ko'pincha chokda bo'ladi — sababini tekshirib, kichik tuzatish qilasiz", ru: 'Ошибка чаще всего на шве — проверяете причину и делаете небольшое исправление' },
+    { uz: "Xato ko'pincha ulanish joyida bo'ladi — sababini tekshirib, kichik tuzatish qilasiz", ru: 'Ошибка чаще всего в месте соединения — проверяете причину и делаете небольшое исправление' },
     { uz: "Sozlama to'g'ri va test o'tgan bo'lsa — ishga tushirasiz", ru: 'Настройки верные и тест пройден — запускаете' },
-    { uz: "Jarayon: yig' → sina → xatoni top → tuzat → ishga tushir", ru: 'Процесс: собери → проверь → найди ошибку → исправь → запусти' },
+    { uz: "Jarayon: yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Процесс: сборка → проверка → поиск ошибки → исправление → запуск' },
   ];
   const HOMEWORK = [
     { b: { uz: "Yig'ing", ru: 'Соберите' }, t: { uz: "— loyihangizning barcha kanalini bitta backend'ga ulang", ru: '— подключите все каналы своего проекта к одному бэкенду' } },
@@ -2187,7 +2186,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: '1-bosqich yakuniy loyihasi', ru: 'Итоговый проект 1-го этапа' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Tizim ishlayapti', ru: 'Система работает' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi to'liq tizimni <span className="italic" style={{ color: T.accent }}>yig'ib, sinab, ishga tushira olasiz</span>.</>, ru: <>Теперь вы можете <span className="italic" style={{ color: T.accent }}>собрать, проверить и запустить</span> полную систему.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Tizim ishlayapti', ru: 'Система работает' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi to'liq tizimni <span className="italic" style={{ color: T.accent }}>yig'ib, sinab, ishga tushira olasiz</span>.</>, ru: <>Теперь вы можете <span className="italic" style={{ color: T.accent }}>собрать, проверить и запустить</span> полную систему.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2333,6 +2332,10 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
+        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
+           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
+        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
+        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2377,7 +2380,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         /* === FRAME === */
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(31,122,77,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === SPEC CARD === */
@@ -2390,6 +2393,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -2415,6 +2419,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { display: inline-flex; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2431,7 +2436,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; }
         /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
            «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
-        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); } /* 192 (F-1004-57): platforma standarti — o'rtada, 560px gacha */
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
         @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
         .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
@@ -2476,6 +2481,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
@@ -2646,7 +2652,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
-          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px;
+          gap: clamp(10px,1.5vw,15px); padding: clamp(26px,3.6vw,44px) clamp(22px,3.2vw,40px); border-radius: 999px; /* 192 (F-1004-57): CODE STRIKE — kapsula, platforma standarti */
           background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%);
           border: 1.5px solid rgba(186,140,255,0.72);
           box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32);
