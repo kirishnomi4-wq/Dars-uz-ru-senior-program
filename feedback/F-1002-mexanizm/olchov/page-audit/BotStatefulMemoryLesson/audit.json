@@ -1,0 +1,280 @@
+{
+ "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+ "lessonId": "bot-stateful-memory-05-03-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA — BOT SUHBATNI ESLAB QOLADI",
+     "box": "tg",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 115,
+     "left": "tg",
+     "right": "daf-page fade-step",
+     "hs": [
+      242,
+      127
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 69,
+     "left": "code-box",
+     "right": "frame-warn fade-step",
+     "hs": [
+      237,
+      168
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Botni qayta ishga tushiring: nima qoladi, nima yo'qoladi?",
+     "b": "Botni qayta ishga tushirish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "MARKAZIY · QAYTA ISHGA TUSHIRISH",
+     "b": "Botni qayta ishga tushirish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 71,
+     "left": "mem-box gone",
+     "right": "frame-success fade-step",
+     "hs": [
+      70,
+      136
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Faraz qiling: kodda holat chat.id bo'yicha ajratilmagan — hamma mijoz uchun bitta o'zgaruvchi. Tugmani bosing ",
+     "b": "Umumiy holat (hamma uchun bitta)",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 37,
+     "left": "mix-chat",
+     "right": "daf-page fade-step",
+     "hs": [
+      90,
+      127
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 91,
+     "left": "code-box",
+     "right": "sk-info fade-step",
+     "hs": [
+      211,
+      120
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SQL",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "blank-group fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

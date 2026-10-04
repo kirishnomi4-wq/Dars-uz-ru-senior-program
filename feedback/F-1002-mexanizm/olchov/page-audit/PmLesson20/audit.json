@@ -1,0 +1,297 @@
+{
+ "file": "src/5-Modull/PmLesson20.jsx",
+ "lessonId": "pm-m5d8-v1",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Sinfdoshingiz botingizni ko'rib «Zo'r ekan» dedi. Bundan botingiz haqida nimani bilib oldi",
+     "box": "fade-up delay-1",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "qcards fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "«Kelasi haftadan boshlab botni ishlatasizmi?» — bu savolga qanday javob keladi?",
+     "box": "fade-up delay-1",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "C Yomon surat qo'yilgan uy band qilinmasligini",
+     "b": "Uy egalari saytga qancha kirishi emas — yomon surat tufayli uy band qilinmayotgani ma'lum bo'ldi.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Airbnb asoschilari uy egalarining oldiga borib nimani bilib oldi?",
+     "box": "fade-up delay-1",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "koding",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "node suhbat.js har yozuv uchun bitta qator chiqaradi",
+     "b": "12 // 1) har yozuvni bitta qatorda chiqaring:",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "node suhbat.js har yozuv uchun bitta qator chiqaradi",
+     "b": "// 1) har yozuvni bitta qatorda chiqaring:",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "Birinchi yozuvdagi savol matni",
+     "b": "Birinchi yozuvdagi javob matni",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 121,
+     "left": "kdpanel",
+     "right": "vsc no-copy",
+     "hs": [
+      237,
+      358
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Suhbatdosh: «Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim.»",
+     "b": "B Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Suhbatdosh: «Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim.»",
+     "b": "✓ Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.6,
+     "a": "B Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim",
+     "b": "C Odamlar kechqurun botni ochadi, lekin tugmani topolmay chiqib ketadi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.6,
+     "a": "✓ Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim",
+     "b": "C Odamlar kechqurun botni ochadi, lekin tugmani topolmay chiqib ketadi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Suhbatdosh: «Kecha kechqurun botni ochdim, lekin tugmani topolmay chiqib ketdim.» Qaysi qa",
+     "box": "fade-up delay-1",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "reflection",
+   "inp": [
+    {
+     "label": "✓ Aytildi",
+     "ph": "Eng aniq javob ... savolimdan keldi, unda ...",
+     "gap": 68
+    }
+   ],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

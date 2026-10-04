@@ -1,7 +1,7 @@
 # 4-dars «Bot eslab qoladi — holat va PostgreSQL» — yakuniy matn
 
 Fayl: `src/5-Modull/BotStatefulMemoryLesson.jsx` · 20 ekran · Keyingi dars: «Loyiha kuni: AI bilan bot»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish
 - Eyebrow: Kirish
@@ -19,9 +19,9 @@ Holat: 01.10.2026 — kodga mos
   - ✔ Bot har xabarni alohida ko'radi, oldingisini eslamaydi
   - Internet sekin, xabarning bir qismi yo'qoldi
 - Javob izohlari:
-  - 2-variant: **Aynan!** Bu bot oldingi xabarlarni saqlamaydi: «Pepperoni» kelganda o'zi «Qaysi pitsa?» deb so'raganini bilmaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.
-  - 1-variant: **Qiziq fikr!** Lekin bot ishlayapti: u «Pepperoni» ga javob berdi. U faqat o'zi «Qaysi pitsa?» deb so'raganini saqlamaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.
-  - 3-variant: **Qiziq fikr!** Lekin xabar yetib keldi: bot «Pepperoni» ga javob berdi. U faqat o'zi «Qaysi pitsa?» deb so'raganini saqlamaydi. Botga holat kerak — suhbat qaysi bosqichda ekanini saqlaydigan yozuv.
+  - 2-variant: **Aynan!** Bu bot oldingi xabarni saqlamaydi: «Pepperoni» kelganda nima so'raganini bilmaydi. Unga holat kerak.
+  - 1-variant: **Qiziq fikr!** Bot ishlayapti — «Pepperoni» ga javob berdi. U faqat o'zi nima so'raganini saqlamaydi: unga holat kerak.
+  - 3-variant: **Qiziq fikr!** Xabar yetib keldi — bot javob berdi. U faqat o'zi nima so'raganini saqlamaydi: unga holat kerak.
 - Tugma (pastda): Davom etish
 
 ## 1 · Reja
@@ -42,7 +42,7 @@ Holat: 01.10.2026 — kodga mos
 
 ## 2 · Holatsiz bot
 - Eyebrow: Tajriba · holatsiz bot
-- Sarlavha: Holatsiz bot har xabarni birinchi marta ko'rgandek qabul qiladi.
+- Sarlavha: Holatsiz bot har xabarni birinchi marta ko'radi.
 - Mentor: Aziza pitsa buyurtma qilmoqchi. Botda hali holat yo'q. Tugmani bosib suhbatni davom ettiring va o'ngda bot nimani bilishini kuzating.
 - Chat «AvtoPizza bot · holatsiz» (har bosishda bitta juftlik):
   1. Pitsa buyurtma qilaman → Ajoyib! Qaysi pitsa?
@@ -51,7 +51,7 @@ Holat: 01.10.2026 — kodga mos
   4. Katta → Nima katta? Tushunmadim.
 - Tugma: ▶ Yozishni boshlash → Keyingi xabar → → ✓ Aziza buyurtmasiz ketdi
 - Bot nimani biladi: Hali hech narsa — birinchi xabarni kutyapti. → (birinchi xabardan keyin) Faqat hozirgi xabarni. Oldingilarini eslamaydi.
-- Oxirida: Aziza ikki marta «Tushunmadim» javobini oldi. Bot «Pepperoni» va «Katta» ni oldi, lekin ular qaysi savolga javob ekanini bilmadi: o'zi nima so'raganini eslamaydi. Unga **holat** kerak.
+- Oxirida: Bot o'zi nima so'raganini eslamaydi — unga **holat** kerak.
 - Tugma (pastda): Suhbatni davom ettiring (N/4) → Davom etish
 
 ## 3 · Botga holat qo'shamiz
@@ -70,7 +70,7 @@ Holat: 01.10.2026 — kodga mos
   - 1-xabar: Aziza · `PITSA_KUTYAPMAN` · —
   - 2-xabar: Aziza · `OLCHAM_KUTYAPMAN` · Pepperoni
   - 3-xabar: Aziza · `MANZIL_KUTYAPMAN` · Pepperoni, katta
-- Oxirida: Har xabardan keyin holat yangilandi. Shuning uchun «Katta» endi ma'noli: bot holatdan o'zi o'lcham so'raganini biladi. Holatni eslab qoladigan bot **holatli (stateful) bot** deb ataladi.
+- Oxirida: Har xabardan keyin holat yangilandi — «Katta» endi ma'noli. Holatni eslaydigan bot — **holatli (stateful) bot**.
 - Tugma (pastda): Holat qo'shing → Suhbatni kuzating (N/3) → Davom etish
 
 ## 4 · 1-savol
@@ -108,31 +108,31 @@ holatlar[ctx.chat.id] = "OLCHAM_KUTYAPMAN"
 const holat = holatlar[ctx.chat.id]
 ```
 - Tugma: Kamchiligi nimada? → ✓ Ko'rdingiz
-- Kamchilik: Bu obyekt **dastur xotirasida (RAM)** turadi. Bot qayta ishga tushsa, xotira tozalanadi va barcha holatlar yo'qoladi: suhbat o'rtasidagi mijozlar boshidan boshlashga majbur bo'ladi. React darslarida ham shunday edi: sahifani yangilasangiz, xotiradagi ro'yxat yo'qolardi. Yechim — holatni **PostgreSQL'ga** yozish.
+- Kamchilik: Obyekt RAM'da: bot qayta ishga tushsa, holatlar yo'qoladi.
 - Tugma (pastda): Kamchiligini ko'ring → Davom etish
 
 ## 6 · Qayta ishga tushirish
 - Eyebrow: Markaziy · qayta ishga tushirish
-- Sarlavha: Botni qayta ishga tushiring: nima qoladi, nima yo'qoladi?
+- Sarlavha: Qayta ishga tushganda nima qoladi?
 - Mentor: Bot serveri vaqti-vaqti bilan qayta ishga tushadi: yangi versiya chiqqanda yoki nosozlikdan keyin. Tugmani bosing va ikkala qutiga qarang.
 - Qutilar:
   - Dastur xotirasi (RAM) — vaqtinchalik: `holatlar = { 558210300: "MANZIL_KUTYAPMAN" }` → qayta ishga tushgach: bo'sh — holatlar yo'qoldi
   - PostgreSQL — doimiy: `users: 558210300 · Aziza · MANZIL_KUTYAPMAN`
 - Tugma: Botni qayta ishga tushirish → ✓ Bot qayta ishga tushdi
-- Natija: Dastur xotirasi bo'shab qoldi, **PostgreSQL'dagi qator esa joyida**. Shuning uchun holatni PostgreSQL'ga yozamiz: bot qayta ishga tushgach, Azizaning holatini bazadan o'qiydi va suhbat shu joydan davom etadi.
+- Natija: Xotira bo'shadi, **PostgreSQL'dagi qator joyida**. Qayta ishga tushgach, bot holatni bazadan o'qiydi.
 - Tugma (pastda): Botni qayta ishga tushiring → Davom etish
 
 ## 7 · Ikki mijoz — umumiy holat
 - Eyebrow: Muammo · ikki mijoz
-- Sarlavha: Aziza va Bek bir vaqtda yozyapti. Holat ikkalasiga bitta bo'lsa-chi?
-- Mentor: Faraz qiling: kodda holat `chat.id` bo'yicha ajratilmagan — hamma mijoz uchun bitta o'zgaruvchi. Tugmani bosing va holat qanday o'zgarishini kuzating.
+- Sarlavha: Holat ikki mijozga bitta bo'lsa-chi?
+- Mentor: Aziza va Bek bir vaqtda yozyapti. Faraz qiling: kodda holat `chat.id` bo'yicha ajratilmagan — hamma mijoz uchun bitta o'zgaruvchi. Tugmani bosing va holat qanday o'zgarishini kuzating.
 - Xabarlar:
   1. Aziza: Pepperoni olmoqchiman
   2. Bek: Menga Margarita
   3. Aziza: Katta o'lchamda, iltimos
 - Tugma: ▶ Xabarlarni boshlash → Keyingi xabar → → ✓ Hammasi ko'rildi
 - Umumiy holat (hamma uchun bitta): mijoz ? · holat `OLCHAM_KUTYAPMAN` · tanlov: — → Pepperoni (Aziza) → Margarita (Bek) → Margarita, katta (kimniki?)
-- Oxirida: Oxirgi qatorda «Margarita, katta» turibdi, lekin «Katta» ni **Aziza** yozgan edi. Holat bitta bo'lgani uchun Bekning Margaritasi Azizaning Pepperonisi ustiga yozildi. Endi Aziza Bekning pitsasini oladi.
+- Oxirida: Holat bitta: Bekning pitsasi Azizaniki ustiga yozildi.
 - Tugma (pastda): Xabarlarni ko'ring (N/3) → Davom etish
 
 ## 8 · 2-savol
@@ -229,7 +229,7 @@ CREATE TABLE users (
   - 3-qadam: `MANZIL_KUTYAPMAN` · katta, pishloq
   - 4-qadam: `TAYYOR` · katta, pishloq, Chilonzor 5-uy
 - Tugma: ▶ Buyurtmani boshlash → Keyingi javob → → ✓ Buyurtma qabul qilindi
-- Oxirida: Bot «Katta» va «Ha» kabi qisqa javoblarni holatga qarab tushundi. Har xabarda u holatni bazadan o'qiydi va yangisini yozadi — shuning uchun o'rtada qayta ishga tushsa ham, suhbat shu joydan davom etadi.
+- Oxirida: «Katta» va «Ha» ni bot holatga qarab tushundi. Har xabarda holatni bazadan o'qiydi va yangisini yozadi.
 - Tugma (pastda): Buyurtmani yig'ing (N/4) → Davom etish
 
 ## 13 · SQL so'rovlari
@@ -254,7 +254,7 @@ ____ INTO users (telegram_id, holat) VALUES ($1, $2)
   - 3-bo'shliq: SELECT mavjud qatorni o'qiydi, yangi qator qo'shmaydi. · UPDATE faqat mavjud qatorni o'zgartiradi — yangi mijozning qatori hali yo'q.
   - (zaxira) Bu to'g'ri emas.
 - Nishon qoidasi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / xatodan keyin: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
-- Muvaffaqiyat: To'g'ri: `SELECT` holatni o'qiydi, `UPDATE` holatni yangilaydi, `INSERT` yangi mijozga qator qo'shadi.
+- Muvaffaqiyat: `SELECT` o'qiydi, `UPDATE` yangilaydi, `INSERT` qator qo'shadi.
 - Tugma (pastda): Bo'shliqlarni to'ldiring → Davom etish
 
 ## 14 · 4-savol
@@ -287,25 +287,36 @@ ____ INTO users (telegram_id, holat) VALUES ($1, $2)
   4. Javob va yangi holat tanlanadi
   5. UPDATE — yangi holat yoziladi
 - Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam (bo'sh joyda: bu yerga qo'ying)
-- To'g'ri: ✓ Oqim tayyor: **xabar keladi → SELECT → holat tekshiriladi → javob va yangi holat tanlanadi → UPDATE**, keyin bot javobni yuboradi. Yangi mijozni SELECT topmaydi — shunda bot avval INSERT bilan qator qo'shadi.
+- To'g'ri: ✓ Oqim tayyor: **xabar → SELECT → holat → javob → UPDATE**. Yangi mijozga avval INSERT bilan qator qo'shiladi.
 - UPDATE SELECT'dan oldin bo'lsa: **Bot holatni o'qimasdan yozib yubordi.** UPDATE SELECT'dan oldin bo'lsa, bot suhbat qaysi bosqichda ekanini bilmay turib yangi holat yozadi — mijoz noto'g'ri savol olishi mumkin.
 - Boshqa xato: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
 - Havola (xato bo'lgan bo'lsa): Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugma (pastda): Oqimni yig'ing → Davom etish
 
-## 16 · Amaliyot · loyihalash
-- Eyebrow: Amaliyot · loyihalash
-- Sarlavha: Botingiz uchun users jadvalini loyihalang
-- Mentor: Topshiriqni qog'ozda bajaring. Har qadamdan keyin «Bajardim» ni bosing — keyingisi ochiladi.
-- Karta «TOPSHIRIQ»: 1-darsda ochgan botingiz uchun users jadvalini qog'ozda loyihalang: qaysi ustunlar kerak, holat qayerda saqlanadi va qaysi SQL qachon ishlatiladi. Bugun kod yozmaysiz — faqat loyihalaysiz.
-- Qadamlar (bittadan ochiladi, har birida tugma «Bajardim»):
-  1. Botingizga qaysi ustunlar kerakligini yozing: `telegram_id`, `ism`, …
-  2. Ro'yxatga `holat` ustunini qo'shing (`TEXT NOT NULL`).
-  3. Xabar kelganda avval qaysi SQL ishlatilishini yozing.
-  4. Holat o'zgarganda qaysi SQL ishlatilishini yozing.
-  5. Yangi mijoz uchun qaysi SQL kerakligini yozing.
-- Oxirida: ✓ Bajarildi — Mentorni kuting · Vazifani bajardingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.
-- Tugma (pastda): Avval bajaring → Davom etish
+## 16 · Amaliyot · users jadvali
+- Eyebrow: Amaliyot · users jadvali
+- Sarlavha: Botingiz ismni eslab qolsin: users jadvali.
+- Mentor: Darsda chizgan jadvalingiz endi haqiqiy bazaga tushadi — baza bepul va internetda; **«1 · Baza»**dan boshlang.
+- Qadamlar (bittadan ochiladi; har birida tugma «Bajardim», bajarilganini qaytarish tugmasi ↻ «Qaytarish»):
+  1. **Baza** — neon.tech → «Sign in with GitHub» → New project (nom: botingiz) → «Connection string» ni nusxalang → `.env` ga `DATABASE_URL=` (oxirida `?sslmode=require` qoladi).
+  2. **Prompt** — «Nusxalash», Antigravity'ga.
+     - Prompt qutisi («Siz → Antigravity», tugma «Nusxalash» → ✓ Nusxalandi):
+       - src/core/entity/user.entity.ts yarat (BaseEntity'dan): telegram_id (bigint, unique), ism (nullable), holat (default 'yangi').
+       - src/infrastructure/database.module.ts — TypeORM forRoot config.DATABASE_URL bilan, autoLoadEntities, synchronize: true; AppModule ga ula. UserService yoz: topOrYarat, ismQoy, holatQoy.
+       - /start: bazada ismi bo'lsa «Yana salom, {ism}!», bo'lmasa holat = 'ism_kutilmoqda' va «Salom! Ismingiz nima?». Keyingi matn — ism saqlanadi, holat = 'tayyor'. /menu va tugmalar o'zgarmasin.
+  3. **Ishga tushirish** — terminal xatosiz, «Telegram bot ulandi». Neon'da «Tables» → `users` jadvali o'zi paydo bo'ldi.
+     - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
+  4. **Telegramda tekshirish** — `/start` → «Ismingiz nima?» → ismingiz → «Xush kelibsiz, …!» → botni qayta ishga tushiring → `/start` → «Yana salom, …!» — holat bazada qoldi.
+- Hammasi bajarilgach: Holat endi bazada. Bot qayta ishga tushsa ham, ismingizni biladi.
+- kutilgan natija · namuna: AvtoPizza (chat «AvtoPizza bot»):
+  - mijoz: /start
+  - bot: Salom! Ismingiz nima?
+  - mijoz: Aziz
+  - bot: Xush kelibsiz, Aziz! Endi sizni eslab qolaman.
+  - mijoz: /start
+  - bot: Yana salom, Aziz! Menyu uchun /menu ni bosing.
+- Ortda qoldingizmi — mentor bilan `git checkout -f dars-04-done`
+- Tugma (pastda): Orqaga · Avval bajaring → Davom etish
 
 ## 17 · Natijalar (podium) — jonli reyting
 - Natijalar (podium) — jonli reyting

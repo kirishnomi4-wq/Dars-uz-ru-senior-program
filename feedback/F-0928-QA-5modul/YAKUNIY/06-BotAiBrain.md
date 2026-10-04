@@ -1,7 +1,7 @@
 # 6-dars «Bot ichida AI» — yakuniy matn
 
 Fayl: `src/5-Modull/BotAiBrainLesson.jsx` · 20 ekran · Keyingi dars: «Loyiha kuni: bot + DB + AI»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish
 - Eyebrow: Kirish
@@ -13,17 +13,17 @@ Holat: 01.10.2026 — kodga mos
   - (keyin) mijoz: Menga do'koningizdagi pitsalar kerak edi
 - Tugma: ▶ Xabarni AI'ga yuborish → ✓ AI javob berdi
 - Savol: Nega AI shunday javob berdi?
-  - AI'ga vazifasi aytilmagan, u qaysi do'kon boti ekanini bilmaydi
+  - ✔ AI'ga vazifasi aytilmagan, u qaysi do'kon boti ekanini bilmaydi
   - Bot savolni AI'ga emas, qidiruv saytiga yubordi
   - Internet sekin ishlab, javob chalkashib ketdi
 - Javob izohlari:
-  - 1-variant: **Aynan!** AI juda ko'p narsani biladi, lekin unga vazifasi aytilmagan: u AvtoPizza boti ekanini ham, nima haqida gapirishini ham bilmaydi. Bugun buni system prompt bilan hal qilamiz.
-  - 2 yoki 3-variant: **Qiziq fikr!** Chatga qarang: AI to'liq va tartibli javob yozdi — faqat do'kon haqida emas. Unga u AvtoPizza boti ekani aytilmagan edi. Bugun buni system prompt bilan hal qilamiz.
+  - 1-variant: **Aynan!** AI ko'p narsani biladi, lekin vazifasi aytilmagan: u AvtoPizza boti ekanini bilmaydi. Yechim — system prompt.
+  - 2 yoki 3-variant: **Qiziq fikr!** Javob tartibli, lekin do'kon haqida emas: AI'ga u AvtoPizza boti ekani aytilmagan. Yechim — system prompt.
 - Tugma: Davom etish
 
 ## 1 · Reja
 - Eyebrow: Reja
-- Sarlavha: Bugun: bot javobni AI'dan qanday oladi va AI'ni qanday boshqaramiz.
+- Sarlavha: Bugun: bot javobni AI'dan qanday oladi?
 - Mentor: 1-darsda handler javobni o'zi yozilgan matndan olardi. Bugun u javobni AI'dan oladi. AI yaxshi javob yozishi uchun unga nima yuborishni o'rganamiz.
 - Chizma: Mijoz xabari (hodisa) → handler → AI API → javob
   - AI API ostida: system prompt · suhbat tarixi · temperature
@@ -57,7 +57,7 @@ Holat: 01.10.2026 — kodga mos
   - Karta «prompt»: AvtoPizza do'konining Telegram-boti uchun 3 ta qisqa salomlashuv gapi yozing
   - Tugma (chap javobdan keyin): ▶ Yuborish → ✓ Yuborildi
   - AI: 1) Xush kelibsiz! AvtoPizza'da bugun qaysi pitsani tanlaysiz? 2) Assalomu alaykum! Menyuni ko'rish uchun «Menyu» tugmasini bosing. 3) Salom! Buyurtma berishga yordam beraymi?
-- Xulosa: Aniq prompt — foydali javob. Bot ichida ham shunday: AI'ga u kim ekani va nima qilishi aniq yozib beriladi. Buni system prompt deyiladi — uni birozdan keyin o'zingiz yozasiz.
+- Xulosa: Aniq prompt — foydali javob. Bot ichida AI'ga u kim ekani va nima qilishi yoziladi — bu system prompt.
 - Tugmalar: Orqaga · Ikkalasini yuboring (N/2) → Davom etish
 
 ## 4 · 1-savol
@@ -80,7 +80,7 @@ Holat: 01.10.2026 — kodga mos
 - Eyebrow: Markaziy · system prompt
 - Sarlavha: AvtoPizza boti uchun system prompt yozing.
 - Mentor: System prompt — AI'ga har so'rovdan oldin beriladigan doimiy ko'rsatma: u kim, qanday gapiradi, nima haqida gapiradi. Har savolga bitta javob tanlang.
-- Savollar (bittadan ochiladi; tanlangani ✓ yoki ✗):
+- Savollar (navbat bilan, har birida 3 variant; to'g'risi ✔):
   - Kim?
     - Istalgan savolga javob beradigan ensiklopediya
     - ✔ AvtoPizza do'konining yordamchisi
@@ -93,13 +93,12 @@ Holat: 01.10.2026 — kodga mos
     - Istalgan mavzuda erkin gaplashaver
     - ✔ Faqat menyu va buyurtma haqida gaplash
     - Hech qanday savolga javob berma
-- Javob berilgan savol bitta qatorga yig'iladi: Kim? — AvtoPizza do'konining yordamchisi ✓ · ↻ (O'zgartirish)
-- Yorliq: yig'ilayotgan system prompt
-- Karta «SYSTEM PROMPT»: Sen …san. … gapir. ….
-  - to'g'ri yig'ilganda: Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.
+- Belgi: ✓ (to'g'ri) · ✗ (xato) · ↻ «O'zgartirish»
+- Karta «yig'ilayotgan system prompt» · SYSTEM PROMPT: Sen …san. … gapir. ….
+  - tayyor holat: Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.
   - xatodan keyin: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
-- Xato bo'lsa: Bu javob AvtoPizza boti uchun mos emas — ✗ belgisini ko'ring va boshqasini tanlang.
+- Xato bo'lsa: Bu javob AvtoPizza botiga mos emas — boshqasini tanlang.
 - To'g'ri: Tayyor — endi AI biladi: u kim, qanday gapiradi va nima haqida gapiradi.
 - Tugmalar: Orqaga · System prompt'ni yig'ing → Davom etish
 
@@ -109,41 +108,41 @@ Holat: 01.10.2026 — kodga mos
 - Mentor: Bot har mijoz xabarini AI'ga alohida so'rov qilib yuboradi. Aziza avval ismini aytdi, keyin «Ismim nima edi?» deb so'radi. Ikkinchi xabarni yuboring: AI eslaydimi?
 - Chat «1-so'rov»:
   - mijoz: Salom, mening ismim Aziza.
-  - AI: Salom, Aziza! Sizga qanday yordam beray?
+  - bot: Salom, Aziza! Sizga qanday yordam beray?
 - Strelka: bot → AI
 - Tugma: ▶ Ikkinchi xabarni yuborish → ✓ Yuborildi
 - Chat «2-so'rov» · AI'ga ketdi — faqat shu xabar:
   - mijoz: Ismim nima edi?
   - Tugma: Javobni ko'rish
-  - AI: Kechirasiz, ismingizni bilmayman. Uni menga hali aytmagansiz.
+  - bot: Kechirasiz, ismingizni bilmayman. Uni menga hali aytmagansiz.
 - Strelka: bot → AI
-- Xulosa: AI ismni bilmadi: 2-so'rovda faqat «Ismim nima edi?» bor edi. Eslashi uchun bot har so'rovga suhbat tarixini — oldingi xabarlarni — qo'shib yuboradi. Tarix uzaysa nima bo'ladi — keyingi ekranda ko'ramiz.
+- Xulosa: AI ismni bilmadi: so'rovga suhbat tarixi qo'shilmagan edi.
 - Tugmalar: Orqaga · Ikkinchi xabarni yuborish → Davom etish
 
 ## 7 · Kontekst oynasi sinovi
 - Eyebrow: Markaziy · kontekst oynasi
 - Sarlavha: Suhbat tarixi uzaysa nima bo'ladi?
 - Mentor: Endi bot har so'rovga suhbat tarixini qo'shadi. AI bir so'rovda ko'ra oladigan matn hajmi kontekst oynasi deyiladi. Xabarlarni birma-bir yuboring va oynani kuzating.
-- Yorliq: kontekst oynasi · sinovda 4 ta xabar sig'adi
-  - ostida: Haqiqiy AI'da oyna ancha katta, lekin cheksiz emas.
-- Oyna (boshida: bo'sh) — xabarlar navbati:
-  - Salom!
-  - Ismim: Aziza
-  - Bugun ob-havo yaxshi ekan
-  - Menga Margarita kerak
-  - Manzil: Chilonzor 5-kvartal
-- 4 ta to'lganda: Oyna to'ldi — keyingi xabar kelsa, bot eng eskisini tarixdan olib tashlaydi
-- 5-xabardan keyin: «Salom!» — oynadan chiqdi
+- Yorliq: kontekst oynasi
+- Izoh: Sinovda 4 ta xabar sig'adi. Haqiqiy AI'da oyna ancha katta, lekin cheksiz emas.
+- Hisoblagich: N / 4
+- Xabarlar (birma-bir yuboriladi, 4 katak):
+  1. Salom!
+  2. Ismim: Aziza
+  3. Bugun ob-havo yaxshi ekan
+  4. Menga Margarita kerak
+  5. Manzil: Chilonzor 5-kvartal
+- Oyna to'lganda eng eski katakda: keyingi chiqadi
+- Oynadan chiqqan xabar: ~~Salom!~~ chiqib ketdi
 - Tugma: ▶ Xabar yuborish (N/5) → ✓ Hammasi yuborildi
-- Savol (hammasi yuborilgach): Keyingi xabar kelsa, qaysi muhim ma'lumot oynadan chiqib ketadi?
+- Savol: Keyingi xabar kelsa, qaysi muhim ma'lumot oynadan chiqib ketadi?
   - Bugun ob-havo yaxshi ekan
   - ✔ Ismim: Aziza
   - Manzil: Chilonzor 5-kvartal
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.
   - xatodan keyin: Nishon birinchi urinish uchun edi.
-- Javob izohlari:
-  - To'g'ri: «Ismim: Aziza» endi eng eski xabar — keyingi xabar kelsa, u oynadan chiqadi.
-  - Xato: Oynadan birinchi eng eski xabar chiqadi. Hozir eng eskisi — «Ismim: Aziza»: keyingi xabarda AI ismni bilmay qoladi. Shuning uchun muhim ma'lumot bazaga saqlanadi va har so'rovda system prompt'ga qo'shiladi.
+- To'g'ri: «Ismim: Aziza» endi eng eski xabar — keyingi xabar kelsa, u oynadan chiqadi.
+- Xato: «Ismim: Aziza» oynadan chiqdi — endi AI ismni bilmaydi.
 - Tugmalar: Orqaga · Sinovni bajaring → Davom etish
 
 ## 8 · 2-savol
@@ -159,7 +158,6 @@ Holat: 01.10.2026 — kodga mos
   - 2-variant: AI ishlashda davom etadi — faqat eski xabarlarni endi ko'rmaydi.
   - 3-variant: Yangi xabarlar qabul qilinadi — oynadan eskisi chiqadi.
   - 4-variant: O'zi hech narsa saqlanmaydi: muhim ma'lumotni bazaga bot kodi yozadi.
-- Test yozuvlari: Jonli dars — bitta urinish, o'ylab bosing! · To'g'ri · Qaytadan urinib ko'ring · Javobingiz qabul qilindi · Hozir to'g'ri javobni bilib olasiz. · To'g'ri javob: A — … · Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · To'g'ri javobni toping (jonli darsda: Javob tanlang) → Davom etish
 
 ## 9 · Temperature
@@ -168,24 +166,23 @@ Holat: 01.10.2026 — kodga mos
 - Mentor: Temperature — javob qanchalik erkin bo'lishini belgilaydigan son, Gemini'da 0 dan 2 gacha. Bitta savolni — «Bizda qanday pitsalar bor?» — uch marta beramiz. Ikkala qiymatni navbat bilan bosib, javoblarni solishtiring.
 - Chap:
   - Tugma: ▶ 0.1 bilan so'rash → ✓ 0.1 sinaldi
-  - Chat «AvtoPizza · temperature 0.1»:
-    - Bizda Margarita, Pepperoni va To'rt pishloq bor.
-    - Bizda Margarita, Pepperoni va To'rt pishloq bor.
-    - Bizda Margarita, Pepperoni va To'rt pishloq bor.
-- O'ng (0.1 dan keyin):
+  - Chat «AvtoPizza · temperature 0.1» (3 ta bir xil javob):
+    - bot: Bizda Margarita, Pepperoni va To'rt pishloq bor.
+    - bot: Bizda Margarita, Pepperoni va To'rt pishloq bor.
+    - bot: Bizda Margarita, Pepperoni va To'rt pishloq bor.
+- O'ng (chap javobdan keyin):
   - Tugma: ▶ 1.5 bilan so'rash → ✓ 1.5 sinaldi
-  - Chat «AvtoPizza · temperature 1.5»:
-    - Bizda Margarita va Pepperoni bor — qaysi birini tanlaysiz?
-    - Bugun Margarita bilan boshlang, Pepperoni ham bor — albatta sinab ko'ring!
-    - Menyuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!
-- Savol (ikkalasi ko'rilgach): Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?
+  - Chat «AvtoPizza · temperature 1.5» (3 ta har xil javob):
+    - bot: Bizda Margarita va Pepperoni bor — qaysi birini tanlaysiz?
+    - bot: Bugun Margarita bilan boshlang, Pepperoni ham bor — albatta sinab ko'ring!
+    - bot: Menyuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!
+- Savol: Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?
   - ✔ Past (0.1)
   - Baland (1.5)
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.
   - xatodan keyin: Nishon birinchi urinish uchun edi.
-- Javob izohlari:
-  - To'g'ri: Past temperature'da javob deyarli bir xil chiqadi — menyu uchun shu mos.
-  - Baland (1.5): Baland temperature'da javob har safar boshqacha: birida To'rt pishloq bor, boshqasida yo'q. Menyuni har safar bir xil aytish kerak bo'lganda bu noqulay. Baland qiymat reklama matni kabi ijodiy ish uchun qulay.
+- To'g'ri: Past temperature'da javob deyarli bir xil chiqadi — menyu uchun shu mos.
+- Xato: Baland temperature'da javob har safar o'zgaradi.
 - Tugmalar: Orqaga · Ikkalasini sinab ko'ring → Davom etish
 
 ## 10 · 3-savol
@@ -201,46 +198,45 @@ Holat: 01.10.2026 — kodga mos
   - 1-variant: Tezlikka aloqasi yo'q — temperature javob qanchalik erkin bo'lishini belgilaydi.
   - 2-variant: Aksincha: bir xil javob past temperature'da bo'ladi.
   - 3-variant: Internet sarfiga aloqasi yo'q — temperature faqat javob matniga ta'sir qiladi.
-- Test yozuvlari: Jonli dars — bitta urinish, o'ylab bosing! · To'g'ri · Qaytadan urinib ko'ring · Javobingiz qabul qilindi · Hozir to'g'ri javobni bilib olasiz. · To'g'ri javob: D — … · Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · To'g'ri javobni toping (jonli darsda: Javob tanlang) → Davom etish
 
-## 11 · Faktni tekshirish
+## 11 · Faktni tekshiring
 - Eyebrow: Markaziy · faktni tekshirish
 - Sarlavha: Faktni tekshiring.
 - Mentor: AI menyu haqida uchta gap aytdi. Har birini haqiqiy menyu bilan solishtiring — buni inglizcha fact-checking deyishadi.
-- Yorliq «AI javobidagi gaplar» (bittadan ochiladi; har birida tugmalar: Rost · To'qib chiqarilgan):
-  - Margarita — 35 000 so'm → ✔ Rost
-  - Ananasli pitsa — 30 000 so'm → ✔ To'qib chiqarilgan
-  - Pepperoni — 42 000 so'm → ✔ Rost
-- Belgilangan gap bitta qatorga yig'iladi: Margarita — 35 000 so'm · Rost ✓ (ananasli pitsa yonida: menyuda yo'q)
-- Yorliq «haqiqiy menyu (bazadan)»:
-  - Margarita — 35 000 so'm
-  - Pepperoni — 42 000 so'm
-  - To'rt pishloq — 48 000 so'm
+- Chap — AI pufagi «Bizda bor:» (gaplar navbat bilan; har birida tugmalar «Rost» · «To'qib chiqarilgan»):
+  1. Margarita — 35 000 so'm
+  2. Ananasli pitsa — 30 000 so'm
+  3. Pepperoni — 42 000 so'm
+  - Belgilangach: ✓ Rost · ✗ To'qib chiqarilgan
+- O'ng — jadval «menyu · PostgreSQL» · 3 qator:
+  - Margarita — 35 000 so'm
+  - Pepperoni — 42 000 so'm
+  - To'rt pishloq — 48 000 so'm
+  - «Ananasli pitsa» belgilangach: «Ananasli pitsa» — bazada bunday qator yo'q
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.
   - xatodan keyin: Nishon birinchi urinish uchun edi.
-- Javob izohlari:
-  - Hammasi to'g'ri: To'g'ri. «Ananasli pitsa» menyuda yo'q — AI uni o'zi to'qib chiqardi. Bu hallutsinatsiya deb ataladi: AI ishonch bilan aytadi, lekin gap haqiqatga to'g'ri kelmaydi. Bu temperature past bo'lganda ham bo'lishi mumkin — narx va taom nomini menyu bilan solishtiring.
-  - Xato bo'lsa: Menyuga qarang: Margarita va Pepperoni narxi mos, «Ananasli pitsa» esa menyuda yo'q — AI uni to'qib chiqardi. Bu hallutsinatsiya deb ataladi.
+- Hammasi to'g'ri belgilansa: «Ananasli pitsa» menyuda yo'q — AI to'qib chiqardi. Bu hallutsinatsiya: ishonch bilan aytilgan yolg'on.
+- Biror gap xato belgilansa: «Ananasli pitsa» menyuda yo'q — AI uni to'qib chiqardi.
 - Tugmalar: Orqaga · Har gapni tekshiring (N/3) → Davom etish
 
 ## 12 · AvtoPizza suhbati
 - Eyebrow: Hayotiy · AvtoPizza
 - Sarlavha: AvtoPizza boti AI bilan: buyurtmagacha bitta suhbat.
 - Mentor: Suhbatni qadam-baqadam oching. O'ng tomonda — AI'ga har so'rovda nima borishi.
-- Chat «AvtoPizza» (har bosishda bitta juftlik):
-  1. mijoz: Salom! Juda ochman, nima tavsiya qilasiz?
-     bot: Salom! Menyudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?
-  2. mijoz: Achchiq narsani yoqtirmayman
-     bot: Unda Margarita sizga mos: achchiq emas, yumshoq pishloqli. Buyurtma qilamizmi?
-  3. mijoz: Ha, bittasini olaman
-     bot: Ajoyib! Margarita — 35 000 so'm. Manzilingizni yuboring, buyurtmani rasmiylashtiramiz.
+- Chat «AvtoPizza» (har bosishda bir juft xabar):
+  - 1) mijoz: Salom! Juda ochman, nima tavsiya qilasiz?
+    - bot: Salom! Menyudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?
+  - 2) mijoz: Achchiq narsani yoqtirmayman
+    - bot: Unda Margarita sizga mos: achchiq emas, yumshoq pishloqli. Buyurtma qilamizmi?
+  - 3) mijoz: Ha, bittasini olaman
+    - bot: Ajoyib! Margarita — 35 000 so'm. Manzilingizni yuboring, buyurtmani rasmiylashtiramiz.
 - Tugma: ▶ Suhbatni boshlash → Keyingi savol → → ✓ Buyurtma qabul qilindi
 - Karta «So'rov ichida»:
   - System prompt: «Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.»
-  - Menyu (bazadan): Margarita — 35 000 so'm · Pepperoni — 42 000 so'm · To'rt pishloq — 48 000 so'm
+  - Menyu (bazadan): Margarita — 35 000 so'm · Pepperoni — 42 000 so'm · To'rt pishloq — 48 000 so'm
   - Suhbat tarixi: shu suhbatdagi oldingi xabarlar
-- Xulosa: 3-xabarda mijoz «bittasini» dedi — AI bu Margarita ekanini suhbat tarixidan bildi. Narx esa AI'ning o'zidan emas, bazadagi menyudan olindi.
+- Xulosa (oxirida): «Bittasini» Margarita ekanini AI suhbat tarixidan bildi. Narx esa AI'dan emas, bazadagi menyudan olindi.
 - Tugmalar: Orqaga · Suhbatni davom ettiring (N/3) → Davom etish
 
 ## 13 · AI botga qanday ulanadi
@@ -261,10 +257,9 @@ bot.on('text', async (ctx) => {
   await ctx.reply(javob)
 })
 ```
-- Kod ostida: `suhbatTarixi` va `soraAI` — loyiha kunida AI yordamida yozadigan funksiyalaringiz.
-- Kartalar:
-  - AI API kaliti — .env faylida — Kodda faqat `process.env.AI_API_KEY` turadi.
-  - Har so'rov hisobga olinadi — AI API odatda matn hajmiga qarab haq oladi, shuning uchun oddiy ishlarni handler bajaradi.
+- Izoh: `suhbatTarixi` va `soraAI` — loyiha kunida AI yordamida yozadigan funksiyalaringiz.
+- Karta «AI API kaliti — .env faylida»: Kodda faqat process.env.AI_API_KEY turadi.
+- Karta «Har so'rov hisobga olinadi»: AI API odatda matn hajmiga qarab haq oladi, shuning uchun oddiy ishlarni handler bajaradi.
 - Tugma: Tushundim ✓ → ✓ Tushundim
 - Tugmalar: Orqaga · Kodni o'qing → Davom etish
 
@@ -281,12 +276,11 @@ bot.on('text', async (ctx) => {
   - 1-variant: Tekshirmasdan yuborish xavfli: mijoz menyuda yo'q pitsani buyurtma qiladi.
   - 3-variant: Muammo mijozning savolida emas, AI javobida. Javob menyu bilan tekshiriladi.
   - 4-variant: Qayta ishga tushirish javobni to'g'rilamaydi — AI yana shunday yozishi mumkin.
-- Test yozuvlari: Jonli dars — bitta urinish, o'ylab bosing! · To'g'ri · Qaytadan urinib ko'ring · Javobingiz qabul qilindi · Hozir to'g'ri javobni bilib olasiz. · To'g'ri javob: B — … · Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · To'g'ri javobni toping (jonli darsda: Javob tanlang) → Davom etish
 
 ## 15 · Handler tartibini yig'ing
 - Eyebrow: Yakuniy · amaliy
-- Sarlavha: Oxirgi qadam: handler AI bilan qanday ishlashini tartibga soling.
+- Sarlavha: Oxirgi qadam: AI bilan javob yo'lini tartibga soling.
 - Mentor: Mijoz AvtoPizza botiga erkin savol yozdi. Bo'laklarni sudrab to'g'ri tartibga qo'ying.
 - Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam
 - Bo'laklar (aralash chiqadi) — to'g'ri tartib:
@@ -296,28 +290,37 @@ bot.on('text', async (ctx) => {
   4. Javob menyu bilan tekshiriladi
   5. Javob yuboriladi va tarixga yoziladi
 - Javob izohlari:
-  - To'g'ri: ✓ Tartib to'g'ri: **xabar keladi → system prompt va tarix qo'shiladi → AI javob yozadi → javob tekshiriladi → mijozga ketadi**. Keyin bot 1-darsdagi siklga qaytadi: yana keyingi hodisani kutadi.
+  - To'g'ri: ✓ Tartib to'g'ri: **xabar → system prompt va tarix → AI javobi → tekshiruv → mijoz**. So'ng bot yana kutadi.
   - Xato: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
 - Havola (birinchi xatodan keyin): Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · Tartibni yig'ing → Davom etish
 
-## 16 · Amaliyot · AI chat
-- Eyebrow: Amaliyot · AI chat
-- Sarlavha: O'z botingiz uchun system prompt yozing
-- Mentor: Topshiriqni **o'z kompyuteringizda** bajaring. Har qadamdan keyin **«Bajardim»** ni bosing — keyingisi ochiladi.
-- Karta «TOPSHIRIQ»: gemini.google.com'ni oching. O'z botingiz uchun system prompt yozing: u kim, qanday gapiradi, nima haqida gapiradi. Oddiy chatda system prompt birinchi xabar qilib yuboriladi — botda esa u kodda alohida beriladi. Keyin AI chegarada qolishini va to'g'ri javob berishini tekshirasiz.
-- Qadamlar (bittadan ochiladi; har birida tugma «Bajardim»):
-  1. gemini.google.com'ni oching va yangi chat boshlang.
-  2. Birinchi xabarga system prompt yozing: `Sen ... yordamchisisan. ... gapir. Faqat ... haqida gaplash.` Oxiriga menyu yoki o'z ma'lumotlaringizni qo'shing.
-  3. Mavzuga oid savol bering va javob system prompt'ga mos kelganini tekshiring.
-  4. Mavzudan tashqari savol bering (masalan, «Ertaga ob-havo qanday?»). AI chegarada qoladimi?
-  5. Menyudagi narxni so'rang va o'zingiz yozgan menyu bilan solishtiring. Mos kelmasa — bu hallutsinatsiya.
-  6. aistudio.google.com'ni oching (o'sha Gemini, o'sha Google akkaunti). Temperature'ni 0.1 qilib bitta savolni ikki marta bering, keyin 1.5 qilib yana ikki marta — javoblarni solishtiring.
-- Hammasi bajarilgach: ✓ Bajarildi — Mentorni kuting
-  - Vazifani bajardingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.
+## 16 · Amaliyot · Gemini
+- Eyebrow: Amaliyot · Gemini
+- Sarlavha: Botingiz erkin savolga javob bersin: Gemini.
+- Mentor: System prompt'ni gemini.google.com'da sinab ko'rdingiz — endi u botning ichiga kiradi; **«1 · Kalit»**dan boshlang.
+- Qadamlar (bittadan ochiladi; har birida tugma «Bajardim»; bajarilgani ✓ va ↻ «Qaytarish»):
+  1. **Kalit** — aistudio.google.com → «Get API key» → Create → nusxalang → `.env` ga `GEMINI_API_KEY=` (chatga, skrinshotga emas).
+  2. **Prompt** — qavsga o'z system prompt'ingizni qo'ying, «Nusxalash», Antigravity'ga.
+     - Prompt qutisi «Siz → Antigravity» · tugma «Nusxalash» → «✓ Nusxalandi»:
+       - src/api/ai/system-prompt.ts yarat: SYSTEM_PROMPT = «{sen kimsan, qanday gapirasan, faqat nima haqida}» + menyu/ma'lumotlaring.
+       - AiService (@google/genai, model gemini-2.5-flash, systemInstruction: SYSTEM_PROMPT, temperature 0.4); kalit bo'lmasa null qaytarsin.
+       - bot.on('text') da holat tayyor bo'lsa — AI javobi; null bo'lsa eski «Bu buyruqni bilmayman». Ism so'rash va menyu o'zgarmasin.
+  3. **Ishga tushirish** — terminal xatosiz, «Telegram bot ulandi».
+     - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
+  4. **Telegramda tekshirish** — mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menyungiz bilan solishtiring (mos kelmasa — hallutsinatsiya, system prompt'ga menyuni aniqroq yozing).
+- Hammasi bajarilgach: AI botning ichida. Nima deyishini system prompt'ingiz belgilaydi.
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Kutilgan natija chati:
+  - mijoz: Achchiq bo'lmagani qaysi?
+  - bot: Margarita va Pishloqli achchiq emas. Margarita — 45 000 so'm. Tanlaysizmi? /menu
+  - mijoz: Ertaga ob-havo qanday?
+  - bot: Men faqat AvtoPizza haqida yordam beraman. Pitsa tanlaysizmi?
+- Ortda qoldingizmi — mentor bilan `git checkout -f dars-06-done`
+- Repo: TelegramBotNest · teg: dars-06-done
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
-## 17 · Natijalar (podium) — jonli reyting
+## 17 · Natijalar (podium)
 Natijalar (podium) — jonli reyting
 
 ## 18 · Kartochkalar
@@ -346,8 +349,8 @@ Natijalar (podium) — jonli reyting
 ## 19 · Yakun
 - Eyebrow: Tayyor
 - Belgi: ✓ Bot javobni AI'dan oladi
-- Sarlavha: Endi botingiz javobni AI'dan oladi — va siz uni boshqarasiz.
-- Natija halqasi: N/5 to'g'ri javob
+- Sarlavha: Botingiz javobni AI'dan oladi — siz boshqarasiz.
+- Natija halqasi: N/5 to'g'ri
 - Arena tugmasi: CODE STRIKE (jonli darsda kutilsa: Mentorni kuting)
 - Endi siz bilasiz:
   - AI API oldingi so'rovni eslamaydi — bot unga system prompt va suhbat tarixini har so'rovda yuboradi
@@ -355,8 +358,7 @@ Natijalar (podium) — jonli reyting
   - Kontekst oynasi cheklangan — muhim ma'lumot tarixda emas, bazada saqlanadi
   - Temperature: past — deyarli bir xil javob, baland — xilma-xil. Javob to'g'riligini temperature emas, tekshirish ko'rsatadi
   - AI hallutsinatsiya qilishi mumkin — narx va faktni menyu bilan solishtiring
-- Uyga vazifa · Amaliy topshiriqni bajarish → (tugma fonida: amaliyot · loyiha · mashq · natija)
-- Uyga vazifa (bosilgach):
+- Uyga vazifa · Amaliy topshiriqni bajarish → (bosilgach):
   - **Yozing** — o'z botingiz uchun system prompt yozing: kim, qanday gapiradi, nima haqida gapiradi
   - **Ajrating** — botingizga keladigan 5 ta xabarni yozing va har biri yoniga belgilang: unga handler javob beradimi yoki AI
   - **Tekshiring** — gemini.google.com'da system prompt'ingizni sinang va bitta faktni o'z ma'lumotingiz bilan solishtiring
@@ -369,7 +371,7 @@ Natijalar (podium) — jonli reyting
 - Context Keeper — Oynadan chiqib ketadigan muhim ma'lumotni topdingiz
 - Temperature Tuner — Menyu uchun to'g'ri temperature tanladingiz
 - Fact Checker — To'qib chiqarilgan pitsani menyu bilan tutdingiz
-- Nishon yozuvlari: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. · Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping. · Nishon birinchi urinish uchun edi. · bosib davom eting
+- Nishon yozuvlari: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. · Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping. · Nishon birinchi urinish uchun edi.
 
 ## Qisqa takrorlash oynalari
 Umumiy yozuvlar: Qayta tushuntirish · ← Oldingi · Keyingisi → · Sinfga savol: · ✓ Tushunarli — davom etamiz

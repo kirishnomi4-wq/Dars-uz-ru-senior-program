@@ -1,0 +1,284 @@
+{
+ "file": "src/5-Modull/BotIntroLesson.jsx",
+ "lessonId": "bot-intro-05-01-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "SIZNINGCHA, KIM JAVOB BERDI?",
+     "box": "DIV",
+     "gap": 14
+    },
+    {
+     "pos": "tagida",
+     "t": "Aynan! Javobni bot berdi. Telegram botni shunday ta'riflaydi: odam emas, dastur boshqaradi",
+     "box": "DIV",
+     "gap": 14
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 16,
+     "left": "vcard cur",
+     "right": "sk-info sk-run fade-step",
+     "hs": [
+      41,
+      56
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Mijoz → Telegram → Bot API token bot.js handlerlar → javob",
+     "box": "sw-outzone fade-step sw-outzone-empty",
+     "gap": 0
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOT HOLATI",
+     "box": "bot-status on",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ Bot onlayn",
+     "box": "vcard",
+     "gap": 10
+    },
+    {
+     "pos": "tepada",
+     "t": "✓ Token .env faylida",
+     "box": "term",
+     "gap": 8
+    },
+    {
+     "pos": "tagida",
+     "t": "Token Keeper Tokenni .env fayliga joyladingiz",
+     "box": "acu-medal-wrap",
+     "gap": 22
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "HANDLERLAR (BOT.JS)",
+     "box": "ns-sheet",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "HODISALAR",
+     "box": "ns-pool-row",
+     "gap": 2
+    },
+    {
+     "pos": "tepada",
+     "t": "JAVOBLAR",
+     "box": "ns-pool-row",
+     "gap": 2
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BOT.JS",
+     "box": "code-box",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "blank-group fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

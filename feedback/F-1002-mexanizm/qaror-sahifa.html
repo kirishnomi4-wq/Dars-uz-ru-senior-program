@@ -1,0 +1,222 @@
+<title>QOIDALAR ziddiyatlari</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun, har ziddiyat — karta: ikki tomon yonma-yon, pastda tavsiya va tanlov. */
+:root{
+  --bg:#F7F6F2; --paper:#FFFFFF; --ink:#1E1F24; --ink2:#5B5F6B; --line:#E1DFD8;
+  --accent:#3B4CCA; --accentSoft:#E9EBFA; --ok:#1F8A4C; --okSoft:#E6F4EB; --warn:#B4570A; --warnSoft:#FBEEDF;
+  --body:"Manrope",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15161A;--paper:#1F2026;--ink:#ECEBE6;--ink2:#A3A6B0;--line:#33353D;--accent:#8D9BFF;--accentSoft:#262A4A;--ok:#5DC48A;--okSoft:#1E3328;--warn:#F0A05A;--warnSoft:#3B2A17;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15161A;--paper:#1F2026;--ink:#ECEBE6;--ink2:#A3A6B0;--line:#33353D;--accent:#8D9BFF;--accentSoft:#262A4A;--ok:#5DC48A;--okSoft:#1E3328;--warn:#F0A05A;--warnSoft:#3B2A17;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:960px;margin:0 auto;padding-block:28px 120px;padding-inline:16px}
+h1{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.015em;text-wrap:balance;margin:0 0 6px}
+.sub{color:var(--ink2);margin:0 0 22px;max-width:70ch}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--ink2);margin-bottom:26px}
+.meta b{color:var(--ink);font-weight:600}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;margin-bottom:16px}
+.head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.id{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent);background:var(--accentSoft);padding:2px 8px;border-radius:999px}
+.head h2{font-size:17px;font-weight:800;margin:0;letter-spacing:-.01em}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.sides{grid-template-columns:1fr}}
+.side{border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.side .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:4px}
+.side p{margin:0;font-size:14px}
+.side code,.rec code{font-family:var(--mono);font-size:12.5px;background:var(--accentSoft);padding:0 4px;border-radius:4px}
+.rec{margin-top:12px;background:var(--okSoft);border-radius:10px;padding:10px 12px;font-size:14px}
+.rec .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);margin-bottom:4px;font-weight:600}
+.choices{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.choices label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:13.5px;font-weight:600;background:var(--paper)}
+.choices label:has(input:checked){border-color:var(--accent);background:var(--accentSoft);color:var(--accent)}
+.choices input{accent-color:var(--accent);margin:0}
+.choices label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.note{margin-top:10px}
+.note input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:13.5px;background:var(--paper);color:var(--ink)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar .in{max-width:960px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar textarea{flex:1 1 320px;min-width:0;height:44px;border:1px solid var(--line);border-radius:8px;font-family:var(--mono);font-size:12px;padding:6px 8px;background:var(--bg);color:var(--ink);resize:none}
+button{font:inherit;font-weight:800;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.toast{font-size:13px;color:var(--ok);font-weight:600;min-width:90px}
+.struct{background:var(--warnSoft);border:1px solid var(--line)}
+.struct .lbl{color:var(--warn)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <h1>QOIDALAR.md — 12 ziddiyat va tuzilma tasdig'i</h1>
+  <p class="sub">1-bosqich ko'rigi. Har kartada ikki manba bir-biriga zid; tavsiya oldindan belgilangan. Kerak bo'lsa boshqasini tanlang yoki izoh yozing, pastdagi «Nusxalash» bilan javobni chatga tashlang.</p>
+  <div class="meta"><span><b>327</b> qoida-qator</span><span><b>12</b> ziddiyat</span><span><b>27</b> nomzod navbatda</span><span>Tekshiruv: gates <b>47</b> · skript <b>23</b> · grep-nomzod <b>195</b> · ekran-nomzod <b>59</b> · karta <b>91</b></span></div>
+
+  <div class="card struct" data-id="S-0">
+    <div class="head"><span class="id">TUZILMA</span><h2>Reestr shakli qabulmi?</h2></div>
+    <p style="margin:0 0 6px;font-size:14px">10 bo'lim (T til · P tuzilma · S test · J jonli · U ko'rinish · K kod · PM · R ru · M5/M6 · JR jarayon) + nomzodlar jadvali + ziddiyatlar. Tekshiruv ustuni besh belgi: <code>gates:</code> bor · <code>skript:</code> bor, gates'da yo'q · <code>grep-nomzod</code> · <code>ekran-nomzod</code> · <code>karta</code>. ID lar yangi (T-001…), eski qonun raqamlari «Manba» ustunida.</p>
+    <div class="choices">
+      <label><input type="radio" name="S-0" value="Ha" checked> Ha, shu shaklda davom</label>
+      <label><input type="radio" name="S-0" value="O'zgartirish"> O'zgartirish kerak (izohda)</label>
+    </div>
+    <div class="note"><input type="text" id="n-S-0" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-01">
+    <div class="head"><span class="id">Z-01</span><h2>To'g'ri javob izohi shakli</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · 5-Modul (N-13, M5-A8b)</div><p>Bitta qisqa gap, <b>«To'g'ri!» so'zisiz</b>.</p></div>
+      <div class="side"><div class="lbl">B · LMS 30.09 (NL-4) + DE-159.11</div><p>«✓ To'g'ri.» + bitta gap <b>≤60 belgi</b> (ru ≤75); «To'g'ri —» bilan boshlanmaydi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · T</div>Birlashtiriladi: natija yorlig'i (✓) alohida tepada, izoh matni «To'g'ri» so'zisiz bitta gap ≤60 belgi. Uchala manba shunga mos keladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-01" value="T" checked> Tavsiya</label><label><input type="radio" name="Z-01" value="A"> A</label><label><input type="radio" name="Z-01" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-01" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-02">
+    <div class="head"><span class="id">Z-02</span><h2>«Xato» so'zi</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · MK-§6, PM-66, til-lint</div><p>«Xato» bolani nomlaydi — faqat «Adashdingiz».</p></div>
+      <div class="side"><div class="lbl">B · LMS paketi (NL-6), ME-7B.8</div><p>Test-izoh yorlig'i «✗ Xato.» bo'lib chiqdi; lug'at «xato» so'zini ruxsat etadi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · T</div>MK-§6 arena va ball-fidbekka chegaralanadi; test-izoh yorlig'i <b>«✗ Noto'g'ri.»</b> (PM-61 tugmalari bilan bir xil so'z) — «Xato» ham, «Adashdingiz» ham emas.</div>
+    <div class="choices"><label><input type="radio" name="Z-02" value="T" checked> Tavsiya</label><label><input type="radio" name="Z-02" value="A"> A</label><label><input type="radio" name="Z-02" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-02" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-03">
+    <div class="head"><span class="id">Z-03</span><h2>Recap karta soni</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · DARS_ETALON 5.6</div><p>Har test uchun <b>aynan 3</b> karta.</p></div>
+      <div class="side"><div class="lbl">B · LMS 30.09 (NL-5)</div><p><b>3 kartagacha</b>, har kartada bitta gap ≤90 belgi (ru ≤110).</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · B</div>Yangi darslarda B (≤3, qisqa); eski darslar tegilmaydi.</div>
+    <div class="choices"><label><input type="radio" name="Z-03" value="B" checked> B (tavsiya)</label><label><input type="radio" name="Z-03" value="A"> A</label></div>
+    <div class="note"><input type="text" id="n-Z-03" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-04">
+    <div class="head"><span class="id">Z-04</span><h2>«Keyingi darsda …» ko'prigi</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · MK-§17, PM-73, til-lint</div><p>Ekranda turmaydi; kelajak faqat uy-vazifa muddatida.</p></div>
+      <div class="side"><div class="lbl">B · lug'at 200-qator, MK-§65</div><p>Ko'prik-va'da saqlanadi; dars oxirida keyingi darsga ko'prik beriladi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · T</div>Yakun ekrani va done-mini da yo'q (A); <b>Mentorning og'zaki ko'prigi</b> — oxirgi ekran mentor gapida bitta gap — ruxsat. Lug'at qatori shunga tuzatiladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-04" value="T" checked> Tavsiya</label><label><input type="radio" name="Z-04" value="A"> A</label><label><input type="radio" name="Z-04" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-04" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-05">
+    <div class="head"><span class="id">Z-05</span><h2>Bashorat-slaydida «Bu ball emas»</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · MK-§62, PM-100 (2026-08-01)</div><p>Tinchlantiruvchi izoh yozilmaydi; natija bitta qatorda.</p></div>
+      <div class="side"><div class="lbl">B · PM-79 (2026-07-27)</div><p>«Ball yo'q» doim aytiladi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · A</div>PM-100 yangiroq; PM-79 ga «BEKOR» belgisi qo'yiladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-05" value="A" checked> A (tavsiya)</label><label><input type="radio" name="Z-05" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-05" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-06">
+    <div class="head"><span class="id">Z-06</span><h2>Zoom formulasi (<code>--lz</code>)</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · DARS_ETALON 15-F</div><p><code>min(1.5, max(1, innerWidth/1920))</code> — faqat kenglik.</p></div>
+      <div class="side"><div class="lbl">B · PM-60b (F-0725-04b)</div><p><code>clamp(1, min(innerWidth/1920, innerHeight/1000), 1.5)</code> — balandlik ham.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · B</div>Yangiroq va to'liqroq; DARS_ETALON 15-F shunga tuzatiladi, nechta faylda qaysi formula borligi sanaladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-06" value="B" checked> B (tavsiya)</label><label><input type="radio" name="Z-06" value="A"> A</label></div>
+    <div class="note"><input type="text" id="n-Z-06" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-07">
+    <div class="head"><span class="id">Z-07</span><h2>Emoji qattiqligi</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · 161-qonun (DARS_ETALON)</div><p>Eyebrow va karta sarlavhasida bittadan, blokda ≤4; RECAPS <code>ic:</code> istisno.</p></div>
+      <div class="side"><div class="lbl">B · 5–6-Modul (N-3, M5-A4)</div><p>O'quvchi matnida emoji <b>yo'q</b>; faqat nishon medali, podium, tugma-belgilar; <code>ic:</code> istisnosi bekor.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · B</div>5–6-Modul B bilan qurildi va qabul qilindi; 161-qonun B darajasiga ko'tariladi, eski darslar KATTA_TOZALASH nomzodi.</div>
+    <div class="choices"><label><input type="radio" name="Z-07" value="B" checked> B (tavsiya)</label><label><input type="radio" name="Z-07" value="A"> A</label></div>
+    <div class="note"><input type="text" id="n-Z-07" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-08">
+    <div class="head"><span class="id">Z-08</span><h2>Onboarding (TourGuide)</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · DE-§11.14 (2026-07-10)</div><p>Yangi darsga qo'shilmaydi.</p></div>
+      <div class="side"><div class="lbl">B · DE-§14e</div><p>14-checklistda hali majburiy band sifatida turibdi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · A</div>Hujjat xatosi — checklist bandi o'chiriladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-08" value="A" checked> A (tavsiya)</label><label><input type="radio" name="Z-08" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-08" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-09">
+    <div class="head"><span class="id">Z-09</span><h2>«yana kirish» yoki «qayta kirish»</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · til-lint yana-kirish</div><p>«yana kir» → <b>«qayta kirish»</b>.</p></div>
+      <div class="side"><div class="lbl">B · til-lint qanchasi-qaytdi, lug'at 164</div><p>Retention — <b>«yana kirish / yana kelish»</b>.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · A</div>Bir ma'no — bir so'z (30.09 qarori): «qayta kirish». Ikkinchi qoida va lug'at qatori tuzatiladi.</div>
+    <div class="choices"><label><input type="radio" name="Z-09" value="A" checked> A (tavsiya)</label><label><input type="radio" name="Z-09" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-09" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-10">
+    <div class="head"><span class="id">Z-10</span><h2>«och qoldirmaydi»</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · til-lint och-qoldir (F-0727-03)</div><p>Taqiq; «to'q saqlaydi».</p></div>
+      <div class="side"><div class="lbl">B · lug'at 154-qator</div><p>«och qoldirmaydi» tavsiya qilinadi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · A</div>Lug'at qatori eskirgan, til-lintga moslanadi.</div>
+    <div class="choices"><label><input type="radio" name="Z-10" value="A" checked> A (tavsiya)</label><label><input type="radio" name="Z-10" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-10" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-11">
+    <div class="head"><span class="id">Z-11</span><h2>«ish» so'zi</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · lug'at 88</div><p>«ish» → «vazifa» hamma joyda.</p></div>
+      <div class="side"><div class="lbl">B · lug'at 160/191, til-lint ishni-sotib</div><p>JTBD darsida «ish» qoladi; tashqarida «natija».</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · T</div>Uch qator bittaga: JTBD darsida «ish»; boshqa joyda harakat bo'lsa «vazifa», sotib olinadigan narsa bo'lsa «natija».</div>
+    <div class="choices"><label><input type="radio" name="Z-11" value="T" checked> Tavsiya</label><label><input type="radio" name="Z-11" value="A"> A</label><label><input type="radio" name="Z-11" value="B"> B</label></div>
+    <div class="note"><input type="text" id="n-Z-11" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+
+  <div class="card" data-id="Z-12">
+    <div class="head"><span class="id">Z-12</span><h2>Flashcard javobi: atama + qavs</h2></div>
+    <div class="sides">
+      <div class="side"><div class="lbl">A · MK-§76</div><p>Javob «atama (o'zbekcha)» shaklida.</p></div>
+      <div class="side"><div class="lbl">B · MK-§79</div><p>Dasturdagi nom tarjima qilinmaydi.</p></div>
+    </div>
+    <div class="rec"><div class="lbl">Tavsiya · ikkalasi qoladi</div>Ziddiyat emas: biri flashcard javobi haqida, ikkinchisi dasturdagi nom haqida. Reestrda ikkalasi (S-027, T-033).</div>
+    <div class="choices"><label><input type="radio" name="Z-12" value="T" checked> Ikkalasi qoladi</label><label><input type="radio" name="Z-12" value="A"> Faqat A</label><label><input type="radio" name="Z-12" value="B"> Faqat B</label></div>
+    <div class="note"><input type="text" id="n-Z-12" placeholder="Izoh (ixtiyoriy)"></div>
+  </div>
+</div>
+
+<div class="bar"><div class="in">
+  <textarea id="out" readonly aria-label="Javob matni"></textarea>
+  <button id="copy" type="button">Nusxalash</button>
+  <span class="toast" id="toast" aria-live="polite"></span>
+</div></div>
+
+<script>
+(function(){
+  var ids=['S-0','Z-01','Z-02','Z-03','Z-04','Z-05','Z-06','Z-07','Z-08','Z-09','Z-10','Z-11','Z-12'];
+  var out=document.getElementById('out'), toast=document.getElementById('toast');
+  function build(){
+    var parts=ids.map(function(id){
+      var v=(document.querySelector('input[name="'+id+'"]:checked')||{}).value||'?';
+      var n=(document.getElementById('n-'+id)||{}).value||'';
+      return id+': '+v+(n?' ('+n.trim()+')':'');
+    });
+    out.value='QOIDALAR 1-bosqich javobi — '+parts.join(' · ');
+  }
+  document.addEventListener('change',build); document.addEventListener('input',build); build();
+  document.getElementById('copy').addEventListener('click',function(){
+    build();
+    var done=function(){toast.textContent='Nusxalandi'; setTimeout(function(){toast.textContent='';},2500);};
+    var fallback=function(){out.focus(); out.select(); toast.textContent='Belgilandi — Ctrl+C bosing';};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out.value).then(done,fallback);}else{fallback();}
+  });
+})();
+</script>

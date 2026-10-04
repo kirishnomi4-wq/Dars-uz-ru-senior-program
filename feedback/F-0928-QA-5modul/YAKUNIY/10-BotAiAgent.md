@@ -1,12 +1,12 @@
 # 10-dars «AI-agent yaratish» — yakuniy matn
 
 Fayl: `src/5-Modull/BotAiAgentLesson.jsx` · 20 ekran · Keyingi dars: «Botingiz yaxshi ishlayotganini qaysi raqam aytadi?»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — ikki bot
 - Eyebrow: Kirish
-- Sarlavha: AvtoPizza'ning ikki botiga bir xil buyurtma keldi. Qaysi biri uni haqiqatan qabul qiladi?
-- Mentor: 6-darsda botingizga AI ulagansiz: u system prompt bo'yicha javob yozadi. Bunday botni bugun AI-bot deb ataymiz. Tugmani bosing va ikki botni solishtiring.
+- Sarlavha: Qaysi bot buyurtmani haqiqatan qabul qiladi?
+- Mentor: 6-darsda botingizga AI ulagansiz: u system prompt bo'yicha javob yozadi. Bunday botni bugun AI-bot deb ataymiz. Ikki botga bir xil buyurtma keldi — tugmani bosing va ularni solishtiring.
 - Chat 1 (AvtoPizza · AI-bot · bot):
   - mijoz: 2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring
   - bot (tugma bosilgach): Albatta! Buyurtmangiz qabul qilindi.
@@ -28,7 +28,7 @@ Holat: 01.10.2026 — kodga mos
 
 ## 1 · Reja
 - Eyebrow: Reja
-- Sarlavha: Bugun: AI-agent — maqsad oladi, asbob tanlaydi va ishni bajaradi.
+- Sarlavha: Bugun: AI-agent — o'zi ishni bajaradigan bot.
 - Mentor: O'tgan darsda botni mijozlar fikriga qarab o'zingiz yaxshiladingiz. Bugun botga maqsad berasiz: keyingi qadamni u o'zi tanlaydi — lekin faqat siz bergan asboblar va chegara ichida.
 - Chizma: Siz berasiz: **Maqsad · Asboblar · Chegara** → Agent: **Idrok → Qaror → Amal** ↻ (maqsadga yetguncha)
 - Bugungi 4 qadam
@@ -47,7 +47,7 @@ Holat: 01.10.2026 — kodga mos
   - **Necha qadam?** — AI-bot: bitta: xabar → javob · AI-agent: bir nechta: maqsadga yetguncha sikl
   - **Nima bilan ishlaydi?** — AI-bot: faqat matn bilan · AI-agent: asboblar bilan: siz yozgan funksiyalar (`saveOrder()` kabi)
   - **Siz nima berasiz?** — AI-bot: system prompt: qanday javob yozsin · AI-agent: maqsad, asboblar va chegara
-- Xulosa (3/3 dan keyin): Qisqasi: AI-botda AI javob matnini yozadi. AI-agentda AI keyingi qadamni tanlaydi, ishni esa siz yozgan asbob bajaradi.
+- Xulosa (3/3 dan keyin): AI-botda AI javob matnini yozadi. AI-agentda AI qadamni tanlaydi, ishni esa siz yozgan asbob bajaradi.
 - Tugmalar: Orqaga · 3 farqni ko'ring (N/3) → Davom etish
 
 ## 3 · Agent sikli
@@ -55,7 +55,7 @@ Holat: 01.10.2026 — kodga mos
 - Sarlavha: Agent sikli: Idrok → Qaror → Amal.
 - Mentor: Agent bitta amal bilan to'xtamaydi: har Amaldan keyin natijani ko'radi va keyingi qadamni tanlaydi. Tugmani bosing va bitta buyurtma uchun sikl necha marta takrorlanishini kuzating.
 - **Maqsad:** Buyurtmani qabul qilish
-- Oqim: Idrok → Qaror → Amal ↻ (joriy qadam yonadi)
+- Oqim: Maqsad olinadi → Idrok → Qaror → Amal → Maqsadga yetdimi? ↻ (joriy qadam yonadi; 4-qadamdan keyin Idrok'ka qaytuvchi strelka chiziladi)
 - Tugma: ▶ Siklni boshlash → Keyingi qadam → → ✓ Maqsadga yetdi
 - Qadamlar (har bosishda bittasi, sarlavhasi — qadam nomi):
   1. **Idrok** — Mijoz yozdi: «2 ta Pepperoni». Agent xabarni o'qidi. Pepperoni bugun bormi — hali noma'lum.
@@ -64,7 +64,7 @@ Holat: 01.10.2026 — kodga mos
   4. **Idrok** — Natijani o'qidi: Pepperoni bor, buyurtma esa hali bazada yo'q.
   5. **Qaror** — Endi buyurtmani saqlash kerak → `saveOrder` asbobini tanlaydi.
   6. **Amal** — `saveOrder()` chaqirildi → buyurtma bazaga yozildi. Maqsadga yetdi — sikl to'xtaydi.
-- Xulosa (6/6 dan keyin): Sikl ikki marta takrorlandi: avval tekshirdi, keyin saqladi. Keyingi asbobni har safar agent natijaga qarab o'zi tanladi.
+- Xulosa (6/6 dan keyin): Sikl ikki marta aylandi: avval tekshirdi, keyin saqladi. Keyingi asbobni agent natijaga qarab o'zi tanladi.
 - Tugmalar: Orqaga · Siklni yuriting (N/6) → Davom etish
 
 ## 4 · 1-savol
@@ -106,35 +106,66 @@ Holat: 01.10.2026 — kodga mos
   - ASBOBLAR: checkOrder, saveOrder, arrangeDelivery, chargeCard, cancelOrder
   - CHEGARA: Pul yechish yoki bekor qilishdan oldin odamdan tasdiq so'rasin
 - Nishon qoidasi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (xatodan keyin) Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
-- Muvaffaqiyat: Agent tayyor. Amaliyotda o'z botingiz uchun ham shu uch qismni yozasiz.
+- Muvaffaqiyat: Agent tayyor. Amaliyotda shu uch qismni o'zingiz yozasiz.
 - Tugmalar: Orqaga · Agentni yig'ing → Davom etish
 
 ## 6 · Asbob nima
 - Eyebrow: Tushuncha · asbob
 - Sarlavha: Asbob (tool) — agent chaqira oladigan funksiya.
 - Mentor: Asbobni siz yozasiz — oddiy JS funksiya, xuddi handler ichidagi kod kabi. AI o'zi faqat matn yozadi; bazaga yozish yoki kartadan pul yechishni asbob bajaradi. Har asbobni bosing.
-- Asboblar (bosilgani ✓ bilan belgilanadi va o'ngda ochiladi):
-  - `checkOrder()` — Taom borligini yoki buyurtma qaysi holatda ekanini tekshiradi.
-  - `saveOrder()` — Buyurtmani bazaga (PostgreSQL) yozadi.
+- Asboblar (bosilgani ✓ bilan belgilanadi; o'ngda asbob nomi, kodi va izohi ochiladi):
+  - `checkOrder()` — Taom menyuda bormi — tekshiradi, narxini qaytaradi.
+```js
+async function checkOrder(taom, soni) {
+  const narx = narxi(taom); // menyudan
+  return { bor: narx > 0, jami: narx * soni };
+}
+```
+  - `saveOrder()` — Buyurtmani bazaga yozadi — faqat taom bor bo'lsa.
+```js
+async function saveOrder(taom, soni, manzil) {
+  if (narxi(taom) === 0) return { saqlandi: false };
+  await buyurtmalar.yoz(taom, soni, manzil); // bazaga
+  return { saqlandi: true };
+}
+```
   - `arrangeDelivery()` — Yetkazishni rejalaydi: kuryerga manzil va vaqtni beradi.
+```js
+async function arrangeDelivery(buyurtmaId, manzil) {
+  const kuryer = await kuryerlar.bosh(); // bo'sh kuryer
+  return { kuryer: kuryer.ism, daqiqa: 30 };
+}
+```
   - `chargeCard()` — Mijoz kartasidan pul yechadi.
+```js
+async function chargeCard(buyurtmaId, summa) {
+  // pul yechadi — oldin odamdan tasdiq
+  return await tolov.yech(buyurtmaId, summa);
+}
+```
   - `cancelOrder()` — Buyurtmani bekor qiladi.
-- Xulosa (5/5 dan keyin): Agent faqat siz bergan asboblar bilan ishlaydi. Pul yechish va bekor qilishda xato qimmatga tushadi — ularga chegara qo'yiladi.
+```js
+async function cancelOrder(buyurtmaId) {
+  // bekor qiladi — oldin odamdan tasdiq
+  await buyurtmalar.holat(buyurtmaId, 'bekor');
+}
+```
+- Xulosa (5/5 dan keyin): Agent faqat siz bergan asboblar bilan ishlaydi. Pul yechish va bekor qilishga chegara qo'yiladi — xato qimmat.
 - Tugmalar: Orqaga · 5 asbobni oching (N/5) → Davom etish
 
-## 7 · Mos asbobni tanlash
+## 7 · Qaror — asbob tanlash
 - Eyebrow: Qaror · asbob tanlash
 - Sarlavha: Qaror qadami: vaziyatga mos asbobni tanlang.
 - Mentor: Haqiqiy agentda qaysi asbobni chaqirishni AI tanlaydi. Hozir uning o'rnida siz tanlang.
-- Karta: Vaziyat N/3 (birma-bir):
-  1. Mijoz yozdi: «Buyurtmam qayerda?» — ✔ `checkOrder()`
-  2. Pul yechildi, lekin buyurtma hali bazada yo'q — ✔ `saveOrder()`
-  3. Buyurtma bazaga yozildi. Endi uni kuryerga berish kerak — ✔ `arrangeDelivery()`
-- O'ng panel — Avval qaysi asbob kerak?
-  - `saveOrder()` · `cancelOrder()` · `arrangeDelivery()` · `checkOrder()` · `chargeCard()`
+- Vaziyatlar (navbat bilan, «Vaziyat N/3»):
+  1. Mijoz yozdi: «Buyurtmam qayerda?» — to'g'ri asbob: `checkOrder()`
+  2. Pul yechildi, lekin buyurtma hali bazada yo'q — to'g'ri asbob: `saveOrder()`
+  3. Buyurtma bazaga yozildi. Endi uni kuryerga berish kerak — to'g'ri asbob: `arrangeDelivery()`
+- Savol: Avval qaysi asbob kerak?
+  - Asboblar (shu tartibda): `saveOrder()` · `cancelOrder()` · `arrangeDelivery()` · `checkOrder()` · `chargeCard()`
+- Xato bo'lsa: Bu vaziyatga boshqa asbob kerak — vaziyatni qayta o'qing.
 - Nishon qoidasi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (xatodan keyin) Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
-- Xato: Bu vaziyatda avval boshqa asbob kerak. Vaziyatni qayta o'qing.
-- Muvaffaqiyat (vaziyat kartasi o'rnida): Siz vaziyatni ko'rdingiz (Idrok) va asbobni tanladingiz (Qaror) — uni chaqirish esa Amal.
+- Muvaffaqiyat: Siz vaziyatni ko'rdingiz (Idrok) va asbobni tanladingiz (Qaror) — uni chaqirish esa Amal.
 - Tugmalar: Orqaga · Asbobni tanlang (N/3) → Davom etish
 
 ## 8 · 2-savol
@@ -147,27 +178,23 @@ Holat: 01.10.2026 — kodga mos
   - Oldindan belgilangan bitta amalni takrorlaydi
 - Javob izohlari:
   - To'g'ri: AI asbobni tanlaydi, uni esa siz yozgan kod bajaradi.
-  - Faqat matn: Faqat matn yozish — bu AI-bot. Agent asbob chaqirib, ishni o'zi bajaradi.
-  - Kod yozilmasa ham: Asboblar — siz yozgan oddiy funksiyalar. Ularsiz agent bazaga ham, kuryerga ham yeta olmaydi.
-  - Bitta amalni takrorlaydi: Agent vaziyatga qarab har xil asbobni tanlaydi. Doim bitta amalni takrorlash — agent emas.
+  - 2-variant: Faqat matn yozish — bu AI-bot. Agent asbob chaqirib, ishni o'zi bajaradi.
+  - 3-variant: Asboblar — siz yozgan oddiy funksiyalar. Ularsiz agent bazaga ham, kuryerga ham yeta olmaydi.
+  - 4-variant: Agent vaziyatga qarab har xil asbobni tanlaydi. Doim bitta amalni takrorlash — agent emas.
 - Test yozuvlari va tugmalar — 4-ekrandagidek.
 
-## 9 · Pul yechishdan oldin
+## 9 · Xavfsizlik — tasdiq
 - Eyebrow: Xavfsizlik · tasdiq
 - Sarlavha: Agent pul yechmoqchi. Qanday qilish to'g'ri?
 - Mentor: Agent asbob bilan real ish qiladi, jumladan pul yechadi. Xato qilsa, pul ham haqiqatan yechiladi. Vaziyatni o'qing va tanlang.
-- Karta **Vaziyat**: Mijoz 5 ta katta pitsa buyurdi. Agent `chargeCard()` bilan uning kartasidan **450 000 so'm** yechmoqchi.
-- Variantlar (bitta urinish):
+- Vaziyat: Mijoz 5 ta katta pitsa buyurdi. Agent `chargeCard()` bilan uning kartasidan **450 000 so'm** yechmoqchi.
+- Tanlov:
   - Mijoz o'zi buyurdi — agent tasdiqsiz yechaversin
   - ✔ Yechishdan oldin mijozdan summani tasdiqlatsin
 - Nishon qoidasi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (xatodan keyin) Nishon birinchi urinish uchun edi.
-- Javob izohlari:
-  - To'g'ri: Agent 5 o'rniga 15 deb tushungan bo'lsa ham, tasdiq xatoni pul yechilmasdan to'xtatadi.
-  - Xato: Mijoz summani hali ko'rmagan: agent 5 o'rniga 15 deb tushunsa, ortiqcha pul yechiladi.
-- Chizma (to'g'ri tanlangach): Agent · Mijoz
-  - Agent → Mijoz: «450 000 so'm yechilsinmi?»
-  - Mijoz → Agent: «Ha»
-  - `chargeCard()`
+- To'g'ri tanlansa (yashil): Agent 5 o'rniga 15 deb tushungan bo'lsa ham, tasdiq xatoni pul yechilmasdan to'xtatadi.
+- To'g'ri tanlansa (chizma, Agent ↔ Mijoz): «450 000 so'm yechilsinmi?» → «Ha» → `chargeCard()`
+- Xato tanlansa (ogohlantirish): Mijoz summani tasdiqlamagan: xato — ortiqcha pul ketadi.
 - Tugmalar: Orqaga · Qarorni tanlang → Davom etish
 
 ## 10 · 3-savol
@@ -180,32 +207,30 @@ Holat: 01.10.2026 — kodga mos
   - ✔ Natijani ko'radi va keyingi qadamni tanlaydi
 - Javob izohlari:
   - To'g'ri: Yetkazish hali rejalanmagan — maqsadga yetmadi, shuning uchun agent keyingi qadamni tanlaydi.
-  - Ishni tugatadi: Yetkazish hali rejalanmagan: maqsadga yetmay turib ish tugamaydi.
-  - Kutib turadi: Keyingi buyruqni kutish — AI-botning ishi. Agent keyingi qadamni o'zi tanlaydi.
-  - Yana bazaga yozadi: Buyurtma allaqachon saqlangan — natijani ko'rgan agent uni qayta yozmaydi.
+  - 1-variant: Yetkazish hali rejalanmagan: maqsadga yetmay turib ish tugamaydi.
+  - 2-variant: Keyingi buyruqni kutish — AI-botning ishi. Agent keyingi qadamni o'zi tanlaydi.
+  - 3-variant: Buyurtma allaqachon saqlangan — natijani ko'rgan agent uni qayta yozmaydi.
 - Test yozuvlari va tugmalar — 4-ekrandagidek.
 
 ## 11 · Amal xavfsizligi
 - Eyebrow: Markaziy · xavfsizlik
-- Sarlavha: Qaysi amalni agent o'zi, qaysini odam tasdig'i bilan bajarsin?
+- Sarlavha: Qaysi amalga odam tasdig'i kerak?
 - Mentor: Har amalni belgilang: agent uni o'zi bajarsinmi yoki avval odamdan tasdiq so'rasinmi? Har qatorda bitta urinish.
-- Amallar (navbat bilan; har qatorda tugmalar: O'zi · Tasdiq kerak):
-  - Buyurtma holatini tekshirish — `checkOrder()` — ✔ O'zi
-  - Buyurtmani bekor qilish — `cancelOrder()` — ✔ Tasdiq kerak
-  - Buyurtmani bazaga yozish — `saveOrder()` — ✔ O'zi
-- Belgilangan qator: ✓ yoki ✕ va tanlov (O'zi / Tasdiq kerak)
+- Amallar (navbat bilan; har birida ikki tugma: O'zi · Tasdiq kerak):
+  1. Buyurtma holatini tekshirish — `checkOrder()` — to'g'ri: O'zi
+  2. Buyurtmani bekor qilish — `cancelOrder()` — to'g'ri: Tasdiq kerak
+  3. Buyurtmani bazaga yozish — `saveOrder()` — to'g'ri: O'zi
+- Belgilangach qatorda: ✓ yoki ✕ va tanlangan javob (O'zi / Tasdiq kerak)
 - Nishon qoidasi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (xatodan keyin) Nishon birinchi urinish uchun edi.
-- Javob izohlari (3/3 dan keyin):
-  - Hammasi to'g'ri: Bu agentda tekshirish va saqlash tasdiqsiz bajariladi, bekor qilish esa buyurtmani yo'qotadi — uni odam tasdiqlaydi.
-  - Xato bo'lsa: Qarang: bekor qilish buyurtmani yo'qotadi — odam tasdig'i kerak; tekshirish va saqlashni agent o'zi bajaradi.
+- Hammasi to'g'ri bo'lsa: Tekshirish va saqlash tasdiqsiz bajariladi; bekor qilish buyurtmani yo'qotadi — uni odam tasdiqlaydi.
+- Xato bo'lsa: Bekor qilish buyurtmani yo'qotadi — odam tasdig'i kerak.
 - Tugmalar: Orqaga · Har amalni belgilang (N/3) → Davom etish
 
 ## 12 · Agent ishda
 - Eyebrow: Hayotiy · agent ishda
-- Sarlavha: Bitta xabar — agent qadamlarni o'zi tanlab, ishni oxirigacha bajaradi.
+- Sarlavha: Bitta xabar — agent ishni oxirigacha bajaradi.
 - Mentor: Bu — siz yig'gan agent: maqsadi buyurtmani qabul qilib, yetkazishga tayyorlash. Tugmani bosing va u har qadamda nima qilishini kuzating.
-- Yorliq: Agent qadamlari (mijoz ularni ko'rmaydi)
-- Qadamlar (har bosishda bittasi; oldingilari «✓ nomi asbobi» qatoriga yig'iladi):
+- Chap — Agent qadamlari (mijoz ularni ko'rmaydi); bajarilgani ✓ bilan qatorga yig'iladi, joriysi karta bo'lib ochiladi:
   1. **Idrok** — Mijoz: «2 ta Pepperoni, Chilonzor 5-kvartal». Agent xabarni o'qidi.
   2. **Qaror** `checkOrder()` — Avval Pepperoni borligini tekshiraman.
   3. **Amal** `checkOrder()` — Natija: «Pepperoni bor».
@@ -213,20 +238,20 @@ Holat: 01.10.2026 — kodga mos
   5. **Amal** `saveOrder()` — Natija: buyurtma bazaga yozildi.
   6. **Idrok · Qaror** `arrangeDelivery()` — Buyurtma saqlandi, yetkazish hali rejalanmagan → rejalayman.
   7. **Amal** `arrangeDelivery()` — Natija: kuryer taxminan 30 daqiqada yetkazadi.
-  8. **Maqsadga yetdi** — Buyurtma qabul qilindi va yetkazishga tayyor. Sikl to'xtaydi, mijozga javob ketadi.
-- Tugma: ▶ Agentni ishga tushirish → Keyingi qadam → → ✓ Maqsadga yetdi
-- O'ng panel — yorliq: Mijoz ko'radigan chat
-  - Chat (AvtoPizza · AI-agent · agent): mijoz: 2 ta Pepperoni, Chilonzor 5-kvartal
-  - bot (8/8 dan keyin): 2 ta Pepperoni qabul qilindi. Chilonzor 5-kvartalga taxminan 30 daqiqada yetkazamiz.
-- Karta **Chaqirilgan asboblar**: hali yo'q → (Amal qadamlarida to'ladi) `checkOrder()` · `saveOrder()` · `arrangeDelivery()`
-- Xulosa (8/8 dan keyin): Mijoz bitta xabar yozdi, agent esa uchta asbobni chaqirdi. Qaysi birini qachon chaqirishni u o'zi tanladi — lekin faqat siz bergan asboblar orasidan.
+  8. **Maqsadga yetdimi? — ha** — Buyurtma qabul qilindi va yetkazishga tayyor. Sikl to'xtaydi, mijozga javob ketadi.
+- Tugma: ▶ Agentni ishga tushirish → Keyingi qadam → (tugagach tugma yo'qoladi)
+- O'ng — Mijoz ko'radigan chat (AvtoPizza · AI-agent · agent):
+  - mijoz: 2 ta Pepperoni, Chilonzor 5-kvartal
+  - bot (8 qadamdan keyin): 2 ta Pepperoni qabul qilindi. Chilonzor 5-kvartalga taxminan 30 daqiqada yetkazamiz.
+- O'ng — Chaqirilgan asboblar: hali yo'q → `checkOrder()` · `saveOrder()` · `arrangeDelivery()` (Amal qadamida yangisi chiziq bilan ulanadi)
+- Xulosa: Bitta xabarga agent uchta asbobni chaqirdi. Tartibni o'zi tanladi — lekin faqat siz bergan asboblar orasidan.
 - Tugmalar: Orqaga · Agentni kuzating (N/8) → Davom etish
 
 ## 13 · Chegaralar
 - Eyebrow: Xavfsizlik · chegara
-- Sarlavha: Agent real ish qiladi — shuning uchun unga chegara qo'yiladi.
+- Sarlavha: Agent real ish qiladi — unga chegara kerak.
 - Mentor: Chegara (inglizcha guardrail) agent nimani qila olishini va nimani so'ramasdan qilmasligini belgilaydi. Uch turini bosib ko'ring.
-- Chegaralar (bosilgani ✓ bilan belgilanadi va o'ngda ochiladi):
+- Turlar (bosilgani ✓ bilan belgilanadi; o'ngda izohi ochiladi):
   - **Cheklangan asboblar** — Agentga faqat kerakli asboblarni bering. Masalan, buyurtma agentiga narxni o'zgartirish yoki mijozni bloklash asbobini bermang: bermagan asbobini u chaqira olmaydi.
   - **Tasdiq so'rash** — Xavfli amaldan oldin (pul yechish, bekor qilish) agent mijoz yoki admindan tasdiq so'raydi.
   - **Odam nazorati** — Murakkab yoki shubhali holatni agent odamga, masalan AvtoPizza adminiga, uzatadi. Inglizcha nomi — human-in-the-loop.
@@ -243,14 +268,14 @@ Holat: 01.10.2026 — kodga mos
   - Javob berish tezligini iloji boricha oshirish
 - Javob izohlari:
   - To'g'ri: Xato pul yechilmasdan oldin to'xtashi kerak — chegara shuning uchun.
-  - To'liq erkinlik: To'liq erkinlik xavfli: agent xato qilsa, pul haqiqatan yechiladi. Chegara kerak.
-  - Xabar yuborish: Xabar pul yechilgandan keyin ketadi — xatoni to'xtata olmaydi. Tasdiq pul yechilishidan oldin so'raladi.
-  - Tezlik: Bu yerda tezlik asosiy emas — xavfsizlik muhim: kerakli asboblar va tasdiq.
+  - 1-variant: To'liq erkinlik xavfli: agent xato qilsa, pul haqiqatan yechiladi. Chegara kerak.
+  - 3-variant: Xabar pul yechilgandan keyin ketadi — xatoni to'xtata olmaydi. Tasdiq pul yechilishidan oldin so'raladi.
+  - 4-variant: Bu yerda tezlik asosiy emas — xavfsizlik muhim: kerakli asboblar va tasdiq.
 - Test yozuvlari va tugmalar — 4-ekrandagidek.
 
-## 15 · Tartibni yig'ing (final)
+## 15 · Yakuniy — tartibga soling
 - Eyebrow: Yakuniy · amaliy
-- Sarlavha: Oxirgi qadam: agent qanday ishlashini to'g'ri tartibda yig'ing.
+- Sarlavha: Oxirgi qadam: agent ishini tartibga soling.
 - Mentor: Bo'laklarni sudrab to'g'ri tartibga qo'ying.
 - Bo'laklar (aralash beriladi) — to'g'ri tartib:
   1. Maqsad olinadi
@@ -258,70 +283,46 @@ Holat: 01.10.2026 — kodga mos
   3. Qaror
   4. Amal
   5. Maqsadga yetdimi?
-- Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam
+- Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam (bo'sh joyda: bu yerga joylang)
+- To'g'ri yig'ilgach: 5-qadamdan Idrok'ka qaytuvchi strelka chiziladi
 - Javob izohlari:
   - To'g'ri: Tartib to'g'ri: maqsadga yetmaguncha agent yana Idrok'ka qaytadi.
   - Xato: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
   - Birinchi xatodan keyin: Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · Tartibni yig'ing → Davom etish
 
-## 16 · Amaliyot · AI-agent
-- Eyebrow: Amaliyot · AI-agent
-- Sarlavha: Agentga ikki asbob bering — qaysi birini chaqirishini ko'ring
-- Mentor: Topshiriqni o'z kompyuteringizda bajaring. Har qadamdan keyin «Bajardim» ni bosing — keyingisi ochiladi.
-- TOPSHIRIQ: aistudio.google.com'da agentga maqsad, chegara va ikki asbob berasiz. Model asbobni chaqiradi, natijani siz qaytarasiz — keyingi asbobni u o'zi tanlaydi.
-- 1-namuna — **Maqsad va chegara** (tugma: Nusxalash → ✓ Nusxalandi):
-```text
-MAQSAD: Buyurtmani qabul qilib, bazaga yozish.
-CHEGARA: Taom borligini tekshirmasdan buyurtma yozilmasin.
-```
-- 2-namuna — **Asboblar** (tugma: Nusxalash → ✓ Nusxalandi):
-```json
-[
-  {
-    "name": "checkOrder",
-    "description": "Taom borligini tekshiradi",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "taom": { "type": "string" },
-        "soni": { "type": "integer" }
-      },
-      "required": ["taom", "soni"]
-    }
-  },
-  {
-    "name": "saveOrder",
-    "description": "Buyurtmani bazaga yozadi",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "taom": { "type": "string" },
-        "soni": { "type": "integer" },
-        "manzil": { "type": "string" }
-      },
-      "required": ["taom", "soni", "manzil"]
-    }
-  }
-]
-```
-- Qadamlar (navbat bilan; bajarilgani ✓ bilan qatorga yig'iladi):
-  1. aistudio.google.com'ni oching (6-darsda temperature'ni shu yerda sinagansiz). **System instructions** maydoniga 1-namunani joylang.
-  2. O'ngdagi sozlamalarda **Function calling** ni yoqing, **Edit** ni bosing va 2-namunani joylang.
-  3. Xabar yozing: «2 ta Pepperoni, Chilonzor 5-kvartal». Model javob matnini yozmaydi — `checkOrder` ni chaqiradi. Asbobni tanlagani — Qaror.
-  4. Asbob o'rnida natijani o'zingiz yozing: `{ "bor": true }`. Model natijani ko'radi — bu yangi Idrok — va `saveOrder` ni chaqiradi.
+## 16 · Amaliyot · agent
+- Eyebrow: Amaliyot · agent
+- Sarlavha: Agentga ikki asbob bering: qaysisini chaqiradi?
+- Mentor: Darsda ko'rgan `checkOrder` va `saveOrder` endi haqiqiy funksiya bo'ladi — chaqirishni agent o'zi hal qiladi; **«1 · Ochish»**dan boshlang.
+- Qadamlar (navbat bilan; bajarilgani ✓ bilan qatorga yig'iladi, ↻ bilan qaytariladi):
+  1. **Ochish** — Antigravity'da `TelegramBotNest`, `npm run start:dev`. 6-dars kaliti `.env` da.
+  2. **Prompt** — «Nusxalash», Antigravity'ga.
+     - Prompt qutisi (Siz → Antigravity; tugma: Nusxalash → ✓ Nusxalandi):
+       - AiService ga Gemini function calling qo'sh. Ikki asbob: checkOrder(taom, soni) — taom PITSALAR da bormi, narxini qaytaradi; saveOrder(taom, soni, manzil) — BuyurtmaService.yoz bilan bazaga yozadi.
+       - System prompt'ga: «MAQSAD: buyurtmani qabul qilib bazaga yozish. CHEGARA: taom borligini tekshirmasdan buyurtma yozilmasin.»
+       - Model asbob chaqirsa — funksiyani bajar, natijani modelga qaytar, u keyingi qadamni o'zi tanlasin; oxirgi matnni mijozga yoz. Tugmalar va /start o'zgarmasin.
+  3. **Ishga tushirish** — terminal xatosiz; konsolga har asbob chaqiruvi yozilsin (`checkOrder → …`, `saveOrder → …`).
+     - Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
+  4. **Telegramda tekshirish** — «2 ta Pepperoni, Chilonzor 5» → konsolda avval `checkOrder`, keyin `saveOrder`; botda tasdiq; `/buyurtmalarim` da yangi qator. Keyin «3 ta Shaurma, Yunusobod» → `checkOrder` yo'q deydi, `saveOrder` chaqirilmaydi.
 - Tugma (har qadamda): Bajardim
-- Hammasi bajarilgach:
-  - **Qo'shimcha:** yangi suhbat ochib, natijaga `{ "bor": false }` yozing. Model `saveOrder` ni chaqiradimi?
-  - ✓ Bajarildi — Mentorni kuting · Agent ikki asbobni o'zi tanladi. Mentor tekshirib, keyingi qadamga o'tkazadi.
+- O'ng — kutilgan natija · namuna: AvtoPizza (chat):
+  - mijoz: 2 ta Pepperoni, Chilonzor 5
+  - bot: Tekshirdim: Pepperoni bor. Buyurtma saqlandi: 2 × Pepperoni · Chilonzor 5 — 110 000 so'm.
+  - mijoz: 3 ta Shaurma, Yunusobod
+  - bot: Shaurma menyuda yo'q — buyurtma yozilmadi. Pitsa tanlaysizmi?
+- Ortda qoldingizmi — mentor bilan `git checkout -f dars-10-done`
+- Repo: `TelegramBotNest` · teg `dars-10-done`
+- Hammasi bajarilgach (yashil): Keyingi qadamni agent tanladi, ishni siz yozgan asbob bajardi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
 ## 17 · Natijalar (podium) — jonli reyting
 Natijalar (podium) — jonli reyting
 
 ## 18 · Kartochkalar
-- 18-ekran · Eyebrow: Takrorlash
+- Eyebrow: Takrorlash
 - Sarlavha: O'zingizni sinab ko'ring.
+
 
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
@@ -343,9 +344,9 @@ Natijalar (podium) — jonli reyting
 - Tugmalar: Orqaga · Yakunlash →
 
 ## 19 · Yakun
-- 19-ekran · Eyebrow: Tayyor
-- Belgi: ✓ AI-agent qanday ishlashini bilasiz
-- Sarlavha: Endi AI-agent qanday ishlashini bilasiz. (yonida ball halqasi)
+- Eyebrow: Tayyor
+- Belgi: ✓ AI-agent qanday ishlashini bilasiz (yonida: N/5 to'g'ri)
+- Sarlavha: Endi AI-agent qanday ishlashini bilasiz.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Endi siz bilasiz
   - AI-bot javob matnini yozadi; AI-agent maqsad sari keyingi qadamni o'zi tanlab, asbob chaqiradi
@@ -357,7 +358,7 @@ Natijalar (podium) — jonli reyting
 - Uyga vazifa (bosilgach):
   - **Loyihalang** — o'z botingiz uchun bitta maqsad va 3–4 ta asbob yozing
   - **Chegaralang** — qaysi amal xavfli (pul yechish, bekor qilish)? Unga odam tasdig'ini qo'ying yoki bu asbobni bermang
-  - **Sinab ko'ring** — aistudio.google.com'da o'z botingizning ikki asbobini yozing va ikki xil xabarda model qaysi asbobni chaqirishini ko'ring
+  - **Sinab ko'ring** — agent.service.ts ga uchinchi asbob qo'shing (masalan, buyurtmani bekor qilish, odam tasdig'i bilan) va Telegramda sinang
 - Keyingi dars — **«Botingiz yaxshi ishlayotganini qaysi raqam aytadi?»** Botingiz foydali ekanini ko'rsatadigan bitta bosh raqamni va unga yordam beradigan uch raqamni tanlaymiz.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓

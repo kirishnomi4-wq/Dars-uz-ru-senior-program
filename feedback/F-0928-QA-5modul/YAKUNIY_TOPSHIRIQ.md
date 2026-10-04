@@ -46,3 +46,16 @@ Yozib bo'lgach: kodning `uz:` satrlaridan 30–40 tasini tasodifiy tanlab (`grep
 
 ## Hisobot (qisqa)
 Fayl yo'li · ekranlar soni · tasodifiy tekshiruv natijasi (N/N) · kod va v2 orasidagi farqlar ro'yxati (1 qatordan) · shubhali joylar. Turn-byudjeti ≤45.
+
+## 04.10 YANGILANISHI (5-Modulni yopish Q6 A, F-1004-60) — 12 dars koddan qayta yoziladi
+
+- **Manba — hamma 12 dars KODDAN** (`src/5-Modull/<FAYL>.jsx`, 11-dars `src/pm/PmMetricsLesson.jsx`). Kod — yagona haqiqat.
+  Ekranlar tartibi va nomi uchun yordamchi: 5/7/9 — `feedback/F-1002-mexanizm/<NN>-*-v2.md` (11 ekran, 172-qonun);
+  3/4/6/10 amaliyot ekrani — `feedback/F-1002-mexanizm/03-04-06-10-amaliyot-v2.md`; qolganlari — `feedback/F-0928-QA-5modul/<NN>-*-v2.md`.
+  Kod va v2 farq qilsa — KOD yutadi; farq hisobotga.
+- **Ekran soni** = `SCREEN_META`: 1·3·4·6·10 — 20 · 5·7·9 — 11 · 2·8·12 — 16 · 11 — 18.
+- **Amaliyot bloki** (5/7/9 A1–A3 va 3/4/6/10 amaliyot ekrani): qadamlar (sarlavha — matn), prompt qutisi (so'zma-so'z, `{…}` joylari bilan),
+  xato izohi, «Bajardim», kutilgan natija chati (xabarlar tartibda), «Ortda qoldingizmi — mentor bilan `git …`» qatori, repo teglari.
+- **Holat qatori:** `Holat: 04.10.2026 — kodga mos`.
+- Fayl nomi o'zgarmaydi (`YAKUNIY/<NN>-<Nom>.md` — eskisining ustiga yoziladi).
+- Boshqa qoidalar (format, faqat o'quvchi ko'radigan uz matn, so'zma-so'z, emoji yo'q, ✔, tasodifiy 30–40 satr tekshiruvi, hisobot) — yuqoridagidek.

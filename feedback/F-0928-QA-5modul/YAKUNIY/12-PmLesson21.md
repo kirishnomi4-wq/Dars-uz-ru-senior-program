@@ -1,7 +1,7 @@
 # 12-dars «Kecha kelgan odam bugun ham keldimi?» — yakuniy matn
 
 Fayl: `src/5-Modull/PmLesson21.jsx` · 16 ekran · Keyingi dars: «Zaxira dars»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — kecha kelgan odam
 - Eyebrow: Kirish · botingiz
@@ -66,10 +66,14 @@ Holat: 01.10.2026 — kodga mos
 - Tugma: ▶ Keyingi kun (3 marta) → Kanalga e'lon berish → (4- va 5-kun ketma-ket o'zi ochiladi)
   - E'lon tugmasi ostida: E'lon 4-kuni kanalga chiqadi.
   - E'londan keyin: Kunlar ketma-ket ochilmoqda.
-  - E'lon bosqichida 42 soniya harakatsiz tursa: Kanalga e'lon berish tugmasini bosing.
-- Xulosa (besh kun ochilgach): **Bu misolda e'lon kuni kelganlar 6 dan 23 ga oshdi, qaytganlar esa 4, 4, 4, 5 bo'lib qoldi.** Ko'p odam kelgani — ko'p odam qaytgani degani emas: ikki qatorni birga o'qing.
+- Bashorat (3 kun ochilgach, e'lon bosilguncha; yonidagi o'ng karta o'rnida, ballsiz):
+  - Savol: E'lon kuni pastki qator — qaytganlar — nima bo'ladi?
+  - Tanlov (3 ta): ↑ Ko'payadi · = Deyarli o'zgarmaydi · ↓ Kamayadi
+  - Tanlanmaguncha: E'lon tugmasi yopiq, bosh tugma yozuvi «Avval taxminingizni belgilang»; 42 soniya harakatsiz tursa: O'ngda taxminingizni belgilang.
+  - Tanlangach: bosh tugma yozuvi «E'lon tugmasini bosing»; 42 soniya harakatsiz tursa: Kanalga e'lon berish tugmasini bosing.
+- Xulosa (besh kun ochilgach): **Bu misolda e'lon kuni kelganlar 6 dan 23 ga oshdi, qaytganlar esa 4, 4, 4, 5 bo'lib qoldi.** (taxmin tanlangan bo'lsa, keyingi qator: Taxminingiz: <tanlangan variant> · haqiqatda: deyarli o'zgarmadi — «= Deyarli o'zgarmaydi» tanlangan bo'lsa oxirida ✓) Ko'p odam kelgani — ko'p odam qaytgani degani emas: ikki qatorni birga o'qing.
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
-- Tugmalar: Orqaga · Yana N kunni oching → E'lon tugmasini bosing → Yana N kunni oching → Davom etish
+- Tugmalar: Orqaga · Yana N kunni oching → Avval taxminingizni belgilang → E'lon tugmasini bosing → Yana N kunni oching → Davom etish
 
 ## 5 · 2-savol
 - Eyebrow: Tekshiruv · ikki son
@@ -83,9 +87,15 @@ Holat: 01.10.2026 — kodga mos
   - C: Jadvalga qarang: 5-kuni 8 odam keldi — e'lon har kuni takrorlanmaydi.
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
-## 6 · Haqiqiy misol · Duolingo
-- Eyebrow: Haqiqiy misol · Duolingo (bosqich yorlig'i: «Duolingo · n / 5»; bashoratda: «Avval o'zingiz tanlang · n / 5»)
+## 6 · Biznes olamidan · Duolingo
+- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Duolingo · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
 - Sarlavha: **Duolingo'dagi bitta raqam**
+- Sahna (tepada, bosqichga qarab o'zgaradi; chap tepada yorliq «duolingo»; o'ng tepada izoh):
+  - 1-bosqich: telefon, olov belgisi va raqam «7»
+  - 2-bosqich (javobdan keyin): yetti kun nuqtalar bilan; izoh: 7 kun ketma-ket
+  - 3-bosqich: bir kun tashlangan qator, raqam «0»; izoh: Bir kun tashlansa — 0
+  - 4-bosqich (javobdan keyin): qo'ng'iroq belgisi; izoh: Kunlik eslatma
+  - 5-bosqich: yetti kun va qo'ng'iroq; izoh: Kecha bor edi — bugun ham?
 - Bosqichlar:
   1. **Duolingo — til o'rgatadigan ilova.** — Ekran tepasida olov belgisi va uning yonida raqam turadi. Bu raqam darslaringiz sonini emas, boshqa narsani sanaydi.
   2. Bashorat: **Olov belgili raqam nimani sanaydi?**
@@ -93,14 +103,14 @@ Holat: 01.10.2026 — kodga mos
      - ✔ Ketma-ket dars qilgan kunlaringizni
      - Ilovada o'tkazgan umumiy vaqtingizni
      - Topsa: Aynan! U ketma-ket dars qilgan kunlaringizni sanaydi. · Adashsa: Qiziq fikr! Aslida u ketma-ket dars qilgan kunlaringizni sanaydi.
-  3. **Raqam kunlarni sanaydi** — chizma, ikki qator: yetti kun ketma-ket — raqam 7 gacha o'sadi · 4-kun tashlangan — raqam 0 ga tushadi — Kecha ham, bugun ham dars qilgan bo'lsangiz, raqam bittaga o'sadi. Bir kunni tashlab ketsangiz, u noldan boshlanadi — o'sha kunga «muzlatish» qo'yilmagan bo'lsa. Ilovada bu raqam «streak» deb ataladi.
+  3. **Raqam kunlarni sanaydi** — Kecha ham, bugun ham dars qilgan bo'lsangiz, raqam bittaga o'sadi. Bir kunni tashlab ketsangiz, u noldan boshlanadi — o'sha kunga «muzlatish» qo'yilmagan bo'lsa. Ilovada bu raqam «streak» deb ataladi.
   4. Bashorat: **Raqam uzilib qolmasligi uchun ilova nima qiladi?**
      - Yangi darslar ro'yxatini ochadi
      - ✔ Kunlik eslatma xabarini yuboradi
      - Reklamani butunlay o'chirib qo'yadi
      - Topsa: Aynan! Ilova eslatma xabarini yuboradi. · Adashsa: Qiziq fikr! Aslida ilova eslatma xabarini yuboradi.
   5. Bu raqam har kuni bitta narsani tekshiradi: kecha dars qilgan odam bugun ham qildimi. Sizning botingizda ham shu savol: kecha kelgan odam bugun ham keldimi?
-- Tugmalar: Orqaga · Avval o'zingiz tanlang · Keyingi bosqich (n/5) → Davom etish · nuqtalar ustida: Avval shu bosqichni tugating
+- Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring · Keyingi bosqich (n/5) → Davom etish · nuqtalar ustida: Avval shu bosqichni tugating
 
 ## 7 · 3-savol
 - Eyebrow: Tekshiruv · raqam qachon o'sadi
@@ -115,7 +125,7 @@ Holat: 01.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 8 · Uch kun
-- Eyebrow: Mustaqil ish · uch kun
+- Eyebrow: Mustaqil ish
 - Sarlavha: **Botingizning uch kunini yozing.**
 - Lenta (8-darsda javoblar yozilgan bo'lsa): 8-darsda eshitgan javoblaringiz: {1} · {2} · {3}
 - Mentor (1-kunning birinchi soni yozilguncha): (lenta bo'lsa) 8-darsda odam nima deganini eshitgansiz — endi sonlarga qaraymiz. Namunadagidek, o'z botingizning uch kunini yozing; aniq son bo'lmasa, taxminiy son yozing. / (bo'lmasa) Namunadagidek, o'z botingizning uch kunini yozing; aniq son bo'lmasa, taxminiy son yozing.
@@ -180,7 +190,6 @@ Holat: 01.10.2026 — kodga mos
     - Bugungilarni birma-bir oling va `kechagilar.includes(...)` bilan tekshiring — `includes` ni o'tgan darsdagi `stat` funksiyasida ishlatgansiz.
     - Qo'shimcha: uch kunning qaytgan sonlarini qo'shib, jami nechta qaytish bo'lganini ham chiqaring.
   - Karta: **Uch kun — bitta funksiya** · Kod oynasi: chapda kod yozasiz, o'ngda natija chiqadi. · Tugma: Kod oynasini ochish (bajarilgach: ↻ Kod oynasini qayta ochish · Bajarildi — xohlasangiz kodni yana sayqallang)
-  - (mustaqil rejimda) ✓ Bu kodni sinfda yozganman →
   - Bajarilgach: ✓ Uchta obyekt chiqdi — endi qaytganlarni kod sanaydi.
   - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
 - Kod oynasi:

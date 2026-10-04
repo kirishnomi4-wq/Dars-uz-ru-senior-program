@@ -1,0 +1,251 @@
+{
+ "file": "src/5-Modull/PmLesson21.jsx",
+ "lessonId": "pm-m5d11-v1",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Seshanba kuni 5 odam keldi, ulardan 3 tasi dushanba ham kelgan edi. Kim qaytgan?",
+     "b": "B Dushanba ham, seshanba ham kelgan uch odam",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "B Dushanba ham, seshanba ham kelgan uch odam",
+     "b": "C Dushanba kelmay, seshanba kelgan ikki odam",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "B Dushanba ham, seshanba ham kelgan uch odam",
+     "b": "Besh odam seshanba kelgan, lekin ularning hammasi dushanba ham kelgan emas.",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Seshanba kuni 5 odam keldi, ulardan 3 tasi dushanba ham kelgan edi. Kim qaytgan?",
+     "b": "✓ Dushanba ham, seshanba ham kelgan uch odam",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "✓ Dushanba ham, seshanba ham kelgan uch odam",
+     "b": "C Dushanba kelmay, seshanba kelgan ikki odam",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Seshanba kuni 5 odam keldi, ulardan 3 tasi dushanba ham kelgan edi. Kim qaytgan?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "E'lon kuni 23 odam keldi, ertasiga ulardan 5 tasi qaytdi. Bu nimani ko'rsatadi?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Duolingo'dagi olov belgili raqam o'sishi uchun odam nima qilishi kerak?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "koding",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Chorshanba kuni 15 odam keldi, ulardan 4 tasi seshanba ham kelgan edi. Hisobga nimani yoza",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "reflection",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

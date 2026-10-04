@@ -1,0 +1,269 @@
+{
+ "file": "src/5-Modull/PmLesson19.jsx",
+ "lessonId": "pm-m5d2-v1",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Bot bir hafta ishlab turdi, siz hech kimga aytmadingiz. Nechta odam yozdi?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Bot havolasini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Sayt bitta universitetda tez tarqaldi. Buni nima tezlashtirdi?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 10,
+   "id": "s10",
+   "type": "koding",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "Jami: 24 odam · Yigirmata odam bor",
+     "b": "Jami: 20 odam · Yigirmata odam bor",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Kod uchta guruhning odam sonini qo'shadi. Jami 20 dan kam bo'lsa — «Yana ... odam kerak», aks holda — «Yigirma",
+     "b": "Jami: 24 odam · Yana 4 odam kerak",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Kod uchta guruhning odam sonini qo'shadi. Jami 20 dan kam bo'lsa — «Yana ... odam kerak», aks holda — «Yigirma",
+     "b": "Jami: 24 odam · Yigirmata odam bor",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Kod uchta guruhning odam sonini qo'shadi. Jami 20 dan kam bo'lsa — «Yana ... odam kerak», aks holda — «Yigirma",
+     "b": "Jami: 20 odam · Yigirmata odam bor",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "Kod uchta guruhning odam sonini qo'shadi. Jami 20 dan kam bo'lsa — «Yana ... odam kerak», aks holda — «Yigirma",
+     "b": "Uchta guruhda 13, 7 va 4 odam bor. Kod nima chiqaradi?",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 83,
+     "left": "kdpanel",
+     "right": "klaunch",
+     "hs": [
+      208,
+      125
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "B Bir-ikki odam — ochganlar ham ishlatmay qo'yadi",
+     "b": "Ochganlar bo'ladi, lekin ishlatmay qo'yadi: notanish odam botni odatda ochib ko'radi va yopadi.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Bot havolasi 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "reflection",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

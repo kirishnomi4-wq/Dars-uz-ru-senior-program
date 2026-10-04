@@ -1,0 +1,341 @@
+{
+ "file": "src/pm/PmMetricsLesson.jsx",
+ "lessonId": "pm-m5d11-metrika-v1",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Sizdan «Botingiz qanday ishlayapti?» deb so'rashdi. Qaysi javobni sanab tekshirib bo'ladi?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 4,
+   "id": "s4",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "O'tgan dushanba /stat Jami: 100 Bu dushanba /stat Jami: 120",
+     "box": "s4bet fade-step",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Kecha 10 odam keldi. Ulardan 3 tasi bugun ham keldi. Bu qaysi raqam haqida?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.64,
+     "a": "Dushanba 40 odam keldi, seshanba ulardan 8 tasi qaytdi",
+     "b": "Payshanba 10 odam keldi, juma ulardan 4 tasi qaytdi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 8,
+   "id": "s8",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.68,
+     "a": "A Ikkinchi kunda — 6 odamdan 3 tasi",
+     "b": "B Birinchi kunda — 20 odamdan 5 tasi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "✓ Ikkinchi kunda — 6 odamdan 3 tasi",
+     "b": "B Birinchi kunda — 20 odamdan 5 tasi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Bir kuni 20 odamdan 5 tasi qaytdi, boshqa kuni 6 odamdan 3 tasi. Qaysi kunda foiz katta?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Joy band qilinadigan sayt",
+     "b": "Booking.com — mehmonxonada yoki ijara uyda oldindan joy band qilinadigan sayt. U yerda deyarli har bir o'zgari",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "koding",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "8 { telegram_id: 101, kerakli: true }, // Kamola",
+     "b": "10 { telegram_id: 101, kerakli: true }, // Kamola",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "8 { telegram_id: 101, kerakli: true }, // Kamola",
+     "b": "{ telegram_id: 101, kerakli: true }, // Kamola",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "{ telegram_id: 101, kerakli: true }, // Kamola",
+     "b": "10 { telegram_id: 101, kerakli: true }, // Kamola",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "{ telegram_id: 101, kerakli: true }, // Kamola",
+     "b": "{ telegram_id: 101, kerakli: true }, // Kamola",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "11-ekranda yozuvdan qo'lda sanaganingizni endi kod sanaydi — o'sha seshanba yozuvidan. Kodda ikki joyni siz to",
+     "b": "1 // bot.js — bot.launch() qatoridan oldin qo'shing.",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "11-ekranda yozuvdan qo'lda sanaganingizni endi kod sanaydi — o'sha seshanba yozuvidan. Kodda ikki joyni siz to",
+     "b": "// bot.js — bot.launch() qatoridan oldin qo'shing.",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "✓ Kechagi har yuzta odamdan 5 tasi bugun ham keldi",
+     "b": "Foiz shuni aytadi: kechagi yuzta odamdan 5 tasi bugun ham keldi.",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.75,
+     "a": "✗ Bot tez o'syapti: jami 300 ga yetdi",
+     "b": "300 — jami yig'ilgan odam: u faqat o'sadi, bot tez o'syaptimi — buni aytmaydi.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "/stat javobi: jami 300, bugun 6, qaytganlar foizi 5. Bu javobdan nimani bilasiz?",
+     "box": "fade-up delay-1",
+     "gap": 9
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 14,
+   "id": "s14",
+   "type": "reflection",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 16,
+   "id": "s16",
+   "type": "flashcard",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

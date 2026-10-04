@@ -1,12 +1,12 @@
 # 1-dars «Bot nima» — yakuniy matn
 
 Fayl: `src/5-Modull/BotIntroLesson.jsx` · 20 ekran · Keyingi dars: «Botingizni birinchi kim ochadi?»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — 03:00
 - Eyebrow: Kirish
-- Sarlavha: Soat 03:00. Siz uxlayapsiz. Mijoz botga yozdi — kim javob beradi?
-- Mentor: Tasavvur qiling: siz AvtoPizza uchun Telegram-bot yozgansiz. Tugmani bosing va nima bo'lishini ko'ring.
+- Sarlavha: Soat 03:00. Mijoz yozdi — kim javob beradi?
+- Mentor: Tasavvur qiling: siz AvtoPizza uchun Telegram-bot yozgansiz va hozir uxlayapsiz. Tugmani bosing va nima bo'lishini ko'ring.
 - Chat (AvtoPizza · bot · onlayn):
   - mijoz: Salom, hali ochiqmisiz?
   - bot: Salom! Ha, buyurtma qabul qilyapmiz. Menyuni ko'rasizmi?
@@ -17,13 +17,13 @@ Holat: 01.10.2026 — kodga mos
   - ✔ Bot — men uxlaganimda ham o'zi javob berdi
   - Hech kim — mijoz kutib, ketib qoldi
 - Javob izohlari:
-  - 2-variant: **Aynan!** Javobni bot berdi. Telegram botni shunday ta'riflaydi: odam emas, dastur boshqaradigan akkaunt. Dasturi ishlab tursa, bot kechasi ham javob beradi. Bugun u qanday ishlashini ko'ramiz.
-  - 1 yoki 3-variant: **Qiziq fikr!** Chatga qarang: javob 03:00 da, siz uxlab yotganingizda keldi. Uni bot yubordi — dastur boshqaradigan Telegram akkaunti. Bugun u qanday ishlashini ko'ramiz.
+  - 2-variant: **Aynan!** Javobni bot berdi: u odam emas, dastur boshqaradigan akkaunt. Dasturi ishlab tursa, kechasi ham javob beradi.
+  - 1 yoki 3-variant: **Qiziq fikr!** Chatga qarang: javob 03:00 da keldi, siz uxlab yotgan edingiz. Demak, javobni bot berdi.
 - Tugma: Davom etish
 
 ## 1 · Reja
 - Eyebrow: Reja
-- Sarlavha: Bugun: bot xabarni qanday qabul qiladi va qanday javob beradi.
+- Sarlavha: Bugun: bot xabarga qanday javob beradi?
 - Mentor: JS darslarida hodisani ko'rgansiz: tugma bosiladi — kod ishlaydi. Bot ham shunday: xabar keladi — handler ishlaydi va javob yuboradi.
 - Chizma: /start (hodisa) → bot.start (handler) → Salom! (javob)
 - Bugungi 4 qadam:
@@ -52,7 +52,7 @@ Holat: 01.10.2026 — kodga mos
   - Siz — Uxlab yotibsiz. Xabar javobsiz qoladi, uni ertalab ko'rasiz.
   - Oddiy skript — Yuqoridan pastga bir marta ishlaydi va tugaydi. Xabar kelganda u allaqachon to'xtagan — xabarni ko'rmaydi.
   - Bot — Dasturi ishlab turibdi va hodisani kutyapti. Xabar kelishi bilan mos handler ishlaydi va javob ketadi.
-- Xulosa: Farq shunda: skript ishlab tugaydi, bot esa ishlab turadi va keyingi hodisani kutadi. Shuning uchun dasturi yoniq tursa, bot kechasi ham javob beradi.
+- Xulosa: Skript ishlab tugaydi; bot ishlab turadi va keyingi hodisani kutadi. Shuning uchun kechasi ham javob beradi.
 - Tugma: Uchalasini sinang (N/3) → Davom etish
 
 ## 4 · 1-savol
@@ -107,12 +107,12 @@ Holat: 01.10.2026 — kodga mos
   BOT_TOKEN=7***:AA***xZ
   ```
 - Bot holati: oflayn — token yo'q · xavfda — tokenni notanish odam oldi · botni boshqa odam ham boshqaryapti · onlayn — token sizda
-- Xulosa: Token kimda bo'lsa, botni o'sha boshqaradi. Shuning uchun token kodga yozilmaydi — .env faylida saqlanadi, xuddi backend darslaridagi sirlar kabi.
+- Xulosa: Token kimda bo'lsa, botni o'sha boshqaradi. Shuning uchun u kodga emas, .env fayliga yoziladi.
 - Tugma: Voqeani oxirigacha ko'ring → Davom etish
 
 ## 7 · 03:00 sinovi
 - Eyebrow: Markaziy · handlerlar
-- Sarlavha: Bugun AvtoPizza botining handlerlarini o'zingiz yozasiz.
+- Sarlavha: Botning handlerlarini o'zingiz yozasiz.
 - Mentor: Har qatorga hodisani va unga javobni tanlang. Hamma qator to'lmasa ham botni ishga tushirib ko'rishingiz mumkin — xato bo'lsa, tuzatib, qayta sinaysiz.
 - Handlerlar (bot.js) — 5 qator, har qatorda: hodisa → javob
 - hodisalar: /start · «Menyu» tugmasi · /help · Boshqa har qanday xabar · /settings · Rasm yuborildi
@@ -122,8 +122,8 @@ Holat: 01.10.2026 — kodga mos
 - Mijozlar: Aziza · /start · Bek · «Menyu» tugmasi · Dilnoza · /help · Sardor · «Pitsa bormi?»
 - Mijoz natijasi: Javob oldi · Javobsiz qoldi — ketib qoldi · «Nima? Men hali hech narsa buyurtma qilmadim» · <javob> (mos emas)
 - Sanoq: Javob oldi N/4 · Ketib qoldi N
-- Xato bo'lsa: Handlerlarni tuzating: har hodisaga to'g'ri javob ulansin. Hech biriga mos kelmagan xabar uchun oxirgi qatorga fallback handler kerak.
-- Muvaffaqiyat: 4/4 — hamma javob oldi, Sardor ham: uning xabariga fallback handler javob berdi. Bu botda javob faqat siz yozgan handlerdan keladi.
+- Xato bo'lsa: Bir javob noto'g'ri hodisaga ulangan — qayta tekshiring.
+- Muvaffaqiyat: 4/4 — Sardor ham javob oldi: unga fallback handler javob berdi. Javob faqat siz yozgan handlerdan keladi.
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (birinchi urinish xato bo'lsa: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.)
 - Tugma: Sinovni yakunlang → Davom etish
 
@@ -149,12 +149,16 @@ Holat: 01.10.2026 — kodga mos
 - Eyebrow: Hayotiy · bir vaqtda
 - Sarlavha: Uch mijoz bir vaqtda yozdi. Bot adashadimi?
 - Mentor: Avval har mijozni alohida bosing, keyin «Uchalasi birdan yozsin» tugmasini bosing.
-- Qatorlar:
-  - Aziza — /start → salom va menyu
-  - Bek — «Menyu» tugmasi → taomlar ro'yxati
-  - Dilnoza — /help → yordam matni
+- Chapda mijoz tugmalari (bosilganda mijoz xabari va bot javobi chatda chiqadi):
+  - Aziza — /start
+  - Bek — «Menyu» tugmasi
+  - Dilnoza — /help
 - Tugma: ▶ Uchalasi birdan yozsin → ✓ Uchalasi o'z javobini oldi
-- Xulosa: Har xabar — alohida hodisa. Bot har biri uchun o'z handlerini ishga tushiradi, shuning uchun javoblar aralashib ketmaydi.
+- O'ngda chat (AvtoPizza):
+  - Aziza: /start → bot: Salom! Buyurtma uchun «Menyu» ni bosing.
+  - Bek: Menyu → bot: Taomlar: Margarita, Pepperoni, To'rt pishloq.
+  - Dilnoza: /help → bot: Yordam: /start — boshlash, /help — shu matn.
+- Xulosa: Har xabar — alohida hodisa. Bot har biriga o'z handlerini ishga tushiradi — javoblar aralashmaydi.
 - Tugma: Uchalasini birdan sinang → Davom etish
 
 ## 10 · 3-savol
@@ -182,7 +186,7 @@ Holat: 01.10.2026 — kodga mos
 - Kartalar (chizma: Bot — Telegram):
   - Polling — Bot Telegram'dan qayta-qayta so'raydi: «Yangi xabar bormi?». Sozlash oson, shuning uchun o'rganishda shu usul ishlatiladi.
   - Webhook — Yangi xabar kelganda Telegram uni o'zi botning internetdagi manziliga (URL) yuboradi. Buning uchun botga internetda ochiq manzil kerak.
-- Xulosa: Ikkala usul ham xabarni botga yetkazadi. Darslarda avval polling bilan ishlaymiz; webhook'ni 7-darsda, botni serverga joylaganda yana ko'rasiz.
+- Xulosa: Ikkala usul ham xabarni botga yetkazadi. Avval polling bilan ishlaymiz, webhook — 7-darsda.
 - Tugma: Ikkala usulni sinang (N/2) → Davom etish
 
 ## 12 · To'liq suhbat
@@ -200,7 +204,7 @@ Holat: 01.10.2026 — kodga mos
   3. hodisa: taom tanlandi → manzil so'raladi
   4. hodisa: manzil keldi → buyurtma tasdiqlandi
 - Tugma: ▶ Suhbatni boshlash → Keyingi xabar → → ✓ Buyurtma yakunlandi
-- Xulosa: 4 hodisa — 4 javob. Lekin 4-qadamda bot qaysi pitsa tanlanganini eslab qolishi kerak — buning uchun holat kerak. Uni 4-darsda qo'shamiz.
+- Xulosa: 4 hodisa — 4 javob. 4-qadamda bot tanlangan pitsani eslab qolishi kerak — bu holat, uni 4-darsda qo'shamiz.
 - Tugma: Suhbatni davom ettiring (N/4) → Davom etish
 
 ## 13 · Handlerlar kodda
@@ -236,7 +240,7 @@ Holat: 01.10.2026 — kodga mos
   - forward — xabarni boshqa joyga uzatadi, bu javob emas.
   - start — faqat /start buyrug'i uchun; bu yerda «Menyu» matni keladi.
   - stop — botni to'xtatadi, handler emas.
-- Muvaffaqiyat: To'g'ri: `bot.start` — /start uchun handler, `bot.hears` — matnli xabar uchun handler, `ctx.reply` — javob yuborish.
+- Muvaffaqiyat: `bot.start` — /start, `bot.hears` — matn, `ctx.reply` — javob.
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (birinchi urinish xato bo'lsa: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.)
 - Tugma: Bo'shliqlarni to'ldiring → Davom etish
 
@@ -260,7 +264,7 @@ Holat: 01.10.2026 — kodga mos
 
 ## 15 · Siklni yig'ing
 - Eyebrow: Yakuniy · amaliy
-- Sarlavha: Oxirgi qadam: botning ish siklini to'g'ri tartibda yig'ing.
+- Sarlavha: Oxirgi qadam: botning ish siklini tartibga soling.
 - Mentor: Bo'laklarni sudrab to'g'ri tartibga qo'ying.
 - Bo'laklar (✔ to'g'ri tartib; ekranda aralash):
   1. Kutadi

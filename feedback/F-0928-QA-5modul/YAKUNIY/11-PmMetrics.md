@@ -1,7 +1,7 @@
 # 11-dars «Botingiz yaxshi ishlayotganini qaysi raqam aytadi?» — yakuniy matn
 
 Fayl: `src/pm/PmMetricsLesson.jsx` · 18 ekran · Keyingi dars: «Kecha kelgan odam bugun ham keldimi?»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — qaysi raqam
 - Eyebrow: Kirish · botingiz
@@ -122,9 +122,10 @@ Holat: 01.10.2026 — kodga mos
   - C: Ikkala kunda ham odam qaytgan, lekin foizlari har xil: 25 va 50.
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
-## 9 · Haqiqiy misol · Booking.com
-- Eyebrow: Haqiqiy misol (bosqich yorlig'i: «Booking.com · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
+## 9 · Booking.com
+- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Booking.com · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
 - Sarlavha: **Booking.com'dagi yangi tugma rangi.**
+- Sahna (rasm; Booking.com nomi yorlig'i bilan; har bosqichda bitta kadr, yozuvi o'ng yuqorida): Saytga kirganlar · Yangi rang — bir qismiga (bashoratga javob berilgach) · Ikki guruh solishtiriladi (ikkinchi bashoratga javob berilgach) · Yaxshirog'i qoladi (4- va 5-bosqich)
 - Bosqichlar:
   1. **Joy band qilinadigan sayt** — Booking.com — mehmonxonada yoki ijara uyda oldindan joy band qilinadigan sayt. U yerda deyarli har bir o'zgarish — tugma rangi, matn, sahifadagi bo'limlar tartibi — **hammaga birdan ko'rsatilmaydi**.
   2. Bashorat: **Yangi tugma rangi avval kimga ko'rsatiladi?**
@@ -196,7 +197,7 @@ Holat: 01.10.2026 — kodga mos
 
 ## 12 · Koding · VS Code
 - Eyebrow: Koding · VS Code
-- Sarlavha: **Botingiz raqamlarni o'zi aytadigan /stat buyrug'ini yozamiz.**
+- Sarlavha: **/stat: bot raqamlarni o'zi aytadi.**
 - 1-bosqich:
   - Mentor: Avval bitta savol — keyin kod yoziladi.
   - Savol: `bot.command('stat', …)` qachon ishlaydi?
@@ -211,7 +212,7 @@ Holat: 01.10.2026 — kodga mos
     - Kelganlarni yig'adigan uch qatorga qarang: keragini olganlar uchun shartga **bitta narsa** qo'shiladi — `j.kerakli &&`.
     - Bot ishga tushmasa — bot.launch() qatoridan oldin **console.log(stat(javoblar));** yozing va terminalda **node bot.js** bilan natijani ko'ring. Terminalda `{ bugun: 4, kerakli: 2 }` chiqsa — vazifa bajarilgan.
     - Qo'shimcha: javobga uchinchi qator qo'shing — bugun kelganlarning necha foizi keragini oldi (2 ÷ 4 × 100 = 50).
-  - Tugma: Bajardim — bot /stat ga javob berdi → ✓ Bajarildi · (mustaqil rejimda) ✓ Bu mashqni sinfda bajarganman — davom etish →
+  - Tugma: Bajardim — bot /stat ga javob berdi → ✓ Bajarildi
   - VS Code oynasi: bot.js · qo'lda yoziladi (sichqoncha ustida: Kod nusxalanmaydi — o'zingiz terib yozasiz)
   - Kod:
     ```js

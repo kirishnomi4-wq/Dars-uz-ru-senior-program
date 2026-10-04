@@ -1,0 +1,384 @@
+{
+ "file": "src/5-Modull/BotAiAgentLesson.jsx",
+ "lessonId": "bot-ai-agent-05-10-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring",
+     "b": "2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring",
+     "b": "BAZA saveOrder() yangi buyurtma: 2 ta Pepperoni, Chilonzor 5-kvartal arrangeDelivery() → kuryer belgilandi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "2 ta Pepperoni, Chilonzor 5-kvartal. Buyurtmani rasmiylashtiring",
+     "b": "saveOrder() yangi buyurtma: 2 ta Pepperoni, Chilonzor 5-kvartal",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 20,
+     "left": "tg",
+     "right": "tg",
+     "hs": [
+      181,
+      201
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 42,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "O'tgan darsda botni mijozlar fikriga qarab o'zingiz yaxshiladingiz. Bugun botga maqsad berasiz: keyingi qadamn",
+     "b": "SIZ BERASIZ: Maqsad · Asboblar · Chegara",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "AGENT: Idrok → Qaror → Amal ↻ (maqsadga yetguncha)",
+     "b": "2. Agent sikli: Idrok → Qaror → Amal",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "AGENT: Idrok → Qaror → Amal ↻ (maqsadga yetguncha)",
+     "b": "Agent sikli: Idrok → Qaror → Amal",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "SIZ BERASIZ: Maqsad · Asboblar · Chegara",
+     "b": "4. Maqsad, asboblar va chegara bilan agent qurish",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "SIZ BERASIZ: Maqsad · Asboblar · Chegara",
+     "b": "Maqsad, asboblar va chegara bilan agent qurish",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NECHA QADAM?",
+     "box": "sk-info",
+     "gap": 8
+    },
+    {
+     "pos": "tepada",
+     "t": "NIMA BILAN ISHLAYDI?",
+     "box": "sk-info",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Maqsad: Buyurtmani qabul qilish Idrok → Qaror → Amal ↻",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Maqsad: Buyurtmani qabul qilish Idrok → Qaror → Amal ↻",
+     "box": "mentor fade-up  ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "Maqsad: Buyurtmani qabul qilib, yetkazishga tayyorlash",
+     "b": "MAQSAD: Buyurtmani qabul qilib, yetkazishga tayyorlash",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Agentni quring: maqsad, asboblar, chegara.",
+     "b": "Agentga uch narsani siz berasiz: nima qilsin (maqsad), nima bilan qilsin (asboblar), nimani so'ramasdan qilmas",
+     "am": false,
+     "bm": true
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ASBOBLAR?",
+     "box": "pick-row ",
+     "gap": 6
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi.",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "claim-row fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 41,
+     "left": "sk-info fade-step",
+     "right": "tg",
+     "hs": [
+      101,
+      142
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "MIJOZ KO'RADIGAN CHAT",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "AGENT QADAMLARI (MIJOZ ULARNI KO'RMAYDI)",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Idrok Mijoz: «2 ta Pepperoni, Chilonzor 5-kvartal». Agent xabarni o'qidi.",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 55,
+     "left": "dd-slot   ",
+     "right": "dd-pool",
+     "hs": [
+      58,
+      113
+     ]
+    },
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

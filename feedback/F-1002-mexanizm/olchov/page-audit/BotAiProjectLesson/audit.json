@@ -1,0 +1,281 @@
+{
+ "file": "src/5-Modull/BotAiProjectLesson.jsx",
+ "lessonId": "bot-ai-project-05-05-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Kodni AI yozadi. Qaysi prompt yaxshiroq bot beradi?",
+     "b": "QAYSI PROMPT YAXSHIROQ BOT BERADI?",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QAYSI PROMPT YAXSHIROQ BOT BERADI?",
+     "box": "fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "BUGUNGI BOT",
+     "box": "tg",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "VIKTORINA BOTI — REJASI",
+     "box": "wire fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "AVTOPIZZA BOTI — REJASI",
+     "box": "wire fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 25,
+     "left": "pick-row  next",
+     "right": "prompt-card live",
+     "hs": [
+      41,
+      66
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "QISMLARNI QO'SHING",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "SIZNING PROMPTINGIZ",
+     "box": "prompt-card live",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 29,
+     "left": "frame",
+     "right": "sk-info fade-step",
+     "hs": [
+      195,
+      166
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1 · Reja /start → qisqa qo'llanma · eslatma matni → saqlaydi · /royxat → hamma eslatmalar.",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 55,
+     "left": "dd-slot   ",
+     "right": "dd-pool",
+     "hs": [
+      58,
+      113
+     ]
+    },
+    {
+     "diff": 51,
+     "left": "dd-slot filled  ",
+     "right": "dd-pool",
+     "hs": [
+      62,
+      113
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

@@ -1,0 +1,372 @@
+{
+ "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+ "lessonId": "bot-api-buttons-05-02-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1-darsda: @BotFather botingizni ochdi va token berdi — 7***:AA***xZ",
+     "box": "tg",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "1-darsda hodisa → handler → javob modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menyuda uch",
+     "b": "4. Buyruqlar, inline tugma va reply klaviatura",
+     "am": true,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "1-darsda hodisa → handler → javob modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menyuda uch",
+     "b": "Buyruqlar, inline tugma va reply klaviatura",
+     "am": true,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "DARS OXIRIDA BU MENYUNING HAR QISMINI TUSHUNTIRIB BERA OLASIZ",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Buyruq — / bilan boshlanadigan xabar: /start, /help, /menu.",
+     "box": "tg",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "// .env faylini process.env ga yuklaydi",
+     "b": "Xuddi «Autentifikatsiya va .env» darsidagi JWT_SECRET kabi: kodda token yo'q, faqat uning nomi — process.env.B",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "XATO: TOKEN KODDA OCHIQ",
+     "box": "editor",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "TO'G'RI: TOKEN .ENV FAYLIDA",
+     "box": "editor",
+     "gap": 16
+    }
+   ],
+   "scroll": 39,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 50,
+     "left": "editor",
+     "right": "sk-info fade-step",
+     "hs": [
+      146,
+      96
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 91,
+     "left": "env-card",
+     "right": "sk-info fade-step",
+     "hs": [
+      187,
+      96
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "Inline tugma — xabarning tagida, unga yopishib turadigan tugma.",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Markup — Telegraf'ning tugma yasaydigan yordamchisi.",
+     "box": "editor",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "1-QADAM · BUYRUQ",
+     "box": "btn",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AZIZA — «NARXLAR» TUGMASINI BOSDI, JAVOB KUTYAPTI",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "bot.js bot.hears('Narxlar', (ctx) => { ctx.telegram.sendMessage(VALI_ID, \"Pitsa — 30 000 s",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "ctx.telegram.sendMessage(id, matn) — matnni ko'rsatilgan id'dagi chatga yuboradi.",
+     "box": "DIV",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "VALI — HECH NARSA SO'RAMAGAN",
+     "box": "tg",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "bot.js bot.hears('Narxlar', (ctx) => { ctx.reply(\"Pitsa — 30 000 so'm\") }) // ctx.reply — ",
+     "box": "tg",
+     "gap": 16
+    }
+   ],
+   "scroll": 2,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.72,
+     "a": "Salom! Menyu uchun /menu ni bosing.",
+     "b": "bot.on('text', (ctx) => ctx.reply('Tushunmadim. Menyu uchun /menu ni bosing.'))",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.72,
+     "a": "Salom! Menyu uchun /menu ni bosing.",
+     "b": "'Tushunmadim. Menyu uchun /menu ni bosing.'",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "/start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "b": "✓ /start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 1,
+     "a": "/start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "b": "/start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Suhbatni boshlaydi: salom va menyu yuboradi",
+     "b": "/start botni o'chirmaydi — u suhbatni boshlaydi: bot salom va menyu yuboradi.",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Buyruqlar: /start — Suhbatni boshlaydi: salom va menyu yuboradi /help — ____ /menu — ____",
+     "b": "✓ /start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.9,
+     "a": "Buyruqlar: /start — Suhbatni boshlaydi: salom va menyu yuboradi /help — ____ /menu — ____",
+     "b": "/start — Suhbatni boshlaydi: salom va menyu yuboradi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "blank-group fade-step",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

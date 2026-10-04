@@ -190,12 +190,12 @@ const MODULES = [
     lessons: [
       { key: 'm5-01', n: 1,  type: 'Kod',     emoji: '🤖', title: 'Bot nima',                     sub: 'hodisaga javob beradigan mantiq: signal keladi, bot amal qiladi', comp: BotIntroLesson },
       { key: 'm5-03', n: 3,  type: 'Kod',     emoji: '🎛️', title: 'Telegram Bot API + tugmalar',  sub: 'BotFather, token, /start, inline', comp: BotApiButtonsLesson },
-      { key: 'm5-04', n: 4,  type: 'Kod',     emoji: '🧠', title: 'Stateful logika + PostgreSQL', sub: 'bot eslab qoladi, ma\'lumot saqlaydi', comp: BotStatefulMemoryLesson },
+      { key: 'm5-04', n: 4,  type: 'Kod',     emoji: '🧠', title: 'Bot eslab qoladi — holat va PostgreSQL', sub: 'bot eslab qoladi, ma\'lumot saqlaydi', comp: BotStatefulMemoryLesson },
       { key: 'm5-05', n: 5,  type: 'Proyekt', emoji: '🪄', title: 'Loyiha kuni: AI bilan bot',    sub: 'promptlar bilan istalgan Telegram bot', comp: BotAiProjectLesson },
       { key: 'm5-06', n: 6,  type: 'Proyekt', emoji: '💡', title: 'Bot ichida AI',                sub: 'AI API\'ni ulash, xulq sozlash', comp: BotAiBrainLesson },
       { key: 'm5-07', n: 7,  type: 'Proyekt', emoji: '📦', title: 'Loyiha kuni: bot + DB + AI',   sub: 'to\'liq ishlaydigan bot + hosting', comp: BotFullProjectLesson },
-      { key: 'm5-09', n: 9,  type: 'Proyekt', emoji: '🔁', title: 'Fikr va iteratsiya',           sub: 'foydalanuvchi nima dedi va nimani tuzatamiz', comp: BotFeedbackIterationLesson },
-      { key: 'm5-10', n: 10, type: 'Proyekt', emoji: '🦾', title: 'AI-agent yaratish',            sub: 'idrok, qaror va amal aylanmasi', comp: BotAiAgentLesson },
+      { key: 'm5-09', n: 9,  type: 'Proyekt', emoji: '🔁', title: 'Foydalanuvchi fikri va iteratsiya',sub: 'foydalanuvchi nima dedi va nimani tuzatamiz', comp: BotFeedbackIterationLesson },
+      { key: 'm5-10', n: 10, type: 'Proyekt', emoji: '🦾', title: 'AI-agent yaratish',            sub: 'idrok, qaror va amal sikli', comp: BotAiAgentLesson },
     ],
   },
   {

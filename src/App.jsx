@@ -276,13 +276,13 @@ const MODULES = [
       { key: 'm5-01', n: 1,  type: 'Kod',     emoji: '🤖', title: 'Bot nima',                    sub: 'hodisaga javob beradigan mantiq: signal keladi, bot amal qiladi', comp: BotIntroLesson },
       { key: 'm5-02', n: 2,  type: 'PM',      emoji: '🧲', title: 'Botingizni birinchi kim ochadi?', sub: 'yigirmata odam qayerdan keladi', comp: PmLesson19 },
       { key: 'm5-03', n: 3,  type: 'Kod',     emoji: '🎛️', title: 'Telegram Bot API + tugmalar', sub: 'BotFather, token, /start, inline', comp: BotApiButtonsLesson },
-      { key: 'm5-04', n: 4,  type: 'Kod',     emoji: '🧠', title: 'Stateful logika + PostgreSQL', sub: 'bot eslab qoladi, ma\'lumot saqlaydi', comp: BotStatefulMemoryLesson },
+      { key: 'm5-04', n: 4,  type: 'Kod',     emoji: '🧠', title: 'Bot eslab qoladi — holat va PostgreSQL', sub: 'bot eslab qoladi, ma\'lumot saqlaydi', comp: BotStatefulMemoryLesson },
       { key: 'm5-05', n: 5,  type: 'Proyekt', emoji: '🪄', title: 'Loyiha kuni: AI bilan bot',   sub: 'promptlar bilan istalgan Telegram bot', comp: BotAiProjectLesson },
       { key: 'm5-06', n: 6,  type: 'Proyekt', emoji: '💡', title: 'Bot ichida AI',               sub: 'AI API\'ni ulash, xulq sozlash', comp: BotAiBrainLesson },
       { key: 'm5-07', n: 7,  type: 'Proyekt', emoji: '📦', title: 'Loyiha kuni: bot + DB + AI',  sub: 'to\'liq ishlaydigan bot + hosting', comp: BotFullProjectLesson },
       { key: 'm5-08', n: 8,  type: 'PM',      emoji: '🎙️', title: 'Botingizni ishlatgan odamdan nimani so\'raysiz?', sub: 'bo\'lib o\'tgan ishini so\'rash va eshitganini yozib olish', comp: PmLesson20 },
-      { key: 'm5-09', n: 9,  type: 'Proyekt', emoji: '🔁', title: 'Fikr va iteratsiya',          sub: 'foydalanuvchi nima dedi va nimani tuzatamiz', comp: BotFeedbackIterationLesson },
-      { key: 'm5-10', n: 10, type: 'Proyekt', emoji: '🦾', title: 'AI-agent yaratish',           sub: 'idrok, qaror va amal aylanmasi', comp: BotAiAgentLesson },
+      { key: 'm5-09', n: 9,  type: 'Proyekt', emoji: '🔁', title: 'Foydalanuvchi fikri va iteratsiya',sub: 'foydalanuvchi nima dedi va nimani tuzatamiz', comp: BotFeedbackIterationLesson },
+      { key: 'm5-10', n: 10, type: 'Proyekt', emoji: '🦾', title: 'AI-agent yaratish',           sub: 'idrok, qaror va amal sikli', comp: BotAiAgentLesson },
       { key: 'm5-14', n: 11, type: 'PM',      emoji: '⭐', title: 'Botingiz yaxshi ishlayotganini qaysi raqam aytadi?', sub: 'bitta bosh raqam va unga yordam beradigan uch raqam', comp: PmMetricsLesson }, // F-0928-06: v9 7-Modul #11 (M8 dan ko'chdi)
       { key: 'm5-11', n: 12, type: 'PM',      emoji: '📈', title: 'Kecha kelgan odam bugun ham keldimi?', sub: 'kelganlar va qaytganlar — ikki xil son', comp: PmLesson21 },
       { key: 'm5-12', n: 13, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',                 sub: 'yetib olish / sayqallash' },
@@ -419,11 +419,13 @@ export default function App() {
     return (
       <Suspense fallback={<LessonLoading />}>
         <C lang={lang} />
-        <a href="#/" title="Bosh sahifa — boshqa darsni tanlash" aria-label="Bosh sahifa"
+        {/* F-1004-09: telefonda qobiq-tugmalar darsning pastki paneli («Orqaga») ustiga tushardi — panel ustiga ko'tariladi */}
+        <style>{'@media (max-width: 720px) { .qa-shell { bottom: calc(80px + env(safe-area-inset-bottom, 0px)) !important; } }'}</style>
+        <a className="qa-shell" href="#/" title="Bosh sahifa — boshqa darsni tanlash" aria-label="Bosh sahifa"
           style={{ position: 'fixed', bottom: 14, left: 14, zIndex: 950, width: 40, height: 40, borderRadius: 12, border: 'none', background: '#FFFFFF', color: '#5A5A60', fontSize: 19, lineHeight: '40px', textAlign: 'center', textDecoration: 'none', cursor: 'pointer', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', opacity: 0.55, transition: 'opacity 0.2s' }}
           onMouseEnter={e => { e.currentTarget.style.opacity = 1 }} onMouseLeave={e => { e.currentTarget.style.opacity = 0.55 }}>⌂</a>
         {/* UZ-RU: dars ichida til almashtirgich — ⌂ yonida, progress saqlanadi (komponent remount bo'lmaydi) */}
-        <div style={{ position: 'fixed', bottom: 14, left: 62, zIndex: 950, display: 'flex', borderRadius: 12, background: '#FFFFFF', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', overflow: 'hidden', opacity: 0.55, transition: 'opacity 0.2s' }}
+        <div className="qa-shell" style={{ position: 'fixed', bottom: 14, left: 62, zIndex: 950, display: 'flex', borderRadius: 12, background: '#FFFFFF', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', overflow: 'hidden', opacity: 0.55, transition: 'opacity 0.2s' }}
           onMouseEnter={e => { e.currentTarget.style.opacity = 1 }} onMouseLeave={e => { e.currentTarget.style.opacity = 0.55 }}>
           {['uz', 'ru'].map(l => (
             <button key={l} title={l === 'uz' ? "Dars tili: o'zbekcha" : 'Язык урока: русский'} onClick={() => pickLang(l)}

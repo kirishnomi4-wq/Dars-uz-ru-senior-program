@@ -1,0 +1,327 @@
+{
+ "file": "src/5-Modull/BotAiBrainLesson.jsx",
+ "lessonId": "bot-ai-brain-05-04-v18",
+ "lang": "uz",
+ "res": [
+  {
+   "s": 0,
+   "id": "s0",
+   "type": "hook",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 1,
+   "id": "s1",
+   "type": "rule",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 1,
+   "err": null
+  },
+  {
+   "s": 2,
+   "id": "s2",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "Har safar biroz boshqacha yozadi ✓",
+     "b": "Har safar biroz boshqacha yozadi",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 3,
+   "id": "s3",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 20,
+     "left": "prompt-card ",
+     "right": "prompt-card ",
+     "hs": [
+      66,
+      85
+     ]
+    }
+   ],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "NOANIQ PROMPT",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "ANIQ PROMPT",
+     "box": "prompt-card ",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 5,
+   "id": "s5",
+   "type": "builder",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 0.9,
+     "a": "Istalgan savolga javob beradigan ensiklopediya ✗",
+     "b": "Sen istalgan savolga javob beradigan ensiklopediyasan. … gapir. ….",
+     "am": false,
+     "bm": false
+    },
+    {
+     "score": 0.68,
+     "a": "Kim? — AvtoPizza do'konining yordamchisi",
+     "b": "Sen AvtoPizza do'konining yordamchisisan. … gapir. ….",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KIM?",
+     "box": "pick-row sel shake",
+     "gap": 5
+    },
+    {
+     "pos": "tepada",
+     "t": "YIG'ILAYOTGAN SYSTEM PROMPT",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "frame-warn fade-step",
+     "gap": 16
+    },
+    {
+     "pos": "tagida",
+     "t": "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.",
+     "box": "prompt-card ",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "QANDAY GAPIRSIN?",
+     "box": "pick-row  ",
+     "gap": 5
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 6,
+   "id": "s6",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 7,
+   "id": "s7",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "KONTEKST OYNASI · SINOVDA 4 TA XABAR SIG'ADI Haqiqiy AI'da oyna ancha katta, lekin cheksiz",
+     "box": "desk",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "bo'sh",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Salom!",
+     "box": "btn",
+     "gap": 16
+    },
+    {
+     "pos": "tepada",
+     "t": "Salom! Ismim: Aziza",
+     "box": "btn",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 9,
+   "id": "s9",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [
+    {
+     "score": 1,
+     "a": "Bizda Margarita, Pepperoni va To'rt pishloq bor.",
+     "b": "Bizda Margarita, Pepperoni va To'rt pishloq bor.",
+     "am": false,
+     "bm": false
+    }
+   ],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 47,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 11,
+   "id": "s11",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tepada",
+     "t": "AI JAVOBIDAGI GAPLAR",
+     "box": "claim-row cur fade-step",
+     "gap": 8
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  },
+  {
+   "s": 12,
+   "id": "s12",
+   "type": "case",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [
+    {
+     "diff": 74,
+     "left": "tg",
+     "right": "sk-info",
+     "hs": [
+      252,
+      179
+     ]
+    }
+   ],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 13,
+   "id": "s13",
+   "type": "exploration",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [
+    {
+     "pos": "tagida",
+     "t": "suhbatTarixi va soraAI — loyiha kunida AI yordamida yozadigan funksiyalaringiz.",
+     "box": "code-win",
+     "gap": 16
+    }
+   ],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 2,
+   "err": null
+  },
+  {
+   "s": 15,
+   "id": "s15",
+   "type": "test",
+   "inp": [],
+   "align": [],
+   "dup": [],
+   "loud": [],
+   "eqh": [],
+   "loose": [],
+   "scroll": 0,
+   "zbtn0": 0,
+   "states": 3,
+   "err": null
+  }
+ ]
+}

@@ -1,7 +1,7 @@
 # 2-dars «Botingizni birinchi kim ochadi?» — yakuniy matn
 
 Fayl: `src/5-Modull/PmLesson19.jsx` · 16 ekran · Keyingi dars: «Telegram Bot API + tugmalar»
-Holat: 01.10.2026 — kodga mos
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — nechta bot
 - Eyebrow: Kirish · botlar
@@ -18,8 +18,8 @@ Holat: 01.10.2026 — kodga mos
 
 ## 1 · Maqsad
 - Eyebrow: Maqsad
-- Sarlavha: Bugun birinchi yigirmata foydalanuvchingiz keladigan *uchta guruhni* yozasiz.
-- Mentor: O'tgan darsda botingizni @BotFather'da ro'yxatdan o'tkazdingiz, kodini esa keyingi darsda yozasiz. Bugun boshqa savol: botingizni birinchi bo'lib kim ishlatadi?
+- Sarlavha: Botingizni birinchi *kim ishlatadi?*
+- Mentor: O'tgan darsda botingizni @BotFather'da ro'yxatdan o'tkazdingiz, kodini esa keyingi darsda yozasiz. Bugun birinchi yigirmata foydalanuvchingiz keladigan uchta guruhni yozasiz.
 - Namuna: uchta guruh
   - O'yin guruhi → birga o'ynaydiganlar · 12
   - Kursdoshlar → kursda haftada uch marta ko'rishadiganlar · 6
@@ -52,10 +52,10 @@ Holat: 01.10.2026 — kodga mos
 ## 4 · Odamlar xaritasi
 - Eyebrow: Sinov · odamlar xaritasi
 - Sarlavha: Sizni *o'rab* turgan odamlar kimlar?
-- Mentor: Markazda siz turasiz, halqalarda — atrofingizdagi odamlar: ichkarida yaqinlar, tashqarida notanishlar. Avval uchala halqani oching.
+- Mentor: Markazda siz turasiz, halqalarda — atrofingizdagi odamlar: ichkarida tanishlar, tashqarida notanishlar. Avval uchala halqani oching.
 - Xarita: markazda «siz», atrofida 1 · 2 · 3 halqa
 - Halqalar (ochilguncha «· · ·»):
-  - 1 Har kuni ko'rishadiganlar **12 odam** — Yaqin sinfdoshlar, qo'shnilar, to'garakdagilar. Ismingizni biladi.
+  - 1 Har kuni ko'rishadiganlar **12 odam** — Sinfdoshlar, qo'shnilar, to'garakdagilar. Ismingizni biladi.
   - 2 Ba'zan ko'rishadiganlar **40 odam** — Maktabdagi tanishlar. Yuzingizdan taniydi.
   - 3 Sizni tanimaydiganlar **300 odam** — Katta Telegram guruhlaridagi odamlar. Sizni bilmaydi.
 - Uchalasi ochilgach: ✓ Uch halqa ochildi · 12 · 40 · 300
@@ -67,7 +67,7 @@ Holat: 01.10.2026 — kodga mos
   - 1 — **9 → 17 odam.** 9 odam ishlatdi, yana 8 odam qo'shildi.
   - 2 — **6 → 8 odam.** 6 odam ishlatdi, yana 2 odam qo'shildi.
   - 3 — **4 → 4 odam.** 4 odam ishlatdi, yangi qo'shilgan yo'q.
-- Xulosa (uchalasi tugagach): **Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — yaqin guruh.** Bitta odam botni ochadi → yonidagilar ko'radi → ular ham ochadi. Birinchi foydalanuvchilar shunday guruhlardan keladi.
+- Xulosa (uchalasi tugagach): **Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — tanish guruh.** Bitta odam botni ochadi → yonidagilar ko'radi → ular ham ochadi. Birinchi foydalanuvchilar shunday guruhlardan keladi.
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
 - Tugma: Uch halqani oching (0/3) → Har halqaga bir hafta bering (0/3) → Davom etish
 
@@ -83,7 +83,7 @@ Holat: 01.10.2026 — kodga mos
   - C: Havola ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.
 
 ## 6 · Bitta sayt tarixi
-- Eyebrow: Biznes olamidan · bitta sayt tarixi
+- Eyebrow: Biznes olamidan
 - Sarlavha: Bu sayt birinchi foydalanuvchilarini *qayerdan* olgan?
 - Bosqichlar (har kartada «n / 5»):
   1. **2004-yil** — AQShdagi bitta universitetda oddiy sayt ochildi. Unga **faqat o'sha universitet talabalari** yozila olardi.
@@ -116,9 +116,9 @@ Holat: 01.10.2026 — kodga mos
   - B: Butun dunyo uchun sayt ikki yarim yildan keyin ochilgan — birinchi kuni emas.
 
 ## 8 · Uchta guruh
-- Eyebrow: Mustaqil ish · uchta guruh
+- Eyebrow: Mustaqil ish
 - Sarlavha: Uchta *guruhingizni* yozing.
-- Mentor: Yaqin guruhni eslang: sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.
+- Mentor: Tanish guruhni eslang: sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.
 - Qadam-doiralar: 1-guruh · 2-guruh · 3-guruh (saqlangani ✓)
 - Maydonlar: «Qaysi guruh?» · «Unda kimlar bor?» · «Nechta?» odam
 - Javob-qatorlari:
@@ -130,7 +130,7 @@ Holat: 01.10.2026 — kodga mos
 - Tugmalar: ✓ Saqlash · tahrirda: ✓ Yangilash
 - Uchtasi yozilgach ro'yxat: **Uchta guruhingiz** · **guruh nomi** → kimlar → N odam · tahrirlash belgisi ✎ (ustida: Tahrirlash)
 - O'ng panel — Topshiriq:
-  - ○ / ✓ Uchta guruh yozilgan · Har guruhda odam soni · Har guruhda kimlar borligi
+  - ○ / ✓ Har guruhda odam soni · Har guruhda kimlar borligi
   - Hozircha: N odam → uchtasi yozilgach: Jami: N odam
   - Jami 20 dan kam bo'lsa: Yigirmaga yetmadi — bu ham natija. Kod yozganingizda u yana nechta odam kerakligini sanab beradi.
 - Yordam (bosilganda ochiladi): Bu odamlarni haftada necha marta ko'rasiz? · Ular sizni ismingiz bilan biladimi?
@@ -151,13 +151,13 @@ Holat: 01.10.2026 — kodga mos
   - **Notanish odamlar guruhi** · 1200 odam · umuman ko'rishmaydi → eshitdi 1200 · ochdi 46 · ishlatdi 2
   - **To'garakdagilar** · 11 odam · haftada uch marta ko'rishadi → eshitdi 11 · ochdi 9 · ishlatdi 7
   - **E'lon taxtasini o'qiydiganlar** · 300 odam · faqat o'tib ketayotganda ko'rishadi → eshitdi 300 · ochdi 12 · ishlatdi 1
-- Sabab-qatorlari (bosilgan har guruh uchun):
-  - **Sinfdoshlar — 13:** biri ochdi, yonidagilarga ko'rsatdi.
-  - **Notanish odamlar guruhi — 2:** sizni tanimaydi, ochib yopib qo'ydi.
-  - **To'garakdagilar — 7:** haftada uch marta uchrashadi, bir-biriga eslatadi.
-  - **E'lon taxtasini o'qiydiganlar — 1:** o'qidi va o'tib ketdi, eslatadigan odam yo'q.
+- Sabab-qatorlari (bosilgan karta ichida, uch qadam tagida):
+  - Sinfdoshlar: biri ochdi, yonidagilarga ko'rsatdi.
+  - Notanish odamlar guruhi: sizni tanimaydi, ochib yopib qo'ydi.
+  - To'garakdagilar: haftada uch marta uchrashadi, bir-biriga eslatadi.
+  - E'lon taxtasini o'qiydiganlar: o'qidi va o'tib ketdi, eslatadigan odam yo'q.
 - Yordam (birinchi kam natijadan keyin chiqadi): Ikki savol bering: bu odamlar bir-birini taniydimi? · Ular bir-birini haftada necha marta ko'radi?
-- Yakun (20 ga yetgach): tasma «Sinfdoshlar +13 · To'garakdagilar +7» va: N odam ikkita guruhdan yig'ildi — sinfdoshlar 13, to'garakdagilar 7 (son so'zi bosilgan guruhlarga qarab: bitta / ikkita / uchta / to'rtta; 1200 odamli guruh bosilgan bo'lsa oxirida: · 1200 odamdan atigi 2 tasi)
+- Yakun (20 ga yetgach): N odam ikkita guruhdan yig'ildi — sinfdoshlar 13, to'garakdagilar 7 (son so'zi bosilgan guruhlarga qarab: bitta / ikkita / uchta / to'rtta; 1200 odamli guruh bosilgan bo'lsa oxirida: · 1200 odamdan atigi 2 tasi)
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
 - Tugma: Topshiriqni o'qing → Bitta guruhni bosing → Yigirmagacha N odam qoldi → Davom etish
 
@@ -238,14 +238,14 @@ const guruhlar = [
 
 ## 12 · Yoddan ayting
 - Eyebrow: Mustahkamlash · 2 qadam
-- Sarlavha: Eng yaqin guruhingizni *yoddan* ayta olasizmi?
+- Sarlavha: Tanish guruhingizni *yoddan* ayta olasizmi?
 - Mentor: Ekranga qaramasdan ikki narsani ayting: guruh nomi va undagi odamlar bir-birini haftada necha marta ko'radi.
 - 1-qadam: Ovoz chiqarib ayting (mustaqil) / Sherigingizga ayting (jonli)
   - Mustaqil: 30 soniyani boshlash → Hozir ovoz chiqarib ayting · ekranga qaramasdan → ✓ Vaqt tugadi — aytib bo'ldingiz. · ↻ Yana 30 soniya
   - Jonli: Har biringizga 30 soniyadan — avval A, keyin B. · 1 daqiqani boshlash → Hozir A gapiradi · keyin — B navbati / oxirgi navbat → ✓ Vaqt tugadi — ikkalangiz ham aytib bo'ldingiz. · ↻ Yana 1 daqiqa
   - Vaqt ketayotganda: To'xtatish
   - Vaqt tugagach 1-qadam yig'iladi: ✓ Aytdingiz · ↻ Yana 30 soniya (jonlida: ↻ Yana 1 daqiqa)
-- 2-qadam: Endi bir qator yozing · maydon: «Eng yaqin guruhim — ..., ularni haftada ... marta ko'raman»
+- 2-qadam: Endi bir qator yozing · maydon: «Tanish guruhim — ..., ularni haftada ... marta ko'raman»
 - Yozgach: ✓ Endi bilasiz: botni qurish — ishning yarmi, birinchi foydalanuvchilarni o'zingiz olib kelasiz.
 - Tugma: Davom etish
 
@@ -259,8 +259,8 @@ const guruhlar = [
 | Old tomon | Orqa tomon |
 |---|---|
 | Birinchi foydalanuvchilar kimlar? | Botingizni birinchi bo'lib ishlatadigan odamlar |
-| Yaqin guruh nima? | Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar |
-| Yaqin guruhda xabar nega tez tarqaladi? | Bittasi aytsa, qolganlar ham eshitadi |
+| Tanish guruh nima? | Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar |
+| Tanish guruhda xabar nega tez tarqaladi? | Bittasi aytsa, qolganlar ham eshitadi |
 | Katta guruhda odam ko'p — nega ishlatgani kam? | Ular sizni tanimaydi |
 | Botga birinchi odamlarni kim olib keladi? | Siz aytasiz — bot o'zi olib kelmaydi |
 | Bitta guruh haqida nimalarni yozib qo'yasiz? | Guruh nomi, unda kimlar borligi va odam soni |
@@ -278,15 +278,14 @@ const guruhlar = [
 - Belgi: ✓ Dars tugadi
 - Sarlavha: Uchta *guruhingizni* yozdingiz.
 - Natija halqasi: N/4 to'g'ri javob
-- Bugungi asosiy fikr — Birinchi foydalanuvchilar yaqin guruhlardan keladi.
+- Bugungi asosiy fikr — Birinchi foydalanuvchilar tanish guruhlardan keladi.
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Botingizni birinchi bo'lib ishlatadigan odamlar — birinchi foydalanuvchilar.
-  - Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — yaqin guruh.
-  - Yaqin guruhda bitta odam botni ochsa, xabar qolganlarga ham yetadi.
+  - Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — tanish guruh.
+  - Tanish guruhda bitta odam botni ochsa, xabar qolganlarga ham yetadi.
   - Birinchi foydalanuvchilarni bot emas, siz olib kelasiz.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Keyingi dars — **«Telegram Bot API + tugmalar»**. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 
@@ -306,9 +305,9 @@ Jonli darsda Mentor ekranidan ochiladi. Yorliq: Qayta tushuntirish · tugmalar: 
    - 2 · Bot o'zi olib kelmaydi — Bot bo'sh turganda uni hech kim ko'rmaydi. Birinchi odamlarning **har biriga siz aytasiz**.
    - 3 · Tayyor bo'lgani yetmaydi — Buyruqlar ishlashi — ishning yarmi. Ikkinchi yarmi: botni odam ochib ishlatishi.
    - Sinfga savol: Oxirgi botni siz kimning gapidan keyin ochgansiz?
-2. 5-ekran (2-savol) — **Yaqin guruhdan ko'p foydalanuvchi keladi**
-   - 1 · Yaqin guruh — Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.
-   - 2 · Xabar o'zi yuradi — Yaqin guruhda bitta odam aytsa, **qolganlar ham eshitadi** va ko'pincha o'zlari ham ochadi.
+2. 5-ekran (2-savol) — **Tanish guruhdan ko'p foydalanuvchi keladi**
+   - 1 · Tanish guruh — Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar.
+   - 2 · Xabar o'zi yuradi — Tanish guruhda bitta odam aytsa, **qolganlar ham eshitadi** va ko'pincha o'zlari ham ochadi.
    - 3 · Katta guruh — Katta guruhda odam ko'p, lekin ular sizni tanimaydi: xabar odatda bitta odamda qolib ketadi.
    - Sinfga savol: Sizni ismingiz bilan taniydigan odamlar qaysi guruhingizda ko'p?
 3. 7-ekran (3-savol) — **Facebook bitta universitetdan boshlagan**
@@ -318,7 +317,7 @@ Jonli darsda Mentor ekranidan ochiladi. Yorliq: Qayta tushuntirish · tugmalar: 
    - Sinfga savol: Sizda universitet yo'q. Uning o'rniga qaysi guruhingiz bor?
 4. 11-ekran (4-savol) — **Katta guruhdan foydalanuvchi kam chiqadi**
    - 1 · Xabar yetadi — Katta guruhda xabar ko'p odamga yetadi, lekin **ochib ishlatadigani kam qoladi**.
-   - 2 · Yigirma qayerdan — Yigirmata foydalanuvchi ikki-uchta yaqin guruhdan keladi, bitta katta guruhdan emas.
+   - 2 · Yigirma qayerdan — Yigirmata foydalanuvchi ikki-uchta tanish guruhdan keladi, bitta katta guruhdan emas.
    - 3 · Uch qadam — Odam botga uch qadamda keladi: eshitdi, ochdi, ishlatdi. Har qadamda odam kamayadi.
    - Sinfga savol: Qaysi qadamda eng ko'p odam yo'qoladi?
 
@@ -333,7 +332,7 @@ Jonli darsda Mentor ekranidan ochiladi. Yorliq: Qayta tushuntirish · tugmalar: 
    - Qidiruv — bot qidiruvda o'zi yuqoriga chiqadi
    - Bot — u yozilgan kuni odamlarni chaqiradi
    - ✔ Siz — birinchi odamlarga o'zingiz aytasiz
-3. Yaqin guruhda xabar nega tez tarqaladi?
+3. Tanish guruhda xabar nega tez tarqaladi?
    - Chunki u yerda odam soni eng ko'p
    - Chunki xabarni u yerda bot o'zi aytadi
    - ✔ Chunki u yerdagilar bir-birini tez-tez ko'radi
@@ -373,11 +372,11 @@ Jonli darsda Mentor ekranidan ochiladi. Yorliq: Qayta tushuntirish · tugmalar: 
     - Saytga yozilgan odamlar soni
     - ✔ Odamlarning bir-birini tanishi
     - Saytdagi tugmalarning ko'pligi
-11. Yaqin guruh qanday guruh?
-    - Uyingizga eng yaqin yashaydigan odamlar guruhi
-    - ✔ Sizni taniydigan va tez-tez ko'rishadigan guruh
-    - A'zosi ko'p va hammaga ochiq katta guruh
-    - Siz har kuni yozadigan va o'qiydigan guruh
+11. Qaysi biri tanish guruh?
+    - Bir mahallada yashaydigan, lekin bir-birini tanimaydigan odamlar
+    - ✔ Har kuni ko'rishadigan sinfdoshlaringiz
+    - Siz kuzatadigan kanalning 5000 obunachisi
+    - Bekatda avtobus kutayotgan odamlar
 12. Uchta guruh yozganda har guruh haqida nimalarni yozasiz?
     - Guruh nomi va undagi odamlarning yoshi
     - Faqat odam soni — qolgani kerak emas

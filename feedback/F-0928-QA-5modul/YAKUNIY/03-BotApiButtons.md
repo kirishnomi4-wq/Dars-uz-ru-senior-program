@@ -1,11 +1,11 @@
 # 3-dars «Telegram Bot API + tugmalar» — yakuniy matn
 
-Fayl: `src/5-Modull/BotApiButtonsLesson.jsx` · 20 ekran · Keyingi dars: «Stateful logika + PostgreSQL»
-Holat: 01.10.2026 — kodga mos
+Fayl: `src/5-Modull/BotApiButtonsLesson.jsx` · 20 ekran · Keyingi dars: «Bot eslab qoladi — holat va PostgreSQL»
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — /start ga javob yo'q
 - Eyebrow: Kirish
-- Sarlavha: 1-darsda ochgan botingizga /start yuboring. Nima bo'larkin?
+- Sarlavha: Botingizga /start yuboring. Nima bo'larkin?
 - Mentor: O'tgan darsda botingizning birinchi foydalanuvchilari qaysi guruhlardan kelishini rejalashtirdingiz. Ularning har biri avval /start bosadi. Tugmani bosing va ular nimani ko'rishini kuzating.
 - Eslatma qatori: 1-darsda: @BotFather botingizni ochdi va token berdi — `7***:AA***xZ`
 - Chat (AvtoPizza bot · sizning botingiz): bo'sh
@@ -17,8 +17,8 @@ Holat: 01.10.2026 — kodga mos
   - ✔ Botda hali kod yo'q, /start ni ushlaydigan handler ham yo'q
   - Yangi bot bir kun o'tgach javob bera boshlaydi
 - Javob izohlari:
-  - 2-variant: **Aynan!** @BotFather botni ochdi va token berdi, lekin javobni kod beradi: /start kelganda uni handler ushlashi kerak. Bugun shu kodni yozamiz — buyruqlar, inline tugmalar va reply klaviatura.
-  - 1 yoki 3-variant: **Qiziq fikr!** Bot @BotFather'da ochilgan zahoti ishlashi mumkin: tekshiruv ham, kutish ham yo'q. Jim turishining sababi boshqa — botda hali kod yo'q, /start ni ushlaydigan handler yo'q. Bugun shu kodni yozamiz.
+  - 2-variant: **Aynan!** @BotFather botni ochdi va token berdi, lekin javobni kod beradi: /start ni handler ushlashi kerak.
+  - 1 yoki 3-variant: **Qiziq fikr!** Tekshiruv ham, kutish ham yo'q — botda hali kod yo'q: /start ni ushlaydigan handler kerak.
 - Tugma: Davom etish
 
 ## 1 · Reja
@@ -61,19 +61,19 @@ BOT_TOKEN=1234567890:AA-namuna-token
 require('dotenv').config()   // .env faylini process.env ga yuklaydi
 const bot = new Telegraf(process.env.BOT_TOKEN)
 ```
-- Xulosa: Xuddi «Autentifikatsiya va .env» darsidagi `JWT_SECRET` kabi: kodda token yo'q, faqat uning nomi — `process.env.BOT_TOKEN`. .env faylini `dotenv` paketi yuklaydi; usiz `process.env.BOT_TOKEN` bo'sh qoladi va bot ishga tushmaydi.
+- Xulosa: Xuddi `JWT_SECRET` kabi: kodda token emas, nomi turadi — `process.env.BOT_TOKEN`. .env ni `dotenv` yuklaydi.
 - Tugmalar: Orqaga · Xavfsiz usulni ko'ring → Davom etish
 
 ## 3 · Xabar yo'li
 - Eyebrow: Tushuncha · xabar yo'li
 - Sarlavha: Xabar botingizga qanday yetib keladi?
 - Mentor: 1-darsda bu yo'lni sxemada ko'rdingiz. Endi har qismini kod bilan bog'laymiz. Har qatlamni bosing.
-- Sxema: Telegram → Telegraf → bot.js (handlerlar) · qaytish chizig'i: javob
+- Sxema: Telegram (foydalanuvchi yozadi) → Telegraf (aloqani bajaradi) → bot.js (handlerlar) · yo'l bo'ylab xabar: /start · qaytish chizig'i: javob — Salom!
 - Qatlamlar (bosilganda ochiladi):
   - **Telegram** — Foydalanuvchi xabar yozadigan joy. Botlar Telegram bilan Telegram Bot API orqali gaplashadi.
   - **Telegraf** — Node.js kutubxonasi. Telegram Bot API bilan aloqani o'zi bajaradi — siz unga faqat token berasiz.
   - **bot.js** — Siz yozadigan fayl. Handlerlar shu yerda: `bot.start`, `bot.command`, `bot.hears`, `bot.action`. Handler javob yozadi, Telegraf uni Telegram'ga yuboradi.
-- Xulosa: Siz faqat handlerlarni yozasiz — Telegram bilan aloqani Telegraf bajaradi. Katta loyihada shu handlerlar NestJS service ichiga joylanadi (CarService kabi); bugun hammasi bitta bot.js faylida.
+- Xulosa: Siz faqat handlerlarni yozasiz — Telegram bilan aloqani Telegraf bajaradi. Bugun hammasi bitta bot.js faylida.
 - Tugmalar: Orqaga · Qatlamlarni ko'ring (N/3) → Davom etish
 
 ## 4 · 1-savol
@@ -119,12 +119,12 @@ bot.start((ctx) => {
   - `ctx.from` · `{ id: 5012, first_name: "Aziza" }` — Kim yozdi: foydalanuvchining id raqami va ismi.
   - `ctx.message.text` · `"Salom"` — Foydalanuvchi yuborgan matn.
   - `ctx.chat` · `{ id: 5012, type: "private" }` — Xabar kelgan chat. ctx.reply javobni aynan shu chatga yuboradi.
-- Xulosa: ctx har hodisada yangi: Aziza yozsa — Azizaning ma'lumoti, Bek yozsa — Bekniki. Shuning uchun ctx.reply javobni xabar kimdan kelgan bo'lsa, o'shanga yuboradi.
+- Xulosa: ctx har hodisada yangi: Aziza yozsa — Azizaniki, Bek yozsa — Bekniki. ctx.reply javobni shu odamga yuboradi.
 - Tugmalar: Orqaga · ctx ichini oching (N/3) → Davom etish
 
 ## 7 · Ikki xil tugma
 - Eyebrow: Tushuncha · ikki xil tugma
-- Sarlavha: Inline tugma va reply klaviatura: bosilganda nima ketadi?
+- Sarlavha: Tugma bosilganda botga nima ketadi?
 - Mentor: Telegram botlarida tugmaning ikki turi bor. Avval inline tugmani, keyin reply klaviaturani bosib ko'ring va chatga qarang.
 - **1-qadam · Inline tugma**
   - Izoh: Inline tugma — xabarning tagida, unga yopishib turadigan tugma.
@@ -148,7 +148,7 @@ ctx.reply('Tugmani bosing:', Markup.keyboard([['Pitsa', 'Ichimlik']]).resize())
 ```
   - Bosilgach: chatga foydalanuvchi xabari «Pitsa» qo'shiladi · Tugma matni oddiy xabar bo'lib ketdi. Uni `bot.hears('Pitsa', ...)` ushlaydi.
   - Yig'ilgan qator: ✓ Reply klaviatura → matn «Pitsa» → `bot.hears` ↻
-- Xulosa: Inline tugma — shu xabarga tegishli tanlov uchun: menyudan taom tanlash, «Ha / Yo'q». Reply klaviatura — tez-tez kerak bo'ladigan tugmalar uchun: Menyu, Savat, Yordam.
+- Xulosa: Inline tugma — shu xabarga tegishli tanlov. Reply klaviatura — doim kerak tugmalar: Menyu, Savat, Yordam.
 - Tugmalar: Orqaga · Ikkala turni sinang (N/2) → Davom etish
 
 ## 8 · 2-savol
@@ -173,27 +173,26 @@ ctx.reply('Tugmani bosing:', Markup.keyboard([['Pitsa', 'Ichimlik']]).resize())
 - Sarlavha: Uch xil hodisa — uch handler. Ularni o'zingiz ulang.
 - Mentor: Har qadamda avval hodisani yuboring: handler yo'q bo'lsa, bot jim turadi. Keyin handler qo'shing va qayta yuboring.
 - Chat (AvtoPizza bot · bot · onlayn): Buyruq yuboring yoki tugmani bosing.
+- Qadamlar qatori: 1 · /menu · 2 · Pitsa · 3 · Biz haqimizda (bajarilgani ✓ bilan)
 - Handlerlar paneli: bot.js — handlerlar
+- Holat qatori (har qadamda bitta ko'rsatma): Hodisani yuboring. · Bot jim — bu hodisaga handler yo'q. Handler qo'shing. · Handler ulandi. Hodisani qayta yuboring.
+- Chatda handler yo'q bo'lsa (kulrang belgi, bir marta): bot javob bermadi — handler yo'q
 - **1-qadam · Buyruq**
-  - Tugma: ▶ /menu yuborish
-  - Handler yo'q: Hodisa keldi, lekin uni ushlaydigan handler yo'q — bot jim.
-  - Handler qatori: `bot.command('menu', ...)` · + handler qo'shish → ✓
+  - Tugma: ▶ /menu yuborish → (handler ulangach) ▶ Qayta yuborish
+  - Handler qatori: `bot.command('menu', ...)` · handler yo'q → + handler qo'shish → ✓
   - Qayta yuborilgach — bot: Menyu. Tanlang: · inline tugmalar: Pitsa · Ichimlik
-  - Yig'ilgan qator: ✓ /menu → `bot.command('menu')`
+  - Yig'ilgan qator: /menu → `bot.command('menu')`
 - **2-qadam · Inline tugma**
   - Ko'rsatma: Chatdagi «Pitsa» tugmasini bosing.
-  - Handler yo'q: Tugma bosildi, chatga matn tushmadi — callback keldi, lekin uni ushlaydigan handler yo'q.
-  - Handler qatori: `bot.action('pizza', ...)` · + handler qo'shish → ✓
+  - Handler qatori: `bot.action('pizza', ...)` · handler yo'q → + handler qo'shish → ✓
   - Qayta bosilgach — bot: Pitsa tanlandi. Narxi — 30 000 so'm.
-  - Yig'ilgan qator: ✓ Pitsa → callback `'pizza'` → `bot.action`
+  - Yig'ilgan qator: Pitsa → callback `'pizza'` → `bot.action`
 - **3-qadam · Reply klaviatura**
-  - Ko'rsatma: Pastdagi «Biz haqimizda» tugmasini bosing.
-  - Handler yo'q: Chatga «Biz haqimizda» matni tushdi, lekin uni ushlaydigan handler yo'q — bot jim.
-  - Handler qatori: `bot.hears('Biz haqimizda', ...)` · + handler qo'shish → ✓
+  - Ko'rsatma: Pastdagi «Biz haqimizda» tugmasini bosing. (reply klaviatura: Biz haqimizda)
+  - Handler qatori: `bot.hears('Biz haqimizda', ...)` · handler yo'q → + handler qo'shish → ✓
   - Qayta bosilgach — bot: AvtoPizza — 2020 yildan beri pitsa yetkazib beramiz.
-  - Yig'ilgan qator: ✓ Biz haqimizda → matn → `bot.hears`
-- Handler yo'q paytda bir hodisa 3 marta yuborilsa: Mijoz: «Buzuqmi bu?» — va ketib qoldi.
-- Muvaffaqiyat: Uchala hodisa o'z handleriga ulandi. Tugmaning o'zi hech narsa qilmaydi — javobni handler beradi.
+  - Yig'ilgan qator: Biz haqimizda → matn → `bot.hears`
+- Muvaffaqiyat: Uchala hodisa o'z handleriga ulandi: javobni handler beradi.
 - Tugmalar: Orqaga · Uchala handlerni ulang (N/3) → Davom etish
 
 ## 10 · 3-savol
@@ -232,7 +231,7 @@ bot.hears('Narxlar', (ctx) => {
 - Chat (Vali): bo'sh
 - Tugma: ▶ Sinab ko'rish
 - Tuzatishdan oldin sinalsa: Aziza chatida: Javob kelmadi. · Vali chatida — bot: Pitsa — 30 000 so'm
-  - Ogohlantirish: Javob Valiga ketdi, Aziza hech narsa olmadi. Kod ctx dagi chatni emas, qo'lda yozilgan VALI_ID ni ishlatgan.
+  - Ogohlantirish: Javob Valiga ketdi: kodda ctx emas, qo'lda yozilgan VALI_ID.
   - Tugma: Kodni tuzatish
 - Tuzatilgach — kod (`bot.js`):
 ```js
@@ -252,14 +251,14 @@ bot.hears('Narxlar', (ctx) => {
 - Chat (AvtoPizza bot · bot · onlayn): Bot: Salom! Menyu uchun /menu ni bosing.
 - Tugma: ▶ Noma'lum xabar yuborish → Foydalanuvchi: Necha daqiqada yetib keladi?
 - Chatda: Bot jim qoldi…
-- Ogohlantirish: Bu xabarga mos handler yo'q — bot jim qoldi. Mijoz o'ylaydi: «Ishlayaptimi bu?»
+- Ogohlantirish: Bu xabarga mos handler yo'q — bot jim qoldi.
 - Tugma: Fallback handler qo'shish
 - Qo'shilgach — kod (`bot.js`):
 ```js
 bot.on('text', (ctx) => ctx.reply('Tushunmadim. Menyu uchun /menu ni bosing.'))
 ```
 - Tugma: ▶ Qayta yuborish → Foydalanuvchi: Necha daqiqada yetib keladi? · Bot: Tushunmadim. Menyu uchun /menu ni bosing.
-- Xulosa: `bot.on('text', ...)` mos handler topilmagan matnli xabarga javob beradi. Shuning uchun u boshqa handlerlardan keyin yoziladi: oldinroq tursa, /start va /menu ni ham o'zi ushlab oladi.
+- Xulosa: `bot.on('text', ...)` handlersiz qolgan matnga javob beradi. U oxirida turadi: oldinda /start ni ham ushlardi.
 - Nishon: Fallback Coder (bonus)
 - Tugmalar: Orqaga · Fallback handler qo'shing va sinang → Davom etish
 
@@ -287,7 +286,7 @@ bot.on('text', (ctx) => ctx.reply('Tushunmadim. Menyu uchun /menu ni bosing.'))
   - /menu: Mijozni chatdan chiqarib yuboradi — /menu hech kimni chiqarib yubormaydi — u menyuni ko'rsatadi. · Botning tokenini ko'rsatadi — Token maxfiy — uni bot hech kimga ko'rsatmaydi.
   - Umumiy: Bu buyruq bunday ishni bajarmaydi — boshqasini tanlang.
 - Nishon yozuvi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / xatodan keyin: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
-- Muvaffaqiyat: /help javobi tayyor. Uyga vazifada uni botingizga o'zingiz qo'shasiz.
+- Muvaffaqiyat: /help javobi tayyor — uyga vazifada botingizga qo'shasiz.
 - Nishon: Command Writer
 - Tugmalar: Orqaga · Ro'yxatni to'ldiring → Davom etish
 
@@ -323,29 +322,43 @@ bot.on('text', (ctx) => ctx.reply('Tushunmadim'))
 bot.launch()
 ```
 - Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam · 6-qadam
-- Fallback handler /start dan oldin bo'lsa: Fallback handler /start dan oldin turibdi. U har qanday matnni ushlaydi — /start ham matn, shuning uchun salom o'rniga «Tushunmadim» keladi. Tartibni to'g'rilang.
-- bot.launch() oxirida bo'lmasa: bot.launch() handlerlardan oldin turibdi. Avval hamma handler yoziladi, keyin bot ishga tushiriladi — launch() faylning oxirgi qatori.
+- Fallback handler /start dan oldin bo'lsa: Fallback /start dan oldin turibdi: u /start ni ham ushlaydi.
+- bot.launch() oxirida bo'lmasa: bot.launch() handlerlardan keyin, faylning oxirida turadi.
 - Boshqa xato: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
-- To'g'ri: ✓ Tayyor: token → bot → /start handleri → tugma handleri → fallback handler → bot.launch(). Telegraf handlerlarni yozilgan tartibda tekshiradi — shuning uchun fallback handler ulardan keyin turadi. (3-qatordagi `menu` — 7-ekrandagidek `Markup.inlineKeyboard` bilan yasalgan tugmalar.)
+- To'g'ri: ✓ Tayyor: token → bot → handlerlar → fallback → bot.launch(). Telegraf ularni yozilgan tartibda tekshiradi.
+- Eslatma: 3- va 4-qator (bot.start va bot.action) o'rin almashsa ham tartib to'g'ri hisoblanadi.
 - Havola (xato bo'lgan bo'lsa): Qisqa takrorlash — mavzuni yana bir ko'rish
 - Tugmalar: Orqaga · bot.js ni yig'ing → Davom etish
 
-## 16 · Amaliyot · VS Code
-- Eyebrow: Amaliyot · VS Code
-- Sarlavha: O'z botingizga menyu tugmalari qo'shing
-- Mentor: Bu topshiriqni o'z kompyuteringizda, VS Code'da bajaring. Har qadamni bajarib, «Bajardim» ni bosing — keyingisi ochiladi. Oxirida Mentor tekshiradi.
-- TOPSHIRIQ: 1-darsda @BotFather'da ochgan botingizga /menu buyrug'ini va kamida 2 ta inline tugmani qo'shing. Har tugma uchun `bot.action` handlerini, oxiriga fallback handler — `bot.on('text', ...)` ni yozing.
-- Qadamlar (bittadan ochiladi):
-  1. Loyiha papkasida `npm install telegraf dotenv` ni ishga tushiring.
-  2. `.env` fayliga 1-darsda saqlagan tokeningizni yozing: `BOT_TOKEN=...`. `.env` ni `.gitignore` ga qo'shing. Tokenni hech kimga yubormang, skrinshotga ham tushirmang.
-  3. `bot.js` boshiga ikki qator yozing: `require('dotenv').config()` va `const { Telegraf, Markup } = require('telegraf')`.
-  4. `bot.command('menu', ...)` ichida `Markup.inlineKeyboard` bilan 2 ta inline tugma chiqaring.
-  5. Har tugma uchun `bot.action(...)` handlerini yozing. Ichida `ctx.answerCbQuery()` ni ham chaqiring — tugmadagi yuklanish belgisi to'xtaydi.
-  6. Handlerlardan keyin `bot.on('text', ...)` — fallback handler qo'shing.
-  7. Oxirgi qator — `bot.launch()`. Botni `node bot.js` bilan ishga tushiring va Telegram'da /menu yuborib sinang.
-- Tugma: Bajardim (har qadamda) → ✓ Bajarildi — Mentorni kuting
-- Muvaffaqiyat: Vazifani bajardingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.
-- Qo'shimcha (majburiy emas): @BotFather'da /setcommands bilan buyruqlar ro'yxatini kiriting — foydalanuvchi / yozganda Telegram shu ro'yxatni taklif qiladi.
+## 16 · Amaliyot · TelegramBotNest
+- Eyebrow: Amaliyot · TelegramBotNest
+- Sarlavha: Repo'ni oling, botingizga menyu qo'shing.
+- Mentor: Shu papka modul oxirigacha sizniki — avval o'z nusxangizni yuklab olasiz, keyin unga /menu qo'shasiz; **«1 · Ochish»**dan boshlang.
+- Qadamlar (bittadan ochiladi, har birida «Bajardim»; bajarilgani ✓ bilan yig'iladi, ↻ bilan qaytariladi):
+  1. **Ochish** — GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Terminalda:
+     ```
+     $ git clone https://github.com/{sizning login}/TelegramBotNest.git
+     $ cd TelegramBotNest
+     $ npm install
+     ```
+  2. **Token** — `.env.example` ni nusxalab `.env` qiling, `BOT_TOKEN=` ga @BotFather bergan tokenni yozing (chatga, skrinshotga emas). `npm run start:dev` → «Telegram bot ulandi». Telegramda `/start` → «Salom! Bot ishlayapti.»
+  3. **Prompt** — Antigravity'da papkani oching, «Nusxalash», yuboring.
+     - Prompt qutisi (sarlavha: Siz → Antigravity · tugma: Nusxalash → ✓ Nusxalandi):
+       > src/api/telegram/telegram.service.ts ga /menu buyrug'ini qo'sh: «Nima qilamiz?» va 2 ta inline tugma — {1-tugma}, {2-tugma}.
+       > Har tugma uchun bot.action yoz, ichida ctx.answerCbQuery() chaqir. bot.on('text') fallback eng oxirida qolsin.
+  4. **Telegramda tekshirish** — `/menu` → ikki tugma; bosganda javob keladi; boshqa matn → fallback.
+     - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
+- Oxirgi qadam bajarilgach — muvaffaqiyat: Repo sizniki, bot javob beradi. 4-darsdan shu papka ustida davom etasiz.
+- O'ng ustun — yozuv: kutilgan natija · namuna: AvtoPizza
+- Kutilgan natija chati (AvtoPizza bot · bot · onlayn):
+  - Foydalanuvchi: /start
+  - Bot: Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.
+  - Foydalanuvchi: /menu
+  - Bot: Nima qilamiz? · inline tugmalar: Pitsa · Yordam
+  - Foydalanuvchi (kulrang): «Pitsa» bosildi
+  - Bot: Pitsa tanlandi. Keyingi darsda buyurtma saqlanadi.
+- Chat ostida: Ortda qoldingizmi — mentor bilan `git checkout -f dars-03-done`
+- Repo tegi: `dars-03-done`
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
 ## 17 · Natijalar (podium) — jonli reyting
@@ -391,7 +404,7 @@ Natijalar (podium) — jonli reyting
   - **Sinang** — amaliyotdagi botni ishga tushirib, uch hodisani tekshiring: /menu buyrug'i, inline tugma, reply klaviatura
   - **Qo'shing** — /help buyrug'ini qo'shing: u 13-ekrandagi buyruqlar ro'yxatini yuborsin
   - **Tekshiring** — kodda token yo'qligini, .env esa .gitignore'da ekanini tekshiring
-- Keyingi dars — **«Stateful logika + PostgreSQL»**. Bot mijoz tanlagan pitsani eslab qoladi: suhbat holatini PostgreSQL bazasida saqlaymiz.
+- Keyingi dars — **«Bot eslab qoladi — holat va PostgreSQL»**. Bot mijoz tanlagan pitsani eslab qoladi: suhbat holatini PostgreSQL bazasida saqlaymiz.
 - Nishonlaringiz — N/4
 - Kalit so'zlar (takrorlash): **token** — botning maxfiy kaliti (.env faylida) · **Telegraf** — Node.js uchun bot kutubxonasi · **ctx** — hodisa haqidagi ma'lumot (context) · **bot.start** — /start buyrug'i uchun handler · **bot.command** — /menu kabi buyruq uchun handler · **inline tugma** — xabar tagidagi tugma, bosilsa callback keladi · **reply klaviatura** — klaviatura o'rnidagi tugmalar, bosilsa matn ketadi · **bot.action** — callback uchun handler · **bot.hears** — aniq matn uchun handler · **fallback handler** — mos handler topilmagan matnga javob beradi · **bot.launch** — botni ishga tushiradi (polling bilan)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓

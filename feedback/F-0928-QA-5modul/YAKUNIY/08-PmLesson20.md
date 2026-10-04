@@ -1,7 +1,7 @@
 # 8-dars «Botingizni ishlatgan odamdan nimani so'raysiz?» — yakuniy matn
 
-Fayl: `src/5-Modull/PmLesson20.jsx` · 16 ekran · Keyingi dars: «Fikr va iteratsiya»
-Holat: 01.10.2026 — kodga mos (1–8)
+Fayl: `src/5-Modull/PmLesson20.jsx` · 16 ekran · Keyingi dars: «Foydalanuvchi fikri va iteratsiya»
+Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — botingiz
 - Eyebrow: Kirish · botingiz
@@ -51,7 +51,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
 ## 4 · Suhbat
 - Eyebrow: Suhbat
 - Sarlavha: **To'rt savol — to'rt javob. Qaysi biridan ko'proq narsa bilinadi?**
-- Mentor (1–2-bosqichda): Qarshingizda suhbatdosh o'tiribdi. Savolni bosing — u javob beradi.
+- Mentor (1–2-bosqichda): Qarshingizda suhbatdosh o'tiribdi, savol to'rtta. Savolni bosing — u javob beradi.
 - Suhbatdosh: S · Suhbatdosh
 - 1-bosqich — savollar navbat bilan (savol → javob → nima bilindi; berilgan savol «✓ n-savol — …» qatoriga yig'iladi):
   1. Botim yoqdimi? → «Ha, zo'r ekan!» → Hech narsa bilinmadi — u qilgan biror ishini aytmadi
@@ -103,6 +103,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
      - Sayt telefonda sekin ochilgan
      - Topsa: Topdingiz: suratlar yomon chiqqan edi. · Adashsa: Aslida suratlar yomon chiqqan edi.
   5. **Shunda ma'lum bo'ldi** — Saytdagi suratlar xira va qorong'i edi. Asoschilar uylarni qaytadan suratga olishdi, band qilishlar ko'paydi. Javobni ular kompyuter oldida emas, uy egalarining yonida topishdi — botingizda ham javob uni ishlatgan odamda.
+- Sahna yozuvlari (rasm ostida): 1-bosqich «San-Frantsisko · 2007» · 2-bosqich «Band qilish deyarli yo'q», javobdan keyin «Nyu-York» · 3-bosqich «Nyu-York · uy-ma-uy» · 4-bosqich «Nyu-York · uy-ma-uy», javobdan keyin «Suratlar xira» · 5-bosqich «Band qilish ko'paydi»
 - Tugmalar: Orqaga · Avval o'zingiz belgilang · Keyingi bosqich (n/5) → Davom etish · nuqtalar ustida: Avval shu bosqichni tugating
 
 ## 7 · 3-savol
@@ -121,7 +122,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
 - Eyebrow: Mustaqil ish · uch savol
 - Sarlavha: **Uchta savolingizni yozing.**
 - Lenta (2-darsda ro'yxat yozilgan bo'lsa): 2-darsda yozganingiz: {1} · {2} · {3} — uyda savollarni ularga ham berasiz.
-- Mentor: Yoningizdagi odam avval botingizni ishlatib ko'rsin. Keyin unga uchta savol bering va har javobni o'sha zahoti yozib oling.
+- Mentor: Yoningizdagi odam avval botingizni ishlatib ko'rsin. Keyin unga savollaringizni bering va har javobni o'sha zahoti yozib oling.
 - Qadamlar: 1-savol · 2-savol · 3-savol
 - 1-qadam: maydon «Nimani so'raysiz?» → tugma «Savolni odamga o'qib bering»
   - kelajak haqidagi savol bo'lsa: Bu ish hali bo'lmagan — javobi va'da bo'ladi. Allaqachon bo'lgan kunni so'rang.
@@ -131,7 +132,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
   - boshqa holatda: Savol kelajakni so'ramayapti, javobda xulosa so'zi yo'q — saqlashingiz mumkin.
   - Tugma: ✓ Saqlash / ✓ Yangilash · yetishmasa yonida: savol yozilmagan · savol hali berilmagan · eshitgan javob yozilmagan
 - Uchtasi tayyor bo'lgach: Suhbat varag'ingiz — «1 {savol} → «{eshitgan}» ✎» (×3)
-- Topshiriq: Uch savol yozilgan · Savol bo'lib o'tgan ishni so'raydi · Har javob — u aytganidek
+- Topshiriq: Savol bo'lib o'tgan ishni so'raydi · Har javob — u aytganidek
 - Yordam: Savolingizni «Oxirgi marta qachon …?» yoki «O'sha kuni qanday qildingiz?» deb boshlang. · Bu ish allaqachon bo'lganmi? Bu gapni odam aytdimi yoki siz chiqardingizmi?
 - Qo'shimcha: Uch javobingizni qayta o'qing: ikkitasida bir xil narsa takrorlanganmi? Topganingizni ovoz chiqarib ayting.
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
@@ -180,7 +181,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
     - Avval bitta qatorni chiqarib ko'ring: **javoblar[0].savol**. Ishlagach siklni, keyin **if** ni qo'shing.
     - Javob matnini qo'shtirnoq (`"..."`) ichida yozing: yakka tirnoq (`'...'`) ichidagi apostrof kodni buzadi.
     - Qo'shimcha: javobi bo'sh yozuvlarni sanab boring va oxirida bitta qatorda chiqaring: «n ta javob yozilmagan».
-  - Tugma: ✓ Yozdim — kod ishladi → ✓ Bajarildi · (mustaqil rejimda) ✓ Bu mashqni sinfda bajarganman — davom etish →
+  - Tugma: ✓ Yozdim — kod ishladi → ✓ Bajarildi
   - VS Code oynasi: suhbat.js · qo'lda yoziladi (sichqoncha ustida: Kod nusxalanmaydi — o'zingiz terib yozasiz) · terminal: `$ node suhbat.js`
   - Kod:
     ```js
@@ -224,6 +225,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
 - 1-qadam: (mustaqil rejimda) Ovoz chiqarib o'zingizga ayting: savol va javob / (jonli darsda) Sherigingizga ayting: savol va javob
   - Mustaqil taymer (30 s): ▶ 30 soniyani boshlash · Hozir ovoz chiqarib ayting · ekranga qaramasdan · To'xtatish
   - Jonli taymer (1 daqiqa): Har biringizga 30 soniyadan — avval A, keyin B. · ▶ 1 daqiqani boshlash · Hozir A gapiradi · keyin — B navbati · Hozir B gapiradi · oxirgi navbat · To'xtatish
+- Taymer tugaganda: ✓ Vaqt tugadi — aytib bo'ldingiz. Barakalla! (jonli: ✓ Vaqt tugadi — ikkalangiz ham aytib bo'ldingiz. Barakalla!) · ↻ Yana 30 soniya / ↻ Yana 1 daqiqa
 - Taymer tugagach yoki to'xtatilgach: ✓ Aytildi
 - 2-qadam: Endi bir qator yozing · maydon «Eng aniq javob ... savolimdan keldi, unda ...»
 - Yozib bo'lgach: Bugungi qoida: bo'lib o'tgan ishni so'rang, eshitgan javobni u aytganidek yozing.
@@ -268,7 +270,7 @@ Holat: 01.10.2026 — kodga mos (1–8)
   - Varaqqa xulosangiz emas, eshitgan javob tushadi — u aytganidek.
 - Nishonlaringiz — n/4
 - Uyga vazifa · Amaliy topshiriqni bajarish →
-- Keyingi dars — **«Fikr va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
+- Keyingi dars — **«Foydalanuvchi fikri va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 
 ## Nishonlar
