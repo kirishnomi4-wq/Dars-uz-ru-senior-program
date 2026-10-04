@@ -25,7 +25,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
-  success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
+  success: '#12A968', successSoft: '#E3F0E8', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
   // ink3 (#9C97B4) kontrasti 2.48:1 — o'qiladigan matnga yaramaydi. ink3Deep 4.74:1 (bg)
   // va 5.34:1 (paper) beradi: ataylab «past daraja» bo'lishi kerak joylar uchun (F-0820-65).
@@ -150,6 +150,23 @@ function AchCounter() {
     </div>
   );
 }
+
+// F-1003-03: yozish maydoni matn bilan o'sadi (1 → 4 qator), uzun javob yon tomonga ketmaydi.
+// Enter yangi qator ochmaydi — maydonning o'z onKeyDown'i (masalan, saqlash) ishlayveradi.
+const GrowInput = ({ onKeyDown, type, ...rest }) => {
+  const ref = useRef(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return;
+    const cs = getComputedStyle(el);
+    const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.45 || 22;
+    const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const max = Math.round(lh * 4 + pad);
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, max) + 'px';
+    el.style.overflowY = el.scrollHeight > max ? 'auto' : 'hidden';
+  });
+  return <textarea ref={ref} rows={1} {...rest} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) e.preventDefault(); if (onKeyDown) onKeyDown(e); }} />;
+};
 
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
@@ -471,7 +488,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed;
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (ctaLabel || tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -1208,7 +1225,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const nQadam = edit === null ? list.length + 1 : edit + 1;
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : list.length === 0 ? tr({ uz: '① Birinchi shartni yozing va saqlang', ru: '① Напишите первое условие и сохраните' }) : tr({ uz: `② Yana ${3 - list.length} shart yozing`, ru: `② Напишите ещё условий: ${3 - list.length}` });
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · uch shart', ru: 'Самостоятельная работа · три условия' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ishingizga <span className="italic" style={{ color: T.accent }}>uchta shart</span> yozing.</>, ru: <>Напишите к своей задаче <span className="italic" style={{ color: T.accent }}>три условия</span>.</> })}</h2></div>
         <Mentor>{ownIsh
@@ -1225,7 +1242,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* 80b: ekranning yagona kartasi — bitta maydon + jonli javob */}
             {(!done || edit !== null) && (
               <div className="wsp-ed">
-                <input className={`reflect-input${inputTurn ? ' await' : ''}${uzun ? ' filled' : ''}`} value={draft} maxLength={140}
+                <GrowInput className={`reflect-input${inputTurn ? ' await' : ''}${uzun ? ' filled' : ''}`} value={draft} maxLength={140}
                   placeholder={tr({ uz: `${nQadam}-shart: nimani tekshirasiz?`, ru: `Условие ${nQadam}: что будете проверять?` })}
                   aria-label={tr({ uz: `${nQadam}-shart: nimani tekshirasiz?`, ru: `Условие ${nQadam}: что будете проверять?` })}
                   onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
@@ -1484,7 +1501,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const isSelf = !live || live.mode === 'self';
   const [saved] = useState(() => readKoding());
   const [open, setOpen] = useState(() => !!(saved && saved.open));
   const [marks, setMarks] = useState(() => (saved && saved.marks) || {});
@@ -1585,9 +1601,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     </div>}
                   </div>
                   {done && <div className="done-mini fade-step">{tr({ uz: "✅ To'rt sinov to'g'ri chiqdi", ru: '✅ Четыре проверки прошли верно' })} <span className="dm-sub">{tr({ uz: "— kod endi shartlarni o'zi tekshiradi", ru: '— теперь код проверяет условия сам' })}</span></div>}
-                  {!done && isSelf && (
-                    <button className="kd-skip" onClick={onNext}>{tr({ uz: '✓ Bu kodni sinfda yozganman →', ru: '✓ Этот код я писал(а) в классе →' })}</button>
-                  )}
                 </div>
               </Col>
               <Col gap={10}>
@@ -1694,7 +1707,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: '✍️ Endi bir qator yozing', ru: '✍️ Теперь напишите одну строку' })}</span></div></div>
             <span className={`turn-wrap${inputTurn ? ' turn-ring' : ''}`}>
-              <input className="reflect-input" aria-label={tr({ uz: 'Eng muhim shartingiz va uni qanday tekshirasiz', ru: 'Ваше главное условие и как вы его проверите' })} value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: 'Eng muhim shartim ... , uni ... deb tekshiraman', ru: 'Моё главное условие ... , проверю его так: ...' })} maxLength={160} />
+              <GrowInput className="reflect-input" aria-label={tr({ uz: 'Eng muhim shartingiz va uni qanday tekshirasiz', ru: 'Ваше главное условие и как вы его проверите' })} value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: 'Eng muhim shartim ... , uni ... deb tekshiraman', ru: 'Моё главное условие ... , проверю его так: ...' })} maxLength={160} />
             </span>
             {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>{tr({ uz: '✓ Yozildi!', ru: '✓ Записано!' })}</p>}
           </div>
@@ -2458,7 +2471,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши сегодняшние <span className="italic" style={{ color: T.accent }}>победители</span></> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши сегодняшние <span className="italic" style={{ color: T.accent }}>победители</span></> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2569,10 +2582,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="hero">
           <div className="hero-l">
-            <span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>
+            <div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>{!isMentorL && <span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span>}</div>
             <h2 className="title h-title fade-up d1">{tr({ uz: <>Ishingizning uchta <span className="italic" style={{ color: T.accent }}>sharti</span> yozildi.</>, ru: <>Три <span className="italic" style={{ color: T.accent }}>условия</span> вашей задачи записаны.</> })}</h2>
           </div>
-          {!isMentorL && <ScoreRing correct={correct} total={total} />}
+          
         </div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
@@ -2727,6 +2740,7 @@ const CSS_BASE = `
   .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
   .screen > * { flex-shrink: 0; }
   .head { display: flex; flex-direction: column; gap: 6px; }
+  .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
   .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(16px,2.6vw,30px); align-items: start; }
   .split.foot2 { gap: clamp(10px,1.6vw,18px); }
   .split.sum2 { gap: clamp(12px,2vw,22px); }
@@ -2742,6 +2756,7 @@ const CSS_BASE = `
   .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
   .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; }
+  .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
   .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
   .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
   .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -3014,6 +3029,7 @@ const CSS_LESSON = `
   /* 81-qonun: maydon-signallari MA'NO rangida (qizil hech qachon).
      bo'sh = xira halqa · kutmoqda = yumshoq indigo nafas · fokus = to'liq indigo 2px · to'lgan = indigo halqa. */
   .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 11px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; width: 100%; min-width: 0; transition: box-shadow 0.18s; }
+  textarea.reflect-input { display: block; line-height: 1.45; resize: none; overflow-y: hidden; box-sizing: border-box; } /* F-1003-03 */
   .reflect-input:focus { box-shadow: inset 0 0 0 2px ${T.accent}; }
   .reflect-input.filled { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
   .reflect-input.await { animation: rin-wait 2.2s ease-in-out infinite; }
@@ -3038,8 +3054,10 @@ const CSS_LESSON = `
   /* F-0926-05 #16: yashil ramka olindi — holatni tugma yoki yozuv aytadi */
   /* padding-left 19px + panel 13px edi: <ol> raqamlari chap accent-chizig'iga yopishardi.
      PmLesson8 qiymatlari (22px / gap 7px) — F-0820-69, o'sha nuqson takrorlangan. */
-  .kdreq { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 7px; }
-  .kdreq li { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; overflow-wrap: anywhere; }
+  /* F-1003-21: umumiy ol{padding:0} chekinishni yeb qo'yardi — raqam-belgili qatorlar (8-dars naqshi) */
+  .lesson-root ol.kdreq { margin: 0; padding-left: 0; list-style: none; counter-reset: kd; display: flex; flex-direction: column; gap: 5px; }
+  .kdreq li { counter-increment: kd; position: relative; display: block; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; background: ${T.bg}; border-radius: 9px; padding: 6px 10px 6px 35px; min-width: 0; overflow-wrap: anywhere; }
+  .kdreq li::before { content: counter(kd); position: absolute; left: 10px; top: 7px; width: 17px; height: 17px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; display: flex; align-items: center; justify-content: center; }
   .cmt { background: ${T.bg}; border-radius: 13px; padding: 11px 13px; display: flex; flex-direction: column; gap: 9px; }
   .cmt.hunt { animation: cmt-hunt 1.7s ease-in-out infinite; }
   /* 72c: birinchi juftlik ulangach puls tinadi — signal ishini bajardi (.itray bilan bir naqsh) */
@@ -3053,8 +3071,6 @@ const CSS_LESSON = `
   .cmt-tip { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(12px,1.4vw,13px); line-height: 1.45; color: ${T.ink2}; background: ${T.accentSoft}; border-radius: 9px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; animation: fade-step 0.3s ease-out; }
   @media (prefers-reduced-motion: reduce) { .cmt-tip { animation: none; } }
   .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 10px 13px; display: flex; flex-direction: column; gap: 5px; }
-  .kd-skip { align-self: flex-start; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
-  .kd-skip:hover { color: ${T.accent}; }
   /* RECAP (s11) */
   .rcp-flow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,18px); align-items: stretch; }
   @media (max-width: 760px) { .rcp-flow { grid-template-columns: 1fr; } }

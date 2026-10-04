@@ -26,7 +26,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const T = {
   bg: '#F7F6FC', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4', // F-0828-02: fon #F2F0FA → #F7F6FC (etalon bilan bir xil)
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
-  success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB',
+  success: '#12A968', successSoft: '#E3F0E8', blue: '#0E86C4', blueSoft: '#E1F3FB',
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
   shadowBase: '40, 34, 82'
 };

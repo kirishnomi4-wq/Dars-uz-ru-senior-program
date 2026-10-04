@@ -229,7 +229,7 @@ const RECAPS = {
   5: {
     title: { uz: "Tekshiruvchi — AI yozgach nima qilamiz", ru: 'Проверяющий — что делать после кода от ИИ' },
     cards: [
-      { ic: "📋", h: { uz: "Uch ish: rejalashtir, yo'naltir, tekshir", ru: 'Три дела: планируй, направляй, проверяй' }, body: { uz: <>Reja tuzasiz, agentga aniq buyruq berasiz, keyin natijani <b>tekshirasiz</b>.</>, ru: <>Вы составляете план, даёте агенту чёткую команду, затем <b>проверяете</b> результат.</> }, vis: <RcFlow items={[{ uz: 'Rejalashtir', ru: 'Планируй' }, { uz: "Yo'naltir", ru: 'Направляй' }, { uz: 'Tekshir', ru: 'Проверяй' }]} /> },
+      { ic: "📋", h: { uz: "Uch ish: rejalashtir, yo'naltir, tekshir", ru: 'Три дела: планируй, направляй, проверяй' }, body: { uz: <>Reja tuzasiz, agentga aniq buyruq berasiz, keyin natijani <b>tekshirasiz</b>.</>, ru: <>Вы составляете план, даёте агенту чёткую команду, затем <b>проверяете</b> результат.</> }, vis: <RcFlow items={[{ uz: 'Rejalashtirish', ru: 'Планирование' }, { uz: "Yo'naltirish", ru: 'Направление' }, { uz: 'Tekshirish', ru: 'Проверка' }]} /> },
       { ic: "🧾", h: { uz: '5 fayl — bitta resurs', ru: '5 файлов — один ресурс' }, body: { uz: <>Avval tekshiring: <span className="mono">entity</span>, <span className="mono">dto</span>, <span className="mono">service</span>, <span className="mono">controller</span>, <span className="mono">module</span> — <b>beshtasi</b> ham bormi.</>, ru: <>Сначала проверьте, на месте ли все <b>пять</b>: <span className="mono">entity</span>, <span className="mono">dto</span>, <span className="mono">service</span>, <span className="mono">controller</span>, <span className="mono">module</span>.</> }, vis: <RcFlow items={["entity", "dto", "service", "controller", "module"]} sep="·" /> },
       { ic: "🚪", h: { uz: 'Kirish taxtasi — 404 sababi', ru: 'Входная вывеска — причина 404' }, body: { uz: <>Bo'lim <span className="mono">AppModule.imports</span>'da bo'lmasa, mijoz eshikni topa olmaydi — <span className="mono">404</span>.</>, ru: <>Если отдела нет в <span className="mono">AppModule.imports</span>, клиент не найдёт дверь — <span className="mono">404</span>.</> }, ask: { uz: "AI kod yozib berdi. Birinchi navbatda nimani tekshirasiz?", ru: 'ИИ написал код. Что вы проверите в первую очередь?' } },
     ]
@@ -477,7 +477,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed;
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : (!solved && !_resc)} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : _resc ? tr({ uz: "Javobni birga ko'ramiz →", ru: 'Разберём ответ вместе →' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -875,7 +875,7 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>{tr(cur.t)}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sikl: <b>Rejalashtir → Yo'naltir → Tekshir</b>. Har resurs uchun shu uch qadam. Boshlaymiz — avval reja.</>, ru: <>Цикл: <b>Планируй → Направляй → Проверяй</b>. Три шага для каждого ресурса. Начинаем — сначала план.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sikl: <b>Rejalashtirish → Yo'naltirish → Tekshirish</b>. Har resurs uchun shu uch qadam. Boshlaymiz — avval reja.</>, ru: <>Цикл: <b>Планирование → Направление → Проверка</b>. Три шага для каждого ресурса. Начинаем — сначала план.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1822,7 +1822,7 @@ function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswe
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true });
     // JONLI: o'quvchi «Bajardim» bosganda serverga yoziladi (500+ zonasi) — mentor MentorPracticeStats'da ko'radi
@@ -1856,8 +1856,8 @@ function ScreenLivePractice({ title, task, extra, checklist, screen, storedAnswe
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: 'Bajardim', ru: 'Выполнил(а)' }) /* F-0926-06: tugma emojisi olindi (C1) */}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: 'Bajardim', ru: 'Выполнил(а)' }) /* F-0926-06: tugma emojisi olindi (C1) */}
             </button>
             {/* F-0926-06: «✓ Bajarildi — ustozni kuting» tugmasidan keyingi takror yashil xabar olindi (159/14) */}
           </Col>
@@ -2572,7 +2572,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2643,7 +2643,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   };
   const RECAP = [
     { uz: "3 bog'langan resursli real backend qurdingiz (Category · Book · Order)", ru: 'Вы построили настоящий бэкенд с 3 связанными ресурсами (Category · Book · Order)' },
-    { uz: "Bosh dasturchi sikli: Rejalashtir → Yo'naltir → Tekshir", ru: 'Цикл главного разработчика: Планируй → Направляй → Проверяй' },
+    { uz: "Bosh dasturchi sikli: Rejalashtirish → Yo'naltirish → Tekshirish", ru: 'Цикл главного разработчика: Планирование → Направление → Проверка' },
     { uz: "Eshik va qo'riqchi: @UseGuards + @Roles — 🌐 public (mijoz) vs 🔒 admin", ru: 'Дверь и страж: @UseGuards + @Roles — 🌐 public (клиент) vs 🔒 admin' },
     { uz: "Yorliq: @ManyToOne — ko'p kitob → bitta yorliq (yorliq kitobda saqlanadi)", ru: 'Ярлык: @ManyToOne — много книг → один ярлык (ярлык хранится на книге)' },
     { uz: "Kirish taxtasi: AppModule'ga ulanmagan bo'lim = 404", ru: 'Входная вывеска: отдел, не подключённый к AppModule, = 404' },
@@ -2660,7 +2660,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Modulni yakunlash ✓', ru: 'Завершить модуль ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Real backend qurdingiz', ru: 'Вы построили настоящий бэкенд' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>backend dasturchisi</span>siz.</>, ru: <>Теперь вы — <span className="italic" style={{ color: T.accent }}>бэкенд-разработчик</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Real backend qurdingiz', ru: 'Вы построили настоящий бэкенд' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>backend dasturchisi</span>siz.</>, ru: <>Теперь вы — <span className="italic" style={{ color: T.accent }}>бэкенд-разработчик</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2906,6 +2906,7 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -3015,6 +3016,7 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -3180,6 +3182,7 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         /* «✅ Bajardim» → mentor-gate: tugma MUHRLANADI (pop + yorug'lik supurgisi) — o'quvchi tasdiqni KO'RADI */
         .lp-done-btn.is-done { position: relative; overflow: hidden; background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         .lp-done-btn.is-done::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 42%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.85), transparent); transform: skewX(-18deg); animation: lp-sweep 1.05s cubic-bezier(.4,0,.2,1) 0.2s 1 both; }
         @keyframes lp-sweep { to { left: 130%; } }

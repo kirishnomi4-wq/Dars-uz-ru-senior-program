@@ -312,7 +312,7 @@ const RECAPS = {
   13: {
     title: { uz: "Yaxshilash sikli", ru: 'Цикл улучшения' },
     cards: [
-      { ic: "🔄", h: { uz: "To'xtovsiz sikl", ru: 'Непрерывный цикл' }, body: { uz: <>Qur → ko'rsat → fikr ol → sarala → upgrade → <b>yana ko'rsat</b>.</>, ru: <>Построй → покажи → собери отзывы → приоритизируй → апгрейд → <b>снова покажи</b>.</> } },
+      { ic: "🔄", h: { uz: "To'xtovsiz sikl", ru: 'Непрерывный цикл' }, body: { uz: <>Qurish → ko'rsatish → fikr olish → saralash → upgrade → <b>yana ko'rsatish</b>.</>, ru: <>Сборка → показ → сбор отзывов → приоритизация → апгрейд → <b>снова показ</b>.</> } },
       { ic: "👥", h: { uz: "Foydalanuvchi fikri", ru: 'Отзыв пользователя' }, body: { uz: <>O'zingiz hammasini ko'ra olmaysiz — <b>foydalanuvchi fikri</b> kamchilikni ochadi.</>, ru: <>Сами вы всего не увидите — <b>отзыв пользователя</b> вскрывает недочёты.</> } },
       { ic: "🚀", h: { uz: "Mahsulot o'sadi", ru: 'Продукт растёт' }, body: { uz: <>Qurib unutish emas — fikr bilan doimo <b>yaxshilanadi</b>.</>, ru: <>Не «построил и забыл» — продукт постоянно <b>улучшается</b> благодаря отзывам.</> }, ask: { uz: "Mahsulotni yaxshilash sikli qanday?", ru: 'Как выглядит цикл улучшения продукта?' } }
     ]
@@ -499,7 +499,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed;
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, нажимайте обдуманно!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -1296,7 +1296,7 @@ const Screen13 = (props) => (
   <QuestionScreen {...props} idx={13} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     questionText={tr({ uz: 'Mahsulotni yaxshilash sikli qanday?', ru: 'Как выглядит цикл улучшения продукта?' })}
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Mahsulotni <span className="italic" style={{ color: T.accent }}>yaxshilash sikli</span> qanday?</>, ru: <>Как выглядит <span className="italic" style={{ color: T.accent }}>цикл улучшения</span> продукта?</> })}</h2></>}
-    options={[tr({ uz: "Qur → ko'rsat → fikr ol → sarala → upgrade", ru: 'Построй → покажи → собери отзывы → приоритизируй → апгрейд' }), tr({ uz: "Qur → e'lon qil → boshqa qaytib tegma", ru: 'Построй → объяви → больше не трогай' }), tr({ uz: "Qur → fikr so'rama → o'zi bilgancha tuzat", ru: 'Построй → не спрашивай отзывов → чини по-своему' }), tr({ uz: 'Qur → hamma yaxshilanishni birdan qil', ru: 'Построй → сделай все улучшения разом' })]} correctIdx={0}
+    options={[tr({ uz: "Qurish → ko'rsatish → fikr olish → saralash → upgrade", ru: 'Сборка → показ → сбор отзывов → приоритизация → апгрейд' }), tr({ uz: "Qurish → e'lon qilish → boshqa qaytib tegmaslik", ru: 'Сборка → объявление → больше не трогать' }), tr({ uz: "Qurish → fikr so'ramaslik → o'zi bilgancha tuzatish", ru: 'Сборка → без вопросов об отзывах → исправление по-своему' }), tr({ uz: 'Qurish → hamma yaxshilanishni birdan qilish', ru: 'Сборка → все улучшения разом' })]} correctIdx={0}
     explainCorrect={tr({ uz: "Mahsulot foydalanuvchi fikri bilan to'xtovsiz yaxshilanadi.", ru: 'Продукт улучшается непрерывно — по отзывам пользователей.' })}
     explainWrong={{
       1: tr({ uz: "Qurib unutilgan mahsulot o'smaydi.", ru: 'Построенный и забытый продукт не растёт.' }),
@@ -1350,10 +1350,10 @@ const Screen15 = ({ screen, onNext, onPrev }) => (
         <Col>
           <p className="flow-label">{tr({ uz: 'Yaxshilash sikli', ru: 'Цикл улучшения' })}</p>
           <div className="roadmap">
-            <div className="step-card"><span className="step-num">01</span><span className="step-body"><span className="step-text">{tr({ uz: 'Qur', ru: 'Построй' })}</span><span className="step-tag">{tr({ uz: 'ishlaydigan mahsulot', ru: 'работающий продукт' })}</span></span></div>
-            <div className="step-card"><span className="step-num">02</span><span className="step-body"><span className="step-text">{tr({ uz: "Ko'rsat va fikr ol", ru: 'Покажи и собери отзывы' })}</span><span className="step-tag">{tr({ uz: 'aniq fikr (feedback)', ru: 'конкретный отзыв (feedback)' })}</span></span></div>
-            <div className="step-card"><span className="step-num">03</span><span className="step-body"><span className="step-text">{tr({ uz: 'Sarala', ru: 'Приоритизируй' })}</span><span className="step-tag">{tr({ uz: 'foyda / mehnat doskasi', ru: 'доска польза / усилия' })}</span></span></div>
-            <div className="step-card"><span className="step-num">04</span><span className="step-body"><span className="step-text">{tr({ uz: 'Upgrade qil', ru: 'Сделай апгрейд' })}</span><span className="step-tag">{tr({ uz: "→ yana ko'rsat", ru: '→ снова покажи' })}</span></span></div>
+            <div className="step-card"><span className="step-num">01</span><span className="step-body"><span className="step-text">{tr({ uz: 'Qurish', ru: 'Сборка' })}</span><span className="step-tag">{tr({ uz: 'ishlaydigan mahsulot', ru: 'работающий продукт' })}</span></span></div>
+            <div className="step-card"><span className="step-num">02</span><span className="step-body"><span className="step-text">{tr({ uz: "Ko'rsatish va fikr olish", ru: 'Показ и сбор отзывов' })}</span><span className="step-tag">{tr({ uz: 'aniq fikr (feedback)', ru: 'конкретный отзыв (feedback)' })}</span></span></div>
+            <div className="step-card"><span className="step-num">03</span><span className="step-body"><span className="step-text">{tr({ uz: 'Saralash', ru: 'Приоритизация' })}</span><span className="step-tag">{tr({ uz: 'foyda / mehnat doskasi', ru: 'доска польза / усилия' })}</span></span></div>
+            <div className="step-card"><span className="step-num">04</span><span className="step-body"><span className="step-text">{tr({ uz: 'Upgrade qilish', ru: 'Апгрейд' })}</span><span className="step-tag">{tr({ uz: "→ yana ko'rsatish", ru: '→ снова показ' })}</span></span></div>
           </div>
         </Col>
         <Col>
@@ -1459,7 +1459,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor · modul finali', ru: 'Готово · финал модуля' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: '4-modul yakunlandi', ru: 'Модуль 4 завершён' })} 🎓</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz endi <span className="italic" style={{ color: T.accent }}>fullstack quruvchisiz</span>.</>, ru: <>Теперь Вы — <span className="italic" style={{ color: T.accent }}>fullstack-строитель</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: '4-modul yakunlandi', ru: 'Модуль 4 завершён' })} 🎓</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz endi <span className="italic" style={{ color: T.accent }}>fullstack quruvchisiz</span>.</>, ru: <>Теперь Вы — <span className="italic" style={{ color: T.accent }}>fullstack-строитель</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -1560,7 +1560,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true }); // payload — UZ-etalon
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -1578,8 +1578,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>}
             {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт Вас на следующий шаг.' })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
@@ -1706,7 +1706,7 @@ const FB_FLASHCARDS = [
   { front: { uz: "Band joydan tasodifan chiqib ketishni nima to'xtatadi?", ru: 'Что остановит случайный выезд с занятого места?' }, back: { uz: 'Tasdiq (confirm)', ru: 'Подтверждение (confirm)' }, note: { uz: "Muhim amaldan oldin «rostdanmi?» — Ha / Yo'q", ru: 'Перед важным действием «точно?» — Да / Нет' } },
   { front: { uz: "Bo'sh, band va tushumni bir qarashda nima ko'rsatadi?", ru: 'Что показывает свободно, занято и выручку с одного взгляда?' }, back: 'Dashboard', note: { uz: 'Dashboard — holat paneli, sanashga hojat yo\'q', ru: 'Дашборд — панель состояния, считать не нужно' } },
   { front: { uz: "Bazadagi mavjud narxni qaysi SQL amali o'zgartiradi?", ru: 'Какая SQL-команда меняет уже существующую цену в базе?' }, back: 'UPDATE', note: { uz: "UPDATE mavjud qatorni o'zgartiradi, INSERT yangisini qo'shadi", ru: 'UPDATE меняет существующую строку, INSERT добавляет новую' } },
-  { front: { uz: 'Mahsulotni yaxshilash sikli qanday ketadi?', ru: 'Как идёт цикл улучшения продукта?' }, back: { uz: "Qur → ko'rsat → fikr ol → sarala → upgrade", ru: 'Построй → покажи → собери отзывы → приоритизируй → апгрейд' }, note: { uz: 'Keyin yana ko\'rsatasiz — sikl takrorlanadi', ru: 'Потом показываете снова — цикл повторяется' } }
+  { front: { uz: 'Mahsulotni yaxshilash sikli qanday ketadi?', ru: 'Как идёт цикл улучшения продукта?' }, back: { uz: "Qurish → ko'rsatish → fikr olish → saralash → upgrade", ru: 'Сборка → показ → сбор отзывов → приоритизация → апгрейд' }, note: { uz: 'Keyin yana ko\'rsatasiz — sikl takrorlanadi', ru: 'Потом показываете снова — цикл повторяется' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1826,7 +1826,7 @@ const QUIZ_BANK = [
   { q: { uz: "Narx va joylar sonini qorovul o'zi sozlashi uchun?", ru: 'Что нужно, чтобы охранник сам настраивал цену и число мест?' }, opts: [{ uz: 'Sozlamalar (Settings) paneli', ru: 'Панель настроек (Settings)' }, { uz: 'Kodni har safar qayta yozish', ru: 'Каждый раз переписывать код' }, { uz: 'Har safar yangi sayt ochish', ru: 'Каждый раз открывать новый сайт' }, { uz: 'Hech narsa — bu imkonsiz ish', ru: 'Ничего — это невозможно' }], correct: 0 },
   { q: { uz: "Mavjud narxni o'zgartirish uchun qaysi SQL amali?", ru: 'Какая SQL-команда изменяет существующую цену?' }, opts: [{ uz: "INSERT — jadvalga yangi qator qo'shadi", ru: 'INSERT — добавляет новую строку в таблицу' }, { uz: "DELETE — jadvaldan qatorni o'chiradi", ru: 'DELETE — удаляет строку из таблицы' }, { uz: "UPDATE — mavjud qatorni o'zgartiradi", ru: 'UPDATE — изменяет существующую строку' }, { uz: "SELECT — jadvaldan ma'lumot o'qiydi", ru: 'SELECT — читает данные из таблицы' }], correct: 2 },
   { q: { uz: 'UPDATE va INSERT farqi nimada?', ru: 'В чём разница между UPDATE и INSERT?' }, opts: [{ uz: "Ikkalasi ham bir xil ishlaydi, farqi yo'q", ru: 'Оба работают одинаково, разницы нет' }, { uz: "UPDATE mavjudni o'zgartiradi, INSERT yangi qo'shadi", ru: 'UPDATE изменяет существующее, INSERT добавляет новое' }, { uz: "INSERT mavjudni o'zgartiradi, UPDATE yangi qo'shadi", ru: 'INSERT изменяет существующее, UPDATE добавляет новое' }, { uz: 'Faqat nomi bilan farq qiladi, ishi bir xil', ru: 'Отличаются только названием, работа одна' }], correct: 1 },
-  { q: { uz: 'Mahsulotni yaxshilash sikli qanday?', ru: 'Как выглядит цикл улучшения продукта?' }, opts: [{ uz: "Qur → e'lon qil → boshqa qaytib tegma", ru: 'Построй → объяви → больше не трогай' }, { uz: "Qur → fikr so'rama → o'zi bilgancha tuzat", ru: 'Построй → не спрашивай отзывов → чини по-своему' }, { uz: 'Qur → hamma yaxshilanishni birdan qil', ru: 'Построй → сделай все улучшения разом' }, { uz: "Qur → ko'rsat → fikr ol → sarala → upgrade", ru: 'Построй → покажи → собери отзывы → приоритизируй → апгрейд' }], correct: 3 }
+  { q: { uz: 'Mahsulotni yaxshilash sikli qanday?', ru: 'Как выглядит цикл улучшения продукта?' }, opts: [{ uz: "Qurish → e'lon qilish → boshqa qaytib tegmaslik", ru: 'Сборка → объявление → больше не трогать' }, { uz: "Qurish → fikr so'ramaslik → o'zi bilgancha tuzatish", ru: 'Сборка → без вопросов об отзывах → исправление по-своему' }, { uz: 'Qurish → hamma yaxshilanishni birdan qilish', ru: 'Сборка → все улучшения разом' }, { uz: "Qurish → ko'rsatish → fikr olish → saralash → upgrade", ru: 'Сборка → показ → сбор отзывов → приоритизация → апгрейд' }], correct: 3 }
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2277,7 +2277,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2555,6 +2555,7 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -2585,6 +2586,7 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2779,6 +2781,7 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }

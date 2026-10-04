@@ -571,7 +571,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед кликом!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -1387,7 +1387,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </Browser>
-            {done && <div ref={doneRef} className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana to'liq oqim: <b>reja → qur → tekshir → tuzat → deploy</b>. Uyga vazifada o'z g'oyangizni shu yo'l bilan haqiqatga aylantiring.</>, ru: <>Вот полный поток: <b>план → построй → проверь → почини → деплой</b>. В домашнем задании превратите свою идею в реальность этим путём.</> })}</p></div>}
+            {done && <div ref={doneRef} className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana to'liq oqim: <b>reja → qurish → tekshirish → tuzatish → deploy</b>. Uyga vazifada o'z g'oyangizni shu yo'l bilan haqiqatga aylantiring.</>, ru: <>Вот полный поток: <b>план → сборка → проверка → исправление → деплой</b>. В домашнем задании превратите свою идею в реальность этим путём.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1427,7 +1427,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, earn, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Mana — butun modulning siri bitta ketma-ketlikda. Do'kon, o'yin, bot — farqi yo'q: <b style={{ color: T.ink }}>hammasi shu 5 qadam bilan</b> quriladi. Bo'laklarni sudrab, to'g'ri tartibga qo'ying.</>, ru: <>Вот секрет всего модуля в одной последовательности. Магазин, игра, бот — без разницы: <b style={{ color: T.ink }}>всё строится этими 5 шагами</b>. Перетащите блоки в правильном порядке.</> })}</Mentor>
         <Zoomable>
           <DragDropOrder onWrong={onWrong} items={STEPS} hints={[`1-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `2-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `3-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `4-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `5-${tr({ uz: 'qadam', ru: 'й шаг' })}`]} onSolved={handleSolved} />
-          {passed && <div ref={passedRef} className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mukammal! Reja → MVP → qur → tekshir → deploy. Bu — istalgan loyihaning universal yo'li. Siz uni egalladingiz!", ru: 'Идеально! План → MVP → построй → проверь → деплой. Это универсальный путь любого проекта. Вы его освоили!' })}</p></div>}
+          {passed && <div ref={passedRef} className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mukammal! Reja → MVP → qurish → tekshirish → deploy. Bu — istalgan loyihaning universal yo'li. Siz uni egalladingiz!", ru: 'Идеально! План → MVP → сборка → проверка → деплой. Это универсальный путь любого проекта. Вы его освоили!' })}</p></div>}
         </Zoomable>
       </div>
     </Stage>
@@ -1456,7 +1456,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [{ uz: "Savat va jami narx — katalogni haqiqiy do'konga aylantiradi", ru: 'Корзина и итоговая цена превращают каталог в настоящий магазин' }, { uz: "AI ham adashadi — aniq tushuntirib, qayta so'rab tuzatamiz", ru: 'ИИ тоже ошибается — точно объясняем, просим снова и чиним' }, { uz: 'MVP tayyor = asosiy funksiyalar ishlaydi (keyin yaxshilanadi)', ru: 'MVP готов = основные функции работают (улучшим потом)' }, { uz: 'Deploy — loyihani internetga chiqarish', ru: 'Деплой — выпуск проекта в интернет' }, { uz: "Universal yo'l: reja → MVP → qur → tekshir → deploy", ru: 'Универсальный путь: план → MVP → построй → проверь → деплой' }];
+  const RECAP = [{ uz: "Savat va jami narx — katalogni haqiqiy do'konga aylantiradi", ru: 'Корзина и итоговая цена превращают каталог в настоящий магазин' }, { uz: "AI ham adashadi — aniq tushuntirib, qayta so'rab tuzatamiz", ru: 'ИИ тоже ошибается — точно объясняем, просим снова и чиним' }, { uz: 'MVP tayyor = asosiy funksiyalar ishlaydi (keyin yaxshilanadi)', ru: 'MVP готов = основные функции работают (улучшим потом)' }, { uz: 'Deploy — loyihani internetga chiqarish', ru: 'Деплой — выпуск проекта в интернет' }, { uz: "Universal yo'l: reja → MVP → qurish → tekshirish → deploy", ru: 'Универсальный путь: план → MVP → сборка → проверка → деплой' }];
   const HOMEWORK = [{ b: { uz: "O'z g'oyangiz", ru: 'Ваша идея' }, t: { uz: "— bitta loyihani tanlab, MVP'sini belgilang", ru: '— выберите один проект и определите его MVP' } }, { b: { uz: "Antigravity'da quring", ru: 'Постройте в Antigravity' }, t: { uz: "— reja, qur, tekshir, bug bo'lsa tuzating", ru: '— план, постройте, проверьте, а если баг — почините' } }, { b: { uz: 'Deploy qiling', ru: 'Сделайте деплой' }, t: { uz: '— havolani oling va kimgadir ulashing!', ru: '— получите ссылку и поделитесь с кем-нибудь!' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1464,7 +1464,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Praktika moduli tugadi', ru: 'Модуль практики завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>istalgan loyihani</span> qura olasiz</>, ru: <>Теперь Вы можете построить <span className="italic" style={{ color: T.accent }}>любой проект</span></> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Praktika moduli tugadi', ru: 'Модуль практики завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>istalgan loyihani</span> qura olasiz</>, ru: <>Теперь Вы можете построить <span className="italic" style={{ color: T.accent }}>любой проект</span></> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} disabled={studentWait} liveOn={studentLive} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -1565,7 +1565,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} optionalLive /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1979,7 +1979,7 @@ const QUIZ_BANK = [
   { q: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, opts: [{ uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, { uz: 'Butun kod faylini', ru: 'Весь файл с кодом' }, { uz: 'Butun kompyuteringizni', ru: 'Весь свой компьютер' }, { uz: 'Mahsulot rasmini', ru: 'Фото товара' }], correct: 0 },
   { q: { uz: "'Oxirgi yaxshilanish' misoli qaysi?", ru: 'Какой пример — «последний штрих» (полировка)?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полное удаление кода' }, { uz: 'Kompyuterni almashtirish', ru: 'Замена компьютера' }, { uz: "'Buyurtma berish' tugmasini qo'shish", ru: 'Добавить кнопку «Оформить заказ»' }, { uz: "Internetni o'chirib qo'yish", ru: 'Отключить интернет' }], correct: 2 },
   { q: { uz: 'Har mahsulot ikki marta hisoblanib, jami ikki barobar chiqsa — bu...', ru: 'Каждый товар считается дважды и итог вдвое больше — это...' }, opts: [{ uz: "To'g'ri natija", ru: 'Правильный результат' }, { uz: 'Oddiy dizayn', ru: 'Обычный дизайн' }, { uz: 'Yangi funksiya', ru: 'Новая функция' }, { uz: 'Bug (xato)', ru: 'Баг (ошибка)' }], correct: 3 },
-  { q: { uz: "Universal loyiha yo'li qaysi tartibda?", ru: 'В каком порядке идёт универсальный путь проекта?' }, opts: [{ uz: 'Deploy → qur → tekshir → reja → MVP', ru: 'Деплой → построй → проверь → план → MVP' }, { uz: 'Reja → MVP → qur → tekshir → deploy', ru: 'План → MVP → построй → проверь → деплой' }, { uz: 'Qur → reja → MVP → deploy → tekshir', ru: 'Построй → план → MVP → деплой → проверь' }, { uz: 'MVP → deploy → reja → qur → tekshir', ru: 'MVP → деплой → план → построй → проверь' }], correct: 1 },
+  { q: { uz: "Universal loyiha yo'li qaysi tartibda?", ru: 'В каком порядке идёт универсальный путь проекта?' }, opts: [{ uz: 'Deploy → qurish → tekshirish → reja → MVP', ru: 'Деплой → сборка → проверка → план → MVP' }, { uz: 'Reja → MVP → qurish → tekshirish → deploy', ru: 'План → MVP → сборка → проверка → деплой' }, { uz: 'Qurish → reja → MVP → deploy → tekshirish', ru: 'Сборка → план → MVP → деплой → проверка' }, { uz: 'MVP → deploy → reja → qurish → tekshirish', ru: 'MVP → деплой → план → сборка → проверка' }], correct: 1 },
   { q: { uz: "Savat sanagichi '+' bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «+» у счётчика корзины?' }, opts: [{ uz: 'Umuman hech narsa', ru: 'Вообще ничего' }, { uz: "Hodisa → reaksiya → o'zgarish", ru: 'Событие → реакция → изменение' }, { uz: "Butun sayt o'chadi", ru: 'Весь сайт выключается' }, { uz: "Fon rangi o'zgaradi", ru: 'Меняется цвет фона' }], correct: 1 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -2703,6 +2703,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -2782,6 +2783,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }

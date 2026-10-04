@@ -77,7 +77,7 @@ const codesWrite = (k, codes) => { try { localStorage.setItem(k, JSON.stringify(
 const HC_T = {
   bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2',
   paper: '#FFFFFF', accent: '#FF4D26', accent2: '#FF8A3D', accentSoft: '#FFEDE5',
-  success: '#0FA968', successSoft: '#E4F7EE', warn: '#9A5400', shadowBase: '58, 53, 48', line: '#E9E6DF',
+  success: '#0FA968', successSoft: '#E3F0E8', warn: '#9A5400', shadowBase: '58, 53, 48', line: '#E9E6DF',
 };
 // Kod ranglari — DARS matnidagi `CODE` bilan AYNAN bir xil: bola darsda ko'rgan
 // `<h1>` rangi kompilyatorda ham o'sha bo'lsin (F-0808-03).
@@ -1370,6 +1370,10 @@ function HtmlCompiler({
 
   // ── KO'RINADIGAN KONSOL — JS fayli bo'lsa ko'rsatamiz (console.log natijasi) ──
   const showConsole = useMemo(() => files.some((f) => f.lang === 'js'), [files]);
+  // F-1004-18: HTML fayli yo'q va JS sahifaga yozmasa — natija faqat console'da. Bo'sh oq
+  // oyna ko'rsatilmaydi, console butun panelni egallaydi (iframe yashirin ishlayveradi).
+  const consoleOnly = showConsole && !task.previewUrl && !files.some((f) => f.lang === 'html')
+    && !/\bdocument\b|\balert\s*\(/.test(js);
   const consoleNonceRef = useRef(0);
   // K-P-06: 500 satr (eskisi tashlanadi, `dropped` sanaladi), scroll-lock: faqat pastda turganda auto-scroll
   const [consoleBuf, setConsoleBuf] = useState({ lines: [], dropped: 0 });
@@ -2229,7 +2233,9 @@ function HtmlCompiler({
     statusMsg = <span className="hc-wait-msg">✓ {tr({ uz: 'Shartlar bajarildi — sintaksis xatosi qoldi (yuqorida)', ru: 'Условия выполнены — остался синтаксис (см. выше)' })}</span>;
   } else {
     statusMsg = <span className="hc-wait-msg">{narrow
-      ? tr({ uz: "Shartlarni bajaring — «Natija» tabida ko'rinadi", ru: 'Выполняйте условия — смотрите во вкладке «Результат»' })
+      ? (consoleOnly
+        ? tr({ uz: "Shartlarni bajaring — «Console» tabida ko'rinadi", ru: 'Выполняйте условия — смотрите во вкладке «Console»' })
+        : tr({ uz: "Shartlarni bajaring — «Natija» tabida ko'rinadi", ru: 'Выполняйте условия — смотрите во вкладке «Результат»' }))
       : tr({ uz: "Shartlarni bajaring — natija o'ngda ko'rinadi", ru: 'Выполняйте условия — результат виден справа' })}</span>;
   }
 
@@ -2280,7 +2286,7 @@ function HtmlCompiler({
             ⌨ {tr({ uz: 'Kod', ru: 'Код' })}
           </button>
           <button type="button" role="tab" aria-selected={pane === 'result'} className={pane === 'result' ? 'on' : ''} onClick={() => setPane('result')}>
-            📺 {tr({ uz: 'Natija', ru: 'Результат' })}
+            {consoleOnly ? '🖥️ Console' : <>📺 {tr({ uz: 'Natija', ru: 'Результат' })}</>}
           </button>
         </div>
       )}
@@ -2409,7 +2415,7 @@ function HtmlCompiler({
           </div>
         )}
 
-        <section className="hc-pane hc-preview-pane">
+        <section className={`hc-pane hc-preview-pane${consoleOnly ? ' console-only' : ''}`}>
           <div className="hc-pane-bar">
             {/* `task.previewUrl` berilsa — natija paneli SOXTA BRAUZER oynasiga aylanadi
                 (manzil qatori bilan). PM darslarining o'zagi shu: bola o'zi yozgan
@@ -2419,6 +2425,8 @@ function HtmlCompiler({
                 <span className="hc-dots"><i /><i /><i /></span>
                 <span className="hc-url"><span className="hc-lock">●</span>{tr(task.previewUrl)}</span>
               </>
+            ) : consoleOnly ? (
+              <span className="hc-pane-name">🖥️ Console</span>
             ) : (
               <span className="hc-pane-name">📺 {tr({ uz: 'Natija', ru: 'Результат' })}</span>
             )}
@@ -2444,7 +2452,7 @@ function HtmlCompiler({
           {showConsole && (
             <div className="hc-console">
               <div className="hc-console-bar">
-                <span className="hc-console-title">🖥️ Console</span>
+                {!consoleOnly && <span className="hc-console-title">🖥️ Console</span>}
                 {consoleLines.length > 0 && (
                   <span className="hc-console-count">{consoleLines.length}{consoleBuf.dropped > 0 ? ' · ' + tr({ uz: `eng eski ${consoleBuf.dropped} yashirildi`, ru: `скрыто старых: ${consoleBuf.dropped}` }) : ''}</span>
                 )}
@@ -2544,7 +2552,7 @@ function StyleTag() {
         zoom:var(--lz,1);height:calc(100dvh / var(--lz,1));
         /* F-0813-01: 1160px «kichkina ramka» e'tirozi — desktopda +50% kengaytirildi.
            Balandlik TEGILMAGAN (100dvh o'zgarishsiz); kichik ekranda width:100% cap. */
-        display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1740px;margin:0 auto}
+        display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1740px;margin:0 auto}
 
       .hc-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
       .hc-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:${HC_T.accent};display:inline-flex;align-items:center;gap:7px}
@@ -2569,7 +2577,9 @@ function StyleTag() {
 
       /* F-0813-01: 3 ustun — editor | sudraluvchi chegara | natija. Ulush --hcL/--hcR
          o'zgaruvchilarida (30–70%), sudralganda JS yangilaydi, tanlov eslab qolinadi. */
-      .hc-split{flex:none;height:calc(62dvh / var(--lz,1));min-height:0;display:grid;grid-template-columns:minmax(0,var(--hcL,1fr)) 12px minmax(0,var(--hcR,1fr));gap:clamp(3px,.4vw,5px)}
+      /* F-1004-18: past ekranda (1280×773) sarlavha + ro'yxat + 62dvh sig'masdi — markazlash tepani kesardi.
+         Endi panel qisqaradi (balandlik doimiy, xabar paydo bo'lganda sakramaydi), tepa «safe center» bilan kesilmaydi. */
+      .hc-split{flex:0 1 auto;height:calc(62dvh / var(--lz,1));min-height:240px;display:grid;grid-template-columns:minmax(0,var(--hcL,1fr)) 12px minmax(0,var(--hcR,1fr));gap:clamp(3px,.4vw,5px)}
       .hc-pane{display:flex;flex-direction:column;min-height:0;border-radius:18px;overflow:hidden;background:${HC_T.paper};box-shadow:0 1px 0 ${HC_T.line},0 18px 40px -22px rgba(${HC_T.shadowBase},.35)}
       .hc-pane-bar{display:flex;align-items:center;gap:10px;padding:10px 15px;font-size:12px;font-weight:600;color:${HC_T.ink2}}
       .hc-editor-pane .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -2656,6 +2666,12 @@ function StyleTag() {
       .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
+      /* F-1004-18: console-only — bo'sh oq Natija oynasi o'rniga console butun panelda */
+      .hc-preview-pane.console-only{background:${HC_CODE.bg}}
+      .hc-preview-pane.console-only .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-preview-pane.console-only .hc-frame{flex:none;height:0;visibility:hidden}
+      .hc-preview-pane.console-only .hc-console{flex:1;height:auto;border-top:none}
+      .hc-console-bar:empty{display:none}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
       .hc-console-title{font-family:'JetBrains Mono',monospace;font-feature-settings:"liga" 0,"calt" 0}
       .hc-console-clear{margin-left:auto;background:rgba(255,255,255,.08);color:#cfe0ff;border:none;border-radius:7px;padding:4px 10px;font-size:10.5px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;transition:all .15s}

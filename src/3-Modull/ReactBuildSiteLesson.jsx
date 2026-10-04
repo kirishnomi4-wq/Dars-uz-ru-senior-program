@@ -277,7 +277,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const waiting = oneShot && solved && !revealed;
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед кликом!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -954,7 +954,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1544,7 +1544,7 @@ function ScreenLivePractice({ title, task, checklist, statsLabel, screen, stored
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
@@ -1576,8 +1576,8 @@ function ScreenLivePractice({ title, task, checklist, statsLabel, screen, stored
                 );
               })}
             </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: 'Bajardim', ru: 'Выполнил' }) /* F-0926-06: tugma emojisi olindi (H3) */}
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: 'Bajardim', ru: 'Выполнил' }) /* F-0926-06: tugma emojisi olindi (H3) */}
             </button>}
             {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
@@ -1658,7 +1658,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: tr({ uz: "Sahifalarga bo'lish", ru: 'Разбить на страницы' }), tag: 'Router' },
     { text: tr({ uz: "Har sahifani bo'limlarga", ru: 'Каждую страницу — на секции' }), tag: tr({ uz: 'komponentlar', ru: 'компоненты' }) },
     { text: tr({ uz: "Har bo'lakka aniq prompt", ru: 'Точный промпт для каждого блока' }), tag: tr({ uz: "Nima + Mazmun + Ma'lumot", ru: 'Что + Содержание + Данные' }) },
-    { text: tr({ uz: 'Qur → tekshir → tuzat', ru: 'Построй → проверь → почини' }), tag: tr({ uz: 'AI bilan', ru: 'вместе с ИИ' }) },
+    { text: tr({ uz: 'Qurish → tekshirish → tuzatish', ru: 'Сборка → проверка → исправление' }), tag: tr({ uz: 'AI bilan', ru: 'вместе с ИИ' }) },
     { text: tr({ uz: "O'z saytingizni boshlash", ru: 'Начать свой сайт' }), tag: tr({ uz: 'bitiruv', ru: 'выпускной проект' }) }
   ];
   const isNarrow = useIsMobile(768);
@@ -2193,7 +2193,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'api', e: '🌐', t: 'API — CRUD', d: tr({ uz: 'serverdan olish va saqlash', ru: 'получать и сохранять на сервере' }) },
     { id: 'router', e: '🧭', t: 'Router', d: tr({ uz: "ko'p sahifali sayt", ru: 'многостраничный сайт' }) },
     { id: 'prompt', e: '✍️', t: tr({ uz: 'Aniq prompt', ru: 'Точный промпт' }), d: tr({ uz: "bo'limlar + mazmun + ma'lumot", ru: 'секции + содержание + данные' }) },
-    { id: 'debug', e: '🔧', t: tr({ uz: 'Tekshir → tuzat', ru: 'Проверь → почини' }), d: tr({ uz: 'aniqlashtiruvchi prompt bilan tuzatish', ru: 'починка уточняющим промптом' }) }
+    { id: 'debug', e: '🔧', t: tr({ uz: 'Tekshirish → tuzatish', ru: 'Проверка → исправление' }), d: tr({ uz: 'aniqlashtiruvchi prompt bilan tuzatish', ru: 'починка уточняющим промптом' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(JOURNEY.map(j => j.id)) : new Set());
   const done = seen.size >= JOURNEY.length;
@@ -2221,7 +2221,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="frame" data-dark-ok="ma'no-cho'qqisi" style={{ background: T.ink, color: '#fff', padding: '20px 22px' }}>
               <p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, fontSize: 'clamp(18px,2.5vw,22px)', margin: '0 0 10px', color: '#fff' }}>{tr({ uz: 'Sizning formulangiz:', ru: 'Ваша формула:' })}</p>
               <p style={{ fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 13.5, lineHeight: 1.9, color: '#fff', margin: 0 }}>
-                {tr({ uz: <>g'oya → <span style={{ color: '#FFD380' }}>bo'laklash</span> → <span style={{ color: '#7DD181' }}>aniq prompt</span> → agent quradi → <span style={{ color: '#FF7755' }}>tekshir</span> → tuzat</>, ru: <>идея → <span style={{ color: '#FFD380' }}>декомпозиция</span> → <span style={{ color: '#7DD181' }}>точный промпт</span> → агент строит → <span style={{ color: '#FF7755' }}>проверь</span> → почини</> })}
+                {tr({ uz: <>g'oya → <span style={{ color: '#FFD380' }}>bo'laklash</span> → <span style={{ color: '#7DD181' }}>aniq prompt</span> → agent quradi → <span style={{ color: '#FF7755' }}>tekshirish</span> → tuzatish</>, ru: <>идея → <span style={{ color: '#FFD380' }}>декомпозиция</span> → <span style={{ color: '#7DD181' }}>точный промпт</span> → агент строит → <span style={{ color: '#FF7755' }}>проверка</span> → исправление</> })}
               </p>
               {done && <p className="fade-step" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 13.5, margin: '14px 0 0', color: '#fff', opacity: 0.92 }}>{tr({ uz: <>Bu formula bilan siz <b style={{ color: '#FFD380' }}>istalgan saytni</b> qurasiz — ovqat, do'kon, o'yin, kutubxona... mavzu muhim emas. Usul sizniki.</>, ru: <>С этой формулой вы построите <b style={{ color: '#FFD380' }}>любой сайт</b> — еда, магазин, игры, библиотека... тема не важна. Способ — ваш.</> })}</p>}
             </div>
@@ -2325,7 +2325,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Saytni bo'laklash: sahifalar (Router) + bo'limlar (komponentlar)", ru: 'Декомпозиция сайта: страницы (Router) + секции (компоненты)' }),
     tr({ uz: "Takrorlanuvchi → bitta komponent + props + map", ru: 'Повторяющееся → один компонент + props + map' }),
     tr({ uz: "Aniq prompt: qaysi bo'limlar + har bo'lim mazmuni + ma'lumot", ru: 'Точный промпт: какие секции + содержание каждой + данные' }),
-    tr({ uz: "Qur → tekshir → aniqlashtiruvchi prompt bilan tuzat", ru: 'Построй → проверь → почини уточняющим промптом' }),
+    tr({ uz: "Qurish → tekshirish → aniqlashtiruvchi prompt bilan tuzatish", ru: 'Сборка → проверка → исправление уточняющим промптом' }),
     tr({ uz: "g'oya → bo'laklash → prompt → qurish → tekshirish", ru: 'идея → декомпозиция → промпт → сборка → проверка' })
   ];
   const HOMEWORK = [
@@ -2339,7 +2339,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Modul tugadi 🎓', ru: 'Модуль завершён 🎓' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'React moduli tugadi', ru: 'Модуль React завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz endi <span className="italic" style={{ color: T.accent }}>React dasturchisiz</span>.</>, ru: <>Теперь вы — <span className="italic" style={{ color: T.accent }}>React-разработчик</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'React moduli tugadi', ru: 'Модуль React завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz endi <span className="italic" style={{ color: T.accent }}>React dasturchisiz</span>.</>, ru: <>Теперь вы — <span className="italic" style={{ color: T.accent }}>React-разработчик</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
@@ -2598,6 +2598,7 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -2629,6 +2630,7 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2909,6 +2911,7 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         /* Jonli nishoni xira turadi — kontentdan diqqat tortmasin; ustiga borilganda ochiladi. */

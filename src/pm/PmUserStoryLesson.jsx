@@ -27,7 +27,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
-  success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
+  success: '#12A968', successSoft: '#E3F0E8', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
   shadowBase: '40, 34, 82'
 };
@@ -158,6 +158,23 @@ function AchCounter() {
     </div>
   );
 }
+
+// F-1003-03: yozish maydoni matn bilan o'sadi (1 → 4 qator), uzun javob yon tomonga ketmaydi.
+// Enter yangi qator ochmaydi — maydonning o'z onKeyDown'i (masalan, saqlash) ishlayveradi.
+const GrowInput = ({ onKeyDown, type, ...rest }) => {
+  const ref = useRef(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return;
+    const cs = getComputedStyle(el);
+    const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.45 || 22;
+    const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const max = Math.round(lh * 4 + pad);
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, max) + 'px';
+    el.style.overflowY = el.scrollHeight > max ? 'auto' : 'hidden';
+  });
+  return <textarea ref={ref} rows={1} {...rest} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) e.preventDefault(); if (onKeyDown) onKeyDown(e); }} />;
+};
 
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
@@ -492,7 +509,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const isHotspot = renderMode === 'hotspot';
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (ctaLabel || tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
         <div className={`fade-up delay-1 ${isHotspot ? 'hs-parts' : ''}`} style={{ display: 'flex', flexDirection: isHotspot ? 'row' : 'column', flexWrap: isHotspot ? 'wrap' : 'nowrap', gap: isHotspot ? 10 : 9 }}>
@@ -1752,7 +1769,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
   // Erkin (mustaqil) rejim — jonli sessiya yo'q. Takrorlash-yo'li faqat shu yerda ko'rinadi.
-  const isSelf = !live || live.mode === 'self';
   // F-0801-01: qayta yuklanishda (Chrome fon-tabni bo'shatgan bo'lsa) kompilyator o'zi qayta ochiladi
   const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
@@ -1813,17 +1829,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="kdx-cta fade-up delay-2">
           <button className={`kod-launch-btn${launchTurn ? '' : ' calm'}`} onClick={() => { setOpen(true); writeKodingOpen(true); }}>{done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор заново' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}</button>
           {done && <span className="kdx-cta-sub">{tr({ uz: 'Bajarildi — xohlasangiz kodni yana yaxshilang', ru: 'Выполнено — при желании доработайте код' })}</span>}
-          {/* 🔓 TAKRORLASH-YO'LI (89-qonun) — FAQAT erkin rejimda va FAQAT bajarilmagan holatda.
-              Nima uchun: bajarilgan praktika brauzer xotirasiga yoziladi va qaytib kelganda darvoza
-              o'zi ochiq bo'ladi. Lekin bola sinfda BOSHQA qurilmada bajargan bo'lsa, buni dastur
-              BILA OLMAYDI (login yo'q, PIN esa dars tugagach yopiladi) — bu darsda hikoyalari ham
-              o'sha qurilmada qolgan bo'ladi. O'sha yagona holat uchun — o'zidan so'raymiz.
-              🔴 Bu havola FAQAT eshikni ochadi: nishon bermaydi, «bajarildi» deb yozmaydi,
-              serverga signal yubormaydi, xotiraga saqlamaydi. Jonli darsda ko'rinmaydi.
-              Puls ham olmaydi — navbat «Kompilyatorni ochish» tugmasida (88-qonun (a)). */}
-          {!done && isSelf && (
-            <button className="kdx-skip" onClick={onNext}>{tr({ uz: '✓ Bu mashqni sinfda bajarganman — davom etish →', ru: '✓ Это задание я делал(а) в классе — продолжить →' })}</button>
-          )}
         </div>
         {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>{tr({ uz: '✅ Ishladi!', ru: '✅ Заработало!' })} <span className="dm-sub">{tr({ uz: "— 3 hikoyangiz koddan karta bo'lib chiqdi", ru: '— ваши 3 истории вышли из кода карточками' })}</span></div>}
         <StudentPracticePulse live={live} screen={screen} />
@@ -1906,7 +1911,7 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: '✍️ Endi bir qator yozing', ru: '✍️ Теперь напишите одну строку' })}</span></div></div>
             <span className={`turn-wrap${inputTurn ? ' turn-ring' : ''}`}>
-              <input className="reflect-input" aria-label={tr({ uz: 'Hikoyangizni kim uchun yozdingiz va unga nima kerak edi?', ru: 'Для кого вы написали историю и что ему было нужно?' })} value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: 'Men ... uchun hikoya yozdim, chunki unga ... kerak edi', ru: 'Я написал(а) историю для ..., потому что ему нужно было ...' })} maxLength={160} />
+              <GrowInput className="reflect-input" aria-label={tr({ uz: 'Hikoyangizni kim uchun yozdingiz va unga nima kerak edi?', ru: 'Для кого вы написали историю и что ему было нужно?' })} value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder={tr({ uz: 'Men ... uchun hikoya yozdim, chunki unga ... kerak edi', ru: 'Я написал(а) историю для ..., потому что ему нужно было ...' })} maxLength={160} />
             </span>
             {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>{tr({ uz: '✓ Yozildi!', ru: '✓ Записано!' })}</p>}
           </div>
@@ -1958,7 +1963,7 @@ const HwTaskCard = () => {
         <button className={`hw-chip add ${customMode ? 'on' : ''}${waveCls(pickTurn, HW_TARGETS.length, HW_TARGETS.length + 1)}`} onClick={openCustom}>✍️ {tr({ uz: "o'z variantimni yozaman", ru: 'напишу свой вариант' })}</button>
       </div>
       {customMode && (
-        <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder={tr({ uz: "masalan: o'qituvchi, ota-ona, ilk mijoz…", ru: 'например: учитель, родитель, первый клиент…' })} maxLength={40} autoFocus />
+        <GrowInput className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder={tr({ uz: "masalan: o'qituvchi, ota-ona, ilk mijoz…", ru: 'например: учитель, родитель, первый клиент…' })} maxLength={40} autoFocus />
       )}
       {chosen ? (
         <div className="pmtask fade-step">
@@ -2574,7 +2579,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши сегодняшние <span className="italic" style={{ color: T.accent }}>победители</span></> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши сегодняшние <span className="italic" style={{ color: T.accent }}>победители</span></> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2684,7 +2689,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</>, ru: <>Ваши первые 3 <span className="italic" style={{ color: T.accent }}>истории</span> готовы.</> })}</h2>{/* F-0725-01 · 54-qonun: yakun-hero'ning h-sub qatori o'chirildi (foydalanuvchi qarori — sarlavha o'zi yetadi, pastda «Endi siz bilasiz» ro'yxati bor). */}</div>{!isMentorL && <ScoreRing correct={correct} total={total} />}</div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>{!isMentorL && <span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span>}</div><h2 className="title h-title fade-up d1">{tr({ uz: <>Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</>, ru: <>Ваши первые 3 <span className="italic" style={{ color: T.accent }}>истории</span> готовы.</> })}</h2>{/* F-0725-01 · 54-qonun: yakun-hero'ning h-sub qatori o'chirildi (foydalanuvchi qarori — sarlavha o'zi yetadi, pastda «Endi siz bilasiz» ro'yxati bor). */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -3002,6 +3007,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
            Standart flex-shrink tufayli bloklar bir-birining ustiga chiqib ketardi (klinika 11/17 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .cc-ghost { visibility: hidden; pointer-events: none; }
         @media (max-width: 760px) { .cc-ghost { display: none; } }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
@@ -3015,6 +3021,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -3422,8 +3429,6 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         /* Navbat-sharti: tugma faqat navbat unda bo'lganda nafas oladi (88-qonun (a)) */
         .kod-launch-btn.calm { animation: none; }
         /* Takrorlash-yo'li (89-qonun): asosiy harakat bilan raqobatlashmaydigan xira matn-havola */
-        .kdx-skip { margin-top: 2px; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
-        .kdx-skip:hover { color: ${T.accent}; }
         @keyframes kod-btn-pulse { 0%,100% { box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); } 50% { box-shadow: 0 14px 38px -4px rgba(110,75,255,0.85); } }
         @media (prefers-reduced-motion: reduce) { .kod-launch-btn { animation: none; } }
         .code-out-empty { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink3}; font-style: italic; margin: 0; }
@@ -3468,6 +3473,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .pair-start.calm { animation: none; }
         @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
+        textarea.reflect-input { display: block; line-height: 1.45; resize: none; overflow-y: hidden; box-sizing: border-box; } /* F-1003-03 */
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .qa-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         @media (max-width: 620px) { .qa-cards { grid-template-columns: 1fr; } }

@@ -443,7 +443,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -1312,9 +1312,9 @@ const Screen11 = (props) => (
 // ===== SCREEN 12 — AAA (tayyorla-chaqir-tekshir) =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
-    { id: 'a', icon: '📦', t: { uz: 'Tayyorla', ru: 'Подготовь' }, d: { uz: "Kerakli ma'lumotni tayyorlaysiz (price = 10000, qty = 2).", ru: 'Готовите нужные данные (price = 10000, qty = 2).' }, en: 'Arrange' },
-    { id: 'b', icon: '▶️', t: { uz: 'Chaqir', ru: 'Вызови' }, d: { uz: 'Funksiyani chaqirasiz: orderTotal(10000, 2).', ru: 'Вызываете функцию: orderTotal(10000, 2).' }, en: 'Act' },
-    { id: 'c', icon: '✅', t: { uz: 'Tekshir', ru: 'Проверь' }, d: { uz: 'Natijani tasdiqlaysiz: expect(...).toBe(20000).', ru: 'Утверждаете результат: expect(...).toBe(20000).' }, en: 'Assert' }
+    { id: 'a', icon: '📦', t: { uz: 'Tayyorlash', ru: 'Подготовка' }, d: { uz: "Kerakli ma'lumotni tayyorlaysiz (price = 10000, qty = 2).", ru: 'Готовите нужные данные (price = 10000, qty = 2).' }, en: 'Arrange' },
+    { id: 'b', icon: '▶️', t: { uz: 'Chaqirish', ru: 'Вызов' }, d: { uz: 'Funksiyani chaqirasiz: orderTotal(10000, 2).', ru: 'Вызываете функцию: orderTotal(10000, 2).' }, en: 'Act' },
+    { id: 'c', icon: '✅', t: { uz: 'Tekshirish', ru: 'Проверка' }, d: { uz: 'Natijani tasdiqlaysiz: expect(...).toBe(20000).', ru: 'Утверждаете результат: expect(...).toBe(20000).' }, en: 'Assert' }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(STEPS.map(s => s.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1329,7 +1329,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · 3 qadam', ru: 'Понятие · 3 шага' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 qadamni ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 шага (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yaxshi test qanday <span className="italic" style={{ color: T.accent }}>yoziladi</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>пишется</span> хороший тест?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har test 3 qadamdan iborat: <b style={{ color: T.ink }}>Tayyorla → Chaqir → Tekshir</b> (ingliz tilida AAA: Arrange-Act-Assert). Har qadamni bosing.</>, ru: <>Каждый тест состоит из 3 шагов: <b style={{ color: T.ink }}>Подготовь → Вызови → Проверь</b> (по-английски AAA: Arrange-Act-Assert). Нажмите на каждый шаг.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har test 3 qadamdan iborat: <b style={{ color: T.ink }}>Tayyorlash → Chaqirish → Tekshirish</b> (ingliz tilida AAA: Arrange-Act-Assert). Har qadamni bosing.</>, ru: <>Каждый тест состоит из 3 шагов: <b style={{ color: T.ink }}>Подготовка → Вызов → Проверка</b> (по-английски AAA: Arrange-Act-Assert). Нажмите на каждый шаг.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan qadamni bosing — Tayyorla, Chaqir, Tekshir: har biri bir kod-qatorga to'g'ri keladi.", ru: '💡 Нажмите оставшийся шаг — Подготовь, Вызови, Проверь: каждый соответствует одной строке кода.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={!cur}>{/* F-0926-06 (ZBTN): bosishgacha o'ng ustun bo'sh */}
@@ -1350,7 +1350,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur
               ? <div className="frame fade-step" key={active}><p className="note-h">{tr(cur.t)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>({cur.en})</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
               : null}
-            {/* F-0926-06 (159/7): xulosa olindi — mentor «Tayyorla → Chaqir → Tekshir» deydi */}
+            {/* F-0926-06 (159/7): xulosa olindi — mentor «Tayyorlash → Chaqirish → Tekshirish» deydi */}
           </Col>
         </div>
         </Zoomable>
@@ -1666,7 +1666,7 @@ const QUIZ_BANK = [
   { q: { uz: 'Kutilgan 20000, kelgan 10002. Jest nima qiladi?', ru: 'Ожидалось 20000, пришло 10002. Что сделает Jest?' }, opts: [{ uz: "Qizil FAIL beradi va Expected/Received ko'rsatadi", ru: 'Выдаст красный FAIL и покажет Expected/Received' }, { uz: 'Hech narsa qilmaydi, sukut saqlab jim turaveradi', ru: 'Ничего не сделает — будет молчать' }, { uz: "Xato chiqqan funksiyani darhol o'chirib tashlaydi", ru: 'Сразу удалит функцию с ошибкой' }, { uz: "Kodni avtomatik ravishda o'zi tuzatib beradi", ru: 'Сам автоматически исправит код' }], correct: 0 },
   { q: { uz: "Testda `expect` umuman bo'lmasa, natija qanday bo'ladi?", ru: 'Если в тесте вообще нет `expect` — каким будет результат?' }, opts: [{ uz: 'Doim faqat qizil rangda FAIL xatosi chiqadi', ru: 'Всегда будет только красный FAIL' }, { uz: 'Doim yashil PASS — hech narsa tekshirilmagan holda', ru: 'Всегда зелёный PASS — хотя ничего не проверено' }, { uz: "Jest darhol xato berib, ishlashdan to'xtab qoladi", ru: 'Jest сразу выдаст ошибку и остановится' }, { uz: 'Bitta test ikki marta qatorma-qator ishlab chiqadi', ru: 'Один тест выполнится дважды, строка за строкой' }], correct: 1 },
   { q: { uz: "Etalon (`toBe`) qiymati noto'g'ri yozilsa nima bo'ladi?", ru: 'Что будет, если в эталоне (`toBe`) записано неверное значение?' }, opts: [{ uz: "Kod to'g'ri bo'lsa ham test baribir qizil chiqadi", ru: 'Даже при верном коде тест всё равно будет красным' }, { uz: "Jest etalonni avtomatik ravishda o'zi tuzatib qo'yadi", ru: 'Jest сам автоматически исправит эталон' }, { uz: "Test butunlay o'tkazib yuborilib, ishlamay qoladi", ru: 'Тест будет полностью пропущен и не запустится' }, { uz: "Funksiyaning ichki mantig'i sezilarli darajada o'zgaradi", ru: 'Внутренняя логика функции заметно изменится' }], correct: 0 },
-  { q: { uz: 'AAA tartibi nima?', ru: 'Что такое порядок AAA?' }, opts: [{ uz: "Aniqla · Aylantir · Arxivla — uchta noto'g'ri bosqich", ru: 'Определи · Поверни · Заархивируй — три неверных шага' }, { uz: 'Aloqa · Aksiya · Aniqlik — mos kelmaydigan qadamlar', ru: 'Связь · Акция · Точность — шаги не из той оперы' }, { uz: 'Tayyorla → Chaqir → Tekshir (Arrange-Act-Assert)', ru: 'Подготовь → Вызови → Проверь (Arrange-Act-Assert)' }, { uz: "Avtomat · Analiz · Audit — bog'liqsiz uchta qism", ru: 'Автомат · Анализ · Аудит — три части ни при чём' }], correct: 2 },
+  { q: { uz: 'AAA tartibi nima?', ru: 'Что такое порядок AAA?' }, opts: [{ uz: "Aniqla · Aylantir · Arxivla — uchta noto'g'ri bosqich", ru: 'Определи · Поверни · Заархивируй — три неверных шага' }, { uz: 'Aloqa · Aksiya · Aniqlik — mos kelmaydigan qadamlar', ru: 'Связь · Акция · Точность — шаги не из той оперы' }, { uz: 'Tayyorlash → Chaqirish → Tekshirish (Arrange-Act-Assert)', ru: 'Подготовка → Вызов → Проверка (Arrange-Act-Assert)' }, { uz: "Avtomat · Analiz · Audit — bog'liqsiz uchta qism", ru: 'Автомат · Анализ · Аудит — три части ни при чём' }], correct: 2 },
   { q: { uz: "Jest `--save-dev` bilan o'rnatiladi. Nega?", ru: 'Jest устанавливают с `--save-dev`. Почему?' }, opts: [{ uz: 'Boshqa paketlardan sezilarli darajada tezroq ishlashi uchun', ru: 'Чтобы он работал заметно быстрее других пакетов' }, { uz: "Litsenziyasi butunlay bepul bo'lgani uchun tanlanadi", ru: 'Потому что у него полностью бесплатная лицензия' }, { uz: 'Yangi test fayllarini avtomatik ravishda yaratib berishi uchun', ru: 'Чтобы он автоматически создавал новые файлы тестов' }, { uz: 'U faqat ishlab chiqishda kerak — mijozga yuborilmaydi', ru: 'Он нужен только при разработке — клиенту не отправляется' }], correct: 3 },
 ];
 
@@ -2126,7 +2126,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2240,7 +2240,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
   const complete = () => {
-    if (done) return;
+    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
     setDone(true);
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
@@ -2274,8 +2274,8 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: 'Bajardim', ru: 'Выполнил' }) /* F-0926-06 (H3, D2): emoji olindi; ru — mentor «Выполнил» deydi */}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: 'Bajardim', ru: 'Выполнил' }) /* F-0926-06 (H3, D2): emoji olindi; ru — mentor «Выполнил» deydi */}
             </button>
             {/* F-0926-06 (159/14): takror yashil quti olindi — tugma «Bajarildi — ustozni kuting» */}
           </Col>
@@ -2435,7 +2435,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   ];
   const HOMEWORK = [
     { b: { uz: 'Yangi test', ru: 'Новый тест' }, t: { uz: "— orderTotal(7000, 4) uchun etalon kartochkasini yozing", ru: '— напишите карточку-эталон для orderTotal(7000, 4)' } },
-    { b: 'AAA', t: { uz: "— Tayyorla → Chaqir → Tekshir tartibini qo'llang", ru: '— примените порядок «Подготовь → Вызови → Проверь»' } },
+    { b: 'AAA', t: { uz: "— Tayyorlash → Chaqirish → Tekshirish tartibini qo'llang", ru: '— примените порядок «Подготовка → Вызов → Проверка»' } },
     { b: { uz: 'AI bilan', ru: 'С ИИ' }, t: { uz: "— AI'dan test so'rang: expect bormi, etalon raqami to'g'rimi", ru: '— попросите тест у ИИ: есть ли expect, верно ли число эталона' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -2444,7 +2444,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi testni yozdingiz', ru: 'Вы написали первый тест' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi kompyuter siz uchun <span className="italic" style={{ color: T.accent }}>tekshiradi</span>.</>, ru: <>Теперь компьютер <span className="italic" style={{ color: T.accent }}>проверяет</span> за вас.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi testni yozdingiz', ru: 'Вы написали первый тест' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi kompyuter siz uchun <span className="italic" style={{ color: T.accent }}>tekshiradi</span>.</>, ru: <>Теперь компьютер <span className="italic" style={{ color: T.accent }}>проверяет</span> за вас.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
@@ -2707,6 +2707,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
@@ -2727,6 +2728,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2774,6 +2776,7 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
+        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }

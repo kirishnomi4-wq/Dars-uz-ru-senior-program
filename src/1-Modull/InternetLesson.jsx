@@ -388,7 +388,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
+      <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: '⚡ Jonli dars — bitta urinish, o\'ylab bosing!', ru: '⚡ Живой урок — одна попытка, думайте перед выбором!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
@@ -1709,7 +1709,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <div className="col">
-            <div className="urlbar fade-up delay-2"><span className="urlbar-lock">🔒</span><input className="urlbar-input" value={url} placeholder={tr({ uz: 'masalan: google.com', ru: 'например: google.com' })} onChange={e => setUrl(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') send(); }} /><button className="urlbar-go" onClick={() => send()} disabled={running}>{tr({ uz: 'Yubor', ru: 'Отправить' })}</button></div>
+            <div className="urlbar fade-up delay-2"><span className="urlbar-lock">🔒</span><input className="urlbar-input" value={url} placeholder={tr({ uz: 'masalan: google.com', ru: 'например: google.com' })} onChange={e => setUrl(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') send(); }} /><button className="urlbar-go" onClick={() => send()} disabled={running}>{tr({ uz: 'Yuboring', ru: 'Отправить' })}</button></div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{SITES.map(s => (<button key={s} className="chip" disabled={running} onClick={() => send(s)}>{s}</button>))}</div>
             <div className="jr jr-sim fade-up delay-3" ref={animRef}>
               <div className="jr-ring">
@@ -1866,7 +1866,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pktIc = hasPage ? '📄' : hasIP ? '📇' : '📨';
 
   return (
-    <Stage eyebrow={tr({ uz: 'Sinov · saytni top', ru: 'Испытание · найди сайт' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={phase !== 'win'} label={phase === 'win' ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Saytni ekranga keltiring', ru: 'Выведите сайт на экран' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Sinov · saytni topish', ru: 'Испытание · поиск сайта' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={phase !== 'win'} label={phase === 'win' ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Saytni ekranga keltiring', ru: 'Выведите сайт на экран' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>{target.domain}</span> ni topib, ekranga keltira olasizmi?</>, ru: <>Сможете найти <span className="italic" style={{ color: T.accent }}>{target.domain}</span> и вывести его на экран?</> })}</h2></div>
         <Mentor>{tr({ uz: <>🔎 Har bir sayt biror <b style={{ color: T.ink }}>serverda</b> yashaydi. Avval <b className="mono" style={{ color: T.accent }}>{target.domain}</b> ning <b style={{ color: T.ink }}>IP-manzilini</b> bilib oling, so'ng o'shanga <b style={{ color: T.ink }}>aynan mos serverni</b> tanlang — raqamlarni diqqat bilan solishtiring!</>, ru: <>🔎 Каждый сайт живёт на каком-то <b style={{ color: T.ink }}>сервере</b>. Сначала узнайте <b style={{ color: T.ink }}>IP-адрес</b> сайта <b className="mono" style={{ color: T.accent }}>{target.domain}</b>, потом выберите <b style={{ color: T.ink }}>точно подходящий сервер</b> — внимательно сравнивайте номера!</> })}</Mentor>
@@ -2021,7 +2021,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2627,7 +2627,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={() => setShowDone(true)} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: '🎉 Darsni yakunlash', ru: '🎉 Завершить урок' })}</button></>}>
       <div className="screen">
         {PASSED && <Confetti />}
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Kirish darsi tugadi', ru: 'Вводный урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Internet <span className="italic" style={{ color: T.accent }}>qanday ishlashini</span> bilib oldingiz.</>, ru: <>Вы узнали, <span className="italic" style={{ color: T.accent }}>как работает</span> интернет.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Kirish darsi tugadi', ru: 'Вводный урок завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Internet <span className="italic" style={{ color: T.accent }}>qanday ishlashini</span> bilib oldingiz.</>, ru: <>Вы узнали, <span className="italic" style={{ color: T.accent }}>как работает</span> интернет.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         {/* ⚔️ Mustahkamlash testi — CodeStrike neon-kapsula CTA */}
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
@@ -3289,6 +3289,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
@@ -3469,6 +3470,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
