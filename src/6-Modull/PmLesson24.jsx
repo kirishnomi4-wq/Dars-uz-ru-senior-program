@@ -667,7 +667,7 @@ const ufqNom = (k) => tr((UFQLAR.find(u => u.k === k) || UFQLAR[0]).nom);
 const ISHLAR = [
   { id: 'surat', nom: { uz: "Sartarosh ishlaridan surat qo'yish", ru: 'Фото работ парикмахеров' },      ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — suratlar sartaroshlarning telefonida bor', ru: 'Началась — фото уже есть в телефонах парикмахеров' } },
   { id: 'eslatma', nom: { uz: 'Navbatdan bir soat oldin eslatma', ru: 'Напоминание за час до записи' },        ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — bot allaqachon xabar yubora oladi', ru: 'Началась — бот уже умеет отправлять сообщения' } },
-  { id: 'manzil', nom: { uz: "Manzilni sahifada ko'rsatish", ru: 'Показать адрес на странице' },            ufq: 'hozir',   ok: true,  fakt: { uz: 'Boshlandi — manzillar bazada yozilgan', ru: 'Началась — адреса уже записаны в базе' } },
+  { id: 'manzil', nom: { uz: "Manzilni sahifada ko'rsatish", ru: 'Показать адрес на странице' },            ufq: 'hozir',   ok: true,  fakt: { uz: "Boshlandi — manzillar Database'da yozilgan", ru: 'Началась — адреса уже записаны в Database' } },
   { id: 'baho', nom: { uz: "Sartaroshga baho qo'yish", ru: 'Оценка парикмахеру' },                ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — baho qo'yish uchun odam avval navbat olishi kerak. Navbat hali yo'q", ru: 'Остановилась — чтобы поставить оценку, человек сначала должен записаться. Записей пока нет' } },
   { id: 'kunlar', nom: { uz: "Sartaroshning band kunlarini ko'rsatish", ru: 'Показать занятые дни парикмахера' }, ufq: 'uch-oy',  ok: false, fakt: { uz: "To'xtadi — band kunlar real navbatlardan chiqadi. Navbat hali yo'q", ru: 'Остановилась — занятые дни берутся из настоящих записей. Записей пока нет' } },
   { id: 'tolash', nom: { uz: "Ilovada oldindan to'lash", ru: 'Предоплата в приложении' },                ufq: 'olti-oy', ok: false, fakt: { uz: "To'xtadi — pulini oldindan berish uchun odam sartaroshga ishonishi kerak; ishonch boshqa mijozlarning baholaridan keladi, baho hali yo'q. Bu ishga to'lov ulanishi ham kerak", ru: 'Остановилась — чтобы заплатить заранее, человек должен доверять парикмахеру; доверие появляется из оценок других клиентов, а оценок пока нет. К тому же для этой задачи нужно подключить оплату' } },
@@ -828,12 +828,13 @@ const Screen3 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Rejadagi ish eng uzoq ufqqa tushdi. Bu nimani bildiradi?", ru: 'Задача из плана попала на самый дальний горизонт. Что это значит?' })} />}
     questionText={tr({ uz: "Ish eng uzoq ufqqa tushsa, bu nimani bildiradi", ru: 'Что значит, если задача попала на самый дальний горизонт' })}
-    options={[tr({ uz: 'Ish olti oy davom etadi', ru: 'Задача длится шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin boshlanadi', ru: 'Задача начинается через шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin tugaydi', ru: 'Задача заканчивается через шесть месяцев' })]}
+    options={[tr({ uz: 'Ish olti oy davom etadi', ru: 'Задача длится шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin boshlanadi', ru: 'Задача начинается через шесть месяцев' }), tr({ uz: 'Ish olti oydan keyin tugaydi', ru: 'Задача заканчивается через шесть месяцев' }), tr({ uz: 'Ish boshqa ishlardan kam muhim', ru: 'Задача менее важна, чем другие' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Ufq ishning uzunligini emas, boshlanish paytini aytadi.", ru: 'Горизонт говорит не о длительности задачи, а о том, когда она начинается.' })}
     explainWrong={{
       0: tr({ uz: 'Ufq ish necha oy davom etishini aytmaydi — u qachon boshlanishini aytadi.', ru: 'Горизонт не говорит, сколько месяцев длится задача, — он говорит, когда она начинается.' }),
       2: tr({ uz: 'Ufq ish qachon tugashini ham aytmaydi — faqat qachon boshlanishini.', ru: 'Горизонт не говорит и о том, когда задача закончится, — только о том, когда она начнётся.' }),
+      3: tr({ uz: 'Ufq muhimlikni aytmaydi — ish qachon boshlanishini aytadi.', ru: 'Горизонт не о важности — он о том, когда задача начнётся.' }),
       default: tr({ uz: 'Ufq bitta narsani aytadi: ish qachon boshlanadi.', ru: 'Горизонт говорит одно: когда задача начинается.' })
     }}
   />
@@ -958,12 +959,13 @@ const Screen5 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "«Sartaroshga baho qo'yish» ishi nega bugun boshlanmaydi?", ru: 'Почему задача «Оценка парикмахеру» не начинается сегодня?' })} />}
     questionText={tr({ uz: "Sartaroshga baho qo'yish nega bugun boshlanmaydi", ru: 'Почему оценка парикмахеру не начинается сегодня' })}
-    options={[tr({ uz: "Boshqa ishlar undan oldin qilinishi kerak", ru: 'Сначала нужно сделать другие задачи' }), tr({ uz: "Uni kutayotgan odam juda kam bo'lgan", ru: 'Её ждёт слишком мало людей' }), tr({ uz: "Unga kerak narsa hali paydo bo'lmagan", ru: 'То, что ей нужно, ещё не появилось' })]}
+    options={[tr({ uz: "Boshqa ishlar undan oldin qilinishi kerak", ru: 'Сначала нужно сделать другие задачи' }), tr({ uz: "Uni kutayotgan odam juda kam bo'lgan", ru: 'Её ждёт слишком мало людей' }), tr({ uz: "Unga kerak narsa hali paydo bo'lmagan", ru: 'То, что ей нужно, ещё не появилось' }), tr({ uz: "Uni qilish uchun juda ko'p vaqt ketadi", ru: 'На неё уйдёт слишком много времени' })]}
     correctIdx={2}
     explainCorrect={tr({ uz: "Baho qo'yish uchun avval real navbatlar kerak, ular hali yo'q. Kerak narsa tayyor bo'lganda ish boshlanadi.", ru: 'Чтобы ставить оценки, сначала нужны настоящие записи, а их пока нет. Когда нужное готово, задача начинается.' })}
     explainWrong={{
       0: tr({ uz: "Ishlarning tartibi uni to'xtatmadi — unga kerak navbatlar hali yo'q.", ru: 'Её остановил не порядок задач — нужных ей записей пока нет.' }),
       1: tr({ uz: "Nechta odam kutayotgani ham to'xtatmaydi — unga kerak navbatlar hali yo'q.", ru: 'Число ждущих людей тоже не останавливает — нужных ей записей пока нет.' }),
+      3: tr({ uz: "Vaqt ko'pligi to'xtatmaydi — unga kerak navbatlar hali yo'q.", ru: 'Её держит не длительность — нужных записей пока нет.' }),
       default: tr({ uz: "Ish to'xtadi, chunki u kutayotgan narsa — real navbatlar — hali paydo bo'lmagan.", ru: 'Задача остановилась, потому что то, чего она ждёт, — настоящие записи — ещё не появилось.' })
     }}
   />
@@ -1096,12 +1098,13 @@ const Screen7 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Tesla misolida uzoq rejaning asosiy xususiyati nima?", ru: 'Что главное в длинном плане на примере Tesla?' })} />}
     questionText={tr({ uz: "Tesla misolida uzoq rejaning asosiy xususiyati nima", ru: 'Что главное в длинном плане на примере Tesla' })}
-    options={[tr({ uz: "Bosqichlar ketma-ket, har biri oldingisiga tayanadi", ru: 'Этапы идут один за другим, каждый опирается на предыдущий' }), tr({ uz: "Hamma bosqich bir vaqtning o'zida boshlanadi", ru: 'Все этапы начинаются одновременно' }), tr({ uz: "Reja har oy boshidan qaytadan yoziladi", ru: 'План каждый месяц переписывают с нуля' })]}
+    options={[tr({ uz: "Bosqichlar ketma-ket, har biri oldingisiga tayanadi", ru: 'Этапы идут один за другим, каждый опирается на предыдущий' }), tr({ uz: "Hamma bosqich bir vaqtning o'zida boshlanadi", ru: 'Все этапы начинаются одновременно' }), tr({ uz: "Reja har oy boshidan qaytadan yoziladi", ru: 'План каждый месяц переписывают с нуля' }), tr({ uz: "Reja yopiq: uni faqat kompaniya ichidagilar biladi", ru: 'План закрыт: его знают только внутри компании' })]}
     correctIdx={0}
     explainCorrect={tr({ uz: "Tesla rejasida har bosqich oldingisini kutdi: birinchisidan keyin ikkinchisi, undan keyin uchinchisi. Rejani ochiq e'lon qilgani — qo'shimcha yaxshi tomoni.", ru: 'В плане Tesla каждый этап ждал предыдущего: после первого шёл второй, после него третий. То, что план объявили открыто, — дополнительный плюс.' })}
     explainWrong={{
       1: tr({ uz: "Hammasi birdan boshlanmadi — ikkinchi mashinaga birinchisidan tushadigan pul kerak edi.", ru: 'Всё началось не сразу — для второй машины нужны были деньги от первой.' }),
       2: tr({ uz: "Har oy qaytadan yozilgan ro'yxat uzoq reja emas — Tesla rejasi o'n yildan ortiq bajarildi.", ru: 'Список, который каждый месяц пишут заново, — не длинный план: план Tesla выполнялся больше десяти лет.' }),
+      3: tr({ uz: "Tesla rejasini ochiq e'lon qildi — uni hamma o'qiy olardi.", ru: 'Tesla объявила план открыто — его мог прочитать каждый.' }),
       default: tr({ uz: "Uzoq rejada bosqichlar ketma-ket, har biri oldingisiga tayanadi.", ru: 'В длинном плане этапы идут один за другим, каждый опирается на предыдущий.' })
     }}
   />
@@ -1263,7 +1266,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // bir nechta ish tushadi, ufq ichida tartib YO'Q va oltala ish ham rejada qoladi.
 // s4 oltiligidan BOSHQA to'plam (§102): tizim ochilganiga bir necha oy bo'lgan payt.
 const ISHLAR9 = [
-  { id: 'qidir', nom: { uz: "Ismi bo'yicha sartarosh qidirish", ru: 'Поиск парикмахера по имени' },        ufq: 'hozir',   sabab: { uz: 'Sartaroshlarning ismi bazada allaqachon yozilgan', ru: 'Имена парикмахеров уже записаны в базе' } },
+  { id: 'qidir', nom: { uz: "Ismi bo'yicha sartarosh qidirish", ru: 'Поиск парикмахера по имени' },        ufq: 'hozir',   sabab: { uz: "Sartaroshlarning ismi Database'da allaqachon yozilgan", ru: 'Имена парикмахеров уже записаны в Database' } },
   { id: 'bekor', nom: { uz: 'Navbatni bekor qilish tugmasi', ru: 'Кнопка отмены записи' },           ufq: 'hozir',   sabab: { uz: "Navbatlar tushib turibdi — bekor qilishni bugun qo'shsa bo'ladi", ru: 'Записи уже поступают — отмену можно добавить сегодня' } },
   { id: 'tungi', nom: { uz: "Ilovada tungi ko'rinish", ru: 'Ночная тема в приложении' },                 ufq: 'hozir',   sabab: { uz: "Ilova ishlab turibdi, ranglarni bugun o'zgartirsa bo'ladi", ru: 'Приложение работает, цвета можно поменять сегодня' } },
   { id: 'chegirma', nom: { uz: 'Uchinchi tashrifga chegirma', ru: 'Скидка на третий визит' },             ufq: 'uch-oy',  sabab: { uz: "Uchinchi tashrif uchun odam avval uch marta kelishi kerak — ko'pchilik hozircha bir-ikki marta kelgan", ru: 'Для третьего визита человек должен сначала прийти три раза — большинство пока приходили один-два раза' } },
@@ -1724,12 +1727,13 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Ishni qaysi ufqqa qo'yishni nima hal qiladi?", ru: 'Что решает, на какой горизонт поставить задачу?' })} />}
     questionText={tr({ uz: "Ishni qaysi ufqqa qo'yishni nima hal qiladi", ru: 'Что решает, на какой горизонт поставить задачу' })}
-    options={[tr({ uz: "Ishni bajarish qancha vaqt olishi", ru: 'Сколько времени займёт выполнение задачи' }), tr({ uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, что нужно' }), tr({ uz: "Qancha odam so'rab turgani", ru: 'Сколько людей об этом просят' })]}
+    options={[tr({ uz: "Ishni bajarish qancha vaqt olishi", ru: 'Сколько времени займёт выполнение задачи' }), tr({ uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, что нужно' }), tr({ uz: "Qancha odam so'rab turgani", ru: 'Сколько людей об этом просят' }), tr({ uz: "Qaysi ishni o'zimiz ko'proq xohlashimiz", ru: 'Какую задачу нам самим хочется больше' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Ish qaysi ufqqa tushishini unga kerak bo'lgan narsa yoki shart qachon tayyor bo'lishi belgilaydi — bizning xohishimiz emas.", ru: 'На какой горизонт попадёт задача, определяет момент, когда будет готово то, что ей нужно, или выполнится условие, — а не наше желание.' })}
     explainWrong={{
       0: tr({ uz: "Ishga ketadigan vaqt ufqni tanlamaydi — ish nimani kutayotganiga qarang.", ru: 'Время на выполнение не выбирает горизонт — посмотрите, чего ждёт задача.' }),
       2: tr({ uz: "Nechta odam so'ragani bitta ufq ichidagi tartibni aytadi — ufqni esa kerak narsaning payti hal qiladi.", ru: 'Число людей, которые просили, говорит о порядке внутри одного горизонта, — а горизонт решает момент, когда будет готово нужное.' }),
+      3: tr({ uz: "Xohish ufqni tanlamaydi — ish nimani kutayotganiga qarang.", ru: 'Желание не выбирает горизонт — смотрите, чего ждёт задача.' }),
       default: tr({ uz: "Ufqni bitta narsa hal qiladi: kerak narsa qachon tayyor bo'lishi.", ru: 'Горизонт решает одно: когда будет готово то, что нужно.' })
     }}
   />
@@ -2364,7 +2368,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
             </div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar kelmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar kelmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
           <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
         ) : (
@@ -2500,7 +2504,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </button>
         </div>
         {/* Keyingi dars — uy-vazifa kartasidan TASHQARIDA (App.jsx: m6-13) */}
-        <p className="body next-l fade-up d4" style={{ margin: 0, color: T.ink2, textAlign: 'center' }}>{tr({ uz: <>🚀 Keyingi dars — <b>Loyiha kuni: to'liq tizim.</b> Web, mobil, bot, backend va bazani bitta ishlaydigan tizimga ulaysiz.</>, ru: <>🚀 Следующий урок — <b>Проектный день: полная система.</b> Веб, мобильное приложение, бота, бэкенд и базу вы соедините в одну работающую систему.</> })}</p>
+        <p className="body next-l fade-up d4" style={{ margin: 0, color: T.ink2, textAlign: 'center' }}>{tr({ uz: <>🚀 Keyingi dars — <b>Loyiha kuni: to'liq tizim.</b> Web, mobil, bot, backend va Database'ni bitta ishlaydigan tizimga ulaysiz.</>, ru: <>🚀 Следующий урок — <b>Проектный день: полная система.</b> Веб, мобильное приложение, бота, бэкенд и Database вы соедините в одну работающую систему.</> })}</p>
         {hwOpen && (
           <div className="hw-ov" role="dialog" aria-modal="true" aria-label={tr({ uz: "Uyga vazifa", ru: 'Домашнее задание' })}>
             <div className="hw-ov-in">
@@ -3010,7 +3014,7 @@ const CSS_LESSON = `
   .k-slide-ic { font-size: clamp(30px,4.8vw,46px); line-height: 1; }
   /* 📜 Bir varaqli reja maketi (F-0921-23) — foto emas, kod bilan chizilgan varaq */
   .rv-sheet { width: min(330px, 100%); background: #FFFDF7; border-radius: 6px; padding: 13px 16px 11px; display: flex; flex-direction: column; gap: 8px; text-align: left; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.3), inset 0 0 0 1px ${T.line}; }
-  .rv-list li.rv-on { background: ${T.accentSoft}; box-shadow: inset 3px 0 0 ${T.accent}; border-radius: 8px; padding: 3px 6px; margin: 0 -6px; } /* F-1004: joriy bosqich qatori */
+  .rv-list li.rv-on { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1px ${T.accent}; border-radius: 8px; padding: 3px 6px; margin: 0 -6px; } /* F-1004: joriy bosqich qatori */
   .rv-top { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 10px; letter-spacing: 0.14em; color: ${T.ink3}; }
   .rv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
   .rv-list li { display: flex; align-items: center; gap: 9px; font-family: 'Manrope', sans-serif; font-size: clamp(12.5px,1.6vw,14px); color: ${T.ink}; }

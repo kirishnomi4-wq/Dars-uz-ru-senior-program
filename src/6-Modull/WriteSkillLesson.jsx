@@ -751,7 +751,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Shoshib Skill yozdingiz: <span className="italic" style={{ color: T.accent }}>«muloyim javob yoz»</span>. Natija kutilgandek chiqmadi. Nima qilasiz?</>, ru: <>Вы наспех написали Skill: <span className="italic" style={{ color: T.accent }}>«напиши вежливый ответ»</span>. Результат получился не таким, как ожидали. Что будете делать?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Skill yozdingiz: <span className="italic" style={{ color: T.accent }}>«muloyim javob yoz»</span>. Nima qilasiz?</>, ru: <>Ваш Skill: <span className="italic" style={{ color: T.accent }}>«напиши вежливый ответ»</span>. Что сделаете?</> })}</h1>
         <Mentor>{tr({ uz: <>5-darsda tayyor Skill'ni o'qidingiz. Bugun o'z Skill'ingizni <b style={{ color: T.ink }}>yozasiz</b>. Birinchi urinish ko'pincha kutilgandek chiqmaydi — bu normal. Tugmani bosing — Skill'ni sinab ko'ring.</>, ru: <>На 5-м уроке вы читали готовый Skill. Сегодня вы <b style={{ color: T.ink }}>напишете</b> свой Skill. Первая попытка часто получается не такой, как ожидали, — это нормально. Нажмите кнопку — протестируйте Skill.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -1028,7 +1028,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · aniq tuzatish', ru: 'Понятие · точная правка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Qanday tuzatilishini ko'ring", ru: 'Посмотрите, как исправляют' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasini emas — <span className="italic" style={{ color: T.accent }}>aniq joyni</span> tuzatasiz</>, ru: <>Исправляете не всё, а <span className="italic" style={{ color: T.accent }}>конкретное место</span></> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasini emas — <span className="italic" style={{ color: T.accent }}>aniq joyni</span> tuzatasiz.</>, ru: <>Исправляете не всё, а <span className="italic" style={{ color: T.accent }}>конкретное место</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Natija kutilgandek chiqmasa, Skill'ni qaytadan yozmaysiz. Kamchilikni topib, bitta qoida qo'shasiz yoki so'zni aniqroq qilasiz. Tugmani bosing.</>, ru: <>Если результат не такой, как ожидали, Skill заново не переписывают. Вы находите недочёт и добавляете одно правило или уточняете слово. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1083,7 +1083,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Jarayon · yaxshilash sikli', ru: 'Процесс · цикл улучшения' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni yuring (${step}/${ITER.length})`, ru: `Пройдите цикл (${step}/${ITER.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Natija chala → <span className="italic" style={{ color: T.accent }}>aniq tuzatish</span> → natija yaxshilandi.</>, ru: <>Результат неполный → <span className="italic" style={{ color: T.accent }}>точная правка</span> → результат стал лучше.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Natija chala → <span className="italic" style={{ color: T.accent }}>aniq tuzatish</span> → natija yaxshilandi.</>, ru: <>Результат неполный → <span className="italic" style={{ color: T.accent }}>точная правка</span> → стал лучше.</> })}</h2></div>
         <Mentor>{tr({ uz: "Mana yaxshilash sikli amalda: 1-variant kutilgandek chiqmadi, kamchilikni topamiz, aniq qoida qo'shamiz, 2-variantni sinaymiz. Tugmani bosib, bosqichlarni kuzating.", ru: 'Вот цикл улучшения на практике: 1-й вариант получился не таким, как ожидали, — находим недочёт, добавляем точное правило, тестируем 2-й вариант. Нажимайте кнопку и следите за этапами.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1268,7 +1268,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Jarayonni yig'ing", ru: 'Соберите процесс' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: Skill yaratish jarayonini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите процесс создания Skill <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: Skill yaratish jarayonini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Соберите процесс создания Skill <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga joylang.", ru: 'Перетащите блоки в верном порядке.' })}</Mentor>
         <DragDropOrder
           items={CARD_STRUCT_ITEMS}
@@ -1405,7 +1405,7 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Skill'ning asosiy qismlari qaysi?", ru: 'Какие основные части у Skill?' }, opts: [{ uz: "Rang, o'lcham va narx", ru: 'Цвет, размер и цена' }, { uz: 'Server, baza va dizayn', ru: 'Сервер, база данных и дизайн' }, { uz: 'name, description va body', ru: 'name, description и body' }, { uz: 'Rasm, video va ovoz', ru: 'Картинка, видео и звук' }], correct: 2 },
+  { q: { uz: "Skill'ning asosiy qismlari qaysi?", ru: 'Какие основные части у Skill?' }, opts: [{ uz: "Rang, o'lcham va narx", ru: 'Цвет, размер и цена' }, { uz: 'Server, Database va dizayn', ru: 'Сервер, Database и дизайн' }, { uz: 'name, description va body', ru: 'name, description и body' }, { uz: 'Rasm, video va ovoz', ru: 'Картинка, видео и звук' }], correct: 2 },
   { q: { uz: "description AI'ga nimani aytadi?", ru: 'Что description говорит ИИ?' }, opts: [{ uz: 'Skill nima qiladi va qachon kerak', ru: 'Что делает Skill и когда он нужен' }, { uz: "Skill faylining rangi va o'lchami", ru: 'Цвет и размер файла Skill' }, { uz: 'Xabarni kimga yuborish kerakligi', ru: 'Кому нужно отправить сообщение' }, { uz: 'Necha ball berilishini', ru: 'Сколько баллов начислить' }], correct: 0 },
   { q: { uz: 'Qadamlarni kuchli qiladigan narsa?', ru: 'Что делает шаги сильными?' }, opts: [{ uz: 'Iloji boricha uzun matn', ru: 'Как можно более длинный текст' }, { uz: 'Faqat sarlavha', ru: 'Только заголовок' }, { uz: '«Yaxshi qil» degan umumiy gap', ru: 'Общая фраза «сделай хорошо»' }, { uz: 'Aniq qadamlar va misol', ru: 'Точные шаги и пример' }], correct: 3 },
   { q: { uz: 'Kontekst-injiniring nima?', ru: 'Что такое контекст-инжиниринг?' }, opts: [{ uz: "Skill'ni noldan boshlab qayta yozish", ru: 'Переписать Skill с нуля' }, { uz: "AI'ga to'g'ri ma'lumot va ko'rsatma berish", ru: 'Давать ИИ правильную информацию и указания' }, { uz: "Skill'ni butunlay o'chirish", ru: 'Полностью удалить Skill' }, { uz: 'AI uchun kuchliroq model sotib olish', ru: 'Купить для ИИ модель помощнее' }], correct: 1 },
@@ -2187,7 +2187,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — <b>Praktika: to'liq pipeline.</b> React, Node, PostgreSQL, Telegram va AI'ni bitta ishlaydigan tizimga ulaysiz.</>, ru: <>🚀 Следующий урок — <b>Практика: полный pipeline.</b> Вы соедините React, Node, PostgreSQL, Telegram и ИИ в одну работающую систему.</> })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — <b>Loyiha kuni: to'liq pipeline.</b> React, Node, PostgreSQL, Telegram va AI'ni bitta ishlaydigan tizimga ulaysiz.</>, ru: <>🚀 Следующий урок — <b>Проектный день: полный pipeline.</b> Вы соедините React, Node, PostgreSQL, Telegram и ИИ в одну работающую систему.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

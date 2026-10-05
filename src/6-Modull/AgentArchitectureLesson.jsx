@@ -5,10 +5,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // 6-MODUL (Tizimni yaxlit yig'amiz) · DARS 4 — «AI-AGENT NIMA» — PLATFORM STANDARD v18 (AUDIOSIZ)
 // Maqsad: o'quvchi AI-agentni TIZIM DARAJASIDA tushunadi: oddiy AI ↔ agent farqi, agent sikli
 //         (Idrok → Qaror → Amal — 5-Modul BotAiAgentLesson bilan bir xil nom), tool (asbob) orqali tizimga ulanish,
-//         qachon agent foydali, vakolat chegarasi (guardrail).
+//         qachon agent foydali, chegara (guardrail).
 // MISOL-IP (MD-birinchi, F-0929): dars bo'yi MINI-DO'KON (1–3-darslardagi loyiha). Eski metafora olib tashlangan;
 //   o'xshatishlar — faqat s2 (bir marta) va s6 (bir marta), MD'dagidek. Manba: feedback/F-0929-QA-6modul/04-AgentArchitecture-v2.md
-//   Tool = agent chaqira oladigan funksiya: baza (PostgreSQL so'rovi), tashqi xizmat (API), xabar (Telegram).
+//   Tool = agent chaqira oladigan funksiya: Database (PostgreSQL so'rovi), tashqi xizmat (API), xabar (Telegram).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // Ko'prik: keyingi dars — Claude Skills (AI va agentga yozma yo'riqnoma).
 // ============================================================
@@ -284,7 +284,7 @@ const RECAPS = {
     title: { uz: "Tool — agentning asbobi", ru: 'Tool — инструмент агента' },
     cards: [
       { ic: "🧰", h: { uz: "Tool nima?", ru: 'Что такое tool?' }, body: { uz: <>Tool — <b>siz yozgan funksiya</b>.</>, ru: <>Tool — <b>функция, которую написали вы</b>.</> } },
-      { ic: "🗄️", h: { uz: "Uch xil tool", ru: 'Три вида инструментов' }, body: { uz: <>Baza, API, xabar — har biri alohida tool.</>, ru: <>База, API, сообщение — каждый из них отдельный инструмент.</> } },
+      { ic: "🗄️", h: { uz: "Uch xil tool", ru: 'Три вида инструментов' }, body: { uz: <>Database, API, xabar — har biri alohida tool.</>, ru: <>Database, API, сообщение — каждый из них отдельный инструмент.</> } },
       { ic: "⚡", h: { uz: "Amal tool orqali", ru: 'Действие — через инструмент' }, body: { uz: <>Agent faqat <b>siz bergan tool'lar</b> orqali amal qiladi.</>, ru: <>Агент действует только через <b>выданные вами инструменты</b>.</> }, ask: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' } },
     ]
   },
@@ -300,7 +300,7 @@ const RECAPS = {
     title: { uz: "Agent — backend qismi", ru: 'Агент — часть бэкенда' },
     cards: [
       { ic: "🏢", h: { uz: "Backend ichida", ru: 'Внутри бэкенда' }, body: { uz: <>Bizning tizimda agent <b>backend ichida</b> ishlaydi.</>, ru: <>В нашей системе агент работает <b>внутри бэкенда</b>.</> } },
-      { ic: "🧰", h: { uz: "Tool'lar orqali", ru: 'Через инструменты' }, body: { uz: <>U tool'lar (baza, API, xabar) orqali boshqa qismlarga ta'sir qiladi.</>, ru: <>Через инструменты (база, API, сообщение) он влияет на другие части.</> } },
+      { ic: "🧰", h: { uz: "Tool'lar orqali", ru: 'Через инструменты' }, body: { uz: <>U tool'lar (Database, API, xabar) orqali boshqa qismlarga ta'sir qiladi.</>, ru: <>Через инструменты (Database, API, сообщение) он влияет на другие части.</> } },
       { ic: "🙈", h: { uz: "Foydalanuvchi ko'rmaydi", ru: 'Пользователь не видит' }, body: { uz: <>Foydalanuvchi uni ko'rmaydi — frontend faqat natijani ko'rsatadi.</>, ru: <>Пользователь его не видит — фронтенд показывает только результат.</> }, ask: { uz: "Agent tizimning qaysi qismida ishlaydi?", ru: 'В какой части системы работает агент?' } },
     ]
   },
@@ -657,21 +657,21 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
 const VS_ROWS = [
   { id: 'what', k: { uz: 'Nima beriladi?', ru: 'Что ему дают?' }, ai: { uz: 'savol', ru: 'вопрос' }, agent: { uz: 'maqsad', ru: 'цель' } },
   { id: 'steps', k: { uz: 'Necha qadam?', ru: 'Сколько шагов?' }, ai: { uz: 'odatda bitta javob', ru: 'обычно один ответ' }, agent: { uz: 'maqsadga yetguncha bir necha qadam', ru: 'несколько шагов, пока не достигнет цели' } },
-  { id: 'system', k: { uz: 'Tizim bilan?', ru: 'Работа с системой?' }, ai: { uz: 'javob matnini beradi', ru: 'даёт текст ответа' }, agent: { uz: "tool'lar orqali baza, xabar va boshqa xizmatlar bilan ishlaydi", ru: 'через инструменты работает с базой, сообщениями и другими сервисами' } },
+  { id: 'system', k: { uz: 'Tizim bilan?', ru: 'Работа с системой?' }, ai: { uz: 'javob matnini beradi', ru: 'даёт текст ответа' }, agent: { uz: "tool'lar orqali Database, xabar va boshqa xizmatlar bilan ishlaydi", ru: 'через инструменты работает с Database, сообщениями и другими сервисами' } },
   { id: 'use', k: { uz: 'Qachon?', ru: 'Когда?' }, ai: { uz: 'aniq, bir martalik ish (tarjima, matn yozish)', ru: 'чёткая разовая задача (перевод, написать текст)' }, agent: { uz: "bir necha qadam va asbob kerak bo'lgan ish", ru: 'задача, где нужны несколько шагов и инструменты' } }
 ];
 
 // ===== TOOL'LAR (s7) — agent tizim qismlariga ulanadi =====
 const TOOLS = [
-  { id: 'baza', label: { uz: 'Baza', ru: 'База' }, desc: { uz: "Agent mahsulot va buyurtmalarni o'qiydi, kerak bo'lsa yozadi. Bu ma'lumotlar bazasiga (PostgreSQL) so'rov.", ru: 'Агент читает товары и заказы, а если нужно — записывает. Это запрос к базе данных (PostgreSQL).' } },
+  { id: 'baza', label: { uz: 'Database', ru: 'Database' }, desc: { uz: "Agent mahsulot va buyurtmalarni o'qiydi, kerak bo'lsa yozadi. Bu Database'ga (PostgreSQL) so'rov.", ru: 'Агент читает товары и заказы, а если нужно — записывает. Это запрос к Database (PostgreSQL).' } },
   { id: 'api', label: { uz: 'Tashqi xizmat', ru: 'Внешний сервис' }, desc: { uz: <>Agent kuryer xizmatidan yetkazish vaqtini so'raydi. Bu API chaqiruvi. <i>API — boshqa xizmat bilan ma'lumot almashish yo'li.</i></>, ru: <>Агент спрашивает у курьерской службы время доставки. Это вызов API. <i>API — способ обмениваться данными с другим сервисом.</i></> } },
   { id: 'xabar', label: { uz: 'Xabar', ru: 'Сообщение' }, desc: { uz: "Agent mijozga Telegram orqali xabar yuboradi. Bu xabar yuboradigan funksiya.", ru: 'Агент отправляет клиенту сообщение в Telegram. Это функция, которая отправляет сообщения.' } }
 ];
 
 // ===== TOOL QANDAY ISHLAYDI (s6) — kim tanlaydi, kim bajaradi =====
 const TOOL_FLOW = [
-  { h: { uz: 'AI modeli tanlaydi:', ru: 'Модель ИИ выбирает:' }, body: { uz: "«Buyurtma holatini bilish uchun baza tool'ini chaqiraman.»", ru: '«Чтобы узнать статус заказа, вызову инструмент базы.»' } },
-  { h: { uz: 'Backend bajaradi:', ru: 'Бэкенд выполняет:' }, body: { uz: 'sizning kodingiz shu funksiyani ishga tushiradi va bazadan javob oladi.', ru: 'ваш код запускает эту функцию и получает ответ из базы.' } },
+  { h: { uz: 'AI modeli tanlaydi:', ru: 'Модель ИИ выбирает:' }, body: { uz: "«Buyurtma holatini bilish uchun Database tool'ini chaqiraman.»", ru: '«Чтобы узнать статус заказа, вызову инструмент Database.»' } },
+  { h: { uz: 'Backend bajaradi:', ru: 'Бэкенд выполняет:' }, body: { uz: "sizning kodingiz shu funksiyani ishga tushiradi va Database'dan javob oladi.", ru: 'ваш код запускает эту функцию и получает ответ из Database.' } },
   { h: { uz: 'Natija qaytadi:', ru: 'Результат возвращается:' }, body: { uz: "javob AI'ga qaytadi — u keyingi qadamni tanlaydi.", ru: 'ответ возвращается к ИИ — он выбирает следующий шаг.' } }
 ];
 
@@ -703,12 +703,12 @@ const CASE_PHASE = {
 };
 const CASE_STEPS = [
   { phase: 'goal', txt: { uz: "Mijoz: «Buyurtmam 2 kundan beri kelmadi.» Agent maqsadi: sababini topib, mijozga javob berish.", ru: 'Клиент: «Мой заказ не приходит уже 2 дня.» Цель агента: найти причину и ответить клиенту.' } },
-  { phase: 'perceive', tool: { uz: 'baza', ru: 'база' }, txt: { uz: "Agent bazadan buyurtma holatini o'qidi (tool: baza) — «kuryerga berilgan».", ru: 'Агент прочитал в базе статус заказа (инструмент: база) — «передан курьеру».' } },
+  { phase: 'perceive', tool: { uz: 'Database', ru: 'Database' }, txt: { uz: "Agent Database'dan buyurtma holatini o'qidi (tool: Database) — «kuryerga berilgan».", ru: 'Агент прочитал в Database статус заказа (инструмент: Database) — «передан курьеру».' } },
   { phase: 'decide', txt: { uz: "Kuryer xizmatidan so'rash kerak: buyurtma qayerda?", ru: 'Нужно спросить у курьерской службы: где заказ?' } },
   { phase: 'act', tool: { uz: 'API', ru: 'API' }, txt: { uz: "Agent kuryer xizmatiga so'rov yubordi (tool: API) — «ertaga 12:00 gacha yetkaziladi».", ru: 'Агент отправил запрос в курьерскую службу (инструмент: API) — «доставят завтра до 12:00».' } },
   { phase: 'decide', txt: { uz: 'Endi mijozga aniq javob berish kerak.', ru: 'Теперь нужно дать клиенту точный ответ.' } },
   { phase: 'act', tool: { uz: 'xabar', ru: 'сообщение' }, txt: { uz: "Agent mijozga Telegram'da xabar yubordi (tool: xabar) 📨", ru: 'Агент отправил клиенту сообщение в Telegram (инструмент: сообщение) 📨' } },
-  { phase: 'done', txt: { uz: 'Maqsad bajarildi. Agent 3 ta tool ishlatdi: baza, API va xabar.', ru: 'Цель достигнута. Агент использовал 3 инструмента: базу, API и сообщение.' } }
+  { phase: 'done', txt: { uz: 'Maqsad bajarildi. Agent 3 ta tool ishlatdi: Database, API va xabar.', ru: 'Цель достигнута. Агент использовал 3 инструмента: Database, API и сообщение.' } }
 ];
 
 // ===== AGENT SIKLI — yakuniy yig'ish (final s15) =====
@@ -740,8 +740,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningizga mijoz yozdi: «Do'stimga 200 ming so'mgacha sovg'a kerak, bugun yetib borsin». <span className="italic" style={{ color: T.accent }}>Ikki xil AI</span> qanday javob beradi?</>, ru: <>В ваш мини-магазин написал клиент: «Нужен подарок другу до 200 тысяч сумов, пусть доставят сегодня». Как ответят <span className="italic" style={{ color: T.accent }}>два разных ИИ</span>?</> })}</h1>
-        <Mentor>{tr({ uz: "Bot darslarida botingizga AI-agent qo'shgansiz. Endi agentga butun tizim nuqtai nazaridan qaraymiz. Avval eslaylik: agent oddiy AI'dan nimasi bilan farq qiladi? Tugmani bosing — bitta iltimosga ikki xil AI qanday javob berishini solishtiring.", ru: 'На уроках про ботов вы добавляли к своему боту AI-агента. Теперь посмотрим на агента с точки зрения всей системы. Сначала вспомним: чем агент отличается от обычного ИИ? Нажмите кнопку и сравните, как два разных ИИ отвечают на одну и ту же просьбу.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Mijoz sovg'a so'radi. <span className="italic" style={{ color: T.accent }}>Ikki xil AI</span> qanday javob beradi?</>, ru: <>Клиент попросил подарок. Как ответят <span className="italic" style={{ color: T.accent }}>два разных ИИ</span>?</> })}</h1>
+        <Mentor>{tr({ uz: "Bot darslarida botingizga AI-agent qo'shgansiz. Endi agentga butun tizim nuqtai nazaridan qaraymiz. Avval eslaylik: agent oddiy AI'dan nimasi bilan farq qiladi? Mini-do'koningizga mijoz yozdi: «Do'stimga 200 ming so'mgacha sovg'a kerak, bugun yetib borsin». Tugmani bosing va javoblarni solishtiring.", ru: 'На уроках про ботов вы добавляли к своему боту AI-агента. Теперь посмотрим на агента с точки зрения всей системы. Сначала вспомним: чем агент отличается от обычного ИИ? В ваш мини-магазин написал клиент: «Нужен подарок другу до 200 тысяч сумов, пусть доставят сегодня». Нажмите кнопку и сравните ответы.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="sk-info" style={{ }}>
@@ -751,7 +751,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
             <div className="agent-card">
               <span className="agent-lbl">{tr({ uz: '🤖 AI-agent', ru: '🤖 AI-агент' })}</span>
-              {tried ? <p className="agent-msg">{tr({ uz: "«Do'kon bazasidan 200 ming so'mgacha mahsulotlarni topdim ✓ Quloqchin omborda bor — band qildim ✓ Kuryer xizmatidan bugungi yetkazishni so'radim ✓ — 18:00 gacha yetib boradi.»", ru: '«Нашёл в базе магазина товары до 200 тысяч сумов ✓ Наушники есть на складе — забронировал ✓ Запросил у курьерской службы доставку на сегодня ✓ — привезут до 18:00.»' })}</p>
+              {tried ? <p className="agent-msg">{tr({ uz: "«Database'dan 200 ming so'mgacha mahsulotlarni topdim ✓ Quloqchin omborda bor — band qildim ✓ Kuryer xizmatidan bugungi yetkazishni so'radim ✓ — 18:00 gacha yetib boradi.»", ru: '«Нашёл в Database товары до 200 тысяч сумов ✓ Наушники есть на складе — забронировал ✓ Запросил у курьерской службы доставку на сегодня ✓ — привезут до 18:00.»' })}</p>
                 : <p className="agent-msg" style={{ color: T.ink3, fontStyle: 'italic' }}>…</p>}
             </div>
             <button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Solishtirildi', ru: '✓ Сравнили' }) : tr({ uz: "▶ Ikki javobni ko'rish", ru: '▶ Посмотреть два ответа' })}</button>
@@ -764,7 +764,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked !== 'b' ? tr({ uz: <><b>Qiziq fikr!</b> Lekin gap chiroyli so'zda emas. Ikkinchi AI javob berish bilan qolmadi: do'kon asboblari yordamida mahsulotni topdi, band qildi va yetkazishni so'radi. Bunday AI'ni agent deyishadi.</>, ru: <><b>Интересная мысль!</b> Но дело не в красивых словах. Второй ИИ не ограничился ответом: с помощью инструментов магазина он нашёл товар, забронировал его и запросил доставку. Такой ИИ называют агентом.</> }) : tr({ uz: <><b>Aynan!</b> Oddiy AI savolga javob berdi. AI-agent esa maqsadni oldi va do'kon asboblari — baza, band qilish, kuryer xizmati — yordamida bir necha qadamni bajardi. Bugun agent qanday ishlashini va tizimda qayerda turishini ko'ramiz.</>, ru: <><b>Именно!</b> Обычный ИИ ответил на вопрос. А AI-агент получил цель и с помощью инструментов магазина — базы, бронирования, курьерской службы — выполнил несколько шагов. Сегодня разберём, как работает агент и где он стоит в системе.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked !== 'b' ? tr({ uz: <><b>Qiziq fikr!</b> Lekin gap chiroyli so'zda emas. Ikkinchi AI javob berish bilan qolmadi: do'kon asboblari yordamida mahsulotni topdi, band qildi va yetkazishni so'radi. Bunday AI'ni agent deyishadi.</>, ru: <><b>Интересная мысль!</b> Но дело не в красивых словах. Второй ИИ не ограничился ответом: с помощью инструментов магазина он нашёл товар, забронировал его и запросил доставку. Такой ИИ называют агентом.</> }) : tr({ uz: <><b>Aynan!</b> Oddiy AI savolga javob berdi. AI-agent esa maqsadni oldi va do'kon asboblari — Database, band qilish, kuryer xizmati — yordamida bir necha qadamni bajardi. Bugun agent qanday ishlashini va tizimda qayerda turishini ko'ramiz.</>, ru: <><b>Именно!</b> Обычный ИИ ответил на вопрос. А AI-агент получил цель и с помощью инструментов магазина — Database, бронирования, курьерской службы — выполнил несколько шагов. Сегодня разберём, как работает агент и где он стоит в системе.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -778,14 +778,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: { uz: 'Oddiy AI va agent — farqi nimada', ru: 'Обычный ИИ и агент — в чём разница' }, tag: { uz: 'farq', ru: 'разница' } },
     { text: { uz: 'Agent sikli: idrok → qaror → amal', ru: 'Цикл агента: восприятие → решение → действие' }, tag: { uz: 'sikl', ru: 'цикл' } },
     { text: { uz: 'Tool — agent ishlata oladigan asbob', ru: 'Tool — инструмент, которым может пользоваться агент' }, tag: { uz: 'asbob', ru: 'инструмент' } },
-    { text: { uz: 'Qachon agent kerak va vakolat chegarasi', ru: 'Когда нужен агент и рамки полномочий' }, tag: { uz: 'qaror', ru: 'решение' } }
+    { text: { uz: 'Qachon agent kerak va chegara', ru: 'Когда нужен агент и ограничение' }, tag: { uz: 'qaror', ru: 'решение' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
       <div className="clients-map">
-        <div className="cm-clients"><div className="cm-client on"><span>🗄️</span><span className="cm-lbl">{tr({ uz: 'Baza', ru: 'База' })}</span></div><div className="cm-client on"><span>📡</span><span className="cm-lbl">{tr({ uz: 'Tashqi xizmat (API)', ru: 'Внешний сервис (API)' })}</span></div><div className="cm-client on"><span>💬</span><span className="cm-lbl">{tr({ uz: 'Xabar', ru: 'Сообщение' })}</span></div></div>
+        <div className="cm-clients"><div className="cm-client on"><span>🗄️</span><span className="cm-lbl">{tr({ uz: 'Database', ru: 'Database' })}</span></div><div className="cm-client on"><span>📡</span><span className="cm-lbl">{tr({ uz: 'Tashqi xizmat (API)', ru: 'Внешний сервис (API)' })}</span></div><div className="cm-client on"><span>💬</span><span className="cm-lbl">{tr({ uz: 'Xabar', ru: 'Сообщение' })}</span></div></div>
         <span className="cm-arrow">←</span>
         <div className="cm-core"><div className="cm-core-node">🤖<span>{tr({ uz: 'Agent', ru: 'Агент' })}</span></div></div>
       </div>
@@ -823,7 +823,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Tushuncha · farq', ru: 'Понятие · разница' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 jihatni ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 отличия (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oddiy AI savolga javob beradi. Agent <span className="italic" style={{ color: T.accent }}>maqsad sari</span> qadam tashlaydi.</>, ru: <>Обычный ИИ отвечает на вопрос. Агент делает шаги <span className="italic" style={{ color: T.accent }}>к цели</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oddiy AI javob beradi, agent <span className="italic" style={{ color: T.accent }}>maqsadga</span> qadam tashlaydi.</>, ru: <>Обычный ИИ отвечает, агент делает шаги <span className="italic" style={{ color: T.accent }}>к цели</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Oddiy AI'ga savol berasiz — u javob beradi. Agentga maqsad berasiz — u keyingi qadamni o'zi tanlaydi va siz bergan asboblardan foydalanadi. Agentni detektivga o'xshatish mumkin: maqsad oladi, dalil yig'adi, keyingi qadamni tanlaydi. Har jihatni bosing.", ru: 'Обычному ИИ вы задаёте вопрос — он отвечает. Агенту вы даёте цель — он сам выбирает следующий шаг и пользуется выданными вами инструментами. Агента можно сравнить с детективом: получает цель, собирает улики, выбирает следующий шаг. Нажмите на каждый пункт.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -855,15 +855,15 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = run;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const AG = [
-    { txt: { uz: "Bazadan 200 ming so'mgacha mahsulotlarni qidirdi", ru: 'Искал в базе товары до 200 тысяч сумов' } },
-    { txt: { uz: 'Quloqchinni band qildi (bazaga yozdi)', ru: 'Забронировал наушники (записал в базу)' } },
+    { txt: { uz: "Database'dan 200 ming so'mgacha mahsulotlarni qidirdi", ru: 'Искал в Database товары до 200 тысяч сумов' } },
+    { txt: { uz: "Quloqchinni band qildi (Database'ga yozdi)", ru: 'Забронировал наушники (записал в Database)' } },
     { txt: { uz: "Kuryer xizmatidan (API) bugungi yetkazishni so'radi", ru: 'Запросил у курьерской службы (API) доставку на сегодня' } },
     { txt: { uz: "Maqsad bajarildi", ru: 'Цель достигнута' } }
   ];
   return (
     <Stage eyebrow={{ uz: "Animatsiya · bir vazifa, ikki yo'l", ru: 'Анимация · одна задача, два пути' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Farqni ko'ring", ru: 'Посмотрите разницу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta vazifa — oddiy AI <span className="italic" style={{ color: T.accent }}>bitta javob</span>, agent <span className="italic" style={{ color: T.accent }}>bir necha qadam</span>.</>, ru: <>Одна задача — у обычного ИИ <span className="italic" style={{ color: T.accent }}>один ответ</span>, у агента <span className="italic" style={{ color: T.accent }}>несколько шагов</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta vazifa — oddiy AI <span className="italic" style={{ color: T.accent }}>bitta javob</span>, agent <span className="italic" style={{ color: T.accent }}>bir necha qadam</span>.</>, ru: <>У обычного ИИ <span className="italic" style={{ color: T.accent }}>один ответ</span>, у агента <span className="italic" style={{ color: T.accent }}>несколько шагов</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Agent sikl bo'ylab ishlaydi: har qadamda bitta asbobni ishlatadi. Tugmani bosing.", ru: 'Агент работает по циклу: на каждом шаге использует один инструмент. Нажмите кнопку.' })}</Mentor>
         <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={run} onClick={() => { setRun(true); setSc(n => n + 1); }}>{run ? tr({ uz: "✓ Ko'rsatildi", ru: '✓ Показано' }) : tr({ uz: "▶ Ikki yondashuvni ishga tushiring", ru: '▶ Запустите оба подхода' })}</button>
         <Zoomable><div className="split">
@@ -903,13 +903,13 @@ const Screen4 = (props) => (
     options={[
       { uz: 'Bir necha asbobni ishlatib, ishni oxirigacha bajaradi', ru: 'Использует несколько инструментов и доводит работу до конца' },
       { uz: "Javob matnini beradi va to'xtaydi", ru: 'Даёт текст ответа и останавливается' },
-      { uz: "Do'kon bazasiga o'zi yangi buyurtma yozadi", ru: 'Сам записывает новый заказ в базу магазина' },
+      { uz: "Database'ga o'zi yangi buyurtma yozadi", ru: 'Сам записывает новый заказ в Database' },
       { uz: 'Hech narsa — u faqat agent ichida ishlaydi', ru: 'Ничего — он работает только внутри агента' }
     ]} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! Oddiy AI savolga javob beradi va to'xtaydi — tizimdagi ma'lumotni o'zi o'zgartirmaydi. Bir necha qadam va asbob kerak bo'lgan ish uchun agent foydali bo'lishi mumkin.", ru: 'Верно! Обычный ИИ отвечает на вопрос и останавливается — сам он данные в системе не меняет. Для задачи, где нужны несколько шагов и инструменты, может пригодиться агент.' }}
     explainWrong={{
       0: { uz: 'Asboblarni ishlatib, ishni oxirigacha bajarish — agentning ishi.', ru: 'Использовать инструменты и доводить работу до конца — это работа агента.' },
-      2: { uz: 'Bazaga yozish uchun tool kerak — bu agentning ishi.', ru: 'Чтобы записать в базу, нужен инструмент — это работа агента.' },
+      2: { uz: "Database'ga yozish uchun tool kerak — bu agentning ishi.", ru: 'Чтобы записать в Database, нужен инструмент — это работа агента.' },
       3: { uz: 'Oddiy AI alohida ishlaydi — agent shart emas.', ru: 'Обычный ИИ работает сам по себе — агент для этого не нужен.' },
       default: { uz: "Oddiy AI javob beradi va to'xtaydi.", ru: 'Обычный ИИ отвечает и останавливается.' }
     }} />
@@ -923,14 +923,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   const NOTES = [
-    { uz: <><b>Idrok:</b> agent vaziyatni ko'radi — masalan, bazadan mahsulotlar ro'yxatini o'qiydi.</>, ru: <><b>Восприятие:</b> агент видит ситуацию — например, читает из базы список товаров.</> },
+    { uz: <><b>Idrok:</b> agent vaziyatni ko'radi — masalan, Database'dan mahsulotlar ro'yxatini o'qiydi.</>, ru: <><b>Восприятие:</b> агент видит ситуацию — например, читает из Database список товаров.</> },
     { uz: <><b>Qaror:</b> keyingi qadamni tanlaydi (qaror) — qaysi asbobni ishlatish kerak?</>, ru: <><b>Решение:</b> выбирает следующий шаг — какой инструмент использовать?</> },
     { uz: <><b>Amal:</b> tanlagan asbobini ishlatadi — masalan, mahsulotni band qiladi.</>, ru: <><b>Действие:</b> использует выбранный инструмент — например, бронирует товар.</> }
   ];
   return (
     <Stage eyebrow={{ uz: 'Ichki sikl', ru: 'Внутренний цикл' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Siklni ko'ring (${step}/${ENGINE.length})`, ru: `Посмотрите цикл (${step}/${ENGINE.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentning ichida <span className="italic" style={{ color: T.accent }}>sikl</span> bor: idrok → qaror → amal.</>, ru: <>Внутри агента есть <span className="italic" style={{ color: T.accent }}>цикл</span>: восприятие → решение → действие.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentning ichida <span className="italic" style={{ color: T.accent }}>sikl</span> bor: idrok → qaror → amal.</>, ru: <>В агенте есть <span className="italic" style={{ color: T.accent }}>цикл</span>: восприятие → решение → действие.</> })}</h2></div>
         <Mentor>{tr({ uz: "Shu sikl agentga bir necha qadam bajarishga imkon beradi: u maqsadga yetguncha aylanadi va har aylanishda natijani yana ko'radi. Tugmani bosib, bosqichlarni yoqing.", ru: 'Именно цикл позволяет агенту выполнять несколько шагов: он крутится, пока цель не достигнута, и каждый раз снова смотрит на результат. Нажимайте кнопку и включайте этапы.' })}</Mentor>
         <div className="fade-up"><div className="flow-row" style={{ justifyContent: 'center' }}>
           {ENGINE.map((p, i) => (
@@ -948,7 +948,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega sikl?', ru: '🔁 Почему цикл?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har amaldan keyin agent natijani ko'radi va keyingi qadamni tanlaydi — maqsad bajarilguncha. Shu sikl tufayli agent bir nechta qadamni ketma-ket bajara oladi.", ru: 'После каждого действия агент смотрит на результат и выбирает следующий шаг — пока цель не достигнута. Благодаря этому циклу агент может выполнять несколько шагов подряд.' })}</p></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Siz agentga maqsad, asboblar va chegara berasiz. Agent shu doirada keyingi qadamni tanlaydi.', ru: 'Вы даёте агенту цель, инструменты и рамки. В этих рамках агент сам выбирает следующий шаг.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Siz agentga maqsad, asboblar va chegara berasiz. Agent shu doirada keyingi qadamni tanlaydi.', ru: 'Вы даёте агенту цель, инструменты и ограничение. В этих рамках агент сам выбирает следующий шаг.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -966,7 +966,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Ulanish · tool', ru: 'Подключение · tool' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Tool nima?', ru: 'Что такое tool?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tool — agent ishlata oladigan <span className="italic" style={{ color: T.accent }}>asbob</span>.</>, ru: <>Tool — <span className="italic" style={{ color: T.accent }}>инструмент</span>, которым может пользоваться агент.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Agent tizim bilan faqat tool'lar orqali ishlaydi. Tool — siz yozgan oddiy funksiya: masalan, bazadan o'qish yoki xabar yuborish. Toolni ruxsatnomaga o'xshatish mumkin: agent faqat ruxsat berilgan ishni qila oladi. Tugmani bosing.", ru: 'Агент работает с системой только через инструменты. Tool — обычная функция, которую написали вы: например, чтение из базы или отправка сообщения. Инструмент можно сравнить с пропуском: агент может делать только то, на что у него есть разрешение. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Agent tizim bilan faqat tool'lar orqali ishlaydi. Tool — siz yozgan oddiy funksiya: masalan, Database'dan o'qish yoki xabar yuborish. Toolni ruxsatnomaga o'xshatish mumkin: agent faqat ruxsat berilgan ishni qila oladi. Tugmani bosing.", ru: 'Агент работает с системой только через инструменты. Tool — обычная функция, которую написали вы: например, чтение из Database или отправка сообщения. Инструмент можно сравнить с пропуском: агент может делать только то, на что у него есть разрешение. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🧰 Tool nima?', ru: '🧰 Что такое tool?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tool (o'zbekcha «asbob») — agent chaqira oladigan funksiya.", ru: 'Tool (по-русски «инструмент») — функция, которую агент может вызвать.' })}</p></div>
@@ -998,7 +998,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: "Arxitektura · agent o'rni", ru: 'Архитектура · место агента' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 ta tool'ni oching (${seen.size}/3)`, ru: `Откройте 3 инструмента (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent backend ichida — <span className="italic" style={{ color: T.accent }}>tool'lari</span> tizim qismlariga ulanadi.</>, ru: <>Агент — внутри бэкенда, его <span className="italic" style={{ color: T.accent }}>инструменты</span> подключаются к частям системы.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent backend ichida — <span className="italic" style={{ color: T.accent }}>tool'lari</span> tizim qismlariga ulanadi.</>, ru: <>Агент в бэкенде, <span className="italic" style={{ color: T.accent }}>инструменты</span> связаны с частями системы.</> })}</h2></div>
         <Mentor>{tr({ uz: "Har bir tool'ni bosing: agent u orqali nima qiladi?", ru: 'Нажмите на каждый инструмент: что агент делает через него?' })}</Mentor>
         <div className="fade-up"><div className="clients-map">
           <div className="cm-core"><div className="cm-core-node" style={{ background: T.accent }}>🤖<span>{tr({ uz: 'Agent', ru: 'Агент' })}</span></div></div>
@@ -1036,10 +1036,10 @@ const Screen8 = (props) => (
     options={[
       { uz: "O'z-o'zidan, hech qanday tool'siz", ru: 'Сам собой, без всяких инструментов' },
       { uz: 'Faqat javob matni yozib, boshqa ish qilmay', ru: 'Только пишет текст ответа и больше ничего не делает' },
-      { uz: "Siz bergan tool'lar orqali: baza, API, xabar", ru: 'Через выданные вами инструменты: база, API, сообщение' },
+      { uz: "Siz bergan tool'lar orqali: Database, API, xabar", ru: 'Через выданные вами инструменты: Database, API, сообщение' },
       { uz: "Foydalanuvchi ekranini o'zi chizib qo'yib", ru: 'Сам рисует экран пользователя' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "To'g'ri! Agentning amallari — tool'lar orqali. Tool'lar esa siz yozgan funksiyalar: bazaga so'rov, API chaqiruvi, xabar yuborish. Agent faqat qaysi birini, qaysi tartibda ishlatishni tanlaydi.", ru: 'Верно! Действия агента идут через инструменты. А инструменты — это функции, которые написали вы: запрос к базе, вызов API, отправка сообщения. Агент только выбирает, какой из них и в каком порядке использовать.' }}
+    explainCorrect={{ uz: "To'g'ri! Agentning amallari — tool'lar orqali. Tool'lar esa siz yozgan funksiyalar: Database'ga so'rov, API chaqiruvi, xabar yuborish. Agent faqat qaysi birini, qaysi tartibda ishlatishni tanlaydi.", ru: 'Верно! Действия агента идут через инструменты. А инструменты — это функции, которые написали вы: запрос к Database, вызов API, отправка сообщения. Агент только выбирает, какой из них и в каком порядке использовать.' }}
     explainWrong={{
       0: { uz: "Tool'lar — siz yozgan oddiy funksiyalar. Agent ularsiz tizimga ta'sir qila olmaydi.", ru: 'Инструменты — обычные функции, которые написали вы. Без них агент не может влиять на систему.' },
       1: { uz: "Faqat javob yozish — bu oddiy AI. Agent tool'lar orqali amal qiladi.", ru: 'Только писать ответы — это обычный ИИ. Агент действует через инструменты.' },
@@ -1178,14 +1178,14 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Ehtiyot · vakolat chegarasi', ru: 'Осторожно · рамки полномочий' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Qanday chegara?', ru: 'Зачем рамки?' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Ehtiyot · chegara', ru: 'Осторожно · ограничение' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Qanday chegara?', ru: 'Какое ограничение?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentga <span className="italic" style={{ color: T.accent }}>vakolat chegarasi</span> kerak</>, ru: <>Агенту нужны <span className="italic" style={{ color: T.accent }}>рамки полномочий</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Oddiy AI faqat javob yozadi. Agent esa real amal qiladi: bazaga yozadi, pulni qaytaradi, xabar yuboradi. Shuning uchun oldindan aytiladi: nima mumkin, nima mumkin emas. Tugmani bosing.", ru: 'Обычный ИИ только пишет ответ. А агент совершает реальные действия: записывает в базу, возвращает деньги, отправляет сообщения. Поэтому заранее определяют: что можно, а что нельзя. Нажмите кнопку.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agentga <span className="italic" style={{ color: T.accent }}>chegara</span> kerak.</>, ru: <>Агенту нужно <span className="italic" style={{ color: T.accent }}>ограничение</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Oddiy AI faqat javob yozadi. Agent esa real amal qiladi: Database'ga yozadi, pulni qaytaradi, xabar yuboradi. Shuning uchun oldindan aytiladi: nima mumkin, nima mumkin emas. Tugmani bosing.", ru: 'Обычный ИИ только пишет ответ. А агент совершает реальные действия: записывает в Database, возвращает деньги, отправляет сообщения. Поэтому заранее определяют: что можно, а что нельзя. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🤖 Agent backend ichida', ru: '🤖 Агент внутри бэкенда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "U faqat siz bergan tool'larga ega; bermagan ishingizni qila olmaydi.", ru: 'У него есть только выданные вами инструменты; то, что вы не дали, он сделать не может.' })}</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: "Qanday chegara?", ru: 'Какие рамки?' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tushundim', ru: '✓ Понятно' }) : tr({ uz: "Qanday chegara?", ru: 'Какое ограничение?' })}</button>
           </Col>
           <Col>
             {show
@@ -1194,7 +1194,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✋ <b>Tasdiq:</b> xavfli amaldan oldin (masalan, pul qaytarish) odamdan tasdiq so'ralsin.</>, ru: <>✋ <b>Подтверждение:</b> перед опасным действием (например, возвратом денег) пусть спрашивает подтверждение у человека.</> })}</p></div>
                 </div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Vakolat chegarasini inglizcha <b>guardrail</b> deyishadi — keyingi darslarda shu so'zni uchratasiz.</>, ru: <>Рамки полномочий по-английски называют <b>guardrail</b> — это слово вы встретите на следующих уроках.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Chegarani inglizcha <b>guardrail</b> deyishadi — keyingi darslarda shu so'zni uchratasiz.</>, ru: <>Ограничение по-английски называют <b>guardrail</b> — это слово вы встретите на следующих уроках.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1212,14 +1212,14 @@ const Screen14 = (props) => (
     }}
     options={[
       { uz: "Frontendda — chunki foydalanuvchi uni ko'radi", ru: 'На фронтенде — ведь пользователь его видит' },
-      { uz: "Baza ichida — chunki ma'lumot bilan ishlaydi", ru: 'Внутри базы — ведь он работает с данными' },
+      { uz: "Database ichida — chunki ma'lumot bilan ishlaydi", ru: 'Внутри Database — ведь он работает с данными' },
       { uz: "Tizimdan tashqarida — alohida, bog'lanmagan dastur", ru: 'Вне системы — отдельная, ни с чем не связанная программа' },
       { uz: "Backend ichida — siz bergan tool'lar orqali", ru: 'Внутри бэкенда — через выданные вами инструменты' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Bizning tizimda agent backend ichida ishlaydi. U tizimning bir qismi va faqat siz bergan tool'lar (baza, API, xabar) orqali boshqa qismlarga ta'sir qiladi.", ru: 'Верно! В нашей системе агент работает внутри бэкенда. Он — часть системы и влияет на другие части только через выданные вами инструменты (база, API, сообщение).' }}
+    explainCorrect={{ uz: "To'g'ri! Bizning tizimda agent backend ichida ishlaydi. U tizimning bir qismi va faqat siz bergan tool'lar (Database, API, xabar) orqali boshqa qismlarga ta'sir qiladi.", ru: 'Верно! В нашей системе агент работает внутри бэкенда. Он — часть системы и влияет на другие части только через выданные вами инструменты (Database, API, сообщение).' }}
     explainWrong={{
       0: { uz: "Foydalanuvchi agentni ko'rmaydi — u orqa tomonda (backend) ishlaydi. Frontend faqat natijani ko'rsatadi.", ru: 'Пользователь агента не видит — он работает на обратной стороне (бэкенд). Фронтенд показывает только результат.' },
-      1: { uz: 'Agent baza ichida emas — u backendda turadi va bazani tool orqali ishlatadi.', ru: 'Агент не внутри базы — он находится в бэкенде и пользуется базой через инструмент.' },
+      1: { uz: "Agent Database ichida emas — u backendda turadi va Database'ni tool orqali ishlatadi.", ru: 'Агент не внутри Database — он находится в бэкенде и пользуется Database через инструмент.' },
       2: { uz: "Agent tizim bilan bog'langan — u tool'lar orqali ulanadi.", ru: 'Агент связан с системой — он подключается через инструменты.' },
       default: { uz: "Agent backend ichida, tool'lar orqali amal qiladi.", ru: 'Агент внутри бэкенда, действует через инструменты.' }
     }} />
@@ -1242,7 +1242,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Siklni yig'ing", ru: 'Соберите цикл' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: agent sikli bosqichlarini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите этапы цикла агента <span className="italic" style={{ color: T.accent }}>в правильном порядке</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: agent sikli bosqichlarini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите цикл агента <span className="italic" style={{ color: T.accent }}>по порядку</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Agent vazifani qanday bajaradi? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Как агент выполняет задачу? Разложите блоки в правильном порядке.' })}</Mentor>
         {/* F-1004-10: tartib-mashqi standarti (m6-05) — to'liq kenglik, bo'sh joylar chapda, bo'laklar o'ngda.
             F-1004-11: «Nega tartib muhim?» izohi javobdan OLDIN tartibni aytib qo'yardi — endi faqat yechilgandan keyin. */}
@@ -1350,12 +1350,12 @@ const QUIZ_BANK = [
   { q: { uz: "Oddiy AI va agent o'rtasidagi asosiy farq nima?", ru: 'В чём главное отличие обычного ИИ от агента?' }, opts: [{ uz: "Oddiy AI javob beradi; agent qadamlar bilan ishlaydi", ru: 'Обычный ИИ отвечает; агент работает шагами' }, { uz: "Agent chiroyliroq va odob bilan gapiradi", ru: 'Агент говорит красивее и вежливее' }, { uz: "Oddiy AI har doim agentdan tezroq ishlaydi", ru: 'Обычный ИИ всегда работает быстрее агента' }, { uz: "Ular o'rtasida hech qanday farq yo'q", ru: 'Между ними нет никакой разницы' }], correct: 0 },
   { q: { uz: "Agent sikli qanday nomlanadi?", ru: 'Как называется цикл агента?' }, opts: [{ uz: "Kirish → ishlov → chiqish", ru: 'Ввод → обработка → вывод' }, { uz: "Boshlash → kutish → tugatish", ru: 'Старт → ожидание → финиш' }, { uz: "Idrok → qaror → amal", ru: 'Восприятие → решение → действие' }, { uz: "Savol → javob → to'xtash", ru: 'Вопрос → ответ → остановка' }], correct: 2 },
   { q: { uz: "Tool nima?", ru: 'Что такое tool?' }, opts: [{ uz: "Agentning dasturdagi laqabi", ru: 'Прозвище агента в программе' }, { uz: "Agent chaqira oladigan funksiya", ru: 'Функция, которую может вызвать агент' }, { uz: "Do'kondagi mahsulotlar xaritasi", ru: 'Карта товаров в магазине' }, { uz: "AI'ning telefon raqami", ru: 'Номер телефона ИИ' }], correct: 1 },
-  { q: { uz: "Agent bazadan buyurtmalarni o'qishi — bu qaysi tool?", ru: 'Агент читает заказы из базы — какой это инструмент?' }, opts: [{ uz: "Ma'lumotlar bazasiga so'rov", ru: 'Запрос к базе данных' }, { uz: "Foydalanuvchining kirish paroli", ru: 'Пароль пользователя для входа' }, { uz: "Ekran rasmini olish", ru: 'Снимок экрана' }, { uz: "Video faylni ijro etish", ru: 'Воспроизведение видеофайла' }], correct: 0 },
+  { q: { uz: "Agent Database'dan buyurtmalarni o'qishi — bu qaysi tool?", ru: 'Агент читает заказы из Database — какой это инструмент?' }, opts: [{ uz: "Database'ga so'rov", ru: 'Запрос к Database' }, { uz: "Foydalanuvchining kirish paroli", ru: 'Пароль пользователя для входа' }, { uz: "Ekran rasmini olish", ru: 'Снимок экрана' }, { uz: "Video faylni ijro etish", ru: 'Воспроизведение видеофайла' }], correct: 0 },
   { q: { uz: "Bir martalik, aniq ish (masalan, tarjima) uchun nima yetadi?", ru: 'Чего хватит для разовой, чёткой задачи (например, перевода)?' }, opts: [{ uz: "Bunga ham albatta agent kerak", ru: 'Сюда тоже обязательно нужен агент' }, { uz: "Hech qaysi biri to'g'ri emas", ru: 'Ни один вариант не подходит' }, { uz: "AI va agentni birga ishlatish", ru: 'Запустить ИИ и агента вместе' }, { uz: "Oddiy AI yetadi", ru: 'Хватит обычного ИИ' }], correct: 3 },
   { q: { uz: "Bir necha qadam va asbob kerak bo'lgan ish uchun nima foydali?", ru: 'Что полезно для задачи, где нужны несколько шагов и инструменты?' }, opts: [{ uz: "Bitta javobli oddiy AI", ru: 'Обычный ИИ с одним ответом' }, { uz: "Oddiy chiziqli skript", ru: 'Обычный линейный скрипт' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд-часть' }, { uz: "AI-agent", ru: 'AI-агент' }], correct: 3 },
-  { q: { uz: "Bizning tizimda agent qayerda ishlaydi?", ru: 'Где работает агент в нашей системе?' }, opts: [{ uz: "Frontendda, foydalanuvchi ko'radigan joyda", ru: 'На фронтенде, там, где его видит пользователь' }, { uz: "Backend ichida", ru: 'Внутри бэкенда' }, { uz: "Baza ichida", ru: 'Внутри базы' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
-  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kod va API'siz", ru: 'Сам собой, без всякого кода и API' }, { uz: "Tool'lar orqali: baza, API, xabar", ru: 'Через инструменты: база, API, сообщение' }, { uz: "Faqat javob yozib, amalsiz", ru: 'Только пишет ответы, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
-  { q: { uz: "Nega agentga vakolat chegarasi kerak?", ru: 'Зачем агенту рамки полномочий?' }, opts: [{ uz: "U real amal qiladi, xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "U juda sekin ishlaydi va kuttiradi", ru: 'Он работает очень медленно и заставляет ждать' }, { uz: "U juda ko'p xotira egallaydi", ru: 'Он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такие рамки не нужны' }], correct: 0 },
+  { q: { uz: "Bizning tizimda agent qayerda ishlaydi?", ru: 'Где работает агент в нашей системе?' }, opts: [{ uz: "Frontendda, foydalanuvchi ko'radigan joyda", ru: 'На фронтенде, там, где его видит пользователь' }, { uz: "Backend ichida", ru: 'Внутри бэкенда' }, { uz: "Database ichida", ru: 'Внутри Database' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
+  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kod va API'siz", ru: 'Сам собой, без всякого кода и API' }, { uz: "Tool'lar orqali: Database, API, xabar", ru: 'Через инструменты: Database, API, сообщение' }, { uz: "Faqat javob yozib, amalsiz", ru: 'Только пишет ответы, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
+  { q: { uz: "Nega agentga chegara kerak?", ru: 'Зачем агенту ограничение?' }, opts: [{ uz: "U real amal qiladi, xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "U juda sekin ishlaydi va kuttiradi", ru: 'Он работает очень медленно и заставляет ждать' }, { uz: "U juda ko'p xotira egallaydi", ru: 'Он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такое ограничение не нужно' }], correct: 0 },
   { q: { uz: "Agentga bir necha qadamni ketma-ket bajarish imkonini nima beradi?", ru: 'Что позволяет агенту выполнять несколько шагов подряд?' }, opts: [{ uz: "Juda katta xotira hajmi", ru: 'Очень большой объём памяти' }, { uz: "Chiroyli va zamonaviy interfeys", ru: 'Красивый и современный интерфейс' }, { uz: "Maqsadga yetguncha aylanadigan sikl", ru: 'Цикл, который крутится до достижения цели' }, { uz: "Juda tez internet aloqasi", ru: 'Очень быстрый интернет' }], correct: 2 },
   { q: { uz: "Har bir vazifaga agent ishlatish nima deyiladi?", ru: 'Как называется использование агента для каждой задачи?' }, opts: [{ uz: "Bu doim eng to'g'ri yechim", ru: 'Это всегда самое правильное решение' }, { uz: "Vaqtni to'g'ri tejash usuli", ru: 'Способ правильно экономить время' }, { uz: "Tizimni tezlashtirish usuli", ru: 'Способ ускорить систему' }, { uz: "Ortiqcha murakkablik", ru: 'Переусложнение (лишняя сложность)' }], correct: 3 },
   { q: { uz: "Agent siklining to'g'ri tartibi qanday?", ru: 'Каков правильный порядок цикла агента?' }, opts: [{ uz: "Amal → idrok → qaror → maqsad → natija", ru: 'Действие → восприятие → решение → цель → результат' }, { uz: "Qaror → amal → natija → idrok → maqsad", ru: 'Решение → действие → результат → восприятие → цель' }, { uz: "Maqsad → idrok → qaror → amal → natija", ru: 'Цель → восприятие → решение → действие → результат' }, { uz: "Natija → maqsad → amal → qaror → idrok", ru: 'Результат → цель → действие → решение → восприятие' }], correct: 2 },
@@ -2023,13 +2023,13 @@ function Flashcards({ cards }) {
 const ScreenAgentPractice = (props) => (
   <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · reja', ru: 'Практика · план' }} place={{ uz: 'loyihangizda', ru: 'в своём проекте' }}
     title={{ uz: 'Loyihangiz uchun AI-agentni rejalashtiring', ru: 'Спланируйте AI-агента для своего проекта' }}
-    task={{ uz: "Loyihangizni o'ylang. Unda qaysi vazifa bir necha qadam va asbob talab qiladi? O'sha — agentga nomzod. Uni tanlab, qaysi tool'lar kerakligini va vakolat chegarasini yozing.", ru: 'Подумайте о своём проекте. Какая задача в нём требует нескольких шагов и инструментов? Она и есть кандидат для агента. Выберите её и запишите, какие инструменты нужны и каковы рамки полномочий.' }}
+    task={{ uz: "Loyihangizni o'ylang. Unda qaysi vazifa bir necha qadam va asbob talab qiladi? O'sha — agentga nomzod. Uni tanlab, qaysi tool'lar kerakligini va chegarani yozing.", ru: 'Подумайте о своём проекте. Какая задача в нём требует нескольких шагов и инструментов? Она и есть кандидат для агента. Выберите её и запишите, какие инструменты нужны и какое нужно ограничение.' }}
     checklist={[
       { uz: 'Bir necha qadamli bitta vazifani tanlang (masalan: kelmay qolgan buyurtmani hal qilish)', ru: 'Выберите одну задачу из нескольких шагов (например: разобраться с заказом, который не приехал)' },
       { uz: 'Agent maqsadini bir jumlada yozing', ru: 'Запишите цель агента одним предложением' },
-      { uz: 'Agentga qaysi 2–3 tool kerak: baza? tashqi xizmat (API)? xabar?', ru: 'Какие 2–3 инструмента нужны агенту: база? внешний сервис (API)? сообщение?' },
+      { uz: 'Agentga qaysi 2–3 tool kerak: Database? tashqi xizmat (API)? xabar?', ru: 'Какие 2–3 инструмента нужны агенту: Database? внешний сервис (API)? сообщение?' },
       { uz: 'Har tool uchun bir qatorda yozing: agent u bilan nima qiladi', ru: 'Для каждого инструмента напишите одной строкой: что агент с ним делает' },
-      { uz: "Vakolat chegarasini belgilang: agent nima qila olmasligi kerak va qaysi amalga odam tasdig'i kerak?", ru: 'Задайте рамки полномочий: чего агент делать не должен и для какого действия нужно подтверждение человека?' },
+      { uz: "Chegarani belgilang: agent nima qila olmasligi kerak va qaysi amalga odam tasdig'i kerak?", ru: 'Задайте ограничение: чего агент делать не должен и для какого действия нужно подтверждение человека?' },
     ]} />
 );
 
@@ -2040,10 +2040,10 @@ const AGENT_FLASHCARDS = [
   { front: { uz: "Agent sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл агента?' }, back: { uz: "Idrok, qaror, amal", ru: 'Восприятие, решение, действие' }, note: { uz: "Har amaldan keyin natijani tekshiradi", ru: 'После каждого действия проверяет результат' } },
   { front: { uz: "Agent chaqira oladigan funksiya nima deyiladi?", ru: 'Как называется функция, которую агент может вызвать?' }, back: { uz: 'Tool (asbob)', ru: 'Tool (инструмент)' }, note: { uz: "Siz yozgan oddiy funksiya", ru: 'Обычная функция, которую написали вы' } },
   { front: { uz: "Qaysi tool'ni chaqirishni kim tanlaydi?", ru: 'Кто выбирает, какой инструмент вызвать?' }, back: { uz: 'AI modeli', ru: 'Модель ИИ' }, note: { uz: "Tool'ni esa backend kodi bajaradi", ru: 'А выполняет инструмент код бэкенда' } },
-  { front: { uz: "Agent buyurtma holatini o'qishi uchun qaysi tool kerak?", ru: 'Какой инструмент нужен агенту, чтобы прочитать статус заказа?' }, back: { uz: "Baza tool'i", ru: 'Инструмент базы' }, note: { uz: "Ma'lumotlar bazasiga so'rov", ru: 'Запрос к базе данных' } },
+  { front: { uz: "Agent buyurtma holatini o'qishi uchun qaysi tool kerak?", ru: 'Какой инструмент нужен агенту, чтобы прочитать статус заказа?' }, back: { uz: "Database tool'i", ru: 'Инструмент Database' }, note: { uz: "Database'ga so'rov", ru: 'Запрос к Database' } },
   { front: { uz: "Agent kuryer xizmatidan ma'lumot so'rasa, bu qaysi tool?", ru: 'Агент запрашивает данные у курьерской службы — какой это инструмент?' }, back: { uz: "API tool'i", ru: 'Инструмент API' }, note: { uz: "API — boshqa xizmat bilan ma'lumot almashish yo'li", ru: 'API — способ обмениваться данными с другим сервисом' } },
   { front: { uz: "Agent maqsadga yetmasa nima qiladi?", ru: 'Что делает агент, если цель ещё не достигнута?' }, back: { uz: "Siklni qaytadan boshlaydi", ru: 'Начинает цикл заново' }, note: { uz: "Maqsad bajarilguncha davom etadi", ru: 'Продолжает, пока цель не достигнута' } },
-  { front: { uz: "Agent nima qila olishini kim belgilaydi?", ru: 'Кто определяет, что может делать агент?' }, back: { uz: "Siz — vakolat chegarasi bilan", ru: 'Вы — рамками полномочий' }, note: { uz: "Inglizcha: guardrail", ru: 'По-английски: guardrail' } },
+  { front: { uz: "Agent nima qila olishini kim belgilaydi?", ru: 'Кто определяет, что может делать агент?' }, back: { uz: "Siz — chegara bilan", ru: 'Вы — ограничением' }, note: { uz: "Inglizcha: guardrail", ru: 'По-английски: guardrail' } },
   { front: { uz: "Xavfli amaldan oldin (masalan, pul qaytarish) nima kerak?", ru: 'Что нужно перед опасным действием (например, возвратом денег)?' }, back: { uz: "Odamning tasdig'i", ru: 'Подтверждение человека' }, note: { uz: "Agent buni o'zi hal qilmaydi", ru: 'Агент не решает это сам' } },
   { front: { uz: "Bizning tizimda agent qaysi qismda ishlaydi?", ru: 'В какой части нашей системы работает агент?' }, back: { uz: "Backend'da", ru: 'В бэкенде' }, note: { uz: "Foydalanuvchi uni ko'rmaydi", ru: 'Пользователь его не видит' } },
   { front: { uz: "Oddiy tarjima ishiga agent kerakmi?", ru: 'Нужен ли агент для простого перевода?' }, back: { uz: "Yo'q, oddiy AI yetadi", ru: 'Нет, хватит обычного ИИ' }, note: { uz: "Keraksiz agent — ortiqcha murakkablik", ru: 'Лишний агент — лишняя сложность' } },
@@ -2084,14 +2084,14 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: 'Oddiy AI savolga javob beradi; agent maqsad sari bir necha qadamni tanlab bajaradi', ru: 'Обычный ИИ отвечает на вопрос; агент сам выбирает и выполняет несколько шагов к цели' },
     { uz: 'Agent sikli: idrok → qaror → amal (maqsadga yetguncha)', ru: 'Цикл агента: восприятие → решение → действие (пока цель не достигнута)' },
-    { uz: 'Tool — agent ishlata oladigan funksiya: baza, API, xabar', ru: 'Tool — функция, которой может пользоваться агент: база, API, сообщение' },
+    { uz: 'Tool — agent ishlata oladigan funksiya: Database, API, xabar', ru: 'Tool — функция, которой может пользоваться агент: Database, API, сообщение' },
     { uz: "Bizning tizimda agent backend ichida, siz bergan tool'lar orqali ishlaydi", ru: 'В нашей системе агент работает внутри бэкенда через выданные вами инструменты' },
-    { uz: "Oddiy ishga oddiy AI yetadi; xavfli amalga — vakolat chegarasi va odam tasdig'i", ru: 'Для простой задачи хватит обычного ИИ; для опасного действия — рамки полномочий и подтверждение человека' }
+    { uz: "Oddiy ishga oddiy AI yetadi; xavfli amalga — chegara va odam tasdig'i", ru: 'Для простой задачи хватит обычного ИИ; для опасного действия — ограничение и подтверждение человека' }
   ];
   const HOMEWORK = [
     { b: { uz: "Toping", ru: 'Найдите' }, t: { uz: "— loyihangizda qaysi vazifa bir necha qadamli? O'sha — agentga nomzod", ru: '— какая задача в вашем проекте состоит из нескольких шагов? Она и есть кандидат для агента' } },
-    { b: { uz: "Tool'lar", ru: 'Инструменты' }, t: { uz: "— agentga qaysi tool'lar kerak: baza? API? xabar?", ru: '— какие инструменты нужны агенту: база? API? сообщение?' } },
-    { b: { uz: "Chegara", ru: 'Рамки' }, t: { uz: '— agent nima qila olmasligi kerak? Vakolat chegarasini yozing', ru: '— чего агент делать не должен? Запишите рамки полномочий' } }
+    { b: { uz: "Tool'lar", ru: 'Инструменты' }, t: { uz: "— agentga qaysi tool'lar kerak: Database? API? xabar?", ru: '— какие инструменты нужны агенту: Database? API? сообщение?' } },
+    { b: { uz: "Chegara", ru: 'Ограничение' }, t: { uz: '— agent nima qila olmasligi kerak? Chegarani yozing', ru: '— чего агент делать не должен? Запишите ограничение' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2099,7 +2099,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Agentning o'rnini tushundingiz", ru: 'Вы поняли место агента' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>AI-agent — maqsad sari qadam tashlaydigan <span className="italic" style={{ color: T.accent }}>tizim qismi</span>.</>, ru: <>AI-агент — <span className="italic" style={{ color: T.accent }}>часть системы</span>, которая шаг за шагом идёт к цели.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Agentning o'rnini tushundingiz", ru: 'Вы поняли место агента' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>AI-agent — maqsad sari qadam tashlaydigan <span className="italic" style={{ color: T.accent }}>tizim qismi</span>.</>, ru: <>AI-агент — <span className="italic" style={{ color: T.accent }}>часть системы</span>: шаг за шагом к цели.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>

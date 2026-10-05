@@ -795,7 +795,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Muhokama · bitta gap', ru: 'Обсуждение · одна фраза' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Откройте ещё карточек: ${qoldi}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Og'zaki aytilgan gap va yozilgan qator — <span className="italic" style={{ color: T.accent }}>farqi nimada?</span></>, ru: <>Сказанная вслух фраза и написанная строка — <span className="italic" style={{ color: T.accent }}>в чём разница?</span></> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Og'zaki aytilgan gap va yozilgan qator — <span className="italic" style={{ color: T.accent }}>farqi nimada?</span></>, ru: <>Устная фраза и написанная строка — <span className="italic" style={{ color: T.accent }}>в чём разница?</span></> })}</h2></div>
         <Mentor>{tr({ uz: "Bitta gap ikki ko'rinishda turibdi. Ikkala kartani bosib solishtiring.", ru: 'Одна фраза в двух видах. Нажмите на обе карточки и сравните.' })}</Mentor>
         <div className="dfc-grid fade-up delay-1">
           {S2_CARDS.map((c, i) => (
@@ -824,12 +824,13 @@ const Screen3 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Nima kerakligini sizga og'zaki aytishdi. Ish boshlashdan oldin birinchi nima qilasiz?", ru: 'Вам устно сказали, что нужно. Что вы сделаете первым делом, прежде чем начать работу?' })} />}
     questionText={tr({ uz: "Og'zaki aytilgan gapdan keyin birinchi nima qilasiz", ru: 'Что вы делаете первым после устной фразы' })}
-    options={[tr({ uz: 'Eshitganimni yodda saqlab, kod yozaman', ru: 'Запомню услышанное и начну писать код' }), tr({ uz: 'Eshitganimni qatorga yozib olaman', ru: 'Запишу услышанное строкой' }), tr({ uz: 'Qatorni ish tugagach yozib qo\'yaman', ru: 'Запишу строку, когда работа закончится' })]}
+    options={[tr({ uz: 'Eshitganimni yodda saqlab, kod yozaman', ru: 'Запомню услышанное и начну писать код' }), tr({ uz: 'Eshitganimni qatorga yozib olaman', ru: 'Запишу услышанное строкой' }), tr({ uz: 'Qatorni ish tugagach yozib qo\'yaman', ru: 'Запишу строку, когда работа закончится' }), tr({ uz: "Dasturchilarga og'zaki aytaman", ru: 'Устно скажу программистам' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Yozilgan qator hammaga bir xil ko'rinadi. Og'zaki gap esa har kimning xotirasida boshqacha qoladi.", ru: 'Написанную строку все видят одинаково. А устная фраза у каждого остаётся в памяти по-разному.' })}
     explainWrong={{
       0: tr({ uz: "Yodda saqlangan gap ham og'zaki gapdek — boshqa odam uni boshqacha tushunadi.", ru: 'Фраза, которую просто запомнили, — та же устная фраза: другой человек поймёт её иначе.' }),
       2: tr({ uz: "Ish tugagach yozilgan qator kech qoladi: kim nima qurishini oldindan bilmaydi.", ru: 'Строка, написанная после работы, опаздывает: никто заранее не знает, кто что строит.' }),
+      3: tr({ uz: "Og'zaki aytilsa, uch dasturchi uch xil tushunadi.", ru: 'Если сказать устно, три программиста поймут по-разному.' }),
       default: tr({ uz: "Avval eshitganingizni qatorga yozasiz — yozilgan qator hammaga bir xil ko'rinadi.", ru: 'Сначала вы записываете услышанное строкой — написанную строку все видят одинаково.' })
     }}
   />
@@ -937,12 +938,13 @@ const Screen5 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "«Natijani qaysi sondan bilamiz?» katagiga qaysi qator yozilishi mumkin?", ru: 'Какую строку можно вписать в ячейку «По какому числу узнаем результат?»' })} />}
     questionText={tr({ uz: "«Natijani qaysi sondan bilamiz?» katagiga qaysi qator yoziladi", ru: 'Какая строка вписывается в ячейку «По какому числу узнаем результат?»' })}
-    options={[tr({ uz: 'Kunda 30 odam joy band qiladi', ru: 'В день 30 человек бронируют место' }), tr({ uz: 'Uch murabbiy ham ilovadan mamnun', ru: 'Все три тренера довольны приложением' }), tr({ uz: 'Ilova ikki barobar qulay bo\'ladi', ru: 'Приложение станет вдвое удобнее' })]}
+    options={[tr({ uz: 'Kunda 30 odam joy band qiladi', ru: 'В день 30 человек бронируют место' }), tr({ uz: 'Uch murabbiy ham ilovadan mamnun', ru: 'Все три тренера довольны приложением' }), tr({ uz: 'Ilova ikki barobar qulay bo\'ladi', ru: 'Приложение станет вдвое удобнее' }), tr({ uz: 'Ilova hammaga yoqib qoladi', ru: 'Приложение всем понравится' })]}
     correctIdx={0}
     explainCorrect={tr({ uz: "Bu katakda sanab bo'ladigan son turadi. Qulaylikni ham, mamnunlikni ham sanab bo'lmaydi.", ru: 'В этой ячейке стоит число, которое можно посчитать. Ни удобство, ни довольство посчитать нельзя.' })}
     explainWrong={{
       1: tr({ uz: "«Uch murabbiy» — o'zgaradigan son emas, mamnunlikni esa sanab bo'lmaydi.", ru: '«Три тренера» — число, которое не меняется, а довольство посчитать нельзя.' }),
       2: tr({ uz: "«Ikki barobar qulay»ni sanab bo'lmaydi — qulaylikni o'lchaydigan son yo'q.", ru: '«Вдвое удобнее» посчитать нельзя — нет числа, которое измеряет удобство.' }),
+      3: tr({ uz: "«Yoqib qoladi»ni sanab bo'lmaydi — bu katakda son turadi.", ru: '«Понравится» посчитать нельзя — в этой ячейке стоит число.' }),
       default: tr({ uz: "Bu katakda sanab bo'ladigan son turadi: nechta odam, necha daqiqa yoki necha kun.", ru: 'В этой ячейке стоит число, которое можно посчитать: сколько человек, сколько минут или сколько дней.' })
     }}
   />
@@ -1102,12 +1104,13 @@ const Screen7 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: 'Geyts va Allen tilni haqiqiy Altairda oldin sinamagan edi. Til nega baribir ishladi?', ru: 'Гейтс и Аллен до этого ни разу не проверяли язык на настоящем Altair. Почему он всё равно заработал?' })} />}
     questionText={tr({ uz: 'Til nega birinchi urinishdayoq ishladi', ru: 'Почему язык заработал с первой попытки' })}
-    options={[tr({ uz: "Ular Altairni oldindan sinab ko'rgan edi", ru: 'Они заранее опробовали Altair' }), tr({ uz: 'Kompaniya tayyor tilni ularga bergan edi', ru: 'Компания дала им готовый язык' }), tr({ uz: 'Nima va qaysi kompyuter uchun qurishni aniq bilishgan', ru: 'Точно знали, что строить и для какого компьютера' })]}
+    options={[tr({ uz: "Ular Altairni oldindan sinab ko'rgan edi", ru: 'Они заранее опробовали Altair' }), tr({ uz: 'Kompaniya tayyor tilni ularga bergan edi', ru: 'Компания дала им готовый язык' }), tr({ uz: 'Nima va qaysi kompyuter uchun qurishni aniq bilishgan', ru: 'Точно знали, что строить и для какого компьютера' }), tr({ uz: 'Ular tilni bir necha yil davomida puxta yozib chiqishgan', ru: 'Они несколько лет подряд тщательно писали этот язык' })]}
     correctIdx={2}
     explainCorrect={tr({ uz: "Ular nima qurishni (BASIC) va qaysi kompyuter uchun ekanini (Altair) aniq bilishgan. Shuning uchun Altair protsessorining qo'llanmasiga qarab yozishdi va unga o'xshatilgan dasturda sinashdi. Aniq maqsad bo'lgani uchun ish bir yo'nalishda ketdi.", ru: 'Они точно знали, что будут строить (BASIC) и для какого компьютера (Altair). Поэтому писали язык по руководству к процессору Altair и проверяли в программе, которая работала как Altair. Цель была ясной — поэтому работа шла в одном направлении.' })}
     explainWrong={{
       0: tr({ uz: "Tilni haqiqiy Altairda faqat ko'rsatuv kuni ishga tushirishdi — oldindan sinab ko'rishning iloji yo'q edi.", ru: 'Язык запустили на настоящем Altair только в день показа — проверить заранее было невозможно.' }),
       1: tr({ uz: "Tilni kompaniya emas, Geyts va Allenning o'zlari yozdi.", ru: 'Язык написала не компания, а сами Гейтс и Аллен.' }),
+      3: tr({ uz: 'Tilni yillar emas, taxminan ikki oy davomida yozishdi.', ru: 'Язык писали не годами, а примерно два месяца.' }),
       default: tr({ uz: "Nima qurilishi va qaysi kompyuter uchun ekani boshidan aniq edi.", ru: 'Что будет построено и для какого компьютера, было ясно с самого начала.' })
     }}
   />
@@ -1339,8 +1342,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cellWave = useTurnHint(!ochiq && !done && !isMentor);
   const topilgan = natija.filter(r => r.javobsiz).length;
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
-    : ochiq ? (step === S9_VARAQLAR.length - 1 ? tr({ uz: '① Tekshiruvni yakunlang', ru: '① Завершите проверку' }) : tr({ uz: '① Keyingi varaqqa o\'ting', ru: '① Перейдите к следующему листу' }))
-      : tr({ uz: `② ${step + 1}-varaqni o'qing (${step}/3 tekshirildi)`, ru: `② Прочитайте лист ${step + 1} (проверено ${step}/3)` });
+    : ochiq ? (step === S9_VARAQLAR.length - 1 ? tr({ uz: '② Tekshiruvni yakunlang', ru: '② Завершите проверку' }) : tr({ uz: '② Keyingi varaqqa o\'ting', ru: '② Перейдите к следующему листу' }))
+      : tr({ uz: `① ${step + 1}-varaqni o'qing (${step}/3 tekshirildi)`, ru: `① Прочитайте лист ${step + 1} (проверено ${step}/3)` });
   return (
     <Stage eyebrow={tr({ uz: 'Tekshiruv · uch varaq', ru: 'Проверка · три листа' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
@@ -1772,12 +1775,13 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Varaqning «Kim» katagi bo'sh qoldi. Dasturchi hech kimdan so'ramay, ishni boshladi. Natijada nima bo'ladi?", ru: 'На листе осталась пустой ячейка «Кто». Программист никого не спросил и начал работу. Что получится в итоге?' })} />}
     questionText={tr({ uz: "Kim katagi bo'sh qolsa natijada nima bo'ladi", ru: 'Что получится, если ячейка «Кто» останется пустой' })}
-    options={[tr({ uz: "Ish to'xtaydi, kod umuman yozilmaydi", ru: 'Работа остановится, код вообще не напишут' }), tr({ uz: "Kim uchun qurishni o'zi taxmin qiladi", ru: 'Сам додумает, для кого строить' }), tr({ uz: "Qolgan uch katak ham bekor bo'ladi", ru: 'Остальные три ячейки тоже станут бесполезными' })]}
+    options={[tr({ uz: "Ish to'xtaydi, kod umuman yozilmaydi", ru: 'Работа остановится, код вообще не напишут' }), tr({ uz: "Kim uchun qurishni o'zi taxmin qiladi", ru: 'Сам додумает, для кого строить' }), tr({ uz: "Qolgan uch katak ham bekor bo'ladi", ru: 'Остальные три ячейки тоже станут бесполезными' }), tr({ uz: 'Ilova baribir hamma odamlarga mos keladi', ru: 'Приложение всё равно подойдёт всем людям' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Katak bo'sh qolsa, dasturchi uni o'z taxmini bilan to'ldiradi. Taxmin noto'g'ri bo'lsa, ilova boshqa odamlar uchun qurilib qoladi. Shuning uchun katak bo'sh qolmaydi: bilmasangiz — so'rab aniqlashtirasiz.", ru: 'Если ячейка пустая, программист заполняет её своей догадкой. Если догадка неверна, приложение построят для других людей. Поэтому ячейка не остаётся пустой: не знаете — спросите и уточните.' })}
     explainWrong={{
       0: tr({ uz: "Ish to'xtamaydi — dasturchi baribir quradi, faqat kim uchun ekanini o'zi taxmin qiladi.", ru: 'Работа не останавливается — программист всё равно строит, только для кого — додумывает сам.' }),
       2: tr({ uz: "Qolgan kataklar joyida turibdi — faqat bo'sh qolgan katakni dasturchi o'z taxmini bilan to'ldiradi.", ru: 'Остальные ячейки на месте — программист заполняет своей догадкой только пустую ячейку.' }),
+      3: tr({ uz: 'Hammaga emas — dasturchi taxmin qilgan odamlarga quriladi.', ru: 'Не всем — а тем, кого программист додумал сам.' }),
       default: tr({ uz: "Katak bo'sh qolsa, dasturchi taxmin qiladi. Bilmasangiz — so'rab aniqlashtiring.", ru: 'Если ячейка пустая, программист додумывает сам. Не знаете — спросите и уточните.' })
     }}
   />

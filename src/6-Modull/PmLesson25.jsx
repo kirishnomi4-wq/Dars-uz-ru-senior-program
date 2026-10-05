@@ -297,7 +297,7 @@ const RECAPS = {
     cards: [
       { ic: '👥', h: { uz: 'Dalil qanday raqam', ru: 'Какое число — довод' }, body: { uz: <>Tizim foydalanuvchi uchun bajargan ishni sanagan raqam — <b>kuchli dalil</b>.</>, ru: <>Число, которое считает работу системы для пользователя, — <b>сильный довод</b>.</> } },
       { ic: '🔧', h: { uz: 'Mehnat raqami', ru: 'Число труда' }, body: { uz: <>Mehnat raqami (satr, hafta) jarayonni ko'rsatadi — natijani emas.</>, ru: <>Число труда (строки, недели) показывает процесс — а не результат.</> } },
-      { ic: '🔎', h: { uz: 'Ikki tomonni yonma-yon qo\'ying', ru: 'Поставьте две стороны рядом' }, body: { uz: <>Har raqamdan so'rang: u kimning ishini sanadi — tizimni qurgan odamningmi, foydalanuvchi olgan natijanimi?</>, ru: <>Спросите у каждого числа: чью работу оно посчитало — того, кто строил систему, или результат, который получил пользователь?</> }, ask: { uz: "Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили три числа. Какое из них показывает результат, который система дала пользователю?' } }
+      { ic: '🔎', h: { uz: 'Ikki tomonni yonma-yon qo\'ying', ru: 'Поставьте две стороны рядом' }, body: { uz: <>Har raqamdan so'rang: u kimning ishini sanadi — tizimni qurgan odamningmi, foydalanuvchi olgan natijanimi?</>, ru: <>Спросите у каждого числа: чью работу оно посчитало — того, кто строил систему, или результат, который получил пользователь?</> }, ask: { uz: "Sahnadagi slaydga to'rt raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили четыре числа. Какое из них показывает результат, который система дала пользователю?' } }
     ]
   },
   5: {
@@ -758,7 +758,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // §126: «dalil» va «mehnat raqami» bu ekranda aytilmaydi. Demo raqami 8 — s4/s9 to'plamiga kirmaydi (spoyler-taqiq).
 const DEMO_SLAYD = [
   { yorliq: { uz: 'raqam', ru: 'число' }, matn: '8' },
-  { yorliq: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam arizasiga javob oldi', ru: 'человек воспользовались системой' } },
+  { yorliq: { uz: 'nimani sanadi', ru: 'что посчитало' }, matn: { uz: 'odam arizasiga javob oldi', ru: 'человек получили ответ на заявку' } },
   { yorliq: { uz: "nimani ko'rsatadi", ru: 'что показывает' }, matn: { uz: "demak tizim arizani oxirigacha ko'rib chiqa oladi", ru: 'значит, система может рассмотреть заявку до конца' } },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
@@ -831,14 +831,15 @@ const TestQ = ({ ask }) => <h2 className="title h-ask">{ask}</h2>;
 const Screen3 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: "Tekshiruv · qaysi raqam natijani ko'rsatadi", ru: 'Проверка · какое число показывает результат' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Sahnadagi slaydga uch raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили три числа. Какое из них показывает результат, который система дала пользователю?' })} />}
-    questionText={tr({ uz: "Uch raqamdan qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi", ru: 'Какое из трёх чисел показывает результат, который система дала пользователю' })}
-    options={[tr({ uz: 'Uch odam tizimni qurishda qatnashdi', ru: 'Три человека участвовали в создании системы' }), tr({ uz: "Uch odamning arizasi oxirigacha ko'rib chiqildi", ru: 'Заявки трёх человек рассмотрели до конца' }), tr({ uz: 'Uch hafta ariza formasiga sarflandi', ru: 'Три недели ушли на форму заявки' })]}
+    question={<TestQ ask={tr({ uz: "Sahnadagi slaydga to'rt raqam taklif qilindi. Qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi?", ru: 'Для слайда на сцене предложили четыре числа. Какое из них показывает результат, который система дала пользователю?' })} />}
+    questionText={tr({ uz: "To'rt raqamdan qaysi biri tizim foydalanuvchiga bergan natijani ko'rsatadi", ru: 'Какое из четырёх чисел показывает результат, который система дала пользователю' })}
+    options={[tr({ uz: 'Uch odam tizimni qurishda qatnashdi', ru: 'Три человека участвовали в создании системы' }), tr({ uz: "Uch odamning arizasi oxirigacha ko'rib chiqildi", ru: 'Заявки трёх человек рассмотрели до конца' }), tr({ uz: 'Uch hafta ariza formasiga sarflandi', ru: 'Три недели ушли на форму заявки' }), tr({ uz: 'Uch sahifa ariza formasi uchun alohida chizildi', ru: 'Три страницы сделали отдельно для формы заявки' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Bu raqam tizim foydalanuvchi uchun bajargan ishni sanaydi. Qolgan ikkitasi tizim qanday qurilganini sanaydi.", ru: 'Это число считает работу системы для пользователя. Два других считают, как строили систему.' })}
+    explainCorrect={tr({ uz: "Bu raqam tizim foydalanuvchi uchun bajargan ishni sanaydi. Qolganlari tizim qanday qurilganini sanaydi.", ru: 'Это число считает работу системы для пользователя. Остальные считают, как строили систему.' })}
     explainWrong={{
       0: tr({ uz: "Bu uch odam tizimni qurgan — raqam mehnat tomonini sanadi.", ru: 'Эти три человека строили систему — число посчитало сторону труда.' }),
       2: tr({ uz: "Uch hafta — ishga ketgan vaqt; u tizim foydalanuvchi uchun nima qilganini aytmaydi.", ru: 'Три недели — это время, ушедшее на работу; оно не говорит, что система сделала для пользователя.' }),
+      3: tr({ uz: "Sahifalarni siz chizgansiz — raqam mehnatni sanadi.", ru: 'Страницы делали вы — число посчитало труд.' }),
       default: tr({ uz: "Tizim foydalanuvchi uchun bajargan ishni sanagan raqam natijani ko'rsatadi.", ru: 'Результат показывает число, которое считает работу системы для пользователя.' })
     }}
   />
@@ -981,14 +982,15 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · uchinchi qator', ru: 'Проверка · третья строка' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Slaydda raqam va u nimani sanagani turibdi. Odam yana nimani bilishi kerak?", ru: '⌨️ На слайде есть число и то, что оно посчитало. Что ещё должен узнать человек?' })} />}
+    question={<TestQ ask={tr({ uz: "Slaydda raqam va u nimani sanagani turibdi. Odam yana nimani bilishi kerak?", ru: 'На слайде есть число и то, что оно посчитало. Что ещё должен узнать человек?' })} />}
     questionText={tr({ uz: "Slaydda raqam va sanagani turibdi — odam yana nimani bilishi kerak", ru: 'На слайде число и то, что оно посчитало, — что ещё нужно знать человеку' })}
-    options={[tr({ uz: 'Bu raqam siz haqingizda nima deyishini', ru: 'Что это число говорит о вас' }), tr({ uz: 'Bu raqamni tizim qanday sanaganini', ru: 'Как система посчитала это число' }), tr({ uz: "Bu raqam tizim haqida nimani ko'rsatishini", ru: 'Что это число показывает о системе' })]}
+    options={[tr({ uz: 'Bu raqam siz haqingizda nima deyishini', ru: 'Что это число говорит о вас' }), tr({ uz: 'Bu raqamni tizim qanday sanaganini', ru: 'Как система посчитала это число' }), tr({ uz: "Bu raqam tizim haqida nimani ko'rsatishini", ru: 'Что это число показывает о системе' }), tr({ uz: 'Bu raqam boshqa jamoalarnikidan katta ekanini', ru: 'Что это число больше, чем у других команд' })]}
     correctIdx={2}
     explainCorrect={tr({ uz: "Shu qatordan keyingina slayd to'liq gapiradi. Javob ehtiyotkor bo'lsin: raqam nimani ko'rsatsa — shuni, undan ortig'ini emas.", ru: 'Только после этой строки слайд говорит полностью. Отвечайте осторожно: что число показывает — то и пишите, не больше.' })}
     explainWrong={{
       0: tr({ uz: "Slayd sizni emas, tizimni tanishtiradi.", ru: 'Слайд представляет не вас, а систему.' }),
       1: tr({ uz: "Bu ish ichida qoladi — sahnadagi odamga kerak emas.", ru: 'Это остаётся внутри работы — человеку в зале это не нужно.' }),
+      3: tr({ uz: "Slayd musobaqa emas — u tizim haqida gapiradi.", ru: 'Слайд — не соревнование, он говорит о системе.' }),
       default: tr({ uz: "Uchinchi qator raqam tizim haqida nimani ko'rsatishini aytadi.", ru: 'Третья строка говорит, что число показывает о системе.' })
     }}
   />
@@ -1140,12 +1142,13 @@ const Screen7 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Airbnb varag'idagi raqam qiyinchilik haqida nimani ko'rsatgan?", ru: 'Что число на листе Airbnb показывало о проблеме?' })} />}
     questionText={tr({ uz: "Airbnb varag'idagi raqam qiyinchilik haqida nimani ko'rsatgan", ru: 'Что число на листе Airbnb показывало о проблеме' })}
-    options={[tr({ uz: 'Qiyinchilik qancha odamda borligini', ru: 'У скольких людей есть эта проблема' }), tr({ uz: 'Qiyinchilik qanchalik qiyinligini', ru: 'Насколько эта проблема трудная' }), tr({ uz: 'Qiyinchilik ustida qancha odam ishlaganini', ru: 'Сколько человек работали над проблемой' })]}
+    options={[tr({ uz: 'Qiyinchilik qancha odamda borligini', ru: 'У скольких людей есть эта проблема' }), tr({ uz: 'Qiyinchilik qanchalik qiyinligini', ru: 'Насколько эта проблема трудная' }), tr({ uz: 'Qiyinchilik ustida qancha odam ishlaganini', ru: 'Сколько человек работали над проблемой' }), tr({ uz: 'Qiyinchilik qancha vaqtdan beri borligini', ru: 'Как давно существует эта проблема' })]}
     correctIdx={0}
     explainCorrect={tr({ uz: "U qiyinchilikning kattaligini aytgan.", ru: 'Оно говорило о размере проблемы.' })}
     explainWrong={{
       1: tr({ uz: "Qiyinchilik qanchalik qiyinligi varaqda umuman aytilmagan.", ru: 'Насколько проблема трудная, на листе вообще не говорилось.' }),
       2: tr({ uz: "Qiyinchilik ustida ishlagan odamlar — bu jamoa qadami, raqamli qadam emas.", ru: 'Люди, работавшие над проблемой, — это шаг про команду, а не шаг с числом.' }),
+      3: tr({ uz: "Varaqda vaqt emas, odamlar soni turgan.", ru: 'На листе было не время, а число людей.' }),
       default: tr({ uz: "Raqamli qadam qiyinchilik qancha odamda borligini ko'rsatgan.", ru: 'Шаг с числом показывал, у скольких людей есть проблема.' })
     }}
   />
@@ -1251,7 +1254,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahnaga chiqadigan slaydni <span className="italic" style={{ color: T.accent }}>yozing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Напишите</span> слайд для сцены.</> })}</h2></div>
-        <span className="kirish fade-up">{tr({ uz: <>{ish ? <>Rejangizda hozir turgan ish: «{ish}»</> : <>Hozir turgan ish: «{tr(ZAXIRA_ISH)}»</>}. Tizimingiz shu ishni bajarganini qaysi raqam ko'rsatadi?</>, ru: <>🧭 {ish ? <>Дело, которое сейчас стоит на вашем пути: «{ish}»</> : <>Дело, которое стоит сейчас: «{tr(ZAXIRA_ISH)}»</>}. Какое число покажет, что ваша система это дело выполнила?</> })}</span>
+        <span className="kirish fade-up">{tr({ uz: <>{ish ? <>Rejangizda hozir turgan ish: «{ish}»</> : <>Hozir turgan ish: «{tr(ZAXIRA_ISH)}»</>}. Tizimingiz shu ishni bajarganini qaysi raqam ko'rsatadi?</>, ru: <>{ish ? <>Дело, которое сейчас стоит на вашем пути: «{ish}»</> : <>Дело, которое стоит сейчас: «{tr(ZAXIRA_ISH)}»</>}. Какое число покажет, что ваша система это дело выполнила?</> })}</span>
         <Mentor>{tr({ uz: "Uchta qatorni birma-bir to'ldiring — slayd yonma-yon yozilib boradi.", ru: 'Заполните три строки по одной — слайд будет заполняться рядом.' })}</Mentor>
         {/* 80a: havoda uch doira — yozilgani yashil, joriysi nurda, kelgusi punktir */}
         <div className="stps fade-up">
@@ -1779,12 +1782,13 @@ const ScreenFinalTest = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Sahnaga chiqadigan raqam qanday tanlanadi?", ru: 'Как выбирают число для сцены?' })} />}
     questionText={tr({ uz: "Sahnaga chiqadigan raqam qanday tanlanadi", ru: 'Как выбирают число для сцены' })}
-    options={[tr({ uz: "Sahnada eng katta ko'rinadigani tanlanadi", ru: 'Выбирают то, что на сцене выглядит самым большим' }), tr({ uz: 'Foydalanuvchi olgan natijani sanagani tanlanadi', ru: 'Выбирают то, что считает результат, полученный пользователем' }), tr({ uz: "Qurishga eng ko'p vaqt ketgani tanlanadi", ru: 'Выбирают то, на постройку чего ушло больше всего времени' })]}
+    options={[tr({ uz: "Sahnada eng katta ko'rinadigani tanlanadi", ru: 'Выбирают то, что на сцене выглядит самым большим' }), tr({ uz: 'Foydalanuvchi olgan natijani sanagani tanlanadi', ru: 'Выбирают то, что считает результат, полученный пользователем' }), tr({ uz: "Qurishga eng ko'p vaqt ketgani tanlanadi", ru: 'Выбирают то, на постройку чего ушло больше всего времени' }), tr({ uz: 'Tizimga yozilgan kod satrlarini sanagani tanlanadi', ru: 'Выбирают то, что считает строки кода, написанные для системы' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Katta son ham, mehnat vaqti ham o'zi natijani ko'rsatmaydi. Sahnaga tizim foydalanuvchi uchun bajargan ishni sanagan raqam chiqadi.", ru: 'Ни большое число, ни время работы сами по себе не показывают результат. На сцену выходит число, которое считает работу системы для пользователя.' })}
     explainWrong={{
       0: tr({ uz: "Katta son sahnada savol tug'diradi, lekin javob bermaydi.", ru: 'Большое число вызывает на сцене вопрос, но не отвечает.' }),
       2: tr({ uz: "Qurishga ketgan vaqt mehnatingizni sanaydi — u boshqa maqsadga xizmat qiladi.", ru: 'Время на постройку считает ваш труд — оно служит другой цели.' }),
+      3: tr({ uz: "Kod satrlari mehnatingizni sanaydi — natijani emas.", ru: 'Строки кода считают ваш труд — а не результат.' }),
       default: tr({ uz: "Foydalanuvchi olgan natijani sanagan raqam sahnaga chiqadi.", ru: 'На сцену выходит число, которое считает результат, полученный пользователем.' })
     }}
   />
@@ -1846,7 +1850,7 @@ const HwCard = ({ variant, onPick, innerRef }) => {
 };
 // ===== 🏅 NISHONLAR — 4 ta, faqat REAL tekshiriladigan harakatga =====
 const ACHIEVEMENTS = {
-  slideTalker: { icon: '🎤', name: 'Slide Talker!', desc: { uz: "Slaydning uch qatorini o'zingiz ochdingiz", ru: 'Вы сами открыли три строки слайда' } },
+  slideTalker: { icon: '🎤', name: 'Slide Talker!', desc: { uz: "Slaydning uch qatorini ochib, ikki raqamdan bittasini tanladingiz", ru: 'Вы открыли три строки слайда и выбрали одно из двух чисел' } },
   proofFinder: { icon: '🎯', name: 'Result Finder!', desc: { uz: "Ikki rost raqamdan natijani ko'rsatganini topdingiz", ru: 'Из двух честных чисел вы нашли то, что показывает результат' } },
   stageReady:  { icon: '🖼', name: 'Stage Ready!',  desc: { uz: 'Sahnaga chiqadigan slaydni yozdingiz', ru: 'Вы написали слайд для сцены' } },
   numberDuel:  { icon: '⚖️', name: 'Number Duel!',  desc: { uz: 'Uch juftlikda raqamni tanladingiz', ru: 'Вы выбрали число в трёх парах' } },
@@ -2419,7 +2423,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
             </div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar kelmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar kelmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
           <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
         ) : (

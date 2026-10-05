@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/3-SADOQAT.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0929-QA-6m jurnalidagi havolalar uchun saqlandi.
+
 # Sadoqat-tekshiruvi: kod ↔ MD v2 (faqat O'QISH, TUZATMAYSIZ)
 
 Siz yengil tekshiruvchisiz. Bitta savol: **darsdagi o'quvchi ko'radigan o'zbekcha matn tasdiqlangan MD v2 bilan aynan mosmi?**

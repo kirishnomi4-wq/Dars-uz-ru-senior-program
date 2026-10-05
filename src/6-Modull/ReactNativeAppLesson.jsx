@@ -7,8 +7,9 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //         navigatsiya (Stack Navigator push/pop), backend'dan fetch (o'sha Node.js API), AsyncStorage (telefonda saqlash).
 // Asosiy g'oya: mobil ilova O'SHA backendga ulanadi (1-dars «ko'p kirish yo'li, bitta tizim») — backendni qayta qurmaysiz.
 // Yondashuv: PhoneFrame simulyatori (9-darsdagi Phone) + navigatsiya slide + fetch animatsiyasi.
-// Oldingi: 9-dars «React Native — asoslar». Keyingi: 11-dars «Praktika: mobil ilova». Mahsulot: mini-do'kon mobil (ko'p ekran).
+// Oldingi: 9-dars «React Native — asoslar». Keyingi: 11-dars «Loyiha kuni: mobil ilova». Mahsulot: mini-do'kon mobil (ko'p ekran).
 // SIFAT: javob aralashtirish, mobil avtoscroll, mentor mobil, "siz" rasmiy. AUDIOSIZ. Lotincha.
+// ru-qoldiq-istisno s13: matn
 // ============================================================
 
 const T = {
@@ -664,7 +665,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Bitta ekran — <span className="italic" style={{ color: T.accent }}>boshlanishi</span>. Real do'kon ilovasi qanday bo'ladi?</>, ru: <>Один экран — это только <span className="italic" style={{ color: T.accent }}>начало</span>. Каким будет настоящее приложение магазина?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Bitta ekran — <span className="italic" style={{ color: T.accent }}>boshlanishi</span>. Real do'kon ilovasi qanday bo'ladi?</>, ru: <>Один экран — <span className="italic" style={{ color: T.accent }}>начало</span>. Каким будет настоящее приложение?</> })}</h1>
         <Mentor>{tr({ uz: "O'tgan darsda bitta ekran qildingiz. Haqiqiy do'konda esa ko'p mahsulot, har biriga tafsilot ekrani va serverdan keladigan ma'lumot bor. Tugmani bosing — qanday ko'rinishini ko'ring.", ru: 'На прошлом уроке вы сделали один экран. А в настоящем магазине много товаров, у каждого есть экран подробностей, а данные приходят с сервера. Нажмите кнопку — посмотрите, как это выглядит.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -923,11 +924,11 @@ const Screen8 = (props) => (
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React Native'da bir ekrandan boshqasiga qanday <span className="italic" style={{ color: T.accent }}>o'tasiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как в React Native <span className="italic" style={{ color: T.accent }}>перейти</span> с одного экрана на другой?</h2></> }}
     options={[
       { uz: "Sahifani qayta yuklab, boshqa fayl ochaman", ru: 'Перезагружу страницу и открою другой файл' },
-      { uz: "`navigation.navigate('Ekran')` chaqiraman", ru: "Вызову `navigation.navigate('Ekran')`" },
+      { uz: "`navigation.navigate('Ekran')` chaqiraman", ru: "Вызову `navigation.navigate('Экран')`" },
       { uz: "Web'dagidek `<a href>` tegi bilan o'taman", ru: 'Перейду, как в вебе, через тег `<a href>`' },
       { uz: "Har ekranni alohida ilova qilib yozaman", ru: 'Напишу каждый экран как отдельное приложение' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Stack Navigator ekranlarni boshqaradi: `navigation.navigate('Ekran')` bilan yangi ekranga o'tasiz, «Orqaga» tugmasi yoki `navigation.goBack()` bilan qaytasiz.", ru: "Верно! Экранами управляет Stack Navigator: через `navigation.navigate('Ekran')` вы переходите на новый экран, а кнопкой «Назад» или `navigation.goBack()` возвращаетесь." }}
+    explainCorrect={{ uz: "To'g'ri! Stack Navigator ekranlarni boshqaradi: `navigation.navigate('Ekran')` bilan yangi ekranga o'tasiz, «Orqaga» tugmasi yoki `navigation.goBack()` bilan qaytasiz.", ru: "Верно! Экранами управляет Stack Navigator: через `navigation.navigate('Экран')` вы переходите на новый экран, а кнопкой «Назад» или `navigation.goBack()` возвращаетесь." }}
     explainWrong={{
       0: { uz: "Mobil ilova web emas — sahifa qayta yuklanmaydi. `navigation.navigate` ishlatiladi.", ru: 'Мобильное приложение — не веб, страница не перезагружается. Используется `navigation.navigate`.' },
       2: { uz: "`<a href>` — bu web. React Native'da `navigation.navigate`.", ru: '`<a href>` — это веб. В React Native — `navigation.navigate`.' },
@@ -1044,8 +1045,8 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: "Hayotiy · asosiy oqim", ru: 'Из жизни · основной поток' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Ilovani yuring', ru: 'Прогоните приложение' })} (${step}/4)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mini-do'kon mobil ilovasi — <span className="italic" style={{ color: T.accent }}>boshidan oxirigacha</span>.</>, ru: <>Мобильное приложение мини-магазина — <span className="italic" style={{ color: T.accent }}>от начала до конца</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana hammasi birga: ilova ochiladi, backend'dan ma'lumot keladi, ro'yxat chiqadi, mahsulotni bossangiz Tafsilot ekrani ochiladi. Tugmani bosib, 5 qadamni kuzating.", ru: 'Вот всё вместе: приложение открывается, с бэкенда приходят данные, появляется список, а если нажать на товар — открывается экран подробностей. Нажимайте кнопку и следите за 5 шагами.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mini-do'kon mobil ilovasi — <span className="italic" style={{ color: T.accent }}>boshidan oxirigacha</span>.</>, ru: <>Приложение мини-магазина — <span className="italic" style={{ color: T.accent }}>от начала до конца</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Mana hammasi birga: ilova ochiladi, backend'dan ma'lumot keladi, ro'yxat chiqadi, mahsulotni bossangiz Tafsilot ekrani ochiladi. Tugmani 4 marta bosib, oqimni kuzating.", ru: 'Вот всё вместе: приложение открывается, с бэкенда приходят данные, появляется список, а если нажать на товар — открывается экран подробностей. Нажмите кнопку 4 раза и следите за потоком.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
@@ -1078,7 +1079,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: "Qo'shimcha · AsyncStorage", ru: 'Дополнительно · AsyncStorage' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Nima uchun?", ru: 'Зачем это?' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>AsyncStorage</span> — telefonning o'zida <span className="italic" style={{ color: T.accent }}>kichik ma'lumot</span> saqlash.</>, ru: <><span className="mono" style={{ color: T.accent }}>AsyncStorage</span> — хранение <span className="italic" style={{ color: T.accent }}>небольших данных</span> в самом телефоне.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>AsyncStorage</span> — telefonning o'zida <span className="italic" style={{ color: T.accent }}>kichik ma'lumot</span> saqlash.</>, ru: <><span className="mono" style={{ color: T.accent }}>AsyncStorage</span> — хранение <span className="italic" style={{ color: T.accent }}>небольших данных</span> в телефоне.</> })}</h2></div>
         <Mentor>{tr({ uz: "Masalan, savatdagi mahsulotlar yoki foydalanuvchi sozlamalari. U web'dagi localStorage'ga o'xshaydi. Bugun faqat tanishib qo'yamiz. Tugmani bosing.", ru: 'Например, товары в корзине или настройки пользователя. Он похож на localStorage в вебе. Сегодня только познакомимся. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1123,7 +1124,7 @@ const Screen14 = (props) => (
       { uz: "Backend'siz, hammasini telefonda qilaman", ru: 'Обойдусь без бэкенда, всё сделаю в телефоне' },
       { uz: "Ma'lumotni qo'lda ko'chirib olaman", ru: 'Скопирую данные вручную' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Backend va baza tayyor — ular har qanday kirish yo'li bilan ishlaydi. Mobil ilova ham o'sha API'ga `fetch` bilan so'rov yuboradi. API mos bo'lsa, yangi backend qurish shart emas.", ru: 'Верно! Бэкенд и база уже готовы — они работают с любой точкой входа. Мобильное приложение тоже отправляет запросы на тот же API через `fetch`. Если API подходит, строить новый бэкенд не нужно.' }}
+    explainCorrect={{ uz: "To'g'ri! Backend va Database tayyor — ular har qanday kirish yo'li bilan ishlaydi. Mobil ilova ham o'sha API'ga `fetch` bilan so'rov yuboradi. API mos bo'lsa, yangi backend qurish shart emas.", ru: 'Верно! Бэкенд и Database уже готовы — они работают с любой точкой входа. Мобильное приложение тоже отправляет запросы на тот же API через `fetch`. Если API подходит, строить новый бэкенд не нужно.' }}
     explainWrong={{
       1: { uz: "Ko'pincha mavjud backend yetadi. Yangi backend qursangiz, ma'lumot ikkiga bo'linib ketishi mumkin.", ru: 'Чаще всего хватает существующего бэкенда. Если построить новый, данные могут разойтись по двум местам.' },
       2: { uz: "Backend kerak — umumiy ma'lumot u yerda. Telefon uni ko'rsatadi.", ru: 'Бэкенд нужен — общие данные хранятся там. Телефон их показывает.' },
@@ -1164,7 +1165,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' }} screen={screen} scrollSignal={placed.length} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Oqimni yig'ing", ru: 'Соберите поток' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: ilova oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите поток приложения <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: ilova oqimini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите поток приложения <span className="italic" style={{ color: T.accent }}>по порядку</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Ko'p ekranli ilova qanday ishlaydi? Qadamlarni o'ng tomondan to'g'ri tartibda tanlang.", ru: 'Как работает многоэкранное приложение? Выбирайте шаги справа в верном порядке.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1177,7 +1178,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Ochildi → fetch → FlatList → bosish → Tafsilot ekrani</b>.</>, ru: <>✓ Поток готов: <b>Открылось → fetch → FlatList → нажатие → экран подробностей</b>.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'qadamni tanlang (keyingisi:', ru: 'выберите шаг (следующий:' })} {placed.length}/{FLOW_ORDER.length})</p>
+            <p className="flow-label">{tr({ uz: 'qadamni tanlang (tanlandi:', ru: 'выберите шаг (выбрано:' })} {placed.length}/{FLOW_ORDER.length})</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {FLOW_SCRAMBLED.map(id => {
                 const f = flowById(id);
@@ -1294,7 +1295,7 @@ const QUIZ_BANK = [
   { q: { uz: "Yangi ekran ochilganda dastada nima bo'ladi?", ru: 'Что происходит в колоде, когда открывается новый экран?' }, opts: [{ uz: "Eski ekran butunlay o'chib ketadi", ru: 'Старый экран полностью удаляется' }, { uz: "Ilova qaytadan ishga tushadi (reload)", ru: 'Приложение запускается заново (reload)' }, { uz: "Yangi ekran ustiga qo'yiladi (push)", ru: 'Новый экран кладётся сверху (push)' }, { uz: "Hech narsa o'zgarmaydi", ru: 'Ничего не меняется' }], correct: 2 },
   { q: { uz: "Backend'dan ma'lumot olish uchun nima ishlatiladi?", ru: 'Что используют, чтобы получить данные с бэкенда?' }, opts: [{ uz: "AsyncStorage — telefon xotirasidan", ru: 'AsyncStorage — из памяти телефона' }, { uz: "localStorage bilan olinadi", ru: 'Берутся через localStorage' }, { uz: "Qo'lda yozilgan massivdan", ru: 'Из вручную прописанного массива' }, { uz: "fetch — API'ga so'rov", ru: 'fetch — запрос к API' }], correct: 3 },
   { q: { uz: "Ilova ochilganda ma'lumotni bir marta yuklash qayerda yoziladi?", ru: 'Где пишут разовую загрузку данных при открытии приложения?' }, opts: [{ uz: "useEffect(…, []) ichida", ru: 'Внутри useEffect(…, [])' }, { uz: "Har chizilganda, komponent tanasida", ru: 'При каждой отрисовке, в теле компонента' }, { uz: "useState([]) ichida", ru: 'Внутри useState([])' }, { uz: "Hech qayerda kerak emas", ru: 'Нигде, это не нужно' }], correct: 0 },
-  { q: { uz: "Savatni telefonning o'zida saqlash uchun nima?", ru: 'Чем сохранить корзину в самом телефоне?' }, opts: [{ uz: "Backend bazasida saqlash", ru: 'Сохранить в базе на бэкенде' }, { uz: "AsyncStorage — mahalliy xotira", ru: 'AsyncStorage — локальная память' }, { uz: "fetch — serverga yuborish", ru: 'fetch — отправить на сервер' }, { uz: "FlatList ichida saqlash", ru: 'Сохранить внутри FlatList' }], correct: 1 },
+  { q: { uz: "Savatni telefonning o'zida saqlash uchun nima?", ru: 'Чем сохранить корзину в самом телефоне?' }, opts: [{ uz: "Backend'dagi Database'da saqlash", ru: 'Сохранить в Database на бэкенде' }, { uz: "AsyncStorage — mahalliy xotira", ru: 'AsyncStorage — локальная память' }, { uz: "fetch — serverga yuborish", ru: 'fetch — отправить на сервер' }, { uz: "FlatList ichida saqlash", ru: 'Сохранить внутри FlatList' }], correct: 1 },
   { q: { uz: "Web-do'koningiz bor. Mobil ilova backend'ni nima qiladi?", ru: 'У вас есть веб-магазин. Что мобильное приложение делает с бэкендом?' }, opts: [{ uz: "Butunlay yangi backend quradi", ru: 'Строит совершенно новый бэкенд' }, { uz: "Backend'siz, telefonda ishlaydi", ru: 'Работает в телефоне без бэкенда' }, { uz: "O'sha backend'ga ulanadi", ru: 'Подключается к тому же бэкенду' }, { uz: "Ma'lumotni qo'lda ko'chiradi", ru: 'Копирует данные вручную' }], correct: 2 },
   { q: { uz: "Bosiladigan element (web'dagi tugma) — React Native'da qaysi?", ru: 'Нажимаемый элемент (кнопка в вебе) — какой он в React Native?' }, opts: [{ uz: "FlatList", ru: 'FlatList' }, { uz: "ScrollView", ru: 'ScrollView' }, { uz: "Image", ru: 'Image' }, { uz: "Pressable", ru: 'Pressable' }], correct: 3 },
   { q: { uz: "Ko'p ekranni boshqaradigan tizim qanday nomlanadi?", ru: 'Как называется система, управляющая множеством экранов?' }, opts: [{ uz: "Stack Navigator", ru: 'Stack Navigator' }, { uz: "FlatList", ru: 'FlatList' }, { uz: "AsyncStorage", ru: 'AsyncStorage' }, { uz: "useEffect", ru: 'useEffect' }], correct: 0 },
@@ -2043,7 +2044,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Ko'p ekranli ilova", ru: 'Многоэкранное приложение' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>ko'p ekranli mobil ilova</span>ning asosiy oqimini qura olasiz.</>, ru: <>Теперь вы можете собрать основной поток <span className="italic" style={{ color: T.accent }}>многоэкранного мобильного приложения</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Ko'p ekranli ilova", ru: 'Многоэкранное приложение' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>ko'p ekranli mobil ilova</span>ning asosiy oqimini qura olasiz.</>, ru: <>Теперь вы соберёте поток <span className="italic" style={{ color: T.accent }}>многоэкранного приложения</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
@@ -2059,7 +2060,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — <b>Praktika: mobil ilova.</b> Mini-do'kon mobil ilovasini boshidan oxirigacha o'zingiz qurasiz.</>, ru: <>🚀 Следующий урок — <b>Практика: мобильное приложение.</b> Мобильное приложение мини-магазина вы соберёте сами от начала до конца.</> })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — <b>Loyiha kuni: mobil ilova.</b> Mini-do'kon mobil ilovasini boshidan oxirigacha o'zingiz qurasiz.</>, ru: <>🚀 Следующий урок — <b>Проектный день: мобильное приложение.</b> Мобильное приложение мини-магазина вы соберёте сами от начала до конца.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

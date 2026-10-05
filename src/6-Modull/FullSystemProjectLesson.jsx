@@ -295,7 +295,7 @@ const RECAPS = {
     title: { uz: "Ko'p kanal — bitta tizim", ru: 'Много каналов — одна система' },
     cards: [
       { ic: "🧩", h: { uz: 'Markaz bitta', ru: 'Центр один' }, body: { uz: <>Web, mobil va bot — uch kirish yo'li, hammasi <b>bitta backend</b> bilan ishlaydi.</>, ru: <>Веб, мобильное приложение и бот — три точки входа, и все они работают с <b>одним бэкендом</b>.</> } },
-      { ic: "🗄️", h: { uz: "Ma'lumot bitta joyda", ru: 'Данные в одном месте' }, body: { uz: <>Bu loyihada buyurtmalar bitta bazada — shuning uchun hamma kanal bir xil holatni ko'radi.</>, ru: <>В этом проекте заказы хранятся в одной базе — поэтому все каналы видят одно и то же состояние.</> } },
+      { ic: "🗄️", h: { uz: "Ma'lumot bitta joyda", ru: 'Данные в одном месте' }, body: { uz: <>Bu loyihada buyurtmalar bitta Database'da — shuning uchun hamma kanal bir xil holatni ko'radi.</>, ru: <>В этом проекте заказы хранятся в одной Database — поэтому все каналы видят одно и то же состояние.</> } },
       { ic: "🔀", h: { uz: "Ko'p kirish yo'li, bitta tizim", ru: 'Много точек входа, одна система' }, body: { uz: <>Har kanal alohida tizim emas — bitta tizim, ko'p kirish yo'li.</>, ru: <>Каждый канал — не отдельная система: система одна, входов много.</> }, ask: { uz: "Nega web va bot bir xil buyurtmani ko'radi?", ru: 'Почему веб и бот видят один и тот же заказ?' } },
     ]
   },
@@ -303,7 +303,7 @@ const RECAPS = {
     title: { uz: 'End-to-end — boshidan oxirigacha', ru: 'End-to-end — от начала до конца' },
     cards: [
       { ic: "🚶", h: { uz: "Bitta amalni to'liq kuzatish", ru: 'Проследить одно действие целиком' }, body: { uz: <>Bitta amalni (buyurtmani) <b>mijozdan tasdiqqacha</b> kuzatish.</>, ru: <>Проследить одно действие (заказ) <b>от клиента до подтверждения</b>.</> } },
-      { ic: "🔗", h: { uz: 'Barcha qism birga', ru: 'Все части вместе' }, body: { uz: <>Frontend, backend, baza, bot — hammasi <b>birga</b> ishlayaptimi, shu tekshiriladi.</>, ru: <>Фронтенд, бэкенд, база, бот — проверяется, работают ли они <b>вместе</b>.</> } },
+      { ic: "🔗", h: { uz: 'Barcha qism birga', ru: 'Все части вместе' }, body: { uz: <>Frontend, backend, Database, bot — hammasi <b>birga</b> ishlayaptimi, shu tekshiriladi.</>, ru: <>Фронтенд, бэкенд, Database, бот — проверяется, работают ли они <b>вместе</b>.</> } },
       { ic: "🐞", h: { uz: 'Ulanish joyini sinaydi', ru: 'Проверяет места соединения' }, body: { uz: <>Bitta qadam ishlamasa — tizim chala; end-to-end aynan shuni tutadi.</>, ru: <>Если не работает один шаг — система неполная; end-to-end ловит именно это.</> }, ask: { uz: 'Nega bitta funksiyani alohida sinash yetarli emas?', ru: 'Почему недостаточно проверить одну функцию отдельно?' } },
     ]
   },
@@ -691,8 +691,8 @@ const SYS_COMPONENTS = [
   { id: 'mobil', gk: 'chan', label: { uz: 'Mobil (React Native)', ru: 'Мобильное (React Native)' }, color: T.grape, role: { uz: 'Mobil ilova', ru: 'Мобильное приложение' }, does: { uz: "Telefonda o'sha do'kon, Expo Go bilan.", ru: 'Тот же магазин в телефоне, через Expo Go.' } },
   { id: 'bot', gk: 'chan', label: { uz: 'Telegram bot', ru: 'Telegram-бот' }, color: T.blue, role: { uz: 'Bot kanal', ru: 'Канал-бот' }, does: { uz: 'Buyurtma va xabarlar Telegram orqali.', ru: 'Заказы и сообщения через Telegram.' } },
   { id: 'node', gk: 'core', label: { uz: 'Node.js', ru: 'Node.js' }, color: T.success, role: { uz: 'Backend', ru: 'Бэкенд' }, does: { uz: "Barcha kanaldan so'rovni qabul qilib boshqaradi.", ru: 'Принимает запросы со всех каналов и управляет ими.' } },
-  { id: 'pg', gk: 'core', label: { uz: 'PostgreSQL', ru: 'PostgreSQL' }, color: T.grape, role: { uz: 'Baza', ru: 'База' }, does: { uz: 'Mahsulot va buyurtmalarni saqlaydi, bitta joyda.', ru: 'Хранит товары и заказы в одном месте.' } },
-  { id: 'ai', gk: 'core', label: { uz: 'AI (Claude)', ru: 'AI (Claude)' }, color: T.honey, role: { uz: 'Yordamchi xizmat', ru: 'Вспомогательный сервис' }, does: { uz: 'Backend chaqirganda mijoz savoliga javob yozadi, tavsif tayyorlaydi.', ru: 'Когда бэкенд обращается к нему, отвечает на вопрос клиента, готовит описание.' } }
+  { id: 'pg', gk: 'core', label: { uz: 'PostgreSQL', ru: 'PostgreSQL' }, color: T.grape, role: { uz: 'Database', ru: 'Database' }, does: { uz: 'Mahsulot va buyurtmalarni saqlaydi, bitta joyda.', ru: 'Хранит товары и заказы в одном месте.' } },
+  { id: 'ai', gk: 'core', label: { uz: 'AI (Gemini)', ru: 'AI (Gemini)' }, color: T.honey, role: { uz: 'Yordamchi xizmat', ru: 'Вспомогательный сервис' }, does: { uz: 'Backend chaqirganda mijoz savoliga javob yozadi, tavsif tayyorlaydi.', ru: 'Когда бэкенд обращается к нему, отвечает на вопрос клиента, готовит описание.' } }
 ];
 // Guruh sarlavhalari — `gk` kaliti bo'yicha (ko'rinadigan matn filtr uchun ishlatilmaydi)
 const SYS_GROUPS = [
@@ -715,7 +715,7 @@ const MX_ROWS = [
 ];
 const MX_COLS = [
   { uz: 'Buyurtma', ru: 'Заказ' },
-  { uz: 'Bazada', ru: 'В базе' },
+  { uz: "Database'da", ru: 'В Database' },
   { uz: 'Bot xabar', ru: 'Сообщ. бота' },
   { uz: 'Tasdiq', ru: 'Подтверждение' }
 ];
@@ -739,7 +739,7 @@ const LAUNCH = [
 
 // Namuna hikoyasi (s13)
 const CASE_AC = [
-  { tag: { uz: "YIG'DI", ru: 'СОБРАЛ' }, color: T.accent, text: { uz: "Web, mobil, bot — uchala kanalni bitta backend'ga uladi", ru: 'Веб, мобильное, бот — подключил все три канала к одному бэкенду' }, why: { uz: "Hammasi o'sha baza va mantiqdan foydalanadi.", ru: 'Все они пользуются той же базой и той же логикой.' } },
+  { tag: { uz: "YIG'DI", ru: 'СОБРАЛ' }, color: T.accent, text: { uz: "Web, mobil, bot — uchala kanalni bitta backend'ga uladi", ru: 'Веб, мобильное, бот — подключил все три канала к одному бэкенду' }, why: { uz: "Hammasi o'sha Database va mantiqdan foydalanadi.", ru: 'Все они пользуются той же Database и той же логикой.' } },
   { tag: { uz: 'SINADI', ru: 'ПРОВЕРИЛ' }, color: T.blue, text: { uz: 'Har kanaldan buyurtma berib, butun oqimni end-to-end sinadi', ru: 'Сделал заказ с каждого канала и проверил весь поток end-to-end' }, why: { uz: 'Bitta amal butun tizimni boshidan oxirigacha tekshiradi.', ru: 'Одно действие проверяет всю систему от начала до конца.' } },
   { tag: { uz: 'TUZATDI', ru: 'ИСПРАВИЛ' }, color: T.honey, text: { uz: 'Ulanish joyidagi xatoni topib, kichik tuzatish bilan yamadi', ru: 'Нашёл ошибку в месте соединения и закрыл её небольшим исправлением' }, why: { uz: "Xato qaysi ulanish joyida ekanini topib, faqat o'sha joyni tuzatdi.", ru: 'Нашёл, в каком месте соединения ошибка, и исправил только его.' } },
   { tag: { uz: 'ISHGA TUSHIRDI', ru: 'ЗАПУСТИЛ' }, color: T.success, text: { uz: "Backend'ni serverga joylashtirdi, tizimni ishga tushirdi — mijozlar uch kanaldan kelyapti", ru: 'Разместил бэкенд на сервере, запустил систему — клиенты приходят с трёх каналов' }, why: { uz: "1-bosqichning yakuniy loyihasi tayyor.", ru: 'Итоговый проект 1-го этапа готов.' } }
@@ -763,14 +763,14 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={{ uz: 'Kirish · yakuniy loyiha', ru: 'Введение · итоговый проект' }} screen={screen} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Hamma qism tayyor. Ishga tushirishdan <span className="italic" style={{ color: T.accent }}>oldingi oxirgi qadam</span> nima?</>, ru: <>Все части готовы. Какой <span className="italic" style={{ color: T.accent }}>последний шаг перед запуском</span>?</> })}</h1>
-        <Mentor>{tr({ uz: "Kurs davomida web, mobil ilova, bot, backend, baza va AI bilan ishladingiz. Bugun ularni bitta tizimga yig'amiz va ishga tushiramiz. Lekin avval bitta narsa shart.", ru: 'За время курса вы поработали с вебом, мобильным приложением, ботом, бэкендом, базой и AI. Сегодня соберём их в одну систему и запустим. Но сначала обязательна одна вещь.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Ishga tushirishdan <span className="italic" style={{ color: T.accent }}>oldingi oxirgi qadam</span> nima?</>, ru: <>Какой <span className="italic" style={{ color: T.accent }}>последний шаг перед запуском</span>?</> })}</h1>
+        <Mentor>{tr({ uz: "Kurs davomida web, mobil ilova, bot, backend, Database va AI bilan ishladingiz. Bugun ularni bitta tizimga yig'amiz va ishga tushiramiz. Lekin avval bitta narsa shart.", ru: 'За время курса вы поработали с вебом, мобильным приложением, ботом, бэкендом, Database и AI. Сегодня соберём их в одну систему и запустим. Но сначала обязательна одна вещь.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)' }}>
               <p className="flow-label" style={{ marginBottom: 10 }}>{tr({ uz: 'Sizda tayyor turgan qismlar', ru: 'Части, которые у вас уже готовы' })}</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-                {[{ uz: 'Web', ru: 'Веб' }, { uz: 'Mobil', ru: 'Мобильное' }, { uz: 'Bot', ru: 'Бот' }, { uz: 'Backend', ru: 'Бэкенд' }, { uz: 'Baza', ru: 'База' }, { uz: 'AI', ru: 'AI' }].map((x, i) => (
+                {[{ uz: 'Web', ru: 'Веб' }, { uz: 'Mobil', ru: 'Мобильное' }, { uz: 'Bot', ru: 'Бот' }, { uz: 'Backend', ru: 'Бэкенд' }, { uz: 'Database', ru: 'Database' }, { uz: 'AI', ru: 'AI' }].map((x, i) => (
                   <span key={i} className="ready-tag" style={{ animationDelay: `${0.15 + i * 0.07}s` }}>{tr(x)}</span>
                 ))}
               </div>
@@ -873,7 +873,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: "Ko'p kanal, bitta tizim", ru: 'Много каналов, одна система' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Kanallarni ko'ring (${seen.size}/${CHANNELS.length})`, ru: `Посмотрите каналы (${seen.size}/${CHANNELS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uch kanal — <span className="italic" style={{ color: T.accent }}>bitta backend</span></>, ru: <>Три канала — <span className="italic" style={{ color: T.accent }}>один бэкенд</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mijoz web, mobil yoki bot orqali keladi — lekin uchalasi ham o'sha backend va bazadan foydalanadi. Har kanalni bosing.", ru: 'Клиент приходит через веб, мобильное приложение или бота — но все три канала пользуются тем же бэкендом и той же базой. Нажмите на каждый канал.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mijoz web, mobil yoki bot orqali keladi — lekin uchalasi ham o'sha backend va Database'dan foydalanadi. Har kanalni bosing.", ru: 'Клиент приходит через веб, мобильное приложение или бота — но все три канала пользуются тем же бэкендом и той же Database. Нажмите на каждый канал.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -881,13 +881,13 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="converge fade-step" key={active}>
               {CHANNELS.map(c => (<div key={c.id} className={`cv-chan ${active === c.id ? 'cv-on' : ''}`}><span>{tr(c.label)}</span><span className={`cv-line ${active === c.id ? 'cv-line-on' : ''}`} /></div>))}
-              <div className="cv-core"><span style={{ fontSize: 24 }}>🟢</span><span style={{ fontFamily: "'Manrope'", fontWeight: 800, fontSize: 12, color: '#fff' }}>{tr({ uz: 'Backend + Baza', ru: 'Бэкенд + База' })}</span></div>
+              <div className="cv-core"><span style={{ fontSize: 24 }}>🟢</span><span style={{ fontFamily: "'Manrope'", fontWeight: 800, fontSize: 12, color: '#fff' }}>{tr({ uz: 'Backend + Database', ru: 'Бэкенд + Database' })}</span></div>
             </div>
           </Col>
           <Col>
             <div className="frame" style={{ padding: 'clamp(14px,2.2vw,20px)' }}>
               <p className="note-h" style={{ color: T.accent }}>{tr({ uz: <>{tr(cur.label)} kanali</>, ru: <>Канал «{tr(cur.label)}»</> })}</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu kanal ham <b>o'sha</b> Node.js backend'ga so'rov yuboradi va <b>o'sha</b> PostgreSQL bazasidan o'qiydi. Mavjud backend'dan qayta foydalanamiz; kerak bo'lsa unga yangi so'rov yo'li (endpoint) qo'shamiz.</>, ru: <>Этот канал тоже шлёт запрос <b>тому же</b> Node.js-бэкенду и читает из <b>той же</b> базы PostgreSQL. Используем готовый бэкенд повторно; если нужно — добавляем в него новый путь запроса (endpoint).</> })}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu kanal ham <b>o'sha</b> Node.js backend'ga so'rov yuboradi va <b>o'sha</b> Database'dan (PostgreSQL) o'qiydi. Mavjud backend'dan qayta foydalanamiz; kerak bo'lsa unga yangi so'rov yo'li (endpoint) qo'shamiz.</>, ru: <>Этот канал тоже шлёт запрос <b>тому же</b> Node.js-бэкенду и читает из <b>той же</b> Database (PostgreSQL). Используем готовый бэкенд повторно; если нужно — добавляем в него новый путь запроса (endpoint).</> })}</p>
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya to'liq ko'rinishda: <b>ko'p kirish yo'li, bitta tizim</b>. Ma'lumot bitta joyda — shuning uchun hamma kanal bir xil holatni ko'radi.</>, ru: <>Идея 1-го урока в полном виде: <b>много точек входа, одна система</b>. Данные в одном месте — поэтому все каналы видят одно и то же состояние.</> })}</p></div>}
           </Col>
@@ -903,16 +903,16 @@ const Screen4 = (props) => (
     questionText="Nega web, mobil va bot «bitta tizim» deyiladi?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nega bu uch kanal <span className="italic" style={{ color: T.accent }}>bitta tizim</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Почему эти три канала — <span className="italic" style={{ color: T.accent }}>одна система</span>?</h2></> })}
     options={[
-      { uz: 'Uchalasi bir xil backend va bazadan foydalanadi', ru: 'Все три пользуются одним бэкендом и одной базой' },
-      { uz: "Har birining o'z alohida backend'i va bazasi bor", ru: 'У каждого свой отдельный бэкенд и своя база' },
+      { uz: "Uchalasi bir xil backend va Database'dan foydalanadi", ru: 'Все три пользуются одним бэкендом и одной Database' },
+      { uz: "Har birining o'z alohida backend'i va Database'i bor", ru: 'У каждого свой отдельный бэкенд и своя Database' },
       { uz: "Ular bir-biriga bog'lanmagan — alohida ishlaydi", ru: 'Они не связаны друг с другом — работают отдельно' },
       { uz: "Faqat ranglari va tashqi ko'rinishi bir xil", ru: 'Просто цвета и внешний вид у них одинаковые' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Web, mobil, bot — uchala kanal bir xil backend va PostgreSQL bazasidan foydalanadi. Ma'lumot bitta joyda bo'lgani uchun hamma kanal bir xil holatni ko'radi — shuning uchun ular bitta tizimning kanallari.", ru: 'Верно! Веб, мобильное приложение, бот — все три канала пользуются одним бэкендом и одной базой PostgreSQL. Данные в одном месте, поэтому все каналы видят одно и то же состояние — значит, это каналы одной системы.' }}
+    explainCorrect={{ uz: "To'g'ri! Web, mobil, bot — uchala kanal bir xil backend va Database'dan (PostgreSQL) foydalanadi. Ma'lumot bitta joyda bo'lgani uchun hamma kanal bir xil holatni ko'radi — shuning uchun ular bitta tizimning kanallari.", ru: 'Верно! Веб, мобильное приложение, бот — все три канала пользуются одним бэкендом и одной Database (PostgreSQL). Данные в одном месте, поэтому все каналы видят одно и то же состояние — значит, это каналы одной системы.' }}
     explainWrong={{
       1: { uz: 'Alohida backend emas — bitta backend hamma kanalga xizmat qiladi.', ru: 'Не отдельные бэкенды — один бэкенд обслуживает все каналы.' },
       2: { uz: "Aynan bog'liq — bitta backend orqali.", ru: 'Как раз связаны — через один бэкенд.' },
-      3: { uz: 'Rang emas — umumiy backend va baza.', ru: 'Дело не в цвете — дело в общем бэкенде и общей базе.' },
+      3: { uz: 'Rang emas — umumiy backend va Database.', ru: 'Дело не в цвете — дело в общем бэкенде и общей Database.' },
       default: { uz: 'Bir xil backend bilan ishlasa — bitta tizimning kanallari.', ru: 'Работают с одним бэкендом — значит, это каналы одной системы.' }
     }} />
 );
@@ -922,7 +922,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const FLOW = [
     { t: { uz: "Mijoz mobildan «Buyurtma» bosadi", ru: 'Клиент нажимает «Заказать» в мобильном' } },
     { t: { uz: "Backend so'rovni qabul qiladi", ru: 'Бэкенд принимает запрос' } },
-    { t: { uz: 'Buyurtma bazaga saqlanadi', ru: 'Заказ сохраняется в базе' } },
+    { t: { uz: "Buyurtma Database'ga saqlanadi", ru: 'Заказ сохраняется в Database' } },
     { t: { uz: 'Bot adminga xabar yuboradi', ru: 'Бот отправляет сообщение админу' } },
     { t: { uz: 'Mijozga tasdiq qaytadi', ru: 'Клиенту возвращается подтверждение' } }
   ];
@@ -996,7 +996,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: "Buyurtma yo'li · jonli", ru: 'Путь заказа · вживую' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Uch kanalni sinang (${tried.size}/${CHANNELS.length})`, ru: `Проверьте три канала (${tried.size}/${CHANNELS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi kanaldan kelsa ham — <span className="italic" style={{ color: T.accent }}>o'sha tizim javob beradi</span></>, ru: <>С какого канала бы ни пришли — <span className="italic" style={{ color: T.accent }}>отвечает та же система</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Kanalni tanlang, «Buyurtma yubor» bosing — buyurtma o'sha backend'ga borib, bazaga saqlanadi, bot adminga xabar beradi. Uchala kanalni sinab ko'ring — natija bir xil!", ru: 'Выберите канал, нажмите «Отправить заказ» — заказ уйдёт на тот же бэкенд, сохранится в базе, а бот сообщит админу. Проверьте все три канала — результат одинаковый!' })}</Mentor>
+        <Mentor>{tr({ uz: "«▶ Webdan buyurtma yuboring» tugmasini bosing — buyurtma o'sha backend'ga borib, Database'ga saqlanadi, bot adminga xabar beradi. Keyin Mobil va Bot kanallarini ham sinab ko'ring — natija bir xil!", ru: 'Нажмите «▶ Отправить заказ с канала «Веб»» — заказ уйдёт на тот же бэкенд, сохранится в Database, а бот сообщит админу. Затем проверьте каналы «Мобильное» и «Бот» — результат одинаковый!' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -1009,7 +1009,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="trace-col"><span className={`trace-node be-node ${phase !== 'idle' ? 'on' : ''}`}><span style={{ fontSize: 15 }}>🟢</span>{tr({ uz: 'Backend', ru: 'Бэкенд' })}</span></div>
               <span className={`trace-arrow ${phase === 'done' ? 'flow' : ''}`}>→</span>
               <div className="trace-col data-col">
-                <span className={`trace-node d-node ${phase === 'done' ? 'on' : ''}`} style={{ animationDelay: '0s' }}><span style={{ fontSize: 14 }}>🐘</span>{tr({ uz: 'Baza', ru: 'База' })}</span>
+                <span className={`trace-node d-node ${phase === 'done' ? 'on' : ''}`} style={{ animationDelay: '0s' }}><span style={{ fontSize: 14 }}>🐘</span>{tr({ uz: 'Database', ru: 'Database' })}</span>
                 <span className={`trace-node d-node ${phase === 'done' ? 'on' : ''}`} style={{ animationDelay: '0.12s' }}><span style={{ fontSize: 14 }}>✈️</span>{tr({ uz: 'Bot', ru: 'Бот' })}</span>
               </div>
             </div>
@@ -1021,7 +1021,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="takeaway fade-step" key={tried.size}>
                 <div className="ta-bulb" style={{ fontSize: 28 }}></div>
                 <p className="ta-h">{tr({ uz: `${tr(selChan.label)}dan keldi — tizim ishladi`, ru: `Пришло с канала «${tr(selChan.label)}» — система сработала` })}</p>
-                <p className="ta-sub">{tr({ uz: 'Bazaga saqlandi · admin xabardor. Boshqa kanal ham xuddi shunday.', ru: 'Сохранено в базе · админ уведомлён. С другим каналом будет точно так же.' })}</p>
+                <p className="ta-sub">{tr({ uz: "Database'ga saqlandi · admin xabardor. Boshqa kanal ham xuddi shunday.", ru: 'Сохранено в Database · админ уведомлён. С другим каналом будет точно так же.' })}</p>
               </div>
             ) : null}
             <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <><b>Eslatma:</b> AI buyurtma yo'lida emas — u alohida ishlaydi: mijoz savol yozsa, backend uni AI'ga yuboradi va javob qaytaradi.</>, ru: <><b>Заметка:</b> AI не участвует в пути заказа — он работает отдельно: если клиент пишет вопрос, бэкенд отправляет его в AI и возвращает ответ.</> })}</p></div>
@@ -1315,7 +1315,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · jarayon', ru: 'Финал · процесс' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: to'liq tizimni yetkazish jarayonini <span className="italic" style={{ color: T.accent }}>tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите процесс доведения полной системы до запуска <span className="italic" style={{ color: T.accent }}>по порядку</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: to'liq tizimni yetkazish jarayonini <span className="italic" style={{ color: T.accent }}>tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите этапы запуска <span className="italic" style={{ color: T.accent }}>по порядку</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Bugun bosib o'tgan yo'lni eslang. Bo'laklarni to'g'ri tartibda joylang.", ru: 'Вспомните путь, который прошли сегодня. Разложите кусочки в правильном порядке.' })}</Mentor>
         <Zoomable>
           <DragDropOrder onWrong={onWrong}
@@ -1408,7 +1408,7 @@ const QZ_BG_SHAPES = [
   { ch: 'end-to-end',  l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
   { ch: 'deploy',      l: 45, t: 86, s: 26, d: 25, dl: 1.1 },
   { ch: { uz: 'buyurtma', ru: 'заказ' },      l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: { uz: 'baza', ru: 'база' },          l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
+  { ch: 'Database',    l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
   { ch: { uz: "ko'p kanal", ru: 'много каналов' }, l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
   { ch: '🖥️',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '🤖',          l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
@@ -1420,17 +1420,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TAQSIM (12 savol: 3/3/3/3).
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Web, mobil va bot «bitta tizim» deyilishining sababi?", ru: 'Почему веб, мобильное приложение и бот называют «одной системой»?' }, opts: [{ uz: 'Uchalasi bir xil backend va bazadan foydalanadi', ru: 'Все три пользуются одним бэкендом и одной базой' }, { uz: "Har birida o'z alohida bazasi bor", ru: 'У каждого своя отдельная база' }, { uz: "Ular bir-biriga umuman bog'liq emas", ru: 'Они вообще никак не связаны друг с другом' }, { uz: "Faqat ranglari o'xshash", ru: 'Только цвета похожи' }], correct: 0 },
+  { q: { uz: "Web, mobil va bot «bitta tizim» deyilishining sababi?", ru: 'Почему веб, мобильное приложение и бот называют «одной системой»?' }, opts: [{ uz: "Uchalasi bir xil backend va Database'dan foydalanadi", ru: 'Все три пользуются одним бэкендом и одной Database' }, { uz: "Har birida o'z alohida Database'i bor", ru: 'У каждого своя отдельная Database' }, { uz: "Ular bir-biriga umuman bog'liq emas", ru: 'Они вообще никак не связаны друг с другом' }, { uz: "Faqat ranglari o'xshash", ru: 'Только цвета похожи' }], correct: 0 },
   { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nimani anglatadi?", ru: 'Что означает «Много точек входа, одна система»?' }, opts: [{ uz: "Web, bot va mobil bitta backend'ga ulanadi", ru: 'Веб, бот и мобильное подключаются к одному бэкенду' }, { uz: 'Bitta kanal hammaga yetarli', ru: 'Одного канала хватит на всех' }, { uz: 'Har kanalga alohida tizim kerak', ru: 'Каждому каналу нужна отдельная система' }, { uz: "Faqat web bo'lishi mumkin", ru: 'Возможен только веб' }], correct: 0 },
   { q: { uz: 'End-to-end test nimani sinaydi?', ru: 'Что проверяет end-to-end тест?' }, opts: [{ uz: 'Bitta funksiyani alohida', ru: 'Одну функцию по отдельности' }, { uz: 'Ranglar va dizaynni', ru: 'Цвета и дизайн' }, { uz: 'Bitta amalning barcha qadamlarini', ru: 'Все шаги одного действия' }, { uz: "Backend kodini o'qib chiqib", ru: 'Код бэкенда, прочитав его' }], correct: 2 },
-  { q: { uz: "Integratsiya xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка интеграции?' }, opts: [{ uz: 'Qismlar ulangan joyda', ru: 'Там, где части соединены' }, { uz: 'Faqat frontend rangida', ru: 'Только в цвете фронтенда' }, { uz: "Hech qachon paydo bo'lmaydi", ru: 'Она никогда не появляется' }, { uz: 'Faqat bazaning ichida', ru: 'Только внутри базы' }], correct: 0 },
-  { q: { uz: 'Test jadvalida bitta qizil katak nimani bildiradi?', ru: 'О чём говорит одна красная клетка в таблице тестов?' }, opts: [{ uz: "Hammasi to'g'ri — xato yo'q", ru: 'Всё верно — ошибок нет' }, { uz: "O'sha kanal × qadamda xato bor", ru: 'В этом канале × шаге есть ошибка' }, { uz: 'Dizayn ishlari tugadi', ru: 'Работа над дизайном закончена' }, { uz: 'Baza juda tez ishlayapti', ru: 'База работает очень быстро' }], correct: 1 },
+  { q: { uz: "Integratsiya xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка интеграции?' }, opts: [{ uz: 'Qismlar ulangan joyda', ru: 'Там, где части соединены' }, { uz: 'Faqat frontend rangida', ru: 'Только в цвете фронтенда' }, { uz: "Hech qachon paydo bo'lmaydi", ru: 'Она никогда не появляется' }, { uz: "Faqat Database'ning ichida", ru: 'Только внутри Database' }], correct: 0 },
+  { q: { uz: 'Test jadvalida bitta qizil katak nimani bildiradi?', ru: 'О чём говорит одна красная клетка в таблице тестов?' }, opts: [{ uz: "Hammasi to'g'ri — xato yo'q", ru: 'Всё верно — ошибок нет' }, { uz: "O'sha kanal × qadamda xato bor", ru: 'В этом канале × шаге есть ошибка' }, { uz: 'Dizayn ishlari tugadi', ru: 'Работа над дизайном закончена' }, { uz: 'Database juda tez ishlayapti', ru: 'Database работает очень быстро' }], correct: 1 },
   { q: { uz: 'Ulanish joyidagi xatoni qanday tuzatamiz?', ru: 'Как мы исправляем ошибку в месте соединения?' }, opts: [{ uz: 'Butun tizimni noldan qayta yozamiz', ru: 'Переписываем всю систему с нуля' }, { uz: "Umuman e'tibor bermaymiz", ru: 'Вообще не обращаем внимания' }, { uz: 'Sababini topib, kichik tuzatish qilamiz', ru: 'Находим причину и делаем небольшое исправление' }, { uz: "Faqat rang o'zgartiramiz", ru: 'Просто меняем цвет' }], correct: 2 },
   { q: { uz: 'Tizimni ishga tushirishdan oldin nima SHART?', ru: 'Что ОБЯЗАТЕЛЬНО перед запуском системы?' }, opts: [{ uz: 'Hech narsa — darrov chiqaramiz', ru: 'Ничего — сразу выпускаем' }, { uz: "Butun oqim sinalgan va sozlamalar to'g'ri", ru: 'Весь поток проверен, и настройки верные' }, { uz: "Ko'proq rang va bezak", ru: 'Больше цвета и украшений' }, { uz: 'Logotip va nom tayyor', ru: 'Готовы логотип и название' }], correct: 1 },
   { q: { uz: '«Deploy» nima demak?', ru: 'Что значит «Deploy»?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полностью удалить код' }, { uz: 'Chiroyli dizayn chizish', ru: 'Нарисовать красивый дизайн' }, { uz: 'Tizimni serverga joylashtirish', ru: 'Разместить систему на сервере' }, { uz: "Yangi dasturlash tili o'rganish", ru: 'Выучить новый язык программирования' }], correct: 2 },
-  { q: { uz: "Buyurtma bir kanaldan berilsa, boshqa kanalda ko'rinadimi?", ru: 'Если заказ сделан с одного канала, виден ли он в другом?' }, opts: [{ uz: "Yo'q — har kanal alohida saqlaydi", ru: 'Нет — каждый канал хранит отдельно' }, { uz: "Faqat qo'lda ko'chirsa", ru: 'Только если скопировать вручную' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }, { uz: "Ko'rinadi — ma'lumot bitta bazada", ru: 'Виден — данные в одной базе' }], correct: 3 },
-  { q: { uz: "Mavjud tizimga yangi kanal (mobil) qo'shishning oson yo'li?", ru: 'Самый простой способ добавить новый канал (мобильное) к готовой системе?' }, opts: [{ uz: 'Butun tizimni noldan yozish', ru: 'Написать всю систему с нуля' }, { uz: "Yangi frontend yozib, o'sha backend'ga ulash", ru: 'Написать новый фронтенд и подключить к тому же бэкенду' }, { uz: 'Mobil uchun alohida baza qurish', ru: 'Построить отдельную базу для мобильного' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }], correct: 1 },
-  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorni yakka o'zi qabul qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Buyurtmani bazaga o'zi yozadi", ru: 'Сам записывает заказ в базу' }, { uz: 'Backend chaqirganda savolga javob, tavsif yozadi', ru: 'По запросу бэкенда отвечает на вопросы, пишет описания' }], correct: 3 },
+  { q: { uz: "Buyurtma bir kanaldan berilsa, boshqa kanalda ko'rinadimi?", ru: 'Если заказ сделан с одного канала, виден ли он в другом?' }, opts: [{ uz: "Yo'q — har kanal alohida saqlaydi", ru: 'Нет — каждый канал хранит отдельно' }, { uz: "Faqat qo'lda ko'chirsa", ru: 'Только если скопировать вручную' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }, { uz: "Ko'rinadi — ma'lumot bitta Database'da", ru: 'Виден — данные в одной Database' }], correct: 3 },
+  { q: { uz: "Mavjud tizimga yangi kanal (mobil) qo'shishning oson yo'li?", ru: 'Самый простой способ добавить новый канал (мобильное) к готовой системе?' }, opts: [{ uz: 'Butun tizimni noldan yozish', ru: 'Написать всю систему с нуля' }, { uz: "Yangi frontend yozib, o'sha backend'ga ulash", ru: 'Написать новый фронтенд и подключить к тому же бэкенду' }, { uz: 'Mobil uchun alohida Database qurish', ru: 'Построить отдельную Database для мобильного' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }], correct: 1 },
+  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorni yakka o'zi qabul qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Buyurtmani Database'ga o'zi yozadi", ru: 'Сам записывает заказ в Database' }, { uz: 'Backend chaqirganda savolga javob, tavsif yozadi', ru: 'По запросу бэкенда отвечает на вопросы, пишет описания' }], correct: 3 },
   { q: { uz: "To'liq tizimni yetkazish jarayoni qanday?", ru: 'В каком порядке доводят полную систему до запуска?' }, opts: [{ uz: "Ishga tushirish → sinash → yig'ish → tuzatish → xatoni topish", ru: 'Запуск → проверка → сборка → исправление → поиск ошибки' }, { uz: "Sinash → yig'ish → ishga tushirish → xatoni topish → tuzatish", ru: 'Проверка → сборка → запуск → поиск ошибки → исправление' }, { uz: "Tuzatish → xatoni topish → sinash → yig'ish → ishga tushirish", ru: 'Исправление → поиск ошибки → проверка → сборка → запуск' }, { uz: "Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Сборка → проверка → поиск ошибки → исправление → запуск' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
@@ -1533,7 +1533,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (arxitektura): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['frontend', '🧩', 'backend', 'end-to-end', 'baza', 'bot', 'deploy', '🗄️', '🔗', '.env'];
+    const TOK = ['frontend', '🧩', 'backend', 'end-to-end', 'Database', 'bot', 'deploy', '🗄️', '🔗', '.env'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2034,11 +2034,11 @@ const ScreenPractice = (props) => (
     eyebrow={{ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' }}
     place={{ uz: "kompyuteringizda (VS Code)", ru: 'на своём компьютере (VS Code)' }}
     title={{ uz: "Endi navbat sizga — tizimni yig'ing va sinang", ru: 'Теперь ваша очередь — соберите и проверьте систему' }}
-    task={{ uz: "O'z loyihangizda barcha kanalni (web / mobil / bot) bitta backend'ga ulang, keyin har kanaldan bitta buyurtma berib, butun oqimni (baza + bot xabari) end-to-end sinab ko'ring.", ru: 'В своём проекте подключите все каналы (веб / мобильное / бот) к одному бэкенду, затем сделайте по одному заказу с каждого канала и проверьте весь поток (база + сообщение бота) end-to-end.' }}
+    task={{ uz: "O'z loyihangizda barcha kanalni (web / mobil / bot) bitta backend'ga ulang, keyin har kanaldan bitta buyurtma berib, butun oqimni (Database + bot xabari) end-to-end sinab ko'ring.", ru: 'В своём проекте подключите все каналы (веб / мобильное / бот) к одному бэкенду, затем сделайте по одному заказу с каждого канала и проверьте весь поток (Database + сообщение бота) end-to-end.' }}
     checklist={[
       { uz: "Loyihani VS Code'da oching, backend'ni ishga tushiring (`npm run dev`); `.env` sozlamalari to'liqligini tekshiring", ru: 'Откройте проект в VS Code, запустите бэкенд (`npm run dev`); проверьте, что настройки `.env` заполнены полностью' },
       { uz: 'Web (yoki mobil) kanaldan bitta buyurtma bering', ru: 'Сделайте один заказ с канала «веб» (или «мобильное»)' },
-      { uz: 'Buyurtma bazaga tushganini tekshiring', ru: 'Проверьте, что заказ попал в базу' },
+      { uz: "Buyurtma Database'ga tushganini tekshiring", ru: 'Проверьте, что заказ попал в Database' },
       { uz: 'Bot admin xabarini yuborganini tekshiring', ru: 'Проверьте, что бот отправил сообщение админу' },
       { uz: 'Bitta qadam ishlamasa — jadvalda qaysi kanal × qadam qizil ekanini yozing va sababini toping', ru: 'Если один шаг не работает — запишите, какой канал × шаг в таблице красный, и найдите причину' },
       { uz: 'Tugagach «Bajardim» tugmasini bosing', ru: 'Закончите — нажмите кнопку «Выполнил»' },
@@ -2123,15 +2123,15 @@ function Flashcards({ cards }) {
 // 🃏 FLASHCARD KARTALARI — to'liq tizim atamalari (MD v2, metaforasiz)
 const FULL_FLASHCARDS = [
   { front: { uz: "Web, mobil va bot qaysi umumiy qismga ulanadi?", ru: 'К какой общей части подключаются веб, мобильное и бот?' }, back: { uz: "Bitta backend'ga", ru: 'К одному бэкенду' }, note: { uz: "Kirish yo'li uchta, tizim bitta", ru: 'Входа три, система одна' } },
-  { front: { uz: "Nega web va bot bir xil buyurtmani ko'radi?", ru: 'Почему веб и бот видят один и тот же заказ?' }, back: { uz: 'Baza bitta', ru: 'База одна' }, note: { uz: 'Bu loyihada hamma buyurtma bitta PostgreSQL bazasida', ru: 'В этом проекте все заказы хранятся в одной базе PostgreSQL' } },
+  { front: { uz: "Nega web va bot bir xil buyurtmani ko'radi?", ru: 'Почему веб и бот видят один и тот же заказ?' }, back: { uz: 'Database bitta', ru: 'Database одна' }, note: { uz: "Bu loyihada hamma buyurtma bitta Database'da (PostgreSQL)", ru: 'В этом проекте все заказы хранятся в одной Database (PostgreSQL)' } },
   { front: { uz: 'Bitta amalni boshidan oxirigacha sinaydigan test?', ru: 'Тест, который проверяет одно действие от начала до конца?' }, back: 'End-to-end', note: { uz: 'Mijozdan boshlanib, tasdiq bilan tugaydi', ru: 'Начинается с клиента, заканчивается подтверждением' } },
   { front: { uz: 'Qismlar alohida ishlab, birga ishlamasa — bu qanday xato?', ru: 'Части работают порознь, но не вместе — что это за ошибка?' }, back: { uz: 'Integratsiya xatosi — ulanish joyida', ru: 'Ошибка интеграции — в месте соединения' }, note: { uz: 'Qismlar ulangan joyda yashiringan', ru: 'Прячется там, где части соединены' } },
   { front: { uz: "Qaysi kanal qaysi qadamda buzilganini nima ko'rsatadi?", ru: 'Что показывает, какой канал сломался на каком шаге?' }, back: { uz: 'Test jadvali (matritsa)', ru: 'Таблица тестов (матрица)' }, note: { uz: 'Har kanal × har qadam — katak; qizili — xato joyi', ru: 'Каждый канал × каждый шаг — клетка; красная — место ошибки' } },
   { front: { uz: 'Tizimni serverga joylashtirish qanday ataladi?', ru: 'Как называется размещение системы на сервере?' }, back: 'Deploy', note: { uz: 'Ishga tushirish — foydalanuvchiga berish', ru: 'А запуск — это отдать систему пользователю' } },
   { front: { uz: "Ishga tushirishdan oldin test jadvali qanday bo'lishi shart?", ru: 'Какой должна быть таблица тестов перед запуском?' }, back: { uz: "To'liq yashil", ru: 'Полностью зелёной' }, note: { uz: 'Bitta qizil katak qolsa — ishga tushirilmaydi', ru: 'Осталась хоть одна красная клетка — не запускаем' } },
   { front: { uz: 'BOT_TOKEN kabi maxfiy sozlamalar qayerda turadi?', ru: 'Где хранятся секретные настройки вроде BOT_TOKEN?' }, back: { uz: '.env faylida', ru: 'В файле .env' }, note: { uz: "Frontend kodiga yozilmaydi, GitHub'ga yuborilmaydi", ru: 'Их не пишут в код фронтенда и не отправляют на GitHub' } },
-  { front: { uz: 'Buyurtmalar doimiy saqlanadigan joy?', ru: 'Место, где заказы хранятся постоянно?' }, back: { uz: 'Baza (PostgreSQL)', ru: 'База (PostgreSQL)' }, note: { uz: "Backend unga yozadi va o'qiydi", ru: 'Бэкенд записывает в неё и читает из неё' } },
-  { front: { uz: "Barcha kanaldan so'rovni qabul qilib boshqaradigan qism?", ru: 'Часть, которая принимает запросы со всех каналов и управляет ими?' }, back: { uz: 'Backend (Node.js)', ru: 'Бэкенд (Node.js)' }, note: { uz: 'Baza, bot va AI bilan ham u ishlaydi', ru: 'Он же работает с базой, ботом и AI' } },
+  { front: { uz: 'Buyurtmalar doimiy saqlanadigan joy?', ru: 'Место, где заказы хранятся постоянно?' }, back: { uz: 'Database (PostgreSQL)', ru: 'Database (PostgreSQL)' }, note: { uz: "Backend unga yozadi va o'qiydi", ru: 'Бэкенд записывает в неё и читает из неё' } },
+  { front: { uz: "Barcha kanaldan so'rovni qabul qilib boshqaradigan qism?", ru: 'Часть, которая принимает запросы со всех каналов и управляет ими?' }, back: { uz: 'Backend (Node.js)', ru: 'Бэкенд (Node.js)' }, note: { uz: 'Database, bot va AI bilan ham u ishlaydi', ru: 'Он же работает с Database, ботом и AI' } },
   { front: { uz: 'AI buyurtma oqimida ishtirok etadimi?', ru: 'Участвует ли AI в потоке заказа?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'U alohida: mijoz savoli → backend → AI → javob', ru: 'Он отдельно: вопрос клиента → бэкенд → AI → ответ' } },
   { front: { uz: "To'liq tizimni yetkazish jarayoni?", ru: 'Процесс доведения полной системы до запуска?' }, back: { uz: "Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Сборка → проверка → поиск ошибки → исправление → запуск' }, note: { uz: 'Bugungi darsning bosh formulasi', ru: 'Главная формула сегодняшнего урока' } },
 ];
@@ -2186,7 +2186,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: '1-bosqich yakuniy loyihasi', ru: 'Итоговый проект 1-го этапа' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Tizim ishlayapti', ru: 'Система работает' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi to'liq tizimni <span className="italic" style={{ color: T.accent }}>yig'ib, sinab, ishga tushira olasiz</span>.</>, ru: <>Теперь вы можете <span className="italic" style={{ color: T.accent }}>собрать, проверить и запустить</span> полную систему.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Tizim ishlayapti', ru: 'Система работает' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi to'liq tizimni <span className="italic" style={{ color: T.accent }}>yig'ib, sinab, ishga tushira olasiz</span>.</>, ru: <>Теперь вы можете <span className="italic" style={{ color: T.accent }}>собрать, проверить и запустить</span> систему.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>

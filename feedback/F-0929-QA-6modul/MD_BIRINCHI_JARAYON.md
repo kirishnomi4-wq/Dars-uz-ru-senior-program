@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/1-MD.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0929-QA-6m jurnalidagi havolalar uchun saqlandi.
+
 # «MD-birinchi» — yangi dars yaratish jarayoni (loyiha, 29.09.2026, D7 tasdig'ini kutadi)
 
 > Tasdiqlangach: CLAUDE.md → «F — YANGI DARS: MD-birinchi» retsepti; PM_PIPELINE.md / PIPELINE.md → GATE M.

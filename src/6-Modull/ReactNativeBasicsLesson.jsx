@@ -758,7 +758,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Mini-do'koningiz saytda ishlayapti. Mijozlar uni <span className="italic" style={{ color: T.accent }}>telefonda ilova qilib</span> ko'rmoqchi. Qila olasizmi?</>, ru: <>Ваш мини-магазин работает на сайте. Клиенты хотят видеть его <span className="italic" style={{ color: T.accent }}>как приложение на телефоне</span>. Справитесь?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Mijozlar do'konni <span className="italic" style={{ color: T.accent }}>ilovada</span> ko'rmoqchi. Qila olasizmi?</>, ru: <>Клиенты хотят видеть магазин <span className="italic" style={{ color: T.accent }}>в приложении</span>. Справитесь?</> })}</h1>
         <Mentor>{tr({ uz: "React darslarida web ilova yozishni o'rgandingiz. Endi savol: telefon ilovasi uchun hammasini noldan o'rganish kerakmi? Tugmani bosing — javobni ko'ring.", ru: 'На уроках React вы научились писать веб-приложения. Теперь вопрос: чтобы сделать приложение для телефона, придётся учить всё с нуля? Нажмите кнопку — увидите ответ.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -909,14 +909,14 @@ const Screen4 = (props) => (
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React Native nima uchun <span className="italic" style={{ color: T.accent }}>ishlatiladi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Для чего <span className="italic" style={{ color: T.accent }}>используют</span> React Native?</h2></> })}
     options={[
       { uz: "Tayyor web-saytni brauzerda tezroq ochish uchun", ru: 'Чтобы готовый веб-сайт быстрее открывался в браузере' },
-      { uz: "Ma'lumotlar bazasini serverda boshqarish uchun", ru: 'Чтобы управлять базой данных на сервере и хранить её' },
+      { uz: "Database'ni serverda boshqarish uchun", ru: 'Чтобы управлять Database на сервере и хранить её' },
       { uz: "Faqat mobil o'yinlar va ko'ngilochar ilovalar uchun", ru: 'Только для мобильных игр и развлекательных приложений' },
       { uz: "React bilimi bilan mobil ilova yasash uchun", ru: 'Чтобы делать мобильные приложения со знаниями React' }
     ]} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! React Native React bilimingiz bilan iOS va Android uchun haqiqiy mobil ilova yasash imkonini beradi.", ru: 'Верно! React Native позволяет с вашими знаниями React сделать настоящее мобильное приложение для iOS и Android.' }}
     explainWrong={{
       0: { uz: "React Native web uchun emas — u mobil ilova yasaydi. Web uchun oddiy React ishlatiladi.", ru: 'React Native — не для веба: он делает мобильные приложения. Для веба используют обычный React.' },
-      1: { uz: "Bu — baza vazifasi (PostgreSQL). React Native — mobil ilova interfeysi uchun.", ru: 'Это задача базы данных (PostgreSQL). React Native — для интерфейса мобильного приложения.' },
+      1: { uz: "Bu — Database vazifasi (PostgreSQL). React Native — mobil ilova interfeysi uchun.", ru: 'Это задача Database (PostgreSQL). React Native — для интерфейса мобильного приложения.' },
       2: { uz: "Faqat o'yin emas — har qanday mobil ilova: do'kon, chat, bank ilovasi.", ru: 'Не только игры — любое мобильное приложение: магазин, чат, банковское приложение.' },
       default: { uz: "React Native — React bilan mobil ilova yasash uchun.", ru: 'React Native — чтобы делать мобильные приложения на React.' }
     }} />
@@ -1063,7 +1063,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Vosita · Expo', ru: 'Инструмент · Expo' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Nega qulay?", ru: 'Чем это удобно?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Expo</span> — React Native bilan ishlashni osonlashtiradigan vosita.</>, ru: <><span className="italic" style={{ color: T.accent }}>Expo</span> — инструмент, который упрощает работу с React Native.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Expo</span> — React Native bilan ishlashni osonlashtiradigan vosita.</>, ru: <><span className="italic" style={{ color: T.accent }}>Expo</span> — инструмент, упрощающий работу с React Native.</> })}</h2></div>
         <Mentor>{tr({ uz: "React Native'ni Expo'siz o'rnatish murakkabroq: Xcode yoki Android Studio kabi katta dasturlar kerak bo'ladi. Expo loyihani yaratish, ishga tushirish va telefonda sinashni osonlashtiradi. Tugmani bosing.", ru: 'Установить React Native без Expo сложнее: нужны большие программы вроде Xcode или Android Studio. Expo упрощает создание проекта, его запуск и проверку на телефоне. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -1095,7 +1095,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Telefonda · Expo Go', ru: 'На телефоне · Expo Go' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "QR kodni skanerlang", ru: 'Отсканируйте QR-код' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>QR kodni skanerlang — ilova <span className="italic" style={{ color: T.accent }}>telefoningizda ochiladi</span>.</>, ru: <>Отсканируйте QR-код — приложение <span className="italic" style={{ color: T.accent }}>откроется на вашем телефоне</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>QR kodni skanerlang — ilova <span className="italic" style={{ color: T.accent }}>telefoningizda ochiladi</span>.</>, ru: <>Сканируйте QR-код — приложение <span className="italic" style={{ color: T.accent }}>откроется на телефоне</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Telefonga Expo Go ilovasini o'rnatasiz va u bilan kompyuterdagi kodni skanerlaysiz. <b style={{ color: T.ink }}>Muhim shart:</b> odatda telefon va kompyuter bitta Wi-Fi tarmog'ida bo'lishi kerak. Tugmani bosib ko'ring!</>, ru: <>Устанавливаете на телефон приложение Expo Go и сканируете им код с компьютера. <b style={{ color: T.ink }}>Важное условие:</b> обычно телефон и компьютер должны быть в одной Wi-Fi-сети. Попробуйте нажать кнопку!</> })}</Mentor>
         {/* F-1004-29: bitta qator — kompyuter (QR) → telefon; tugma ostida o'ngda (F-1004-08), natija butun kenglikda */}
         <Zoomable>
@@ -1130,13 +1130,13 @@ const Screen11 = (props) => (
     options={[
       { uz: "QR kod orqali loyihani telefonda ochadi", ru: 'Открывает проект на телефоне через QR-код' },
       { uz: "Sizning o'rningizga kodni o'zi yozib beradi", ru: 'Сам пишет код вместо вас' },
-      { uz: "Ilova ma'lumotlarini bazada saqlab boradi", ru: 'Сохраняет данные приложения в базе' },
+      { uz: "Ilova ma'lumotlarini Database'da saqlab boradi", ru: 'Сохраняет данные приложения в Database' },
       { uz: "Faqat oddiy web-saytni brauzerda ochadi", ru: 'Открывает в браузере лишь обычный веб-сайт' }
     ]} correctIdx={0}
     explainCorrect={{ uz: "To'g'ri! Expo Go — telefoningizdagi ilova. QR kodni skanerlaysiz va loyihangiz telefonda ochiladi. Kodni o'zgartirsangiz — telefonda ham yangilanadi.", ru: 'Верно! Expo Go — приложение на вашем телефоне. Вы сканируете QR-код, и ваш проект открывается на телефоне. Измените код — на телефоне тоже обновится.' }}
     explainWrong={{
       1: { uz: "Kodni siz (yoki AI) yozasiz — Expo Go uni telefonda ko'rsatadi.", ru: 'Код пишете вы (или ИИ) — Expo Go показывает его на телефоне.' },
-      2: { uz: "Saqlash — bazaning ishi. Expo Go ilovani telefonda ishga tushiradi.", ru: 'Хранение — работа базы. Expo Go запускает приложение на телефоне.' },
+      2: { uz: "Saqlash — Database'ning ishi. Expo Go ilovani telefonda ishga tushiradi.", ru: 'Хранение — работа Database. Expo Go запускает приложение на телефоне.' },
       3: { uz: "Web emas — Expo Go haqiqiy mobil ilovani telefoningizda ochadi.", ru: 'Не веб — Expo Go открывает на вашем телефоне настоящее мобильное приложение.' },
       default: { uz: "Expo Go QR kod orqali ilovani telefonda ko'rsatadi.", ru: 'Expo Go показывает приложение на телефоне через QR-код.' }
     }} />
@@ -1252,7 +1252,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Расставьте по порядку' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: bugungi mashqimiz <span className="italic" style={{ color: T.accent }}>tartibini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>порядок</span> нашего сегодняшнего упражнения.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: bugungi mashqimiz <span className="italic" style={{ color: T.accent }}>tartibini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>порядок</span> нашего упражнения.</> })}</h2></div>
         <Mentor>{tr({ uz: "Bo'sh loyihadan telefondagi ilovagacha bugun qanday yo'l bosamiz? Bo'laklarni to'g'ri tartibda joylang.", ru: 'Какой путь мы сегодня пройдём от пустого проекта до приложения на телефоне? Расставьте блоки в правильном порядке.' })}</Mentor>
         <Zoomable>
           <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={onSolved} doneText={{ uz: <>Tartib tayyor: <b>Expo → View/Text → StyleSheet → QR skan → Telefonda</b>. Bugungi mashqimiz shu tartibda.</>, ru: <>Порядок готов: <b>Expo → View/Text → StyleSheet → QR-скан → На телефоне</b>. Сегодняшнее упражнение идёт именно в таком порядке.</> }} />
@@ -1356,14 +1356,14 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "React Native nima?", ru: 'Что такое React Native?' }, opts: [{ uz: "React bilimi bilan mobil ilova yasash usuli", ru: 'Способ делать мобильные приложения со знаниями React' }, { uz: "Web-saytlarni chiroyli bezash kutubxonasi", ru: 'Библиотека для красивого оформления веб-сайтов' }, { uz: "Ma'lumotlar bazasini boshqaruvchi server", ru: 'Сервер, который управляет базой данных' }, { uz: "Rasmlarni tahrirlaydigan dastur", ru: 'Программа для редактирования картинок' }], correct: 0 },
+  { q: { uz: "React Native nima?", ru: 'Что такое React Native?' }, opts: [{ uz: "React bilimi bilan mobil ilova yasash usuli", ru: 'Способ делать мобильные приложения со знаниями React' }, { uz: "Web-saytlarni chiroyli bezash kutubxonasi", ru: 'Библиотека для красивого оформления веб-сайтов' }, { uz: "Database'ni boshqaruvchi server", ru: 'Сервер, который управляет Database' }, { uz: "Rasmlarni tahrirlaydigan dastur", ru: 'Программа для редактирования картинок' }], correct: 0 },
   { q: { uz: "Web'dagi `<div>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<div>` из веба?' }, opts: ["<p>", "<View>", { uz: "<div> — o'zgarmaydi", ru: '<div> — не меняется' }, "<span>"], correct: 1 },
   { q: { uz: "Web'dagi `<p>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<p>` из веба?' }, opts: ["<View>", "<div>", "<Text>", "<label>"], correct: 2 },
   { q: { uz: "React Native'da har qanday matn qayerda bo'lishi shart?", ru: 'Где в React Native обязательно должен быть любой текст?' }, opts: [{ uz: "`<View>` ichida to'g'ridan", ru: 'Прямо внутри `<View>`' }, { uz: "`<div>` ichida", ru: 'Внутри `<div>`' }, { uz: "`<p>` ichida", ru: 'Внутри `<p>`' }, { uz: "`<Text>` ichida", ru: 'Внутри `<Text>`' }], correct: 3 },
   { q: { uz: "StyleSheet nima?", ru: 'Что такое StyleSheet?' }, opts: [{ uz: "Stillar yoziladigan JS obyekt", ru: 'JS-объект, в котором пишут стили' }, { uz: "Loyihaga ulanadigan .css fayl", ru: '.css-файл, подключаемый к проекту' }, { uz: "Ma'lumot saqlaydigan jadval", ru: 'Таблица для хранения данных' }, { uz: "Rasmlar uchun fayl formati", ru: 'Формат файла для картинок' }], correct: 0 },
   { q: { uz: "CSS'dagi background-color StyleSheet'da qanday yoziladi?", ru: 'Как в StyleSheet пишется background-color из CSS?' }, opts: [{ uz: "background-color — o'zgarmaydi", ru: 'background-color — не меняется' }, { uz: "backgroundColor", ru: 'backgroundColor' }, "bg_color", "colorBackground"], correct: 1 },
-  { q: { uz: "Expo nima uchun kerak?", ru: 'Для чего нужен Expo?' }, opts: [{ uz: "Bazani serverda boshqarish uchun", ru: 'Чтобы управлять базой данных на сервере' }, { uz: "Tayyor saytni internetga joylash uchun", ru: 'Чтобы выложить готовый сайт в интернет' }, { uz: "Loyihani oson yaratib, telefonda ko'rish uchun", ru: 'Чтобы легко создать проект и посмотреть его на телефоне' }, { uz: "Rasm va grafik chizish uchun", ru: 'Чтобы рисовать картинки и графику' }], correct: 2 },
-  { q: { uz: "Expo Go ilovasi QR kod bilan nima qiladi?", ru: 'Что делает приложение Expo Go с QR-кодом?' }, opts: [{ uz: "Kodni sizning o'rningizga yozadi", ru: 'Пишет код вместо вас' }, { uz: "Ilova ma'lumotini bazada saqlaydi", ru: 'Сохраняет данные приложения в базе' }, { uz: "Web-saytni brauzerda ochadi", ru: 'Открывает веб-сайт в браузере' }, { uz: "Loyihangizni telefonda ochadi", ru: 'Открывает ваш проект на телефоне' }], correct: 3 },
+  { q: { uz: "Expo nima uchun kerak?", ru: 'Для чего нужен Expo?' }, opts: [{ uz: "Database'ni serverda boshqarish uchun", ru: 'Чтобы управлять Database на сервере' }, { uz: "Tayyor saytni internetga joylash uchun", ru: 'Чтобы выложить готовый сайт в интернет' }, { uz: "Loyihani oson yaratib, telefonda ko'rish uchun", ru: 'Чтобы легко создать проект и посмотреть его на телефоне' }, { uz: "Rasm va grafik chizish uchun", ru: 'Чтобы рисовать картинки и графику' }], correct: 2 },
+  { q: { uz: "Expo Go ilovasi QR kod bilan nima qiladi?", ru: 'Что делает приложение Expo Go с QR-кодом?' }, opts: [{ uz: "Kodni sizning o'rningizga yozadi", ru: 'Пишет код вместо вас' }, { uz: "Ilova ma'lumotini Database'da saqlaydi", ru: 'Сохраняет данные приложения в Database' }, { uz: "Web-saytni brauzerda ochadi", ru: 'Открывает веб-сайт в браузере' }, { uz: "Loyihangizni telefonda ochadi", ru: 'Открывает ваш проект на телефоне' }], correct: 3 },
   { q: { uz: "React Native ilova qaysi platformalarda ishlaydi?", ru: 'На каких платформах работает приложение на React Native?' }, opts: [{ uz: "iOS va Android'da", ru: 'На iOS и Android' }, { uz: "Faqat Apple iOS'da", ru: 'Только на Apple iOS' }, { uz: "Faqat kompyuter brauzerida", ru: 'Только в браузере компьютера' }, { uz: "Faqat Windows kompyuterlarida", ru: 'Только на компьютерах с Windows' }], correct: 0 },
   { q: { uz: "React'dan React Native'ga o'tganda nima O'ZGARMAYDI?", ru: 'Что НЕ меняется при переходе с React на React Native?' }, opts: [{ uz: "Ekran elementlari (div, p, span)", ru: 'Элементы экрана (div, p, span)' }, { uz: "Komponent, props va state", ru: 'Компонент, props и state' }, { uz: "Alohida CSS fayl ishlatilishi", ru: 'Использование отдельного CSS-файла' }, { uz: "HTML teglari va tugmalari", ru: 'HTML-теги и кнопки' }], correct: 1 },
   { q: { uz: "React Native — bu web-saytmi?", ru: 'React Native — это веб-сайт?' }, opts: [{ uz: "Ha, u oddiy web-sayt", ru: 'Да, это обычный веб-сайт' }, { uz: "Ha, faqat brauzerda ishlaydi", ru: 'Да, работает только в браузере' }, { uz: "Yo'q — u haqiqiy mobil ilova", ru: 'Нет — это настоящее мобильное приложение' }, { uz: "Yo'q — u faqat rasm", ru: 'Нет — это просто картинка' }], correct: 2 },

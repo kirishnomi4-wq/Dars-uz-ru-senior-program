@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/2-QURUVCHI.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0929-QA-6m jurnalidagi havolalar uchun saqlandi.
+
 # Quruvchi topshiriq-shabloni — 6-Modul v2 → kod (bitta dars = bitta agent = bitta fayl)
 
 Vazifa: `src/6-Modull/<FAYL>.jsx` darsini tasdiqlangan MD-matnga keltiring («MD-birinchi», CLAUDE.md F-retsepti). MD = manba-haqiqat.

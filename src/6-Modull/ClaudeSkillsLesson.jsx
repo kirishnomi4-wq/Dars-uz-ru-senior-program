@@ -609,12 +609,9 @@ const CodeFile = ({ name, children, minH }) => (
 
 // SKILL.md — frontmatter KALITLARI (name/description) va `mahsulot-tavsifi` slug KOD sifatida o'zgarmaydi;
 // faqat qiymat-proza va body matni tarjima qilinadi (hech bir check bu matnga bog'lanmagan).
-const SkillMd = ({ minH }) => (
-  <CodeFile name="SKILL.md" minH={minH}>
-    <Cm>{'---'}</Cm>{'\n'}
-    <At>name</At>{': mahsulot-tavsifi'}{'\n'}
-    <At>description</At>{': '}<St>{tr({ uz: "Mini-do'kon mahsulotlari uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товаров мини-магазина. Используется, когда дано название товара.' })}</St>{'\n'}
-    <Cm>{'---'}</Cm>{'\n\n'}
+// Body — yagona manba: 1/3/12-ekran (SkillMd) va 6-ekran (body) shu bo'lakni ko'rsatadi (F-1004-70 A2).
+const SkillBody = () => (
+  <>
     <Kw>{tr({ uz: '# Mahsulot tavsifi yozish', ru: '# Написать описание товара' })}</Kw>{'\n'}
     {tr({ uz: '1. Aniq 3 jumla yoz.', ru: '1. Напиши ровно 3 предложения.' })}{'\n'}
     {tr({ uz: "2. Iliq, do'stona ohang, 1 ta emoji.", ru: '2. Тёплый, дружелюбный тон, 1 эмодзи.' })}{'\n'}
@@ -623,6 +620,15 @@ const SkillMd = ({ minH }) => (
     {tr({ uz: '5. Oxirida: "Savatga qo\'shing!"', ru: '5. В конце: "Добавьте в корзину!"' })}{'\n\n'}
     <Cm>{tr({ uz: 'Misol: "Yengil charm hamyon 👜 Kundalik uchun ideal.', ru: 'Пример: "Лёгкий кожаный кошелёк 👜 Идеален на каждый день.' })}</Cm>{'\n'}
     <Cm>{tr({ uz: 'Atigi 120 000 so\'m — Savatga qo\'shing!"', ru: 'Всего 120 000 сум — Добавьте в корзину!"' })}</Cm>
+  </>
+);
+const SkillMd = ({ minH }) => (
+  <CodeFile name="SKILL.md" minH={minH}>
+    <Cm>{'---'}</Cm>{'\n'}
+    <At>name</At>{': mahsulot-tavsifi'}{'\n'}
+    <At>description</At>{': '}<St>{tr({ uz: "Mini-do'kon mahsulotlari uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товаров мини-магазина. Используется, когда дано название товара.' })}</St>{'\n'}
+    <Cm>{'---'}</Cm>{'\n\n'}
+    <SkillBody />
   </CodeFile>
 );
 
@@ -752,7 +758,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={{ uz: 'Dars · kirish', ru: 'Урок · вступление' }} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>AI'dan «mahsulot tavsifi yoz» dedingiz. Har safar <span className="italic" style={{ color: T.accent }}>boshqacha</span> chiqyapti. Nega?</>, ru: <>Вы попросили ИИ «напиши описание товара». Каждый раз выходит <span className="italic" style={{ color: T.accent }}>по-разному</span>. Почему?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>AI mahsulot tavsifini har safar <span className="italic" style={{ color: T.accent }}>boshqacha</span> yozadi. Nega?</>, ru: <>ИИ каждый раз пишет описание <span className="italic" style={{ color: T.accent }}>по-разному</span>. Почему?</> })}</h1>
         <Mentor>{tr({ uz: <>O'tgan darsda agentga maqsad va asboblar berdik. Lekin AI'ga ishni <b style={{ color: T.ink }}>qanday</b> bajarishni ham tushuntirish kerak. Tugmani bosing — muammoni ko'ring.</>, ru: <>На прошлом уроке мы дали агенту цель и инструменты. Но ИИ нужно объяснить и то, <b style={{ color: T.ink }}>как</b> выполнять работу. Нажмите кнопку — увидите проблему.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -892,7 +898,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Frontmatter · description', ru: 'Frontmatter · description' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Nega muhim?', ru: 'Почему это важно?' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>description</span> — Claude'ga kerakli Skill'ni <span className="italic" style={{ color: T.accent }}>topishga</span> yordam beradigan qator.</>, ru: <><span className="mono" style={{ color: T.accent }}>description</span> — строка, которая помогает Claude <span className="italic" style={{ color: T.accent }}>найти</span> нужный Skill.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>description</span> bo'yicha Claude kerakli Skill'ni <span className="italic" style={{ color: T.accent }}>topadi</span>.</>, ru: <>По <span className="mono" style={{ color: T.accent }}>description</span> Claude <span className="italic" style={{ color: T.accent }}>находит</span> нужный Skill.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Claude'da o'nlab Skill bo'lishi mumkin. U qaysi birini ishlatishni qayerdan biladi? Asosan <b style={{ color: T.ink }}>description</b>'dan. Tugmani bosing.</>, ru: <>У Claude могут быть десятки Skills. Откуда он знает, какой применить? В основном из <b style={{ color: T.ink }}>description</b>. Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
@@ -931,12 +937,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <CodeFile name="SKILL.md (body)" minH={120}>
-              <Kw>{tr({ uz: '# Mahsulot tavsifi yozish', ru: '# Написать описание товара' })}</Kw>{'\n'}
-              {tr({ uz: '1. Aniq 3 jumla yoz.', ru: '1. Напиши ровно 3 предложения.' })}{'\n'}
-              {tr({ uz: '2. Iliq ohang, 1 ta emoji.', ru: '2. Тёплый тон, 1 эмодзи.' })}{'\n'}
-              {tr({ uz: '3. Materiali / ustunligini ayt.', ru: '3. Назови материал / преимущество.' })}{'\n'}
-              {tr({ uz: '4. Narxni eslat.', ru: '4. Напомни цену.' })}{'\n'}
-              {tr({ uz: '5. "Savatga qo\'shing!" bilan yakunla.', ru: '5. Заверши фразой "Добавьте в корзину!".' })}
+              <SkillBody />
             </CodeFile>
             <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Вы посмотрели' }) : tr({ uz: 'Nega bunday aniq?', ru: 'Почему так подробно?' })}</button>
           </Col>
@@ -1213,7 +1214,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bu Skill qaysi <span className="italic" style={{ color: T.accent }}>vazifada</span> ishga tushadi?</>, ru: <>В какой <span className="italic" style={{ color: T.accent }}>задаче</span> срабатывает этот Skill?</> })}</h2></div>
         <Mentor>{tr({ uz: "Skill'ning description'i: «mahsulot uchun qisqa sotuvchi tavsif yozish, mahsulot nomi berilganda». Claude o'rnida bo'ling: uch vazifadan qaysi biri shu Skill'ni ochadi?", ru: 'description этого Skill: «писать короткое продающее описание для товара, когда дано название товара». Побудьте на месте Claude: какая из трёх задач откроет этот Skill?' })}</Mentor>
-        <div className="prompt-card"><span className="prompt-who">{tr({ uz: '📄 mahsulot-tavsifi · description', ru: '📄 mahsulot-tavsifi · description' })}</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsuloti uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товара мини-магазина. Используется, когда дано название товара.' })}</p></div>
+        <div className="prompt-card"><span className="prompt-who">{tr({ uz: '📄 mahsulot-tavsifi · description', ru: '📄 mahsulot-tavsifi · description' })}</span><p className="prompt-text">{tr({ uz: "Mini-do'kon mahsulotlari uchun qisqa sotuvchi tavsif yozish. Mahsulot nomi berilganda ishlatiladi.", ru: 'Писать короткое продающее описание для товаров мини-магазина. Используется, когда дано название товара.' })}</p></div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {TRIGGER_SITS.map(s => {
             let cls = 'pick-row';
@@ -1421,7 +1422,7 @@ const QUIZ_BANK = [
     { uz: 'Frontmatter va body', ru: 'frontmatter (name + description) и body' },
     { uz: 'Rasm va ovoz fayllari', ru: 'Файлы картинок и звука' },
     { uz: 'Parol va foydalanuvchi nomi', ru: 'Пароль и имя пользователя' },
-    { uz: 'Server va baza manzili', ru: 'Адрес сервера и базы данных' }], correct: 0 },
+    { uz: 'Server va Database manzili', ru: 'Адрес сервера и Database' }], correct: 0 },
   { q: { uz: 'description nima uchun kerak?', ru: 'Зачем нужен description?' }, opts: [
     { uz: "Skill'ni chiroyli ko'rsatish uchun", ru: 'Чтобы Skill выглядел красиво' },
     { uz: 'AI modelini almashtirish uchun', ru: 'Чтобы поменять модель ИИ' },
@@ -2225,7 +2226,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq, <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> bera olasiz.</>, ru: <>Теперь вы можете дать ИИ точную <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Skill o'qishni o'rgandingiz", ru: 'Вы научились читать Skill' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi AI'ga aniq, <span className="italic" style={{ color: T.accent }}>saqlanadigan yo'riqnoma</span> bera olasiz.</>, ru: <>Теперь вы дадите ИИ точную <span className="italic" style={{ color: T.accent }}>сохраняемую инструкцию</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>

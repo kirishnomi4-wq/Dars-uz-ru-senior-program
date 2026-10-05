@@ -364,7 +364,7 @@ const RECAPS = {
     title: { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' },
     cards: [
       { ic: "🗄️", h: { uz: "Ma'lumot va qoidalar", ru: 'Данные и правила' }, body: { uz: <><b>Model</b> ma'lumot qanday bo'lishini va u bilan qanday ishlashni belgilaydi.</>, ru: <><b>Model</b> определяет, какими должны быть данные и как с ними работать.</> } },
-      { ic: "💾", h: { uz: "Baza — Model emas", ru: 'База — это не Model' }, body: { uz: <>PostgreSQL <b>saqlaydi</b>, Model u bilan ishlaydi.</>, ru: <>PostgreSQL <b>хранит</b>, а Model с ней работает.</> } },
+      { ic: "💾", h: { uz: "Database — Model emas", ru: 'Database — это не Model' }, body: { uz: <>PostgreSQL <b>saqlaydi</b>, Model u bilan ishlaydi.</>, ru: <>PostgreSQL <b>хранит</b>, а Model с ней работает.</> } },
       { ic: "⚙️", h: { uz: "Backend'da turgan kod doim Controller emas", ru: 'Код в бэкенде — не всегда Controller' }, body: { uz: <>Qoidalar <b>Model</b>'da.</>, ru: <>Правила — в <b>Model</b>.</> }, ask: { uz: "«Narx manfiy bo'lmasin» qoidasi qaysi qismda turadi?", ru: 'В какой части находится правило «цена не может быть отрицательной»?' } },
     ]
   },
@@ -642,14 +642,14 @@ const MVC_ROLES = [{ id: 'view', label: 'View' }, { id: 'controller', label: 'Co
 const MAP_ITEMS = [
   { id: 'front', comp: { uz: "Mahsulotlar ro'yxatini chiqaradigan React sahifa", ru: 'React-страница, которая выводит список товаров' }, role: 'view' },
   { id: 'back', comp: { uz: "Nest'dagi controller — `/products` so'rovini qabul qiladigan kod", ru: 'Контроллер в Nest — код, который принимает запрос `/products`' }, role: 'controller' },
-  { id: 'db', comp: { uz: "Mahsulotda nomi va narxi bo'lishini belgilaydigan va uni bazadan o'qiydigan kod", ru: 'Код, который задаёт, что у товара есть название и цена, и читает товар из базы' }, role: 'model' }
+  { id: 'db', comp: { uz: "Mahsulotda nomi va narxi bo'lishini belgilaydigan va uni Database'dan o'qiydigan kod", ru: 'Код, который задаёт, что у товара есть название и цена, и читает товар из Database' }, role: 'model' }
 ];
 
 // ===== MVC HUB ANIMATSIYA (s5) =====
 const HUB_STEPS = [
   { active: 'controller', conn: null, txt: { uz: "Foydalanuvchi «Mahsulotlar» tugmasini bosdi → so'rovni Controller qabul qildi.", ru: 'Пользователь нажал кнопку «Товары» → запрос принял Controller.' } },
   { active: 'model', conn: 'cm', txt: { uz: "Controller Model'dan mahsulotlar ro'yxatini so'radi.", ru: 'Controller запросил у Model список товаров.' } },
-  { active: 'controller', conn: 'cm', txt: { uz: "Model ro'yxatni bazadan (PostgreSQL) olib, Controller'ga qaytardi.", ru: 'Model взял список из базы (PostgreSQL) и передал его обратно в Controller.' } },
+  { active: 'controller', conn: 'cm', txt: { uz: "Model ro'yxatni Database'dan (PostgreSQL) olib, Controller'ga qaytardi.", ru: 'Model взял список из Database (PostgreSQL) и передал его обратно в Controller.' } },
   { active: 'view', conn: 'cv', txt: { uz: "Controller natijani View'ga berdi: «buni ko'rsat».", ru: 'Controller передал результат во View: «покажи это».' } },
   { active: 'view', conn: null, txt: { uz: "View foydalanuvchiga mahsulotlar ro'yxatini ko'rsatdi.", ru: 'View показал пользователю список товаров.' } }
 ];
@@ -664,7 +664,7 @@ const MICRO_SERVICES = [
 
 // ===== PATTERN MATCHER (s12) =====
 const SYSTEMS = [
-  { id: 'a', desc: { uz: "Kichik mini-do'kon: React sahifalar, bitta Nest backend va bitta baza.", ru: 'Маленький мини-магазин: React-страницы, один Nest-бэкенд и одна база.' }, ans: 'mono' },
+  { id: 'a', desc: { uz: "Kichik mini-do'kon: React sahifalar, bitta Nest backend va bitta Database.", ru: 'Маленький мини-магазин: React-страницы, один Nest-бэкенд и одна Database.' }, ans: 'mono' },
   { id: 'b', desc: { uz: "Katta onlayn bozor: to'lov, qidiruv, yetkazib berish — har biri alohida xizmat, har biriga alohida jamoa qaraydi.", ru: 'Большой маркетплейс: оплата, поиск, доставка — каждый отдельный сервис, и за каждым смотрит своя команда.' }, ans: 'micro' },
   { id: 'c', desc: { uz: "Yangi loyihaning birinchi sodda varianti (MVP — ishlaydigan eng sodda birinchi versiya): tezda bitta ilova kerak, jamoa 2 kishi.", ru: 'Первая простая версия нового проекта (MVP — самая простая первая версия, которая уже работает): быстро нужно одно приложение, в команде 2 человека.' }, ans: 'mono' }
 ];
@@ -694,7 +694,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Loyiha o'sdi — <span className="italic" style={{ color: T.accent }}>100 ta fayl</span>. Yangi dasturchi qayerdan boshlaydi?</>, ru: <>Проект вырос — <span className="italic" style={{ color: T.accent }}>100 файлов</span>. С чего начнёт новый разработчик?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Loyiha o'sdi — <span className="italic" style={{ color: T.accent }}>100 ta fayl</span>. Yangi dasturchi qayerdan boshlaydi?</>, ru: <>Проект вырос — <span className="italic" style={{ color: T.accent }}>100 файлов</span>. С чего начнёт новичок?</> })}</h1>
         <Mentor>{tr({ uz: "1-darsda tizimning qismlarini ko'rdik. Lekin har bir qismning ichida ham kod ko'payib boradi. Tugmani bosing — ikki xil loyiha tuzilishini solishtiring.", ru: 'На 1-м уроке мы видели части системы. Но и внутри каждой части кода становится всё больше. Нажмите кнопку — сравните две структуры проекта.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -753,7 +753,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodni tartiblashning tanilgan usuli — <span className="italic" style={{ color: T.accent }}>arxitektura patterni</span>.</>, ru: <>Известный способ упорядочить код — <span className="italic" style={{ color: T.accent }}>паттерн архитектуры</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodni tartiblashning tanilgan usuli — <span className="italic" style={{ color: T.accent }}>arxitektura patterni</span>.</>, ru: <>Способ упорядочить код — <span className="italic" style={{ color: T.accent }}>паттерн архитектуры</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>1-darsda tizimning qismlarini ko'rdingiz. Bugun ularni tartibli tuzishning <b style={{ color: T.ink }}>sinab ko'rilgan usullari</b>ni o'rganamiz. Yaxshi xabar: Nest darslarida Controller yozganingizda, siz shu usullardan birini allaqachon ishlatgansiz.</>, ru: <>На 1-м уроке вы видели части системы. Сегодня изучим <b style={{ color: T.ink }}>проверенные способы</b> выстроить их по порядку. Хорошая новость: когда вы писали Controller на уроках по Nest, вы уже использовали один из этих способов.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
@@ -814,8 +814,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {MVC.map(m => <button key={m.id} className={`pick-row ${active === m.id ? 'sel' : ''} ${seen.has(m.id) ? 'done-row' : ''}`} onClick={() => tap(m.id)}><span style={{ flex: 1 }}>{m.label} <span style={{ color: T.ink3, fontWeight: 500 }}>· {tr(m.sub)}</span></span><span className="pick-plus">{seen.has(m.id) ? '✓' : '▶'}</span></button>)}
             </div>
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗄️ <b>Baza (PostgreSQL) — Model emas.</b> Baza ma'lumotni saqlaydi, Model esa u bilan ishlaydi. <i>Oshxonada: ombor.</i></>, ru: <>🗄️ <b>База (PostgreSQL) — это не Model.</b> База хранит данные, а Model с ними работает. <i>На кухне: склад.</i></> })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "View ko'rsatadi, Controller yo'naltiradi, Model ma'lumot va qoidalar bilan ishlaydi. Baza esa ma'lumotni saqlaydi.", ru: 'View показывает, Controller направляет, Model работает с данными и правилами. А база хранит данные.' })}</p></div>}
+            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🗄️ <b>Database (PostgreSQL) — Model emas.</b> Database ma'lumotni saqlaydi, Model esa u bilan ishlaydi. <i>Oshxonada: ombor.</i></>, ru: <>🗄️ <b>Database (PostgreSQL) — это не Model.</b> Database хранит данные, а Model с ними работает. <i>На кухне: склад.</i></> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "View ko'rsatadi, Controller yo'naltiradi, Model ma'lumot va qoidalar bilan ishlaydi. Database esa ma'lumotni saqlaydi.", ru: 'View показывает, Controller направляет, Model работает с данными и правилами. А Database хранит данные.' })}</p></div>}
           </Col>
           <Col>
             {cur
@@ -972,15 +972,15 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — TEST 2 =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
-    questionText={{ uz: "Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni bazaga yozadigan kod — MVC'ning qaysi qismi?", ru: 'Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в базу, — какая часть MVC?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni bazaga yozadigan kod — MVC'ning <span className="italic" style={{ color: T.accent }}>qaysi qismi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в базу, — <span className="italic" style={{ color: T.accent }}>какая часть</span> MVC?</h2></> }}
+    questionText={{ uz: "Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni Database'ga yozadigan kod — MVC'ning qaysi qismi?", ru: 'Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в Database, — какая часть MVC?' }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nest backend'dagi «narx manfiy bo'lmasin» qoidasini tekshirib, mahsulotni Database'ga yozadigan kod — MVC'ning <span className="italic" style={{ color: T.accent }}>qaysi qismi</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Код в Nest-бэкенде, который проверяет правило «цена не может быть отрицательной» и записывает товар в Database, — <span className="italic" style={{ color: T.accent }}>какая часть</span> MVC?</h2></> }}
     options={[
       { uz: "View — chunki natija sahifada ko'rinadi", ru: 'View — ведь результат виден на странице' },
       { uz: "Model — ma'lumot va uning qoidalari", ru: 'Model — данные и их правила' },
       { uz: "Controller — chunki kod backend'da turibdi", ru: 'Controller — ведь код находится в бэкенде' },
       { uz: "Hech qaysi — bu kod MVC'dan tashqarida", ru: 'Никакая — этот код вне MVC' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Ma'lumot qanday bo'lishi va qanday qoidalar bilan ishlanishi — Model'ning vazifasi. Controller so'rovni qabul qilib, shu kodni chaqiradi. Ma'lumotni esa baza (PostgreSQL) saqlaydi.", ru: 'Верно! Какими должны быть данные и по каким правилам с ними работать — задача Model. Controller принимает запрос и вызывает этот код. А хранит данные база (PostgreSQL).' }}
+    explainCorrect={{ uz: "To'g'ri! Ma'lumot qanday bo'lishi va qanday qoidalar bilan ishlanishi — Model'ning vazifasi. Controller so'rovni qabul qilib, shu kodni chaqiradi. Ma'lumotni esa Database (PostgreSQL) saqlaydi.", ru: 'Верно! Какими должны быть данные и по каким правилам с ними работать — задача Model. Controller принимает запрос и вызывает этот код. А хранит данные Database (PostgreSQL).' }}
     explainWrong={{
       0: { uz: "Natija sahifada ko'rinadi, lekin qoidani View tekshirmaydi — u faqat ko'rsatadi.", ru: 'Результат виден на странице, но правило View не проверяет — он только показывает.' },
       2: { uz: "Kod backend'da turgani uni Controller qilmaydi: Controller so'rovni qabul qilib yo'naltiradi, qoidalar esa Model'da.", ru: 'То, что код в бэкенде, не делает его Controller: Controller принимает и направляет запрос, а правила — в Model.' },
@@ -1128,7 +1128,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Pattern nomlari — dasturchilarning umumiy tili. Tizimingizni 100 ta fayl orqali emas, bir nechta tanish so'z bilan tushuntirasiz. Tugmani bosing.", ru: 'Названия паттернов — общий язык разработчиков. Свою систему вы объясняете не через 100 файлов, а несколькими знакомыми словами. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🙈 Patternsiz', ru: '🙈 Без паттерна' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bu yerda fayl bor, u boshqasini chaqiradi, keyin bazaga…» — uzoq, chalkash.", ru: '«Тут есть файл, он вызывает другой, потом в базу…» — долго и путано.' })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '🙈 Patternsiz', ru: '🙈 Без паттерна' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bu yerda fayl bor, u boshqasini chaqiradi, keyin Database'ga…» — uzoq, chalkash.", ru: '«Тут есть файл, он вызывает другой, потом в Database…» — долго и путано.' })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: 'Pattern bilan-chi?', ru: 'А с паттерном?' })}</button>
           </Col>
           <Col>
@@ -1270,7 +1270,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: "Yo'lni yig'ing", ru: 'Соберите путь' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: MVC'da so'rov yo'lini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите путь запроса в MVC <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: MVC'da so'rov yo'lini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Соберите путь запроса в MVC <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Bo'laklarni sudrab to'g'ri tartibga joylang.", ru: 'Перетащите блоки и расставьте их в правильном порядке.' })}</Mentor>
         <DragDropOrder
           items={FLOW_ITEMS}
@@ -1369,7 +1369,7 @@ const QZ_BG_SHAPES = [
   { ch: '🧩',           l: 91, t: 42, s: 28, d: 24, dl: 1.3 },
   { ch: '🏢',           l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
   { ch: 'scaling',     l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: { uz: 'baza', ru: 'база' },  l: 2,  t: 30, s: 20, d: 28, dl: 3.1 },
+  { ch: 'Database',  l: 2,  t: 30, s: 20, d: 28, dl: 3.1 },
   { ch: { uz: 'xizmat', ru: 'сервис' },      l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
   { ch: 'PostgreSQL',       l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
@@ -1378,16 +1378,16 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "MVC'da foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть MVC видит пользователь?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — слой данных' }, { uz: 'Hech qaysi qism mos emas', ru: 'Ни одна часть не подходит' }], correct: 0 },
   { q: { uz: "Ma'lumot va uning qoidalari bilan MVC'ning qaysi qismi ishlaydi?", ru: 'Какая часть MVC работает с данными и их правилами?' }, opts: [{ uz: "View — ma'lumotni ko'rsatadi", ru: 'View — показывает данные' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — so'rovni yo'naltiradi", ru: 'Controller — направляет запрос' }, { uz: "MVC'dan butunlay tashqarida", ru: 'Полностью вне MVC' }], correct: 1 },
-  { q: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism qaysi?", ru: 'Какая часть принимает запрос и направляет работу?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: 'Baza — PostgreSQL', ru: 'База — PostgreSQL' }], correct: 2 },
+  { q: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism qaysi?", ru: 'Какая часть принимает запрос и направляет работу?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: 'Database — PostgreSQL', ru: 'Database — PostgreSQL' }], correct: 2 },
   { q: { uz: "«Hamma asosiy qism bitta ilovada» — bu qaysi usul?", ru: '«Все основные части в одном приложении» — какой это способ?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'MVC', ru: 'Serverless' }, { uz: 'Frontend', ru: 'Peer-to-peer' }, { uz: 'Monolit', ru: 'Монолит' }], correct: 3 },
   { q: { uz: 'Alohida ishlaydigan va alohida joylashtiriladigan bir nechta xizmat — bu?', ru: 'Несколько сервисов, которые работают и развёртываются отдельно, — это?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'Monolit', ru: 'Монолит' }, { uz: 'MVC', ru: 'MVC' }, { uz: 'Frontend', ru: 'Frontend' }], correct: 0 },
   { q: { uz: "Kichik yangi loyiha, jamoa kichik. Ko'pincha nima qulay?", ru: 'Новый небольшой проект, команда маленькая. Что чаще удобнее?' }, opts: [{ uz: 'Mikroservis — zamonaviyroq', ru: 'Микросервисы — современнее' }, { uz: 'Monolit — soddadan boshlang', ru: 'Монолит — начните с простого' }, { uz: 'Ikkalasini birga ishlatish', ru: 'Использовать оба сразу' }, { uz: 'Hech qaysi usul kerak emas', ru: 'Никакой способ не нужен' }], correct: 1 },
-  { q: { uz: "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, opts: [{ uz: 'Model', ru: 'Сразу в Model' }, { uz: 'View', ru: 'Сразу во View' }, { uz: 'Controller', ru: 'В Controller (центр)' }, { uz: "Ma'lumotlar bazasi", ru: 'Сразу в базу' }], correct: 2 },
+  { q: { uz: "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, opts: [{ uz: 'Model', ru: 'Сразу в Model' }, { uz: 'View', ru: 'Сразу во View' }, { uz: 'Controller', ru: 'В Controller (центр)' }, { uz: 'Database', ru: 'Сразу в Database' }], correct: 2 },
   { q: { uz: "Yuk ko'p tushgan xizmatga yana bir nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление ещё одной копии сервису с большой нагрузкой?' }, opts: [{ uz: 'Qayta yozish', ru: 'Переписывание' }, { uz: 'Joylashtirish (deploy)', ru: 'Развёртывание (deploy)' }, { uz: 'Xatoni tuzatish', ru: 'Исправление ошибки' }, { uz: 'Miqyoslash (scaling)', ru: 'Масштабирование (scaling)' }], correct: 3 },
-  { q: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, opts: [{ uz: "Muammoning sinab ko'rilgan yechim usuli", ru: 'Проверенный способ решения задачи' }, { uz: 'Yangi bir dasturlash tili nomi', ru: 'Название нового языка программирования' }, { uz: "Ma'lumotlar bazasining bir turi", ru: 'Разновидность базы данных' }, { uz: "Tayyor ko'chirib olinadigan kod", ru: 'Готовый код, который можно скопировать' }], correct: 0 },
+  { q: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, opts: [{ uz: "Muammoning sinab ko'rilgan yechim usuli", ru: 'Проверенный способ решения задачи' }, { uz: 'Yangi bir dasturlash tili nomi', ru: 'Название нового языка программирования' }, { uz: "Database'ning bir turi", ru: 'Разновидность Database' }, { uz: "Tayyor ko'chirib olinadigan kod", ru: 'Готовый код, который можно скопировать' }], correct: 0 },
   { q: { uz: 'PostgreSQL MVC tuzilmasida nima qiladi?', ru: 'Что делает PostgreSQL в структуре MVC?' }, opts: [{ uz: "Controller'ning o'zi — so'rovni boshqaradi", ru: 'Это сам Controller — управляет запросом' }, { uz: "Ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'Хранит данные — Model с ними работает' }, { uz: "View'ning o'zi — sahifani ko'rsatadi", ru: 'Это сам View — показывает страницу' }, { uz: "Model'ning o'zi — boshqa narsa kerak emas", ru: 'Это сам Model — больше ничего не нужно' }], correct: 1 },
   { q: { uz: 'Mikroservisning asosiy foydasi nimada?', ru: 'В чём главная польза микросервисов?' }, opts: [{ uz: 'Soddalik va arzonlik', ru: 'Простота и дешевизна' }, { uz: 'Hammasi bitta katta faylda', ru: 'Всё в одном большом файле' }, { uz: 'Qismlarni alohida kuchaytirish', ru: 'Усиливать части по отдельности' }, { uz: 'Kod yozish shart emasligi', ru: 'Что код писать не нужно' }], correct: 2 },
-  { q: { uz: "Nest'dagi controller MVC'da qaysi qism?", ru: 'Контроллер в Nest — какая это часть MVC?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Baza — ma'lumot saqlash", ru: 'База — хранение данных' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }], correct: 3 },
+  { q: { uz: "Nest'dagi controller MVC'da qaysi qism?", ru: 'Контроллер в Nest — какая это часть MVC?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Database — ma'lumot saqlash", ru: 'Database — хранение данных' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2065,7 +2065,7 @@ function Flashcards({ cards }) {
 
 // 🛠️ PRAKTIKA — o'quvchi o'z loyihasini pattern bilan ta'riflaydi (mentor-gate, kod kiritilmaydi)
 const ScreenCityPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · Loyiha', ru: 'Практика · Проект' }} place={{ uz: 'AI yordamchida', ru: 'с ИИ-помощником' }}
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · Loyiha', ru: 'Практика · Проект' }} place={{ uz: 'AI yordamchingizda', ru: 'с ИИ-помощником' }}
     title={{ uz: "O'z tizimingizni pattern bilan ta'riflang", ru: 'Опишите свою систему через паттерн' }}
     task={{ uz: <>O'z loyihangizni (yoki mini-do'konni) arxitektura tili bilan bir jumlada ta'riflang. Hali kod yozmaysiz — faqat rejalashtirasiz.<br /><br />💡 <b>Esda tuting:</b> bu yerda <b>ikki xil savol</b> bor. MVC — ilova ichidagi tartib. Monolit yoki mikroservis — tizim nechta ilovaga bo'lingani.</>, ru: <>Опишите свой проект (или мини-магазин) одной фразой на языке архитектуры. Код пока не пишете — только планируете.<br /><br />💡 <b>Запомните:</b> здесь <b>два разных вопроса</b>. MVC — порядок внутри приложения. Монолит или микросервисы — на сколько приложений разделена система.</> }}
     checklist={[
@@ -2082,8 +2082,8 @@ const CITY_FLASHCARDS = [
   { front: { uz: "MVC qaysi uchta so'zdan tuzilgan?", ru: 'Из каких трёх слов состоит MVC?' }, back: 'Model, View, Controller', note: { uz: "Kodni vazifasi bo'yicha 3 qismga ajratish", ru: 'Разделить код на 3 части по задачам' } },
   { front: { uz: "Foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть видит пользователь?' }, back: 'View', note: { uz: 'Sahifa, tugmalar, rasmlar', ru: 'Страница, кнопки, картинки' } },
   { front: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism?", ru: 'Какая часть принимает запрос и направляет работу?' }, back: 'Controller', note: { uz: "Nest'dagi controllerlar shu ishni qiladi", ru: 'Контроллеры в Nest делают именно это' } },
-  { front: { uz: "Ma'lumot va qoidalar bilan qaysi qism ishlaydi?", ru: 'Какая часть работает с данными и правилами?' }, back: 'Model', note: { uz: "Ma'lumotni esa baza saqlaydi", ru: 'А хранит данные база' } },
-  { front: { uz: "PostgreSQL — Model'ning o'zimi?", ru: 'PostgreSQL — это сам Model?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'Baza saqlaydi, Model u bilan ishlaydi', ru: 'База хранит, Model с ней работает' } },
+  { front: { uz: "Ma'lumot va qoidalar bilan qaysi qism ishlaydi?", ru: 'Какая часть работает с данными и правилами?' }, back: 'Model', note: { uz: "Ma'lumotni esa Database saqlaydi", ru: 'А хранит данные Database' } },
+  { front: { uz: "PostgreSQL — Model'ning o'zimi?", ru: 'PostgreSQL — это сам Model?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'Database saqlaydi, Model u bilan ishlaydi', ru: 'Database хранит, Model с ней работает' } },
   { front: { uz: "MVC'da so'rovni birinchi kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, back: { uz: 'Controller', ru: 'В Controller' }, note: { uz: "Keyin Model'dan ma'lumot olib, View'ga beradi", ru: 'Потом берёт данные из Model и передаёт во View' } },
   { front: { uz: 'MVC va monolit/mikroservis — bitta savolmi?', ru: 'MVC и монолит/микросервисы — это один вопрос?' }, back: { uz: "Yo'q, ikki xil", ru: 'Нет, два разных' }, note: { uz: "MVC — ilova ichi; monolit/mikroservis — tizim qanday bo'lingani", ru: 'MVC — внутри приложения; монолит/микросервисы — как разделена система' } },
   { front: { uz: "Hamma asosiy qism bitta ilovada — bu nima?", ru: 'Все основные части в одном приложении — что это?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: 'Sodda, tez boshlanadi', ru: 'Просто, быстро стартует' } },
@@ -2127,7 +2127,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: "Pattern — ko'p uchraydigan muammoning sinab ko'rilgan yechim usuli", ru: 'Паттерн — проверенный способ решения частой задачи' },
     { uz: "MVC: View — ko'rsatadi, Controller — yo'naltiradi, Model — ma'lumot va qoidalar bilan ishlaydi", ru: 'MVC: View — показывает, Controller — направляет, Model — работает с данными и правилами' },
-    { uz: "Baza (PostgreSQL) ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'База (PostgreSQL) хранит данные — Model с ними работает' },
+    { uz: "Database (PostgreSQL) ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'Database (PostgreSQL) хранит данные — Model с ними работает' },
     { uz: "MVC — ilova ichi; monolit yoki mikroservis — tizim qanday bo'lingani", ru: 'MVC — внутри приложения; монолит или микросервисы — как разделена система' },
     { uz: "Kichik loyiha — ko'pincha monolit; tizim va jamoa kattalashsa, ayrim qismlar alohida xizmatga ajratiladi", ru: 'Маленький проект — чаще монолит; когда система и команда растут, отдельные части выносят в отдельные сервисы' }
   ];
