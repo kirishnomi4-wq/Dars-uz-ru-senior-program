@@ -1,0 +1,125 @@
+{
+ "title": "GATE M · 9-Modul",
+ "kod": "9M-2",
+ "eyebrow": "LMS 9-Modul · 12 dars · audit Filtridan keyingi MD v3 · yakuniy tasdiq",
+ "kirish": "12 darsning yangilangan MD v3 matni. Har darsda: audit hukmi, qisqa xulosa va to'liq MD (bosib ochiladi). Hammasi tasdiq bo'lsa, javob qatorini yuboring — keyin «qur» bosqichi.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Holat",
+   "eyebrow": "9-Modul · 12 dars · tashqi audit (ChatGPT) Filtridan keyin",
+   "nom": "Nima o'zgardi",
+   "fayl": null,
+   "xulosa": "Har dars ChatGPT auditidan «Filtr» bilan o'tdi (har darsning `NN-FILTR.md` jadvali — Qabul / Qisman / Rad + sabab). Siz bergan qarorlar: 01-q0 · 01-q1 · 03-q0 · 05-q0 · 08-q0 — hammasi A. Tayanchda yangilangan: loyiha/mahsulot ta'rifi, tanlangan muammo gapi, animatsiya va mikro-harakat ta'rifi, K7 nomlari (WEB_ORIGIN, VITE_API_URL, test bandlari soati), saqlash kalitlari jadvali. 12 MD — til tekshiruvi 0 xato. Har darsni «Tasdiq» yoki «Izoh bilan» belgilang; hammasi tasdiq bo'lsa — keyingi qadam «qur» (konveyer 3–9, agentlar faqat ruxsatingiz bilan).",
+   "savollar": []
+  },
+  {
+   "id": "01",
+   "qisqa": "Loyihangiz kimga kerak?",
+   "eyebrow": "9-Modul · 01-dars",
+   "nom": "1 · Loyihangiz kimga kerak?",
+   "fayl": "01-PmProductProblem-v3.md",
+   "xulosa": "Audit Filtri:  — `01-FILTR.md`. PM · 17 ekran · ✔ s3 C · s5 B · s7 D · s12 A · keys Dropbox (MIT News, Fortune, TechCrunch). «Sizsiz bir kun» tajribasidan loyiha / mahsulot farqi; Yandex Go, Payme, Google Translate tahlili; Mentor ro'yxatida «Maydon» muammosi birinchi bor chiqadi; sinfdosh bilan 10 muammo. Bitta vizual — KIM · MUAMMO · YECHIM kartasi. Agent shubhasi: s12 da to'g'ri javob va 2-variant juda yaqin; hook javobi Yandex Go ni 2-ekrandan oldin ko'rsatadi.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "Besh odamdan nimani bilib ol",
+   "eyebrow": "9-Modul · 02-dars",
+   "nom": "2 · Besh odamdan nimani bilib olasiz?",
+   "fayl": "02-PmFiveInterviews-v3.md",
+   "xulosa": "Audit Filtri: Qabul 9 · Qisman 4 · Rad 2 — `02-FILTR.md`. PM · 16 ekran · ✔ s3 C · s5 A · s7 D · s11 B. 8-Modul «bo'lib o'tgan ishni so'rash» so'zlari aynan; shablon to'rt qator: Kim bilan · Oxirgi marta nima bo'ldi? · O'shanda nima qildi? · Nima qiyin bo'ldi?; sinfdosh bilan mashq intervyu; uyga — 5 real intervyu. «Custdev» faqat kartochkada.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "Besh suhbatdan qaysi muammo ",
+   "eyebrow": "9-Modul · 03-dars",
+   "nom": "3 · Besh suhbatdan qaysi muammo chiqdi?",
+   "fayl": "03-PmInterviewMvp-v3.md",
+   "xulosa": "Audit Filtri: Qabul 11 · Qisman 2 · Rad 2 — `03-FILTR.md`. PM · 17 ekran · ✔ s3 B · s5 D · s7 A · s12 C · keys Burbn → Instagram (TechCrunch 2010, Wikipedia). Doska: besh yozuv → sanoq 4/3/2/1 → muammo gapi → 8 imkoniyat uch qutiga (qilamiz / keyin / qilmaymiz). Qutilar qoidasi — ikki savol: «Busiz muammo hal bo'ladimi?» · «Yozuvlarda unga sabab bormi?».",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "Mini-MVP arxitekturasi",
+   "eyebrow": "9-Modul · 04-dars",
+   "nom": "4 · Mini-MVP arxitekturasi",
+   "fayl": "04-MvpArchitecture-v3.md",
+   "xulosa": "Audit Filtri: Qabul 12 · Qisman 3 · Rad 2 — `04-FILTR.md`. TEX · 18 ekran + 2 blok · ✔ s3 B · s6 C · s8 A · s10 D · final tartib. Chizma dars bo'yi to'ladi: sayt · Backend · Database, jadval `bandlar`, o'yinchining ikki yo'li, ega kirishi (401 → token), stack tanlovi, deploy. A1 — `backend/` + Neon, A2 — `web/` + statik kataklar, `dars-04-done`. Agent shubhasi: 9-ekranda oltita kod parchasi — og'ir bo'lishi mumkin.",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "Animatsiya: interfeys javob ",
+   "eyebrow": "9-Modul · 05-dars",
+   "nom": "5 · Animatsiya: interfeys javob beradi",
+   "fayl": "05-Animation-v3.md",
+   "xulosa": "Audit Filtri: Qabul 9 · Qisman 1 · Rad 4 — `05-FILTR.md`. TEX (cho'qqi) · 20 ekran + 1 blok · ✔ s4 C · s7 A · s11 D · s13 B · final tartib. `transform: scale` → `transition` → rang (`.katak.band`) — qo'lda QKod da; keyin Motion (`motion/react`, `AnimatePresence`, `exit`; motion.dev dan tekshirilgan), ortiqcha harakat va `prefers-reduced-motion`. Platformada `motion` paketi yo'q — dars maketi uni taqlid qiladi (KOD).",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "Birinchi odam kirganda niman",
+   "eyebrow": "9-Modul · 06-dars",
+   "nom": "6 · Birinchi odam kirganda nimani ko'rasiz?",
+   "fayl": "06-PmAnalyticsDayOne-v3.md",
+   "xulosa": "Audit Filtri: Qabul 12 · Qisman 3 · Rad 1 — `06-FILTR.md`. PM + amaliyot · 14 ekran (2 blok) · ✔ s3 A · s5 C · s10 B. Uch ustun: Saytni ochdi → Vaqtni tanladi → Band qildi; «analitika» va «hodisa» harakatdan keyin tug'iladi; A1 — Umami ulash (skript, `data-website-id`), A2 — `data-umami-event` «vaqt-tanladi», sherik bilan tekshirish (Umami hujjati va manba kodidan tekshirilgan).",
+   "savollar": []
+  },
+  {
+   "id": "07",
+   "qisqa": "Loyiha kuni: MVP — birinchi ",
+   "eyebrow": "9-Modul · 07-dars",
+   "nom": "7 · Loyiha kuni: MVP — birinchi ekran",
+   "fayl": "07-MvpFirstScreen-v3.md",
+   "xulosa": "Audit Filtri: Qabul 13 · Qisman 2 · Rad 2 — `07-FILTR.md`. Loyiha kuni · 8 ekran + 3 blok · ✔ s3 C · s5 A. Talab bosqichma-bosqich: A1 — tayyor talab, faqat `{kun}`; A2 — «Nima buzilmasin» qatorini o'quvchi yozadi; A3 — uch qatorni o'zi (Backend javob bermasa xato holati). Kataklar Backend'dan (`GET /vaqtlar?kun=`). Kun tugmalari K3 bo'yicha almashadi.",
+   "savollar": []
+  },
+  {
+   "id": "08",
+   "qisqa": "Yaxshi interfeysdan nimani o",
+   "eyebrow": "9-Modul · 08-dars",
+   "nom": "8 · Yaxshi interfeysdan nimani olasiz?",
+   "fayl": "08-PmDesignMotion-v3.md",
+   "xulosa": "Audit Filtri: Qabul 14 · Qisman 2 · Rad 2 — `08-FILTR.md`. PM + amaliyot · 14 ekran (2 blok) · ✔ s3 B · s5 C · s9 A · keys Tweetie — pastga tortib yangilash (Wikipedia). Dizayner ekranidagi 4 bo'lak «Maydon» ga qo'yib ko'riladi → «namuna» va «bezak»; o'z g'oyasiga Dribbble/Behance dan namuna kartasi; A1 — «Vaqtlar to'ri», A2 — ro'yxat animatsiyasi va kun almashishi, agentga talab bilan. Mentor oldindan: Dribbble/Behance sinf tarmog'ida ochilishini tekshiradi.",
+   "savollar": []
+  },
+  {
+   "id": "09",
+   "qisqa": "Loyiha kuni: MVP tayyor",
+   "eyebrow": "9-Modul · 09-dars",
+   "nom": "9 · Loyiha kuni: MVP tayyor",
+   "fayl": "09-MvpComplete-v3.md",
+   "xulosa": "Audit Filtri: Qabul 13 · Qisman 2 · Rad 2 — `09-FILTR.md`. Loyiha kuni · 8 ekran + 3 blok · ✔ s3 B · s5 C. Hook — agent to'lovni taklif qiladi: «MVP qachon tayyor?». Ikki telefon bitta katak: Backend tekshiradi (`409`); ega sahifasi (`401`, token, `.env`); A1 band qilish + `band-qildi`, A2 `/ega`, A3 deploy (M-q7) va Umami uch qadami.",
+   "savollar": []
+  },
+  {
+   "id": "10",
+   "qisqa": "Odam ilovangizda qayerda to'",
+   "eyebrow": "9-Modul · 10-dars",
+   "nom": "10 · Odam ilovangizda qayerda to'xtab qoladi?",
+   "fayl": "10-PmUsabilityTest-v3.md",
+   "xulosa": "Audit Filtri: Qabul 14 · Qisman 3 · Rad 2 — `10-FILTR.md`. PM · 16 ekran · ✔ s3 B · s5 D · s7 A · s11 C · keys «The $300 Million Button» (Jared Spool, 2009). Sinov yozuvi ×5 tezlikda ijro, o'quvchi to'xtashlarni belgilaydi; yordam bersangiz yozuvda nima qoladi; eng muhim to'xtashni o'quvchi o'zi tanlaydi; sinfdosh bilan juftlikda sinov (3 daqiqa); uyga — 2 real odam. «Usability test» faqat 1-kartada.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "Loyiha kuni: sinovdan keying",
+   "eyebrow": "9-Modul · 11-dars",
+   "nom": "11 · Loyiha kuni: sinovdan keyingi tuzatish",
+   "fayl": "11-MvpIteration-v3.md",
+   "xulosa": "Audit Filtri: Qabul 14 · Qisman 2 · Rad 2 — `11-FILTR.md`. Loyiha kuni · 8 ekran + 3 blok · ✔ s3 C · s5 B. Qaysi muammo eng muhim — uch qadamga ta'siri bilan; kuzatuvdan talab: «odam X da to'xtadi» → uch qator; A1 `SINOV.md` ga kuzatuv, A2 tuzatish (tugma ekran pastida qotadi), A3 push → sinfdosh bilan o'sha vazifada qayta sinov.",
+   "savollar": []
+  },
+  {
+   "id": "12",
+   "qisqa": "Pitchingizda kimning hikoyas",
+   "eyebrow": "9-Modul · 12-dars",
+   "nom": "12 · Pitchingizda kimning hikoyasi bor?",
+   "fayl": "12-PmUserStoryPitch-v3.md",
+   "xulosa": "Audit Filtri: Qabul 16 · Qisman 3 · Rad 3 — `12-FILTR.md`. PM · 16 ekran · ✔ s3 B · s5 C · s7 A · s11 D · keys Canva (Guy Kawasaki suhbati). Raqam + hikoya → zal ishonadi; yozuvda bor gap (bo'lib o'tgan ish) va fikr/va'da farqi; «Maydon» pitchi uch slayd: Muammo · Yechim · Foydalanuvchi; o'z pitchi; sinfdosh oldida repetitsiya; «Endi siz bilasiz» butun modul yo'lini yig'adi.",
+   "savollar": []
+  }
+ ]
+}

@@ -124,6 +124,19 @@ const FullSystemProjectLesson = L(() => import('./6-Modull/FullSystemProjectLess
 const PmLesson25 = L(() => import('./6-Modull/PmLesson25.jsx'))
 
 // ---- 7-Modul — eski darslar (src/7-Modull) 05.10 da olib tashlandi: yangi 7-Modul konveyer bilan yangi rejada quriladi.
+const PmProductProblemLesson = L(() => import('./7-Modull/PmProductProblemLesson.jsx')) // 9-Modul 1-dars (LMS), konveyer pilot
+const MvpFirstScreenLesson = L(() => import('./7-Modull/MvpFirstScreenLesson.jsx')) // 9-Modul 7-dars (LMS), konveyer pilot
+// 9-Modul 2-to'lqin (05.10): skeletdan, har biri o'z quruvchi agenti bilan
+const PmFiveInterviewsLesson = L(() => import('./7-Modull/PmFiveInterviewsLesson.jsx')) // 9-Modul 2-dars
+const PmInterviewMvpLesson = L(() => import('./7-Modull/PmInterviewMvpLesson.jsx')) // 9-Modul 3-dars
+const MvpArchitectureLesson = L(() => import('./7-Modull/MvpArchitectureLesson.jsx')) // 9-Modul 4-dars
+const AnimationLesson = L(() => import('./7-Modull/AnimationLesson.jsx')) // 9-Modul 5-dars
+const PmAnalyticsDayOneLesson = L(() => import('./7-Modull/PmAnalyticsDayOneLesson.jsx')) // 9-Modul 6-dars
+const PmDesignMotionLesson = L(() => import('./7-Modull/PmDesignMotionLesson.jsx')) // 9-Modul 8-dars
+const MvpCompleteLesson = L(() => import('./7-Modull/MvpCompleteLesson.jsx')) // 9-Modul 9-dars
+const PmUsabilityTestLesson = L(() => import('./7-Modull/PmUsabilityTestLesson.jsx')) // 9-Modul 10-dars
+const MvpIterationLesson = L(() => import('./7-Modull/MvpIterationLesson.jsx')) // 9-Modul 11-dars
+const PmUserStoryPitchLesson = L(() => import('./7-Modull/PmUserStoryPitchLesson.jsx')) // 9-Modul 12-dars
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
 const PmMetricsLesson = L(() => import('./pm/PmMetricsLesson.jsx')) // PM pipeline P1 (M8-D1)
@@ -302,23 +315,22 @@ const MODULES = [
     ],
   },
   {
-    id: '7', slug: 'm7', title: 'Kim uchun va nima uchun', period: 'oy 9–10.5', stage: 2,
-    idea: 'Real odam uchun birinchi mahsulot. Foydalanuvchi Demo Day\'da hozir bo\'ladi.',
+    id: '7', slug: 'm7', title: 'Loyiham kim uchun va nima uchun', period: 'oy 9–10.5', stage: 2,
+    idea: 'Real odamning real muammosi uchun birinchi mini-MVP — jonli va animatsiyali.',
     lessons: [
-      { key: 'm7-01', n: 1,  type: 'PM',      emoji: '🎯', title: 'Mahsulot vs loyiha — Akselerator boshlanishi',        sub: 'nega ko\'p loyiha hech kimga kerak emas' },
-      { key: 'm7-04', n: 2,  type: 'PM',      emoji: '❓', title: 'Custdev: savol berish — Mom Test',     sub: 'Mom Test — taqiqlangan savollar' },
-      { key: 'm7-05', n: 3,  type: 'PM',      emoji: '🎙️', title: '5 real intervyu — ekspeditsiya',  sub: 'potensial foydalanuvchilar bilan' },
-      { key: 'm7-06', n: 4,  type: 'PM',      emoji: '✂️', title: 'Tahlil + MVP chegarasi — kesish san\'ati',    sub: 'qilamiz / qilmaymiz / keyinroq' },
-      { key: 'm7-07', n: 5,  type: 'Kod',     emoji: '🏛️', title: 'Mini-MVP arxitekturasi — chizma birinchi',    sub: 'sxema: komponent, data, stack tanlovi' },
-      { key: 'm7-08', n: 6,  type: 'PM',      emoji: '📊', title: 'Analitika birinchi kundan — ko\'zoynak kiyish', sub: 'Plausible / Umami — birinchi userdan oldin' },
-      { key: 'm7-09', n: 7,  type: 'Proyekt', emoji: '🚧', title: 'MVP v1: AI bilan vibe coding',      sub: 'prioritet bo\'yicha asosiy ekran' },
-      { key: 'm7-10', n: 8,  type: 'PM',      emoji: '🎨', title: 'Dizayn va nasmotrennost',   sub: 'Dribbble, Behance — yaxshi UI nima' },
-      { key: 'm7-11', n: 9,  type: 'Proyekt', emoji: '🏁', title: 'MVP v2: oxiriga yetkazish va SHIP', sub: 'feature\'lar tayyor, MVP SHIP' },
-      { key: 'm7-12', n: 10, type: 'PM',      emoji: '👀', title: 'Real odam bilan test — gapirma, kuzat',      sub: 'usability test — gapirma, kuzat' },
-      { key: 'm7-13', n: 11, type: 'Proyekt', emoji: '🔁', title: 'Fidbek iteratsiyasi',       sub: 'eng kritik narsani tuzatamiz' },
-      { key: 'm7-14', n: 12, type: 'PM',      emoji: '🎤', title: 'Pitch: muammo, yechim va foydalanuvchi', sub: 'real foydalanuvchi hikoyasi bilan' },
-      { key: 'm7-15', n: 13, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',               sub: 'yetib olish / sayqallash' },
-      { key: 'm7-16', n: 14, type: 'Demo',    emoji: '🎤', title: 'Demo Day',                  sub: 'real foydalanuvchi zalda hozir bo\'ladi' },
+      { key: 'm7-01', n: 1, type: 'PM', emoji: '🎯', title: 'Loyihangiz kimga kerak?', sub: 'mahsulot va loyiha farqi, atrofdan 10 muammo', comp: PmProductProblemLesson },
+      { key: 'm7-02', n: 2, type: 'PM', emoji: '🎙️', title: 'Besh odamdan nimani bilib olasiz?', sub: 'intervyu: bo\'lib o\'tgan ishni so\'rash, 5 yozuv', comp: PmFiveInterviewsLesson },
+      { key: 'm7-03', n: 3, type: 'PM', emoji: '✂️', title: 'Besh suhbatdan qaysi muammo chiqdi?', sub: 'sanoq, bitta muammo, qilamiz / keyin / qilmaymiz', comp: PmInterviewMvpLesson },
+      { key: 'm7-04', n: 4, type: 'Kod', emoji: '🏛️', title: 'Mini-MVP arxitekturasi', sub: 'qismlar, ma\'lumot, kirish, deploy — chizma', comp: MvpArchitectureLesson },
+      { key: 'm7-05', n: 5, type: 'Kod', emoji: '✨', title: 'Animatsiya: interfeys javob beradi', sub: 'transition, transform, Motion', comp: AnimationLesson },
+      { key: 'm7-06', n: 6, type: 'PM', emoji: '📊', title: 'Birinchi odam kirganda nimani ko\'rasiz?', sub: 'nimani o\'lchaymiz — va analitikani ulaymiz', comp: PmAnalyticsDayOneLesson },
+      { key: 'm7-07', n: 7, type: 'Proyekt', emoji: '🚧', title: 'Loyiha kuni: MVP — birinchi ekran', sub: 'talabni siz yozasiz, agent quradi', comp: MvpFirstScreenLesson },
+      { key: 'm7-08', n: 8, type: 'PM', emoji: '🎨', title: 'Yaxshi interfeysdan nimani olasiz?', sub: 'bitta usul va animatsiyalar', comp: PmDesignMotionLesson },
+      { key: 'm7-09', n: 9, type: 'Proyekt', emoji: '🏁', title: 'Loyiha kuni: MVP tayyor', sub: 'qolgan funksiyalar, ishlaydigan MVP', comp: MvpCompleteLesson },
+      { key: 'm7-10', n: 10, type: 'PM', emoji: '👀', title: 'Odam ilovangizda qayerda to\'xtab qoladi?', sub: 'sinov: tushuntirmang, kuzating', comp: PmUsabilityTestLesson },
+      { key: 'm7-11', n: 11, type: 'Proyekt', emoji: '🔁', title: 'Loyiha kuni: sinovdan keyingi tuzatish', sub: 'eng muhim bitta muammo tuzatiladi', comp: MvpIterationLesson },
+      { key: 'm7-12', n: 12, type: 'PM', emoji: '🎤', title: 'Pitchingizda kimning hikoyasi bor?', sub: 'muammo, yechim va real foydalanuvchi', comp: PmUserStoryPitchLesson },
+      { key: 'm7-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
     ],
   },
   {

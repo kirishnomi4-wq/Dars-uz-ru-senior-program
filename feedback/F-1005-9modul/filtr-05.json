@@ -1,0 +1,40 @@
+{
+ "title": "5-dars · audit Filtri",
+ "kod": "9M-05-FILTR",
+ "eyebrow": "9-Modul · 5-dars «Animatsiya: interfeys javob beradi» · ChatGPT auditi Filtr bilan",
+ "kirish": "Auditning har bandi darsda tekshirildi — jadval pastda. Tayanchga tegmaydigan tuzatishlar qo'llandi. Bitta qaror kerak: tayanchdagi ikki atamaning ta'rifi (5 va 8-darslar ishlatadi).",
+ "darslar": [
+  {
+   "id": "05",
+   "qisqa": "Savol",
+   "eyebrow": "Qaror kerak",
+   "nom": "Animatsiya va mikro-harakat ta'rifi",
+   "fayl": null,
+   "xulosa": "Hozir tayanchda: animatsiya — «element holatining silliq o'zgarishi», mikro-harakat — «bosishga javob». Audit to'g'ri: yuklanish yoki aylanadigan belgi ham animatsiya, «Saqlandi» xabari yoki tekshiruv belgisi ham mikro-harakat. Ta'rif tayanchda turgani uchun sizning qaroringiz.",
+   "savollar": [
+    {
+     "savol": "Ta'riflar",
+     "variantlar": [
+      [
+       "A",
+       "Kengroq ta'rif + darsda chegara: **animatsiya** — interfeysdagi ko'rinadigan harakat yoki holatning silliq o'zgarishi («bu darsda — holat o'zgarishini silliq ko'rsatadiganlari»); **mikro-harakat** — foydalanuvchi harakatiga yoki holat o'zgarishiga berilgan kichik vizual javob («bizning misolda — bosilgan katak kichrayadi»). Tayanch, 5 va 8-darslar almashadi"
+      ],
+      [
+       "B",
+       "Tayanch qoladi; 5-darsda faqat «bu darsda …» chegarasi qo'shiladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "qisqa": "Filtr",
+   "eyebrow": "Har band: darsda bormi → fakt → qonun → auditoriya",
+   "nom": "Filtr jadvali",
+   "fayl": "05-FILTR.md",
+   "xulosa": "Qabul 9 · Qisman 1 · Rad 4. Rad: hook «Aynan!/Qiziq fikr!» (T-028 va M5-03 talab qiladi), Reja sarlavhasi, ikki kod sarlavhasi.",
+   "savollar": []
+  }
+ ]
+}

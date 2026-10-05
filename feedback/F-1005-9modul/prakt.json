@@ -1,0 +1,53 @@
+{
+ "title": "Amaliyotli darslar tuzilmasi",
+ "kod": "9M-PRAKT",
+ "eyebrow": "9-Modul · AI-PRAKT va PM+PRAKT darslar · ekran soni",
+ "kirish": "Savolingizga javob jadvalda: AI-PRAKT darslar allaqachon loyiha kuni qolipida (11 = 8 ekran + 3 blok), PM+PRAKT darslar esa 14 ekran — nazariya ko'p, 8-darsda amaliyot o'rtada aralash. Taklif pastda. Ikkita qaror.",
+ "darslar": [
+  {
+   "id": "P",
+   "qisqa": "Qarorlar",
+   "eyebrow": "Qaror",
+   "nom": "Ikki savol",
+   "fayl": null,
+   "xulosa": "Birinchi variant — tavsiya.",
+   "savollar": [
+    {
+     "savol": "PM+PRAKT (6 va 8-darslar)",
+     "variantlar": [
+      [
+       "A",
+       "11 ekran: PM nazariya (≈20 daq) → darhol 2 amaliyot bloki → yakuniy test → podium → yakun; mustaqil ish bloklarning «O'z g'oyangiz» qadamiga (jadvaldagi xarita)"
+      ],
+      [
+       "B",
+       "14 ekran qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "AI-PRAKT (7, 9, 11) — hozir 11 ekran: 8 (kirish, reja, 2 tushuncha, 2 test, podium, yakun) + 3 amaliyot bloki, amaliyot ≈58 daq (P-058)",
+     "variantlar": [
+      [
+       "A",
+       "Shunday qoladi — «7–8 ekran» deganingiz bloklardan tashqari ekranlar (8)"
+      ],
+      [
+       "B",
+       "Jami 7–8 bo'lsin (bloklar bilan) — bu P-058 dan chetga chiqadi, izohga qaysi ekran olinishini yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "J",
+   "qisqa": "Jadval",
+   "eyebrow": "Hozirgi holat va taklif",
+   "nom": "Ekranlar soni",
+   "fayl": "00-PRAKT-TUZILMA.md",
+   "xulosa": "TEX darslar (4, 5) — 18 va 20: texnik dars standarti, ularga tegilmaydi (xohlasangiz izohga yozing).",
+   "savollar": []
+  }
+ ]
+}

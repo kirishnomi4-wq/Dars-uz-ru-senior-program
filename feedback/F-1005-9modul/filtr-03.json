@@ -1,0 +1,40 @@
+{
+ "title": "3-dars · audit Filtri",
+ "kod": "9M-03-FILTR",
+ "eyebrow": "9-Modul · 3-dars «Besh suhbatdan qaysi muammo chiqdi?» · ChatGPT auditi Filtr bilan",
+ "kirish": "Auditning har bandi darsda tekshirildi — hukm va sabab pastdagi jadvalda. Bitta qaror kerak: muammo gapi va «Qilamiz» qutisi orasidagi ziddiyat. U tayanchdagi tanlangan muammoga tegadi, shuning uchun sizning qaroringiz. Javobdan keyin hammasi bitta o'tishda tuzatiladi.",
+ "darslar": [
+  {
+   "id": "03",
+   "qisqa": "Savol",
+   "eyebrow": "Qaror kerak",
+   "nom": "Muammo gapi va «Qilamiz» qutisi",
+   "fayl": null,
+   "xulosa": "Hozir: muammo gapi «O'yinchilar maydonning bo'sh vaqtini oldindan bila olmaydi», «Qilamiz» esa uchta — vaqt kataklari · katakni band qilish · egasi uchun bandlar ro'yxati. 9-ekran qoidasi («busiz muammo hal bo'ladimi?») bilan band qilish va ega ro'yxati «Qilamiz»ga tushmaydi — auditning eng katta topilmasi, u rost. Yozuvlarda band qilishga dalil bor: 1, 2, 4-yozuvda o'yinchi kelishdan oldin egasiga qo'ng'iroq qilgan — vaqtni oldindan kelishib qo'ymoqchi bo'lgan (2-Modul belgisi: «odam o'zicha yo'l topgan»), 4 yozuvda maydonni boshqalar oldin egallagan.",
+   "savollar": [
+    {
+     "savol": "Ziddiyat qanday yopiladi?",
+     "variantlar": [
+      [
+       "A",
+       "Muammo gapi kengayadi, «Qilamiz» o'zgarmaydi: «O'yinchilar maydonga borishdan oldin bo'sh vaqtni bilish va uni band qilishda qiynaladi.» (2-Modul qolipi: kim · qachon · nimadan qiynaladi). Dalil aniq bo'lishi uchun 1-yozuvdagi gap: «Kelishdan oldin vaqt band qilmoqchi bo'lib egasiga qo'ng'iroq qilgandim, ko'tarmadi.» Ega ro'yxati: busiz band qilish ishlamaydi — ega bilmasa, vaqtni boshqaga beradi. Tayanch 1-bo'limdagi tanlangan muammo shu gapga almashadi; 4–12-darslar o'zgarmaydi"
+      ],
+      [
+       "B",
+       "Audit tavsiyasi: muammo gapi qoladi, «Qilamiz»da faqat bo'sh/band vaqtlarni ko'rish; band qilish va ega ro'yxati «Keyin»ga. Tayanch va repo o'zgaradi: 4, 5, 6, 7, 9, 10, 11, 12-darslar band qilishga qurilgan (`POST /bandlar`, `band-qildi` hodisasi, ega sahifasi, sinov vazifasi «band qiling», tugma «Band qilish») — 8 dars qayta yoziladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "qisqa": "Filtr",
+   "eyebrow": "Har band: darsda bormi → fakt → qonun → auditoriya",
+   "nom": "Filtr jadvali",
+   "fayl": "03-FILTR.md",
+   "xulosa": "Qabul 11 · Qisman 2 · Rad 2. Rad: Reja sarlavhasi va kod sarlavhasi (1–2-darslardagi sabab). Muammo qolipi auditdagidek kengayadi — bu 2-Moduldagi «Kim, qayerda, nimadan qiynaldi?» qolipining takrori, yangi qoida emas.",
+   "savollar": []
+  }
+ ]
+}

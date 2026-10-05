@@ -1,0 +1,66 @@
+{
+ "title": "9-Modul · qurish rejasi",
+ "kod": "9M-QUR",
+ "eyebrow": "LMS 9-Modul · konveyer 3–9 · o'zaro tekshiruvdan keyin",
+ "kirish": "To'liq ish rejasi: to'lqinlar, har birida nechta agent va qaysi fayllarga tegadi. 6 va 8-darslar 11 ekranga keltirildi (P-q0). Uchta qaror — javobdan keyin birinchi to'lqinni (repo + 2 pilot dars, 3 agent) boshlayman.",
+ "darslar": [
+  {
+   "id": "Q",
+   "qisqa": "Qarorlar",
+   "eyebrow": "Qurishdan oldin",
+   "nom": "Uchta qaror",
+   "fayl": null,
+   "xulosa": "Birinchi variant — tavsiya.",
+   "savollar": [
+    {
+     "savol": "Qanday boshlaymiz?",
+     "variantlar": [
+      [
+       "A",
+       "Pilot: avval 2 dars (01 PM va 07 loyiha kuni) + repo `maydon` parallel; natijani siz ko'rasiz, umumiy xatolar topshiriqqa qo'shiladi, keyin qolgan 10 dars parallel"
+      ],
+      [
+       "B",
+       "12 dars birdan parallel (tezroq, lekin umumiy xato bo'lsa 12 marta tuzatiladi)"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo `maydon` qayerda?",
+     "variantlar": [
+      [
+       "A",
+       "`~/Desktop/maydon` — lokal, alohida git; GitHub'da `Azizbekcrypto/maydon` ni ochish va push — keyin sizning buyrug'ingiz bilan"
+      ],
+      [
+       "B",
+       "Boshqa joy — izohga yozing"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo teglarini sinash uchun Database",
+     "variantlar": [
+      [
+       "A",
+       "Lokal PostgreSQL (kompyuterda ishlayapti) — Neon faqat darsdagi o'quvchi yo'li uchun qoladi"
+      ],
+      [
+       "B",
+       "Neon — `DATABASE_URL` ni siz berasiz"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R",
+   "qisqa": "Reja",
+   "eyebrow": "Konveyer 3–9 · to'lqinlar",
+   "nom": "Qurish rejasi",
+   "fayl": "QURISH_REJA.md",
+   "xulosa": "Har to'lqindan oldin alohida ruxsat so'rayman. Commit, push, deploy — faqat buyruq bilan.",
+   "savollar": []
+  }
+ ]
+}

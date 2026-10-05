@@ -1,0 +1,189 @@
+{
+ "title": "9-Modul · boshlash qarorlari",
+ "kod": "9M-QAROR-0",
+ "eyebrow": "LMS 9-Modul «Loyiham kim uchun va nima uchun + animatsiya» · kod src/7-Modull · MD yozishdan oldin",
+ "kirish": "MD v3 yozishdan oldin 8 ta qaror: misol-ip, repo, dars nomlari va beshta kichik savol. Har savolda birinchi variant — tavsiya (belgilab qo'yilgan). Pastda «Manba» — dastur jadvali, App.jsx bilan nomuvofiqlik va o'tilgan mavzular. Oxirida javob qatorini nusxalab chatga qo'ying.",
+ "darslar": [
+  {
+   "id": "IP",
+   "qisqa": "Misol-ip",
+   "eyebrow": "1-qaror · modul bo'yi bitta misol",
+   "nom": "Misol-ip: 12 dars qaysi mahsulot ustida o'tadi?",
+   "fayl": null,
+   "xulosa": "Mentor butun modulda bitta mahsulotni misol qiladi: muammo topiladi, 5 intervyu, MVP kesiladi, quriladi, jonlantiriladi, sinaladi, pitch qilinadi. O'quvchi xuddi shu qadamlarni o'z g'oyasiga qo'llaydi. Talab: o'quvchi u joyga o'zi boradi (95-qonun), intervyu uchun 5 odamni oson topadi, o'ylab topilgan qahramon yo'q.",
+   "savollar": [
+    {
+     "savol": "Misol-ip qaysi biri?",
+     "variantlar": [
+      [
+       "A",
+       "«Maydon» — mahalladagi futbol maydonchasini band qilish. Muammo: kelasiz — band; bo'sh vaqtni bilish uchun egasiga qo'ng'iroq qilish kerak. Intervyu — o'ynaydigan tengdoshlar va maydon egasi. MVP: bo'sh vaqtlar + band qilish. Animatsiya: vaqt katagi, «Band qilindi» belgisi. Analitika: ochdi → vaqtni tanladi → band qildi"
+      ],
+      [
+       "B",
+       "Navbat ilovasi (sartarosh) — 6-Modul 12-darsida reja misoli bo'lgan, tanish. Kamchiligi: o'sha darsda uning rejasi allaqachon yozilgan, «muammoni noldan topish» sun'iy chiqadi"
+      ],
+      [
+       "C",
+       "Maktab oshxonasi — tanaffusdan oldin buyurtma. Kamchiligi: «real odam» faqat maktab ichida, oshxona xodimi bilan intervyu qiyin"
+      ],
+      [
+       "D",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REPO",
+   "qisqa": "Repo",
+   "eyebrow": "2-qaror · kod tegadigan 7 dars (4, 5, 6, 7, 8, 9, 11)",
+   "nom": "Repo va vositalar",
+   "fayl": null,
+   "xulosa": "Amaliyot bloki qolipi (172/173) repo ustida ishlaydi: har darsdan keyin `dars-NN-done` tegi, ortda qolgan o'quvchi `git checkout -f dars-NN-done` qiladi. 6-Modulda repo — `TelegramBotNest` (AvtoPizza), kod Antigravity bilan yozilgan.",
+   "savollar": [
+    {
+     "savol": "Repo qaysi?",
+     "variantlar": [
+      [
+       "A",
+       "Yangi ochiq repo, modul bo'yi bitta (misol-ip nomi bilan), teglar `dars-04-done` … `dars-11-done`. Repo'ni «qur» bosqichida agent yozadi, push — sizning buyrug'ingiz bilan"
+      ],
+      [
+       "B",
+       "`TelegramBotNest` davom etadi (AvtoPizza ichiga yangi bo'lim). Kamchiligi: «noldan, real odam uchun» degan modul g'oyasiga zid"
+      ],
+      [
+       "C",
+       "Umumiy repo yo'q — har o'quvchi faqat o'z loyihasida. Kamchiligi: ortda qolgan o'quvchiga teg yo'q, qolip 173 buziladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Stek (4-dars «stek tanlovi» shu javobga tayanadi)",
+     "variantlar": [
+      [
+       "A",
+       "6-Moduldagi tanish stek: sayt React (Vite) + Backend NestJS + Database PostgreSQL (Neon); kod — Antigravity"
+      ],
+      [
+       "B",
+       "Yengilroq: React + Express + PostgreSQL (5-Modul LMS steki)"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    },
+    {
+     "savol": "Animatsiya kutubxonasi (5 va 8-darslar). Framer Motion 2024 yil oxiridan «Motion» deb nomlanadi (paket `motion`, eski `framer-motion` ham ishlaydi)",
+     "variantlar": [
+      [
+       "A",
+       "Avval CSS `transition` / `transform` qo'lda, keyin Motion; matnda bir marta «Motion (oldingi nomi Framer Motion)», paket `motion`"
+      ],
+      [
+       "B",
+       "Dasturdagidek «Framer Motion», paket `framer-motion`"
+      ],
+      [
+       "C",
+       "Faqat CSS, kutubxonasiz"
+      ]
+     ]
+    },
+    {
+     "savol": "Analitika vositasi (6-dars, shu darsda ulanadi)",
+     "variantlar": [
+      [
+       "A",
+       "Umami — bepul rejasi bor, bitta `script` qatori bilan ulanadi, hodisa (tugma bosilishi) yozadi"
+      ],
+      [
+       "B",
+       "Plausible — pullik, faqat sinov muddati bepul"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "NOM",
+   "qisqa": "Dars nomlari",
+   "eyebrow": "3-qaror · menyu nomi = dars nomi (205-qonun)",
+   "nom": "Dars nomlari, fayllar, kalitlar",
+   "fayl": "00-NOMLAR.md",
+   "xulosa": "PM darslar — savol-sarlavha (6-Modul uslubi), texnik darslar — mavzu nomi, loyiha kunlari — «Loyiha kuni: …». Jadval pastda ochiq turadi: nomlar ma'qul bo'lsa «Tasdiq», o'zgartirish bo'lsa «Izoh bilan» va izohga dars raqami + yangi nom.",
+   "savollar": [
+    {
+     "savol": "App.jsx 7-blok hozir dasturga mos emas: 14 qator (Demo Day bor, animatsiya darsi yo'q, «Mom Test» alohida dars), kalitlar teshikli",
+     "variantlar": [
+      [
+       "A",
+       "Dastur v9 ga keltiriladi: 13 qator, kalitlar `m7-01` … `m7-13`, Demo Day qatori olinadi; modul nomi «Loyiham kim uchun va nima uchun». Blok hozir yangilanadi (comp siz — «tez orada»), comp «qur» da ulanadi"
+      ],
+      [
+       "B",
+       "Xuddi shunday, lekin blokka faqat «qur» bosqichida tegiladi"
+      ],
+      [
+       "C",
+       "Demo Day qatori qoladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ISH",
+   "qisqa": "Dars ichidagi ish",
+   "eyebrow": "4-qaror · MD tuzilishiga tegadi",
+   "nom": "Real odam va o'z loyihasi — darsda qanday?",
+   "fayl": null,
+   "xulosa": "Dasturda 2-dars «5 real intervyu», 10-dars «real odam bilan sinov», 12-dars «foydalanuvchi ishtiroki» deydi — real odam sinfda yo'q. 7, 9, 11-darslarda esa o'quvchi o'z MVP sini quradi, qolip esa umumiy repo ustida ishlaydi.",
+   "savollar": [
+    {
+     "savol": "Real odam bilan ishlar (2, 10, 12-darslar)",
+     "variantlar": [
+      [
+       "A",
+       "Darsda sinfdosh bilan juftlikda mashq (shablon to'ldiriladi), real odam — uyga vazifa; keyingi dars shu yozuvlar bilan boshlanadi"
+      ],
+      [
+       "B",
+       "Hammasi darsda, sinfdoshlar bilan; uyga vazifa yo'q"
+      ]
+     ]
+    },
+    {
+     "savol": "Loyiha kunlari (7, 9, 11) va amaliyot bloklari (6, 8): o'quvchi nimani quradi?",
+     "variantlar": [
+      [
+       "A",
+       "Blokda Mentor misoli repo'da quriladi (teg bilan, hamma bir xil natijaga keladi); har blok oxirida bitta qadam — «shu promptni o'z g'oyangizga yozing», o'z MVP si uyda davom etadi"
+      ],
+      [
+       "B",
+       "Darsda faqat o'z MVP si; repo — faqat namuna va ortda qolganlar uchun"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MANBA",
+   "qisqa": "Manba",
+   "eyebrow": "Ma'lumot uchun · dastur, nomuvofiqlik, o'tilgan mavzular",
+   "nom": "Manba: dastur jadvali va oldingi darslar",
+   "fayl": "00-MANBA.md",
+   "xulosa": "Dasturdagi 13 dars jadvali, App.jsx bilan farqlar, 9-Modul tayanadigan oldingi PM va texnik darslar, dars turi → qolip. Pastdagi «Tasdiq / Izoh bilan» — shu manba uchun.",
+   "savollar": []
+  }
+ ]
+}

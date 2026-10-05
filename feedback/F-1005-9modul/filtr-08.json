@@ -1,0 +1,40 @@
+{
+ "title": "8-dars · audit Filtri",
+ "kod": "9M-08-FILTR",
+ "eyebrow": "9-Modul · 8-dars «Yaxshi interfeysdan nimani olasiz?» · ChatGPT auditi Filtr bilan",
+ "kirish": "Auditning har bandi darsda tekshirildi — jadval pastda. Tayanchga tegmaydigan tuzatishlar qo'llandi. Bitta qaror kerak: «namuna» so'zi modulda ikki ma'noda ishlatilgan.",
+ "darslar": [
+  {
+   "id": "08",
+   "qisqa": "Savol",
+   "eyebrow": "Qaror kerak",
+   "nom": "«Namuna» so'zi — bitta ma'noda",
+   "fayl": null,
+   "xulosa": "8-darsda «namuna» — interfeys usuli (pattern), 51 joyda. 4–11-darslarda esa «namuna» — misol: «namuna ma'lumot», amaliyot blokidagi yorliq «kutilgan natija · namuna: Maydon» (qolip standarti, 5–8-Modullardan), jami ≈50 joy. Bir so'z ikki ma'noda — qoida bo'yicha bittasi almashadi.",
+   "savollar": [
+    {
+     "savol": "Qaysi biri almashadi?",
+     "variantlar": [
+      [
+       "A",
+       "8-darsda pattern ma'nosi «usul» ga almashadi («interfeys usuli»; Tweetie'da ham «usul» deyilgan). «Namuna» boshqa darslarda misol ma'nosida qoladi; App.jsx `m7-08` osti yozuvi «bitta usul va animatsiyalar». Tegadi: 8-dars + bitta qator"
+      ],
+      [
+       "B",
+       "Audit: «namuna» faqat pattern; 4, 5, 6, 7, 9, 11-darslarda «namuna ma'lumot» → «statik ma'lumot», blok yorlig'i «namuna: Maydon» → «misol: Maydon» (qolip standartidan chetga chiqadi). Tegadi: 6 dars, ≈50 joy"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "qisqa": "Filtr",
+   "eyebrow": "Har band: darsda bormi → fakt → qonun → auditoriya",
+   "nom": "Filtr jadvali",
+   "fayl": "08-FILTR.md",
+   "xulosa": "Qabul 14 · Qisman 2 · Rad 2. Rad: hook «Aynan!/Qiziq fikr!» (T-028, M5-03) va Reja sarlavhasi.",
+   "savollar": []
+  }
+ ]
+}

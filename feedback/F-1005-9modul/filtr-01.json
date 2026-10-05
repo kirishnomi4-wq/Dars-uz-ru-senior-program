@@ -1,0 +1,57 @@
+{
+ "title": "1-dars · audit Filtri",
+ "kod": "9M-01-FILTR",
+ "eyebrow": "9-Modul · 1-dars «Loyihangiz kimga kerak?» · ChatGPT auditi Filtr bilan",
+ "kirish": "Auditning 5 asosiy bandi, sarlavhalar va til takliflari — har biri darsda tekshirildi, hukm va sabab bilan. Ikki savol qolgan: ta'rif (tayanchda turadi, shuning uchun sizning qaroringiz) va kod ekrani mazmuni. Javobdan keyin hammasi bitta o'tishda tuzatiladi.",
+ "darslar": [
+  {
+   "id": "01",
+   "qisqa": "Savollar",
+   "eyebrow": "Qaror kerak",
+   "nom": "Ikki savol",
+   "fayl": null,
+   "xulosa": "01-q0 — dars bo'yi so'zma-so'z turadigan ta'rif (A-bo'lim, 2-ekran xulosasi, kartochka, yakun). Javob tayanchga ham yoziladi. 01-q1 — 11-ekrandagi kichik kod mashqi nima qiladi.",
+   "savollar": [
+    {
+     "savol": "Loyiha va mahsulot ta'rifi",
+     "variantlar": [
+      [
+       "A",
+       "Loyiha — boshlanishi va oxiri bor qurish ishi. Mahsulot — odamlar o'z muammosi uchun ishlatadigan sayt, ilova yoki xizmat. Bog'lovchi gap: «Saytni qurish — loyiha. Tayyor saytni odamlar o'z ishi uchun ishlatsa, u mahsulot bo'lib ishlaydi.» Tekshiruv savoli: «Odamlar uni o'z ishi uchun ishlatyaptimi?»"
+      ],
+      [
+       "B",
+       "Audit so'zma-so'z: «Loyiha — aniq natijaga yetish uchun boshlanishi va oxiri bor ish. Mahsulot — foydalanuvchi biror ehtiyoji yoki muammosi uchun ishlatadigan narsa yoki xizmat.» («ehtiyoj» — «muammo» ning sinonimi, bir ma'no — bir so'z qoidasiga to'g'ri kelmaydi)"
+      ],
+      [
+       "C",
+       "Hozirgidek («men qurdim» / «kimdir ishlatadi») — tavsiya qilinmaydi: havola mezoni noto'g'ri qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "11-ekran kod mashqi (2–3 daqiqa)",
+     "variantlar": [
+      [
+       "A",
+       "9-ekrandagi Mentor yozuvlaridan faqat muammolarni ajratadi (`tur`: muammo · yechim · fikr) — «Ro'yxatdan faqat muammolarni ajratadigan kod yozamiz.» (53); yangi qoida yo'q, 2-Modul uch belgisining takrori"
+      ],
+      [
+       "B",
+       "Muammolarni nechta odamda borligi bo'yicha ajratadi (`necha >= 2`) — «Ko'p odamdagi muammolarni ajratadigan kod yozamiz.» (50); 12-ekranga ko'prik, lekin auditning «PM qoidasini kod bilan isbotlamaslik» shartiga yaqin keladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "qisqa": "Filtr",
+   "eyebrow": "Har band: darsda bormi → fakt → qonun → auditoriya",
+   "nom": "Filtr jadvali",
+   "fayl": "01-FILTR.md",
+   "xulosa": "Qabul 9 · Qisman 4 · Rad 3. Rad etilganlar: Reja sarlavhasi (reja ekrani — natija-gap), 3-ekran savoli (aniq misol kuchliroq), kod sarlavhasi («…digan kod yozamiz» oilasi). «Talab» va «tekshirish» so'zlari olinmadi — ular bizda boshqa ma'noda band. Auditda yo'q, o'zim topgan 6 joy pastda.",
+   "savollar": []
+  }
+ ]
+}
