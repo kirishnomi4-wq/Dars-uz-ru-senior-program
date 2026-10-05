@@ -7,7 +7,7 @@ Qonunlar: DARS_ETALON 193–198 · PM 107. Darvoza: `gates:qolip` q13–q16 · `
 
 ```jsx
 import { qolipRang, fon, qolipCss, QTugma, QChip, QKarta, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh,
-         QKirish, QTushuncha, QKod, QVoqea, QMustaqil, QNatija, QKartochka, QYakun } from '../qolip/index.jsx';
+         QKirish, QTushuncha, QKod, QVoqea, QMustaqil, QNatija, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };   // PM darsi: qolipRang('pm')
 // <style> ichida, reset qoidasidan keyin:  ${qolipCss(T)}
@@ -28,6 +28,7 @@ Darsning karkasi (Stage, NavNext, Mentor, QuestionScreen, jonli-ball) o'zida qol
 | Voqea | `QVoqea` | nuqtalar · slayd-karta + chizilgan maket · bashorat |
 | Mustaqil ish | `QMustaqil` | chiplar 1/2/3 · forma · Yordam — bitta ustun |
 | Natija (PM) | `QNatija` | bitta karta |
+| Amaliyot bloki | `QBlok` (+ `QPrompt`) | chap: qadamlar bittadan («Bajardim» qulfi, bajarilgani bir qatorga yig'iladi, ↻ qaytarish) · prompt qutisi `{…}` + «Nusxalash» · yashil yakun · o'ng: kutilgan natija maketi + «Ortda qoldingizmi» buyruqlari — holat/jonli signal darsdagi `ScreenBlok` ulagichida (namuna: `src/skelet/NamunaDars.jsx` `ScreenBlok`, `ScreenA1`; 172/173, GATE M M-q4) |
 | Kartochkalar | `QKartochka` | «O'zingizni sinab ko'ring»: navbat · 3D aylanish · «Bildim»/«Takrorlash» · tepadan (174) — ma'lumot: `cards=[{front,back,note}]` (tarjima qilingan) `til` (DE-204, q21) |
 | Yakun | `QYakun` | chiplar + sarlavha · `cta` (CODE STRIKE + arena — darsdan) · `recap` · `uyga` ([{b,t}] yoki PM `HwCard`) + `keyingi` · `hwTokens` · `nishonlar` (mentorda `null`) — texnik darslar standarti aynan (192, 202, DE-204, q21) |
 

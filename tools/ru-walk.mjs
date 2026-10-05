@@ -85,6 +85,8 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
 const tokenize = (t) => (t.match(/[A-Za-z\u0400-\u04FF\u02BB'‘’`][A-Za-z0-9\u0400-\u04FF\u02BB'‘’`-]*/g) || []);
 function uzResidue(text) {
   const hits = new Map();
+  // 04.10 (modul:yopish): kod identifikatori (`javoblar[0].savol`, `ctx.reply`, `fn()`) tarjima qilinmaydi — qoldiq emas (RU §9, 6-RU 4-qoida)
+  text = text.replace(/[A-Za-z_$][\w$]*(?:\[[^\]\s]*\]|\.[A-Za-z_$][\w$]*|\(\))+/g, ' ');
   for (const w of tokenize(text)) {
     if (!/[A-Za-z]/.test(w)) continue;
     const lw = w.toLowerCase().replace(/[ʻ‘’`]/g, "'").replace(/^'+|'+$/g, '');
@@ -107,6 +109,16 @@ async function main() {
   if (!existsSync(CHROME)) { console.error(`${RED}Chrome topilmadi:${R} ${CHROME} (CHROME_PATH bilan ko'rsating)`); process.exit(3); }
 
   const src = readFileSync(lessonPath, 'utf8');
+  // 04.10: ataylab o'zbekcha qoladigan so'zlar darsning o'zida e'lon qilinadi — «// ru-qoldiq-istisno: javob ism» (kod/terminal nomlari,
+  // repo bilan bir xil bot javoblari). E'londan tashqari har qoldiq ushlanadi; e'lon jurnalda sababi bilan.
+  // Ekran bo'yicha: «// ru-qoldiq-istisno s16: nima qilamiz» — faqat 16-ekranda; ekransiz e'lon — butun dars (kod nomlari uchun).
+  const ISTISNO = new Map();
+  for (const m of src.matchAll(/\/\/ ru-qoldiq-istisno(?: s(\d+))?:([^\n]*)/g)) {
+    const k = m[1] === undefined ? '*' : Number(m[1]);
+    if (!ISTISNO.has(k)) ISTISNO.set(k, new Set());
+    for (const w of m[2].trim().toLowerCase().split(/\s+/).filter(Boolean)) ISTISNO.get(k).add(w);
+  }
+  const istisno = (scr, w) => (ISTISNO.get('*')?.has(w)) || (ISTISNO.get(scr)?.has(w));
   const meta = parseMeta(src);
   if (!meta.lessonId || !meta.total) { console.error(`${RED}LESSON_META.lessonId yoki SCREEN_META topilmadi${R} (lessonId=${meta.lessonId}, total=${meta.total})`); process.exit(3); }
   const langs = String(arg(opts, 'langs', 'uz,ru')).split(',').map(s => s.trim()).filter(Boolean);
@@ -150,7 +162,7 @@ async function main() {
         r.chars = info.text.trim().length; r.progressScreen = info.ps;
         r.ok = r.chars > 20;
         r.cyr = (info.text.match(/[\u0400-\u04FF]/g) || []).length;
-        if (lang === 'ru') r.uzRes = uzResidue(info.text); else r.ruRes = ruResidue(info.text);
+        if (lang === 'ru') r.uzRes = uzResidue(info.text).filter(w => !istisno(s, w)); else r.ruRes = ruResidue(info.text);
         if (opts.shots) await page.screenshot({ path: join(outDir, `${lang}-s${String(s).padStart(2, '0')}.png`), fullPage: true });
       } catch (e) { errs.push('YUKLANMADI: ' + String(e.message).split('\n')[0].slice(0, 120)); }
       r.errs = [...new Set(errs)];

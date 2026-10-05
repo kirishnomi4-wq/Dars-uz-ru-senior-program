@@ -16,7 +16,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = process.cwd();
-const args = process.argv.slice(2);
+const TOLIQ = process.argv.includes('--toliq'); // to'liq blok o'qish (05.10) — hozircha ixtiyoriy, KATTA F-1004-66 dan keyin sukut bo'ladi
+const args = process.argv.slice(2).filter((a) => a !== '--toliq');
 const LEN_WARN = 1.25, LEN_ERR = 1.45;
 
 function listJsx(p) {
@@ -102,8 +103,18 @@ for (const file of files) {
   // QuestionScreen bloklari
   const re = /<QuestionScreen\b/g; let m;
   while ((m = re.exec(src))) {
-    const end = src.indexOf('/>', m.index); if (end < 0) break;
-    const block = src.slice(m.index, end + 2);
+    // Blok oxiri — birinchi «/>» EMAS: question={<TestQ … />} ichidagi «/>» blokni erta kesardi va variantlar o'qilmasdi
+    // (05.10, m6-02/m6-14 agentlari topdi — shu naqshli darslarda uzunlik tekshiruvi jimgina o'chgan edi). Endi — keyingi
+    // <QuestionScreen yoki keyingi yuqori darajadagi e'lon (const / function / export) gacha.
+    // Hozircha faqat --toliq bilan: yoqilsa 36 faylda +93 yashirin error chiqadi (KATTA F-1004-66) — sukut eski o'qish, darvozalar o'zgarmaydi.
+    let block;
+    if (TOLIQ) {
+      const stops = [src.indexOf('<QuestionScreen', m.index + 5), src.indexOf('\nconst ', m.index), src.indexOf('\nfunction ', m.index), src.indexOf('\nexport ', m.index)].filter((x) => x > 0);
+      block = src.slice(m.index, stops.length ? Math.min(...stops) : src.length);
+    } else {
+      const end = src.indexOf('/>', m.index); if (end < 0) break;
+      block = src.slice(m.index, end + 2);
+    }
     const oi = block.indexOf('options={'); if (oi < 0) continue;
     const arr = sliceBalanced(block, block.indexOf('[', oi), '[', ']'); if (!arr) continue;
     const opts = splitTop(arr.slice(1, -1)).map(uzOf).filter(x => x != null);

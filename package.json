@@ -35,6 +35,8 @@
     "lint:olchov": "node lint-olchov.mjs",
     "lint:narrow": "node lint-narrow.mjs",
     "lint:sarlavha": "node scripts/sarlavha-qator.mjs",
+    "modul:yopish": "node scripts/modul-yopish.mjs",
+    "karta": "node scripts/qurish-kartasi.mjs",
     "lint:qolip": "node lint-qolip.mjs"
   },
   "dependencies": {

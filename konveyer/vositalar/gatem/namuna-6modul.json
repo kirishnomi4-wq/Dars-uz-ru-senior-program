@@ -1,0 +1,618 @@
+{
+ "title": "GATE M · 6-Modul",
+ "eyebrow": "6-Modul · 13 dars · MD v3 ko'rigi · G1 texnik · G2 mobil · G3 loyiha kunlari · G4 PM",
+ "kirish": "1-dars pilotdan keyin qolgan 13 darsning MD v3 matni. Har darsda: qisqa xulosa, savollar (TAVSIYA birinchi turadi), to'liq MD (yig'ilgan). Tasdiqdan keyin konveyer kodni MD bo'yicha quradi. Avval «Modul bo'yi» savollari — ular bir nechta darsga tegadi. Izohni dars va ekran raqami bilan yozing.",
+ "darslar": [
+  {
+   "id": "M",
+   "guruh": "—",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "6-Modul · bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi qarorlar",
+   "fayl": null,
+   "xulosa": "Bu savollar bir nechta darsga birdan tegadi — javob hammasiga bir xil qo'llanadi. Mentor uchun eslatma (savol emas): 9–11 va 13-darslarda telefon backend'ga kompyuter IP'si orqali, bitta Wi-Fi'da yetadi; sinf Wi-Fi'i qurilmalarni bir-biridan ajratsa, amaliyot bloklari ishlamaydi — darsdan oldin tekshiriladi.",
+   "savollar": [
+    {
+     "savol": "Atama: «Database» yoki «baza»? (1, 4-darslar xaritasi «Database»; 3, 8, 13-darslar va 5-Modul «baza»)",
+     "variantlar": [
+      [
+       "A",
+       "Modul bo'yi «Database» — 1-dars xaritasi nomi"
+      ],
+      [
+       "B",
+       "«baza»"
+      ]
+     ]
+    },
+    {
+     "savol": "Atama: «chegara» — 4-dars 5-Modul bilan bir xil «chegara» dedi; 6-dars (PmLesson23) hali «vakolat chegarasi» deydi",
+     "variantlar": [
+      [
+       "A",
+       "6-dars ham «chegara»"
+      ],
+      [
+       "B",
+       "«vakolat chegarasi» ikkalasida"
+      ]
+     ]
+    },
+    {
+     "savol": "Misol-ip: 1-dars xaritasi telefon do'koni (siz ma'qullagansiz); repo darslari (4, 8–13, 9–10 ham) AvtoPizza",
+     "variantlar": [
+      [
+       "A",
+       "Shunday — 1-dars tushuncha misoli, repo darslari AvtoPizza; 11-dars nomidan «(mini-do'kon)» olinadi"
+      ],
+      [
+       "B",
+       "9–11 v2 dagidek mini-do'kon"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo nomlari 8–13-darslarda bitta: body maydoni `taom`, ustun `manba` (sayt · bot · mobil), manzil `BACKEND` (config.js), `GET /menyu` faqat 8-darsda quriladi; 13-dars `kirish` ustunini qo'shmaydi",
+     "variantlar": [
+      [
+       "A",
+       "Shunday — 09 (`API_URL`) va 13 (`pitsa`, `kirish`) shu nomlarga keltiriladi"
+      ],
+      [
+       "B",
+       "Har dars o'z MD'sidagidek"
+      ]
+     ]
+    },
+    {
+     "savol": "Amaliyot bloki (`ScreenBlok`) hozir faqat 5-Modulda, 3 nusxada",
+     "variantlar": [
+      [
+       "A",
+       "8/11/13 dan oldin `src/qolip/` ga `QBlok` bo'lib ko'chadi — bitta manba"
+      ],
+      [
+       "B",
+       "Har darsga nusxa"
+      ]
+     ]
+    },
+    {
+     "savol": "Loyiha kunlari (8, 11, 13) yakunida uyga vazifa (172.4 «olinadi», ish repo'da davom etadi)",
+     "variantlar": [
+      [
+       "A",
+       "Olinadi — 172 bo'yicha"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "PM testlarida 3 variant (QTest standarti 4 variant) — 2, 6, 12, 14-darslar",
+     "variantlar": [
+      [
+       "A",
+       "4-variant qo'shiladi — oxiriga, ✔ o'rni va jonli statistika o'zgarmaydi"
+      ],
+      [
+       "B",
+       "3 variant qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo · «Ortda qoldingizmi» tegi: A1 da dars-6-NN-start, A2/A3 da dars-6-NN-done (done keyingi blok xatosini oldindan tuzatib qo'yadi)",
+     "variantlar": [
+      [
+       "A",
+       "Shunday — A1 start, A2/A3 done"
+      ],
+      [
+       "B",
+       "Hammasida done"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo · O'quvchi repo'ni 5-Modul 3-darsda fork qilgan — yangi teglar uning fork'ida yo'q",
+     "variantlar": [
+      [
+       "A",
+       "Buyruq teglarni asosiy repo'dan oladi: git fetch https://github.com/Azizbekcrypto/TelegramBotNest --tags, keyin git checkout -f …"
+      ],
+      [
+       "B",
+       "Faqat git checkout (mentor oldindan fork'ni yangilaydi)"
+      ]
+     ]
+    },
+    {
+     "savol": "Repo · Tasdiq = repo'ga yangi kod va teglar (4-dars va 8–13-darslar: dars-6-04, dars-6-08 … dars-6-13 start/done) + GitHub'ga push (Azizbekcrypto/TelegramBotNest, public)",
+     "variantlar": [
+      [
+       "A",
+       "Ha — tasdiqdan keyin men quraman, sinayman va push qilaman"
+      ],
+      [
+       "B",
+       "Repo'ni o'zingiz push qilasiz, men lokal tayyorlayman"
+      ]
+     ]
+    },
+    {
+     "savol": "5-Modul · 5, 7, 9-darslardagi dars-05-start, dars-07-start, dars-09-start teglari repo'da YO'Q (ortda qolgan o'quvchi buyruqni bajara olmaydi)",
+     "variantlar": [
+      [
+       "A",
+       "Repo'ga 3 teg qo'shiladi (oldingi darsning done commit'iga) + GitHub push — dars kodi o'zgarmaydi"
+      ],
+      [
+       "B",
+       "Darslarda mavjud teglar ko'rsatiladi (dars-04-done, dars-06-done, dars-07-done) + qayta deploy"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "02",
+   "qisqa": "Bitta gap",
+   "eyebrow": "2-dars · m6-02 · 16 ekran · KOD 19 · G4",
+   "nom": "Bitta gapni uch kishi bir xil tushunadimi?",
+   "fayl": "02-PmLesson22-v3.md",
+   "xulosa": "Bitta vizual — «Varaq va uch ekran» (4 katakli varaq + uch dasturchi telefoni, har birida mini-varaq). 2-ekran: vaqt-kalit 1/3/7-kun, og'zaki gap o'zgaradi, varaq o'zgarmaydi. 4-ekran: katak to'lsa uch telefon bir xil bo'ladi; PRD atamasi varaqdan keyin (PM-107). Microsoft keysi qolipda; 4-ekran O'lchov «haftasiga 20 tadan 4 taga». Test kalitlari s3 B · s5 A · s7 C · s11 B o'zgarmagan.",
+   "savollar": [
+    {
+     "savol": "Q1 · 6-ekran keysida ikkinchi bashorat («tilni qachon ishga tushirishdi?») — karta S-015 bitta bashoratga ruxsat beradi",
+     "variantlar": [
+      [
+       "A",
+       "Olinadi — fakt 5-bosqich matnida qoladi"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Q2 · 10-ekran darvoza-savoli 5-ekran testini takrorlaydi",
+     "variantlar": [
+      [
+       "A",
+       "Kodga bog'liq savol: «varaq1 da qaysi katak bo'sh?»"
+      ],
+      [
+       "B",
+       "Hozirgisi qoladi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G4"
+  },
+  {
+   "id": "03",
+   "qisqa": "Patternlar",
+   "eyebrow": "3-dars · m6-03 · 20 ekran · KOD 20 · G1",
+   "nom": "Arxitektura patternlari",
+   "fayl": "03-ArchPatterns-v3.md",
+   "xulosa": "Bitta vizual — «Do'kon chizmasi» (ichki: View → Controller → Model, Database ramkadan tashqarida; tashqi: 4 bo'lim bitta ilovada → mikroservisda alohida). 8 tushuncha-ekran harakatli; 9/10-ekran (monolit/mikroservis) — bashorat + ikki sinov (To'lovda xato, bayram yuki). 5-ekran so'rov yo'li pilot naqshida. Final uyalari «bu yerga qo'ying»; testlar ✔ o'rni o'zgarmagan. Amaliyot repo'da: ARXITEKTURA.md (kod yozilmaydi).",
+   "savollar": [
+    {
+     "savol": "Q2 · Amaliyotning 3–4-qadam nomlari (bu darsda kod yozilmaydi, bot ishga tushirilmaydi)",
+     "variantlar": [
+      [
+       "A",
+       "«Tekshirish» va «Saqlash»"
+      ],
+      [
+       "B",
+       "173 dagidek «Ishga tushirish» va «Telegramda tekshirish»"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G1"
+  },
+  {
+   "id": "04",
+   "guruh": "G1",
+   "qisqa": "Agent",
+   "eyebrow": "4-dars · m6-04 · 20 ekran · KOD 14 · REPO 4 · G1",
+   "nom": "AI-agent nima",
+   "fayl": "04-AgentArchitecture-v3.md",
+   "xulosa": "Bitta vizual — agent xaritasi (1-dars xaritasining davomi). 9 ekran harakatga: AI'ga asbob ulash, ombor «bor ↔ tugadi», sikldagi qaror, chaqiruv yo'li (AI → kod → Database), xaritaga joylash, saralash, case (bashorat + qadam-ro'yxati), chegara guruhlari. Atamalar 5-Modul bilan bir: asbob, chegara, «Maqsadga yetdimi?». Metaforalar (detektiv, ruxsatnoma) olindi; hook budjeti 300 000 (1-darsdagi Quloqchin narxi). Testlarda ✔ o'rni joyida.",
+   "savollar": [
+    {
+     "savol": "«Xabar» asbobi olinadi (javob bot orqali qaytadi, repo agenti ham matn qaytaradi), o'rniga «To'lov xizmati» — chegara ekrani uchun",
+     "variantlar": [
+      [
+       "A",
+       "Qabul"
+      ],
+      [
+       "B",
+       "«Xabar» asbobi qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "16-ekran amaliyoti repo'da (173): agentga faqat o'qiydigan `getOrders` asbobi, teglar `dars-6-04-start/done`",
+     "variantlar": [
+      [
+       "A",
+       "Qabul — v2 dagi qog'oz reja uyga vazifaga ko'chadi"
+      ],
+      [
+       "B",
+       "v2 dagidek qog'ozda reja"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "05",
+   "qisqa": "Claude Skills",
+   "eyebrow": "5-dars · m6-05 · 20 ekran · KOD 17 · G1",
+   "nom": "Claude Skills — nima",
+   "fayl": "05-ClaudeSkills-v3.md",
+   "xulosa": "Bitta vizual — «Skill xaritasi» (chapda vazifa, o'rtada Claude va kontekst oynasi n/10, o'ngda 3 Skill papkasi 3 qatlamli, pastda natija kartochkasi). 7 tushuncha-ekran harakatli (2, 3, 5, 6, 9, 11, 12), bashorat 2/9/11-da. 15-ekranda Mentor 1-uyani aytmaydi. Testlarda to'g'ri variant eng uzuni bo'lgan 5 joy tenglashtirildi; ✔ o'rni o'zgarmagan. Amaliyot — haqiqiy SKILL.md (Antigravity) + sinov.",
+   "savollar": [
+    {
+     "savol": "Q1 · Amaliyotda Skill qayerda sinaladi?",
+     "variantlar": [
+      [
+       "A",
+       "gemini.google.com — SKILL.md matnini suhbatga qo'yib; Claude'da qo'shish yo'li faqat halol izohda"
+      ],
+      [
+       "B",
+       "Claude'ning o'zida (tarif va menyu tekshirilmagan)"
+      ]
+     ]
+    },
+    {
+     "savol": "Q2 · 9 ↔ 11-ekran mazmuni almashadi (3-savol o'z tushunchasidan keyin keladi; kalitlar joyida)",
+     "variantlar": [
+      [
+       "A",
+       "Almashadi"
+      ],
+      [
+       "B",
+       "Hozirgi tartib qoladi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G1"
+  },
+  {
+   "id": "06",
+   "qisqa": "Kimga tegadi",
+   "eyebrow": "6-dars · m6-06 · 16 ekran · KOD 20 · G4",
+   "nom": "Ilova o'zi qaror qilsa, kimga tegadi?",
+   "fayl": "06-PmLesson23-v3.md",
+   "xulosa": "Bitta vizual — «Ish yo'li» (Ilova → Do'kon egasi → Mijoz; uch yo'l: O'zi qiladi · Avval so'raydi · Faqat odam). 2-ekran: bitta xato AI javobi uch yo'ldan yuboriladi, xaritada natija. Chegaraga bitta ta'rif hamma joyda; «qaror» faqat ilova ishi. Hook javobi 196 → 107, xato izohlari ≤60, arena 1 va 12-savol tuzatildi. Test kalitlari o'zgarmagan.",
+   "savollar": [
+    {
+     "savol": "Q1 · 10-ekrandagi oldindan beriladigan savol («Agent ishni boshlashdan oldin nima qiladi?») — kod topshirig'iga bog'liq emas",
+     "variantlar": [
+      [
+       "A",
+       "Olib tashlanadi — kod ekrani bitta ish"
+      ],
+      [
+       "B",
+       "v2 dagidek qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Q2 · Chegara ta'rifida «oldindan qilingan qaror» → «oldindan yozilgan qoida»",
+     "variantlar": [
+      [
+       "A",
+       "«qoida» — «qaror» faqat ilova ishi bo'lib qoladi"
+      ],
+      [
+       "B",
+       "v2 dagidek «qaror»"
+      ]
+     ]
+    }
+   ],
+   "eslatma": "Uyga vazifa 3-qadamida «jabr ko'radigan bitta odam» — PM uy vazifasi (tegilmaydi, faqat xabar).",
+   "guruh": "G4"
+  },
+  {
+   "id": "07",
+   "qisqa": "O'z Skill'i",
+   "eyebrow": "7-dars · m6-07 · 20 ekran · KOD 15 · G1",
+   "nom": "O'z Skill'ingizni yozing",
+   "fayl": "07-WriteSkill-v3.md",
+   "xulosa": "Bitta vizual — «Skill stendi» (chapda SKILL.md, o'ngda chat, javob ostida 4 yorliq). Bitta `mijoz-javobi` Skill'i dars bo'yi aniqlashadi. 3: uch description sinaladi (keng — keraksiz xabarda ham, tor — kerakli shikoyatni o'tkazadi). 6: «bitta Skill — bitta vazifa» endi ekranda o'rgatiladi (arena 12 so'raydi). 11–12 takrori olindi. Testlar ✔ o'rni o'zgarmagan; javobni oshkor qilgan belgilar tuzatildi. Zanjir ot-shaklda.",
+   "savollar": [
+    {
+     "savol": "S-1 · App.jsx `sub` «struktura, test, kontekst-injiniring» → darsdagi so'zlar «tuzilish, sinov, kontekst-injiniring»",
+     "variantlar": [
+      [
+       "A",
+       "Ha — menyu nusxalari bilan (bir ma'no — bir so'z)"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "S-2 · 16-ekran amaliyoti qayerda?",
+     "variantlar": [
+      [
+       "A",
+       "O'quvchining o'z kompyuterida (papka + SKILL.md + sinash), TelegramBotNest'siz"
+      ],
+      [
+       "B",
+       "Repo ustida"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G1"
+  },
+  {
+   "id": "08",
+   "qisqa": "Pipeline",
+   "eyebrow": "8-dars · m6-08 · 11 ekran (21 dan) · KOD 11 · REPO 4 · G3",
+   "nom": "Praktika: to'liq pipeline",
+   "fayl": "08-PipelineProject-v3.md",
+   "xulosa": "Bitta vizual — oqim xaritasi (Sayt · Backend · Database · Bot · AI). 0: «Buyurtma» bosiladi, hech narsa bormaydi — qismlar ulanmagan. 2: buyurtmani o'quvchi yo'naltiradi, Backend'dan tarmoqlanishni o'zi topadi (Database va Bot'ga, AI'ga emas). 4: uch belgi → uzilgan chiziqni topish → tuzatish prompti → qayta sinash. A1 GET /menyu + CORS + React sayt · A2 POST /buyurtma, manba ustuni, adminga xabar · A3 POST /savol (Gemini) va butun oqim. Testlar 2 ta (✔ D va B, eski kalitlar).",
+   "savollar": [
+    {
+     "savol": "Q1 · Dars nomi 13-dars bilan bir xil shaklda",
+     "variantlar": [
+      [
+       "A",
+       "«Loyiha kuni: to'liq pipeline» (App.jsx + dars nomi)"
+      ],
+      [
+       "B",
+       "«Praktika: to'liq pipeline» qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Q4 · A2 4-qadam: Neon konsolidagi bo'lim nomi («Tables») tekshirilmagan",
+     "variantlar": [
+      [
+       "A",
+       "Aniq menyu nomisiz yoziladi («jadvallar bo'limida»), mentor ko'rsatadi"
+      ],
+      [
+       "B",
+       "Siz konsolda tekshirib aytasiz"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G3"
+  },
+  {
+   "id": "09",
+   "qisqa": "RN asoslar",
+   "eyebrow": "9-dars · m6-09 · 20 ekran · KOD 10 · REPO 7 · G2",
+   "nom": "React Native — asoslari",
+   "fayl": "09-ReactNativeBasics-v3.md",
+   "xulosa": "Bitta vizual — AvtoPizza telefoni va kod fayli, ikkalasi bitta PITSALAR manbasidan (narxlar repo menyu.ts bilan aynan). Kirishda bot va telefon bitta Backend'ga (1-dars g'oyasi). 5: matnni View'ga qo'yib RN xatosini o'zi chaqiradi · 6: stil o'zgaradi · 9: create-expo-app/expo start · 10: boshqa Wi-Fi → ilova ochilmaydi. Final — «saqlangan kod telefonga qanday yetadi?» (yagona tartib). Amaliyot repo'da: o'quvchi mobile/ yaratadi, GET /menyu, narx o'zgarsa bot ham, ilova ham yangilanadi. ✔ o'rni o'zgarmagan.",
+   "savollar": [
+    {
+     "savol": "Backend'ga ulanish (fetch) 9-darsning o'zida — React darslarida o'tilgan; 10-dars uni takror sifatida beradi",
+     "variantlar": [
+      [
+       "A",
+       "Ha"
+      ],
+      [
+       "B",
+       "fetch faqat 10-darsda"
+      ]
+     ]
+    },
+    {
+     "savol": "Final «kod yo'li» zanjiriga almashadi (eski «mashq tartibi»da bir nechta to'g'ri tartib bor edi)",
+     "variantlar": [
+      [
+       "A",
+       "Ha"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "`mobile/` papkasini kim yaratadi?",
+     "variantlar": [
+      [
+       "A",
+       "O'quvchi o'zi (create-expo-app); teg faqat zaxira"
+      ],
+      [
+       "B",
+       "Tayyor holda tegda beriladi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G2"
+  },
+  {
+   "id": "10",
+   "qisqa": "RN ilova",
+   "eyebrow": "10-dars · m6-10 · 20 ekran · KOD 13 · REPO 9 · G2",
+   "nom": "RN: komponent, navigatsiya, API",
+   "fayl": "10-ReactNativeApp-v3.md",
+   "xulosa": "Misol-ip AvtoPizza (repo PITSALAR: Margarita 45 000 · Pepperoni 55 000 · Pishloqli 50 000), GET /menyu, Menyu/Tafsilot ekranlari. Bitta vizual — ilova xaritasi (telefon, ekranlar dastasi, Backend, bot, konvert). 9 tushuncha-ekran harakatli, 7 tasida bashorat. navigate('Tafsilot', { pitsa: item }) — v2 dagi {id} xatosi tuzatildi. 10-ekran: backend menyusiga pitsa qo'shiladi — ilova ham, bot ham yangilanadi. 15 QTartib, 16 repo-blok. ✔ o'rni o'zgarmagan.",
+   "savollar": [
+    {
+     "savol": "KOD 11 · App.jsx m6-10 `sub` → «FlatList, Stack Navigator, fetch» (dars nomi o'zgarmaydi)",
+     "variantlar": [
+      [
+       "A",
+       "Ha"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G2"
+  },
+  {
+   "id": "11",
+   "guruh": "G3",
+   "qisqa": "Mobil loyiha",
+   "eyebrow": "11-dars · m6-11 · 11 ekran (20 dan) · KOD 13 · REPO 7 · G3",
+   "nom": "Loyiha kuni: mobil ilova",
+   "fayl": "11-MobileAppPractice-v3.md",
+   "xulosa": "Ip mini-do'kon → AvtoPizza (narxlar repo'dagi menyu.ts dan, namuna savat Pepperoni + Margarita = 100 000 so'm). 0: 10-dars ilovasida pitsa bosiladi — yetishmagan qismlar kulrang skelet. 2: ikki telefon yonma-yon (`let savat` va `useState`) — pitsa qo'shilganda faqat bittasi yangilanadi. 4: buyurtmani o'quvchi yo'naltiradi: telefon → Backend → buyurtmalar → Bot. A1 savat · A2 `POST /buyurtma` · A3 sinash va qo'shni telefonida Expo Go. Testlar 2 ta (✔ D va B, eski kalitlar).",
+   "savollar": [
+    {
+     "savol": "Dars nomi: hozir «Praktika: mobil ilova (mini-do'kon)», ip endi AvtoPizza",
+     "variantlar": [
+      [
+       "A",
+       "«Loyiha kuni: mobil ilova» — 8 va 13-dars bilan bir shakl (App.jsx + dars)"
+      ],
+      [
+       "B",
+       "«Praktika: mobil ilova»"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "12",
+   "qisqa": "Qaysi ish bugun",
+   "eyebrow": "12-dars · m6-12 · 16 ekran · KOD 18 · G4",
+   "nom": "Bugun qaysi ish boshlanadi?",
+   "fayl": "12-PmLesson24-v3.md",
+   "xulosa": "Bitta vizual — reja varag'i (RejaVaraq) 0–10-ekranlarda; rang faqat ish holatini ko'rsatadi. 2-ekran yangi: vaqtni surish (Bugun → 3 oy → 6 oy), ish o'z vaqtida boshlanadi; «ufq» so'zi keyin bir marta (PM-107). Hook 262 → 100 belgi. Tesla keysi qolipda, pul strelkasi varaqda. Testlar tenglashtirildi; ✔ o'rni s3 B · s5 C · s7 A · s11 B o'zgarmagan. `pm-m6d12-yol` kaliti o'zgarmaydi (14-dars o'qiydi).",
+   "savollar": [
+    {
+     "savol": "S1 · App.jsx menyu osti yozuvi «uch ufq: …» — atama darsdan oldin ko'rinadi (PM-107)",
+     "variantlar": [
+      [
+       "A",
+       "«hozir, uch oydan keyin, olti oydan keyin» deb almashtiriladi"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "S2 · 10-ekrandagi kutilgan terminal natijasi qachon ko'rinsin?",
+     "variantlar": [
+      [
+       "A",
+       "Boshidanoq xira — o'quvchi nimaga intilishini ko'radi"
+      ],
+      [
+       "B",
+       "Faqat «Bajardim» dan keyin"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G4"
+  },
+  {
+   "id": "13",
+   "qisqa": "To'liq tizim",
+   "eyebrow": "13-dars · m6-13 · 11 ekran (21 dan) · KOD 11 · REPO 6 · G3",
+   "nom": "Loyiha kuni: to'liq tizim",
+   "fayl": "13-FullSystemProject-v3.md",
+   "xulosa": "1-darsdagi tizim xaritasi dars bo'yi: uch kirish yo'li → Backend (POST /buyurtma, yoz) → Database, Admin chati, AI. 2-ekran: uch yo'ldan buyurtma, bot `yoz` ga to'g'ridan boradi. 4-ekran: test jadvali qatorlarini o'quvchi yurgizadi, Bot × «Admin xabari» qizil. A1 `kirish` ustuni · A2 TEST.md va qizil katakni tuzatish · A3 Render'ga chiqarish. Testlar 2 ta (✔ o'rni o'zgarmagan), tushganlari arenada. Repo fakti tuzatildi: AI buyurtma yo'lida (saveOrder → yoz).",
+   "savollar": [
+    {
+     "savol": "Q2 · AI nomi: 1-dars xaritasida «AI · Claude», repo'da Gemini",
+     "variantlar": [
+      [
+       "A",
+       "13-dars repo bo'yicha «Gemini» deydi"
+      ],
+      [
+       "B",
+       "Hamma joyda «Claude»"
+      ]
+     ]
+    },
+    {
+     "savol": "Q3 · Web serverga chiqmaydi (frontend deploy kursda o'tilmagan): backend serverda, web laptopdan ulanadi",
+     "variantlar": [
+      [
+       "A",
+       "Shunday; web deploy Demo Day oldidan alohida"
+      ],
+      [
+       "B",
+       "13-darsda web ham deploy qilinadi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G3"
+  },
+  {
+   "id": "14",
+   "qisqa": "Raqam isboti",
+   "eyebrow": "14-dars · m6-14 · 16 ekran · KOD 16 · G4",
+   "nom": "Raqamingiz nimani isbotlaydi?",
+   "fayl": "14-PmLesson25-v3.md",
+   "xulosa": "Bitta vizual — SahnaSlayd (uch qator: raqam · nimani sanadi · nimani ko'rsatadi) va zal: slayd to'lmaguncha zal savol beradi. Raqamlar bitta manbadan (12-dars navbat ilovasi). 2: 6 raqamni «Tizimni qurish» / «Tizimdan foydalanish» ga saralash, atama keyin (PM-107). Uchta test eslashdan qo'llashga o'tdi (✔ o'rni 1/2/0/1 saqlangan). Airbnb keysi PM-028 shaklida; 1-ekrandagi raqam ziddiyati tuzatildi. Hook 196 → 90 belgi.",
+   "savollar": [
+    {
+     "savol": "Q1 · s5, s7, s11 testlari eslash-savoldan qo'llash-savolga (✔ o'rni o'zgarmaydi; RECAPS, Q_LABELS yangilanadi)",
+     "variantlar": [
+      [
+       "A",
+       "Ha"
+      ],
+      [
+       "B",
+       "Eski savollar qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Q2 · 10-ekran funksiya nomi `dalillar` → `natijalar` (3 kod tekshiruvi bilan)",
+     "variantlar": [
+      [
+       "A",
+       "Ha — «natija raqami» atamasi bilan bir xil"
+      ],
+      [
+       "B",
+       "Qoladi"
+      ]
+     ]
+    }
+   ],
+   "guruh": "G4"
+  }
+ ],
+ "kod": "6-Modul"
+}

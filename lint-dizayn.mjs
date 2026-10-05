@@ -42,7 +42,8 @@ for (const f of files) {
   let emoji = 0;
   for (let i = 0; i < lines.length; i++) {
     const L = lines[i];
-    if (R.stripe.test(L)) hit('🔴', 'D1 stripe  ', i, L.trim().slice(0, 110));
+    // 04.10 (modul:yopish): CSS uchburchak (strelka uchi) — border'lardan biri `transparent` — chiziq emas
+    if (R.stripe.test(L) && !/border-(?:left|right|top|bottom):\s*\d+px\s+solid\s+transparent/.test(L)) hit('🔴', 'D1 stripe  ', i, L.trim().slice(0, 110));
     // `kesik-ok` izohi — chiziq ma'no tashiydi (daftar qatori, elak to'ri), bezak emas; sabab izohda yoziladi
     if (R.kesik.test(L) && !/kesik-ok/.test(L)) hit('🔴', 'D2 kesik   ', i, L.trim().slice(0, 110));
     if (R.topline.test(L)) hit('🟡', 'D3 tepa-chiziq', i, L.trim().slice(0, 110));

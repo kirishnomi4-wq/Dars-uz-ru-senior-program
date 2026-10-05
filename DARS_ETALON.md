@@ -3882,7 +3882,7 @@ O'lchov: 83 texnik darsning `.frame-success` foni — `#E3F0E8` + yashil soya; P
 
 1. Menyudagi sarlavha (`App.jsx` va modulning QA-menyusi `src/m*-demo/`, `src/texnik-demo/`) darsning `LESSON_META.lessonTitle` bilan **aynan bir**;
    «Keyingi dars — «…»» qatori va `LiveGate` sarlavhasi ham shu nom. 5-Modulda 3 nom (m5-04 · m5-09 · m5-10 sub) + 4 eskirgan havola tuzatildi.
-2. **Qamrov:** 5-Modul va yangi modullar. 1–4c, 6–7-Modulda 61 farq (ko'pi qisqa menyu ↔ to'liq nom) — KATTA F-1004-60, LMS nomlariga
-   tegadi — foydalanuvchi qarori.
+2. **Qamrov: HAMMA modul** (04.10 kech, yopishdan keyingi Q2 A): App.jsx 61 nom + QA-menyular tenglashdi, farq 0/109. LMS'ga ta'sir yo'q —
+   u yerda material nomi allaqachon dars ichidagi nomdan (ROYXAT «Dars ichidagi nom»).
 
 **Bog'liq:** 150 (sarlavha), 164; QOIDALAR T-075.

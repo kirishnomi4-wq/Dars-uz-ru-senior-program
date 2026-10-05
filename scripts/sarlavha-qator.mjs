@@ -32,7 +32,10 @@ for (const lang of ['uz', 'ru']) for (let sc = 0; sc < total; sc++) {
   const page = join(TMP, `p-${lang}-${sc}.html`);
   writeFileSync(page, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>window.__LANG='${lang}';localStorage.setItem('liveSession:${lessonId}','{"mode":"self"}');localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${sc},answers:{},earned:[],startedAt:Date.now(),total:${total},savedAt:Date.now()}));localStorage.setItem('ccLang','${lang}');localStorage.setItem('lang','${lang}');<\/script><script>${res.outputFiles[0].text}<\/script></body></html>`);
   const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
-  await p.goto('file://' + page); await p.waitForTimeout(700);
+  // domcontentloaded: «load» tashqi rasmni (Mentor, go.coddycamp.uz) kutardi — sekin tarmoqda 30 s TimeoutError, soxta «2+ QATOR» (05.10)
+  // …lekin shriftlarni kutadi: zaxira shrift torroq — shriftsiz o'lchov 2 qatorli sarlavhani «1 qator» deb ko'rsatadi (m6-13 agenti, 05.10)
+  await p.goto('file://' + page, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  await p.evaluate(() => Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 10000))])); await p.waitForTimeout(700);
   const r = await p.evaluate(() => { const h = document.querySelector('.h-title'); if (!h) return null; const lh = parseFloat(getComputedStyle(h).lineHeight) || parseFloat(getComputedStyle(h).fontSize) * 1.2; return { lines: Math.round(h.getBoundingClientRect().height / lh), t: h.textContent.slice(0, 60) }; });
   if (r && r.lines > 1) out.push(`${lang} s${sc}: ${r.lines} qator — ${r.t}`);
   await p.close();

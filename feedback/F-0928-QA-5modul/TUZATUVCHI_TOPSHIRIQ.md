@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/5-TUZATUVCHI.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # Tuzatuvchi topshirig'i — vizual buzilishlar (5-Modul, 01.10, F-1001-70)
 
 Siz bitta darsdagi aniq ro'yxatdagi VIZUAL buzilishlarni tuzatasiz. Ro'yxat — topshiriq xabarida. Ro'yxatdan tashqariga chiqmaysiz.

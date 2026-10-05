@@ -1848,17 +1848,47 @@ yashil `#E3F0E8` — 47 PM darsida token almashtirildi (1–4-Modul PM fayllari 
 
 ## F-1004-60 · 5 va 6-Modulni yopish (04.10 tun) — boshqa modullarga qolgan qism
 
-- **Fon so'zlari ru da o'zbekcha (R-008, RU §10):** 5-Modul YOPILDI (8 dars). Boshqa modullarda skaner topgani (kod-belgilar chiqarilgan):
+- **Fon so'zlari ru da o'zbekcha (R-008, RU §10):** 5-Modul YOPILDI (8 dars). ✅ **04.10 kech (yopishdan keyingi Q1 A): 1–4c va PM 9 fayl ham YOPILDI** (PmLesson5/6/8/16, PmMuammoIzlash, PracticeLesson4, ReactBuildSite, AiPipelineProject, PmJtbd — 65 juftlik; LMS paket qayta yig'ildi). Qoldi: 6-Modul 7 fayl — Q3 guruhlarida. Boshqa modullarda skaner topgani (kod-belgilar chiqarilgan):
   2-Modull PmLesson5 (iteratsiya) · PmLesson6 (peshtaxta, javon, oshpaz, jargon, sistema, qatlam) · PmMuammoIzlash (kuzatuv, sharh, muammo, kuchi) ·
   PracticeLesson4 (savat, jami, narx) · 3-Modull PmLesson8 (katak, vaqt, foyda, darrov, reja, navbat) · ReactBuildSiteLesson (komponent) ·
   4b PmLesson16 (nosozlik, karta, navbat, javon, tarozi, skuter, sifat) · 4c AiPipelineProjectLesson (jurnal, so'rov, yordamchi, tekshir) ·
   pm/PmJtbdLesson (vazifa, funksional, ijtimoiy, emotsional, komponent, tur, savol, markaz) · 6-Modull AgentArchitecture (asbob), ArchPatterns (monolit,
   mikroservis), ClaudeSkills (kontekst, uslub), FullSystemProject (baza), PmLesson23 (7 so'z), PmLesson25 (8 so'z), WriteSkill (kontekst) — 6-Modul
   Q3 guruhlarida; 1-dars pilot (tizim) — YOPILDI. 1–4c va PM — LMS'ga tegadi: qaror bilan.
-- **Menyu ↔ dars nomi (DE-205):** 5-Modul 0 farq. Qolgan 61: 1-Modul 10 · 2-Modul 10 · 3-Modul 10 · 4-Modul 13 · 4a 3 · 4b 1 · 4c 3 · 6-Modul 2 (m6-09, m6-11) ·
+- **Menyu ↔ dars nomi (DE-205):** ✅ **04.10 kech (Q2 A): HAMMASI tenglashdi** — App.jsx 61 + QA-menyular (m1-demo 22, mentor 22, m34-demo 22, texnik-demo 46, m5-demo 3); App.jsx da farq 0/109. QA saytlari menyusi keyingi deployda yangilanadi. (eski yozuv:) 5-Modul 0 farq. Qolgan 61: 1-Modul 10 · 2-Modul 10 · 3-Modul 10 · 4-Modul 13 · 4a 3 · 4b 1 · 4c 3 · 6-Modul 2 (m6-09, m6-11) ·
   7-Modul 8. Ko'pi «qisqa menyu ↔ to'liq nom» — LMS nomlariga tegadi, foydalanuvchi qarori.
-- **Podium yorlig'i (q22, J-029):** CssLesson1 (ballik 12/15/18 yorliqsiz), PmLesson8 (6/8/12) — warn; 1–4c LMS va PM — qaror bilan.
-- **Test izohi pastki chiziqda (lint:layout E, 04.10 o'lchov):** javobdan keyin izoh qutisi 1280×773 da pastki chiziq ostiga kiradi — 3-dars 8-ekran 10px,
+- **Podium yorlig'i (q22, J-029):** ✅ **04.10 kech (Q3 A) YOPILDI** — CssLesson1 11/14/17 → 12/15/18, PmLesson8 5/7/11 → 6/8/12 (tartib bir xil, ekran qo'shilganda siljigan); q22 0.
+- **Test izohi pastki chiziqda (lint:layout E, 04.10 o'lchov) — Q4 A: har modul qolipga o'tganda o'zi yo'qoladi (QTestJavob o'zi suriladi), eski darslarga alohida tegilmaydi:** javobdan keyin izoh qutisi 1280×773 da pastki chiziq ostiga kiradi — 3-dars 8-ekran 10px,
   11-ekran 13px · 10-dars 4-ekran 7px (matn va tugma ko'rinadi, qutining pastki chekkasi) · 6-dars 3-ekran 51px, 9-ekran 40–86px (xulosa yarmi skrolda).
   `QuestionScreen` izohi texnik darslar standarti — butun platformada bir xil sinf bo'lishi mumkin; keyingi QA davrida o'lchanadi (DE-199 yo'li: natija fokusga).
 - **1–4c LMS qayta yuklash ro'yxati** (5-Modulni yopish Q10/Q11): F-1003 70 dars + D7/yashil 17+47 PM fayl + sen-forma 13 fayl — paket bitta, commitdan keyin.
+
+## F-1004-66 — `lint:tell` QuestionScreen'ni yarim o'qir edi (yashirin «to'g'ri javob eng uzun/qisqa») — 05.10.2026 01:02
+**Topildi (6-Modul kichik tuzatish agentlari m6-02, m6-14):** `lint-tell.mjs` blok oxirini birinchi `/>` deb olardi; `question={<TestQ … />}` naqshli testlarda
+variantlar o'qilmasdi — tekshiruv jimgina o'chgan. To'g'ri o'qish (keyingi `<QuestionScreen` yoki yuqori darajadagi e'longacha) bilan: **222 → 315 error, 69 → 91 warn, 36 fayl**.
+**Holat:** to'g'ri o'qish `node lint-tell.mjs --toliq` bilan ixtiyoriy; sukut (va `npm run gates`) — eski o'qish, hech bir dars yiqilmaydi.
+**Yopish:** har faylda variant uzunligini tenglash (✔ o'rni o'zgarmaydi, uz+ru) → `--toliq` sukutga o'tadi. LMS'dagi 1–4-Modul fayllari ham bor — qayta yuklash kerak bo'ladi (qaror foydalanuvchida).
+Fayllar (eski → yangi error): 1-Modull/CssLesson1.jsx 6→8 · 1-Modull/DeployLesson.jsx 3→4 · 1-Modull/InternetLesson.jsx 2→4 · 1-Modull/PmLesson3.jsx 5→6 · 2-Modull/JsIntroLesson.jsx 3→4 · 2-Modull/JsVarsLesson.jsx 6→7 · 2-Modull/PmLesson6.jsx 3→6 · 2-Modull/PracticeLesson2.jsx 15→19 · 3-Modull/PmLesson7.jsx 0→7 · 3-Modull/ReactApiGetLesson.jsx 4→6 · 3-Modull/ReactApiPostLesson.jsx 7→9 · 3-Modull/ReactBuildSiteLesson.jsx 11→16 · 3-Modull/ReactCrudPracticeLesson.jsx 5→6 · 3-Modull/ReactIntroLesson.jsx 2→3 · 3-Modull/ReactProjectDayLesson.jsx 8→13 · 3-Modull/ReactRouterPracticeLesson.jsx 2→3 · 3-Modull/ReactStateEffectLesson.jsx 7→10 · 4a-Modull/NestArchPracticeLesson.jsx 2→3 · 4a-Modull/NestArchResourceLesson.jsx 4→6 · 4b-Modull/EdgeCasesTestLesson.jsx 3→4 · 4b-Modull/JestUnitTestLesson.jsx 5→6 · 4b-Modull/PmLesson16.jsx 1→3 · 4c-Modull/AiPipelineProjectLesson.jsx 1→2 · 4c-Modull/FullProPipelineLesson.jsx 1→2 · 4-Modull/ApiPostmanLesson.jsx 5→8 · 4-Modull/DataIntroLesson.jsx 2→3 · 4-Modull/DbSqlNosqlLesson.jsx 3→4 · 4-Modull/FullstackConnectPracticeLesson.jsx 5→7 · 4-Modull/NodeServerLesson.jsx 3→5 · 4-Modull/PostgresCrudLesson.jsx 5→6 · 5-Modull/BotAiProjectLesson.jsx 0→1 · 6-Modull/AgentArchitectureLesson.jsx 0→1 · 6-Modull/MobileAppPracticeLesson.jsx 0→3 · 6-Modull/PipelineProjectLesson.jsx 0→1 · 6-Modull/ReactNativeAppLesson.jsx 0→1 · 6-Modull/ReactNativeBasicsLesson.jsx 0→1
+
+## F-1004-67 — PM refleksiya taymeri LMS solo rejimida juftlik variantini ko'rsatadi — 05.10.2026 01:05
+**Topildi (m6-02 yakuniy MD agenti):** `const yakka = !live || live.mode === 'self'` — `useLiveSession` izohi: «'student'/'mentor' bo'lmagan har rejim 'self' kabi»
+(`solo`, `review` — LMS). LMS'da yakka o'tayotgan o'quvchi «Sherigingizga ayting», A/B navbatli juftlik versiyasini oladi.
+**Qamrov (19 fayl, hammasi PM):** PmLesson6 (`isSolo`), 9, 10, 11, 12, 13, 14, 15, 16 (×2: `solo`, `yakka`), 17, 18, 19, 20, 21, 22, 23, 24, 25, PmMetrics.
+**Tuzatish:** `const yakka = !live || (live.mode !== 'student' && live.mode !== 'mentor');` (va PmLesson6 `isSolo`, PmLesson16 `solo` — xuddi shunday).
+LMS'dagi 2–4-Modul fayllari bor — qayta yuklash kerak (qaror foydalanuvchida). Sinov: `useLiveSession` rejimi `solo` bilan refleksiya ekrani surati.
+**Qo'shimcha (05.10, supurish):** podium «Natijalar kelmoqda…» `tr()` siz — `4a-Modull/PmLesson15.jsx:2404`, `4c-Modull/PmLesson17.jsx:2442` (ruschada o'zbekcha chiqadi; 6-Modulda tuzatildi). LMS qayta yuklash bilan birga.
+
+## F-1004-68 — `font-family: 'Georgia, serif'` — ikki nom bitta qo'shtirnoqda (brauzer Times'ga tushadi) — 05.10.2026 01:07
+**Topildi (m6-08 yakuniy MD agenti, `.crit` case qatorlari):** butun stek bitta nom deb o'qiladi → Georgia emas, sukut serif (Times). Platformada **14 fayl, 122 joy** — o'quvchilar
+yillar davomida shu ko'rinishni ko'rgan; tuzatish ko'rinishni o'zgartiradi (Georgia). Fayllar: 1-Modull/CssLesson1.jsx 1-Modull/CssLesson2.jsx 1-Modull/PmLesson1.jsx 1-Modull/Htmllesson2.jsx 1-Modull/HtmlTakrorlashLesson.jsx 1-Modull/Htmllesson1.jsx 1-Modull/InternetLesson.jsx 1-Modull/GitLesson.jsx 1-Modull/VsCodeLesson.jsx 3-Modull/PmLesson7.jsx 2-Modull/PmLesson6.jsx 6-Modull/FullSystemProjectLesson.jsx 6-Modull/MobileAppPracticeLesson.jsx 6-Modull/PipelineProjectLesson.jsx 
+**Yopish:** `font-family: Georgia, serif` (qo'shtirnoqsiz) — bitta codemod + ko'z bilan tekshiruv; qaror foydalanuvchida (ko'rinish o'zgaradi, LMS fayllari bor).
+
+## F-1004-70 — 6-Modul B guruhi: 16 ta mantiq/mazmun/layout kamchiligi (oldindan bor) — 05.10.2026 07:12
+**Qaror (foydalanuvchi, tasdiq sahifasi Q3 = C):** modul hozir yopiladi, bular keyingi fidbek davriga navbatda turadi.
+Ro'yxat va takliflar: `feedback/F-0929-QA-6modul/KUZATUVLAR_2026-10-05.md` → B jadvali (B1–B16). Qisqacha:
+B1 m6-02 s0/s4 «uch xil ilova» yo'q · B2 m6-12 s9 xato izohi · B3 m6-12 ufq nomlari ikki xil · B4 m6-12 arena 9/kartochka 2006 · B5 m6-08 s7 «Davom etish» erta ·
+B6 Node/Node.js · B7 m6-09 o'lik holat/boshlang'ich kod · B8 m6-10 9-darsga ishora, bo'sh div · B9 m6-11 savat 0→2 · B10 m6-13 amaliyot VS Code↔Antigravity ·
+B11 nishon sharti (qoldirish tavsiya) · B12 m6-08 ⛶ telefon · B13 amaliyot ekrani tugmasi pastda (m6-05/07/08/09/10/13) · B14 m6-12 s10 kod paneli ·
+B15 m6-08 s3 tugmalar · B16 m6-09/10 yashil xulosa pastda.
+**Q4 = A:** F-1004-66/67/68 va podium tarjimasi (LMS fayllari) — alohida seansda, yangi modullardan keyin.
+

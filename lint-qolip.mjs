@@ -35,6 +35,7 @@
 //   q20 test-qolip    — QuestionScreen <QTest> siz yoki DragDropOrder nusxasi (DE-203)
 //   q21 yakun-qolip   — kartochka / yakun nusxasi: Flashcards, .fc-card, hw-big, ach-grid; SummaryScreen <QYakun> siz (DE-204)
 //   q22 podium-yorliq — Q_LABELS kalitlari ballik ekranlarni (SCORED_IDX) qoplamaydi: podium nuqtasi yorliqsiz (F-1004-60); 1–4c va PM — warn
+//   q23 arena-savol   — QUIZ_BANK 12 savol, to'g'ri javob 4 pozitsiyaga teng (3/3/3/3) — hamma modulda error (04.10 o'lchov: 98/98 toza)
 //   D4 (emoji) — lint-emoji.mjs «qolip-dars» rejimi.
 //
 // Ishlatish: node lint-qolip.mjs [fayl|papka …]  (argumentsiz — App.jsx ga ulangan barcha darslar)
@@ -212,6 +213,11 @@ for (const f of files) {
       const sc = (mt[1].match(/\{[^{}]*\}/g) || []).map((r, i) => (/scored:\s*true/.test(r) ? i : -1)).filter(i => i >= 0);
       const yoq = sc.filter(i => !keys.has(i));
       if (yoq.length) add(f, s, q.index, /[\\/]5-Modull[\\/]/.test(f) ? 'error' : sv, 'q22 podium-yorliq', `ballik ekran ${yoq.join(', ')} uchun Q_LABELS kaliti yo'q — podium nuqtasi yorliqsiz (kalitlar = SCORED_IDX)`); } }
+  // q23 (jonli qoida, konveyer 04.10): arena — 12 savol, to'g'ri javob 3/3/3/3 (bitta pozitsiyaga to'planmaydi)
+  { const qb = /const QUIZ_BANK = \[([\s\S]*?)\n\];/.exec(s);
+    if (qb) {
+      const c = [...qb[1].matchAll(/correct:\s*(\d)/g)].map(x => +x[1]); const n = [0, 1, 2, 3].map(k => c.filter(v => v === k).length);
+      if (c.length !== 12 || n.some(v => v !== 3)) add(f, s, qb.index, 'error', 'q23 arena-savol', `QUIZ_BANK ${c.length} savol, to'g'ri javoblar A/B/C/D = ${n.join('/')} — 12 savol, 3/3/3/3 bo'lsin`); } }
   // q19 (202, F-1004-58 — ASOSIY QONUN, hamma modulda error): yashil xulosa foni — texnik darslardagi AYNAN bitta yashil #E3F0E8
   { const ss = /\bsuccessSoft: *'(#[0-9A-Fa-f]{6})'/.exec(s);
     if (ss && ss[1].toUpperCase() !== '#E3F0E8') add(f, s, ss.index, 'error', 'q19 yashil-fon', `successSoft ${ss[1]} — texnik darslar yashili #E3F0E8 bo'lsin (DE-202)`);

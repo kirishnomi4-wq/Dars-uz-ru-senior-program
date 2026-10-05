@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/2-QURUVCHI.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # Quruvchi topshiriq-shabloni — 5-Modul v2 → kod (bitta dars = bitta agent = bitta fayl)
 
 F-1001-50 · namuna: `feedback/F-0929-QA-6modul/QURUVCHI_SHABLON.md` (6-Modul). Farqi: 5-Modul MD'larida KOD bandlari ko'p

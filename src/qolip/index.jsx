@@ -1,7 +1,7 @@
 // ============================================================================
 // QOLIP — umumiy ekran komponentlari (D1, F-1004 2-qism, 04.10.2026)
 // Dars ekranlari faqat shu turlardan yig'iladi (test ekrani — darsning QuestionScreen'i, jonli-ball relsi):
-//   QKirish (+ QReja) · QTushuncha · QTest (+ QTestJavob, QTartib) · QKod · QVoqea · QMustaqil · QNatija · QKartochka · QYakun
+//   QKirish (+ QReja) · QTushuncha · QTest (+ QTestJavob, QTartib) · QKod · QVoqea · QMustaqil · QNatija · QBlok (+ QPrompt) · QKartochka · QYakun
 // Yordamchilar: QTugma (D2: asosiy / ikkinchi) · QKarta · QChip · QBashorat · QTaxmin · QQadamlar · QXulosa · QXato
 // Rang: tokens.js (D3, 9 token) · Emoji: dars yuzasida yo'q (D4) · CSS: qolipCss(T) darsning <style> ichiga.
 // Komponentlar dars matnini tarjima QILMAYDI — dars tayyor (tarjima qilingan) matnni beradi. Faqat qolipning o'z tugma-yorliqlari
@@ -306,10 +306,74 @@ export const QNatija = ({ sarlavha, mentor, karta, children }) => (
 // ---------- Qolipning o'z yorliqlari (kartochka, yakun) — ikki tilda; dars matni esa darsdan keladi ----------
 const QM = {
   uz: { org: "↻ O'rganilmoqda", bildim: '✓ Bildim', takror: '✗ Takrorlash', hammasi: 'Hammasini bilasiz!', yodlandi: 'atama yodlandi', qayta: '↻ Qaytadan takrorlash',
-    togri: "to'g'ri", bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz' },
+    togri: "to'g'ri", bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz',
+    bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:' },
   ru: { org: '↻ Изучается', bildim: '✓ Знаю', takror: '✗ Повторить', hammasi: 'Вы знаете всё!', yodlandi: 'терминов выучено', qayta: '↻ Повторить заново',
-    togri: 'верно', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки' },
+    togri: 'верно', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки',
+    bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:' },
 };
+
+// ---------- 7b. Amaliyot bloki (172/173, GATE M M-q4): chap — qadamlar bittadan («Bajardim» qulfi), o'ng — kutilgan natija + «Ortda qoldingizmi» ----------
+// Prompt qutisi: {…} joylari ajralib ko'rinadi, «Nusxalash» butun matnni oladi. Satrlar — oddiy matn (tarjima qilingan), nusxalanadigan.
+export function QPrompt({ kimga, satrlar = [], til = 'uz' }) {
+  const M = QM[til] || QM.uz;
+  const [ok, setOk] = useState(false);
+  const nusxa = async () => { try { await navigator.clipboard.writeText(satrlar.join('\n')); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — o'quvchi matnni qo'lda belgilaydi */ } };
+  const joy = (t) => String(t).split(/(\{[^}]+\})/g).map((p, i) => (/^\{.+\}$/.test(p) ? <span key={i} className="q-joy">{p}</span> : p));
+  return (
+    <div className="q-prompt">
+      <div className="q-prompt-h">{kimga && <span className="q-prompt-kim">{kimga}</span>}<button type="button" className="q-prompt-nusxa" onClick={nusxa}>{ok ? M.nusxalandi : M.nusxa}</button></div>
+      {satrlar.map((l, i) => <p key={i} className="q-prompt-satr">{joy(l)}</p>)}
+    </div>
+  );
+}
+// qadamlar: [{ h, t, prompt?: [satr], kimga?, xato? }] — tarjima qilingan (t, xato — darsning fmtCode'i bilan) · joriy: bajarilgan qadamlar soni ·
+// onBajardim() · onQaytar(i) · mentorRejim: hamma qadam ochiq, tugmasiz · tugadi + tugadiMatn: yashil natija-karta ·
+// natija: kutilgan natija maketi (chat / terminal / ekran — darsdan) · natijaYorliq (sukut: «kutilgan natija») · ortda: buyruq satrlari (M-q7/q8) · pastki: mentor statistikasi.
+export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy = 0, onBajardim, onQaytar, mentorRejim = false, tugadi = false, tugadiMatn, natija, natijaYorliq, ortda = [], pastki, children }) {
+  const M = QM[til] || QM.uz;
+  const korinadi = mentorRejim ? qadamlar.length : Math.min(joriy + 1, qadamlar.length);
+  return (
+    <div className="screen q-ekran q-blok">
+      <Bosh sarlavha={sarlavha} mentor={mentor} />
+      <div className="q-split">
+        <div className="q-col">
+          <ol className="q-blok-qadamlar fade-up delay-1">
+            {qadamlar.slice(0, korinadi).map((c, i) => {
+              if (i < joriy && !mentorRejim) return (
+                <li key={i} className="q-blok-q bajarildi">
+                  <span className="q-blok-n">✓</span><span className="q-blok-h">{c.h}</span>
+                  {!tugadi && onQaytar && <button type="button" className="q-blok-qaytar" onClick={() => onQaytar(i)} title={M.qaytar} aria-label={M.qaytar}>↻</button>}
+                </li>
+              );
+              return (
+                <li key={i} className="q-blok-q joriy">
+                  <span className="q-blok-n">{i + 1}</span>
+                  <div className="q-blok-tana">
+                    <p className="q-blok-t"><b>{c.h}</b> — {c.t}</p>
+                    {c.prompt && <QPrompt kimga={c.kimga} satrlar={c.prompt} til={til} />}
+                    {c.xato && <p className="q-blok-xato">{c.xato}</p>}
+                    {!mentorRejim && <QTugma onClick={onBajardim}>{M.bajardim}</QTugma>}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+          {tugadi && tugadiMatn && <div className="q-blok-tugadi fade-step"><p>{tugadiMatn}</p></div>}
+          {pastki}
+        </div>
+        <div className="q-col">
+          <span className="q-yorliq">{natijaYorliq || M.natija}</span>
+          <Z zoom={zoom}><div className="q-blok-natija">{natija}</div></Z>
+          {ortda.length > 0 && (
+            <div className="q-blok-ortda"><span>{M.ortda}</span>{ortda.map((b, i) => <code key={i} className="q-blok-buyruq">{b}</code>)}</div>
+          )}
+        </div>
+      </div>
+      {children}
+    </div>
+  );
+}
 
 // ---------- 8. Kartochkalar (DE-204 · texnik darslar standarti aynan): navbat · 3D aylanish · «Bildim» / «Takrorlash» ----------
 // F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona; bitta kod-tokeni mono, gap Manrope, gap ichidagi kod so'zi mono.

@@ -90,7 +90,7 @@
 | T-072 | Sarlavha va Mentor bir gapni aytmaydi: sarlavha savol yoki mavzu, Mentor faqat yangi narsa (sarlavha so'zlarining ≥50% i Mentorda bo'lsa — topilma). | hammasi | `gates:olchov` takror (6-Modul+ error) | DE-197 · F-1004-31 |
 | T-073 | Formula/zanjir/yorliq ot-shaklda («yig'ish · sinash · tuzatish»), «·» va «—» ajratuvchida ham; ru — вы-форма yoki ot. | hammasi | `gates:til` sen-imperativ(-ru) | KORPUS §224 · F-1004-37 |
 | T-074 | «chok» o'rniga «ulanish joyi» (ru «место соединения»); almashtirilganda test savoli javobni oshkor qilmaydi. | hammasi | `gates:til` chok | MATN_ETALONI lug'at · F-1004-39 |
-| T-075 | Menyu nomi = dars ichidagi nom (`lessonTitle`): App.jsx, modul QA-menyusi, «Keyingi dars — «…»», `LiveGate` sarlavhasi. | 5-Modul + yangi | skript: menyu↔lessonTitle solishtiruvi (KATTA F-1004-60: 1–4c, 6–7 da 61 farq) | DE-205 · F-1004-60 |
+| T-075 | Menyu nomi = dars ichidagi nom (`lessonTitle`): App.jsx, modul QA-menyusi, «Keyingi dars — «…»», `LiveGate` sarlavhasi. | hammasi | skript: menyu↔lessonTitle solishtiruvi (04.10 kech: 0/109) | DE-205 · F-1004-60 · Q2 A |
 | T-050 | Maqtov-sifat («porlaydi», «ideal», «juda yaxshi», «shirin qadam», «qat'iy», «egiluvchan») sabab o'rniga yozilmaydi; izoh-satr ekranda sanab ko'rsa bo'ladigan faktni aytadi; sifat olib tashlansa g'oyasi faktga aylanadi. | hamma | grep-nomzod `porlaydi\|ideal\|juda yaxshi\|egiluvchan` · gates:til bosh-sifat-qadam | MK-§169 · MK-§160 · MK-§172 · MK-§89 |
 | T-051 | Keys-voqea hikoya tilida, qisqa gaplar bilan («oradan ikki yil o'tib»); hisobot iborasi («auditoriya kengaydi», «keyingina», «ishlagan») yo'q; keys foydasi tanish detal va tabiiy fe'l bilan. | PM | gates:til auditoriya-kengaydi, raqam-keyingina, qol-keladi | MK-§42 · MK-§9 |
 | T-052 | Yangi nom o'tgan dars nomi bilan birinchi ishlatilishida bir gapda tenglashtiriladi («Jadvaldagi har qator — bitta yozuv»); atama kundalik bilimga yonma-yon qo'yiladi, qarama-qarshi emas. | hamma | karta | MK-§112 · MK-§73 |
@@ -267,7 +267,8 @@
 | J-026 | Sof so'rovnoma hookda `correct: false` hammaga yoziladi va maqtov berilmaydi. | jonli | karta | DE-137.d |
 | J-027 | Yakuniy jonli sinov qo'lda: yangi PIN, 2 o'quvchi, joriy mentor-kod; podium va arena natijasi 0 emas; mentor-kodning o'zi hujjatga yozilmaydi. | jonli | ekran-nomzod podium/arena ball > 0 (tools/e2e-live.mjs) | DE-§0.3 · DE-§14b · PM-§5.1 |
 | J-028 | Mentor panelida buyruq siz-formada («Qayta tushuntiring»), «tavsiya etiladi» emas; mentor-eslatma `MentorNote` default yopiq xira chip, bosilsa ochiladi, ekran almashsa yopiladi, faqat zarur ekranda. | jonli | gates:til tavsiya-etiladi · grep-nomzod `MentorNote` | MK-§190 · PM-5 · PM-20 |
-| J-029 | Podium nuqtasi yorlig'i: `Q_LABELS` kalitlari = SCREEN_META dagi ballik ekranlar; ekran soni o'zgarsa kalitlar ham (5/7/9: 4 va 7). | hammasi | `gates:qolip` q22 (5-Modul+ error, 1–4c/PM warn: CssLesson1, PmLesson8) | F-1004-60 |
+| J-029 | Podium nuqtasi yorlig'i: `Q_LABELS` kalitlari = SCREEN_META dagi ballik ekranlar; ekran soni o'zgarsa kalitlar ham (5/7/9: 4 va 7). | hammasi | `gates:qolip` q22 (5-Modul+ error, 1–4c/PM warn; 04.10 kech 0 — CssLesson1, PmLesson8 tuzatildi) | F-1004-60 · Q3 A |
+| J-030 | Arena `QUIZ_BANK` — 12 savol, to'g'ri javob 4 pozitsiyaga teng (3/3/3/3). | hamma | `gates:qolip` q23 (04.10 o'lchov 98/98 toza) | jonli-ball qoidasi · 04.10 |
 
 ## 5. KO'RINISH, JOYLASHUV, TELEFON (U)
 
@@ -434,8 +435,9 @@
 | R-005 | Tarjimada yorliq qisqaradi, ma'nosi qoladi — ekran aylanmaydi (RU sifatdosh o'rniga ergash gap emas); 1280×800 RU da javobdan keyingi holat ham tugmalar ortida qolmaydi; maket ru rejimda ko'z bilan ko'riladi. | ru | skript:lint:layout `--lang ru` · ekran-nomzod 1280×800 RU | BR-§23 · DE-159.12 · DE-156.9 |
 | R-006 | Flashcardda `tr(card.back)` majburiy; `front` ru da ham `?` bilan; maket `aria-label` `tr({uz,ru})`; `why: {uz, ru}`; `codes` boshlang'ich qiymatida `tr(f.starter)` saqlanadi; faqat o'zbekcha darslar (`PmLesson19–25`, 7-Modul) bir tilli qoladi. | ru | grep-nomzod `tr\(card\.back\)\|aria-label=\{tr\(\|tr\(f\.starter\)` | DE-§9.3e · DE-156.7 · DE-133.b · DE-102d |
 | R-007 | Analitika `questionText` `tr()` ichida bo'lmaydi (bir xil savol ikki tilda ikki yozuv bermasin) — bu sinf 1 → 12-darsga qaytgan. | ru | grep-nomzod `questionText:\s*tr\(` | MEXANIZM teshik 2 |
-| R-008 | Arena `QZ_BG_SHAPES`/canvas `TOK`/`HW_TOKENS` ru rejimda o'zbekcha qolmaydi — `{ uz, ru }` + `tr()` (kod-belgilar o'zgarmaydi); narx-son ajratgichi U+00A0; podium «sessiya» kabi texnik so'z har faylda bir xil tarjima. | ru | skript: fon-so'z skaneri (04.10: 5-Modul 0; boshqa modullar ~20 fayl → KATTA) · skript:ru-walk | 5-Modul YOPILDI 04.10 (8 dars, F-1004-60) · RU_I18N_SPEC §10 |
+| R-008 | Arena `QZ_BG_SHAPES`/canvas `TOK`/`HW_TOKENS` ru rejimda o'zbekcha qolmaydi — `{ uz, ru }` + `tr()` (kod-belgilar o'zgarmaydi); narx-son ajratgichi U+00A0; podium «sessiya» kabi texnik so'z har faylda bir xil tarjima. | ru | skript: fon-so'z skaneri (04.10: 5-Modul 0; boshqa modullar ~20 fayl → KATTA) · skript:ru-walk | 5-Modul YOPILDI 04.10 (8 dars, F-1004-60); 1–4c + PM 9 fayl YOPILDI 04.10 kech (Q1 A); 6-Modul — Q3 guruhlarida · RU_I18N_SPEC §10 |
 | R-009 | Yangi dars yuklashdan oldin GATE 3, RU tayyorligi (ru-walk toza) va katalogda id borligi tekshiriladi; ru skrinshot bo'sh chiqsa `SHOT_WAIT=2500+`. | ru | skript:ru-walk · karta | NL-3a · memory shot-screen-ru-kutish |
+| R-010 | Ru rejimda ataylab o'zbekcha qoladigan so'z (kod/terminal nomi, repo bilan bir xil bot javobi) darsning o'zida `// ru-qoldiq-istisno: <so'zlar>` bilan e'lon qilinadi; kod identifikatori (`a[0].b`, `obj.x`) avtomatik o'tkaziladi; buyruqdagi o'rinbosar (`{sizning login}`) tarjima qilinadi. | hamma | skript: ru-walk (modul:yopish) | RU §9 · 04.10 |
 
 ## 9. MODULGA XOS (M5, M6) — umumiy qonun emas, shu modul darslari uchun
 
@@ -510,10 +512,10 @@ Barcha nomzodlar yuqoridagi bo'limlarga **qatorlar sifatida kiritildi** (Manba u
 
 | ID | Qoida | Qamrov | Tekshiruv | Manba |
 |---|---|---|---|---|
-| JR-01 | Har tahrirdan keyin `npm run gates -- <fayl>` (9 darvoza) 0 topilma; `.jsx` tahrirlangan har seansda `npm run lint:jsx`; matn tegilgan darsdan keyin `lint:til` 0 error; MD tahrirlangan seans yakunida `lint:prompt`. | hamma | gates | CLAUDE.md 4 · DE-§0.2 · DE-§14b |
+| JR-01 | Har tahrirdan keyin `npm run gates -- <fayl>` (12 darvoza) 0 topilma; `.jsx` tahrirlangan har seansda `npm run lint:jsx`; matn tegilgan darsdan keyin `lint:til` 0 error; MD tahrirlangan seans yakunida `lint:prompt`. | hamma | gates | CLAUDE.md 4 · DE-§0.2 · DE-§14b |
 | JR-02 | Darvoza isboti: har yangi yoki kengaytirilgan detektor ikki sinovdan o'tadi — git tarixidagi xatoli versiyada xatoni topadi, tuzatilganda jim turadi; shu isbotsiz `gates` ga kirmaydi; darvozani bazaga solishtir, ko'z bilan ko'r, tekshirmaganni «tekshirildi» dema. | hamma | karta | MEXANIZM 2 · memory ish-uslubi-halol-tekshiruv |
-| JR-03 | Modul-oxiri darvozasi (bitta buyruq): gates + `lint:dizayn` + `lint:layout` (1280 va 390, uz/ru, `--interact`) + `page-audit` + ru-gate/ru-walk + koddan yakuniy MD; oldingi modul yakuniy MD si — namuna. | hamma | skript (5-bosqichda yig'iladi) | MEXANIZM E · N-21 |
-| JR-04 | Sinf-supurish: tuzatilgan har xato hamma qurilgan darslarda qidiriladi (grep yoki skript); jurnalga natija yoziladi, topilmasa ham («qidirildi: N dars, 0»); qaytgan sinflar: reja qadamlari tugmaga o'xshash (10 → 4, 6), ballsiz tanlov yashil (1 → 11), «N-darsda» bo'linishi, `questionText` `tr()` da, N20 ortiqcha. | hamma | karta (retsept B yangi qadami — 4-bosqich, rozilik bilan) | MEXANIZM D · teshik 2 |
+| JR-03 | Modul-oxiri darvozasi (bitta buyruq): gates + `lint:dizayn` + `lint:layout` (1280 va 390, uz/ru, `--interact`) + `page-audit` + ru-gate/ru-walk + koddan yakuniy MD; oldingi modul yakuniy MD si — namuna. | hamma | `npm run modul:yopish -- <papka>` (04.10: gates · lint:jsx · layout E/F/G 1280×773+1366×768 · sarlavha · ru-walk · YAKUNIY MD · karta) | MEXANIZM E · N-21 |
+| JR-04 | Sinf-supurish: tuzatilgan har xato hamma qurilgan darslarda qidiriladi (grep yoki skript); jurnalga natija yoziladi, topilmasa ham («qidirildi: N dars, 0»); qaytgan sinflar: reja qadamlari tugmaga o'xshash (10 → 4, 6), ballsiz tanlov yashil (1 → 11), «N-darsda» bo'linishi, `questionText` `tr()` da, N20 ortiqcha. | hamma | karta · CLAUDE.md retsept B 3a (04.10, «mexanizmni to'liq sozlaylik») | MEXANIZM D · teshik 2 |
 | JR-05 | Har quruvchi raundidan keyin skrinshot majburiy (kompyuter 1280 + telefon 390, uz va ru); «darvoza o'tdi» sifat emas — etalon dars bilan yonma-yon ko'rik. | hamma | skript:shots.mjs / shot-screen.mjs | N-18 · memory bridge-sifat-pmlesson2-etalon |
 | JR-06 | MD = manba-haqiqat: MD da yo'q yorliq/matn qo'shilsa keyingi ekranlardagi bo'shliq va test javoblari bilan grep-solishtiriladi; sadoqat-tekshiruv MD ↔ kod; yakuniy MD koddan qayta yig'iladi. | hamma | grep-nomzod qo'shilgan yorliq ↔ bo'shliq javobi | N-19 · CLAUDE.md F |
 | JR-07 | Fidbek tartibi: F-ID → tashxis AVVAL (yechimni so'ramasdan qilma) → rozilik → tuzatish → gates → sinf-supurish → reestrga qator → qonun-faylga muhr; tashqi audit (ChatGPT) kirish, qonun emas — har band darsda tekshiriladi. | hamma | karta | CLAUDE.md B · memory tashqi-audit-filtr · diagnose-before-fix |
@@ -523,6 +525,8 @@ Barcha nomzodlar yuqoridagi bo'limlarga **qatorlar sifatida kiritildi** (Manba u
 | JR-11 | Commit/push/deploy faqat foydalanuvchi buyrug'i bilan; `git add -A` ishlatilmaydi; darslar GitLab/serverga chiqmaydi (faqat `server/`), LMS ga faqat 1–4-Modul, qolgani Vercel QA sayti; 11 Vercel sayt tegilmaydi. | hamma | karta | CLAUDE.md D · memory darslar-gitlabga-chiqmaydi · lms-faqat-1-4-modul |
 | JR-12 | Subagent byudjeti: tekshiruvchi tuzatmaydi (hisobot beradi), faylni qayta o'qimaydi (skript/darvoza o'rniga), turn-byudjet; fon-agentni bitta signaldan «stuck» deb xulosa qilma; fon-kutuvchi o'z satrini ko'rmasin. | hamma | karta | memory subagent-token-sarfi · subagent-stuck-vs-ishlayapti · fon-buyruq-ozini-koradi |
 | JR-13 | Tekshiruv vositalari tuzoqlari: ru-walk/shot-screen/_smoke da `CHROME=/usr/bin/google-chrome` (default Windows yo'li); `lint:layout` va `_smoke` port 5300 vite kutadi; HtmlCompiler da `grep -a`; prob selektori matnga emas barqaror sinfga bog'lanadi; XATOni yolg'iz qayta yurgiz. | hamma | karta | memory tekshiruv-vositalari-tuzoqlari · prob-selektori-matnga-boglanmaydi · inventar 09 |
+| JR-14 | Yangi dars/modul faqat konveyer bilan: MD v3 → GATE M → `src/skelet/NamunaDars.jsx` dan kod (pilotdan emas) → sadoqat → vizual → RU → yakuniy MD → modul yopish; shablonlar `konveyer/1…7`. | hamma | `gates:qolip` q16 (6+ modulda qolipsiz dars — error) · karta | konveyer/README · F-1004-60 (04.10) |
+| JR-15 | Qurish kartasi reestrdan avtomatik yig'iladi (`npm run karta`), qo'lda tahrirlanmaydi; qoida o'zgarsa avval `QOIDALAR.md`. | hamma | `npm run modul:yopish` (karta `--check`) | MEXANIZM 3 · 04.10 |
 
 ---
 
@@ -533,14 +537,14 @@ Barcha nomzodlar yuqoridagi bo'limlarga **qatorlar sifatida kiritildi** (Manba u
 | 1 T · til | 71 |
 | 2 P · tuzilma va pedagogika | 57 |
 | 3 S · savol, test, izoh, nishon | 48 |
-| 4 J · jonli ball, mentor ekrani | 29 |
+| 4 J · jonli ball, mentor ekrani | 30 |
 | 5 U · ko'rinish, joylashuv, telefon | 56 |
 | 6 K · kod-konvensiya | 26 |
 | 7 PM | 28 |
-| 8 R · ru | 9 |
+| 8 R · ru | 10 |
 | 9 M5/M6 modulga xos | 13 |
-| 12 JR · jarayon | 13 |
-| **Qoida-qatorlar jami** | **394** (+ 27 nomzod-navbat qatori, 12 ziddiyat) — 04.10 tun F-1004-60: T-075, J-029 (q22), U-080/081 (q21), PM-032, R-008 yangilandi · 04.10 kech F-1004-59: U-079 (q20) · F-1004-57/58: U-069 qayta (q11 qat'iy), U-078 (q19) · F-1004 3-qism: U-075…077 (q17/q18) · F-1004 2-qism: T-072…074, U-070…074, PM-030/031 (`gates:qolip` q13–q16, `lint:emoji` qolip-rejim, `lint:olchov` takror + xulosa, `til` sen-imperativ «·/—», chok) · 04.10 F-1004: P-067/068, U-064…069, PM-029 (`gates:qolip` q8–q12, `lint:emoji` 185) · 03.10 kech QA fidbeki: T-071, P-061…066, U-059…063, PM-028 (F-1003-01…21; 12-darvoza `qolip`) · 03.10 amaliyot-qolip: P-058/059/060, U-055…058 (F-1002-101…115) · 02.10 fidbek: 1-dars T-067/068, S-048, P-052 (F-1002-61…67) · 2-dars T-069/070, P-053, U-048 (F-1002-75…81) · 3-dars P-054, U-049/050/051 (F-1002-86…89) · 4-dars U-052 (F-1002-90) · 5-dars U-053 (F-1002-92) · 5–6-dars P-055/056/057, U-054 (F-1002-93…96) |
+| 12 JR · jarayon | 15 |
+| **Qoida-qatorlar jami** | **398** (+ 27 nomzod-navbat qatori, 12 ziddiyat) — 04.10 tun konveyer: JR-14/15, R-010, J-030 (q23); JR-01/03/04 yangilandi (bajarildi) · 04.10 tun F-1004-60: T-075, J-029 (q22), U-080/081 (q21), PM-032, R-008 yangilandi · 04.10 kech F-1004-59: U-079 (q20) · F-1004-57/58: U-069 qayta (q11 qat'iy), U-078 (q19) · F-1004 3-qism: U-075…077 (q17/q18) · F-1004 2-qism: T-072…074, U-070…074, PM-030/031 (`gates:qolip` q13–q16, `lint:emoji` qolip-rejim, `lint:olchov` takror + xulosa, `til` sen-imperativ «·/—», chok) · 04.10 F-1004: P-067/068, U-064…069, PM-029 (`gates:qolip` q8–q12, `lint:emoji` 185) · 03.10 kech QA fidbeki: T-071, P-061…066, U-059…063, PM-028 (F-1003-01…21; 12-darvoza `qolip`) · 03.10 amaliyot-qolip: P-058/059/060, U-055…058 (F-1002-101…115) · 02.10 fidbek: 1-dars T-067/068, S-048, P-052 (F-1002-61…67) · 2-dars T-069/070, P-053, U-048 (F-1002-75…81) · 3-dars P-054, U-049/050/051 (F-1002-86…89) · 4-dars U-052 (F-1002-90) · 5-dars U-053 (F-1002-92) · 5–6-dars P-055/056/057, U-054 (F-1002-93…96) |
 | Qoralama-manba | 1 252 qator, 8 manba, 9 agent |
 
 **Tekshiruv ustuni taqsimoti** (bir qatorda bir nechta bo'lishi mumkin): `gates:` 53 (10-darvoza `olchov`, 11-darvoza `narrow` 02.10) · `skript:` 24 (+`lint:sarlavha`) · `grep-nomzod` 195 · `ekran-nomzod` 59 · `karta` 91.

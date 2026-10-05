@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/7-YAKUNIY.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # Yakuniy MD topshirig'i — 5-Modul (01.10, F-1001-81)
 
 Foydalanuvchi qarori: feedbacklar to'g'rilangan oxirgi matn `feedback/F-0928-QA-5modul/YAKUNIY/` papkasida TOZA MD bo'lib saqlanadi.

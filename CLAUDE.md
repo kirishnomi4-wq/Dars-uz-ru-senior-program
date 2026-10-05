@@ -9,7 +9,7 @@
 | Tur | Fayllar | Qoida |
 |---|---|---|
 | **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · **`AUDIT_PROMPT.md` (doimiy audit-prompti — har YANGI dars shu bilan ochiladi, qayta yuborilmaydi)** · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
-| **JARAYON** (qaysi tartibda) | `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
+| **JARAYON** (qaysi tartibda) | **`konveyer/README.md` (04.10 — yangi dars/modul zanjiri: MD v3 → GATE M → skelet → darvozalar → modul yopish; shablonlar `konveyer/1…7`, karta `konveyer/QURISH_KARTASI.md`)** · `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
 | **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) · **`MODUL_TUR.md` (ekranda tekshiriladigan bandlar — dars sikli to'xtamaydi, modul oxirida bir yo'la ko'riladi)** | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
 | **ROLLAR** | `.claude/agents/role/*` (texnik + umumiy: jonli, verifikator, o'quvchi, qabulchi) · `.claude/agents/pm/*` (PM) | Har rol o'z scope-fence bilan. `.claude/` da FAQAT agentlar+sozlamalar turadi |
 
@@ -41,6 +41,8 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 1. **ID ber:** `F-MMDD-NN` (masalan F-0724-01). Rasm bo'lsa → `feedback/`ga (public/ EMAS — u sayt-papka).
 2. **Tashxis AVVAL:** muammoni aniqlab AYT, yechim taklif qil — foydalanuvchi tasdig'ini kut (yechimni so'ramasdan qilma).
 3. **Tuzat** (tasdiqdan keyin) → `npm run gates -- <fayl>` + tegishli residue-grep.
+3a. **Sinf-supurish** (mexanizm 4-bosqich, 04.10): shu xato HAMMA qurilgan darslarda qidiriladi (grep yoki darvoza) va tuzatiladi
+   (o'z doirasida; doiradan tashqarisi — KATTA + qaror); natija jurnalga, topilmasa ham («qidirildi: N dars, 0»).
 4. **Qonunlashtirish-marshruti** (har topilma AYNAN bitta joyga; MATN-topilma esa IKKI joyga — avval korpus):
    - matn/ohang/ifoda topilmasi → **AVVAL `MATN_KORPUS.md`ga juftlik** (❌ eski → ✅ yangi + sabab + F-ID), keyin kerak bo'lsa qonun/lug'at
    - so'z/atama muammosi → `MATN_ETALONI.md` LUG'AT (qiyin·sodda·izoh·manba-sana) + grep-lanadigan bo'lsa `til-lint-rules.json`ga qoida
@@ -69,16 +71,16 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
    (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).
 5. 8+ faylga tegadigan ish chiqsa — `KATTA_TOZALASH.md` ga yoziladi, o'sha yerda tuzatilmaydi.
 
-### F — YANGI DARS: MD-BIRINCHI (2026-09-29, D7 — asosiy yo'l; bosqichlar: `feedback/F-0929-QA-6modul/MD_BIRINCHI_JARAYON.md`)
+### F — YANGI DARS: MD-BIRINCHI (2026-09-29, D7 — asosiy yo'l; 04.10 dan bosqichlar va shablonlar: **`konveyer/README.md`**, MD formati `konveyer/1-MD.md`, kod `src/skelet/NamunaDars.jsx` dan)
 1. **Manba yig'ish:** dasturdagi o'rni, oldingi/keyingi dars (App.jsx `comp:` dan), bitta misol-ip, o'tilgan atamalar (grep), test rejasi.
-2. **MD v1** — o'quvchi ko'radigan HAR so'z (namuna: `feedback/F-0929-QA-6modul/01-SystemArchitecture-v2.md`): A-bo'lim qoidalari,
+2. **MD v3** — o'quvchi ko'radigan HAR so'z, har ekran qolip turi bilan (namuna: `feedback/F-0929-QA-6modul/01-SystemArchitecture-v3.md`): A-bo'lim qoidalari,
    ip, reja jadvali, har ekran, testlar (✔, variantlar teng), final («1-qadam…»), amaliyot, kartochka, recaps, arena, nishon, keyingi dars.
    161-qonun (emoji). Kod o'zgarishi kerak bo'lsa — «KOD» belgisi. `.jsx` ga TEGILMAYDI.
 3. **Ko'rik:** foydalanuvchi (`>>`) + ChatGPT (xulosasini foydalanuvchi beradi).
 4. **Filtr:** har band → darsda bormi (grep) → fakt (App.jsx, oldingi darslar) → qonun → kalit/pozitsiya → auditoriya;
    hukm Qabul/Qisman/Rad + sabab (jurnalga); mustaqil ov. Tashqi audit — kirish, qonun emas (memory `tashqi-audit-filtr`).
-5. **MD v2 → [GATE M]** foydalanuvchi tasdig'i. Modulning barcha darslari GATE M'dan o'tgach — razrabotka (A/C zanjiri, MD = manba-haqiqat).
-6. Yakun: topilma-sinflari muhrlanadi (B/4 marshruti); `npm run gates` (+ `lint:tell`, `lint:emoji`).
+5. **MD v3 → [GATE M]** foydalanuvchi tasdig'i. Keyin razrabotka — konveyer 3–8 (skeletdan quruvchi → sadoqat → vizual → RU → yakuniy MD; MD = manba-haqiqat).
+6. Yakun: topilma-sinflari muhrlanadi (B/4 marshruti); har dars `npm run gates` 12/12; modul — **`npm run modul:yopish -- src/<N>-Modull`**.
 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·

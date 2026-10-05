@@ -38,3 +38,12 @@ Qurish — yangi seansda; o'sha seans umumiy qonun fayllariga yozadigan yagona (
 4. **Retsept B ga sinf-supurish** (CLAUDE.md — rozilik bilan): tuzatilgan har xato hamma qurilgan darslarda qidiriladi; jurnalga natija yoziladi, topilmasa ham («qidirildi: N dars, 0»).
 5. **Konveyer umumiy joyga** — shablonlar va `vositalar/` shu papkadan PIPELINE yoniga / `.claude/agents/` ga; modul yopish darvozasi bitta buyruq (gates + telefon + koddan yakuniy MD).
 6. **Sinov:** yangi darvozalar 5- va 6-Modulning hamma darsida yurgiziladi → topilmalar ro'yxati. Shundan keyin fidbek davri boshlanadi.
+
+## Holat (04.10.2026 23:00, ASOSIY seans — foydalanuvchi: «5-6 ni yopib mexanizmni to'liq sozlaylik, ertadan yangi darslar»)
+- 0 ✅ (02.10) · 1 ✅ `QOIDALAR.md` (398 qator) · 2 ✅ darvozalar (`gates` 12; lint-qolip q1–q23; layout F/G; sarlavha; til sen-imperativ).
+- **3 ✅ qurish kartasi** — `konveyer/QURISH_KARTASI.md`, reestrdan avtomatik (`npm run karta`, 110 qoida), qo'lda tahrirlanmaydi (JR-15).
+- **4 ✅ retsept B ga sinf-supurish** — CLAUDE.md B 3a (JR-04).
+- **5 ✅ konveyer umumiy joyga** — `konveyer/` (README zanjir + `1-MD` … `7-YAKUNIY`, `vositalar/`), yangi dars skeleti `src/skelet/NamunaDars.jsx`,
+  modul yopish bitta buyruq `npm run modul:yopish` (JR-03, JR-14). Eski shablonlar «ESKI (tarix)» belgisi bilan qoldi.
+- 6 (sinov) — `modul:yopish` 5-Modulda yurdi: ru qoldiq (3/4/7/9) va dizayn chiziqlari (1/4/11) topildi → qaror-sahifa Q5; birinchi to'liq sinov — 6-Modul G1.
+

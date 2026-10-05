@@ -143,6 +143,31 @@ export const qolipCss = (Q) => `
 
   /* --- Mustaqil ish: bitta ustun --- */
   .q-mustaqil { max-width: 640px; width: 100%; }
+  /* --- Amaliyot bloki (172/173, QBlok): qadamlar bittadan, bajarilgani bir qatorga yig'iladi; o'ngda kutilgan natija --- */
+  .q-blok-qadamlar { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .q-blok-q { display: flex; align-items: center; gap: 11px; background: ${Q.paper}; border: 1px solid ${Q.line}; border-radius: 12px; padding: 10px 13px; min-width: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); color: ${Q.ink}; }
+  .q-blok-q.joriy { align-items: flex-start; border-color: ${Q.ink2}; }
+  .q-blok-q.bajarildi { background: ${Q.okFon}; border-color: ${fon(Q.ok, 0.35)}; padding-block: 8px; }
+  .q-blok-n { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; background: ${Q.bg}; color: ${Q.ink2}; border: 1.5px solid ${Q.line}; }
+  .q-blok-q.bajarildi .q-blok-n { background: ${Q.ok}; border-color: ${Q.ok}; color: #fff; }
+  .q-blok-h { flex: 1; min-width: 0; font-weight: 700; color: ${Q.ok}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .q-blok-qaytar { flex-shrink: 0; border: none; background: transparent; color: ${Q.ok}; font-size: 16px; font-weight: 700; cursor: pointer; padding: 2px 6px; border-radius: 8px; }
+  .q-blok-qaytar:hover { background: ${Q.paper}; }
+  .q-blok-tana { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  p.q-blok-t { margin: 0; line-height: 1.5; overflow-wrap: break-word; }
+  p.q-blok-xato { margin: 0; font-size: 12.5px; line-height: 1.45; color: ${Q.ink2}; }
+  .q-blok-tugadi { background: ${Q.okFon}; border-radius: 12px; padding: clamp(12px,2vw,16px); }
+  .q-blok-tugadi p { margin: 0; color: ${Q.ink}; line-height: 1.5; }
+  .q-blok-natija { display: flex; flex-direction: column; min-width: 0; }
+  .q-blok-ortda { display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.5; color: ${Q.ink2}; min-width: 0; }
+  .q-blok-buyruq { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${Q.ink}; background: ${Q.bg}; border: 1px solid ${Q.line}; border-radius: 6px; padding: 3px 7px; display: block; white-space: nowrap; overflow-x: auto; } /* buyruq bo'linmaydi (--tags), tor ekranda ichida suriladi */
+  .q-prompt { width: 100%; background: ${Q.bg}; border: 1px solid ${Q.line}; border-radius: 11px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .q-prompt-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+  .q-prompt-kim { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 10.5px; letter-spacing: 0.06em; color: ${Q.ink2}; }
+  .q-prompt-nusxa { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; padding: 5px 11px; border-radius: 8px; border: 1px solid ${Q.line}; background: ${Q.paper}; color: ${Q.accent}; cursor: pointer; margin-left: auto; }
+  .q-prompt-nusxa:hover { background: ${Q.accentSoft}; }
+  p.q-prompt-satr { margin: 0; font-size: clamp(12.5px,1.5vw,13.5px); line-height: 1.55; color: ${Q.ink}; font-weight: 500; overflow-wrap: break-word; }
+  .q-joy { background: ${Q.accentSoft}; color: ${Q.accent}; border-radius: 6px; padding: 1px 6px; font-weight: 700; }
 
   /* --- Voqea: karta mazmun balandligida (F-1004-44) --- */
   .q-voqea { align-items: center; text-align: center; }

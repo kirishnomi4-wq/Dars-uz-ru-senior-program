@@ -242,7 +242,10 @@ const MEASURE = () => {
     if (cs.display === 'inline' && el.getClientRects().length > 1) continue;
     const box = el.getBoundingClientRect();
     if (box.width < 20) continue;
-    const L = box.left + (parseFloat(cs.borderLeftWidth) || 0) + (parseFloat(cs.paddingLeft) || 0);
+    // Osilgan chekinish (text-indent manfiy + padding-left, masalan kod qatori `.cw-l`, F-1001-70): birinchi qator ataylab
+    // padding ichidan boshlanadi — chap chegara shu qadar chapga suriladi (05.10: m5-06 da 20 soxta C).
+    const ti = parseFloat(cs.textIndent) || 0;
+    const L = box.left + (parseFloat(cs.borderLeftWidth) || 0) + (parseFloat(cs.paddingLeft) || 0) + Math.min(0, ti);
     const R = box.right - (parseFloat(cs.borderRightWidth) || 0) - (parseFloat(cs.paddingRight) || 0);
     let maxR = -Infinity, minL = Infinity;
     for (const t of texts) {
@@ -476,6 +479,15 @@ const MEASURE = () => {
     }
     return null;
   };
+  // Ataylab kesilgan yoki ichida suriladigan matn (ellipsis qatori, gorizontal suriladigan kod) — chetga yopishgan emas:
+  // u «ATAYLAB QISQARTIRILGAN» bo'limida sanaladi (m5-01 s16 lp-step-t.one, m5-14 s12 .vsc — 05.10, 28 soxta G).
+  const kesilgan = (el, card) => {
+    for (let a = el; a && a !== card.parentElement; a = a.parentElement) {
+      const s = getComputedStyle(a);
+      if (/(hidden|auto|scroll|clip)/.test(s.overflowX) && a.scrollWidth > a.clientWidth + 1) return true;
+    }
+    return false;
+  };
   const scrEl = document.querySelector('.screen');
   if (scrEl) {
     const tw = document.createTreeWalker(scrEl, NodeFilter.SHOW_TEXT);
@@ -487,6 +499,7 @@ const MEASURE = () => {
       if (!vis(el, cs) || el.closest('[aria-hidden="true"], code, pre, input, textarea, button, .qcode')) continue;
       const card = cardOf(el); if (!card || card === scrEl || seenCard.has(card)) continue;
       const cb = card.getBoundingClientRect(); if (cb.width < 120) continue;
+      if (kesilgan(el, card)) continue;
       const ccs = getComputedStyle(card); if (ccs.textAlign === 'center' || cs.textAlign === 'center') continue;
       const r = document.createRange(); r.selectNodeContents(n); const tb = r.getBoundingClientRect();
       if (tb.width < 2) continue;

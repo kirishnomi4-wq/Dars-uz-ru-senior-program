@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/4-VIZUAL.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # Vizual tekshiruv: darsni ko'z bilan ko'rish (faqat KO'RISH, TUZATMAYSIZ) — 5-Modul
 
 F-1001-60 sabog'i: sadoqat-tekshiruvi matnni MD bilan solishtiradi, lekin joylashuv buzilishini ko'rmaydi (6-dars: yangi `.ck` CSS klassi

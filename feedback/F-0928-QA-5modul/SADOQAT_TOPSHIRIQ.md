@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/3-SADOQAT.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # Sadoqat-tekshiruvi: kod ↔ MD v2 (faqat O'QISH, TUZATMAYSIZ) — 5-Modul
 
 Namuna: `feedback/F-0929-QA-6modul/SADOQAT_TOPSHIRIQ.md`. Siz yengil tekshiruvchisiz. Savol: **darsdagi o'quvchi ko'radigan o'zbekcha matn va

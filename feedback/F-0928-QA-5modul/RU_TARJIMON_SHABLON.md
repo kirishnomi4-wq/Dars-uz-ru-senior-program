@@ -1,3 +1,5 @@
+> ⚠️ ESKI (tarix) — 04.10.2026 dan amaldagisi: **`konveyer/6-RU.md`** (zanjir: `konveyer/README.md`). Bu nusxa F-0928-QA-5m jurnalidagi havolalar uchun saqlandi.
+
 # RU-tarjimon topshirig'i — 5-Modul v2 (bitta dars = bitta agent = bitta fayl)
 
 Namuna: `feedback/F-0929-QA-6modul/RU_TARJIMON_SHABLON.md`. Darsning o'zbekcha matni MD v2 bo'yicha yangilandi (01.10), ruscha (`ru:`) esa

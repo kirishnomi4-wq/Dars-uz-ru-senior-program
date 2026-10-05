@@ -254,4 +254,6 @@ aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>
   `{ uz, ru }` juftlik va chizishda `tr(...)`. Namuna: 8-dars `{ uz: 'savol', ru: 'вопрос' }`.
 - **O'zgarmaydi:** kod-belgilar (`/start`, `.env`, `token`, `SELECT`, `useEffect`) va brend/atama nomlari (`Telegraf`, `@BotFather`).
 - 5-Modul: 8 dars (2/4/5/6/8/9/10/11) — 03.10 sahifasidagi 4 dars + sinf-supurishda topilgan 4 dars (canvas `TOK` va `HW_TOKENS`).
-  Boshqa modullar: ~20 fayl — KATTA F-1004-60 ro'yxati (`scratchpad` skanerining natijasi KATTA'da).
+  Boshqa modullar: 1–4c + PM 9 fayl — 04.10 kech (Q1 A) yopildi; 6-Modul 7 fayl — Q3 guruhlarida.
+- **Ataylab o'zbekcha qoladigan joy** (kod/terminal nomi, repo bilan bir xil bot javobi) — darsda `// ru-qoldiq-istisno s<N>: so'zlar` (R-010); ru-walk qolganini ushlaydi.
+  Buyruqdagi o'rinbosar (`{sizning login}`) — tarjima qilinadi (`{ваш логин}`).
