@@ -1822,11 +1822,11 @@ const HW_STEPS = {
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
 // Uy-vazifa kapsulasi fonidagi xira so'z-tokenlar — shu dars lug'atidan (§114)
 const HW_TOKENS = [
-  { t: 'nosozlik', l: 5,  tp: 16, s: 12, d: 6.5 },
-  { t: 'karta',    l: 80, tp: 12, s: 11, d: 7.5 },
-  { t: 'navbat',   l: 12, tp: 70, s: 11, d: 8 },
-  { t: 'javon',    l: 64, tp: 76, s: 12, d: 6 },
-  { t: 'skuter',   l: 86, tp: 52, s: 10, d: 9 },
+  { t: { uz: 'nosozlik', ru: 'неисправность' }, l: 5,  tp: 16, s: 12, d: 6.5 },
+  { t: { uz: 'karta', ru: 'карта' },    l: 80, tp: 12, s: 11, d: 7.5 },
+  { t: { uz: 'navbat', ru: 'очередь' },   l: 12, tp: 70, s: 11, d: 8 },
+  { t: { uz: 'javon', ru: 'полка' },    l: 64, tp: 76, s: 12, d: 6 },
+  { t: { uz: 'skuter', ru: 'самокат' },   l: 86, tp: 52, s: 10, d: 9 },
   { t: '⚖️',       l: 36, tp: 8,  s: 12, d: 7 },
   { t: '🧪',       l: 3,  tp: 44, s: 12, d: 8.5 },
 ];
@@ -1944,13 +1944,13 @@ const Confetti = () => {
 const Q_LABELS = { 3: { uz: '1 — Nosozlik nima', ru: '1 — Что такое поломка' }, 5: { uz: '2 — Qayerda tutildi', ru: '2 — Где поймали' }, 7: { uz: '3 — Cyberpunk misoli', ru: '3 — Пример Cyberpunk' }, 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
 const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
-  { ch: 'nosozlik', l: 5,  t: 10, s: 30, d: 19, dl: 0 },
-  { ch: 'karta',    l: 85, t: 8,  s: 28, d: 23, dl: 1.5 },
-  { ch: 'navbat',   l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
-  { ch: 'javon',    l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
-  { ch: 'tarozi',   l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
-  { ch: 'skuter',   l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: 'sifat',    l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
+  { ch: { uz: 'nosozlik', ru: 'неисправность' }, l: 5,  t: 10, s: 30, d: 19, dl: 0 },
+  { ch: { uz: 'karta', ru: 'карта' },    l: 85, t: 8,  s: 28, d: 23, dl: 1.5 },
+  { ch: { uz: 'navbat', ru: 'очередь' },   l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: { uz: 'javon', ru: 'полка' },    l: 74, t: 68, s: 26, d: 21, dl: 2.2 },
+  { ch: { uz: 'tarozi', ru: 'весы' },   l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
+  { ch: { uz: 'skuter', ru: 'самокат' },   l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
+  { ch: { uz: 'sifat', ru: 'качество' },    l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
   { ch: 'test',     l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
   { ch: '⚖️',       l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '🧪',       l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
@@ -2071,10 +2071,10 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['nosozlik', 'sifat', 'karta', 'navbat', 'javon', 'tarozi', 'skuter', 'test', '⚖️', '🧪'];
+    const TOK = [{ uz: 'nosozlik', ru: 'неисправность' }, { uz: 'sifat', ru: 'качество' }, { uz: 'karta', ru: 'карта' }, { uz: 'navbat', ru: 'очередь' }, { uz: 'javon', ru: 'полка' }, { uz: 'tarozi', ru: 'весы' }, { uz: 'skuter', ru: 'самокат' }, 'test', '⚖️', '🧪'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }

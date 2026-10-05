@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+// R-010 (5-Modulni yopishdan keyingi Q5 A, 04.10): ru rejimda ataylab o'zbekcha qoladi — amaliyot chati: botning javoblari repo TelegramBotNest bilan bir xil (o'zbekcha).
+// ru-qoldiq-istisno s16: uchun bosing nima qilamiz keyingi
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -2306,7 +2308,7 @@ const MentorPracticeStats = ({ live, screen }) => {
 // 4 qadam: ochish → prompt («Nusxalash», {…} joylar) → ishga tushirish → Telegramda tekshirish. O'ngda kutilgan natija (chat). Qulf — bittadan «Bajardim».
 const _blkT = (x) => ((x && typeof x === 'object' && !React.isValidElement(x)) ? (x.uz ?? '') : x);
 const BlkBtns = ({ items }) => <div className="ab-btns el-in">{items.map((b, i) => <span key={i} className="ab-btn">{tr(b)}</span>)}</div>;
-const CodeLines = ({ lines }) => <pre className="ab-code">{lines.map((l, i) => <span key={i}><span className="ab-code-p">$</span> {l}{'\n'}</span>)}</pre>;
+const CodeLines = ({ lines }) => <pre className="ab-code">{lines.map((l, i) => <span key={i}><span className="ab-code-p">$</span> {tr(l)}{'\n'}</span>)}</pre>;
 function PromptBox({ lines, who }) {
   const [copied, setCopied] = useState(false);
   const plain = lines.map(l => tr(l)).join('\n');
@@ -2383,7 +2385,7 @@ const ScreenBotPractice = (props) => (
     title={{ uz: <>Repo'ni oling, botingizga <span className="italic" style={{ color: T.accent }}>menyu</span> qo'shing.</>, ru: <>Возьмите репозиторий, добавьте боту <span className="italic" style={{ color: T.accent }}>меню</span>.</> }}
     mentor={{ uz: <>Shu papka modul oxirigacha sizniki — avval o'z nusxangizni yuklab olasiz, keyin unga /menu qo'shasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Эта папка — ваша до конца модуля: сначала скачиваете свою копию, потом добавляете в неё /menu; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
-      { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Terminalda:", ru: "На GitHub `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (ваша копия). В терминале:" }, code: ['git clone https://github.com/{sizning login}/TelegramBotNest.git', 'cd TelegramBotNest', 'npm install'] },
+      { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Terminalda:", ru: "На GitHub `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (ваша копия). В терминале:" }, code: [{ uz: 'git clone https://github.com/{sizning login}/TelegramBotNest.git', ru: 'git clone https://github.com/{ваш логин}/TelegramBotNest.git' }, 'cd TelegramBotNest', 'npm install'] },
       { h: { uz: 'Token', ru: 'Токен' }, t: { uz: "`.env.example` ni nusxalab `.env` qiling, `BOT_TOKEN=` ga @BotFather bergan tokenni yozing (chatga, skrinshotga emas). `npm run start:dev` → «Telegram bot ulandi». Telegramda `/start` → «Salom! Bot ishlayapti.»", ru: "Скопируйте `.env.example` в `.env`, в `BOT_TOKEN=` впишите токен от @BotFather (не в чат и не на скриншот). `npm run start:dev` → «Telegram bot ulandi». В Telegram `/start` → «Salom! Bot ishlayapti.»" } },
       { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "Antigravity'da papkani oching, «Nusxalash», yuboring.", ru: "откройте папку в Antigravity, «Скопировать», отправьте." }, prompt: [
         { uz: "src/api/telegram/telegram.service.ts ga /menu buyrug'ini qo'sh: «Nima qilamiz?» va 2 ta inline tugma — {1-tugma}, {2-tugma}.", ru: "В src/api/telegram/telegram.service.ts добавь команду /menu: «Nima qilamiz?» и 2 inline-кнопки — {кнопка 1}, {кнопка 2}." },

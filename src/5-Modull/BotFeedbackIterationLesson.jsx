@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+// R-010 (5-Modulni yopishdan keyingi Q5 A, 04.10): ru rejimda ataylab o'zbekcha qoladi — s8 — terminal/Render log: commit matni «9-dars: …» (repo tarixi, kod).
+// ru-qoldiq-istisno s8: dars
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -566,7 +568,7 @@ const Term = ({ title = 'Terminal', children, minH }) => (
   <div className="term"><div className="term-bar"><span className="bb-dots"><i /><i /><i /></span><span className="term-title">{title}</span></div><div className="term-body" style={{ minHeight: minH }}>{children}</div></div>
 );
 const TLine = ({ cmd, out, col }) => (
-  <div className="el-in tline">{cmd ? <><span style={{ color: CODE.str }}>$</span> <span style={{ color: CODE.text }}>{cmd}</span></> : <span style={{ color: col || CODE.comment }}>{out}</span>}</div>
+  <div className="el-in tline">{cmd ? <><span style={{ color: CODE.str }}>$</span> <span style={{ color: CODE.text }}>{tr(cmd)}</span></> : <span style={{ color: col || CODE.comment }}>{tr(out)}</span>}</div>
 );
 
 // ===== TELEGRAM CHAT (jonli ko'rinish) =====
@@ -905,7 +907,7 @@ const ScreenA3 = (props) => (
     title={{ uz: <>v2 ni serverga chiqaring va <span className="italic" style={{ color: T.accent }}>qayta so'rang</span>.</>, ru: <>Выпустите v2 на сервер и <span className="italic" style={{ color: T.accent }}>спросите снова</span>.</> }}
     mentor={{ uz: <>Tuzatish ishladimi — buni siz emas, o'sha odam aytadi; <b style={{ color: T.ink }}>«1 · Push»</b>dan boshlang.</>, ru: <>Сработало ли исправление — скажет не вы, а тот человек; начните с <b style={{ color: T.ink }}>«1 · Push»</b>.</> }}
     steps={[
-      { h: { uz: 'Push', ru: 'Push' }, t: { uz: "laptopdagi botni to'xtating (Ctrl+C), keyin uch buyruq.", ru: "остановите бота на ноутбуке (Ctrl+C), потом три команды." }, code: ['git add -A', 'git commit -m "9-dars: v2 — {nima tuzatildi}"', 'git push'] },
+      { h: { uz: 'Push', ru: 'Push' }, t: { uz: "laptopdagi botni to'xtating (Ctrl+C), keyin uch buyruq.", ru: "остановите бота на ноутбуке (Ctrl+C), потом три команды." }, code: ['git add -A', { uz: 'git commit -m "9-dars: v2 — {nima tuzatildi}"', ru: 'git commit -m "9-dars: v2 — {что исправлено}"' }, 'git push'] },
       { h: { uz: 'Render', ru: 'Render' }, t: { uz: "render.com'da xizmatingiz o'zi qayta joylanadi (Auto-Deploy). Loglarda 2–4 daqiqada «Telegram bot ulandi (webhook)».", ru: "на render.com ваш сервис передеплоится сам (Auto-Deploy). В логах через 2–4 минуты «Telegram bot ulandi (webhook)»." }, err: { uz: "Xato bo'lsa, log matnini Antigravity'ga: «Render logida shu xato: {xato}. Sabab nima?»", ru: "Если ошибка — текст лога в Antigravity: «В логе Render такая ошибка: {ошибка}. В чём причина?»" } },
       { h: { uz: 'Telefondan tekshirish', ru: 'Проверить с телефона' }, t: { uz: 'tuzatilgan joy serverda ham ishlaydi (birinchi javob 30–60 s kechikishi mumkin).', ru: 'исправленное место работает и на сервере (первый ответ может задержаться на 30–60 с).' } },
       { h: { uz: "Qayta o'lchash", ru: 'Измерить снова' }, t: { uz: "8-darsdagi odamga yana bering va yana so'rang: «qayerda to'xtab qoldingiz?». Javobni `FIKRLAR.md` ga yozing.", ru: "снова дайте бота человеку с 8-го урока и снова спросите: «где вы остановились?». Ответ запишите в `FIKRLAR.md`." }, who: { uz: 'Shablon → FIKRLAR.md', ru: 'Шаблон → FIKRLAR.md' }, prompt: [
@@ -916,7 +918,7 @@ const ScreenA3 = (props) => (
     chatLabel={{ uz: 'kutilgan natija · terminal + Render log', ru: 'ожидаемый результат · терминал + лог Render' }}
     term={[
       { cmd: 'git push' },
-      { out: 'To https://github.com/{siz}/TelegramBotNest.git', col: CODE.str },
+      { out: { uz: 'To https://github.com/{siz}/TelegramBotNest.git', ru: 'To https://github.com/{ваш логин}/TelegramBotNest.git' }, col: CODE.str },
       { out: '…' },
       { out: 'Render ▸ Deploying commit 7c1e2b4 "9-dars: v2 — narx"' },
       { out: 'Render ▸ Telegram bot ulandi (webhook)', col: CODE.str }

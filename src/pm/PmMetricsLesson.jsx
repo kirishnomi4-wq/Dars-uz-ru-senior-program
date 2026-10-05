@@ -2775,8 +2775,8 @@ const CSS_M = `
   .log { background: ${T.paper}; border-radius: 16px; padding: 10px; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
   .log-h { font-family: 'Manrope'; font-weight: 800; font-size: 12px; letter-spacing: 0.04em; color: ${T.ink2}; padding: 2px 6px 6px; }
   .log-row { display: grid; grid-template-columns: 20px 46px minmax(0,1fr) auto; gap: 8px; align-items: baseline; text-align: left; background: none; border: none; border-radius: 9px; padding: 6px 8px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; cursor: pointer; transition: background 0.15s, box-shadow 0.15s; }
-  .log-row.odam { box-shadow: inset 3px 0 0 ${T.accent}88; }
-  .log-row.bot { color: ${T.ink2}; background: ${T.bg}; box-shadow: inset 3px 0 0 ${T.ink3}66; }
+  .log-row.odam { background: ${T.accentSoft}; } /* Q5 (04.10): chap chiziq o'rniga fon (D1) */
+  .log-row.bot { color: ${T.ink2}; background: ${T.bg}; }
   .log-row:disabled { cursor: default; opacity: 0.6; }
   .log-row:hover:not(:disabled) { background: ${T.bg}; }
   .log-row.on { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}; opacity: 1; }
@@ -2826,9 +2826,9 @@ const CSS_M = `
   .mx-arw path { fill: none; stroke: ${T.ink2}; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: mx-draw 1s ease-out 0.2s forwards; }
   @keyframes mx-draw { to { stroke-dashoffset: 0; } }
   /* s2: fikr kartasi kulrang, raqam kartasi asosiy rangda; ochiladigan karta belgisi (U1) */
-  .dfc.dfc-fikr { border-left: 4px solid ${T.ink3}; }
+  .dfc.dfc-fikr { border: 1.5px solid ${T.line}; } /* Q5 (04.10): chap chiziq o'rniga to'liq ramka (D1) */
   .dfc.dfc-fikr .dfc-h { color: ${T.ink2}; }
-  .dfc.dfc-son { border-left: 4px solid ${T.accent}; }
+  .dfc.dfc-son { border: 1.5px solid ${T.accent}; }
   .dfc.dfc-son .dfc-h { color: ${T.accent}; }
   .mx-mark { margin-left: auto; flex-shrink: 0; font-family: 'Manrope'; font-weight: 800; font-size: 15px; color: ${T.ink3}; }
   .mx-mark.ok { color: ${T.success}; }

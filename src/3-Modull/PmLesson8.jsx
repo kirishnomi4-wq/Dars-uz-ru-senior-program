@@ -1979,7 +1979,8 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (scored indekslar 3/5/7/11)
-const Q_LABELS = { 3: { uz: '1 — Ikki savol', ru: '1 — Два вопроса' }, 5: { uz: "2 — To'rt katak", ru: '2 — Четыре клетки' }, 7: '3 — Instagram Stories', 11: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
+// q22 (04.10, yopishdan keyingi Q3 A): kalitlar = ballik ekran indekslari (ekran qo'shilganda siljigan edi)
+const Q_LABELS = { 3: { uz: '1 — Ikki savol', ru: '1 — Два вопроса' }, 6: { uz: "2 — To'rt katak", ru: '2 — Четыре клетки' }, 8: '3 — Instagram Stories', 12: { uz: '4 — Yakuniy savol', ru: '4 — Итоговый вопрос' } };
 const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
   { ch: { uz: 'katak', ru: 'клетка' },  l: 5,  t: 10, s: 30, d: 19, dl: 0 },
@@ -2118,10 +2119,10 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['katak', 'vaqt', 'foyda', 'darrov', 'reja', '1 kun', '3 hafta', 'navbat', '🎯', '🗑'];
+    const TOK = [{ uz: 'katak', ru: 'клетка' }, { uz: 'vaqt', ru: 'время' }, { uz: 'foyda', ru: 'польза' }, { uz: 'darrov', ru: 'сразу' }, { uz: 'reja', ru: 'план' }, '1 kun', '3 hafta', { uz: 'navbat', ru: 'очередь' }, '🎯', '🗑'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }

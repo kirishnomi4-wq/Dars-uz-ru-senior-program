@@ -2078,13 +2078,13 @@ const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 const QZ_BG_SHAPES = [
   { ch: 'pitch',  l: 5,  t: 10, s: 42, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
   { ch: '🧑‍🍳',     l: 86, t: 7,  s: 40, c: 'rgba(203,173,255,0.13)', d: 23, dl: 1.5 },
-  { ch: 'peshtaxta', l: 8, t: 72, s: 34, c: 'rgba(150,115,240,0.16)', d: 27, dl: 0.8 },
-  { ch: 'javon',  l: 78, t: 68, s: 34, c: 'rgba(120,235,175,0.13)', d: 21, dl: 2.2 },
+  { ch: { uz: 'peshtaxta', ru: 'Прилавок' }, l: 8, t: 72, s: 34, c: 'rgba(150,115,240,0.16)', d: 27, dl: 0.8 },
+  { ch: { uz: 'javon', ru: 'Полка' },  l: 78, t: 68, s: 34, c: 'rgba(120,235,175,0.13)', d: 21, dl: 2.2 },
   { ch: '🥙',      l: 44, t: 86, s: 40, c: 'rgba(203,173,255,0.13)', d: 25, dl: 1.1 },
   { ch: '→',       l: 66, t: 26, s: 46, c: 'rgba(255,110,70,0.13)',  d: 17, dl: 0.4 },
   { ch: '🙂',      l: 26, t: 34, s: 34, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
-  { ch: 'oshpaz', l: 55, t: 5,  s: 26, c: 'rgba(80,200,255,0.14)',  d: 22, dl: 0.6 },
-  { ch: 'jargon', l: 93, t: 42, s: 26, c: 'rgba(190,150,255,0.14)', d: 24, dl: 1.3 },
+  { ch: { uz: 'oshpaz', ru: 'Повар' }, l: 55, t: 5,  s: 26, c: 'rgba(80,200,255,0.14)',  d: 22, dl: 0.6 },
+  { ch: { uz: 'jargon', ru: 'Жаргон' }, l: 93, t: 42, s: 26, c: 'rgba(190,150,255,0.14)', d: 24, dl: 1.3 },
   { ch: '📋',     l: 2,  t: 45, s: 30, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
@@ -2194,7 +2194,7 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       <span className="cs-ring" aria-hidden="true" />
       <div className="cs-sky" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{s.ch}</span>
+          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{tr(s.ch)}</span>
         ))}
         {[[14, 30, 24], [38, 66, 15], [57, 20, 27], [76, 60, 18], [88, 36, 13]].map(([l, t, w], i) => (
           <i key={i} className="cs-dash" style={{ left: `${l}%`, top: `${t}%`, width: w, animationDelay: `-${i * 1.7}s` }} />
@@ -2233,10 +2233,10 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Dekor O'QITADI: kapsulada suzadigan tokenlar SHU darsning atamalari (eski efir-darsniki emas)
-    const TOK = ['pitch', 'jargon', 'peshtaxta', 'oshpaz', 'javon', 'sistema', 'qatlam', '🥙'];
+    const TOK = ['pitch', { uz: 'jargon', ru: 'Жаргон' }, { uz: 'peshtaxta', ru: 'Прилавок' }, { uz: 'oshpaz', ru: 'Повар' }, { uz: 'javon', ru: 'Полка' }, { uz: 'sistema', ru: 'Система' }, { uz: 'qatlam', ru: 'слой' }, '🥙'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }
@@ -2412,7 +2412,7 @@ function QuizArena({ live, onClose, startSolo }) {
     <div className="qz-arena">
       <div className="qz-bg" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{s.ch}</span>
+          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{tr(s.ch)}</span>
         ))}
       </div>
       <QzFX />

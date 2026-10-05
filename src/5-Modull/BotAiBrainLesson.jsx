@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+// R-010 (5-Modulni yopishdan keyingi Q5 A, 04.10): ru rejimda ataylab o'zbekcha qoladi — s13 — kod oynasidagi o'zgaruvchi `javob`.
+// ru-qoldiq-istisno s13: javob
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================

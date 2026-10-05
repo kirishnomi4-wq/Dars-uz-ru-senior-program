@@ -1776,7 +1776,8 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 5: { uz: "Xususiyat (property)", ru: 'Свойство (property)' }, 7: { uz: "color — matn rangi", ru: 'color — цвет текста' }, 11: "font-size", 14: { uz: "padding — ichki bo'shliq", ru: 'padding — внутренний отступ' }, 17: { uz: "CSS qoidasi yozish (yakuniy)", ru: 'Написать правило CSS (финал)' } };
+// q22 (04.10, yopishdan keyingi Q3 A): kalitlar = ballik ekran indekslari (ekran qo'shilganda siljigan edi)
+const Q_LABELS = { 5: { uz: "Xususiyat (property)", ru: 'Свойство (property)' }, 7: { uz: "color — matn rangi", ru: 'color — цвет текста' }, 12: "font-size", 15: { uz: "padding — ichki bo'shliq", ru: 'padding — внутренний отступ' }, 18: { uz: "CSS qoidasi yozish (yakuniy)", ru: 'Написать правило CSS (финал)' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];

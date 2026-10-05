@@ -3407,7 +3407,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         /* A7: token olinganda Bot API → bot.js chizig'i uziladi (xiralashadi), qaytarilganda qayta chiziladi */
         .sw-line { flex: 0 0 28px; height: 2px; background: ${T.success}; transform-origin: left center; }
         .sw-line.on { animation: sw-draw 0.7s ease-out both; }
-        .sw-line.off { background: repeating-linear-gradient(90deg, ${T.danger} 0 4px, transparent 4px 9px); opacity: 0.5; }
+        .sw-line.off { background: ${T.danger}; opacity: 0.35; } /* Q5 (04.10): uzuq chiziq o'rniga xira chiziq (D2) */
         @keyframes sw-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
         @media (prefers-reduced-motion: reduce) { .sw-line.on { animation: none; } }
         /* Tor ekranda zanjir ustun bo'lib turadi — ulagich qator oxirida osilib qolmaydi */
@@ -3416,7 +3416,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
           .sw-node { min-width: 150px; padding: 7px 12px; }
           .sw-arrow { transform: rotate(90deg); line-height: 1; }
           .sw-line { flex: 0 0 22px; width: 2px; height: auto; transform-origin: center top; }
-          .sw-line.off { background: repeating-linear-gradient(180deg, ${T.danger} 0 4px, transparent 4px 9px); }
+          .sw-line.off { background: ${T.danger}; }
         }
         .sw-chip:active { cursor: grabbing; }
         .sw-outzone { display: flex; align-items: center; gap: 10px; background: ${T.paper}; border-radius: 12px; padding: 12px 14px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); min-height: 20px; }

@@ -1536,9 +1536,9 @@ const Q_LABELS = { 4: { uz: "1 — Yaxshi so'rov", ru: '1 — Хороший з�
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (yordamchi / jurnal / so'rov atamalari)
 const QZ_BG_SHAPES = [
-  { ch: 'jurnal',      l: 5,  t: 10, s: 32, d: 19, dl: 0 },
+  { ch: { uz: 'jurnal', ru: 'Журнал' },      l: 5,  t: 10, s: 32, d: 19, dl: 0 },
   { ch: '🧑‍🔧',          l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
-  { ch: "so'rov",      l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: { uz: "so'rov", ru: 'запрос' },      l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'verify',      l: 76, t: 68, s: 26, d: 21, dl: 2.2 },
   { ch: 'fix',         l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: 'push',        l: 66, t: 26, s: 26, d: 17, dl: 0.4 },
@@ -1547,8 +1547,8 @@ const QZ_BG_SHAPES = [
   { ch: '✗',           l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '✓',           l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'follow-up',   l: 34, t: 62, s: 20, d: 29, dl: 3.4 },
-  { ch: 'yordamchi',        l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
-  { ch: 'tekshir',     l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
+  { ch: { uz: 'yordamchi', ru: 'Помощник' },        l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
+  { ch: { uz: 'tekshiruv', ru: 'проверка' },     l: 60, t: 90, s: 20, d: 31, dl: 4.2 },
   { ch: 'prompt',      l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
@@ -1594,7 +1594,7 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       <span className="cs-ring" aria-hidden="true" />
       <div className="cs-sky" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{s.ch}</span>
+          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{tr(s.ch)}</span>
         ))}
         {[[14, 30, 24], [38, 66, 15], [57, 20, 27], [76, 60, 18], [88, 36, 13]].map(([l, t, w], i) => (
           <i key={i} className="cs-dash" style={{ left: `${l}%`, top: `${t}%`, width: w, animationDelay: `-${i * 1.7}s` }} />
@@ -1668,10 +1668,10 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan: dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['yordamchi', 'log', 'fix', 'push', 'verify', "so'rov", '✓', '✗', 'root cause'];
+    const TOK = [{ uz: 'yordamchi', ru: 'Помощник' }, 'log', 'fix', 'push', 'verify', { uz: "so'rov", ru: 'запрос' }, '✓', '✗', 'root cause'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }
@@ -1833,7 +1833,7 @@ function QuizArena({ live, onClose, startSolo }) {
     <div className="qz-arena">
       <div className="qz-bg" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{s.ch}</span>
+          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, color: s.c, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{tr(s.ch)}</span>
         ))}
       </div>
       <QzFX />

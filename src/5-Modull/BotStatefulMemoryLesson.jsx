@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+// R-010 (5-Modulni yopishdan keyingi Q5 A, 04.10): ru rejimda ataylab o'zbekcha qoladi — s11 — SQL ustuni `ism` (kod); s16 — amaliyot chati, bot javoblari repo bilan bir xil.
+// ru-qoldiq-istisno s11: ism
+// ru-qoldiq-istisno s16: ismingiz nima endi yana uchun bosing
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -3357,7 +3360,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .sess-item { display: flex; flex-direction: column; gap: 6px; }
         .vcard.seen { box-shadow: inset 0 0 0 1.5px ${T.success}; }
         .vseen { font-size: 16px; }
-        .sess-box { background: ${T.bg}; border-radius: 10px; padding: 9px 13px; margin-left: 12px; box-shadow: inset 3px 0 0 ${T.ink3}55; }
+        .sess-box { background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 10px; padding: 9px 13px; margin-left: 12px; } /* Q5 (04.10): chap chiziq o'rniga ramka (D1) */
         .sess-row { display: flex; align-items: center; gap: clamp(36px,5vw,64px); } .sess-row .sess-box { flex: 1 1 auto; min-width: 0; } .sess-row .sess-msg { flex: 0 0 auto; } /* F-1002-90: pufak qutisi yonida — strelka qisqa, gorizontal */
         .tg-bubble.sess-msg { align-self: flex-start; display: flex; flex-direction: column; gap: 2px; }
         .sess-who { font-size: 11px; font-weight: 700; color: ${T.ink2}; }

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+// R-010 (5-Modulni yopishdan keyingi Q5 A, 04.10): ru rejimda ataylab o'zbekcha qoladi — s6 — terminal: commit matni «7-dars: serverga tayyor» (repo tarixi, kod).
+// ru-qoldiq-istisno s6: dars tayyor
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -870,7 +872,7 @@ const ScreenA2 = (props) => (
       { cmd: 'git push' },
       { out: '[main 3f2a9c1] 7-dars: serverga tayyor' },
       { out: ' 4 files changed' },
-      { out: 'To https://github.com/{siz}/TelegramBotNest.git', col: CODE.str }
+      { out: { uz: 'To https://github.com/{siz}/TelegramBotNest.git', ru: 'To https://github.com/{ваш логин}/TelegramBotNest.git' }, col: CODE.str }
     ]}
     doneText={{ uz: "Kod GitHub'da. Server uni shu yerdan oladi.", ru: "Код на GitHub. Сервер возьмёт его отсюда." }} />
 );

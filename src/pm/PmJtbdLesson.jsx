@@ -1710,13 +1710,13 @@ const HW_STEPS = {
 };
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
 const HW_TOKENS = [
-  { t: { uz: 'vazifa' }, l: 5, tp: 16, s: 12, d: 6.5 },
-  { t: { uz: 'funksional' }, l: 76, tp: 12, s: 11, d: 7.5 },
-  { t: { uz: 'ijtimoiy' }, l: 12, tp: 70, s: 11, d: 8 },
-  { t: { uz: 'emotsional' }, l: 64, tp: 76, s: 12, d: 6 },
-  { t: { uz: 'komponent' }, l: 84, tp: 52, s: 10, d: 9 },
-  { t: { uz: 'tur' }, l: 36, tp: 8, s: 10, d: 7 },
-  { t: { uz: 'savol' }, l: 3, tp: 44, s: 13, d: 8.5 },
+  { t: { uz: 'vazifa', ru: 'задача' }, l: 5, tp: 16, s: 12, d: 6.5 },
+  { t: { uz: 'funksional', ru: 'функциональная' }, l: 76, tp: 12, s: 11, d: 7.5 },
+  { t: { uz: 'ijtimoiy', ru: 'социальная' }, l: 12, tp: 70, s: 11, d: 8 },
+  { t: { uz: 'emotsional', ru: 'эмоциональная' }, l: 64, tp: 76, s: 12, d: 6 },
+  { t: { uz: 'komponent', ru: 'компонент' }, l: 84, tp: 52, s: 10, d: 9 },
+  { t: { uz: 'tur', ru: 'вид' }, l: 36, tp: 8, s: 10, d: 7 },
+  { t: { uz: 'savol', ru: 'вопрос' }, l: 3, tp: 44, s: 13, d: 8.5 },
 ];
 const HwCard = ({ variant, onPick }) => {
   const steps = HW_STEPS[variant] || HW_STEPS.toliq;
@@ -1832,14 +1832,14 @@ const Confetti = () => {
 const Q_LABELS = { 3: { uz: '1 — Uch savol' }, 5: { uz: '2 — Yangi xona' }, 7: '3 — Starbucks', 12: { uz: '4 — Yakuniy savol' } };
 const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
-  { ch: { uz: 'vazifa' },     l: 5,  t: 10, s: 30, d: 19, dl: 0 },
-  { ch: { uz: 'funksional' }, l: 80, t: 8,  s: 24, d: 23, dl: 1.5 },
-  { ch: { uz: 'ijtimoiy' },   l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
-  { ch: { uz: 'emotsional' }, l: 72, t: 68, s: 24, d: 21, dl: 2.2 },
-  { ch: { uz: 'komponent' },  l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
-  { ch: { uz: 'tur' },        l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: { uz: 'savol' },      l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
-  { ch: { uz: 'markaz' },     l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
+  { ch: { uz: 'vazifa', ru: 'задача' },     l: 5,  t: 10, s: 30, d: 19, dl: 0 },
+  { ch: { uz: 'funksional', ru: 'функциональная' }, l: 80, t: 8,  s: 24, d: 23, dl: 1.5 },
+  { ch: { uz: 'ijtimoiy', ru: 'социальная' },   l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: { uz: 'emotsional', ru: 'эмоциональная' }, l: 72, t: 68, s: 24, d: 21, dl: 2.2 },
+  { ch: { uz: 'komponent', ru: 'компонент' },  l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
+  { ch: { uz: 'tur', ru: 'вид' },        l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
+  { ch: { uz: 'savol', ru: 'вопрос' },      l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
+  { ch: { uz: 'markaz', ru: 'центр' },     l: 55, t: 5,  s: 20, d: 22, dl: 0.6 },
   { ch: '🔧', l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '👥', l: 16, t: 52, s: 28, d: 26, dl: 2.6 },
   { ch: '💗', l: 2,  t: 30, s: 30, d: 28, dl: 3.1 },
@@ -1957,10 +1957,10 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['vazifa', 'funksional', 'ijtimoiy', 'emotsional', 'komponent', 'tur', 'savol', 'markaz', '🔧', '💗'];
+    const TOK = [{ uz: 'vazifa', ru: 'задача' }, { uz: 'funksional', ru: 'функциональная' }, { uz: 'ijtimoiy', ru: 'социальная' }, { uz: 'emotsional', ru: 'эмоциональная' }, { uz: 'komponent', ru: 'компонент' }, { uz: 'tur', ru: 'вид' }, { uz: 'savol', ru: 'Вопрос' }, { uz: 'markaz', ru: 'центр' }, '🔧', '💗'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
-    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
+    for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: tr(TOK[i % TOK.length]), r: (Math.random() - .5) * .5 });
     const draw = (tm) => {
       ctx.clearRect(0, 0, W, H);
       for (const p of em) { p.y -= (.15 + p.z * .35) * DPR; p.x += Math.sin(tm / 1400 + p.ph) * p.sw * DPR * .35; if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; } }
