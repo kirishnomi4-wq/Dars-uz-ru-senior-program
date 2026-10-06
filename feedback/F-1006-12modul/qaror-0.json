@@ -1,0 +1,325 @@
+{
+  "title": "12-Modul · boshlash qarorlari",
+  "kod": "12M-QAROR-0",
+  "eyebrow": "LMS 12-Modul «Real vaqt: WebSocket + ishga tushirish — flagman» · kod src/10-Modull · tayanch va MD yozishdan oldin",
+  "kirish": "Tayanch va pilot MD lardan oldin 25 savol: misol-ip, repo, real vaqt steki, telefonga eslatma (push), ilovani tarqatish (APK), 50 real foydalanuvchi va maxfiylik, analitika, lending, 11–13-darslar, keyslar, atamalar, nomlar. Har savolda birinchi variant — tavsiya (belgilangan). Tashqi xizmatlar haqidagi har gap 06.10.2026 da rasmiy hujjatdan olingan — iqtiboslar oxirgi «Manba» bo'limida. Javob qatorini pastdan nusxalab chatga yuboring; izoh bo'lsa — izoh maydoniga.",
+  "darslar": [
+    {
+      "id": "IP",
+      "qisqa": "Misol-ip",
+      "eyebrow": "1-qaror · modul bo'yi bitta Mentor misoli",
+      "nom": "Mentor misoli: «Maydon Jamoa» davomi va har darsga bitta qator",
+      "fayl": null,
+      "xulosa": "11-Modul tayanchida «keyinroq (12-Modul)» deb qoldirilgan ikki ish bor: «ro'yxat o'zi yangilanadi (real vaqt)» va «o'yindan oldin eslatma (push)»; 15-darsdagi ikki risk ham shu modulga qaragan: «50 foydalanuvchi kerak, hozir 3 sinovchi» va «Expo Go hamma o'yinchida yo'q → APK». Taklif — har dars shu ipda: 1 · lending: «Maydon Jamoa» sahifasi — kim uchun, nima foyda, bitta tugma · 2 · WebSocket: «8 / 10» nega faqat pastga tortganda yangilanadi → doimiy ulanish; real vaqt oqimi sxemasi (kim yuboradi, Backend kimga tarqatadi) · 3 · talab: hodisalar (qo'shildi, chiqdi, kelishini tasdiqladi), ulanish holatlari, chekka holatlar → agent quradi: «8 / 10» va ro'yxat o'zi yangilanadi · 4 · loyiha kuni: «hozir ulanganlar», hodisa bo'yicha ilova ichidagi xabar («Joy bo'shadi»), telefonga o'yindan oldin eslatma · 5 · buzamiz va tuzatamiz: Wi-Fi o'chadi, Backend qayta ishga tushadi, tugma ikki marta bosiladi — uchta muammo topiladi va tuzatiladi · 6 · kanallar: mahalla futbol guruhi, maktab chati, Instagram — birinchi post · 7 · 50 foydalanuvchiga reja va ishga tushirish: o'rnatish havolasi tarqatiladi, birinchi 20 foydalanuvchi · 8 · qadamlar bo'yicha sanoq: qayerda to'xtab qolishyapti → gipoteza → shu darsda tuzatish · 9 · loyiha kuni: foydalanuvchini qaytaradigan eslatma (hodisa → eslatma) · 10 · Mentor tekshiruvi: nechta foydalanuvchi, bosh raqam; yetmasa — zaxira reja · 11 · yakkama-yakka: raqamlar bilan tuzatilgan pitch · 12 · metrikali pitch: o'sish grafigi · 13 · zaxira. O'quvchi hamma qadamni o'z mahsulotida bajaradi (11-Modul modeli), Mentor misoli — namuna.",
+      "savollar": [
+        {
+          "savol": "Mentor misoli va har darsga bitta qatorli reja",
+          "variantlar": [
+            ["A", "«Maydon Jamoa» davom etadi, reja yuqoridagidek (tayanchda har qator aniq raqam va so'zlar bilan to'ldiriladi)"],
+            ["B", "«Maydon Jamoa» davom etadi, lekin rejada o'zgarish bor — izoh maydoniga dars raqami bilan yozaman"]
+          ]
+        },
+        {
+          "savol": "Mentor misolida 10-darsda (50 foydalanuvchi tekshiruvi) natija qanday bo'ladi?",
+          "variantlar": [
+            ["A", "50 ga yetmaydi (masalan: 7-darsda 20, 10-darsda 38) — Mentor zaxira rejani o'z misolida ko'rsatadi. 10-Modul naqshi («maqsad 20 ga yetmadi — pitchda halol aytiladi»); yetmagan o'quvchi nima qilishini ko'radi. Aniq sonlar tayanchda, «Mentor misolida» deb"],
+            ["B", "50 dan oshadi (masalan 54) — zaxira reja faqat «agar yetmasa» deb aytiladi"],
+            ["C", "Mentor misolida son umuman aytilmaydi — faqat o'quvchining o'z soni"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REPO",
+      "qisqa": "Repo",
+      "eyebrow": "2-qaror · kod tegadigan darslar: 1, 2, 3, 4, 5, 7, 8, 9",
+      "nom": "Repo va teglar",
+      "fayl": null,
+      "xulosa": "Mentor repo'si `maydon-jamoa` (11-Modul; hali GitHub'da ochilmagan — 11-Modul «qur» bosqichida ochiladi). 11-Modulning oxirgi tegi — `m11-dars-15-done` (kutish yozuvi). 12-Modul shu holatdan boshlanadi; yangi papka — `lending/` (1-dars). O'quvchi — o'z final repo'sida (11-Modul 7-darsida ochgan), har blokda Mentor misoli namuna. Bu seans repo'ga faqat «qur» bosqichida, buyrug'ingiz bilan yozadi.",
+      "savollar": [
+        {
+          "savol": "Repo va teglar",
+          "variantlar": [
+            ["A", "`maydon-jamoa` davomi: boshlanishi `m11-dars-15-done`; teglar `m12-dars-NN-start` / `m12-dars-NN-done` (`yechim` tarmog'ida); o'quvchi o'z final repo'sida; «Ortda qoldingizmi» — Mentor misolini ochib ko'rish (11-Modul modeli)"],
+            ["B", "Yangi alohida repo (12-Modul uchun) — tarix toza, lekin o'quvchi uchun uzilish"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RT",
+      "qisqa": "Real vaqt",
+      "eyebrow": "3-qaror · 2, 3, 4, 5, 9-darslar",
+      "nom": "Real vaqt steki va «hozir ulanganlar»",
+      "fayl": null,
+      "xulosa": "Dastur: «Doimiy ulanish va HTTP; socket.io». Rasmiy hujjat (06.10): NestJS ikki platformani qo'llaydi — socket.io va ws; gateway HTTP server bilan bitta portda ishlaydi. socket.io mijozi brauzerda ham, React Native'da ham bitta paket (`socket.io-client`), qayta ulanish sukutda yoqilgan. Render bepul xizmati WebSocket ulanishlarini qabul qiladi; ulanishdagi xabarlar ham «so'rov» sanaladi — xizmat uxlamaydi (oylik 750 soatdan sarflanadi); deploy paytida ulanish uziladi. socket.io sukutda «ko'pi bilan bir marta» yetkazadi: uzilish paytidagi hodisa keyin kelmaydi — 5-dars («buzamiz va tuzatamiz») aynan shunga quriladi. 10-Modul 3-darsidagi polling (sayt qayta-qayta so'raydi) — solishtirish nuqtasi.",
+      "savollar": [
+        {
+          "savol": "Real vaqt steki",
+          "variantlar": [
+            ["A", "NestJS gateway + socket.io (dasturdagi nom; qayta ulanish va xonalar tayyor; web va mobil trekda bitta mijoz paketi). Darsda: WebSocket — doimiy ulanish (tushuncha), socket.io — uni ishlatadigan kutubxona (asbob)"],
+            ["B", "Oddiy WebSocket (`ws`) — kutubxonasiz, tushuncha tozaroq; lekin qayta ulanish va xonalarni agent qo'lda yozadi, 5-dars og'irlashadi"]
+          ]
+        },
+        {
+          "savol": "Hodisa kelganda ekran ma'lumotni qayerdan oladi?",
+          "variantlar": [
+            ["A", "Hodisa — qisqa signal («shu o'yin o'zgardi»); ekran yangi holatni o'sha `GET /oyinlar` dan qayta so'raydi. Bitta haqiqat manbai (Database); uzilishdan keyin ham shu yo'l ishlaydi; 11-Modul kodi deyarli o'zgarmaydi"],
+            ["B", "Hodisa yangi sonni o'zi olib keladi («9 / 10») — tezroq, lekin uzilishda son eskirib qoladi va ikki manba paydo bo'ladi (5-darsda alohida tuzatiladi)"]
+          ]
+        },
+        {
+          "savol": "«Kim onlayn» (presence) Mentor misolida qanday ko'rinadi?",
+          "variantlar": [
+            ["A", "Faqat son: «O'yin» ekranida «Hozir ko'ryapti: 3» — shu o'yin ekranini hozir ochib turganlar soni; ism ko'rsatilmaydi (o'smir qachon ilovada ekani boshqalarga ko'rinmaydi — 10-Modul «kerakli minimum»)"],
+            ["B", "Qo'shilganlar ro'yxatida ism yonida yashil nuqta — kim hozir ulangan ko'rinadi (jonliroq, lekin shaxs ko'rinadi)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ESL",
+      "qisqa": "Eslatma",
+      "eyebrow": "4-qaror · 4 va 9-darslar · rasmiy hujjat cheklovlari bilan",
+      "nom": "Telefonga eslatma (push): nima amalda ishlaydi?",
+      "fayl": null,
+      "xulosa": "Rasmiy hujjat (Expo SDK 57, 06.10): masofadan push (Backend telefonga yuboradi) Expo Go'da ishlamaydi — «unavailable in Expo Go on Android from SDK 53. A development build is required»; Android uchun Firebase (FCM) loyihasi va kalitlari, iPhone uchun pullik Apple Developer akkaunti kerak. Lekin «Local notifications remain available in Expo Go»: mahalliy eslatmani ilova o'zi rejalashtiradi (masalan, o'yinchi qo'shilgan payt — o'yindan bir soat oldinga), Backend va Firebase kerak emas, ilova yopiq bo'lsa ham chiqadi. Farqi: mahalliy eslatma faqat shu telefonda bo'lgan hodisadan tug'iladi; boshqa odam tufayli bo'lgan hodisa («joy bo'shadi») ilova yopiq telefonga faqat masofadan push bilan yetadi. Haqiqiy telefonda (Android va iPhone) chiqishi pilotda sinab ko'riladi — hozircha faqat hujjatdan.",
+      "savollar": [
+        {
+          "savol": "Mobil trekda telefonga eslatma (4-dars)",
+          "variantlar": [
+            ["A", "Mahalliy eslatma: o'yinchi qo'shilganda ilova o'yindan oldinga eslatma rejalashtiradi, chiqsa — bekor qiladi. Expo Go'da ham, APK da ham ishlaydi; Firebase va Apple akkaunti kerak emas. Masofadan push — darsda chizmada va bir gapda tushuntiriladi («Backend yuboradi; buning uchun alohida sozlash kerak»), qurilmaydi"],
+            ["B", "Masofadan push to'liq: development build + Firebase (FCM) + Expo push xizmati. Faqat Android; har o'quvchiga Firebase loyihasi va bir necha EAS build (bepul navbat sekin, oyiga 15 ta). iPhone'li o'quvchi qura olmaydi"],
+            ["C", "Mahalliy eslatma hamma uchun (A) + masofadan push faqat Mentor namoyishida (Mentor telefoni, tayyor APK) — o'quvchi ko'radi, o'zi qurmaydi"]
+          ]
+        },
+        {
+          "savol": "9-dars «foydalanuvchini qaytaradigan eslatma» (hodisa → eslatma) nimaga quriladi?",
+          "variantlar": [
+            ["A", "Ikki qatlam, ikkalasi 4-darsdagi asboblar bilan: ilova ochiq bo'lsa — jonli xabar («Shanba o'yiniga 2 joy qoldi»), yopiq bo'lsa — mahalliy eslatma (ilova oxirgi ochilganda rejalashtirgan: «Ertaga 18:00 da o'yiningiz bor», «3 kundan beri o'yin yo'q — yangi e'lonlarni ko'ring»). Halol chegarasi darsda aytiladi: yopiq ilovaga boshqa odamning hodisasi yetmaydi"],
+            ["B", "Masofadan push (ESL-q0 da B tanlansa): Backend hodisa bo'lganda telefonga yuboradi"],
+            ["C", "Telegram bot orqali xabar (7-Modul ko'nikmasi: bot o'yinchiga yozadi) — hamma telefonda ishlaydi, lekin Telegram akkauntini ilova akkauntiga bog'lash kerak (yangi murakkablik va shaxsiy ma'lumot)"]
+          ]
+        },
+        {
+          "savol": "Web-trekda eslatma",
+          "variantlar": [
+            ["A", "Sahifa ichida: jonli xabar tasmasi (sahifa ochiq turganda). Brauzer push qurilmaydi — service worker va kalitlar kerak, iPhone'da faqat bosh ekranga qo'shilgan saytda (16.4 dan) ishlaydi; bu cheklov bir gapda halol aytiladi"],
+            ["B", "To'liq web push (service worker + obuna + Backend yuborishi) — web-trek uchun alohida og'ir blok"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TARQ",
+      "qisqa": "Tarqatish",
+      "eyebrow": "5-qaror · 7-dars (ishga tushirish) · 1-dars tugmasi shunga bog'liq",
+      "nom": "Mobil ilova 50 odamning telefoniga qanday yetadi?",
+      "fayl": null,
+      "xulosa": "Dastur: «mobil trek do'konsiz — Expo Go / APK». Rasmiy hujjat (06.10): Android — EAS Build `preview` profili (`buildType: apk`), natija — o'rnatish havolasi; odam «xavfsizlik ogohlantirishi»ni qabul qilib o'rnatadi. Bepul reja: oyiga 15 ta Android build, past ustuvor navbat, 45 daqiqalik chegara — build dars boshida yoki uyda boshlanishi kerak. iPhone: do'konsiz o'rnatish pullik Apple Developer akkauntini talab qiladi (yiliga 100 tagacha qurilma, har birining UDID si); Expo Go esa iPhone'da loyiha egasining akkauntini so'raydi (11-Modul fakti) — begona iPhone'ga bepul yo'l yo'q. Expo ilovasini brauzer uchun ham yig'ish mumkin — bu yo'l hali tekshirilmagan (pilotda sinaladi). Web-trekda muammo yo'q: havola.",
+      "savollar": [
+        {
+          "savol": "Mobil trek: tarqatish yo'li",
+          "variantlar": [
+            ["A", "Android — APK havolasi (EAS Build). iPhone'li foydalanuvchilar — o'sha ilovaning brauzer ko'rinishi (Expo web → Netlify havolasi); bu yo'l pilotda sinab ko'riladi, ishlamasa B ga qaytiladi va sizga aytiladi. Expo Go — faqat o'quvchining o'z telefoni va sinfdoshlar"],
+            ["B", "Faqat Android — APK. iPhone'li odamlar bu modulda foydalanuvchi bo'la olmaydi; darsda halol aytiladi («iPhone yo'li — pullik akkaunt, bitiruvdan keyin»)"],
+            ["C", "APK qurilmaydi: mobil trek ham 50 foydalanuvchini brauzer ko'rinishi orqali yig'adi; APK — faqat Mentor namoyishi"]
+          ]
+        },
+        {
+          "savol": "EAS build navbati sekin bo'lsa (bepul reja) — darsda nima qilinadi?",
+          "variantlar": [
+            ["A", "Build 6-dars uyga vazifasida boshlanadi (buyruq bitta), 7-darsga havola tayyor keladi; tayyor bo'lmasa — 7-dars rejadan boshlanadi, tarqatish blok oxirida yoki uyda. Mentor misolida tayyor havola bor"],
+            ["B", "Build 7-dars boshida boshlanadi, navbat kutilguncha reja yoziladi (kutish 45 daqiqagacha cho'zilishi mumkin — xavfli)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USER",
+      "qisqa": "50 foydalanuvchi",
+      "eyebrow": "6-qaror · 6, 7, 10-darslar · real odamlar va o'smir xavfsizligi",
+      "nom": "50 real foydalanuvchi: kanallar, sanoq, maxfiylik",
+      "fayl": null,
+      "xulosa": "Dastur: «Instagram, Telegram, maktab chatlari; birinchi post» (6) · «20 foydalanuvchi + 50 gacha reja» (7) · «o'sish bo'lmasa antikrizis reja» (10). Qoida (prompt): faqat halol yo'llar — soxta akkaunt, spam, sotib olingan obunachi yo'q; o'smirning shaxsiy ma'lumoti ochiq joyga chiqmaydi. Instagram qoidasi — 13 yoshdan (rasmiy); Telegram yosh chegarasi bizning hudud uchun rasmiy matnda topilmadi — darsda yosh aytilmaydi. 11-Modulda ro'yxatdan o'tish — ism, telefon, parol; sinovchilar namuna telefon yozgan. 50 haqiqiy odamda bu — o'quvchining Database'ida tengdoshlarining 50 ta haqiqiy telefon raqami; mahsulotga esa raqam kerak emas (SMS yuborilmaydi). 10-Modul 6-darsi: ochiq aytish · kerakli minimum · maqsad tugasa o'chirish.",
+      "savollar": [
+        {
+          "savol": "Kanallar (6-dars) — o'smir uchun xavfsiz chegaralar",
+          "variantlar": [
+            ["A", "Faqat o'zi a'zo bo'lgan joylar va tanish doira: sinf va maktab chati, mahalla yoki to'garak guruhi (guruh egasidan ruxsat so'rab), do'stlar, o'z Instagram sahifasi (bor bo'lsa — yangi akkaunt ochish talab qilinmaydi). Notanish odamga shaxsiy xabar yozilmaydi; postda familiya, maktab raqami, telefon va uy manzili yo'q; ota-ona xabardor. Soxta akkaunt, bir xil xabarni ko'p guruhga tashlash, sotib olingan obunachi — yo'q. Uchrashuv taklifi kelsa — faqat kattalar bilan"],
+            ["B", "A + mahsulot uchun alohida ochiq Telegram kanali ochiladi (yangiliklar uchun) — kanal egasi sifatida o'quvchi akkaunti ko'rinmaydi, lekin ochiq kanal moderatsiya talab qiladi"],
+            ["C", "Faqat oflayn va sinf: maktab, mahalla, to'garak — internetdagi kanallar nazariyada o'tiladi, post yozilmaydi"]
+          ]
+        },
+        {
+          "savol": "«Foydalanuvchi» qanday sanaladi (7, 10-darslar)?",
+          "variantlar": [
+            ["A", "Ikki son yonma-yon: «ro'yxatdan o'tgan» (50 maqsadi shu; namuna va test akkauntlarsiz) va «asosiy harakatni qilgan» (Mentor misolida — kamida bir marta o'yinga qo'shilgan yoki e'lon bergan). Ikkalasi Database'dan SQL bilan; halol gap — sinfdoshlar ham sanaladi, lekin alohida aytiladi"],
+            ["B", "Faqat ro'yxatdan o'tganlar soni"],
+            ["C", "Faqat asosiy harakatni qilganlar («faol foydalanuvchi») — halolroq, lekin 50 ga yetish ancha qiyin"]
+          ]
+        },
+        {
+          "savol": "Haqiqiy foydalanuvchilar nima bilan ro'yxatdan o'tadi (maxfiylik)?",
+          "variantlar": [
+            ["A", "Telefon raqami so'ralmaydi: 7-darsning birinchi blokida — ishga tushirishdan oldingi audit (10-Modul 6-dars naqshi): `telefon` o'rniga `login` (o'zi tanlagan nom) + parol; lendingda maxfiylik sahifasi; forma ostida ochiq gap. «Kerakli minimum» o'z ilovasida amalda. Mentor repo'sida 11-Modul jadvali 12-Modulda o'zgaradi (migratsiya — kichik: namuna ma'lumot)"],
+            ["B", "Telefon qoladi (11-Modul o'zgarmaydi) + maxfiylik sahifasi va ochiq gap; raqam hech kimga ko'rsatilmaydi. Xavf: o'smirning Database'ida 50 ta haqiqiy raqam"],
+            ["C", "A, lekin o'zgarish 11-Modulning o'zida qilinadi (11-Modul seansi hali qurmoqda) — bu seans tegmaydi, siz 11-Modul seansiga aytasiz"]
+          ]
+        },
+        {
+          "savol": "50 ga yetmasa — 10-darsdagi reja qanday ataladi va nimadan iborat?",
+          "variantlar": [
+            ["A", "«Zaxira reja» («antikrizis» ishlatilmaydi): uch savol — qaysi qadamda odam kam (kanal · o'rnatish · ro'yxat · asosiy harakat), bitta sabab-gipoteza, bitta haftalik qadam. Mentor tekshiruvi javobi 11-Moduldagidek «qabul» yoki «tuzatish»; 50 ga yetmaslik — baho emas, reja uchun kirish"],
+            ["B", "«Antikrizis reja» (dastur so'zi) — o'sha mazmun"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ANAL",
+      "qisqa": "Analitika",
+      "eyebrow": "7-qaror · 7, 8, 10, 12-darslar",
+      "nom": "Sonlar qayerdan olinadi?",
+      "fayl": null,
+      "xulosa": "10-Modulda o'quvchi «Maydon» saytida o'z hodisalar tizimini qurgan: `hodisalar` jadvali, `hodisaYoz(nom)`, sanoq yo'li, dashboard (har 5 soniyada so'raydi), Umami — ikkinchi manba. «Maydon Jamoa» — boshqa repo, unda bu tizim yo'q. 8-dars («qaysi qadamda to'xtab qolishyapti») uchun sonlar 7-darsdan yig'ila boshlashi kerak. Qadamlarning bir qismi Database'da shundoq ham bor (ro'yxatdan o'tdi — `oyinchilar`, qo'shildi va tasdiqladi — `ishtirokchilar`); yo'q qismi — «ilovani ochdi» va lendingdagi tashrif.",
+      "savollar": [
+        {
+          "savol": "Analitika manbai",
+          "variantlar": [
+            ["A", "10-Modul tizimi davom etadi: 7-darsning birinchi blokida `hodisalar` jadvali va `hodisaYoz` «Maydon Jamoa»ga ko'chiriladi (talabni o'quvchi yozadi — 10-Modulda qilgan ishi), qadamlar: ochdi → ro'yxatdan o'tdi → qo'shildi → kelishini tasdiqladi. Lendingda — Umami (tashrif va tugma bosilishi), ikkinchi manba. 10-darsda dashboard real vaqtda yangilanadi (polling o'rniga 2-dars ulanishi) — modul mavzusi bilan bog'lanadi"],
+            ["B", "Yangi hodisalar jadvalisiz: qadamlar mavjud jadvallardan SQL bilan sanaladi, «ochdi» o'lchanmaydi; lendingda Umami. Sodda, lekin birinchi qadam ko'rinmaydi"],
+            ["C", "Faqat Umami (web-trek) — mobil trekda sonlar SQL dan"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEND",
+      "qisqa": "Lending",
+      "eyebrow": "8-qaror · 1-dars (PM)",
+      "nom": "Lending: tugma qayerga olib boradi va qayerda quriladi?",
+      "fayl": null,
+      "xulosa": "Dastur: «Mahsulotning bir sahifaligi, CTA → lending e'lon qilingan». 1-dars paytida mobil ilova hali faqat Expo Go'da — begona odam ocha olmaydi; o'rnatish havolasi 7-darsda paydo bo'ladi. Demak 1-darsda tugma biror haqiqiy joyga olib borishi kerak, aks holda — o'lik tugma. 2-Modulda sayt bo'limlari va «CTA — harakatga chaqiruvchi tugma» o'tilgan; Netlify — 9-Moduldan tanish.",
+      "savollar": [
+        {
+          "savol": "1-darsda lending tugmasi (mobil trek) qayerga olib boradi?",
+          "variantlar": [
+            ["A", "Sahifaning o'zidagi «Qanday qo'shilaman» bo'limiga: «Ilova tayyorlanmoqda — o'rnatish havolasi shu yerda paydo bo'ladi». Shaxsiy ma'lumot yig'ilmaydi; tugma bosilishi Umami bilan sanaladi (qiziqish soni). 7-darsda shu tugma o'rnatish havolasiga almashtiriladi. Web-trekda tugma darhol saytga olib boradi"],
+            ["B", "Mahsulotning ochiq Telegram kanaliga («yangiliklar shu yerda») — odam obuna bo'ladi, 7-darsda havola kanalga tashlanadi. Jonliroq, lekin o'smir ochiq kanal yuritadi (USER-q0 B bilan birga)"],
+            ["C", "Kutish ro'yxati formasi (ism yoki aloqa) — shaxsiy ma'lumot yig'iladi; tavsiya qilinmaydi"]
+          ]
+        },
+        {
+          "savol": "Lending qayerda va qanday quriladi (1-dars — PM dars, ≈16 ekran)?",
+          "variantlar": [
+            ["A", "Matnni o'quvchi yozadi (dars markazi: sarlavha — kim uchun va nima foyda, uchta foyda, bitta tugma); kod ekrani — VS Code topshirig'i: o'z repo'sida `lending/` papkasi, talab bilan agent sahifani yig'adi, Netlify'ga chiqadi (darsda). Mentor misoli — `maydon-jamoa/lending/`. Lending adaptiv (telefonda ochiladi)"],
+            ["B", "Matn darsda, sahifani yig'ish va e'lon qilish — uyga vazifa (dars yengilroq, lekin dastur natijasi «lending e'lon qilingan» darsda bajarilmaydi)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DARS",
+      "qisqa": "11–13-darslar",
+      "eyebrow": "9-qaror · 11-Modul 15 va 16-darslaridan farqi",
+      "nom": "Yakkama-yakka, metrikali pitch va zaxira dars",
+      "fayl": null,
+      "xulosa": "11-Modul 15-darsi (12 ekran): roadmap holati → uch risk → tuzatilgan reja; yakkama-yakka suhbat mustaqil ish paytida. 11-Modul 16-darsi: 3 daqiqalik pitch, to'rt bo'lak (Muammo · Yechim · Jonli demo · Keyingi qadam), juftlikda baholash varag'i. 10-Modul 11-darsi: 5 daqiqa, besh slayd, «Raqamlar» slaydi (bosh raqam oldin → hozir + halol gap). Dastur 12-Modul: 11 — «progress + tuzatishlar → tuzatilgan pitch» · 12 — «metrikalar + o'sish trayektoriyasi; grafiklar — dalil». 14-Modul bitiruv himoyasi — 5 daqiqa pitch + savol-javob.",
+      "savollar": [
+        {
+          "savol": "11-dars (yakkama-yakka) — 11-Modul 15-darsidan farqi",
+          "variantlar": [
+            ["A", "12 ekran, keyssiz, kod ekrani yo'q (shakl o'sha). Mazmun yangi: o'quvchi 11-Modul pitchini ochadi va har da'voning yoniga dalil qo'yadi — son, manbasi (Database · hodisalar · Umami), qachon sanalgan. Dalilsiz da'vo qayta yoziladi yoki olib tashlanadi. Mentor yakkama-yakkada shu jadvalni ko'radi. Natija — tuzatilgan pitch qoralamasi (12-dars o'qiydi). Roadmap holati va risklar takrorlanmaydi — bir ekranda eslatiladi"],
+            ["B", "11-Modul 15-darsi takrori yangi ma'lumot bilan: roadmap holati + risklar + pitch — uchalasi (takror ko'p)"]
+          ]
+        },
+        {
+          "savol": "12-dars pitchi: vaqt va bo'laklar",
+          "variantlar": [
+            ["A", "5 daqiqa, besh bo'lak: Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam. Yangi bo'lak — «Raqamlar»: haftalar bo'yicha o'sish grafigi (o'z sonlaridan), bitta halol gap. Bitiruv himoyasi (14-Modul) formati bilan bir xil vaqt; grafikni o'quvchi kod oynasida o'z sonlaridan chizadi"],
+            ["B", "4 daqiqa, besh bo'lak (11-Moduldagi 3 daqiqaga «Raqamlar» uchun 1 daqiqa qo'shiladi)"],
+            ["C", "3 daqiqa, to'rt bo'lak — raqamlar «Muammo» va «Jonli demo» ichiga kiradi (grafik uchun joy tor)"]
+          ]
+        },
+        {
+          "savol": "13-dars (zaxira)",
+          "variantlar": [
+            ["A", "`comp` siz qator, MD yo'q (`m8-13` naqshi): «Zaxira dars», osti «taymer bilan to'liq repetitsiya»"],
+            ["B", "Qisqa dars quriladi (repetitsiya taymeri) — dasturda natija yo'q, tavsiya qilinmaydi"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "KEYS",
+      "qisqa": "Keyslar",
+      "eyebrow": "10-qaror · faqat K1–K19 banki (PM-016)",
+      "nom": "Keyslar: qaysi darsga qaysi biri",
+      "fayl": null,
+      "xulosa": "Qoida: bosh-keys modul ichida takrorlanmaydi; mintaqaviy keys (K1 Uzum, K2 Telegram Premium) — mavzu yo'l qo'ysa, har 8-darsda. 11-Modulda ishlatilgan: K18, K14, K4, K15, K16, K1, K10, K19. Oxirgi uch modulda ishlatilmagan va mavzuga mos: K8 Facebook (2004 — faqat Garvard talabalari; «birinchi foydalanuvchilar · kanallar») · K6 Netflix (≈80% ko'rishlar tavsiyalardan — Netflix bayonoti, 2016; «ma'lumot — mahsulot qarori») · K5 Duolingo (ketma-ket kunlar va eslatmalar; «retention»; raqamsiz). K3 Instagram (Burbn → bitta narsa; 2010-yil oktabr, birinchi kuni 25 000 ro'yxatdan o'tish) — 9-Modulda bor edi. K2 Telegram Premium kursda hali ishlatilmagan — monetizatsiya, 13-Modulga qoldiriladi. TEX va loyiha kunlari (2, 4, 5, 9) — keyssiz.",
+      "savollar": [
+        {
+          "savol": "Keyslar taqsimoti",
+          "variantlar": [
+            ["A", "1 — K3 Instagram (ko'p narsadan bittasi: lending bitta va'da va bitta tugma) · 3 — keyssiz · 6 — K8 Facebook (tor va zich auditoriya — birinchi kanal) · 7 — keyssiz · 8 — K6 Netflix · 10 — K5 Duolingo · 11 — keyssiz · 12 — K1 Uzum (mintaqaviy; o'sish sanalar bilan: 2022-yil oktabr → 2024-yil mart). 11-Modul keyslaridan faqat K1 takrorlanadi (mintaqaviy qoida)"],
+            ["B", "A, lekin 12-darsda K1 o'rniga K13 Telegram (1 mlrd foydalanuvchi, 2025-yil mart) — K1 to'rt modul ketma-ket bo'lmaydi; mintaqaviy keys bu modulda yo'q"],
+            ["C", "A, lekin 1-dars keyssiz (zaxira hook: o'smir hayotidan — e'lon posti) — K3 9-Modulda bor edi"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ATAMA",
+      "qisqa": "Atamalar",
+      "eyebrow": "11-qaror · bir ma'no — bir so'z (T-014, T-015)",
+      "nom": "Atamalar: dastur so'zi → o'quvchi matnidagi so'z",
+      "fayl": null,
+      "xulosa": "Grep natijasi (06.10) bo'yicha taklif. «push» kursda `git push` ma'nosida band (2-Moduldan) — 11-Modulda bildirishnoma uchun ataylab «o'yindan oldin eslatma» deyilgan. «voronka» 9–10-Modulda ataylab ishlatilmagan («uch qadam»). «retention» — 7-Modulda «qaytganlar foizi». «onlayn» 10-Modulda ataylab ishlatilmagan. Taklif jadvali: real-time → «real vaqt» (11-Modul «real vaqt nuqtasi») · WebSocket → «WebSocket — doimiy ulanish» (atama qoladi) · socket.io → nomi bilan, «kutubxona» · event → «hodisa» (9–10-Modul so'zi; analitika hodisasi bilan bir so'z — ta'rifda farqi aytiladi: «ulanishdan keladigan hodisa») · presence → «hozir ulanganlar» («onlayn» yo'q) · reconnect → «qayta ulanish» · dublikat → «takror hodisa» · edge case → «chekka holat» · push notification → «eslatma» (telefon ekraniga chiqadigan), «push» so'zi faqat `git push`; kartochkada bir marta «inglizchasi: push notification» · ilova ichidagi xabar → «jonli xabar» · mini-PRD / spec → «talab» (agentga) va «real vaqt talabi» · voronka → «qadamlar» (kartochkada bir marta «funnel») · ketish nuqtasi → «to'xtab qolish qadami» · retention → «qaytganlar foizi» · lending → «lending» (birinchi marta: «lending — mahsulotni bitta sahifada tanishtiradigan sayt») · kopirayting → ishlatilmaydi («sahifa matni») · CTA → «asosiy tugma» (bir marta 2-Modul ko'prigi: «CTA») · kanal → «kanal — odamlar mahsulot haqida eshitadigan joy»; Telegram'dagisi har doim to'liq «Telegram kanali» · chekpoint → «Mentor tekshiruvi» · antikrizis reja → «zaxira reja» · APK → «APK — Android telefonga o'rnatiladigan ilova fayli» (11-Modul so'zi) · development build → faqat O'qituvchi eslatmasida.",
+      "savollar": [
+        {
+          "savol": "Atamalar jadvali",
+          "variantlar": [
+            ["A", "Tasdiq — tayanch 2-bo'limiga shu holda kiradi"],
+            ["B", "O'zgarish bor — izoh maydoniga so'z bilan yozaman"]
+          ]
+        },
+        {
+          "savol": "Telefonga keladigan xabar o'quvchi matnida qanday ataladi?",
+          "variantlar": [
+            ["A", "«eslatma» (11-Modul so'zi; «push» faqat `git push`). Dars nomlari: «Loyiha kuni: jonli xabar va eslatma», «Loyiha kuni: foydalanuvchini qaytaradigan eslatma»"],
+            ["B", "«push-xabar» — dastur va hayotdagi so'z (o'smirlar «push» deydi); `git push` bilan to'qnashuv har darsda «push-xabar» deb to'liq yozish bilan yechiladi"],
+            ["C", "«bildirishnoma» — telefon sozlamalaridagi o'zbekcha so'z"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NOM",
+      "qisqa": "Nomlar",
+      "eyebrow": "12-qaror · menyu nomi = dars nomi (DE-205)",
+      "nom": "Dars nomlari va App.jsx bloki",
+      "fayl": "00-NOMLAR.md",
+      "xulosa": "13 nom: PM — savol-sarlavha, TEX — mavzu nomi, loyiha kuni — «Loyiha kuni: …»; hammasi ≤55 belgi (sanalgan). Jadval pastda ochiladi. Tasdiqdan keyin App.jsx ga `// ---- 10-Modul` izohi va `id: '10'` bloki qo'shiladi — 13 qator, `comp` siz («qur» da ulanadi), faqat aniq Edit, boshqa bloklarga tegmasdan.",
+      "savollar": [
+        {
+          "savol": "Nomlar va App.jsx bloki",
+          "variantlar": [
+            ["A", "Tasdiq — nomlar shu holda, App.jsx ga 13 qator (`comp` siz) hozir qo'shiladi"],
+            ["B", "Nomlarda o'zgarish bor — izoh maydoniga dars raqami bilan yozaman; App.jsx — tuzatishdan keyin"],
+            ["C", "Nomlar tasdiq, lekin App.jsx ga hozircha tegilmaydi («qur» gacha)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MANBA",
+      "qisqa": "Manba",
+      "eyebrow": "Ma'lumot uchun · savol yo'q",
+      "nom": "Manba: dastur jadvali, o'tilgan atamalar, tekshirilgan faktlar",
+      "fayl": "00-MANBA.md",
+      "xulosa": "Dastur v9 dagi 13 dars jadvali, App.jsx holati, 11-Moduldan keladigan holat, o'tilgan atamalar (grep), 06.10.2026 da rasmiy hujjatdan olingan faktlar (Render, socket.io, NestJS, Expo Notifications, EAS Build, web push, Instagram) iqtiboslari bilan va hali tekshirilmaganlar ro'yxati. Pastda to'liq ochiladi.",
+      "savollar": []
+    }
+  ]
+}

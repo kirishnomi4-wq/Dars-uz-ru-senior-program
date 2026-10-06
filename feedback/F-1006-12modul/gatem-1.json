@@ -1,0 +1,298 @@
+{
+ "title": "GATE M · 12-Modul",
+ "kod": "12M-GATE-2",
+ "eyebrow": "LMS 12-Modul «Real vaqt va ishga tushirish» · 12 dars · MD v3 ko'rigi · kod src/10-Modull",
+ "kirish": "✅ GATE M tasdiqlandi — 06.10.2026 19:17: 12 dars ✓, 12 savolning hammasi A (`GATE_M_JAVOB.md`). Quyida — tasdiqlangan holat: avval «Modul bo'yi» savollari (birinchi variant — tanlangani), keyin har dars: qisqa xulosa va to'liq MD. Har darsning audit hukmlari — `feedback/F-1006-12modul/NN-FILTR.md`. Qurish — alohida buyruq bilan.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "12-Modul · bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi qarorlar",
+   "fayl": null,
+   "xulosa": "12 darsning hammasi ChatGPT auditidan va Filtrdan o'tdi (F-1006-354…366). Tekshiruv: 12 MD — `lint:til` 0 error; «Keyingi dars» nomlari App.jsx bilan mos; saqlash kalitlari tayanch 8 da; arena 3/3/3/3. Tayanchdagi o'z qarorlarimdan o'zgarganlari (Qaror-0 ga tegmaydi): 9-dars — o'yin kuni 9:00 eslatmasi olib tashlandi (M-q9) · 10-dars — tekshiruvning uchinchi savoli «Oldingi son bormi?» («O'sish bormi?» edi) · 11-dars — dalilning uchinchi narsasi «qachon» («sana» edi), Mentorning 3-da'vosi qaytganlar soni bilan qayta yoziladi · 12-dars — Mentor pitchi 11-darsdagi tuzatilgan pitchning davomi. Qurishdan oldin haqiqiy qurilmada sinaladiganlar («qur» darvozalari) — tayanch 9.34–9.44 oxirlarida va JURNAL «Keyingi qadam» 4 da.",
+   "savollar": [
+    {
+     "savol": "Tayanch 9-bo'limidagi darslararo kelishuvlar (44 band; 9.1–9.32 — MD yozishda, 9.33–9.44 — ChatGPT auditidan keyin): «Ulanmoqda…» · lending foydalari = juftliklar · `namuna` ustuni · to'xtab qolish — foiz bo'yicha · asosiy harakat — hozirgi holat · tekshiruv yozuvlari o'chiriladi · dalil — son yoki yozuv · manba · qachon · «eng kam bo'g'in» deyilmaydi",
+     "variantlar": [
+      [
+       "A",
+       "Tasdiq — hammasi tayanchdagidek"
+      ],
+      [
+       "B",
+       "Izoh bor — izoh maydoniga band raqami bilan yozaman"
+      ]
+     ]
+    },
+    {
+     "savol": "5-dars, 3-buzish usuli «Backend'ning yangi versiyasi»: Render faqat `backend/` o'zgarganda o'zi qayta chiqaradi (rasmiy hujjat), bu darsda esa tuzatishlar `mobil/` da",
+     "variantlar": [
+      [
+       "A",
+       "Render sahifasida qo'lda qayta chiqarish (rasmiy nomi «Manual Deploy» → «Deploy latest commit»; interfeysda ko'rilmagan — «qur» da tekshiriladi)"
+      ],
+      [
+       "B",
+       "Backend'da bir qatorlik o'zgarish push qilinadi — Render o'zi chiqaradi (tugma nomi kerak emas, lekin sun'iy o'zgarish)"
+      ],
+      [
+       "C",
+       "3-usul olib tashlanadi — ikki usul qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "7-dars hajmi: ikki blok ≈22 + ≈22 daqiqa; 2-blokda maxfiylik siyosati, iPhone uchun brauzer ko'rinishi, ikki havola, ikkinchi post va sanoq",
+     "variantlar": [
+      [
+       "A",
+       "Qoladi — har blokda «Ulgurmasangiz» yo'li va besh holatli yakun bor; vaqt pilotda taymer bilan o'lchanadi"
+      ],
+      [
+       "B",
+       "Brauzer ko'rinishi (iPhone yo'li) 8-darsga ko'chadi — 7-darsda faqat Android havolasi"
+      ]
+     ]
+    },
+    {
+     "savol": "`GET /oyinlar` da tashkilotchi belgisi yo'q (11-Modulda ham — tashkilotchi «Kelishini tasdiqladi: 7 / 9» ni qanday ko'rishi aniq emas)",
+     "variantlar": [
+      [
+       "A",
+       "12-Modul 4-darsida `menTashkilotchiman` qo'shiladi (hozirgidek); 11-Modul seansiga bu bo'shliqni siz aytasiz"
+      ],
+      [
+       "B",
+       "11-Modul seansi o'zi qo'shsin (12-dars, F2); 12-Modul tayyor maydonni ishlatadi"
+      ]
+     ]
+    },
+    {
+     "savol": "12-dars «Yechim» bo'lagi (≈20 soniya)",
+     "variantlar": [
+      [
+       "A",
+       "Yechim gapi (11-Modul) + lendingdagi uch foyda (hozirgi MD)"
+      ],
+      [
+       "B",
+       "Faqat yechim gapi — foydalar Jonli demoda ko'rinadi"
+      ],
+      [
+       "C",
+       "Yechim gapi + bitta yoki ikkita foyda (ChatGPT tavsiyasi: 20 soniyada uchta foyda ro'yxatga aylanadi)"
+      ]
+     ]
+    },
+    {
+     "savol": "2-dars nomi. ChatGPT: nomda «WebSocket», amalda socket.io — ikki nom bitta narsadek ko'rinadi (02-FILTR 1). Darsga ko'prik gapi qo'shildi; nomni o'zgartirmadim — u sizning tasdig'ingiz bilan",
+     "variantlar": [
+      [
+       "A",
+       "Nom qoladi: «WebSocket: ekran o'zi yangilanadigan ulanish»"
+      ],
+      [
+       "B",
+       "Nom o'zgaradi: «Backend ekranga o'zgarishni qanday aytadi?» (App.jsx va 00-NOMLAR ham yangilanadi)"
+      ]
+     ]
+    },
+    {
+     "savol": "Qaror-0 8-band so'zi: «yopiq ilovaga boshqa odamning hodisasi yetmaydi». ChatGPT (04-FILTR 1): ilova fonda qancha tirik turishi telefonga bog'liq — texnik da'vo qilmaslik kerak",
+     "variantlar": [
+      [
+       "A",
+       "Natija tilida (hozirgi MD lar): «yopiq ilovada boshqa odamning o'zgarishi jonli xabar bo'lib ko'rinmaydi»"
+      ],
+      [
+       "B",
+       "Asl so'z qaytadi: «yopiq ilovaga hodisa yetmaydi»"
+      ]
+     ]
+    },
+    {
+     "savol": "4-dars eslatmasi: navbatdan o'yinga o'tgan odamga eslatma qo'yilmaydi (eslatma faqat «Qo'shilaman» bosilgan telefonda qo'yiladi; tayanch 9.36 i)",
+     "variantlar": [
+      [
+       "A",
+       "Birinchi versiya cheklovi sifatida qoladi — o'quvchiga ochiq aytiladi"
+      ],
+      [
+       "B",
+       "Navbatdan o'tganda ham eslatma qo'yiladigan qilinadi (4-darsning uchinchi amaliyoti kattalashadi)"
+      ]
+     ]
+    },
+    {
+     "savol": "6-dars: postni sinf chatiga yuborish. Qaror-0 12 — «ota-ona xabardor»; sinf chati esa o'qituvchi nazoratidagi joy (06-FILTR 13, tayanch 9.38 d)",
+     "variantlar": [
+      [
+       "A",
+       "Sinf chatiga — Mentorga ko'rsatib, ota-ona bandisiz; sinfdan tashqaridagi har kanalga — ota-onaga ko'rsatgandan keyin (hozirgi MD)"
+      ],
+      [
+       "B",
+       "Sinf chatiga ham faqat ota-onaga ko'rsatgandan keyin — darsda yuborilmaydi, uyda"
+      ]
+     ]
+    },
+    {
+     "savol": "9-dars: Mentor misolidan o'yin kuni soat 9:00 dagi «Bugun o'yin kuni: kelishingizni tasdiqlang» eslatmasi olib tashlandi — ikkinchi amaliyotda bitta eslatma qoldi (ilovani uch kun ochmagan odamga). Sabab: bitta o'yinga bitta eslatma, dars natijasi — bitta qaytaradigan eslatma, 90 daqiqa (09-FILTR 2)",
+     "variantlar": [
+      [
+       "A",
+       "Tasdiq — bitta eslatma (uch kunlik)"
+      ],
+      [
+       "B",
+       "Qaytarilsin — ikki eslatma: o'yin kuni 9:00 va uch kunlik (haftalik chegara va vaqt qayta ko'riladi)"
+      ]
+     ]
+    },
+    {
+     "savol": "9-dars: «haftasiga ko'pi bilan ikkita eslatma» qoidasining ma'nosi (09-FILTR 1; avvalgi matn o'ziga zid edi)",
+     "variantlar": [
+      [
+       "A",
+       "Ilovaning hamma eslatmasi sanaladi; o'yinchi o'zi qo'shilgan o'yinning eslatmasi har doim qo'yiladi; hafta ikkitaga to'lsa, ilova o'zidan yangisini qo'shmaydi (hozirgi MD)"
+      ],
+      [
+       "B",
+       "Faqat ilova o'zi taklif qiladigan eslatma sanaladi — o'yin eslatmalari sanoqqa kirmaydi"
+      ],
+      [
+       "C",
+       "Haftalik chegara darsdan olinadi — qoidada «o'z ishiga tegishli, rost, bosimsiz, o'chirgich bor» qoladi"
+      ]
+     ]
+    },
+    {
+     "savol": "9-dars pilotda 90 daqiqaga sig'masa (ChatGPT bahosi 110–130 daqiqa edi; qisqartirildi, lekin o'lchanmagan)",
+     "variantlar": [
+      [
+       "A",
+       "Haftalik chegara o'quvchi amaliyotidan chiqariladi, Mentor namunasida qoladi"
+      ],
+      [
+       "B",
+       "Chegara qoladi — uchinchi amaliyotning maxfiylik gapi va o'rnatish fayli keyingi dars boshiga o'tadi"
+      ],
+      [
+       "C",
+       "Pilot natijasini ko'rib, keyin hal qilamiz"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "01",
+   "qisqa": "Lending",
+   "eyebrow": "1-dars · m10-01 · 16 ekran · PM · K3 Instagram",
+   "nom": "Mahsulotingizni bir sahifada qanday tanishtirasiz?",
+   "fayl": "01-PmLanding-v3.md",
+   "xulosa": "Natija: o'quvchi o'z lendingining matnini yozadi (sarlavha — kim uchun va nima foyda · uch foyda · bitta tugma), sherik bilan besh soniyalik sinovdan o'tkazadi va Antigravity'dagi agent bilan `lending/` ni Netlify'ga chiqaradi. Mentor lendingi: «Mahalla futboliga jamoani bir joyda yig'ing», foydalar «Funksiyadan foydaga» juftliklari bilan bir. Testlar ✔ B · D · A · C; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "WebSocket",
+   "eyebrow": "2-dars · m10-02 · 20 ekran · TEX (cho'qqi) · keyssiz",
+   "nom": "WebSocket: ekran o'zi yangilanadigan ulanish",
+   "fayl": "02-WebSocketBasics-v3.md",
+   "xulosa": "Natija: ilova Backend'ga doimiy ulangan (token bilan), ekranda ulanish belgisi «Ulangan · Ulanmoqda… · Ulanmagan», README'da real vaqt oqimi sxemasi. Tartib: hodisa sahnada → doimiy ulanish → WebSocket → socket.io; kod oynasida o'quvchi tinglovchi yozadi. Bitta vizual — ikki telefon va o'rtada Backend. Testlar ✔ B · D · A · C + final tartib.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "Real vaqt talabi",
+   "eyebrow": "3-dars · m10-03 · 12 ekran · PM+PRAKT · keyssiz",
+   "nom": "Ekran o'zi yangilanishi uchun nimani yozasiz?",
+   "fayl": "03-PmRealtimeSpec-v3.md",
+   "xulosa": "Natija: o'quvchi real vaqt talabini yozadi — hodisalar · ulanish holatlari · chekka holatlar; A1 da Backend hodisa yuboradi va ilova qayta so'raydi, A2 da holatlar ekranda. Chekka holatlar bugun yoziladi, tekshirilmaydi (5-dars va'da qilinmaydi). Testlar ✔ D · B; arena 4 va 7 variantlari bosh agent tomonidan tenglashtirildi.",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "Jonli xabar va eslatma",
+   "eyebrow": "4-dars · m10-04 · 12 ekran · loyiha kuni · keyssiz",
+   "nom": "Loyiha kuni: jonli xabar va eslatma",
+   "fayl": "04-LiveNotifyDay-v3.md",
+   "xulosa": "Uch blok: «Hozir ko'ryapti: N» (xona) · jonli xabar (faqat o'ziga tegishli o'yin) · rejalashtirilgan eslatma o'yindan bir soat oldin (web-trekda — «Xabarlar» tasmasi). Backend yuboradigan eslatma faqat chizmada va bir gapda. `GET /oyinlar` ga `menTashkilotchiman` qo'shiladi (tayanch 9.25). Telefonda amalda sinalmagan — «Shubhali joylar». Testlar ✔ B · D.",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "Buzamiz va tuzatamiz",
+   "eyebrow": "5-dars · m10-05 · 19 ekran · TEX · keyssiz",
+   "nom": "Ulanish uzilsa: buzamiz va tuzatamiz",
+   "fayl": "05-BreakAndFix-v3.md",
+   "xulosa": "Uch buzish usuli o'z ilovasida: internetni uzish · fonga olish · Backend'ning yangi versiyasi (Render sahifasida qo'lda qayta chiqarish — M-q1). Mentor misolida uch muammo: uzilishdagi o'zgarish ko'rinmaydi · jonli xabar ikki marta · «Hozir ko'ryapti» o'zini sanamaydi. «Tuzatildi» va «qayta tekshiruvda takrorlanmadi» alohida. Testlar ✔ C · A · D · B + final.",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "Kanallar",
+   "eyebrow": "6-dars · m10-06 · 16 ekran · PM · K8 Facebook",
+   "nom": "Birinchi foydalanuvchilar sizni qayerdan topadi?",
+   "fayl": "06-PmChannels-v3.md",
+   "xulosa": "Natija: uch savol bilan tanlangan kanallar, to'rt qatorli post, olti bandli xavfsizlik ro'yxati (so'zma-so'z, 7-dars ham shuni ishlatadi); post Mentor ko'rgach faqat sinf chatiga, boshqa kanallarga — uyda, ota-onaga ko'rsatib va ruxsat so'rab. Kod oynasi — havoladan `kanal` ni o'qish. Uyga: mobil trekda tekshiruv fayli. Testlar ✔ C · A · D · B.",
+   "savollar": []
+  },
+  {
+   "id": "07",
+   "qisqa": "50 foydalanuvchi",
+   "eyebrow": "7-dars · m10-07 · 12 ekran · PM+PRAKT · keyssiz",
+   "nom": "50 foydalanuvchiga qanday yetasiz?",
+   "fayl": "07-PmFiftyUsers-v3.md",
+   "xulosa": "Uch bosqichli reja (kutilgan son — «Mentorning taxmini»), ishga tushirishdan oldin uch tekshiruv. A1 — ilova: telefon o'rniga login, `namuna` ustuni, «Hisobni o'chirish», qadamlar sanog'i; oxirida o'rnatish fayli tayyorlana boshlaydi. A2 (navbat paytida) — maxfiylik siyosati, iPhone uchun brauzer ko'rinishi, lendingdagi ikki havola, ikkinchi post, sanoq. Mentor: 20 ro'yxatdan o'tgan (11 tasi sinfdosh). Testlar ✔ C · A.",
+   "savollar": []
+  },
+  {
+   "id": "08",
+   "qisqa": "To'xtab qolish qadami",
+   "eyebrow": "8-dars · m10-08 · 12 ekran · PM+PRAKT · K6 Netflix",
+   "nom": "Foydalanuvchilar qaysi qadamda to'xtab qolyapti?",
+   "fayl": "08-PmDropOff-v3.md",
+   "xulosa": "Qadamlar 46 · 27 · 12 · 9; to'xtab qolish qadami — o'tganlar foizi eng kichik joy (tayanch 9.27). A1 — sanoq sahifasi (faqat egaga, o'zi yangilanadi); gipoteza → A2 — mehmon ko'rinishi va yangi versiya (APK o'zi yangilanmaydi). «15 ta qurilma — kam: farq bor, lekin bu isbot emas.» Testlar ✔ C · A.",
+   "savollar": []
+  },
+  {
+   "id": "09",
+   "qisqa": "Qaytaradigan eslatma",
+   "eyebrow": "9-dars · m10-09 · 12 ekran · loyiha kuni · keyssiz",
+   "nom": "Loyiha kuni: foydalanuvchini qaytaradigan eslatma",
+   "fayl": "09-RetentionDay-v3.md",
+   "xulosa": "Qaytganlar foizi (46 dan 17); foydali eslatma qoidasi — o'z ishiga tegishli, rost, bosimsiz; hafta ikkitaga to'lsa, ilova o'zidan qo'shmaydi; o'chirgich bor. Uch blok: «2 joy qoldi» jonli xabari · bitta uch kunlik eslatma (ilovani uch kun ochmagan odamga) · `eslatmadan-ochdi` sanog'i (istalgan eslatma bosilib ilova ochilgani) va «Eslatmalar» o'chirgichi. Halol chegara: yopiq ilova yangi e'lonni bilmaydi. Testlar ✔ B · C. 09-FILTR dan keyin: o'yin kuni 9:00 eslatmasi olib tashlandi; tekshiruv yozuvlari o'chiriladi; «uyda» yo'q.",
+   "savollar": []
+  },
+  {
+   "id": "10",
+   "qisqa": "Mentor tekshiruvi",
+   "eyebrow": "10-dars · m10-10 · 16 ekran · PM · K5 Duolingo",
+   "nom": "50 foydalanuvchiga yetdingizmi?",
+   "fayl": "10-PmUsersCheck-v3.md",
+   "xulosa": "Metrika hisoboti — to'rt son, har birida manba va sana; Mentor: 38 / 50 (11 tasi sinfdosh), asosiy harakat 19. Mentor tekshiruvining uch savoli: Son qayerdan? · Kimlar sanalgan? · Oldingi son bormi?; 50 ga yetmaslik — baho emas; zaxira reja (dalil bilan tanlangan bitta bo'g'in · gipoteza · bir haftalik ish). Kod — Neon SQL (`namuna = false`, kunlar bo'yicha). Testlar ✔ C · A · D · B. 10-FILTR dan keyin: «eng kam bo'g'in» yo'q; qaytganlar foizi ikki soni bilan saqlanadi; 8-darsdagi tuzatishdan keyingi sonlar (15 dan 11) 8-ekranda.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "Tuzatilgan pitch",
+   "eyebrow": "11-dars · m10-11 · 12 ekran · PM (qisqa) · keyssiz",
+   "nom": "Raqamlaringiz pitchni qanday o'zgartiradi?",
+   "fayl": "11-PmPitchReview-v3.md",
+   "xulosa": "Da'vo — pitchdagi tekshirsa bo'ladigan gap; dalil — uni ko'rsatadigan son yoki yozuv, yonida manbasi va qachon olingani. Mentorning to'rt da'vosi: ikkitasida dalil bor · «yoqdi» qaytganlar soni bilan qayta yoziladi (46 qurilmadan 17 tasi) · «tez orada 50» olib tashlanadi. O'quvchi o'z pitchida da'volarni belgilaydi, dalil qo'yadi, dalilsizini qayta yozadi yoki olib tashlaydi; yakkama-yakkada ekranini Mentorga ko'rsatadi (bitta da'vo, bitta dalil, bitta qaror). Testlar ✔ C · B. 11-FILTR dan keyin: «sana» → «qachon»; yozuv-dalil; 8-ekran savoli yangi.",
+   "savollar": []
+  },
+  {
+   "id": "12",
+   "qisqa": "Metrikali pitch",
+   "eyebrow": "12-dars · m10-12 · 16 ekran · PM · K1 Uzum",
+   "nom": "Raqamlaringiz zalni ishontiradimi?",
+   "fayl": "12-PmGrowthPitch-v3.md",
+   "xulosa": "5 daqiqa, besh bo'lak: Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam. Mentor pitchi 11-darsdagi tuzatilgan pitchning davomi. Raqamlar — ustunli o'sish grafigi (20 · 38 · 44 — jami; haftalik qo'shimcha 18 va 6; noldan, teng oraliq), bosh raqam va bitta halol gap; kod oynasida o'z sonlaridan grafik (nuqta yetmasa — grafiksiz, bu ham to'liq natija). Jonli demo — ikki qurilmada, real odamlar qo'shilmagan o'yinda. «Keyingi dars — «Zaxira dars»». Testlar ✔ C · A · D · B. 12-FILTR dan keyin: dalil — son yoki kuzatuv; grafik nuqtalarining manbasi aniq; 12-ekranning bitta varianti almashdi.",
+   "savollar": []
+  }
+ ]
+}
