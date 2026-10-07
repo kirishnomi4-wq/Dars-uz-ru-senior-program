@@ -155,6 +155,8 @@ const PmAudienceTestLesson = L(() => import('./9-Modull/PmAudienceTestLesson.jsx
 const FeatureThreeLesson = L(() => import('./9-Modull/FeatureThreeLesson.jsx')) // 11-Modul 14-dars
 const PmOneOnOneLesson = L(() => import('./9-Modull/PmOneOnOneLesson.jsx')) // 11-Modul 15-dars
 const PmPrototypePitchLesson = L(() => import('./9-Modull/PmPrototypePitchLesson.jsx')) // 11-Modul 16-dars
+const PmLandingLesson = L(() => import('./10-Modull/PmLandingLesson.jsx')) // 12-Modul 1-dars, pilot
+const WebSocketBasicsLesson = L(() => import('./10-Modull/WebSocketBasicsLesson.jsx')) // 12-Modul 2-dars, pilot
 // ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
@@ -399,8 +401,8 @@ const MODULES = [
     id: '10', slug: 'm10', title: 'Real vaqt va ishga tushirish', period: 'oy 13.5–14.5', stage: 2,
     idea: 'Mahsulot jonlanadi: ekran o\'zi yangilanadi, eslatma keladi — va uni 50 haqiqiy foydalanuvchi ishlatadi.',
     lessons: [
-      { key: 'm10-01', n: 1, type: 'PM', emoji: '📰', title: 'Mahsulotingizni bir sahifada qanday tanishtirasiz?', sub: 'lending: sarlavha, foyda va bitta tugma' },
-      { key: 'm10-02', n: 2, type: 'Kod', emoji: '🔌', title: 'WebSocket: ekran o\'zi yangilanadigan ulanish', sub: 'doimiy ulanish, hodisalar va real vaqt oqimi sxemasi' },
+      { key: 'm10-01', n: 1, type: 'PM', emoji: '📰', title: 'Mahsulotingizni bir sahifada qanday tanishtirasiz?', sub: 'lending: sarlavha, foyda va bitta tugma', comp: PmLandingLesson },
+      { key: 'm10-02', n: 2, type: 'Kod', emoji: '🔌', title: 'WebSocket: ekran o\'zi yangilanadigan ulanish', sub: 'doimiy ulanish, hodisalar va real vaqt oqimi sxemasi', comp: WebSocketBasicsLesson },
       { key: 'm10-03', n: 3, type: 'PM', emoji: '📝', title: 'Ekran o\'zi yangilanishi uchun nimani yozasiz?', sub: 'real vaqt talabi: hodisalar, ulanish holatlari, chekka holatlar' },
       { key: 'm10-04', n: 4, type: 'Proyekt', emoji: '🔔', title: 'Loyiha kuni: jonli xabar va eslatma', sub: 'hozir ko\'ryapti, jonli xabar; mobil trekda — telefonga eslatma' },
       { key: 'm10-05', n: 5, type: 'Kod', emoji: '🧯', title: 'Ulanish uzilsa: buzamiz va tuzatamiz', sub: 'uzilish, takror hodisa, qayta ulanish — uchta muammo' },

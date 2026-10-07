@@ -26,19 +26,21 @@
 | 1 · MD v3 — 1-to'lqin: 3 pilot (1 PM · 2 TEX · 7 PM+PRAKT) | ✅ 14:02–14:06 yozildi, 14:08 tekshirildi; 02 — «Ulanmoqda…» o'zim tuzatdim; 01 va 07 — 14:20 gacha tayanch 9 ga moslandi |
 | 1 · MD v3 — 2-to'lqin (9 dars: 3, 4, 5, 6, 8, 9, 10, 11, 12) | ✅ 14:41–14:58 — 9 MD (3 va 11 internet uzilgandan keyin davom ettirildi); 12 MD `lint:til` 0 error, o'zaro tekshiruv toza |
 | 2 · GATE M (bitta sahifa) → ChatGPT auditi → `NN-FILTR.md` → `GATE_M_JAVOB.md` | ✅ **GATE M tasdiqlandi 06.10 19:17 — 12 dars ✓, 12 savol hammasi A (kod `12M-GATE-2`; `GATE_M_JAVOB.md`)** · audit ✅ 12/12 (06.10 19:13) · audit 15:35 dan, 1-darsdan ketma-ket (`01-FILTR.md` ✅ 15:45 · `02-FILTR.md` ✅ 15:58 · `03-FILTR.md` ✅ 16:14 · `04-FILTR.md` ✅ 16:32 · `05-FILTR.md` ✅ 16:39 · `06-FILTR.md` ✅ 16:50 · `07-FILTR.md` ✅ 16:57 · `08-FILTR.md` ✅ 17:06 · `09-FILTR.md` ✅ 18:32 · `10-FILTR.md` ✅ 18:46 · `11-FILTR.md` ✅ 19:02 · `12-FILTR.md` ✅ 19:13 — **audit tugadi, 12/12**) · 15:01 sahifa e'lon qilindi — https://claude.ai/artifact/U1wCq2dwxkAKKuXjKkz8GJ (kod `12M-GATE-1`, config `gatem-1.json`, 5 modul savoli); foydalanuvchi o'qiydi va ChatGPT auditiga beradi |
-| 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | — |
+| 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | ⏳ buyruq 06.10 19:23 («qurishni boshla, 2 ta pilot»); 19:27 — pilotlar: 1-dars `PmLandingLesson.jsx` (PM) va 2-dars `WebSocketBasicsLesson.jsx` (TEX) skeletdan nusxalandi (gates 12/12), App.jsx ga ulandi; `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md` yozildi; **agent ruxsati so'raldi — javob kutilmoqda** |
 | 9 · Yopish · QA sayti · commit (buyruq bilan) | — |
 
-**Keyingi qadam (06.10 19:17) — GATE M TASDIQLANDI; «qur» buyrug'i kutilmoqda:**
-1. **MD bosqichi yopildi:** 12 MD v3 — ChatGPT auditi (12/12), Filtr (`01…12-FILTR.md`), GATE M (06.10 19:17, hammasi A — `GATE_M_JAVOB.md` oxirgi bo'lim; tayanch 9.45). MD — manba-haqiqat. F-ID: oxirgisi **F-1006-367** — keyingisi 368. Tayanch oxirgi bandi — **9.45**.
-2. **Keyingi bosqich — «qur» (konveyer 3–8), FAQAT foydalanuvchi buyrug'i bilan** (GATE M tasdig'i — agentga ruxsat emas; agent — nechta · nima · qaysi fayl · vaqt aytilgandan keyin). Prompt 3-bosqich tartibi: avval 2 pilot → to'xtash → 2-to'lqin.
-   Qurishdan oldin o'qiladi: `konveyer/README.md` (3–8), `QURISH_KARTASI.md`, `QOIDALAR.md` J, U, K, R, N, Z bo'limlari, 9 va 10-Modul `QURUVCHI_SABOQ.md`, 9-Modul `QURUVCHI_TOPSHIRIQ_2.md` (jurnalda «hali o'qilmagan» deb turibdi).
-3. **⛔ «Qur» darvozalari — MD muzlatilishidan oldin haqiqiy qurilmada** (tayanch 9.34 i, 9.37 a, 9.38 j, 9.39 k, 9.40 j, 9.41 j, 9.42, 9.43, 9.44 oxirlari): Expo Go + uchish rejimi · eslatma (Android + iPhone), butunlay yopiq ilovadan bosish va takror yozuv · `04-done` da 5-dars muammolari · EAS va APK havolasi ·
-   iPhone brauzer ko'rinishi (kirish, real vaqt) · sanoq sahifasi va `?dan=` · ilova yangilanganda o'yin eslatmalari · o'chirgichni qayta yoqish · haftalik chegara · Mentor Database'ida qaytganlar foizi (kesishma) va 15 · 11 · «Havolani ulashish» usuli · 11-dars yakkama-yakka vaqti ·
-   `HtmlCompiler` natijasidan nuqtalarni o'qish · 12-dars juftlik qismi (12–15 o'quvchi) · 7-darsdan keyin namuna o'yin qolganmi · har darsning 90 daqiqasi. Natija MD dagidan boshqacha chiqsa — MD haqiqiy natijaga moslanadi va foydalanuvchiga aytiladi. `maydon-jamoa` repo'siga — faqat buyruq bilan.
-4. **M-q11 A** (pilotdan keyin): 9-dars 90 daqiqaga sig'masa — haftalik chegara o'quvchi amaliyotidan chiqariladi, Mentor namunasida qoladi.
-5. **GATE M sahifasi:** https://claude.ai/artifact/U1wCq2dwxkAKKuXjKkz8GJ (versiya 15 — tasdiqlangan holat). Qayta yig'ish: `python3 konveyer/vositalar/gatem/sahifa.py feedback/F-1006-12modul/gatem-1.json feedback/F-1006-12modul <scratchpad>/gatem-1.html` → Artifact `url` bilan (yangi seansda avval `read`).
-6. Commit, push, deploy — faqat buyruq bilan. ⚠️ `feedback/F-1006-12modul/` git'da yo'q (untracked) — zaxira faqat scratchpad'da (`…/ad2cb0a9-…/scratchpad/zaxira-1810/ … -1905/`); foydalanuvchiga commit haqida ikki marta aytilgan.
+**Keyingi qadam (10-07 13:11) — «QUR»: pilot ko'rigi fidbeki TO'LIQ BAJARILDI (1-dars F-368…375, 2-dars F-376…388, 4 savol). Keyingi: foydalanuvchi qayta ko'radi → 2-to'lqin (10 dars) — agentlar faqat ruxsat bilan, topshiriqqa SABOQ E 40–55.**
+0. Dars serveri **5174** da (`npx vite --port 5174`, fon) — 5173 da AILM. Ko'rik: `localhost:5174/#/lesson/m10-01`, `…/m10-02`. Tasdiqdan keyin: 1-dars qolgan bandlari → umumiy tuzatish → 2-to'lqin (10 dars, agentlar yana ruxsat bilan; topshiriqqa SABOQ E 40–52).
+1. **Commit ✅ `a10a1a7`** (06.10 19:23, push yo'q): `feedback/F-1006-12modul/` (35 fayl) + App.jsx dan faqat `id: '10'` bloki va izoh qatori (indeksga HEAD + o'z blokim qo'yildi; ishchi fayldagi boshqa seanslar o'zgarishi commitga kirmagan).
+   Commitdan keyin o'zgarganlar (hali commit qilinmagan): `src/10-Modull/` (2 fayl), App.jsx (2 import + 2 `comp`), `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md`, shu jurnal.
+2. **Pilotlar (foydalanuvchi buyrug'i: «2 ta pilotni ko'rib fidbek beraman, keyin general tuzatasan va davom etasan»):** 1-dars `src/10-Modull/PmLandingLesson.jsx` (PM, 16 ekran) · 2-dars `WebSocketBasicsLesson.jsx` (TEX, 20 ekran).
+   Fayllar skeletdan (`LESSON_META` `pm-m10d1-v1` / `m10-02-v1`, export, palitra, LiveGate sarlavhasi), `gates` 12/12; App.jsx: importlar `// ---- 10-Modul` ostida, `comp` — `m10-01`, `m10-02`. Lokal server `localhost:5173` ishlab turibdi (umumiy).
+   Topshiriq: `QURUVCHI_TOPSHIRIQ_PILOT.md` + `QURUVCHI_SABOQ.md` (A/B/D — 9, 10, 11-Modul saboqlari; C — 12-Modul kelishuvlari; **MD ↔ SABOQ D 32–39 ziddiyatida vizual uchun SABOQ ustun** — MD lar 11-Modul pilot ko'rigidan oldin yozilgan).
+3. **Agentlar yuborildi (ruxsat 07.10 07:26 — «ha yubor»):** 2 quruvchi agent (har biri bitta fayl; scratchpad `01-qurish/`, `02-qurish/`). Keyin: hisobotlarni o'qish → o'zim: gates, suratlarni ko'z bilan, MD bilan solishtirish → foydalanuvchiga ko'rik uchun (lokal server) + topilmalar → fidbek (retsept B, F-1006-368 dan) → `QURUVCHI_SABOQ.md` E bo'limi → 2-to'lqin (10 dars) — yana ruxsat bilan.
+   Skelet va qolip 05.10 dan beri tuzatilmagan (MEXANIZM navbati 36 band qo'llanmagan) — tuzoqlar quruvchi faylida chetlab o'tiladi (SABOQ C).
+4. **⛔ Haqiqiy qurilmada sinalmaganlar** (tayanch 9.34–9.44 oxirlari) — pilot dars fayllari MD bo'yicha quriladi; `maydon-jamoa` repo'siga tegilmaydi (alohida buyruq). Natija keyin boshqacha chiqsa — MD va dars birga tuzatiladi.
+5. GATE M sahifasi: https://claude.ai/artifact/U1wCq2dwxkAKKuXjKkz8GJ (versiya 15). F-ID keyingisi **389**; tayanch oxirgi bandi **9.45**.
+6. Commit, push, deploy — faqat buyruq bilan.
 
 ## Yozuvlar
 - **2026-10-06 12:33** — seans ochildi. Prompt o'qildi; jurnal va xotira fayli yaratildi. `feedback/F-1006-12modul/` da faqat `00-SEANS_PROMPT.md` bor edi.
@@ -202,6 +204,73 @@
   Hamma javob — tavsiya (MD lar shu bo'yicha yozilgan): MD mazmuni o'zgarmadi; faqat «javob kutilmoqda» belgilari «tasdiqlandi»ga almashtirildi (12 MD ×4, 04 MD ×1, tayanch ×3). M-q11 A — pilotdan keyin qo'llanadi. `lint:til`, `lint:prompt` qayta yurgizildi; sahifa — versiya 15.
   **To'xtadim:** keyingi bosqich — «qur», faqat buyruq bilan.
 
+- **2026-10-06 19:27** — **«Qur» buyrug'i va commit.** Foydalanuvchi: «ha commit qil va shu qurishni boshla, 2 ta pilotni ko'rib feedback beraman, keyin general tuzatasan-da davom etasan».
+  **Commit `a10a1a7`** (push yo'q): 12-Modul papkasi + App.jsx dan faqat 10-blok (retsept D: `esbuild` — indeksdagi App.jsx ✓; `vite build` — ishchi daraxt, scratchpad'ga, xatosiz; `lint:jsx` 0). Boshqa seanslarning 14 ta o'zgargan fayli commitga kirmadi.
+  **Tayyorgarlik:** `konveyer/README.md`, `2…5-*.md`, 9 / 10 / 11-Modul `QURUVCHI_SABOQ.md`, 11-Modul pilot topshirig'i, `MEXANIZM_NAVBAT` o'qildi. Topildi: skelet va qolip 05.10 dan beri o'zgarmagan (36 taklif qo'llanmagan);
+  11-Modul pilot ko'rigining qat'iy qoidalari (SABOQ D 32–39: yengil puls va guruhda bitta halqa · matnsiz bo'sh chiziqlar yo'q · yashirin bosish yo'q · odamlar real ko'rinishda · ⛶ · «Ortda qoldingizmi» bir marta) 12-Modul MD lari yozilgandan keyin chiqqan —
+  MD larda ularga zid vizual ko'rsatmalar bor (reja skeleti «matnsiz», siluetlar, har variantda halqa, har blokda «Ortda»). Qaror: matn MD dan, vizualda SABOQ ustun; quruvchi har chetlashishni hisobotda yozadi; MD lar yakuniy MD bosqichida (koddan) moslanadi.
+  Pilot fayllari skeletdan nusxalandi va App.jsx ga ulandi (gates 12/12 ×2, App.jsx esbuild ✓). Agentlar hali yuborilmagan — ruxsat so'raldi.
+
+- **2026-10-07 07:26** — seans qayta ochildi (noutbuk tunda ochiq qolgan; 06.10 19:27 dan beri ish bo'lmagan, pilot fayllar skelet nusxasi holida). Foydalanuvchi: «ha yubor» — **agent ruxsati**.
+  2 `darslik-quruvchi` yuborildi (fon): 1-dars `PmLandingLesson.jsx` (≤ 130 turn) · 2-dars `WebSocketBasicsLesson.jsx` (≤ 160 turn); topshiriq `QURUVCHI_TOPSHIRIQ_PILOT.md` + `QURUVCHI_SABOQ.md`; har biri faqat o'z fayli, App.jsx / MD / boshqa modullar — faqat o'qish; commit yo'q.
+
+- **2026-10-07 08:13** — **1-dars quruvchisi tugadi** (`PmLandingLesson.jsx`, 16 ekran, ≈ 104 chaqiruv): gates 12/12, `lint:jsx` 0, stilsiz — faqat skelet klasslari. Hisobotida ochiq yozilgan: s9 yozish, s10 2–3-qism, s15 holatlari brauzerda sinalmagan.
+  **O'z tekshiruvim:** desk 16/16 va mob 16/16 surat ko'z bilan + o'z Playwright sinovim (`scratchpad/tekshir1/sinov.mjs`: s9 to'liq yozish, s10 to'liq oqim, s15 to'rt holat).
+  **F-1006-368 (kritik, men topdim):** s9 da «Sarlavha osti» saqlangach — **OQ EKRAN** (`qiy.foydalar` undefined). Sabab: `qiy` matn/obyekt holati effektda tiklanardi, birinchi chizishda eski matn «Uch foyda» shakliga tushardi.
+  Tuzatildi: qiymat o'z bo'lagi bilan saqlanadi (`qiyH = { k, v }`). Qayta sinov: s9 4/4 → `pm-m10d1-lending` to'g'ri (`hodisa: royxatni-ochish`), yumshoq xato («zamonaviy») va bloklovchi (telefon) ishlaydi; s10 → `sinov` to'g'ri; s15 → 4 holat MD dagidek; `pageerror` yo'q; gates 12/12.
+  Sinf-supurish: effektda tiklanadigan holat (grep) — 154 dars fayli, topilgani faqat shu fayl (endi xavfsiz); grep tor, kengroq naqsh qidirilmadi. 2-dars quruvchisiga xabar yuborildi (yozish oqimini brauzerda sinash).
+  Saboq (SABOQ E ga nomzod): quruvchining «tekshiruvlar node da sinaldi» degani yetmaydi — har yozish oqimi brauzerda oxirigacha, `pageerror` tinglanib.
+  Foydalanuvchiga savol sifatida berilgan (MD masalasi): s15 — 0/4 da ham «Sahifa matni boshlandi» · «Sahifa yig'ildi» blokning 1-qadamidan keyin chiqadi · s7 dagi uchta nomsiz kulrang qator (SABOQ 33) · ⛶ tugmasi ayrim ekranlarda kartadan ajralib, tepada turadi.
+
+- **2026-10-07 08:25** — **2-dars quruvchisi tugadi** (`WebSocketBasicsLesson.jsx`, 20 ekran, ≈ 120 chaqiruv): gates 12/12, `lint:jsx` 0, `lint:til` 0 (qayta yurgizdim). Agent yozish oqimlarini (9 QKod 2/2 va noto'g'ri yechimlar, 13 sxema, A1, A2, yakun) brauzerda `pageerror` bilan sinagan; `lint:layout` vosita xatosi bilan yiqilgan (`layout-lint.mjs:529`).
+  **O'z tekshiruvim:** desk 20/20 (1280 enda) va mob 20/20 ko'z bilan + agentning harakat suratlari (k1, e13, s7). Topilmalar (umumiy tuzatishga): 13-ekran — qatorlar saqlangach tugmalar tarqoq («Yana qator» chapda, «Saqlash» o'rtada, «Yordam» ostida) ·
+  7-ekran yakuni — «ochiq» chizig'i telefon va Backend'ga tegmaydi, havoda turadi; skrolsiz sig'maydi (agent ham yozgan) · 7-ekran — `auth: { token }` qatori to'q qizil fonda (xato kabi o'qiladi) · 5-ekran mob — «ochilmagan» yozuvi 2-telefon ustiga tushadi.
+  **Sinf (ikkala dars, MD):** yakunning «hech narsa qilinmagan» holati «…boshlandi» deydi (1-dars «Sahifa matni boshlandi», 2-dars «Ulanish boshlandi») — foydalanuvchiga savol.
+  Agentning MD takliflari (5): 13-ekran minimum 1 qator · «Qator tayyor» / «Yana qator» · A1 web-trek prompti · 10-ekran xira kartalar · A2 «Davom etish» qadami — foydalanuvchiga tavsiyam bilan berildi.
+  Ikkala pilot foydalanuvchiga ko'rik uchun berildi: `localhost:5173/#/lesson/m10-01`, `…/m10-02`. Fidbek — F-1006-369 dan.
+- **2026-10-07 11:26** — 5173 da AILM loyihasi turibdi (foydalanuvchi aytdi) → dars serveri **5174** da (`npx vite --port 5174`). 5300 dagi vite — shu loyihaniki (cwd `internetLesson`), egasi aniq emas, tegilmadi.
+  **1-dars fidbeki (8 rasm, `rasm-1007/`) — retsept B, TASHXIS; tasdiq kutilmoqda:**
+  - **F-1006-369** telefon maket ramkasida kesilgan (0, 2, 11-ekran; «global»). Sabab: `LendingSahifa` ramkasi `.ls-kor` qat'iy 400px (qisqa 340px) + `overflow: hidden`, ichidagi telefon 272px → pastdan 53–67px kesiladi. O'lchov (DOM detektor, desk+mob, ikkala dars barcha ekran): 1-dars 0, 2, 6, 11-ekran; 2-dars — ramka kesigi yo'q (faqat 7-ekran skrolsiz sig'maydi, ma'lum).
+  - **F-1006-370** variantlar atrofida bitta umumiy ramka (0, 4-ekran). Sabab: `.ld-s0.kutish .q-variantlar-kol` va `.ld-halqa-guruh` guruh-outline. 9-Modulda (src/7-Modull, 3 dars) har variantga o'z yengil halqasi — foydalanuvchi aytgan «oldingi» naqsh. 2-darsda ham bor: `.ws-k.faol .q-variantlar-kol`, `.ws-halqa-g > .q-bashorat`. (11-Modulda ~10 darsda guruh-outline — doiradan tashqari, xabar.)
+  - **F-1006-371** bashorat chiplariga urg'u yo'q (7-ekran) — F-370 bilan bir yechim (har chipga yengil urg'u ramka).
+  - **F-1006-372** taxmin qatori uzun («Taxminingiz: … ✕ · haqiqatda: …», `TaxminQ`, 2, 6, 7-ekran; 2-darsda ham bitta).
+  - **F-1006-373** «Uch foyda» 6 maydon birdaniga (9-ekran) — 9-Modul SABOQ 9/13 buzilgan (ketma-ket, bittadan karta, natija uchib boradi).
+  - **F-1006-374** 11-ekran (A1): namuna sahifa kesilgan (F-369 sinfi) + ortiqcha: natija ostidagi `git status → …` chiplari, uzun «Ortda qoldingizmi» (11-Modulda bir qator).
+  - **F-1006-375** yakunda qo'shimchalar: sinov chipi, «Bugungi asosiy fikr» qutisi (P-013, QURISH_KARTASI), «Sahifam» strip → standart (texnik / 11-Modul FeatureOne yakuni). 2-darsda ham fikr qutisi.
+  Ijobiy: 0-ekran odamchasi «normal».
+- **2026-10-07 12:16** — **2-dars fidbeki (12 rasm + umumiy taklif, `rasm-1007/F376…F388`) — foydalanuvchi: «barchasini shoshilmasdan bajar» → BAJARILDI.**
+  - **F-1006-376** 0-ekran variantlar guruh ramkasi → har variantga o'z yengil chegarasi, puls 2 marta navbatma-navbat, scale yo'q («ws-chorla»). SABOQ 32 «guruhda bitta halqa» bandi bekor (SABOQ E 40).
+  - **F-1006-377** 2-ekran «tushunmadim, nimani bosishni bilmadim». Sabab (brauzerda tasdiqlandi): «↓ Pastga torting» bosilganda hech narsa bo'lmaydi — telefon `setPointerCapture` qilib click'ni yutadi; faqat 60px+ sudrash ishlardi.
+    Tuzatildi: tugma ustida capture yo'q · Mentor qadamga qarab · 1-qadamdan keyin tugma yo'qoladi, chiziqda qizil ✕. (11-Modul 8-darsida shu mexanika — doiradan tashqari, tekshirilmadi → MEXANIZM-TAKLIF.)
+  - **F-1006-378** «WebSocket'ga mehr, aniqlik; NestJS loyihasiga real prompt». A1 prompti real (gateway + socket.io-client + token + belgi) — qoldi; 3-qadamga qo'shimcha real prompt: agent o'z kodidagi `auth` va token tekshiruvi qatorini fayl/qator bilan ko'rsatadi. 7-ekranda konvert uchishi (379).
+  - **F-1006-379** 7-ekran: so'rov Backend'ga yetmaydi, chiziq havoda. Sabab: kod kartalari telefon/Backend ustuniga qo'yilgan — ustunlar keng, chiziq qisqa o'rtada. Tuzatildi: sahna ixcham, kod kartalari ostida 2 ustun; konvert «tokensiz/token» uchadi; Backend «token yo'q — yopdi» / «token yaroqli ✓»; `auth` qatori qizil emas, sariq.
+  - **F-1006-380/382** taxmin qatori va izoh yashil quti ichida (`XulosaQ`; «Taxminingiz ✕ — aslida: …»), quti ixcham. 6 ekran (2, 4, 5, 7, 10, 12).
+  - **F-1006-381** 12-ekran chip guruh ramkasi → har chip o'z chegarasi; jadval «ma'lumot» ko'rinishi (to'q sarlavha «Mentor sxemasi · n / 5», katak chiziqlari, kulrang), tanlov kartasi oq accent.
+  - **F-1006-383** 13-ekran: yorliq input ichida (raqam + qisqa savol, 159/2, 8-Modul PmLesson22 naqshi), «masalan» → Yordam «Mentor misoli», tugmalar bir qatorda; xato matni «kamida bitta qator» (kod bilan bir — agent taklifi 1).
+  - **F-1006-384** 14-ekran tartib: oq bo'lak + accent chegara + «⠿», uyalar 46px (159/4, 4a-Modul NestArchAlive naqshi; 10/11-Modul QTartib ham qolipdagi to'liq accent — doiradan tashqari).
+  - **F-1006-385** A1 trek tugmalari guruh halqasi → har tugma o'z chegarasi.
+  - **F-1006-386** ⛶ oynasi siljigan/kesilgan. Sabab: keyingi `.zoomable { position: relative }` bir klassli `.zoom-on { position: fixed }` ni bekor qiladi (oyna 251px o'ngga). Tuzatildi `.zoomable.zoom-on` — **ikkala pilotda** (1-darsda ham shu xato edi); o'lchov: left 260 = (1440−920)/2.
+  - **F-1006-387** kartochka halqasi: ikki qavat + cheksiz scale puls → ingichka chegara, puls 3 marta (10-Modul naqshi). 12 karta — boshqa modullarda ham 12, soni o'zgarmadi.
+  - **F-1006-388** yakundagi «Bugungi asosiy fikr» — olib tashlandi (11-Modul texnik darslarida yo'q; PM darslarida bor — P-013, 1-dars uchun savol F-375).
+  - **O'z topilmam:** 5-ekran mob — konvert «ochilmagan» 2-telefon ustida → tik sahnada telefon ostida.
+  - **Sinf-supurish 1-darsga (foydalanuvchi «general» degan bandlar):** variantlar/bashorat chiplari o'z chegarasi (F-370/371 — 0, 4, 6, 7-ekran) · sahifadagi telefon `zoom: 0.72` (F-369) · ⛶ selektori (F-386). 1-darsning F-372…375 — tasdiq kutilmoqda.
+  - **Tekshiruv:** gates 12/12 ×2 · `lint:jsx` 0 · `lint:til` 0 ×2 · stilsiz — bazaviy ro'yxat · kesik detektori (desk 1100, 1440, mob 390 × 36 ekran) **0** · Playwright oqimlari pageerror 0:
+    2-ekran (bosish bilan) · 7 · 12 (5 sabab) · 13 (to'ldirish → tayyor → yordam → saqlash) · 14 (6/6 yashil) · A1 3-qadam · A2 ⛶ markaz · mob gorizontal skrol yo'q. Suratlar: scratchpad `fb2/`.
+  - Muhrlandi: `QURUVCHI_SABOQ.md` E 40–52 · MD `02-WebSocketBasics-v3.md` (tepada «Pilot ko'rigi» bloki + 2, 7, 13, 18, 19-ekranlar, A1 3-qadam).
+- **2026-10-07 13:11** — **Foydalanuvchi: «tavsiyalaring yaxshi, halol shoshilmasdan qilish kerak — ha, ma'qul, bajar» → 1-dars F-372…375 va 4 savol BAJARILDI.**
+  - **F-1006-372** taxmin qatori: «Taxminingiz ✕ — aslida: …» / «… to'g'ri chiqdi ✓», yashil quti ichida kichik qator (2-dars bilan bir uslub). 2, 6, 7-ekran.
+  - **F-1006-373** 9-ekran «Uch foyda» bittadan: «Foyda N / 3» kartasi (2 maydon, yorliq input ichida), «Saqlash» → juft sahifaga uchadi, keyingisi kirib keladi; saqlanganlar ✓ qator (bosib tahrirlanadi);
+    tekshiruv juftga (`s9TekshirJuft`; takror — boshqa saqlangan foydalar bilan). «Muammo gapi / Yechim» yorliqlari ham input ichida. Brauzerda oxirigacha: 3 juft + 1-juftni qayta tahrirlash → kalit to'g'ri, «Page Writer», pageerror 0; mob 390 — toza.
+  - **F-1006-374** 11-ekran: natija ostidagi `git status → …` qatori olib tashlandi; «Ortda qoldingizmi» bitta qator (11-Modul naqshi; endi ru ham bor). Sinf: 2-dars A1 «Ortda» ham qisqardi (`.env` eslatmasi qoldi — klonda `.env` yo'q).
+  - **F-1006-375** yakun standart: sinov chipi, «Bugungi asosiy fikr», «Sahifam» qatori olib tashlandi (CSS ham).
+  - **Savol 1** bo'sh yakun: 1-dars — hech narsa yozilmagan bo'lsa «Sahifa matni hali yozilmagan — uyda yozib chiqing.» (1–3 bo'lak — «boshlandi» qoladi, rost); 2-dars — «Ulanish hali tugamagan — qadamlarni uyda tugating.»
+    (A1 qisman bajarilgani saqlanmaydi — «boshlanmagan» deyish ham yolg'on bo'lishi mumkin edi, shuning uchun «tugamagan»). Brauzerda 5 holat sarlavhasi tekshirildi.
+  - **Savol 2** «Sahifa yig'ildi» — faqat 3-qadam «Ishga tushirish»dan keyin (`blokQ >= 3`; blok 2 → «matn tayyor»).
+  - **Savol 3** 7-ekran Burbn nomsiz kulrang qatorlar olib tashlandi (SABOQ 33); so'nish animatsiyasi nomli qatorlar bilan qoldi.
+  - **Savol 4** 2-dars agent takliflari: 1 (min 1 qator) va 2 (tugmalar) — avvalgi raundda · 3 web-trek prompti MD ga to'liq yozildi (+ kodda «ilova o'zi» → «sayt o'zi», «Ekran» → «Sahifa» — web matnida) ·
+    4 10-ekran xira namuna kartalar — kodda yo'q edi, MD dan olib tashlandi · **5 A2 «Davom etish» — RAD (o'z tavsiyamni qaytardim):** A2 MD bo'yicha «vaqt qolsa» bloki; 3-qadamga o'tkazilsa vaqti tugagan o'quvchi darsdan o'tolmaydi — 1-qadam qoladi. MD A2 «Ortda» qatori kod bilan tenglashtirildi (SABOQ 39).
+  - **Tekshiruv:** gates 12/12 ×2 · `lint:jsx` 0 · `lint:til` 0 ×2 · stilsiz bazaviy · kesik detektori (3 o'lcham × 36 ekran) 0 · pageerror 0. MD 01 (tepada «Pilot ko'rigi» bloki + 7, 9, 11, 15-ekranlar), MD 02 (A1 web prompt, 10, 16, 19) yangilandi.
+
 ## MEXANIZM-TAKLIF (asosiy seans uchun; o'zim tegmayman)
 
 1. **«Yakun holatga qarab»** — 11-Modul Filtrida 8 darsda qabul qilingan sinf. Taklif: `QOIDALAR.md` ga qator (amaliy natijasi bor darsda yakun sarlavhasi 3–4 holatli, belgi faqat to'liq bajarilganda) va `QYakun` da holatli sarlavha uchun tayyor yo'l. Fayl: `QOIDALAR.md`, `src/qolip`.
@@ -215,4 +284,9 @@
 9. **P-026 va halollik ziddiyati** — `QOIDALAR.md` P-026 «aybni o'quvchidan oladi («bu sizning xatongiz emas»)» deb talab qiladi va grep-nomzodi `xatongiz emas`. 12-Modul 01 va 02 tashqi auditlari bu gapni rad etdi (sabab noma'lum bo'lsa — da'vo; 01-FILTR, 02-FILTR 12),
    men qabul qildim: 12-Modul MD larida endi «xatongiz emas» / «sizda emas» yo'q, o'rniga aniq keyingi qadam. Taklif: P-026 matni «ayb yuklanmaydi; sabab aniq bo'lsagina «bu sizning xatongiz emas», bo'lmasa aniq keyingi qadam» ga. Fayl: `QOIDALAR.md` (+ karta).
 10. **«Bajardim» = tekshirilgan** — 12-Modul 04-FILTR 38: blokning «Bajardim»i «Ulgurmasangiz» yo'lida tekshiruvdan oldin bosilib, yakun «ishlaydi» deb chiqardi (02, 04, 05, 09 da topildi). Taklif: `ScreenBlok` / `QBlok` da ikki holat — «Davom etish» ochilishi (oraliq qadamdan) va blok bayrog'i (faqat oxirgi tekshiruv qadamidan); yakun faqat bayroqdan. Fayl: `src/qolip`, `src/skelet/NamunaDars.jsx`, `konveyer/1-MD.md`.
-
+11. **Skeletda ⛶ oynasi qoidasi** (F-1006-386): `src/skelet/NamunaDars.jsx` da `.zoomable { position: relative }` bor, `.zoom-on` yo'q — quruvchilar bir klassli `.zoom-on` ni oldinroq qo'shgan va u bekor bo'lgan (ikkala pilotda ⛶ oynasi 251px siljigan). Taklif: skeletga `.zoomable.zoom-on { position: fixed; … }` + `.lesson-root :has(.zoom-on) { transform: none; animation: none }`; darvoza: ⛶ bosilib oyna markazi o'lchansin.
+12. **Qolip `QTushuncha` — natija yashil xulosa ichida** (F-1006-380/382): `natija` va `children` (QIzoh) hozir xulosadan tashqarida kulrang qator bo'lib osiladi; foydalanuvchi «yashil ichiga, qalin bo'lmasin». Taklif: qolipda `xulosa` = taxmin qatori + matn + izoh (12-Modulda darsda `XulosaQ` bilan qilindi).
+13. **Qolip `QTartib` bo'lagi** (F-1006-384): qolipdagi to'liq accent, mono 800, uya 58px — 159/4 (oq bo'lak, accent chegara, «⠿») ga zid; 10/11-Modul darslari ham shu ko'rinishda. Taklif: qolipni 159/4 ga keltirish (12-Modulda darsda override).
+14. **Guruh-halqa → har variant** (F-1006-370/376): 11-Modul SABOQ 32 «guruhda bitta halqa» foydalanuvchi tomonidan bekor qilindi («donavoy, general»); 11-Modulda ~10 darsda `.q-variantlar-kol` guruh outline'i qoldi (doiradan tashqari).
+15. **Pastga tortish mexanikasi** (F-1006-377): 12-Modul 2-darsida telefonning `setPointerCapture` i ichki tugma click'ini yutardi. MD ga ko'ra mexanika 11-Modul 8-dars 6-ekranidan — o'sha joy tekshirilsin (doiradan tashqari, o'zim tegmadim).
+16. **P-013 «Bugungi asosiy fikr» texnik darsda** (F-1006-388): foydalanuvchi texnik darsda olib tashlatdi (11-Modul texnik darslarida ham yo'q); konveyer kartasi P-013 ni «PM darsi uchun» deb aniqlashtirish kerak. PM darsi bo'yicha qaror — 1-dars F-1006-375 javobidan keyin.

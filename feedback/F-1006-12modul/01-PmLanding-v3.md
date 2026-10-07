@@ -16,6 +16,14 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
 `GATE_M_JAVOB.md` (Qaror-0 1, 3, 17, 18, 22) · `00-TAQIQLAR.md` · `00-NOMLAR.md` · 11-Modul tayanchi (1, 1.4 PRD matni, 2, 9.2 namuna o'yin, 9.27 ritm) · 11-Modul `05-PmPrd-v3.md` (Mentor PRD si — 2-ekran kartasi).
 ⚠️ Modul raqami o'quvchi matnida — LMS raqami: «11-Modul» (kod `9-Modull`), «9-Modul» (kod `7-Modull`: Umami, Netlify), «2-Modul» (kod `1-Modull`: CTA, Netlify akkaunti). Kod raqami faqat fayl yo'lida.
 
+
+**Pilot ko'rigi — 07.10.2026 (foydalanuvchi, F-1006-368…375; kod va shu MD birga yangilandi):**
+- 368 — 9-ekran oq ekran (bo'lak almashganda eski qiymat) — tuzatildi. 369 — sahifa ichidagi telefon ramkada kesilmaydi (`zoom: 0.72`; «maketda hech narsa kesilmaydi» — global).
+- 370/371 — variantlar va bashorat chiplari: guruh atrofida ramka yo'q, har birining o'z yengil accent chegarasi («donavoy, general»).
+- 372 — taxmin qatori qisqa: «Taxminingiz ✕ — aslida: …» / «Taxminingiz to'g'ri chiqdi ✓», yashil xulosa ichida kichik qator.
+- 373 — 9-ekran «Uch foyda» bittadan (o'z bo'limida). Yorliqlar input ichida (umumiy qoida, 2-dars F-383).
+- 374 — 11-ekran: namuna ostidagi `git status → …` qatori yo'q, «Ortda qoldingizmi» bitta qator. 375 — yakun standart: sinov chipi, «Bugungi asosiy fikr», «Sahifam» qatori yo'q.
+- Savollar: bo'sh yakun «hali yozilmagan» · «Sahifa yig'ildi» 3-qadamdan keyin · 7-ekran nomsiz qatorlar olib tashlandi. ⛶ oynasi markazda (2-dars F-386 sinfi).
 ---
 
 ## A. Darsning tayanchi — tushunchalar, atamalar, misol-ip, bitta vizual
@@ -150,7 +158,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
   2. «Nima foyda?» → PRD kartasida «jamoaga yetarli odam yig'ishda» ajraladi; sarlavha to'liq yoziladi: **Mahalla futboliga jamoani bir joyda yig'ing**; yorliq «kim uchun · nima foyda».
   3. «Qanday qilib?» → PRD kartasida Yechim qatori ajraladi; sarlavha ostiga sirg'alib yoziladi: **O'yinni e'lon qiling — kim qo'shilgani va kim aniq kelishi ko'rinib turadi.**; yorliq «sarlavha osti».
   3/3 dan so'ng brauzer maketi ostida yorliq **lending** paydo bo'ladi (atama — misoldan keyin), `QIzoh`: Mahsulotni bitta sahifada tanishtiradigan sayt — lending deyiladi. (66)
-  Natija qatori (`QTaxmin`, xulosaning birinchi qatori): «Taxminingiz: … · haqiqatda: tepada kichik bo'lib turadi» yoki «Taxminingiz to'g'ri chiqdi».
+  Natija qatori (`QTaxmin`, xulosaning birinchi qatori): «Taxminingiz ✕ — aslida: tepada kichik bo'lib turadi» yoki «Taxminingiz to'g'ri chiqdi ✓» (yashil xulosa ichida, kichik qator — F-1006-372).
 - Xulosa: Bizda sarlavha ikki savolga javob beradi: kim uchun va nima foyda. Nom esa tepada kichik turadi. (96)
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): O'ngdagi yoqilgan savolni bosing — sahifada nima o'zgarishini ko'ring.
 - Tugma (pastki): Savollarni bosing (N/3) → Davom etish · `tugadi`: savol-tugmalar yo'qoladi, PRD kartasi ixcham qatorga yig'iladi, brauzer maketi butun enga (DE-199); vizual ⛶ ichida (q17).
@@ -234,7 +242,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
      Tugma ustida yorliq **asosiy tugma** paydo bo'ladi (atama — harakatdan keyin), `QIzoh`: Sahifadagi odamni bitta harakatga chaqiradigan tugma — asosiy tugma. 2-Modulda buni CTA deb atagansiz. (102)
   2. «Web-trek» chipini bosish → sahifa tepaga qaytadi, tugma yana halqada; bosilganda manzil qatori almashadi (`….netlify.app` — mahsulot sayti, sahifa skeleti), kulrang yorliq «web-trekda tugma saytni ochadi»; «Qanday qo'shilaman» bo'limi yo'q.
      Hisoblagich bu yerda ham oshadi — ikkala trekda tugma bosilishi sanaladi.
-  Natija qatori (`QTaxmin`): «Taxminingiz: … · haqiqatda: shu sahifadagi bo'lim» yoki «Taxminingiz to'g'ri chiqdi».
+  Natija qatori (`QTaxmin`): «Taxminingiz ✕ — aslida: shu sahifadagi bo'lim» yoki «Taxminingiz to'g'ri chiqdi ✓» (yashil xulosa ichida, kichik qator — F-1006-372).
 - Xulosa: Bizda lending uch bo'lakdan iborat: sarlavha, uchta foyda va bitta asosiy tugma. U bor narsaga olib boradi. (107)
 - Natija (`tugadi`): trek chiplari yo'qoladi; sahifa to'liq, tugma ustida yorliq, hisoblagich ixcham qator.
 - Tugma (pastki): Tugmani bosing → Davom etish (ikkinchi trek ixtiyoriy) · vizual ⛶ ichida.
@@ -250,14 +258,14 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
 - Mentor — bosqich gapini aytadi, har kadrda almashadi (≤2 gap; SABOQ 8). Sahnada faqat kadr nomi va jonli maket; takror matn yo'q.
 - Sahna (`InstagramSahna`, chizilgan CSS/SVG telefon maketi; bankda yo'q narsa chizilmaydi — asoschilar, boshqa son, sabab yo'q):
   - 1/3 **Burbn** — Mentor: Burbn — Instagram asoschilarining birinchi ilovasi. Unda qayerdaligini belgilash, rejalar va rasm bor edi: funksiya ko'p, lekin uni hech kim ishlatmagan.
-    · sahna: telefon, tepada nom «Burbn» (neytral to'q rang); menyuda uch nomli qator — «Belgilash» · «Rejalar» · «Rasm» — va yana uch nomsiz kulrang qator (ko'p funksiya); ekran oldida odam silueti yo'q.
+    · sahna: telefon, tepada nom «Burbn» (neytral to'q rang); menyuda uch nomli qator — «Belgilash» · «Rejalar» · «Rasm» (nomsiz kulrang qatorlar yo'q — SABOQ 33, 07.10 tasdiq); ekran oldida odam silueti yo'q.
     · bashorat (sahna ostida, bitta qator; S-015 — ko'paytirish → o'zgarishsiz → kamaytirish): **Asoschilar funksiyalar bilan nima qilgan?** · Yana funksiya qo'shgan · Hammasini qoldirgan · ✔ Ko'pini olib tashlagan
       — tanlangach ixcham qator «Taxminingiz: …» natijagacha turadi; sahna javobni ochmaydi (P-053 `pre` kadr).
   - 2/3 **Yoqqani qoldi** — Mentor: Asoschilar odamlarga yoqqanidan boshqa hammasini olib tashlagan. Qolgani — rasm, filtr va izohlar.
-    · sahna: nomsiz qatorlar, «Belgilash» va «Rejalar» birma-bir so'nib chiqib ketadi; «Rasm» kattalashib ekranning o'rtasiga chiqadi, ostida filtr doiralari qatori va izoh qatori paydo bo'ladi.
+    · sahna: «Belgilash» va «Rejalar» birma-bir so'nib chiqib ketadi; «Rasm» kattalashib ekranning o'rtasiga chiqadi, ostida filtr doiralari qatori va izoh qatori paydo bo'ladi.
   - 3/3 **Instagram** — Mentor: Instagram shunday tug'ilgan. 2010-yil oktabr — birinchi kuni 25 000 ta ro'yxatdan o'tish.
     · sahna: nom «Burbn» → **Instagram** (o'z rangida); ostida sana yorlig'i «2010-yil oktabr» va hisoblagich sanab o'sadi «birinchi kuni: 25 000 ro'yxatdan o'tish»; ostida kulrang qator: Shu voqeaning soni — sizga maqsad emas.
-- Bashorat natijasi (`QTaxmin`): «Taxminingiz: … · haqiqatda: ko'pini olib tashlagan» yoki «Taxminingiz to'g'ri chiqdi»; bashorat kartasi tanlangan variant ✓/✕ bilan joyida qoladi.
+- Bashorat natijasi (`QTaxmin`): «Taxminingiz ✕ — aslida: ko'pini olib tashlagan» yoki «Taxminingiz to'g'ri chiqdi ✓» (yashil xulosa ichida, kichik qator — F-1006-372); bashorat kartasi tanlangan variant ✓/✕ bilan joyida qoladi.
 - **Harakat → Vizual o'zgarish:** «Voqea davomi» (pastki tugma, halqada) yoki bashorat varianti → Mentor gapi, kadr nomi va sahna almashadi (yangi element bir lahza ajralib kiradi).
 - Xulosa (3/3 dan so'ng, pastda, yashil): Bu voqeada hamma funksiya oldinga chiqarilmagan. Lendingda ham — muhim foydalar va bitta tugma. (95)
 - Tugma (pastki): Voqea davomi (N/3) → Davom etish
@@ -285,13 +293,15 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
 - Mentor: Muammo gapingiz va yechimingiz 11-Moduldan keldi — ularga qarab avval sarlavhani yozing.
   (`pm-m9d4-final` va `pm-m9d5-prd` yo'q bo'lsa — Mentor: Avval muammo gapingiz va yechimingizni bir qatordan yozing, keyin sarlavhaga o'ting.)
 - **Tepada — ixcham qator «11-Moduldan · PRD»** (bosilsa ochiladi, toggle — U-013): Muammo (`pm-m9d4-final.muammoGapi`) · Kim uchun (`pm-m9d5-prd.kim`) · Yechim (`pm-m9d5-prd.yechim`) · Uchta asosiy funksiya (`pm-m9d5-prd.funksiyalar`).
-  Kalit yo'q bo'lsa — ikki erkin qator shu qatorda: «Muammo gapi» (placeholder «Kim nimadan qiynaladi?») · «Yechim» («Mahsulot nima qiladi?») — faqat shu darsda ishlatiladi, 11-Modul kalitlariga yozilmaydi.
+  Kalit yo'q bo'lsa — ikki erkin qator shu qatorda: «Muammo gapi — kim nimadan qiynaladi?» · «Yechim — mahsulot nima qiladi?» (yorliq input ichida — 07.10, umumiy qoida) — faqat shu darsda ishlatiladi, 11-Modul kalitlariga yozilmaydi.
 - **Chapda — brauzer maketi:** o'quvchining sahifasi, jonli to'lib boradi; tepada kichik nom — `pm-m9d4-final.goya` dan; yo'q bo'lsa — birinchi karta «Mahsulot nomi» maydoni (nom `pm-m10d1-lending.nom` ga yoziladi — 01-FILTR 3); hisoblagich «Sahifam · n / 4».
 - **O'ngda — bitta katta karta (joriy),** to'rt bo'lak ketma-ket (placeholder qisqa, tayyor javobsiz — §32; belgilar hisoblagichi — maket qo'riqchisi, xato matni yo'q):
   1. **Sarlavha** — savol: Kim uchun va nima foyda? · placeholder «Bir qator, odamga qaratib» · ≤ 60 belgi
   2. **Sarlavha osti** — savol: Bu qanday bo'ladi? · placeholder «Bir gap» · ≤ 110
-  3. **Uch foyda** — uch juft maydon (Mentor sahifasidagi shakl: foyda va ostida funksiya qatori): **Foyda** — placeholder «Odam nima oladi?» · ≤ 50 · **Funksiya qatori** — placeholder «Qaysi funksiya buni beradi?» · ≤ 70;
-     funksiya qatori ustida kulrang eslatma — PRD dagi funksiya nomi (`funksiyalar[i]`, bo'lsa; tahrirlanmaydi) · karta ostida kulrang qator: Faqat hozir ishlaydigan funksiyaning foydasi.
+  3. **Uch foyda** — **bir vaqtda bitta juft** (F-1006-373, 07.10 tasdiq; 9-Modul SABOQ 9/13): «Foyda N / 3» kartasi — ikki maydon, yorliq input ichida: «Foyda — odam nima oladi?» · ≤ 50 · «Funksiya qatori — qaysi funksiya beradi?» · ≤ 70;
+     ostida kulrang eslatma — PRD dagi funksiya nomi («PRD: …», `funksiyalar[N]`, bo'lsa) · karta ostida: Faqat hozir ishlaydigan funksiyaning foydasi.
+     «Saqlash» → juft sahifa maketiga uchib tushadi, keyingi juft karta bo'lib kiradi (animatsiya); saqlanganlar tepada ixcham ✓ qator (foyda · funksiya) — bosilsa qayta ochiladi.
+     Tekshiruv juftga: bo'sh/shaxsiy — bloklaydi; «hali yo'q», umumiy so'z, funksiya nomi, takror — yumshoq (ikkinchi «Saqlash» bilan o'tadi).
   4. **Asosiy tugma** — savol: Odam nima qiladi? · placeholder «Bir-uch so'z» · ≤ 24
   «Saqlash» o'ngda (187).
 - Tekshiruv (`QXato`, ≤60; javob maydon ostida; yumshoq — ikkinchi «Saqlash» bilan o'tadi, «bo'sh» va «shaxsiy ma'lumot»dan tashqari):
@@ -311,7 +321,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
 - Xulosa: Sahifangiz matni tayyor: sarlavha, uch foyda va bitta asosiy tugma. (67)
 - Tugma (pastki): Yana N ta bo'lak yozing → Davom etish (jonli darsda mentor o'tkazishi mumkin — `optionalLive`).
 - Keyingi bosiladigan joy: joriy maydon (accent, to'lqin) → «Saqlash» (maydon yozilgach halqada).
-- Artefakt-strip (U-042): shu ekrandan — «Sahifam · n/4» (ixcham); 10, 11, 15-ekranlarda ko'rinadi; test, arena, podiumda yo'q.
+- Artefakt-strip (U-042): shu ekrandan — «Sahifam · n/4» (ixcham); 11-ekranda ko'rinadi (yakunda yo'q — F-1006-375); test, arena, podiumda yo'q.
 - Saqlash: `pm-m10d1-lending = { sarlavha, osti, foydalar: [3], funksiyaQatori: [3], tugma, manzil: null, sinov: null }` (tayanch 8; `funksiyaQatori` — TAYANCHGA SAVOL 13; `manzil` — 11-ekranda, `sinov` — 10-ekranda yoziladi).
 - Nishon: Page Writer! (4/4).
 - Mentor rejimi: forma o'rniga Mentor lendingi to'liq (6-ekran holati). Mentor statistikasi: «Matnni to'liq yozganlar» · «Sarlavhasi birinchi urinishda o'tganlar».
@@ -381,10 +391,9 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
      Mos kelmagan qatorni agentga yozing. Oxirida havolani shu yerga yozing: maydon **Sahifa manzili** (`https://….netlify.app`) → «Bajardim».
      Tugma bosilishini sanash (Umami) — uyga vazifa ②: sahifa manzili endi ma'lum, Umami'da saytni shu manzil bilan qo'shasiz.
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (brauzer maketi `maydon-jamoa-….netlify.app`, to'liq lending; bir marta o'zi yuradi: «Qo'shilmoqchiman» bosiladi → sahifa «Qanday qo'shilaman» bo'limiga suriladi);
-  ostida bitta qator (kichik, mono): `git status` → `lending/index.html` `lending/style.css`
 - Hammasi bajarilgach (yashil): Sahifangiz internetda: matnini va tugmasini telefonda o'zingiz tekshirdingiz. (77)
 - Saqlanadi: `pm-m10d1-lending.manzil` — 4-qadamdagi maydon (bo'lmasa `null`). Blok holati (qaysi qadam «Bajardim») — skelet `ScreenBlok` da (dars `ccProgress`); 15-ekran sarlavhasi shundan.
-- Pastki qator (kichik): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m12-dars-01-done` — oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi (01-FILTR 17). `lending/` papkasi namuna; o'z repo'ngizdagi qadamni shunga qarab qaytarasiz.
+- Pastki qator (kichik): Ortda qoldingizmi — Mentor misolini yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m12-dars-01-done` (F-1006-374: 11-Modul naqshidagi bitta qator).
 - Nishon: Page Online! (4-qadam «Bajardim» — havola yozilganda).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish (`optionalLive` — Netlify qolgan o'quvchi ham davom etadi; yakun holati «yig'ildi, internetga chiqmadi»).
 - O'qituvchi eslatmasi: 30 daqiqa — 15 daqiqadan so'ng hali «Prompt»da bo'lgan o'quvchiga Mentor talabini (Yordam) ko'rsating. Netlify'da bepul navbat bo'lishi mumkin — kutish paytida 4-qadamni o'qishsin.
@@ -439,12 +448,13 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi, muammo va yechim gapi 
 - Yorliqlar (tepada): Dars tugadi · N/4 to'g'ri
 - Sarlavha (holatga qarab — sinf 1; belgi ✓ va nishon faqat birinchisida):
   - `manzil` bor (blok 4/4): **Sahifangizni yozdingiz va internetga chiqardingiz.** (50)
-  - blok 2- yoki 3-qadamda, `manzil` yo'q: **Sahifa yig'ildi — internetga chiqarish qoldi.** (45)
+  - blok 3-qadam «Ishga tushirish»dan keyin, `manzil` yo'q: **Sahifa yig'ildi — internetga chiqarish qoldi.** (45) (07.10 tasdiq: avval 1-qadamdan keyin chiqardi)
   - matn 4/4, blok boshlanmagan: **Sahifa matni tayyor — yig'ish qoldi.** (36)
-  - matn 4/4 dan kam: **Sahifa matni boshlandi — qolganini yozing.** (42)
-  Sarlavha ostida bitta chip (sinov holati): «Besh soniyalik sinov: sherik bilan» · «Besh soniyalik ko'rish: mashq — sinov uyda» · «Besh soniyalik sinov: qoldi».
+  - matn 1–3 bo'lak: **Sahifa matni boshlandi — qolganini yozing.** (42)
+  - hech narsa yozilmagan: **Sahifa matni hali yozilmagan — uyda yozib chiqing.** (50) (07.10: «boshlandi» rost emas edi)
+  ~~Sinov chipi~~ — olib tashlandi (F-1006-375: yakun standart).
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Lending funksiyani sanamaydi: kim uchun va nima foyda ekanini aytib, bitta harakatga chaqiradi.
+- ~~Bugungi asosiy fikr~~ — yakunda yo'q (F-1006-375, 07.10 tasdiq: «oldingi modullardagi standart»). Fikr darsning ichki o'qi bo'lib qoladi (A-bo'lim 2), ekranda ko'rsatilmaydi.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Lending — mahsulotni bitta sahifada tanishtiradigan sayt.
   - Bizda sarlavha ikki savolga javob beradi: kim uchun va nima foyda.
@@ -564,7 +574,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 5. s2: `QBashorat` (nom kattaligi) → savol-tugmalar; `S2_SAVOLLAR` 3 × `{ savol, prdQator, ajraladi, boLak, matn }`; nom tepa-chapga ko'chadi (bitta `transform`); yorliq «lending» + `QIzoh` + `QTaxmin` + xulosa bitta natija blokida (SABOQ 25); 40 s ipucha.
 6. s4: `JamoaTelefon` kattalashgan (`oyin` ekrani; 3-kartada `oyinKuni: true`); tanlov kartasi; juftliklar ro'yxati (ingichka chiziq, strelka emas); 4-karta ikki tugma; `tugadi` da telefon kichrayib `LendingSahifa` ga qaytadi, `foydalar` navbat bilan yoziladi; nishon `benefitFinder` (birinchi urinish ×4).
 7. s6: `LendingSahifa` to'liq + «Qanday qo'shilaman» bo'limi (sahifa ichida scroll-animatsiya — `scrollIntoView` emas, ichki `translateY`); `UmamiSanoq` hisoblagich (0 → 1, mono `qoshilmoqchiman`); trek chipi `Web-trek` — manzil almashadi, bo'lim yo'q; yorliq «asosiy tugma» + `QIzoh` (CTA ko'prigi bir marta).
-8. s7: `INSTAGRAM_KADR` 3 × `{ h — kadr nomi, m — Mentor gapi }` (SABOQ 8); `InstagramSahna` — telefon maketi: menyu qatorlari (3 nomli + 3 nomsiz) → so'nish → «Rasm» kartasi + filtr doiralari + izoh qatori → nom «Instagram» (brend rangi, `Brend` komponenti), sana yorlig'i, hisoblagich 25 000, kulrang qator;
+8. s7: `INSTAGRAM_KADR` 3 × `{ h — kadr nomi, m — Mentor gapi }` (SABOQ 8); `InstagramSahna` — telefon maketi: menyu qatorlari (3 nomli; nomsiz yo'q — 07.10) → so'nish → «Rasm» kartasi + filtr doiralari + izoh qatori → nom «Instagram» (brend rangi, `Brend` komponenti), sana yorlig'i, hisoblagich 25 000, kulrang qator;
    bashorat 1/3 da (ballsiz, ixcham qator, `QTaxmin`); tugma «Voqea davomi (N/3)»; manba izohi faylda. «Burbn» — neytral to'q rang.
 9. s9 artefakt: `localStorage` `pm-m10d1-lending` = `{ nom, sarlavha, osti, foydalar: [3], funksiyaQatori: [3], tugma, hodisa, manzil: null, sinov: null, savedAt }` (tayanch 8; `nom` — `goya` dan yoki maydondan, `hodisa` — `tugma` dan `slug`: kichik lotin, apostrofsiz, chiziqcha, ≤50, tahrirlanmaydi — 01-FILTR 3, 4); o'qiydi `pm-m9d4-final` (`muammoGapi`, `goya`), `pm-m9d5-prd` (`kim`, `yechim`, `funksiyalar`); kalit yo'q — ikki erkin qator (saqlanmaydi);
    tekshiruvlar — bo'sh (blok), nom-o'xshash (≤2 so'z yoki `goya` bilan bir xil), bo'sh sifat ro'yxati, kelajak so'zlari, funksiya nomi bilan bir xil, takror foyda, tugma >3 so'z, telefon/«@» (blok; PM-032 — regex zamonni adashtirmaydi, ≥8 namuna sinovi);
@@ -628,7 +638,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 - **Mentor repo'si `maydon-jamoa` da 11-Modul «qur» bosqichi hali bo'lmagan bo'lishi mumkin** — `m12-dars-01-done` tegi «Ortda qoldingizmi» qatorida; teg hozir yo'q (tayanch 3: «qur» da yoziladi).
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7, 14 band)
-1. [x] **Yakun holatga qarab** — 15-ekran: to'rt sarlavha (internetda · yig'ildi · matn tayyor · matn boshlandi) + sinov chipi; ✓ va nishon faqat `manzil` bor holatda; sarlavha o'quvchi ishini aytadi, Mentor natijasini emas.
+1. [x] **Yakun holatga qarab** — 15-ekran: besh sarlavha (internetda · yig'ildi · matn tayyor · matn boshlandi · hali yozilmagan; 07.10) — sinov chipi yo'q (F-1006-375); ✓ va nishon faqat `manzil` bor holatda; sarlavha o'quvchi ishini aytadi, Mentor natijasini emas.
 2. [x] **Da'vo isbot emas** — (a) «Bizda lending uch bo'lakdan…», «Bizda sarlavha ikki savolga…» (2, 6, 14, 15-ekranlar); (b) «Mentor misolida», «Mentor lendingida» (2, 4, 6, 9 Yordam, arena 2, 4, 5); (c) «odatda o'zi yangilanadi» (15 ③), «bo'lishi kerak — tekshiring», «yozmasligi mumkin» (11-ekran 4-qadam), agent hisobotiga emas sahifaga qarash (11-ekran 3-qadam);
    (d) «Bitta sinov — kuzatuv, isbot emas» (10-ekran xulosalari), «Ikki kishi — kuzatuv, isbot emas» (15 ③).
 3. [x] **Maxfiy qiymat chiqmaydi** — 11-ekran 1-qadam `git status` da `.env` ko'rinmasin; 3-qadam xato yo'li «`.env` qiymatlarini emas»; Umami skripti maxfiy emasligi aytilgan; lendingda shaxsiy ma'lumot yo'q (9-ekran tekshiruvi, 11-ekran «Nima buzilmasin»).

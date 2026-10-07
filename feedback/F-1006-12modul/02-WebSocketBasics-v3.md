@@ -11,6 +11,13 @@ Fidbek: qator yoniga `>> …` yozing. Tasdiqlangach (GATE M) dars shu holatda qu
 Testlar: 3-ekran **B** · 6-ekran **D** · 8-ekran **A** · 11-ekran **C** · 14-ekran (final tartib, sentinel `0`) · arena A·B·C·D ×3.
 Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 10–14 ≈ 18 · A1 ≈ 30 · podium, kartochkalar, yakun ≈ 6 — jami ≈ 86 · A2 ≈ 6 faqat vaqt qolsa, qolmasa — uyga vazifa ① (02-FILTR 11: A1 22 → 30 edi; 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi, o'lchanmaguncha da'vo emas). Ulgurmagan o'quvchi yo'li — A-bo'lim 10-band.
 
+
+**Pilot ko'rigi — 07.10.2026 (foydalanuvchi, F-1006-376…388; kod va shu MD birga yangilandi):**
+- Variantlar, bashorat chiplari, sabab chiplari, trek tugmalari — **guruh atrofida ramka yo'q, har birining o'z yengil accent chegarasi**, puls navbatma-navbat 2 marta, kattalashishsiz (376/381/385; 11-Modul SABOQ 32 «guruhda bitta halqa» 12-Modulda bekor).
+- 2-ekran (377), 7-ekran (379) — o'z bo'limlarida. Taxmin qatori va QIzoh — yashil xulosa qutisi ichida (380/382).
+- 12-ekran jadvali «ma'lumot» ko'rinishida: to'q sarlavha qatori «Mentor sxemasi · n / 5» (eski «Qatorlar: n / 5» o'rnida), katak chiziqlari, kulrang fon, soyasiz; tanlov kartasi oq, accent chegarali (381).
+- 13-ekran — o'z bo'limida (383). 14-ekran bo'laklari: oq fon, accent chegara, «⠿» tutqich, uyalar past (384; 159/4, 4a-Modul naqshi).
+- ⛶ oynasi ekran markazida (386: ikki klassli selektor). Kartochka halqasi yengil (387). Yakunda «Bugungi asosiy fikr» yo'q (388). A1 3-qadamida real prompt (378).
 ---
 
 ## A. Darsning tayanchi — tushunchalar, atamalar, misol-ip, bitta vizual (163/180)
@@ -137,7 +144,9 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - **Harakat → Vizual o'zgarish:**
   1. «1-telefonga yuborish» → konvert Backend'dan chiqadi, lekin 1-telefonga yo'l yo'q: uzuq chiziq boshida to'xtab, silkinib orqaga qaytadi; Backend ichida bir qator «so'rov yo'q — yo'l yopiq». 1-telefon tepasida «↓ Pastga torting» halqaga o'tadi.
   2. 1-telefonni pastga tortish (sudrash; klaviaturada — «Yangilash» tugmasi) → konvert «so'rov» 1-telefondan Backend'ga, chiziq so'rov davomida yonadi → konvert «javob» qaytadi → «8» → «9» (kattalashib qaytadi), «eski» yorlig'i yo'qoladi → chiziq yana so'nadi.
-- Natija qatori (`QTaxmin`): «Taxminingiz: … · haqiqatda: yo'q, faqat so'rovga javoban» (yoki «Taxminingiz to'g'ri chiqdi»).
+- **Pilot ko'rigidan (F-1006-377):** Mentor qadamga qarab: taxmin tanlangach — «Backend tugunidagi «1-telefonga yuborish» ni bosing.» · 1-qadamdan keyin — «Yetib bormadi: 1-telefon so'ramagan. Endi 1-telefonni pastga torting yoki undagi «↓ Pastga torting» ni bosing.» · tugagach — «Son faqat ilova so'raganda yangilandi — «Davom etish» ni bosing.»
+  1-qadamdan keyin «1-telefonga yuborish» tugmasi yo'qoladi, konvert to'xtagan joyda chiziqda qizil ✕. «↓ Pastga torting» bosilganda ham ishlaydi (avval telefon pointer capture qilib bosishni yutardi — o'quvchi shu ekranda to'xtab qolgan).
+- Natija qatori — yashil xulosaning birinchi kichik qatori (F-1006-380): «Taxminingiz ✕ — aslida: yo'q, faqat so'rovga javoban» (yoki «Taxminingiz to'g'ri chiqdi ✓»). Hamma tushuncha-ekranda shunday; QIzoh ham shu qutining oxirgi kichik qatori (F-1006-382).
 - Xulosa: 11-Modulda yo'l faqat so'rov paytida ochiladi: ilova so'ramasa, Backend unga hech narsa yubora olmaydi. (103)
 - Tugadi (199): qadam belgilari yopiladi, sahna butun enga; vizual ⛶ ichida (q17). Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
 ✎ «1-telefonga yuborish» — sahna tugmasi (haqiqiy Backend'da bunday tugma yo'q): o'quvchi Backend'ning qo'lidan nima kelmasligini o'zi ko'radi. Pastga tortish — 11-Modul 8-dars 6-ekranidagi mexanika (sudrash + klaviatura zaxirasi).
@@ -232,6 +241,8 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - **Harakat → Vizual o'zgarish:**
   1. «Tokensiz ulanish» → ilova kartasida `auth` qatori bo'sh ko'rinadi (`auth: {}`), telefondan Backend'ga chiziq chizila boshlaydi → gateway kartasida `if (!tokenYaroqli(token)) ulanish.disconnect();` qatori qizil yonadi → chiziq uziladi va yo'qoladi; telefon tepasida belgi «Ulanmagan» (kulrang).
   2. «Token bilan ulanish» → `auth: { token }` qatori yonadi → chiziq chiziladi → gateway kartasida tekshiruv qatori yashil ✓ → chiziq ochiq qoladi (sekin yonadi); belgi «Ulangan» (yashil nuqta).
+  **Pilot ko'rigidan (F-1006-379):** sahna ixcham — telefon · chiziq · Backend bir-biriga tegib turadi; tugmalar va ikki kod kartasi sahna OSTIDA ikki ustunda (chapda ilova, o'ngda gateway).
+  Ulanishda konvert telefondan Backend'ga uchadi (yorlig'i «tokensiz» / «token»); Backend ichida bir qator: «token yo'q — yopdi» (qizil halqa, silkinadi) · «token yaroqli ✓» (yashil halqa). `auth` qatori sariq ajratiladi (qizil fon xato qatordek o'qilardi).
 - Nom qatori (2/2 dan keyin, bitta): socket.io — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona; u imkon bo'lsa WebSocket orqali ulanadi. Ilovada `socket.io-client`, Backend'da NestJS gateway. (02-FILTR 1: WebSocket — texnologiya, socket.io — bu loyihadagi kutubxona)
 - Natija qatori: «Taxminingiz: … · haqiqatda: tokenni» (yoki «Taxminingiz to'g'ri chiqdi»).
 - Xulosa: Bu misolda ilova ulanayotganda tokenni yuboradi; Backend shu paytda tekshiradi va yaroqsiz bo'lsa yopadi. (105)
@@ -333,7 +344,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - Sarlavha: **Ulanish uzilsa, o'yinchi buni qayerdan biladi?** (46)
 - Mentor: Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Uchish rejimida belgi nimani ko'rsatadi?** · «Ulangan» · «Ulanmoqda…» · «Ulanmagan»
-- Sahna: 1-telefon — «O'yinlar» ekrani, tepasida belgi «Ulangan» (yashil nuqta); kartalar: Shanba, 18:00 · Mahalla maydoni · 8 / 10 (va boshqa namuna kartalar xira); holat qatorida samolyot belgisi (halqada) · Backend («Database: 8»; ostida kalit «Token: yaroqli») · 2-telefon — O'yin, «Qo'shilaman».
+- Sahna: 1-telefon — «O'yinlar» ekrani, tepasida belgi «Ulangan» (yashil nuqta); kartalar: Shanba, 18:00 · Mahalla maydoni · 8 / 10 (boshqa namuna kartalar yo'q — matnsiz xira karta bo'lmaydi, SABOQ 33; agent taklifi 4, 07.10); holat qatorida samolyot belgisi (halqada) · Backend («Database: 8»; ostida kalit «Token: yaroqli») · 2-telefon — O'yin, «Qo'shilaman».
   Qadam belgilari (tugma yonida): 1 Uchish rejimini yoqing · 2 Ikkinchi telefonda qo'shiling · 3 Uchish rejimini o'chiring · 4 Tokenni yaroqsiz qiling.
 - **Harakat → Vizual o'zgarish:**
   1. Samolyot → chiziq uziladi (uzuq, kulrang), belgi «Ulanmoqda…» (accent nuqta, yengil pulsatsiya); uzilgan chiziq boshida kichik ↻ — ilova o'zi urinmoqda. 2-telefondagi «Qo'shilaman» halqaga o'tadi.
@@ -391,17 +402,14 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - Eyebrow: Mustaqil ish · sxema
 - Sarlavha: **Mahsulotingiz uchun real vaqt oqimi sxemasini yozing.** (53)
 - Mentor: 11-Modulda README'ga yozgan real vaqt nuqtalaringizdan boshlang: har nuqtaga bitta qator.
-- Tepada ixcham chiziq: 1 · 2 · 3 … (joriy qator accent, tayyori ✓). Bir vaqtda bitta katta karta — besh maydon:
-  1. Real vaqt nuqtasi — «Ekraningizdagi qaysi joy boshqa odam tufayli o'zgaradi?» (ipucha: masalan: «8 / 10» va qo'shilganlar ro'yxati)
-  2. Kim nima qiladi (ipucha: masalan: o'yinchi «Qo'shilaman» ni bosadi)
-  3. Hodisa — nomi va, kerak bo'lsa, sababi (ipucha: masalan: oyin-ozgardi · sabab qoshildi)
-  4. Kim oladi (ipucha: masalan: hamma ulangan ilova)
-  5. Ekranda nima o'zgaradi (ipucha: masalan: «8 / 10» o'rniga «9 / 10»)
-  Karta ostida ikki tugma: «Qator tayyor» (asosiy) · «Yana qator» (ikkinchi darajali; ko'pi bilan 5 qator; kamida 1 — 02-FILTR 19).
-- Yordam (ochiladigan): Bu kursda hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish ma'nosida yoziladi: `oyin-ozgardi`. Bitta nom va bir necha sabab ham, har o'zgarishga alohida nom ham bo'ladi — qaror sizniki.
+- Tepada ixcham chiziq (birinchi qator tayyor bo'lgach): ✓ qatorlar, joriysi accent. Bir vaqtda bitta katta karta — besh maydon, **yorliq input ichida**: doimiy raqam + qisqa savol (159/2, 8-Modul «bitta varaq» naqshi — F-1006-383):
+  1 · Qaysi joy boshqa odam tufayli o'zgaradi? · 2 · Kim nima qiladi? · 3 · Qaysi hodisa? Nomi · sababi · 4 · Hodisani kim oladi? · 5 · Ekranda nima o'zgaradi?
+  Karta ostida bir qatorda: «Qator tayyor» (asosiy — qatorni yopadi) · «Bekor qilish» (ikkinchi; faqat qator bor bo'lsa) · o'ngda «Yordam». Karta yopilgach: «Saqlash» (asosiy) · «+ Yana qator» (ikkinchi; ko'pi bilan 5) · o'ngda «Yordam». Kamida 1 qator (02-FILTR 19).
+- Yordam (ochiladigan): **Mentor misoli** — 1 · «8 / 10» va qo'shilganlar ro'yxati · 2 · o'yinchi «Qo'shilaman» ni bosadi · 3 · oyin-ozgardi · sabab qoshildi · 4 · hamma ulangan ilova · 5 · «8 / 10» o'rniga «9 / 10» (oldingi «masalan» ipuchalari shu yerga ko'chdi);
+  Bu kursda hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish ma'nosida yoziladi: `oyin-ozgardi`. Bitta nom va bir necha sabab ham, har o'zgarishga alohida nom ham bo'ladi — qaror sizniki.
   Mahsulotingizda boshqa odam o'zgartiradigan joy bo'lmasa — o'zingiz ikkinchi qurilmada o'zgartiradigan ma'lumotni oling: telefonda qo'shdingiz, kompyuterda ko'rinsin.
-- Shart xabari («Saqlash» bosilganda, ≤60): Kamida ikki qator kerak; har qatorda beshta katak to'lsin. (58)
-- Tugma (o'ngda): Saqlash → `pm-m10d2-sxema` = `{ qatorlar: [{ id, nuqta, kimNima, hodisa, kimOladi, ekranda }] }` (`id` — `q1`, `q2`… yaratilganda beriladi, qayta ishlatilmaydi; tartib o'zgarmaydi).
+- Shart xabari («Saqlash» bosilganda, ≤60): Kamida bitta qator kerak; har qatorda beshta katak to'lsin. (59) — kod bilan bir (avval «ikki» deyilardi, kod 1 qatorni qabul qilardi — agent taklifi 1)
+- «Saqlash» → `pm-m10d2-sxema` = `{ qatorlar: [{ id, nuqta, kimNima, hodisa, kimOladi, ekranda }] }` (`id` — `q1`, `q2`… yaratilganda beriladi, qayta ishlatilmaydi; tartib o'zgarmaydi).
 - **Harakat → Vizual o'zgarish:** «Qator tayyor» → karta ixcham qatorga yig'ilib tepadagi ro'yxatga tushadi (nuqta · hodisa · ekranda — uzun matn qisqartiriladi, SABOQ 29); keyingi karta bo'sh ochiladi;
   «Saqlash» → hammasi bitta ixcham qator: «Sxema · N qator ✓» (SABOQ 17).
 - Xulosa (saqlagach): Sxemangiz saqlandi — amaliyotda u README'ga ko'chiriladi. (57)
@@ -450,11 +458,19 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
      > «O'yinlar» ekrani tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va ilova o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Ekran qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.
      > Hozircha hech qanday hodisa yuborilmasin va tinglanmasin — faqat ulanish va belgi.
      > Nima buzilmasin: kirish, e'lon berish, qo'shilish, tasdiq, chiqish va navbat avvalgidek ishlasin; pastga tortib yangilash qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `mobil/` da faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.
-     Web-trekda (Yordam ostida; trek kalitidan o'zi almashadi — qavslar o'sha ikkitasi): «Qayerda» — `prototip/` — yangi fayl `src/ulanish.js` (`socket.io-client`) va {belgi turadigan sahifa}; gateway'da brauzer uchun CORS: faqat `WEB_ORIGIN` dagi manzilga ruxsat ·
-     «Nima qilsin» — sayt kirgandan keyin … manzil — `VITE_API_URL`; token `localStorage` dan · «Nima buzilmasin» — … «Yangilash» tugmasi qolsin … Paket kerak bo'lsa — `npm install` bilan.
+     Web-trekda (trek kalitidan o'zi almashadi; to'liq matn — agent taklifi 3, 07.10 tasdiq):
+     > Qayerda: `backend/` — yangi gateway (NestJS, socket.io: `@nestjs/websockets` va `@nestjs/platform-socket.io`); gateway'da brauzer uchun CORS: faqat `WEB_ORIGIN` dagi manzilga ruxsat; `prototip/` — yangi fayl `src/ulanish.js` (`socket.io-client`) va {belgi turadigan sahifa}.
+     > Nima qilsin: sayt kirgandan keyin Backend'ga bir marta ulansin va ulanayotganda tokenni yuborsin (`auth`); manzil — `VITE_API_URL`; token `localStorage` dan. Backend tokenni ulanish ochilayotganda tekshirsin: token yo'q yoki yaroqsiz bo'lsa — ulanishni yopsin. Sayt tokenni o'qib bo'lgandan keyingina ulansin. `README.md` «Stek» qatoriga socket.io ni qo'sh.
+     > {belgi turadigan sahifa} tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va sayt o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Sahifa qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.
+     > Hozircha hech qanday hodisa yuborilmasin va tinglanmasin — faqat ulanish va belgi.
+     > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; «Yangilash» tugmasi qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `npm install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     Qavs yonida kulrang namuna: {belgi turadigan sahifa} — «masalan: «O'yinlar»».
   3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m "ulanish"`, `git push`.
-     Render Backend'ning yangi versiyasini chiqaradi — Render sahifasida tugashini kuting (bir necha daqiqa cho'zilishi mumkin). Kutayotganda agent yozgan fayllardan ikki joyni toping: ilovada `auth` qatori, Backend'da tokenni tekshiradigan qator.
+     Render Backend'ning yangi versiyasini chiqaradi — Render sahifasida tugashini kuting (bir necha daqiqa cho'zilishi mumkin).
      Mobil trekda `npx expo start` ishlab tursin: Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.
+     Kutayotganda agentdan yozgan kodidagi ikki joyni ko'rsatishni so'rang — darsda ko'rgan `auth` va tokenni tekshiradigan qatorni o'z loyihangizda topasiz: (F-1006-378 — WebSocket o'z NestJS loyihasida, real prompt; «Nusxalash» bilan)
+     > Yozgan fayllaringda ikki joyni fayl nomi va qator raqami bilan ko'rsat: ilovada tokenni yuboradigan `auth` qatori va Backend gateway'ida tokenni tekshiradigan qator.
+     > Har biri nima qilishini bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Telefonda tekshirish** — talabingizning har gapini bajarib ko'ring. Mentor misolida:
      (1) Ilovani oching (kirgan holda): «O'yinlar» tepasida belgi «Ulangan» bo'lishi kerak. Bo'lmasa — bir daqiqagacha kuting: Render'ning bepul xizmati uxlab qolgan bo'lsa, birinchi ulanish cho'ziladi.
@@ -469,8 +485,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
   - web-trekda: brauzer oynasi `….netlify.app`, sahifa tepasida o'sha belgi; fayl kartasida `prototip/src/ulanish.js`.
 - Hammasi bajarilgach (yashil): Mahsulotingiz Backend'ga ulangan: belgi ulanish holatini ko'rsatadi. (67)
 - Qator (`QIzoh`, natija ostida, bitta): Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir lahza «Ulanmoqda…» bo'ladi. (89)
-- Pastki qator (kichik): Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko'ring: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m12-dars-02-done` (faqat shu yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi) —
-  qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).
+- Pastki qator (kichik): Ortda qoldingizmi — Mentor misolini yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m12-dars-02-done` — `backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozing. (07.10: 11-Modul naqshidagi bitta qator — F-1006-374 sinfi)
 - Ulgurmasangiz: Render kutishi cho'zilsa — 4-qadam uyga vazifaning 1-bandi; 3-qadamdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi (04-FILTR 38).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: `{belgi turadigan ekran}` — oldindan bo'sh, kulrang «masalan»; `{avvalgidek ishlashi kerak bo'lgan ishlar}` — `pm-m9d5-prd.funksiyalar` bo'lsa, undan to'ldiriladi (tahrirlanadi), bo'lmasa bo'sh. Trek qatorlari (papka, fayl, manzil, qo'lda yangilash, paket) — `trek` dan o'zi yoziladi, joy emas (08 MD naqshi).
@@ -514,8 +529,8 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
   - ostida: `oyin-ozgardi` — `{ oyinId, sabab }`. Hodisa o'zgarish bo'lganini aytadi; yangi holatni ilova Backend'dan qayta so'raydi. Hozircha faqat ulanish va belgi bor — hodisalar hali yuborilmaydi.
   - pastda GitHub sahifasining kichik ko'rinishi: `maydon-jamoa` · `README.md` — «Real vaqt».
 - Hammasi bajarilgach (yashil): Sxemangiz README'da: har qatorini o'zingiz tekshirdingiz. (56)
-- Pastki qator (kichik): Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko'ring: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m12-dars-02-done` (faqat shu yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi) — `README.md` dagi «Real vaqt» bo'limi.
-- Ulgurmasangiz: bu blok uyga vazifaning 1-bandi — sxema darsda saqlangan.
+- ~~Pastki qator «Ortda qoldingizmi»~~ — A2 da yo'q: darsda bir marta, birinchi blokda (11-Modul SABOQ 39; kod shunday qurilgan — 07.10 MD kod bilan tenglashtirildi).
+- Ulgurmasangiz: bu blok uyga vazifaning 1-bandi — sxema darsda saqlangan. «Davom etish» 1-qadamdan keyin ochiladi — A2 «vaqt qolsa» bloki: 3-qadamga o'tkazilsa, vaqti tugagan o'quvchi darsdan o'tolmaydi (agent taklifi 5 — 07.10 qayta ko'rib, RAD; A1 da 3-qadam).
 - Nishon (bonus): Stay Connected — oxirgi «Bajardim»da.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: 3-qadam «Ko'rish» — README ishga tushiriladigan kod emas (11-Modul 08 MD naqshi). «Hozirgi holat» qatori — README'da faqat hozir bor narsa yoziladi (TAQIQLAR 1: lending va postdagi halollik qoidasi README'ga ham) — TAYANCHGA SAVOL 11.
@@ -528,7 +543,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 ## 18 · Takrorlash  ← QKartochka (12 karta, alohida ekran — SABOQ 12, 16)
 - Eyebrow: Takrorlash
 - Sarlavha: **O'zingizni sinab ko'ring.** (25)
-- Mentor yo'q (SABOQ 16). Karta ostida, birinchi bosishgacha: «Kartani bosing — javob ochiladi»; karta yuzi halqada.
+- Mentor yo'q (SABOQ 16). Karta ostida, birinchi bosishgacha: «Kartani bosing — javob ochiladi»; karta yuzi ingichka accent chegarada, puls 3 marta, kattalashishsiz (10-Modul naqshi — F-1006-387; avval ikki qavat halqa to'xtovsiz tebranardi).
 - Kartochkalar — pastdagi «Kartochkalar (12)» jadvali · hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N
 - Tugmalar (karta ochilgach): ✗ Takrorlash · ✓ Bildim · hammasi bilinganda: Hammasini bilasiz! · 12/12 atama yodlandi · ↻ Qaytadan takrorlash
 - Tugmalar: Orqaga · Yakunlash →
@@ -536,9 +551,9 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 ## 19 · Yakun  ← QYakun (texnik darslar standarti, 192/204)
 - Yuqori yorliqlar: ✓ Ulanish va sxema tayyor (faqat A1 va A2 bajarilganda; aks holda yorliq yo'q) · {N}/5 to'g'ri
 - Sarlavha (holatga qarab, P-046; sinf 1): A1 va A2 bajarilgan — **Mahsulotingiz Backend'ga ulangan, sxema README'da.** (50) · A1 bajarilgan, A2 yo'q — **Mahsulotingiz ulangan — sxemani README'ga yozish qoldi.** (55) ·
-  A1 bajarilmagan, sxema saqlangan — **Sxemangiz tayyor — ulanishni tugatish qoldi.** (44) · hech biri — **Ulanish boshlandi — qolgan qadamni uyda tugating.** (49)
+  A1 bajarilmagan, sxema saqlangan — **Sxemangiz tayyor — ulanishni tugatish qoldi.** (44) · hech biri — **Ulanish hali tugamagan — qadamlarni uyda tugating.** (50) (07.10: «boshlandi» rost emas edi — A1 umuman boshlanmagan bo'lishi ham mumkin)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
-- Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Doimiy ulanish ochiq tursa, Backend ilova so'rashini kutmaydi — hodisa yuboradi; bu misolda hodisa o'zgarish bo'lganini aytadi, yangi holatni ilova Backend'dan qayta so'raydi.
+- ~~Bugungi asosiy fikr~~ — **olib tashlandi** (F-1006-388, 07.10: foydalanuvchi «boshqa modullarda yo'q edi»; 11-Modul texnik darslari yakunida yo'q — FeatureOne. P-013 PM darslari uchun qoladi — mexanizm savoli).
 - Endi siz bilasiz (5):
   - So'rov–javobda ilova so'ramasa, Backend unga hech narsa yubora olmaydi.
   - Doimiy ulanish ochiq turadi: ilova ham, Backend ham istagan payt xabar yubora oladi.
