@@ -14,12 +14,12 @@
 | 0 · Manba (`00-MANBA.md`) | ✅ 02:35 (F-1008-551) |
 | 1 · Qaror sahifasi (TAXMIN bilan davom) | ✅ 02:39 — 20 savol, hammasi A (TAXMIN T1–T20); javob kutilmoqda |
 | 2 · `00-NOMLAR.md` + App.jsx `id: '12'` | ✅ 02:41 (17 qator, `comp` siz; App.jsx commitsiz) |
-| 3 · Tayanch + taqiqlar + MD topshirig'i | — |
+| 3 · Tayanch + taqiqlar + MD topshirig'i | ✅ 02:47 (F-1008-554) |
 | 4 · 1-to'lqin: 3 pilot MD | — |
 | 5 · O'z auditi + 2-to'lqin 10 MD | — |
 | 6 · O'zaro tekshiruv · GATE M sahifasi · ERTALAB_HISOBOT | — |
 
-**Keyingi qadam:** 3-bosqich — `00-MODUL-TAYANCH.md` + `00-TAQIQLAR.md` + `MD_AGENT_TOPSHIRIQ.md`.
+**Keyingi qadam:** 4-bosqich — 1-to'lqin: 3 pilot MD agenti (01, 03, 07), fon; keyin o'zim tekshiraman.
 
 ## TAXMINLAR (foydalanuvchi ertalab tasdiqlaydi)
 Sahifa: https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x (`14M-QAROR-0`, `qaror-0.json`). Har biri — tavsiya (A); MD da `<!-- TAXMIN Tn -->` bilan belgilanadi.
@@ -51,6 +51,7 @@ Sahifa: https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x (`14M-QAROR-0`, `qaror
   atamalar grep (storytelling, YC, Lighthouse, frilans, grant, hakam — o'tilmagan; «yc»/«hikoya» soxta moslik tekshirildi) · tashqi faktlar: Lighthouse 10 vaznlari, Expo Atlas, `loading="lazy"`, Diamond Challenge (14–18, 2–4 kishi, 14.01.2027), YC FAQ (yosh yo'q) — rasmiy; **Upwork rasmiy sahifasi 403 → tekshirilmadi**; lokal grantlar — tekshirilmadi · keyslar: K12 (1), K19 (2) nomzod.
 - **2026-10-08 02:39** — **F-1008-552** · 1-bosqich: `qaror-0.json` (14 bo'lim, 20 savol) → `sahifa.py` → Artifact https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x. Kechasi hammasi A (TAXMIN T1–T20). Asosiy halollik qarorlari: pitchda yangi son yo'q (Bozor — bor sonlar), investitsiya summasi so'ralmaydi, Upwork — «odatda 18 yoshdan» (rasmiy matn tekshirilmadi), Diamond Challenge — rasmiy shartlar, YC — halol «bugungi yo'l emas», video ommaviy emas, 15-qator — o'ylab topilgan bitiruvchi yo'q.
 - **2026-10-08 02:41** — **F-1008-553** · 2-bosqich: `00-NOMLAR.md` (17 nom ≤55, lint:til toza; 10-dars nomidan «stajirovka» olindi — T-011, qaror sahifasi ham yangilandi, versiya 2) · App.jsx: `// ---- 12-Modul` izoh (13-Modul importlaridan keyin) + `id: '12'` bloki (17 qator, `comp` siz) — ikki aniq Edit, esbuild ✓, lint:jsx toza, 5174 da App.jsx 200. App.jsx commitga kirmaydi (ertalab buyruq bilan).
+- **2026-10-08 02:47** — **F-1008-554** · 3-bosqich: `00-MODUL-TAYANCH.md` (misol-ip 1.0–1.14, atamalar, repo/teglar, darslar jadvali — ekranlar 16·15·19·12×10, keyslar K12/K19, faktlar, **18 sinf** (13-Modul 16 + 14-Modulga xos 2), saqlash kalitlari 12 ta, ruscha lug'at) · `00-TAQIQLAR.md` (13-Modul asosida; 1-bo'lim — investitsiya, video, yosh, buyurtma, kafolat) · `MD_AGENT_TOPSHIRIQ.md` (umumiy + 3 pilot qatori: 01 PM 16, 03 TEX 19, 07 PM+PRAKT 12; TAXMIN belgilash qoidasi).
 
 ## Nazorat (cron, har 15 daqiqa)
 
