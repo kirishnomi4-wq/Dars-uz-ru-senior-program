@@ -30,6 +30,7 @@
 | 1 · MD v3 — 2-to'lqin (9 dars) | ✅ 07.10 15:54 — 02 · 04 · 05 · 07 · 08 · 09 · 10 · 11 · 12; lint 0 error har biri, arena 3/3/3/3 (F-1007-455, F-1007-456) |
 | 2 · GATE M (bitta sahifa) → audit → `NN-FILTR.md` → `GATE_M_JAVOB.md` | ⏳ 07.10 15:55 sahifa e'lon — https://claude.ai/artifact/RNyooCMmUp1utV8JcYpA1F (kod `13M-GATE-1`, config `gatem-1.json`, 8 modul savoli + tayanch + 12 MD) · javob va ChatGPT auditi kutilmoqda |
 | 3–8 · «Qur» (buyruq bilan) | — |
+| Oraliq commit (buyruq bilan) | ✅ 07.10 17:16 e3d665b + 82ff081 push origin/main — modul papkasi va App.jsx dan faqat o'z ikki qismi |
 | 9 · Yopish · QA sayti · commit (buyruq bilan) | — |
 
 ## Keyingi qadam
@@ -90,9 +91,9 @@
 
 - **07.10 17:11 · F-1007-457 · Holat saqlandi, davom prompti.** Foydalanuvchi: «xolatni saqla man 1-2 soatdan kn yozaman shu joydan davom etamiz va davom etishim un promptniyam tayyorlab ber».
   `DAVOM_PROMPT.md` yozildi. Scratchpad vositalari `vositalar/` ga ko'chirildi (qisqa.py, mdtekshir.py, olish.py, rulugat.py, terms.txt, filtr-sinflar.md, qaror-13.html) — yangi seansda scratchpad yo'qoladi.
-  «Skript» o'lchovi (M-q2 uchun): o'quvchi matnida 06 — 91, 09 — 8; boshqa MD lardagi uchrashuvlar agentlarning o'lchov izohlari. Commit yo'q.
+  «Skript» o'lchovi (M-q2 uchun): o'quvchi matnida 06 — 91, 09 — 8; boshqa MD lardagi uchrashuvlar agentlarning o'lchov izohlari. Commit — keyingi yozuvda (e3d665b).
 
-- **07.10 17:16 · F-1007-457 (davomi) · Commit + push (foydalanuvchi buyrug'i: «xozirgi xolatni gitga push qil shtobe yoqolib qolmasn»).** Commitga faqat: `feedback/F-1007-13modul/` (31 fayl) va App.jsx dan o'z ikki qismim —
+- **07.10 17:16 · F-1007-457 (davomi) · Commit e3d665b + push (foydalanuvchi buyrug'i: «xozirgi xolatni gitga push qil shtobe yoqolib qolmasn»).** Commitga faqat: `feedback/F-1007-13modul/` (31 fayl) va App.jsx dan o'z ikki qismim —
   `// ---- 11-Modul` izoh-qatori (12-Modul izohidan keyin) va `id: '11'` bloki — HEAD + 20 qator, index'ga to'g'ridan-to'g'ri (`git add src/App.jsx` emas).
   Ish paytida HEAD 33e4020 → 0d80850 bo'ldi (12-Modul seansi o'z importlari va `comp` larini commit qildi) — index versiyasi yangi HEAD asosida qayta yig'ildi. Ishchi fayldagi 12-Modul izoh-qatorining ko'chishi commitga KIRMADI (o'sha seansniki).
   Oldin: sir-grep toza · esbuild ✓ · `vite build` aynan commit holatida (vaqtinchalik worktree, keyin o'chirildi) ✓.
