@@ -1,0 +1,289 @@
+{
+ "title": "10-Modul · boshlash qarorlari",
+ "kod": "10M-QAROR-0",
+ "eyebrow": "LMS 10-Modul «Gipotezani qanday tekshirish + texnik MVP praktikasi» · kod src/8-Modull · MD yozishdan oldin",
+ "kirish": "MD v3 yozishdan oldin 14 savol: misol-ip, repo, texnik tanlovlar, dars ichidagi ish, nomlar va App.jsx bloki. Har savolda birinchi variant — tavsiya (belgilab qo'yilgan). Pastda «Manba» — dastur jadvali, App.jsx bilan nomuvofiqlik, 9-Modul holati. 9-Modul fayllari va maydon repo'si faqat o'qildi. Oxirida javob qatorini nusxalab chatga qo'ying.",
+ "darslar": [
+  {
+   "id": "IP",
+   "qisqa": "Misol-ip",
+   "eyebrow": "1-qaror · modul bo'yi bitta misol",
+   "nom": "Misol-ip: 11 dars qaysi mahsulot ustida o'tadi?",
+   "fayl": null,
+   "xulosa": "10-Modul — o'lchash, tajriba, xavfsizlik va production. Buning uchun ishlaydigan mahsulot kerak: noldan qurishga vaqt yo'q, dastur esa «eng yaxshi loyihani production darajasiga» deydi. 9-Modulda Mentor misoli «Maydon» (futbol maydonchasini band qilish) MVP sifatida qurilgan va deploy qilingan (Render + Netlify, Umami ulangan).",
+   "savollar": [
+    {
+     "savol": "Misol-ip qaysi biri?",
+     "variantlar": [
+      [
+       "A",
+       "«Maydon» davomi — 9-Moduldagi MVP endi o'lchanadi, sinaladi, himoyalanadi va prodga chiqadi. 1 OKR: bosh raqam — haftada band qilingan vaqtlar · 2 uch hodisa o'z jadvalimizga (ochdi · vaqtni tanladi · band qildi) · 3 dashboard: hozir saytda nechta odam, bugun nechta band · 4 A/B: tugma matni · 5 ega sahifasidagi zaifliklar + 2FA · 6 telefon raqamlari — maxfiylik siyosati · 7 domen, SSL, monitoring · 8–9 prod va code review · 10–11 yillik yo'l, 5 daqiqalik pitch"
+      ],
+      [
+       "B",
+       "Yangi mahsulot (masalan maktab oshxonasi). Kamchiligi: o'lchash uchun avval MVP ni noldan qurish kerak — dasturda bunga dars yo'q"
+      ],
+      [
+       "C",
+       "Mentor misolisiz — har darsda faqat o'quvchining o'z loyihasi. Kamchiligi: bitta misol-ip qonuni (108) va ortda qolganga teg yo'q"
+      ],
+      [
+       "D",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    },
+    {
+     "savol": "O'quvchi qaysi loyihasi ustida ishlaydi?",
+     "variantlar": [
+      [
+       "A",
+       "1–7-darslar — 9-Modulda boshlagan o'z MVP si (Mentor misoli — Maydon) · 8–9 — o'zi tanlagan eng yaxshi loyihasi (ko'pincha shu MVP) · 10–11 — yil bo'yi qurgan hamma loyihalari"
+      ],
+      [
+       "B",
+       "Hamma darsda faqat 9-Modul MVP si"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REPO",
+   "qisqa": "Repo",
+   "eyebrow": "2-qaror · kod tegadigan darslar: 2, 3, 4, 5, 6, 7, 8, 9",
+   "nom": "Repo va teglar",
+   "fayl": null,
+   "xulosa": "9-Modul repo'si `maydon` (`~/Desktop/maydon`): `main` + `yechim`, teglar `dars-04…11-start/done`, oxirgisi `dars-11-done`; GitHub'ga hali push qilinmagan. 10-Modul bu repo'ga hozir tegmaydi — faqat «qur» bosqichida, 9-Modul repo'si push qilinib yopilgandan keyin yozadi.",
+   "savollar": [
+    {
+     "savol": "Repo qaysi?",
+     "variantlar": [
+      [
+       "A",
+       "`maydon` davom etadi: 9-Modulning oxirgi holati (`dars-11-done`) — 10-Modul boshlanishi; o'quvchi o'sha fork'da ishlaydi, «Ortda qoldingizmi» buyrug'i o'sha"
+      ],
+      [
+       "B",
+       "Yangi repo `maydon-prod` (`dars-11-done` nusxasidan) — 9-Moduldan mustaqil. Kamchiligi: o'quvchi ikkinchi fork ochadi, ikki repo orasida adashadi"
+      ],
+      [
+       "C",
+       "Umumiy repo yo'q. Kamchiligi: ortda qolganga teg yo'q, qolip 173 buziladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Teg nomlari (9-Moduldagi `dars-04…11` bilan to'qnashmasin — teg nomi repo'da bitta bo'ladi)",
+     "variantlar": [
+      [
+       "A",
+       "`m10-dars-NN-start` / `m10-dars-NN-done` — LMS raqami bilan (o'quvchi «10-Modul» deb biladi)"
+      ],
+      [
+       "B",
+       "`d10-NN-start` / `d10-NN-done` — qisqaroq"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "TEX",
+   "qisqa": "Texnik tanlovlar",
+   "eyebrow": "3-qaror · tayanchga yoziladi, MD lar shunga suyanadi",
+   "nom": "Hodisalar, dashboard, A/B, xavfsizlik, deploy",
+   "fayl": null,
+   "xulosa": "Texnik cho'qqi (dastur) — o'z hodisalar tizimi va jonli dashboard. Stek 9-Moduldagidek: sayt React (Vite) + Backend NestJS (TypeORM) + Database PostgreSQL (Neon); kod — Antigravity. «Hodisa» atamasi 9-Moduldan (dasturdagi «voqea» o'rniga).",
+   "savollar": [
+    {
+     "savol": "Hodisalar tizimi (2-dars) va Umami",
+     "variantlar": [
+      [
+       "A",
+       "O'z tizimimiz: Database'da `hodisalar` jadvali, Backend'da `POST /hodisalar`, saytda bitta yozish funksiyasi; uch hodisa — sahifa ochildi · vaqt-tanladi · band-qildi. Umami qoladi — ikki tizim sonini solishtirish mashqi"
+      ],
+      [
+       "B",
+       "Umami olib tashlanadi — faqat o'z tizimimiz"
+      ]
+     ]
+    },
+    {
+     "savol": "Dashboard yangilanishi (3-dars, dasturda «deyarli real-time»)",
+     "variantlar": [
+      [
+       "A",
+       "Sahifa har 5 soniyada Backend'dan yangi sonlarni so'raydi — oddiy; «hozir saytda» = oxirgi 5 daqiqada hodisa yuborgan brauzerlar"
+      ],
+      [
+       "B",
+       "WebSocket — son darhol yangilanadi, lekin yangi texnologiya va ko'proq kod"
+      ]
+     ]
+    },
+    {
+     "savol": "A/B test mexanikasi (4-dars)",
+     "variantlar": [
+      [
+       "A",
+       "O'zimiz: brauzer birinchi kirishda A yoki B ni tasodifiy oladi va eslab qoladi; har hodisaga `variant` yoziladi; dashboard'da A va B ning «band qildi / vaqtni tanladi» ulushi. Mentor gipotezasi: tugmada tanlangan soat yozilsa («18:00 ni band qilish»), ko'proq odam band qiladi"
+      ],
+      [
+       "B",
+       "Tayyor xizmat (PostHog yoki GrowthBook) — kam kod. Kamchiligi: 2–3-darsdagi o'z tizimimizdan uziladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Xavfsizlik darsi (5-dars) — zaifliklar qayerdan?",
+     "variantlar": [
+      [
+       "A",
+       "Boshlang'ich tegda ataylab 3 zaiflik: SQL injection (ega sahifasidagi telefon bo'yicha qidiruvda xom SQL) · XSS (ega sahifasida ism HTML bo'lib chiqadi) · sir kodda (`JWT_SECRET` zaxira qiymati). O'quvchi topadi va yopadi; 2FA — ega kirishiga telefon ilovasidagi 6 xonali kod. Darsda qoida: tekshirish faqat o'z saytingizda"
+      ],
+      [
+       "B",
+       "Zaifliklar faqat ekrandagi maketda — repo'da yo'q"
+      ],
+      [
+       "C",
+       "A kabi, lekin 2FA faqat tushuncha (kodsiz)"
+      ]
+     ]
+    },
+    {
+     "savol": "Domen (7-dars) — o'quvchi uchun pul masalasi",
+     "variantlar": [
+      [
+       "A",
+       "Bepul manzil: Netlify'da sayt nomini o'zgartirish (`maydon-…netlify.app`), SSL Netlify'da o'zi yoqiladi; domen sotib olish va DNS yozuvi — Mentor misolida ko'rsatiladi. Dastur natijasi («SSL + uptime-monitoring») shunga yetadi"
+      ],
+      [
+       "B",
+       "Har o'quvchiga CoddyCamp subdomeni (Mentor DNS'ga yozuv qo'shadi) — haqiqiy domen tajribasi, Mentorga qo'shimcha ish"
+      ],
+      [
+       "C",
+       "O'quvchi o'zi domen sotib oladi — pullik, hammaga emas"
+      ]
+     ]
+    },
+    {
+     "savol": "Monitoring va ogohlantirish (7-dars)",
+     "variantlar": [
+      [
+       "A",
+       "UptimeRobot — bepul rejasi bor; sayt va Backend `/health` manzilini tekshiradi, yiqilsa xabar beradi (qaysi kanallar bepul ekani — tayanchda tekshiriladi)"
+      ],
+      [
+       "B",
+       "Better Stack — bepul rejasi bor, interfeysi boyroq"
+      ],
+      [
+       "C",
+       "O'z botimiz: 7-Moduldagi Telegram boti `/health` ni tekshiradi — ko'proq kod"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ISH",
+   "qisqa": "Dars ichidagi ish",
+   "eyebrow": "4-qaror · MD tuzilishiga tegadi",
+   "nom": "Real foydalanuvchi, code review va pitch — darsda qanday?",
+   "fayl": null,
+   "xulosa": "Dasturda 4-dars «B varianti shu darsda foydalanuvchilarga ketadi», 9-dars «code review», 11-dars «5 daqiqalik pitch, qattiq fidbek» deydi. Real foydalanuvchi sinfda yo'q; 9-Modulda bu «darsda sinfdosh, real odam uyga» deb hal qilingan.",
+   "savollar": [
+    {
+     "savol": "A/B testda foydalanuvchilar kim (4-dars)?",
+     "variantlar": [
+      [
+       "A",
+       "Darsda sinfdoshlar bir-birining saytini telefonida ochadi; real odamlarga havola — uyga; natija keyingi darsda dashboard'da. Darsda halol aytiladi: 10 kishi xulosa uchun kam — bu ishga tushirish mashqi"
+      ],
+      [
+       "B",
+       "Faqat sinfdoshlar, uyga vazifasiz"
+      ]
+     ]
+    },
+    {
+     "savol": "Code review (9-dars) qanday o'tadi?",
+     "variantlar": [
+      [
+       "A",
+       "GitHub Pull Request: o'quvchi PR ochadi, sinfdosh izoh yozadi, o'quvchi har izohga «nega shunday qildim» deb javob beradi; Mentor misoli — Maydon PR'i"
+      ],
+      [
+       "B",
+       "Og'zaki: ekranni ko'rsatib, har qarorni tushuntiradi"
+      ]
+     ]
+    },
+    {
+     "savol": "Pitch (11-dars) — dasturda 5 daqiqa (9-Modul pitchi 1 daqiqa edi)",
+     "variantlar": [
+      [
+       "A",
+       "5 daqiqa: muammo → yechim → foydalanuvchi hikoyasi → raqamlar (dashboard, A/B) → keyingi qadam; juftlikda baholash varag'i bilan qattiq fidbek"
+      ],
+      [
+       "B",
+       "3 daqiqa — sinfda vaqt yetadi"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "NOM",
+   "qisqa": "Dars nomlari",
+   "eyebrow": "5-qaror · menyu nomi = dars nomi (205-qonun)",
+   "nom": "Dars nomlari, fayllar, kalitlar",
+   "fayl": "00-NOMLAR.md",
+   "xulosa": "PM darslar — savol-sarlavha, texnik darslar — mavzu nomi, loyiha kunlari — «Loyiha kuni: …». Menyu nomi umumiy (o'quvchining loyihasiga ham to'g'ri keladi), «Maydon» faqat dars ichida. Nomlar ma'qul bo'lsa «Tasdiq», o'zgartirish bo'lsa «Izoh bilan» va izohga dars raqami + yangi nom.",
+   "savollar": [
+    {
+     "savol": "App.jsx 8-blok hozir dasturga mos emas: 14 qator (Demo Day 4 bor, dashboard darsi yo'q, 3 loyiha kuni), kalitlar teshikli (`m8-02` … `m8-15`)",
+     "variantlar": [
+      [
+       "A",
+       "Dastur v9 ga hozir keltiriladi: 13 qator, `m8-01` … `m8-13`, Demo Day qatori olinadi, `idea` yangilanadi; `comp` siz («tez orada»), `comp` «qur» da ulanadi. Faqat 8-blok, `period` ga tegilmaydi"
+      ],
+      [
+       "B",
+       "Xuddi shunday, lekin blokka faqat «qur» bosqichida tegiladi"
+      ],
+      [
+       "C",
+       "Demo Day qatori qoladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MANBA",
+   "qisqa": "Manba",
+   "eyebrow": "konveyer 0-bosqich · faktlar",
+   "nom": "Manba: dastur, App.jsx, 9-Modul holati",
+   "fayl": "00-MANBA.md",
+   "xulosa": "Dastur v9 «10-modul» bo'limi, App.jsx bilan nomuvofiqlik, 9-Modul holati (MD tasdiqlangan, pilot 1 va 7-darslar), o'tilgan atamalar va dars turi → qolip. Xato ko'rsangiz — «Izoh bilan».",
+   "savollar": []
+  }
+ ]
+}

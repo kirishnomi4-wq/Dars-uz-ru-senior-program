@@ -1,0 +1,186 @@
+{
+ "title": "10-Modul · GATE M",
+ "kod": "10M-GATE-1",
+ "eyebrow": "LMS 10-Modul «Gipotezani qanday tekshirish + texnik MVP praktikasi» · kod src/8-Modull · 11 dars MD v3",
+ "kirish": "11 darsning MD v3 si — o'quvchi ko'radigan har so'z. Har dars ostida «MD v3 — to'liq matn» (ChatGPT auditiga shu matnni bering) va Tasdiq / Izoh. Tepada uchta Modul bo'yi qaror (birinchi variant — tavsiya). Pastda tayanch va taqiqlar. Oxirida javob qatorini nusxalab chatga qo'ying; audit fidbekini keyin to'liq yuborasiz — «Filtr» bilan ko'raman.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi: uchta qaror",
+   "fayl": null,
+   "xulosa": "11 MD ning hammasi `lint:til` — 0 error; ✔ va arena 3/3/3/3 har MD da. Umumiy qonun fayllaridan taqiqlar va 1–2-to'lqin kelishuvlari tayanchda (pastda). Ma'lumot uchun (9-Modul seansiga, bu modul tegmaydi): 9-Modul tayanchida K1–K19 bankidan tashqari 5 keys bor; `m7-10` → `m7-12` ikkalasida JS funksiya kod oynasi (26-qonun); lug'atda «intervyu → suhbat», 9-Modulda «intervyu».",
+   "savollar": [
+    {
+     "savol": "1-dars kod ekrani. PM_DARS_ETALON 26-qonun: ketma-ket PM darslari bir xil koding-mexanikani takrorlamaydi. 9-Modul oxirgi PM darsi (`m7-12`) — JS funksiya kod oynasida; 1-dars ham JS `foiz()` funksiyasi.",
+     "variantlar": [
+      [
+       "A",
+       "Neon SQL topshirig'i: o'quvchi bosh raqamni `bandlar` jadvalidan sanaydi (checklist + «Bajardim»); foiz hisobi 6-ekran surgichida qoladi. 11-dars ham SQL — lekin ketma-ket emas"
+      ],
+      [
+       "B",
+       "JS `foiz()` qoladi — 26-qonunga zid (9-Modul `m7-10` → `m7-12` ham shunday)"
+      ],
+      [
+       "C",
+       "1-darsda kod ekrani olinadi (9-Modul M-q6 «PM darslarida kod ekrani qoladi» ga zid)"
+      ]
+     ]
+    },
+    {
+     "savol": "7-dars monitoring. Tekshirildi (05.10): Neon bepul — 100 CU-soat/oy, 5 daqiqa so'rovsiz o'chadi, doim yoniq ≈182 CU-soat → oy o'rtasida Database to'xtaydi. Render bepul — 750 soat butun akkauntga; ikkinchi xizmat ham doim uyg'oq bo'lsa, hammasi to'xtaydi. MD hozir: UptimeRobot har 5 daqiqada `/health` (Database bilan).",
+     "variantlar": [
+      [
+       "A",
+       "`/health` Database'ga so'rov yubormaydi — Backend holatini aytadi; UptimeRobot har 5 daqiqada: Render uyg'oq (bitta xizmat 750 soatga sig'adi), Neon uxlaydi. Database xatosi ega sahifasi va dashboard'da ko'rinadi. Darsda qoida: «monitoring ham limit sarflaydi — bitta bepul xizmatni uyg'oq tutasiz»"
+      ],
+      [
+       "B",
+       "`/health` Database bilan, lekin UptimeRobot oralig'i 60 daqiqa — Neon limitiga sig'adi; Render orada uxlaydi: tekshiruv ≈1 daqiqa kutadi, noto'g'ri «Down» xabari bo'lishi mumkin"
+      ],
+      [
+       "C",
+       "MD dagidek qoladi (har 5 daqiqada Database bilan) — bepul Neon oy o'rtasida to'xtaydi"
+      ]
+     ]
+    },
+    {
+     "savol": "`synchronize: true` (repo 9-Moduldan). 4-dars agenti topdi: Render eski kodni qayta ishga tushirsa, TypeORM yangi ustunni (masalan `variant`) ma'lumoti bilan o'chirib yuborishi mumkin.",
+     "variantlar": [
+      [
+       "A",
+       "8-dars prod ro'yxatiga bitta qator — tushuntirish: eski teg push qilinmaydi; prod'da `synchronize` xavfli, migratsiya — keyingi modullarda. Kod o'zgarmaydi"
+      ],
+      [
+       "B",
+       "8-darsda `synchronize` o'chiriladi va migratsiya qo'shiladi — yangi og'ir mavzu, dars cho'ziladi"
+      ],
+      [
+       "C",
+       "Tegilmaydi — darsda aytilmaydi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "01",
+   "qisqa": "1-dars",
+   "eyebrow": "1-dars · PM · 15 ekran · `m8-01`",
+   "nom": "Bir oyda qaysi raqamni o'stirasiz?",
+   "fayl": "01-PmOkr-v3.md",
+   "xulosa": "Bosh raqam (haftada band qilingan vaqtlar) va keyingi oyga OKR: maqsad + 3 asosiy natija + 1 tajriba. Mustaqil ishda o'quvchi o'z OKR'ini yozadi. Moslandi: o'tgan hafta sonlari — mashq sharti «har kishi har qadamda bir marta» (sanaydigan tizim 2-darsda quriladi). Kod ekrani — Modul bo'yi M-q0.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "2-dars",
+   "eyebrow": "2-dars · TEX, texnik cho'qqi · 18 ekran · `m8-02`",
+   "nom": "Hodisalar tizimi: har harakat jadvalga yoziladi",
+   "fayl": "02-EventTracking-v3.md",
+   "xulosa": "O'z hodisalar tizimi: `hodisalar` jadvali, `POST /hodisalar`, brauzer ID, uch hodisa; «har qadamda turli brauzerlar soni»; Umami Visitors bilan solishtirish (31 / 36). Moslandi: «inkognito oyna», `DELETE … WHERE`.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "3-dars",
+   "eyebrow": "3-dars · loyiha kuni · 8 ekran + 3 blok · `m8-03`",
+   "nom": "Loyiha kuni: jonli dashboard",
+   "fayl": "03-LiveDashboard-v3.md",
+   "xulosa": "`/dashboard` (ega paroli bilan): «Hozir saytda» va uch qadam, har 5 soniyada so'rov; talab zinapoyasi: bitta joy → bitta qator → uch qator; sinfdosh bilan internetda tekshirish.",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "4-dars",
+   "eyebrow": "4-dars · PM + amaliyot · 11 ekran · `m8-04`",
+   "nom": "Ikki variantdan qaysi biri yaxshiroq ishlaydi?",
+   "fayl": "04-PmAbTest-v3.md",
+   "xulosa": "Gipoteza («Agar … , … o'zgaradi, chunki …» + raqam), K9 Booking.com, A/B: tugma matni; B varianti sinfdoshlarga ketadi; «17 ta brauzer xulosa uchun kam». Moslandi: «kishi» → «brauzer».",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "5-dars",
+   "eyebrow": "5-dars · TEX · 18 ekran · `m8-05`",
+   "nom": "Kiberxavfsizlik: zaiflikni topib yopamiz",
+   "fayl": "05-SecurityBasics-v3.md",
+   "xulosa": "Uch zaiflik (SQL injection, XSS, kodda turgan maxfiy kalit) — faqat himoya tomoni: turi, nega xavfli, qanday topiladi, qanday yopiladi; ega kirishiga 2FA. Hujum qatorlari yo'q (grep: 0).",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "6-dars",
+   "eyebrow": "6-dars · PM + amaliyot · 11 ekran · `m8-06`",
+   "nom": "Foydalanuvchi sizga ma'lumotini ishonadimi?",
+   "fayl": "06-PmTrustAudit-v3.md",
+   "xulosa": "Shaxsiy ma'lumot, sizib chiqish, audit varag'i (6 savol), `AUDIT.md`, `/maxfiylik`, 30 kunlik o'chirish; qonun O'RQ-547 va GDPR — tayanchdagi manbali faktlar bilan; keyssiz.",
+   "savollar": []
+  },
+  {
+   "id": "07",
+   "qisqa": "7-dars",
+   "eyebrow": "7-dars · TEX · 18 ekran · `m8-07`",
+   "nom": "Production deploy: domen, SSL, monitoring",
+   "fayl": "07-ProductionDeploy-v3.md",
+   "xulosa": "Netlify sayt nomi → `WEB_ORIGIN`, HTTPS, `/health`, UptimeRobot (email + ilova), domen va DNS — Mentor misolida. ⚠ Monitoring qismi Neon/Render bepul limitlariga zid — Modul bo'yi M-q1.",
+   "savollar": []
+  },
+  {
+   "id": "08",
+   "qisqa": "8-dars",
+   "eyebrow": "8-dars · loyiha kuni · 8 ekran + 3 blok · `m8-08`",
+   "nom": "Loyiha kuni: prodga ko'tarish — 1-qism",
+   "fayl": "08-ProdUpgrade-v3.md",
+   "xulosa": "Prod ro'yxati: so'rovlar chegarasi, xato va «yuklanmoqda» holatlari, A/B yakuni (B qoladi, «82 ta brauzer hali kam»), README; `prod` tarmog'i. Moslandi: viktorinadagi mutlaq so'zlar olindi.",
+   "savollar": []
+  },
+  {
+   "id": "09",
+   "qisqa": "9-dars",
+   "eyebrow": "9-dars · loyiha kuni · 8 ekran + 3 blok · `m8-09`",
+   "nom": "Loyiha kuni: prodga ko'tarish — 2-qism",
+   "fayl": "09-ProdReview-v3.md",
+   "xulosa": "Pull Request va code review juftlikda: izoh (Joy · Nega muhim · Taklif) va «nega shunday qildim» javobi, bitta tuzatish, birlashtirish, `REVIEW.md`. Moslandi: Mentor PR'i `prod` → `yechim` (upstream `main` tegilmaydi).",
+   "savollar": []
+  },
+  {
+   "id": "10",
+   "qisqa": "10-dars",
+   "eyebrow": "10-dars · PM · 16 ekran · `m8-10`",
+   "nom": "Bir yilda nimalarni qurdingiz?",
+   "fayl": "10-PmYearPath-v3.md",
+   "xulosa": "Yillik vaqt chizig'i: har modulda nima qurdi va o'rgandi → bitta keyingi qadam; K1 Uzum; kod — JS funksiya. Moslandi: AvtoPizza — 7-modul (bot), «unicorn» oldingi darslardagidek.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "11-dars",
+   "eyebrow": "11-dars · PM · 17 ekran · `m8-11`",
+   "nom": "Besh daqiqada nimani ko'rsatasiz?",
+   "fayl": "11-PmPitchRehearsal-v3.md",
+   "xulosa": "5 daqiqalik pitch: besh slayd, K12 Airbnb, baholash varag'i bilan juftlikda repetitsiya va tuzatish; kod — Neon SQL (bosh raqam). Moslandi: Mentor pitchi — oy oxirida haftada 11 band, keyingi qadam — jamoa yig'ish.",
+   "savollar": []
+  },
+  {
+   "id": "T",
+   "qisqa": "Tayanch",
+   "eyebrow": "11 MD shu fayldan yozildi",
+   "nom": "Modul tayanchi",
+   "fayl": "00-MODUL-TAYANCH.md",
+   "xulosa": "Misol-ip va Mentor raqamlari, atamalar, repo teglari, keyslar (K1–K19 banki), tekshirilgan faktlar (manba va sana bilan), 9-Modul auditidagi takroriy xatolar, darslararo kalitlar, 1–2-to'lqin kelishuvlari.",
+   "savollar": []
+  },
+  {
+   "id": "Q",
+   "qisqa": "Taqiqlar",
+   "eyebrow": "umumiy qonun fayllaridan",
+   "nom": "Nima mumkin emas",
+   "fayl": "00-TAQIQLAR.md",
+   "xulosa": "QOIDALAR, QURISH_KARTASI, MATN_ETALONI lug'ati, til-lint, PM_Prompt_v8 keys banki — MD agentlari uchun bir sahifa.",
+   "savollar": []
+  }
+ ]
+}

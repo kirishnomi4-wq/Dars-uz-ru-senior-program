@@ -1,0 +1,202 @@
+{
+ "title": "10-Modul · GATE M",
+ "kod": "10M-GATE-2",
+ "eyebrow": "LMS 10-Modul «Gipotezani qanday tekshirish + texnik MVP praktikasi» · kod src/8-Modull · 11 dars MD v3",
+ "kirish": "11 darsning MD v3 si — o'quvchi ko'radigan har so'z. GATE M `10M-GATE-1` va `10M-GATE-2` tasdiqlangan (hammasi A); 11 dars ChatGPT auditidan Filtr bilan o'tgan (`NN-FILTR.md`). 05.10 kechqurun 9-Modul pilot qoidalari qo'llandi (`QURUVCHI_SABOQ.md`): kartochkalar alohida ekran (3, 4, 6, 8, 9 — 12 ekran), test yorlig'i yo'q, bashorat yopilmaydi, brend sahnalari. Pilot qurish: 2 va 10-darslar.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi: qarorlar qo'llandi",
+   "fayl": null,
+   "xulosa": "10M-GATE-1: M-q0 A — 1-dars kodi Neon SQL (bosh raqam `bandlar` dan) · M-q1 A — `/health` Database'siz, 7-dars qayta yozildi · M-q2 A — `synchronize` 8-dars «keyin» guruhida. 11 MD ning hammasi `lint:til` — 0 error; ✔ va arena 3/3/3/3 har MD da.",
+   "savollar": []
+  },
+  {
+   "id": "01",
+   "qisqa": "1-dars",
+   "eyebrow": "1-dars · PM · 15 ekran · `m8-01`",
+   "nom": "Bir oyda qaysi raqamni o'stirasiz?",
+   "fayl": "01-PmOkr-v3.md",
+   "xulosa": "Bosh raqam (haftada band qilingan vaqtlar) va keyingi oyga OKR: maqsad + 3 asosiy natija + 1 tajriba; kod — Neon SQL (M-q0 A). Filtr: 01-FILTR.md.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "2-dars",
+   "eyebrow": "2-dars · TEX, texnik cho'qqi · 18 ekran · `m8-02`",
+   "nom": "Hodisalar tizimi: har harakat jadvalga yoziladi",
+   "fayl": "02-EventTracking-v3.md",
+   "xulosa": "O'z hodisalar tizimi: `hodisalar` jadvali, `POST /hodisalar`, brauzer ID, uch hodisa; «har qadamda turli brauzerlar soni»; Umami Visitors bilan solishtirish (31 / 36). Moslandi: «inkognito oyna», `DELETE … WHERE`.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "3-dars",
+   "eyebrow": "3-dars · loyiha kuni · 8 ekran + 3 blok · `m8-03`",
+   "nom": "Loyiha kuni: jonli dashboard",
+   "fayl": "03-LiveDashboard-v3.md",
+   "xulosa": "`/dashboard` (ega paroli bilan): «Oxirgi 5 daqiqada» va uch qadam; kirgan zahoti, keyin har 5 soniyada so'rov (ustma-ust emas); talab zinapoyasi: bitta joy → bitta qator → uch qator. Filtr: 03-FILTR.md.",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "4-dars",
+   "eyebrow": "4-dars · PM + amaliyot · 11 ekran · `m8-04`",
+   "nom": "Ikki variantdan qaysi biri yaxshiroq ishlaydi?",
+   "fayl": "04-PmAbTest-v3.md",
+   "xulosa": "Gipoteza («Agar … , … o'zgaradi, chunki …» + raqam), K9 Booking.com, A/B: tugma matni; B varianti sinfdoshlarga ketadi; «17 ta brauzer xulosa uchun kam». Moslandi: «kishi» → «brauzer».",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "5-dars",
+   "eyebrow": "5-dars · TEX · 18 ekran · `m8-05`",
+   "nom": "Kiberxavfsizlik: zaiflikni topib yopamiz",
+   "fayl": "05-SecurityBasics-v3.md",
+   "xulosa": "Uch zaiflik (SQL injection, XSS, kodda turgan maxfiy kalit) — faqat himoya tomoni; ega kirishi 2FA — bitta `POST /kirish { parol, kod }`. Hujum qatorlari yo'q (grep: 0). Filtr: 05-FILTR.md.",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "6-dars",
+   "eyebrow": "6-dars · PM + amaliyot · 11 ekran · `m8-06`",
+   "nom": "Foydalanuvchi sizga ma'lumotini ishonadimi?",
+   "fayl": "06-PmTrustAudit-v3.md",
+   "xulosa": "Shaxsiy ma'lumot, sizib chiqish, audit varag'i (6 savol): dalilni agent topadi, holatni o'quvchi yozadi; `/maxfiylik` — «Maydon»ning sodda siyosati; uch fikr — ochiq aytish · kerakli minimum · maqsad tugasa o'chirish (siyosatni o'qish rozilik emas). Band 30 kun saqlanadi, keyin o'chiriladi. Filtr: 06-FILTR.md.",
+   "savollar": [
+    {
+     "savol": "`hodisalar` jadvali (nom, vaqt, tugma varianti, brauzer ID) qancha saqlanadi? Auditor to'g'ri topdi: dars «qancha saqlanadi?» deb so'raydi, lekin o'z jadvalimiz uchun javob yo'q edi. Raqam siyosatda ochiq yoziladi va A1 dagi o'chirish kodiga kiradi (o'quvchi slotida emas). Kurs darslari uchun 30 kun ham yetadi: 8-dars A/B yakuni ≈2 hafta.",
+     "variantlar": [
+      [
+       "A",
+       "60 kun — bu oy va o'tgan oyni solishtirsa bo'ladi (OKR oyi); 8-dars A/B yakuni sig'adi; siyosat: «Saytdagi harakatlar 60 kun saqlanadi»"
+      ],
+      [
+       "B",
+       "30 kun — band bilan bir xil, siyosat soddaroq; kurs darslari sig'adi, lekin oyma-oy solishtirish chiqmaydi"
+      ],
+      [
+       "C",
+       "90 kun — chorak tarixi; ko'proq ma'lumot uzoqroq turadi («kerakli minimum»dan uzoqroq)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "07",
+   "qisqa": "7-dars",
+   "eyebrow": "7-dars · TEX · 18 ekran · `m8-07`",
+   "nom": "Production deploy: domen, SSL, monitoring",
+   "fayl": "07-ProductionDeploy-v3.md",
+   "xulosa": "Netlify sayt nomi → `WEB_ORIGIN`, HTTPS (yo'ldagi mazmun o'qilmaydi), `/health` Database'siz (M-q1 A), UptimeRobot — saytni siz o'rningizga so'rab turadi; o'z domeni — Mentor maketi. Bepul rejalar uzluksizlikni va'da qilmaydi (Render). UptimeRobot bepul rejasi tijoratga ham ruxsat beradi — tayanchdagi eskirgan fakt tuzatildi. Filtr: 07-FILTR.md.",
+   "savollar": [
+    {
+     "savol": "Menyu osti yozuvi (App.jsx `m8-07`, qaror-0 da siz tasdiqlagan): «sayt yiqilsa, birinchi bo'lib siz bilasiz». Auditor: kafolat emas — UptimeRobot navbatdagi so'rovda biladi, o'yinchi undan oldin ochsa, u oldinroq ko'radi (T-020 qat'iy gap). Dars matnida endi takrorlanmaydi (yakun sarlavhasi — «Endi «Maydon» yiqilsa, ogohlantirish sizga keladi.»).",
+     "variantlar": [
+      [
+       "A",
+       "Almashtirilsin: «sayt yiqilsa, ogohlantirish sizga keladi» — darsda isbotlanadi; 6-dars yakunidagi «Keyingi dars …» qatori ham shunga"
+      ],
+      [
+       "B",
+       "Qoladi: «sayt yiqilsa, birinchi bo'lib siz bilasiz» — hook savoliga ilgak; dars matnida kafolat sifatida takrorlanmaydi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "08",
+   "qisqa": "8-dars",
+   "eyebrow": "8-dars · loyiha kuni · 8 ekran + 3 blok · `m8-08`",
+   "nom": "Loyiha kuni: prodga ko'tarish — 1-qism",
+   "fayl": "08-ProdUpgrade-v3.md",
+   "xulosa": "Prod ro'yxati — internetdagi loyihani foydalanuvchilar uchun ishonchliroq qiladigan ishlar: so'rovlar chegarasi (IP manzil sanaladi, odam emas), xato va kutish holatlari (qayta so'rov ustma-ust emas), A/B yakuni (hozircha B qoladi — isbot emas), README — olti qism; hammasi `prod` tarmog'ida. Chegara mexanizmi va Render proksi IP usuli — «qur» dan oldin asosiy seans muzlatadi. Filtr: 08-FILTR.md.",
+   "savollar": [
+    {
+     "savol": "Auditor: dars oxirida loyihani «production darajadagi» deb bo'lmaydi — bepul Render (Render o'zi prod uchun tavsiya qilmaydi) va `synchronize` siz qaroringiz bilan «keyin» (M-q2 A). Darslar ichida bu hukm olib tashlandi. Qolgani App.jsx da: modul g'oyasi «O'z analitikangiz, A/B test, xavfsizlik va production — MVP haqiqiy foydalanuvchiga tayyor.» va `m8-08` osti «eng yaxshi loyihangiz production darajasiga» (dastur v9 so'zi).",
+     "variantlar": [
+      [
+       "A",
+       "Ikkalasi almashtiriladi: g'oya «… — MVP haqiqiy foydalanuvchi uchun mustahkamlanadi.» · osti «eng yaxshi loyihangiz prod ro'yxati bo'yicha»"
+      ],
+      [
+       "B",
+       "Faqat g'oya almashtiriladi («… mustahkamlanadi»); `m8-08` osti dastur so'zi bo'lib qoladi («darajasiga» — yo'nalish, hukm emas)"
+      ],
+      [
+       "C",
+       "Ikkalasi ham qoladi — dastur so'zlari; darslar ichida hukm berilmaydi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "09",
+   "qisqa": "9-dars",
+   "eyebrow": "9-dars · loyiha kuni · 8 ekran + 3 blok · `m8-09`",
+   "nom": "Loyiha kuni: prodga ko'tarish — 2-qism",
+   "fayl": "09-ProdReview-v3.md",
+   "xulosa": "Pull Request va code review juftlikda: izoh (Joy · Nega muhim · Taklif — savol ham bo'lishi mumkin) va «nega shunday qildim» javobi; review'dan chiqqan yoki Mentor bergan bitta kamchilik tuzatiladi; «Approve» shart emas; birlashtirishdan oldin jadval fayli tekshiriladi; `REVIEW.md`. Filtr: 09-FILTR.md.",
+   "savollar": [
+    {
+     "savol": "`synchronize: true` (TypeORM jadvalni koddagi jadval fayliga qarab o'zi o'zgartiradi). Siz M-q2 da «kod o'zgarmaydi, migratsiya — keyingi modullarda» dedingiz; 8 va 9-dars auditlari buni «production modulida yopilmagan xavf» deydi. Tekshirdim: 9-darsdagi birlashtirishda jadval fayllari o'zgarmaydi — bu merge Database'ga tegmaydi. Xavf keyinroq: jadval fayli o'zgargan kod (yoki eski teg) chiqsa, prod jadvali o'zi o'zgaradi; laptop ham o'sha Neon'ga yozadi.",
+     "variantlar": [
+      [
+       "A",
+       "M-q2 qoladi — kod o'zgarmaydi. 9-darsda birlashtirishdan oldin «Files changed»da jadval fayli yo'qligi tekshiriladi (qo'shildi), README «keyin»da yoziladi"
+      ],
+      [
+       "B",
+       "9-darsda o'chiriladi: jadval faqat `DB_SYNC=true` bo'lsa o'zgaradi, sukut — o'chiq (bitta qator + `.env`); Mentor izohi bo'lib A3 da tuzatiladi — A3 da ikki tuzatish. Yangi bo'sh Database — README'da bir martalik yo'l; migratsiya — keyingi modullarda"
+      ],
+      [
+       "C",
+       "To'liq migratsiya (auditor talabi): `synchronize: false` + mavjud jadvallar uchun migratsiya + deploy'da ishga tushirish — yangi og'ir mavzu, 9-dars cho'ziladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "10",
+   "qisqa": "10-dars",
+   "eyebrow": "10-dars · PM · 16 ekran · `m8-10`",
+   "nom": "Bir yilda nimalarni qurdingiz?",
+   "fayl": "10-PmYearPath-v3.md",
+   "xulosa": "Yillik vaqt chizig'i: har moduldan asosiy loyiha — «Qurdim» va «O'rgandim» (endi nima qila oladi) → bitta keyingi qadam (bitta · aniq · chiziqdan o'sadi; qaysi loyihadan o'sgani saqlanadi). K1 Uzum — ikki sana (bank; TechCrunch 25.03.2024 tasdiqladi); kod — JS funksiya, portfolio matni. Filtr: 10-FILTR.md.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "11-dars",
+   "eyebrow": "11-dars · PM · 17 ekran · `m8-11`",
+   "nom": "Besh daqiqada nimani ko'rsatasiz?",
+   "fayl": "11-PmPitchRehearsal-v3.md",
+   "xulosa": "5 daqiqalik pitch: besh slayd (muammo · yechim · foydalanuvchi · raqamlar · keyingi qadam); Raqamlar slaydi — ikki blok: bosh raqam (6 → 11, maqsad 20) va A/B (A va B) + halol gap; K12 Airbnb (misol); bosh raqam — Neon SQL; sinfdosh baholash varag'i va eng zaif slaydni tuzatish. Filtr: 11-FILTR.md.",
+   "savollar": []
+  },
+  {
+   "id": "T",
+   "qisqa": "Tayanch",
+   "eyebrow": "11 MD shu fayldan yozildi",
+   "nom": "Modul tayanchi",
+   "fayl": "00-MODUL-TAYANCH.md",
+   "xulosa": "Misol-ip va Mentor raqamlari, atamalar, repo teglari, keyslar (K1–K19 banki), tekshirilgan faktlar (manba va sana bilan), 9-Modul auditidagi takroriy xatolar, darslararo kalitlar, 1–2-to'lqin kelishuvlari.",
+   "savollar": []
+  },
+  {
+   "id": "Q",
+   "qisqa": "Taqiqlar",
+   "eyebrow": "umumiy qonun fayllaridan",
+   "nom": "Nima mumkin emas",
+   "fayl": "00-TAQIQLAR.md",
+   "xulosa": "QOIDALAR, QURISH_KARTASI, MATN_ETALONI lug'ati, til-lint, PM_Prompt_v8 keys banki — MD agentlari uchun bir sahifa.",
+   "savollar": []
+  }
+ ]
+}

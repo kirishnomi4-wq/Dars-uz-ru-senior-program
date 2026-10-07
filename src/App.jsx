@@ -137,6 +137,18 @@ const MvpCompleteLesson = L(() => import('./7-Modull/MvpCompleteLesson.jsx')) //
 const PmUsabilityTestLesson = L(() => import('./7-Modull/PmUsabilityTestLesson.jsx')) // 9-Modul 10-dars
 const MvpIterationLesson = L(() => import('./7-Modull/MvpIterationLesson.jsx')) // 9-Modul 11-dars
 const PmUserStoryPitchLesson = L(() => import('./7-Modull/PmUserStoryPitchLesson.jsx')) // 9-Modul 12-dars
+// ---- 8-Modul (LMS 10-Modul, src/8-Modull) — konveyer pilot, 05.10
+const EventTrackingLesson = L(() => import('./8-Modull/EventTrackingLesson.jsx')) // 10-Modul 2-dars, pilot
+const PmYearPathLesson = L(() => import('./8-Modull/PmYearPathLesson.jsx')) // 10-Modul 10-dars, pilot
+const PmOkrLesson = L(() => import('./8-Modull/PmOkrLesson.jsx')) // 10-Modul 1-dars, 2-to'lqin
+const LiveDashboardLesson = L(() => import('./8-Modull/LiveDashboardLesson.jsx')) // 10-Modul 3-dars, 2-to'lqin
+const PmAbTestLesson = L(() => import('./8-Modull/PmAbTestLesson.jsx')) // 10-Modul 4-dars, 2-to'lqin
+const SecurityBasicsLesson = L(() => import('./8-Modull/SecurityBasicsLesson.jsx')) // 10-Modul 5-dars, 2-to'lqin
+const PmTrustAuditLesson = L(() => import('./8-Modull/PmTrustAuditLesson.jsx')) // 10-Modul 6-dars, 2-to'lqin
+const ProductionDeployLesson = L(() => import('./8-Modull/ProductionDeployLesson.jsx')) // 10-Modul 7-dars, 2-to'lqin
+const ProdUpgradeLesson = L(() => import('./8-Modull/ProdUpgradeLesson.jsx')) // 10-Modul 8-dars, 2-to'lqin
+const ProdReviewLesson = L(() => import('./8-Modull/ProdReviewLesson.jsx')) // 10-Modul 9-dars, 2-to'lqin
+const PmPitchRehearsalLesson = L(() => import('./8-Modull/PmPitchRehearsalLesson.jsx')) // 10-Modul 11-dars, 2-to'lqin
 // ---- 9-Modul (LMS 11-Modul, src/9-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 const PmTenIdeasLesson = L(() => import('./9-Modull/PmTenIdeasLesson.jsx')) // 11-Modul 1-dars, pilot
 const FoundationDayLesson = L(() => import('./9-Modull/FoundationDayLesson.jsx')) // 11-Modul 10-dars, pilot
@@ -356,22 +368,21 @@ const MODULES = [
   },
   {
     id: '8', slug: 'm8', title: 'Gipotezani qanday tekshirish', period: 'oy 10.5–12', stage: 2,
-    idea: 'Ishga tushirish — final emas, boshlanish. Ma\'lumot keyingi qarorlarni boshqaradi.',
+    idea: 'O\'z analitikangiz, A/B test, xavfsizlik va production — MVP haqiqiy foydalanuvchi uchun mustahkamlanadi.',
     lessons: [
-      { key: 'm8-02', n: 1,  type: 'PM',      emoji: '🎯', title: 'OKR: maqsad, metrika va eksperiment', sub: 'o\'lchanadigan maqsadlar' },
-      { key: 'm8-03', n: 2,  type: 'Kod',     emoji: '📊', title: 'Analitika amalda',          sub: 'Plausible/Umami: voronka, hodisalar' },
-      { key: 'm8-04', n: 3,  type: 'PM',      emoji: '🧪', title: 'A/B test: gipotezani tekshirish', sub: 'gipoteza, auditoriya bo\'linishi, natija' },
-      { key: 'm8-05', n: 4,  type: 'Kod',     emoji: '🔐', title: 'Kiberxavfsizlik asoslari',  sub: 'parol, 2FA, SQL injection, XSS' },
-      { key: 'm8-06', n: 5,  type: 'PM',      emoji: '🛡️', title: 'Xavfsizlik — ishonch demak',      sub: 'privacy as a feature' },
-      { key: 'm8-07', n: 6,  type: 'Kod',     emoji: '🌐', title: 'Production deploy',         sub: 'domen, SSL, uptime-monitoring' },
-      { key: 'm8-08', n: 7,  type: 'Proyekt', emoji: '🚧', title: 'Loyiha kuni: apgreyd',      sub: 'eng yaxshi loyihani prodga tayyorlash' },
-      { key: 'm8-09', n: 8,  type: 'Proyekt', emoji: '⬆️', title: 'Prod-apgreyd — 1',          sub: 'modul 4/5/7 loyihasini ko\'tarish' },
-      { key: 'm8-10', n: 9,  type: 'Proyekt', emoji: '🏁', title: 'Prod-apgreyd — 2',          sub: 'final code review' },
-      { key: 'm8-11', n: 10, type: 'PM',      emoji: '🛤️', title: 'Yillik himoya: bir yillik yo\'l', sub: 'nima bo\'ldi, nima bo\'ladi va keyin nima' },
-      { key: 'm8-12', n: 11, type: 'PM',      emoji: '🎭', title: 'Demo Day 4 repetitsiyasi',  sub: '5 daqiqalik pitch, taymer bilan' },
-      { key: 'm8-13', n: 12, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',               sub: 'yetib olish / sayqallash' },
-      { key: 'm8-14', n: 13, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',               sub: 'yetib olish / sayqallash' },
-      { key: 'm8-15', n: 14, type: 'Demo',    emoji: '🎤', title: 'Demo Day 4 — yillik himoya', sub: 'ota-onalar + media + IT-jamiyat' },
+      { key: 'm8-01', n: 1, type: 'PM', emoji: '🎯', title: 'Bir oyda qaysi raqamni o\'stirasiz?', sub: 'bosh raqam, OKR va birinchi tajriba', comp: PmOkrLesson },
+      { key: 'm8-02', n: 2, type: 'Kod', emoji: '📡', title: 'Hodisalar tizimi: har harakat jadvalga yoziladi', sub: 'hodisa → Backend → Database, uch hodisa', comp: EventTrackingLesson },
+      { key: 'm8-03', n: 3, type: 'Proyekt', emoji: '📈', title: 'Loyiha kuni: jonli dashboard', sub: 'talabni siz yozasiz, agent dashboard\'ni yig\'adi', comp: LiveDashboardLesson },
+      { key: 'm8-04', n: 4, type: 'PM', emoji: '🧪', title: 'Ikki variantdan qaysi biri yaxshiroq ishlaydi?', sub: 'gipoteza va A/B test — B varianti bugun ishga tushadi', comp: PmAbTestLesson },
+      { key: 'm8-05', n: 5, type: 'Kod', emoji: '🔐', title: 'Kiberxavfsizlik: zaiflikni topib yopamiz', sub: 'SQL injection, XSS, maxfiy kalitlar, 2FA', comp: SecurityBasicsLesson },
+      { key: 'm8-06', n: 6, type: 'PM', emoji: '🛡️', title: 'Foydalanuvchi sizga ma\'lumotini ishonadimi?', sub: 'ma\'lumot sizib chiqsa — audit va maxfiylik siyosati', comp: PmTrustAuditLesson },
+      { key: 'm8-07', n: 7, type: 'Kod', emoji: '🌐', title: 'Production deploy: domen, SSL, monitoring', sub: 'sayt yiqilsa, ogohlantirish sizga keladi', comp: ProductionDeployLesson },
+      { key: 'm8-08', n: 8, type: 'Proyekt', emoji: '🚧', title: 'Loyiha kuni: prodga ko\'tarish — 1-qism', sub: 'eng yaxshi loyihangiz prod ro\'yxati bo\'yicha', comp: ProdUpgradeLesson },
+      { key: 'm8-09', n: 9, type: 'Proyekt', emoji: '🏁', title: 'Loyiha kuni: prodga ko\'tarish — 2-qism', sub: 'code review: har qarorni tushuntirasiz', comp: ProdReviewLesson },
+      { key: 'm8-10', n: 10, type: 'PM', emoji: '🛤️', title: 'Bir yilda nimalarni qurdingiz?', sub: 'yillik yo\'l: loyihalar vaqt chizig\'ida va keyingi qadam', comp: PmYearPathLesson },
+      { key: 'm8-11', n: 11, type: 'PM', emoji: '🎤', title: 'Besh daqiqada nimani ko\'rsatasiz?', sub: 'pitch repetitsiyasi va qattiq fidbek', comp: PmPitchRehearsalLesson },
+      { key: 'm8-12', n: 12, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
+      { key: 'm8-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
     ],
   },
   {
