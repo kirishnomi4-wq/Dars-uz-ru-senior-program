@@ -29,7 +29,7 @@
 | 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | ⏳ buyruq 06.10 19:23 («qurishni boshla, 2 ta pilot»); 19:27 — pilotlar: 1-dars `PmLandingLesson.jsx` (PM) va 2-dars `WebSocketBasicsLesson.jsx` (TEX) skeletdan nusxalandi (gates 12/12), App.jsx ga ulandi; `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md` yozildi; **agent ruxsati so'raldi — javob kutilmoqda** |
 | 9 · Yopish · QA sayti · commit (buyruq bilan) | — |
 
-**Keyingi qadam (07.10 17:10) — «QUR» TUGADI: 12/12 dars qurildi va tekshirildi (pilotlar commit `95912f6`; 03–12 + App.jsx 10 qator + hujjatlar — UNCOMMITTED). Foydalanuvchi ko'rigi kutilmoqda (fidbek F-1006-389 dan, retsept B). Davom prompti: `feedback/F-1006-12modul/DAVOM_PROMPT.md`.**
+**Keyingi qadam (07.10 17:10) — «QUR» TUGADI: 12/12 dars qurildi va tekshirildi (pilotlar `95912f6`, 03–12 `0d80850` — push ✓). Foydalanuvchi ko'rigi kutilmoqda (fidbek F-1006-389 dan, retsept B). Davom prompti: `feedback/F-1006-12modul/DAVOM_PROMPT.md`.**
 0. Dars serveri **5174** (`npx vite --port 5174 --strictPort --host 127.0.0.1`, fon; seans yopilsa to'xtaydi — yangi seansda qayta ishga tushiriladi) — 5173 da AILM (tegilmaydi). Ko'rik: `localhost:5174/#/lesson/m10-01` … `m10-12`. Keyin: ko'rik fidbeki → umumiy tuzatish (ro'yxat — 07.10 15:47 yozuvi) → 6-RU → yakuniy MD → `npm run modul:yopish -- src/10-Modull` → commit (buyruq bilan).
 1. **Commit ✅ `a10a1a7`** (06.10 19:23, push yo'q): `feedback/F-1006-12modul/` (35 fayl) + App.jsx dan faqat `id: '10'` bloki va izoh qatori (indeksga HEAD + o'z blokim qo'yildi; ishchi fayldagi boshqa seanslar o'zgarishi commitga kirmagan).
    Commitdan keyin o'zgarganlar (hali commit qilinmagan): `src/10-Modull/` (2 fayl), App.jsx (2 import + 2 `comp`), `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md`, shu jurnal.
@@ -310,6 +310,8 @@
   **2-TO'LQIN YAKUNI: 10/10 qurildi.** 12 darsning hammasi gates 12/12 · `lint:jsx` 0 · `vite build` ✓ · kesik.mjs (3 o'lcham, ⛶ markazi) — 03–12 hammasi 0.
   **Darslararo** (`vositalar/darslararo.mjs 05 B`): ✓ 02→03, 03→04, 03→05, 06→07 (kanal), 07→08, 08→09, 11→12. Kodda ulangan, brauzerda qadamga yetilmagan: 01→06 (s10), 06→07 (A2 post), 08→10 (forma keyingi kartasi), 10→11 (0-ekran — faqat 11-Modul pitchi bilan; ataylab).
   **Umumiy tuzatish ro'yxati (foydalanuvchi ko'rigidan keyin):** (1) «Maydon Jamoa» rangi `T.ok` → `#2E9E4F` — pilotlar + A (7 fayl) · (2) 6-dars 4-ekran telefondagi mayda matn · (3) yakun «hech biri» chegaradagi sarlavhalar: 8 «Sonlar o'qildi — …», 11 «Pitch ochildi — …» · (4) 11-dars 6, 7-ekran bo'sh holati · (5) `SANA_SOZ` aylanmasi (10, 12) — til-lint qoidasi tuzatilsa · (6) qilinmagan jonli rejim qismlari (12: rescue, proyektor taymeri; 6/10/12: sinf ovozlari chizig'i; Mentor statistikasi yorliqlari) · (7) agentlarning «MD ga taklif»lari — yakuniy MD bosqichida.
+
+- **2026-10-07 17:17** — **COMMIT `0d80850` va PUSH ✓** (foydalanuvchi: «hozirgi holatni gitga push qil, yo'qolib qolmasin»): 03–12 darslar, App.jsx dan faqat 12-Modulning 10 importi va `m10-03…12` comp (indeks: HEAD `33e4020` + o'z 20 qatorim; boshqa seansning 13-Modul bloki kirmadi), `feedback/F-1006-12modul/` (MD, jurnal, SABOQ, topshiriq, vositalar, DAVOM_PROMPT). `origin/main` = `0d80850`. Undan keyin — faqat shu yozuv va DAVOM holat qatori (hujjat commiti).
 
 ## MEXANIZM-TAKLIF (asosiy seans uchun; o'zim tegmayman)
 

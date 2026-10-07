@@ -1,4 +1,4 @@
-# 12-Modul — davom prompti (holat: 07.10.2026 17:10)
+# 12-Modul — davom prompti (holat: 07.10.2026 17:17; hammasi commit `0d80850` va push ✓)
 
 ## Yangi seansga nusxalanadigan qisqa matn
 
@@ -24,18 +24,18 @@ Keyin men darslarni ko'rib fidbek beraman — retsept B (tashxis avval, tuzatish
 |---|---|---|---|---|
 | 1 | m10-01 | `PmLandingLesson.jsx` | PM | pilot, ko'rikdan o'tgan, commit `95912f6` |
 | 2 | m10-02 | `WebSocketBasicsLesson.jsx` | Kod | pilot, ko'rikdan o'tgan, commit `95912f6` |
-| 3–7 | m10-03…07 | `PmRealtimeSpec`, `LiveNotifyDay`, `BreakAndFix`, `PmChannels`, `PmFiftyUsers` | A to'lqin | qurilgan + o'z tekshiruvim; **foydalanuvchi ko'rmagan**; uncommitted |
-| 8–12 | m10-08…12 | `PmDropOff`, `RetentionDay`, `PmUsersCheck`, `PmPitchReview`, `PmGrowthPitch` | B to'lqin | qurilgan + o'z tekshiruvim; **foydalanuvchi ko'rmagan**; uncommitted |
+| 3–7 | m10-03…07 | `PmRealtimeSpec`, `LiveNotifyDay`, `BreakAndFix`, `PmChannels`, `PmFiftyUsers` | A to'lqin | qurilgan + o'z tekshiruvim; **foydalanuvchi ko'rmagan**; commit `0d80850` |
+| 8–12 | m10-08…12 | `PmDropOff`, `RetentionDay`, `PmUsersCheck`, `PmPitchReview`, `PmGrowthPitch` | B to'lqin | qurilgan + o'z tekshiruvim; **foydalanuvchi ko'rmagan**; commit `0d80850` |
 
 - Hammasi: `npm run gates` 12/12 · `lint:jsx` 0 · `lint:til` 0 error · `vite build` ✓ · `vositalar/kesik.mjs` (desk 1100, keng 1440, mob 390; ⛶ markazi) — 0.
 - Darslararo kalitlar (`vositalar/darslararo.mjs 05 B`): ✓ 02→03, 03→04, 03→05, 06→07, 07→08, 08→09, 11→12; kodda ulangan, brauzerda qadamga yetilmagan: 01→06, 06→07 (A2 post), 08→10, 10→11.
-- **Uncommitted:** `src/10-Modull/` dagi 10 fayl (03–12), App.jsx (10 import + `m10-03…12` `comp`), `feedback/F-1006-12modul/` (JURNAL, SABOQ, `QURUVCHI_TOPSHIRIQ_2.md`, `vositalar/`, 03–12 MD lar, `DAVOM_PROMPT.md`).
+- **Commit va push ✓:** `95912f6` (pilotlar) + `0d80850` (03–12, App.jsx dan faqat 12-Modul qatorlari, hujjatlar, vositalar) — `origin/main`. App.jsx dagi boshqa seanslar o'zgarishi (13-Modul bloki) commitga kirmagan.
 - **F-ID keyingisi: F-1006-389.** Ruscha matnlar — agent qoralamasi (6-RU bosqichi qilinmagan).
 
 ## 3. Yangi seansda birinchi qadamlar
 1. Shu fayl + `JURNAL.md` «Keyingi qadam» + 07.10 yozuvlari; `QURUVCHI_SABOQ.md` E 40–55 (foydalanuvchining pilot ko'rigidagi qarorlari — eng ustun).
 2. Server: `curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5174/` — 200 bo'lmasa fon rejimida `npx vite --port 5174 --strictPort --host 127.0.0.1`. **5173 — AILM loyihasi, tegilmaydi.**
-3. `git status --short -- src/10-Modull feedback/F-1006-12modul src/App.jsx` — 2-bo'limdagi ro'yxat bilan solishtiring.
+3. `git status --short -- src/10-Modull feedback/F-1006-12modul src/App.jsx` — toza bo'lishi kerak (App.jsx da faqat boshqa seanslar qatorlari qolishi mumkin).
 4. Foydalanuvchiga qisqa holat → u darslarni ko'radi → fidbek F-1006-389 dan (retsept B).
 
 ## 4. Foydalanuvchining doimiy qoidalari (buzilmasin)
