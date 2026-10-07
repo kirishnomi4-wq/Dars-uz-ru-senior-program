@@ -44,6 +44,7 @@ for p in sys.argv[1:]:
         'taqiq so\'z': r'\bsir\b|\bsehr|mo.jiza|professional|\bmohiyat',
         'emoji': r'[\U0001F300-\U0001FAFF]',
     }
+    if nn != '13': pat['Demo Day (faqat 13-dars, 9.13)'] = r'Demo Day'  # 08.10: 07 arena distraktorida topildi
     bad = {}
     for kk, v in pat.items():
         hits = [n + 1 for n, l in enumerate(L) if re.search(v, l, re.I)]

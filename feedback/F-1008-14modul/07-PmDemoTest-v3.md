@@ -465,7 +465,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - ✔ A — O'quvchi o'zi, o'z mahsulotida (30)
    - B — Agent, o'quvchi so'ramasdan o'zi (32)
    - C — Sinfdosh, o'quvchining hisobidan (32)
-   - D — Hakam, Demo Day kunining o'zida (31)
+   - D — Hakam, chiqish kunining o'zida (30)
 2. Demo besh qadamda xatosiz o'tdi. Bu nimani ko'rsatadi? (2)
    - A — Demo har sharoitda ishlashini (29)
    - ✔ B — Oddiy sharoitda demo ishlashini (31)
@@ -522,7 +522,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
     - C — Faqat buzilgan va tuzatilganlar (31)
     - ✔ D — Har usul, natijasi va holati (28)
 - Har savolda to'g'ri variant yolg'iz eng uzun emas (S-006); kalit ibora ekran testlari bilan takrorlanmaydi (S-008): 3-ekran (bo'sh holatni qanday bilasiz — kitob ilovasi) ↔ arena 5 (qaysi hisobda) · 8-ekran (qayta tekshiruvsiz bilinmaydi) ↔ arena 7 (qaysi belgi) va arena 8 (yana buzilsa).
-- Distraktorlar darsning o'z qoidasi bo'yicha noto'g'ri, yolg'on fakt emas (S-004), har savolda uch xil turkum: 1 — agent o'zboshimcha, boshqa odam hisobi, kech (Demo Day) · 2 — kafolat da'vosi, boshqa ish dalili, demoga aloqasiz · 3 — bosilmaydigan joy, jonli bo'lmagan joy, dars asbobi ·
+- Distraktorlar darsning o'z qoidasi bo'yicha noto'g'ri, yolg'on fakt emas (S-004), har savolda uch xil turkum: 1 — agent o'zboshimcha, boshqa odam hisobi, kech (chiqish kuni) · 2 — kafolat da'vosi, boshqa ish dalili, demoga aloqasiz · 3 — bosilmaydigan joy, jonli bo'lmagan joy, dars asbobi ·
   4 — natija, oldini olish, stsenariy · 5 — haqiqiy foydalanuvchi, boshqa odamning shaxsiy hisobi, o'z demo hisobi (demo buziladi) · 6 — mavhum, oldini olish, agent da'vosi · 7 — natija da'vosi, noto'g'ri belgi, o'tishni tashlash · 8 — yashirish (o'chirish), ko'rsatmaslik, yangi funksiya ·
   9 — yangi funksiya, boshqa dars (savol-javob), kod qayta yozish · 10 — hakamga havola, ommaviy chat (video qoidasi), ikkinchi qurilma · 11 — hakamga qoldirish, haqiqiy hisob, boshqa odamga berish · 12 — faqat agent so'zi, hech narsa, buzilmaganlarni yashirish.
 - **Fon so'zlari** (R-008, kodda {uz, ru}): arena — demo · o'tish · risk · kutish · buzish yozuvi · B reja · taymer · Maydon Jamoa · uyga vazifa banneri — demo · o'tish · kutish. Emoji yo'q.
@@ -593,7 +593,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 13. **Uyga vazifa ②** — tanish odamga demoni bir marta ko'rsatish va «bir qarashda bilindimi?» savoli (2-ekrandagi ikkinchi savol). Tayanchda 7-dars uyga vazifasi yozilmagan; PM+PRAKT darsida uyga vazifa bor (13-Modul 7-dars naqshi).
 14. **Tekshiruv akkaunti promptida «foydalanuvchilar sanog'iga tushmaydigan»** (o'quvchi) va «`namuna = true`» (Mentor Yordami) — 12-Modul `namuna` ustuni; o'quvchi mahsulotida ustun nomi boshqacha bo'lishi mumkin.
 15. **Ikki marta bosish va 4-dars** — Mentor misolida 4-darsda «bosish javobi» qurilgan (ikki marta bosilmaydi); bugungi urinish — shuni demo sharoitida qayta ko'rish. 4-dars kodining haqiqiy holati — ⛔ pilot. <!-- TAXMIN T7 -->
-16. **«hakam» — 1-darsda tug'iladi deb oldim** (tayanch 2 jadvali; 1-dars pilotda «hakam savollari»). 7-darsda glosssiz ishlatildi (0, 1, 2-ekran, arena). 1-dars MD sida tug'ilmasa — 0-ekran maketiga bitta kulrang yorliq: «hakam — Demo Day'da baho beradigan investor yoki tadbirkor». <!-- TAXMIN T19 -->
+16. **«hakam» — 1-darsda tug'iladi deb oldim** (tayanch 2 jadvali; 1-dars pilotda «hakam savollari»). 7-darsda glosssiz ishlatildi (0, 1, 2-ekran, arena). 1-dars MD sida tug'ilmasa — 0-ekran maketiga bitta kulrang yorliq: «Pitchni baholaydigan odam — investor yoki tadbirkor — hakam deyiladi.» (tayanch 9.12 aynan). <!-- TAXMIN T19 -->
 17. **Kitob almashish ilovasidagi «Mening kitoblarim»** (3-ekran, ikkinchi misol) — o'ylab topilgan bo'lim nomi (P-002: qisqa testda o'smir olamidan); 13-Modul arena 9 dagi kitob almashish ilovasi bilan bir olam.
 
 ## Shubhali joylar (ishonchim komil emas)

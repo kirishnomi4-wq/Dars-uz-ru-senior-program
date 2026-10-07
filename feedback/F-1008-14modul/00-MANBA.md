@@ -57,7 +57,7 @@ Dars sifat filtri (dastur, v8.1): har dars kamida bittasidan o'tadi — ko'rsats
 | video | **ha** | 11-Modul (ekran videosi — demo B rejasi) |
 | portfolio | **ha** (10-Modul) | 10-Modul «Bir yilda nimalarni qurdingiz?» (`m8` PmYearPath) — portfolio so'zi 51 joy |
 | investor | qisman | 9, 10-Modul (keys tilida) |
-| storytelling / hikoya | **yo'q** | «hikoya» moslashuvlari — «hikoyat» (shikoyat); storytelling o'tilmagan |
+| storytelling / hikoya | **bor (9-Modul)** | `src/7-Modull/PmUserStoryPitchLesson.jsx` — «Pitchingizda kimning hikoyasi bor?»; ta'rif «bitta real odam bilan bo'lib o'tgan ish». 08.10 03:57 tuzatildi: avvalgi «yo'q» — grep «shikoyat» ga ilingan edi (2-dars agenti topdi, TS1) |
 | Y Combinator / YC · Demo Day | YC **yo'q** (kodda «yc» — CSS prefiks); Demo Day — ha (7-Demo Day) | — |
 | Lighthouse · lazy load · bundle · kesh | **yo'q** | 14-Modul 3-darsida birinchi marta |
 | hakam | **yo'q** | Demo Day 8 — birinchi marta |

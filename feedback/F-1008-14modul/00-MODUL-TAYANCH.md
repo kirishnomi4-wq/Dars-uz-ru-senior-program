@@ -30,7 +30,7 @@
 ### 1.2 Mahsulot hikoyasi (2-dars, PM, K19)
 - **Hikoya — bitta odam, bitta lahza, o'zgarish:** «Shanba, 18:00. Maydonda 8 kishi, yana 2 kishi kelmadi — o'yin bo'lmadi.» → ilova → «Endi tashkilotchi juma kuni ko'radi: 9 / 10, bitta joy bo'sh.» Funksiyalar ro'yxati («ilovada 12 ta funksiya bor») — hikoya emas.
 - **Hikoya pitchning qayerida:** Muammo bo'lagi lahza bilan boshlanadi; Yechim — o'sha lahza qanday o'zgargani; Raqamlar — shunday lahzalar nechta.
-- **K19 Apple iPhone** (bank so'zi, raqamsiz; taqdimot sanasi 9.01.2007): «Jobs iPhone'ni "uchta qurilma bittada" deb taqdim etdi» — xususiyatlar ro'yxati o'rniga bitta hikoya chizig'i (T18).
+- **K19 Apple iPhone** (bank so'zi, raqamsiz; taqdimot sanasi 9.01.2007): «Jobs iPhone'ni "uch qurilma bittada" deb taqdim etdi» (so'z 11-Modul `PmPrototypePitchLesson` dagidek; K19 o'quvchiga tanish — bugungi burchak: hikoya chizig'i) — xususiyatlar ro'yxati o'rniga bitta hikoya chizig'i (T18).
 - **O'zini videoga yozish** (dastur natijasi): o'quvchi telefonida pitchning birinchi daqiqasini (hikoya qismi) yozadi va **o'zi bir marta ko'radi**, uch savol bilan: hikoya lahza bilan boshlandimi · funksiyalar ro'yxati yo'qmi · 1 daqiqaga sig'dimi. Video telefonda qoladi — hech qayerga yuklanmaydi (T12 qoidasi). Saqlanadi `pm-m12d2-hikoya` (matn va tekshiruv javoblari; video fayl emas).
 
 ### 1.3 Mahsulot tezligi (3-dars, TEX — modul cho'qqisi) — T5, T6
@@ -90,7 +90,7 @@
 - Kafolat yo'q («qabul qilinasiz» deyilmaydi). Saqlanadi `pm-m12d11-dastur`.
 
 ### 1.12 Keyingi olti oy — Mentor bilan yakkama-yakka (12-dars, PM) — T15
-- **Uch yo'nalish:** mahsulot (davom ettiraman / to'xtataman + sabab) · ko'nikma (nima o'rganaman) · ish (buyurtma, stajirovka yoki dastur — 10, 11-darsdan). Har yo'nalishga oylik bitta nishon va **birinchi qadam sanasi**.
+- **Uch yo'nalish:** mahsulot (davom ettiraman / to'xtataman + sabab) · ko'nikma (nima o'rganaman) · ish (buyurtma, stajirovka yoki dastur — 10, 11-darsdan). Har yo'nalishga oylik bitta maqsad (o'quvchi matnida «oylik maqsad» — «nishon» o'yin nishoni bilan to'qnashadi; 12-dars TS3, 08.10) va **birinchi qadam sanasi**.
 - 13-Modul refleksiyasi (`pm-m11d11-refleksiya`) o'qiladi — «Keyingi 4 haftada nima qilaman?» javobi shu yerga ko'chadi.
 - Farqi: 11-Modul 15-dars — Demo Day oldidan reja va risklar · 12-Modul 11-dars — pitch da'volari · 13-Modul 11-dars — ortga qarash · **bu dars — oldinga qarash**. Mentor bilan 10 daqiqa. Saqlanadi `pm-m12d12-reja`.
 - Mentor misoli: «Mahsulot — davom ettiraman: uch tashkilotchi bilan "Doimiy o'yin"ni sinayman. Ko'nikma — Backend testlari. Ish — Diamond Challenge'ga jamoa bilan konsept.» (yangi tafsilot — faqat shu dars).
@@ -119,8 +119,8 @@ Oldingi modullardan o'zgarmaydi: pitch · zal · zal savoli · baholash varag'i 
 | Jamoa (bo'lak) | mahsulotni kim qilayotgani (1-dars, 9.4) — bo'lak nomi doim bosh harf bilan yoki «Jamoa bo'lagi»; «jamoa» prozada futbol ma'nosida ishlatilmaydi («Maydon Jamoa» — nom) | team (prozada), «komanda» |
 | so'rov (aniq so'rov) | Keyingi qadam bo'lagidagi bitta aniq iltimos: tanishtirish · maslahat · sinash joyi (1-dars); Mentor gapi «Sizdan bitta so'rov: …» — «Yordam» (tugma) bilan aralashmaydi | «yordam» (bu ma'noda), investitsiya so'rovi |
 | savol-javob | pitchdan keyin hakamlarning savollari va javoblar; kartochkada bir marta «inglizchasi: Q&A» | Q&A (prozada), «intervyu» |
-| hakam · hakam varag'i | Demo Day'da baho beradigan odam (investor, tadbirkor) · uning varag'i (13-dars) | jyuri, komissiya |
-| hikoya | bitta odam, bitta lahza va o'zgarish orqali aytish (2-dars); kartochkada bir marta «inglizchasi: storytelling» | storytelling (prozada), «sarguzasht» |
+| hakam · hakam varag'i | 1-darsda: «Pitchni baholaydigan odam — investor yoki tadbirkor — hakam deyiladi.» (9.12; «Demo Day» so'zisiz — 9.13) · uning varag'i (13-dars) | jyuri, komissiya |
+| hikoya | **9-Modulda o'tilgan** («bitta real odam bilan bo'lib o'tgan ish», `PmUserStoryPitchLesson`); 2-darsda kengayadi: «Mahsulot hikoyasi — bitta odam, bitta lahza va mahsulot bilan kelgan o'zgarish»; kartochkada bir marta «inglizchasi: storytelling» (08.10 03:58, 2-dars TS1) | storytelling (prozada), «sarguzasht» |
 | tezlik · Lighthouse bahosi | mahsulot qanchalik tez ochilishi va javob berishi · Lighthouse'ning 0–100 bahosi (Performance) | performance (prozada), «optimizatsiya» (yolg'iz) |
 | yuklanadigan kod hajmi | ilova ochilganda yuklanadigan kod hajmi; kartochkada «inglizchasi: bundle» | bundle (prozada), «paket» |
 | keyin yuklash | ekrandan tashqaridagi rasm faqat kerak bo'lganda yuklanadi (`loading="lazy"`); kartochkada «inglizchasi: lazy load» | lazy load (prozada), «dangasa yuklash» |
@@ -133,7 +133,7 @@ Oldingi modullardan o'zgarmaydi: pitch · zal · zal savoli · baholash varag'i 
 | frilans · buyurtma · buyurtmachi | buyurtma bilan ishlash · bajariladigan ish · ish beradigan odam yoki kompaniya (10-dars) | zakaz, klient (bu ma'noda) |
 | stajirovka | kompaniyada o'qib ishlash davri (10-dars); «amaliyot» — dars ichidagi amaliyot bloki, ishlatilmaydi | amaliyot (bu ma'noda), intern |
 | xalqaro dastur · ariza · maslahatchi | startap tanlovi yoki akseleratori · topshiriladigan anketa · jamoaga yordam beradigan katta yoshli odam (11-dars) | akselerator (prozada, birinchi uchrashuvdan keyin), mentor (maslahatchi ma'nosida) |
-| olti oylik reja | uch yo'nalish, oylik nishon va birinchi qadam sanasi (12-dars) | «hayot rejasi», «karyera rejasi» |
+| olti oylik reja | uch yo'nalish, oylik maqsad va birinchi qadam sanasi (12-dars) | «hayot rejasi», «karyera rejasi», «oylik nishon» (o'yin nishoni bilan to'qnashadi) |
 **Bir darsda bir ma'no (T-015):** «demo» — jonli demo (pitch ichida) yoki demo stsenariysi; «tekshiruv» — o'quvchining o'z tekshiruvi; «sinov» — faqat real odam bilan (5, 8, 13-darsdagi guruh va mehmon — «tinglovchi», «hakam», sinov emas).
 
 ## 3. Repo — Mentor misoli `maydon-jamoa` (davomi) va o'quvchining o'z repo'si (T4)
@@ -175,6 +175,7 @@ TEX 19 — texnik dars + repo bloki (13-Modul 3-dars shakli) · loyiha kuni / TE
 
 ## 6. Tekshirilgan faktlar (08.10.2026; iqtiboslar — `00-MANBA.md` 5)
 Lighthouse 10 vaznlari va ranglari · Expo Atlas (SDK 51+) buyruqlari · `loading="lazy"` qoidasi va LCP ogohlantirishi · Render bepul xizmati uxlashi (06.10) · Diamond Challenge shartlari va 2027 sanalari · YC FAQ (yosh yo'q, to'liq vaqt) va Early Decision (talabalar).
+**Qo'shimcha (08.10 03:59; 11-dars agenti rasmiy sahifani qayta ochgan, iqtiboslar — `11-PmPrograms-v3.md` «Manbalar»):** Diamond Challenge — ariza ingliz tilida («All submissions are to be written in English») · birinchi bosqich — 3–5 betlik yozma g'oya va 60 soniyalik tanishtiruv videosi («The video is strictly limited to 60 seconds» — 04:00 da o'zim qayta tekshirdim) · «Any Idea, Any Team, Any Country», onlayn qatnashish ham bor · YC — «The batch takes place in-person in San Francisco». Sovrin fondi va qatnashish puli o'quvchi matnida aytilmaydi. diamondchallenge.org/faq — 404 (maslahatchi kim bo'lishi — rasmiy matn topilmadi).
 **Tekshirilmagan (darsda da'vo qilinmaydi):** Upwork yosh chegarasining rasmiy matni (sahifa 403) · lokal grantlar · ekran yozish vositalarining nomi va menyusi · telefonni proyektorga ulash · Mentor misolining Lighthouse/bundle sonlari va buzish natijalari (⛔ pilot).
 
 ## 7. Oldindan tuzatiladigan sinflar (12-Modul 12 + 13-Modul 9 Filtr faylidan; 13-Modul tayanchi 7 — kuchda; MD yozishda BIRINCHI KUNDANOQ)
@@ -234,9 +235,21 @@ Pilotlar: `01-PmInvestorPitch-v3.md` · `03-ProductSpeed-v3.md` · `07-PmDemoTes
 10. **«Xatosiz» o'tish** — demo stsenariysining beshala qadami rejadagidek o'tdi; vaqt belgi emas. Har urinish va o'tishdan keyin demo holati boshiga qaytariladi (Mentor misolida — o'yindan chiqish, yana «8 / 10») — 6-dars stsenariysida «boshiga qaytarish» tayyorlov qatori.
 11. **`XATOLAR.md` ga «## Demo tekshiruvi» bo'limi** (7-dars) — 13-Modul 12-darsi shakli (usul · natija · holat).
 12. **«hakam» 1-darsda tug'iladi** (ta'rif: «Pitchni baholaydigan odam — investor yoki tadbirkor — hakam deyiladi.»); keyingi darslarda glosssiz.
-13. **«Demo Day» o'quvchi matnida** — faqat 13-darsda (Demo Day formatidagi repetitsiya) va yakundagi «Keyingi dars» qatorida emas; 1–12-darslarda — «hakamlar oldida chiqish» (T-038: kelajak va'dasi yo'q).
+13. **«Demo Day» o'quvchi matnida** — faqat 13-darsda (Demo Day formatidagi repetitsiya) va yakundagi «Keyingi dars» qatorida emas; 1–12-darslarda — «hakamlar oldida chiqish» (T-038: kelajak va'dasi yo'q). **Istisno (08.10 04:07, 12-dars TS9):** 12-dars yakunidagi «Keyingi dars» qatori — 13-dars nomi App.jsx dagidek aynan («Demo Day'ga tayyormisiz?», P-015); mazmuni va'da qilinmaydi.
 14. **12-Modul o'sish grafigi** pitch qoralamasiga kirmaydi (matn bo'laklari); 5, 8, 13-darslarda ham grafik qaytmaydi — Raqamlar bo'lagi gap bilan.
 15. **Kod oynasi va namuna o'lchamlari** (3-dars): rasm o'lchami 180 × 320 va lendingdagi pastki ikki rasm — sahna namunasi, Mentor lendingining haqiqiy o'lchami emas (⛔ «qur» da moslanadi).
+
+**2-to'lqin kelishuvlari (08.10 04:05, F-1008-557; manba — `2TOLQIN-OZ-AUDIT.md`):**
+16. **Mentor pitchining tuzatilishi — bitta manba:** 5-dars `MENTOR_TUZATISH` (Bozor — «60 kim ekanini aytaman: mahalla futbol guruhi a'zolari» · Raqamlar — «Tasdiq nima ekanini aytaman: yozma javob, pul emas» · Keyingi qadam — «Ilova maydon egalariga xizmat qilmasligini aytaman»);
+    tuzatilgan uch bo'lak matni — 8-dars TS3 (Keyingi qadam so'rovi: «… sizdan bitta so'rov: ular bilan tanishtiring» — GATE M). 13-darsda Mentor chiqishi — shu holat (pitch matni o'quvchi ekranida yo'q).
+17. **Mentor pitchining yozma matni** — 1.1 aynan (5-darsda ham); 2-darsdagi lahza — faqat 2-dars hikoya mashqida; 8, 13 — 16 dagi tuzatilgan holat.
+18. **Ikki so'z, ikki ma'no:** «demo yo'li» — mahsulotda demo o'tadigan ekranlar (joy; 4, 6, 7, 13) · «demo stsenariysi» — shu yo'ldagi yozilgan qadamlar (matn; 6, 7, 13). «B yo'l» — riskka oldindan tayyorlangan ish (6) · «B reja» — faqat B reja videosi (9.9).
+19. **Namuna akkaunt** — 6-darsda ikkita (laptop va telefon), `namuna = true`, o'chirilmaydi; 4-dars namuna yozuvi va 9-dars videosi shundan. **Tekshiruv akkaunti** (7-dars) — boshqa narsa, tekshiruvdan keyin o'chiriladi.
+20. **Dars raqami o'quvchi matnida** — ruxsat («6-darsdagi demo stsenariysi»; 12-Modul kodi naqshi «4-darsdagi …»); modul raqami — LMS bo'yicha; kod raqami (`m12-NN`) — yo'q.
+21. **Ikkinchi misol olami** (test va qisqa mashq, P-002) — kitob almashish ilovasi (1, 6, 7, 8, 13-darslar) · uy vazifalari ilovasi (4-dars).
+22. **9–12-darslar Mentor misollari** — 9-dars `MENTOR_SSENARIY` (A-4) · 10-dars buyurtma rejasi va ikki xat (A-6) · 11-dars `MENTOR_KONSEPT` (A-6); 12-dars uch yo'nalishi shulardan olinadi.
+23. **Nishon nomi** — PM darslarida «!» bilan, Kod darslarida «!» siz (12-Modul, 13-Modul naqshi).
+24. **Kalit qo'shimchalari (8-bo'limga «qur» oldidan):** `pm-m12d5-varaq.vaqt: n | null` · `pm-m12d8-final` + `vaqt: n | null`, `tur: 'sherik' | 'yakka'`, `bolaklar`, `savollar[].id` (bankdan bo'lsa) · `pm-m12d13-repetitsiya` — 13-dars TS1 · `pm-m12d11-dastur` tiplari — 11-dars TS7 · uzunliklar — 2-dars TS10, 9-dars TS4, 10-dars TS6. 9-dars `bor === true` → 10-darsda «Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz.»
 
 ## 10. Ruscha lug'at (6-RU bosqichi uchun; 13-Modul tayanchi 10 + 12-Modul `QURUVCHI_TOPSHIRIQ_3.md` — kuchda)
 | uz | ru | izoh |
@@ -245,4 +258,5 @@ Pilotlar: `01-PmInvestorPitch-v3.md` · `03-ProductSpeed-v3.md` · `07-PmDemoTes
 | pitch bo'laklari: Muammo · Bozor · Yechim · Raqamlar · Jamoa · Keyingi qadam | Проблема · Рынок · Решение · Цифры · Команда · Следующий шаг | «Цифры» — 12-Modul ru («Raqamlar»); yangilari — RU bosqichida o'lchanadi |
 | «Yordam» · «Bajardim» · «Davom etish» · «Ortda qoldingizmi» | «Подсказка» · «Готово» · «Продолжить» · «Отстали?» | 13-Modul lug'ati |
 | jonli demo · B reja · buzish yozuvi · «Tuzatish qilindi» | живое демо · запасной план · запись поломки · «Исправление сделано» | 11, 12-Modul |
-| **Yangi (o'lchanmagan — RU bosqichida tasdiqlanadi):** savol-javob · hakam · hikoya · tezlik · yuklanadigan kod hajmi · keyin yuklash · sayqal · joy egallovchi · demo stsenariysi · demo o'tishi · yangi funksiya to'xtatildi · demo tekshiruvi · video-portfolio · frilans · stajirovka · xalqaro dastur · maslahatchi | вопросы и ответы · судья · история · скорость · объём загружаемого кода · отложенная загрузка · шлифовка · заглушка · сценарий демо · прогон демо · заморозка новых функций · проверка демо · видео-портфолио · фриланс · стажировка · международная программа · наставник команды | taklif; «наставник» Mentor bilan aralashmasin — RU da qaror |
+| hikoya | история | 9-Modul `PmUserStoryPitchLesson` (08.10) |
+| **Yangi (o'lchanmagan — RU bosqichida tasdiqlanadi):** savol-javob · hakam · tezlik · yuklanadigan kod hajmi · keyin yuklash · sayqal · joy egallovchi · demo stsenariysi · demo o'tishi · yangi funksiya to'xtatildi · demo tekshiruvi · video-portfolio · frilans · stajirovka · xalqaro dastur · maslahatchi | вопросы и ответы · судья · скорость · объём загружаемого кода · отложенная загрузка · шлифовка · заглушка · сценарий демо · прогон демо · заморозка новых функций · проверка демо · видео-портфолио · фриланс · стажировка · международная программа · наставник команды | taklif; «наставник» Mentor bilan aralashmasin — RU da qaror |
