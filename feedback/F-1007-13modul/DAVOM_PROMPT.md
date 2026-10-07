@@ -41,7 +41,7 @@ Oldingi seans 07.10 17:10 da to'xtadi: 12 darsning MD v3 matni tayyor, GATE M sa
 | GATE M sahifasi | ⏳ e'lon qilingan, javob kutilmoqda (`gatem-1.json` → `konveyer/vositalar/gatem/sahifa.py`) |
 | ChatGPT auditi | ⏳ kutilmoqda |
 | `src/11-Modull/` | yo'q — «qur» hali boshlanmagan |
-| Commit | yo'q — `feedback/F-1007-13modul/` va App.jsx bloki uncommitted |
+| Commit | ✅ e3d665b push origin/main (07.10 17:16): modul papkasi + App.jsx dan faqat o'z ikki qismi. Ishchi fayldagi 12-Modul izoh ko'chishi — o'sha seansniki, tegilmaydi |
 
 ## Filtr tartibi (konveyer/1-MD.md, memory tashqi-audit-filtr)
 
