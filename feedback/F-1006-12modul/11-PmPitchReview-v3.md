@@ -376,7 +376,7 @@ namunalar: 11-Modul `15-PmOneOnOne-v3.md` + `15-FILTR.md` (12 ekranli yakkama-ya
   - Sarlavha · da'volar belgilangan, dalillar qo'yilmagan: **Da'volar topildi — dalil qo'yish qoldi.** (39)
   - Sarlavha · da'volar belgilanmagan: **Pitch ochildi — da'volarni uyda belgilang.** (42)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Sonlar pitchni o'zgartiradi: dalili bor gap qoladi, dalilsiz gap qayta yoziladi yoki olib tashlanadi. (101)
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Sonlar pitchni o'zgartiradi: dalili bor gap qoladi, dalilsiz gap qayta yoziladi yoki olib tashlanadi. (101)
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Da'vo — pitchdagi tekshirsa bo'ladigan gap.
   - Dalil — da'voni ko'rsatadigan son yoki yozuv; bu darsda yonida manbasi va qachon olingani turadi.
@@ -503,7 +503,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 ---
 
 ## KOD — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
-1. Yangi fayl `src/10-Modull/PmPitchReviewLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `m10-11-v1`, `lessonTitle` — «Raqamlaringiz pitchni qanday o'zgartiradi?».
+1. Yangi fayl `src/10-Modull/PmPitchReviewLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `pm-m10d11-v1` (07.10: PM darslar pilot 1 bilan bir — `pm-m10dN-v1`), `lessonTitle` — «Raqamlaringiz pitchni qanday o'zgartiradi?».
 2. `SCREEN_META` 12: hook · plan · concept · concept · test · practice · practice · practice · test · stats · flashcards (`sflash`) · summary. `INLINE_KEYS` { 4: 2, 8: 1 }; `davolar: -1`, `dalilUch: -1` (2, 3-ekran — ballsiz, nishon bilan);
    5–7 `practice: -1`, signal `PRACTICE_BASE + ekran`. `narrow` — 4, 8, 9-ekranlar.
    Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s3 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + `QTaxmin`, yopilmaydigan ixcham qator) · s4/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s5/s6/s7 `QMustaqil` · s9 `QNatija` · `sflash` `QKartochka` · s11 `QYakun`.

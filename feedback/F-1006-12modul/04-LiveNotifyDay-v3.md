@@ -390,7 +390,7 @@ Vaqt: ≈ 90 daqiqa — 0–2 ≈ 12 · Amaliyot 1 ≈ 22 · 4–5 ≈ 9 · Amal
   - Amaliyot 1 bajarilmagan, boshqasi bajarilgan: **«Hozir ko'ryapti»ni telefonda tekshirish qoldi.** (47)
   - hech biri: **Loyiha kuni boshlandi — qolgan qadamni tugating.** (48)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Bu modulda ilova ochiq bo'lsa, o'zgarish jonli xabar bo'lib keladi; yopiq bo'lsa, faqat ilova oldindan qo'ygan eslatma chiqadi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Bu modulda ilova ochiq bo'lsa, o'zgarish jonli xabar bo'lib keladi; yopiq bo'lsa, faqat ilova oldindan qo'ygan eslatma chiqadi.
 - Endi siz bilasiz (5; asosiy fikr bu yerda takrorlanmaydi — T-048):
   - Xona — Backend'dagi ulanishlar guruhi: hodisa faqat shu guruhdagilarga boradi.
   - «Hozir ko'ryapti» ochiq ekranlarni sanaydi, odamlarni emas.

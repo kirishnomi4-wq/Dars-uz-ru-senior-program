@@ -369,7 +369,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi · 1.2 — hodisa, sxem
   - Sarlavha · talab saqlanmagan: **Talab boshlandi — qolgan bo'limlarni tugating.** (46)
 - Sarlavha ostida bitta qator (talab saqlangan bo'lsa, hamma holatda; N — `pm-m10d3-talab.chekka.length`): Talabingizda N chekka holat yozilgan.
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda real vaqt talabi uch bo'limdan iborat: hodisalar, ulanish holatlari va chekka holatlar; talabda yozilgani telefonda tekshirilmaguncha bajarilgan ish emas.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda real vaqt talabi uch bo'limdan iborat: hodisalar, ulanish holatlari va chekka holatlar; talabda yozilgani telefonda tekshirilmaguncha bajarilgan ish emas.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Hodisalar bo'limida kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yoziladi.
   - Ulanish holatlari bo'limida har holatda foydalanuvchi nimani ko'rishi yoziladi.
@@ -498,7 +498,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144): boshqa holat, boshqa so'z. 
 ---
 
 ## KOD — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
-1. Yangi fayl `src/10-Modull/PmRealtimeSpecLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `m10-03-v1`, `lessonTitle` — «Ekran o'zi yangilanishi uchun nimani yozasiz?».
+1. Yangi fayl `src/10-Modull/PmRealtimeSpecLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `pm-m10d3-v1` (07.10: PM darslar pilot 1 bilan bir — `pm-m10dN-v1`), `lessonTitle` — «Ekran o'zi yangilanishi uchun nimani yozasiz?».
 2. `SCREEN_META` 12: hook · plan · concept · test · concept · practice-own (mustaqil) · practice (A1) · practice (A2) · test · stats · flashcards (`sflash`) · summary. `INLINE_KEYS` { 3: 3, 8: 1 }; bloklar va mustaqil ish `practice: -1`, signal `PRACTICE_BASE + ekran`.
 3. Qolip turlari: s0 `QKirish` · s1 `QReja` · s2, s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + `QTaxmin`, yopilmaydigan ixcham qator — `TaxminIxcham`) · s3/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s5 `QMustaqil` (`QQadamlar` 1/2/3 — yorliqlar «Hodisalar · Ulanish holatlari · Chekka holatlar») ·
    s6/s7 `QBlok` + `QPrompt` (`ScreenBlok` ulagichi, 4 bo'lak) · s9 `QNatija` · s10 `QKartochka` (alohida ekran) · s11 `QYakun`.

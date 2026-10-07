@@ -376,7 +376,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — 12-Modul o'zgarishlari, mehmon ko'rinishi 
   - Sarlavha · hech biri saqlanmagan: **Sonlar o'qildi — sanoq sahifasini tugating.** (43)
   - Mashq sonlari bilan saqlangan bo'lsa — sarlavha o'sha; ostida kulrang qator: Gipoteza mashq sonlarida — o'z sonlaringiz bilan qayta tekshiring. (66)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda qadamlar sanog'i qaysi oraliqda kamroq qurilma keyingi qadamga o'tganini ko'rsatadi, gipoteza esa nega shunday bo'lganini taxmin qiladi va bitta tuzatish bilan tekshiriladi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda qadamlar sanog'i qaysi oraliqda kamroq qurilma keyingi qadamga o'tganini ko'rsatadi, gipoteza esa nega shunday bo'lganini taxmin qiladi va bitta tuzatish bilan tekshiriladi.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Har qadamda turli qurilmalar sanaladi: bitta qurilma necha marta ochsa ham — bitta.
   - To'xtab qolish qadamini eng kichik son emas, past foiz ko'rsatadi.
@@ -506,7 +506,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144): boshqa holat, boshqa so'z. 
 ---
 
 ## KOD — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
-1. Yangi fayl `src/10-Modull/PmDropOffLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `m10-08-v1`, `lessonTitle` — «Foydalanuvchilar qaysi qadamda to'xtab qolyapti?».
+1. Yangi fayl `src/10-Modull/PmDropOffLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `pm-m10d8-v1` (07.10: PM darslar pilot 1 bilan bir — `pm-m10dN-v1`), `lessonTitle` — «Foydalanuvchilar qaysi qadamda to'xtab qolyapti?».
 2. `SCREEN_META` 12: hook · plan · concept · test · practice (A1) · case (voqea) · practice-own (mustaqil) · practice (A2) · test · stats · flashcards (`sflash`) · summary. `INLINE_KEYS` { 3: 2, 8: 0 }; bloklar `practice: -1`, signal `PRACTICE_BASE + ekran`.
    ⚠️ Skelet tartibidan farq: A1 — `screens[4]`, voqea — `[5]`, mustaqil — `[6]`, A2 — `[7]` (tayanch 4: 8-darsda A1 mustaqil ishdan oldin).
 3. Qolip turlari: s0 `QKirish` · s1 `QReja` · s2 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + `QTaxmin`, yopilmaydigan ixcham qator) · s3/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s4/s7 `QBlok` + `QPrompt` (`ScreenBlok` ulagichi, 4 bo'lim) ·

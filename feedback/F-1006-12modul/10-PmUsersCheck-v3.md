@@ -506,7 +506,7 @@ ORDER BY kun;
   - hisobot 4/4 dan kam: **Hisobot boshlandi — qolgan qatorlarni yozing.** (45)
   («4/4» — to'rt qatorning har birida son yoki «Hali sanalmagan» bor.) Sarlavha ostida bitta yorliq (bo'lsa): «Sanalmagan qator: {k} ta — uyda».
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Hisobotdagi son manbasi va sanasi bilan tekshiriladi; maqsadga yetmasa — bitta bo'g'in tanlanib, unga bitta ish yoziladi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Hisobotdagi son manbasi va sanasi bilan tekshiriladi; maqsadga yetmasa — bitta bo'g'in tanlanib, unga bitta ish yoziladi.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Bizda metrika hisoboti — to'rt son, har birining manbasi va sanasi bilan. (73)
   - Mentor tekshiruvi uch savol beradi: son qayerdan, kimlar sanalgan, oldingi son bormi. (85)

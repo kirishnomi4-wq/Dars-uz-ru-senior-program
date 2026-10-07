@@ -381,7 +381,7 @@ Manba: `00-MODUL-TAYANCH.md` (06.10 14:15 holati; 1.0 — boshlanish nuqtasi · 
   - Sarlavha · reja saqlangan, malumot yo'q: **Reja tayyor — uch tekshiruv qoldi.** (34)
   - Sarlavha · reja saqlanmagan: **Reja boshlandi — qolgan bosqichni tugating.** (43)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda 50 foydalanuvchiga uch bosqichli reja bilan boriladi, havola yuborishdan oldin esa ilovada ma'lumot, o'lchov va havola tekshiriladi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda 50 foydalanuvchiga uch bosqichli reja bilan boriladi, havola yuborishdan oldin esa ilovada ma'lumot, o'lchov va havola tekshiriladi.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Rejadagi kutilgan son — taxmin; haqiqiy son Database'dan sanaladi.
   - Ikki son yonma-yon aytiladi: ro'yxatdan o'tgan va asosiy harakatni qilgan.
@@ -508,7 +508,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144): boshqa holat, boshqa so'z. 
 ---
 
 ## KOD — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
-1. Yangi fayl `src/10-Modull/PmFiftyUsersLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `m10-07-v1`, `lessonTitle` — «50 foydalanuvchiga qanday yetasiz?».
+1. Yangi fayl `src/10-Modull/PmFiftyUsersLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `pm-m10d7-v1` (07.10: PM darslar pilot 1 bilan bir — `pm-m10dN-v1`), `lessonTitle` — «50 foydalanuvchiga qanday yetasiz?».
 2. `SCREEN_META` 12: hook · plan · concept · test · concept · practice-own (mustaqil) · practice (A1) · practice (A2) · test · stats · flashcards (`sflash`) · summary. `INLINE_KEYS` { 3: 2, 8: 0 }; bloklar `practice: -1`, signal `PRACTICE_BASE + ekran`.
 3. Qolip turlari: s0 `QKirish` · s1 `QReja` · s2, s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + `QTaxmin`, yopilmaydigan ixcham qator — `TaxminIxcham`) · s3/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s5 `QMustaqil` (`QQadamlar` 1/2/3) · s6/s7 `QBlok` + `QPrompt` (`ScreenBlok` ulagichi, 4 bo'lim) · s9 `QNatija` · s10 `QKartochka` (alohida ekran) · s11 `QYakun`.
 4. **Bitta vizual `IshgaTushirish`** (180): `ISHGA_TUSHIRISH` const — `reja` (3 bosqich: kanal, nima, kutilgan, qachon — tayanch 1.7), `sanoq` (20 · 11 · 9 · 8), `yol` (post → lending → havola → ilova → ro'yxatdan o'tdi → qo'shildi), `lending` (sarlavha, tugma, bo'lim matnlari — 1.1, 1.7), `post2` (ikkinchi post), `qadamlar` (to'rt nom va yorliqlari), `maxfiylik` (to'rt javob — A2 o'ngi, tayanch 1.7), `formaGapi` (9.7).

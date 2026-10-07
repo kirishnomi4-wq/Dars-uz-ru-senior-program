@@ -485,7 +485,7 @@ havolalar.forEach(function (havola) {
   - kanal saqlanmagan: **Kanal tanlash boshlandi — qolganini tugating.** (45)
   Sarlavha ostida bitta chip (ro'yxat holati): «Olti band: tekshirildi» (oltitasi ✓) · «Sinf chati uchun tekshirildi — 4-band boshqa kanallardan oldin» (4-bandsiz) · «Olti band: n / 6» (06-FILTR 33).
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Birinchi kanal — auditoriyangiz bor, siz a'zo va post yozishga ruxsat bor joy; post olti band tekshirilgach yuboriladi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Birinchi kanal — auditoriyangiz bor, siz a'zo va post yozishga ruxsat bor joy; post olti band tekshirilgach yuboriladi.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Kanal — odamlar mahsulot haqida eshitadigan joy.
   - Bizda kanal uch savol bilan tanlanadi: auditoriya shu yerdami, siz a'zomisiz, post yozishga ruxsat bormi.

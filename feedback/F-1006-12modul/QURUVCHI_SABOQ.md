@@ -20,7 +20,7 @@
   «O'qituvchi eslatmasi» — faqat MD aytgan joyda (Mentor rejimi). Matn noqulay tuyulsa — o'zgartirmang, hisobotda «MD ga taklif» (SABOQ 15).
   MD boshidagi «NN-FILTR dan keyingi holat» qatori va matn ichidagi «(NN-FILTR k)» havolalari — nega shunday yozilganining izohi; shubha bo'lsa o'z `NN-FILTR.md` ni oching.
 - **MD ↔ SABOQ ziddiyati (vizual).** MD lar 11-Modul pilot ko'rigidan (SABOQ D 32–39) OLDIN yozilgan. Vizual ko'rsatma SABOQ ga zid kelsa — **SABOQ ustun**, matn esa MD dan o'zgarmaydi; har holat hisobotda «MD dan chetlashish (SABOQ N)»:
-  - MD «tanlov guruhida har variantda yumshoq halqa» deydi → SABOQ 32: guruhda bitta halqa, yengil puls.
+  - MD «tanlov guruhida har variantda yumshoq halqa» deydi → **MD to'g'ri: E 40** (har variantning o'z yengil chegarasi; D bo'limidagi SABOQ 32 «guruhda bitta halqa» 07.10 da foydalanuvchi tomonidan bekor qilingan).
   - MD reja va kirish vizualida «matnsiz kulrang qatorlar / skelet» deydi → SABOQ 33: bo'sh chiziqlar o'rnida haqiqiy mazmun (Mentor misolidagi nomlar, bo'lak nomlari); faqat keyingi ekranning kashfiyoti (javobi) ochilmasin — nima qo'yilganini hisobotda yozing.
     Uzuq chiziqli «to'ldiriladigan joy» (U-041) faqat o'quvchi o'zi to'ldiradigan maydonda qoladi.
   - MD «siluet», «bosh-siluet» deydi (odam, zal) → SABOQ 36: bosh, soch, yuz belgisi, rangli kiyim; iliq ranglar.
@@ -41,14 +41,14 @@
   Blok «bajarildi» bayrog'i — faqat oxirgi (tekshiruv) «Bajardim»idan; «Ulgurmasangiz» yo'lida «Davom etish» oldinroq ochilsa ham bayroq qo'yilmaydi (tayanch 9.36 h); yakun sarlavhasi shu bayroqlardan.
   Repo hali ochilmagan — ekranda faqat matn; quruvchi repo yaratmaydi, GitHub'ga, Netlify'ga, Render'ga hech narsa yubormaydi.
 - **Trek** — `pm-m9d8-platforma.trek` (`mobil` | `web`): MD dagi trek qatorlari; kalit yo'q bo'lsa — MD aytgan yo'l (tanlov chipi yoki ikkala qator).
-- **Yakun** — holatga qarab sarlavhalar (MD dagi hamma holat), belgi ✓ va nishon faqat to'liq holatda; uyga vazifa — `HwCard` (yangi; alohida `.homework.jsx` yo'q); ichki skroll qutisi yo'q.
+- **Yakun** — holatga qarab sarlavhalar (MD dagi hamma holat; har biri rost — E 54), belgi ✓ va nishon faqat to'liq holatda; standart tarkib — E 50 (texnik darsda «Bugungi asosiy fikr» yo'q); uyga vazifa — `HwCard` (yangi; alohida `.homework.jsx` yo'q); ichki skroll qutisi yo'q.
 - **Skelet tuzoqlari** (skelet 05.10 dan beri tuzatilmagan — o'z faylingizda hal qiling): test ustidagi «To'g'ri javobni tanlang» yo'q · `bashorat={!taxmin && …}` ishlatilmaydi ·
   `practice: ou(title)` → `ou(eyebrow)` · `QZ_BG_SHAPES` — darsning o'z atamalari (MD «Fon so'zlari»), emoji va «Frontend/Backend» yo'q · `rgba(255,79,40,…)` → `fon(T.accent)` ·
-  `QKod` o'ng ustun propi — 9-Modul 1-dars `QKOD_ONG` yechimi · global `.mentor` klassi bilan to'qnashmang (dars elementiga o'z prefiksi) · ⛶ (`Zoomable`) telefonda mazmunni yopmasin · `.zoom-on` qoidasi faylda bo'lsin ·
+  `QKod` o'ng ustun propi — 9-Modul 1-dars `QKOD_ONG` yechimi · global `.mentor` klassi bilan to'qnashmang (dars elementiga o'z prefiksi) · ⛶ (`Zoomable`) telefonda mazmunni yopmasin · `.zoomable.zoom-on` qoidasi fayl nusxasida allaqachon bor (E 48) — o'chirmang ·
   `HtmlCompiler` faqat birinchi JS faylni ulaydi va tekshiruv 50 ms da async ni kutmaydi (MEXANIZM navbati 11) — ko'p faylli kod oynasida shuni hisobga oling va sinab ko'ring.
   LiveGate sarlavhasi (`tr(LESSON_META.lessonTitle)`), `LESSON_META`, export nomi va palitra — fayl nusxasida allaqachon qo'yilgan.
 - **Agent tuzog'i:** Write/Bash `\uXXXX` ni harfga aylantirishi mumkin — kirill va belgilarni to'g'ridan-to'g'ri yozing, `lint:prompt` / `gates` bilan tekshiring. CSS shablon-satri ichida (izohda ham) BACKTIK yo'q.
-- **Lokal server** `localhost:5173` ishlab turibdi va boshqa seanslar bilan umumiy — to'xtatmang, qayta ishga tushirmang, portni band qilmang.
+- **Lokal server** dars uchun `localhost:5174` (07.10; **5173 — boshqa loyiha (AILM), unga tegmang**). Server ishga tushirmang, to'xtatmang — suratlar uchun `konveyer/vositalar/shots.mjs` / `ekran.mjs` (o'z to'plamini yasaydi) yetadi; brauzer sinovi kerak bo'lsa — `http://127.0.0.1:5174/#/lesson/m10-NN`.
 - **Hali sinalmagan narsalar («qur» darvozalari — tayanch 9.34–9.44 oxirlari):** haqiqiy telefon, Expo Go, brauzer ko'rinishi, `HtmlCompiler` dan o'qish. Dars fayli MD bo'yicha quriladi; sinov natijasi boshqacha chiqsa, MD va dars keyin birga tuzatiladi — quruvchi buni o'zi «tuzatib» qo'ymaydi.
 
 ## E. 12-Modul pilot ko'rigidan — foydalanuvchi fidbeki (07.10.2026, F-1006-368…388)
@@ -71,11 +71,11 @@
 48. 🔴 **⛶ oynasi: `.zoomable.zoom-on`** (ikki klassli selektor). Skeletdagi `.zoomable { position: relative }` keyinroq turadi va bir klassli `.zoom-on { position: fixed }` ni bekor qiladi —
     oyna joyidan siljib, ekran chetidan kesiladi (ikkala pilotda bor edi). Tekshiruv: oyna `getBoundingClientRect()` — gorizontal markazda (±2px).
 49. **Kartochka halqasi yengil** — ingichka accent chegara, puls 3 marta (10-Modul naqshi); ikki qavat halqa + cheksiz puls «juda oshib ketibdi».
-50. **Yakun — texnik darslar standarti**: «Bugungi asosiy fikr» qutisi texnik darsda yo'q (11-Modul FeatureOne kabi). PM darsi uchun — foydalanuvchi qarori kutilmoqda (1-dars F-1006-375).
+50. 🔴 **Yakun — standart tarkib, HAMMA 12-Modul darsida (PM ham)**: chip · ball · sarlavha · CODE STRIKE · «Endi siz bilasiz» · uyga vazifa · nishonlar. **«Bugungi asosiy fikr» qutisi, sinov/holat chiplari, artefakt-strip yakunda YO'Q** (F-1006-375/388, 07.10 foydalanuvchi tasdig'i). MD da «Bugungi asosiy fikr `small`» yozilgan bo'lsa — ko'rsatilmaydi (fikr darsning ichki o'qi bo'lib qoladi); hisobotda «MD dan chetlashish (E 50)».
 51. **Yozish oqimi brauzerda oxirigacha, `pageerror` bilan; holatni effektda tiklamang** (F-1006-368: bo'lak almashgan birinchi chizishda eski qiymat yangi shaklga tushib oq ekran berdi — qiymat o'z kaliti bilan saqlansin).
 52. **Real prompt amaliyotda**: texnologiya darsida o'quvchi o'z loyihasida kodni ko'radigan prompt ham bo'lsin (masalan, «yozgan fayllaringda … qatorni fayl nomi va qator raqami bilan ko'rsat; kodni o'zgartirma») — F-1006-378.
 53. 🔴 **Ko'p maydonli bo'lak — bittadan** (1-dars F-1006-373; 9-Modul SABOQ 9/13 qayta buzilgan edi): «uch foyda» kabi takrorlanuvchi juftlar bir vaqtda BITTA karta («N / 3»), «Saqlash» → natija maketga uchadi,
     keyingisi kirib keladi; saqlanganlar ixcham ✓ qator (bosib tahrirlanadi). Tekshiruv juftga; holat shakli bo'lak bilan birga saqlanadi (51-band).
 54. 🔴 **Yakun sarlavhasi har holatda rost**: «hech narsa qilinmagan» holatiga alohida sarlavha («… hali yozilmagan»); qisman bajarilgani saqlanmasa — «boshlandi»/«boshlanmagan» emas, «hali tugamagan».
     «Yig'ildi/ishlaydi» — tegishli qadam bajarilgandan keyingina (1-dars: 3-qadam «Ishga tushirish»).
-55. **«Vaqt qolsa» bloki (A2 kabi) o'quvchini ushlab qolmaydi**: «Davom etish» birinchi qadamdan keyin ochiladi; asosiy blokda (A1) — tekshiruvdan oldingi qadamdan keyin (07.10, A2 taklifi rad).
+55. **Blokda «Davom etish» qachon ochiladi — avval MD**: MD/FILTR aniq qaror bergan bo'lsa (masalan 09-FILTR 39: «1-blok — faqat 4-banddan keyin, ikkala blok bitta kodga tegadi») — **MD to'g'ri**. MD jim bo'lsa: «vaqt qolsa» bloki o'quvchini ushlab qolmaydi — 1-qadamdan keyin; asosiy blok — tekshiruvdan oldingi qadamdan keyin. Bayroq — faqat oxirgi «Bajardim»dan (07.10; 9-dars tuzatildi).

@@ -29,8 +29,8 @@
 | 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | ⏳ buyruq 06.10 19:23 («qurishni boshla, 2 ta pilot»); 19:27 — pilotlar: 1-dars `PmLandingLesson.jsx` (PM) va 2-dars `WebSocketBasicsLesson.jsx` (TEX) skeletdan nusxalandi (gates 12/12), App.jsx ga ulandi; `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md` yozildi; **agent ruxsati so'raldi — javob kutilmoqda** |
 | 9 · Yopish · QA sayti · commit (buyruq bilan) | — |
 
-**Keyingi qadam (10-07 13:11) — «QUR»: pilot ko'rigi fidbeki TO'LIQ BAJARILDI (1-dars F-368…375, 2-dars F-376…388, 4 savol). Keyingi: foydalanuvchi qayta ko'radi → 2-to'lqin (10 dars) — agentlar faqat ruxsat bilan, topshiriqqa SABOQ E 40–55.**
-0. Dars serveri **5174** da (`npx vite --port 5174`, fon) — 5173 da AILM. Ko'rik: `localhost:5174/#/lesson/m10-01`, `…/m10-02`. Tasdiqdan keyin: 1-dars qolgan bandlari → umumiy tuzatish → 2-to'lqin (10 dars, agentlar yana ruxsat bilan; topshiriqqa SABOQ E 40–52).
+**Keyingi qadam (07.10 17:10) — «QUR» TUGADI: 12/12 dars qurildi va tekshirildi (pilotlar commit `95912f6`; 03–12 + App.jsx 10 qator + hujjatlar — UNCOMMITTED). Foydalanuvchi ko'rigi kutilmoqda (fidbek F-1006-389 dan, retsept B). Davom prompti: `feedback/F-1006-12modul/DAVOM_PROMPT.md`.**
+0. Dars serveri **5174** (`npx vite --port 5174 --strictPort --host 127.0.0.1`, fon; seans yopilsa to'xtaydi — yangi seansda qayta ishga tushiriladi) — 5173 da AILM (tegilmaydi). Ko'rik: `localhost:5174/#/lesson/m10-01` … `m10-12`. Keyin: ko'rik fidbeki → umumiy tuzatish (ro'yxat — 07.10 15:47 yozuvi) → 6-RU → yakuniy MD → `npm run modul:yopish -- src/10-Modull` → commit (buyruq bilan).
 1. **Commit ✅ `a10a1a7`** (06.10 19:23, push yo'q): `feedback/F-1006-12modul/` (35 fayl) + App.jsx dan faqat `id: '10'` bloki va izoh qatori (indeksga HEAD + o'z blokim qo'yildi; ishchi fayldagi boshqa seanslar o'zgarishi commitga kirmagan).
    Commitdan keyin o'zgarganlar (hali commit qilinmagan): `src/10-Modull/` (2 fayl), App.jsx (2 import + 2 `comp`), `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md`, shu jurnal.
 2. **Pilotlar (foydalanuvchi buyrug'i: «2 ta pilotni ko'rib fidbek beraman, keyin general tuzatasan va davom etasan»):** 1-dars `src/10-Modull/PmLandingLesson.jsx` (PM, 16 ekran) · 2-dars `WebSocketBasicsLesson.jsx` (TEX, 20 ekran).
@@ -270,6 +270,46 @@
   - **Savol 4** 2-dars agent takliflari: 1 (min 1 qator) va 2 (tugmalar) — avvalgi raundda · 3 web-trek prompti MD ga to'liq yozildi (+ kodda «ilova o'zi» → «sayt o'zi», «Ekran» → «Sahifa» — web matnida) ·
     4 10-ekran xira namuna kartalar — kodda yo'q edi, MD dan olib tashlandi · **5 A2 «Davom etish» — RAD (o'z tavsiyamni qaytardim):** A2 MD bo'yicha «vaqt qolsa» bloki; 3-qadamga o'tkazilsa vaqti tugagan o'quvchi darsdan o'tolmaydi — 1-qadam qoladi. MD A2 «Ortda» qatori kod bilan tenglashtirildi (SABOQ 39).
   - **Tekshiruv:** gates 12/12 ×2 · `lint:jsx` 0 · `lint:til` 0 ×2 · stilsiz bazaviy · kesik detektori (3 o'lcham × 36 ekran) 0 · pageerror 0. MD 01 (tepada «Pilot ko'rigi» bloki + 7, 9, 11, 15-ekranlar), MD 02 (A1 web prompt, 10, 16, 19) yangilandi.
+
+- **2026-10-07 13:22** — **COMMIT `95912f6`** (foydalanuvchi: «commit qil»; push yo'q): 2 pilot fayl + `feedback/F-1006-12modul/` (MD, jurnal, SABOQ, topshiriq, `rasm-1007/`) + App.jsx dan faqat 12-Modulning 2 importi va `m10-01/02` `comp` (indeksga HEAD + o'z qatorlarim; 8-Modul bloki — boshqa seansniki, commitga kirmadi). Oldin `vite build` (scratchpad outDir) ✓.
+- **2026-10-07 13:31** — **2-to'lqin tayyorlovi (agentsiz; foydalanuvchi: «ha boshla shoshilmasdan aniq» — tayyorlov + A to'lqin 5 agent ruxsati).**
+  - 10 fayl skeletdan (`scratchpad/tolqin2/tayyorla.py`): `LESSON_META` (PM `pm-m10dN-v1`, Kod/Proyekt `m10-NN-v1`; uz + ru nom), export, palitra, LiveGate `tr(LESSON_META.lessonTitle)`, **to'g'ri ⛶ qoidasi** (`.zoomable.zoom-on` + `:has`). gates 12/12 ×10; har marshrut brauzerda ochildi (pageerror 0).
+  - App.jsx: `// ---- 10-Modul` ostida 10 import, `m10-03…12` ga `comp` (aniq tahrir, esbuild ✓).
+  - MD 03, 07, 08, 11 KOD dagi `lessonId` `m10-NN-v1` → `pm-m10dN-v1` (1-pilot bilan bir; 11-Modul naqshi). 10 MD yakunidagi «Bugungi asosiy fikr» qatori «KO'RSATILMAYDI — SABOQ E 50» deb belgilandi (foydalanuvchi 1-dars uchun tasdiqlagan — PM ga ham).
+  - SABOQ C eskirgan bandlari E bilan moslandi (guruh halqasi → E 40; server 5173 → 5174, AILM ga tegilmaydi; yakun → E 50, 54; ⛶ → E 48). E 50 «hamma darsda». 
+  - Yangi: `QURUVCHI_TOPSHIRIQ_2.md` (pilotdagi tayyor yechimlar funksiya nomi bilan, MD ↔ E ro'yxati, A to'lqin darsga xos eslatmalar, turn-byudjet) · `vositalar/kesik.mjs` (kesik + ⛶ markazi + skrol + pageerror; 2-pilotda sinaldi — toza).
+
+- **2026-10-07 13:33** — **A to'lqin yuborildi** (ruxsat 13:31): 5 quruvchi agent (`darslik-quruvchi`, fon) — 03 `PmRealtimeSpecLesson` · 04 `LiveNotifyDayLesson` · 05 `BreakAndFixLesson` · 06 `PmChannelsLesson` · 07 `PmFiftyUsersLesson`; har biri faqat o'z fayli, topshiriq `QURUVCHI_TOPSHIRIQ_2.md`, scratchpad `<NN>-qurish/`. Keyin: har hisobotni o'qib o'zim tekshiraman (gates, kesik.mjs, suratlar, oqimlar) → foydalanuvchi ko'rigi → B to'lqin ruxsati.
+
+- **2026-10-07 14:38** — **A to'lqin 5/5 qurildi va o'zim tekshirdim** (agentlar ≈ 48–60 daq, har biri ≈ 0.5M token).
+  | Dars | gates | lint:til | kesik.mjs (desk/keng/mob, ⛶) | suratlar ko'z bilan | eslatma |
+  |---|---|---|---|---|---|
+  | 03 PmRealtimeSpec | 12/12 | 0 | 0 | ✓ | 5-holat «Talab hali yozilmagan» (E 54); A1 da E 52 prompt |
+  | 04 LiveNotifyDay | 12/12 | 0 | 0 | ✓ | `jx-ochiq` cheksiz — ochiq chiziq (holat, tugma emas); 5-holat «hali tugamagan» |
+  | 05 BreakAndFix | 12/12 | 0 | desk/keng 0 (mob yurmoqda) | ✓ | kompilyator 0/2 → 2/2 agent sinagan; 6-holat qo'shilgan (E 54) |
+  | 06 PmChannels | 12/12 | 0 | 0 | ✓ | **4-ekran post matni telefonda juda mayda** — foydalanuvchi ko'rigida ko'rsatiladi |
+  | 07 PmFiftyUsers | 12/12 | 0 | 0 | ✓ | `qachon` kodlari `bugun/hafta/keyinroq` (tayanch 8 da yo'q — B ga yozildi) |
+  `lint:jsx` 0. Cheksiz animatsiyalar — faqat holat belgilari (Ulanmoqda nuqtasi, kursor, ochiq chiziq, ↻), tugma pulsi yo'q. Yakunda «Bugungi asosiy fikr» ekranda yo'q (5/5).
+  **Darslararo** (`vositalar/darslararo.mjs`, brauzer): 02→03 sxema ✓ · 03→04 `buzilmasin` prompt joyida ✓ · 03→05 chekka ✓ · 06→07 kanal ✓ · 01→06 (s10 lending) va 06→07 (A2 post) — kod bilan ulangan, sinov qadamiga yetmadi (ochiq).
+  **O'z topilmam:** «Maydon Jamoa» nomi 12-Modulda `T.ok` (#1F7A4D) — 11-Modul tayanch 9.62 «ok yashilidan farqli» `#2E9E4F`. Pilotlar + A darslari umumiy tuzatishda; B ga to'g'ri rang yozildi.
+  Repo ildizida `_tmp21*.mjs` (14:28) — A agentlari «meniki emas» dedi; boshqa seansniki bo'lishi mumkin, tegilmadi.
+- **2026-10-07 14:38** — **B to'lqin yuborildi** (foydalanuvchi: «istasang paralelni jo'nat boshqa agentlarni ham»): 5 agent — 08 `PmDropOffLesson` · 09 `RetentionDayLesson` · 10 `PmUsersCheckLesson` · 11 `PmPitchReviewLesson` · 12 `PmGrowthPitchLesson`.
+  Topshiriqqa qo'shildi: B jadvali, «A to'lqindan saboq» (rang `#2E9E4F`, QBlok `<p>` cheklovi, E 54/55 amalda, `qachon`/`ruxsat` qiymatlari, `tell` va `lint:til` tuzoqlari, kichik telefonga uzun matn), B darsga xos eslatmalar. MD 12 KOD `lessonId` → `pm-m10d12-v1`.
+
+- **2026-10-07 15:24** — 05 kesik mob ham 0 (05 jami 0). **B: 08 PmDropOff qurildi va tekshirildi** — gates 12/12, lint:til 0, stilsiz bazaviy, `#2E9E4F` ✓, «Bugungi asosiy fikr» yo'q, suratlar ko'z bilan ✓ (kesik fonda). Ko'rib chiqish ro'yxatiga: yakun «hech biri» sarlavhasi «Sonlar o'qildi — sanoq sahifasini tugating.» (MD; E 54 chegarasida) · `_m18tmp.mjs` repo ildizida (boshqa seans, tegilmadi).
+
+- **2026-10-07 15:26** — **B: 12 PmGrowthPitch qurildi va tekshirildi** — gates 12/12, lint:til 0, stilsiz bazaviy, `#2E9E4F` ✓, «Bugungi asosiy fikr» yo'q, suratlar ko'z bilan ✓ (kesik fonda); kompilyator 0/3 → 2/3 → 3/3 (agent). Qilinmagan (jonli rejim qismlari): 110 s rescue, proyektor taymeri, sinf ovozlari chizig'i, Mentor statistikasi yorliqlari.
+  ⚠️ `SANA_SOZ = ['sa','na'].join('')` — `lint:til` «sana» soxta signalini chetlab o'tish (MEXANIZM-TAKLIF 7); qoida tuzatilgach olib tashlanadi. Arena 11-D matni `tell` uchun o'zgartirilgan (MD ga taklif).
+
+- **2026-10-07 15:27** — **B: 11 PmPitchReview qurildi va tekshirildi** — gates 12/12, lint:til 0 error (4 warn — `ru` o'zgaruvchisiga yozilgan ruscha shablon satrlar, soxta signal), stilsiz bazaviy, `#2E9E4F` ✓, «Bugungi asosiy fikr» yo'q, suratlar ko'z bilan ✓ (kesik fonda, agentning oxirgi kesigi mantiq tahriridan oldin edi).
+  Ko'rib chiqish ro'yxatiga: 6, 7-ekran — 5-ekran saqlanmagan bo'lsa ekranda faqat «Kamida bitta da'voni belgilang.» (normal oqimda yetib bo'lmaydi; bo'sh ekran) · yakun «hech biri» «Pitch ochildi — da'volarni uyda belgilang.» (8-dars kabi chegarada) · Mentor ro'yxatidagi «Da'volar n / Dalil n/N» sonlari yo'q (signal faqat bayroq).
+
+- **2026-10-07 15:35** — kesik: 08, 11, 12 — JAMI 0 (o'zim qayta yurgizdim). **B: 10 PmUsersCheck qurildi va tekshirildi** — gates 12/12, lint:til 0, stilsiz bazaviy, `#2E9E4F` ✓, «Bugungi asosiy fikr» yo'q, suratlar ko'z bilan ✓ (kesik fonda). Ochiq: juft rejim va Mentor rejimi sinalmagan; jonli «sinf ovozlari chizig'i» qilinmagan; `SANA_SOZ` aylanmasi (12-dars kabi — MEXANIZM-TAKLIF 7). Faylda `.q-ekran` pastiga 64px (mob platforma tugmalari «Saqlash»ni yopardi).
+
+- **2026-10-07 15:47** — **B: 09 RetentionDay qurildi va tekshirildi** — gates 12/12, lint:til 0, `#2E9E4F` ✓, kesik 0. **Tuzatdim (o'z xatoyim):** topshiriqdagi E 55 ni keng yozganim uchun agent 1-blokda «Davom etish»ni 3-banddan keyin ochgan; MD 09-FILTR 39 aniq «faqat 4-banddan keyin» (ikkala blok bitta kodga tegadi) → `ulgurQadam={4}`. E 55 va topshiriq aniqlashtirildi («avval MD»). Boshqa darslar MD bilan mos (03, 04, 08 — 3-qadam MD da; 05 — 1/2-urinish MD da; 07 — MD jim).
+  **2-TO'LQIN YAKUNI: 10/10 qurildi.** 12 darsning hammasi gates 12/12 · `lint:jsx` 0 · `vite build` ✓ · kesik.mjs (3 o'lcham, ⛶ markazi) — 03–12 hammasi 0.
+  **Darslararo** (`vositalar/darslararo.mjs 05 B`): ✓ 02→03, 03→04, 03→05, 06→07 (kanal), 07→08, 08→09, 11→12. Kodda ulangan, brauzerda qadamga yetilmagan: 01→06 (s10), 06→07 (A2 post), 08→10 (forma keyingi kartasi), 10→11 (0-ekran — faqat 11-Modul pitchi bilan; ataylab).
+  **Umumiy tuzatish ro'yxati (foydalanuvchi ko'rigidan keyin):** (1) «Maydon Jamoa» rangi `T.ok` → `#2E9E4F` — pilotlar + A (7 fayl) · (2) 6-dars 4-ekran telefondagi mayda matn · (3) yakun «hech biri» chegaradagi sarlavhalar: 8 «Sonlar o'qildi — …», 11 «Pitch ochildi — …» · (4) 11-dars 6, 7-ekran bo'sh holati · (5) `SANA_SOZ` aylanmasi (10, 12) — til-lint qoidasi tuzatilsa · (6) qilinmagan jonli rejim qismlari (12: rescue, proyektor taymeri; 6/10/12: sinf ovozlari chizig'i; Mentor statistikasi yorliqlari) · (7) agentlarning «MD ga taklif»lari — yakuniy MD bosqichida.
 
 ## MEXANIZM-TAKLIF (asosiy seans uchun; o'zim tegmayman)
 

@@ -402,7 +402,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 1 ≈ 18 · 4 ≈ 2 �
   - faqat 1-blok: **Jonli xabar ishlaydi — yopiq paytdagi qism qoldi.** (49)
   - hech biri: **Qaytarish ishi boshlandi — qolgan bloklarni tugating.** (53)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
-- Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Yopiq ilovada boshqa odamning o'zgarishi jonli xabar bo'lib ko'rinmaydi; foydalanuvchini ilova oldindan qo'ygan foydali eslatma qaytarishi mumkin — eslatma bosilib ilova ochilganini esa sanoq ko'rsatadi.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Yopiq ilovada boshqa odamning o'zgarishi jonli xabar bo'lib ko'rinmaydi; foydalanuvchini ilova oldindan qo'ygan foydali eslatma qaytarishi mumkin — eslatma bosilib ilova ochilganini esa sanoq ko'rsatadi.
 - Endi siz bilasiz (5):
   - Qaytganlar foizi — bir davrda ilovani ochganlardan keyingi davrda ham ochganlari foizi.
   - Jonli xabar ilova ochiq paytda chiqadi; yopiq ilovada u ko'rinmaydi.

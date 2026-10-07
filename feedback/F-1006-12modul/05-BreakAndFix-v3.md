@@ -556,7 +556,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
   - A1 to'liq, «buzildi» bor, A2 bajarilmagan — **Muammolar yozildi — tuzatish qoldi.** (35)
   - A1 to'liq emas — **Buzish boshlandi — qolgan usullarni uyda bajaring.** (50)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
-- Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Agentning «bajardim» degani — da'vo: chekka holatni o'zingiz buzib ko'rasiz, tuzatilgach o'sha usul bilan qayta tekshirasiz.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Agentning «bajardim» degani — da'vo: chekka holatni o'zingiz buzib ko'rasiz, tuzatilgach o'sha usul bilan qayta tekshirasiz.
 - Endi siz bilasiz (5):
   - Chekka holat oddiy paytda ko'rinmaydi — uni ataylab yuzaga keltirib tekshirasiz.
   - Bu misolda uzilish paytida yuborilgan hodisa keyin kelmaydi, shuning uchun qayta ulanganda ro'yxat qayta so'raladi.

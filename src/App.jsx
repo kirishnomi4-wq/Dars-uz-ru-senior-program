@@ -169,6 +169,16 @@ const PmOneOnOneLesson = L(() => import('./9-Modull/PmOneOnOneLesson.jsx')) // 1
 const PmPrototypePitchLesson = L(() => import('./9-Modull/PmPrototypePitchLesson.jsx')) // 11-Modul 16-dars
 const PmLandingLesson = L(() => import('./10-Modull/PmLandingLesson.jsx')) // 12-Modul 1-dars, pilot
 const WebSocketBasicsLesson = L(() => import('./10-Modull/WebSocketBasicsLesson.jsx')) // 12-Modul 2-dars, pilot
+const PmRealtimeSpecLesson = L(() => import('./10-Modull/PmRealtimeSpecLesson.jsx')) // 12-Modul 3-dars, 2-to'lqin
+const LiveNotifyDayLesson = L(() => import('./10-Modull/LiveNotifyDayLesson.jsx')) // 12-Modul 4-dars, 2-to'lqin
+const BreakAndFixLesson = L(() => import('./10-Modull/BreakAndFixLesson.jsx')) // 12-Modul 5-dars, 2-to'lqin
+const PmChannelsLesson = L(() => import('./10-Modull/PmChannelsLesson.jsx')) // 12-Modul 6-dars, 2-to'lqin
+const PmFiftyUsersLesson = L(() => import('./10-Modull/PmFiftyUsersLesson.jsx')) // 12-Modul 7-dars, 2-to'lqin
+const PmDropOffLesson = L(() => import('./10-Modull/PmDropOffLesson.jsx')) // 12-Modul 8-dars, 2-to'lqin
+const RetentionDayLesson = L(() => import('./10-Modull/RetentionDayLesson.jsx')) // 12-Modul 9-dars, 2-to'lqin
+const PmUsersCheckLesson = L(() => import('./10-Modull/PmUsersCheckLesson.jsx')) // 12-Modul 10-dars, 2-to'lqin
+const PmPitchReviewLesson = L(() => import('./10-Modull/PmPitchReviewLesson.jsx')) // 12-Modul 11-dars, 2-to'lqin
+const PmGrowthPitchLesson = L(() => import('./10-Modull/PmGrowthPitchLesson.jsx')) // 12-Modul 12-dars, 2-to'lqin
 // ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
@@ -414,16 +424,16 @@ const MODULES = [
     lessons: [
       { key: 'm10-01', n: 1, type: 'PM', emoji: '📰', title: 'Mahsulotingizni bir sahifada qanday tanishtirasiz?', sub: 'lending: sarlavha, foyda va bitta tugma', comp: PmLandingLesson },
       { key: 'm10-02', n: 2, type: 'Kod', emoji: '🔌', title: 'WebSocket: ekran o\'zi yangilanadigan ulanish', sub: 'doimiy ulanish, hodisalar va real vaqt oqimi sxemasi', comp: WebSocketBasicsLesson },
-      { key: 'm10-03', n: 3, type: 'PM', emoji: '📝', title: 'Ekran o\'zi yangilanishi uchun nimani yozasiz?', sub: 'real vaqt talabi: hodisalar, ulanish holatlari, chekka holatlar' },
-      { key: 'm10-04', n: 4, type: 'Proyekt', emoji: '🔔', title: 'Loyiha kuni: jonli xabar va eslatma', sub: 'hozir ko\'ryapti, jonli xabar; mobil trekda — telefonga eslatma' },
-      { key: 'm10-05', n: 5, type: 'Kod', emoji: '🧯', title: 'Ulanish uzilsa: buzamiz va tuzatamiz', sub: 'uzilish, takror hodisa, qayta ulanish — uchta muammo' },
-      { key: 'm10-06', n: 6, type: 'PM', emoji: '📣', title: 'Birinchi foydalanuvchilar sizni qayerdan topadi?', sub: 'kanallar va birinchi post' },
-      { key: 'm10-07', n: 7, type: 'PM', emoji: '🚀', title: '50 foydalanuvchiga qanday yetasiz?', sub: 'yig\'ish rejasi va ishga tushirish' },
-      { key: 'm10-08', n: 8, type: 'PM', emoji: '🔎', title: 'Foydalanuvchilar qaysi qadamda to\'xtab qolyapti?', sub: 'qadamlar bo\'yicha sanoq, gipoteza va shu darsda tuzatish' },
-      { key: 'm10-09', n: 9, type: 'Proyekt', emoji: '🔁', title: 'Loyiha kuni: foydalanuvchini qaytaradigan eslatma', sub: 'hodisadan eslatmagacha — talabni siz yozasiz' },
-      { key: 'm10-10', n: 10, type: 'PM', emoji: '📊', title: '50 foydalanuvchiga yetdingizmi?', sub: 'Mentor tekshiruvi: metrika hisoboti va zaxira reja' },
-      { key: 'm10-11', n: 11, type: 'PM', emoji: '🤝', title: 'Raqamlaringiz pitchni qanday o\'zgartiradi?', sub: 'Mentor bilan yakkama-yakka: tuzatilgan pitch' },
-      { key: 'm10-12', n: 12, type: 'PM', emoji: '🎤', title: 'Raqamlaringiz zalni ishontiradimi?', sub: 'metrikali pitch: o\'sish grafigi — dalil' },
+      { key: 'm10-03', n: 3, type: 'PM', emoji: '📝', title: 'Ekran o\'zi yangilanishi uchun nimani yozasiz?', sub: 'real vaqt talabi: hodisalar, ulanish holatlari, chekka holatlar', comp: PmRealtimeSpecLesson },
+      { key: 'm10-04', n: 4, type: 'Proyekt', emoji: '🔔', title: 'Loyiha kuni: jonli xabar va eslatma', sub: 'hozir ko\'ryapti, jonli xabar; mobil trekda — telefonga eslatma', comp: LiveNotifyDayLesson },
+      { key: 'm10-05', n: 5, type: 'Kod', emoji: '🧯', title: 'Ulanish uzilsa: buzamiz va tuzatamiz', sub: 'uzilish, takror hodisa, qayta ulanish — uchta muammo', comp: BreakAndFixLesson },
+      { key: 'm10-06', n: 6, type: 'PM', emoji: '📣', title: 'Birinchi foydalanuvchilar sizni qayerdan topadi?', sub: 'kanallar va birinchi post', comp: PmChannelsLesson },
+      { key: 'm10-07', n: 7, type: 'PM', emoji: '🚀', title: '50 foydalanuvchiga qanday yetasiz?', sub: 'yig\'ish rejasi va ishga tushirish', comp: PmFiftyUsersLesson },
+      { key: 'm10-08', n: 8, type: 'PM', emoji: '🔎', title: 'Foydalanuvchilar qaysi qadamda to\'xtab qolyapti?', sub: 'qadamlar bo\'yicha sanoq, gipoteza va shu darsda tuzatish', comp: PmDropOffLesson },
+      { key: 'm10-09', n: 9, type: 'Proyekt', emoji: '🔁', title: 'Loyiha kuni: foydalanuvchini qaytaradigan eslatma', sub: 'hodisadan eslatmagacha — talabni siz yozasiz', comp: RetentionDayLesson },
+      { key: 'm10-10', n: 10, type: 'PM', emoji: '📊', title: '50 foydalanuvchiga yetdingizmi?', sub: 'Mentor tekshiruvi: metrika hisoboti va zaxira reja', comp: PmUsersCheckLesson },
+      { key: 'm10-11', n: 11, type: 'PM', emoji: '🤝', title: 'Raqamlaringiz pitchni qanday o\'zgartiradi?', sub: 'Mentor bilan yakkama-yakka: tuzatilgan pitch', comp: PmPitchReviewLesson },
+      { key: 'm10-12', n: 12, type: 'PM', emoji: '🎤', title: 'Raqamlaringiz zalni ishontiradimi?', sub: 'metrikali pitch: o\'sish grafigi — dalil', comp: PmGrowthPitchLesson },
       { key: 'm10-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'taymer bilan to\'liq repetitsiya' },
     ],
   },

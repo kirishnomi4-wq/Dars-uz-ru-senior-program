@@ -513,7 +513,7 @@ haftalar.forEach(function (h) {
   - grafik yo'q va bo'laklar 5/5 dan kam: **Pitch boshlandi — qolgan bo'laklarni tugating.** (46)
   Sarlavha ostida bitta chip (varaq turi): «Varaq: sherik to'ldirdi» · «Varaq: o'zingiz — mashq» · «Varaq: qoldi».
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
-- Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Zal sonni ustunlarda ko'radi: noldan, haftama-hafta, sanasi va nima sanalgani bilan — yonida bitta halol gap.
+- **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Zal sonni ustunlarda ko'radi: noldan, haftama-hafta, sanasi va nima sanalgani bilan — yonida bitta halol gap.
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):
   - Bizda 5 daqiqalik pitch besh bo'lakdan iborat: raqamlar jonli demodan keyin turadi.
   - O'sish grafigida ustun ostida sana, ustida son, sarlavhada esa nima sanalgani turadi.
@@ -624,7 +624,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 ---
 
 ## B. «KOD» — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
-1. Yangi fayl `src/10-Modull/PmGrowthPitchLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META` `pm-m10d12-pitch-v1` · «Raqamlaringiz zalni ishontiradimi?».
+1. Yangi fayl `src/10-Modull/PmGrowthPitchLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META` `pm-m10d12-v1` (07.10: hamma PM dars bilan bir shakl — `pm-m10dN-v1`) · «Raqamlaringiz zalni ishontiradimi?».
    Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4/s8 `QTushuncha` (`zoom`, `tugadi` — q17/q18) · s3/s5/s7/s12 `QTest` (`QuestionScreen` mantig'i, DE-203) · s6 `QVoqea` · s9 `QKod` (`HtmlCompiler`) ·
    s10/s11 `QMustaqil` · s13 `QNatija` · s14 `QKartochka` · s15 `QYakun`.
 2. **`BeshDaqiqaSahna`** — bitta vizual (180): telefon (`JamoaTelefon`: «O'yinlar» + ulanish belgisi · «O'yin»; «8 / 10» → «9 / 10» son animatsiyasi; ≈170×272 barqaror) · besh bo'lak (holatlar: bo'sh · joriy · yozildi · ✓ · ✗ · o'zgartirildi) ·
